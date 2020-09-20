@@ -389,8 +389,8 @@ function StartAttract() {
   attractmap += `<td id='am8x8' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'><div style='width:32px;height:32px;background-image:url("graphics/${tree[0]}");background-position:${tree[2]}px ${tree[3]}px'></div></td>`;
   attractmap += `<td id='am9x8' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
   attractmap += `<td id='am10x8' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
-  attractmap += `<td id='am11x8' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'><div style='width:32px;height:32px;background-image:url("graphics/master_spritesheet.png");background-position:-64px -800px'></div></td>`;
-  attractmap += `<td id='am12x8' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
+  attractmap += `<td id='am11x8' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
+  attractmap += `<td id='am12x8' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'><div style='width:32px;height:32px;background-image:url("graphics/master_spritesheet.png");background-position:-64px -800px'></div></td>`;
   attractmap += `<td id='am13x8' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
   attractmap += `<td id='am14x8' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
   attractmap += `<td id='am15x8' style='opacity:0;background-image:url("graphics/${brush[0]}"); background-position: ${brush[2]}px ${brush[3]}px;width:32px;height:32px'></td>`;
@@ -411,8 +411,8 @@ function StartAttract() {
   attractmap += `<td id='am7x9' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
   attractmap += `<td id='am8x9' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
   attractmap += `<td id='am9x9' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
-  attractmap += `<td id='am10x9' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'><div style='width:32px;height:32px;background-image:url("graphics/${campfire[0]}");background-position:-${campfire[2]}px -${campfire[3]}px'></div></td>`;
-  attractmap += `<td id='am11x9' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
+  attractmap += `<td id='am10x9' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
+  attractmap += `<td id='am11x9' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'><div style='width:32px;height:32px;background-image:url("graphics/${campfire[0]}");background-position:-${campfire[2]}px -${campfire[3]}px'></div></td>`;
   attractmap += `<td id='am12x9' style='opacity:0;background-image:url("graphics/${brush[0]}"); background-position: ${brush[2]}px ${brush[3]}px;width:32px;height:32px'></td>`;
   attractmap += `<td id='am13x9' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
   attractmap += `<td id='am14x9' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
@@ -1045,66 +1045,106 @@ function CreateGameSpace() {
 function ExecuteAttract(frame) {
   let board1 = document.getElementById("attract1");
   if (!board1) { return; }
-  let dur = 500;
+  let dur = 600;
   switch (frame) {
     case 0:
-      ShowTiles("",9,7,13,10,1);
+      ShowTiles("",10,7,14,10,1);
       dur = 3000;
       break;
     case 1:
-      document.getElementById("am11x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      document.getElementById("am12x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
       break;
     case 2:
-      document.getElementById("am11x8").innerHTML = ``;
-      document.getElementById("am12x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
-      HideTiles("",9,7,9,10);
-      ShowTiles("",14,7,14,10);
-      break;
-    case 3:
       document.getElementById("am12x8").innerHTML = ``;
       document.getElementById("am13x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
       HideTiles("",10,7,10,10);
       ShowTiles("",15,7,15,10);
       break;
-    case 4:
+    case 3:
       document.getElementById("am13x8").innerHTML = ``;
       document.getElementById("am14x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
       HideTiles("",11,7,11,10);
       ShowTiles("",16,7,16,10);
       break;
-    case 5:
+    case 4:
       document.getElementById("am14x8").innerHTML = ``;
       document.getElementById("am15x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
       HideTiles("",12,7,12,10);
       ShowTiles("",17,7,17,10);
       break;
-    case 6:
+    case 5:
       document.getElementById("am15x8").innerHTML = ``;
       document.getElementById("am16x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
       HideTiles("",13,7,13,10);
       ShowTiles("",18,7,18,10);
       break;
-    case 7:
+    case 6:
       document.getElementById("am16x8").innerHTML = ``;
       document.getElementById("am17x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
       HideTiles("",14,7,14,10);
       ShowTiles("",19,7,19,10);
       break;
-    case 8:
+    case 7:
       document.getElementById("am17x8").innerHTML = ``;
       document.getElementById("am18x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
       HideTiles("",15,7,15,10);
       ShowTiles("",20,7,20,10);
       break;
-    case 9:
+    case 8:
       document.getElementById("am18x8").innerHTML = ``;
       document.getElementById("am19x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
       HideTiles("",16,7,16,10);
       ShowTiles("",21,7,21,10);
       ShowTiles("",19,6,21,6);
-      ShowTiles("",19,11,21,11);
+//      ShowTiles("",19,11,21,11);
       break;
-
+    case 9:
+      document.getElementById("am19x8").innerHTML = ``;
+      document.getElementById("am20x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",17,7,17,10);
+      ShowTiles("",22,6,22,10);
+      break;
+    case 10:
+      document.getElementById("am20x8").innerHTML = ``;
+      document.getElementById("am21x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",18,7,18,10);
+      ShowTiles("",23,6,23,10);
+      break;
+    case 11:
+      document.getElementById("am21x8").innerHTML = ``;
+      document.getElementById("am21x7").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",18,10,23,10);
+      ShowTiles("",18,5,23,5);
+      break;
+    case 12:
+      document.getElementById("am21x7").innerHTML = ``;
+      document.getElementById("am21x6").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",18,9,23,9);
+      ShowTiles("",18,4,23,4);
+      break;
+    case 13:
+      document.getElementById("am21x6").innerHTML = ``;
+      document.getElementById("am21x5").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",18,8,23,8);
+      ShowTiles("",18,3,23,3);
+      break;
+    case 14:
+      document.getElementById("am21x5").innerHTML = ``;
+      document.getElementById("am21x4").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",18,7,23,7);
+      ShowTiles("",18,2,23,2);
+      break;
+    case 15:
+      document.getElementById("am21x4").innerHTML = ``;
+      document.getElementById("am21x3").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",18,6,23,6);
+      ShowTiles("",18,1,23,1);
+      break;
+    case 16: 
+      document.getElementById("am21x3").innerHTML = ``;
+      document.getElementById("am21x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",18,5,23,5);
+      break;
     default:
     return;
   }
