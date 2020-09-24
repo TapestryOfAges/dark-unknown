@@ -1545,8 +1545,63 @@ function ExecuteAttract(frame) {
       document.getElementById("am21x12").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/339.gif");'></div>`;
       ShowTiles("",19,10,19,13);
       break;
-    default:
-    return;
+    case 93:
+      document.getElementById("am21x6").innerHTML = ``;
+      document.getElementById("am21x7").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      ShowTiles("",19,9,23,9);
+      HideTiles("",19,4,23,4);
+      document.getElementById("am21x12").innerHTML = ``;
+      document.getElementById("am21x11").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/339.gif");'></div>`;
+      break;
+    case 94:
+      document.getElementById("am21x7").innerHTML = ``;
+      document.getElementById("am21x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      HideTiles("",19,4,23,4);
+      document.getElementById("am21x11").innerHTML = ``;
+      document.getElementById("am21x10").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/339.gif");'></div>`;
+      break;
+    case 95:
+      document.getElementById("am21x10").innerHTML = ``;
+      document.getElementById("am21x9").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/339.gif");'></div>`;
+      break;
+    case 96:
+      document.getElementById("am21x9").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/339.gif");'><div style='width:32px;height:32px;background-image:url("graphics/702.gif");'></div></div>`;
+      dur = 200;
+      break;
+    case 97:
+      document.getElementById("am21x9").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/339.gif");'></div>`;
+      break;
+    case 98:
+      document.getElementById("am21x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'><div style='width:32px;height:32px;background-image:url("graphics/702.gif");'></div></div>`;
+      dur = 200;
+      break;
+    case 99:
+      document.getElementById("am21x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      break;
+    case 100:
+      document.getElementById("am21x9").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/339.gif");'><div style='width:32px;height:32px;background-image:url("graphics/702.gif");'></div></div>`;
+      dur = 200;
+      break;
+    case 101:
+      document.getElementById("am21x9").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/339.gif");'></div>`;
+      break;
+    case 102:
+      document.getElementById("am21x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'><div style='width:32px;height:32px;background-image:url("graphics/700.gif");'></div></div>`;
+      dur = 200;
+      break;
+    case 103:
+      document.getElementById("am21x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      break;
+    case 104:
+      document.getElementById("am21x9").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/339.gif");'><div style='width:32px;height:32px;background-image:url("graphics/702.gif");'></div></div>`;
+      dur = 200;
+      break;
+    case 105:
+      document.getElementById("am21x9").innerHTML = ``;
+      break;
+      
+      default:
+      return;
   }
   setTimeout(function() { ExecuteAttract(frame+1) },dur);
 }
