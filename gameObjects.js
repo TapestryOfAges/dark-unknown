@@ -11205,6 +11205,24 @@ function DescendWaterfall(who, waterfall) {
   }
 }
 
+function GrassWaterfallTile() {
+  this.name = "GrassWaterfall";
+  this.layers = [["static.png","",-3*32,-60*32]];
+}
+GrassWaterfallTile.prototype = new WaterfallTile();
+
+function DirtWaterfallTile() {
+  this.name = "DirtWaterfall";
+  this.layers = [["static.png","",-3*32,-67*32]];
+}
+DirtWaterfallTile.prototype = new WaterfallTile();
+
+function CaveWaterfallTile() {
+  this.name = "CaveWaterfall";
+  this.layers = [["static.png","",-2*32,-67*32]];
+}
+CaveWaterfallTile.prototype = new WaterfallTile();
+
 function BrilliantPoolTile() {
   this.name = "BrilliantPool";
   this.graphic = "pool.gif";

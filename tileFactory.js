@@ -3148,6 +3148,21 @@ tileFactory.prototype.makeWaterfallFlowTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeGrassWaterfallTile = function() {
+  let newTile = new GrassWaterfallTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDirtWaterfallTile = function() {
+  let newTile = new DirtWaterfallTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCaveWaterfallTile = function() {
+  let newTile = new CaveWaterfallTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeBrilliantPoolTile = function() {
   let newTile = new BrilliantPoolTile();
   return newTile;
