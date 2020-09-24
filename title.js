@@ -288,6 +288,9 @@ function StartAttract() {
   let dirtcoast = localFactory.createTile("NorthCoastSand").getGraphicArray();
   let post = localFactory.createTile("SingleSignpost").getGraphicArray();
   let sign = localFactory.createTile("TavernSign").getGraphicArray();
+  let rightpost = localFactory.createTile("SignpostRight").getGraphicArray();
+  let wpnsign = localFactory.createTile("WeaponSign").getGraphicArray();
+  let brazier = localFactory.createTile("Brazier").getGraphicArray();
 
   let attractmap = "<table cellpadding='0' cellspacing='0' border='0'>";
   attractmap += `<tr><td id='am1x1' style='opacity:0;background-image:url("graphics/${hill[0]}"); background-position: ${hill[2]}px ${hill[3]}px;width:32px;height:32px'></td>`;
@@ -389,8 +392,8 @@ function StartAttract() {
   attractmap += `<td id='am8x8' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'><div style='width:32px;height:32px;background-image:url("graphics/${tree[0]}");background-position:${tree[2]}px ${tree[3]}px'></div></td>`;
   attractmap += `<td id='am9x8' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
   attractmap += `<td id='am10x8' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
-  attractmap += `<td id='am11x8' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'><div style='width:32px;height:32px;background-image:url("graphics/master_spritesheet.png");background-position:-64px -800px'></div></td>`;
-  attractmap += `<td id='am12x8' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
+  attractmap += `<td id='am11x8' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
+  attractmap += `<td id='am12x8' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'><div style='width:32px;height:32px;background-image:url("graphics/master_spritesheet.png");background-position:-64px -800px'></div></td>`;
   attractmap += `<td id='am13x8' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
   attractmap += `<td id='am14x8' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
   attractmap += `<td id='am15x8' style='opacity:0;background-image:url("graphics/${brush[0]}"); background-position: ${brush[2]}px ${brush[3]}px;width:32px;height:32px'></td>`;
@@ -411,8 +414,8 @@ function StartAttract() {
   attractmap += `<td id='am7x9' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
   attractmap += `<td id='am8x9' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
   attractmap += `<td id='am9x9' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
-  attractmap += `<td id='am10x9' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'><div style='width:32px;height:32px;background-image:url("graphics/${campfire[0]}");background-position:-${campfire[2]}px -${campfire[3]}px'></div></td>`;
-  attractmap += `<td id='am11x9' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
+  attractmap += `<td id='am10x9' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
+  attractmap += `<td id='am11x9' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'><div style='width:32px;height:32px;background-image:url("graphics/${campfire[0]}");background-position:-${campfire[2]}px -${campfire[3]}px'></div></td>`;
   attractmap += `<td id='am12x9' style='opacity:0;background-image:url("graphics/${brush[0]}"); background-position: ${brush[2]}px ${brush[3]}px;width:32px;height:32px'></td>`;
   attractmap += `<td id='am13x9' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
   attractmap += `<td id='am14x9' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
@@ -495,7 +498,7 @@ function StartAttract() {
   attractmap += `</table>`;
 
   let attractmapx = "<table cellpadding='0' cellspacing='0' border='0'>";
-  attractmapx += `<tr><td id='amx1x1' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'></td>`;
+  attractmapx += `<tr><td id='amx1x1' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'><div style='width:32px;height:32px;background-image:url("graphics/${brazier[0]}");background-position:${brazier[2]}px ${brazier[3]}px'></div></td>`;
   attractmapx += `<td id='amx2x1' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'></td>`;
   attractmapx += `<td id='amx3x1' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'></td>`;
   attractmapx += `<td id='amx4x1' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'></td>`;
@@ -523,14 +526,14 @@ function StartAttract() {
   attractmapx += `<td id='amx4x3' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'></td>`;
   attractmapx += `<td id='amx5x3' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'></td>`;
   attractmapx += `<td id='amx6x3' style='opacity:0;width:32px;height:32px'></td><td id='amx7x3' style='opacity:0;width:32px;height:32px'></td><td id='amx8x3' style='opacity:0;width:32px;height:32px'></td><td id='amx9x3' style='opacity:0;width:32px;height:32px'></td><td id='amx10x3' style='opacity:0;width:32px;height:32px'></td><td id='amx11x3' style='opacity:0;width:32px;height:32px'></td><td id='amx12x3' style='opacity:0;width:32px;height:32px'></td><td id='amx13x3' style='opacity:0;width:32px;height:32px'></td><td id='amx14x3' style='opacity:0;width:32px;height:32px'></td><td id='amx15x3' style='opacity:0;width:32px;height:32px'></td><td id='amx16x3' style='opacity:0;width:32px;height:32px'></td><td id='amx17x3' style='opacity:0;width:32px;height:32px'></td><td id='amx18x3' style='opacity:0;width:32px;height:32px'></td>`;
-  attractmapx += `<td id='amx19x3' style='opacity:0;background-image:url("graphics/${water[0]}"); background-position: ${water[2]}px ${water[3]}px;width:32px;height:32px'><div style='width:32px;height:32px;background-image:url("graphics/nwcoast.gif");'></div></td>`;
+  attractmapx += `<td id='amx19x3' style='opacity:0;background-image:url("graphics/${water[0]}"); background-position: ${water[2]}px ${water[3]}px;width:32px;height:32px'><div style='width:32px;height:32px;background-image:url("graphics/nwcoast-sand.gif");'></div></td>`;
   attractmapx += `<td id='amx20x3' style='opacity:0;background-image:url("graphics/${dirtcoast[0]}"); background-position: ${dirtcoast[2]}px ${dirtcoast[3]}px;width:32px;height:32px'></td>`;
   attractmapx += `<td id='amx21x3' style='opacity:0;background-image:url("graphics/${dirtcoast[0]}"); background-position: ${dirtcoast[2]}px ${dirtcoast[3]}px;width:32px;height:32px'></td>`;
   attractmapx += `<td id='amx22x3' style='opacity:0;background-image:url("graphics/${dirtcoast[0]}"); background-position: ${dirtcoast[2]}px ${dirtcoast[3]}px;width:32px;height:32px'></td>`;
-  attractmapx += `<td id='amx23x3' style='opacity:0;background-image:url("graphics/${water[0]}"); background-position: ${water[2]}px ${water[3]}px;width:32px;height:32px'>necoast.gif</td></tr>`;
+  attractmapx += `<td id='amx23x3' style='opacity:0;background-image:url("graphics/${water[0]}"); background-position: ${water[2]}px ${water[3]}px;width:32px;height:32px'><div style='width:32px;height:32px;background-image:url("graphics/necoast-sand.gif");'></div></td></tr>`;
   attractmapx += `<tr><td id='amx1x4' style='opacity:0;background-image:url("graphics/${wall[0]}"); background-position: ${wall[2]}px ${wall[3]}px;width:32px;height:32px'></td>`;
   attractmapx += `<td id='amx2x4' style='opacity:0;background-image:url("graphics/${wall[0]}"); background-position: ${wall[2]}px ${wall[3]}px;width:32px;height:32px'></td>`;
-  attractmapx += `<td id='amx3x4' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'></td>`;
+  attractmapx += `<td id='amx3x4' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'><div style='width:32px;height:32px;background-image:url("graphics/${door[0]}");background-position:${door[2]}px ${door[3]}px'></div></td>`;
   attractmapx += `<td id='amx4x4' style='opacity:0;background-image:url("graphics/${wall[0]}"); background-position: ${wall[2]}px ${wall[3]}px;width:32px;height:32px'></td>`;
   attractmapx += `<td id='amx5x4' style='opacity:0;background-image:url("graphics/${wall[0]}"); background-position: ${wall[2]}px ${wall[3]}px;width:32px;height:32px'></td>`;
   attractmapx += `<td id='amx6x4' style='opacity:0;width:32px;height:32px'></td><td id='amx7x4' style='opacity:0;width:32px;height:32px'></td><td id='amx8x4' style='opacity:0;width:32px;height:32px'></td><td id='amx9x4' style='opacity:0;width:32px;height:32px'></td><td id='amx10x4' style='opacity:0;width:32px;height:32px'></td><td id='amx11x4' style='opacity:0;width:32px;height:32px'></td><td id='amx12x4' style='opacity:0;width:32px;height:32px'></td><td id='amx13x4' style='opacity:0;width:32px;height:32px'></td><td id='amx14x4' style='opacity:0;width:32px;height:32px'></td><td id='amx15x4' style='opacity:0;width:32px;height:32px'></td><td id='amx16x4' style='opacity:0;width:32px;height:32px'></td><td id='amx17x4' style='opacity:0;width:32px;height:32px'></td><td id='amx18x4' style='opacity:0;width:32px;height:32px'></td>`;
@@ -591,10 +594,10 @@ function StartAttract() {
   attractmapx += `<td id='amx5x8' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'></td>`;
   attractmapx += `<td id='amx6x8' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'></td>`;
   attractmapx += `<td id='amx7x8' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'></td>`;
-  attractmapx += `<td id='amx8x8' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'><div style='width:32px;height:32px;background-image:url("graphics/${tree[0]}");background-position:${tree[2]}px ${tree[3]}px'></div></td>`;
+  attractmapx += `<td id='amx8x8' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'></td>`;
   attractmapx += `<td id='amx9x8' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'></td>`;
   attractmapx += `<td id='amx10x8' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'></td>`;
-  attractmapx += `<td id='amx11x8' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'><div style='width:32px;height:32px;background-image:url("graphics/master_spritesheet.png");background-position:-64px -800px'></div></td>`;
+  attractmapx += `<td id='amx11x8' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'></td>`;
   attractmapx += `<td id='amx12x8' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'></td>`;
   attractmapx += `<td id='amx13x8' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'></td>`;
   attractmapx += `<td id='amx14x8' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'></td>`;
@@ -628,8 +631,8 @@ function StartAttract() {
   attractmapx += `<td id='amx19x9' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'></td>`;
   attractmapx += `<td id='amx20x9' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'></td>`;
   attractmapx += `<td id='amx21x9' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'></td>`;
-  attractmapx += `<td id='amx22x9' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
-  attractmapx += `<td id='amx23x9' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td></tr>`;
+  attractmapx += `<td id='amx22x9' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'><div style='width:32px;height:32px;background-image:url("graphics/${wpnsign[0]}");background-position:${wpnsign[2]}px ${wpnsign[3]}px'></div></td>`;
+  attractmapx += `<td id='amx23x9' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'><div style='width:32px;height:32px;background-image:url("graphics/${rightpost[0]}");background-position:${rightpost[2]}px ${rightpost[3]}px'></div></td></tr>`;
   attractmapx += `<tr><td id='amx1x10' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
   attractmapx += `<td id='amx2x10' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'></td>`;
   attractmapx += `<td id='amx3x10' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'></td>`;
@@ -673,7 +676,7 @@ function StartAttract() {
   attractmapx += `<td id='amx19x12' style='opacity:0;background-image:url("graphics/${wall[0]}"); background-position: ${wall[2]}px ${wall[3]}px;width:32px;height:32px'></td>`;
   attractmapx += `<td id='amx20x12' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'></td>`;
   attractmapx += `<td id='amx21x12' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'></td>`;
-  attractmapx += `<td id='amx22x12' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'></td>`;
+  attractmapx += `<td id='amx22x12' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'><div style='width:32px;height:32px;background-image:url("graphics/civ_green.gif");'></div></td>`;
   attractmapx += `<td id='amx23x12' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'></td></tr>`;
   attractmapx += `<tr><td id='amx1x13' style='opacity:0;background-image:url("graphics/${grass[0]}"); background-position: ${grass[2]}px ${grass[3]}px;width:32px;height:32px'></td>`;
   attractmapx += `<td id='amx2x13' style='opacity:0;background-image:url("graphics/${cobble[0]}"); background-position: ${cobble[2]}px ${cobble[3]}px;width:32px;height:32px'></td>`;
@@ -1044,67 +1047,504 @@ function CreateGameSpace() {
 
 function ExecuteAttract(frame) {
   let board1 = document.getElementById("attract1");
+  let door = localFactory.createTile("DoorWindow").getGraphicArray();
+  let opendoor = ["master_spritesheet.png",0,-192,-704];
+  let chair = localFactory.createTile("LeftChair").getGraphicArray();
+  let food = localFactory.createTile("FoodSouthEdge").getGraphicArray();
+  let tableedge = localFactory.createTile("LeftTable").getGraphicArray();
+
   if (!board1) { return; }
   let dur = 500;
   switch (frame) {
     case 0:
-      ShowTiles("",9,7,13,10,1);
+      ShowTiles("",10,7,14,10,1);
       dur = 3000;
       break;
     case 1:
-      document.getElementById("am11x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      document.getElementById("am12x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
       break;
     case 2:
-      document.getElementById("am11x8").innerHTML = ``;
-      document.getElementById("am12x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
-      HideTiles("",9,7,9,10);
-      ShowTiles("",14,7,14,10);
-      break;
-    case 3:
       document.getElementById("am12x8").innerHTML = ``;
       document.getElementById("am13x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
       HideTiles("",10,7,10,10);
       ShowTiles("",15,7,15,10);
       break;
-    case 4:
+    case 3:
       document.getElementById("am13x8").innerHTML = ``;
       document.getElementById("am14x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
       HideTiles("",11,7,11,10);
       ShowTiles("",16,7,16,10);
       break;
-    case 5:
+    case 4:
       document.getElementById("am14x8").innerHTML = ``;
       document.getElementById("am15x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
       HideTiles("",12,7,12,10);
       ShowTiles("",17,7,17,10);
       break;
-    case 6:
+    case 5:
       document.getElementById("am15x8").innerHTML = ``;
       document.getElementById("am16x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
       HideTiles("",13,7,13,10);
       ShowTiles("",18,7,18,10);
       break;
-    case 7:
+    case 6:
       document.getElementById("am16x8").innerHTML = ``;
       document.getElementById("am17x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
       HideTiles("",14,7,14,10);
       ShowTiles("",19,7,19,10);
       break;
-    case 8:
+    case 7:
       document.getElementById("am17x8").innerHTML = ``;
       document.getElementById("am18x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
       HideTiles("",15,7,15,10);
       ShowTiles("",20,7,20,10);
       break;
-    case 9:
+    case 8:
       document.getElementById("am18x8").innerHTML = ``;
       document.getElementById("am19x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
       HideTiles("",16,7,16,10);
       ShowTiles("",21,7,21,10);
       ShowTiles("",19,6,21,6);
-      ShowTiles("",19,11,21,11);
+//      ShowTiles("",19,11,21,11);
       break;
-
+    case 9:
+      document.getElementById("am19x8").innerHTML = ``;
+      document.getElementById("am20x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",17,7,17,10);
+      ShowTiles("",22,6,22,10);
+      break;
+    case 10:
+      document.getElementById("am20x8").innerHTML = ``;
+      document.getElementById("am21x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",18,7,18,10);
+      ShowTiles("",23,6,23,10);
+      break;
+    case 11:
+      document.getElementById("am21x8").innerHTML = ``;
+      document.getElementById("am21x7").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",19,10,23,10);
+      ShowTiles("",19,5,23,5);
+      break;
+    case 12:
+      document.getElementById("am21x7").innerHTML = ``;
+      document.getElementById("am21x6").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",19,9,23,9);
+      ShowTiles("",19,4,23,4);
+      break;
+    case 13:
+      document.getElementById("am21x6").innerHTML = ``;
+      document.getElementById("am21x5").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",19,8,23,8);
+      ShowTiles("",19,3,23,3);
+      break;
+    case 14:
+      document.getElementById("am21x5").innerHTML = ``;
+      document.getElementById("am21x4").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",19,7,23,7);
+      ShowTiles("",19,2,23,2);
+      break;
+    case 15:
+      document.getElementById("am21x4").innerHTML = ``;
+      document.getElementById("am21x3").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",19,6,23,6);
+      ShowTiles("",19,1,23,1);
+      break;
+    case 16: 
+      document.getElementById("am21x3").innerHTML = ``;
+      document.getElementById("am21x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/153.gif");'><div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div></div>`;
+      HideTiles("",19,5,23,5);
+      break;
+    case 17:
+      document.getElementById("am21x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/153.gif");'></div>`;
+      dur = 1200;
+      break;
+    case 18:
+      HideTiles("",19,4,23,4);
+      HideTiles("",19,1,19,3);
+      HideTiles("",23,1,23,3);
+      break;
+    case 19:
+      HideTiles("",20,1,22,1);
+      HideTiles("",20,2,20,3);
+      HideTiles("",22,2,22,3);
+      HideTiles("",21,3,21,3);
+      break;
+    case 20:
+      HideTiles("",21,2,21,2);
+      dur = 1200;
+      break;
+    case 21:
+      ShowTiles("x",3,11,3,11);
+      break;
+    case 22:
+      ShowTiles("x",2,10,4,12);
+      break;
+    case 23:
+      ShowTiles("x",1,9,5,13);
+      break;
+    case 24:
+      document.getElementById("amx3x11").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      break;
+    case 25:
+      document.getElementById("amx3x11").innerHTML = ``;
+      document.getElementById("amx3x10").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("x",1,13,5,13);
+      ShowTiles("x",1,8,5,8);
+      break;
+    case 26:
+      document.getElementById("amx3x10").innerHTML = ``;
+      document.getElementById("amx3x9").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("x",1,12,5,12);
+      ShowTiles("x",1,7,5,7);
+      break;
+    case 27:
+      document.getElementById("amx3x9").innerHTML = ``;
+      document.getElementById("amx3x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("x",1,11,5,11);
+      ShowTiles("x",1,6,5,6);
+      break;
+    case 28:
+      document.getElementById("amx3x8").innerHTML = ``;
+      document.getElementById("amx3x7").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("x",1,10,5,10);
+      ShowTiles("x",1,5,5,5);
+      break;
+    case 29:
+      document.getElementById("amx3x7").innerHTML = ``;
+      document.getElementById("amx3x6").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("x",1,9,5,9);
+      ShowTiles("x",1,4,5,4);
+      break;
+    case 30:
+      document.getElementById("amx3x6").innerHTML = ``;
+      document.getElementById("amx3x5").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("x",1,8,5,8);
+      ShowTiles("x",1,3,5,3);
+      break;
+    case 31:
+      document.getElementById("amx3x4").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/${opendoor[0]}");background-position:${opendoor[2]}px ${opendoor[3]}px'></div>`;
+      break;
+    case 32:
+      document.getElementById("amx3x5").innerHTML = ``;
+      document.getElementById("amx3x4").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/${opendoor[0]}");background-position:${opendoor[2]}px ${opendoor[3]}px'><div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div></div>`;
+      HideTiles("x",1,7,5,7);
+      ShowTiles("x",1,2,5,2);
+      break;
+    case 33:
+      document.getElementById("amx3x4").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/${opendoor[0]}");background-position:${opendoor[2]}px ${opendoor[3]}px'></div>`;
+      document.getElementById("amx3x3").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("x",1,6,5,6);
+      ShowTiles("x",1,1,5,1);
+      break;
+    case 34:
+      document.getElementById("amx3x3").innerHTML = ``;
+      document.getElementById("amx3x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/seated_east_2.gif");'></div>`;
+      dur = 200;
+      break;
+    case 35:
+      let cdiv = document.getElementById("amx4x2");
+      cdiv.innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/${food[0]}");background-position:${food[2]}px ${food[3]}px'></div>`;
+      dur = 1800;
+      break;
+    case 36:
+      document.getElementById("amx4x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/${tableedge[0]}");background-position:${tableedge[2]}px ${tableedge[3]}px'></div>`;
+      break;
+    case 37:
+      document.getElementById("amx3x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/${chair[0]}");background-position:${chair[2]}px ${chair[3]}px'></div>`;
+      document.getElementById("amx3x3").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      break;
+    case 38:
+      document.getElementById("amx3x3").innerHTML = ``;
+      document.getElementById("amx3x4").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/${opendoor[0]}");background-position:${opendoor[2]}px ${opendoor[3]}px'><div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div></div>`;
+      ShowTiles("x",1,6,5,6);
+      HideTiles("x",1,1,5,1);      
+      break;
+    case 39:
+      document.getElementById("amx3x4").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/${opendoor[0]}");background-position:${opendoor[2]}px ${opendoor[3]}px'></div>`;
+      document.getElementById("amx3x5").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      ShowTiles("x",1,7,5,7);
+      HideTiles("x",1,2,5,2);
+      break;
+    case 40:
+      document.getElementById("amx3x4").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/${door[0]}");background-position:${door[2]}px ${door[3]}px'></div>`;
+      break;
+    case 41: 
+      document.getElementById("amx3x5").innerHTML = ``;
+      document.getElementById("amx3x6").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      ShowTiles("x",1,8,5,8);
+      HideTiles("x",1,3,5,3);
+      break;    
+    case 42:
+      document.getElementById("amx3x6").innerHTML = ``;
+      document.getElementById("amx3x7").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      ShowTiles("x",1,9,5,9);
+      HideTiles("x",1,4,5,4);
+      break;   
+    case 43:
+      document.getElementById("amx3x7").innerHTML = ``;
+      document.getElementById("amx3x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      ShowTiles("x",1,10,5,10);
+      HideTiles("x",1,5,5,5);
+      break;
+    case 44:
+      document.getElementById("amx3x8").innerHTML = ``;
+      document.getElementById("amx4x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      ShowTiles("x",6,5,6,10);
+      HideTiles("x",1,5,1,10);
+      break;
+    case 45: 
+      document.getElementById("amx4x8").innerHTML = ``;
+      document.getElementById("amx5x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      ShowTiles("x",7,5,7,10);
+      HideTiles("x",2,5,2,10);
+      break;
+    case 46:
+      document.getElementById("amx5x8").innerHTML = ``;
+      document.getElementById("amx6x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      ShowTiles("x",8,5,8,10);
+      HideTiles("x",3,5,3,10);
+      break;
+    case 47:
+      document.getElementById("amx6x8").innerHTML = ``;
+      document.getElementById("amx7x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      ShowTiles("x",9,5,9,10);
+      HideTiles("x",4,5,4,10);
+      break;
+    case 48:
+      document.getElementById("amx7x8").innerHTML = ``;
+      document.getElementById("amx8x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      ShowTiles("x",10,5,10,10);
+      HideTiles("x",5,5,5,10);
+      break;
+    case 49:
+      document.getElementById("amx8x8").innerHTML = ``;
+      document.getElementById("amx9x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      ShowTiles("x",11,5,11,10);
+      HideTiles("x",6,5,6,10);
+      break;
+    case 50:
+      document.getElementById("amx9x8").innerHTML = ``;
+      document.getElementById("amx10x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      ShowTiles("x",12,5,12,10);
+      HideTiles("x",7,5,7,10);
+      break;
+    case 51:
+      document.getElementById("amx10x8").innerHTML = ``;
+      document.getElementById("amx11x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      ShowTiles("x",13,5,13,10);
+      HideTiles("x",8,5,8,10);
+      break;
+    case 52:
+      document.getElementById("amx11x8").innerHTML = ``;
+      document.getElementById("amx12x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      ShowTiles("x",14,5,14,10);
+      HideTiles("x",9,5,9,10);
+      break;
+    case 53:
+      document.getElementById("amx12x8").innerHTML = ``;
+      document.getElementById("amx13x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      ShowTiles("x",15,5,15,10);
+      HideTiles("x",10,5,10,10);
+      break;
+    case 54:
+      document.getElementById("amx13x8").innerHTML = ``;
+      document.getElementById("amx14x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      ShowTiles("x",16,5,16,10);
+      HideTiles("x",11,5,11,10);
+      break;
+    case 55:
+      document.getElementById("amx14x8").innerHTML = ``;
+      document.getElementById("amx15x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      ShowTiles("x",17,5,17,10);
+      HideTiles("x",12,5,12,10);
+      break;
+    case 56:
+      document.getElementById("amx15x8").innerHTML = ``;
+      document.getElementById("amx16x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      ShowTiles("x",18,5,18,10);
+      HideTiles("x",13,5,13,10);
+      break;
+    case 57:
+      document.getElementById("amx16x8").innerHTML = ``;
+      document.getElementById("amx17x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      ShowTiles("x",19,5,19,10);
+      HideTiles("x",14,5,14,10);
+      break;
+    case 58:
+      document.getElementById("amx17x8").innerHTML = ``;
+      document.getElementById("amx18x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      ShowTiles("x",20,5,20,10);
+      HideTiles("x",15,5,15,10);
+      break;
+    case 59:
+      document.getElementById("amx18x8").innerHTML = ``;
+      document.getElementById("amx19x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      ShowTiles("x",21,5,21,10);
+      HideTiles("x",16,5,16,10);
+      break;
+    case 60:
+      document.getElementById("amx19x8").innerHTML = ``;
+      document.getElementById("amx20x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      ShowTiles("x",22,5,22,10);
+      HideTiles("x",17,5,17,10);
+      break;
+    case 61:
+      document.getElementById("amx20x8").innerHTML = ``;
+      document.getElementById("amx21x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      ShowTiles("x",23,5,23,10);
+      HideTiles("x",18,5,18,10);
+      break;
+    case 62:
+      document.getElementById("amx21x8").innerHTML = ``;
+      document.getElementById("amx21x9").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      ShowTiles("x",18,11,23,11);
+      HideTiles("x",18,5,23,5);
+      break;
+    case 63:
+      document.getElementById("amx21x10").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/${opendoor[0]}");background-position:${opendoor[2]}px ${opendoor[3]}px'></div>`;
+      break;
+    case 64:
+      document.getElementById("amx21x9").innerHTML = ``;
+      document.getElementById("amx21x10").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/${opendoor[0]}");background-position:${opendoor[2]}px ${opendoor[3]}px'><div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div></div>`;
+      ShowTiles("x",18,12,23,12);
+      HideTiles("x",18,6,23,6);
+      break;
+    case 65:
+      document.getElementById("amx21x10").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/${opendoor[0]}");background-position:${opendoor[2]}px ${opendoor[3]}px'></div>`;
+      document.getElementById("amx21x11").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      ShowTiles("x",18,13,23,13);
+      HideTiles("x",18,7,23,7);
+      dur = 1200;
+      break;
+    case 66:
+      document.getElementById("amx21x11").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      break;
+    case 67:
+      document.getElementById("amx21x10").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/${opendoor[0]}");background-position:${opendoor[2]}px ${opendoor[3]}px'><div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div></div>`;
+      document.getElementById("amx21x11").innerHTML = ``;
+      HideTiles("x",18,13,23,13);
+      ShowTiles("x",18,7,23,7);
+      break;
+    case 68:
+      document.getElementById("amx21x10").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/${opendoor[0]}");background-position:${opendoor[2]}px ${opendoor[3]}px'></div>`;
+      document.getElementById("amx21x9").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      HideTiles("x",18,12,23,12);
+      ShowTiles("x",18,6,23,6);
+      break;
+    case 69:
+      document.getElementById("amx21x10").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/${door[0]}");background-position:${door[2]}px ${door[3]}px'></div>`;
+      break;
+    case 70:
+      document.getElementById("amx21x9").innerHTML = ``;
+      document.getElementById("amx21x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      HideTiles("x",18,11,23,11);
+      ShowTiles("x",18,5,23,5);
+      break;
+    case 71:
+      document.getElementById("amx21x8").innerHTML = ``;
+      document.getElementById("amx21x7").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      HideTiles("x",18,10,23,10);
+      ShowTiles("x",18,4,23,4);
+      break;
+    case 72:
+      document.getElementById("amx21x7").innerHTML = ``;
+      document.getElementById("amx21x6").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      HideTiles("x",18,9,23,9);
+      ShowTiles("x",18,3,23,3);
+      break;
+    case 73:
+      document.getElementById("amx21x6").innerHTML = ``;
+      document.getElementById("amx21x5").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      HideTiles("x",18,8,23,8);
+      ShowTiles("x",18,2,23,2);
+      break;
+    case 74:
+      document.getElementById("amx21x5").innerHTML = ``;
+      document.getElementById("amx21x4").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      HideTiles("x",18,7,23,7);
+      ShowTiles("x",18,1,23,1);
+      dur=2000;
+      break;
+    case 75:
+      document.getElementById("amx21x4").innerHTML = ``;
+      document.getElementById("amx21x5").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      ShowTiles("x",18,7,23,7);
+      HideTiles("x",18,1,23,1);
+      break;
+    case 76:
+      document.getElementById("amx21x5").innerHTML = ``;
+      document.getElementById("amx22x5").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      break;
+    case 77:
+      document.getElementById("amx22x5").innerHTML = ``;
+      document.getElementById("amx23x5").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      break;
+    case 78:
+      document.getElementById("amx23x5").innerHTML = ``;
+      break;
+    case 79: 
+      HideTiles("x",18,2,18,7);
+      break;
+    case 80:
+      HideTiles("x",19,2,19,7);
+      break;
+    case 81:
+      HideTiles("x",20,2,20,7);
+      break;
+    case 82:
+      HideTiles("x",21,2,21,7);
+      break;
+    case 83:
+      HideTiles("x",22,2,22,7);
+      break;
+    case 84:
+      HideTiles("x",23,2,23,7);
+      break;
+    case 85:
+      ShowTiles("",21,2,21,2);
+      break;
+    case 86:
+      ShowTiles("",20,1,22,1);
+      ShowTiles("",20,2,20,3);
+      ShowTiles("",22,2,22,3);
+      ShowTiles("",21,3,21,3);
+      break;
+    case 87:
+      ShowTiles("",19,4,23,4);
+      ShowTiles("",19,1,19,3);
+      ShowTiles("",23,1,23,3);
+      break;
+    case 88:
+      document.getElementById("am21x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/153.gif");'><div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div></div>`;
+      break;
+    case 89:
+      document.getElementById("am21x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/153.gif");'></div>`;
+      document.getElementById("am21x3").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      ShowTiles("",19,5,23,5);
+      break;
+    case 90:
+      document.getElementById("am21x3").innerHTML = ``;
+      document.getElementById("am21x4").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      ShowTiles("",19,6,23,6);
+      HideTiles("",19,1,23,1);
+      break;
+    case 91:
+      document.getElementById("am21x4").innerHTML = ``;
+      document.getElementById("am21x5").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      ShowTiles("",19,7,23,7);
+      HideTiles("",19,2,23,2);
+      document.getElementById("am22x12").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/339.gif");'></div>`;
+      ShowTiles("",20,10,23,13);
+      break;
+    case 92:
+      document.getElementById("am21x5").innerHTML = ``;
+      document.getElementById("am21x6").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      ShowTiles("",19,8,23,8);
+      HideTiles("",19,3,23,3);
+      document.getElementById("am22x12").innerHTML = ``;
+      document.getElementById("am21x12").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/339.gif");'></div>`;
+      ShowTiles("",19,10,19,13);
+      break;
     default:
     return;
   }
