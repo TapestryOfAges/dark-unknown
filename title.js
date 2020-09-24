@@ -1151,7 +1151,7 @@ function ExecuteAttract(frame) {
       break;
     case 16: 
       document.getElementById("am21x3").innerHTML = ``;
-      document.getElementById("am21x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      document.getElementById("am21x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/153.gif");'><div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div></div>`;
       HideTiles("",19,5,23,5);
       break;
     case 17:
@@ -1480,7 +1480,70 @@ function ExecuteAttract(frame) {
       document.getElementById("amx23x5").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
       break;
     case 78:
-      document.getElementById("amx22x5").innerHTML = ``;
+      document.getElementById("amx23x5").innerHTML = ``;
+      break;
+    case 79: 
+      HideTiles("x",18,2,18,7);
+      break;
+    case 80:
+      HideTiles("x",19,2,19,7);
+      break;
+    case 81:
+      HideTiles("x",20,2,20,7);
+      break;
+    case 82:
+      HideTiles("x",21,2,21,7);
+      break;
+    case 83:
+      HideTiles("x",22,2,22,7);
+      break;
+    case 84:
+      HideTiles("x",23,2,23,7);
+      break;
+    case 85:
+      ShowTiles("",21,2,21,2);
+      break;
+    case 86:
+      ShowTiles("",20,1,22,1);
+      ShowTiles("",20,2,20,3);
+      ShowTiles("",22,2,22,3);
+      ShowTiles("",21,3,21,3);
+      break;
+    case 87:
+      ShowTiles("",19,4,23,4);
+      ShowTiles("",19,1,19,3);
+      ShowTiles("",23,1,23,3);
+      break;
+    case 88:
+      document.getElementById("am21x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/153.gif");'><div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div></div>`;
+      break;
+    case 89:
+      document.getElementById("am21x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/153.gif");'></div>`;
+      document.getElementById("am21x3").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      ShowTiles("",19,5,23,5);
+      break;
+    case 90:
+      document.getElementById("am21x3").innerHTML = ``;
+      document.getElementById("am21x4").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      ShowTiles("",19,6,23,6);
+      HideTiles("",19,1,23,1);
+      break;
+    case 91:
+      document.getElementById("am21x4").innerHTML = ``;
+      document.getElementById("am21x5").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      ShowTiles("",19,7,23,7);
+      HideTiles("",19,2,23,2);
+      document.getElementById("am22x12").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/339.gif");'></div>`;
+      ShowTiles("",20,10,23,13);
+      break;
+    case 92:
+      document.getElementById("am21x5").innerHTML = ``;
+      document.getElementById("am21x6").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      ShowTiles("",19,8,23,8);
+      HideTiles("",19,3,23,3);
+      document.getElementById("am22x12").innerHTML = ``;
+      document.getElementById("am21x12").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/339.gif");'></div>`;
+      ShowTiles("",19,10,19,13);
       break;
     default:
     return;
