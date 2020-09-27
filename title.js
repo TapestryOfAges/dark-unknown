@@ -1052,6 +1052,7 @@ function ExecuteAttract(frame) {
   let chair = localFactory.createTile("LeftChair").getGraphicArray();
   let food = localFactory.createTile("FoodSouthEdge").getGraphicArray();
   let tableedge = localFactory.createTile("LeftTable").getGraphicArray();
+  let fireball;
 
   if (!board1) { return; }
   let dur = 500;
@@ -1289,116 +1290,116 @@ function ExecuteAttract(frame) {
     case 44:
       document.getElementById("amx3x8").innerHTML = ``;
       document.getElementById("amx4x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
-      ShowTiles("x",6,5,6,10);
-      HideTiles("x",1,5,1,10);
+      ShowTiles("x",6,6,6,10);
+      HideTiles("x",1,6,1,10);
       break;
     case 45: 
       document.getElementById("amx4x8").innerHTML = ``;
       document.getElementById("amx5x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
-      ShowTiles("x",7,5,7,10);
-      HideTiles("x",2,5,2,10);
+      ShowTiles("x",7,6,7,10);
+      HideTiles("x",2,6,2,10);
       break;
     case 46:
       document.getElementById("amx5x8").innerHTML = ``;
       document.getElementById("amx6x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
-      ShowTiles("x",8,5,8,10);
-      HideTiles("x",3,5,3,10);
+      ShowTiles("x",8,6,8,10);
+      HideTiles("x",3,6,3,10);
       break;
     case 47:
       document.getElementById("amx6x8").innerHTML = ``;
       document.getElementById("amx7x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
-      ShowTiles("x",9,5,9,10);
-      HideTiles("x",4,5,4,10);
+      ShowTiles("x",9,6,9,10);
+      HideTiles("x",4,6,4,10);
       break;
     case 48:
       document.getElementById("amx7x8").innerHTML = ``;
       document.getElementById("amx8x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
-      ShowTiles("x",10,5,10,10);
-      HideTiles("x",5,5,5,10);
+      ShowTiles("x",10,6,10,10);
+      HideTiles("x",5,6,5,10);
       break;
     case 49:
       document.getElementById("amx8x8").innerHTML = ``;
       document.getElementById("amx9x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
-      ShowTiles("x",11,5,11,10);
-      HideTiles("x",6,5,6,10);
+      ShowTiles("x",11,6,11,10);
+      HideTiles("x",6,6,6,10);
       break;
     case 50:
       document.getElementById("amx9x8").innerHTML = ``;
       document.getElementById("amx10x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
-      ShowTiles("x",12,5,12,10);
-      HideTiles("x",7,5,7,10);
+      ShowTiles("x",12,6,12,10);
+      HideTiles("x",7,6,7,10);
       break;
     case 51:
       document.getElementById("amx10x8").innerHTML = ``;
       document.getElementById("amx11x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
-      ShowTiles("x",13,5,13,10);
-      HideTiles("x",8,5,8,10);
+      ShowTiles("x",13,6,13,10);
+      HideTiles("x",8,6,8,10);
       break;
     case 52:
       document.getElementById("amx11x8").innerHTML = ``;
       document.getElementById("amx12x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
-      ShowTiles("x",14,5,14,10);
-      HideTiles("x",9,5,9,10);
+      ShowTiles("x",14,6,14,10);
+      HideTiles("x",9,6,9,10);
       break;
     case 53:
       document.getElementById("amx12x8").innerHTML = ``;
       document.getElementById("amx13x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
-      ShowTiles("x",15,5,15,10);
-      HideTiles("x",10,5,10,10);
+      ShowTiles("x",15,6,15,10);
+      HideTiles("x",10,6,10,10);
       break;
     case 54:
       document.getElementById("amx13x8").innerHTML = ``;
       document.getElementById("amx14x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
-      ShowTiles("x",16,5,16,10);
-      HideTiles("x",11,5,11,10);
+      ShowTiles("x",16,6,16,10);
+      HideTiles("x",11,6,11,10);
       break;
     case 55:
       document.getElementById("amx14x8").innerHTML = ``;
       document.getElementById("amx15x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
-      ShowTiles("x",17,5,17,10);
-      HideTiles("x",12,5,12,10);
+      ShowTiles("x",17,6,17,10);
+      HideTiles("x",12,6,12,10);
       break;
     case 56:
       document.getElementById("amx15x8").innerHTML = ``;
       document.getElementById("amx16x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
-      ShowTiles("x",18,5,18,10);
-      HideTiles("x",13,5,13,10);
+      ShowTiles("x",18,6,18,10);
+      HideTiles("x",13,6,13,10);
       break;
     case 57:
       document.getElementById("amx16x8").innerHTML = ``;
       document.getElementById("amx17x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
-      ShowTiles("x",19,5,19,10);
-      HideTiles("x",14,5,14,10);
+      ShowTiles("x",19,6,19,10);
+      HideTiles("x",14,6,14,10);
       break;
     case 58:
       document.getElementById("amx17x8").innerHTML = ``;
       document.getElementById("amx18x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
-      ShowTiles("x",20,5,20,10);
-      HideTiles("x",15,5,15,10);
+      ShowTiles("x",20,6,20,10);
+      HideTiles("x",15,6,15,10);
       break;
     case 59:
       document.getElementById("amx18x8").innerHTML = ``;
       document.getElementById("amx19x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
-      ShowTiles("x",21,5,21,10);
-      HideTiles("x",16,5,16,10);
+      ShowTiles("x",21,6,21,10);
+      HideTiles("x",16,6,16,10);
       break;
     case 60:
       document.getElementById("amx19x8").innerHTML = ``;
       document.getElementById("amx20x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
-      ShowTiles("x",22,5,22,10);
-      HideTiles("x",17,5,17,10);
+      ShowTiles("x",22,6,22,10);
+      HideTiles("x",17,6,17,10);
       break;
     case 61:
       document.getElementById("amx20x8").innerHTML = ``;
       document.getElementById("amx21x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
-      ShowTiles("x",23,5,23,10);
-      HideTiles("x",18,5,18,10);
+      ShowTiles("x",23,6,23,10);
+      HideTiles("x",18,6,18,10);
       break;
     case 62:
       document.getElementById("amx21x8").innerHTML = ``;
       document.getElementById("amx21x9").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
-      ShowTiles("x",18,11,23,11);
-      HideTiles("x",18,5,23,5);
+      ShowTiles("x",19,11,23,11);
+      HideTiles("x",19,6,23,6);
       break;
     case 63:
       document.getElementById("amx21x10").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/${opendoor[0]}");background-position:${opendoor[2]}px ${opendoor[3]}px'></div>`;
@@ -1406,14 +1407,14 @@ function ExecuteAttract(frame) {
     case 64:
       document.getElementById("amx21x9").innerHTML = ``;
       document.getElementById("amx21x10").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/${opendoor[0]}");background-position:${opendoor[2]}px ${opendoor[3]}px'><div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div></div>`;
-      ShowTiles("x",18,12,23,12);
-      HideTiles("x",18,6,23,6);
+      ShowTiles("x",19,12,23,12);
+      HideTiles("x",19,7,23,7);
       break;
     case 65:
       document.getElementById("amx21x10").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/${opendoor[0]}");background-position:${opendoor[2]}px ${opendoor[3]}px'></div>`;
       document.getElementById("amx21x11").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
-      ShowTiles("x",18,13,23,13);
-      HideTiles("x",18,7,23,7);
+      ShowTiles("x",19,13,23,13);
+      HideTiles("x",19,8,23,8);
       dur = 1200;
       break;
     case 66:
@@ -1422,14 +1423,14 @@ function ExecuteAttract(frame) {
     case 67:
       document.getElementById("amx21x10").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/${opendoor[0]}");background-position:${opendoor[2]}px ${opendoor[3]}px'><div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div></div>`;
       document.getElementById("amx21x11").innerHTML = ``;
-      HideTiles("x",18,13,23,13);
-      ShowTiles("x",18,7,23,7);
+      HideTiles("x",19,13,23,13);
+      ShowTiles("x",19,8,23,8);
       break;
     case 68:
       document.getElementById("amx21x10").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/${opendoor[0]}");background-position:${opendoor[2]}px ${opendoor[3]}px'></div>`;
       document.getElementById("amx21x9").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
-      HideTiles("x",18,12,23,12);
-      ShowTiles("x",18,6,23,6);
+      HideTiles("x",19,12,23,12);
+      ShowTiles("x",19,7,23,7);
       break;
     case 69:
       document.getElementById("amx21x10").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/${door[0]}");background-position:${door[2]}px ${door[3]}px'></div>`;
@@ -1437,39 +1438,39 @@ function ExecuteAttract(frame) {
     case 70:
       document.getElementById("amx21x9").innerHTML = ``;
       document.getElementById("amx21x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
-      HideTiles("x",18,11,23,11);
-      ShowTiles("x",18,5,23,5);
+      HideTiles("x",19,11,23,11);
+      ShowTiles("x",19,6,23,6);
       break;
     case 71:
       document.getElementById("amx21x8").innerHTML = ``;
       document.getElementById("amx21x7").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
-      HideTiles("x",18,10,23,10);
-      ShowTiles("x",18,4,23,4);
+      HideTiles("x",19,10,23,10);
+      ShowTiles("x",19,5,23,5);
       break;
     case 72:
       document.getElementById("amx21x7").innerHTML = ``;
       document.getElementById("amx21x6").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
-      HideTiles("x",18,9,23,9);
-      ShowTiles("x",18,3,23,3);
+      HideTiles("x",19,9,23,9);
+      ShowTiles("x",19,4,23,4);
       break;
     case 73:
       document.getElementById("amx21x6").innerHTML = ``;
       document.getElementById("amx21x5").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
-      HideTiles("x",18,8,23,8);
-      ShowTiles("x",18,2,23,2);
+      HideTiles("x",19,8,23,8);
+      ShowTiles("x",19,3,23,3);
       break;
     case 74:
       document.getElementById("amx21x5").innerHTML = ``;
       document.getElementById("amx21x4").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
-      HideTiles("x",18,7,23,7);
-      ShowTiles("x",18,1,23,1);
+      HideTiles("x",19,7,23,7);
+      ShowTiles("x",19,2,23,2);
       dur=2000;
       break;
     case 75:
       document.getElementById("amx21x4").innerHTML = ``;
       document.getElementById("amx21x5").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
-      ShowTiles("x",18,7,23,7);
-      HideTiles("x",18,1,23,1);
+      ShowTiles("x",19,7,23,7);
+      HideTiles("x",19,2,23,2);
       break;
     case 76:
       document.getElementById("amx21x5").innerHTML = ``;
@@ -1483,22 +1484,22 @@ function ExecuteAttract(frame) {
       document.getElementById("amx23x5").innerHTML = ``;
       break;
     case 79: 
-      HideTiles("x",18,2,18,7);
+      HideTiles("x",19,3,19,7);
       break;
     case 80:
-      HideTiles("x",19,2,19,7);
+      HideTiles("x",20,3,20,7);
       break;
     case 81:
-      HideTiles("x",20,2,20,7);
+      HideTiles("x",21,3,21,7);
       break;
     case 82:
-      HideTiles("x",21,2,21,7);
+      HideTiles("x",22,3,22,7);
       break;
     case 83:
-      HideTiles("x",22,2,22,7);
+      HideTiles("x",23,3,23,7);
       break;
     case 84:
-      HideTiles("x",23,2,23,7);
+      dur = 10;
       break;
     case 85:
       ShowTiles("",21,2,21,2);
@@ -1566,41 +1567,451 @@ function ExecuteAttract(frame) {
       break;
     case 96:
       document.getElementById("am21x9").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/339.gif");'><div style='width:32px;height:32px;background-image:url("graphics/702.gif");'></div></div>`;
-      dur = 200;
+      dur = 300;
       break;
     case 97:
       document.getElementById("am21x9").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/339.gif");'></div>`;
       break;
     case 98:
       document.getElementById("am21x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'><div style='width:32px;height:32px;background-image:url("graphics/702.gif");'></div></div>`;
-      dur = 200;
+      dur = 300;
       break;
     case 99:
       document.getElementById("am21x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
       break;
     case 100:
       document.getElementById("am21x9").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/339.gif");'><div style='width:32px;height:32px;background-image:url("graphics/702.gif");'></div></div>`;
-      dur = 200;
+      dur = 300;
       break;
     case 101:
       document.getElementById("am21x9").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/339.gif");'></div>`;
       break;
     case 102:
       document.getElementById("am21x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'><div style='width:32px;height:32px;background-image:url("graphics/700.gif");'></div></div>`;
-      dur = 200;
+      dur = 300;
       break;
     case 103:
       document.getElementById("am21x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      document.getElementById("am22x12").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/337.gif");'></div>`;
       break;
     case 104:
       document.getElementById("am21x9").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/339.gif");'><div style='width:32px;height:32px;background-image:url("graphics/702.gif");'></div></div>`;
-      dur = 200;
+      dur = 300;
       break;
     case 105:
       document.getElementById("am21x9").innerHTML = ``;
       break;
-      
-      default:
+    case 106:
+      document.getElementById("am21x8").innerHTML = ``;
+      document.getElementById("am21x9").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      HideTiles("",19,5,23,5);
+      document.getElementById("am22x12").innerHTML = ``;
+      document.getElementById("am21x12").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/337.gif");'></div>`;
+      break;
+    case 107:
+      fireball = document.createElement("div");
+      fireball.style.backgroundImage = "url('graphics/magic-bolt.gif')";
+      fireball.style.width=32;
+      fireball.style.height=32;
+      fireball.style.position="absolute";
+      fireball.style.left = 661;
+      fireball.style.top = 343;
+      fireball.style.zIndex = 99;
+      fireball.style.transition = "top 500ms linear 0s";
+      fireball.id = "fireball";
+      document.body.appendChild(fireball);
+      dur = 10;
+      break;
+    case 108:
+      fireball = document.getElementById("fireball");
+      Object.assign(fireball.style, {top: "257px" });
+      dur = 500;
+      break;
+    case 109:
+      fireball = document.getElementById("fireball");
+      fireball.parentNode.removeChild(fireball);
+      document.getElementById("am21x9").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'><div style='width:32px;height:32px;background-image:url("graphics/702.gif");'></div></div>`;      
+      dur = 300;
+      break;
+    case 110:
+      document.getElementById("am21x9").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;      
+      break;
+    case 111:
+      document.getElementById("am21x9").innerHTML = ``;      
+      document.getElementById("am21x10").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;      
+      HideTiles("",19,6,23,6);
+      document.getElementById("am21x12").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/337.gif");'><div style='width:32px;height:32px;background-image:url("graphics/spellsparkles-anim.gif");background-position:0px -160px'></div></div>`;
+      break;
+    case 112:
+      document.getElementById("am21x10").innerHTML = ``;      
+      document.getElementById("am21x11").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;      
+      HideTiles("",19,7,23,7);
+      document.getElementById("am21x12").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/337.gif");'></div>`;
+      break;
+    case 113:
+      document.getElementById("am21x11").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'><div style='width:32px;height:32px;background-image:url("graphics/700.gif");'></div></div>`;      
+      dur = 300;
+      break;
+    case 114:
+      document.getElementById("am21x11").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;      
+      dur = 300;
+      break;
+    case 115:
+      document.getElementById("am21x12").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/337.gif");'><div style='width:32px;height:32px;background-image:url("graphics/702.gif");'></div></div>`;
+      dur = 300;
+      break;
+    case 116:
+      document.getElementById("am21x12").innerHTML = ``;
+      break;
+    case 117:
+      document.getElementById("am21x11").innerHTML = ``;
+      document.getElementById("am21x12").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;      
+      HideTiles("",19,8,23,8);
+      break;
+    case 118:
+      document.getElementById("am21x12").innerHTML = ``;
+      document.getElementById("am22x12").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;      
+      HideTiles("",19,9,19,13);
+      break;
+    case 119:
+      document.getElementById("am22x12").innerHTML = ``;
+      break;
+    case 120:
+      HideTiles("",20,9,20,13);
+      break;
+    case 121:
+      HideTiles("",21,9,21,13);
+      break;
+    case 122:
+      HideTiles("",22,9,22,13);
+      break;
+    case 123:
+      HideTiles("",23,9,23,13);
+      dur = 1200;
+      break;
+    case 124:
+      ShowTiles("",2,12,2,12);
+      break;
+    case 125:
+      ShowTiles("",1,11,3,13);
+      break;
+    case 126:
+      ShowTiles("",1,10,4,14);
+      break;
+    case 127:
+      document.getElementById("am2x12").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      break;
+    case 128:
+      document.getElementById("am3x12").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      document.getElementById("am2x12").innerHTML = ``;
+      ShowTiles("",1,10,5,14);
+      break;
+    case 129:
+      document.getElementById("am4x12").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      document.getElementById("am3x12").innerHTML = ``;
+      ShowTiles("",2,10,6,14);
+      HideTiles("",1,10,1,14);
+      break;
+    case 130:
+      document.getElementById("am4x11").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      document.getElementById("am4x12").innerHTML = ``;
+      ShowTiles("",2,9,6,13);
+      break;
+    case 131:
+      document.getElementById("am4x10").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      document.getElementById("am4x11").innerHTML = ``;
+      ShowTiles("",2,8,6,12);
+      break;
+    case 132:
+      document.getElementById("am2x12").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/385.gif");'></div>`;
+      ShowTiles("",1,10,5,14);
+      break;
+    case 133:
+      document.getElementById("am4x9").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      document.getElementById("am4x10").innerHTML = ``;
+      ShowTiles("",2,7,5,7);
+      break;
+    case 134:
+      document.getElementById("am2x12").innerHTML = ``;
+      document.getElementById("am3x12").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/385.gif");'></div>`;
+      break;
+    case 135:
+      document.getElementById("am4x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      document.getElementById("am4x9").innerHTML = ``;
+      ShowTiles("",2,6,5,6);
+      break;
+    case 136:
+      document.getElementById("am3x12").innerHTML = ``;
+      document.getElementById("am4x12").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/385.gif");'></div>`;
+      document.getElementById("am2x12").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/351.gif");'></div>`;
+      break;
+    case 137:
+      document.getElementById("am3x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      document.getElementById("am4x8").innerHTML = ``;
+      ShowTiles("",1,6,5,6);
+      break;
+    case 138:
+      document.getElementById("am4x12").innerHTML = ``;
+      document.getElementById("am4x11").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/385.gif");'></div>`;
+      break;
+    case 139:
+      document.getElementById("am2x12").innerHTML = ``;
+      document.getElementById("am3x12").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/351.gif");'></div>`;
+      break;
+    case 140: 
+      document.getElementById("am3x7").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      document.getElementById("am3x8").innerHTML = ``;
+      ShowTiles("",1,5,5,5);
+      break;
+    case 141:
+      document.getElementById("am4x11").innerHTML = ``;
+      document.getElementById("am4x10").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/385.gif");'></div>`;
+      break;
+    case 142:
+      document.getElementById("am3x12").innerHTML = ``;
+      document.getElementById("am4x12").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/351.gif");'></div>`;
+      break;
+    case 143:
+      document.getElementById("am3x6").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      document.getElementById("am3x7").innerHTML = ``;
+      ShowTiles("",1,4,5,4);
+      break;
+    case 144:
+      document.getElementById("am3x6").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'><div style='width:32px;height:32px;background-image:url("graphics/spellsparkles-anim.gif");background-position:0px -32px'></div></div>`;
+      dur = 800;
+      break;
+    case 145:
+      document.getElementById("am3x5").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      document.getElementById("am3x6").innerHTML = ``;
+      ShowTiles("",1,3,5,3);
+      break;
+    case 146: 
+      document.getElementById("am4x12").innerHTML = ``;
+      document.getElementById("am3x12").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/351.gif");'></div>`;
+      break;    
+    case 147:
+      document.getElementById("am3x4").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      document.getElementById("am3x5").innerHTML = ``;
+      ShowTiles("",1,2,5,2);
+      break;
+    case 148:
+      document.getElementById("am3x12").innerHTML = ``;
+      document.getElementById("am2x12").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/351.gif");'></div>`;
+      break;    
+    case 149:
+      document.getElementById("am3x3").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      document.getElementById("am3x4").innerHTML = ``;
+      ShowTiles("",1,1,5,1);
+      break;
+    case 150:
+      document.getElementById("am2x12").innerHTML = ``;
+      break;    
+    case 151: 
+      document.getElementById("am3x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/300.gif");'></div>`;
+      document.getElementById("am3x3").innerHTML = ``;
+      dur = 1000;
+      break;
+    case 152:
+      document.getElementById("am3x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/moongates.gif");background-position: 0px 0px'></div>`;
+      dur = 250;
+      break;
+    case 153:
+      document.getElementById("am3x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/moongates.gif");background-position: -32px 0px'></div>`;
+      dur = 250;
+      break;
+    case 154: 
+      document.getElementById("am3x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/moongates.gif");background-position: -64px 0px'></div>`;
+      dur = 250;
+      break;
+    case 155:
+      document.getElementById("am3x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/moongates.gif");background-position: -96px 0px'></div>`;
+      dur = 250;
+      break;
+    case 156:
+      document.getElementById("am3x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/moongates.gif");background-position: -128px 0px'></div>`;
+      dur = 1000;
+      break;
+    case 157:
+      document.getElementById("am3x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/moongates.gif");background-position: -96px 0px'></div>`;
+      dur = 250;
+      document.getElementById("am4x10").innerHTML = ``;
+      document.getElementById("am4x11").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/385.gif");'></div>`;
+      break;
+    case 158:
+      document.getElementById("am3x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/moongates.gif");background-position: -64px 0px'></div>`;
+      dur = 250;
+      break;
+    case 159:
+      document.getElementById("am3x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/moongates.gif");background-position: -32px 0px'></div>`;
+      dur = 250;
+      break;
+    case 160:
+      document.getElementById("am3x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/moongates.gif");background-position: 0px 0px'></div>`;
+      dur = 250;
+      break;
+    case 161:
+      document.getElementById("am3x2").innerHTML = ``;
+      document.getElementById("am4x11").innerHTML = ``;
+      document.getElementById("am4x12").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/385.gif");'></div>`;
+      break; 
+    case 162:
+      document.getElementById("am4x12").innerHTML = ``;
+      document.getElementById("am3x12").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/385.gif");'></div>`;
+      break;
+    case 163:
+      document.getElementById("am3x12").innerHTML = ``;
+      document.getElementById("am2x12").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/385.gif");'></div>`;
+      break; 
+    case 164:
+      document.getElementById("am2x12").innerHTML = ``;
+      break;
+    case 165:
+      HideTiles("",1,6,5,14);
+      dur = 2000;
+      break;
+    case 166:
+      document.getElementById("am3x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/moongates.gif");background-position: 0px 0px'></div>`;
+      dur = 250;
+      break;
+    case 167:
+      document.getElementById("am3x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/moongates.gif");background-position: -32px 0px'></div>`;
+      dur = 250;
+      break;
+    case 168:
+      document.getElementById("am3x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/moongates.gif");background-position: -64px 0px'></div>`;
+      dur = 250;
+      break;
+    case 169:
+      document.getElementById("am3x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/moongates.gif");background-position: -96px 0px'></div>`;
+      dur = 250;
+      break;
+    case 170:
+      document.getElementById("am3x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/moongates.gif");background-position: -128px 0px'></div>`;
+      dur = 250;
+      break;
+    case 171:
+      document.getElementById("am3x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      break;
+    case 172:
+      document.getElementById("am3x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/moongates.gif");background-position: -128px 0px'></div>`;
+      document.getElementById("am3x3").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      ShowTiles("",1,5,5,5);
+      dur = 250;
+      break;
+    case 173:
+      document.getElementById("am3x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/moongates.gif");background-position: -96px 0px'></div>`;
+      dur = 250;
+      break;
+    case 174:
+      document.getElementById("am3x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/moongates.gif");background-position: -64px 0px'></div>`;
+      dur = 250;
+      break;
+    case 175:
+      document.getElementById("am3x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/moongates.gif");background-position: -32px 0px'></div>`;
+      document.getElementById("am3x3").innerHTML = ``;
+      document.getElementById("am3x3").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      dur = 250;
+      break;
+    case 176:
+      document.getElementById("am3x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/moongates.gif");background-position: 0px 0px'></div>`;
+      dur = 250;
+      break;
+    case 177:
+      document.getElementById("am3x2").innerHTML = ``;
+      dur = 250;
+      break;
+    case 178:
+      document.getElementById("am3x3").innerHTML = ``;
+      document.getElementById("am3x4").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",1,1,5,1);
+      ShowTiles("",1,6,5,6);
+      break;
+    case 179:
+      document.getElementById("am3x4").innerHTML = ``;
+      document.getElementById("am3x5").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",1,2,5,2);
+      ShowTiles("",1,7,5,7);
+      break;
+    case 180:
+      document.getElementById("am3x5").innerHTML = ``;
+      document.getElementById("am3x6").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",1,3,5,3);
+      ShowTiles("",1,8,5,8);
+      break;
+    case 181:
+      document.getElementById("am3x6").innerHTML = ``;
+      document.getElementById("am3x7").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",1,4,5,4);
+      ShowTiles("",1,9,5,9);
+      break;
+    case 182:
+      document.getElementById("am3x7").innerHTML = ``;
+      document.getElementById("am3x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",1,5,5,5);
+      ShowTiles("",1,10,5,10);
+      break;
+    case 183:
+      document.getElementById("am3x8").innerHTML = ``;
+      document.getElementById("am4x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",1,6,1,10);
+      ShowTiles("",6,7,6,10);
+      break;
+    case 184:
+      document.getElementById("am4x8").innerHTML = ``;
+      document.getElementById("am5x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",2,6,2,10);
+      ShowTiles("",7,7,7,10);
+      break;
+    case 185:
+      document.getElementById("am5x8").innerHTML = ``;
+      document.getElementById("am6x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",3,6,3,10);
+      ShowTiles("",8,7,8,10);
+      break;
+    case 186:
+      document.getElementById("am6x8").innerHTML = ``;
+      document.getElementById("am7x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",4,6,4,10);
+      ShowTiles("",9,7,9,10);
+      break;
+    case 187:
+      document.getElementById("am7x8").innerHTML = ``;
+      document.getElementById("am8x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",5,6,5,10);
+      ShowTiles("",10,7,10,10);
+      break;
+    case 188:
+      document.getElementById("am8x8").innerHTML = ``;
+      document.getElementById("am9x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",6,7,6,10);
+      ShowTiles("",11,7,11,10);
+      break;
+    case 189:
+      document.getElementById("am9x8").innerHTML = ``;
+      document.getElementById("am10x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",7,7,7,10);
+      ShowTiles("",12,7,12,10);
+      break;
+    case 190:
+      document.getElementById("am10x8").innerHTML = ``;
+      document.getElementById("am11x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",8,7,8,10);
+      ShowTiles("",13,7,13,10);
+      break;
+    case 191:
+      document.getElementById("am11x8").innerHTML = ``;
+      document.getElementById("am12x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",9,7,9,10);
+      ShowTiles("",14,7,14,10);
+      dur = 2000;
+      break;
+    case 192:
+      document.getElementById("am12x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/master_spritesheet.png");background-position:-64px -800px'></div>`;
+      dur = 10000;
+      frame = 0;
+      break;
+
+    default:
       return;
   }
   setTimeout(function() { ExecuteAttract(frame+1) },dur);
