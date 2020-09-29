@@ -643,6 +643,9 @@ mappages["hildendain2"].editorLabels = '{}';
 
 mappages["hildendain"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+
+    CheckForCourier(mapref, 27, 58, 27, 63);
+
     if (DU.gameflags.getFlag("rhiannon_recipe")) { DU.gameflags.setFlag("gauntlet_recipe",1); }
 
     let npcs = mapref.npcs.getAll();

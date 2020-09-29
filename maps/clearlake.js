@@ -402,6 +402,8 @@ mappages["clearlake"].editorLabels = '{"div_tile5x52":"Colin and Maggie","div_ti
 
 mappages["clearlake"].onload = function(mapref) {
   if (gamestate.getMode() !== "loadgame") {
+    CheckForCourier(mapref, 19, 56, 19, 63);
+
     if (DU.gameflags["rescued_sam"]) {
       let julian;
       let npcs = mapref.npcs.getAll();

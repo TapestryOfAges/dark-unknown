@@ -608,31 +608,38 @@ mappages["naurglen"].editorLabels = '{"div_tile66x16":"Evelyn","div_tile74x14":"
 
 
 mappages["naurglen"].onload = function(mapref) {
-  
-  if (DU.gameflags["rescued_sam"]) {
-    let npcs = mapref.npcs.getAll();
-    for (let i=0;i<npcs.length;i++) {
-      if (npcs[i].getNPCName() === "Kylee"){
-        npcs[i].setSchedule("kylee2");
-        break;
-      }
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+
+    if (PC.getx() === 72) {
+      CheckForCourier(mapref, 5, 29, 0, 30);
+    } else {
+      CheckForCourier(mapref, 82, 37, 82, 46);
     }
-    let sam = localFactory.createTile("ChildVillagerNPC");
-    sam.setNPCName("Samantha");
-    sam.setConversation("samantha2");
-    sam.setGender("female");
-    sam.setDesc("excited girl");
-    sam.setPrefix("an");
-    sam.setBark("sam");
-    sam.setSchedule("samantha2");
-    sam.setPeaceAI("scheduled");
-    sam.setLeash(3);
-    let loc = DU.schedules["samantha2"].getNPCLocationByTime(GetClockTime(), 1, 1, mapref, sam);
-    mapref.placeThing(loc.x,loc.y,sam);
-    let samtile = mapref.getTile(loc.x,loc.y);
-    samtile.executeWalkons(sam);
+    if (DU.gameflags["rescued_sam"]) {
+      let npcs = mapref.npcs.getAll();
+      for (let i=0;i<npcs.length;i++) {
+        if (npcs[i].getNPCName() === "Kylee"){
+          npcs[i].setSchedule("kylee2");
+          break;
+        }
+      }
+      let sam = localFactory.createTile("ChildVillagerNPC");
+      sam.setNPCName("Samantha");
+      sam.setConversation("samantha2");
+      sam.setGender("female");
+      sam.setDesc("excited girl");
+      sam.setPrefix("an");
+      sam.setBark("sam");
+      sam.setSchedule("samantha2");
+      sam.setPeaceAI("scheduled");
+      sam.setLeash(3);
+      let loc = DU.schedules["samantha2"].getNPCLocationByTime(GetClockTime(), 1, 1, mapref, sam);
+      mapref.placeThing(loc.x,loc.y,sam);
+      let samtile = mapref.getTile(loc.x,loc.y);
+      samtile.executeWalkons(sam);
+    } 
+    if (DU.gameflags.getFlag("derek_pony")) { DU.gameflags.setFlag("derek_pony2", 1); }
   }
-  if (DU.gameflags.getFlag("derek_pony")) { DU.gameflags.setFlag("derek_pony2", 1); }
 }
 
 mappages["naurglen2"] = {};
