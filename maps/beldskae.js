@@ -619,6 +619,7 @@ mappages["beldskae3"].editorLabels = '{"div_tile34x14":"Coral","div_tile33x23":"
 mappages["beldskae"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
 
+    CheckForCourier(mapref, 27, 33, 28, 39);
     // Changes made due to schedules
 
     let kalli;
