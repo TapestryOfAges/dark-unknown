@@ -1374,6 +1374,7 @@ mappages["olympus1"].onload = function(mapref) {
     // Changes made due to schedules
 
     CheckForCourier(mapref, 51, 49, 49, 61);
+    SetAct2Convos(mapref);
 
     let tyler, sean, katrina, manny, pieran, alban, martha, una, martin, donn, davin;
 
@@ -1465,6 +1466,7 @@ mappages["olympus1"].onload = function(mapref) {
 
 mappages["olympus2"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    SetAct2Convos(mapref);
 
     let shield = mapref.getTile(11,18).getTopFeature();
     if (!DU.gameflags.getFlag("has_shield")) {
@@ -1563,6 +1565,7 @@ mappages["olympus2"].onload = function(mapref) {
 
 mappages["olympus0"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && !DU.gameflags.getFlag("editor")) {
+    SetAct2Convos(mapref);
     if (!DU.gameflags.getFlag("lvl2") && !DU.gameflags.getFlag("rebel_prisoner")) {
       var prisoner = FindNPCByName("Rose",mapref);
       mapref.moveThing(3,3,prisoner);

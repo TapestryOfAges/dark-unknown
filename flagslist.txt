@@ -154,3 +154,5 @@ gauntlet_recipe - you've left Gauntlet since giving the recipe
 jharden_act2 - you've spoken to Jharden in act 2
 nyrani_act2
 shelaria_act2
+dawne_act2
+heather_act2
