@@ -658,3 +658,21 @@ mappages["onyxlimbo"].returninfused = '0';
 mappages["onyxlimbo"].linkedMaps = ["onyx","onyx2","onyx3","onyxtunnel"];
 mappages["onyxlimbo"].editorLabels = '{}';
 
+
+mappages["onyx"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    SetAct2Convos(mapref);
+  }
+}
+
+mappages["onyx2"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    SetAct2Convos(mapref);
+  }
+}
+
+mappages["onyx3"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    SetAct2Convos(mapref);
+  }
+}

@@ -1123,3 +1123,17 @@ ConvTestFlags["fixed_arrow"] = function(speaker,keyword) {
   }
   return 0;
 }
+
+function SetAct2Convos(mapref) {
+  if (DU.gameflags.getFlag("act2")) {
+    let npcs = mapref.npcs.getAll();
+    for (let i=0;i<npcs.length;i++){
+      let convo = npcs[i].conversation;
+      convo = convo + "_act2";
+      if (conversations[convo]) {
+        npcs[i].conversation = convo;
+        console.log(convo);
+      }
+    }
+  }
+}
