@@ -14273,9 +14273,9 @@ DrashOrbToggleTile.prototype.use = function(who) {
 
 function OrbStrengthTile() {
   this.name = "OrbStrength";
-  this.graphic = "master_spritesheet_d.gif";
-  this.spritexoffset = '-128';
-  this.spriteyoffset = '-1824';
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -69*32;
   this.prefix = "an";
   this.desc = "orb";
 }
@@ -14301,9 +14301,9 @@ OrbStrengthTile.prototype.use = function(who) {
 
 function OrbDexterityTile() {
   this.name = "OrbDexterity";
-  this.graphic = "master_spritesheet_d.gif";
-  this.spritexoffset = '-64';
-  this.spriteyoffset = '-1824';
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -69*32;
   this.prefix = "an";
   this.desc = "orb";
 }
@@ -14330,9 +14330,9 @@ OrbDexterityTile.prototype.use = function(who) {
 
 function OrbIntelligenceTile() {
   this.name = "OrbIntelligence";
-  this.graphic = "master_spritesheet_d.gif";
-  this.spritexoffset = '-32';
-  this.spriteyoffset = '-1824';
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -69*32;
   this.prefix = "an";
   this.desc = "orb";
 }
@@ -14358,9 +14358,9 @@ OrbIntelligenceTile.prototype.use = function(who) {
 
 function OrbExperienceTile() {
   this.name = "OrbExperience";
-  this.graphic = "master_spritesheet_d.gif";
-  this.spritexoffset = '-96';
-  this.spriteyoffset = '-1824';
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -69*32;
   this.prefix = "an";
   this.desc = "orb";
 }
@@ -18779,25 +18779,26 @@ WeaponObject.prototype.getLongDesc = function() {
 }
 
 function FistsTile() {
+  //Graphics Upgraded
 	this.name = "Fists";
 	this.damage = "1d2+0";
 	this.strdamage = 1/3;
-	this.graphic = "armorweapons.gif";
-	this.spritexoffset = "-224";
-	this.spriteyoffset = "-32";
+	this.graphic = "static.png";  // pic of an alternate mace, but never shown to the player anyway
+	this.spritexoffset = -8*32;
+	this.spriteyoffset = -68*32;
 	this.prefix = "your";
 	this.desc = "fists";
 }
 FistsTile.prototype = new WeaponObject();
 
 function DaggerTile() {
+  //Graphics Upgraded
 	this.name = "Dagger";
 	this.damage = "1d4+1";
 	this.strdamage = 1/3;
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "0";
-	this.spriteyoffset = "-32";
+  this.graphic = "static.png";
+	this.spritexoffset = 0;
+	this.spriteyoffset = -68*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "dagger";
   this.prefix = "a";
@@ -18806,13 +18807,13 @@ function DaggerTile() {
 DaggerTile.prototype = new WeaponObject();
 
 function ShortswordTile() {
+  //Graphics Upgraded
 	this.name = "Shortsword";
 	this.damage = "2d4+1";
 	this.strdamage = 1/2;
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-32";
-	this.spriteyoffset = "-32";
+  this.graphic = "static.png";
+	this.spritexoffset = -32;
+	this.spriteyoffset = -68*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "shortsword";
   this.prefix = "a";
@@ -18821,13 +18822,13 @@ function ShortswordTile() {
 ShortswordTile.prototype = new WeaponObject();
 
 function MaceTile() {
+  //Graphics Upgraded
 	this.name = "Mace";
 	this.damage = "2d4+3";
 	this.strdamage = 1;
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-64";
-	this.spriteyoffset = "-32";
+  this.graphic = "static.png";
+	this.spritexoffset = -2*32;
+	this.spriteyoffset = -68*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "mace";
   this.prefix = "a";
@@ -18836,13 +18837,13 @@ function MaceTile() {
 MaceTile.prototype = new WeaponObject();
 
 function AxeTile() {
+  //Graphics Upgraded
 	this.name = "Axe";
 	this.damage = "2d4+8";
 	this.strdamage = 2/3;
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-96";
-	this.spriteyoffset = "-32";
+  this.graphic = "static.png";
+	this.spritexoffset = -3*32;
+	this.spriteyoffset = -68*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "axe";
   this.prefix = "an";
@@ -18851,13 +18852,13 @@ function AxeTile() {
 AxeTile.prototype = new WeaponObject();
 
 function LongswordTile() {
+  //Graphics Upgraded
 	this.name = "Longsword";
 	this.damage = "4d4+9";
 	this.strdamage = 2/3;
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-128";
-	this.spriteyoffset = "-32";
+  this.graphic = "static.png";
+	this.spritexoffset = -4*32;
+	this.spriteyoffset = -68*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "longsword";
   this.prefix = "a";
@@ -18866,13 +18867,13 @@ function LongswordTile() {
 LongswordTile.prototype = new WeaponObject();
 
 function HalberdTile() {
+  //Graphics Upgraded
 	this.name = "Halberd";
 	this.damage = "5d4+15";
 	this.strdamage = 1;
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-160";
-	this.spriteyoffset = "-32";
+  this.graphic = "static.png";
+	this.spritexoffset = -5*32;
+	this.spriteyoffset = -68*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "halberd";
   this.prefix = "a";
@@ -18896,12 +18897,13 @@ function MagicSwordTile() {
 MagicSwordTile.prototype = new WeaponObject();
 
 function UnenchantedSwordTile() {
+  //Graphics Upgraded
   this.name = "UnenchantedSword";
   this.damage = "4d6+10";  // when broken, 2d4
   this.strdamage = .5;
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-32";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -68*32;
   this.desc = "unenchanted sword";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -18910,7 +18912,7 @@ function UnenchantedSwordTile() {
   
   this.brokendesc = "unenchanted, broken sword";
   this.repairNeedsInfusion = 1;
-  Breakable.call(this,["magic-sword_.gif", "", "0", "0"],1);
+  Breakable.call(this,["static.png", "", -7*32, -68*32],1);
 }
 UnenchantedSwordTile.prototype = new WeaponObject();
 
@@ -18924,12 +18926,13 @@ UnenchantedSwordTile.prototype.getLongDesc = function() {
 // LightningSword, FlamingSword, SwordOfDefense, VenomSword ?
 
 function NaturalWeaponTile() {
+  //Graphics Upgraded
 	this.name = "NaturalWeapon";
 	this.damage = "1d5+0";
 	this.strdamage = 1;
-	this.graphic = "armorweapons.gif";
-	this.spritexoffset = "0";
-	this.spriteyoffset = "-32";
+	this.graphic = "static.png";
+	this.spritexoffset = -8*32;
+	this.spriteyoffset = -68*32;
 	this.desc = "natural weapon";
 	this.prefix = "a";
 	this.attackSound = "sfx_animal_attack";
@@ -18991,37 +18994,37 @@ MissileWeaponObject.prototype.getAmmoReturn = function() {
 
 
 function SlingTile() {
+  //Graphics Upgraded
 	this.name = "Sling";
 	this.damage = "1d3+0";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "0";
-	this.spriteyoffset = "-64";
+  this.graphic = "static.png";
+	this.spritexoffset = 0;
+	this.spriteyoffset = -69*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "sling";
   this.prefix = "a";
-  this.ammographic = "ammo.gif";
-	this.ammoxoffset = "0";
-  this.ammoyoffset = "-64";
+  this.ammographic = "static.png";
+	this.ammoxoffset = -3*32;
+  this.ammoyoffset = -69*32;
   this.attackSound = "sfx_sling";
   this.longdesc = "A sling, made of simple leather. In your hands, it does %ave% damage on average.";
 }
 SlingTile.prototype = new MissileWeaponObject();
 
 function BowTile() {
+  //Graphics Upgraded
 	this.name = "Bow";
 	this.damage = "1d12+1";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-32";
-	this.spriteyoffset = "-64";
+  this.graphic = "static.png";
+	this.spritexoffset = -32;
+	this.spriteyoffset = -69*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.dexReq = 14;
 	this.desc = "bow";
   this.prefix = "a";
-  this.ammographic = "ammo.gif";
-  this.ammoxoffset = "0";
-  this.ammoyoffset = "0";
+  this.ammographic = "static.png";
+  this.ammoxoffset = 0;
+  this.ammoyoffset = -73*32;
   this.directionalammo = 1;
   this.attackSound = "sfx_bow";
   this.longdesc = "A bow. It requires a Dexterity of 14 to use. In your hands, it does %ave% damage on average.";
@@ -19029,19 +19032,19 @@ function BowTile() {
 BowTile.prototype = new MissileWeaponObject();
 
 function CrossbowTile() {
+  //Graphics Upgraded
 	this.name = "Crossbow";
 	this.damage = "4d8+-1";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-64";
-	this.spriteyoffset = "-64";
+  this.graphic = "static.png";
+	this.spritexoffset = -2*32;
+	this.spriteyoffset = -69*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.dexReq = 17;
 	this.desc = "crossbow";
 	this.prefix = "a";
-  this.ammographic = "ammo.gif";
-  this.ammoxoffset = "0";
-  this.ammoyoffset = "-32";
+  this.ammographic = "static.png";
+  this.ammoxoffset = 0;
+  this.ammoyoffset = -74*32;
   this.directionalammo = 1;
   this.attackSound = "sfx_bow";
   this.longdesc = "A crossbow. It requires a Dexterity of 17 to use. In your hands, it does %ave% damage on average.";
@@ -19049,13 +19052,11 @@ function CrossbowTile() {
 CrossbowTile.prototype = new MissileWeaponObject();
 
 function WandTile() {
+  //Graphics Upgraded
 	this.name = "Wand";
 	this.damage = "4d12+0";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "magicwand.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.spritexoffset = "-96";
-	this.spriteyoffset = "-64";
 	this.desc = "magic wand";
 	this.prefix = "a";
   this.ammoxoffset = "-64";
@@ -19066,18 +19067,17 @@ function WandTile() {
 WandTile.prototype = new MissileWeaponObject();
 
 function MagicAxeTile() {
+  //Graphics Upgraded
 	this.name = "MagicAxe";
 	this.damage = "4d12+12";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "magicaxe.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.spritexoffset = "-128";
-	this.spriteyoffset = "-64";
 	this.dexReq = 18;
 	this.desc = "magic axe";
-	this.prefix = "a";
-  this.ammoxoffset = "0";
-  this.ammoyoffset = "-128";
+  this.prefix = "a";
+  this.ammographic = "magicaxeammo.gif";
+  this.ammoxoffset = 0;
+  this.ammoyoffset = 0;
   this.ammoReturn = 1;
   this.attackSound = "sfx_magic_axe";
   this.longdesc = "A magic throwing axe. It requires a Dexterity of 18 to use. In your hands, it does %ave% damage on average.";
