@@ -8318,14 +8318,12 @@ BloodTile.prototype = new FeatureObject();
 
 function EnergyFieldTile() {
 	this.name = "EnergyField";
-  this.graphic = "fields.gif";
+  this.graphic = "electricfield.gif";
 	this.passable = 0; // impassable - wonky outdoors, but necessary indoors
 	this.blocklos = 0;
 	this.blockloe = 1;
   this.prefix = "an"; 
 	this.desc = "energy field";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "0";
 	
 	LightEmitting.call(this, 1);
 }
@@ -9092,15 +9090,13 @@ DoorStoneWallTile.prototype.bumpinto = function(who) {
 
 function SleepFieldTile() {
 	this.name = "SleepField";
-	this.graphic = "fields.gif";
+	this.graphic = "sleepfield.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
   this.prefix = "a";
 	this.desc = "sleep field";
 	this.initdelay = 1.5;
 	this.pathweight = 5;
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "0";
 	
 	LightEmitting.call(this, 1);
 }
@@ -9142,13 +9138,11 @@ function InASleepField(who) {
 
 function FireFieldTile() {
 	this.name = "FireField";
-	this.graphic = "fields.gif";
+	this.graphic = "firefield.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
   this.prefix = "a";
 	this.desc = "fire field";
-	this.spritexoffset = "-64";
-  this.spriteyoffset = "0";
   this.expires = 0;
 	
 	LightEmitting.call(this, 3);
@@ -9234,15 +9228,13 @@ function InAFireField(who) {
 
 function PoisonFieldTile() {
 	this.name = "PoisonField";
-	this.graphic = "fields.gif";
+	this.graphic = "poisonfield.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
   this.prefix = "a";
 	this.desc = "poison field";
 	this.initdelay = 1.5;
 	this.pathweight = 5;
-  this.spritexoffset = "0";
-  this.spriteyoffset = "0";
 	
 	LightEmitting.call(this, 1);
 }
