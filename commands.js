@@ -1226,11 +1226,16 @@ function PerformRuneChoice() {
       retval["txt"] = "A tunnel into the caldera is exposed!";
       return retval;
         
-    } else if ((themap.getName() === "blackdragon") && DU.gameflags.getFlag("act2") && !DU.gameflags.getFlag("prince_awake")) {
+    } else if ((themap.getName().includes("blackdragon")) && DU.gameflags.getFlag("act2") && !DU.gameflags.getFlag("prince_awake")) {
       let lance = FindNPCByName("Prince Lance",PC.getHomeMap());
       // WORKING HERE - wake prince plot
-      // needs to add flag "Prince Awake" and wake prince up; if he is awake and it's act 2 he can switch to a new schedule once the 
+      // needs to add flag "prince_awake" and wake prince up; if he is awake and it's act 2 he can switch to a new schedule once the 
       // player re-enters the keep, but in the meantime this will wake but he'll stay in the bed.  
+      if (IsAdjacent(PC,lance)) {
+        retval["txt"] = "You reach for the earth... and it reaches back. But you then, carefully, redirect the earth's energies to your brother, lying wan and sickly beside you. As the warm power reaches him, you see color return to his face. He takes a sudden breath and his eyes open.";
+        PC.forcedTalk = lance;
+        
+      }
     }
     if (PC.getHP() < PC.getMaxHP()) {
       PC.healMe(PC.getMaxHP()*.2, PC);

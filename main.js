@@ -462,7 +462,12 @@ function DoAction(code, ctrl) {
           PC.endTurn(retval["initdelay"]);
         }
         if (retval["fin"] === "inn") {
-          let duration = 8*12;
+          let nextmorning = GetGameClockByClockTime("7:00");
+          let duration = nextmorning - DUTime.getGameClock();
+          if (duration < 5*12) {
+            duration = 8*12;
+          }
+          // You sleep until morning, unless that would be getting less than 5 hours of sleep, in which case you sleep 8 hours
           PC.setWaiting(DUTime.getGameClock() + duration);
 //          PC.moveAfterWaiting = {x : targetCursor.inndest.x, y: targetCursor.inndest.y};
 //          delete targetCursor.inndest;

@@ -156,3 +156,4 @@ nyrani_act2
 shelaria_act2
 dawne_act2
 heather_act2
+justice_escape - you've confronted justice and she escaped
