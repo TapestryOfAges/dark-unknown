@@ -269,7 +269,15 @@ mappages["blackdragon"].onload = function(mapref) {
   // check for act 1 to be over, if so, gate is open
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     if (DU.gameflags.getFlag("act2")) {
-      Open_BDC_Gate(this);
+      Open_BDC_Gate(mapref);
+      SetAct2Convos(mapref);
+      let npcs = mapref.npcs.getAll();
+      let dragon;
+      for (let i=0;i<npcs.length;i++) {
+        if (npcs[i].getName() === "BlackDragonNPC") { dragon = npcs[i]; }
+      }
+      mapref.deleteThing(dragon);
+
     } else {
       let npcs = mapref.npcs.getAll();
       let dragon;
