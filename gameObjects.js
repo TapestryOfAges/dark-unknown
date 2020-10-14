@@ -16010,6 +16010,20 @@ function AdelusLetterTile() {
 }
 AdelusLetterTile.prototype = new BookItemObject();
 
+function RhysLetterTile() {
+  this.name = "RhysLetter";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -35*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "letter";
+  this.prefix = "a";
+  this.contents = "<span class='conv'>Lance, my friend!</span>%%<span class='conv'>I've been talking with Justice, and we think you should get out of that castle and into the world a bit. Let's get the old party together. Justice can train you while we are on the road. Who knows, maybe we'll kill a dragon!%%Hope to see you soon- Rhys</span>";
+  this.longdesc = "A letter to Prince Lance from his friend Rhys.";
+}
+RhysLetterTile.prototype = new BookItemObject();
+
 function SpireScrapTile() {
   //Graphics Upgraded 
   this.name = "SpireScrap";
