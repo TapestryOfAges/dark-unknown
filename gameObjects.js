@@ -15242,8 +15242,9 @@ RubyGemoftheSunTile.prototype.use = function(who) {
 
 function DecorativeArmorTile() {
 	this.name = "DecorativeArmor";
-	this.graphic = "armorweapons.gif";
-	this.spritexoffset = "-160";
+	this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -71*32;
 	this.desc = "suit of armor";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -18589,13 +18590,13 @@ function NaturalArmorTile() {
 NaturalArmorTile.prototype = new ArmorObject();
 
 function ClothArmorTile() {
+  //Graphics Upgraded
 	this.name = "ClothArmor";
 	this.defense = 5;
 	this.absorb = 10;
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "0";
-	this.spriteyoffset = "0";
+  this.graphic = "static.png";
+	this.spritexoffset = -7*32;
+	this.spriteyoffset = -70*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "cloth armor";
   this.longdesc = "A suit of cloth armor. Better than nothing.";
@@ -18604,14 +18605,14 @@ function ClothArmorTile() {
 ClothArmorTile.prototype = new ArmorObject();
 
 function LeatherArmorTile() {
+  //Graphics Upgraded
 	this.name = "LeatherArmor";
 	this.defense = 10;
 	this.absorb = 20;
 	this.resist = 10;
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-32";
-	this.spriteyoffset = "0";
+  this.graphic = "static.png";
+	this.spritexoffset = -8*32;
+	this.spriteyoffset = -70*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "leather armor";
   this.longdesc = "A suit of leather armor. Provides some protection.";
@@ -18620,15 +18621,15 @@ function LeatherArmorTile() {
 LeatherArmorTile.prototype = new ArmorObject();
 
 function ChainArmorTile() {
+  //Graphics Upgraded
 	this.name = "ChainArmor";
 	this.defense = 20;
 	this.absorb = 33;
 	this.resist = 10;
 	this.strReq = 14;
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-64";
-	this.spriteyoffset = "0";
+  this.graphic = "static.png";
+	this.spritexoffset = -9*32;
+	this.spriteyoffset = -70*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "chain mail armor";
   this.longdesc = "A suit of chain mail. Requires a 14 Strength to wear.";
@@ -18637,15 +18638,15 @@ function ChainArmorTile() {
 ChainArmorTile.prototype = new ArmorObject();
 
 function PlateArmorTile() {
+  //Graphics Upgraded
 	this.name = "PlateArmor";
 	this.defense = 35;
 	this.absorb = 50;
 	this.resist = 15;
 	this.strReq = 18;
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-96";
-	this.spriteyoffset = "0";
+  this.graphic = "static.png";
+	this.spritexoffset = 0;
+	this.spriteyoffset = -71*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "plate armor";
   this.longdesc = "A suit of plate armor. Requires a 18 Strength to wear.";
@@ -18659,10 +18660,7 @@ function ExoticArmorTile() {
 	this.absorb = 60;
   this.resist = 40;
   this.strReq = 16;
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-128";
-	this.spriteyoffset = "0";
+  this.graphic = "exoticarmor.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "exotic armor";
   this.longdesc = "A suit of exotic armor, magically crafted by you. Requires a 16 Strength to wear.";
