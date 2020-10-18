@@ -14409,9 +14409,9 @@ EtherGateTile.prototype.walkon = function(who) {
 
 function MoongateTile() {
   this.name = "Moongate";
-  this.graphic = "moongates.gif";
-  this.spritexoffset = '-128';
-  this.spriteyoffset = '0';
+  this.graphic = "moongate.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "gate";

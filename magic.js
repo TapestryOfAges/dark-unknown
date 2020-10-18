@@ -3938,30 +3938,30 @@ function CastSpellMana(mage, mana) {
 function TravelByMoongate(who, color, destmap, destx, desty) {
   let tol = 300;
   let graphicarray = [];
-  graphicarray[0] = "moongates.gif";
+  graphicarray[0] = "moongate.gif";
   graphicarray[1] = "spacer.gif";
-  graphicarray[2] = -128;
-  graphicarray[3] = 0;
-  if (color === "red") { graphicarray[3] = -32; }
+  graphicarray[2] = 0;
+  graphicarray[3] = -32;
+  if (color === "red") { graphicarray[2] = -32; }
   
   let oldgraphic = who.getGraphicArray();
   // play sound effect
   who.setGraphicArray(graphicarray);
   DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
   setTimeout(function() {
-    graphicarray[2] += 32;
+    graphicarray[3] += 8;
     who.setGraphicArray(graphicarray);
     DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
     setTimeout(function() {
-      graphicarray[2] += 32;
+      graphicarray[3] += 8;
       who.setGraphicArray(graphicarray);
       DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
       setTimeout(function() {
-        graphicarray[2] += 32;
+        graphicarray[3] += 8;
         who.setGraphicArray(graphicarray);
         DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
         setTimeout(function() {
-          graphicarray[2] += 32; // at this point it should be 0
+          graphicarray[3] += 8; // at this point it should be 0
           who.setGraphicArray(graphicarray);
           DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
           setTimeout(function() {
@@ -3974,19 +3974,19 @@ function TravelByMoongate(who, color, destmap, destx, desty) {
                 who.setGraphicArray(graphicarray);
                 DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
                 setTimeout(function() {
-                  graphicarray[2] -= 32;
+                  graphicarray[3] -= 8;
                   who.setGraphicArray(graphicarray);
                   DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
                   setTimeout(function() {
-                    graphicarray[2] -= 32;
+                    graphicarray[3] -= 8;
                     who.setGraphicArray(graphicarray);
                     DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
                     setTimeout(function() {
-                      graphicarray[2] -= 32;
+                      graphicarray[3] -= 8;
                       who.setGraphicArray(graphicarray);
                       DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
                       setTimeout(function() {
-                        graphicarray[2] -= 32;
+                        graphicarray[3] -= 8;
                         who.setGraphicArray(graphicarray);
                         DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
                         setTimeout(function() {
