@@ -320,12 +320,12 @@ mappages["skypalace"].useorb = function(feature) {
       moongate.destx = 11;
       moongate.desty = 12;
       sp.placeThing(33,31,moongate);
-      animateImage(0,-128,moongate,0,"right",300,0,1);
+      AnimateMoongate(moongate,0,"up",300,0,1);
     } else {
       let mgtile = sp.getTile(33,31);
       let moongate = mgtile.getTopFeature();
       if (moongate) {
-        animateImage(-128,0,moongate,0,"left",300,1,0);
+        AnimateMoongate(moongate,0,"down",300,1,0);
         delete moongate.destmap;
       }
     }

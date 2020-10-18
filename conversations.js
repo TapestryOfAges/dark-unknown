@@ -999,7 +999,7 @@ OnConvTriggers["enter_consolation"] = function(speaker,keyword) {
   moongate.destx = 14;
   moongate.desty = 24;
   themap.placeThing(14,24,moongate);
-  animateImage(-128,0,moongate,0,"left",300,1,1);
+  AnimateMoongate(moongate,0,"down",300,1,1);
   let field = themap.getTile(16,25).getTopFeature();
   themap.deleteThing(field);
   field = themap.getTile(17,25).getTopFeature();

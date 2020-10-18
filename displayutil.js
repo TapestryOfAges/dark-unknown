@@ -573,38 +573,44 @@ function DamageFlash() {
   setTimeout(function() { document.getElementById('hpcell').style.backgroundColor = "black"; document.getElementById('hpcell').style.color = "white"; }, 250);
 }
 
-function animateImage(startx, endx, obj, repeat, dir, waitdur, destroywhendone, settostart) {
+function AnimateMoongate(obj, repeat, dir, waitdur, destroywhendone) {
   if (timeouts[obj.getSerial()]) { clearTimeout(timeouts[obj.getSerial()]); }
-  if (settostart) { obj.spritexoffset = startx; }
+  if (dir === "down") { obj.spriteyoffset = -32; }
   if (PC.getHomeMap() === obj.getHomeMap()) {
     DrawMainFrame("one", obj.getHomeMap(), obj.getx(), obj.gety());
-    timeouts[obj.getSerial()] = setTimeout(function() { continueAnimation(startx, endx, obj, repeat, dir, waitdur, destroywhendone) }, waitdur);
+    timeouts[obj.getSerial()] = setTimeout(function() { ContinueMoongateAnimation(obj, repeat, dir, waitdur, destroywhendone) }, waitdur);
   }
 }
 
-function continueAnimation(startx, endx, obj,repeat, dir, waitdur, destroywhendone) {
+function ContinueMoongateAnimation(obj,repeat, dir, waitdur, destroywhendone) {
   if (obj.getHomeMap() === PC.getHomeMap()) {
-    let diff = 32;
-    if (dir === "right") {
-      diff = -32;
+    let endy = -32;
+    let starty = 0;
+    let diff = -8;
+    if (dir === "down") {
+      endy = 0;
+      starty = -32;
+      diff = 8;
     }
-    if (obj.spritexoffset == endx) {
+    if (obj.spriteyoffset === endy) {
       if (repeat) {
-        obj.spritexoffset = startx;
+        obj.spriteyoffset = starty;
         DrawMainFrame("one", obj.getHomeMap(), obj.getx(), obj.gety());
-        timeouts[obj.getSerial()] = setTimeout(function() { continueAnimation(startx, endx, obj, repeat, dir, waitdur, destroywhendone) }, waitdur);
+        timeouts[obj.getSerial()] = setTimeout(function() { ContinueMoongateAnimation(obj, repeat, dir, waitdur, destroywhendone) }, waitdur);
       }  else if (destroywhendone) {
-        setTimeout(function() { destroyAnimation(obj) }, waitdur);
+        setTimeout(function() { DestroyMoongateAnimation(obj) }, waitdur);
+      } else {
+        delete timeouts[obj.getSerial()];
       }
     } else {
-      obj.spritexoffset = parseInt(obj.spritexoffset) + diff;
+      obj.spriteyoffset = parseInt(obj.spriteyoffset) + diff;
       DrawMainFrame("one", obj.getHomeMap(), obj.getx(), obj.gety());
-      timeouts[obj.getSerial()] = setTimeout(function() { continueAnimation(startx, endx, obj, repeat, dir, waitdur, destroywhendone) }, waitdur);
+      timeouts[obj.getSerial()] = setTimeout(function() { ContinueMoongateAnimation(obj, repeat, dir, waitdur, destroywhendone) }, waitdur);
     }
   }
 }
 
-function destroyAnimation(thing) {
+function DestroyMoongateAnimation(thing) {
   delete timeouts[thing.getSerial()];
   let thingmap = thing.getHomeMap();
   let thingx = thing.getx();

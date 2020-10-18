@@ -13645,7 +13645,7 @@ MarkOfKingsTile.prototype.use = function(user) {
           moongate.destx = 47;
           moongate.desty = 49;
           themap.placeThing(112,67,moongate);
-          animateImage(0,-128,moongate,0,"right",300,0,1);
+          AnimateMoongate(moongate,0,"up",300,0,1);
         }, 500);
 
       } else {
@@ -14205,12 +14205,12 @@ OrbToggleTile.prototype.use = function(who) {
       moongate.destx = 11;
       moongate.desty = 12;
       sp.placeThing(33,31,moongate);
-      animateImage(0,-128,moongate,0,"right",300,0,1);
+      AnimateMoongate(moongate,0,"up",300,0,1);
     } else {
       let mgtile = sp.getTile(33,31);
       let moongate = mgtile.getTopFeature();
       if (moongate) {
-        animateImage(-128,0,moongate,0,"left",300,1,0);
+        AnimateMoongate(moongate,0,"down",300,1,0);
         delete moongate.destmap;
       }
     }
@@ -21181,7 +21181,7 @@ PCObject.prototype.myTurn = function() {
             moongate.destx = 14;
             moongate.desty = 24;
             themap.placeThing(14,24,moongate);
-            animateImage(0,-128,moongate,0,"right",300,0,1);
+            AnimateMoongate(moongate,0,"up",300,0,1);
             gamestate.setMode("null");
             setTimeout(function() {
               moongate.getHomeMap().moveThing(14,24,ashlin);

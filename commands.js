@@ -1206,7 +1206,7 @@ function PerformRuneChoice() {
           moongate.destx = 47;
           moongate.desty = 49;
           themap.placeThing(112,67,moongate);
-          animateImage(0,-128,moongate,0,"right",300,0,1);
+          AnimateMoongate(moongate,0,"up",300,0,1);
         }, 500);
 
       } else {
