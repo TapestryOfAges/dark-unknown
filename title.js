@@ -1610,7 +1610,7 @@ function ExecuteAttract(frame) {
       break;
     case 107:
       fireball = document.createElement("div");
-      fireball.style.backgroundImage = "url('graphics/magic-bolt.gif')";
+      fireball.style.backgroundImage = "url('graphics/blasts.gif')";
       fireball.style.width=32;
       fireball.style.height=32;
       fireball.style.position="absolute";

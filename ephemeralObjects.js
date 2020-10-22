@@ -1383,7 +1383,7 @@ StormTile.prototype.doEffect = function() {
           let chosenidx = Math.floor(Math.random()*targetlength.length);
         
           let boltgraphic = {};
-          boltgraphic.graphic = "fireicelightning.gif";
+          boltgraphic.graphic = "blasts.gif";
           boltgraphic.yoffset = -64;
           boltgraphic.xoffset = 0;
           boltgraphic.directionalammo = 1;

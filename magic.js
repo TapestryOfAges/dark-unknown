@@ -1030,9 +1030,9 @@ function PerformMagicBolt(caster, infused, free, tgt) {
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
   
   let boltgraphic = {};
-  boltgraphic.graphic = "magic-bolt.gif";
-  boltgraphic.yoffset = 0;
+  boltgraphic.graphic = "blasts.gif";
   boltgraphic.xoffset = 0;
+  boltgraphic.yoffset = -32;
   boltgraphic.directionalammo = 1;
   boltgraphic = GetEffectGraphic(caster,tgt,boltgraphic);
   let descval = {txt: desc};
@@ -1492,7 +1492,7 @@ function PerformFireball(caster, infused, free, tgt) {
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
   
   let boltgraphic = {};
-  boltgraphic.graphic = "fireicelightning.gif";
+  boltgraphic.graphic = "blasts.gif";
   boltgraphic.yoffset = 0;
   boltgraphic.xoffset = 0;
   boltgraphic.directionalammo = 1;
@@ -1583,8 +1583,8 @@ function PerformIceball(caster, infused, free, tgt) {
   tgt.addSpellEffect(frozen);
   
   let boltgraphic = {};
-  boltgraphic.graphic = "fireicelightning.gif";
-  boltgraphic.yoffset = -32;
+  boltgraphic.graphic = "ice.gif";
+  boltgraphic.yoffset = 0;
   boltgraphic.xoffset = 0;
   boltgraphic.directionalammo = 1;
   boltgraphic = GetEffectGraphic(caster,tgt,boltgraphic);
@@ -3624,7 +3624,7 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(c
         let skysourcey = display.topedge;
         
         let boltgraphic = {};
-        boltgraphic.graphic = "fireicelightning.gif";
+        boltgraphic.graphic = "blasts.gif";
         boltgraphic.yoffset = 0;
         boltgraphic.xoffset = 0;
         boltgraphic.directionalammo = 1;
@@ -3720,9 +3720,9 @@ function PerformArrowOfGlass(caster, infused, free, tgt) {
 
   PlayCastSound(caster,"sfx_break_glass");
   let boltgraphic = {};
-  boltgraphic.graphic = "magic-bolt.gif";  // CHANGE ONCE ARROW OF GLASS GRAPHIC MADE
-  boltgraphic.yoffset = 0;
+  boltgraphic.graphic = "blasts.gif";  // CHANGE ONCE ARROW OF GLASS GRAPHIC MADE
   boltgraphic.xoffset = 0;
+  boltgraphic.yoffset = -32;
   boltgraphic.directionalammo = 1;
   boltgraphic = GetEffectGraphic(caster,tgt,boltgraphic);
   let descval = {txt: desc};

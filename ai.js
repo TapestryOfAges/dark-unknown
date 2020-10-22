@@ -2581,7 +2581,7 @@ ais.ai_firebreath = function(who) {
   if (!tgt) { return; }
 
   let bolt = {};
-  bolt.graphic = "fireicelightning.gif";
+  bolt.graphic = "blasts.gif";
   bolt.xoffset = 0;
   bolt.yoffset = 0;
   bolt.directionalammo = 1;
@@ -2633,9 +2633,9 @@ ais.ai_icebreath = function(who) {
   if (!tgt) { return; }
 
   let bolt = {};
-  bolt.graphic = "fireicelightning.gif";
+  bolt.graphic = "ice.gif";
   bolt.xoffset = 0;
-  bolt.yoffset = -32;
+  bolt.yoffset = 0;
   bolt.directionalammo = 1;
   bolt = GetEffectGraphic(who,tgt,bolt);
   let dmg;
@@ -2684,7 +2684,7 @@ ais.ai_lbolt = function(who) {
   if (!tgt) { return; }
 
   let bolt = {};
-  bolt.graphic = "fireicelightning.gif";
+  bolt.graphic = "blasts.gif";
   bolt.xoffset = 0;
   bolt.yoffset = -64;
   bolt.directionalammo = 1;
@@ -2736,9 +2736,9 @@ ais.ai_energybolt = function(who) {
   if (!tgt) { return; }
 
   let bolt = {};
-  bolt.graphic = "magic-bolt.gif";
+  bolt.graphic = "blasts.gif";
   bolt.xoffset = 0;
-  bolt.yoffset = 0;
+  bolt.yoffset = -32;
   bolt.directionalammo = 1;
   bolt = GetEffectGraphic(who,tgt,bolt);
   let dmg;
