@@ -1008,6 +1008,10 @@ OnConvTriggers["enter_consolation"] = function(speaker,keyword) {
   DrawMainFrame("one",themap,17,25);
 }
 
+OnConvTriggers["prince_awake"] = function(speaker,keyword) {
+  speaker.sleep = 1;
+}
+
 function ConvTestFlags() {};
 
 ConvTestFlags["warren_close"] = function(speaker,keyword) {

@@ -50,7 +50,7 @@ mappages["blackdragon"].terrain[44] = '.. .. .. .. .. .. .. .. .. .. .. .. .. ..
 
 mappages["blackdragon"].features = [];
 mappages["blackdragon"].features[0] = {name : 'Doorway', x : 12, y : 29};
-mappages["blackdragon"].features[1] = {name : 'Door', x : 22, y : 29, desc : "locked door", locked : 1};
+mappages["blackdragon"].features[1] = {name : 'Door', x : 22, y : 29, desc : "locked door", locked : 1, keyname : "BlackDragonKey"};
 mappages["blackdragon"].features[2] = {name : 'Door', x : 19, y : 31, desc : "locked door", locked : 1};
 mappages["blackdragon"].features[3] = {name : 'BDCLever', x : 11, y : 39};
 mappages["blackdragon"].features[4] = {name : 'BedHead', x : 20, y : 32};
@@ -66,10 +66,10 @@ mappages["blackdragon"].features[13] = {name : 'BedFoot', x : 25, y : 32};
 mappages["blackdragon"].features[14] = {name : 'BedFoot', x : 25, y : 34};
 mappages["blackdragon"].features[15] = {name : 'BedFoot', x : 25, y : 36};
 mappages["blackdragon"].features[16] = {name : 'Door', x : 17, y : 25};
-mappages["blackdragon"].features[17] = {name : 'Door', x : 18, y : 23, desc : "locked door", locked : 1};
-mappages["blackdragon"].features[18] = {name : 'Door', x : 16, y : 23, desc : "locked door", locked : 1};
-mappages["blackdragon"].features[19] = {name : 'Door', x : 16, y : 18, desc : "locked door", locked : 1};
-mappages["blackdragon"].features[20] = {name : 'Door', x : 18, y : 18, desc : "locked door", locked : 1};
+mappages["blackdragon"].features[17] = {name : 'Door', x : 18, y : 23, desc : "locked door", locked : 1, keyname : "BlackDragonKey"};
+mappages["blackdragon"].features[18] = {name : 'Door', x : 16, y : 23, desc : "locked door", locked : 1, keyname : "BlackDragonKey"};
+mappages["blackdragon"].features[19] = {name : 'Door', x : 16, y : 18, desc : "locked door", locked : 1, keyname : "BlackDragonKey"};
+mappages["blackdragon"].features[20] = {name : 'Door', x : 18, y : 18, desc : "locked door", locked : 1, keyname : "BlackDragonKey"};
 mappages["blackdragon"].features[21] = {name : 'BedHead', x : 21, y : 24};
 mappages["blackdragon"].features[22] = {name : 'BedHead', x : 12, y : 24};
 mappages["blackdragon"].features[23] = {name : 'BedHead', x : 12, y : 20};
@@ -119,9 +119,9 @@ mappages["blackdragon"].features[66] = {name : 'DoorWindow', x : 36, y : 29};
 mappages["blackdragon"].features[67] = {name : 'LeftTable', x : 34, y : 26};
 mappages["blackdragon"].features[68] = {name : 'RightTable', x : 35, y : 26};
 mappages["blackdragon"].features[69] = {name : 'Door', x : 29, y : 23};
-mappages["blackdragon"].features[70] = {name : 'Door', x : 11, y : 28, desc : "locked door", locked : 1};
+mappages["blackdragon"].features[70] = {name : 'Door', x : 11, y : 28, desc : "locked door", locked : 1, keyname : "BlackDragonKey"};
 mappages["blackdragon"].features[71] = {name : 'Throne', x : 37, y : 11};
-mappages["blackdragon"].features[72] = {name : 'Door', x : 32, y : 17, desc : "magically locked door", locked : 2};
+mappages["blackdragon"].features[72] = {name : 'Door', x : 32, y : 17, desc : "magically locked door", locked : 2, keyname : "BlackDragonKey"};
 mappages["blackdragon"].features[73] = {name : 'PentagramSW', x : 25, y : 12};
 mappages["blackdragon"].features[74] = {name : 'PentagramS', x : 26, y : 12};
 mappages["blackdragon"].features[75] = {name : 'PentagramSE', x : 27, y : 12};
@@ -138,7 +138,7 @@ mappages["blackdragon"].features[85] = {name : 'BookshelfRight', x : 26, y : 8};
 mappages["blackdragon"].features[86] = {name : 'BookshelfRight', x : 28, y : 8};
 mappages["blackdragon"].features[87] = {name : 'BookshelfRight', x : 30, y : 8};
 mappages["blackdragon"].features[88] = {name : 'Mirror', x : 31, y : 8};
-mappages["blackdragon"].features[89] = {name : 'Doorway', x : 29, y : 13};
+mappages["blackdragon"].features[89] = {name : 'Door', x : 29, y : 13, desc : "magically locked door", locked : 2, keyname : "BlackDragonKey"};
 mappages["blackdragon"].features[90] = {name : 'Mirror', x : 30, y : 14};
 mappages["blackdragon"].features[91] = {name : 'RightChair', x : 31, y : 18};
 mappages["blackdragon"].features[92] = {name : 'RightTable', x : 30, y : 18};
@@ -314,7 +314,7 @@ mappages["blackdragon"].onload = function(mapref) {
         if (npcs[i].getName() === "BlackDragonNPC") { dragon = npcs[i]; }
       }
       mapref.deleteThing(dragon);
-
+      DUTime.removeEntityFrom(dragon);
     } else {
       let npcs = mapref.npcs.getAll();
       let dragon;
@@ -709,7 +709,7 @@ mappages["blackdragon_int"].terrain[44] = '.. .. .. .. .. .. .. .. .. .. .. .. .
 
 mappages["blackdragon_int"].features = [];
 mappages["blackdragon_int"].features[0] = {name : 'Doorway', x : 12, y : 29};
-mappages["blackdragon_int"].features[1] = {name : 'Door', x : 22, y : 29, desc : "locked door", locked : 1};
+mappages["blackdragon_int"].features[1] = {name : 'Door', x : 22, y : 29, desc : "locked door", locked : 1, keyname : "BlackDragonKey"};
 mappages["blackdragon_int"].features[2] = {name : 'Door', x : 19, y : 31, desc : "locked door", locked : 1};
 mappages["blackdragon_int"].features[3] = {name : 'BDCLever', x : 11, y : 39};
 mappages["blackdragon_int"].features[4] = {name : 'BedHead', x : 20, y : 32};
@@ -725,10 +725,10 @@ mappages["blackdragon_int"].features[13] = {name : 'BedFoot', x : 25, y : 32};
 mappages["blackdragon_int"].features[14] = {name : 'BedFoot', x : 25, y : 34};
 mappages["blackdragon_int"].features[15] = {name : 'BedFoot', x : 25, y : 36};
 mappages["blackdragon_int"].features[16] = {name : 'Door', x : 17, y : 25};
-mappages["blackdragon_int"].features[17] = {name : 'Door', x : 18, y : 23, desc : "locked door", locked : 1};
-mappages["blackdragon_int"].features[18] = {name : 'Door', x : 16, y : 23, desc : "locked door", locked : 1};
-mappages["blackdragon_int"].features[19] = {name : 'Door', x : 16, y : 18, desc : "locked door", locked : 1};
-mappages["blackdragon_int"].features[20] = {name : 'Door', x : 18, y : 18, desc : "locked door", locked : 1};
+mappages["blackdragon_int"].features[17] = {name : 'Door', x : 18, y : 23, desc : "locked door", locked : 1, keyname : "BlackDragonKey"};
+mappages["blackdragon_int"].features[18] = {name : 'Door', x : 16, y : 23, desc : "locked door", locked : 1, keyname : "BlackDragonKey"};
+mappages["blackdragon_int"].features[19] = {name : 'Door', x : 16, y : 18, desc : "locked door", locked : 1, keyname : "BlackDragonKey"};
+mappages["blackdragon_int"].features[20] = {name : 'Door', x : 18, y : 18, desc : "locked door", locked : 1, keyname : "BlackDragonKey"};
 mappages["blackdragon_int"].features[21] = {name : 'BedHead', x : 21, y : 24};
 mappages["blackdragon_int"].features[22] = {name : 'BedHead', x : 12, y : 24};
 mappages["blackdragon_int"].features[23] = {name : 'BedHead', x : 12, y : 20};
@@ -797,7 +797,7 @@ mappages["blackdragon_int"].features[85] = {name : 'BookshelfRight', x : 26, y :
 mappages["blackdragon_int"].features[86] = {name : 'BookshelfRight', x : 28, y : 8};
 mappages["blackdragon_int"].features[87] = {name : 'BookshelfRight', x : 30, y : 8};
 mappages["blackdragon_int"].features[88] = {name : 'Mirror', x : 31, y : 8};
-mappages["blackdragon_int"].features[89] = {name : 'Doorway', x : 29, y : 13};
+mappages["blackdragon_int"].features[89] = {name : 'Door', x : 29, y : 13, desc : "magically locked door", locked : 2, keyname : "BlackDragonKey"};
 mappages["blackdragon_int"].features[90] = {name : 'Mirror', x : 30, y : 14};
 mappages["blackdragon_int"].features[91] = {name : 'RightChair', x : 31, y : 18};
 mappages["blackdragon_int"].features[92] = {name : 'RightTable', x : 30, y : 18};
