@@ -277,7 +277,7 @@ mappages["blackdragon"].onload = function(mapref) {
         if (npcs[i].getName() === "BlackDragonNPC") { dragon = npcs[i]; }
       }
       mapref.deleteThing(dragon);
-
+      DUTime.removeEntityFrom(dragon);
     } else {
       let npcs = mapref.npcs.getAll();
       let dragon;

@@ -83,7 +83,7 @@ mappages["shadow1"].returninfused = '0';
 mappages["shadow1"].linkedMaps = ["shadow2","shadow3"];
 
 mappages["shadow1"].onload = function(mapref) {
-  if (gamestate.getMode() !== "loadgame") {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     if (DU.gameflags["rescued_sam"]) {
       let sam = mapref.getTile(18,21).getTopNPC();
       mapref.deleteThing(sam);
@@ -231,7 +231,7 @@ mappages["shadow2"].linkedMaps = ["shadow1","shadow3"];
 mappages["shadow2"].editorLabels = '{}';
 
 mappages["shadow2"].onload = function(mapref) {
-  if (gamestate.getMode() !== "loadgame") {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     if ((DU.gameflags.getFlag("returned_cloak")) || (PC.checkInventory("SiriCloak"))) {
       let cloak = mapref.getTile(40,49).getTopFeature();
       if (cloak) {
@@ -279,26 +279,34 @@ mappages["shadow3"].terrain[31] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK 
 mappages["shadow3"].features = [];
 mappages["shadow3"].features[0] = {name : 'LadderUp', x : 7, y : 5, entermap : 'null', enterx : 0, entery : 0};
 mappages["shadow3"].features[1] = {name : 'Altar', x : 6, y : 13};
-mappages["shadow3"].features[2] = {name : 'UnlitBrazier', x : 8, y : 12};
-mappages["shadow3"].features[3] = {name : 'BookshelfLeft', x : 4, y : 16};
-mappages["shadow3"].features[4] = {name : 'BookshelfLeft', x : 7, y : 16};
-mappages["shadow3"].features[5] = {name : 'BookshelfRight', x : 8, y : 16};
-mappages["shadow3"].features[6] = {name : 'BookshelfRight', x : 5, y : 16};
-mappages["shadow3"].features[7] = {name : 'SmallBox', x : 3, y : 17};
-mappages["shadow3"].features[8] = {name : 'LeftTable', x : 7, y : 20};
-mappages["shadow3"].features[9] = {name : 'RightTable', x : 8, y : 20};
-mappages["shadow3"].features[10] = {name : 'UnlitBrazier', x : 5, y : 19};
-mappages["shadow3"].features[11] = {name : 'UnlitBrazier', x : 13, y : 14};
-mappages["shadow3"].features[12] = {name : 'UnlitBrazier', x : 13, y : 17};
-mappages["shadow3"].features[13] = {name : 'BookshelfLeft', x : 10, y : 13};
-mappages["shadow3"].features[14] = {name : 'BookshelfRight', x : 11, y : 13};
-mappages["shadow3"].features[15] = {name : 'SmallBox', x : 12, y : 13};
-mappages["shadow3"].features[16] = {name : 'SmallBox', x : 11, y : 19};
-mappages["shadow3"].features[17] = {name : 'SmallBox', x : 10, y : 19};
-mappages["shadow3"].features[18] = {name : 'LadderUp', x : 37, y : 8, entermap : 'null', enterx : 0, entery : 0};
+mappages["shadow3"].features[2] = {name : 'BookshelfLeft', x : 4, y : 16};
+mappages["shadow3"].features[3] = {name : 'BookshelfLeft', x : 7, y : 16};
+mappages["shadow3"].features[4] = {name : 'BookshelfRight', x : 8, y : 16};
+mappages["shadow3"].features[5] = {name : 'BookshelfRight', x : 5, y : 16};
+mappages["shadow3"].features[6] = {name : 'SmallBox', x : 3, y : 17};
+mappages["shadow3"].features[7] = {name : 'LeftTable', x : 7, y : 20};
+mappages["shadow3"].features[8] = {name : 'RightTable', x : 8, y : 20};
+mappages["shadow3"].features[9] = {name : 'BookshelfLeft', x : 10, y : 13};
+mappages["shadow3"].features[10] = {name : 'BookshelfRight', x : 11, y : 13};
+mappages["shadow3"].features[11] = {name : 'SmallBox', x : 12, y : 13};
+mappages["shadow3"].features[12] = {name : 'SmallBox', x : 11, y : 19};
+mappages["shadow3"].features[13] = {name : 'SmallBox', x : 10, y : 19};
+mappages["shadow3"].features[14] = {name : 'LadderUp', x : 37, y : 8, entermap : 'null', enterx : 0, entery : 0};
+mappages["shadow3"].features[15] = {name : 'UnlitBrazier', x : 8, y : 12};
+mappages["shadow3"].features[16] = {name : 'UnlitBrazier', x : 5, y : 19};
+mappages["shadow3"].features[17] = {name : 'UnlitBrazier', x : 13, y : 14};
+mappages["shadow3"].features[18] = {name : 'UnlitBrazier', x : 13, y : 17};
 
 
 mappages["shadow3"].npcs = [];
+mappages["shadow3"].npcs[0] = {name : 'CorpserNPC', x : 37, y : 19, skintone: '1'};
+mappages["shadow3"].npcs[1] = {name : 'CorpserNPC', x : 38, y : 21, skintone: '1'};
+mappages["shadow3"].npcs[2] = {name : 'CorpserNPC', x : 32, y : 26, skintone: '1'};
+mappages["shadow3"].npcs[3] = {name : 'CorpserNPC', x : 26, y : 21, skintone: '1'};
+mappages["shadow3"].npcs[4] = {name : 'CorpserNPC', x : 22, y : 9, skintone: '1'};
+mappages["shadow3"].npcs[5] = {name : 'CorpserNPC', x : 25, y : 6, skintone: '1'};
+mappages["shadow3"].npcs[6] = {name : 'RangerVillagerNPC', x : 11, y : 15, NPCName: 'Rhys', Level: 6, Conversation: 'rhys', Gender: 'male', NPCBand: '0', OverrideGraphic: '305.gif', skintone: '1'};
+
 
 mappages["shadow3"].desc = "Dungeon Shadow";
 mappages["shadow3"].longdesc = ``;
@@ -326,3 +334,15 @@ mappages["shadow3"].returny = '31';
 mappages["shadow3"].returninfused = '0';
 mappages["shadow3"].linkedMaps = ["shadow1","shadow2"];
 mappages["shadow3"].editorLabels = '{}';
+
+mappages["shadow2"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    if ((!DU.gameflags.getFlag("returned_rhys")) || (DU.gameflags.getFlag("confronted_rhys"))) {
+      let rhys = mapref.getTile(11,15).getTopNPC();
+      if (rhys) {
+        mapref.deleteThing(rhys);
+        DUTime.removeEntityFrom(rhys);
+      }
+    }
+  }
+}

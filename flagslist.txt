@@ -159,3 +159,4 @@ heather_act2
 justice_escape - you've confronted justice and she escaped
 returned_rhys - you've given Rhys's letter back to Lance
 talked_runes - Lance mentioned the rune journal to you
+confronted_rhys - you've encountered Rhys in the cult stronghold
