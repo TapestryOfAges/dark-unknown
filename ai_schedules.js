@@ -732,8 +732,8 @@ ais.LightLight = function(who,params) {
 }
 
 ais.ChangeGraphic = function(who,params) {
-  let xoff = "0";
-  let yoff = "0";
+  let xoff = 0;
+  let yoff = 0;
   if (params.xoff) { xoff = params.xoff; }
   if (params.yoff) { yoff = params.yoff; }
   who.setGraphicArray([params.graphic,"",xoff,yoff]);
@@ -1027,7 +1027,7 @@ ais.ChangeMapCart = function(who,params) {
 }
 
 ais.ToshinGoSleep = function(who,params) {
-  who.setGraphicArray(["master_spritesheet.png","","-64","-800"]);
+  who.setGraphicArray(["static.png","",-8*32,-77*32]);
   who.flags.sleep = 1;
 
   return {fin:1};
