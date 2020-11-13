@@ -2613,6 +2613,11 @@ tileFactory.prototype.makeAltarTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeThinAltarTile = function() {
+  let newTile = new ThinAltarTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeThroneTile = function() {
   let newTile = new ThroneTile();
   return newTile;
@@ -2690,6 +2695,26 @@ tileFactory.prototype.makeStairDown2Tile = function() {
 
 tileFactory.prototype.makeStairUp2Tile = function() {
   let newTile = new StairUp2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFancyStairDownTile = function() {
+  let newTile = new FancyStairDownTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFancyStairUpTile = function() {
+  let newTile = new FancyStairUpTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFancyStairDown2Tile = function() {
+  let newTile = new FancyStairDown2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFancyStairUp2Tile = function() {
+  let newTile = new FancyStairUp2Tile();
   return newTile;
 }
 
@@ -2818,6 +2843,16 @@ tileFactory.prototype.makeBardSignTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeBrokenSignTile = function() {
+  let newTile = new BrokenSignTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeUnfinishedSignTile = function() {
+  let newTile = new UnfinishedSignTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeTombstoneTile = function() {
   let newTile = new TombstoneTile();
   return newTile;
@@ -2840,6 +2875,11 @@ tileFactory.prototype.makeArcheryTargetTile = function() {
 
 tileFactory.prototype.makePottedPlantTile = function() {
   let newTile = new PottedPlantTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePottedPlant2Tile = function() {
+  let newTile = new PottedPlant2Tile();
   return newTile;
 }
 
@@ -2918,6 +2958,16 @@ tileFactory.prototype.makeSmallTableTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeSmallTable2Tile = function() {
+  let newTile = new SmallTable2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSmallTable3Tile = function() {
+  let newTile = new SmallTable3Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeLeftTableTile = function() {
   let newTile = new LeftTableTile();
   return newTile;
@@ -2993,6 +3043,16 @@ tileFactory.prototype.makeDoubleBedBottomFootTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeEmptyBookshelfLeftTile = function() {
+  let newTile = new EmptyBookshelfLeftTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeEmptyBookshelfRightTile = function() {
+  let newTile = new EmptyBookshelfRightTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeBookshelfLeftTile = function() {
   let newTile = new BookshelfLeftTile();
   return newTile;
@@ -3013,13 +3073,38 @@ tileFactory.prototype.makeSmallBoxTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeCrateTile = function() {
+  let newTile = new CrateTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeDresserTile = function() {
   let newTile = new DresserTile();
   return newTile;
 }
 
+tileFactory.prototype.makeDresser2Tile = function() {
+  let newTile = new Dresser2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDresser3Tile = function() {
+  let newTile = new Dresser3Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeVanityTile = function() {
   let newTile = new VanityTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeVanity2Tile = function() {
+  let newTile = new Vanity2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeVanity3Tile = function() {
+  let newTile = new Vanity3Tile();
   return newTile;
 }
 
@@ -3095,6 +3180,16 @@ tileFactory.prototype.makeKitchenBarrel2Tile = function() {
 
 tileFactory.prototype.makeKitchenBarrel3Tile = function() {
   let newTile = new KitchenBarrel3Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBarrel2Tile = function() {
+  let newTile = new Barrel2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCrackedMirrorTile = function() {
+  let newTile = new CrackedMirrorTile();
   return newTile;
 }
 
@@ -3210,6 +3305,11 @@ tileFactory.prototype.makeRuinsWallBottomLeftMidRightTile = function() {
 
 tileFactory.prototype.makeWellTile = function() {
   let newTile = new WellTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBareWellTile = function() {
+  let newTile = new BareWellTile();
   return newTile;
 }
 
@@ -3798,8 +3898,13 @@ tileFactory.prototype.makeOracleTopRightTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeAltarWithSwordTile = function() {
-  let newTile = new AltarWithSwordTile();
+tileFactory.prototype.makeSwordInStoneTile = function() {
+  let newTile = new SwordInStoneTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeStoneWithoutSwordTile = function() {
+  let newTile = new StoneWithoutSwordTile();
   return newTile;
 }
 
@@ -4220,6 +4325,11 @@ tileFactory.prototype.makeArcheoJournalTile = function() {
 
 tileFactory.prototype.makeAdelusLetterTile = function() {
   let newTile = new AdelusLetterTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRhysLetterTile = function() {
+  let newTile = new RhysLetterTile();
   return newTile;
 }
 
