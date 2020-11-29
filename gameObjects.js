@@ -4627,6 +4627,299 @@ function BrokenCobblestoneTile() {
 }
 BrokenCobblestoneTile.prototype = new TerrainObject();
 
+function FadedCobblestoneTile() {
+  //Graphics Upgraded
+  this.name = "FadedCobblestone";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -85*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "cobblestones";
+  this.peerview = "#800000";
+  this.walkSound = "stone";
+}
+FadedCobblestoneTile.prototype = new TerrainObject();
+
+function FadedCobblestone2Tile() {
+  //Graphics Upgraded
+  this.name = "FadedCobblestone2";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -86*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "cobblestones";
+  this.peerview = "#800000";
+  this.walkSound = "stone";
+}
+FadedCobblestone2Tile.prototype = new TerrainObject();
+
+// atlas/editor needs start here
+function ClayPaversTile() {
+  //Graphics Upgraded
+  this.name = "ClayPavers";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -86*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "clay brick floor";
+  this.peerview = "#800000";
+  this.walkSound = "stone";
+}
+ClayPaversTile.prototype = new TerrainObject();
+
+function FadedWoodNSTile() {
+  //Graphics Upgraded
+  this.name = "FadedWoodNS";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -86*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "wood floor";
+  this.peerview = "#800000";
+  this.walkSound = "stone";
+}
+FadedWoodNSTile.prototype = new TerrainObject();
+
+function FadedWoodEWTile() {
+  //Graphics Upgraded
+  this.name = "FadedWoodEW";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -86*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "wood floor";
+  this.peerview = "#800000";
+  this.walkSound = "stone";
+}
+FadedWoodEWTile.prototype = new TerrainObject();
+
+function BlueTileFloorTile() {
+  //Graphics Upgraded
+  this.name = "BlueTileFloor";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -86*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "blue tile floor";
+  this.peerview = "#800000";
+  this.walkSound = "stone";
+}
+BlueTileFloorTile.prototype = new TerrainObject();
+
+function BlueMarbleTileFloorTile() {
+  //Graphics Upgraded
+  this.name = "BlueMarbleTileFloor";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -86*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "tile floor";
+  this.peerview = "#800000";
+  this.walkSound = "stone";
+}
+BlueMarbleTileFloorTile.prototype = new TerrainObject();
+
+function GreenTileFloorTile() {
+  //Graphics Upgraded
+  this.name = "GreenTileFloor";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -86*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "tile floor";
+  this.peerview = "#800000";
+  this.walkSound = "stone";
+}
+GreenTileFloorTile.prototype = new TerrainObject();
+
+function GreenCheckeredTileFloorTile() {
+  //Graphics Upgraded
+  this.name = "GreenCheckeredTileFloor";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -86*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "tile floor";
+  this.peerview = "#800000";
+  this.walkSound = "stone";
+}
+GreenCheckeredTileFloorTile.prototype = new TerrainObject();
+
+function StonePaverTile() {
+  //Graphics Upgraded
+  this.name = "StonePaver";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -86*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "stone paver";
+  this.peerview = "#800000";
+  this.walkSound = "stone";
+}
+StonePaverTile.prototype = new TerrainObject();
+
+function StonePaver2Tile() {
+  //Graphics Upgraded
+  this.name = "StonePaver2";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -86*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "stone paver";
+  this.peerview = "#800000";
+  this.walkSound = "stone";
+}
+StonePaver2Tile.prototype = new TerrainObject();
+
+function RedTileFloorTile() {
+  //Graphics Upgraded
+  this.name = "RedTileFloor";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -87*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "tile floor";
+  this.peerview = "#800000";
+  this.walkSound = "stone";
+}
+RedTileFloorTile.prototype = new TerrainObject();
+
+function DarkBlueTileFloorTile() {
+  //Graphics Upgraded
+  this.name = "DarkBlueTileFloor";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -87*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "tile floor";
+  this.peerview = "#800000";
+  this.walkSound = "stone";
+}
+DarkBlueTileFloorTile.prototype = new TerrainObject();
+
+function BrokenTileFloorTile() {
+  //Graphics Upgraded
+  this.name = "BrokenTileFloor";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -87*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "tile floor";
+  this.peerview = "#800000";
+  this.walkSound = "stone";
+}
+BrokenTileFloorTile.prototype = new TerrainObject();
+
+function GreyTileFloorTile() {
+  //Graphics Upgraded
+  this.name = "GreyTileFloor";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -87*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "tile floor";
+  this.peerview = "#800000";
+  this.walkSound = "stone";
+}
+GreyTileFloorTile.prototype = new TerrainObject();
+
+function FadedFancyFloorTile() {
+  //Graphics Upgraded
+  this.name = "FadedFancyFloor";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -87*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "floor";
+  this.peerview = "#800000";
+  this.walkSound = "stone";
+}
+FadedFancyFloorTile.prototype = new TerrainObject();
+
+function FadedFancyFloor2Tile() {
+  //Graphics Upgraded
+  this.name = "FadedFancyFloor2";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -87*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "floor";
+  this.peerview = "#800000";
+  this.walkSound = "stone";
+}
+FadedFancyFloor2Tile.prototype = new TerrainObject();
+
+function FadedFancyFloor3Tile() {
+  //Graphics Upgraded
+  this.name = "FadedFancyFloor3";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -87*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "floor";
+  this.peerview = "#800000";
+  this.walkSound = "stone";
+}
+FadedFancyFloor3Tile.prototype = new TerrainObject();
+
+function CrackedStoneFloorTile() {
+  //Graphics Upgraded
+  this.name = "CrackedStoneFloor";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -87*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "floor";
+  this.peerview = "#800000";
+  this.walkSound = "stone";
+}
+CrackedStoneFloorTile.prototype = new TerrainObject();
+
+function FadedDarkWoodNSTile() {
+  //Graphics Upgraded
+  this.name = "FadedDarkWoodNS";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -87*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "floor";
+  this.peerview = "#800000";
+  this.walkSound = "stone";
+}
+FadedDarkWoodNSTile.prototype = new TerrainObject();
+
 function CobblestoneRoadTile() {
   //Graphics Upgraded
   this.name = "CobblestoneRoad";

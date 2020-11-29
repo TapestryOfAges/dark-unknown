@@ -363,7 +363,26 @@ function PopulateAtlas(atlasref) {
   atlasref.insertkey("RiverGrassNEW_N","R}");
   atlasref.insertkey("RiverDirtNEW_N","R(");
   atlasref.insertkey("RiverCaveNEW_N","R)");
-
+  atlasref.insertkey("FadedCobblestone","+f");
+  atlasref.insertkey("FadedCobblestone2","+F");
+  atlasref.insertkey("ClayPavers","+c");
+  atlasref.insertkey("FadedWoodNS","f!");
+  atlasref.insertkey("FadedWoodEW","f=");
+  atlasref.insertkey("FadedDarkWoodNS","F!");
+  atlasref.insertkey("BlueTileFloor","+b");
+  atlasref.insertkey("BlueMarbleTileFloor","+m");
+  atlasref.insertkey("GreenTileFloor","+g");
+  atlasref.insertkey("GreenCheckeredTileFloor","+G");
+  atlasref.insertkey("StonePaver","+s");
+  atlasref.insertkey("StonePaver2","+$");
+  atlasref.insertkey("RedTileFloor","+T");
+  atlasref.insertkey("DarkBlueTileFloor","+B");
+  atlasref.insertkey("BrokenTileFloor","+x");
+  atlasref.insertkey("FadedFancyFloor3","+%");
+  atlasref.insertkey("FadedFancyFloor","+#");
+  atlasref.insertkey("FadedFancyFloor2","+&");
+  atlasref.insertkey("GreyTileFloor","+t");
+  atlasref.insertkey("CrackedStoneFloor","+X");
 }
 
 // Page object- condensed map

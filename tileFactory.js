@@ -1298,6 +1298,106 @@ tileFactory.prototype.makeBrokenCobblestoneTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeFadedCobblestoneTile = function() {
+  let newTile = new FadedCobblestoneTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFadedCobblestone2Tile = function() {
+  let newTile = new FadedCobblestone2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeClayPaversTile = function() {
+  let newTile = new ClayPaversTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFadedWoodNSTile = function() {
+  let newTile = new FadedWoodNSTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFadedWoodEWTile = function() {
+  let newTile = new FadedWoodEWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBlueTileFloorTile = function() {
+  let newTile = new BlueTileFloorTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBlueMarbleTileFloorTile = function() {
+  let newTile = new BlueMarbleTileFloorTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGreenTileFloorTile = function() {
+  let newTile = new GreenTileFloorTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGreenCheckeredTileFloorTile = function() {
+  let newTile = new GreenCheckeredTileFloorTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeStonePaverTile = function() {
+  let newTile = new StonePaverTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeStonePaver2Tile = function() {
+  let newTile = new StonePaver2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRedTileFloorTile = function() {
+  let newTile = new RedTileFloorTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDarkBlueTileFloorTile = function() {
+  let newTile = new DarkBlueTileFloorTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBrokenTileFloorTile = function() {
+  let newTile = new BrokenTileFloorTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGreyTileFloorTile = function() {
+  let newTile = new GreyTileFloorTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFadedFancyFloorTile = function() {
+  let newTile = new FadedFancyFloorTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFadedFancyFloor2Tile = function() {
+  let newTile = new FadedFancyFloor2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFadedFancyFloor3Tile = function() {
+  let newTile = new FadedFancyFloor3Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCrackedStoneFloorTile = function() {
+  let newTile = new CrackedStoneFloorTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFadedDarkWoodNSTile = function() {
+  let newTile = new FadedDarkWoodNSTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeCobblestoneRoadTile = function() {
   let newTile = new CobblestoneRoadTile();
   return newTile;
@@ -2620,6 +2720,11 @@ tileFactory.prototype.makeThinAltarTile = function() {
 
 tileFactory.prototype.makeThroneTile = function() {
   let newTile = new ThroneTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBDThroneTile = function() {
+  let newTile = new BDThroneTile();
   return newTile;
 }
 
