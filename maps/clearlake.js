@@ -353,6 +353,7 @@ mappages["clearlake"].features[281] = {name : 'Brazier', x : 7, y : 34};
 mappages["clearlake"].features[282] = {name : 'TorchEast', x : 29, y : 58};
 mappages["clearlake"].features[283] = {name : 'TorchEast', x : 29, y : 60};
 mappages["clearlake"].features[284] = {name : 'Fireplace', x : 43, y : 39};
+mappages["clearlake"].features[285] = {name : 'Brazier', x : 36, y : 16};
 
 
 mappages["clearlake"].npcs = [];
@@ -398,7 +399,7 @@ mappages["clearlake"].returnx = '81';
 mappages["clearlake"].returny = '23';
 mappages["clearlake"].returninfused = '0';
 mappages["clearlake"].linkedMaps = ["clearlake2","clearlake0"];
-mappages["clearlake"].editorLabels = '{"div_tile5x52":"Colin and Maggie","div_tile5x38":"Flora","div_tile22x10":"Xylia","div_tile40x31":"Julian","div_tile40x39":"Rhys (act 2)"}';
+mappages["clearlake"].editorLabels = '{"div_tile5x52":"Colin and Maggie","div_tile5x38":"Flora","div_tile22x10":"Xylia","div_tile40x31":"Julian","div_tile40x39":"Rhys (act 2)","div_tile15x57":"Lisa","div_tile22x15":"PC"}';
 
 mappages["clearlake"].onload = function(mapref) {
   if (gamestate.getMode() !== "loadgame") {
@@ -554,10 +555,14 @@ mappages["clearlake2"].features[63] = {name : 'Fireplace', x : 40, y : 19};
 mappages["clearlake2"].features[64] = {name : 'Fireplace', x : 31, y : 19};
 mappages["clearlake2"].features[65] = {name : 'UnlitBrazier', x : 40, y : 36};
 mappages["clearlake2"].features[66] = {name : 'UnlitBrazier', x : 40, y : 30};
-
+mappages["clearlake2"].features[67] = {name : 'Brazier', x : 33, y : 11};
+mappages["clearlake2"].features[68] = {name : 'Brazier', x : 31, y : 15};
+mappages["clearlake2"].features[69] = {name : 'Brazier', x : 38, y : 15};
 
 mappages["clearlake2"].npcs = [];
 mappages["clearlake2"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 40, y : 39, NPCName: 'Suzanne', Desc: 'fisherman', PeaceAI: 'scheduled', Schedule: 'suzanne', Conversation: 'suzanne', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_blue.2.gif', skintone: '2'};
+mappages["clearlake2"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 36, y : 20, NPCName: 'Kiki', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'kiki', Conversation: 'grace', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_blue.2.gif', skintone: '1'};
+mappages["clearlake2"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 36, y : 19, NPCName: 'Aubrey', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'aubrey', Conversation: 'aubrey', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_green.2.gif', skintone: '1'};
 
 mappages["clearlake2"].desc = "Clear Lake";
 mappages["clearlake2"].longdesc = ``;
