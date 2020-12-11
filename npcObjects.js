@@ -2738,6 +2738,41 @@ function FloorNPCTile() {
 FloorNPCTile.prototype = new NPCObject();
 
 
+// CorruptTownsfolk
+
+function CultistNPCTile() {
+  this.name = 'CultistNPC';
+  this.level = 5;
+  this.addhp = 0;
+  this.str = 12;
+  this.dex = 12;
+  this.int = 12;
+  this.alignment = 'Evil';
+  this.attitude = 'hostile';
+  this.peaceAI = 'seekPC-10';
+  this.forgetAt = 10;
+  this.withdraw = 0;
+  this.graphic = '301.gif';
+  this.meleeAttackAs = 'none';
+  this.meleeDamage = '4d4+9'
+  this.meleeStrDamage = .66
+  this.missileAttackAs = 'none';
+  this.armorAs = 'ChainArmor';
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'Corpse';
+  this.lootTable = 'Level5';
+  this.prefix = 'a';
+  this.desc = "cultist";
+  this.meleeChance = 80;
+  this.spellsknown = { attack: 1, };
+  this.resists = {};
+  this.special = 'ondeathCult';
+  this.meleeHitSound = 'sfx_melee_hit';
+  this.meleeAttackSound = 'sfx_melee_miss';
+}
+CultistNPCTile.prototype = new NPCObject();
+
+
 // Monster
 
 function GazerNPCTile() {
@@ -3147,7 +3182,7 @@ DragonNPCTile.prototype = new NPCObject();
 
 function EttinSorcererNPCTile() {
   this.name = 'EttinSorcererNPC';
-  this.level = 5;
+  this.level = 6;
   this.addhp = 5;
   this.str = 18;
   this.dex = 14;
