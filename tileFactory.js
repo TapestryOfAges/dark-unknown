@@ -1603,6 +1603,11 @@ tileFactory.prototype.makeSecretDoorTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeDestructableStoneWallTile = function() {
+  let newTile = new DestructableStoneWallTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeRuinsWallTallLeftMidRightTile = function() {
   let newTile = new RuinsWallTallLeftMidRightTile();
   return newTile;
@@ -2655,6 +2660,11 @@ tileFactory.prototype.makeArcheoJournalTile = function() {
 
 tileFactory.prototype.makeAdelusLetterTile = function() {
   let newTile = new AdelusLetterTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRhysLetterTile = function() {
+  let newTile = new RhysLetterTile();
   return newTile;
 }
 
