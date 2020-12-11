@@ -77,6 +77,10 @@ NPCSpecialFuncs["ondeathEndact"] = function(who,how) {
   who.onDeath = "endact";
 }
 
+NPCSpecialFuncs["ondeathCult"] = function(who,how) {
+  who.onDeath = "cult";
+}
+
 function TurnMapHostile(map) {
   DebugWrite("combat", "Attacked a friendly! Turning hostile...<br />");
   PC.diffKarma(-10); 
