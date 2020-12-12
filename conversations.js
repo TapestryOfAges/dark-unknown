@@ -1026,6 +1026,35 @@ OnConvTriggers["prince_awake"] = function(speaker,keyword) {
   speaker.sleep = 1;
 }
 
+OnConvTriggers["cult_attack"] = function(speaker,keyword) {
+  // add 2 imps, 2 cultists, and sfx destroy the walls
+  let themap = speaker.getHomeMap();
+  if (themap.getName() !== "Shadow3") { alert("Somehow on the wrong map- cult_attack"); }
+  let imp1 = localFactory.createTile("ImpNPCTile");
+  imp1.onDeath = "cult";
+  themap.placeThing(15,16,imp1);
+  let imp2 = localFactory.createTile("ImpNPCTile");
+  imp2.onDeath = "cult";
+  themap.placeThing(15,17,imp2);
+  let cultist1 = localFactory.createTile("CultistNPCTile");
+  cultist1.onDeath = "cult";
+  themap.placeThing(16,16,cultist1);
+  let cultist2 = localFactory.createTile("CultistNPCTile");
+  cultist2.onDeath = "cult";
+  themap.placeThing(16,17,cultist2);
+  let rhys = FindNPCByname("Rhys",themap);
+  rhys.setMaxHP(10000);
+  rhys.setHP(10000); 
+  Earthquake();
+  let wall1 = themap.getTile(14,16).getTopFeature();
+  let wall2 = themap.getTile(14,17).getTopFeature();
+  themap.deleteThing(wall1);
+  themap.deleteThing(wall2);
+  DrawMainFrame("draw",themap,PC.getx(),PC.gety());
+  DUPlaySound("sfx_earthquake");
+  maintext.addText("With a strangely muted roar, the eastern wall collapses!");
+}
+
 function ConvTestFlags() {};
 
 ConvTestFlags["warren_close"] = function(speaker,keyword) {

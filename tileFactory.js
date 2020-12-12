@@ -3373,6 +3373,11 @@ tileFactory.prototype.makeSecretDoorTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeDestructableStoneWallTile = function() {
+  let newTile = new DestructableStoneWallTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeRuinsWallTallLeftMidRightTile = function() {
   let newTile = new RuinsWallTallLeftMidRightTile();
   return newTile;

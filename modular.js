@@ -265,6 +265,25 @@ OnDeathFuncs["endact"] = function() {
   PC.addSpellEffect(endact);
 }
 
+OnDeathFuncs["cult"] = function() {
+  let themap = PC.getHomeMap();
+  if (themap.getName() !== "Shadow3") { alert("Somehow on the wrong map"); }
+  // check to see if both imps and cultists are dead, if so Rhys says something.
+  let impcount = 0;
+  let cultistcount = 0;
+  let npcs = themap.npcs.getAll();
+  let rhys;
+  for (let i=0;i<npcs.length;i++) {
+    if (npcs[i].getName() === "ImpNPC") { impcount++; }
+    if (npcs[i].getName() === "CultistNPC") { cultistcount++; }
+    if (npcs[i].getNPCName() === "Rhys") { rhys = npcs[i]; }
+  }
+  if (!impcount && !cultistcount) {
+    PC.forcedTalk = rhys;
+    DU.gameflags.setFlag("cultist_defeat",1);
+  }
+}
+
 function PerformActEnd() {
   let endact = PC.getSpellEffectsByName("UnconsciousEndAct");
   if (endact.getPower() === 1) {

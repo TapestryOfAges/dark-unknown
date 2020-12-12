@@ -12007,6 +12007,19 @@ function SecretDoorTile() {
 }
 SecretDoorTile.prototype = new FeatureObject();
 
+function DestructableStoneWallTile() {
+  this.name = "DestructableStoneWall";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "0";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "wall";
+  this.peerview = "white";
+}
+DestructableStoneWallTile.prototype = new FeatureObject();
+
 function RuinsWallTallLeftMidRightTile() {
   //Graphics Upgraded
   this.name = "RuinsWallTallLeftMidRight";

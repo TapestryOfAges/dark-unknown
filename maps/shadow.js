@@ -258,8 +258,8 @@ mappages["shadow3"].terrain[11] = 'BK BK BK BK BK BK %% df %% %% BK BK BK BK BK 
 mappages["shadow3"].terrain[12] = 'BK BK BK BK %% %% %% df df %% %% %% %% %% BK BK BK BK BK BK BK cw cw cf cf cw cw BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK';
 mappages["shadow3"].terrain[13] = 'BK BK BK %% %% df df df df %% df df df %% %% BK BK BK BK BK BK BK cw cf cf cf cw cw BK BK BK BK BK BK cw cw cf cf cf cw BK BK BK BK';
 mappages["shadow3"].terrain[14] = 'BK BK BK %% df df df df df %% df df df df %% cw cw cw cw cw cw cw cw cf cf cf cf cw cw BK BK BK BK BK cw cf cf cf cw cw BK BK BK BK';
-mappages["shadow3"].terrain[15] = 'BK BK BK %% %% %% df %% %% %% df df df df %% cf cf cw cw cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK';
-mappages["shadow3"].terrain[16] = 'BK BK %% %% df df df df df %% df df df df %% cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK cw cw cf cf cw BK BK BK BK BK';
+mappages["shadow3"].terrain[15] = 'BK BK BK %% %% %% df %% %% %% df df df df df cf cf cw cw cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK';
+mappages["shadow3"].terrain[16] = 'BK BK %% %% df df df df df %% df df df df df cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK cw cw cf cf cw BK BK BK BK BK';
 mappages["shadow3"].terrain[17] = 'BK BK %% df df df df df df df df df df df %% cf cf cf cf cf cf cf cw cw cw cf cf cf cw BK BK BK BK BK cw cw cf cf cw BK BK BK BK BK';
 mappages["shadow3"].terrain[18] = 'BK BK %% %% df df df df df %% df df df %% %% cw cf cf cw cw cw cw cw BK cw cw cf cf cw BK BK BK BK BK cw cf cf cf cw cw BK BK BK BK';
 mappages["shadow3"].terrain[19] = 'BK BK BK %% %% df df df df %% df df %% %% BK cw cw cw cw BK BK BK BK BK BK cw cf cf cw cw BK BK BK BK cw cf cf cf cf cw BK BK BK BK';
@@ -296,6 +296,8 @@ mappages["shadow3"].features[15] = {name : 'UnlitBrazier', x : 8, y : 12};
 mappages["shadow3"].features[16] = {name : 'UnlitBrazier', x : 5, y : 19};
 mappages["shadow3"].features[17] = {name : 'UnlitBrazier', x : 13, y : 14};
 mappages["shadow3"].features[18] = {name : 'UnlitBrazier', x : 13, y : 17};
+mappages["shadow3"].features[19] = {name : 'DestructableStoneWall', x : 14, y : 15};
+mappages["shadow3"].features[20] = {name : 'DestructableStoneWall', x : 14, y : 16};
 
 
 mappages["shadow3"].npcs = [];
@@ -306,7 +308,6 @@ mappages["shadow3"].npcs[3] = {name : 'CorpserNPC', x : 26, y : 21, skintone: '1
 mappages["shadow3"].npcs[4] = {name : 'CorpserNPC', x : 22, y : 9, skintone: '1'};
 mappages["shadow3"].npcs[5] = {name : 'CorpserNPC', x : 25, y : 6, skintone: '1'};
 mappages["shadow3"].npcs[6] = {name : 'RangerVillagerNPC', x : 11, y : 15, NPCName: 'Rhys', Level: 6, Conversation: 'rhys', Gender: 'male', NPCBand: '0', OverrideGraphic: '305.gif', skintone: '1'};
-
 
 mappages["shadow3"].desc = "Dungeon Shadow";
 mappages["shadow3"].longdesc = ``;
@@ -335,9 +336,9 @@ mappages["shadow3"].returninfused = '0';
 mappages["shadow3"].linkedMaps = ["shadow1","shadow2"];
 mappages["shadow3"].editorLabels = '{}';
 
-mappages["shadow2"].onload = function(mapref) {
+mappages["shadow3"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
-    if ((!DU.gameflags.getFlag("returned_rhys")) || (DU.gameflags.getFlag("confronted_rhys"))) {
+    if ((!DU.gameflags.getFlag("returned_rhys")) || (DU.gameflags.getFlag("talked_rhys"))) {
       let rhys = mapref.getTile(11,15).getTopNPC();
       if (rhys) {
         mapref.deleteThing(rhys);
