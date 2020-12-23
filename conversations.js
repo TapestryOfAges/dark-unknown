@@ -244,6 +244,7 @@ Conversation.prototype.say = function(speaker, saywhat, skipahead) {
   saywhat = saywhat.replace(/%OBJ%/g, gterms.objective);
   saywhat = saywhat.replace(/%SIBLING%/g, gterms.sibling);
   saywhat = saywhat.replace(/%KIDDIE%/g, gterms.kiddie);
+  saywhat = saywhat.replace(/%REFLEX%/g, gterms.reflexive);
   saywhat = saywhat.replace(/%SELF_PRONOUN%/g, npcterms.pronoun);
   saywhat = saywhat.replace(/%SYS%(.+?)%SYS%/g, "<span class='sysconv'>$1</span>");
 

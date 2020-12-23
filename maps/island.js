@@ -481,9 +481,9 @@ mappages["abandoned_mine"].terrain[21] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK
 mappages["abandoned_mine"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["abandoned_mine"].terrain[23] = 'BK BK BK BK BK BK BK BK BK cw cw cw cw cw cf cf cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK';
 mappages["abandoned_mine"].terrain[24] = 'BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK';
-mappages["abandoned_mine"].terrain[25] = 'BK BK BK BK BK BK BK BK BK cw cf -= -= -= -= -= -= -= -= cf cw BK BK BK BK BK BK BK BK BK BK BK';
-mappages["abandoned_mine"].terrain[26] = 'BK BK BK BK BK BK BK BK BK cw cf -= -= -= -= -= -= -= -= cf cw BK BK BK BK BK BK BK BK BK BK BK';
-mappages["abandoned_mine"].terrain[27] = 'BK BK BK BK BK BK BK BK BK cw cf -= -= -= -= -= -= -= -= cf cw BK BK BK BK BK BK BK BK BK BK BK';
+mappages["abandoned_mine"].terrain[25] = 'BK BK BK BK BK BK BK BK BK cw cf f= f= f= f= f= f= f= f= cf cw BK BK BK BK BK BK BK BK BK BK BK';
+mappages["abandoned_mine"].terrain[26] = 'BK BK BK BK BK BK BK BK BK cw cf f= f= f= f= f= f= f= f= cf cw BK BK BK BK BK BK BK BK BK BK BK';
+mappages["abandoned_mine"].terrain[27] = 'BK BK BK BK BK BK BK BK BK cw cf f= f= f= f= f= f= f= f= cf cw BK BK BK BK BK BK BK BK BK BK BK';
 mappages["abandoned_mine"].terrain[28] = 'BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK';
 mappages["abandoned_mine"].terrain[29] = 'BK BK BK BK BK BK BK BK BK cw cw cw cw cw cf cf cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK';
 mappages["abandoned_mine"].terrain[30] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -530,7 +530,7 @@ mappages["abandoned_mine"].npcs[7] = {name : 'PhantomNPC', x : 11, y : 6, skinto
 mappages["abandoned_mine"].npcs[8] = {name : 'PhantomNPC', x : 7, y : 19, skintone: '1'};
 
 mappages["abandoned_mine"].desc = "Abandoned Mine";
-mappages["abandoned_mine"].longdesc = '';
+mappages["abandoned_mine"].longdesc = ``;
 mappages["abandoned_mine"].music = 'Cave';
 mappages["abandoned_mine"].savename = `Mine`;
 mappages["abandoned_mine"].exitmap = 'island';

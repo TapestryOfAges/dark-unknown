@@ -547,8 +547,8 @@ function StepOrSidestep(who, path, finaldest, nopush) {
           if ((path[0] === finaldest[0]) && (path[1] === finaldest[1])) {
             // PC or NPC is on last step of path, no point to pushing through  -- consider if I want to change this for NPC
             let fea = tile.getTopFeature();
-            if (fea && (fea.getName() === "BedHead")) {
-              // PC is in your bed. Kick them out. Hopefully this never comes up with an NPC. If it does, though, kick them out too
+            if (fea && ((fea.getName() === "BedHead") || ((fea.getName() === "DoubleBedHead") && (topentity.checkType("pc"))))) {
+              // PC is in your bed. Kick them out. Hopefully this never comes up with an NPC. If it does, though, kick them out too if it's a single bed
               npctile = who.getHomeMap().getTile(who.getx(),who.gety());
               topentity.getHomeMap().moveThing(who.getx(),who.gety(),PC);
               tile.executeWalkoffs(topentity);
@@ -563,6 +563,8 @@ function StepOrSidestep(who, path, finaldest, nopush) {
                 moved["intoPC"] = 1; // dunno if I'll want this, but might as well
               }
               return moved;
+            } else if (fea && (fea.getName() === "DoubleBedHead")) { // joining an NPC in bed
+              // WORKING HERE 8th March 2020
             } else {
               // PC is probably in your chair or something. Give up and let them keep it.
               moved["canmove"] = 0;

@@ -104,6 +104,7 @@ function PopulateAtlas(atlasref) {
   atlasref.insertkey("Darkness",'DK');
   atlasref.insertkey("Wall",'##');
   atlasref.insertkey("FireplaceWall",'f#');
+  atlasref.insertkey("GreyFireplaceWall",'G#');
   atlasref.insertkey("ShinyWall",'s#');
   atlasref.insertkey("OffwhiteWall",'o#');
   atlasref.insertkey("GreyWall",'g#');

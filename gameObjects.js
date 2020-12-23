@@ -497,7 +497,15 @@ function Pushable() {
       let pushto = objmap.getTile(this.getx()+diffx,this.gety()+diffy);
       if (pushto === "OoB") { return this.pullMe(); }
       let canmove = pushto.canMoveHere(MOVE_WALK);
+      let canpush = 0;
       if (canmove["canmove"]) {
+        canpush = 1;
+        let fea = pushto.features.getAll();
+        for (let i=0;i<fea.length;i++) {
+          if (fea[i].nopush) { canpush = 0; }
+        }
+      }
+      if (canpush) {
         objmap.moveThing(this.getx()+diffx,this.gety()+diffy,this);
         retval["txt"] = "Push: " + this.getDesc() + ".";
         if ("facing" in this) {
@@ -1152,39 +1160,45 @@ function SetBySurroundCoast() {
     let ocean;
     let water;
     let shallow;
+    let still;
     let localacre = themap.getTile(x,y-1);
     let tile; 
     if (localacre !== "OoB") {
     	tile = localacre.terrain;
     	if ((tile.getName() === "Ocean") || (tile.getName() === "ShadowOcean")) { ocean = tile; }
     	if ((tile.getName() === "Water") || (tile.getName() === "ShadowWater")) { water = tile; }
-    	if ((tile.getName() === "Shallows") || (tile.getName() === "ShadowShallows")) { shallow = tile; }
+      if ((tile.getName() === "Shallows") || (tile.getName() === "ShadowShallows")) { shallow = tile; }
+      if ((tile.getName() === "StillWater") || (tile.getName() === "ShadowStillWater")) { still = tile; }
     }
     localacre = themap.getTile(x,y+1);
     if (localacre !== "OoB") {
     	tile = localacre.terrain;
     	if ((tile.getName() === "Ocean") || (tile.getName() === "ShadowOcean")) { ocean = tile; }
     	if ((tile.getName() === "Water") || (tile.getName() === "ShadowWater")) { water = tile; }
-    	if ((tile.getName() === "Shallows") || (tile.getName() === "ShadowShallows")) { shallow = tile;; }
+      if ((tile.getName() === "Shallows") || (tile.getName() === "ShadowShallows")) { shallow = tile;; }
+      if ((tile.getName() === "StillWater") || (tile.getName() === "ShadowStillWater")) { still = tile; }
     }
     localacre = themap.getTile(x+1,y);
     if (localacre !== "OoB") {
     	tile = localacre.terrain;
     	if ((tile.getName() === "Ocean") || (tile.getName() === "ShadowOcean")) { ocean = tile; }
     	if ((tile.getName() === "Water") || (tile.getName() === "ShadowWater")) { water = tile; }
-    	if ((tile.getName() === "Shallows") || (tile.getName() === "ShadowShallows")) { shallow = tile; }
+      if ((tile.getName() === "Shallows") || (tile.getName() === "ShadowShallows")) { shallow = tile; }
+      if ((tile.getName() === "StillWater") || (tile.getName() === "ShadowStillWater")) { still = tile; }
     }
     localacre = themap.getTile(x-1,y);
     if (localacre !== "OoB") {
     	tile = localacre.terrain;
     	if ((tile.getName() === "Ocean") || (tile.getName() === "ShadowOcean")) { ocean = tile; }
     	if ((tile.getName() === "Water") || (tile.getName() === "ShadowWater")) { water = tile; }
-    	if ((tile.getName() === "Shallows") || (tile.getName() === "ShadowShallows")) { shallow = tile; }
+      if ((tile.getName() === "Shallows") || (tile.getName() === "ShadowShallows")) { shallow = tile; }
+      if ((tile.getName() === "StillWater") || (tile.getName() === "ShadowStillWater")) { still = tile; }
     }
     let chosentile;
     if (shallow) { chosentile = shallow; }
     else if (water) { chosentile = water; }
     else if (ocean) { chosentile = ocean; }
+    else if (still) { chosentile = still; }
     // kludge fix for clear lake
     else if (themap.getName() === "clearlake") { 
       shallow = eidos.getForm("Shallows");
@@ -7317,10 +7331,11 @@ FenceEWGateTile.prototype.bumpinto = function(who) {
 }
 
 function StatueBaseTile() {
+  // Graphics Upgraded
   this.name = "StatueBase";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-896";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -93*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -7329,10 +7344,11 @@ function StatueBaseTile() {
 StatueBaseTile.prototype = new FeatureObject();
 
 function StatueTopTile() {
+  //Graphics Upgraded
   this.name = "StatueTop";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-864";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -92*32;
   this.passable = MOVE_ETHEREAL + MOVE_FLY + MOVE_WALK + MOVE_SWIM + MOVE_LEVITATE;
   this.blocklos = 0;
   this.prefix = "a";
@@ -7342,10 +7358,11 @@ function StatueTopTile() {
 StatueTopTile.prototype = new FeatureObject();
 
 function Statue1Tile() {
+  //Graphics Upgraded
   this.name = "Statue1";
-  this.graphic = "master_spritesheet_d.gif";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-896";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -94*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -7354,10 +7371,11 @@ function Statue1Tile() {
 Statue1Tile.prototype = new FeatureObject();
 
 function Statue2Tile() {
+  //Graphics Upgraded
   this.name = "Statue2";
-  this.graphic = "master_spritesheet_d.gif";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-864";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -94*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -7366,10 +7384,11 @@ function Statue2Tile() {
 Statue2Tile.prototype = new FeatureObject();
 
 function Statue3Tile() {
+  //Graphics Upgraded
   this.name = "Statue3";
-  this.graphic = "master_spritesheet_d.gif";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-608";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -94*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -7378,10 +7397,11 @@ function Statue3Tile() {
 Statue3Tile.prototype = new FeatureObject();
 
 function Statue4Tile() {
+  //Graphics Upgraded
   this.name = "Statue4";
-  this.graphic = "master_spritesheet_d.gif";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-608";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -94*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -8096,7 +8116,8 @@ function ChestTile() {
 	this.container = [];
 	OpenContainer.call(this,"sfx_chest_open","sfx_locked_door");
 	Pushable.call(this);
-	this.flammable = 20;
+  this.flammable = 20;
+  this.nopush = 1;
 }
 ChestTile.prototype = new FeatureObject();
 
@@ -9920,7 +9941,7 @@ function SignpostLeftTile() {
   this.name = "SignpostLeft";
   this.graphic = "static.png";
   this.spritexoffset = 0;
-  this.spriteyoffset = -75*32;
+  this.spriteyoffset = -88*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -9934,7 +9955,7 @@ function SignpostRightTile() {
   this.name = "SignpostRight";
   this.graphic = "static.png";
   this.spritexoffset = -2*32;
-  this.spriteyoffset = -75*32;
+  this.spriteyoffset = -88*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -9957,6 +9978,20 @@ function CarpenterSignTile() {
 }
 CarpenterSignTile.prototype = new FeatureObject();
 
+function CarpenterSign2Tile() {
+  //Graphics Upgraded
+  this.name = "CarpenterSign2";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -89*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "carpenter";
+  this.peerview = "#541909";
+}
+CarpenterSign2Tile.prototype = new FeatureObject();
+
 function InnSignTile() {
   //Graphics Upgraded
   this.name = "InnSign";
@@ -9970,6 +10005,20 @@ function InnSignTile() {
   this.peerview = "#541909";
 }
 InnSignTile.prototype = new FeatureObject();
+
+function InnSign2Tile() {
+  //Graphics Upgraded
+  this.name = "InnSign2";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -89*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "inn";
+  this.peerview = "#541909";
+}
+InnSign2Tile.prototype = new FeatureObject();
 
 function TavernSignTile() {
   //Graphics Upgraded
@@ -9985,6 +10034,20 @@ function TavernSignTile() {
 }
 TavernSignTile.prototype = new FeatureObject();
 
+function TavernSign2Tile() {
+  //Graphics Upgraded
+  this.name = "TavernSign2";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -88*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "tavern";
+  this.peerview = "#541909";
+}
+TavernSign2Tile.prototype = new FeatureObject();
+
 function ArmourySignTile() {
   //Graphics Upgraded
   this.name = "ArmourySign";
@@ -9998,6 +10061,20 @@ function ArmourySignTile() {
   this.peerview = "#541909";
 }
 ArmourySignTile.prototype = new FeatureObject();
+
+function ArmourySign2Tile() {
+  //Graphics Upgraded
+  this.name = "ArmourySign2";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -88*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "armoury";
+  this.peerview = "#541909";
+}
+ArmourySign2Tile.prototype = new FeatureObject();
 
 function GrocerSignTile() {
   //Graphics Upgraded
@@ -10014,7 +10091,21 @@ function GrocerSignTile() {
 GrocerSignTile.prototype = new FeatureObject();
 
 function GrocerSign2Tile() {
+  //Graphics Upgraded
   this.name = "GrocerSign2";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -90*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "grocer";
+  this.peerview = "#541909";
+}
+GrocerSign2Tile.prototype = new FeatureObject();
+
+function GrocerSign_2Tile() {
+  this.name = "GrocerSign_2";
   this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
   this.spriteyoffset = "-480";
@@ -10024,7 +10115,7 @@ function GrocerSign2Tile() {
   this.desc = "grocer";
   this.peerview = "#541909";
 }
-GrocerSign2Tile.prototype = new FeatureObject();
+GrocerSign_2Tile.prototype = new FeatureObject();
 
 function WeaponSignTile() {
   //Graphics Upgraded
@@ -10040,6 +10131,20 @@ function WeaponSignTile() {
 }
 WeaponSignTile.prototype = new FeatureObject();
 
+function WeaponSign2Tile() {
+  //Graphics Upgraded
+  this.name = "WeaponSign2";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -88*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "weaponsmith";
+  this.peerview = "#541909";
+}
+WeaponSign2Tile.prototype = new FeatureObject();
+
 function BowyerSignTile() {
   //Grahics Upgraded
   this.name = "BowyerSign";
@@ -10053,6 +10158,20 @@ function BowyerSignTile() {
   this.peerview = "#541909";
 }
 BowyerSignTile.prototype = new FeatureObject();
+
+function BowyerSign2Tile() {
+  //Grahics Upgraded
+  this.name = "BowyerSign2";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -89*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "bowyer";
+  this.peerview = "#541909";
+}
+BowyerSign2Tile.prototype = new FeatureObject();
 
 function AlchemistSignTile() {
   //Graphics Upgraded
@@ -10068,6 +10187,20 @@ function AlchemistSignTile() {
 }
 AlchemistSignTile.prototype = new FeatureObject();
 
+function AlchemistSign2Tile() {
+  //Graphics Upgraded
+  this.name = "AlchemistSign2";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -88*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "alchemist";
+  this.peerview = "#541909";
+}
+AlchemistSign2Tile.prototype = new FeatureObject();
+
 function MagicShoppeSignTile() {
   //Graphics Upgraded
   this.name = "MagicShoppeSign";
@@ -10081,6 +10214,20 @@ function MagicShoppeSignTile() {
   this.peerview = "#541909";
 }
 MagicShoppeSignTile.prototype = new FeatureObject();
+
+function MagicShoppeSign2Tile() {
+  //Graphics Upgraded
+  this.name = "MagicShoppeSign2";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -89*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "magic shoppe";
+  this.peerview = "#541909";
+}
+MagicShoppeSign2Tile.prototype = new FeatureObject();
 
 function HealerSignTile() {
   //Graphics Upgraded
@@ -10096,6 +10243,20 @@ function HealerSignTile() {
 }
 HealerSignTile.prototype = new FeatureObject();
 
+function HealerSign2Tile() {
+  //Graphics Upgraded
+  this.name = "HealerSign2";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -88*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "healer";
+  this.peerview = "#541909";
+}
+HealerSign2Tile.prototype = new FeatureObject();
+
 function CasinoSignTile() {
   //Graphics Upgraded
   this.name = "CasinoSign";
@@ -10109,7 +10270,21 @@ function CasinoSignTile() {
   this.peerview = "#541909";
 }
 CasinoSignTile.prototype = new FeatureObject();
-  
+
+function CasinoSign2Tile() {
+  //Graphics Upgraded
+  this.name = "CasinoSign2";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -89*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "casino";
+  this.peerview = "#541909";
+}
+CasinoSign2Tile.prototype = new FeatureObject();
+
 function PaladinSignTile() {
   //Graphics Upgraded
   this.name = "PaladinSign";
@@ -10123,6 +10298,20 @@ function PaladinSignTile() {
   this.peerview = "#541909";
 }
 PaladinSignTile.prototype = new FeatureObject();
+
+function PaladinSign2Tile() {
+  //Graphics Upgraded
+  this.name = "PaladinSign2";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -90*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "sign showing a chalice";
+  this.peerview = "#541909";
+}
+PaladinSign2Tile.prototype = new FeatureObject();
 
 function HerbalistSignTile() {
   //Graphics Upgraded
@@ -10138,6 +10327,20 @@ function HerbalistSignTile() {
 }
 HerbalistSignTile.prototype = new FeatureObject();
 
+function HerbalistSign2Tile() {
+  //Graphics Upgraded
+  this.name = "HerbalistSign2";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -89*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "herbalist";
+  this.peerview = "#541909";
+}
+HerbalistSign2Tile.prototype = new FeatureObject();
+
 function CartographerSignTile() {
   //Graphics Upgraded
   this.name = "CartographerSign";
@@ -10151,6 +10354,20 @@ function CartographerSignTile() {
   this.peerview = "#541909";
 }
 CartographerSignTile.prototype = new FeatureObject();
+
+function CartographerSign2Tile() {
+  //Graphics Upgraded
+  this.name = "CartographerSign2";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -89*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "cartographer";
+  this.peerview = "#541909";
+}
+CartographerSign2Tile.prototype = new FeatureObject();
 
 function WhitesmithSignTile() {
   //Graphics Upgraded
@@ -10166,6 +10383,20 @@ function WhitesmithSignTile() {
 }
 WhitesmithSignTile.prototype = new FeatureObject();
 
+function WhitesmithSign2Tile() {
+  //Graphics Upgraded
+  this.name = "WhitesmithSign2";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -89*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "whitesmith";
+  this.peerview = "#541909";
+}
+WhitesmithSign2Tile.prototype = new FeatureObject();
+
 function CourthouseSignTile() {
   //Graphics Upgraded
   this.name = "CourthouseSign";
@@ -10179,6 +10410,20 @@ function CourthouseSignTile() {
   this.peerview = "#541909";
 }
 CourthouseSignTile.prototype = new FeatureObject();
+
+function CourthouseSign2Tile() {
+  //Graphics Upgraded
+  this.name = "CourthouseSign2";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -90*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "courthouse";
+  this.peerview = "#541909";
+}
+CourthouseSign2Tile.prototype = new FeatureObject();
 
 function BardSignTile() {
   //Graphics Upgraded
@@ -10194,6 +10439,20 @@ function BardSignTile() {
 }
 BardSignTile.prototype = new FeatureObject();
 
+function BardSign2Tile() {
+  //Graphics Upgraded
+  this.name = "BardSign2";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -88*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "the";
+  this.desc = "Bardic College";
+  this.peerview = "#541909";
+}
+BardSign2Tile.prototype = new FeatureObject();
+
 function BrokenSignTile() {
   //Graphics Upgraded
   this.name = "BrokenSign";
@@ -10208,6 +10467,20 @@ function BrokenSignTile() {
 }
 BrokenSignTile.prototype = new FeatureObject();
 
+function BrokenSign2Tile() {
+  //Graphics Upgraded
+  this.name = "BrokenSign2";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -90*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "broken sign";
+  this.peerview = "#541909";
+}
+BrokenSign2Tile.prototype = new FeatureObject();
+
 function UnfinishedSignTile() {
   //Graphics Upgraded
   this.name = "UnfinishedSign";
@@ -10221,6 +10494,20 @@ function UnfinishedSignTile() {
   this.peerview = "#541909";
 }
 UnfinishedSignTile.prototype = new FeatureObject();
+
+function UnfinishedSign2Tile() {
+  //Graphics Upgraded
+  this.name = "UnfinishedSign2";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -90*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "broken sign";
+  this.peerview = "#541909";
+}
+UnfinishedSign2Tile.prototype = new FeatureObject();
 
 function TombstoneTile() {
   this.name = "Tombstone";
@@ -10559,6 +10846,7 @@ function LeftChairTile() {
   Pushable.call(this);
   this.facing = 1;
   this.nowander = 1;
+  this.nopush = 1;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -10596,6 +10884,7 @@ function RightChairTile() {
   Pushable.call(this);
   this.facing = 3;
   this.nowander = 1;
+  this.nopush = 1;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -10631,6 +10920,7 @@ function TopChairTile() {
   Pushable.call(this);
   this.facing = 2;
   this.nowander = 1;
+  this.nopush = 1;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -10666,6 +10956,7 @@ function BottomChairTile() {
   Pushable.call(this);
   this.facing = 0;
   this.nowander = 1;
+  this.nopush = 1;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -10898,14 +11189,15 @@ HarpsichordTile.prototype.use = function(who) {
 
 function BedHeadTile() {
   this.name = "BedHead";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-1120";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -89*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bed";
   this.nowander = 1;
+  this.nopush = 1;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5;
@@ -10918,7 +11210,7 @@ function BedWalkOn(bedwho,bedarr) {
 //  console.log(bedarr);
 //  console.log(bedwho.getGraphicArray());
   if (parseInt(bedwho.skintone) === 2) {
-    bedarr[2] = "-96";
+    bedarr[2] += -2*32;
   } else if (parseInt(bedwho.skintone) !== 1) { console.log("Missing skintone on "); console.log(bedwho); }
   bedwho.realgraphic = bedwho.getGraphicArray();
   bedwho.setGraphicArray(bedarr);
@@ -10957,7 +11249,7 @@ function BedBumpInto(who) {
 }
 
 BedHeadTile.prototype.walkon = function(who) {
-  let garr = ["master_spritesheet.png","","-64","-1120"];
+  let garr = ["static.png","",-5*32,-90*32];
   return BedWalkOn(who,garr);
 }
 
@@ -10969,21 +11261,100 @@ BedHeadTile.prototype.bumpinto = function(who) {
   return BedBumpInto(who);
 }
 
-function BedFootTile() {
-  this.name = "BedFoot";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-1120";
+function DoubleBedHeadTile() {
+  this.name = "DoubleBedHead";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -91*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bed";
   this.nowander = 1;
+  this.nopush = 1;
+  this.occupants = ["",""];
+
+  this.pathweight = 5; 
+  this.civilizedpathweight = 5;
+}
+DoubleBedHeadTile.prototype = new FeatureObject();
+
+DoubleBedHeadTile.prototype.walkon = function(who) {
+  let garr = ["static.png","",-6*32,-91*32];
+  return BedWalkOn(who,garr);
+}
+
+DoubleBedHeadTile.prototype.walkoff = function(who) {
+  return BedWalkOff(who);
+}
+
+DoubleBedHeadTile.prototype.bumpinto = function(who) {
+  return BedBumpInto(who);
+}
+
+DoubleBedHeadTile.prototype.checkForSpace = function() {
+  if ((this.occupants[0] === "") || (this.occupants[1] === "")) {
+    return 1;
+  } else { return 0; }
+}
+
+DoubleBedHeadTile.prototype.addOccupant = function(who) {
+  let idx = 0;
+  if (occupants[0] !== "") {
+    if (occupants[1] !== "") { 
+      return -1; // No room!
+    }
+    idx = 1;
+  }
+  occupants[idx] = who;
+  let garr = ["static.png","",-6*32,-91*32];
+  if (idx === 1) { garr = ["static.png","",-7*32,-91*32]; }
+  BedWalkOn(who, garr);
+}
+
+DoubleBedHeadTile.prototype.removeOccupant = function(who) {
+  if (occupants[0] === who) { occupants[0] = ""; }
+  else if (occupants[1] === who) { occupants[1] = ""; }
+  else { 
+    return -1;
+    // This person isn't in this bed!
+  }
+  BedWalkOff(who);
+}
+
+function BedFootTile() {
+  this.name = "BedFoot";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -89*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "bed";
+  this.nowander = 1;
+  this.nopush = 1;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5;
 }
 BedFootTile.prototype = new FeatureObject();
+
+function DoubleBedFootTile() {
+  this.name = "DoubleBedFoot";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -91*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "bed";
+  this.nowander = 1;
+  this.nopush = 1;
+
+  this.pathweight = 5; 
+  this.civilizedpathweight = 5;
+}
+DoubleBedFootTile.prototype = new FeatureObject();
 
 function DoubleBedTopHeadTile() {
   this.name = "DoubleBedTopHead";
@@ -10995,6 +11366,7 @@ function DoubleBedTopHeadTile() {
   this.prefix = "a";
   this.desc = "bed";
   this.nowander = 1;
+  this.nopush = 1;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5;
@@ -11024,6 +11396,7 @@ function DoubleBedBottomHeadTile() {
   this.prefix = "a";
   this.desc = "bed";
   this.nowander = 1;
+  this.nopush = 1;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5;
@@ -11053,6 +11426,7 @@ function DoubleBedTopFootTile() {
   this.prefix = "a";
   this.desc = "bed";
   this.nowander = 1;
+  this.nopush = 1;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5;
@@ -11069,6 +11443,7 @@ function DoubleBedBottomFootTile() {
   this.prefix = "a";
   this.desc = "bed";
   this.nowander = 1;
+  this.nopush = 1;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5;
@@ -11164,6 +11539,45 @@ function BookshelfOneTile() {
 	this.lootedid = "";
 }
 BookshelfOneTile.prototype = new FeatureObject();
+
+function RuinedBookshelfOneTile() {
+  //Graphics Upgraded
+  this.name = "RuinedBookshelfOne";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -87*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "bookshelf";
+}
+RuinedBookshelfOneTile.prototype = new FeatureObject();
+
+function RuinedBookshelfLeftTile() {
+  //Graphics Upgraded
+  this.name = "RuinedBookshelfLeft";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -88*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "bookshelf";
+}
+RuinedBookshelfLeftTile.prototype = new FeatureObject();
+
+function RuinedBookshelfRightTile() {
+  //Graphics Upgraded
+  this.name = "RuinedBookshelfRight";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -88*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "bookshelf";
+}
+RuinedBookshelfRightTile.prototype = new FeatureObject();
 
 function SmallBoxTile() {
   this.name = "SmallBox";
@@ -12006,6 +12420,26 @@ function SecretDoorTile() {
   Openable.call(this, [this.graphic, "", -8*32, -15*32], [this.graphic,"",-7*32,-16*32], 0, "sfx_stone_drag", "sfx_stone_drag", "sfx_locked_door");
 }
 SecretDoorTile.prototype = new FeatureObject();
+
+function GreySecretDoorTile() {
+	this.name = "GreySecretDoor";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -18*32;
+  this.passable = MOVE_ETHEREAL;
+	this.blocklos = 2; 
+	this.prefix = "a";
+	this.desc = "wall";
+	
+	this.searchDesc = "secret door";
+	this.searchPrefix = "a";
+  this.peerview = "white";
+  
+  this.pathweight = 2; 
+	
+  Openable.call(this, [this.graphic, "", -8*32, -18*32], [this.graphic,"",-6*32,-17*32], 0, "sfx_stone_drag", "sfx_stone_drag", "sfx_locked_door");
+}
+GreySecretDoorTile.prototype = new FeatureObject();
 
 function DestructableStoneWallTile() {
   this.name = "DestructableStoneWall";
@@ -13441,8 +13875,8 @@ ShieldDisplayTile.prototype = new FeatureObject();
 function SkeletonDecorationTile() {
   this.name = "SkeletonDecoration";
   this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-672";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -90*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
