@@ -355,6 +355,26 @@ function DoAction(code, ctrl) {
         maintext.drawTextFrame();
         PC.endTurn(retval["initdelay"]);
       }
+    } else if (targetCursor.command === "g") {
+      if (code === 89) {
+        // Yes, steal this thing!
+        let itemget = targetCursor.getitem;
+        delete itemget.noTake;
+        delete itemget.prompt;
+        gamestate.setMode("player");
+        delete targetCursor.getitem;
+        maintext.setInputLine("&gt;");
+        maintext.drawTextFrame();
+        let retval = PerformGet(PC,itemget);
+        maintext.addText(retval["txt"]);
+        maintext.drawTextFrame();
+      } else {
+        delete targetCursor.getitem;
+        gamestate.setMode("player");
+        maintext.addText("Wisely chosen.");
+        maintext.setInputLine("&gt;");
+        maintext.drawTextFrame();
+      }
     } else if (targetCursor.command === "w") {
       if ((code === 27) || ((code <= 57) && (code >= 48))) {
         let retval = PerformWait(code);
@@ -555,6 +575,12 @@ function DoAction(code, ctrl) {
             maintext.addText(resp["txt"]);
             gamestate.setMode("anykey");
             maintext.drawTextFrame();
+          } else if ((targetCursor.command === "g") && (resp["fin"] === 3)) {
+            // trying to get something, prompting yes/no first
+            maintext.addText("Taking this would be stealing. Continue?")
+            maintext.setInputLine("(Y/N) &gt;");
+            maintext.drawTextFrame();
+            gamestate.setMode("anykey");
           } else {
             if ((resp["fin"] > 2) && (targetCursor.command !== "t")) {
               gamestate.setMode("player");

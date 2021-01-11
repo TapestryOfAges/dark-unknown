@@ -1252,10 +1252,12 @@ function PerformRuneChoice() {
   return retval;
 }
 
-function PerformGet(who) {
-  let localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
-  let getitem = localacre.features.getTop();
-  let retval = {};
+function PerformGet(who, getitem) {
+  if (!getitem) {
+    let localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
+    getitem = localacre.features.getTop();
+  }
+  let retval = { txt:"", fin:1};
   if (!getitem) {
     retval["txt"] = "There is nothing there.";
     retval["fin"] = 0;
@@ -1263,17 +1265,29 @@ function PerformGet(who) {
   } 
   else if (getitem.checkType("Item")) {
     let itemmap = getitem.getHomeMap();
-    who.addToInventory(getitem);
-    let ongettxt = "";
+    let onget = {};
     if (typeof getitem.onGet === "function") {
-      ongettxt = getitem.onGet(who);
+      onget = getitem.onGet(who);
     }
-    retval["txt"] = "Taken: " + getitem.getPrefix() + " " + getitem.getDesc() + ".";
-    if (ongettxt) {
-      retval["txt"] = retval["txt"] + "<br />" + ongettxt;
+    if (getitem.noTake || onget.noTake) {
+      retval["fin"] = 0;
+      if ((getitem.prompt || onget.prompt) && !DU.gameflags.getFlag("skip_theft_warning")) {
+        retval["fin"] = 3; 
+        targetCursor.command = "g";
+        targetCursor.getitem = getitem;
+      }
+    } else {
+      who.addToInventory(getitem);
+      retval["txt"] = "Taken: " + getitem.getPrefix() + " " + getitem.getDesc() + ".";
+      if (getitem.karmaPenalty) {
+        who.diffKarma(-getitem.karmaPenalty);
+      }
     }
-    retval["fin"] = 1;
-    if (itemmap === PC.getHomeMap()) {
+    if (onget["txt"]) {
+      if (retval["txt"]) { retval["txt"] = retval["txt"] + "<br />"; }
+      retval["txt"] = retval["txt"] + onget["txt"];
+    }
+    if (!onget.noTake && (itemmap === PC.getHomeMap())) {
       DrawMainFrame("one",itemmap,targetCursor.x,targetCursor.y);
       DrawCharFrame();
     }
