@@ -1663,7 +1663,7 @@ GameMap.prototype.saveMap = function (name) {
   	  printerwin.document.write(", OverrideGraphic: '" + mapnpcs[i].overrideGraphic + "'");
  	  }
     if (mapnpcs[i].skintone) {
-  	  printerwin.document.write(", skintone: '" + mapnpcs[i].skintone + "'");
+  	  printerwin.document.write(", skintone: " + mapnpcs[i].skintone);
  	  }
  	  printerwin.document.write("};<br />\n");
   }
