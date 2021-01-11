@@ -564,7 +564,11 @@ function StepOrSidestep(who, path, finaldest, nopush) {
               }
               return moved;
             } else if (fea && (fea.getName() === "DoubleBedHead")) { // joining an NPC in bed
-              // WORKING HERE 8th March 2020
+              who.getHomeMap().moveThing(path[0],path[1],who);
+              tile.executeWalkons(who);
+              moved["canmove"] = 1;
+              DrawMainFrame(who.getHomeMap(),"draw",PC.getx(),PC.gety());
+              return moved;
             } else {
               // PC is probably in your chair or something. Give up and let them keep it.
               moved["canmove"] = 0;
