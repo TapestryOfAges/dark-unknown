@@ -114,6 +114,15 @@ ProtoObject.prototype.copy = function(type) {
         copydata[idx][i] = val[i].getSerial();
         DebugWrite("saveload", idx + " an array containing serial " + copydata[idx][i] + "...  ");
       }
+    } else if (idx === "occupants") {
+      copydata[idx] = [];
+      for (let i=0;i<val.length;i++) {
+        if (val[i]==="") { copydata[idx][i] = ""; }
+        else {
+          copydata[idx][i] = val[i].getSerial();
+        }
+        DebugWrite("saveload", idx + " an array containing serial " + copydata[idx][i] + "...  ");
+      }
     } else if (idx === "attachedTo") {
       copydata[idx] = val.getSerial();
     } else if (Array.isArray(val)) {
@@ -871,7 +880,7 @@ function OpenContainer(opensound, lockedsound) {
     
     if (this.getKarmaPenalty() && (who === PC) && !fire) {
       if (DU.gameflags.getFlag("skip_theft_warning")) {
-        PC.diffKarma(1-this.getKarmaPenalty);
+        PC.diffKarma(0-this.getKarmaPenalty());
       } else {
         retval["override"] = -1;
         retval["fin"] = -1;
@@ -6085,9 +6094,9 @@ CaveFloorTile.prototype = new TerrainObject();
 
 function CaveWallTile() {
 	this.name = "CaveWall";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-3936";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -3936;
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 1;
 	this.prefix = "a";
@@ -7409,6 +7418,32 @@ function Statue4Tile() {
 }
 Statue4Tile.prototype = new FeatureObject();
 
+function Statue5Tile() {
+  //Graphics Upgraded
+  this.name = "Statue5";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -95*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "sculpture";
+}
+Statue5Tile.prototype = new FeatureObject();
+
+function Statue6Tile() {
+  //Graphics Upgraded
+  this.name = "Statue6";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -95*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "sculpture";
+}
+Statue6Tile.prototype = new FeatureObject();
+
 function PaintingCrossTile() {
   //Graphics Upgraded
   this.name = "PaintingCross";
@@ -8017,6 +8052,19 @@ function DoorwayTile() {
 }
 DoorwayTile.prototype = new FeatureObject();
 
+function DoorwayDarkenedTile() {
+  //Graphics Upgraded
+  this.name = "DoorwayDarkened";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -96*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "archway";
+}
+DoorwayDarkenedTile.prototype = new FeatureObject();
+
 function GreyDoorwayTile() {
   //Graphics Upgraded
   this.name = "GreyDoorway";
@@ -8030,6 +8078,19 @@ function GreyDoorwayTile() {
 }
 GreyDoorwayTile.prototype = new FeatureObject();
 
+function GreyDoorwayDarkenedTile() {
+  //Graphics Upgraded
+  this.name = "GreyDoorwayDarkened";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -96*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "archway";
+}
+GreyDoorwayDarkenedTile.prototype = new FeatureObject();
+
 function StoneDoorwayTile() {
   this.name = "StoneDoorway";
   this.graphic = "master_spritesheet.png";
@@ -8041,6 +8102,18 @@ function StoneDoorwayTile() {
   this.desc = "archway";
 }
 StoneDoorwayTile.prototype = new FeatureObject();
+
+function StoneDoorwayDarkenedTile() {
+  this.name = "StoneDoorwayDarkened";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -96*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "archway";
+}
+StoneDoorwayDarkenedTile.prototype = new FeatureObject();
 
 function WallDoorwayTile() {
   this.name = "WallDoorway";
@@ -11215,13 +11288,23 @@ function BedWalkOn(bedwho,bedarr) {
   bedwho.realgraphic = bedwho.getGraphicArray();
   bedwho.setGraphicArray(bedarr);
   DebugWrite("gameobj", "Changed the graphic of " + bedwho.getNPCName() + " to sleeping.<br />");
+
+  let fea = bedwho.getHomeMap().getTile(bedwho.getx()+1,bedwho.gety()).features.getAll();
+//  console.log(fea);
+  let foot;
+  for (let i=0;i<fea.length;i++) {
+    if (fea[i].getName() === "BedFoot") { 
+      fea[i].setGraphicArray(["static.png","",-6*32,-90*32]); 
+      fea[i].passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
+    }
+  }
 //  console.log(bedwho);
 //  console.log(bedwho.realgraphic);
 //  console.log(bedwho);
   return {msg:""};
 }
 
-function BedWalkOff(who) {
+function BedWalkOff(who, bed) {
 //  console.log("Bed walk off.");
 //  console.log(who);
   if (who.realgraphic) {
@@ -11232,7 +11315,17 @@ function BedWalkOff(who) {
     alert("Entity failed to have a waking graphic. See console.");
     console.log(who);
   }
-//  console.log(who);
+  let fea = who.getHomeMap().getTile(who.getx()+1,who.gety()).features.getAll();
+  let foot;
+  for (let i=0;i<fea.length;i++) {
+    if (fea[i].getName() === "BedFoot") { foot = fea[i]; }
+  }
+  if (foot) {
+    foot.setGraphicArray(["static.png","",-9*32,-89*32]);
+    foot.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  }
+
+  //  console.log(who);
   return {msg:""};
 }
 
@@ -11280,12 +11373,29 @@ function DoubleBedHeadTile() {
 DoubleBedHeadTile.prototype = new FeatureObject();
 
 DoubleBedHeadTile.prototype.walkon = function(who) {
-  let garr = ["static.png","",-6*32,-91*32];
-  return BedWalkOn(who,garr);
+  who.realgraphic = who.getGraphicArray();
+  who.setGraphicArray(["spacer.gif","",0,0]);
+
+  this.addOccupant(who);
+  this.setLook();
+
+  return {msg:""};
 }
 
 DoubleBedHeadTile.prototype.walkoff = function(who) {
-  return BedWalkOff(who);
+  if (who.realgraphic) {
+    who.setGraphicArray(who.realgraphic);
+    delete who.realgraphic;
+    DebugWrite("gameobj", "Changed the graphic of " + who.getNPCName() + " from sleeping.<br />");
+  } else {
+    alert("Entity failed to have a waking graphic. See console.");
+    console.log(who);
+  }
+
+  this.removeOccupant(who);
+  this.setLook();
+
+  return {msg:""};
 }
 
 DoubleBedHeadTile.prototype.bumpinto = function(who) {
@@ -11300,26 +11410,69 @@ DoubleBedHeadTile.prototype.checkForSpace = function() {
 
 DoubleBedHeadTile.prototype.addOccupant = function(who) {
   let idx = 0;
-  if (occupants[0] !== "") {
-    if (occupants[1] !== "") { 
+  if (this.occupants[0] !== "") {
+    if (this.occupants[1] !== "") { 
       return -1; // No room!
     }
     idx = 1;
   }
-  occupants[idx] = who;
-  let garr = ["static.png","",-6*32,-91*32];
-  if (idx === 1) { garr = ["static.png","",-7*32,-91*32]; }
-  BedWalkOn(who, garr);
+  this.occupants[idx] = who;
+  
 }
 
 DoubleBedHeadTile.prototype.removeOccupant = function(who) {
-  if (occupants[0] === who) { occupants[0] = ""; }
-  else if (occupants[1] === who) { occupants[1] = ""; }
+  if (this.occupants[0] === who) { this.occupants[0] = ""; }
+  else if (this.occupants[1] === who) { this.occupants[1] = ""; }
   else { 
     return -1;
     // This person isn't in this bed!
   }
-  BedWalkOff(who);
+  return 1;
+}
+
+DoubleBedHeadTile.prototype.setLook = function() {
+  let fea = this.getHomeMap().getTile(this.getx()+1,this.gety()).features.getAll();
+  let foot;
+  for (let i=0;i<fea.length;i++) { if (fea[i].getName() === "DoubleBedFoot") { foot = fea[i]; } }
+  if (!this.occupants[0] && !this.occupants[1]) {
+    this.setGraphicArray(["static.png","",-4*32,-91*32]);
+    foot.setGraphicArray(["static.png","",-5*32,-91*32]);
+    foot.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  } else if (this.occupants[0] && !this.occupants[1]) {
+    if (parseInt(this.occupants[0].skintone) === 1) {
+      this.setGraphicArray(["static.png","",-6*32,-91*32]);
+    } else {
+      this.setGraphicArray(["static.png","",-8*32,-91*32]);
+    }
+    foot.setGraphicArray(["static.png","",-7*32,-91*32]);
+    foot.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
+  } else if (!this.occupants[0] && this.occupants[1]) {
+    if (parseInt(this.occupants[1].skintone) === 1) {
+      this.setGraphicArray(["static.png","",-9*32,-91*32]);
+    } else {
+      this.setGraphicArray(["static.png","",-9*32,-90*32]);
+    }
+    foot.setGraphicArray(["static.png","",-7*32,-91*32]);
+    foot.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
+  } else if (this.occupants[0] && this.occupants[1]) {
+    if (parseInt(this.occupants[0].skintone) === 1) {
+      if (parseInt(this.occupants[1].skintone) === 1) {
+        this.setGraphicArray(["static.png","",-7*32,-92*32]);
+      } else {
+        this.setGraphicArray(["static.png","",-5*32,-92*32]);
+      }
+    } else {
+      if (parseInt(this.occupants[1].skintone) === 1) {
+        this.setGraphicArray(["static.png","",-8*32,-92*32]);
+      } else {
+        this.setGraphicArray(["static.png","",-6*32,-92*32]);
+      }
+    }
+    foot.setGraphicArray(["static.png","",-7*32,-91*32]);
+    foot.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
+  } else {
+    alert("How did I get here? (Doublebed setlook occupant fail.)"); 
+  }
 }
 
 function BedFootTile() {
@@ -11342,7 +11495,7 @@ BedFootTile.prototype = new FeatureObject();
 function DoubleBedFootTile() {
   this.name = "DoubleBedFoot";
   this.graphic = "static.png";
-  this.spritexoffset = -4*32;
+  this.spritexoffset = -5*32;
   this.spriteyoffset = -91*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
@@ -11503,6 +11656,24 @@ function BookshelfLeftTile() {
 	this.lootedid = "";
 }
 BookshelfLeftTile.prototype = new FeatureObject();
+
+function BookshelfLeft2Tile() {
+  //Graphics Upgraded
+  this.name = "BookshelfLeft2";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -92*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "bookshelf";
+  this.showsearched = 1;
+  this.searchedgraphic = ["static.png", "", -6*32, -84*32];
+  this.lootonce = 1;
+	this.lootgroup = "";
+	this.lootedid = "";
+}
+BookshelfLeft2Tile.prototype = new FeatureObject();
 
 function BookshelfRightTile() {
   //Graphics Upgraded
@@ -11740,10 +11911,11 @@ function Vanity3Tile() {
 Vanity3Tile.prototype = new FeatureObject();
 
 function CaskTile() {
+  //Graphics Upgraded
   this.name = "Cask";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-352";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -95*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -13816,11 +13988,147 @@ function ArmorCounterPlateTile() {
 }
 ArmorCounterPlateTile.prototype = new FeatureObject();
 
+function DisplayCounterNTile() {
+  //Graphics Upgraded
+  this.name = "DisplayCounterN";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -93*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.blockloe = .3;
+  this.prefix = "a";
+  this.desc = "display counter";
+  this.peerview = "black";
+}
+DisplayCounterNTile.prototype = new FeatureObject();
+
+function DisplayCounterSTile() {
+  //Graphics Upgraded
+  this.name = "DisplayCounterS";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -94*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.blockloe = .3;
+  this.prefix = "a";
+  this.desc = "display counter";
+  this.peerview = "black";
+}
+DisplayCounterSTile.prototype = new FeatureObject();
+
+function DisplayCounterCTile() {
+  //Graphics Upgraded
+  this.name = "DisplayCounterC";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -93*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.blockloe = .3;
+  this.prefix = "a";
+  this.desc = "display counter";
+  this.peerview = "black";
+}
+DisplayCounterCTile.prototype = new FeatureObject();
+
+function MerchantCounterClothTile() {
+  //Graphics Upgraded
+  this.name = "MerchantCounterCloth";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -95*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.blockloe = .3;
+  this.prefix = "a";
+  this.desc = "display counter";
+  this.peerview = "black";
+}
+MerchantCounterClothTile.prototype = new FeatureObject();
+
+function MerchantCounterScaleTile() {
+  //Graphics Upgraded
+  this.name = "MerchantCounterScale";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -95*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.blockloe = .3;
+  this.prefix = "a";
+  this.desc = "display counter";
+  this.peerview = "black";
+}
+MerchantCounterScaleTile.prototype = new FeatureObject();
+
+function MerchantCounterBillTile() {
+  //Graphics Upgraded
+  this.name = "MerchantCounterBill";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -95*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.blockloe = .3;
+  this.prefix = "a";
+  this.desc = "display counter";
+  this.peerview = "black";
+}
+MerchantCounterBillTile.prototype = new FeatureObject();
+
+function MerchantCounterBookTile() {
+  //Graphics Upgraded
+  this.name = "MerchantCounterBook";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -95*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.blockloe = .3;
+  this.prefix = "a";
+  this.desc = "display counter";
+  this.peerview = "black";
+}
+MerchantCounterBookTile.prototype = new FeatureObject();
+
+function MerchantCounterEdgeTile() {
+  //Graphics Upgraded
+  this.name = "MerchantCounterEdge";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -93*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.blockloe = .3;
+  this.prefix = "a";
+  this.desc = "display counter";
+  this.peerview = "black";
+}
+MerchantCounterEdgeTile.prototype = new FeatureObject();
+
+function MerchantCounterTile() {
+  //Graphics Upgraded
+  this.name = "MerchantCounter";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -93*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.blockloe = .3;
+  this.prefix = "a";
+  this.desc = "display counter";
+  this.peerview = "black";
+}
+MerchantCounterTile.prototype = new FeatureObject();
+
 function ArmorRackLeatherTile() {
+  //Graphics Upgraded
   this.name = "ArmorRackLeather";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-544";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -95*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = 0;
@@ -13831,10 +14139,11 @@ function ArmorRackLeatherTile() {
 ArmorRackLeatherTile.prototype = new FeatureObject();
 
 function ArmorRackChainTile() {
+  //Graphics Upgraded
   this.name = "ArmorRackChain";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-544";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -95*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = 0;
@@ -13845,10 +14154,11 @@ function ArmorRackChainTile() {
 ArmorRackChainTile.prototype = new FeatureObject();
 
 function ArmorRackPlateTile() {
+  //Graphics Upgraded
   this.name = "ArmorRackPlate";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-544";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -95*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = 0;
@@ -13874,7 +14184,7 @@ ShieldDisplayTile.prototype = new FeatureObject();
 
 function SkeletonDecorationTile() {
   this.name = "SkeletonDecoration";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "static.png";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -90*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14978,10 +15288,11 @@ function BrokenFountainTile() {
 BrokenFountainTile.prototype = new FeatureObject();
 
 function BlueCrystalTile() {
+  //Graphics Upgraded
   this.name = "BlueCrystal";
-  this.graphic = "crystals_d.gif";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "0";
+  this.graphic = "crystals.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
   this.prefix = "a";
   this.desc = "crystal";
   LightEmitting.call(this, 2);
@@ -14991,10 +15302,11 @@ function BlueCrystalTile() {
 BlueCrystalTile.prototype = new FeatureObject();
 
 function PurpleCrystalTile() {
+  //Graphics Upgraded
   this.name = "PurpleCrystal";
-  this.graphic = "crystals_d.gif";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "0";
+  this.graphic = "crystals.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -32;
   this.prefix = "a";
   this.desc = "crystal";
   LightEmitting.call(this, 2);
@@ -15004,10 +15316,11 @@ function PurpleCrystalTile() {
 PurpleCrystalTile.prototype = new FeatureObject();
 
 function YellowCrystalTile() {
+  //Graphics Upgraded
   this.name = "YellowCrystal";
-  this.graphic = "crystals_d.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "0";
+  this.graphic = "crystals.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -4*32;
   this.prefix = "a";
   this.desc = "crystal";
   LightEmitting.call(this, 2);
@@ -15017,10 +15330,11 @@ function YellowCrystalTile() {
 YellowCrystalTile.prototype = new FeatureObject();
 
 function GreenCrystalTile() {
+  //Graphics Upgraded
   this.name = "GreenCrystal";
-  this.graphic = "crystals_d.gif";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "0";
+  this.graphic = "crystals.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -2*32;
   this.prefix = "a";
   this.desc = "crystal";
   LightEmitting.call(this, 2);
@@ -15030,10 +15344,11 @@ function GreenCrystalTile() {
 GreenCrystalTile.prototype = new FeatureObject();
 
 function RedCrystalTile() {
+  //Graphics Upgraded
   this.name = "RedCrystal";
-  this.graphic = "crystals_d.gif";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "0";
+  this.graphic = "crystals.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -3*32;
   this.prefix = "a";
   this.desc = "crystal";
   LightEmitting.call(this, 2);
@@ -15043,10 +15358,11 @@ function RedCrystalTile() {
 RedCrystalTile.prototype = new FeatureObject();
 
 function WhiteCrystalTile() {
+  //Graphics Upgraded
   this.name = "WhiteCrystal";
-  this.graphic = "crystals_d.gif";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "0";
+  this.graphic = "crystals.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -5*32;
   this.prefix = "a";
   this.desc = "crystal";
   this.peerview = "#b0cbc4";
@@ -16608,7 +16924,9 @@ GoldLocketTile.prototype = new ItemObject();
 GoldLocketTile.prototype.onGet = function(who) {
   if (DU.gameflags.getFlag("knows_severyn")) {
     this.longdesc = "A locket. Inside is a portrait of someone you believe is Severyn, from Swainhil.";
-    maintext.delayedAddText("There is a portrait in the locket, and you believe you recognize the subject. It looks like Severyn, from Swainhil...");
+    let retval = {};
+    retval["txt"] = "There is a portrait in the locket, and you believe you recognize the subject. It looks like Severyn, from Swainhil..."
+    return retval;
   }
 }
 
@@ -16655,9 +16973,13 @@ GoldTile.prototype.setQuantity = function(quant) {
 
 GoldTile.prototype.onGet = function(who) {
   who.addGold(parseInt(this.getQuantity())); 
-  who.inventory.deleteFrom(this);
   DUPlaySound("sfx_coin");
+  this.getHomeMap().deleteThing(this);
 
+  let retval = {};
+  retval.noTake = 1;
+  retval.txt = "Taken: " + this.getPrefix() + " " + this.getDesc() + ".";
+  return retval;
   // this should delete the item entirely
 }
 
