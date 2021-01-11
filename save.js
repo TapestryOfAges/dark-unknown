@@ -400,6 +400,13 @@ GameStateData.prototype.loadGame = function(idx) {
         val.attachedParts[i] = universe[val.attachedParts[i]];
       }
     }
+    if (val.hasOwnProperty("occupants")) {
+      for (let i=0;i<val.occupants.length;i++) {
+        if (val.occupants[i] !== "") {
+          val.occupants[i] = universe[val.occupants[i]];
+        }
+      }
+    }
     if (val.inventory && !val.inventory.container) {
       // if it has inventory.container, it's a Collection, which means it wasn't overwritten from the loaded game and so is empty
       DebugWrite("saveload", val.name + " has an inventory, processing...");
