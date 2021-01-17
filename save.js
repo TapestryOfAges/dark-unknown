@@ -169,6 +169,7 @@ GameStateData.prototype.saveGame = function(flag) {
   savedata.merchants = DU.merchants;
   savedata.events = {};
   savedata.convlog = [];
+  savedata.quests = JSON.stringify(questlog);
   if (beta) {
     savedata.convlog = JSON.stringify(convlog);
   }
@@ -323,6 +324,7 @@ GameStateData.prototype.loadGame = function(idx) {
     convlog = savedata.convlog;
   }
 
+  questlog = JSON.parse(savedata.quests);
   DUTime.setGameClock(savedata.time);
   DU.gameflags = new Gameflags();
   ExtendObject(true,DU.gameflags,savedata.gameflags);

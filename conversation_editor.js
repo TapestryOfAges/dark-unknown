@@ -235,6 +235,10 @@ function edit_response(convname, keyword) {
   document.responseeditpopup.set_yesno1.checked = false;
   document.responseeditpopup.start_shop1.checked = false;
   document.responseeditpopup.start_sell1.checked = false;
+  document.responseeditpopup.questlog1.checked = false;
+  document.responseeditpopup.questlog1_val.value = "";
+  document.responseeditpopup.questcomp1.checked = false;
+  document.responseeditpopup.questcomp1_val.value = "";
   document.responseeditpopup.flags2.value = "";
   document.responseeditpopup.flags2val.value = "";
   document.responseeditpopup.response2.value = "";
@@ -255,6 +259,10 @@ function edit_response(convname, keyword) {
   document.responseeditpopup.set_yesno2.checked = false;
   document.responseeditpopup.start_shop2.checked = false;
   document.responseeditpopup.start_sell2.checked = false;
+  document.responseeditpopup.questlog2.checked = false;
+  document.responseeditpopup.questlog2_val.value = "";
+  document.responseeditpopup.questcomp2.checked = false;
+  document.responseeditpopup.questcomp2_val.value = "";
 
   if (keyword) {
     document.responseeditpopup.responsekeyword.value = keyword;
@@ -297,6 +305,14 @@ function edit_response(convname, keyword) {
       }
       else if (idx === "start_sell") {
         document.responseeditpopup.start_sell1.checked = "true";
+      } 
+      else if (idx = "questlog") {
+        document.responseeditpopup.questlog1.checked = "true";
+        document.responseeditpopup.questlog1_val.value = val;
+      }
+      else if (idx = "questcomp") {
+        document.responseeditpopup.questcomp1.checked = "true";
+        document.responseeditpopup.questcomp1_val.value = val;
       }
       else { alert("Weird trigger: " + idx + " : " + val); }
     });
@@ -350,6 +366,14 @@ function edit_response(convname, keyword) {
       }
       else if (idx === "start_sell") {
         document.responseeditpopup.start_sell2.checked = "true";
+      }
+      else if (idx = "questlog") {
+        document.responseeditpopup.questlog2.checked = "true";
+        document.responseeditpopup.questlog2_val.value = val;
+      }
+      else if (idx = "questcomp") {
+        document.responseeditpopup.questcomp2.checked = "true";
+        document.responseeditpopup.questcomp2_val.value = val;
       }
       else { alert("Weird trigger: " + idx + " : " + val); }
     });
@@ -488,6 +512,30 @@ function submitEditResponse(val, linked) {
     if (document.responseeditpopup.start_sell1.checked) {
      triggers1.start_sell = 1;
     }
+    if (document.responseeditpopup.questlog1.checked) {
+      if (document.responseeditpopup.questlog1_val.value) {
+        triggers1.questlog = document.responseeditpopup.questlog1_val.value;
+      } else {
+        alert("Needs an amount of xp given for questlog1.");
+        setTimeout(function() {var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
+          $('#responsebubble').jqm({onShow:myOpen});
+          $('#responsebubble').jqmShow();
+        }, 200);
+        return;
+      }
+    }
+    if (document.responseeditpopup.questcomp1.checked) {
+      if (document.responseeditpopup.questcomp1_val.value) {
+        triggers1.questcomp = document.responseeditpopup.questcomp1_val.value;
+      } else {
+        alert("Needs an amount of xp given for questcomp1.");
+        setTimeout(function() {var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
+          $('#responsebubble').jqm({onShow:myOpen});
+          $('#responsebubble').jqmShow();
+        }, 200);
+        return;
+      }
+    }
 
     if (document.responseeditpopup.end_convo2.checked) {
       if (document.responseeditpopup.end_convo2_val.value) {
@@ -571,6 +619,30 @@ function submitEditResponse(val, linked) {
     }
     if (document.responseeditpopup.start_sell2.checked) {
      triggers2.start_sell = 1;
+    }
+    if (document.responseeditpopup.questlog2.checked) {
+      if (document.responseeditpopup.questlog2_val.value) {
+        triggers2.questlog = document.responseeditpopup.questlog2_val.value;
+      } else {
+        alert("Needs an amount of xp given for questlog2.");
+        setTimeout(function() {var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
+          $('#responsebubble').jqm({onShow:myOpen});
+          $('#responsebubble').jqmShow();
+        }, 200);
+        return;
+      }
+    }
+    if (document.responseeditpopup.questcomp2.checked) {
+      if (document.responseeditpopup.questcomp2_val.value) {
+        triggers2.questcomp = document.responseeditpopup.questcomp2_val.value;
+      } else {
+        alert("Needs an amount of xp given for questcomp2.");
+        setTimeout(function() {var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
+          $('#responsebubble').jqm({onShow:myOpen});
+          $('#responsebubble').jqmShow();
+        }, 200);
+        return;
+      }
     }
     
     conversations[convname][keyword].triggers = [ triggers1, triggers2 ];
