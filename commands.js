@@ -2708,6 +2708,18 @@ function DrawOptions() {
   }
   optdiv += "</td></tr>";
 
+//  optdiv += "<tr><td>SHOW IN SAVE UI:</td><td></td><td";
+//  if (targetCursor.page === 11) { 
+//    optdiv += " class='highlight'";
+//  }
+//  optdiv += ">";
+//  if (DU.gameflags.getFlag("save_ui_date")) {
+//    optdiv += "DATE/TIME";
+//  } else {
+//    optdiv += "TIME PLAYED";
+//  }
+//  optdiv += "</td></tr>";
+
   optdiv += "</table></div></div>";
   
   DrawTopbarFrame("<p>Options</p>");
@@ -3148,8 +3160,7 @@ function ShowSaveGames(toptext) {
     if ((i === 0) || (i === 9)) { table += "<tr style='height:36; background-image:url(\"graphics/frame/saveui-lock.gif\"); width:416px'>"; }
     else { table += "<tr style='height:36; background-image:url(\"graphics/frame/saveui.gif\"); width:416px'>"; }
     if (i === -1) {
-      table += "<td style='color:white;text-align:center;v-align:center;width:35'><img src='graphics/spacer.gif' width='32' /></td>";
-      table += "<td style='color:white;text-align:center;v-align:center;width:35'><img src='graphics/spacer.gif' width='32' /></td>";
+      table += "<td style='color:white;text-align:center;v-align:center;width:23'><img src='graphics/spacer.gif' width='23' /></td>";
       table += "<td style='color:white;v-align:center;padding-left:5px;width:100%'>" + toptext + "</td>";      
     } else if (saveIndex[i].charname) {
       let tmpdate = saveIndex[i].datestamp;
@@ -3160,12 +3171,14 @@ function ShowSaveGames(toptext) {
       let timepart = parts[0].split(":");
       thistime = timepart[0] + ":" + timepart[1] + " " + parts[1];
       let thisloc = saveIndex[i].loc.slice(0,13);
-      table += "<td style='color:white;text-align:center;v-align:center;width:35'>" + i + "</td>";
-      table += `<td style='color:white;text-align:center;v-align:center;width:35;'><div style='background-image:url("graphics/${saveIndex[i].graphic[0]}");background-position: ${saveIndex[i].graphic[2]} ${saveIndex[i].graphic[3]};width:32px;height:32px;'><img src='graphics/${saveIndex[i].graphic[1]}' /></div></td>`;
-      table += "<td style='color:white;v-align:center;padding-left:5px;width:100%;font-size:smaller'>" + saveIndex[i].charname + " (" + thisloc + ") " + thisdate.toLocaleDateString() + " " + thistime + "</td>";
+      table += "<td style='color:white;text-align:center;v-align:center;width:23'>" + i + "</td>";
+      let hours = Math.floor(saveIndex[i].timeplayed/(60*60));
+      let minutes = Math.floor((saveIndex[i].timeplayed-hours)/60);
+      if (minutes < 10) { minutes = "0" + minutes; }
+
+      table += "<td style='color:white;v-align:center;padding-left:5px;width:100%;font-size:smaller'>" + saveIndex[i].charname + " (" + thisloc + ") " + thisdate.toLocaleDateString() + " " + thistime + " [" + hours + ":" + minutes +"]</td>";
     } else {
-      table += "<td style='color:white;text-align:center;v-align:center;width:35'>" + i + "</td>";
-      table += "<td style='color:white;text-align:center;v-align:center;width:35'></td>";
+      table += "<td style='color:white;text-align:center;v-align:center;width:23'>" + i + "</td>";
       table += "<td style='color:white;v-align:center;padding-left:5px;width:100%'></td>";      
     }
     table += "</tr>";
