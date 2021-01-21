@@ -162,3 +162,4 @@ talked_runes - Lance mentioned the rune journal to you
 talked_rhys - you've talked to Rhys enough to know to confront Justice
 cult_attack - the cult has attacked in Shadow 3
 cult_atk_convo - Rhys has talked about the cult attack
+justice_teleport - she takes you both to her battleground
