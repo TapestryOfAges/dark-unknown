@@ -21068,6 +21068,7 @@ NPCObject.prototype.processDeath = function(droploot){
                   maintext.setInputLine("&gt;");
                   PC.addxp(100);
                   DU.gameflags.setFlag("act2",DUTime.getGameClock());
+                  BeginAct2();
                   DU.gameflags.deleteFlag("intermission");
                   PC.setHP(15);
                   delete PC.dead;

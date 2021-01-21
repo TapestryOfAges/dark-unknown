@@ -169,6 +169,14 @@ GameStateData.prototype.saveGame = function(flag) {
   savedata.merchants = DU.merchants;
   savedata.events = {};
   savedata.convlog = [];
+  savedata.timeplayed = 0;
+  if (DU.starttime) {
+    let d = new Date;
+    let ms = d.getTime();
+    ms = Math.floor(ms/1000);
+    savedata.timeplayed = DU.gamelength + (ms - DU.starttime);
+  }
+  savedata.quests = JSON.stringify(questlog);
   if (beta) {
     savedata.convlog = JSON.stringify(convlog);
   }
@@ -253,12 +261,13 @@ GameStateData.prototype.saveGame = function(flag) {
     fs.writeFileSync(`${savePath}/save${flag}`, serialized);
 //    localStorage["save"+flag] = serialized;
     saveIndex[flag].datestamp = Date.now();
+    saveIndex[flag].timeplayed = savedata.timeplayed;
     saveIndex[flag].charname = PC.getPCName();
     saveIndex[flag].loc = PC.getHomeMap().getSaveName();
     saveIndex[flag].graphic = PC.getGraphicArray();
 //    localStorage.saveIndex = JSON.stringify(saveidx);
-    
   }
+  return savedata.timeplayed;
 }
 
 GameStateData.prototype.initializeSaveGames = function() {
@@ -323,6 +332,11 @@ GameStateData.prototype.loadGame = function(idx) {
     convlog = savedata.convlog;
   }
 
+  DU.gamelength = savedata.timeplayed;
+  let d = new Date();
+  let ms = d.getTime();
+  DU.starttime = Math.floor(ms/1000); 
+  questlog = JSON.parse(savedata.quests);
   DUTime.setGameClock(savedata.time);
   DU.gameflags = new Gameflags();
   ExtendObject(true,DU.gameflags,savedata.gameflags);

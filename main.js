@@ -13,9 +13,11 @@ let eidos = new Platonic();
 //var universe = new Object;
 
 let DU = {};
-DU.version = "0.6.1";
+DU.version = "0.9.1";
 
 DU.PC = new PCObject();
+DU.gamelength = 0;
+DU.starttime;
 let PC = DU.PC;  // alias
 
 let timeouts = {};
@@ -1027,8 +1029,11 @@ function DoAction(code, ctrl) {
       if ((code >= 49) && (code <= 56)) {
         let idx = code-48;
         gamestate.setMode("saving");
-        gamestate.saveGame(idx); 
-		    maintext.addText("Quit &amp; Save: Saving game...");
+        let timer = gamestate.saveGame(idx); 
+        let hours = Math.floor(timer/(60*60));
+        let minutes = Math.floor((timer-hours)/60);
+        if (minutes < 10) { minutes = "0" + minutes; }
+		    maintext.addText("Quit &amp; Save: Saving game...<br />Time played: " + hours + ":" + minutes + ".");
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame(); 
         document.getElementById('uiinterface').innerHTML = "";

@@ -781,6 +781,7 @@ function ApplyRune(who, rune, runeref) {
       DU.gameflags.setFlag("rune_kings",1);
       DU.gameflags.setFlag("lvl4_rune",1);  // pretend you've heard the spiel that introduces the rune
                                             // set here in case you get the rune first, so the king doesn't stop to tell you about it
+      questlog[1].complete();
     }
     who.runes[rune] = 1;
   }
@@ -1154,6 +1155,7 @@ function CreateTargetCursor(params, noredraw) {
 
 function BeginAct2() {
   // this should be called on the death of the Black Dragon
+  questlog[0].complete();
   DU.merchants.gretchen.stock[4].qty = 2;
   DU.merchants.gretchen.stock[5].qty = 1;
   DU.merchants.ariel.stock[4].qty = 10;
