@@ -11910,7 +11910,7 @@ function XoriccoRecipeTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "recipe";
   this.prefix = "a";
-  this.contents = "You read the recipe:%%Insert recipe here.";  // WORKING HERE- GET RECIPE FROM EDWARD?
+  this.contents = "You read the recipe:%%Insert recipe here.";  // WORKING HERE- Need a recipe
   this.longdesc = "Evidently, this is Sorceress Xoricco's recipe for chili.";
 }
 XoriccoRecipeTile.prototype = new BookItemObject();
