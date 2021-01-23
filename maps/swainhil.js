@@ -501,19 +501,19 @@ mappages["swainhil"].features[433] = {name : 'DoubleBedFoot', x : 21, y : 9};
 
 
 mappages["swainhil"].npcs = [];
-mappages["swainhil"].npcs[0] = {name : 'ShepherdVillagerNPC', x : 39, y : 9, NPCName: 'Mandy', Desc: 'healer', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'mandy', Conversation: 'mandy', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '301.gif', skintone: 1};
-mappages["swainhil"].npcs[1] = {name : 'FighterVillagerNPC', x : 16, y : 14, NPCName: 'Deirdre', PeaceAI: 'scheduled', Schedule: 'deirdre', Conversation: 'deirdre', Gender: 'female', Merch: 'deirdre', NPCBand: '0', OverrideGraphic: '308.gif', skintone: 1};
-mappages["swainhil"].npcs[2] = {name : 'MageVillagerNPC', x : 24, y : 14, NPCName: 'Dale', PeaceAI: 'scheduled', Schedule: 'dale', Conversation: 'dale', Gender: 'male', Merch: 'dale', Bark: '0', NPCBand: '0', OverrideGraphic: 'mage-offcolor.gif', skintone: 1};
-mappages["swainhil"].npcs[3] = {name : 'DruidVillagerNPC', x : 53, y : 9, NPCName: 'Severyn', PeaceAI: 'scheduled', Schedule: 'severyn', Conversation: 'severyn', ConversationFlag: 'severyn', Gender: 'female', Merch: 'severyn', Bark: '0', NPCBand: '0', OverrideGraphic: '302.gif', skintone: 1};
-mappages["swainhil"].npcs[4] = {name : 'PaladinVillagerNPC', x : 20, y : 9, NPCName: 'Isaac', PeaceAI: 'scheduled', Schedule: 'isaac', Conversation: 'isaac', ConversationFlag: 'isaac', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '307.2.gif', skintone: 2};
-mappages["swainhil"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 25, y : 9, NPCName: 'Carey', Desc: 'innkeeper', Prefix: 'an', PeaceAI: 'scheduled', Schedule: 'carey', Conversation: 'carey', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_green.gif', skintone: 1};
-mappages["swainhil"].npcs[6] = {name : 'TownsfolkVillagerNPC', x : 46, y : 9, NPCName: 'Elaine', Desc: 'innkeeper', Prefix: 'an', PeaceAI: 'scheduled', Schedule: 'elaine', Conversation: 'elaine', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_blue.2.gif', skintone: 2};
-mappages["swainhil"].npcs[7] = {name : 'TownGuardNPC', x : 48, y : 39, NPCName: 'Rayne', Conversation: 'rayne', Gender: 'male', NPCBand: '0', skintone: 1};
-mappages["swainhil"].npcs[8] = {name : 'TownGuardNPC', x : 12, y : 20, NPCName: 'Gwanda', Conversation: 'gwanda', Gender: 'female', NPCBand: '0', skintone: 1};
-mappages["swainhil"].npcs[9] = {name : 'TownGuardNPC', x : 51, y : 39, NPCName: 'Eddie', Conversation: 'eddie', Gender: 'male', NPCBand: '0', skintone: 1};
-mappages["swainhil"].npcs[10] = {name : 'TownGuardNPC', x : 33, y : 33, NPCName: 'Marge', Conversation: 'marge', Gender: 'female', NPCBand: '0', skintone: 1};
-mappages["swainhil"].npcs[11] = {name : 'TownGuardNPC', x : 51, y : 41, NPCName: 'Fran', Conversation: 'fran', Gender: 'female', NPCBand: '0', skintone: 1};
-mappages["swainhil"].npcs[12] = {name : 'TownGuardNPC', x : 57, y : 4, NPCName: 'Edgar', Conversation: 'edgar', Gender: 'male', NPCBand: '0', skintone: 1};
+mappages["swainhil"].npcs[0] = {name : 'ShepherdVillagerNPC', x : 39, y : 9, NPCName: 'Mandy', Desc: 'healer', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'mandy', Conversation: 'mandy', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '301.gif', skintone: '1'};
+mappages["swainhil"].npcs[1] = {name : 'FighterVillagerNPC', x : 16, y : 14, NPCName: 'Deirdre', PeaceAI: 'scheduled', Schedule: 'deirdre', Conversation: 'deirdre', Gender: 'female', Merch: 'deirdre', NPCBand: '0', OverrideGraphic: '308.gif', skintone: '1'};
+mappages["swainhil"].npcs[2] = {name : 'MageVillagerNPC', x : 24, y : 14, NPCName: 'Dale', PeaceAI: 'scheduled', Schedule: 'dale', Conversation: 'dale', Gender: 'male', Merch: 'dale', Bark: '0', NPCBand: '0', OverrideGraphic: 'mage-offcolor.gif', skintone: '1'};
+mappages["swainhil"].npcs[3] = {name : 'DruidVillagerNPC', x : 53, y : 9, NPCName: 'Severyn', PeaceAI: 'scheduled', Schedule: 'severyn', Conversation: 'severyn', ConversationFlag: 'severyn', Gender: 'female', Merch: 'severyn', Bark: '0', NPCBand: '0', OverrideGraphic: '302.gif', skintone: '1'};
+mappages["swainhil"].npcs[4] = {name : 'PaladinVillagerNPC', x : 20, y : 9, NPCName: 'Isaac', PeaceAI: 'scheduled', Schedule: 'isaac', Conversation: 'isaac', ConversationFlag: 'isaac', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '307.2.gif', skintone: '2'};
+mappages["swainhil"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 25, y : 9, NPCName: 'Carey', Desc: 'innkeeper', Prefix: 'an', PeaceAI: 'scheduled', Schedule: 'carey', Conversation: 'carey', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_green.gif', skintone: '1'};
+mappages["swainhil"].npcs[6] = {name : 'TownsfolkVillagerNPC', x : 46, y : 9, NPCName: 'Elaine', Desc: 'innkeeper', Prefix: 'an', PeaceAI: 'scheduled', Schedule: 'elaine', Conversation: 'elaine', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_blue.2.gif', skintone: '2'};
+mappages["swainhil"].npcs[7] = {name : 'TownGuardNPC', x : 48, y : 39, NPCName: 'Rayne', PeaceAI: 'scheduled', Schedule: 'rayne', Conversation: 'rayne', Gender: 'male', NPCBand: '0', skintone: '1'};
+mappages["swainhil"].npcs[8] = {name : 'TownGuardNPC', x : 12, y : 20, NPCName: 'Gwanda', PeaceAI: 'scheduled', Schedule: 'gwanda', Conversation: 'gwanda', Gender: 'female', NPCBand: '0', skintone: '1'};
+mappages["swainhil"].npcs[9] = {name : 'TownGuardNPC', x : 51, y : 39, NPCName: 'Edward', PeaceAI: 'scheduled', Schedule: 'edward', Conversation: 'edward', Gender: 'male', NPCBand: '0', skintone: '1'};
+mappages["swainhil"].npcs[10] = {name : 'TownGuardNPC', x : 33, y : 33, NPCName: 'Marge', PeaceAI: 'scheduled', Schedule: 'marge', Conversation: 'marge', Gender: 'female', NPCBand: '0', skintone: '1'};
+mappages["swainhil"].npcs[11] = {name : 'TownGuardNPC', x : 51, y : 41, NPCName: 'Fran', PeaceAI: 'scheduled', Schedule: 'fran', Conversation: 'fran', Gender: 'female', NPCBand: '0', skintone: '1'};
+mappages["swainhil"].npcs[12] = {name : 'TownGuardNPC', x : 57, y : 4, NPCName: 'Edgar', PeaceAI: 'scheduled', Schedule: 'edgar', Conversation: 'edgar', Gender: 'male', NPCBand: '0', skintone: '1'};
 
 mappages["swainhil"].desc = "The Towne of Swainhil";
 mappages["swainhil"].longdesc = ``;
