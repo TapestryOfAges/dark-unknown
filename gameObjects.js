@@ -9003,9 +9003,9 @@ WEBrazierTile.prototype.use = function(who) {
 
 function UnlitWEBrazierTile() {
 	this.name = "UnlitWEBrazier";
-	this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-288";
-	this.spriteyoffset = "-448";
+	this.graphic = "static.png";
+	this.spritexoffset = -9*32;
+	this.spriteyoffset = -80*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0;
   this.prefix = "an";
@@ -9109,9 +9109,9 @@ WEBrazier2Tile.prototype.use = function(who) {
 
 function WEUnlitBrazier2Tile() {
 	this.name = "WEUnlitBrazier2";
-	this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-288";
-	this.spriteyoffset = "-448";
+	this.graphic = "static.png";
+	this.spritexoffset = -9*32;
+	this.spriteyoffset = -80*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0;
   this.prefix = "an";
