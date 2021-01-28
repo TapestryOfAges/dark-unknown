@@ -5035,6 +5035,75 @@ function IllusionaryEnergyFieldTile() {
 }
 IllusionaryEnergyFieldTile.prototype = new FeatureObject();
 
+function WEBrazier2Tile() {
+	this.name = "WEBrazier2";
+	this.graphic = "brazier.gif";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL;
+	this.blocklos = 0;
+  this.prefix = "a";
+	this.desc = "brazier";
+	
+	LightEmitting.call(this, 3);  
+}
+WEBrazier2Tile.prototype = new FeatureObject();
+
+WEBrazier2Tile.prototype.use = function(who) {
+  let retval = {fin:1};
+  if (!this.alwayslit) {
+    let map = this.getHomeMap();
+    let unlit = localFactory.createTile("WEUnlitBrazier2");
+    let x = this.getx();
+    let y = this.gety();
+    map.deleteThing(this);
+    map.placeThing(x,y,unlit);
+    if (map === PC.getHomeMap()) {
+      DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+    }
+    
+    retval["txt"] = "You extinguish the brazier.";
+  } else {
+    retval["txt"] = "The brazier refuses to go out.";
+  }
+  
+  // Working here
+  return retval;
+}
+
+function WEUnlitBrazier2Tile() {
+	this.name = "WEUnlitBrazier2";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-288";
+	this.spriteyoffset = "-448";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL;
+	this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "unlit brazier";
+  
+  LightEmitting.call(this, 0);  
+}
+WEUnlitBrazier2Tile.prototype = new FeatureObject();
+
+WEUnlitBrazier2Tile.prototype.use = function(who) {
+  let retval = {fin:1};
+  if (!this.alwaysout) {
+    let map = this.getHomeMap();
+    let lit = localFactory.createTile("WEBrazier2");
+    let x = this.getx();
+    let y = this.gety();
+    map.deleteThing(this);
+    map.placeThing(x,y,lit);
+    if (map === PC.getHomeMap()) {
+      DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+    }
+    
+    retval["txt"] = "You light the brazier.";
+  } else {
+    retval["txt"] = "The brazier refuses to light.";
+  }
+  
+  return retval;
+}
+
 function CrystalTrapSpaceTile() {
 	this.name = "CrystalTrapSpace";
   this.graphic = "master_spritesheet.png";
@@ -11895,7 +11964,7 @@ function SheafOfNotesTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "sheaf of notes";
   this.prefix = "a";
-  this.contents = "You read the notes:%%'Empowerment is a powerful tool, allowing the permanent enchantment of an object such as a sword or suit of armor.%%'The first step in Empowering is choosing a suitable object. It must be able to take on the enchantment- this is rare.%%'Then one must prepare the reagents. Your choice of reagents will dictate the nature of the enchantment that you create.%%'Prepare them with a mortar and pestle, incant the spell, and pour the mixture over the object to be enchanted. If all is as it should be, the object will be enchanted thereafter.%%'I have tested many materials.%%'Spider silk is necessary in almost all castings. It helps bind the magic to the object.%%'Sulphurous ash is used for light and fire.%%'Blood moss permits physical protection.%%'Nightshade adds an air of poison or delusion.%%'Black pearl projects power from the object.%%'Mistletoe will ward away otherworldly evils.%%'Lightning wood, from a tree recently struck, will channel the lightnings.%%'Finally, additional power may be invoked by adding mandrake root.%%'Once together, cast and hope.'";
+  this.contents = "You read the notes:%%<span class='conv'>'Empowerment is a powerful tool, allowing the permanent enchantment of an object such as a sword or suit of armor.</span>%%<span class='conv'>'The first step in Empowering is choosing a suitable object. It must be able to take on the enchantment- this is rare.</span>%%<span class='conv'>'Then one must prepare the reagents. Your choice of reagents will dictate the nature of the enchantment that you create.</span>%%<span class='conv'>'Prepare them with a mortar and pestle, incant the spell, and pour the mixture over the object to be enchanted. If all is as it should be, the object will be enchanted thereafter.</span>%%<span class='conv'>'I have tested many materials.</span>%%<span class='conv'>'Spider silk is necessary in almost all castings. It helps bind the magic to the object.</span>%%<span class='conv'>'Sulphurous ash is used for light and fire.</span>%%<span class='conv'>'Blood moss permits physical protection.</span>%%<span class='conv'>'Nightshade adds an air of poison or delusion.</span>%%<span class='conv'>'Black pearl projects power from the object.</span>%%<span class='conv'>'Mistletoe will ward away otherworldly evils.</span>%%<span class='conv'>'Lightning wood, from a tree recently struck, will channel the lightnings.</span>%%<span class='conv'>'Finally, additional power may be invoked by adding mandrake root.</span>%%<span class='conv'>'Once together, cast and hope.'</span>";
   this.longdesc = "A sheaf of notes on Empowerment. Transcribed by Arlan from Toshin's original notebooks.";
 }
 SheafOfNotesTile.prototype = new BookItemObject();
@@ -12075,7 +12144,7 @@ function NatassaResearchTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
   this.prefix = "a";
-  this.contents = "You flip through the notes.%%<span class='conv'>7-23-86: The Brilliant Pool is the subject of so many legends, yet I am convinced it exists. What's more- I believe my master knows more about it than she lets on. I must discover what she knows!</span>%%<span class='conv'>3-27-92: Her journals speak of many magical experiments but are silent on the Pool. And yet I remain convinced she not only knew of it but has utilized it herself.<span>%%<span class='conv'>10-3-103: I believe it to reside in the dungeon of World's Ending. I have cleared out the foul creatures that reside near the surface and may even build here. The solitude appeals.</span>%%<span class='conv'>3-16-104: It is not here. I have scoured the place, even down to the Underworld below. I detect no sign. It is not here.</span>%%<span class='conv'>9-3-105: THE POOL MOVES. It was once here, yes, but no longer. It could be ANYWHERE. I may have tried to cause a local volcano to erupt in my fury, but I restrained.</span>";
+  this.contents = "You flip through the notes.%%<span class='conv'>7-23-86: The Brilliant Pool is the subject of so many legends, yet I am convinced it exists. What's more- I believe my master knows more about it than she lets on. I must discover what she knows!</span>%%<span class='conv'>3-27-92: Her journals speak of many magical experiments but are silent on the Pool. And yet I remain convinced she not only knew of it but has utilized it herself.<span>%%<span class='conv'>10-3-103: I believe it to reside in the dungeon of World's Ending. I have cleared out the foul creatures that reside near the surface and may even build here. The solitude appeals.</span>%%<span class='conv'>3-16-104: It is not here. I have scoured the place, even down to the Underworld below. I detect no sign. It is not here.</span>%%<span class='conv'>9-3-105: THE POOL MOVES. It was once here, yes, but no longer. It could be ANYWHERE. I may have tried to cause a local volcano to erupt in my fury, but I refrained.</span>";
   this.longdesc = "Natassa's Research Notes, Vol 1.";
 }
 NatassaResearchTile.prototype = new BookItemObject();
@@ -12148,7 +12217,7 @@ function RhysLetterTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "letter";
   this.prefix = "a";
-  this.contents = "<span class='conv'>Lance, my friend!</span>%%<span class='conv'>I've been talking with Justice, and we think you should get out of that castle and into the world a bit. Let's get the old party together. Justice can train you while we are on the road. Who knows, maybe we'll kill a dragon!%%Hope to see you soon- Rhys</span>";
+  this.contents = "<span class='conv'>Lance, my friend!</span>%%<span class='conv'>I've been talking with Justice, and we think you should get out of that castle and into the world a bit. Let's get the old party together. Justice can train you while we are on the road. Who knows, maybe we'll kill a dragon!</span>%%<span class='conv'>Hope to see you soon- Rhys</span>";
   this.longdesc = "A letter to Prince Lance from his friend Rhys.";
 }
 RhysLetterTile.prototype = new BookItemObject();
@@ -12178,7 +12247,7 @@ function LanceRuneNotesTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
   this.prefix = "a";
-  this.contents = "<span class='conv'>Some time ago, Mother and Father shared a family Secret: the Rune of Kings. Deep under the site of another dynasty, it allows our bloodline to connect with... well, the heart of the Kingdom. The world. The earth.</span>%%<span class='conv'>Unknown to most, there are MORE. I directed Justice to help research them, and we discovered full elemental correspondences. The Rune of Kings is also the Rune of Earth- a bond to the land. It is also the key to unlock the other Runes.</span>%%<span class='conv'>Justice discovered the location of the Rune of Waves. There is an small island, naught but hills, north of the Crown Mountains and west of Poverty. The Rune of Kings is required to reveal the cave, she thinks, but I have not found a way to the island yet to try.</span>%%<span class='conv'>The Rune of Winds is, unsurprisingly perhaps, connected to Xoricco. The Rune of Flames appears to be near the Land of Lost Hope- it will be some time before I can try and discover it.</span>%%<span class='conv'>Strangely, there are hints and echoes of a fifth Rune, but I know not what it could be...</span>";
+  this.contents = "<span class='conv'>Some time ago, Mother and Father shared a family Secret: the Rune of Kings. Deep under the site of another dynasty, it allows our bloodline to connect with... well, the heart of the Kingdom. The world. The earth.</span>%%<span class='conv'>Unknown to most, there are MORE. I directed Justice to help research them, and we discovered full elemental correspondences. The Rune of Kings is also the Rune of Earth- a bond to the land. It is also the key to unlock the other Runes.</span>%%<span class='conv'>Justice discovered the location of the Rune of Waves. There is a small island, naught but hills, north of the Crown Mountains and west of Poverty. The Rune of Kings is required to reveal the cave, she thinks, but I have not found a way to the island yet to try.</span>%%<span class='conv'>The Rune of Winds is, unsurprisingly perhaps, connected to Xoricco. The Rune of Flames appears to be near the Land of Lost Hope- it will be some time before I can try and discover it.</span>%%<span class='conv'>Strangely, there are hints and echoes of a fifth Rune, but I know not what it could be...</span>";
   this.longdesc = "A journal containing Lance's research on Runes.";
 }
 LanceRuneNotesTile.prototype = new BookItemObject();
@@ -12193,7 +12262,7 @@ function XApprenticeJournalTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
   this.prefix = "a";
-  this.contents = "You open the small journal.%%<span class='conv'>Master Xoricco insists that it is valuable to write everything down, that the act of putting pen to page will firm the memory and the ability to learn. So here I am.</span>%%<span class='conv'>We have taken over a small cave next to her chosen site for the Gate. Despite the fact that we are not going to be here long, she has set up defenses to protect us.</span>%%<span class='conv'>The ritual to create this side of the Gate is elaborate and difficult- she says we are not nearly to the point where she can teach any of it to me. But I have observed what I can.</span>%%<span class='conv'>The core it all is a treated piece of voidstone, brought here from the expedition that discovered the far continent. I don't know what it must be treated with, only that it is another rare substance.</span>%%<span class='conv'>She is at the site now, preparing to bury the stone. Then will be another boat trip to the new land, to build the other gate. I am determined to convince her to allow me to accompany her...</span>";
+  this.contents = "You open the small journal.%%<span class='conv'>Master Xoricco insists that it is valuable to write everything down, that the act of putting pen to page will firm the memory and the ability to learn. So here I am.</span>%%<span class='conv'>We have taken over a small cave next to her chosen site for the Gate. Despite the fact that we are not going to be here long, she has set up defenses to protect us.</span>%%<span class='conv'>The ritual to create this side of the Gate is elaborate and difficult- she says we are not nearly to the point where she can teach any of it to me. But I have observed what I can.</span>%%<span class='conv'>The core of it all is a treated piece of voidstone, brought here from the expedition that discovered the far continent. I don't know what it must be treated with, only that it is another rare substance.</span>%%<span class='conv'>She is at the site now, preparing to bury the stone. Then will be another boat trip to the new land, to build the other gate. I am determined to convince her to allow me to accompany her...</span>";
   this.longdesc = "A small journal found in a cave.";
 }
 XApprenticeJournalTile.prototype = new BookItemObject();
