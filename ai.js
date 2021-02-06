@@ -65,6 +65,9 @@ ais.seekPC = function(who,radius) {
 }
 
 ais.combat = function(who) {
+  if (who.special.miniboss) {
+    return ais[who.getCurrentAI()](who);
+  }
   let retval = {fin:1};
   let whomap = who.getHomeMap();
   let whox = who.getx();

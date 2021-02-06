@@ -1063,6 +1063,19 @@ OnConvTriggers["cult_attack"] = function(speaker,keyword) {
   maintext.addText("With a strangely muted roar, the eastern wall collapses!");
 }
 
+OnConvTriggers["justice_teleport"] = function(speaker,keyword) {
+  DUPlaySound("sfx_teleport");
+  let newmap = new GameMap();
+  if (maps.getMap("justice_battle")) {
+    newmap = maps.getMap("justice_battle");
+  } else {
+    newmap = maps.addMap("justice_battle");
+  }
+  MoveBetweenMaps(PC,PC.getHomeMap(),newmap,7,9);		  
+  DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
+
+}
+
 function ConvTestFlags() {};
 
 ConvTestFlags["warren_close"] = function(speaker,keyword) {

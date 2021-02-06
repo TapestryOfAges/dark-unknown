@@ -1078,6 +1078,16 @@ tileFactory.prototype.makeIllusionaryEnergyFieldTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWEBrazier2Tile = function() {
+  let newTile = new WEBrazier2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWEUnlitBrazier2Tile = function() {
+  let newTile = new WEUnlitBrazier2Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeCrystalTrapSpaceTile = function() {
   let newTile = new CrystalTrapSpaceTile();
   return newTile;
@@ -3773,6 +3783,11 @@ tileFactory.prototype.makeFloorNPCTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeCultistNPCTile = function() {
+  let newTile = new CultistNPCTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeGazerNPCTile = function() {
   let newTile = new GazerNPCTile();
   return newTile;
@@ -3860,6 +3875,11 @@ tileFactory.prototype.makeDaemonNPCTile = function() {
 
 tileFactory.prototype.makeEarthenTyrantNPCTile = function() {
   let newTile = new EarthenTyrantNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeJusticeNPCTile = function() {
+  let newTile = new JusticeNPCTile();
   return newTile;
 }
 
