@@ -1831,6 +1831,10 @@ ais.Courier = function(who) {
   return {fin:1};
 }
 
+ais.Justice = function(who) {
+  
+}
+
 ais.ai_cast = function(who) {
   if (who.getMana() <= 1) { DebugWrite("ai", "In ai_cast, but has no mana."); return; }
   DebugWrite("ai", "In ai_cast... choosing how to act.");
