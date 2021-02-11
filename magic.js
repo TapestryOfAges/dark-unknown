@@ -865,6 +865,7 @@ function PerformIllusion(caster, infused, free, tgt) {
   DrawMainFrame("one",caster.getHomeMap(),illusion.getx(),illusion.gety());
   
   PlayCastSound(caster, "sfx_summon");  
+  ShowEffect(illusion, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
   resp["txt"] = "You conjure an illusion to aid you in battle.";
   resp["input"] = "&gt;";
   return resp;
@@ -2848,6 +2849,7 @@ function PerformSummonAlly(caster, infused, free, tgt) {
       DrawMainFrame("draw",caster.getHomeMap(),PC.getx(),PC.gety());
     }
   }
+  ShowEffect(ally, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
   
   resp["txt"] = "You conjure an elemental to aid you in battle.";
   resp["input"] = "&gt;";
@@ -3855,6 +3857,7 @@ function PerformConjureDaemon(caster, infused, free, tgt) {
   ally.expiresTime = DUTime.getGameClock() + duration;  // AI needs to check expiresTime and go poof if it is reached
   caster.getHomeMap().placeThing(tgt.x,tgt.y,ally);
   DrawMainFrame("one",caster.getHomeMap(),ally.getx(),ally.gety());
+  ShowEffect(ally, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
   
   resp["txt"] = "You conjure a daemon to aid you in battle!";
   resp["input"] = "&gt;";

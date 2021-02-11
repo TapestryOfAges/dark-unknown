@@ -65,6 +65,9 @@ ais.seekPC = function(who,radius) {
 }
 
 ais.combat = function(who) {
+  if (who.special.miniboss) {
+    return ais[who.getCurrentAI()](who);
+  }
   let retval = {fin:1};
   let whomap = who.getHomeMap();
   let whox = who.getx();
@@ -1826,6 +1829,10 @@ ais.Courier = function(who) {
     
   }
   return {fin:1};
+}
+
+ais.Justice = function(who) {
+  
 }
 
 ais.ai_cast = function(who) {

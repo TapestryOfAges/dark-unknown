@@ -2766,7 +2766,6 @@ function CultistNPCTile() {
   this.meleeChance = 80;
   this.spellsknown = { attack: 1, };
   this.resists = {};
-  this.special = 'ondeathCult';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
 }
@@ -3448,6 +3447,41 @@ function EarthenTyrantNPCTile() {
 EarthenTyrantNPCTile.prototype = new NPCObject();
 
 
+// CorruptTownsfolk
+
+function JusticeNPCTile() {
+  this.name = 'JusticeNPC';
+  this.level = 7;
+  this.addhp = -5;
+  this.str = 10;
+  this.dex = 14;
+  this.int = 25;
+  this.alignment = 'Evil';
+  this.attitude = 'hostile';
+  this.peaceAI = 'seekPC-10';
+  this.forgetAt = 15;
+  this.withdraw = 0;
+  this.graphic = '303.gif';
+  this.meleeAttackAs = 'none';
+  this.meleeDamage = '2d4'
+  this.meleeStrDamage = 1
+  this.missileAttackAs = 'none';
+  this.armorAs = 'none';
+  this.armorDefense = 15;
+  this.armorAbsorb = 15;
+  this.armorResist = 35;
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'Corpse';
+  this.lootTable = 'none';
+  this.desc = "Justice";
+  this.spellsknown = { summon: 1, attack: 1, highattack: 1, };
+  this.resists = {};
+  this.meleeHitSound = 'sfx_melee_hit';
+  this.meleeAttackSound = 'sfx_melee_miss';
+}
+JusticeNPCTile.prototype = new NPCObject();
+
+
 // Monster
 
 function LicheNPCTile() {
@@ -3879,8 +3913,8 @@ NegatorGnomeNPCTile.prototype = new NPCObject();
 
 function CrystalBarrierNPCTile() {
   this.name = 'CrystalBarrierNPC';
-  this.level = 5;
-  this.addhp = 0;
+  this.level = 2;
+  this.addhp = 5;
   this.str = 10;
   this.dex = 3;
   this.int = 3;

@@ -1478,6 +1478,7 @@ mappages["justice_battle"].npcs[7] = {name : 'CrystalBarrierNPC', x : 11, y : 7,
 mappages["justice_battle"].npcs[8] = {name : 'CrystalBarrierNPC', x : 7, y : 3, skintone: '1'};
 mappages["justice_battle"].npcs[9] = {name : 'CrystalBarrierNPC', x : 7, y : 11, skintone: '1'};
 mappages["justice_battle"].npcs[10] = {name : 'CrystalBarrierNPC', x : 3, y : 7, skintone: '1'};
+mappages["justice_battle"].npcs[11] = {name : 'JusticeNPC', x : 7, y : 5, skintone: '1'};
 
 mappages["justice_battle"].desc = "Unknown!";
 mappages["justice_battle"].longdesc = ``;
