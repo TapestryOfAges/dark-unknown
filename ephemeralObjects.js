@@ -807,7 +807,7 @@ FireArmorTile.prototype.flashback = function(attacker) {
     maintext.addText("Flames burn you!");
   }
   let dead = attacker.dealDamage(dmg, this.getAttachedTo(), "fire");
-  ShowEffect(attacker, 700, "master_spritesheet.png", -128, -1856);
+  ShowEffect(attacker, 700, "static.png", RED_SPLAT_X, RED_SPLAT_Y);
   return dead;
 }
 
@@ -1402,7 +1402,7 @@ StormTile.prototype.doEffect = function() {
           let fromcoords = getCoords(castermap,display.centerx, display.topy);
           let tocoords = getCoords(castermap,targetlist[chosenidx].getx(), targetlist[chosenidx].gety());
           let duration = (Math.pow( Math.pow(targetlist[chosenidx].getx() - display.centerx, 2) + Math.pow (targetlist[chosenidx].gety() - display.topy, 2)  , .5)) * 50;
-          let destgraphic = {graphic:"master_spritesheet.png", xoffset:-128, yoffset:-1856, overlay:"spacer.gif"};
+          let destgraphic = {graphic:"static.png", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
           AnimateEffect(cloud, targetlist[chosenidx], fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:0, retval:descval, dmgtype:"lightning"});
           
           targetlist.splice(chosenidx,1);

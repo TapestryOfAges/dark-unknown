@@ -178,10 +178,10 @@ mappages["toshin1"].onload = function(mapref) {
       if (npcs[i].getNPCName() === "Elora") { elora = npcs[i]; } 
     }
     if ((arlan.getCurrentScheduleIndex() >= 14) && (arlan.getCurrentScheduleIndex() <= 15)) {
-      arlan.setGraphicArray(["master_spritesheet.png","","-64","-800"]);
+      arlan.setGraphicArray(["static.png","",-256,-2464]);
     }
     if ((elora.getCurrentScheduleIndex() >= 3) && (elora.getCurrentScheduleIndex() <= 4)) {
-      elora.setGraphicArray(["master_spritesheet.png","","-64","-800"]);
+      elora.setGraphicArray(["static.png","",-256,-2464]);
     }
   }
 }

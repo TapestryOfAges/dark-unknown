@@ -150,7 +150,7 @@ function MainViewDrawTile(themap, centerx, centery, j, i, tp, ev, displayspecs) 
     if ((opac > 0) && (opac < 1)) {
       mview.innerHTML += "<div style='background-image: url(\"graphics/shadow.gif\"); position:absolute;left:0px;top:0px;width:32px;height:32px' /></div>";
     } else if (opac === 0) {
-      mview.innerHTML += "<div style='background-image: url(\"graphics/master_spritesheet.png\"); background-position:-64px -128px; position:absolute;left:0px;top:0px;width:32px;height:32px' /></div>";
+      mview.innerHTML += "<div style='background-image: url(\"graphics/static.png\"); background-position:0px -3104px; position:absolute;left:0px;top:0px;width:32px;height:32px' /></div>";
     }  
   }
 
@@ -182,7 +182,7 @@ function OldMainViewDrawTile(themap, centerx, centery, j, i, tp, ev, displayspec
   if ((opac > 0) && (opac < 1)) {
     mview.innerHTML += "<img src='graphics/shadow.gif' style='position:absolute;left:0px;top:0px' />";
   } else if (opac === 0) {
-    mview.innerHTML += "<div style='background-image: url(\"graphics/master_spritesheet.png\"); background-position:-64px -128px; position:absolute;left:0px;top:0px;width:32px;height:32px' /></div>";
+    mview.innerHTML += "<div style='background-image: url(\"graphics/static.png\"); background-position:0px -3104px; position:absolute;left:0px;top:0px;width:32px;height:32px' /></div>";
   }
 
   if (thiscell.hasOwnProperty("topview")) {
@@ -194,7 +194,7 @@ function OldMainViewDrawTile(themap, centerx, centery, j, i, tp, ev, displayspec
     if ((opac > 0) && (opac < 1)) {
       topview.innerHTML += "<img src='graphics/shadow.gif' style='position:absolute;left:0px;top:0px' />";
     } else if (opac === 0) {
-      topview.innerHTML += "<div style='background-image: url(\"graphics/master_spritesheet.png\"); background-position:-64px -128px; position:absolute;left:0px;top:0px;width:32px;height:32px' /></div>";
+      topview.innerHTML += "<div style='background-image: url(\"graphics/static.png\"); background-position:0px -3104px; position:absolute;left:0px;top:0px;width:32px;height:32px' /></div>";
     }  
   } else {
     topview.innerHTML = "<img id='tile"+j+"x"+i+"' src='graphics/spacer.gif' border='0' alt='tile"+j+"x"+i+" los: " + thiscell.losresult + " light:" + thiscell.lighthere + "' width='32' height='32' title='" + thiscell.desc + "'/>";
@@ -306,7 +306,7 @@ function DoAction(code, ctrl) {
         let prince = targetCursor.prince;
         delete targetCursor.prince;
         prince.realgraphic = prince.getGraphicArray();
-        prince.setGraphicArray(["master_spritesheet.png","","-64","-800"]);
+        prince.setGraphicArray(["static.png","","-256","-2464"]);
         prince.setAttitude("neutral"); // so dragon doesn't attack him
 
         let fieldeffect = localFactory.createTile("Sleep");

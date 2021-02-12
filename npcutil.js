@@ -254,14 +254,14 @@ function Attack(atk, def) {
   }
 
   let hitgraphic = {};
-  hitgraphic.graphic = "master_spritesheet.png";
-  hitgraphic.xoffset = -128;
-  hitgraphic.yoffset = -1856;
+  hitgraphic.graphic = "static.png";
+  hitgraphic.xoffset = RED_SPLAT_X;
+  hitgraphic.yoffset = RED_SPLAT_Y;
   hitgraphic.overlay = "spacer.gif";
   if (dmg === 0) { 
-    hitgraphic.graphic = "master_spritesheet.png"; 
-    hitgraphic.xoffset = -32;
-    hitgraphic.yoffset = -1856;
+    hitgraphic.graphic = "static.png"; 
+    hitgraphic.xoffset = RED_BALL_X;
+    hitgraphic.yoffset = RED_BALL_Y;
   }
   
   let sounds = {start: "", end: snd};

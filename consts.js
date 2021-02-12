@@ -45,3 +45,19 @@ const STAT_MAX = 25;
 const LVL_MAX = 8;
 const TP_PER_LEVEL = 3;
 const XP_MAX = 9999;
+
+//Combat graphics
+const RED_SPLAT_X = -96;
+const RED_SPLAT_Y = -3072;
+const BLUE_SPLAT_X = -128;
+const BLUE_SPLAT_Y = -3072;
+const YELLOW_BALL_X = -160;
+const YELLOW_BALL_Y = -3072;
+const RED_BALL_X = -192;
+const RED_BALL_Y = -3072;
+const BLUE_BALL_X = -224;
+const BLUE_BALL_Y = -3072;
+const PURPLE_BALL_X = -256;
+const PURPLE_BALL_Y = -3072;
+const GREEN_BALL_X = -288;
+const GREEN_BALL_Y = -3072;
