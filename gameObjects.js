@@ -15613,6 +15613,9 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
   }
 
   dmg = CheckAbsorb(dmg,this,src,type);
+  if (this.unkillable && (dmg > this.getHP())) {
+    dmg = this.getHP()-1;
+  }
   this.modHP(dmg*-1);
   if (this.getHP() <= 0) { // killed!
     this.processDeath(1);
