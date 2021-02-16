@@ -483,7 +483,7 @@ ais.Trevor = function(who) {
 ais.GarrickAttack = function(who) {
   let retval = {fin:1};
   let themap = who.getHomeMap();
-  if (who.getHP() <= 1000) { // Garrick gets 1030 hp when he attacks, so he can always surrender
+  if (who.getHP() <= 2) { // Unkillable
     maintext.addText('Garrick falls to his knees and cries, "You win!"');
     retval["wait"] = 1;
     maintext.setInputLine("&gt;[MORE]");
@@ -492,8 +492,8 @@ ais.GarrickAttack = function(who) {
     targetCursor.command = "garrick";
     targetCursor.stage = 0;
     who.setCurrentAI("GarrickEscort");
-    who.setMaxHP(30);
     who.setHP(10);
+    delete who.unkillable;
     who.setAttitude("friendly");
     who.setAggro(0);
     let aoife;
@@ -504,6 +504,7 @@ ais.GarrickAttack = function(who) {
     aoife.setCurrentAI("AoifeEscort");
     aoife.setMaxHP(30);
     aoife.setHP(30);
+    delete aoife.unkillable;
     aoife.setAttitude("friendly");
     aoife.setAggro(0);
     return retval;
@@ -1832,7 +1833,36 @@ ais.Courier = function(who) {
 }
 
 ais.Justice = function(who) {
-  
+  let retval = {fin:1};
+  if (who.getHP() <= 2) {
+
+  }
+  if (!who.phase) {
+    maintext.addText('Justice cries, "Now, welcome to MY domain. You were right, small fool. I AM behind all that has transpired. And now, I\'m afraid you know too much. Good-bye."');
+    who.phase=1;
+  } else if (who.phase === 1) {
+    maintext.addText("Justice begins an incantation in a tongue that is not the language of magic you know... that you recognize as a language at all only because of the spaces between words. Two small portals open, and imps emerge, eyes blazing!");
+    let imp = localFactory.createTile("ImpNPC");
+    let combatmap = who.getHomeMap();
+    combatmap.placeThing(5,8,imp);
+    let imp2 = localFactory.createTile("ImpNPC");
+    combatmap.placeThing(9,8,imp);
+    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+    ShowEffect(imp, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
+    ShowEffect(imp2, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
+    who.phase = 2;
+  } else if (who.phase === 2) {
+    AnnounceSpellcast("Iron Flesh",who,who);
+    magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell(who,0,0,who);
+    who.phase = 3;
+  } else if (who.phase === 3) {
+    AnnounceSpellcast("Protection",who,who);
+    magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].executeSpell(who,0,0,who);
+    who.phase = 4; 
+  } else {
+    // Now for the hard decisions
+    //working here
+  }
 }
 
 ais.ai_cast = function(who) {

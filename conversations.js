@@ -636,8 +636,7 @@ OnConvTriggers["garrick_flipout"] = function(speaker,keyword) {
   else {
     garrick.setCurrentAI("GarrickAttack");
     DebugWrite("plot", "Garrick's AI changes to GarrickAttack.<br />");
-    garrick.setMaxHP(1030);
-    garrick.setHP(1030);
+    garrick.unkillable = 1;
     garrick.setAttitude("enraged");
   }
   if (!aoife) { alert("Couldn't find Aoife to change her AI."); }
@@ -648,6 +647,7 @@ OnConvTriggers["garrick_flipout"] = function(speaker,keyword) {
     aoife.addToInventory(mace,1);
     aoife.setWeapon(mace);  // no longer actually a mace
     aoife.setAttitude("defensive");
+    aoife.unkillable = 1;
     // to set her back, just reset to PeaceAI
   }
 }
