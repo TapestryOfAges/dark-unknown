@@ -14742,6 +14742,7 @@ SandstoneWallTile.prototype.pushMe = function(who) {
   return retval;
 }
 
+// Sadly, currently not used.
 function BlackDragonLadderWallTile() {
   //Graphics Upgraded
   this.name = "BlackDragonLadderWall";
@@ -16218,6 +16219,42 @@ function SiriCloakTile() {
   this.addType("Quest");  
 }
 SiriCloakTile.prototype = new ItemObject();
+
+function JusticeOrbTile() {
+  this.name = "JusticeOrb";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-1856";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "crystal orb";
+  this.longdesc = "A crystalline orb that was in the debris among the shattered, large crystals where you fought Justice.";
+  this.prefix = "a";
+
+  this.addType("Quest");  
+}
+JusticeOrbTile.prototype = new ItemObject();
+  
+JusticeOrbTile.prototype.use = function(who) {
+  let retval = {};
+  retval["fin"] = 1;
+  retval["input"] = "&gt;";
+  retval["txt"] = "Nothing happens here.";
+
+  let themap = who.getHomeMap();
+  if ((themap.getName() === "blackdragon3") || (themap.getName() === "blackdragon_int3") || (themap.getName() === "blackdragon_act2_3")) {
+    let feas = themap.getTile(25,20).getFeatures();
+    let field;
+    for (let i=0;i<feas.length;i++) {
+      if (feas[i].getName() === "EnergyField") { field = feas[i]; }
+    }
+    if (field) {
+      themap.deleteThing(field);
+      retval["txt"] = "The crystal glows fiercely for a moment, and without a sound the barrier in the corner of the room disappears, revealing a previously unseen ladder.";
+    }
+  }
+  return retval;
+}
 
 function CrownTile() {
   //Graphics Upgraded

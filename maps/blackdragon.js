@@ -528,14 +528,15 @@ mappages["blackdragon3"].terrain[44] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb s
 
 mappages["blackdragon3"].features = [];
 mappages["blackdragon3"].features[0] = {name : 'StairDown2', x : 25, y : 21, entermap : 'blackdragon2', enterx : 25, entery : 21};
-mappages["blackdragon3"].features[1] = {name : 'BlackDragonLadderWall', x : 24, y : 20};
-mappages["blackdragon3"].features[2] = {name : 'BedHead', x : 25, y : 24};
-mappages["blackdragon3"].features[3] = {name : 'BedFoot', x : 26, y : 24};
-mappages["blackdragon3"].features[4] = {name : 'Mirror', x : 28, y : 20};
-mappages["blackdragon3"].features[5] = {name : 'Dresser', x : 28, y : 24};
-mappages["blackdragon3"].features[6] = {name : 'LeftTable', x : 25, y : 22};
-mappages["blackdragon3"].features[7] = {name : 'RightTable', x : 26, y : 22};
-mappages["blackdragon3"].features[8] = {name : 'RightChair', x : 27, y : 22};
+mappages["blackdragon3"].features[1] = {name : 'BedHead', x : 25, y : 24};
+mappages["blackdragon3"].features[2] = {name : 'BedFoot', x : 26, y : 24};
+mappages["blackdragon3"].features[3] = {name : 'Mirror', x : 28, y : 20};
+mappages["blackdragon3"].features[4] = {name : 'Dresser', x : 28, y : 24};
+mappages["blackdragon3"].features[5] = {name : 'LeftTable', x : 25, y : 22};
+mappages["blackdragon3"].features[6] = {name : 'RightTable', x : 26, y : 22};
+mappages["blackdragon3"].features[7] = {name : 'RightChair', x : 27, y : 22};
+mappages["blackdragon3"].features[8] = {name : 'LadderUp', x : 25, y : 20, entermap : 'blackdragon4', enterx : 25, entery : 20};
+mappages["blackdragon3"].features[9] = {name : 'EnergyField', x : 25, y : 20};
 
 
 mappages["blackdragon3"].npcs = [];
@@ -1146,14 +1147,16 @@ mappages["blackdragon_int3"].terrain[44] = 'sb sb sb sb sb sb sb sb sb sb sb sb 
 
 mappages["blackdragon_int3"].features = [];
 mappages["blackdragon_int3"].features[0] = {name : 'StairDown2', x : 25, y : 21, entermap : 'blackdragon_int2', enterx : 25, entery : 21};
-mappages["blackdragon_int3"].features[1] = {name : 'BlackDragonLadderWall', x : 24, y : 20};
-mappages["blackdragon_int3"].features[2] = {name : 'BedHead', x : 25, y : 24};
-mappages["blackdragon_int3"].features[3] = {name : 'BedFoot', x : 26, y : 24};
-mappages["blackdragon_int3"].features[4] = {name : 'Mirror', x : 28, y : 20};
-mappages["blackdragon_int3"].features[5] = {name : 'Dresser', x : 28, y : 24};
-mappages["blackdragon_int3"].features[6] = {name : 'LeftTable', x : 25, y : 22};
-mappages["blackdragon_int3"].features[7] = {name : 'RightTable', x : 26, y : 22};
-mappages["blackdragon_int3"].features[8] = {name : 'RightChair', x : 27, y : 22};
+mappages["blackdragon_int3"].features[1] = {name : 'BedHead', x : 25, y : 24};
+mappages["blackdragon_int3"].features[2] = {name : 'BedFoot', x : 26, y : 24};
+mappages["blackdragon_int3"].features[3] = {name : 'Mirror', x : 28, y : 20};
+mappages["blackdragon_int3"].features[4] = {name : 'Dresser', x : 28, y : 24};
+mappages["blackdragon_int3"].features[5] = {name : 'LeftTable', x : 25, y : 22};
+mappages["blackdragon_int3"].features[6] = {name : 'RightTable', x : 26, y : 22};
+mappages["blackdragon_int3"].features[7] = {name : 'RightChair', x : 27, y : 22};
+mappages["blackdragon_int3"].features[8] = {name : 'LadderUp', x : 25, y : 20, entermap : 'blackdragon_int4', enterx : 25, entery : 20};
+mappages["blackdragon_int3"].features[9] = {name : 'EnergyField', x : 25, y : 20};
+
 
 
 mappages["blackdragon_int3"].npcs = [];

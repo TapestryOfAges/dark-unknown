@@ -4248,6 +4248,11 @@ tileFactory.prototype.makeSiriCloakTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeJusticeOrbTile = function() {
+  let newTile = new JusticeOrbTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeCrownTile = function() {
   let newTile = new CrownTile();
   return newTile;
