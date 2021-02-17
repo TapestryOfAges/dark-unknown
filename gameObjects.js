@@ -16221,10 +16221,11 @@ function SiriCloakTile() {
 SiriCloakTile.prototype = new ItemObject();
 
 function JusticeOrbTile() {
+  //Graphics Upgraded
   this.name = "JusticeOrb";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-1856";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -70*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "crystal orb";
