@@ -11790,6 +11790,9 @@ function RuinedBookshelfOneTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bookshelf";
+  this.lootonce = 1;
+	this.lootgroup = "";
+	this.lootedid = "";
 }
 RuinedBookshelfOneTile.prototype = new FeatureObject();
 
@@ -11803,6 +11806,9 @@ function RuinedBookshelfLeftTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bookshelf";
+  this.lootonce = 1;
+	this.lootgroup = "";
+	this.lootedid = "";
 }
 RuinedBookshelfLeftTile.prototype = new FeatureObject();
 
@@ -11816,6 +11822,9 @@ function RuinedBookshelfRightTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bookshelf";
+  this.lootonce = 1;
+	this.lootgroup = "";
+	this.lootedid = "";
 }
 RuinedBookshelfRightTile.prototype = new FeatureObject();
 
