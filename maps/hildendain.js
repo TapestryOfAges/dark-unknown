@@ -430,6 +430,10 @@ mappages["hildendain"].features[358] = {name : 'IllusionaryEnergyField', x : 31,
 mappages["hildendain"].features[359] = {name : 'IllusionaryEnergyField', x : 31, y : 8};
 mappages["hildendain"].features[360] = {name : 'IllusionaryEnergyField', x : 30, y : 8};
 mappages["hildendain"].features[361] = {name : 'WardukeWalkOn', x : 30, y : 7};
+mappages["hildendain"].features[362] = {name : 'BookshelfLeft', x : 18, y : 2};
+mappages["hildendain"].features[363] = {name : 'BookshelfLeft', x : 20, y : 2};
+mappages["hildendain"].features[364] = {name : 'BookshelfRight', x : 21, y : 2};
+mappages["hildendain"].features[365] = {name : 'BookshelfRight', x : 19, y : 2, lootedid : 'castlehildbook', searchyield : 'AudachtaNemesosTremor'};
 
 mappages["hildendain"].npcs = [];
 mappages["hildendain"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 13, y : 33, NPCName: 'Aaron', PeaceAI: 'scheduled', Schedule: 'aaron', Conversation: 'aaron', Gender: 'male', Merch: 'aaron', NPCBand: '0', OverrideGraphic: 'civ_blue.gif', skintone: '1'};
