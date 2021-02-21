@@ -1835,13 +1835,34 @@ ais.Courier = function(who) {
 ais.Justice = function(who) {
   let retval = {fin:1};
   if (who.getHP() <= 2) {
-
-  }
-  if (!who.phase) {
+    retval.wait = 1; // animation will occur, we'll handle restarting the scheduler
+    maintext.addText('Justice gasps, then says, "You are more formidable than I anticipated. But it will not avail you. What has been put into motion cannot be stopped! Good-bye!"');
+    maintext.setInputLine("[MORE]");
+    drawTextFrame();
+    gamestate.setMode("anykey");
+    targetCursor.command="justice";
+    targetCursor.justice = who;
+    return retval;
+  } else if ((who.getMana()<5) && (who.drankpotion)) {
+    retval.wait = 1; // animation will occur, we'll handle restarting the scheduler
+    maintext.addText('Justice growls and cries, "How is it that you still stand? No matter... what has been put into motion cannot be stopped. Good-bye!"');
+    maintext.setInputLine("[MORE]");
+    drawTextFrame();
+    gamestate.setMode("anykey");
+    targetCursor.command="justice";
+    return retval;
+  } else if (who.getMana()<5) {
+    maintext.addText('Justice takes a potion from a pouch by her side, and drinks.');
+    drawTextFrame();
+    who.setMana(20);
+    ShowEffect(who, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
+  } else if (!who.phase) {
     maintext.addText('Justice cries, "Now, welcome to MY domain. You were right, small fool. I AM behind all that has transpired. And now, I\'m afraid you know too much. Good-bye."');
+    drawTextFrame();
     who.phase=1;
   } else if (who.phase === 1) {
     maintext.addText("Justice begins an incantation in a tongue that is not the language of magic you know... that you recognize as a language at all only because of the spaces between words. Two small portals open, and imps emerge, eyes blazing!");
+    drawTextFrame();
     let imp = localFactory.createTile("ImpNPC");
     let combatmap = who.getHomeMap();
     combatmap.placeThing(5,8,imp);

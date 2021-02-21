@@ -296,6 +296,33 @@ function DoAction(code, ctrl) {
       } else {
         gamestate.setMode("anykey");
       }
+    } else if (targetCursor.command === "justice") { 
+      if (!targetCursor.frame) {
+        maintext.addText("Justice draws an eldritch symbol in the air and speaks on syllable in a harsh tone...");
+        maintext.drawTextFrame();
+        targetCursor.frame = 1;
+      } else {
+        gamestate.setMode("null");
+        let moongate = localFactory.createTile("Moongate");
+        moongate.destmap = moongate.getHomeMap().getName();
+        moongate.destx = moongate.getx();
+        moongate.desty = moongate.gety();
+        themap.placeThing(112,67,moongate);
+        DrawMainFrame("one",PC.getHomeMap(),targetCursor.justice.getx(),targetCursor.justice.gety());
+        animateImage(0,-128,moongate,0,"right",300,0,1);
+        setTimeout(function() { 
+          targetCursor.justice.endTurn();
+          targetCursor.justice.getHomeMap().deleteThing(targetCursor.justice);
+          DUTime.removeEntityFrom(targetCursor.justice);
+          maintext.addText("...and she vanishes.");
+          maintext.setInputLine("&gt;");
+          maintext.drawTextFrame();
+          animateImage(-128,0,moongate,0,"left",300,1,0);
+          delete targetCursor.justice;
+          delete targetCursor.frame;
+          delete targetCursor.command;
+        }, 1200);
+      }
     } else if (targetCursor.command === "endact") {
       if (targetCursor.endact === 1) {
         maintext.addText('The dragon looks at him, and then at you. "How disappointing."');

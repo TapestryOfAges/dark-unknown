@@ -558,7 +558,7 @@ mappages["blackdragon3"].alwaysRemember = '0';
 mappages["blackdragon3"].scale = '1';
 mappages["blackdragon3"].underground = '0';
 mappages["blackdragon3"].undergroundDesc = '';
-mappages["blackdragon3"].enterscript = '';
+mappages["blackdragon3"].enterscript = 'OrbPulse';
 mappages["blackdragon3"].entertestscript = '';
 mappages["blackdragon3"].exitscript = '';
 mappages["blackdragon3"].exittestscript = '';
@@ -568,6 +568,16 @@ mappages["blackdragon3"].returny = '74';
 mappages["blackdragon3"].returninfused = '0';
 mappages["blackdragon3"].linkedMaps = ["blackdragon2","blackdragon","blackdragon4"];
 mappages["blackdragon3"].editorLabels = '{}';
+
+mappages["blackdragon3"].OrbPulse = function(mapref) {
+  mapref.Enter = function(who,frommap,oldx,oldy,destx,desty) {
+    if (who === PC) {
+      if (who.checkInventory("JusticeOrb")) {
+        maintext.addText("The strange blue, crystalline orb you are carrying begins to pulse with a slow, blue light.");
+      }
+    }
+  }
+}
 
 
 mappages["blackdragon4"] = {};
@@ -1188,6 +1198,16 @@ mappages["blackdragon_int3"].returninfused = '0';
 mappages["blackdragon_int3"].linkedMaps = ["blackdragon_int2","blackdragon_int","blackdragon_int4"];
 mappages["blackdragon_int3"].editorLabels = '{}';
 
+mappages["blackdragon_int3"].OrbPulse = function(mapref) {
+  mapref.Enter = function(who,frommap,oldx,oldy,destx,desty) {
+    if (who === PC) {
+      if (who.checkInventory("JusticeOrb")) {
+        maintext.addText("The strange blue, crystalline orb you are carrying begins to pulse with a slow, blue light.");
+      }
+    }
+  }
+}
+
 mappages["blackdragon_int4"] = {};
 mappages["blackdragon_int4"].terrain = [];
  mappages["blackdragon_int4"].terrain[0] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
@@ -1509,3 +1529,12 @@ mappages["justice_battle"].returny = '22';
 mappages["justice_battle"].returninfused = '0';
 mappages["justice_battle"].linkedMaps = [""];
 mappages["justice_battle"].editorLabels = '{}';
+
+mappages["justice_battle"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    let crystal = mapref.getTile(7,7).getTopNPC();
+    crystal.lootTable = "justicecrystal";
+    let justice = mapref.getTile(7,5).getTopNPC();
+    justice.setMana(35);
+  }
+}
