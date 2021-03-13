@@ -1065,6 +1065,9 @@ OnConvTriggers["cult_attack"] = function(speaker,keyword) {
 
 OnConvTriggers["justice_teleport"] = function(speaker,keyword) {
   DUPlaySound("sfx_teleport");
+  PC.returntox = PC.getx();
+  PC.returntoy = PC.gety();
+  PC.returntomap = PC.getHomeMap().getName();
   let newmap = new GameMap();
   if (maps.getMap("justice_battle")) {
     newmap = maps.getMap("justice_battle");
