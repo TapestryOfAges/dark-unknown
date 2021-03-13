@@ -1834,55 +1834,230 @@ ais.Courier = function(who) {
 
 ais.Justice = function(who) {
   let retval = {fin:1};
+
+  let pcadj = 0;
+  let npcs = who.getHomeMap().npcs.getAll();
+
+  for (let i=0;i<npcs.length;i++) {
+    if (CheckAreEnemies(who,npcs[i])) {
+      if (IsAdjacent(npcs[i],PC)) {
+        pcadj = npcs[i];
+      }
+    }
+  }
+
   if (who.getHP() <= 2) {
     retval.wait = 1; // animation will occur, we'll handle restarting the scheduler
     maintext.addText('Justice gasps, then says, "You are more formidable than I anticipated. But it will not avail you. What has been put into motion cannot be stopped! Good-bye!"');
+    DU.gameflags.setFlag("justice_flees");
     maintext.setInputLine("[MORE]");
-    drawTextFrame();
+    maintext.drawTextFrame();
     gamestate.setMode("anykey");
     targetCursor.command="justice";
     targetCursor.justice = who;
     return retval;
+  } else if (who.getHomeMap().getTile(who.getx(),who.gety()).isHostileTo(who)) {
+    let nearest = FindNearestNPC(who,"enemy");
+    let diffx = who.getx()-nearest.getx();
+    let diffy = who.gety()-nearest.gety();
+    if ((Math.abs(diffy) >= Math.abs(diffx)) && (diffy > 0)) {
+      let destx = who.getx();
+      if (diffx > 0) { destx++; }
+      else if (diffx < 0) { destx--; }
+      StepOrSidestep(who, [who.getx(),who.gety()+1], [destx,who.gety()+1]);
+      return retval;
+    }
+    if ((Math.abs(diffy) >= Math.abs(diffx)) && (diffy < 0)) {
+      let destx = who.getx();
+      if (diffx > 0) { destx++; }
+      else if (diffx < 0) { destx--; }
+      StepOrSidestep(who, [who.getx(),who.gety()-1], [destx,who.gety()-1]);
+      return retval;
+    }
+    if ((Math.abs(diffx) > Math.abs(diffy)) && (diffx > 0)) {
+      let desty = who.gety();
+      if (diffy > 0) { desty++; }
+      else if (diffy < 0) { desty--; }
+      StepOrSidestep(who, [who.getx()+1,who.gety()], [who.getx()+1, desty]);
+      return retval;
+    }
+    if ((Math.abs(diffx) > Math.abs(diffy)) && (diffx < 0)) {
+      let desty = who.gety();
+      if (diffy > 0) { desty++; }
+      else if (diffy < 0) { desty--; }
+      StepOrSidestep(who, [who.getx()-1,who.gety()], [who.getx()-1, desty]);
+      return retval;
+    }
   } else if ((who.getMana()<5) && (who.drankpotion)) {
     retval.wait = 1; // animation will occur, we'll handle restarting the scheduler
     maintext.addText('Justice growls and cries, "How is it that you still stand? No matter... what has been put into motion cannot be stopped. Good-bye!"');
     maintext.setInputLine("[MORE]");
-    drawTextFrame();
+    maintext.drawTextFrame();
     gamestate.setMode("anykey");
     targetCursor.command="justice";
     return retval;
   } else if (who.getMana()<5) {
     maintext.addText('Justice takes a potion from a pouch by her side, and drinks.');
-    drawTextFrame();
+    maintext.drawTextFrame();
     who.setMana(20);
     ShowEffect(who, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
+    who.drankpotion = 1;
+    return retval;
   } else if (!who.phase) {
     maintext.addText('Justice cries, "Now, welcome to MY domain. You were right, small fool. I AM behind all that has transpired. And now, I\'m afraid you know too much. Good-bye."');
-    drawTextFrame();
+    maintext.drawTextFrame();
     who.phase=1;
+    return retval;
   } else if (who.phase === 1) {
     maintext.addText("Justice begins an incantation in a tongue that is not the language of magic you know... that you recognize as a language at all only because of the spaces between words. Two small portals open, and imps emerge, eyes blazing!");
-    drawTextFrame();
+    maintext.drawTextFrame();
     let imp = localFactory.createTile("ImpNPC");
     let combatmap = who.getHomeMap();
     combatmap.placeThing(5,8,imp);
     let imp2 = localFactory.createTile("ImpNPC");
-    combatmap.placeThing(9,8,imp);
+    combatmap.placeThing(9,8,imp2);
     DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
     ShowEffect(imp, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
     ShowEffect(imp2, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
     who.phase = 2;
+    return retval;
   } else if (who.phase === 2) {
     AnnounceSpellcast("Iron Flesh",who,who);
     magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell(who,0,0,who);
     who.phase = 3;
+    return retval;
   } else if (who.phase === 3) {
     AnnounceSpellcast("Protection",who,who);
     magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].executeSpell(who,0,0,who);
-    who.phase = 4; 
+    who.phase = 4;
+    return retval; 
   } else {
-    // Now for the hard decisions
-    //working here
+    let nearest = FindNearestNPC(who,"enemy");
+    let actions = [];
+    if (IsAdjacent(who,nearest)) {
+      if (who.lastaction !== "shockwave") { actions.push({act: "shockwave", tgt: nearest}); }
+      if (who.lastaction !== "blink") { actions.push({act: "blink", tgt: nearest}); }
+      if (who.lastaction !== "iceball") { actions.push({act:"iceball", tgt: nearest}); }
+    } else if (GetDistanceByPath(who,PC,MOVE_WALK) === 4) {
+      let field;
+      let fea = who.getHomeMap().features.getAll();
+      for (let i=0;i<fea.length;i++){
+        if (fea[i].getName() === "FireField") { field = 1; }
+      }
+      if (!field) {
+        let warpath = who.getHomeMap().getPath(who.getx(),who.gety(),PC.getx(),PC.gety(),MOVE_WALK);
+        actions.push({act: "walloffire", tgt: {x:warpath[3].x,y:warpath[3].y}});
+      }
+    } else  if (pcadj) {
+      // PC is next to an ally: explode them.
+      let tgt = PC;
+      if (Dice.roll("1d2") === 1) { tgt = pcadj; }
+      actions.push({act:"explosion", tgt: tgt});
+      // consider limiting frequency, but honestly not going to come up a lot
+    } else {
+      let imps;
+      for (let i=0;i<npcs.length;i++) {
+        if (npcs[i].getName() === "ImpNPC") { imps = 1; }
+      }
+      if (!imps) {
+        actions.push({act: "imps"});
+        actions.push({act: "imps"});
+      }
+      let tgts = [PC];
+      for (let i=0;i<npcs.length;i++) {
+        if (CheckAreEnemies(who,npcs[i])) { tgts.push(npcs[i]); }
+      }
+      let tgt = tgts[RollDice("1d"+tgts.length+"-1")];
+      actions.push({act:"fireball", tgt:tgt});
+      actions.push({act:"iceball", tgt:tgt});
+      actions.push({act:"lifedrain", tgt:tgt});
+
+      let crystal = 0;
+      // check for PC or allies next to crystal, if so, add chance of Explosioning
+      for (let i=0;i<tgts.length;i++) {
+        let cry = 0;
+        let north = who.getHomeMap().getTile(tgts[i].getx(),tgts[i].gety()-1).getTopNPC();
+        let south = who.getHomeMap().getTile(tgts[i].getx(),tgts[i].gety()+1).getTopNPC();
+        let east = who.getHomeMap().getTile(tgts[i].getx()+1,tgts[i].gety()).getTopNPC();
+        let west = who.getHomeMap().getTile(tgts[i].getx()-1,tgts[i].gety()).getTopNPC();
+        if (north) { if (north.getName() === "CrystalBarrierNPC") { cry = 1; } }
+        if (south) { if (north.getName() === "CrystalBarrierNPC") { cry = 1; } }
+        if (east) { if (north.getName() === "CrystalBarrierNPC") { cry = 1; } }
+        if (west) { if (north.getName() === "CrystalBarrierNPC") { cry = 1; } }
+        if (cry) { actions.push({act:"explosion",tgt: tgts[i]}); }
+      }
+    }
+
+    let roll = Dice.roll("1d"+actions.length+"-1");
+    if (actions[roll].act === "blink") {
+      AnnounceSpellcast("Blink",who);
+      magic[SPELL_BLINK_LEVEL][SPELL_BLINK_ID].executeSpell(who,0,0);
+      who.lastaction = "blink";
+      return retval;
+    } else if (actions[roll].act === "shockwave") {
+      AnnounceSpellcast("Shockwave",who);
+      magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].executeSpell(who,0,0);
+      who.lastaction = "shockwave";
+      return retval;
+    } else if (actions[roll].act === "iceball") {
+      AnnounceSpellcast("Iceball",who,actions[roll].tgt);
+      magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].executeSpell(who,0,0,actions[roll].tgt);
+      who.lastaction = "iceball";
+      return retval;
+    } else if (actions[roll].act === "explosion") {
+      AnnounceSpellcast("Explosion",who,actions[roll].tgt);
+      magic[SPELL_EXPLOSION_LEVEL][SPELL_EXPLOSION_ID].executeSpell(who,0,0,actions[roll].tgt);
+      who.lastaction = "explosion";
+      return retval;
+    } else if (actions[roll].act === "fireball") {
+      AnnounceSpellcast("Fireball",who,actions[roll].tgt);
+      magic[SPELL_FIREBALL_LEVEL][SPELL_FIREBALL_ID].executeSpell(who,0,0,actions[roll].tgt);
+      who.lastaction = "fireball";
+      return retval;
+    } else if (actions[roll].act === "lifedrain") {
+      AnnounceSpellcast("Life Drain",who,actions[roll].tgt);
+      magic[SPELL_LIFE_DRAIN_LEVEL][SPELL_LIFE_DRAIN_ID].executeSpell(who,0,0,actions[roll].tgt);
+      who.lastaction = "lifedrain";
+      return retval;
+    } else if (actions[roll].act === "imps") {
+      let impcoords = [[5,6],[5,8],[9,6],[9,8]];
+      let tgtcoords;
+      impcoords = ShuffleArray(impcoords);
+      for (let i=0; i<impcoords.length; i++) {
+        let npcs = who.getHomeMap().getTile(impcoords[i][0],impcoords[i][1]).getTopNPC();
+        if (!npcs) { tgtcoords.push(impcoords[i]); }
+      }
+      if (tgtcoords.length < 2) {
+        let altcoords = [[6,6],[4,6],[6,8],[4,8],[8,6],[10,6],[8,8],[10,8]];
+        altcoords = ShuffleArray(altcoords);
+        let j=0;
+        while ((tgtcoords.length < 2) && (j<altcoords.length)) {
+          let npcs = who.getHomeMap().getTile(altcoords[j][0],altcoords[j][1]).getTopNPC();
+          if (!npcs) { tgtcoords.push(altcoords[j]); }  
+        }
+      }
+
+      maintext.addText("Justice repeats her summoning incantation. Two small portals open, and imps emerge, eyes blazing!");
+      maintext.drawTextFrame();
+      let imp = localFactory.createTile("ImpNPC");
+      let combatmap = who.getHomeMap();
+      combatmap.placeThing(tgtcoords[0][0],tgtcoords[0][1],imp);
+      if (tgtcoords.length >= 2) {
+        let imp2 = localFactory.createTile("ImpNPC");
+        combatmap.placeThing(tgtcoords[1][0],tgtcoords[1][1],imp2);
+      }
+      DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+      ShowEffect(imp, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
+      ShowEffect(imp2, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
+      return retval;
+    } else {
+      console.log("Justice failed to act. What's up?");
+      console.log(actions);
+
+      alert("Justice failed to act.");
+      return retval;
+    }
+
   }
 }
 
