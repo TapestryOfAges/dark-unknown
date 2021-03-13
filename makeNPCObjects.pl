@@ -56,7 +56,7 @@ foreach my $line (<$npcdoc>) {
   }
   if ($fields[14] =~ /\;/) {
     print $out "  this.missileAttackAs = 'none';\n";
-    my @wpnvals = split(';', $fields[13]);
+    my @wpnvals = split(';', $fields[14]);
     print $out "  this.missileDamage = '$wpnvals[0]'\n";
     print $out "  this.missileStrDamage = $wpnvals[1]\n";
     print $out "  this.missileRange = $wpnvals[2]\n";
@@ -135,6 +135,20 @@ foreach my $line (<$npcdoc>) {
   }
   if ($fields[40]) {
     print $out "  this.initOverride = $fields[40];\n";
+  }
+  if ($fields[41]) {
+    # do this if I ever use this field
+  }
+  if ($fields[42]) {
+    if ($fields[42] eq "M") {
+      print $out "  this.gender = 'male';\n";
+    } elsif ($fields[42] eq "F") {
+      print $out "  this.gender = 'female';\n";
+    } elsif ($fields[42] eq "O") {
+      print $out "  this.gender = 'other';\n";
+    } elsif ($fields[42] eq "R") {
+      print $out "  this.gender = 'random';\n";
+    }
   }
   print $out "}\n";
   print $out "$fields[0]" . "NPCTile.prototype = new NPCObject();\n\n";
