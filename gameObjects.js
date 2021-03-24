@@ -3794,6 +3794,16 @@ FeatureObject.prototype.setLootedID = function(lid) {
 
 // end definitions, begin features
 
+function PlaceholderTile() {
+  //This is used to play spell effects over
+  this.name = "Placeholder";
+  this.graphic = "spacer.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "nothing";
+}
+PlaceholderTile.prototype = new FeatureObject();
+
 function CastleGrassTile() {
   this.name = "CastleGrass";
   this.graphic = "master_spritesheet.png";
