@@ -3955,7 +3955,7 @@ NegatorGnomeNPCTile.prototype = new NPCObject();
 
 function CrystalBarrierNPCTile() {
   this.name = 'CrystalBarrierNPC';
-  this.level = 2;
+  this.level = 3;
   this.addhp = 5;
   this.str = 10;
   this.dex = 3;
@@ -3980,7 +3980,7 @@ function CrystalBarrierNPCTile() {
   this.prefix = 'a';
   this.desc = "crystal barrier";
   this.resists = {};
-  this.special = 'crumbles,stationary,noact';
+  this.special = 'crumbles,stationary,noact,ondeathDestroyCrystal';
 }
 CrystalBarrierNPCTile.prototype = new NPCObject();
 
