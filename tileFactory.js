@@ -2033,6 +2033,11 @@ tileFactory.prototype.makeWorldBelowTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makePlaceholderTile = function() {
+  let newTile = new PlaceholderTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeCastleGrassTile = function() {
   let newTile = new CastleGrassTile();
   return newTile;
@@ -2183,13 +2188,8 @@ tileFactory.prototype.makeFencePostTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makePlaceholderTile = function() {
-  let newTile = new PlaceholderTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeCastleGrassTile = function() {
-  let newTile = new CastleGrassTile();
+tileFactory.prototype.makeFenceBrokenPostTile = function() {
+  let newTile = new FenceBrokenPostTile();
   return newTile;
 }
 
