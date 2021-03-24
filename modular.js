@@ -257,6 +257,16 @@ OnDeathFuncs["Borogard"] = function() {
   DU.gameflags.setFlag("borogard_killed",1);
 }
 
+OnDeathFuncs["destroycrystals"] = function(who) {
+  let tile = who.getHomeMap().getTile(who.getx(),who.gety()).getFeatures();
+  for (let i=0;i<tile.length;i++) {
+    if (tile[i].getName() === "BlueCrystal") {
+      who.getHomeMap().deleteThing(tile[i]);
+      return;
+    }
+  }
+}
+
 OnDeathFuncs["endact"] = function() {
   // WORKING HERE
   let endact = localFactory.createTile("UnconsciousEndAct");
