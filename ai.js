@@ -1687,7 +1687,7 @@ function FindCombatPath(who,approach,path) {
     // next up- find the shortest of the available paths
     let shortest = [];
     for (let i = 0; i<availpaths.length; i++) {
-      if (!availpaths[i]) { next; }
+      if (!availpaths[i]) { continue; }
       if (i === 0) {
         shortest = availpaths[i];
       } else if (availpaths[i].length < shortest.length) {
@@ -1833,6 +1833,7 @@ ais.Courier = function(who) {
 }
 
 ais.Justice = function(who) {
+  console.log("Justice turn begins.");
   let retval = {fin:1};
 
   let pcadj = 0;
@@ -1846,7 +1847,12 @@ ais.Justice = function(who) {
     }
   }
 
+  if (pcadj) {
+    console.log("Adjacent to PC: ");
+    console.log(pcadj);
+  }
   if (who.getHP() <= 2) {
+    console.log("Justice is badly wounded and will flee.");
     retval.wait = 1; // animation will occur, we'll handle restarting the scheduler
     maintext.addText('Justice gasps, then says, "You are more formidable than I anticipated. But it will not avail you. What has been put into motion cannot be stopped! Good-bye!"');
     DU.gameflags.setFlag("justice_flees");
@@ -1857,6 +1863,7 @@ ais.Justice = function(who) {
     targetCursor.justice = who;
     return retval;
   } else if (who.getHomeMap().getTile(who.getx(),who.gety()).isHostileTo(who)) {
+    console.log("Justice is standing in a fire field.");
     let nearest = FindNearestNPC(who,"enemy");
     let diffx = who.getx()-nearest.getx();
     let diffy = who.gety()-nearest.gety();
@@ -1890,6 +1897,7 @@ ais.Justice = function(who) {
     }
   } else if ((who.getMana()<5) && (who.drankpotion)) {
     retval.wait = 1; // animation will occur, we'll handle restarting the scheduler
+    console.log("Justice is out of mana for a second time.");
     maintext.addText('Justice growls and cries, "How is it that you still stand? No matter... what has been put into motion cannot be stopped. Good-bye!"');
     maintext.setInputLine("[MORE]");
     maintext.drawTextFrame();
@@ -1897,6 +1905,7 @@ ais.Justice = function(who) {
     targetCursor.command="justice";
     return retval;
   } else if (who.getMana()<5) {
+    console.log("Justice downs a potion.")
     maintext.addText('Justice takes a potion from a pouch by her side, and drinks.');
     maintext.drawTextFrame();
     who.setMana(20);
@@ -1917,8 +1926,8 @@ ais.Justice = function(who) {
     let imp2 = localFactory.createTile("ImpNPC");
     combatmap.placeThing(9,8,imp2);
     DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
-    ShowEffect(imp, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
-    ShowEffect(imp2, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
+    ShowEffect(imp, 3000, "spellsparkles-anim.gif", 0, COLOR_RED);
+    ShowEffect(imp2, 3000, "spellsparkles-anim.gif", 0, COLOR_RED);
     who.phase = 2;
     return retval;
   } else if (who.phase === 2) {
@@ -1933,62 +1942,93 @@ ais.Justice = function(who) {
     return retval; 
   } else {
     let nearest = FindNearestNPC(who,"enemy");
+    console.log("Justice is nearest to:");
+    console.log(nearest);
     let actions = [];
+    let choice = 0;
     if (IsAdjacent(who,nearest)) {
       if (who.lastaction !== "shockwave") { actions.push({act: "shockwave", tgt: nearest}); }
       if (who.lastaction !== "blink") { actions.push({act: "blink", tgt: nearest}); }
       if (who.lastaction !== "iceball") { actions.push({act:"iceball", tgt: nearest}); }
+      choice = 1;
+      console.log("Justice is adjacent to an enemy, and so her actions list is:");
+      console.log(actions);
     } else if (GetDistanceByPath(who,PC,MOVE_WALK) === 4) {
+      console.log("PC is 4 steps away from Justice.");
       let field;
       let fea = who.getHomeMap().features.getAll();
       for (let i=0;i<fea.length;i++){
-        if (fea[i].getName() === "FireField") { field = 1; }
+        if (fea[i].getName() === "FireField") { 
+          if (((fea[i].getx() === 5) && (fea[i].gety() === 5)) ||
+              ((fea[i].getx() === 5) && (fea[i].gety() === 9)) ||
+              ((fea[i].getx() === 9) && (fea[i].gety() === 5)) ||
+              ((fea[i].getx() === 9) && (fea[i].gety() === 9))) {
+            // One of the fire fields that Justice didn't cast, continue
+          } else {
+            console.log("There is a field on the field that Justice created, so she will skip casting another Wall of Fire.");
+            field = 1; 
+          }
+        }
       }
       if (!field) {
         let warpath = who.getHomeMap().getPath(who.getx(),who.gety(),PC.getx(),PC.gety(),MOVE_WALK);
         actions.push({act: "walloffire", tgt: {x:warpath[3].x,y:warpath[3].y}});
+        choice = 1;
       }
-    } else  if (pcadj) {
-      // PC is next to an ally: explode them.
-      let tgt = PC;
-      if (Dice.roll("1d2") === 1) { tgt = pcadj; }
-      actions.push({act:"explosion", tgt: tgt});
-      // consider limiting frequency, but honestly not going to come up a lot
-    } else {
-      let imps;
-      for (let i=0;i<npcs.length;i++) {
-        if (npcs[i].getName() === "ImpNPC") { imps = 1; }
-      }
-      if (!imps) {
-        actions.push({act: "imps"});
-        actions.push({act: "imps"});
-      }
-      let tgts = [PC];
-      for (let i=0;i<npcs.length;i++) {
-        if (CheckAreEnemies(who,npcs[i])) { tgts.push(npcs[i]); }
-      }
-      let tgt = tgts[RollDice("1d"+tgts.length+"-1")];
-      actions.push({act:"fireball", tgt:tgt});
-      actions.push({act:"iceball", tgt:tgt});
-      actions.push({act:"lifedrain", tgt:tgt});
-
-      let crystal = 0;
-      // check for PC or allies next to crystal, if so, add chance of Explosioning
-      for (let i=0;i<tgts.length;i++) {
-        let cry = 0;
-        let north = who.getHomeMap().getTile(tgts[i].getx(),tgts[i].gety()-1).getTopNPC();
-        let south = who.getHomeMap().getTile(tgts[i].getx(),tgts[i].gety()+1).getTopNPC();
-        let east = who.getHomeMap().getTile(tgts[i].getx()+1,tgts[i].gety()).getTopNPC();
-        let west = who.getHomeMap().getTile(tgts[i].getx()-1,tgts[i].gety()).getTopNPC();
-        if (north) { if (north.getName() === "CrystalBarrierNPC") { cry = 1; } }
-        if (south) { if (north.getName() === "CrystalBarrierNPC") { cry = 1; } }
-        if (east) { if (north.getName() === "CrystalBarrierNPC") { cry = 1; } }
-        if (west) { if (north.getName() === "CrystalBarrierNPC") { cry = 1; } }
-        if (cry) { actions.push({act:"explosion",tgt: tgts[i]}); }
+    } 
+    if (!choice) {
+      console.log("Justice hasn't made a choice yet...");
+      if (pcadj) {
+        // PC is next to an ally: explode them.
+        let tgt = PC;
+        if (Dice.roll("1d2") === 1) { tgt = pcadj; }
+        actions.push({act:"explosion", tgt: tgt});
+        // consider limiting frequency, but honestly not going to come up a lot
+        console.log("PC is adjacent to one of the PC's allies. Justice will cast Explosion to catch them both. Adjacent ally is:");
+        console.log(pcadj);
+      } else {
+        let imps;
+        for (let i=0;i<npcs.length;i++) {
+          if (npcs[i].getName() === "ImpNPC") { imps = 1; }
+        }
+        console.log("Are there imps? " + imps);
+        if (!imps) {
+          actions.push({act: "imps"});
+          actions.push({act: "imps"});
+          console.log("There were no imps, so adding summoning more to the actions list.");
+        }
+        let tgts = [PC];
+        for (let i=0;i<npcs.length;i++) {
+          if (CheckAreEnemies(who,npcs[i])) { tgts.push(npcs[i]); }
+        }
+        console.log("List of possible targets:");
+        console.log(tgts);
+        let tgt = tgts[Dice.roll("1d"+tgts.length+"-1")];
+        console.log("Chose target:");
+        console.log(tgt);
+        actions.push({act:"fireball", tgt:tgt});
+        actions.push({act:"iceball", tgt:tgt});
+        actions.push({act:"lifedrain", tgt:tgt});
+  
+        // check for PC or allies next to crystal, if so, add chance of Explosioning
+        for (let i=0;i<tgts.length;i++) {
+          let cry = 0;
+          let north = who.getHomeMap().getTile(tgts[i].getx(),tgts[i].gety()-1).getTopNPC();
+          let south = who.getHomeMap().getTile(tgts[i].getx(),tgts[i].gety()+1).getTopNPC();
+          let east = who.getHomeMap().getTile(tgts[i].getx()+1,tgts[i].gety()).getTopNPC();
+          let west = who.getHomeMap().getTile(tgts[i].getx()-1,tgts[i].gety()).getTopNPC();
+          if (north) { if (north.getName() === "CrystalBarrierNPC") { cry = 1; } }
+          if (south) { if (south.getName() === "CrystalBarrierNPC") { cry = 1; } }
+          if (east) { if (east.getName() === "CrystalBarrierNPC") { cry = 1; } }
+          if (west) { if (west.getName() === "CrystalBarrierNPC") { cry = 1; } }
+          if (cry) { actions.push({act:"explosion",tgt: tgts[i]}); }
+        }
       }
     }
-
+    console.log("actions list:");
+    console.log(actions);
     let roll = Dice.roll("1d"+actions.length+"-1");
+    console.log("Rolled: " + roll);
     if (actions[roll].act === "blink") {
       AnnounceSpellcast("Blink",who);
       magic[SPELL_BLINK_LEVEL][SPELL_BLINK_ID].executeSpell(who,0,0);
@@ -2021,7 +2061,7 @@ ais.Justice = function(who) {
       return retval;
     } else if (actions[roll].act === "imps") {
       let impcoords = [[5,6],[5,8],[9,6],[9,8]];
-      let tgtcoords;
+      let tgtcoords = [];
       impcoords = ShuffleArray(impcoords);
       for (let i=0; i<impcoords.length; i++) {
         let npcs = who.getHomeMap().getTile(impcoords[i][0],impcoords[i][1]).getTopNPC();
@@ -2040,15 +2080,18 @@ ais.Justice = function(who) {
       maintext.addText("Justice repeats her summoning incantation. Two small portals open, and imps emerge, eyes blazing!");
       maintext.drawTextFrame();
       let imp = localFactory.createTile("ImpNPC");
+      let imp2;
       let combatmap = who.getHomeMap();
       combatmap.placeThing(tgtcoords[0][0],tgtcoords[0][1],imp);
       if (tgtcoords.length >= 2) {
-        let imp2 = localFactory.createTile("ImpNPC");
+        imp2 = localFactory.createTile("ImpNPC");
         combatmap.placeThing(tgtcoords[1][0],tgtcoords[1][1],imp2);
       }
       DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
       ShowEffect(imp, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
-      ShowEffect(imp2, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
+      if (imp2) {
+        ShowEffect(imp2, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
+      }
       return retval;
     } else {
       console.log("Justice failed to act. What's up?");
