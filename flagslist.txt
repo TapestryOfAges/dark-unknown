@@ -163,3 +163,4 @@ talked_rhys - you've talked to Rhys enough to know to confront Justice
 cult_attack - the cult has attacked in Shadow 3
 cult_atk_convo - Rhys has talked about the cult attack
 justice_teleport - she takes you both to her battleground
+justice_flees - you have defeated Justice in her battleground

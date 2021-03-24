@@ -2183,8 +2183,13 @@ tileFactory.prototype.makeFencePostTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeFenceBrokenPostTile = function() {
-  let newTile = new FenceBrokenPostTile();
+tileFactory.prototype.makePlaceholderTile = function() {
+  let newTile = new PlaceholderTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCastleGrassTile = function() {
+  let newTile = new CastleGrassTile();
   return newTile;
 }
 
@@ -6360,6 +6365,11 @@ tileFactory.prototype.makeCourierFleeTile = function() {
 
 tileFactory.prototype.makeCourierSurrenderTile = function() {
   let newTile = new CourierSurrenderTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeJusticeCollapseTile = function() {
+  let newTile = new JusticeCollapseTile();
   return newTile;
 }
 

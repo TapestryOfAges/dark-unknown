@@ -1058,7 +1058,7 @@ function DoAction(code, ctrl) {
         gamestate.setMode("saving");
         let timer = gamestate.saveGame(idx); 
         let hours = Math.floor(timer/(60*60));
-        let minutes = Math.floor((timer-hours)/60);
+        let minutes = Math.floor((timer-(hours*60*60))/60);
         if (minutes < 10) { minutes = "0" + minutes; }
 		    maintext.addText("Quit &amp; Save: Saving game...<br />Time played: " + hours + ":" + minutes + ".");
         maintext.setInputLine("&gt;");

@@ -1667,3 +1667,52 @@ CourierSurrenderTile.prototype.endEffect = function(silent) {
   return 1;
 }
 
+function JusticeCollapseTile() {
+  this.addType("debuff");
+  this.name = "JusticeCollapse";
+  this.display = "<span style='color:#0000ee'>J</span>";
+  this.zstatdesc = "The map is collapsing.";
+  this.desc = "Map collapse";
+  this.level = 1;
+  this.dispellable = 0;
+}
+JusticeCollapseTile.prototype = new EphemeralObject();
+
+JusticeCollapseTile.prototype.applyEffect = function(silent) {
+  return 1;
+}
+
+JusticeCollapseTile.prototype.doEffect = function() {
+  let npcs = PC.getHomeMap().npcs.getAll();
+  for (let i=0;i<npcs.length;i++) {
+    if (npcs[i].getName() === "JusticeNPC") { console.log("Justice still up, orb doesn't start to end the world."); return; }
+  }
+  if (level === 1) {
+    maintext.addText("This strange place begins shaking itself apart!");
+    Earthquake();
+  } else if (level === 3) {
+    Earthquake();
+  } else if (level === 5) {
+    maintext.addText("Cracks appear in every surface, and a bright light shines through, overwhelming your vision! When you come to, you are... back where you started.");
+    if (maps.getMap(PC.returntomap)) {
+      newmap = maps.getMap(PC.returntomap);
+    } else {
+      newmap = maps.addMap(PC.returntomap);
+    }
+    MoveBetweenMaps(PC,PC.getHomeMap(),newmap,PC.returntox,PC.returntoy);		  
+    delete PC.returntomap;
+    delete PC.returntox;
+    delete PC.returntoy;
+    DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
+  }
+    
+  this.level++;
+}
+
+JusticeCollapseTile.prototype.eachTurn = function() {
+  return this.doEffect();
+}
+
+JusticeCollapseTile.prototype.endEffect = function(silent) {
+  return 1;
+}

@@ -2059,7 +2059,7 @@ magic[SPELL_BLINK_LEVEL][SPELL_BLINK_ID].executeSpell = function(caster, infused
   let possdest = [];
   for (let i=-4;i<=4;i++) {
     for (let j=-4;j<=4;j++) {
-      if ((i==casterx) && (j==castery)) { next; }
+      if ((i==casterx) && (j==castery)) { continue; }
       let loc = {};
       loc.x = casterx+i;
       loc.y = castery+j;
@@ -2734,7 +2734,7 @@ magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].executeSpell = function(caster,
   let spellmap = caster.getHomeMap();
   for (let xdiff=-1; xdiff<=1; xdiff++) {
     for (let ydiff=-1;ydiff<=1; ydiff++) {
-      if ((xdiff === 0) && (ydiff === 0)) { next; }
+      if ((xdiff === 0) && (ydiff === 0)) { continue; }
       let tile = spellmap.getTile(caster.getx()+xdiff, caster.gety()+ydiff);
       let badguy = tile.getTopNPC();
       if (badguy) {
@@ -2748,7 +2748,7 @@ magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].executeSpell = function(caster,
         }
 
         if (!resist) {
-          badguy.moveMe(diffx,diffy,1);
+          badguy.moveMe(xdiff,ydiff,1);
         }
         badguy.dealDamage(dmg,caster,"force");
         ShowEffect(badguy, 700, "static.png", RED_SPLAT_X, RED_SPLAT_Y);
@@ -2926,13 +2926,13 @@ function PerformSwordstrike(caster, infused, free, tgt) {
   
   for (let diffx = -1; diffx <=1; diffx++) {
     for (let diffy = -1; diffy <=1; diffy++) {
-      if ((diffx === 0) && (diffy === 0)) { next; }
+      if ((diffx === 0) && (diffy === 0)) { continue; }
       dmg = RollDamage(DMG_LIGHT);
       if ((tgt.getx()+diffx === PC.getx()) && (tgt.gety()+diffy === PC.gety())) {
         if (CheckResist(caster,PC,infused,0)) { dmg = dmg/2 +1; }
         PC.dealDamage(dmg,caster,"physical");
         ShowEffect(PC, 700, "static.png", RED_SPLAT_X, RED_SPLAT_Y);
-        next;
+        continue;
       }
       let tile = castmap.getTile(tgt.getx()+diffx,tgt.gety()+diffy);
       let badguy = tile.getTopNPC();
@@ -3078,13 +3078,13 @@ function PerformExplosion(caster, infused, free, tgt) {
   PlayCastSound(caster,"sfx_explosion");
   for (let diffx = -1; diffx <=1; diffx++) {
     for (let diffy = -1; diffy <=1; diffy++) {
-      if ((diffx === 0) && (diffy === 0)) { next; }
+      if ((diffx === 0) && (diffy === 0)) { continue; }
 //      dmg = RollDamage(DMG_LIGHT);
       if ((tgt.getx()+diffx === PC.getx()) && (tgt.gety()+diffy === PC.gety())) {
         if (CheckResist(caster,PC,infused,0)) { dmg = dmg/2 +1; }
         PC.dealDamage(dmg,caster,"fire");
         ShowEffect(PC, 700, "static.png", RED_SPLAT_X, RED_SPLAT_Y);
-        next;
+        continue;
       }
       let tile = castmap.getTile(tgt.getx()+diffx,tgt.gety()+diffy);
       let badguy = tile.getTopNPC();
@@ -3097,6 +3097,8 @@ function PerformExplosion(caster, infused, free, tgt) {
           TurnMapHostile(castmap);
           hostile = 1;
         }
+      } else {
+        ShowEffect(0, 700, "static.png", RED_SPLAT_X, RED_SPLAT_Y, {x:tgt.getx()+diffx, y:tgt.gety()+diffy});
       }
     }
   }
@@ -4015,7 +4017,13 @@ function TravelByMoongate(who, color, destmap, destx, desty) {
 
 let spellcount = {};
 
-function ShowEffect(onwhat, duration, graphic, xoff, yoff) {
+function ShowEffect(onwhat, duration, graphic, xoff, yoff, extraparams) {
+  let temporary = 0;
+  if (!onwhat) {
+    onwhat = localFactory.createTile("Placeholder");
+    extraparams.map.placeThing(extraparams.x,extraparams.y,onwhat);
+    temporary = 1;
+  }
   // duration in ms
   if (Object.keys(spellcount).length === 0) {
     DebugWrite("magic", "Clearing the spelleffects of empty divs.<br />");
@@ -4065,6 +4073,9 @@ function ShowEffect(onwhat, duration, graphic, xoff, yoff) {
         acton.style.backgroundImage = "";
       }
       delete spellcount["anim" + onwhat.getSerial()];
+      if (temporary) {
+        onwhat.getHomeMap().deleteThing(onwhat);
+      }
     },duration);
   }
 }

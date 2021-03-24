@@ -81,6 +81,10 @@ NPCSpecialFuncs["ondeathCult"] = function(who,how) {
   who.onDeath = "cult";
 }
 
+NPCSpecialFuncs["ondeathDestroyCrystal"] = function(who,how) {
+  who.onDeath = "destroycrystals";
+}
+
 function TurnMapHostile(map) {
   DebugWrite("combat", "Attacked a friendly! Turning hostile...<br />");
   PC.diffKarma(-10); 
@@ -352,10 +356,17 @@ function GetCoordsWithOffsets(direction, from, to) {
   
 function GetDamageDescriptor(who) {
   let ratio = who.getHP() / who.getMaxHP();
-  if (ratio > .66) { return ("lightly wounded"); }
-  if (ratio > .4) { return ("moderately wounded"); }
-  if (ratio > .2) { return ("heavily wounded"); }
-  return ("deathly wounded");
+  if (who.specials.noact) {
+    if (ratio > .66) { return ("lightly damaged"); }
+    if (ratio > .4) { return ("moderately damaged"); }
+    if (ratio > .2) { return ("heavily damaged"); }
+    return ("catastrophically damaged");
+  } else {
+    if (ratio > .66) { return ("lightly wounded"); }
+    if (ratio > .4) { return ("moderately wounded"); }
+    if (ratio > .2) { return ("heavily wounded"); }
+    return ("deathly wounded");
+  }
 }
 
 function CanMissileAttack(who) {

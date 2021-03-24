@@ -6752,6 +6752,16 @@ FeatureObject.prototype.setLootedID = function(lid) {
 
 // end definitions, begin features
 
+function PlaceholderTile() {
+  //This is used to play spell effects over
+  this.name = "Placeholder";
+  this.graphic = "spacer.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "nothing";
+}
+PlaceholderTile.prototype = new FeatureObject();
+
 function CastleGrassTile() {
   this.name = "CastleGrass";
   this.graphic = "master_spritesheet.png";
@@ -16266,6 +16276,14 @@ JusticeOrbTile.prototype.use = function(who) {
   return retval;
 }
 
+JusticeOrbTile.prototype.onGet = function(who) {
+  let newcrystal = localFactory.createTile("CrystalBarrierNPC");
+  who.getHomeMap().placeThing(0,0,newcrystal);
+  newcrystal.invisible = 1;
+  let cataclysm = localFactory.createTile("JusticeCollapse");
+  newcrystal.addSpellEffect(cataclysm);
+}
+
 function CrownTile() {
   //Graphics Upgraded
   this.name = "Crown";
@@ -21330,6 +21348,11 @@ NPCObject.prototype.getGender = function() {
 
 NPCObject.prototype.getGenderedTerms = function() {
   let gt = {};
+  if (this.gender === "random") {
+    if (Dice.roll("1d2") === 2) { this.gender = "male"; }
+    else { this.gender = "female"; }
+  }
+  
   if (this.gender === "male") {
     gt.pronoun = "he";
     gt.possessive = "his";
@@ -22145,6 +22168,8 @@ NPCObject.prototype.myTurn = function() {
 	gamestate.setMode("NPC");
 	gamestate.setTurn(this);
 
+  if (this.specials.noact) { return 1; } // noact NPCs skip their turns. Effects do not run!
+  
   let tileid;
 
   this.hasFrame = 0;

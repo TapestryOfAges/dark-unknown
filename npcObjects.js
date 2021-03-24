@@ -34,6 +34,7 @@ function DruidVillagerNPCTile() {
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.initOverride = 10;
+  this.gender = 'random';
 }
 DruidVillagerNPCTile.prototype = new NPCObject();
 
@@ -70,6 +71,7 @@ function ShepherdVillagerNPCTile() {
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.initOverride = 10;
+  this.gender = 'random';
 }
 ShepherdVillagerNPCTile.prototype = new NPCObject();
 
@@ -106,6 +108,7 @@ function MageVillagerNPCTile() {
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.initOverride = 10;
+  this.gender = 'random';
 }
 MageVillagerNPCTile.prototype = new NPCObject();
 
@@ -130,9 +133,9 @@ function TinkerVillagerNPCTile() {
   this.meleeDamage = '1d4+1'
   this.meleeStrDamage = .33
   this.missileAttackAs = 'none';
-  this.missileDamage = '1d4+1'
-  this.missileStrDamage = .33
-  this.missileRange = 
+  this.missileDamage = '1d3+0'
+  this.missileStrDamage = 0
+  this.missileRange = 5
   this.armorAs = 'ClothArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
@@ -146,6 +149,7 @@ function TinkerVillagerNPCTile() {
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.initOverride = 10;
+  this.gender = 'random';
 }
 TinkerVillagerNPCTile.prototype = new NPCObject();
 
@@ -170,9 +174,9 @@ function RangerVillagerNPCTile() {
   this.meleeDamage = '1d4+1'
   this.meleeStrDamage = .33
   this.missileAttackAs = 'none';
-  this.missileDamage = '1d4+1'
-  this.missileStrDamage = .33
-  this.missileRange = 
+  this.missileDamage = '1d3+0'
+  this.missileStrDamage = 0
+  this.missileRange = 5
   this.armorAs = 'LeatherArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
@@ -186,6 +190,7 @@ function RangerVillagerNPCTile() {
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.initOverride = 10;
+  this.gender = 'random';
 }
 RangerVillagerNPCTile.prototype = new NPCObject();
 
@@ -209,9 +214,9 @@ function AdventurerVillagerNPCTile() {
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
   this.missileAttackAs = 'none';
-  this.missileDamage = '2d4+1'
-  this.missileStrDamage = .5
-  this.missileRange = 
+  this.missileDamage = '1d3+0'
+  this.missileStrDamage = 0
+  this.missileRange = 5
   this.armorAs = 'LeatherArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
@@ -225,6 +230,7 @@ function AdventurerVillagerNPCTile() {
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.initOverride = 10;
+  this.gender = 'random';
 }
 AdventurerVillagerNPCTile.prototype = new NPCObject();
 
@@ -262,6 +268,7 @@ function PaladinVillagerNPCTile() {
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.initOverride = 10;
+  this.gender = 'random';
 }
 PaladinVillagerNPCTile.prototype = new NPCObject();
 
@@ -286,9 +293,9 @@ function FighterVillagerNPCTile() {
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
   this.missileAttackAs = 'none';
-  this.missileDamage = '2d4+1'
-  this.missileStrDamage = .5
-  this.missileRange = 
+  this.missileDamage = '1d3+0'
+  this.missileStrDamage = 0
+  this.missileRange = 5
   this.armorAs = 'LeatherArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
@@ -301,6 +308,7 @@ function FighterVillagerNPCTile() {
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.initOverride = 10;
+  this.gender = 'random';
 }
 FighterVillagerNPCTile.prototype = new NPCObject();
 
@@ -337,6 +345,7 @@ function TownsfolkVillagerNPCTile() {
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.initOverride = 10;
+  this.gender = 'random';
 }
 TownsfolkVillagerNPCTile.prototype = new NPCObject();
 
@@ -361,9 +370,9 @@ function BardVillagerNPCTile() {
   this.meleeDamage = '1d4+1'
   this.meleeStrDamage = .33
   this.missileAttackAs = 'none';
-  this.missileDamage = '1d4+1'
-  this.missileStrDamage = .33
-  this.missileRange = 
+  this.missileDamage = '1d12+1'
+  this.missileStrDamage = 0
+  this.missileRange = 5
   this.armorAs = 'ClothArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
@@ -377,6 +386,7 @@ function BardVillagerNPCTile() {
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.initOverride = 10;
+  this.gender = 'random';
 }
 BardVillagerNPCTile.prototype = new NPCObject();
 
@@ -414,6 +424,7 @@ function ChildVillagerNPCTile() {
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.initOverride = 10;
+  this.gender = 'random';
 }
 ChildVillagerNPCTile.prototype = new NPCObject();
 
@@ -451,6 +462,7 @@ function BeggarVillagerNPCTile() {
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.initOverride = 10;
+  this.gender = 'random';
 }
 BeggarVillagerNPCTile.prototype = new NPCObject();
 
@@ -488,6 +500,7 @@ function JesterNPCTile() {
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.initOverride = 10;
+  this.gender = 'random';
 }
 JesterNPCTile.prototype = new NPCObject();
 
@@ -523,6 +536,7 @@ function TownGuardNPCTile() {
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.initOverride = 10;
+  this.gender = 'random';
 }
 TownGuardNPCTile.prototype = new NPCObject();
 
@@ -558,6 +572,7 @@ function KingNPCTile() {
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.initOverride = 10;
+  this.gender = 'male';
 }
 KingNPCTile.prototype = new NPCObject();
 
@@ -593,6 +608,7 @@ function QueenNPCTile() {
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.initOverride = 10;
+  this.gender = 'female';
 }
 QueenNPCTile.prototype = new NPCObject();
 
@@ -628,6 +644,7 @@ function PrinceNPCTile() {
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.initOverride = 10;
+  this.gender = 'male';
 }
 PrinceNPCTile.prototype = new NPCObject();
 
@@ -664,6 +681,7 @@ function GhostVillagerNPCTile() {
   this.special = 'undead';
   this.meleeHitSound = 'sfx_ghost_hit';
   this.meleeAttackSound = 'sfx_ghost_miss';
+  this.gender = 'random';
 }
 GhostVillagerNPCTile.prototype = new NPCObject();
 
@@ -801,6 +819,7 @@ function CorruptPrinceNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.gender = 'male';
 }
 CorruptPrinceNPCTile.prototype = new NPCObject();
 
@@ -835,6 +854,7 @@ function CorruptGuardsNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.gender = 'random';
 }
 CorruptGuardsNPCTile.prototype = new NPCObject();
 
@@ -858,9 +878,9 @@ function CourierNPCTile() {
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
   this.missileAttackAs = 'none';
-  this.missileDamage = '2d4+1'
-  this.missileStrDamage = .5
-  this.missileRange = 
+  this.missileDamage = '1d3+0'
+  this.missileStrDamage = 0
+  this.missileRange = 5
   this.armorAs = 'none';
   this.armorDefense = 1000;
   this.armorAbsorb = 1000;
@@ -874,6 +894,7 @@ function CourierNPCTile() {
   this.special = 'open_door, courierSurrender';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.gender = 'random';
 }
 CourierNPCTile.prototype = new NPCObject();
 
@@ -908,6 +929,7 @@ function CourierGuardNPCTile() {
   this.special = 'open_door, courierFlee';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.gender = 'random';
 }
 CourierGuardNPCTile.prototype = new NPCObject();
 
@@ -1091,6 +1113,7 @@ function HoodNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.gender = 'random';
 }
 HoodNPCTile.prototype = new NPCObject();
 
@@ -1114,9 +1137,9 @@ function MinstrelNPCTile() {
   this.meleeDamage = '1d4+1'
   this.meleeStrDamage = .33
   this.missileAttackAs = 'none';
-  this.missileDamage = '1d4+1'
-  this.missileStrDamage = .33
-  this.missileRange = 
+  this.missileDamage = '1d3+0'
+  this.missileStrDamage = 0
+  this.missileRange = 5
   this.armorAs = 'ClothArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
@@ -1130,6 +1153,7 @@ function MinstrelNPCTile() {
   this.special = 'sing, open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.gender = 'random';
 }
 MinstrelNPCTile.prototype = new NPCObject();
 
@@ -1203,6 +1227,7 @@ function ApprenticeNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.gender = 'random';
 }
 ApprenticeNPCTile.prototype = new NPCObject();
 
@@ -1238,6 +1263,7 @@ function FighterNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.gender = 'random';
 }
 FighterNPCTile.prototype = new NPCObject();
 
@@ -1334,9 +1360,9 @@ function NixieNPCTile() {
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
   this.missileAttackAs = 'none';
-  this.missileDamage = '2d4+1'
-  this.missileStrDamage = .5
-  this.missileRange = 
+  this.missileDamage = '1d12+1'
+  this.missileStrDamage = 0
+  this.missileRange = 5
   this.armorAs = 'LeatherArmor';
   this.movetype = MOVE_SWIM;
   this.leavesCorpse = 'none';
@@ -1420,6 +1446,7 @@ function RogueNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.gender = 'random';
 }
 RogueNPCTile.prototype = new NPCObject();
 
@@ -1455,6 +1482,7 @@ function PitRogueNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.gender = 'random';
 }
 PitRogueNPCTile.prototype = new NPCObject();
 
@@ -1547,9 +1575,9 @@ function ArcherNPCTile() {
   this.meleeDamage = '2d4+3'
   this.meleeStrDamage = 1
   this.missileAttackAs = 'none';
-  this.missileDamage = '2d4+3'
-  this.missileStrDamage = 1
-  this.missileRange = 
+  this.missileDamage = '1d12+1'
+  this.missileStrDamage = 0
+  this.missileRange = 5
   this.armorAs = 'LeatherArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
@@ -1562,6 +1590,7 @@ function ArcherNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_missile_hit';
   this.meleeAttackSound = 'sfx_missile_miss';
+  this.gender = 'random';
 }
 ArcherNPCTile.prototype = new NPCObject();
 
@@ -1585,9 +1614,9 @@ function BardNPCTile() {
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
   this.missileAttackAs = 'none';
-  this.missileDamage = '2d4+1'
-  this.missileStrDamage = .5
-  this.missileRange = 
+  this.missileDamage = '1d12+1'
+  this.missileStrDamage = 0
+  this.missileRange = 5
   this.armorAs = 'ChainArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
@@ -1600,6 +1629,7 @@ function BardNPCTile() {
   this.special = 'sing, open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.gender = 'random';
 }
 BardNPCTile.prototype = new NPCObject();
 
@@ -1636,6 +1666,7 @@ function DruidNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.gender = 'random';
 }
 DruidNPCTile.prototype = new NPCObject();
 
@@ -1854,6 +1885,7 @@ function HandlerNPCTile() {
   this.special = 'animalhandler, open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.gender = 'random';
 }
 HandlerNPCTile.prototype = new NPCObject();
 
@@ -2038,6 +2070,7 @@ function ThiefNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.gender = 'random';
 }
 ThiefNPCTile.prototype = new NPCObject();
 
@@ -2062,9 +2095,9 @@ function TrollNPCTile() {
   this.meleeDamage = '2d4+3'
   this.meleeStrDamage = 1
   this.missileAttackAs = 'none';
-  this.missileDamage = '2d4+3'
-  this.missileStrDamage = 1
-  this.missileRange = 
+  this.missileDamage = '1d12+1'
+  this.missileStrDamage = 0
+  this.missileRange = 5
   this.armorAs = 'ChainArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
@@ -2168,9 +2201,9 @@ function CyclopsNPCTile() {
   this.meleeDamage = '2d4+8'
   this.meleeStrDamage = .66
   this.missileAttackAs = 'none';
-  this.missileDamage = '2d4+8'
-  this.missileStrDamage = .66
-  this.missileRange = 
+  this.missileDamage = '2d12+3'
+  this.missileStrDamage = 0
+  this.missileRange = 5
   this.armorAs = 'ChainArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
@@ -2423,9 +2456,9 @@ function OrcCaptainNPCTile() {
   this.meleeDamage = '4d4+9'
   this.meleeStrDamage = .66
   this.missileAttackAs = 'none';
-  this.missileDamage = '4d4+9'
-  this.missileStrDamage = .66
-  this.missileRange = 
+  this.missileDamage = '1d12+1'
+  this.missileStrDamage = 0
+  this.missileRange = 5
   this.armorAs = 'ChainArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
@@ -2477,6 +2510,7 @@ function PaladinNPCTile() {
   this.special = 'open_door,ondeathWarduke';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.gender = 'random';
 }
 PaladinNPCTile.prototype = new NPCObject();
 
@@ -2625,6 +2659,7 @@ function WizardNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.gender = 'random';
 }
 WizardNPCTile.prototype = new NPCObject();
 
@@ -2768,6 +2803,7 @@ function CultistNPCTile() {
   this.resists = {};
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.gender = 'random';
 }
 CultistNPCTile.prototype = new NPCObject();
 
@@ -2935,9 +2971,9 @@ function RangerNPCTile() {
   this.meleeDamage = '4d4+9'
   this.meleeStrDamage = .66
   this.missileAttackAs = 'none';
-  this.missileDamage = '4d4+9'
-  this.missileStrDamage = .66
-  this.missileRange = 
+  this.missileDamage = '4d8+-1'
+  this.missileStrDamage = 0
+  this.missileRange = 5
   this.armorAs = 'ChainArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
@@ -2950,6 +2986,7 @@ function RangerNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.gender = 'random';
 }
 RangerNPCTile.prototype = new NPCObject();
 
@@ -3065,6 +3102,7 @@ function ArchmageNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.gender = 'random';
 }
 ArchmageNPCTile.prototype = new NPCObject();
 
@@ -3236,9 +3274,9 @@ function GiantNPCTile() {
   this.meleeDamage = '4d4+9'
   this.meleeStrDamage = .66
   this.missileAttackAs = 'none';
-  this.missileDamage = '4d4+9'
-  this.missileStrDamage = .66
-  this.missileRange = 
+  this.missileDamage = '2d12+3'
+  this.missileStrDamage = 0
+  this.missileRange = 5
   this.armorAs = 'ChainArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Blood';
@@ -3458,7 +3496,7 @@ function JusticeNPCTile() {
   this.int = 25;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-10';
+  this.peaceAI = 'Justice';
   this.forgetAt = 15;
   this.withdraw = 0;
   this.graphic = '303.gif';
@@ -3476,8 +3514,10 @@ function JusticeNPCTile() {
   this.desc = "Justice";
   this.spellsknown = { summon: 1, attack: 1, highattack: 1, };
   this.resists = {};
+  this.special = 'miniboss, unkillable';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.gender = 'female';
 }
 JusticeNPCTile.prototype = new NPCObject();
 
@@ -3516,6 +3556,7 @@ function LicheNPCTile() {
   this.special = 'necromancer, undead, open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.gender = 'male';
 }
 LicheNPCTile.prototype = new NPCObject();
 
@@ -3687,9 +3728,9 @@ function TitanNPCTile() {
   this.meleeDamage = '5d4+15'
   this.meleeStrDamage = 1
   this.missileAttackAs = 'none';
-  this.missileDamage = '5d4+15'
-  this.missileStrDamage = 1
-  this.missileRange = 
+  this.missileDamage = '2d12+3'
+  this.missileStrDamage = 0
+  this.missileRange = 5
   this.armorAs = 'PlateArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
@@ -3838,6 +3879,7 @@ function ToshinSentinelNPCTile() {
   this.prefix = 'a';
   this.desc = "floating sentinel";
   this.resists = { fire:100 };
+  this.special = 'unkillable';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
 }
@@ -3913,13 +3955,13 @@ NegatorGnomeNPCTile.prototype = new NPCObject();
 
 function CrystalBarrierNPCTile() {
   this.name = 'CrystalBarrierNPC';
-  this.level = 2;
+  this.level = 3;
   this.addhp = 5;
   this.str = 10;
   this.dex = 3;
   this.int = 3;
   this.alignment = 'Neutral';
-  this.attitude = 'friendly';
+  this.attitude = 'hostile';
   this.peaceAI = 'seekPC-0';
   this.forgetAt = 0;
   this.withdraw = 0;
@@ -3938,7 +3980,7 @@ function CrystalBarrierNPCTile() {
   this.prefix = 'a';
   this.desc = "crystal barrier";
   this.resists = {};
-  this.special = 'crumbles,stationary';
+  this.special = 'crumbles,stationary,noact,ondeathDestroyCrystal';
 }
 CrystalBarrierNPCTile.prototype = new NPCObject();
 
