@@ -1382,6 +1382,17 @@ mappages["justice_battle"].features[43] = {name : 'FireField', x : 5, y : 5};
 mappages["justice_battle"].features[44] = {name : 'FireField', x : 9, y : 5};
 mappages["justice_battle"].features[45] = {name : 'FireField', x : 9, y : 9};
 mappages["justice_battle"].features[46] = {name : 'FireField', x : 5, y : 9};
+mappages["justice_battle"].features[47] = {name : 'BlueCrystal', x : 7, y : 3};
+mappages["justice_battle"].features[48] = {name : 'BlueCrystal', x : 3, y : 7};
+mappages["justice_battle"].features[49] = {name : 'BlueCrystal', x : 5, y : 7};
+mappages["justice_battle"].features[50] = {name : 'BlueCrystal', x : 6, y : 7};
+mappages["justice_battle"].features[51] = {name : 'BlueCrystal', x : 7, y : 7};
+mappages["justice_battle"].features[52] = {name : 'BlueCrystal', x : 7, y : 6};
+mappages["justice_battle"].features[53] = {name : 'BlueCrystal', x : 7, y : 8};
+mappages["justice_battle"].features[54] = {name : 'BlueCrystal', x : 8, y : 7};
+mappages["justice_battle"].features[55] = {name : 'BlueCrystal', x : 9, y : 7};
+mappages["justice_battle"].features[56] = {name : 'BlueCrystal', x : 11, y : 7};
+mappages["justice_battle"].features[57] = {name : 'BlueCrystal', x : 7, y : 11};
 
 
 mappages["justice_battle"].npcs = [];
