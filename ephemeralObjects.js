@@ -1683,6 +1683,10 @@ JusticeCollapseTile.prototype.applyEffect = function(silent) {
 }
 
 JusticeCollapseTile.prototype.doEffect = function() {
+  let npcs = PC.getHomeMap().npcs.getAll();
+  for (let i=0;i<npcs.length;i++) {
+    if (npcs[i].getName() === "JusticeNPC") { console.log("Justice still up, orb doesn't start to end the world."); return; }
+  }
   if (level === 1) {
     maintext.addText("This strange place begins shaking itself apart!");
     Earthquake();
