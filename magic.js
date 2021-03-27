@@ -3098,7 +3098,7 @@ function PerformExplosion(caster, infused, free, tgt) {
           hostile = 1;
         }
       } else {
-        ShowEffect(0, 700, "master_spritesheet.png", -128, -1856, {x:tgt.getx()+diffx, y:tgt.gety()+diffy});
+        ShowEffect(0, 700, "master_spritesheet.png", -128, -1856, {x:tgt.getx()+diffx, y:tgt.gety()+diffy, map:caster.getHomeMap()});
       }
     }
   }

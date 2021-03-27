@@ -2040,8 +2040,9 @@ ais.Justice = function(who) {
       who.lastaction = "shockwave";
       return retval;
     } else if (actions[roll].act === "iceball") {
+      console.log(actions[roll].tgt);
       AnnounceSpellcast("Iceball",who,actions[roll].tgt);
-      magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].executeSpell(who,0,0,actions[roll].tgt);
+      magic[SPELL_ICEBALL_LEVEL][SPELL_ICEBALL_ID].executeSpell(who,0,0,actions[roll].tgt);
       who.lastaction = "iceball";
       return retval;
     } else if (actions[roll].act === "explosion") {
@@ -2058,6 +2059,11 @@ ais.Justice = function(who) {
       AnnounceSpellcast("Life Drain",who,actions[roll].tgt);
       magic[SPELL_LIFE_DRAIN_LEVEL][SPELL_LIFE_DRAIN_ID].executeSpell(who,0,0,actions[roll].tgt);
       who.lastaction = "lifedrain";
+      return retval;
+    } else if (actions[roll].act === "walloffire") {
+      AnnounceSpellcast("Wall of Fire",who);
+      magic[SPELL_WALL_OF_FIRE_LEVEL][SPELL_WALL_OF_FIRE_ID].executeSpell(who,0,0,actions[roll].tgt);
+      who.lastaction = "walloffire";
       return retval;
     } else if (actions[roll].act === "imps") {
       let impcoords = [[5,6],[5,8],[9,6],[9,8]];
