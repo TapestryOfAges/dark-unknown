@@ -2044,6 +2044,7 @@ ais.Justice = function(who) {
       AnnounceSpellcast("Iceball",who,actions[roll].tgt);
       magic[SPELL_ICEBALL_LEVEL][SPELL_ICEBALL_ID].executeSpell(who,0,0,actions[roll].tgt);
       who.lastaction = "iceball";
+      retval.wait = 1;
       return retval;
     } else if (actions[roll].act === "explosion") {
       AnnounceSpellcast("Explosion",who,actions[roll].tgt);
@@ -2054,6 +2055,7 @@ ais.Justice = function(who) {
       AnnounceSpellcast("Fireball",who,actions[roll].tgt);
       magic[SPELL_FIREBALL_LEVEL][SPELL_FIREBALL_ID].executeSpell(who,0,0,actions[roll].tgt);
       who.lastaction = "fireball";
+      retval.wait = 1;
       return retval;
     } else if (actions[roll].act === "lifedrain") {
       AnnounceSpellcast("Life Drain",who,actions[roll].tgt);
