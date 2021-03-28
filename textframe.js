@@ -3,7 +3,7 @@
 function TextFrame(fname) {
 	this.framename = fname;
 	this.inputLine = "";
-	this.delayedappend = "";
+	this.delayedappend = [];
 }
 
 TextFrame.prototype.getInputLine = function() {
@@ -26,12 +26,14 @@ TextFrame.prototype.addText = function(newtext) {
 		document.getElementById(this.framename).appendChild(tmpchild);
     this.countnode();
   }
-  if (this.delayedappend) {
-		let tmpchild = document.createElement('span');
-		tmpchild.innerHTML = "<br />" + this.delayedappend;
-		document.getElementById(this.framename).appendChild(tmpchild);
+  if (this.delayedappend[0]) {
+		for (let i=0;i<this.delayedappend.length;i++) {
+  		let tmpchild = document.createElement('span');
+	  	tmpchild.innerHTML = "<br />" + this.delayedappend;
+		  document.getElementById(this.framename).appendChild(tmpchild);
+			this.countnode();
+		}
 		this.clearDelay();
-		this.countnode();
   }
 }
 
@@ -40,15 +42,16 @@ TextFrame.prototype.flushDelayedText = function() {
 }
 
 TextFrame.prototype.delayedAddText = function(newtext) {
-  if (this.delayedappend) {
-    this.delayedappend = this.delayedappend + "<br />" + newtext;
-  } else {
-    this.delayedappend = newtext;
-  }
+	this.delayedappend.push(newtext);
+//  if (this.delayedappend) {
+//    this.delayedappend = this.delayedappend + "<br />" + newtext;
+//  } else {
+//    this.delayedappend = newtext;
+//  }
 }
 
 TextFrame.prototype.clearDelay = function() {
-  this.delayedappend = "";
+  this.delayedappend = [];
 }
 
 TextFrame.prototype.countnode = function() {
