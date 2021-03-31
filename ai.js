@@ -2008,7 +2008,10 @@ ais.Justice = function(who) {
         console.log(tgt);
         actions.push({act:"fireball", tgt:tgt});
         actions.push({act:"iceball", tgt:tgt});
-        actions.push({act:"lifedrain", tgt:tgt});
+        if (who.getHP() < who.getMaxHP()) {
+          actions.push({act:"lifedrain", tgt:tgt});
+          // she won't cast Life Drain if she's unhurt
+        }
   
         // check for PC or allies next to crystal, if so, add chance of Explosioning
         for (let i=0;i<tgts.length;i++) {
@@ -2063,8 +2066,8 @@ ais.Justice = function(who) {
       who.lastaction = "lifedrain";
       return retval;
     } else if (actions[roll].act === "walloffire") {
-      AnnounceSpellcast("Wall of Fire",who);
-      magic[SPELL_WALL_OF_FIRE_LEVEL][SPELL_WALL_OF_FIRE_ID].executeSpell(who,0,0,actions[roll].tgt);
+      AnnounceSpellcast("Wall of Flame",who);
+      magic[SPELL_WALL_OF_FLAME_LEVEL][SPELL_WALL_OF_FLAME_ID].executeSpell(who,0,0,actions[roll].tgt);
       who.lastaction = "walloffire";
       return retval;
     } else if (actions[roll].act === "imps") {
