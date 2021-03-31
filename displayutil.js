@@ -137,7 +137,7 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
     if (eventcount2) { console.log("FinishAnimation called twice."); return; }
     eventcount2 = 1;
 //    console.log("FinishAnimation called.");
-    if (dmg != 0) {
+    if (dmg !== 0) {
       let prehp = def.getHP(); 
       // handle onDamaged stuff here
       if (def.onDamaged) {
@@ -181,6 +181,40 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
       AnimateEffect(doit.atk, doit.def, doit.fromcoords, doit.tocoords, doit.ammocoords, doit.destgraphic, doit.type, doit.duration, doit.ammoreturn, doit.dmg, endturn, doit.retval, doagain);
     }
   }
+}
+
+function DealandDisplayDamage(def,atk,dmg, dmgtype) {
+  if (dmg !== 0) {
+    let prehp = def.getHP(); 
+    // handle onDamaged stuff here
+    let weapon = localFactory.createTile("SpellWeapon");
+    weapon.dmgtype = dmgtype;
+    if (def.onDamaged) {
+      dmg = OnDamagedFuncs[def.onDamaged](atk,def,dmg,weapon);
+    }
+    let stillalive = def.dealDamage(dmg, atk, dmgtype);   
+
+    let desc = def.getDesc()
+    desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+    if (stillalive > -1) {
+      if (Math.floor(prehp) === Math.floor(def.getHP())) {
+        maintext.delayedAddText(desc + ": Scratched!"); 
+      } else {
+        let damagedesc = GetDamageDescriptor(def); 
+        maintext.delayedAddText(desc + ": " + damagedesc + "!"); 
+      }
+    }
+    else {  
+      if (def.specials.crumbles) { maintext.delayedAddText(desc +  ": It crumbles to dust!"); }
+      else { maintext.delayedAddText(desc + ": Killed!"); }
+      
+      if (def.getXPVal() && (atk === PC)) {
+        maintext.delayedAddText(" (XP gained: " + def.getXPVal() + ")");
+      }
+    }
+    return stillalive;
+  }
+  return 0;
 }
 
 function SortDisplayTiles(disparray) {
