@@ -677,7 +677,7 @@ function GhostVillagerNPCTile() {
   this.desc = "ghost";
   this.onDamaged = 'incorporeal';
   this.meleeChance = 100;
-  this.resists = { ice:50 };
+  this.resists = { ice:50, poison:100 };
   this.special = 'undead';
   this.meleeHitSound = 'sfx_ghost_hit';
   this.meleeAttackSound = 'sfx_ghost_miss';
@@ -1514,7 +1514,7 @@ function SkeletonNPCTile() {
   this.prefix = 'a';
   this.desc = "skeleton";
   this.meleeChance = 100;
-  this.resists = { ice:33 };
+  this.resists = { ice:33, poison:100 };
   this.special = 'undead';
   this.meleeHitSound = 'sfx_skeleton_hit';
   this.meleeAttackSound = 'sfx_skeleton_miss';
@@ -1548,7 +1548,7 @@ function AnimatedArmorNPCTile() {
   this.lootTable = 'AnimArmor';
   this.desc = "animated armor";
   this.meleeChance = 100;
-  this.resists = {};
+  this.resists = { poison:100 };
   this.special = 'construct, wander';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
@@ -1772,7 +1772,7 @@ function GhostNPCTile() {
   this.desc = "ghost";
   this.onDamaged = 'incorporeal';
   this.meleeChance = 100;
-  this.resists = { ice:50 };
+  this.resists = { ice:50, poison:100 };
   this.special = 'undead';
   this.meleeHitSound = 'sfx_ghost_hit';
   this.meleeAttackSound = 'sfx_ghost_miss';
@@ -2944,7 +2944,7 @@ function PhantomNPCTile() {
   this.desc = "phantom";
   this.meleeChance = 80;
   this.spellsknown = { attack: 1, };
-  this.resists = {};
+  this.resists = { poison:100 };
   this.special = 'undead';
   this.meleeHitSound = 'sfx_ghost_hit';
   this.meleeAttackSound = 'sfx_ghost_miss';
@@ -3400,8 +3400,8 @@ function SpecterNPCTile() {
   this.onDamaged = 'incorporeal';
   this.meleeChance = 66;
   this.spellsknown = { lowcontrol: 1, summon: 1, attack: 1, };
-  this.resists = {};
-  this.special = 'phase';
+  this.resists = { poison:100 };
+  this.special = 'phase, undead';
   this.meleeHitSound = 'sfx_ghost_hit';
   this.meleeAttackSound = 'sfx_ghost_miss';
 }
@@ -3552,7 +3552,7 @@ function LicheNPCTile() {
   this.prefix = 'a';
   this.desc = "liche";
   this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, buff: 1, highbuff: 1, };
-  this.resists = { ice:66 };
+  this.resists = { ice:66, poison: 100 };
   this.special = 'necromancer, undead, open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
@@ -3878,7 +3878,7 @@ function ToshinSentinelNPCTile() {
   this.lootTable = 'none';
   this.prefix = 'a';
   this.desc = "floating sentinel";
-  this.resists = { fire:100 };
+  this.resists = { fire:100, poison:100 };
   this.special = 'unkillable';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
@@ -3979,7 +3979,7 @@ function CrystalBarrierNPCTile() {
   this.lootTable = 'none';
   this.prefix = 'a';
   this.desc = "crystal barrier";
-  this.resists = {};
+  this.resists = { fire:30, poison:100 };
   this.special = 'crumbles,stationary,noact,ondeathDestroyCrystal';
 }
 CrystalBarrierNPCTile.prototype = new NPCObject();
