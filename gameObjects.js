@@ -5508,6 +5508,12 @@ FireFieldTile.prototype.isHostileTo = function(who) {
 
 FireFieldTile.prototype.activate = function() {
   if (gamestate.getMode() !== "loadgame") {
+    let mytile = this.getHomeMap().getTile(this.getx(),this.gety());
+    let npcs = mytile.getNPCs();
+    for (let i=0;i<npcs.length;i++) {
+      InAFireField(npcs[i]);
+    }
+
     let NPCevent = new GameEvent(this);
     DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
   }
@@ -5558,7 +5564,8 @@ function InAFireField(who) {
   let resist = who.getResist("magic");
   resist = 1-(resist/100);
   dmg = dmg*resist;
-  who.dealDamage(dmg, this, "fire");
+  //who.dealDamage(dmg, this, "fire");
+  DealandDisplayDamage(who,this, dmg, "fire");
   DebugWrite("gameobj", "Firefield deals " + dmg + " damage to " + who.getName() + ".");
   if (who === PC) { DUPlaySound("sfx_fire_hit"); }
   return response;
@@ -5601,7 +5608,7 @@ function InAPoisonField(who){
   }
   let poisonchance = .75;
   poisonchance = (1/SCALE_TIME)*(DUTime.getGameClock() - who.getLastTurnTime()) * poisonchance;
-  poisonchance = poisonchance * (1-who.getResist()/100);  
+  poisonchance = poisonchance * (1-who.getResist("poison")/100);  
   if (Math.random()*1 < poisonchance) {  
     if (who.getSpellEffectsByName("Poison")) { return 0; }
     let poison = localFactory.createTile("Poison");
@@ -15198,6 +15205,19 @@ MissileWeaponObject.prototype.getAmmoReturn = function() {
   return this.ammoReturn;
 }
 
+function SpellWeaponTile() {
+  // This is a fake object just to be passed to onDamaged scripts
+	this.name = "SpellWeapon";
+	this.damage = "1d2+0";
+	this.strdamage = 1/3;
+	this.graphic = "armorweapons.gif";
+	this.spritexoffset = "-224";
+	this.spriteyoffset = "-32";
+	this.prefix = "your";
+	this.desc = "you won't see this";
+  this.dmgtype = "fire";
+}
+SpellWeaponTile.prototype = new MissileWeaponObject();
 
 function SlingTile() {
 	this.name = "Sling";
