@@ -707,7 +707,7 @@ function StepOrSidestep(who, path, finaldest, nopush) {
 }
 
 function IsNonLiving(who) {
-  if (who.specials.undead || who.specials.construct) { return 1;}
+  if (who.specials.undead || who.specials.construct || who.specials.noact) { return 1;}
   return 0;
 }
 
