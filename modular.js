@@ -185,6 +185,12 @@ OnDamagedFuncs["incorporeal"] = function(atk,who,dmg,weapon) {
   let chance = 40;
   if ((weapon.getName() === "MagicAxe") || (weapon.getName() === "Wand") || (weapon.getName() === "MagicSword") || (weapon.getName() === "LightningSword") || (weapon.getName() === "FlamingSword") || (weapon.getName() === "SwordOfDefense") || (weapon.getName() === "VenomSword")) {
     chance = 20;
+  } else if (weapon.getname() === "SpellWeapon") {
+    if ((weapon.dmgtype === "force") || (weapon.dmgtype === "drain")) {
+      chance = 0;
+    } else {
+      chance = 20;
+    }
   }
   if (Dice.roll("1d100") <= chance) {
     maintext.delayedAddText("The creature's incorporeality prevents it from taking damage!");
