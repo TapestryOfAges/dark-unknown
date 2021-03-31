@@ -3333,6 +3333,11 @@ tileFactory.prototype.makeExoticArmorTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeSpellWeaponTile = function() {
+  let newTile = new SpellWeaponTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeFistsTile = function() {
   let newTile = new FistsTile();
   return newTile;
