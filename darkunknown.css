@@ -147,7 +147,8 @@ div.innertextframe { font-family:"Commodore64";
 }
 	                  
 .itfbits {
-	padding-top: 2px;
+	margin-block-start: 9px;
+	margin-block-end: 1px;
 }
 
 div.inputtext { font-family:"Commodore64";
