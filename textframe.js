@@ -21,15 +21,17 @@ TextFrame.prototype.getTextFrame = function() {
 
 TextFrame.prototype.addText = function(newtext) {
 	if (newtext) {
-		let tmpchild = document.createElement('span');
-		tmpchild.innerHTML = "<br />" + newtext;
+		let tmpchild = document.createElement('p');
+		tmpchild.innerHTML = newtext;
+		tmpchild.classList.add("itfbits");
 		document.getElementById(this.framename).appendChild(tmpchild);
     this.countnode();
   }
   if (this.delayedappend[0]) {
 		for (let i=0;i<this.delayedappend.length;i++) {
-  		let tmpchild = document.createElement('span');
-	  	tmpchild.innerHTML = "<br />" + this.delayedappend;
+  		let tmpchild = document.createElement('p');
+	  	tmpchild.innerHTML = this.delayedappend;
+			tmpchild.classList.add("itfbits");
 		  document.getElementById(this.framename).appendChild(tmpchild);
 			this.countnode();
 		}
