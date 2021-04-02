@@ -30,7 +30,7 @@ TextFrame.prototype.addText = function(newtext) {
   if (this.delayedappend[0]) {
 		for (let i=0;i<this.delayedappend.length;i++) {
   		let tmpchild = document.createElement('p');
-	  	tmpchild.innerHTML = this.delayedappend;
+	  	tmpchild.innerHTML = this.delayedappend[i];
 			tmpchild.classList.add("itfbits");
 		  document.getElementById(this.framename).appendChild(tmpchild);
 			this.countnode();
