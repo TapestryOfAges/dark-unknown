@@ -3138,6 +3138,7 @@ function BlackDragonNPCTile() {
   this.special = 'firebreath, ruthless,stationary, ondeathEndact';
   this.meleeHitSound = 'sfx_roar_hit';
   this.meleeAttackSound = 'sfx_roar_miss';
+  this.xpval = 0;
 }
 BlackDragonNPCTile.prototype = new NPCObject();
 
@@ -3814,6 +3815,7 @@ function IllusionNPCTile() {
   this.special = 'mindless';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.xpval = 0;
 }
 IllusionNPCTile.prototype = new NPCObject();
 
@@ -3849,6 +3851,7 @@ function InfusedIllusionNPCTile() {
   this.special = 'mindless';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.xpval = 0;
 }
 InfusedIllusionNPCTile.prototype = new NPCObject();
 
@@ -3981,6 +3984,7 @@ function CrystalBarrierNPCTile() {
   this.desc = "crystal barrier";
   this.resists = { fire:30, poison:100 };
   this.special = 'crumbles,stationary,noact,ondeathDestroyCrystal';
+  this.xpval = 0;
 }
 CrystalBarrierNPCTile.prototype = new NPCObject();
 
