@@ -1903,6 +1903,7 @@ ais.Justice = function(who) {
     maintext.drawTextFrame();
     gamestate.setMode("anykey");
     targetCursor.command="justice";
+    targetCursor.justice = who;
     return retval;
   } else if (who.getMana()<5) {
     console.log("Justice downs a potion.")
@@ -1972,7 +1973,7 @@ ais.Justice = function(who) {
       }
       if (!field) {
         let warpath = who.getHomeMap().getPath(who.getx(),who.gety(),PC.getx(),PC.gety(),MOVE_WALK);
-        actions.push({act: "walloffire", tgt: {x:warpath[3].x,y:warpath[3].y}});
+        actions.push({act: "walloffire", tgt: {x:warpath[2][0],y:warpath[2][1]}});
         choice = 1;
       }
     } 
