@@ -15415,7 +15415,6 @@ function NPCObject() {
 	this.aggro = 0;
 	this.npcband = 0;
 	this.wait;
-  this.xpval = 0;
   this.flags = {};
   this.initOverride = 0;
   this.skintone = 1;  
@@ -16168,7 +16167,7 @@ NPCObject.prototype.getLevel = function() {
 }
 
 NPCObject.prototype.getXPVal = function() {
-  if (this.xpval) { return this.xpval; }
+  if (this.hasOwnProperty("xpval")) { return this.xpval; }
 	return this.level * XP_MULTIPLIER;
 }
 
@@ -16714,6 +16713,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 }
 
 NPCObject.prototype.myTurn = function() {
+  maintext.flushDelayedText();
   raceWarning = 0;
   if (this.fled) { return 1; }
   DebugWrite("new", "<div style='border-style:inset; border-color:#999999'><span style='" + debugstyle.header + "'>" + this.getName() + " (" + this.getNPCName() + "), serial " + this.getSerial() + " is starting its turn at " + this.getx() + "," + this.gety() + ", timestamp " + DUTime.getGameClock().toFixed(5) + ".</span><br />");
@@ -17326,6 +17326,7 @@ PCObject.prototype.gety = function(evenwait) {
 }
 
 PCObject.prototype.myTurn = function() {
+  maintext.flushDelayedText();
   if (ShouldShowFrames()) { PC.showFrames = 1; }
   else {delete PC.showFrames}
 
