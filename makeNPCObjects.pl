@@ -130,7 +130,7 @@ foreach my $line (<$npcdoc>) {
   if ($fields[38]) {
     print $out "  this.missileAttackSound = '$fields[38]';\n";
   }
-  if ($fields[39]) {
+  if ((defined $fields[39]) and ($fields[39] ne "")) {
     print $out "  this.xpval = $fields[39];\n";
   }
   if ($fields[40]) {
