@@ -10885,7 +10885,7 @@ JusticeOrbTile.prototype.use = function(who) {
 }
 
 JusticeOrbTile.prototype.onGet = function(who) {
-  let newcrystal = localFactory.createTile("CrystalBarrierNPC");
+  let newcrystal = localFactory.createTile("NegatorGnomeNPC");
   who.getHomeMap().placeThing(0,0,newcrystal);
   newcrystal.invisible = 1;
   let cataclysm = localFactory.createTile("JusticeCollapse");
@@ -15687,7 +15687,7 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
   }
 
   dmg = CheckAbsorb(dmg,this,src,type);
-  if (this.unkillable && (dmg > this.getHP())) {
+  if (this.specials.unkillable && (dmg > this.getHP())) {
     dmg = this.getHP()-1;
   }
   this.modHP(dmg*-1);
@@ -17406,7 +17406,13 @@ PCObject.prototype.myTurn = function() {
   gamestate.setTurn(PC);
   if (awake) {
     if (!endingwait) {
-      gamestate.setMode("player");
+      if (this.getSpellEffectsByName("DelayTurnStart")) {
+        gamestate.setMode("null");
+        let delayturn = this.getSpellEffectsByName("DelayTurnStart");
+        delayturn.endEffect(1);
+      } else {
+        gamestate.setMode("player");
+      }
 
       if (this.forcedTalk) {
         if (this.forcedTalk.getNPCName() === "Ashlin") {
