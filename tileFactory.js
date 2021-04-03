@@ -3333,11 +3333,6 @@ tileFactory.prototype.makeExoticArmorTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeSpellWeaponTile = function() {
-  let newTile = new SpellWeaponTile();
-  return newTile;
-}
-
 tileFactory.prototype.makeFistsTile = function() {
   let newTile = new FistsTile();
   return newTile;
@@ -3385,6 +3380,11 @@ tileFactory.prototype.makeUnenchantedSwordTile = function() {
 
 tileFactory.prototype.makeNaturalWeaponTile = function() {
   let newTile = new NaturalWeaponTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSpellWeaponTile = function() {
+  let newTile = new SpellWeaponTile();
   return newTile;
 }
 
@@ -4400,6 +4400,11 @@ tileFactory.prototype.makeCourierSurrenderTile = function() {
 
 tileFactory.prototype.makeJusticeCollapseTile = function() {
   let newTile = new JusticeCollapseTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDelayTurnStartTile = function() {
+  let newTile = new DelayTurnStartTile();
   return newTile;
 }
 
