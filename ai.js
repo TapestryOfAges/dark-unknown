@@ -493,7 +493,7 @@ ais.GarrickAttack = function(who) {
     targetCursor.stage = 0;
     who.setCurrentAI("GarrickEscort");
     who.setHP(10);
-    delete who.unkillable;
+    delete who.specials.unkillable;
     who.setAttitude("friendly");
     who.setAggro(0);
     let aoife;
@@ -504,7 +504,7 @@ ais.GarrickAttack = function(who) {
     aoife.setCurrentAI("AoifeEscort");
     aoife.setMaxHP(30);
     aoife.setHP(30);
-    delete aoife.unkillable;
+    delete aoife.specials.unkillable;
     aoife.setAttitude("friendly");
     aoife.setAggro(0);
     return retval;
