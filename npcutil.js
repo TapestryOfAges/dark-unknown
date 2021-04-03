@@ -85,6 +85,18 @@ NPCSpecialFuncs["ondeathDestroyCrystal"] = function(who,how) {
   who.onDeath = "destroycrystals";
 }
 
+function DestroyJusticeCrystals() {
+  let jmap = PC.getHomeMap();
+  let crystals = jmap.npcs.getAll();
+  Earthquake();
+  for (let i=0;i<crystals.length;i++) {
+    if (crystals[i].getName() === "CrystalBarrierNPC") {
+      crystals[i].dealDamage(1000);
+    }
+  }
+  DUPlaySound("sfx_break_glass");
+}
+
 function TurnMapHostile(map) {
   DebugWrite("combat", "Attacked a friendly! Turning hostile...<br />");
   PC.diffKarma(-10); 
