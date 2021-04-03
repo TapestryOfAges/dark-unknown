@@ -309,10 +309,10 @@ function DoAction(code, ctrl) {
         moongate.destmap = moongate.getHomeMap().getName();
         moongate.destx = moongate.getx();
         moongate.desty = moongate.gety();
-        DrawMainFrame("one",PC.getHomeMap(),targetCursor.justice.getx(),targetCursor.justice.gety());
+        DrawMainFrame("one",PC.getHomeMap(),justice.getx(),justice.gety());
         animateImage(0,-128,moongate,0,"right",300,0,1);
         setTimeout(function() { 
-          targetCursor.justice.endTurn();
+          whoseturn.endTurn();  // could be Justice, could be PC
           targetCursor.justice.getHomeMap().deleteThing(targetCursor.justice);
           DUTime.removeEntityFrom(targetCursor.justice);
           maintext.addText("...and she vanishes.");
@@ -322,6 +322,7 @@ function DoAction(code, ctrl) {
           delete targetCursor.justice;
           delete targetCursor.frame;
           delete targetCursor.command;
+          DestroyJusticeCrystals();
         }, 1200);
       }
     } else if (targetCursor.command === "endact") {
