@@ -646,7 +646,7 @@ Acre.prototype.isBridge = function() {
   return 0;
 }
 
-// if nonpcs is true, this will return false if there is an NPC blocking movement. If it's false/missing, this ignores NPCs.
+// if nonpcs is false/missing, this will return false if there is an NPC blocking movement. If it's true, this ignores NPCs.
 Acre.prototype.canMoveHere = function(movetype, nonpcs) {
 	let terrain = this.getTerrain();
 	let totalpassability = terrain.getPassable();

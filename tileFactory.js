@@ -5358,6 +5358,11 @@ tileFactory.prototype.makeNaturalWeaponTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeSpellWeaponTile = function() {
+  let newTile = new SpellWeaponTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSlingTile = function() {
   let newTile = new SlingTile();
   return newTile;
@@ -6370,6 +6375,11 @@ tileFactory.prototype.makeCourierSurrenderTile = function() {
 
 tileFactory.prototype.makeJusticeCollapseTile = function() {
   let newTile = new JusticeCollapseTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDelayTurnStartTile = function() {
+  let newTile = new DelayTurnStartTile();
   return newTile;
 }
 

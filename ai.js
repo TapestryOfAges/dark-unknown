@@ -493,7 +493,7 @@ ais.GarrickAttack = function(who) {
     targetCursor.stage = 0;
     who.setCurrentAI("GarrickEscort");
     who.setHP(10);
-    delete who.unkillable;
+    delete who.specials.unkillable;
     who.setAttitude("friendly");
     who.setAggro(0);
     let aoife;
@@ -504,7 +504,7 @@ ais.GarrickAttack = function(who) {
     aoife.setCurrentAI("AoifeEscort");
     aoife.setMaxHP(30);
     aoife.setHP(30);
-    delete aoife.unkillable;
+    delete aoife.specials.unkillable;
     aoife.setAttitude("friendly");
     aoife.setAggro(0);
     return retval;
@@ -1903,6 +1903,7 @@ ais.Justice = function(who) {
     maintext.drawTextFrame();
     gamestate.setMode("anykey");
     targetCursor.command="justice";
+    targetCursor.justice = who;
     return retval;
   } else if (who.getMana()<5) {
     console.log("Justice downs a potion.")
@@ -1972,7 +1973,7 @@ ais.Justice = function(who) {
       }
       if (!field) {
         let warpath = who.getHomeMap().getPath(who.getx(),who.gety(),PC.getx(),PC.gety(),MOVE_WALK);
-        actions.push({act: "walloffire", tgt: {x:warpath[3].x,y:warpath[3].y}});
+        actions.push({act: "walloffire", tgt: {x:warpath[2][0],y:warpath[2][1]}});
         choice = 1;
       }
     } 
@@ -1999,7 +2000,9 @@ ais.Justice = function(who) {
         }
         let tgts = [PC];
         for (let i=0;i<npcs.length;i++) {
-          if (CheckAreEnemies(who,npcs[i])) { tgts.push(npcs[i]); }
+          if (CheckAreEnemies(who,npcs[i])) { 
+            tgts.push(npcs[i]); 
+          }
         }
         console.log("List of possible targets:");
         console.log(tgts);
@@ -2008,7 +2011,10 @@ ais.Justice = function(who) {
         console.log(tgt);
         actions.push({act:"fireball", tgt:tgt});
         actions.push({act:"iceball", tgt:tgt});
-        actions.push({act:"lifedrain", tgt:tgt});
+        if (who.getHP() < who.getMaxHP()) {
+          actions.push({act:"lifedrain", tgt:tgt});
+          // she won't cast Life Drain if she's unhurt
+        }
   
         // check for PC or allies next to crystal, if so, add chance of Explosioning
         for (let i=0;i<tgts.length;i++) {
@@ -2040,9 +2046,11 @@ ais.Justice = function(who) {
       who.lastaction = "shockwave";
       return retval;
     } else if (actions[roll].act === "iceball") {
+      console.log(actions[roll].tgt);
       AnnounceSpellcast("Iceball",who,actions[roll].tgt);
-      magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].executeSpell(who,0,0,actions[roll].tgt);
+      magic[SPELL_ICEBALL_LEVEL][SPELL_ICEBALL_ID].executeSpell(who,0,0,actions[roll].tgt);
       who.lastaction = "iceball";
+      retval.wait = 1;
       return retval;
     } else if (actions[roll].act === "explosion") {
       AnnounceSpellcast("Explosion",who,actions[roll].tgt);
@@ -2053,11 +2061,17 @@ ais.Justice = function(who) {
       AnnounceSpellcast("Fireball",who,actions[roll].tgt);
       magic[SPELL_FIREBALL_LEVEL][SPELL_FIREBALL_ID].executeSpell(who,0,0,actions[roll].tgt);
       who.lastaction = "fireball";
+      retval.wait = 1;
       return retval;
     } else if (actions[roll].act === "lifedrain") {
       AnnounceSpellcast("Life Drain",who,actions[roll].tgt);
       magic[SPELL_LIFE_DRAIN_LEVEL][SPELL_LIFE_DRAIN_ID].executeSpell(who,0,0,actions[roll].tgt);
       who.lastaction = "lifedrain";
+      return retval;
+    } else if (actions[roll].act === "walloffire") {
+      AnnounceSpellcast("Wall of Flame",who);
+      magic[SPELL_WALL_OF_FLAME_LEVEL][SPELL_WALL_OF_FLAME_ID].executeSpell(who,0,0,actions[roll].tgt);
+      who.lastaction = "walloffire";
       return retval;
     } else if (actions[roll].act === "imps") {
       let impcoords = [[5,6],[5,8],[9,6],[9,8]];

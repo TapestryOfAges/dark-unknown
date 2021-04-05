@@ -146,6 +146,11 @@ div.innertextframe { font-family:"Commodore64";
 	                  margin-bottom:2px;
 }
 	                  
+.itfbits {
+	margin-block-start: 9px;
+	margin-block-end: 1px;
+}
+
 div.inputtext { font-family:"Commodore64";
 	              font-size:16pt;
 	              color:white; 

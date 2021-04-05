@@ -1114,7 +1114,8 @@ function PerformEnter(cmd) {
     if ((newmap.getLongDesc()) && (!DU.gameflags.getFlag(newmap.getName() + "_visited"))) {
       let longdesc = newmap.getLongDesc();
       longdesc = longdesc.replace("%%","<br />");
-      retval["txt"] += "<br /><span class='sysconv'>" + longdesc + "</span>";
+      longdesc = "<span class='sysconv'>" + longdesc + "</span>";
+      maintext.delayedAddText(longdesc);
       DU.gameflags.setFlag(newmap.getName() + "_visited", 1);
     }
 		DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());

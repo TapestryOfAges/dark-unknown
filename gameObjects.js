@@ -9685,6 +9685,12 @@ FireFieldTile.prototype.isHostileTo = function(who) {
 
 FireFieldTile.prototype.activate = function() {
   if (gamestate.getMode() !== "loadgame") {
+    let mytile = this.getHomeMap().getTile(this.getx(),this.gety());
+    let npcs = mytile.getNPCs();
+    for (let i=0;i<npcs.length;i++) {
+      InAFireField(npcs[i]);
+    }
+
     let NPCevent = new GameEvent(this);
     DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
   }
@@ -9735,7 +9741,8 @@ function InAFireField(who) {
   let resist = who.getResist("magic");
   resist = 1-(resist/100);
   dmg = dmg*resist;
-  who.dealDamage(dmg, this, "fire");
+  //who.dealDamage(dmg, this, "fire");
+  DealandDisplayDamage(who,this, dmg, "fire");
   DebugWrite("gameobj", "Firefield deals " + dmg + " damage to " + who.getName() + ".");
   if (who === PC) { DUPlaySound("sfx_fire_hit"); }
   return response;
@@ -9776,7 +9783,7 @@ function InAPoisonField(who){
   }
   let poisonchance = .75;
   poisonchance = (1/SCALE_TIME)*(DUTime.getGameClock() - who.getLastTurnTime()) * poisonchance;
-  poisonchance = poisonchance * (1-who.getResist()/100);  
+  poisonchance = poisonchance * (1-who.getResist("poison")/100);  
   if (Math.random()*1 < poisonchance) {  
     if (who.getSpellEffectsByName("Poison")) { return 0; }
     let poison = localFactory.createTile("Poison");
@@ -16277,8 +16284,13 @@ JusticeOrbTile.prototype.use = function(who) {
 }
 
 JusticeOrbTile.prototype.onGet = function(who) {
-  let newcrystal = localFactory.createTile("CrystalBarrierNPC");
-  who.getHomeMap().placeThing(0,0,newcrystal);
+  let newcrystal = localFactory.createTile("NegatorGnomeNPC");
+  let gnomemap = maps.getMap("gnomeland");
+	if (!gnomemap) {
+	  gnomemap = new GameMap();
+    gnomemap = maps.addMap("gnomeland");
+	}
+  gnomemap.placeThing(2,1,newcrystal);
   newcrystal.invisible = 1;
   let cataclysm = localFactory.createTile("JusticeCollapse");
   newcrystal.addSpellEffect(cataclysm);
@@ -20653,6 +20665,19 @@ MissileWeaponObject.prototype.getAmmoReturn = function() {
   return this.ammoReturn;
 }
 
+function SpellWeaponTile() {
+  // This is a fake object just to be passed to onDamaged scripts
+	this.name = "SpellWeapon";
+	this.damage = "1d2+0";
+	this.strdamage = 1/3;
+	this.graphic = "armorweapons.gif";
+	this.spritexoffset = "-224";
+	this.spriteyoffset = "-32";
+	this.prefix = "your";
+	this.desc = "you won't see this";
+  this.dmgtype = "fire";
+}
+SpellWeaponTile.prototype = new MissileWeaponObject();
 
 function SlingTile() {
   //Graphics Upgraded
@@ -20847,7 +20872,6 @@ function NPCObject() {
 	this.aggro = 0;
 	this.npcband = 0;
 	this.wait;
-  this.xpval = 0;
   this.flags = {};
   this.initOverride = 0;
   this.skintone = 1;  
@@ -21120,7 +21144,7 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
   }
 
   dmg = CheckAbsorb(dmg,this,src,type);
-  if (this.unkillable && (dmg > this.getHP())) {
+  if (this.specials.unkillable && (dmg > this.getHP())) {
     dmg = this.getHP()-1;
   }
   this.modHP(dmg*-1);
@@ -21601,7 +21625,7 @@ NPCObject.prototype.getLevel = function() {
 }
 
 NPCObject.prototype.getXPVal = function() {
-  if (this.xpval) { return this.xpval; }
+  if (this.hasOwnProperty("xpval")) { return this.xpval; }
 	return this.level * XP_MULTIPLIER;
 }
 
@@ -22147,6 +22171,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 }
 
 NPCObject.prototype.myTurn = function() {
+  maintext.flushDelayedText();
   raceWarning = 0;
   if (this.fled) { return 1; }
   DebugWrite("new", "<div style='border-style:inset; border-color:#999999'><span style='" + debugstyle.header + "'>" + this.getName() + " (" + this.getNPCName() + "), serial " + this.getSerial() + " is starting its turn at " + this.getx() + "," + this.gety() + ", timestamp " + DUTime.getGameClock().toFixed(5) + ".</span><br />");
@@ -22759,6 +22784,7 @@ PCObject.prototype.gety = function(evenwait) {
 }
 
 PCObject.prototype.myTurn = function() {
+  maintext.flushDelayedText();
   if (ShouldShowFrames()) { PC.showFrames = 1; }
   else {delete PC.showFrames}
 
@@ -22838,7 +22864,13 @@ PCObject.prototype.myTurn = function() {
   gamestate.setTurn(PC);
   if (awake) {
     if (!endingwait) {
-      gamestate.setMode("player");
+      if (this.getSpellEffectsByName("DelayTurnStart")) {
+        gamestate.setMode("null");
+        let delayturn = this.getSpellEffectsByName("DelayTurnStart");
+        delayturn.endEffect(1);
+      } else {
+        gamestate.setMode("player");
+      }
 
       if (this.forcedTalk) {
         if (this.forcedTalk.getNPCName() === "Ashlin") {

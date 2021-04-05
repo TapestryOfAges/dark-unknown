@@ -806,8 +806,9 @@ FireArmorTile.prototype.flashback = function(attacker) {
   if (attacker === PC) {
     maintext.addText("Flames burn you!");
   }
-  let dead = attacker.dealDamage(dmg, this.getAttachedTo(), "fire");
-  ShowEffect(attacker, 700, "static.png", RED_SPLAT_X, RED_SPLAT_Y);
+  //let dead = attacker.dealDamage(dmg, this.getAttachedTo(), "fire");
+  let dead = DealandDisplayDamage(attacker, this.getAttachedTo(), dmg, "fire");
+  ShowEffect(attacker, 700, "master_spritesheet.png", -128, -1856);
   return dead;
 }
 
@@ -1684,16 +1685,18 @@ JusticeCollapseTile.prototype.applyEffect = function(silent) {
 
 JusticeCollapseTile.prototype.doEffect = function() {
   let npcs = PC.getHomeMap().npcs.getAll();
+  let who = this.getAttachedTo();
   for (let i=0;i<npcs.length;i++) {
     if (npcs[i].getName() === "JusticeNPC") { console.log("Justice still up, orb doesn't start to end the world."); return; }
   }
-  if (level === 1) {
+  if (this.level === 1) {
     maintext.addText("This strange place begins shaking itself apart!");
     Earthquake();
-  } else if (level === 3) {
+  } else if (this.level === 3) {
     Earthquake();
-  } else if (level === 5) {
+  } else if (this.level === 5) {
     maintext.addText("Cracks appear in every surface, and a bright light shines through, overwhelming your vision! When you come to, you are... back where you started.");
+    let newmap;
     if (maps.getMap(PC.returntomap)) {
       newmap = maps.getMap(PC.returntomap);
     } else {
@@ -1703,7 +1706,18 @@ JusticeCollapseTile.prototype.doEffect = function() {
     delete PC.returntomap;
     delete PC.returntox;
     delete PC.returntoy;
-    DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
+    FadeOut();
+    let jc2 = localFactory.createTile("DelayTurnStart");
+    PC.addSpellEffect(jc2,1);
+    setTimeout(function() { 
+      DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
+      FadeIn(); 
+      setTimeout(function() {
+        gamestate.setMode("player");
+        who.getHomeMap().deleteThing(who);
+        DUTime.removeEntityFrom(who); 
+      }, 1500);
+    }, 1500);
   }
     
   this.level++;
@@ -1715,4 +1729,32 @@ JusticeCollapseTile.prototype.eachTurn = function() {
 
 JusticeCollapseTile.prototype.endEffect = function(silent) {
   return 1;
+}
+
+function DelayTurnStartTile() {
+  this.addType("debuff");
+  this.name = "DelayTurnStart";
+  this.display = "<span style='color:#0000ee'></span>";
+  this.zstatdesc = "";
+  this.desc = "Delay turn start";
+  this.level = 1;
+  this.dispellable = 0;
+}
+DelayTurnStartTile.prototype = new EphemeralObject();
+
+DelayTurnStartTile.prototype.applyEffect = function(silent) {
+  return 1;
+}
+
+DelayTurnStartTile.prototype.doEffect = function() {
+  
+}
+
+DelayTurnStartTile.prototype.eachTurn = function() {
+  return this.doEffect();
+}
+
+DelayTurnStartTile.prototype.endEffect = function(silent) {
+  let who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
 }

@@ -298,20 +298,21 @@ function DoAction(code, ctrl) {
       }
     } else if (targetCursor.command === "justice") { 
       if (!targetCursor.frame) {
-        maintext.addText("Justice draws an eldritch symbol in the air and speaks on syllable in a harsh tone...");
+        maintext.addText("Justice draws an eldritch symbol in the air and speaks one syllable in a harsh tone...");
         maintext.drawTextFrame();
         targetCursor.frame = 1;
       } else {
         gamestate.setMode("null");
         let moongate = localFactory.createTile("Moongate");
+        let justice = targetCursor.justice;
+        justice.getHomeMap().placeThing(justice.getx(),justice.gety(),moongate);
         moongate.destmap = moongate.getHomeMap().getName();
         moongate.destx = moongate.getx();
         moongate.desty = moongate.gety();
-        themap.placeThing(112,67,moongate);
-        DrawMainFrame("one",PC.getHomeMap(),targetCursor.justice.getx(),targetCursor.justice.gety());
+        DrawMainFrame("one",PC.getHomeMap(),justice.getx(),justice.gety());
         animateImage(0,-128,moongate,0,"right",300,0,1);
         setTimeout(function() { 
-          targetCursor.justice.endTurn();
+          whoseturn.endTurn();  // could be Justice, could be PC
           targetCursor.justice.getHomeMap().deleteThing(targetCursor.justice);
           DUTime.removeEntityFrom(targetCursor.justice);
           maintext.addText("...and she vanishes.");
@@ -321,6 +322,7 @@ function DoAction(code, ctrl) {
           delete targetCursor.justice;
           delete targetCursor.frame;
           delete targetCursor.command;
+          DestroyJusticeCrystals();
         }, 1200);
       }
     } else if (targetCursor.command === "endact") {

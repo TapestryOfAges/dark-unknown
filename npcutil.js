@@ -85,6 +85,18 @@ NPCSpecialFuncs["ondeathDestroyCrystal"] = function(who,how) {
   who.onDeath = "destroycrystals";
 }
 
+function DestroyJusticeCrystals() {
+  let jmap = PC.getHomeMap();
+  let crystals = jmap.npcs.getAll();
+  Earthquake();
+  for (let i=0;i<crystals.length;i++) {
+    if (crystals[i].getName() === "CrystalBarrierNPC") {
+      crystals[i].dealDamage(1000);
+    }
+  }
+  DUPlaySound("sfx_break_glass");
+}
+
 function TurnMapHostile(map) {
   DebugWrite("combat", "Attacked a friendly! Turning hostile...<br />");
   PC.diffKarma(-10); 
@@ -713,7 +725,7 @@ function StepOrSidestep(who, path, finaldest, nopush) {
 }
 
 function IsNonLiving(who) {
-  if (who.specials.undead || who.specials.construct) { return 1;}
+  if (who.specials.undead || who.specials.construct || who.specials.noact) { return 1;}
   return 0;
 }
 
@@ -804,6 +816,8 @@ function FindEmptyAdjacent(who, randompick) {
 }
 
 function CheckAreEnemies(who1,who2) {
+  if (who1.getName() === "NegatorGnomeNPC") { return 0; }
+  if (who2.getName() === "NegatorGnomeNPC") { return 0; }
   if ((who1.getAttitude() === "friendly") && (who2.getAttitude() === "hostile")) { return 1; }
   if ((who2.getAttitude() === "friendly") && (who1.getAttitude() === "hostile")) { return 1; }
   if ((who1.getAttitude() === "ally") && (who2.getAttitude() === "enemy")) { return 1; }
