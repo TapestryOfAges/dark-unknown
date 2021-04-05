@@ -3067,7 +3067,7 @@ function PerformExplosion(caster, infused, free, tgt) {
   let resp = {fin:1};
   let castmap = caster.getHomeMap();
 
-  if (castmap.getLOS(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), 1) >= LOS_THRESHOLD) { 
+  if (castmap.getLOS(caster.getx(), caster.gety(), tgt.x, tgt.y, 1) >= LOS_THRESHOLD) { 
     resp["fin"] = 2;
     resp["txt"] = "Your spell cannot reach that target!";
     return resp;
@@ -3080,49 +3080,51 @@ function PerformExplosion(caster, infused, free, tgt) {
   }
   
   let hostile = 0;
-  if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
-    TurnMapHostile(castmap);
-    hostile = 1;
-  }
+//  if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
+//    TurnMapHostile(castmap);
+//    hostile = 1;
+//  }
 
   let dmg = RollDamage(DMG_MEDIUM,DMG_LIGHT);
   if (infused) {
     dmg = dmg * 1.5;
   }
   
-  if (CheckResist(caster,tgt,infused,0)) {
-    dmg = Math.floor(dmg/2)+1;
-  }
-  DebugWrite("magic", "Dealing " + dmg + " damage.<br />");
-  ShowEffect(tgt, 700, "master_spritesheet.png", -128, -1856);
+//  if (CheckResist(caster,tgt,infused,0)) {
+//    dmg = Math.floor(dmg/2)+1;
+//  }
+//  DebugWrite("magic", "Dealing " + dmg + " damage.<br />");
+//  ShowEffect(tgt, 700, "master_spritesheet.png", -128, -1856);
   //tgt.dealDamage(dmg,caster,"fire");
-  DealandDisplayDamage(tgt,caster,dmg,"fire");
+//  DealandDisplayDamage(tgt,caster,dmg,"fire");
   PlayCastSound(caster,"sfx_explosion");
   for (let diffx = -1; diffx <=1; diffx++) {
     for (let diffy = -1; diffy <=1; diffy++) {
-      if ((diffx === 0) && (diffy === 0)) { continue; }
+//      if ((diffx === 0) && (diffy === 0)) { continue; }
 //      dmg = RollDamage(DMG_LIGHT);
-      if ((tgt.getx()+diffx === PC.getx()) && (tgt.gety()+diffy === PC.gety())) {
-        if (CheckResist(caster,PC,infused,0)) { dmg = dmg/2 +1; }
+      if ((tgt.x+diffx === PC.getx()) && (tgt.y+diffy === PC.gety())) {
+        let localdmg = dmg;
+        if (CheckResist(caster,PC,infused,0)) { localdmg = localdmg/2 +1; }
         //PC.dealDamage(dmg,caster,"fire");
-        DealandDisplayDamage(PC,caster,dmg,"fire");
+        DealandDisplayDamage(PC,caster,localdmg,"fire");
         ShowEffect(PC, 700, "master_spritesheet.png", -128, -1856);
         continue;
       }
-      let tile = castmap.getTile(tgt.getx()+diffx,tgt.gety()+diffy);
+      let tile = castmap.getTile(tgt.x+diffx,tgt.y+diffy);
       let badguy = tile.getTopNPC();
       if (badguy) {
         badguy.setHitBySpell(caster,SPELL_EXPLOSION_LEVEL);
-        if (CheckResist(caster,badguy,infused,0)) { dmg = dmg/2+1; }
+        let localdmg = dmg;
+        if (CheckResist(caster,badguy,infused,0)) { localdmg = localdmg/2+1; }
         //badguy.dealDamage(dmg,caster,"fire");
-        DealandDisplayDamage(badguy,caster,dmg,"fire");
+        DealandDisplayDamage(badguy,caster,localdmg,"fire");
         ShowEffect(badguy, 700, "master_spritesheet.png", -128, -1856);
         if (!hostile && (caster === PC) && (tgt.getAttitude() === "friendly")) {
           TurnMapHostile(castmap);
           hostile = 1;
         }
       } else {
-        ShowEffect(0, 700, "master_spritesheet.png", -128, -1856, {x:tgt.getx()+diffx, y:tgt.gety()+diffy, map:caster.getHomeMap()});
+        ShowEffect(0, 700, "master_spritesheet.png", -128, -1856, {x:tgt.x+diffx, y:tgt.y+diffy, map:caster.getHomeMap()});
       }
     }
   }
@@ -4246,8 +4248,6 @@ function PerformSpellcast() {
         resp = PerformParalyze(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
       } else if (targetCursor.spellName === "Swordstrike") {
         resp = PerformSwordstrike(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
-      } else if (targetCursor.spellName === "Explosion") {
-        resp = PerformExplosion(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
       } else if (targetCursor.spellName === "Charm") {
         resp = PerformCharm(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
       } else if (targetCursor.spellName === "Arrow of Glass") {
@@ -4287,6 +4287,8 @@ function PerformSpellcast() {
       resp = PerformSummonAlly(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
     } else if (targetCursor.spellName === "Poison Cloud") {
       resp = PerformPoisonCloud(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
+    } else if (targetCursor.spellName === "Explosion") {
+      resp = PerformExplosion(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
     } else if (targetCursor.spellName === "Wall of Flame") {
       resp = PerformWallOfFlame(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
     } else if (targetCursor.spellName === "Conjure Daemon") {
