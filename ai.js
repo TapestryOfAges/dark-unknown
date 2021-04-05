@@ -2000,7 +2000,9 @@ ais.Justice = function(who) {
         }
         let tgts = [PC];
         for (let i=0;i<npcs.length;i++) {
-          if (CheckAreEnemies(who,npcs[i])) { tgts.push(npcs[i]); }
+          if (CheckAreEnemies(who,npcs[i])) { 
+            tgts.push(npcs[i]); 
+          }
         }
         console.log("List of possible targets:");
         console.log(tgts);
