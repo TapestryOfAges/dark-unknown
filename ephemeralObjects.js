@@ -1685,6 +1685,7 @@ JusticeCollapseTile.prototype.applyEffect = function(silent) {
 
 JusticeCollapseTile.prototype.doEffect = function() {
   let npcs = PC.getHomeMap().npcs.getAll();
+  let who = this.getAttachedTo();
   for (let i=0;i<npcs.length;i++) {
     if (npcs[i].getName() === "JusticeNPC") { console.log("Justice still up, orb doesn't start to end the world."); return; }
   }
@@ -1713,6 +1714,8 @@ JusticeCollapseTile.prototype.doEffect = function() {
       FadeIn(); 
       setTimeout(function() {
         gamestate.setMode("player");
+        who.getHomeMap().deleteThing(who);
+        DUTime.removeEntityFrom(who); 
       }, 1500);
     }, 1500);
   }
