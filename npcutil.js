@@ -810,6 +810,8 @@ function FindEmptyAdjacent(who, randompick) {
 }
 
 function CheckAreEnemies(who1,who2) {
+  if (who1.getName() === "NegatorGnomeNPC") { return 0; }
+  if (who2.getName() === "NegatorGnomeNPC") { return 0; }
   if ((who1.getAttitude() === "friendly") && (who2.getAttitude() === "hostile")) { return 1; }
   if ((who2.getAttitude() === "friendly") && (who1.getAttitude() === "hostile")) { return 1; }
   if ((who1.getAttitude() === "ally") && (who2.getAttitude() === "enemy")) { return 1; }
