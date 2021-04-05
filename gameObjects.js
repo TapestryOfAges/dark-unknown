@@ -10886,7 +10886,12 @@ JusticeOrbTile.prototype.use = function(who) {
 
 JusticeOrbTile.prototype.onGet = function(who) {
   let newcrystal = localFactory.createTile("NegatorGnomeNPC");
-  who.getHomeMap().placeThing(0,0,newcrystal);
+  let gnomemap = maps.getMap("gnomeland");
+	if (!gnomemap) {
+	  gnomemap = new GameMap();
+    gnomemap = maps.addMap("gnomeland");
+	}
+  gnomemap.placeThing(2,1,newcrystal);
   newcrystal.invisible = 1;
   let cataclysm = localFactory.createTile("JusticeCollapse");
   newcrystal.addSpellEffect(cataclysm);
