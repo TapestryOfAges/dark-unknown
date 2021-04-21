@@ -1855,7 +1855,7 @@ ais.Justice = function(who) {
     console.log("Justice is badly wounded and will flee.");
     retval.wait = 1; // animation will occur, we'll handle restarting the scheduler
     maintext.addText('Justice gasps, then says, "You are more formidable than I anticipated. But it will not avail you. What has been put into motion cannot be stopped! Good-bye!"');
-    DU.gameflags.setFlag("justice_flees");
+    DU.gameflags.setFlag("justice_flees",1);
     maintext.setInputLine("[MORE]");
     maintext.drawTextFrame();
     gamestate.setMode("anykey");
@@ -1902,6 +1902,7 @@ ais.Justice = function(who) {
     maintext.setInputLine("[MORE]");
     maintext.drawTextFrame();
     gamestate.setMode("anykey");
+    DU.gameflags.setFlag("justice_flees",1);
     targetCursor.command="justice";
     targetCursor.justice = who;
     return retval;

@@ -636,7 +636,7 @@ OnConvTriggers["garrick_flipout"] = function(speaker,keyword) {
   else {
     garrick.setCurrentAI("GarrickAttack");
     DebugWrite("plot", "Garrick's AI changes to GarrickAttack.<br />");
-    garrick.unkillable = 1;
+    garrick.specials.unkillable = 1;
     garrick.setAttitude("enraged");
   }
   if (!aoife) { alert("Couldn't find Aoife to change her AI."); }
@@ -647,7 +647,7 @@ OnConvTriggers["garrick_flipout"] = function(speaker,keyword) {
     aoife.addToInventory(mace,1);
     aoife.setWeapon(mace);  // no longer actually a mace
     aoife.setAttitude("defensive");
-    aoife.unkillable = 1;
+    aoife.specials.unkillable = 1;
     // to set her back, just reset to PeaceAI
   }
 }
@@ -1077,6 +1077,97 @@ OnConvTriggers["justice_teleport"] = function(speaker,keyword) {
   }
   MoveBetweenMaps(PC,PC.getHomeMap(),newmap,7,9);		  
   DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
+
+}
+
+OnConvTriggers["rhys_return"] = function(speaker,keyword) {
+  PC.replaceTurnWith = function(who) {
+    let rhys = localFactory.createTile("RangerVillagerNPC");
+    rhys.setGraphic("305.gif");
+    rhys.setConversation("rhys_group");
+    rhys.setNPCName("Rhys");
+    let bdcmap = who.getHomeMap();
+    bdcmap.placeThing(28,35,rhys);
+
+    FadeOut();
+    gamestate.setMode("null");
+
+    setTimeout(function() {
+      let npcs=bdcmap.npcs.getAll();
+      let lance;
+      for (let i=0;i<npcs.length;i++) {
+        if (npcs[i].getName() === "PrinceNPC") { lance = npcs[i]; }
+      }
+      bdcmap.moveThing(29,33,lance);
+      bdcmap.moveThing(30,35,PC);
+      DrawMainFrame("draw",bdcmap,PC.getx(),PC.gety());
+      FadeIn();
+
+      setTimeout(function() {
+        PC.forcedTalk = rhys;
+        delete PC.replaceTurnWith;
+        PC.myTurn();
+      }, 1500);
+    }, 1500);
+  }
+}
+
+OnConvTriggers["rhys_summoned"] = function(speaker,keyword) {
+  PC.replaceTurnWith = function(who) {
+    let bdcmap = who.getHomeMap();
+    bdcmap.placeThing(28,35,rhys);
+
+    FadeOut();
+    gamestate.setMode("null");
+
+    setTimeout(function() {
+      let npcs=bdcmap.npcs.getAll();
+      let lance, rhys;
+      for (let i=0;i<npcs.length;i++) {
+        if (npcs[i].getName() === "PrinceNPC") { lance = npcs[i]; }
+        if (npcs[i].getName() === "Rhys") { lance = npcs[i]; }
+      }
+      bdcmap.moveThing(28,11,lance);
+      bdcmap.moveThing(27,9,PC);
+      bdcmap.moveThing(28,10,rhys);
+      let door=bdcmap.getTile(29,13).getTopFeature();
+      door.lockMe(2);
+      DrawMainFrame("draw",bdcmap,PC.getx(),PC.gety());
+      FadeIn();
+
+      setTimeout(function() {
+        delete PC.replaceTurnWith;
+        PC.replaceTurnWith = function(who) {
+          gamestate.setMode("anykey");
+          targetCursor.command = "summon";
+          targetCursor.phase = 1;
+          maintext.addText("The three of you progress to the back room, sealing the door behind you, and stand in an arc around the pentagram.");
+          maintext.setInputLine("[MORE]");
+          maintext.drawTextFrame();
+
+          delete PC.replaceTurnWith;
+          return;
+        }
+        PC.myTurn();
+      }, 1500);
+    }, 1500);
+  }
+}
+
+
+OnConvTriggers["rhys_moved"] = function(speaker,keyword) {
+  let bdcmap = speaker.getHomeMap();
+  let rhys = FindNPCByName("Rhys",bdcmap);
+  rhys.setConversation("rhys_bdc");
+  let lance = FindNPCByName("Prince Lance",bdcmap);
+  delete lance.flags.closedoor;
+  // In case he was summoned here while prepping to close a door. Means the door will hang open until map
+  // unload, but no big deal.
+
+  rhys.setSchedule("rhys");
+  rhys.setPeaceAI("scheduled");
+  let loc = DU.schedules["rhys"].getNPCLocationByTime(GetClockTime(), 1, 1, bdcmap);
+  rhys.flags = loc.flags;
 
 }
 

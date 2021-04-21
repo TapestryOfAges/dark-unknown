@@ -164,3 +164,7 @@ cult_attack - the cult has attacked in Shadow 3
 cult_atk_convo - Rhys has talked about the cult attack
 justice_teleport - she takes you both to her battleground
 justice_flees - you have defeated Justice in her battleground
+rhys_return - Rhys returned to BDC
+rhys_stone - Rhys has asked you to find the Stone
+rhys_moved - set Rhys to final dialog and that he's moved in to BDC
+rhys_summoning - the summoning has occurred
