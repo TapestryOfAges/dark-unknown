@@ -296,6 +296,11 @@ function DoAction(code, ctrl) {
       } else {
         gamestate.setMode("anykey");
       }
+    } else if (targetCursor.command === "summon") {
+      let aredone = PlaySummonScene(targetCursor.phase);
+      maintext.drawTextFrame();
+      if (aredone) { PC.endTurn(); }
+      else { targetCursor.phase++; }
     } else if (targetCursor.command === "justice") { 
       if (!targetCursor.frame) {
         maintext.addText("Justice draws an eldritch symbol in the air and speaks one syllable in a harsh tone...");
