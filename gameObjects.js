@@ -7498,7 +7498,7 @@ BrilliantPoolTile.prototype.usePrompt = function(code) {
 
 BrilliantPoolTile.prototype.bookFinish = function() {
   PC.setOrbInt(PC.getOrbInt() + 1);
-  DU.gameflags.setFlag("pool_drunk");
+  DU.gameflags.setFlag("pool_drunk",1);
   PC.dealDamage(PC.getMaxHP() + 100);
   return;
 }
@@ -17341,6 +17341,12 @@ PCObject.prototype.myTurn = function() {
   if ((clockface[3] !== GetClockTime()[3]) && !this.getWaiting() && !this.dead) { DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety()); }
   if (!this.dead) {
     SetSky();
+  }
+
+  if (this.replaceTurnWith) {
+    this.replaceTurnWith(this);
+    // remember that it is the responsibility of the replaceTurn function to delete itself from the PC
+    return 0;
   }
 
   DebugWrite("new", "<div style='border-style:inset; border-color:#999999'><span style='" + debugstyle.header + "'><span style='color:purple'>=== PC TURN ===</span>   Timestamp: " + DU.DUTime.getGameClock().toFixed(5) + "; Clock: " + GetUsableClockTime() + "; x: " + PC.getx() + ", y: " + PC.gety() + "<br />");
