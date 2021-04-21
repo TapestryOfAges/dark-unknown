@@ -88,7 +88,7 @@ mappages["beldskaecave"].ClearEmOut = function(mapref) {
 
 mappages["beldskaecave"].ClearOrcs = function(mapref) {
   mapref.Exit = function(who,tomap,oldx,oldy,destx,desty) {
-    if (destx === 129) { DU.gameflags.setFlag("beldskaeorcs"); }
+    if (destx === 129) { DU.gameflags.setFlag("beldskaeorcs", 1); }
   }
 }
 
