@@ -366,3 +366,59 @@ function PerformActEnd() {
   }
 
 }
+
+function PlaySummonScene(frame) {
+  if (frame === 1) {
+    maintext.addText("Rhys lights a series of candles, and takes the Stone from you with murmured thanks.");
+  } else if (frame === 2) {
+    maintext.addText('Once all is in position, he reaches out and takes each of your hands, then looks at you. "We will all be a part of the spell, but I am the one whose will it will be most constrained by. I will take the lead in the questioning."');
+  } else if (frame === 3) {
+    maintext.addText('He begins an incantation. One by one, the color of the flames over each candle darken to match the color of the Stone of Conflagrations, which sits at one of the points of the pentagram.');
+  } else if (frame === 4) {
+    maintext.addText("Rhys's words pause, and you feel something wrench around you. A new flame appears in the center of the circle.");
+    let flame = localFactory.createTile("FireField");
+    PC.getHomeMap().placeThing(26,11,flame);
+    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+  } else if (frame === 5) {
+    maintext.addText("The incanting resumes, and there is a void visible in the heart of the flames... and then something large and terrifying steps forth.");
+    let daemon = localFactory.createTile("DaemonNPC");
+    daemon.setAttitude("friendly");
+    PC.getHomeMap().placeThing(26,11,daemon);
+    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+  } else if (frame === 6) {
+    maintext.addText("Rhys's spell is complete. He stares at the daemon, a sheen of sweat on his brow, as the daemon raises a fist and tests the boundaries of the circle. It jerks its hand back, and looks back at Rhys.");
+  } else if (frame === 7) {
+    maintext.addText(`The daemon speaks: "You have called me. I have come. What is it that you seek? Power? The destruction of your enemies?"`);
+  } else if (frame === 8) {
+    maintext.addText(`Rhys does not even shake his head. "Neither of those things. Tell us what you know about Justice, and the Cult of Darkness."`);
+  } else if (frame === 9) {
+    maintext.addText(`The daemon responds, "You would call the Harbinger of Blood for information? You are fools... but, maybe wise. I can tell you what you seek."`);
+  } else if (frame === 10) {
+    maintext.addText(`"Yes, I will tell you. The one you call Justice is high in the Cult of Darkness. They have drawn power from the Greatest of the Dark, and seek to bring night everlasting to the world, by bringing Him here."`);
+  } else if (frame === 11) {
+    maintext.addText(`Rhys looks concerned. "Who is the Greatest of the Dark? What does it want?"`);
+  } else if (frame === 12) {
+    maintext.addText(`The daemon answers. "Far removed from these vaults of light are the courts of darkness. And at its head is the Shepherd of the Dark. He is the night’s king, the dark unknown, the farewell of the sun forever. The cult has brought him through the great warding, just as you have done to me, but they have unleashed him; now, he needs them not, and reaches to bring forth more of his own."`);
+  } else if (frame === 13) {
+    maintext.addText(`Lance says, "Bring forth? What do you mean?"`);
+  } else if (frame === 14) {
+    maintext.addText(`The daemon looks at Lance and says, "Ah. The Prince with two minds." It gives an evil smile. "Yes. His Darkness yet stand on Ellusus- he is too vast, and the light is too overbearing. He is outside the warding but not yet here. From where he stands, he can reach within, and cast forth his minions to the place easiest to cross over."`);
+  } else if (frame === 15) {
+    maintext.addText(`Lance and Rhys exchange a glance. Rhys is visibly under strain. Lance asks, "...and where is that?"`);
+  } else if (frame === 16) {
+    maintext.addText(`The daemon smiles. "In the place most riddled with vice. It is already almost too late to save. Much like it is almost too late to save yourselves..."`);
+  } else if (frame === 17) {
+    maintext.addText(`Rhys suddenly shouts three mystical words. All at once, the flames are doused, and the daemon vanishes with a wail.`);
+    let bdcmap = PC.getHomeMap();
+    let tile = bdcmap.getTile(26,11);
+    let daemon = tile.getTopNPC();
+    let flame = tile.getTopFeature();
+    bdcmap.deleteThing(flame);
+    bdcmap.deleteThing(daemon);
+    DUTime.removeEntityFrom(flame);
+    DUTime.removeEntityFrom(daemon);
+  } else if (frame === 18) {
+    maintext.addText(`Rhys sags to his knees. "I'm sorry. It was beginning to overwhelm my binding. I wasn't strong enough. I had to send it back. I'm glad I was able to send it back. I'm sorry. I hope we learned enough."`);
+    return 1;
+  }
+}
