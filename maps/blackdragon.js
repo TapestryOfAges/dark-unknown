@@ -272,12 +272,26 @@ mappages["blackdragon"].onload = function(mapref) {
       Open_BDC_Gate(mapref);
       SetAct2Convos(mapref);
       let npcs = mapref.npcs.getAll();
-      let dragon;
+      let dragon, lance;
       for (let i=0;i<npcs.length;i++) {
         if (npcs[i].getName() === "BlackDragonNPC") { dragon = npcs[i]; }
+        if (npcs[i].getName() === "PrinceNPC") { lance = npcs[i]; }
       }
       mapref.deleteThing(dragon);
       DUTime.removeEntityFrom(dragon);
+
+      // Adjust Lance to Act 2 schedule
+      lance.setSchedule("lance_act2");
+      let loc = DU.schedules[lance.getSchedule()].getNPCLocationByTime(GetClockTime(), 1, 1, mapref);
+      let prevacre = mapref.getTile(lance.getx(),lance.gety());
+      prevacre.executeWalkoffs(lance);
+      mapref.moveThing(loc.x,loc.y,lance);
+      let placedacre = mapref.getTile(loc.x,loc.y);
+      placedacre.executeWalkons(lance);  
+
+      //Unlock his door
+      let door = mapref.getTile(32,17).getTopFeature();
+      door.unlockMe();
     } else {
       let npcs = mapref.npcs.getAll();
       let dragon;
