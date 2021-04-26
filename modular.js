@@ -402,7 +402,7 @@ function PlaySummonScene(frame) {
   } else if (frame === 13) {
     maintext.addText(`Lance says, "Bring forth? What do you mean?"`);
   } else if (frame === 14) {
-    maintext.addText(`The daemon looks at Lance and says, "Ah. The Prince with two minds." It gives an evil smile. "Yes. His Darkness yet stand on Ellusus- he is too vast, and the light is too overbearing. He is outside the warding but not yet here. From where he stands, he can reach within, and cast forth his minions to the place easiest to cross over."`);
+    maintext.addText(`The daemon looks at Lance and says, "Ah. The Prince with two minds." It gives an evil smile. "Yes. His Darkness does not yet stand on Ellusus- he is too vast, and the light is too overbearing. He is outside the warding but not yet here. From where he stands, he can reach within, and cast forth his minions to the place easiest to cross over."`);
   } else if (frame === 15) {
     maintext.addText(`Lance and Rhys exchange a glance. Rhys is visibly under strain. Lance asks, "...and where is that?"`);
   } else if (frame === 16) {
@@ -419,6 +419,17 @@ function PlaySummonScene(frame) {
     DUTime.removeEntityFrom(daemon);
   } else if (frame === 18) {
     maintext.addText(`Rhys sags to his knees. "I'm sorry. It was beginning to overwhelm my binding. I wasn't strong enough. I had to send it back. I'm glad I was able to send it back. I'm sorry. I hope we learned enough."`);
+    let gnome = localFactory.createTile("NegatorGnomeNPC");
+    let gnomemap = maps.getMap("gnomeland");
+    if (!gnomemap) {
+      gnomemap = new GameMap();
+      gnomemap = maps.addMap("gnomeland");
+    }
+    gnomemap.placeThing(2,1,gnome);
+    newcrystal.invisible = 1;
+    let cataclysm = localFactory.createTile("ScouringBeldskae");
+    gnome.addSpellEffect(cataclysm);
+  
     return 1;
   }
 }

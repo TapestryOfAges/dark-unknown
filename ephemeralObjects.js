@@ -1103,6 +1103,13 @@ NegateMagicTile.prototype.applyEffect = function(silent) {
   return 1;
 }
 
+NegateMagicTile.prototype.eachTurn = function() {
+  let negated = DU.gameflags.getFlag("negate");
+  if (!negated[this.negatedmap.getName()]) {
+    this.endEffect();
+  }
+}
+
 NegateMagicTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
   let negmap = this.negatedmap;
@@ -1110,6 +1117,7 @@ NegateMagicTile.prototype.endEffect = function(silent) {
   delete negated[negmap.getName()];
   DU.gameflags.setFlag("negate", negated);
   negmap.deleteThing(who);
+  DUTime.removeEntityFrom(who);
   
   if (PC.getHomeMap() === negmap) {
     maintext.addText("The ether is accessible again.");
@@ -1758,3 +1766,56 @@ DelayTurnStartTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
 }
+
+function ScouringBeldskaeTile() {
+  this.addType("debuff");
+  this.name = "ScouringBeldskae";
+  this.display = "<span style='color:#0000ee'></span>";
+  this.zstatdesc = "";
+  this.desc = "Timer on the Beldskae attack";
+  this.level = 1;
+  this.dispellable = 0;
+}
+ScouringBeldskaeTile.prototype = new EphemeralObject();
+
+ScouringBeldskaeTile.prototype.applyEffect = function(silent) {
+  let applytime = DU.getGameClock();
+  this.expiresTime = applytime + 300;
+
+  let mainmap = maps.getMap("darkunknown");
+  let fea = mainmap.features.getAll();
+  for (let i=0;i<fea.length;i++){
+    if (fea.getEnterMap().entermap === "beldskae") {
+      fea.setEnterMap("beldskae_scour", fea.getEnterMap().enterx, fea.getEnterMap().entery);
+
+      return 1;
+    }
+  }
+  return 1;
+}
+
+ScouringBeldskaeTile.prototype.doEffect = function() {
+  
+}
+
+ScouringBeldskaeTile.prototype.eachTurn = function() {
+  return this.doEffect();
+}
+
+ScouringBeldskaeTile.prototype.endEffect = function(silent) {
+  let who = this.getAttachedTo();
+  who.getHomeMap().deleteThing(who);
+  DUTime.removeEntityFrom(who); 
+
+  let mainmap = maps.getMap("darkunknown");
+  let fea = mainmap.features.getAll();
+  for (let i=0;i<fea.length;i++){
+    if (fea.getEnterMap().entermap === "beldskae_scour") {
+      fea.setEnterMap("beldskae_razed", fea.getEnterMap().enterx, fea.getEnterMap().entery);
+
+      return 1;
+    }
+  }
+
+}
+
