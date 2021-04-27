@@ -9345,7 +9345,7 @@ function AltarTile() {
 	this.name = "Altar";
   this.graphic = "static.png";
   this.spritexoffset = -3*32;
-  this.spriteyoffset = 78*32;
+  this.spriteyoffset = -78*32;
 	this.passable = MOVE_ETHEREAL + MOVE_FLY;
 	this.blocklos = 0;
 	this.prefix = "an";
@@ -9359,7 +9359,7 @@ function ThinAltarTile() {
 	this.name = "ThinAltar";
   this.graphic = "static.png";
   this.spritexoffset = -5*32;
-  this.spriteyoffset = 77*32;
+  this.spriteyoffset = -77*32;
 	this.passable = MOVE_ETHEREAL + MOVE_FLY;
 	this.blocklos = 0;
 	this.prefix = "an";
@@ -12310,9 +12310,9 @@ Barrel2Tile.prototype.flamed = function() {
 function CrackedMirrorTile() {
   //Graphics Upgraded
   this.name = "CrackedMirror";
-  this.graphic = "static.gif";
+  this.graphic = "static.png";
   this.spritexoffset = -8*32;
-  this.spriteyoffset = -77*32;
+  this.spriteyoffset = -76*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -12327,9 +12327,9 @@ CrackedMirrorTile.prototype = new FeatureObject();
 function MirrorTile() {
   //Graphics Upgraded
   this.name = "Mirror";
-  this.graphic = "static.gif";
+  this.graphic = "static.png";
   this.spritexoffset = -9*32;
-  this.spriteyoffset = -77*32;
+  this.spriteyoffset = -76*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
