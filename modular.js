@@ -317,7 +317,7 @@ OnDeathFuncs["scouring"] = function() {
         fea[i].setEnterMap("beldskae_saved", fea[i].getEnterMap().enterx, fea[i].getEnterMap().entery);
         fea[i].setDesc("Towne of Beldskae");
         let gra = fea[i].getGraphicArray();
-        gra[0] = "152.gif";
+        gra[0] = "town2.gif";
         gra[2] = 0;
         gra[3] = 0;
         fea[i].setGraphicArray(gra);
