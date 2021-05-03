@@ -282,7 +282,7 @@ OnDeathFuncs["endact"] = function() {
 }
 
 OnDeathFuncs["cult"] = function() {
-  let themap = PC.getHomeMap();
+  let themap = who.getHomeMap();
   if (themap.getName() !== "Shadow3") { alert("Somehow on the wrong map"); }
   // check to see if both imps and cultists are dead, if so Rhys says something.
   let impcount = 0;
@@ -297,6 +297,22 @@ OnDeathFuncs["cult"] = function() {
   if (!impcount && !cultistcount) {
     PC.forcedTalk = rhys;
     DU.gameflags.setFlag("cultist_defeat",1);
+  }
+}
+
+OnDeathFuncs["scouring"] = function() {
+  let themap = who.getHomeMap();
+  if (themap.getName() !== "beldskae_scour") { alert("Somehow on wrong map."); }
+  let npcs = themap.npcs.getAll();
+  for (let i=0;i<npcs.length;i++) {
+    if (npcs[i].getName === "DaemonNPC") { return; }   // this wasn't the last daemon, keep on
+  }
+  // all the Daemons are dead!
+  let world = maps.getMap("darkunknown");
+  let worldfeas = world.features.getAll();
+  let beld;
+  for (let i=0;i<worldfeas.length;i++) {
+    
   }
 }
 

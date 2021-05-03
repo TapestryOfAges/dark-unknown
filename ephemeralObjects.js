@@ -1810,10 +1810,17 @@ ScouringBeldskaeTile.prototype.endEffect = function(silent) {
   let mainmap = maps.getMap("darkunknown");
   let fea = mainmap.features.getAll();
   for (let i=0;i<fea.length;i++){
-    if (fea.getEnterMap().entermap === "beldskae_scour") {
-      fea.setEnterMap("beldskae_razed", fea.getEnterMap().enterx, fea.getEnterMap().entery);
+    if (fea[i].getEnterMap) {
+      if (fea[i].getEnterMap().entermap === "beldskae_scour") {
+        fea[i].setEnterMap("beldskae_razed", fea.getEnterMap().enterx, fea.getEnterMap().entery);
+        fea[i].setDesc("ruins of Beldskae");
+        let gra = fea[i].getGraphicArray();
+        gra[2] = -64;
+        gra[3] = -832;
+        fea[i].setGraphicArray(gra);
 
-      return 1;
+        return 1;
+      }
     }
   }
 
