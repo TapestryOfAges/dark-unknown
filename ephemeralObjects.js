@@ -1815,8 +1815,8 @@ ScouringBeldskaeTile.prototype.endEffect = function(silent) {
         fea[i].setEnterMap("beldskae_razed", fea.getEnterMap().enterx, fea.getEnterMap().entery);
         fea[i].setDesc("ruins of Beldskae");
         let gra = fea[i].getGraphicArray();
-        gra[2] = -64;
-        gra[3] = -832;
+        gra[2] = -9*32;
+        gra[3] = -3*32;
         fea[i].setGraphicArray(gra);
 
         return 1;
