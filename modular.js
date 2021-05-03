@@ -312,7 +312,18 @@ OnDeathFuncs["scouring"] = function() {
   let worldfeas = world.features.getAll();
   let beld;
   for (let i=0;i<worldfeas.length;i++) {
-    
+    if (fea[i].getEnterMap) {
+      if ((fea[i].getEnterMap().entermap === "beldskae_scour") || (fea[i].getEnterMap().entermap === "beldskae_razed")) {
+        fea[i].setEnterMap("beldskae_saved", fea[i].getEnterMap().enterx, fea[i].getEnterMap().entery);
+        fea[i].setDesc("Towne of Beldskae");
+        let gra = fea[i].getGraphicArray();
+        gra[0] = "152.gif";
+        gra[2] = 0;
+        gra[3] = 0;
+        fea[i].setGraphicArray(gra);
+        DU.gameflags.setFlag("beldskae_saved",1);
+      }
+    }
   }
 }
 

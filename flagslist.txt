@@ -168,3 +168,5 @@ rhys_return - Rhys returned to BDC
 rhys_stone - Rhys has asked you to find the Stone
 rhys_moved - set Rhys to final dialog and that he's moved in to BDC
 rhys_summoning - the summoning has occurred
+beldskae_saved - You saved Beldskae
+beldskae_razed - Beldskae was razed
