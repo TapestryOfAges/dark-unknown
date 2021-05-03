@@ -1812,13 +1812,15 @@ ScouringBeldskaeTile.prototype.endEffect = function(silent) {
   for (let i=0;i<fea.length;i++){
     if (fea[i].getEnterMap) {
       if (fea[i].getEnterMap().entermap === "beldskae_scour") {
-        fea[i].setEnterMap("beldskae_razed", fea.getEnterMap().enterx, fea.getEnterMap().entery);
+        fea[i].setEnterMap("beldskae_razed", fea[i].getEnterMap().enterx, fea[i].getEnterMap().entery);
         fea[i].setDesc("ruins of Beldskae");
         let gra = fea[i].getGraphicArray();
+        gra[0] = "static.png";
         gra[2] = -9*32;
         gra[3] = -3*32;
         fea[i].setGraphicArray(gra);
 
+        DU.gameflags.setFlag("beldskae_razed",1);
         return 1;
       }
     }
