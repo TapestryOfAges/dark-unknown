@@ -1141,6 +1141,17 @@ mappages["beldskae2_scour"].returninfused = '0';
 mappages["beldskae2_scour"].linkedMaps = ["beldskae_scour"];
 mappages["beldskae2_scour"].editorLabels = '{"div_tile39x14":"PC","div_tile33x22":"Ernest","div_tile33x14":"Kelse","div_tile33x26":"Percy","div_tile39x17":"Ursula","div_tile39x21":"Rich","div_tile33x17":"Grant"}';
 
+mappages["beldskae_scour"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    let npcs=mapref.npcs.getAll();
+    for (let i=0;i<npcs.length;i++) {
+      if (npcs[i].getName() === "DaemonNPC") {
+        npcs[i].onDeath = "scouring";
+      }
+    }
+  }
+}
+
 mappages["beldskae_razed"] = {};
 mappages["beldskae_razed"].terrain = [];
  mappages["beldskae_razed"].terrain[0] = 'nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn ., ., ., nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn';
