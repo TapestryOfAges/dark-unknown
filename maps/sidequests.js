@@ -80,7 +80,7 @@ mappages["beldskaecave"].ClearEmOut = function(mapref) {
       let npcs = mapref.npcs.getAll();
       for (let i=0;i<npcs.length;i++) {
         mapref.deleteThing(npcs[i]);
-        DU.DUTime.removeEntityFrom(npcs[i]);
+        DUTime.removeEntityFrom(npcs[i]);
       }
     }
   }
@@ -669,6 +669,7 @@ mappages["coastalcave"].onload = function(mapref) {
     let boro = mapref.npcs.getTop();
     if (DU.gameflags.getFlag("borogard_killed")) {
       mapref.deleteThing(boro);
+      DUTime.removeEntityFrom(boro);
     } else {
       boro.onDeath = "Borogard";
     }
