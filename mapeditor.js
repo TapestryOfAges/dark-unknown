@@ -80,6 +80,8 @@ function editorLoadMap(mapname) {
 	if (mapname !== "test") { 
 		mapname = document.menuinterface.mapnameslist.value;
 	}
+  $("div.mapscreen").html(`		<div style="position:absolute;z-index:0" id="bottommap"></div>
+    <div style="position:absolute;z-index:1" id="topmap"></div>`);
 	amap = maps.addMap(mapname);
   drawMap();
   changes = 0;
