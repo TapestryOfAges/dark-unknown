@@ -403,7 +403,7 @@ mappages["clearlake"].linkedMaps = ["clearlake2","clearlake0"];
 mappages["clearlake"].editorLabels = '{"div_tile5x52":"Colin and Maggie","div_tile5x38":"Flora","div_tile22x10":"Xylia","div_tile40x31":"Julian","div_tile40x39":"Rhys (act 2)","div_tile15x57":"Lisa","div_tile22x15":"PC"}';
 
 mappages["clearlake"].onload = function(mapref) {
-  if (gamestate.getMode() !== "loadgame") {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     CheckForCourier(mapref, 19, 56, 19, 63);
 
     if (DU.gameflags["rescued_sam"]) {
@@ -560,10 +560,14 @@ mappages["clearlake2"].features[67] = {name : 'Brazier', x : 33, y : 11};
 mappages["clearlake2"].features[68] = {name : 'Brazier', x : 31, y : 15};
 mappages["clearlake2"].features[69] = {name : 'Brazier', x : 38, y : 15};
 
+
 mappages["clearlake2"].npcs = [];
 mappages["clearlake2"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 40, y : 39, NPCName: 'Suzanne', Desc: 'fisherman', PeaceAI: 'scheduled', Schedule: 'suzanne', Conversation: 'suzanne', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_blue.2.gif', skintone: '2'};
 mappages["clearlake2"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 36, y : 20, NPCName: 'Kiki', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'kiki', Conversation: 'grace', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_blue.2.gif', skintone: '1'};
 mappages["clearlake2"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 36, y : 19, NPCName: 'Aubrey', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'aubrey', Conversation: 'aubrey', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_green.2.gif', skintone: '1'};
+mappages["clearlake2"].npcs[3] = {name : 'TownsfolkVillagerNPC', x : 40, y : 34, NPCName: 'Ernest', Desc: 'ex-gambler', Schedule: 'ernest_clearlake', Conversation: 'ernest_clearlake', Gender: 'male', NPCBand: '0', OverrideGraphic: 'civ_green.2.gif', skintone: '1'};
+mappages["clearlake2"].npcs[4] = {name : 'ShepherdVillagerNPC', x : 4, y : 52, NPCName: 'Lydia', Desc: 'civilian', Schedule: 'lydia', Conversation: 'lydia', Gender: 'female', NPCBand: '0', OverrideGraphic: '301.gif', skintone: '1'};
+mappages["clearlake2"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 31, y : 17, NPCName: 'Jonah', Schedule: 'jonah', Conversation: 'jonah', Gender: 'monster', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: '1'};
 
 mappages["clearlake2"].desc = "Clear Lake";
 mappages["clearlake2"].longdesc = ``;
@@ -590,7 +594,31 @@ mappages["clearlake2"].returnx = '81';
 mappages["clearlake2"].returny = '23';
 mappages["clearlake2"].returninfused = '0';
 mappages["clearlake2"].linkedMaps = ["clearlake","clearlake0"];
-mappages["clearlake2"].editorLabels = '{"div_tile41x38":"Suzanne"}';
+mappages["clearlake2"].editorLabels = '{"div_tile41x38":"Suzanne","div_tile40x32":"Ernest post-Scour","div_tile32x53":"Robert","div_tile6x52":"Lydia","div_tile32x19":"Jonah","div_tile36x18":"Aubrey and Kiki"}';
+
+mappages["clearlake2"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    let npcs = mapref.npcs.getAll();
+    let ernest, jonah, lydia;
+    for (let i=0;i<npcs.length;i++) {
+      if (npcs[i].getNPCName() === "Ernest") { ernest = npcs[i]; }
+      if (npcs[i].getNPCName() === "Lydia") { lydia = npcs[i]; }
+      if (npcs[i].getNPCName() === "jonah") { jonah = npcs[i]; }
+    }
+
+    if (!DU.gameflags.getFlag("act2")) {
+      mapref.deleteThing(lydia);
+      mapref.deleteThing(jonah);
+      DUTime.removeEntityFrom(lydia);
+      DUTime.removeEntityFrom(jonah);
+    }
+
+    if (!DU.gameflags.getFlag("beldskae_saved") && !DU.gameflags.getFlag("beldskae_razed")) {
+      mapref.deleteThing(ernest);
+      DUTime.removeEntityFrom(ernest);
+    }
+  }
+}
 
 
 mappages["clearlake0"] = {};
