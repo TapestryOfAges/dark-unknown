@@ -704,6 +704,7 @@ mappages["hildendain"].onload = function(mapref) {
       if (DU.gameflags.getFlag("warduke_defeated")) {
         let warduke = mapref.getTile(34,6).getTopNPC();
         mapref.deleteThing(warduke);
+        DUTime.removeEntityFrom(warduke);
 
         if (!DU.gameflags.getFlag("paladin_stage1") && !PC.checkInventory("Chalice")) {
           // you killed Warduke but have neither turned in the Chalice nor do you have it, so it's still here
