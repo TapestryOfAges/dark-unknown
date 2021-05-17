@@ -1466,13 +1466,13 @@ mappages["olympus2"].onload = function(mapref) {
 mappages["olympus0"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && !DU.gameflags.getFlag("editor")) {
     SetAct2Convos(mapref);
-    if (!DU.gameflags.getFlag("lvl2") && !DU.gameflags.getFlag("rebel_prisoner")) {
-      var prisoner = FindNPCByName("Rose",mapref);
+    if ((!DU.gameflags.getFlag("lvl2") && !DU.gameflags.getFlag("rebel_prisoner")) || DU.gameflags.getFlag("act2")) {
+      let prisoner = FindNPCByName("Rose",mapref);
       mapref.moveThing(3,3,prisoner);
       prisoner.setSchedule("nothere");
     }
-    if (!DU.gameflags.getFlag("rebel_prisoner")) {
-      var prisoner = FindNPCByName("Aara",mapref);
+    if (!DU.gameflags.getFlag("rebel_prisoner") || DU.gameflags("act2")) {
+      let prisoner = FindNPCByName("Aara",mapref);
       mapref.moveThing(3,3,prisoner);
       prisoner.setSchedule("nothere");
     }
