@@ -542,7 +542,19 @@ mappages["blackdragon3"].OrbPulse = function(mapref) {
   }
 }
 
-
+mappages["blackdragon3"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    if (DU.gameflags.getFlag("justice_escape")) {
+      let npcs = mapref.npcs.getAll()
+      let justice;
+      for (let i=0;i<npcs.length;i++) {
+        if (npcs[i].getNPCName() === "Justice") { justice = npcs[i]; }
+      }
+      mapref.deleteThing(justice);
+      DUTime.removeEntityFrom(justice);
+    }
+  }
+}
 mappages["blackdragon4"] = {};
 mappages["blackdragon4"].terrain = [];
  mappages["blackdragon4"].terrain[0] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
