@@ -305,24 +305,30 @@ OnDeathFuncs["scouring"] = function() {
   if (themap.getName() !== "beldskae_scour") { alert("Somehow on wrong map."); }
   let npcs = themap.npcs.getAll();
   for (let i=0;i<npcs.length;i++) {
-    if (npcs[i].getName === "DaemonNPC") { return; }   // this wasn't the last daemon, keep on
+    if (npcs[i].getName() === "DaemonNPC") { return; }   // this wasn't the last daemon, keep on
   }
   // all the Daemons are dead!
   let world = maps.getMap("darkunknown");
   let worldfeas = world.features.getAll();
   let beld;
   for (let i=0;i<worldfeas.length;i++) {
-    if (fea[i].getEnterMap) {
-      if ((fea[i].getEnterMap().entermap === "beldskae_scour") || (fea[i].getEnterMap().entermap === "beldskae_razed")) {
-        fea[i].setEnterMap("beldskae_saved", fea[i].getEnterMap().enterx, fea[i].getEnterMap().entery);
-        fea[i].setDesc("Towne of Beldskae");
-        let gra = fea[i].getGraphicArray();
+    let fea = worldfeas[i];
+    if (fea.getEnterMap) {
+      if ((fea.getEnterMap().entermap === "beldskae_scour") || (fea.getEnterMap().entermap === "beldskae_razed")) {
+        fea.setEnterMap("beldskae_saved", fea.getEnterMap().enterx, fea.getEnterMap().entery);
+        fea.setDesc("Towne of Beldskae");
+        let gra = fea.getGraphicArray();
         gra[0] = "152.gif";
         gra[2] = 0;
         gra[3] = 0;
-        fea[i].setGraphicArray(gra);
+        fea.setGraphicArray(gra);
         DU.gameflags.setFlag("beldskae_saved",1);
       }
+    }
+  }
+  for (let i=0;i<npcs.length;i++) {
+    if (npcs[i].getName() === "TownGuardNPC") {
+      npcs[i].setAggro(0);
     }
   }
 }
