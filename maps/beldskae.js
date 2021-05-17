@@ -979,9 +979,10 @@ mappages["beldskae_scour"].npcs[0] = {name : 'DaemonNPC', x : 28, y : 24, skinto
 mappages["beldskae_scour"].npcs[1] = {name : 'DaemonNPC', x : 30, y : 21, skintone: '1'};
 mappages["beldskae_scour"].npcs[2] = {name : 'DaemonNPC', x : 35, y : 25, skintone: '1'};
 mappages["beldskae_scour"].npcs[3] = {name : 'DaemonNPC', x : 22, y : 25, skintone: '1'};
-mappages["beldskae_scour"].npcs[4] = {name : 'TownGuardNPC', x : 29, y : 23, skintone: '1'};
-mappages["beldskae_scour"].npcs[5] = {name : 'TownGuardNPC', x : 36, y : 24, skintone: '1'};
-mappages["beldskae_scour"].npcs[6] = {name : 'TownGuardNPC', x : 24, y : 25, skintone: '1'};
+mappages["beldskae_scour"].npcs[4] = {name : 'TownGuardNPC', x : 29, y : 23, NPCName: 'Gabe', Conversation: 'gabe_scour', Gender: 'male', NPCBand: '0', OverrideGraphic: '309.gif', skintone: '1'};
+mappages["beldskae_scour"].npcs[5] = {name : 'TownGuardNPC', x : 36, y : 24, NPCName: 'Bennett', Conversation: 'bennett_scour', Gender: 'male', NPCBand: '0', skintone: '2'};
+mappages["beldskae_scour"].npcs[6] = {name : 'TownGuardNPC', x : 24, y : 25, NPCName: 'Pia', Conversation: 'pia_scour', Gender: 'female', NPCBand: '0', skintone: '2'};
+
 
 mappages["beldskae_scour"].desc = "The Towne of Beldskae";
 mappages["beldskae_scour"].longdesc = `You arrive to find Beldskae in flames... but still fighting. It is not too late! `;
