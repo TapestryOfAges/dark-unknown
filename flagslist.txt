@@ -150,6 +150,7 @@ infusion_learned - you know infusion
 borogard_killed - you've killed the talking ettin
 rhiannon_recipe - you've found a recipe to help the Gauntlet Tavern
 gauntlet_recipe - you've left Gauntlet since giving the recipe
+ask_poverty - Kelly has asked you to ask the King to help Poverty
 
 jharden_act2 - you've spoken to Jharden in act 2
 nyrani_act2
@@ -170,3 +171,4 @@ rhys_moved - set Rhys to final dialog and that he's moved in to BDC
 rhys_summoning - the summoning has occurred
 beldskae_saved - You saved Beldskae
 beldskae_razed - Beldskae was razed
+blanche_returned - jewelry was returned to Blanche

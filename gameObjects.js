@@ -6732,6 +6732,10 @@ FeatureObject.prototype.getSearchPrefix = function() {
   return this.searchPrefix;
 }
 
+FeatureObject.prototype.getAlternateSearchText = function() {
+  return this.alternateSearchText; 
+}
+
 FeatureObject.prototype.getLootgroup = function() {
   return this.lootgroup;
 }
@@ -11724,6 +11728,31 @@ function EmptyBookshelfRightTile() {
 	this.lootedid = "";
 }
 EmptyBookshelfRightTile.prototype = new FeatureObject();
+
+function LooseFloorboardEWTile() {
+  this.name = "LooseFloorboardEW";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-160";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "wooden planks";
+  this.peerview = "#602000";
+  this.walkSound = "stone";
+  this.prefix = "a";
+  this.lootonce = 1;
+	this.lootgroup = "";
+	this.lootedid = "";
+  this.alternateSearchText = "You pry up a loose floorboard. Underneath, you find:";
+}
+LooseFloorboardEWTile.prototype = new FeatureObject();
+
+LooseFloorboardEWTile.prototype.walkon = function(who) {
+  if (who === PC) {
+    return {msg: "Creak!"}
+  }
+  return {msg:""}
+}
 
 function BookshelfLeftTile() {
   //Graphics Upgraded
@@ -18092,7 +18121,7 @@ GreenPotionTile.prototype.getUseDesc = function() {
   if (DU.gameflags.getFlag("knowsgreenpotion")) {
     return this.usedesc;
   }
-  return "Drink it.";
+  return "Drink it, or throw it at something.";
 }
 
 GreenPotionTile.prototype.getLongDesc = function() {

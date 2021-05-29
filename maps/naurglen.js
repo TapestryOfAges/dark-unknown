@@ -579,6 +579,7 @@ mappages["naurglen"].npcs[9] = {name : 'PaladinVillagerNPC', x : 51, y : 38, NPC
 mappages["naurglen"].npcs[10] = {name : 'TownsfolkVillagerNPC', x : 93, y : 26, NPCName: 'Daniel', Desc: 'innkeeper', Prefix: 'an', PeaceAI: 'scheduled', Schedule: 'daniel', Conversation: 'daniel', ConversationFlag: 'daniel', Gender: 'male', NPCBand: '0', OverrideGraphic: 'civ_red.gif', skintone: '1'};
 mappages["naurglen"].npcs[11] = {name : 'TinkerVillagerNPC', x : 93, y : 34, NPCName: 'Kyvek', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'kyvek', Conversation: 'kyvek', ConversationFlag: 'kyvek', Gender: 'male', NPCBand: '0', OverrideGraphic: '304.2.gif', skintone: '2'};
 mappages["naurglen"].npcs[12] = {name : 'TownsfolkVillagerNPC', x : 21, y : 24, NPCName: 'Derek', PeaceAI: 'scheduled', Schedule: 'derek', Conversation: 'derek', ConversationFlag: 'derek', Gender: 'male', Leash: 4, Bark: '0', NPCBand: '0', OverrideGraphic: 'civ_blue.gif', skintone: '1'};
+mappages["naurglen"].npcs[13] = {name : 'FighterVillagerNPC', x : 7, y : 20, NPCName: 'Blanche', Desc: 'soldier', Conversation: 'blanche', Gender: 'female', NPCBand: '0', skintone: '1'};
 
 mappages["naurglen"].desc = "Naurglen";
 mappages["naurglen"].longdesc = `A small village that primarily supports the nearby castle, Naurglen is commonly split into its East and West halves. On the East is the town square and anything a visitor might need. The West is primarily farmland.%%On the far western border is one thing of interest: your house.`;
@@ -605,7 +606,7 @@ mappages["naurglen"].returnx = '72';
 mappages["naurglen"].returny = '75';
 mappages["naurglen"].returninfused = '0';
 mappages["naurglen"].linkedMaps = ["naurglen2","naurglen_limbo"];
-mappages["naurglen"].editorLabels = '{"div_tile66x16":"Evelyn","div_tile74x14":"Grayson","div_tile89x17":"Dora and Ingrid","div_tile92x33":"Kyvek Room","div_tile56x37":"Amaeryl","div_tile26x39":"Kylee and Sam","div_tile45x8":"Warren and Garen","div_tile23x22":"Derek","div_tile9x38":"PC Home","div_tile74x37":"Hazel","div_tile22x6":"Samuel","div_tile7x23":"Soldier"}';
+mappages["naurglen"].editorLabels = '{"div_tile66x16":"Evelyn","div_tile74x14":"Grayson","div_tile89x17":"Dora and Ingrid","div_tile92x33":"Kyvek Room","div_tile56x37":"Amaeryl","div_tile26x39":"Kylee and Sam","div_tile45x8":"Warren and Garen","div_tile23x22":"Derek","div_tile9x38":"PC Home","div_tile74x37":"Hazel","div_tile22x6":"Samuel","div_tile7x23":"Blanche"}';
 
 
 mappages["naurglen"].onload = function(mapref) {
@@ -640,6 +641,14 @@ mappages["naurglen"].onload = function(mapref) {
       samtile.executeWalkons(sam);
     } 
     if (DU.gameflags.getFlag("derek_pony")) { DU.gameflags.setFlag("derek_pony2", 1); }
+    if (!DU.gameflags.getFlag("act2")) {
+      let blanche = FindNPCByName("blanche",mapref);
+      mapref.deleteThing(blanche);
+      DUTime.removeEntityFrom(blanche);
+    } else {
+      let door = mapref.getTile(7,25).getTopFeature();
+      door.unlockMe();
+    }
   }
 }
 

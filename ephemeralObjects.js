@@ -396,6 +396,19 @@ CrystalTrapTile.prototype.applyEffect = function(silent) {
   return 1;
 }
 
+CrystalTrapTile.prototype.onDamaged = function(hitby, dmg) { 
+  if (dmg >= 1) {
+    let who = this.getAttachedTo();
+    if (who === PC) {
+      maintext.addText("The crystal prison shatters to pieces around you!");
+    }
+    else if (GetDistance(who,PC) <=6) {
+      maintext.addText("The crystal prison shatters!");
+    }
+    this.endEffect(1);
+  }
+}
+
 CrystalTrapTile.prototype.onTurn = function() {
   if (DUTime.getGameClock() > this.getExpiresTime()) {
     DebugWrite("magic", "CrystalPrison drops.");

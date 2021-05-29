@@ -670,6 +670,12 @@ mappages["onyx"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     SetAct2Convos(mapref);
   }
+  if (DU.gameflags.getFlag("act2")) {
+    let aithne = FindNPCByName("aithne", mapref);
+    mapref.deleteThing(aithne);
+    DUTime.removeEntityFrom(aithne);
+  }
+  
 }
 
 mappages["onyx2"].onload = function(mapref) {
