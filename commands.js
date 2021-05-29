@@ -1406,6 +1406,7 @@ function PerformSearch(who) {
     }
     if (stuff) {
       retval["txt"] = "Search: You find ";
+      if (searched.getAlternateSearchText()) { retval["txt"] = searched.getAlternateSearchText(); }
       retval["fin"] = 1;
       if (stuff.length) {
         for (let i=0; i<stuff.length; i++) {
