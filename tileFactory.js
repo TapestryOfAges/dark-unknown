@@ -1473,6 +1473,11 @@ tileFactory.prototype.makeDoubleBedBottomFootTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeLooseFloorboardEWTile = function() {
+  let newTile = new LooseFloorboardEWTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeBookshelfLeftTile = function() {
   let newTile = new BookshelfLeftTile();
   return newTile;
@@ -4405,6 +4410,11 @@ tileFactory.prototype.makeJusticeCollapseTile = function() {
 
 tileFactory.prototype.makeDelayTurnStartTile = function() {
   let newTile = new DelayTurnStartTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScouringBeldskaeTile = function() {
+  let newTile = new ScouringBeldskaeTile();
   return newTile;
 }
 
