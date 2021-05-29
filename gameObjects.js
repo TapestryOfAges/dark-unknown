@@ -11731,9 +11731,9 @@ EmptyBookshelfRightTile.prototype = new FeatureObject();
 
 function LooseFloorboardEWTile() {
   this.name = "LooseFloorboardEW";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-160";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -7*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "wooden planks";
