@@ -143,6 +143,11 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
       if (def.onDamaged) {
         dmg = OnDamagedFuncs[def.onDamaged](atk,def,dmg,weapon);
       }
+      let effects = def.getSpellEffects();
+      for (let i=0;i<effects.length;i++) {
+        if (effects.onDamaged) { effects.onDamaged(atk,dmg); }
+      }
+
       let stillalive = def.dealDamage(dmg, atk, dmgtype);   
 
       if (stillalive > -1) {
