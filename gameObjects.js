@@ -8202,6 +8202,41 @@ WardukeWalkOnTile.prototype.walkon = function(walker) {
     field = themap.getTile(30,7).getTopFeature();  // walkon tile
     themap.deleteThing(field);
   }
+  return {msg:""};
+}
+
+function WalkOnCOA2Tile() {
+	this.name = "WalkOnCOA2";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnCOA2Tile.prototype = new FeatureObject();
+
+WalkOnCOA2Tile.prototype.walkon = function(walker) {
+  if (walker !== PC) { return {msg:""}; }
+  if (!DU.gameflags.getFlag("act2")) { return {msg:""}; }
+  if (DU.gameflags.getFlag("guard_thief_talk")) { return {msg:""}; }
+
+  let comap = this.getHomeMap();
+  let npcs = comap.npcs.getAll();
+  let closest;
+  for (let i=0;i<npcs.length;i++) {
+    if (npcs[i].getName() === "TownGuardNPC") {
+      if (!closest) { closest = npcs[i]; }
+      else {
+        let closestdist = GetDistance(PC.getx(),PC.gety(),closest.getx(),closest.gety());
+        let dist = GetDistance(PC.getx(),PC.gety(),npcs[i].getx(),npcs[i].gety());
+        if (dist < closestdist) { closest = npcs[i]; }
+      }
+    }
+  }
+  
 }
 
 function SpinnerTile() {
