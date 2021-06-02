@@ -172,3 +172,4 @@ rhys_summoning - the summoning has occurred
 beldskae_saved - You saved Beldskae
 beldskae_razed - Beldskae was razed
 blanche_returned - jewelry was returned to Blanche
+guard_thief_talk - the Castle Olympus guards have mentioned the theft to you
