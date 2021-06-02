@@ -247,6 +247,7 @@ Conversation.prototype.say = function(speaker, saywhat, skipahead) {
   } else {
     saywhat = saywhat.replace(/%MYNAME%/g, "the " + speaker.getDesc());
   }
+  saywhat = saywhat.replace(/%MYREALNAME%/g, npcname);
   saywhat = saywhat.replace(/%PRONOUN%/g, gterms.pronoun);
   saywhat = saywhat.replace(/%POSSESSIVE%/g, gterms.possessive);
   saywhat = saywhat.replace(/%OBJ%/g, gterms.objective);
