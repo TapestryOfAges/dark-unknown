@@ -463,6 +463,7 @@ mappages["naurglen"].features[408] = {name : 'UnlitBrazier', x : 5, y : 24};
 mappages["naurglen"].features[409] = {name : 'TorchEast', x : 77, y : 24};
 mappages["naurglen"].features[410] = {name : 'Brazier', x : 74, y : 25};
 mappages["naurglen"].features[411] = {name : 'TorchEast', x : 94, y : 26};
+mappages["naurglen"].features[412] = {name : 'LooseFloorboardEW', x : 8, y : 4, lootedid : 'naurglenloosefloor', searchyield : 'GildedBridle'};
 
 
 mappages["naurglen"].npcs = [];
