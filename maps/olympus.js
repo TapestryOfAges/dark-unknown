@@ -649,6 +649,8 @@ mappages["olympus1"].npcs[24] = {name : 'TownGuardNPC', x : 36, y : 20, NPCName:
 mappages["olympus1"].npcs[25] = {name : 'TownGuardNPC', x : 50, y : 40, NPCName: 'Martin', PeaceAI: 'scheduled', Schedule: 'martin', Conversation: 'martin', Gender: 'male', NPCBand: '0', skintone: '2'};
 mappages["olympus1"].npcs[26] = {name : 'TownGuardNPC', x : 48, y : 40, NPCName: 'Donn', PeaceAI: 'scheduled', Schedule: 'donn', Conversation: 'donn', Gender: 'male', NPCBand: '0', skintone: '2'};
 mappages["olympus1"].npcs[27] = {name : 'TownGuardNPC', x : 51, y : 25, NPCName: 'Davin', PeaceAI: 'scheduled', Schedule: 'davin', Conversation: 'davin', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '1'};
+mappages["olympus1"].npcs[28] = {name : 'TownGuardNPC', x : 49, y : 54, NPCName: 'Coll', Conversation: 'coll', Gender: 'male', NPCBand: '0', skintone: '1'};
+
 
 mappages["olympus1"].desc = "Castle dea Olympus";
 mappages["olympus1"].longdesc = 'Castle dea Olympus is the imposing heart of the kingdom. Within can be found the King and Queen, the royal stables and museum, and one of the largest libraries in the land. It is also where you grew up, which does lessen the mystique some.';
@@ -1276,7 +1278,7 @@ mappages["olympus1"].onload = function(mapref) {
     CheckForCourier(mapref, 51, 49, 49, 61);
     SetAct2Convos(mapref);
 
-    let tyler, sean, katrina, manny, pieran, alban, martha, una, martin, donn, davin;
+    let tyler, sean, katrina, manny, pieran, alban, martha, una, martin, donn, davin, coll;
 
     let npcs = mapref.npcs.getAll();
 
@@ -1292,6 +1294,7 @@ mappages["olympus1"].onload = function(mapref) {
       if (npcs[i].getNPCName() === "Martin") { martin = npcs[i]; }
       if (npcs[i].getNPCName() === "Donn") { donn = npcs[i]; }
       if (npcs[i].getNPCName() === "Davin") { davin = npcs[i]; }
+      if (npcs[i].getNPCName() === "Coll") { coll = npcs[i]; }
     }
 
     let o2 = maps.getMap("olympus2");
@@ -1360,7 +1363,11 @@ mappages["olympus1"].onload = function(mapref) {
     if (davin.getCurrentScheduleIndex() === 9) {
       davin.realgraphic = ["310.gif","","0","0"];
     }
-      
+    
+    if (!DU.gameflags.getFlag("act2") || DU.gameflag.getFlag("guard_thief_talk")) {
+      mapref.deleteThing(coll);
+      DUTime.removeEntityFrom(coll);  
+    }
   }
 }
 
