@@ -1182,6 +1182,18 @@ ais.FranklinCourier = function(who) {
   return retval;
 }
 
+ais.CollGuard = function(who) {
+  let retval = {fin:1};
+  if (!DU.gameflags.getFlag("guard_thief_talk")) {
+    if (PC.getHomeMap() === who.getHomeMap()) {
+      if (GetDistance(PC.getx(),PC.gety(),who.getx(),who.gety()) <= 2) {
+        PC.forcedTalk(who);
+      }
+    }
+  }
+  return retval;
+}
+
 ais.PaladinCourier = function(who) {
   let retval = {};
   retval["fin"] = 1;

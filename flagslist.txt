@@ -173,3 +173,4 @@ beldskae_saved - You saved Beldskae
 beldskae_razed - Beldskae was razed
 blanche_returned - jewelry was returned to Blanche
 guard_thief_talk - the Castle Olympus guards have mentioned the theft to you
+peter_caught - Peter has been revealed as the thief
