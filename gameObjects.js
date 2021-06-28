@@ -11711,7 +11711,7 @@ function JadeNecklaceTile() {
   this.graphic = "master_spritesheet.png";
   this.spriteyoffset = "-256";
   this.spritexoffset = "-1536";
-  this.passable = MOVE_ETHEREAL;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "jade necklace";
@@ -11725,7 +11725,7 @@ function GoldLocketTile() {
   this.graphic = "master_spritesheet.png";
   this.spriteyoffset = "-256";
   this.spritexoffset = "-1536";
-  this.passable = MOVE_ETHEREAL;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "gold locket";
@@ -11738,6 +11738,23 @@ GoldLocketTile.prototype.onGet = function(who) {
     this.longdesc = "A locket. Inside is a portrait of someone you believe is Severyn, from Swainhil.";
     maintext.delayedAddText("There is a portrait in the locket, and you believe you recognize the subject. It looks like Severyn, from Swainhil...");
   }
+}
+
+function StolenJewelryTile() {
+  this.name = "StolenJewelry";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spriteyoffset = "-160";
+  this.spritexoffset = "-1760";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "stolen jewelry";
+  this.longdesc = "A small collection of jewelry, stolen from someone.";
+}
+StolenJewelryTile.prototype = new ItemObject();
+
+StolenJewelryTile.prototype.onGet = function(who) {
+  DU.gameflag.setFlag("stolenjewelry_taken",1);
 }
 
 function GoldTile() {
