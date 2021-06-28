@@ -513,6 +513,11 @@ mappages["naurglen"].editorLabels = '{"div_tile66x16":"Evelyn","div_tile74x14":"
 mappages["naurglen"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
 
+    if (!DU.gameflags.getFlag("act2")) {
+      let floorboard = mapref.getTile(8,4).getTopFeature();
+      mapref.deleteThing(floorboard);
+    }
+
     if (PC.getx() === 72) {
       CheckForCourier(mapref, 5, 29, 0, 30);
     } else {
