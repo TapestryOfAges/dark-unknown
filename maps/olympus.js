@@ -618,6 +618,7 @@ mappages["olympus1"].features[545] = {name : 'Fireplace', x : 72, y : 32};
 mappages["olympus1"].features[546] = {name : 'Brazier', x : 11, y : 25};
 mappages["olympus1"].features[547] = {name : 'TorchEast', x : 15, y : 52};
 mappages["olympus1"].features[548] = {name : 'Brazier', x : 9, y : 50};
+mappages["olympus1"].features[549] = {name : 'SmallBox', x : 83, y : 38, locked : 0, lootedid : 'stolenjewelry', searchyield : 'StolenJewelry'};
 
 
 mappages["olympus1"].npcs = [];
@@ -1367,6 +1368,11 @@ mappages["olympus1"].onload = function(mapref) {
     if (!DU.gameflags.getFlag("act2") || DU.gameflag.getFlag("guard_thief_talk")) {
       mapref.deleteThing(coll);
       DUTime.removeEntityFrom(coll);  
+    }
+
+    if (!DU.gameflags.getFlag("act2") || DU.gameflag.getFlag("stolenjewelry_taken")) {
+      let box = mapref.getTile(83,38).getTopFeature();
+      mapref.deleteThing(box);
     }
   }
 }
