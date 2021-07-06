@@ -176,5 +176,6 @@ guard_thief_talk - the Castle Olympus guards have mentioned the theft to you
 peter_caught - Peter has been revealed as the thief
 peter_speak - Peter gave his alibi
 ingrid_speak - Ingrid contradicted Peter's alibi
+guard_sent - Coll has been sent to let you in to Peter's house.
 bridle_returned - you've given the bridle back to Alex
 stolenjewelry_taken - you've taken the stolen jewelry from the chest in Peter's house

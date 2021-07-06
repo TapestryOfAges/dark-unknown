@@ -1171,6 +1171,25 @@ OnConvTriggers["rhys_moved"] = function(speaker,keyword) {
 
 }
 
+OnConvTriggers["guard_sent"] = function(speaker,keyword) {
+  let olympus = maps.getMap("olympus1");
+  let coll = FindNPCByName("Coll",olympus);
+  if (coll) {
+    olympus.deleteThing(coll);
+    DUTime.removeEntityFrom(coll);
+  }
+  let coll2 = localFactory.createTile("GuardNPC");
+  coll2.setNPCName("Coll");
+  coll2.setConversation("coll2");
+  olympus.placeThing(76,38,coll2);
+
+}
+
+OnConvTriggers["peter_caught"] = function(speaker,keyword) {
+  // make an ephemeral object that moves Peter to the prison is the player is not on screen
+  //WORKING HERE
+}
+
 function ConvTestFlags() {};
 
 ConvTestFlags["warren_close"] = function(speaker,keyword) {
