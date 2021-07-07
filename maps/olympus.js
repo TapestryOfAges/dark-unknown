@@ -1204,6 +1204,7 @@ mappages["olympus0"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 24, y : 8, NP
 mappages["olympus0"].npcs[3] = {name : 'TinkerVillagerNPC', x : 24, y : 18, NPCName: 'Aara', Conversation: 'aara', ConversationFlag: 'aara', PeaceAI: 'scheduled', Schedule: 'aara', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: 'tinker-offcolor.gif', skintone: '1'};
 mappages["olympus0"].npcs[4] = {name : 'ShepherdVillagerNPC', x : 24, y : 13, NPCName: 'Rose', Conversation: 'rose', ConversationFlag: 'rose', PeaceAI: 'scheduled', Schedule: 'rose', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '301.gif', skintone: '1'};
 mappages["olympus0"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 8, y : 16, NPCName: 'Trevor', Desc: 'treasurer', PeaceAI: 'scheduled', Schedule: 'trevor', Conversation: 'trevor', ConversationFlag: 'trevor', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: '2'};
+mappages["olympus0"].npcs[6] = {name : 'AdventurerVillagerNPC', x : 23, y : 17, NPCName: 'Peter', Desc: 'prisoner', Prefix: 'a', Schedule: 'peter2', Conversation: 'peter2', Gender: 'male', NPCBand: '0', skintone: '1'};
 
 mappages["olympus0"].desc = "Castle Basement";
 mappages["olympus0"].music = 'Olympus';
@@ -1486,6 +1487,11 @@ mappages["olympus0"].onload = function(mapref) {
     }
     if (!DU.gameflags.getFlag("rebel_prisoner") || DU.gameflags("act2")) {
       let prisoner = FindNPCByName("Aara",mapref);
+      mapref.moveThing(3,3,prisoner);
+      prisoner.setSchedule("nothere");
+    }
+    if (!DU.gameflags("peter_caught")) {
+      let prisoner = FindNPCByName("Peter",mapref);
       mapref.moveThing(3,3,prisoner);
       prisoner.setSchedule("nothere");
     }
