@@ -1186,8 +1186,14 @@ OnConvTriggers["guard_sent"] = function(speaker,keyword) {
 }
 
 OnConvTriggers["peter_caught"] = function(speaker,keyword) {
-  // make an ephemeral object that moves Peter to the prison is the player is not on screen
-  //WORKING HERE
+  let olympus = maps.getMap("olympus1");
+  let peter = FindNPCByName("Peter",olympus);
+  let petereffect = localFactory.createTile("RemovePeter");
+  peter.addSpellEffect(petereffect);
+
+  let basement = maps.getMap("olympus0");
+  peter = FindNPCByName("Peter",basement);
+  basement.moveThing(24,18,peter);
 }
 
 function ConvTestFlags() {};

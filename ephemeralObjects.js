@@ -1841,3 +1841,36 @@ ScouringBeldskaeTile.prototype.endEffect = function(silent) {
 
 }
 
+function RemovePeterTile() {
+  this.addType("debuff");
+  this.name = "RemovePeter";
+  this.display = "<span style='color:#0000ee'></span>";
+  this.zstatdesc = "";
+  this.desc = "Remove Peter when player's back is turned";
+  this.level = 1;
+  this.dispellable = 0;
+}
+RemovePeterTile.prototype = new EphemeralObject();
+
+RemovePeterTile.prototype.applyEffect = function(silent) {
+  return 1;
+}
+
+RemovePeterTile.prototype.doEffect = function() {
+  let who = this.getAttachedTo();
+  let distant = 0;
+  if (who.getHomeMap() !== PC.getHomeMap()) { distant = 1; }
+  if (GetDistance(PC.getx(),PC.gety(),who.getx(),who.gety()) > 8) { distant = 1; }
+  if (distant) {
+    who.getHomeMap().deleteThing(who);
+    DUTime.removeEntityFrom(who);
+  }
+}
+
+RemovePeterTile.prototype.eachTurn = function() {
+  return this.doEffect();
+}
+
+RemovePeterTile.prototype.endEffect = function(silent) {
+
+}

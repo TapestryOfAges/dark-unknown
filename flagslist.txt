@@ -168,10 +168,10 @@ justice_flees - you have defeated Justice in her battleground
 rhys_return - Rhys returned to BDC
 rhys_stone - Rhys has asked you to find the Stone
 rhys_moved - set Rhys to final dialog and that he's moved in to BDC
-rhys_summoning - the summoning has occurred
+rhys_summoning - the summoning has occurred  ** (endgame support)
 beldskae_saved - You saved Beldskae
 beldskae_razed - Beldskae was razed
-blanche_returned - jewelry was returned to Blanche
+blanche_returned - jewelry was returned to Blanche  ** (endgame support)
 guard_thief_talk - the Castle Olympus guards have mentioned the theft to you
 peter_caught - Peter has been revealed as the thief
 peter_speak - Peter gave his alibi
