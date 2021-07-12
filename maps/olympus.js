@@ -671,7 +671,7 @@ mappages["olympus1"].features[598] = {name : 'Brazier', x : 11, y : 25};
 mappages["olympus1"].features[599] = {name : 'TorchEast', x : 15, y : 52};
 mappages["olympus1"].features[600] = {name : 'DoubleBedHead', x : 11, y : 19};
 mappages["olympus1"].features[601] = {name : 'DoubleBedFoot', x : 12, y : 19};
-
+mappages["olympus1"].features[602] = {name : 'SmallBox', x : 83, y : 38, locked : 0, lootedid : 'stolenjewelry', searchyield : 'StolenJewelry'};
 
 mappages["olympus1"].npcs = [];
 mappages["olympus1"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 79, y : 18, NPCName: 'Katrina', Desc: 'librarian', PeaceAI: 'scheduled', Schedule: 'katrina', Conversation: 'katrina', ConversationFlag: 'katrina', Gender: 'female', OverrideGraphic: '310.2.gif', skintone: '2'};
@@ -702,6 +702,8 @@ mappages["olympus1"].npcs[24] = {name : 'TownGuardNPC', x : 36, y : 20, NPCName:
 mappages["olympus1"].npcs[25] = {name : 'TownGuardNPC', x : 50, y : 40, NPCName: 'Martin', PeaceAI: 'scheduled', Schedule: 'martin', Conversation: 'martin', Gender: 'male', NPCBand: '0', skintone: '2'};
 mappages["olympus1"].npcs[26] = {name : 'TownGuardNPC', x : 48, y : 40, NPCName: 'Donn', PeaceAI: 'scheduled', Schedule: 'donn', Conversation: 'donn', Gender: 'male', NPCBand: '0', skintone: '2'};
 mappages["olympus1"].npcs[27] = {name : 'TownGuardNPC', x : 51, y : 25, NPCName: 'Davin', PeaceAI: 'scheduled', Schedule: 'davin', Conversation: 'davin', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '1'};
+mappages["olympus1"].npcs[28] = {name : 'TownGuardNPC', x : 49, y : 54, NPCName: 'Coll', Conversation: 'coll', Gender: 'male', NPCBand: '0', skintone: '1'};
+
 
 mappages["olympus1"].desc = "Castle dea Olympus";
 mappages["olympus1"].longdesc = `Castle dea Olympus is the imposing heart of the kingdom. Within can be found the King and Queen, the royal stables and museum, and one of the largest libraries in the land. It is also where you grew up, which does lessen the mystique some.`;
@@ -1298,6 +1300,7 @@ mappages["olympus0"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 24, y : 8, NP
 mappages["olympus0"].npcs[3] = {name : 'TinkerVillagerNPC', x : 24, y : 18, NPCName: 'Aara', PeaceAI: 'scheduled', Schedule: 'aara', Conversation: 'aara', ConversationFlag: 'aara', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: 'tinker-offcolor.gif', skintone: '1'};
 mappages["olympus0"].npcs[4] = {name : 'ShepherdVillagerNPC', x : 24, y : 13, NPCName: 'Rose', PeaceAI: 'scheduled', Schedule: 'rose', Conversation: 'rose', ConversationFlag: 'rose', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '301.gif', skintone: '1'};
 mappages["olympus0"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 8, y : 16, NPCName: 'Trevor', Desc: 'treasurer', PeaceAI: 'scheduled', Schedule: 'trevor', Conversation: 'trevor', ConversationFlag: 'trevor', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: '2'};
+mappages["olympus0"].npcs[6] = {name : 'AdventurerVillagerNPC', x : 23, y : 17, NPCName: 'Peter', Desc: 'prisoner', Prefix: 'a', Schedule: 'peter2', Conversation: 'peter2', Gender: 'male', NPCBand: '0', skintone: '1'};
 
 mappages["olympus0"].desc = "Castle Basement";
 mappages["olympus0"].longdesc = ``;
@@ -1374,7 +1377,7 @@ mappages["olympus1"].onload = function(mapref) {
     CheckForCourier(mapref, 51, 49, 49, 61);
     SetAct2Convos(mapref);
 
-    let tyler, sean, katrina, manny, pieran, alban, martha, una, martin, donn, davin;
+    let tyler, sean, katrina, manny, pieran, alban, martha, una, martin, donn, davin, coll;
 
     let npcs = mapref.npcs.getAll();
 
@@ -1390,6 +1393,7 @@ mappages["olympus1"].onload = function(mapref) {
       if (npcs[i].getNPCName() === "Martin") { martin = npcs[i]; }
       if (npcs[i].getNPCName() === "Donn") { donn = npcs[i]; }
       if (npcs[i].getNPCName() === "Davin") { davin = npcs[i]; }
+      if (npcs[i].getNPCName() === "Coll") { coll = npcs[i]; }
     }
 
     let o2 = maps.getMap("olympus2");
@@ -1458,7 +1462,16 @@ mappages["olympus1"].onload = function(mapref) {
     if (davin.getCurrentScheduleIndex() === 9) {
       davin.realgraphic = ["310.gif","","0","0"];
     }
-      
+    
+    if (!DU.gameflags.getFlag("act2") || DU.gameflag.getFlag("guard_thief_talk")) {
+      mapref.deleteThing(coll);
+      DUTime.removeEntityFrom(coll);  
+    }
+
+    if (!DU.gameflags.getFlag("act2") || DU.gameflag.getFlag("stolenjewelry_taken")) {
+      let box = mapref.getTile(83,38).getTopFeature();
+      mapref.deleteThing(box);
+    }
   }
 }
 
@@ -1571,6 +1584,11 @@ mappages["olympus0"].onload = function(mapref) {
     }
     if (!DU.gameflags.getFlag("rebel_prisoner") || DU.gameflags("act2")) {
       let prisoner = FindNPCByName("Aara",mapref);
+      mapref.moveThing(3,3,prisoner);
+      prisoner.setSchedule("nothere");
+    }
+    if (!DU.gameflags("peter_caught")) {
+      let prisoner = FindNPCByName("Peter",mapref);
       mapref.moveThing(3,3,prisoner);
       prisoner.setSchedule("nothere");
     }

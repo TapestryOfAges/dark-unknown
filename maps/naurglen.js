@@ -563,7 +563,7 @@ mappages["naurglen"].features[508] = {name : 'SignpostLeft', x : 85, y : 35};
 mappages["naurglen"].features[509] = {name : 'MerchantCounter', x : 94, y : 27};
 mappages["naurglen"].features[510] = {name : 'MerchantCounterBill', x : 93, y : 27};
 mappages["naurglen"].features[511] = {name : 'MerchantCounterEdge', x : 92, y : 27};
-
+mappages["naurglen"].features[512] = {name : 'LooseFloorboardEW', x : 8, y : 4, lootedid : 'naurglenloosefloor', searchyield : 'GildedBridle'};
 
 mappages["naurglen"].npcs = [];
 mappages["naurglen"].npcs[0] = {name : 'ChickenNPC', x : 36, y : 14, skintone: '1'};
@@ -611,6 +611,11 @@ mappages["naurglen"].editorLabels = '{"div_tile66x16":"Evelyn","div_tile74x14":"
 
 mappages["naurglen"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+
+    if (!DU.gameflags.getFlag("act2")) {
+      let floorboard = mapref.getTile(8,4).getTopFeature();
+      mapref.deleteThing(floorboard);
+    }
 
     if (PC.getx() === 72) {
       CheckForCourier(mapref, 5, 29, 0, 30);

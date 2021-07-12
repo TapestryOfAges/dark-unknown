@@ -247,6 +247,7 @@ Conversation.prototype.say = function(speaker, saywhat, skipahead) {
   } else {
     saywhat = saywhat.replace(/%MYNAME%/g, "the " + speaker.getDesc());
   }
+  saywhat = saywhat.replace(/%MYREALNAME%/g, npcname);
   saywhat = saywhat.replace(/%PRONOUN%/g, gterms.pronoun);
   saywhat = saywhat.replace(/%POSSESSIVE%/g, gterms.possessive);
   saywhat = saywhat.replace(/%OBJ%/g, gterms.objective);
@@ -1169,6 +1170,31 @@ OnConvTriggers["rhys_moved"] = function(speaker,keyword) {
   let loc = DU.schedules["rhys"].getNPCLocationByTime(GetClockTime(), 1, 1, bdcmap);
   rhys.flags = loc.flags;
 
+}
+
+OnConvTriggers["guard_sent"] = function(speaker,keyword) {
+  let olympus = maps.getMap("olympus1");
+  let coll = FindNPCByName("Coll",olympus);
+  if (coll) {
+    olympus.deleteThing(coll);
+    DUTime.removeEntityFrom(coll);
+  }
+  let coll2 = localFactory.createTile("GuardNPC");
+  coll2.setNPCName("Coll");
+  coll2.setConversation("coll2");
+  olympus.placeThing(76,38,coll2);
+
+}
+
+OnConvTriggers["peter_caught"] = function(speaker,keyword) {
+  let olympus = maps.getMap("olympus1");
+  let peter = FindNPCByName("Peter",olympus);
+  let petereffect = localFactory.createTile("RemovePeter");
+  peter.addSpellEffect(petereffect);
+
+  let basement = maps.getMap("olympus0");
+  peter = FindNPCByName("Peter",basement);
+  basement.moveThing(24,18,peter);
 }
 
 function ConvTestFlags() {};
