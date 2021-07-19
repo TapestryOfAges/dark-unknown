@@ -360,6 +360,7 @@ function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev, skipfeatures, 
       displayCell.lighthere = lighthere;
       displayCell.isnpc = isnpc;
       displayCell.desc = displaytile.getDesc();
+      displayCell.divid = "divid_" + displaytile.getSerial();
       if (displaytile.alwaystop) { ontop.push(displayCell); }
       else { displayStack.push(displayCell); }
     } else {

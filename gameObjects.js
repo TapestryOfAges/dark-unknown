@@ -1049,6 +1049,18 @@ function MobileEnterable(destmap, destx, desty) {
   }
 }
 
+//Abstract class ManualAnimation
+function ManualAnimation(params) {
+  // animstart and animend are the spritex values of the animation frames
+  this.animstart = params.animstart;
+  this.animend = params.animend;
+  // animstyle is random or cycle
+  this.animstyle = params.animstyle;
+  this.allowrepeat = 0;
+  if (params.allowrepeat) { this.allowrepeat = 1; }
+  
+}
+
 // General func 
 function SetByBelow() {
 	this.setByBelow = function(x,y,themap) {

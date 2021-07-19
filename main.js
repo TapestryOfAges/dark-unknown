@@ -143,7 +143,8 @@ function MainViewDrawTile(themap, centerx, centery, j, i, tp, ev, displayspecs) 
       opac = 0;
     }
     let id="";
-    if (k===0) { id = `id="tilediv_${j}x${i}"`; }
+    //if (k===0) { id = `id="tilediv_${j}x${i}"`; }
+    id = `id="$thiscell[k].divid"`; 
     let newdiv = `<div ${id} style="position:absolute; top:0px; left:0px; background-image: url('graphics/${thiscell[k].showGraphic}'); background-repeat:no-repeat; background-position: ${thiscell[k].graphics2}px ${thiscell[k].graphics3}px">
     <img id='tile${j}x${i}' src='graphics/${thiscell[k].graphics1}' border='0' alt='tile${j}x${i} los: ${thiscell[k].losresult} light:${thiscell[k].lighthere}' width='32' height='32' title='${thiscell[k].desc}'/></div>`;
     mview.innerHTML += newdiv;
