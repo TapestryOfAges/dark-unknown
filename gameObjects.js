@@ -1051,14 +1051,27 @@ function MobileEnterable(destmap, destx, desty) {
 
 //Abstract class ManualAnimation
 function ManualAnimation(params) {
-  // animstart and animend are the spritex values of the animation frames
+  // animstart is the spritex values of the first animation frame
   this.animstart = params.animstart;
-  this.animend = params.animend;
+  this.animlength = params.anilength;  // number of frames
   // animstyle is random or cycle
   this.animstyle = params.animstyle;
   this.allowrepeat = 0;
   if (params.allowrepeat) { this.allowrepeat = 1; }
+  // min and max duration times. If there are specific frames I want to be able to linger on maybe I'll change this
+  this.framedurationmin = params.framedurationmin;
+  this.framedurationmax = params.framedurationmax;
   
+  // start frame = start or random (start meaning leftmost spritex)
+  this.startframe = params.startframe;
+
+  // used to denote if it is on screen or not
+  this.animating = 0;
+
+  this.startAnimation = function() {
+
+  }
+
 }
 
 // General func 
