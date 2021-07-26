@@ -1068,8 +1068,21 @@ function ManualAnimation(params) {
   // used to denote if it is on screen or not
   this.animating = 0;
 
-  this.startAnimation = function() {
+  // will be initially set in startAnimation, which is called in Activate. If this exists, it will be used rather than
+  // spritexoffset to determine what to display
+  this.currframe; 
 
+  this.startAnimation = function() {
+    if (this.startframe === "start") { this.currframe = this.spritexoffset; } 
+    else { 
+      let sf = Dice.roll("1d"+this.animlength);
+      this.currframe = (sf-1)*32 
+    }
+  }
+
+  this.IWasJustDrawn = function() {
+    if (!animating) { return; }
+    
   }
 
 }
