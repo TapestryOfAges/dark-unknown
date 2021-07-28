@@ -1056,6 +1056,7 @@ function ManualAnimation(params) {
   this.animlength = params.anilength;  // number of frames
   // animstyle is random or cycle
   this.animstyle = params.animstyle;
+  // can it animate to the same frame twice in a row?
   this.allowrepeat = 0;
   if (params.allowrepeat) { this.allowrepeat = 1; }
   // min and max duration times. If there are specific frames I want to be able to linger on maybe I'll change this
@@ -1071,20 +1072,49 @@ function ManualAnimation(params) {
   // will be initially set in startAnimation, which is called in Activate. If this exists, it will be used rather than
   // spritexoffset to determine what to display
   this.currframe; 
+  this.currframenum;
 
   this.startAnimation = function() {
     if (this.startframe === "start") { this.currframe = this.spritexoffset; } 
     else { 
       let sf = Dice.roll("1d"+this.animlength);
-      this.currframe = (sf-1)*32 
+      this.currframe = (sf-1)*32 + this.spritexoffset;
+      this.currframenum = sf;
     }
   }
 
   this.IWasJustDrawn = function() {
-    if (!animating) { return; }
-    
+    this.animating = 1;
+
+    let waittime = Math.floor(Math.random() * (this.framedurationmax - this.framedurationmin +1)) + this.framedurationmin;
+    setTimeout(function() { this.animateMe(); }, waittime);
   }
 
+  this.animateMe = function() {
+    let div = getElementById("divid_" + this.getSerial());
+    if (!div) { this.animating = 0; return; }
+
+    if (this.animstyle === "cycle") {
+      this.currframenum++;
+      if (this.currframenum > this.animlength) { this.currframenum = 1; }
+      this.currframe = (this.currframenum-1)*32 + this.spritexoffset;
+    } else { // random
+      let diesize = this.animlength;
+      if (!this.allowrepeat) { diesize = diesize-1; }
+      let sf = Dice.roll("1d"+diesize);
+      if (!this.allowrepeat && (sf >= this.currframenum)) { 
+        // if you can't repeat, die size was one too small. Therefore if you roll the current frame or higher, add one.
+        sf++; 
+      }
+      this.currframenum = sf;
+      this.currframe = (sf-1)*32 + this.spritexoffset;
+    }
+
+    div.style.backgroundPosition = this.currframe + "px " + this.spriteyoffset + "px";
+
+    let waittime = Math.floor(Math.random() * (this.framedurationmax - this.framedurationmin +1)) + this.framedurationmin;
+    setTimeout(function() { this.animateMe(); }, waittime);
+  }
 }
 
 // General func 
