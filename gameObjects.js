@@ -351,7 +351,7 @@ GameObject.prototype.getGraphic = function() {
   if (returnGraphic) { return(returnGraphic); }
 }
 
-GameObject.prototype.getGraphicArray = function() {
+GameObject.prototype.getGraphicArray = function(getbase) {
 	let returnGraphic = this.graphic;
   let returnOverlay = this.overlay;
   let returnVars = [];
@@ -362,11 +362,14 @@ GameObject.prototype.getGraphicArray = function() {
   else {
   	returnVars[1] = "spacer.gif";
   }
-  if (this.spritexoffset) {
-    returnVars[2] = this.spritexoffset;
-  }
-  else {
-  	returnVars[2] = "0";
+  if (getbase || !this.hasOwnProperty("currframe")) {
+    if (this.spritexoffset) {
+      returnVars[2] = this.spritexoffset;
+    } else {
+  	  returnVars[2] = "0";
+    }
+  } else {
+    returnVars[2] = this.currframe;
   }
   if (this.spriteyoffset) {
     returnVars[3] = this.spriteyoffset;
