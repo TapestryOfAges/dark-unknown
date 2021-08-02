@@ -342,8 +342,7 @@ GameObject.prototype.setGraphicArray = function(newgraphics) {
 	this.overlay = newgraphics[1];
 	this.spritexoffset = newgraphics[2];
   this.spriteyoffset = newgraphics[3];
-  this.overlayxoffset = newgraphics[4];
-  this.overlayyoffset = newgraphics[5];
+  if (newgraphics[4]) { alert("Newgraphic trying to add a layer"); }
 }
 
 GameObject.prototype.getGraphic = function() {
@@ -375,16 +374,6 @@ GameObject.prototype.getGraphicArray = function(getbase) {
     returnVars[3] = this.spriteyoffset;
   } else {
   	returnVars[3] = "0";
-  }
-  if (this.overlayxoffset) {
-    returnVars[4] = this.overlayxoffset;
-  } else {
-    returnVars[4] = 0;
-  }
-  if (this.overlayyoffset) {
-    returnVars[5] = this.overlayyoffset;
-  } else {
-    returnVars[5] = 0;
   }
   
   return(returnVars); 
@@ -22843,6 +22832,21 @@ NPCGroupObject.prototype.populate = function() {
 
 // NPCs have moved into npcObjects.js
 
+// This is a virtual object, created to extend NPCObjects. PCObject is now an extension of this.
+// This adds "worn" item layers for rendering, so a humanoid can have a different icon if they wear a helm, 
+// wear armor, wield various weapons, etc.
+function NPCHumanObject() {
+  this.wornlayers = {
+    pants: null,
+    shirt: null,
+    hat: null,
+    back: null,
+    offhand: null,
+    mainhand: null
+  };
+  this.addType("human");
+}
+NPCHumanObject.prototype = new NPCObject();
 
 function PCObject() {
 	this.name = "PC";
@@ -22915,7 +22919,7 @@ function PCObject() {
 	this.nextHP = HP_REGEN;
 
 }
-PCObject.prototype = new NPCObject();
+PCObject.prototype = new NPCHumanObject();
 
 PCObject.prototype.activate = function() {
   return 1;
