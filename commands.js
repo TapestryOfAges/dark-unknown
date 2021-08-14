@@ -3219,7 +3219,7 @@ function DisplayInventory(restrictTo) {
     for (let i=0;i<8;i++) {
       let leftedge = 30+45*i;
       let topedge = 20+45*j;
-      document.getElementById('uiinterface').innerHTML += "<div id='inv_"+i+"x"+j+"' style='position:absolute; left: " + leftedge + "; top: " + topedge + "; width:32px; height: 32; border:3px; border-style: solid; border-color:#999;'></div>";
+      document.getElementById('uiinterface').innerHTML += "<div id='inv_"+i+"x"+j+"' style='position:absolute; left: " + leftedge + "; top: " + topedge + "; width:32px; height: 32px; border:3px; border-style: solid; border-color:#999;'></div>";
     }
   }
 
@@ -3238,28 +3238,34 @@ function DisplayInventory(restrictTo) {
     
     let showgraphic = inventorylist[i].getGraphicArray();
     let bordercolor = "#ccc";
-    document.getElementById('inv_'+writetox+"x"+writetoy).style.backgroundImage = "url('graphics/" + showgraphic[0] + "')";
-    document.getElementById('inv_'+writetox+"x"+writetoy).style.backgroundRepeat = "no-repeat";
-    document.getElementById('inv_'+writetox+"x"+writetoy).style.backgroundPosition = showgraphic[2] + "px " + showgraphic[3] + "px";
+    let invdiv = document.getElementById('inv_'+writetox+"x"+writetoy);
+    let innerdiv = document.createElement("div");
+    innerdiv.id = "divid_" + inventorylist[i].getSerial();
+    innerdiv.style.width = "32px";
+    innerdiv.style.height = "32px";
+    innerdiv.style.backgroundImage = "url('graphics/" + showgraphic[0] + "')";
+    innerdiv.style.backgroundRepeat = "no-repeat";
+    innerdiv.style.backgroundPosition = showgraphic[2] + "px " + showgraphic[3] + "px";
 
     if (inventorylist[i].getQuantity() && (inventorylist[i].getQuantity() > 1)) {
-      document.getElementById('inv_'+writetox+"x"+writetoy).style.verticalAlign = "bottom";
-      document.getElementById('inv_'+writetox+"x"+writetoy).style.textAlign = "right";
-      document.getElementById('inv_'+writetox+"x"+writetoy).style.fontSize = 12;
-      document.getElementById('inv_'+writetox+"x"+writetoy).style.color = "white";
-      document.getElementById('inv_'+writetox+"x"+writetoy).style.fontFamily = "Commodore64";
-      document.getElementById('inv_'+writetox+"x"+writetoy).style.lineHeight = "24px";
-      document.getElementById('inv_'+writetox+"x"+writetoy).innerHTML = "<p>" + inventorylist[i].getQuantity() + "</p>";
+      innerdiv.style.verticalAlign = "bottom";
+      innerdiv.style.textAlign = "right";
+      innerdiv.style.fontSize = 12;
+      innerdiv.style.color = "white";
+      innerdiv.style.fontFamily = "Commodore64";
+      innerdiv.style.lineHeight = "24px";
+      innerdiv.innerHTML = "<p>" + inventorylist[i].getQuantity() + "</p>";
     }
 
     if (PC.isEquipped(inventorylist[i])) {
-      document.getElementById('inv_'+writetox+"x"+writetoy).style.borderColor = "#000099";
+      invdiv.style.borderColor = "#000099";
     }
     if ((targetCursor.command === "c") && (targetCursor.spellName === "Empower")) {
       if (targetCursor.chosenReagents[inventorylist[i].getName()]) {
-        document.getElementById('inv_'+writetox+"x"+writetoy).style.borderColor = "#000099";
+        invdiv.style.borderColor = "#000099";
       }
     }
+    invdiv.appendChild(innerdiv);
   }
 
   let invselect = targetCursor.invskiprow*8 + targetCursor.invy*8 + targetCursor.invx;
