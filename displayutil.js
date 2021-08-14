@@ -282,6 +282,7 @@ function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev, skipfeatures, 
     if (displaytile.checkType("NPC") && !displaytile.specials.mindless) { isnpc = 1; }
     let graphics = displaytile.getGraphicArray();
     if ((typeof displaytile.setBySurround === "function") && ((losresult < LOS_THRESHOLD) || ev || (displaytile.getName() === "CaveWall"))) {
+      if (displaytile.IWasJustDrawn) { displaytile.IWasJustDrawn(); }
       graphics = displaytile.setBySurround(x,y,mapname,graphics,1,centerx,centery,losresult);
       displayCell.showGraphic = graphics[0];
       displayCell.graphics2 = graphics[2];
@@ -338,6 +339,7 @@ function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev, skipfeatures, 
       if (displaytile.alwaystop) { ontop.push(displayCell); }
       else if (displayCell.losresult < LOS_THRESHOLD) { displayStack.push(displayCell); }
     } else if ((losresult < LOS_THRESHOLD) || ((tp === 1) && isnpc) || ev) {
+      if (displaytile.IWasJustDrawn) { displaytile.IWasJustDrawn(); }
       displayCell.showGraphic = graphics[0];
       displayCell.graphics2 = graphics[2];
       displayCell.graphics3 = graphics[3];
