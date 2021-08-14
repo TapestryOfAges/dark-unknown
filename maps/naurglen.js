@@ -647,7 +647,7 @@ mappages["naurglen"].onload = function(mapref) {
     } 
     if (DU.gameflags.getFlag("derek_pony")) { DU.gameflags.setFlag("derek_pony2", 1); }
     if (!DU.gameflags.getFlag("act2")) {
-      let blanche = FindNPCByName("blanche",mapref);
+      let blanche = FindNPCByName("Blanche",mapref);
       mapref.deleteThing(blanche);
       DUTime.removeEntityFrom(blanche);
     } else {
