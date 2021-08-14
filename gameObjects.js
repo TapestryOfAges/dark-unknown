@@ -222,6 +222,8 @@ ProtoObject.prototype.copy = function(type) {
       copydata[idx] = val;   
     } else if (idx === "val") {  // on ToshinPanel at the least
       copydata[idx] = val;
+    } else if (idx === "wornlayers") { 
+      copydata[idx] = val;
     } else {
       DebugWrite("saveload", "<br /><span style='color:red;font-weight:bold'>" + idx + " is type " + typeof val + "</span>,  ");
       alert(savename + " SAVE NEEDS " + idx + "!");
@@ -1045,9 +1047,10 @@ function MobileEnterable(destmap, destx, desty) {
 function ManualAnimation(params) {
   // animstart is the spritex values of the first animation frame
   this.animstart = params.animstart;
-  this.animlength = params.anilength;  // number of frames
-  // animstyle is random or cycle
+  this.animlength = params.animlength;  // number of frames
+  // animstyle is random, cycle (1-4 and back to 1), pingpong (1-4-1), flow 
   this.animstyle = params.animstyle;
+  this.animdir = params.animdir;  // vertical or horizontal, if animstyle is "flow"; 1 or -1, if animstyle is "pingpong"
   // can it animate to the same frame twice in a row?
   this.allowrepeat = 0;
   if (params.allowrepeat) { this.allowrepeat = 1; }
@@ -1067,29 +1070,57 @@ function ManualAnimation(params) {
   this.currframenum;
 
   this.startAnimation = function() {
-    if (this.startframe === "start") { this.currframe = this.spritexoffset; } 
+//    console.log("startAnimation called for " + this.getName());
+    if (this.animstyle === "pingpong") { this.animdir = 1; }
+    if (this.startframe === "start") { 
+      if (this.animdir === "vertical") {
+        this.currframe = this.spriteyoffset;
+      } else {
+        this.currframe = this.spritexoffset; 
+      }
+      this.currframenum = 1;
+    } 
     else { 
       let sf = Dice.roll("1d"+this.animlength);
-      this.currframe = (sf-1)*32 + this.spritexoffset;
+      this.currframe = -1*(sf-1)*32 + this.spritexoffset;
       this.currframenum = sf;
     }
+//    console.log("currframenum: " + this.currframenum);
+//    console.log("currframe: " + this.currframe);
   }
 
   this.IWasJustDrawn = function() {
+    console.log("IWasJustDrawn (" + this.getName() + ")");
+    if (this.animating) { return; } // animateMe cycle is already going 
     this.animating = 1;
 
     let waittime = Math.floor(Math.random() * (this.framedurationmax - this.framedurationmin +1)) + this.framedurationmin;
-    setTimeout(function() { this.animateMe(); }, waittime);
+    let ts = this;
+    setTimeout(function() { ts.animateMe(); }, waittime);
   }
 
   this.animateMe = function() {
-    let div = getElementById("divid_" + this.getSerial());
+//    console.log("In animateMe " + this.getName() + " , (" + this.getx() + "," + this.gety() + ")");
+    let div = document.getElementById("divid_" + this.getSerial());
     if (!div) { this.animating = 0; return; }
 
     if (this.animstyle === "cycle") {
       this.currframenum++;
       if (this.currframenum > this.animlength) { this.currframenum = 1; }
-      this.currframe = (this.currframenum-1)*32 + this.spritexoffset;
+      this.currframe = -1*(this.currframenum-1)*32 + this.spritexoffset;
+    } else if (this.animstyle === "pingpong") {
+      this.currframenum = this.currframenum + this.animdir;
+      if (this.currframenum === this.animlength) { this.animdir = -1; }
+      if (this.currframenum === 1) { this.animdir = 1; }
+      this.currframe = -1*(this.currframenum-1)*32 + this.spritexoffset;
+    } else if (this.animstyle === "flow") {
+      this.currframenum++;
+      if (this.currframenum > this.animlength) { this.currframenum = 1; }
+      if (this.animdir === "horizontal") {
+        this.currframe = -1*(this.currframenum-1) + this.spritexoffset;
+      } else {
+        this.currframe = -1*(this.currframenum-1) + this.spriteyoffset;
+      }
     } else { // random
       let diesize = this.animlength;
       if (!this.allowrepeat) { diesize = diesize-1; }
@@ -1099,15 +1130,28 @@ function ManualAnimation(params) {
         sf++; 
       }
       this.currframenum = sf;
-      this.currframe = (sf-1)*32 + this.spritexoffset;
+      this.currframe = -1*(sf-1)*32 + this.spritexoffset;
     }
 
-    div.style.backgroundPosition = this.currframe + "px " + this.spriteyoffset + "px";
+    if (this.animdir === "vertical") {
+      div.style.backgroundPosition = this.spritexoffset + "px " + this.currframe + "px";
+    } else {
+      div.style.backgroundPosition = this.currframe + "px " + this.spriteyoffset + "px";
+    }
 
     let waittime = Math.floor(Math.random() * (this.framedurationmax - this.framedurationmin +1)) + this.framedurationmin;
-    setTimeout(function() { this.animateMe(); }, waittime);
+    let ts = this;
+    setTimeout(function() { ts.animateMe(); }, waittime);
   }
 }
+
+// uncomment if I want to take flowing animations away from animating gifs, but for now that seems fine, honestly
+//function UniversalFlowModulator() {
+//  universalFlow++;
+//  if (universalFlow === 33) { universalFlow = 1;}
+
+//  setTimeout(function() { UniversalFlowModulator(); }, 150);
+//}
 
 // General func 
 function SetByBelow() {
@@ -7825,7 +7869,9 @@ Towne3Tile.prototype = new FeatureObject();
 function KeepTile() {
   //Graphics Upgraded
   this.name = "Keep";
-  this.graphic = "keep.gif";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -103*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -7834,6 +7880,15 @@ function KeepTile() {
   this.civilized = 1;
 
   Enterable.call(this, "null", 0, 0);
+
+  ManualAnimation.call(this, { animstart: 0,
+    animlength: 4,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 250,
+    startframe: "random"
+  });
 }
 KeepTile.prototype = new FeatureObject();
 
@@ -8065,24 +8120,47 @@ UpperFarRightCastleTile.prototype = new FeatureObject();
 function UpperLeftCastleTile() {
   //Graphics Upgraded
   this.name = "UpperLeftCastle";
-  this.graphic = "castleflag2.gif";
+	this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -99*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.desc = "Castle Dea Olympus";
   this.peerview = "#e0e0e0";
   this.civilized = 1;
+
+  ManualAnimation.call(this, { animstart: -4*32,
+    animlength: 4,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 UpperLeftCastleTile.prototype = new FeatureObject();
 
 function UpperRightCastleTile() {
   //Graphics Upgraded
   this.name = "UpperRightCastle";
-  this.graphic = "castleflag1.gif";
+	this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -99*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.desc = "Castle Dea Olympus";
   this.peerview = "#e0e0e0";
   this.civilized = 1;
+
+  ManualAnimation.call(this, { animstart: 0,
+    animlength: 4,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
+
 }
 UpperRightCastleTile.prototype = new FeatureObject();
 
@@ -8899,7 +8977,9 @@ WoodpileTile.prototype = new FeatureObject();
 
 function CampfireTile() {
 	this.name = "Campfire";
-	this.graphic = "campfire.gif";
+	this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -98*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
   this.prefix = "a";
@@ -8909,6 +8989,16 @@ function CampfireTile() {
 	
 	LightEmitting.call(this, 2);
 	HasAmbientNoise.call(this,"sfx_fire_crackle",1.5);
+
+  ManualAnimation.call(this, { animstart: -128,
+    animlength: 4,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
+
 }
 CampfireTile.prototype = new FeatureObject();
 
@@ -8976,13 +9066,23 @@ CampfireExtinguishedTile.prototype = new FeatureObject();
 
 function BrazierTile() {
 	this.name = "Brazier";
-	this.graphic = "brazier.gif";
+	this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -97*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0;
   this.prefix = "a";
 	this.desc = "brazier";
 	
 	LightEmitting.call(this, 3);  
+  ManualAnimation.call(this, { animstart: -128,
+    animlength: 4,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 BrazierTile.prototype = new FeatureObject();
 
@@ -9218,14 +9318,25 @@ WEUnlitBrazier2Tile.prototype.use = function(who) {
 
 function CrystalTrapSpaceTile() {
 	this.name = "CrystalTrapSpace";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-640";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -111*32;
 	this.passable = MOVE_WALK + MOVE_LEVITATE + MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a"; 
 	this.desc = "Crystal Trap spell";
 	
   this.invisible = 1;  
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: 5,
+    animstyle: "pingpong",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 170,
+    startframe: "random"
+  });
+
 }
 CrystalTrapSpaceTile.prototype = new FeatureObject();
 
@@ -12229,11 +12340,22 @@ HildendainTapestryTile.prototype = new FeatureObject();
 function GrandfatherClockTile() {
   //Graphics Upgraded
   this.name = "GrandfatherClock";
-  this.graphic = "grandfatherclock.gif";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -107*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "grandfather clock";
+
+  ManualAnimation.call(this, { animstart: 0,
+    animlength: 8,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 250,
+    framedurationmax: 250,
+    startframe: "start"
+  });
 }
 GrandfatherClockTile.prototype = new FeatureObject();
 
@@ -15453,45 +15575,75 @@ FlameEternalTile.prototype = new FeatureObject();
 function BrightFountainTile() {
   //Graphics Upgraded
   this.name = "BrightFountain";
-  this.graphic = "fountains.gif";
-  this.spritexoffset = -64;
-  this.spriteyoffset = 0;
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -101*32;
   this.prefix = "a";
   this.desc = "fountain";
   this.peerview = "#a0a0a0";
   this.passable = MOVE_ETHEREAL + MOVE_FLY;
   
   HasAmbientNoise.call(this,"sfx_fountain_splash",1.5);
+
+  ManualAnimation.call(this, { animstart: 0,
+    animlength: 5,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
+
 }
 BrightFountainTile.prototype = new FeatureObject();
 
 function BlueFountainTile() {
   //Graphics Upgraded
   this.name = "BlueFountain";
-  this.graphic = "fountains.gif";
+  this.graphic = "static.png";
   this.spritexoffset = 0;
-  this.spriteyoffset = 0;
+  this.spriteyoffset = -102*32;
   this.prefix = "a";
   this.desc = "fountain";
   this.peerview = "#a0a0a0";
   this.passable = MOVE_ETHEREAL + MOVE_FLY;
   
   HasAmbientNoise.call(this,"sfx_fountain_splash",1.5);
+
+  ManualAnimation.call(this, { animstart: 0,
+    animlength: 5,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
+
 }
 BlueFountainTile.prototype = new FeatureObject();
 
 function FountainTile() {
   //Graphics Upgraded
   this.name = "Fountain";
-  this.graphic = "fountains.gif";
-  this.spritexoffset = -32;
-  this.spriteyoffset = 0;
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -101*32;
   this.prefix = "a";
   this.desc = "fountain";
   this.peerview = "#a0a0a0";
   this.passable = MOVE_ETHEREAL + MOVE_FLY;
   
   HasAmbientNoise.call(this,"sfx_fountain_splash",2);
+
+  ManualAnimation.call(this, { animstart: -160,
+    animlength: 5,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
+
 }
 FountainTile.prototype = new FeatureObject();
 
@@ -15510,83 +15662,144 @@ BrokenFountainTile.prototype = new FeatureObject();
 function BlueCrystalTile() {
   //Graphics Upgraded
   this.name = "BlueCrystal";
-  this.graphic = "crystals.gif";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
-  this.spriteyoffset = 0;
+  this.spriteyoffset = -111*32;
   this.prefix = "a";
   this.desc = "crystal";
   LightEmitting.call(this, 2);
   this.peerview = "#65ceff";
   this.passable = MOVE_ETHEREAL;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: 5,
+    animstyle: "pingpong",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 170,
+    startframe: "random"
+  });
+
 }
 BlueCrystalTile.prototype = new FeatureObject();
 
 function PurpleCrystalTile() {
   //Graphics Upgraded
   this.name = "PurpleCrystal";
-  this.graphic = "crystals.gif";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
-  this.spriteyoffset = -32;
+  this.spriteyoffset = -112*32;
   this.prefix = "a";
   this.desc = "crystal";
   LightEmitting.call(this, 2);
   this.peerview = "#9b65ff";
   this.passable = MOVE_ETHEREAL;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: 5,
+    animstyle: "pingpong",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 PurpleCrystalTile.prototype = new FeatureObject();
 
 function YellowCrystalTile() {
   //Graphics Upgraded
   this.name = "YellowCrystal";
-  this.graphic = "crystals.gif";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
-  this.spriteyoffset = -4*32;
+  this.spriteyoffset = -113*32;
   this.prefix = "a";
   this.desc = "crystal";
   LightEmitting.call(this, 2);
   this.peerview = "#ffc465";
   this.passable = MOVE_ETHEREAL;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: 5,
+    animstyle: "pingpong",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 YellowCrystalTile.prototype = new FeatureObject();
 
 function GreenCrystalTile() {
   //Graphics Upgraded
   this.name = "GreenCrystal";
-  this.graphic = "crystals.gif";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
-  this.spriteyoffset = -2*32;
+  this.spriteyoffset = -114*32;
   this.prefix = "a";
   this.desc = "crystal";
   LightEmitting.call(this, 2);
   this.peerview = "#9bff65";
   this.passable = MOVE_ETHEREAL;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: 5,
+    animstyle: "pingpong",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 GreenCrystalTile.prototype = new FeatureObject();
 
 function RedCrystalTile() {
   //Graphics Upgraded
   this.name = "RedCrystal";
-  this.graphic = "crystals.gif";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
-  this.spriteyoffset = -3*32;
+  this.spriteyoffset = -115*32;
   this.prefix = "a";
   this.desc = "crystal";
   LightEmitting.call(this, 2);
   this.peerview = "#ff658b";
   this.passable = MOVE_ETHEREAL;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: 5,
+    animstyle: "pingpong",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 RedCrystalTile.prototype = new FeatureObject();
 
 function WhiteCrystalTile() {
   //Graphics Upgraded
   this.name = "WhiteCrystal";
-  this.graphic = "crystals.gif";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
-  this.spriteyoffset = -5*32;
+  this.spriteyoffset = -116*32;
   this.prefix = "a";
   this.desc = "crystal";
   this.peerview = "#b0cbc4";
   this.passable = MOVE_ETHEREAL;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: 5,
+    animstyle: "pingpong",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 WhiteCrystalTile.prototype = new FeatureObject();
 
@@ -20470,11 +20683,22 @@ function ExoticArmorTile() {
 	this.absorb = 60;
   this.resist = 40;
   this.strReq = 16;
-  this.graphic = "exoticarmor.gif";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -100*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "exotic armor";
   this.longdesc = "A suit of exotic armor, magically crafted by you. Requires a 16 Strength to wear.";
   this.usedesc = "Equip the armor.";
+
+  ManualAnimation.call(this, { animstart: -128,
+    animlength: 4,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 ExoticArmorTile.prototype = new ArmorObject();
 
@@ -22839,9 +23063,10 @@ function NPCHumanObject() {
   this.wornlayers = {
     pants: null,
     shirt: null,
-    hat: null,
+    helmet: null,
     back: null,
     offhand: null,
+    cloak: null,
     mainhand: null
   };
   this.addType("human");
