@@ -165,11 +165,12 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   }
   if (triggers.hasOwnProperty("questlog")) {
     let lognum = parseInt(triggers["questlog"]);
-    questlog[lognum].activate();
+//    questlog[lognum].activate();
   }
   if (triggers.hasOwnProperty("questcomp")) {
     let lognum = parseInt(triggers["questcomp"]);
-    questlog[lognum].complete();
+//    questlog[lognum].complete();
+// quest stuff can be re-enabled if I care
   }
   if (triggers.hasOwnProperty("end_convo")) {
     if ((triggers.end_convo !== 1) && (triggers.end_convo !== "1")) {
