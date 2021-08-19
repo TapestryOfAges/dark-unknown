@@ -7925,7 +7925,9 @@ HillTowerTile.prototype = new FeatureObject();
 function LighthouseTile() {
   //Graphics Upgraded
   this.name = "Lighthouse";
-  this.graphic = "lighthouse.gif";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -108*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -7933,6 +7935,16 @@ function LighthouseTile() {
   this.peerview = "#e0e0e0";
 
   Enterable.call(this, "null", 0, 0);
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: 8,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 200,
+    framedurationmax: 200,
+    startframe: "start"
+  });
 }
 LighthouseTile.prototype = new FeatureObject();
 
@@ -9427,7 +9439,9 @@ SpitTile.prototype = new FeatureObject();
 function FireplaceTile() {
   //Graphics Upgraded
 	this.name = "Fireplace";
-	this.graphic = "largefireplace.gif";
+  this.graphic = "static.gif";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -111*32;
 	this.passable = MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 2;
   this.prefix = "a";
@@ -9439,6 +9453,16 @@ function FireplaceTile() {
 	
 	LightEmitting.call(this, 2);
 	HasAmbientNoise.call(this,"sfx_fire_crackle",1.5);
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 FireplaceTile.prototype = new FeatureObject();
 
@@ -21106,7 +21130,9 @@ function WandTile() {
   //Graphics Upgraded
 	this.name = "Wand";
 	this.damage = "4d12+0";
-  this.graphic = "magicwand.gif";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -103*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "magic wand";
 	this.prefix = "a";
@@ -21114,6 +21140,16 @@ function WandTile() {
   this.ammoyoffset = "-128";
   this.attackSound = "sfx_wand";
   this.longdesc = "A wand that channels thunder. In your hands, it does %ave% damage on average.";
+ 
+  ManualAnimation.call(this, { 
+    animstart: -6*32,
+    animlength: 4,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 WandTile.prototype = new MissileWeaponObject();
 
@@ -21121,7 +21157,9 @@ function MagicAxeTile() {
   //Graphics Upgraded
 	this.name = "MagicAxe";
 	this.damage = "4d12+12";
-  this.graphic = "magicaxe.gif";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -105*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.dexReq = 18;
 	this.desc = "magic axe";
@@ -21132,6 +21170,16 @@ function MagicAxeTile() {
   this.ammoReturn = 1;
   this.attackSound = "sfx_magic_axe";
   this.longdesc = "A magic throwing axe. It requires a Dexterity of 18 to use. In your hands, it does %ave% damage on average.";
+
+  ManualAnimation.call(this, { 
+    animstart: -4*32,
+    animlength: 5,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 100,
+    framedurationmax: 100,
+    startframe: "start"
+  });
 }
 MagicAxeTile.prototype = new MissileWeaponObject();
 
