@@ -7822,7 +7822,9 @@ CaveTile.prototype = new FeatureObject();
 function TowneTile() {
   //Graphics Upgraded
   this.name = "Towne";
-  this.graphic = "town.gif";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -109*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -7831,13 +7833,25 @@ function TowneTile() {
   this.civilized = 1;
 
   Enterable.call(this, "null", 0, 0);
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: 4,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 200,
+    startframe: "random"
+  });
 }
 TowneTile.prototype = new FeatureObject();
 
 function Towne2Tile() {
   //Graphics Upgraded
   this.name = "Towne2";
-  this.graphic = "town2.gif";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -110*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -7846,6 +7860,16 @@ function Towne2Tile() {
   this.civilized = 1;
 
   Enterable.call(this, "null", 0, 0);
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: 4,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 200,
+    startframe: "random"
+  });
 }
 Towne2Tile.prototype = new FeatureObject();
 
@@ -8873,15 +8897,25 @@ EnergyFieldTile.prototype.bumpinto = function(who) {
 function TorchWestTile() {
   //Graphics Upgraded
 	this.name = "TorchWest";
-  this.graphic = "torches.gif";
-  this.spritexoffset = 0;
-  this.spriteyoffset = 0;
+  this.graphic = "static.gif";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -113*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0;
   this.prefix = "a";
 	this.desc = "burning torch";
 
 	LightEmitting.call(this, 2);
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 4,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 TorchWestTile.prototype = new FeatureObject();  
 
@@ -8892,15 +8926,25 @@ TorchWestTile.prototype.use = function(who) {
 function TorchEastTile() {
   //Graphics Upgraded
 	this.name = "TorchEast";
-  this.graphic = "torches.gif";
-  this.spritexoffset = -32;
-  this.spriteyoffset = 0;
+  this.graphic = "static.gif";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -114*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0;
   this.prefix = "a";
 	this.desc = "burning torch";
 
 	LightEmitting.call(this, 2);
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 4,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 TorchEastTile.prototype = new FeatureObject();  
 
@@ -9509,7 +9553,10 @@ FireplaceTile.prototype.myTurn = function() {
 function SmallFireplaceTile() {
   //Graphics Upgraded
 	this.name = "SmallFireplace";
-	this.graphic = "smallfireplace.gif";
+  this.graphic = "static.gif";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -112*32;
+
 }
 SmallFireplaceTile.prototype = new FireplaceTile();
 
@@ -12769,15 +12816,25 @@ AlchemyLab2Tile.prototype = new FeatureObject();
 function WaterfallTile() {
   //Graphics Upgraded
   this.name = "Waterfall";
-  this.graphic = "waterfall.gif";
-  this.spritexoffset = 0;
-  this.spriteyoffset = 0;
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -118*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "waterfall";
     
   HasAmbientNoise.call(this,"sfx_waterfall",1.5);
+
+  ManualAnimation.call(this, { 
+    animstart: -4*32,
+    animlength: 4,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 150,
+    startframe: "random"
+  });
 }
 WaterfallTile.prototype = new FeatureObject();
 
@@ -12852,11 +12909,23 @@ CaveWaterfallTile.prototype = new WaterfallTile();
 
 function BrilliantPoolTile() {
   this.name = "BrilliantPool";
-  this.graphic = "pool.gif";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -104*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "the";
   this.desc = "Brilliant Pool";
+
+  ManualAnimation.call(this, { animstart: -6*32,
+    animlength: 4,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 200,
+    startframe: "random"
+  });
+
 }
 BrilliantPoolTile.prototype = new FeatureObject();
 
@@ -16369,14 +16438,24 @@ EtherGateTile.prototype.walkon = function(who) {
 
 function MoongateTile() {
   this.name = "Moongate";
-  this.graphic = "moongate.gif";
+  this.graphic = "static.png";
   this.spritexoffset = 0;
-  this.spriteyoffset = 0;
+  this.spriteyoffset = -118*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "gate";
 
   HasAmbientNoise.call(this,"sfx_portal_ambient",1.5);
+
+  ManualAnimation.call(this, { animstart: 0,
+    animlength: 8,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 150,
+    startframe: "start"
+  });
+
 }
 MoongateTile.prototype = new FeatureObject();
 
