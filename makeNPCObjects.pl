@@ -32,20 +32,20 @@ foreach my $line (<$npcdoc>) {
   print $out "  this.peaceAI = '$fields[9]';\n";
   print $out "  this.forgetAt = $fields[10];\n";
   print $out "  this.withdraw = $fields[11];\n";
-  if ($fields[12] =~ /,/) {
-    $fields[12] =~ s/ //g;
-#    $fields[12] =~ /^(.+),(.+)/;
-    my @graphics = split(',', $fields[12]);
-   # $fields[12] = "PickOne([\"$1\",\"$2\"]);\n";
-    print $out "  this.graphic = '$graphics[0]';\n";
-    shift @graphics;
-    print $out "  this.altgraphic = [";
-    while ($graphics[0]) {
-      print $out "'$graphics[0]',";
+  if (!$fields[45]) { # no animation override
+    if ($fields[12] =~ /,/) {
+      $fields[12] =~ s/ //g;
+      my @graphics = split(',', $fields[12]);
+      print $out "  this.graphic = '$graphics[0]';\n";
       shift @graphics;
-    }
-    print $out "];\n";
-  } else { print $out "  this.graphic = '$fields[12]';\n"; }
+      print $out "  this.altgraphic = [";
+      while ($graphics[0]) {
+        print $out "'$graphics[0]',";
+        shift @graphics;
+      }  
+      print $out "];\n";
+    } else { print $out "  this.graphic = '$fields[12]';\n"; }
+  }
   if ($fields[13] =~ /\;/) {
     print $out "  this.meleeAttackAs = 'none';\n";
     my @wpnvals = split(';', $fields[13]);
@@ -150,6 +150,33 @@ foreach my $line (<$npcdoc>) {
       print $out "  this.gender = 'random';\n";
     }
   }
+  if ($fields[45]) {
+    # there is an animation override
+    print $out "  this.graphic = 'static.png';\n";
+    print $out "  this.spritexoffset = $fields[43] * 32;\n";
+    print $out "  this.spriteyoffset = $fields[44] * 32;\n";
+
+    print $out "    ManualAnimation.call(this, { \n";
+    print $out "      animstart: $fields[43]*32,\n";
+    print $out "      animlength: $fields[45],\n";
+    if ($fields[46]) {
+      print $out "      animstyle: \"$fields[46]\",\n";
+    } else {
+      print $out "      animstyle: \"random\",\n";
+    }
+    print $out "      allowrepeat: 0,\n";
+    if ($fields[47]) {
+      my @animminmax = split("-",$fields[47]);
+      print $out "      framedurationmin: $animminmax[0],\n";
+      print $out "      framedurationmax: $animminmax[1],\n";
+    } else {
+      print $out "      framedurationmin: 120,\n";
+      print $out "      framedurationmax: 170,\n";
+    }
+    print $out "      startframe: \"random\"\n";
+    print $out "    });\n";
+
+  }
   print $out "}\n";
   print $out "$fields[0]" . "NPCTile.prototype = new NPCObject();\n\n";
 }
@@ -172,18 +199,20 @@ foreach my $line (<$groupdoc>) {
   print $out "  this.name = '$fields[0]';\n";
   print $out "  this.desc = '$fields[1]';\n";
   print $out "  this.peaceAI = '$fields[2]';\n";
-  if ($fields[3] =~ /,/) {
-    $fields[3] =~ s/ //g;
-    my @graphics = split(',', $fields[3]);
-    print $out "  this.graphic = '$graphics[0]';\n";
-    shift @graphics;
-    print $out "  this.altgraphic = [";
-    while ($graphics[0]) {
-      print $out "'$graphics[0]',";
+  if (!$fields[45]) {
+    if ($fields[3] =~ /,/) {
+      $fields[3] =~ s/ //g;
+      my @graphics = split(',', $fields[3]);
+      print $out "  this.graphic = '$graphics[0]';\n";
       shift @graphics;
-    }
-    print $out "];\n";
-  } else { print $out "  this.graphic = '$fields[3]';\n"; }
+      print $out "  this.altgraphic = [";
+      while ($graphics[0]) {
+        print $out "'$graphics[0]',";
+        shift @graphics;
+      }
+      print $out "];\n";
+    } else { print $out "  this.graphic = '$fields[3]';\n"; }
+  }
 
   print $out "  this.group = [];\n";
   print $out "  this.group[0] = new NPCList('$fields[4]NPC', '$fields[5]');\n";
@@ -202,6 +231,35 @@ foreach my $line (<$groupdoc>) {
   if ($fields[14]) { 
     print $out "  this.special = '$fields[14]';\n";
   }
+
+  if ($fields[45]) {
+    # there is an animation override
+    print $out "  this.graphic = 'static.png';\n";
+    print $out "  this.spritexoffset = $fields[43] * 32;\n";
+    print $out "  this.spriteyoffset = $fields[44] * 32;\n";
+
+    print $out "    ManualAnimation.call(this, { \n";
+    print $out "      animstart: $fields[43]*32,\n";
+    print $out "      animlength: $fields[45],\n";
+    if ($fields[46]) {
+      print $out "      animstyle: \"$fields[46]\",\n";
+    } else {
+      print $out "      animstyle: \"random\",\n";
+    }
+    print $out "      allowrepeat: 0,\n";
+    if ($fields[47]) {
+      my @animminmax = split("-",$fields[47]);
+      print $out "      framedurationmin: $animminmax[0],\n";
+      print $out "      framedurationmax: $animminmax[1],\n";
+    } else {
+      print $out "      framedurationmin: 120,\n";
+      print $out "      framedurationmax: 170,\n";
+    }
+    print $out "      startframe: \"random\"\n";
+    print $out "    });\n";
+
+  }
+
   print $out "}\n";
   print $out "$fields[0]" . "Tile.prototype = new NPCGroupObject();\n\n";
 }
