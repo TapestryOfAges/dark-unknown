@@ -3698,6 +3698,11 @@ tileFactory.prototype.makeWardukeWalkOnTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWalkOnCOA2Tile = function() {
+  let newTile = new WalkOnCOA2Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSpinnerTile = function() {
   let newTile = new SpinnerTile();
   return newTile;
@@ -4505,6 +4510,11 @@ tileFactory.prototype.makeJadeNecklaceTile = function() {
 
 tileFactory.prototype.makeGoldLocketTile = function() {
   let newTile = new GoldLocketTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeStolenJewelryTile = function() {
+  let newTile = new StolenJewelryTile();
   return newTile;
 }
 
@@ -5498,6 +5508,11 @@ tileFactory.prototype.makeChickenNPCTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeRoosterNPCTile = function() {
+  let newTile = new RoosterNPCTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeHorseNPCTile = function() {
   let newTile = new HorseNPCTile();
   return newTile;
@@ -6390,6 +6405,11 @@ tileFactory.prototype.makeDelayTurnStartTile = function() {
 
 tileFactory.prototype.makeScouringBeldskaeTile = function() {
   let newTile = new ScouringBeldskaeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRemovePeterTile = function() {
+  let newTile = new RemovePeterTile();
   return newTile;
 }
 
