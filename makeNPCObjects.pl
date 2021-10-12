@@ -156,25 +156,25 @@ foreach my $line (<$npcdoc>) {
     print $out "  this.spritexoffset = $fields[43] * 32;\n";
     print $out "  this.spriteyoffset = $fields[44] * 32;\n";
 
-    print $out "    ManualAnimation.call(this, { \n";
-    print $out "      animstart: $fields[43]*32,\n";
-    print $out "      animlength: $fields[45],\n";
+    print $out "\n  ManualAnimation.call(this, { \n";
+    print $out "    animstart: $fields[43]*32,\n";
+    print $out "    animlength: $fields[45],\n";
     if ($fields[46]) {
-      print $out "      animstyle: \"$fields[46]\",\n";
+      print $out "    animstyle: \"$fields[46]\",\n";
     } else {
-      print $out "      animstyle: \"random\",\n";
+      print $out "    animstyle: \"random\",\n";
     }
-    print $out "      allowrepeat: 0,\n";
+    print $out "    allowrepeat: 0,\n";
     if ($fields[47]) {
       my @animminmax = split("-",$fields[47]);
-      print $out "      framedurationmin: $animminmax[0],\n";
-      print $out "      framedurationmax: $animminmax[1],\n";
+      print $out "    framedurationmin: $animminmax[0],\n";
+      print $out "    framedurationmax: $animminmax[1],\n";
     } else {
-      print $out "      framedurationmin: 120,\n";
-      print $out "      framedurationmax: 170,\n";
+      print $out "    framedurationmin: 120,\n";
+      print $out "    framedurationmax: 170,\n";
     }
-    print $out "      startframe: \"random\"\n";
-    print $out "    });\n";
+    print $out "    startframe: \"random\"\n";
+    print $out "  });\n";
 
   }
   print $out "}\n";
@@ -199,7 +199,7 @@ foreach my $line (<$groupdoc>) {
   print $out "  this.name = '$fields[0]';\n";
   print $out "  this.desc = '$fields[1]';\n";
   print $out "  this.peaceAI = '$fields[2]';\n";
-  if (!$fields[45]) {
+  if (!$fields[17]) {
     if ($fields[3] =~ /,/) {
       $fields[3] =~ s/ //g;
       my @graphics = split(',', $fields[3]);
@@ -232,31 +232,31 @@ foreach my $line (<$groupdoc>) {
     print $out "  this.special = '$fields[14]';\n";
   }
 
-  if ($fields[45]) {
+  if ($fields[17]) {
     # there is an animation override
     print $out "  this.graphic = 'static.png';\n";
-    print $out "  this.spritexoffset = $fields[43] * 32;\n";
-    print $out "  this.spriteyoffset = $fields[44] * 32;\n";
+    print $out "  this.spritexoffset = $fields[15] * 32;\n";
+    print $out "  this.spriteyoffset = $fields[16] * 32;\n";
 
-    print $out "    ManualAnimation.call(this, { \n";
-    print $out "      animstart: $fields[43]*32,\n";
-    print $out "      animlength: $fields[45],\n";
-    if ($fields[46]) {
-      print $out "      animstyle: \"$fields[46]\",\n";
+    print $out "\n  ManualAnimation.call(this, { \n";
+    print $out "    animstart: $fields[15]*32,\n";
+    print $out "    animlength: $fields[17],\n";
+    if ($fields[18]) {
+      print $out "    animstyle: \"$fields[18]\",\n";
     } else {
-      print $out "      animstyle: \"random\",\n";
+      print $out "    animstyle: \"random\",\n";
     }
-    print $out "      allowrepeat: 0,\n";
-    if ($fields[47]) {
-      my @animminmax = split("-",$fields[47]);
-      print $out "      framedurationmin: $animminmax[0],\n";
-      print $out "      framedurationmax: $animminmax[1],\n";
+    print $out "    allowrepeat: 0,\n";
+    if ($fields[19]) {
+      my @animminmax = split("-",$fields[19]);
+      print $out "    framedurationmin: $animminmax[0],\n";
+      print $out "    framedurationmax: $animminmax[1],\n";
     } else {
-      print $out "      framedurationmin: 120,\n";
-      print $out "      framedurationmax: 170,\n";
+      print $out "    framedurationmin: 150,\n";
+      print $out "    framedurationmax: 300,\n";
     }
-    print $out "      startframe: \"random\"\n";
-    print $out "    });\n";
+    print $out "    startframe: \"random\"\n";
+    print $out "  });\n";
 
   }
 
