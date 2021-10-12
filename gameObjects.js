@@ -21027,13 +21027,24 @@ function MagicSwordTile() {
 	this.damage = "5d10+22";
 	this.strdamage = 1;
   //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-192";
-	this.spriteyoffset = "-32";
+  this.graphic = "static.png";
+	this.spritexoffset = -6*32;
+	this.spriteyoffset = -124*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "magic sword";
   this.prefix = "a";
   this.longdesc = "A magic sword. In your hands, it does %ave% damage on average.";
+
+  ManualAnimation.call(this, { 
+    animstart: -6*32,
+    animlength: 4,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 170,
+    startframe: "random"
+  });
+
 }
 MagicSwordTile.prototype = new WeaponObject();
 
