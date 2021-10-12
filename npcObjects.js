@@ -700,7 +700,6 @@ function ChickenNPCTile() {
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
   this.withdraw = 0;
-  this.graphic = 'chicken.gif';
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d2'
   this.meleeStrDamage = .33
@@ -718,8 +717,69 @@ function ChickenNPCTile() {
   this.resists = {};
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -138 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 ChickenNPCTile.prototype = new NPCObject();
+
+
+// Townsfolk
+
+function RoosterNPCTile() {
+  this.name = 'RoosterNPC';
+  this.level = 1;
+  this.addhp = -5;
+  this.str = 3;
+  this.dex = 3;
+  this.int = 3;
+  this.alignment = 'Good';
+  this.attitude = 'friendly';
+  this.peaceAI = 'townsfolk';
+  this.forgetAt = 0;
+  this.withdraw = 0;
+  this.meleeAttackAs = 'none';
+  this.meleeDamage = '1d2'
+  this.meleeStrDamage = .33
+  this.missileAttackAs = 'none';
+  this.armorAs = 'none';
+  this.armorDefense = 0;
+  this.armorAbsorb = 0;
+  this.armorResist = 0;
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.prefix = 'a';
+  this.desc = "chicken";
+  this.meleeChance = 100;
+  this.resists = {};
+  this.meleeHitSound = 'sfx_melee_hit';
+  this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -126 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
+}
+RoosterNPCTile.prototype = new NPCObject();
 
 
 // Townsfolk
@@ -948,8 +1008,6 @@ function GiantBatNPCTile() {
   this.peaceAI = 'seekPC-15';
   this.forgetAt = 15;
   this.withdraw = 0;
-  this.graphic = '362.gif';
-  this.altgraphic = ['328.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d4+1'
   this.meleeStrDamage = .33
@@ -967,6 +1025,19 @@ function GiantBatNPCTile() {
   this.resists = {};
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -131 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 GiantBatNPCTile.prototype = new NPCObject();
 
@@ -985,8 +1056,6 @@ function GiantInsectsNPCTile() {
   this.peaceAI = 'seekPC-12';
   this.forgetAt = 14;
   this.withdraw = 0;
-  this.graphic = '336.gif';
-  this.altgraphic = ['370.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d2'
   this.meleeStrDamage = .33
@@ -1005,6 +1074,19 @@ function GiantInsectsNPCTile() {
   this.special = 'mindless';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -127 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 4,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 GiantInsectsNPCTile.prototype = new NPCObject();
 
@@ -1023,8 +1105,6 @@ function GiantRatNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '327.gif';
-  this.altgraphic = ['361.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d4+1'
   this.meleeStrDamage = .33
@@ -1043,6 +1123,19 @@ function GiantRatNPCTile() {
   this.resists = {};
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -139 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 GiantRatNPCTile.prototype = new NPCObject();
 
@@ -1061,8 +1154,6 @@ function HeadlessNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '344.gif';
-  this.altgraphic = ['378.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
@@ -1077,6 +1168,19 @@ function HeadlessNPCTile() {
   this.resists = {};
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -141 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 HeadlessNPCTile.prototype = new NPCObject();
 
@@ -1172,8 +1276,6 @@ function SlimeNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 7;
   this.withdraw = 0;
-  this.graphic = '331.gif';
-  this.altgraphic = ['365.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d4+1'
   this.meleeStrDamage = .33
@@ -1192,6 +1294,19 @@ function SlimeNPCTile() {
   this.special = 'mindless';
   this.meleeHitSound = 'sfx_slime_hit';
   this.meleeAttackSound = 'sfx_slime_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -131 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 SlimeNPCTile.prototype = new NPCObject();
 
@@ -1282,7 +1397,6 @@ function ImpNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '351.gif';
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
@@ -1298,6 +1412,19 @@ function ImpNPCTile() {
   this.resists = { fire:35 };
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -129 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 ImpNPCTile.prototype = new NPCObject();
 
@@ -1316,8 +1443,6 @@ function PythonNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '342.gif';
-  this.altgraphic = ['376.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d4+1'
   this.meleeStrDamage = .33
@@ -1336,6 +1461,19 @@ function PythonNPCTile() {
   this.resists = {};
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -133 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 PythonNPCTile.prototype = new NPCObject();
 
@@ -1354,8 +1492,6 @@ function NixieNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '323.gif';
-  this.altgraphic = ['357.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
@@ -1373,6 +1509,19 @@ function NixieNPCTile() {
   this.resists = {};
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -128 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 NixieNPCTile.prototype = new NPCObject();
 
@@ -1391,8 +1540,6 @@ function OrcNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '339.gif';
-  this.altgraphic = ['373.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
@@ -1411,6 +1558,19 @@ function OrcNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -134 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 OrcNPCTile.prototype = new NPCObject();
 
@@ -1501,8 +1661,6 @@ function SkeletonNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '340.gif';
-  this.altgraphic = ['374.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
@@ -1518,6 +1676,19 @@ function SkeletonNPCTile() {
   this.special = 'undead';
   this.meleeHitSound = 'sfx_skeleton_hit';
   this.meleeAttackSound = 'sfx_skeleton_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -132 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 SkeletonNPCTile.prototype = new NPCObject();
 
@@ -1720,7 +1891,6 @@ function FlukeNPCTile() {
   this.peaceAI = 'seekPC-15';
   this.forgetAt = 15;
   this.withdraw = 0;
-  this.graphic = 'fluke.gif';
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+3'
   this.meleeStrDamage = 1
@@ -1740,6 +1910,19 @@ function FlukeNPCTile() {
   this.special = 'whirlpool, hides:spacer.gif';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -127 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 FlukeNPCTile.prototype = new NPCObject();
 
@@ -1758,8 +1941,6 @@ function GhostNPCTile() {
   this.peaceAI = 'seekPC-20';
   this.forgetAt = 30;
   this.withdraw = 0;
-  this.graphic = '330.gif';
-  this.altgraphic = ['364.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+8'
   this.meleeStrDamage = .66
@@ -1776,6 +1957,19 @@ function GhostNPCTile() {
   this.special = 'undead';
   this.meleeHitSound = 'sfx_ghost_hit';
   this.meleeAttackSound = 'sfx_ghost_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -142 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 GhostNPCTile.prototype = new NPCObject();
 
@@ -1832,8 +2026,6 @@ function GremlinNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '333.gif';
-  this.altgraphic = ['367.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
@@ -1850,6 +2042,19 @@ function GremlinNPCTile() {
   this.special = 'breedsexplosively';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -145 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 GremlinNPCTile.prototype = new NPCObject();
 
@@ -1939,7 +2144,6 @@ function OrcShamanNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = 'orc_shaman.gif';
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
@@ -1956,6 +2160,19 @@ function OrcShamanNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -144 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 OrcShamanNPCTile.prototype = new NPCObject();
 
@@ -1974,7 +2191,6 @@ function GiantSnakeNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = 'python.gif';
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+3'
   this.meleeStrDamage = 1
@@ -1994,6 +2210,19 @@ function GiantSnakeNPCTile() {
   this.special = 'spitter';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -125 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 GiantSnakeNPCTile.prototype = new NPCObject();
 
@@ -2089,8 +2318,6 @@ function TrollNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '332.gif';
-  this.altgraphic = ['366.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+3'
   this.meleeStrDamage = 1
@@ -2109,6 +2336,19 @@ function TrollNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -143 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 TrollNPCTile.prototype = new NPCObject();
 
@@ -2127,7 +2367,6 @@ function TwisterNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 8;
   this.withdraw = 0;
-  this.graphic = '324.gif';
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
@@ -2143,6 +2382,19 @@ function TwisterNPCTile() {
   this.special = 'mindless, wander';
   this.meleeHitSound = 'sfx_air_hit';
   this.meleeAttackSound = 'sfx_air_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -129 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 TwisterNPCTile.prototype = new NPCObject();
 
@@ -2161,7 +2413,6 @@ function AirElementalNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = 'air_elemental.gif';
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+3'
   this.meleeStrDamage = 1
@@ -2177,6 +2428,19 @@ function AirElementalNPCTile() {
   this.special = 'lbolt, mindless, wander';
   this.meleeHitSound = 'sfx_air_hit';
   this.meleeAttackSound = 'sfx_air_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -125 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 AirElementalNPCTile.prototype = new NPCObject();
 
@@ -2195,8 +2459,6 @@ function CyclopsNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '345.gif';
-  this.altgraphic = ['379.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+8'
   this.meleeStrDamage = .66
@@ -2216,6 +2478,19 @@ function CyclopsNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -140 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 CyclopsNPCTile.prototype = new NPCObject();
 
@@ -2234,7 +2509,6 @@ function DeepNixieNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = 'deep_nixie.gif';
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+8'
   this.meleeStrDamage = .66
@@ -2250,6 +2524,19 @@ function DeepNixieNPCTile() {
   this.resists = {};
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -121 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 DeepNixieNPCTile.prototype = new NPCObject();
 
@@ -2268,7 +2555,6 @@ function DrakeNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = 'drake.gif';
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+3'
   this.meleeStrDamage = 1
@@ -2288,6 +2574,19 @@ function DrakeNPCTile() {
   this.special = 'firebreath, wander';
   this.meleeHitSound = 'sfx_roar_hit';
   this.meleeAttackSound = 'sfx_roar_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -128 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 DrakeNPCTile.prototype = new NPCObject();
 
@@ -2379,7 +2678,6 @@ function FireSnakeNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = 'firesnake.gif';
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+3'
   this.meleeStrDamage = 1
@@ -2395,6 +2693,19 @@ function FireSnakeNPCTile() {
   this.special = 'firebreath,wander';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -122 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 FireSnakeNPCTile.prototype = new NPCObject();
 
@@ -2413,7 +2724,6 @@ function LurkerNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = 'lurker.gif';
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+9'
   this.meleeStrDamage = .66
@@ -2433,6 +2743,19 @@ function LurkerNPCTile() {
   this.special = 'hides:spacer.gif,wander';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -130 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 LurkerNPCTile.prototype = new NPCObject();
 
@@ -2451,7 +2774,6 @@ function OrcCaptainNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = 'orc_captain.gif';
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+9'
   this.meleeStrDamage = .66
@@ -2471,6 +2793,19 @@ function OrcCaptainNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -133 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 OrcCaptainNPCTile.prototype = new NPCObject();
 
@@ -2529,8 +2864,6 @@ function SeaSerpentNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '321.gif';
-  this.altgraphic = ['355.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+9'
   this.meleeStrDamage = .66
@@ -2549,6 +2882,19 @@ function SeaSerpentNPCTile() {
   this.special = 'firebreath,wander';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -134 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 SeaSerpentNPCTile.prototype = new NPCObject();
 
@@ -2678,7 +3024,6 @@ function CorpserNPCTile() {
   this.peaceAI = 'seekPC-15';
   this.forgetAt = 15;
   this.withdraw = 0;
-  this.graphic = 'corpser.gif';
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+9'
   this.meleeStrDamage = .66
@@ -2698,6 +3043,19 @@ function CorpserNPCTile() {
   this.special = 'hides:spacer.gif, reach,wander';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -137 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 CorpserNPCTile.prototype = new NPCObject();
 
@@ -2716,8 +3074,6 @@ function EttinNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '343.gif';
-  this.altgraphic = ['377.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+9'
   this.meleeStrDamage = .66
@@ -2736,6 +3092,19 @@ function EttinNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -142 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 EttinNPCTile.prototype = new NPCObject();
 
@@ -2822,8 +3191,6 @@ function GazerNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '337.gif';
-  this.altgraphic = ['371.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
@@ -2840,6 +3207,19 @@ function GazerNPCTile() {
   this.special = 'sleep, ondeathInsects, ruthless';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -135 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 GazerNPCTile.prototype = new NPCObject();
 
@@ -2858,8 +3238,6 @@ function HydraNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '352.gif';
-  this.altgraphic = ['386.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+9'
   this.meleeStrDamage = .66
@@ -2877,6 +3255,19 @@ function HydraNPCTile() {
   this.special = 'firebreath, multiattack';
   this.meleeHitSound = 'sfx_roar_hit';
   this.meleeAttackSound = 'sfx_roar_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -143 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 HydraNPCTile.prototype = new NPCObject();
 
@@ -3005,8 +3396,6 @@ function WillotheWispNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '346.gif';
-  this.altgraphic = ['380.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+3'
   this.meleeStrDamage = 1
@@ -3027,6 +3416,19 @@ function WillotheWispNPCTile() {
   this.special = 'teleport, energy bolt,wander';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -120 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 9,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 45,
+    framedurationmax: 55,
+    startframe: "random"
+  });
 }
 WillotheWispNPCTile.prototype = new NPCObject();
 
@@ -3121,7 +3523,6 @@ function BlackDragonNPCTile() {
   this.peaceAI = 'seekPC-0';
   this.forgetAt = 0;
   this.withdraw = 0;
-  this.graphic = 'blackdragon.gif';
   this.meleeAttackAs = 'none';
   this.meleeDamage = '5d4+15'
   this.meleeStrDamage = 1
@@ -3139,6 +3540,19 @@ function BlackDragonNPCTile() {
   this.meleeHitSound = 'sfx_roar_hit';
   this.meleeAttackSound = 'sfx_roar_miss';
   this.xpval = 0;
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -136 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 BlackDragonNPCTile.prototype = new NPCObject();
 
@@ -3194,8 +3608,6 @@ function DragonNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '353.gif';
-  this.altgraphic = ['387.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '5d4+15'
   this.meleeStrDamage = 1
@@ -3212,6 +3624,19 @@ function DragonNPCTile() {
   this.special = 'firebreath';
   this.meleeHitSound = 'sfx_roar_hit';
   this.meleeAttackSound = 'sfx_roar_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -135 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 DragonNPCTile.prototype = new NPCObject();
 
@@ -3308,8 +3733,6 @@ function KrakenNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '322.gif';
-  this.altgraphic = ['356.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '5d4+15'
   this.meleeStrDamage = 1
@@ -3329,6 +3752,19 @@ function KrakenNPCTile() {
   this.special = 'lbolt';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -138 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 KrakenNPCTile.prototype = new NPCObject();
 
@@ -3347,8 +3783,6 @@ function ReaperNPCTile() {
   this.peaceAI = 'seekPC-9';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '335.gif';
-  this.altgraphic = ['369.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+9'
   this.meleeStrDamage = .66
@@ -3368,6 +3802,19 @@ function ReaperNPCTile() {
   this.special = 'ruthless,stationary';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -132 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 ReaperNPCTile.prototype = new NPCObject();
 
@@ -3423,8 +3870,6 @@ function DaemonNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '351.gif';
-  this.altgraphic = ['385.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '5d4+15'
   this.meleeStrDamage = 1
@@ -3444,6 +3889,19 @@ function DaemonNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -127 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 DaemonNPCTile.prototype = new NPCObject();
 
@@ -3576,8 +4034,6 @@ function EyesofSpiteNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '337.gif';
-  this.altgraphic = ['371.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+9'
   this.meleeStrDamage = .66
@@ -3595,6 +4051,19 @@ function EyesofSpiteNPCTile() {
   this.special = 'sleep, ondeathInsects';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -136 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 EyesofSpiteNPCTile.prototype = new NPCObject();
 
@@ -3687,8 +4156,6 @@ function BalronNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '354.gif';
-  this.altgraphic = ['388.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '5d10+22'
   this.meleeStrDamage = 1
@@ -3705,6 +4172,19 @@ function BalronNPCTile() {
   this.special = 'phase, open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -126 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 BalronNPCTile.prototype = new NPCObject();
 
@@ -3762,8 +4242,6 @@ function AbyssalKrakenNPCTile() {
   this.peaceAI = 'seekPC-12';
   this.forgetAt = 12;
   this.withdraw = 0;
-  this.graphic = '322.gif';
-  this.altgraphic = ['356.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '5d10+22'
   this.meleeStrDamage = 1
@@ -3780,6 +4258,19 @@ function AbyssalKrakenNPCTile() {
   this.special = 'lbolt';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -137 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 AbyssalKrakenNPCTile.prototype = new NPCObject();
 
@@ -3992,12 +4483,23 @@ function GiantRatGroupTinyTile() {
   this.name = 'GiantRatGroupTiny';
   this.desc = 'giant rats';
   this.peaceAI = 'Animal-15';
-  this.graphic = '327.gif';
-  this.altgraphic = ['361.gif',];
   this.group = [];
   this.group[0] = new NPCList('GiantRatNPC', '1d2+1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -139 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 GiantRatGroupTinyTile.prototype = new NPCGroupObject();
 
@@ -4005,12 +4507,23 @@ function GiantRatGroupSmallTile() {
   this.name = 'GiantRatGroupSmall';
   this.desc = 'giant rats';
   this.peaceAI = 'Animal-15';
-  this.graphic = '327.gif';
-  this.altgraphic = ['361.gif',];
   this.group = [];
   this.group[0] = new NPCList('GiantRatNPC', '1d3+2');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -139 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 GiantRatGroupSmallTile.prototype = new NPCGroupObject();
 
@@ -4018,12 +4531,23 @@ function GiantRatGroupLargeTile() {
   this.name = 'GiantRatGroupLarge';
   this.desc = 'giant rats';
   this.peaceAI = 'Animal-15';
-  this.graphic = '327.gif';
-  this.altgraphic = ['361.gif',];
   this.group = [];
   this.group[0] = new NPCList('GiantRatNPC', '1d5+4');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -139 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 GiantRatGroupLargeTile.prototype = new NPCGroupObject();
 
@@ -4031,12 +4555,23 @@ function OrcGroupTinyTile() {
   this.name = 'OrcGroupTiny';
   this.desc = 'orcs';
   this.peaceAI = 'Monster-15';
-  this.graphic = '339.gif';
-  this.altgraphic = ['373.gif',];
   this.group = [];
   this.group[0] = new NPCList('OrcNPC', '1d2+1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -134 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 OrcGroupTinyTile.prototype = new NPCGroupObject();
 
@@ -4044,12 +4579,23 @@ function OrcGroupSmallTile() {
   this.name = 'OrcGroupSmall';
   this.desc = 'orcs';
   this.peaceAI = 'Monster-15';
-  this.graphic = '339.gif';
-  this.altgraphic = ['373.gif',];
   this.group = [];
   this.group[0] = new NPCList('OrcNPC', '1d3+2');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -134 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 OrcGroupSmallTile.prototype = new NPCGroupObject();
 
@@ -4057,12 +4603,23 @@ function OrcGroupLargeTile() {
   this.name = 'OrcGroupLarge';
   this.desc = 'orcs';
   this.peaceAI = 'Monster-15';
-  this.graphic = '339.gif';
-  this.altgraphic = ['373.gif',];
   this.group = [];
   this.group[0] = new NPCList('OrcNPC', '1d5+4');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -134 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 OrcGroupLargeTile.prototype = new NPCGroupObject();
 
@@ -4192,12 +4749,23 @@ function HeadlessGroupTinyTile() {
   this.name = 'HeadlessGroupTiny';
   this.desc = 'headlesses';
   this.peaceAI = 'Monster-15';
-  this.graphic = '344.gif';
-  this.altgraphic = ['378.gif',];
   this.group = [];
   this.group[0] = new NPCList('HeadlessNPC', '1d2+1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -141 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 HeadlessGroupTinyTile.prototype = new NPCGroupObject();
 
@@ -4205,12 +4773,23 @@ function HeadlessGroupSmallTile() {
   this.name = 'HeadlessGroupSmall';
   this.desc = 'headlesses';
   this.peaceAI = 'Monster-15';
-  this.graphic = '344.gif';
-  this.altgraphic = ['378.gif',];
   this.group = [];
   this.group[0] = new NPCList('HeadlessNPC', '1d4+1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -141 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 HeadlessGroupSmallTile.prototype = new NPCGroupObject();
 
@@ -4218,12 +4797,23 @@ function HeadlessGroupLargeTile() {
   this.name = 'HeadlessGroupLarge';
   this.desc = 'headlesses';
   this.peaceAI = 'Monster-15';
-  this.graphic = '344.gif';
-  this.altgraphic = ['378.gif',];
   this.group = [];
   this.group[0] = new NPCList('HeadlessNPC', '1d5+2');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -141 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 HeadlessGroupLargeTile.prototype = new NPCGroupObject();
 
@@ -4231,12 +4821,23 @@ function SnakesGroupSmallTile() {
   this.name = 'SnakesGroupSmall';
   this.desc = 'giant snakes';
   this.peaceAI = 'Animal-15';
-  this.graphic = '342.gif';
-  this.altgraphic = ['376.gif',];
   this.group = [];
   this.group[0] = new NPCList('PythonNPC', '1d2+1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -133 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 SnakesGroupSmallTile.prototype = new NPCGroupObject();
 
@@ -4244,12 +4845,23 @@ function SnakesGroupTile() {
   this.name = 'SnakesGroup';
   this.desc = 'giant snakes';
   this.peaceAI = 'Animal-15';
-  this.graphic = '342.gif';
-  this.altgraphic = ['376.gif',];
   this.group = [];
   this.group[0] = new NPCList('PythonNPC', '1d4+2');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -133 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 SnakesGroupTile.prototype = new NPCGroupObject();
 
@@ -4257,13 +4869,24 @@ function MidSnakesGroupTile() {
   this.name = 'MidSnakesGroup';
   this.desc = 'giant snakes';
   this.peaceAI = 'Animal-15';
-  this.graphic = '342.gif';
-  this.altgraphic = ['376.gif',];
   this.group = [];
   this.group[0] = new NPCList('PythonNPC', '1d4+2');
   this.group[1] = new NPCList('GiantSnakeNPC', '1d2');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -133 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 MidSnakesGroupTile.prototype = new NPCGroupObject();
 
@@ -4271,12 +4894,23 @@ function DrakesSmallGroupTile() {
   this.name = 'DrakesSmallGroup';
   this.desc = 'drakes';
   this.peaceAI = 'Animal-15';
-  this.graphic = '353.gif';
-  this.altgraphic = ['387.gif',];
   this.group = [];
   this.group[0] = new NPCList('DrakeNPC', '1d4+1');
   this.movetype = MOVE_FLY;
   this.attackword = 'attack';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -133 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 DrakesSmallGroupTile.prototype = new NPCGroupObject();
 
@@ -4284,13 +4918,24 @@ function DrakesLargeGroupTile() {
   this.name = 'DrakesLargeGroup';
   this.desc = 'drakes';
   this.peaceAI = 'Animal-15';
-  this.graphic = '353.gif';
-  this.altgraphic = ['387.gif',];
   this.group = [];
   this.group[0] = new NPCList('DrakeNPC', '1d6+1');
   this.group[1] = new NPCList('DragonNPC', '1d2-1');
   this.movetype = MOVE_FLY;
   this.attackword = 'attack';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -133 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 DrakesLargeGroupTile.prototype = new NPCGroupObject();
 
@@ -4298,13 +4943,24 @@ function DragonsGroupTile() {
   this.name = 'DragonsGroup';
   this.desc = 'dragons';
   this.peaceAI = 'Animal-15';
-  this.graphic = '353.gif';
-  this.altgraphic = ['387.gif',];
   this.group = [];
   this.group[0] = new NPCList('DrakeNPC', '1d3');
   this.group[1] = new NPCList('DragonNPC', '1d3+1');
   this.movetype = MOVE_FLY;
   this.attackword = 'attack';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -135 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 DragonsGroupTile.prototype = new NPCGroupObject();
 
@@ -4357,13 +5013,24 @@ function MidHeadlessGroupTile() {
   this.name = 'MidHeadlessGroup';
   this.desc = 'headlesses';
   this.peaceAI = 'Monster-15';
-  this.graphic = '344.gif';
-  this.altgraphic = ['378.gif',];
   this.group = [];
   this.group[0] = new NPCList('HeadlessNPC', '1d4+2');
   this.group[1] = new NPCList('EttinNPC', '1d2-1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -141 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 MidHeadlessGroupTile.prototype = new NPCGroupObject();
 
@@ -4371,14 +5038,25 @@ function HighHeadlessGroupTile() {
   this.name = 'HighHeadlessGroup';
   this.desc = 'headlesses';
   this.peaceAI = 'Monster-15';
-  this.graphic = '344.gif';
-  this.altgraphic = ['378.gif',];
   this.group = [];
   this.group[0] = new NPCList('HeadlessNPC', '1d4+2');
   this.group[1] = new NPCList('EttinNPC', '1d3-1');
   this.group[2] = new NPCList('CyclopsNPC', '1d2-1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -141 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 HighHeadlessGroupTile.prototype = new NPCGroupObject();
 
@@ -4402,14 +5080,25 @@ function OrcPartyLowGroupTile() {
   this.name = 'OrcPartyLowGroup';
   this.desc = 'orcs';
   this.peaceAI = 'Monster-15';
-  this.graphic = '339.gif';
-  this.altgraphic = ['373.gif',];
   this.group = [];
   this.group[0] = new NPCList('OrcNPC', '1d4+1');
   this.group[1] = new NPCList('OrcShamanNPC', '1d3-1');
   this.group[2] = new NPCList('TrollNPC', '1d3-1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -134 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 OrcPartyLowGroupTile.prototype = new NPCGroupObject();
 
@@ -4417,8 +5106,6 @@ function OrcPartyHighGroupTile() {
   this.name = 'OrcPartyHighGroup';
   this.desc = 'orcs';
   this.peaceAI = 'Monster-15';
-  this.graphic = '339.gif';
-  this.altgraphic = ['373.gif',];
   this.group = [];
   this.group[0] = new NPCList('OrcNPC', '1d4+1');
   this.group[1] = new NPCList('OrcShamanNPC', '1d3-1');
@@ -4426,6 +5113,19 @@ function OrcPartyHighGroupTile() {
   this.group[3] = new NPCList('OrcCaptainNPC', '1d3');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -134 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 OrcPartyHighGroupTile.prototype = new NPCGroupObject();
 
@@ -4464,13 +5164,24 @@ function GazersGroupTile() {
   this.name = 'GazersGroup';
   this.desc = 'gazers';
   this.peaceAI = 'Monster-15';
-  this.graphic = '337.gif';
-  this.altgraphic = ['341.gif',];
   this.group = [];
   this.group[0] = new NPCList('GazerNPC', '1d4');
   this.group[1] = new NPCList('GiantInsectsNPC', '1d5');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -135 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 GazersGroupTile.prototype = new NPCGroupObject();
 
@@ -4478,12 +5189,23 @@ function TrollGroupTile() {
   this.name = 'TrollGroup';
   this.desc = 'trolls';
   this.peaceAI = 'Monster-15';
-  this.graphic = '332.gif';
-  this.altgraphic = ['336.gif',];
   this.group = [];
   this.group[0] = new NPCList('TrollNPC', '2d4');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -143 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 TrollGroupTile.prototype = new NPCGroupObject();
 
@@ -4491,13 +5213,24 @@ function DaemonGroupTile() {
   this.name = 'DaemonGroup';
   this.desc = 'daemons';
   this.peaceAI = 'Monster-15';
-  this.graphic = '351.gif';
-  this.altgraphic = ['385.gif',];
   this.group = [];
   this.group[0] = new NPCList('DaemonNPC', '1d3');
   this.group[1] = new NPCList('FireElementalNPC', '1d2-1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -127 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 DaemonGroupTile.prototype = new NPCGroupObject();
 
@@ -4505,13 +5238,24 @@ function SkeletonGroupTile() {
   this.name = 'SkeletonGroup';
   this.desc = 'skeletons';
   this.peaceAI = 'Monster-15';
-  this.graphic = '340.gif';
-  this.altgraphic = ['374.gif',];
   this.group = [];
   this.group[0] = new NPCList('SkeletonNPC', '2d4');
   this.group[1] = new NPCList('GhostNPC', '1d2-1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -132 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 SkeletonGroupTile.prototype = new NPCGroupObject();
 
@@ -4519,14 +5263,25 @@ function UndeadGroupTile() {
   this.name = 'UndeadGroup';
   this.desc = 'undead';
   this.peaceAI = 'Monster-15';
-  this.graphic = '364.gif';
-  this.altgraphic = ['330.gif',];
   this.group = [];
   this.group[0] = new NPCList('GhostNPC', '2d3');
   this.group[1] = new NPCList('SkeletonNPC', '1d2');
   this.group[2] = new NPCList('PhantomNPC', '1d2-1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -142 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 UndeadGroupTile.prototype = new NPCGroupObject();
 
@@ -4562,12 +5317,23 @@ function InsectsGroupSmallTile() {
   this.name = 'InsectsGroupSmall';
   this.desc = 'giant insects';
   this.peaceAI = 'Animal-15';
-  this.graphic = '336.gif';
-  this.altgraphic = ['370.gif',];
   this.group = [];
   this.group[0] = new NPCList('GiantInsectsNPC', '1d4');
   this.movetype = MOVE_FLY;
   this.attackword = 'attack';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -127 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 4,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 InsectsGroupSmallTile.prototype = new NPCGroupObject();
 
@@ -4575,12 +5341,23 @@ function InsectsGroupLargeTile() {
   this.name = 'InsectsGroupLarge';
   this.desc = 'giant insects';
   this.peaceAI = 'Animal-15';
-  this.graphic = '336.gif';
-  this.altgraphic = ['370.gif',];
   this.group = [];
   this.group[0] = new NPCList('GiantInsectsNPC', '2d4+1');
   this.movetype = MOVE_FLY;
   this.attackword = 'attack';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -127 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 4,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 InsectsGroupLargeTile.prototype = new NPCGroupObject();
 
