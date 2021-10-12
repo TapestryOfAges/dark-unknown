@@ -577,9 +577,9 @@ mappages["clearlake2"].npcs = [];
 mappages["clearlake2"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 40, y : 39, NPCName: 'Suzanne', Desc: 'fisherman', PeaceAI: 'scheduled', Schedule: 'suzanne', Conversation: 'suzanne', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_blue.2.gif', skintone: '2'};
 mappages["clearlake2"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 36, y : 20, NPCName: 'Kiki', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'kiki', Conversation: 'grace', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_blue.2.gif', skintone: '1'};
 mappages["clearlake2"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 36, y : 19, NPCName: 'Aubrey', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'aubrey', Conversation: 'aubrey', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_green.2.gif', skintone: '1'};
-mappages["clearlake2"].npcs[3] = {name : 'TownsfolkVillagerNPC', x : 40, y : 34, NPCName: 'Ernest', Desc: 'ex-gambler', Schedule: 'ernest_clearlake', Conversation: 'ernest_clearlake', Gender: 'male', NPCBand: '0', OverrideGraphic: 'civ_green.2.gif', skintone: '1'};
-mappages["clearlake2"].npcs[4] = {name : 'ShepherdVillagerNPC', x : 4, y : 52, NPCName: 'Lydia', Desc: 'civilian', Schedule: 'lydia', Conversation: 'lydia', Gender: 'female', NPCBand: '0', OverrideGraphic: '301.gif', skintone: '1'};
-mappages["clearlake2"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 31, y : 17, NPCName: 'Jonah', Schedule: 'jonah', Conversation: 'jonah', Gender: 'monster', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: '1'};
+//mappages["clearlake2"].npcs[3] = {name : 'TownsfolkVillagerNPC', x : 40, y : 34, NPCName: 'Ernest', Desc: 'ex-gambler', Schedule: 'ernest_clearlake', Conversation: 'ernest_clearlake', Gender: 'male', NPCBand: '0', OverrideGraphic: 'civ_green.2.gif', skintone: '1'};
+//mappages["clearlake2"].npcs[4] = {name : 'ShepherdVillagerNPC', x : 4, y : 52, NPCName: 'Lydia', Desc: 'civilian', Schedule: 'lydia', Conversation: 'lydia', Gender: 'female', NPCBand: '0', OverrideGraphic: '301.gif', skintone: '1'};
+//mappages["clearlake2"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 31, y : 17, NPCName: 'Jonah', Schedule: 'jonah', Conversation: 'jonah', Gender: 'monster', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: '1'};
 
 mappages["clearlake2"].desc = "Clear Lake";
 mappages["clearlake2"].longdesc = ``;
