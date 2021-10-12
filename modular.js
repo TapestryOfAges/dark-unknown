@@ -425,7 +425,7 @@ function PlaySummonScene(frame) {
   } else if (frame === 8) {
     maintext.addText(`Rhys does not even shake his head. "Neither of those things. Tell us what you know about Justice, and the Cult of Darkness."`);
   } else if (frame === 9) {
-    maintext.addText(`The daemon responds, "You would call the Harbinger of Blood for information? You are fools... but, maybe wise. I can tell you what you seek."`);
+    maintext.addText(`The daemon responds, "You would call the Harbinger of Blood for information? You are fools... but, you may be wise. I can tell you what you seek."`);
   } else if (frame === 10) {
     maintext.addText(`"Yes, I will tell you. The one you call Justice is high in the Cult of Darkness. They have drawn power from the Greatest of the Dark, and seek to bring night everlasting to the world, by bringing Him here."`);
   } else if (frame === 11) {
