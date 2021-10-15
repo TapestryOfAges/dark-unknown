@@ -1834,6 +1834,7 @@ ScouringBeldskaeTile.prototype.endEffect = function(silent) {
         fea[i].setGraphicArray(gra);
 
         DU.gameflags.setFlag("beldskae_razed",1);
+        DU.gameflags.setFlag("beldskae",1);
         return 1;
       }
     }
