@@ -179,3 +179,7 @@ ingrid_speak - Ingrid contradicted Peter's alibi
 guard_sent - Coll has been sent to let you in to Peter's house.
 bridle_returned - you've given the bridle back to Alex
 stolenjewelry_taken - you've taken the stolen jewelry from the chest in Peter's house
+beldskae - Beldskae was attacked (set with either "saved" or "razed")
+beldskae_king - Daragen has talked to you about Beldskae (whether it was saved or razed)
+beldskae_jharden - Jharden has talked to you about the Abyss (which happens after Beldskae is attacked)
+jharden_abyss - you've talked to Jharden after crossing the Abyss
