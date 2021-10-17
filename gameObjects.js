@@ -8897,7 +8897,7 @@ EnergyFieldTile.prototype.bumpinto = function(who) {
 function TorchWestTile() {
   //Graphics Upgraded
 	this.name = "TorchWest";
-  this.graphic = "static.gif";
+  this.graphic = "static.png";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -113*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -8926,7 +8926,7 @@ TorchWestTile.prototype.use = function(who) {
 function TorchEastTile() {
   //Graphics Upgraded
 	this.name = "TorchEast";
-  this.graphic = "static.gif";
+  this.graphic = "static.png";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -114*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -8955,7 +8955,7 @@ TorchEastTile.prototype.use = function(who) {
 function TorchWestOutTile() {
   //Graphics Upgraded
 	this.name = "TorchWestOut";
-  this.graphic = "static.gif";
+  this.graphic = "static.png";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -83*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -8972,7 +8972,7 @@ TorchWestOutTile.prototype.use = function(who) {
 function TorchEastOutTile() {
   //Graphics Upgraded
 	this.name = "TorchEastOut";
-	this.graphic = "static.gif";
+	this.graphic = "static.png";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -83*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -9483,7 +9483,7 @@ SpitTile.prototype = new FeatureObject();
 function FireplaceTile() {
   //Graphics Upgraded
 	this.name = "Fireplace";
-  this.graphic = "static.gif";
+  this.graphic = "static.png";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -111*32;
 	this.passable = MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -9553,7 +9553,7 @@ FireplaceTile.prototype.myTurn = function() {
 function SmallFireplaceTile() {
   //Graphics Upgraded
 	this.name = "SmallFireplace";
-  this.graphic = "static.gif";
+  this.graphic = "static.png";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -112*32;
 
@@ -12601,7 +12601,7 @@ function CrackedMirrorTile() {
   this.desc = "mirror";
   this.karmamod = -1;
   
-  Breakable.call(this,["static.gif", "", -7*32, -77*32],0,"sfx_break_glass");
+  Breakable.call(this,["static.png", "", -7*32, -77*32],0,"sfx_break_glass");
   this.brokendesc = "broken mirror";
 }
 CrackedMirrorTile.prototype = new FeatureObject();
@@ -12618,7 +12618,7 @@ function MirrorTile() {
   this.desc = "mirror";
   this.karmamod = -1;
   
-  Breakable.call(this,["static.gif", "", -7*32, -77*32],0,"sfx_break_glass");
+  Breakable.call(this,["static.png", "", -7*32, -77*32],0,"sfx_break_glass");
   this.brokendesc = "broken mirror";
 }
 MirrorTile.prototype = new FeatureObject();
@@ -15755,7 +15755,7 @@ BrokenFountainTile.prototype = new FeatureObject();
 function BlueCrystalTile() {
   //Graphics Upgraded
   this.name = "BlueCrystal";
-  this.graphic = "static.gif";
+  this.graphic = "static.png";
   this.spritexoffset = 0;
   this.spriteyoffset = -111*32;
   this.prefix = "a";
@@ -15780,7 +15780,7 @@ BlueCrystalTile.prototype = new FeatureObject();
 function PurpleCrystalTile() {
   //Graphics Upgraded
   this.name = "PurpleCrystal";
-  this.graphic = "static.gif";
+  this.graphic = "static.png";
   this.spritexoffset = 0;
   this.spriteyoffset = -112*32;
   this.prefix = "a";
@@ -15804,7 +15804,7 @@ PurpleCrystalTile.prototype = new FeatureObject();
 function YellowCrystalTile() {
   //Graphics Upgraded
   this.name = "YellowCrystal";
-  this.graphic = "static.gif";
+  this.graphic = "static.png";
   this.spritexoffset = 0;
   this.spriteyoffset = -113*32;
   this.prefix = "a";
@@ -15828,7 +15828,7 @@ YellowCrystalTile.prototype = new FeatureObject();
 function GreenCrystalTile() {
   //Graphics Upgraded
   this.name = "GreenCrystal";
-  this.graphic = "static.gif";
+  this.graphic = "static.png";
   this.spritexoffset = 0;
   this.spriteyoffset = -114*32;
   this.prefix = "a";
@@ -15852,7 +15852,7 @@ GreenCrystalTile.prototype = new FeatureObject();
 function RedCrystalTile() {
   //Graphics Upgraded
   this.name = "RedCrystal";
-  this.graphic = "static.gif";
+  this.graphic = "static.png";
   this.spritexoffset = 0;
   this.spriteyoffset = -115*32;
   this.prefix = "a";
@@ -15876,7 +15876,7 @@ RedCrystalTile.prototype = new FeatureObject();
 function WhiteCrystalTile() {
   //Graphics Upgraded
   this.name = "WhiteCrystal";
-  this.graphic = "static.gif";
+  this.graphic = "static.png";
   this.spritexoffset = 0;
   this.spriteyoffset = -116*32;
   this.prefix = "a";
