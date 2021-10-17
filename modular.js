@@ -323,6 +323,7 @@ OnDeathFuncs["scouring"] = function() {
         gra[3] = 0;
         fea.setGraphicArray(gra);
         DU.gameflags.setFlag("beldskae_saved",1);
+        DU.gameflags.setFlag("beldskae",1);
       }
     }
   }
