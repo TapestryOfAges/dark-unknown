@@ -1490,7 +1490,7 @@ mappages["olympus0"].onload = function(mapref) {
       mapref.moveThing(3,3,prisoner);
       prisoner.setSchedule("nothere");
     }
-    if (!DU.gameflags("peter_caught")) {
+    if (!DU.gameflags.getFlag("peter_caught")) {
       let prisoner = FindNPCByName("Peter",mapref);
       mapref.moveThing(3,3,prisoner);
       prisoner.setSchedule("nothere");
