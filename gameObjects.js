@@ -17577,7 +17577,10 @@ GoldTile.prototype.setQuantity = function(quant) {
 GoldTile.prototype.onGet = function(who) {
   who.addGold(parseInt(this.getQuantity())); 
   DUPlaySound("sfx_coin");
+  let goldx = this.getx();
+  let goldy = this.gety();
   this.getHomeMap().deleteThing(this);
+  DrawMainFrame("one",who.getHomeMap(),goldx,goldy);
 
   let retval = {};
   retval.noTake = 1;
