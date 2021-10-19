@@ -8432,8 +8432,8 @@ function WalkOnAbyss0Tile() {
 	this.desc = "invisible walkon tile";
 	this.invisible = 1;
 	this.destmap = "abyss1";
-	this.destx = 10;
-	this.desty = 10;
+	this.destx = 0;
+	this.desty = 0;
 	this.say = 'Voice: "As you learn, and feel, and gain experience, you fill your landscape with knowledge."';
 }
 WalkOnAbyss0Tile.prototype = new WalkOnAbyssTile();
@@ -14784,8 +14784,8 @@ AmuletOfReflectionsTile.prototype = new EquipableItemObject();
 AmuletOfReflectionsTile.prototype.use = function(who) {
   let themap = who.getHomeMap();
   let retval = {};
-  if (themap.getName() === "olympus2") {
-    let standbefore = themap.getTile(who.getx(), who.gety());
+//  if (themap.getName() === "olympus2") {
+    let standbefore = themap.getTile(who.getx(), who.gety()-1);
     let ismirror = standbefore.getTopFeature();
     if (ismirror.getName() === "mirror") {
       // you are in the right map standing at the right place. GO.
@@ -14817,7 +14817,7 @@ AmuletOfReflectionsTile.prototype.use = function(who) {
       retval["fin"] = -2;
       DUPlaySound("sfx_spellcast");
       return retval;
-    } 
+//    } 
   }
   retval["txt"] = "Nothing happens here.";
   retval["fin"] = 1;
