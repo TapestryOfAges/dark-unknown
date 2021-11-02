@@ -37,6 +37,7 @@ var localatlas = new Atlas();
 
 var graphicpicks = [];
 var optindex = 0;
+let fillselect;
 
 DU.gameflags = new Gameflags();  // empty games flags because atlas will look for it
 DU.gameflags.setFlag("editor", 1);  // for atlas to look for
@@ -426,7 +427,14 @@ function clickmap(xval,yval) {
         chestblock.style.display = "none";
       }
     }
-  } else if (document.brushes.elements[3].checked) {   // raze
+  } else if (document.brushes.elements[3].checked) {   // fill bucket
+    if (selectionval.checkType("terrain")) {
+      fillselect = amap.getTile(xval,yval).getTerrain();
+      if (fillselect.getName() !== selectionval.getName()) {
+        FillMap(xval,yval);
+      }
+    } // else, don't do anything- can't fill with features/npcs
+  } else if (document.brushes.elements[4].checked) {   // raze
     if (cornerx === -1) {
       cornerx = xval;
       cornery = yval;
@@ -436,7 +444,7 @@ function clickmap(xval,yval) {
       cornerx = -1;
       cornery = -1;
     }
-  } else if (document.brushes.elements[4].checked) {   // copy
+  } else if (document.brushes.elements[5].checked) {   // copy
     if (cornerx === -1) {
       cornerx = xval;
       cornery = yval;
@@ -446,13 +454,26 @@ function clickmap(xval,yval) {
       alert("Copy made.");
       cornerx = -1;
       cornery = -1;
-      document.brushes.elements[6].checked = true; 
+//      document.brushes.elements[7].checked = true; 
     }
-  } else if (document.brushes.elements[5].checked) { // PASTE
+  } else if (document.brushes.elements[6].checked) { // PASTE
     PasteCopy(xval,yval);
     cornerx = -1;
     cornery = -1;
-    document.brushes.elements[6].checked = true; 
+//    document.brushes.elements[7].checked = true; 
+// what the heck were these for?
+  }
+}
+
+function FillMap(xval,yval) {
+  let tile = amap.getTile(xval,yval);
+  if (tile === "OoB") { return; }
+  if (tile.getTerrain().getName() === fillselect.getName()) { 
+    changemaptile(xval,yval);
+    FillMap(xval-1,yval);
+    FillMap(xval+1,yval);
+    FillMap(xval,yval-1);
+    FillMap(xval,yval+1);  
   }
 }
 
