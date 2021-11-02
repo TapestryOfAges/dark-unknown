@@ -1758,6 +1758,11 @@ tileFactory.prototype.makeWardukeWalkOnTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWalkOnCOA2Tile = function() {
+  let newTile = new WalkOnCOA2Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSpinnerTile = function() {
   let newTile = new SpinnerTile();
   return newTile;
@@ -1810,6 +1815,36 @@ tileFactory.prototype.makeWalkOnAbyss3Tile = function() {
 
 tileFactory.prototype.makeWalkOnAbyss4Tile = function() {
   let newTile = new WalkOnAbyss4Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssCastleTile = function() {
+  let newTile = new WalkOnAbyssCastleTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssCastleSayTile = function() {
+  let newTile = new WalkOnAbyssCastleSayTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssCastleSay1Tile = function() {
+  let newTile = new WalkOnAbyssCastleSay1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssCastleSay2Tile = function() {
+  let newTile = new WalkOnAbyssCastleSay2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssCastleSay3Tile = function() {
+  let newTile = new WalkOnAbyssCastleSay3Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssCastleSay4Tile = function() {
+  let newTile = new WalkOnAbyssCastleSay4Tile();
   return newTile;
 }
 
@@ -2530,6 +2565,11 @@ tileFactory.prototype.makeJadeNecklaceTile = function() {
 
 tileFactory.prototype.makeGoldLocketTile = function() {
   let newTile = new GoldLocketTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeStolenJewelryTile = function() {
+  let newTile = new StolenJewelryTile();
   return newTile;
 }
 
@@ -4415,6 +4455,11 @@ tileFactory.prototype.makeDelayTurnStartTile = function() {
 
 tileFactory.prototype.makeScouringBeldskaeTile = function() {
   let newTile = new ScouringBeldskaeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRemovePeterTile = function() {
+  let newTile = new RemovePeterTile();
   return newTile;
 }
 

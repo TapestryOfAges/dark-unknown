@@ -8496,6 +8496,109 @@ function WalkOnAbyss4Tile() {
 }
 WalkOnAbyss4Tile.prototype = new WalkOnAbyssTile();
 
+function WalkOnAbyssCastleTile() {
+  this.name = "WalkOnAbyssCastle";
+	this.graphic = "walkon2.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+	this.say = '';
+}
+WalkOnAbyssCastleTile.prototype = new FeatureObject();
+
+WalkOnAbyssCastleTile.prototype.walkon = function(walker) {
+  let themap=walker.getHomeMap();
+  if (walker.lastteleportx) {
+    if (GetDistance(walker.lastteleportx,walker.lasteleporty,this.getx(),this.gety()) <= 1) {
+      walker.lastteleportx = this.getx();
+      walker.lastteleporty = this.gety();
+      return {msg:""};
+    }
+  }
+  let dest;
+  while (!dest || (dest === themap.getName())) {
+    dest = "abyss_castle_" + Dice.roll("1d8");
+  }
+  newmap = maps.getMap(dest);
+  MoveBetweenMaps(walker,themap,newmap,this.getx(),this.gety());
+  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+  DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
+  let retval = {overridedraw: 1,msg:""};
+  return retval;
+}
+
+function WalkOnAbyssCastleSayTile() {
+  this.name = "WalkOnAbyssCastleSay";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+	this.say = '';
+}
+WalkOnAbyssCastleSayTile.prototype = new FeatureObject();
+
+WalkOnAbyssCastleSayTile.prototype.walkon = function(walker) {
+  if (this.qnum === walker.lastq) { return {msg:""}; }
+  walker.lastq = this.qnum;
+  return {msg: this.say};
+}
+
+function WalkOnAbyssCastleSay1Tile() {
+  this.name = "WalkOnAbyssCastleSay1";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+  this.qnum = 1;
+	this.say = 'FIRSTQUESTION';
+}
+WalkOnAbyssCastleSay1Tile.prototype = new WalkOnAbyssCastleSayTile();
+
+function WalkOnAbyssCastleSay2Tile() {
+  this.name = "WalkOnAbyssCastleSay2";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+  this.qnum = 2;
+	this.say = 'SECONDQUESTION';
+}
+WalkOnAbyssCastleSay2Tile.prototype = new WalkOnAbyssCastleSayTile();
+
+function WalkOnAbyssCastleSay3Tile() {
+  this.name = "WalkOnAbyssCastleSay3";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+  this.qnum = 3;
+	this.say = 'THIRDQUESTION';
+}
+WalkOnAbyssCastleSay3Tile.prototype = new WalkOnAbyssCastleSayTile();
+
+function WalkOnAbyssCastleSay4Tile() {
+  this.name = "WalkOnAbyssCastleSay4";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+  this.qnum = 4;
+	this.say = 'FOURTHQUESTION';
+}
+WalkOnAbyssCastleSay4Tile.prototype = new WalkOnAbyssCastleSayTile();
+
 function NightshadeSpawnerTile() {
   this.name = "NightshadeSpawner";
   this.graphic = "target-cursor.gif";
