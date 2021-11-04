@@ -1818,6 +1818,11 @@ tileFactory.prototype.makeWalkOnAbyss4Tile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWalkOnAbyss5Tile = function() {
+  let newTile = new WalkOnAbyss5Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWalkOnAbyssCastleTile = function() {
   let newTile = new WalkOnAbyssCastleTile();
   return newTile;

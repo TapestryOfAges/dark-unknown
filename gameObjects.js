@@ -8489,12 +8489,27 @@ function WalkOnAbyss4Tile() {
 	this.prefix = "an";
 	this.desc = "invisible walkon tile";
 	this.invisible = 1;
-	this.destmap = "abyss5";
+	this.destmap = "abyss_castle_1";
 	this.destx = 0;
 	this.desty = 0;
 	this.say = 'Voice: "Through this portal you shall be challenged. Prove your mastery of the self and you shall be counted as one of the great."';
 }
 WalkOnAbyss4Tile.prototype = new WalkOnAbyssTile();
+
+function WalkOnAbyss5Tile() {
+  this.name = "WalkOnAbyss5";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+	this.destmap = "abyss5";
+	this.destx = 0;
+	this.desty = 0;
+	this.say = 'Voice: "TEXTHERE"';
+}
+WalkOnAbyss5Tile.prototype = new WalkOnAbyssTile();
 
 function WalkOnAbyssCastleTile() {
   this.name = "WalkOnAbyssCastle";
