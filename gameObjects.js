@@ -8434,7 +8434,7 @@ function WalkOnAbyss0Tile() {
 	this.destmap = "abyss1";
 	this.destx = 0;
 	this.desty = 0;
-	this.say = 'Voice: "As you learn, and feel, and gain experience, you fill your landscape with knowledge."';
+	this.say = 'A voice speaks, from empty air: "As you learn, and feel, and gain experience, you fill your landscape with knowledge."';
 }
 WalkOnAbyss0Tile.prototype = new WalkOnAbyssTile();
 
@@ -8463,6 +8463,7 @@ function WalkOnAbyss2Tile() {
 	this.destmap = "abyss3";
 	this.destx = 0;
 	this.desty = 0;
+  this.say = 'Voice: "To attain the higher initiation, you must first master yourself."';
 }
 WalkOnAbyss2Tile.prototype = new WalkOnAbyssTile();
 
@@ -8477,7 +8478,6 @@ function WalkOnAbyss3Tile() {
 	this.destmap = "abyss4";
 	this.destx = 0;
 	this.desty = 0;
-	this.say = 'Voice: "To attain the higher initiation, you must first master yourself."';
 }
 WalkOnAbyss3Tile.prototype = new WalkOnAbyssTile();
 
@@ -14924,6 +14924,12 @@ AmuletOfReflectionsTile.prototype.use = function(who) {
         } else {
           newmap = maps.addMap("abyss0");
         }
+        who.preabyssmap = who.getHomeMap().getName();
+        who.preabyssx = who.getx();
+        who.preabyssy = who.gety();
+        who.preabysshp = who.gethp();
+        who.sethp(who.getmaxhp());
+        DrawCharFrame();
         MoveBetweenMaps(who,themap,newmap,8,8);
         FadeIn(2000);
         setTimeout(function() {
@@ -14942,6 +14948,48 @@ AmuletOfReflectionsTile.prototype.use = function(who) {
   return retval;
 }
 
+function AbyssFireFieldTile() {
+	this.name = "AbyssFireField";
+	this.graphic = "fields.gif";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.blocklos = 0;
+  this.prefix = "a";
+	this.desc = "fire field";
+	this.spritexoffset = "-64";
+  this.spriteyoffset = "0";
+  this.expires = 0;
+	
+	this.initdelay = 1.5;
+	this.pathweight = 5;
+	
+	HasAmbientNoise.call(this,"sfx_fire_crackle",1.5);
+}
+AbyssFireFieldTile.prototype = new FeatureObject();
+
+AbyssFireFieldTile.prototype.walkon = function(person) {
+  let resp = {msg:"The fire burns you!"};
+  let dmg = person.getmaxhp()/6;  // should wind up an integer because maxhp is a multiple of 30
+  if (person.gethp() === 1) {
+    // teleport to end
+    resp.msg = "Despite the damage you have taken, you grit your teeth and take one more step. The world spins around you...";
+    gamestate.setMode("null");
+    FadeOut();
+    setTimeout(function() { 
+      person.getHomeMap().moveThing(9,8,person);
+      FadeIn();
+      gamestate.setmode("player");
+     }, 1500); 
+    return resp;
+  }
+  else if (dmg > person.gethp()) {
+    dmg = person.gethp()-1; 
+  }
+  person.sethp(person.gethp()-dmg);
+  DrawCharFrame();
+  DamageFlash();
+  DUPlaySound("sfx_fire_hit");
+  return resp;
+}
 
 // ARMOR
 

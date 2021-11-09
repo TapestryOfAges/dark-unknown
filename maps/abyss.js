@@ -49,7 +49,7 @@ mappages["abyss0"].returnmap = '';
 mappages["abyss0"].returnx = 'NaN';
 mappages["abyss0"].returny = 'NaN';
 mappages["abyss0"].returninfused = '0';
-mappages["abyss0"].linkedMaps = [""];
+mappages["abyss0"].linkedMaps = ["abyss1","abyss2","abyss3","abyss4","abyss5"];
 mappages["abyss0"].editorLabels = '{}';
 
 mappages["abyss1"] = {};
@@ -110,7 +110,7 @@ mappages["abyss1"].returnmap = '';
 mappages["abyss1"].returnx = 'NaN';
 mappages["abyss1"].returny = 'NaN';
 mappages["abyss1"].returninfused = '0';
-mappages["abyss1"].linkedMaps = [""];
+mappages["abyss1"].linkedMaps = ["abyss0","abyss2","abyss3","abyss4","abyss5"];
 mappages["abyss1"].editorLabels = '{}';
 
 
@@ -190,7 +190,7 @@ mappages["abyss2"].returnmap = '';
 mappages["abyss2"].returnx = 'NaN';
 mappages["abyss2"].returny = 'NaN';
 mappages["abyss2"].returninfused = '0';
-mappages["abyss2"].linkedMaps = [""];
+mappages["abyss2"].linkedMaps = ["abyss1","abyss0","abyss3","abyss4","abyss5"];
 mappages["abyss2"].editorLabels = '{}';
 
 mappages["abyss3"] = {};
@@ -286,7 +286,7 @@ mappages["abyss3"].returnmap = '';
 mappages["abyss3"].returnx = 'NaN';
 mappages["abyss3"].returny = 'NaN';
 mappages["abyss3"].returninfused = '0';
-mappages["abyss3"].linkedMaps = [""];
+mappages["abyss3"].linkedMaps = ["abyss1","abyss2","abyss0","abyss4","abyss5"];
 mappages["abyss3"].editorLabels = '{}';
 
 mappages["abyss4"] = {};
@@ -345,8 +345,87 @@ mappages["abyss4"].returnmap = '';
 mappages["abyss4"].returnx = 'NaN';
 mappages["abyss4"].returny = 'NaN';
 mappages["abyss4"].returninfused = '0';
-mappages["abyss4"].linkedMaps = [""];
+mappages["abyss4"].linkedMaps = ["abyss1","abyss2","abyss3","abyss0","abyss5"];
 mappages["abyss4"].editorLabels = '{}';
+
+// MAP BEGINS HERE
+mappages["abyss5"] = {};
+mappages["abyss5"].terrain = [];
+ mappages["abyss5"].terrain[0] = '^^ ^^ .. .. .. RR .. ,, .. .` ww ww ww';
+ mappages["abyss5"].terrain[1] = '^^ ,, ,, .. .. RR .. .. .. .. RR .` ww';
+ mappages["abyss5"].terrain[2] = '^^ ^^ nn .. RR RR RR RR RR RR RR .| ww';
+ mappages["abyss5"].terrain[3] = '^^ nn nn ,, RR nn ,, ,, .. ,, u, .. .`';
+ mappages["abyss5"].terrain[4] = 'RR RR RR RR RR nn nn .. .. .. .. .. ,,';
+ mappages["abyss5"].terrain[5] = '^^ u, .. .. nn nn .. .. .. .. .. ,, ,,';
+ mappages["abyss5"].terrain[6] = '^^ ^^ ,, ^^ nn ,, .. .. .. .. .. .. ..';
+ mappages["abyss5"].terrain[7] = '.. ^^ ^^ ^^ nn .. .. .. u, .. .. ,, ..';
+ mappages["abyss5"].terrain[8] = '.. .. ^^ nn nn nn .. .. .. ,, .. .. ..';
+ mappages["abyss5"].terrain[9] = '.. ,, ^^ ^^ nn .. .. ,, .. ,, .. .. ,,';
+mappages["abyss5"].terrain[10] = '.. .. ,, ^^ ^^ .. .. .. .. .. .. .. ^^';
+mappages["abyss5"].terrain[11] = '.. u, nn nn ^^ ^^ ,, .. .. ,, ,, ,, nn';
+mappages["abyss5"].terrain[12] = '.. nn nn ^^ ^^ ^^ .. .. .. .. ^^ ^^ nn';
+
+mappages["abyss5"].features = [];
+mappages["abyss5"].features[0] = {name : 'PileOfRocks', x : 9, y : 12};
+mappages["abyss5"].features[1] = {name : 'PileOfRocks', x : 8, y : 1};
+mappages["abyss5"].features[2] = {name : 'Tree', x : 7, y : 4};
+mappages["abyss5"].features[3] = {name : 'Tree', x : 11, y : 6};
+mappages["abyss5"].features[4] = {name : 'Tree', x : 7, y : 12};
+mappages["abyss5"].features[5] = {name : 'Tree', x : 1, y : 8};
+mappages["abyss5"].features[6] = {name : 'Tree', x : 3, y : 1};
+mappages["abyss5"].features[7] = {name : 'BridgeNS', x : 6, y : 2};
+mappages["abyss5"].features[8] = {name : 'Evergreen', x : 9, y : 5};
+mappages["abyss5"].features[9] = {name : 'Evergreen', x : 7, y : 7};
+mappages["abyss5"].features[10] = {name : 'Evergreen', x : 5, y : 7};
+mappages["abyss5"].features[11] = {name : 'Evergreen', x : 2, y : 5};
+mappages["abyss5"].features[12] = {name : 'Evergreen', x : 5, y : 10};
+mappages["abyss5"].features[13] = {name : 'Evergreen', x : 10, y : 9};
+mappages["abyss5"].features[14] = {name : 'Evergreen', x : 11, y : 2};
+mappages["abyss5"].features[15] = {name : 'Evergreen', x : 2, y : 0};
+mappages["abyss5"].features[16] = {name : 'PileOfRocks', x : 9, y : 7};
+mappages["abyss5"].features[17] = {name : 'PileOfRocks', x : 11, y : 4};
+mappages["abyss5"].features[18] = {name : 'PileOfRocks', x : 8, y : 10};
+mappages["abyss5"].features[19] = {name : 'Moongate', x : 6, y : 1};
+
+
+mappages["abyss5"].npcs = [];
+
+mappages["abyss5"].desc = "The Stygian Abyss";
+mappages["abyss5"].longdesc = ``;
+mappages["abyss5"].music = '';
+mappages["abyss5"].savename = `Stygian Abyss`;
+mappages["abyss5"].exitmap = '';
+mappages["abyss5"].exitx = '65';
+mappages["abyss5"].exity = '70';
+mappages["abyss5"].wraps = 'None';
+mappages["abyss5"].enterx = '65';
+mappages["abyss5"].entery = '70';
+mappages["abyss5"].seeBelow = '';
+mappages["abyss5"].lightLevel = 'bright';
+mappages["abyss5"].alwaysRemember = '0';
+mappages["abyss5"].scale = '1';
+mappages["abyss5"].underground = '0';
+mappages["abyss5"].undergroundDesc = '';
+mappages["abyss5"].enterscript = '';
+mappages["abyss5"].entertestscript = '';
+mappages["abyss5"].exitscript = '';
+mappages["abyss5"].exittestscript = '';
+mappages["abyss5"].returnmap = '';
+mappages["abyss5"].returnx = 'NaN';
+mappages["abyss5"].returny = 'NaN';
+mappages["abyss5"].returninfused = '0';
+mappages["abyss5"].linkedMaps = ["abyss1","abyss2","abyss3","abyss0","abyss4"];
+mappages["abyss5"].editorLabels = '{}';
+// MAP ENDS HERE
+
+mappages["abyss5"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    let mgate = mapref.getTile(6,1).getTopFeature();
+    mgate.destmap = "abyss_castle_1";
+    mgate.destx = 33;
+    mgate.desty = 37;
+  }
+}
 
 // MAP BEGINS HERE
 mappages["abyss_castle_1"] = {};
@@ -895,7 +974,7 @@ mappages["abyss_castle_1"].returnmap = '';
 mappages["abyss_castle_1"].returnx = 'NaN';
 mappages["abyss_castle_1"].returny = 'NaN';
 mappages["abyss_castle_1"].returninfused = '0';
-mappages["abyss_castle_1"].linkedMaps = [""];
+mappages["abyss_castle_1"].linkedMaps = ["abyss_castle_2","abyss_castle_3","abyss_castle_4","abyss_castle_5","abyss_castle_6","abyss_castle_7","abyss_castle_8"];
 mappages["abyss_castle_1"].editorLabels = '{}';
 // MAP ENDS HERE
 
@@ -1339,7 +1418,7 @@ mappages["abyss_castle_2"].returnmap = '';
 mappages["abyss_castle_2"].returnx = 'NaN';
 mappages["abyss_castle_2"].returny = 'NaN';
 mappages["abyss_castle_2"].returninfused = '0';
-mappages["abyss_castle_2"].linkedMaps = [""];
+mappages["abyss_castle_2"].linkedMaps = ["abyss_castle_1","abyss_castle_3","abyss_castle_4","abyss_castle_5","abyss_castle_6","abyss_castle_7","abyss_castle_8"];
 mappages["abyss_castle_2"].editorLabels = '{}';
 // MAP ENDS HERE
 
@@ -1740,7 +1819,7 @@ mappages["abyss_castle_3"].returnmap = '';
 mappages["abyss_castle_3"].returnx = 'NaN';
 mappages["abyss_castle_3"].returny = 'NaN';
 mappages["abyss_castle_3"].returninfused = '0';
-mappages["abyss_castle_3"].linkedMaps = [""];
+mappages["abyss_castle_3"].linkedMaps = ["abyss_castle_1","abyss_castle_2","abyss_castle_4","abyss_castle_5","abyss_castle_6","abyss_castle_7","abyss_castle_8"];
 mappages["abyss_castle_3"].editorLabels = '{}';
 // MAP ENDS HERE
 
@@ -2239,7 +2318,7 @@ mappages["abyss_castle_4"].returnmap = '';
 mappages["abyss_castle_4"].returnx = 'NaN';
 mappages["abyss_castle_4"].returny = 'NaN';
 mappages["abyss_castle_4"].returninfused = '0';
-mappages["abyss_castle_4"].linkedMaps = [""];
+mappages["abyss_castle_4"].linkedMaps = ["abyss_castle_1","abyss_castle_2","abyss_castle_3","abyss_castle_5","abyss_castle_6","abyss_castle_7","abyss_castle_8"];
 mappages["abyss_castle_4"].editorLabels = '{}';
 // MAP ENDS HERE
 
@@ -2640,7 +2719,7 @@ mappages["abyss_castle_5"].returnmap = '';
 mappages["abyss_castle_5"].returnx = 'NaN';
 mappages["abyss_castle_5"].returny = 'NaN';
 mappages["abyss_castle_5"].returninfused = '0';
-mappages["abyss_castle_5"].linkedMaps = [""];
+mappages["abyss_castle_5"].linkedMaps = ["abyss_castle_1","abyss_castle_2","abyss_castle_3","abyss_castle_4","abyss_castle_6","abyss_castle_7","abyss_castle_8"];
 mappages["abyss_castle_5"].editorLabels = '{}';
 // MAP ENDS HERE
 
@@ -3571,7 +3650,7 @@ mappages["abyss_castle_6"].returnmap = '';
 mappages["abyss_castle_6"].returnx = 'NaN';
 mappages["abyss_castle_6"].returny = 'NaN';
 mappages["abyss_castle_6"].returninfused = '0';
-mappages["abyss_castle_6"].linkedMaps = [""];
+mappages["abyss_castle_6"].linkedMaps = ["abyss_castle_1","abyss_castle_2","abyss_castle_3","abyss_castle_4","abyss_castle_5","abyss_castle_7","abyss_castle_8"];
 mappages["abyss_castle_6"].editorLabels = '{}';
 // MAP ENDS HERE
 
@@ -3972,7 +4051,7 @@ mappages["abyss_castle_7"].returnmap = '';
 mappages["abyss_castle_7"].returnx = 'NaN';
 mappages["abyss_castle_7"].returny = 'NaN';
 mappages["abyss_castle_7"].returninfused = '0';
-mappages["abyss_castle_7"].linkedMaps = [""];
+mappages["abyss_castle_7"].linkedMaps = ["abyss_castle_1","abyss_castle_2","abyss_castle_3","abyss_castle_4","abyss_castle_5","abyss_castle_6","abyss_castle_8"];
 mappages["abyss_castle_7"].editorLabels = '{}';
 // MAP ENDS HERE
 
@@ -4761,7 +4840,7 @@ mappages["abyss_castle_8"].returnmap = '';
 mappages["abyss_castle_8"].returnx = 'NaN';
 mappages["abyss_castle_8"].returny = 'NaN';
 mappages["abyss_castle_8"].returninfused = '0';
-mappages["abyss_castle_8"].linkedMaps = [""];
+mappages["abyss_castle_8"].linkedMaps = ["abyss_castle_1","abyss_castle_2","abyss_castle_3","abyss_castle_4","abyss_castle_5","abyss_castle_6","abyss_castle_7"];
 mappages["abyss_castle_8"].editorLabels = '{}';
 // MAP ENDS HERE
 
@@ -5164,4 +5243,167 @@ mappages["abyss_castle_0"].returny = 'NaN';
 mappages["abyss_castle_0"].returninfused = '0';
 mappages["abyss_castle_0"].linkedMaps = [""];
 mappages["abyss_castle_0"].editorLabels = '{}';
+// MAP ENDS HERE
+
+// MAP BEGINS HERE
+mappages["abyss_final"] = {};
+mappages["abyss_final"].terrain = [];
+ mappages["abyss_final"].terrain[0] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
+ mappages["abyss_final"].terrain[1] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
+ mappages["abyss_final"].terrain[2] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
+ mappages["abyss_final"].terrain[3] = 'wb wb wb wb wb wb wb wb ++ ++ ++ wb wb wb wb wb wb wb wb wb';
+ mappages["abyss_final"].terrain[4] = 'wb wb wb wb wb wb wb ++ ++ ++ ++ ++ wb wb wb wb wb wb wb wb';
+ mappages["abyss_final"].terrain[5] = 'wb wb wb wb wb wb ++ ++ ++ ++ ++ ++ ++ wb wb wb wb wb wb wb';
+ mappages["abyss_final"].terrain[6] = 'wb wb wb wb wb wb ++ ++ ++ ++ ++ ++ ++ wb wb wb wb wb wb wb';
+ mappages["abyss_final"].terrain[7] = 'wb wb wb wb wb wb ++ ++ ++ ++ ++ ++ ++ wb wb wb wb wb wb wb';
+ mappages["abyss_final"].terrain[8] = 'wb wb wb wb wb wb wb ++ ++ ++ ++ ++ wb wb wb wb wb wb wb wb';
+ mappages["abyss_final"].terrain[9] = 'wb wb wb wb wb wb wb wb ++ ++ ++ wb wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[10] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[11] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[12] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[13] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[14] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[15] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[16] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[17] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[18] = 'wb wb wb wb wb wb wb wb ++ ++ ++ wb wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[19] = 'wb wb wb wb wb wb wb wb ++ ++ ++ wb wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[20] = 'wb wb wb wb wb wb wb wb ++ ++ ++ wb wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[21] = 'wb wb wb wb wb wb wb wb ++ ++ ++ wb wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[22] = 'wb wb wb wb wb wb wb wb ++ ++ ++ wb wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[23] = 'wb wb wb wb wb wb wb wb ++ ++ ++ wb wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[24] = 'wb wb wb wb wb wb wb wb ++ ++ ++ wb wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[25] = 'wb wb wb wb wb wb wb wb ++ ++ ++ wb wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[26] = 'wb wb wb wb wb wb wb wb ++ ++ ++ wb wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[27] = 'wb wb wb wb wb wb wb wb ++ ++ ++ wb wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[28] = 'wb wb wb wb wb wb wb wb ++ ++ ++ wb wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[29] = 'wb wb wb wb wb wb wb wb ++ ++ ++ wb wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[30] = 'wb wb wb wb wb wb wb wb ++ ++ ++ wb wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[31] = 'wb wb wb wb wb wb wb wb ++ ++ ++ wb wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[32] = 'wb wb wb wb wb wb wb wb ++ ++ ++ wb wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[33] = 'wb wb wb wb wb wb wb %% ++ ++ ++ %% wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[34] = 'wb wb wb wb wb wb %% %% ++ ++ ++ %% %% wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[35] = 'wb wb wb wb wb wb %% ++ ++ ++ ++ ++ %% wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[36] = 'wb wb wb wb wb wb %% %% ++ ++ ++ %% %% wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[37] = 'wb wb wb wb wb wb wb %% ++ ++ ++ %% wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[38] = 'wb wb wb wb wb wb wb %% ++ ++ ++ %% wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[39] = 'wb wb wb wb wb wb %% %% ++ ++ ++ %% %% wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[40] = 'wb wb wb wb wb wb %% ++ ++ ++ ++ ++ %% wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[41] = 'wb wb wb wb wb wb %% %% ++ ++ ++ %% %% wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[42] = 'wb wb wb wb wb wb wb %% ++ ++ ++ %% wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[43] = 'wb wb wb wb wb wb wb %% ++ ++ ++ %% wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[44] = 'wb wb wb wb wb wb wb !# ++ ++ ++ !# wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[45] = 'wb wb wb wb wb wb !# !# ++ ++ ++ !# !# wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[46] = 'wb wb wb wb wb wb !# ++ ++ ++ ++ ++ !# wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[47] = 'wb wb wb wb wb wb !# !# ++ ++ ++ !# !# wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[48] = 'wb wb wb wb wb wb wb !# ++ ++ ++ !# wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[49] = 'wb wb wb wb wb wb wb !# ++ ++ ++ !# wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[50] = 'wb wb wb wb wb wb !# !# ++ ++ ++ !# !# wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[51] = 'wb wb wb wb wb wb !# ++ ++ ++ ++ ++ !# wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[52] = 'wb wb wb wb wb wb !# !# ++ ++ ++ !# !# wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[53] = 'wb wb wb wb wb wb wb !# ++ ++ ++ !# wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[54] = 'wb wb wb wb wb wb wb !# ++ ++ ++ !# wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[55] = 'wb wb wb wb wb wb ## ## ++ ++ ++ ## ## wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[56] = 'wb wb wb wb wb wb ## ++ ++ ++ ++ ++ ## wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[57] = 'wb wb wb wb wb wb ## ## ++ ++ ++ ## ## wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[58] = 'wb wb wb wb wb wb wb ## ++ ++ ++ ## wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[59] = 'wb wb wb wb wb wb ## ## ++ ++ ++ ## ## wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[60] = 'wb wb wb wb wb wb ## ++ ++ ++ ++ ++ ## wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[61] = 'wb wb wb wb wb wb ## ## ++ ++ ++ ## ## wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[62] = 'wb wb wb wb wb wb wb ## ++ ++ ++ ## wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[63] = 'wb wb wb wb wb wb wb ## ++ ++ ++ ## wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[64] = 'wb wb wb wb wb wb ## ## ++ ++ ++ ## ## wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[65] = 'wb wb wb wb wb ## ## ++ ++ ++ ++ ++ ## ## wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[66] = 'wb wb wb wb wb ## ++ ++ ++ ++ ++ ++ ++ ## wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[67] = 'wb wb wb wb wb ## ++ ++ ++ ++ ++ ++ ++ ## wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[68] = 'wb wb wb wb wb ## ++ ++ ++ ++ ++ ++ ++ ## wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[69] = 'wb wb wb wb wb ## ## ++ ++ ++ ++ ++ ## ## wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[70] = 'wb wb wb wb wb wb ## ## ++ ++ ++ ## ## wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[71] = 'wb wb wb wb wb wb wb ## ## ## ## ## wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[72] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[73] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
+mappages["abyss_final"].terrain[74] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
+
+mappages["abyss_final"].features = [];
+mappages["abyss_final"].features[0] = {name : 'Brazier', x : 11, y : 60};
+mappages["abyss_final"].features[1] = {name : 'Brazier', x : 7, y : 60};
+mappages["abyss_final"].features[2] = {name : 'Brazier', x : 7, y : 56};
+mappages["abyss_final"].features[3] = {name : 'Brazier', x : 11, y : 56};
+mappages["abyss_final"].features[4] = {name : 'Brazier', x : 11, y : 51};
+mappages["abyss_final"].features[5] = {name : 'Brazier', x : 7, y : 51};
+mappages["abyss_final"].features[6] = {name : 'Brazier', x : 7, y : 46};
+mappages["abyss_final"].features[7] = {name : 'Brazier', x : 11, y : 46};
+mappages["abyss_final"].features[8] = {name : 'Brazier', x : 11, y : 40};
+mappages["abyss_final"].features[9] = {name : 'Brazier', x : 7, y : 40};
+mappages["abyss_final"].features[10] = {name : 'Brazier', x : 7, y : 35};
+mappages["abyss_final"].features[11] = {name : 'Brazier', x : 11, y : 35};
+mappages["abyss_final"].features[12] = {name : 'AbyssFireField', x : 8, y : 18};
+mappages["abyss_final"].features[13] = {name : 'AbyssFireField', x : 8, y : 19};
+mappages["abyss_final"].features[14] = {name : 'AbyssFireField', x : 8, y : 20};
+mappages["abyss_final"].features[15] = {name : 'AbyssFireField', x : 8, y : 21};
+mappages["abyss_final"].features[16] = {name : 'AbyssFireField', x : 8, y : 22};
+mappages["abyss_final"].features[17] = {name : 'AbyssFireField', x : 8, y : 23};
+mappages["abyss_final"].features[18] = {name : 'AbyssFireField', x : 8, y : 24};
+mappages["abyss_final"].features[19] = {name : 'AbyssFireField', x : 8, y : 25};
+mappages["abyss_final"].features[20] = {name : 'AbyssFireField', x : 8, y : 26};
+mappages["abyss_final"].features[21] = {name : 'AbyssFireField', x : 8, y : 27};
+mappages["abyss_final"].features[22] = {name : 'AbyssFireField', x : 8, y : 28};
+mappages["abyss_final"].features[23] = {name : 'AbyssFireField', x : 8, y : 29};
+mappages["abyss_final"].features[24] = {name : 'AbyssFireField', x : 8, y : 30};
+mappages["abyss_final"].features[25] = {name : 'AbyssFireField', x : 9, y : 18};
+mappages["abyss_final"].features[26] = {name : 'AbyssFireField', x : 9, y : 19};
+mappages["abyss_final"].features[27] = {name : 'AbyssFireField', x : 9, y : 20};
+mappages["abyss_final"].features[28] = {name : 'AbyssFireField', x : 9, y : 21};
+mappages["abyss_final"].features[29] = {name : 'AbyssFireField', x : 9, y : 22};
+mappages["abyss_final"].features[30] = {name : 'AbyssFireField', x : 9, y : 23};
+mappages["abyss_final"].features[31] = {name : 'AbyssFireField', x : 9, y : 24};
+mappages["abyss_final"].features[32] = {name : 'AbyssFireField', x : 9, y : 25};
+mappages["abyss_final"].features[33] = {name : 'AbyssFireField', x : 9, y : 26};
+mappages["abyss_final"].features[34] = {name : 'AbyssFireField', x : 9, y : 27};
+mappages["abyss_final"].features[35] = {name : 'AbyssFireField', x : 9, y : 28};
+mappages["abyss_final"].features[36] = {name : 'AbyssFireField', x : 9, y : 29};
+mappages["abyss_final"].features[37] = {name : 'AbyssFireField', x : 9, y : 30};
+mappages["abyss_final"].features[38] = {name : 'AbyssFireField', x : 10, y : 18};
+mappages["abyss_final"].features[39] = {name : 'AbyssFireField', x : 10, y : 19};
+mappages["abyss_final"].features[40] = {name : 'AbyssFireField', x : 10, y : 20};
+mappages["abyss_final"].features[41] = {name : 'AbyssFireField', x : 10, y : 21};
+mappages["abyss_final"].features[42] = {name : 'AbyssFireField', x : 10, y : 22};
+mappages["abyss_final"].features[43] = {name : 'AbyssFireField', x : 10, y : 23};
+mappages["abyss_final"].features[44] = {name : 'AbyssFireField', x : 10, y : 24};
+mappages["abyss_final"].features[45] = {name : 'AbyssFireField', x : 10, y : 25};
+mappages["abyss_final"].features[46] = {name : 'AbyssFireField', x : 10, y : 26};
+mappages["abyss_final"].features[47] = {name : 'AbyssFireField', x : 10, y : 27};
+mappages["abyss_final"].features[48] = {name : 'AbyssFireField', x : 10, y : 28};
+mappages["abyss_final"].features[49] = {name : 'AbyssFireField', x : 10, y : 29};
+mappages["abyss_final"].features[50] = {name : 'AbyssFireField', x : 10, y : 30};
+
+
+mappages["abyss_final"].npcs = [];
+
+mappages["abyss_final"].desc = "???";
+mappages["abyss_final"].longdesc = ``;
+mappages["abyss_final"].music = 'Abyss';
+mappages["abyss_final"].savename = `???`;
+mappages["abyss_final"].exitmap = '';
+mappages["abyss_final"].exitx = '65';
+mappages["abyss_final"].exity = '70';
+mappages["abyss_final"].wraps = '';
+mappages["abyss_final"].enterx = '65';
+mappages["abyss_final"].entery = '70';
+mappages["abyss_final"].seeBelow = '';
+mappages["abyss_final"].lightLevel = '';
+mappages["abyss_final"].alwaysRemember = '0';
+mappages["abyss_final"].scale = '1';
+mappages["abyss_final"].underground = '0';
+mappages["abyss_final"].undergroundDesc = '';
+mappages["abyss_final"].enterscript = '';
+mappages["abyss_final"].entertestscript = '';
+mappages["abyss_final"].exitscript = '';
+mappages["abyss_final"].exittestscript = '';
+mappages["abyss_final"].returnmap = '';
+mappages["abyss_final"].returnx = 'NaN';
+mappages["abyss_final"].returny = 'NaN';
+mappages["abyss_final"].returninfused = '0';
+mappages["abyss_final"].linkedMaps = [""];
+mappages["abyss_final"].editorLabels = '{}';
 // MAP ENDS HERE

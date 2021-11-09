@@ -3353,6 +3353,11 @@ tileFactory.prototype.makeAmuletOfReflectionsTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeAbyssFireFieldTile = function() {
+  let newTile = new AbyssFireFieldTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeNaturalArmorTile = function() {
   let newTile = new NaturalArmorTile();
   return newTile;
