@@ -164,6 +164,12 @@ function PerformCommand(code, ctrl) {
 	}
 	else if (code === 65) { // a
 		// attack
+    if (PC.getHomeMap().getName().indexOf("abyss") > -1) {
+      retval["txt"] = "You cannot do that here.";
+      retval["fin"] = 2;
+      return retval;
+    }
+
 		if (PC.getSpellEffectsByName("Fear")) {
 		  retval["txt"] = "You are too afraid!";
 		  retval["fin"] = 0;
@@ -216,6 +222,12 @@ function PerformCommand(code, ctrl) {
 	}
 	else if (code === 67) { // c
 		// cast
+    if (PC.getHomeMap().getName().indexOf("abyss") > -1) {
+      retval["txt"] = "You cannot do that here.";
+      retval["fin"] = 2;
+      return retval;
+    }
+
     retval = PerformCast(0);
 	}
 	else if (code === 68) { // d
@@ -228,6 +240,12 @@ function PerformCommand(code, ctrl) {
 	}
   else if (code === 70) { // f
     // focus (since it isn't Fire)
+    if (PC.getHomeMap().getName().indexOf("abyss") > -1) {
+      retval["txt"] = "You cannot do that here.";
+      retval["fin"] = 2;
+      return retval;
+    }
+
     if (PC.runes.kings || PC.runes.waves || PC.runes.winds || PC.runes.flames) {  // game requires kings first, but let's not assume
       let runepage = CreateRunesPage(1);
       DrawTopbarFrame("<p>Runes</p>");
@@ -265,6 +283,12 @@ function PerformCommand(code, ctrl) {
   else if (code === 73) { // i
 		// was ignite torch, now infuse?
    	if (PC.getKnowsInfusion() || ((PC.getHomeMap().getName() === "consolation") && (PC.getx() >= 16) && (PC.getx() <= 17) && (PC.gety() >= 14) && (PC.gety() <= 15))) {
+      if (PC.getHomeMap().getName().indexOf("abyss") > -1) {
+        retval["txt"] = "You cannot do that here.";
+        retval["fin"] = 2;
+        return retval;
+      }
+  
       retval = PerformCast(1);
     } else {
       retval["fin"] = 2;

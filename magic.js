@@ -325,12 +325,6 @@ magic[SPELL_AUDACHTA_SCRIBE_LEVEL][SPELL_AUDACHTA_SCRIBE_ID].executeSpell = func
   DebugWrite("magic", "Casting Audachta Scribe.<br />");
   let resp = {fin:1};
 
-  if (caster.getHomeMap().getName().indexOf("abyss") > -1) {
-    retval["txt"] = "You cannot do that here.";
-    retval["fin"] = 2;
-    return retval;
-  }
-
   let mademenu = MakeInventoryList("audachta");
   if (!mademenu.length) {
     resp["fin"] = 0;
@@ -667,12 +661,6 @@ magic[SPELL_MEND_LEVEL][SPELL_MEND_ID].executeSpell = function(caster, infused, 
   if (caster !== PC) {
     resp = PerformMend(caster, infused, free, tgt);
     return resp;
-  }
-
-  if (caster.getHomeMap().getName().indexOf("abyss") > -1) {
-    retval["txt"] = "You cannot do that here.";
-    retval["fin"] = 2;
-    return retval;
   }
   
   CreateTargetCursor({sticky: 0, command:'c',spellName:'Mend',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "feature"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 1});
@@ -2988,12 +2976,6 @@ magic[SPELL_EMPOWER_LEVEL][SPELL_EMPOWER_ID].executeSpell = function(caster, inf
     return resp;
   }
 
-  if (caster.getHomeMap().getName().indexOf("abyss") > -1) {
-    retval["txt"] = "You cannot do that here.";
-    retval["fin"] = 2;
-    return retval;
-  }
-  
   CreateTargetCursor({sticky: 0, command:'c',spellName:'Empower',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "feature"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 1});
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";

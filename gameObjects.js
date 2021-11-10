@@ -8571,7 +8571,7 @@ function WalkOnAbyssCastleSay1Tile() {
 	this.desc = "invisible walkon tile";
 	this.invisible = 1;
   this.qnum = 1;
-	this.say = 'FIRSTQUESTION';
+	this.say = 'Voice: "Before you lies a path, and you will choose your direction as you know your answers. You are here, because you seek greater power, but why? Travel west if you desire to increase your personal power. Travel east if the power is a means to accomplish an end."';
 }
 WalkOnAbyssCastleSay1Tile.prototype = new WalkOnAbyssCastleSayTile();
 
@@ -8613,6 +8613,58 @@ function WalkOnAbyssCastleSay4Tile() {
 	this.say = 'FOURTHQUESTION';
 }
 WalkOnAbyssCastleSay4Tile.prototype = new WalkOnAbyssCastleSayTile();
+
+function WalkOnAbyssCastleSay5Tile() {
+  this.name = "WalkOnAbyssCastleSay5";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+  this.qnum = 5;
+	this.say = 'A new voice speaks without sound. "You have arrived in the Fortress of the Mind."';
+}
+WalkOnAbyssCastleSay5Tile.prototype = new WalkOnAbyssCastleSayTile();
+
+function WalkOnAbyssCastleSay6Tile() {
+  this.name = "WalkOnAbyssCastleSay6";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+  this.qnum = 6;
+	this.say = 'Voice: "Here, you will be asked questions. Fear not- you are not here to be judged. There is no objective right or wrong answer. We do not seek to learn if you are good or evil. these things matter not."';
+}
+WalkOnAbyssCastleSay6Tile.prototype = new WalkOnAbyssCastleSayTile();
+
+function WalkOnAbyssCastleSay7Tile() {
+  this.name = "WalkOnAbyssCastleSay7";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+  this.qnum = 7;
+	this.say = 'Voice: "I know the answers in your heart. I know the truth of your soul. What we are here to judge is simply: Do you?"';
+}
+WalkOnAbyssCastleSay7Tile.prototype = new WalkOnAbyssCastleSayTile();
+
+function WalkOnAbyssCastleSay8Tile() {
+  this.name = "WalkOnAbyssCastleSay8";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+  this.qnum = 8;
+	this.say = 'Voice: "If you can know yourself, and can answer these questions in truth and in fact... then you will be found worthy."';
+}
+WalkOnAbyssCastleSay8Tile.prototype = new WalkOnAbyssCastleSayTile();
 
 function NightshadeSpawnerTile() {
   this.name = "NightshadeSpawner";

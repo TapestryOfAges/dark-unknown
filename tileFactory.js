@@ -1853,6 +1853,26 @@ tileFactory.prototype.makeWalkOnAbyssCastleSay4Tile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWalkOnAbyssCastleSay5Tile = function() {
+  let newTile = new WalkOnAbyssCastleSay5Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssCastleSay6Tile = function() {
+  let newTile = new WalkOnAbyssCastleSay6Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssCastleSay7Tile = function() {
+  let newTile = new WalkOnAbyssCastleSay7Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssCastleSay8Tile = function() {
+  let newTile = new WalkOnAbyssCastleSay8Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeNightshadeSpawnerTile = function() {
   let newTile = new NightshadeSpawnerTile();
   return newTile;
