@@ -1853,6 +1853,11 @@ tileFactory.prototype.makeWalkOnAbyssCastleSay4Tile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWalkOnAbyssCastleSayOnceTile = function() {
+  let newTile = new WalkOnAbyssCastleSayOnceTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWalkOnAbyssCastleSay5Tile = function() {
   let newTile = new WalkOnAbyssCastleSay5Tile();
   return newTile;
@@ -1870,6 +1875,41 @@ tileFactory.prototype.makeWalkOnAbyssCastleSay7Tile = function() {
 
 tileFactory.prototype.makeWalkOnAbyssCastleSay8Tile = function() {
   let newTile = new WalkOnAbyssCastleSay8Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssGauntletTile = function() {
+  let newTile = new WalkOnAbyssGauntletTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssGauntlet1Tile = function() {
+  let newTile = new WalkOnAbyssGauntlet1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssGauntlet2Tile = function() {
+  let newTile = new WalkOnAbyssGauntlet2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssGauntlet3Tile = function() {
+  let newTile = new WalkOnAbyssGauntlet3Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssGauntlet4Tile = function() {
+  let newTile = new WalkOnAbyssGauntlet4Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssGauntlet5Tile = function() {
+  let newTile = new WalkOnAbyssGauntlet5Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssGauntlet6Tile = function() {
+  let newTile = new WalkOnAbyssGauntlet6Tile();
   return newTile;
 }
 

@@ -5376,9 +5376,28 @@ mappages["abyss_final"].features[47] = {name : 'AbyssFireField', x : 10, y : 27}
 mappages["abyss_final"].features[48] = {name : 'AbyssFireField', x : 10, y : 28};
 mappages["abyss_final"].features[49] = {name : 'AbyssFireField', x : 10, y : 29};
 mappages["abyss_final"].features[50] = {name : 'AbyssFireField', x : 10, y : 30};
+mappages["abyss_final"].features[51] = {name : 'WalkOnAbyssGauntlet6', x : 8, y : 32};
+mappages["abyss_final"].features[52] = {name : 'WalkOnAbyssGauntlet6', x : 9, y : 32};
+mappages["abyss_final"].features[53] = {name : 'WalkOnAbyssGauntlet6', x : 10, y : 32};
+mappages["abyss_final"].features[54] = {name : 'WalkOnAbyssGauntlet5', x : 8, y : 37};
+mappages["abyss_final"].features[55] = {name : 'WalkOnAbyssGauntlet5', x : 9, y : 37};
+mappages["abyss_final"].features[56] = {name : 'WalkOnAbyssGauntlet5', x : 10, y : 37};
+mappages["abyss_final"].features[57] = {name : 'WalkOnAbyssGauntlet4', x : 8, y : 43};
+mappages["abyss_final"].features[58] = {name : 'WalkOnAbyssGauntlet4', x : 9, y : 43};
+mappages["abyss_final"].features[59] = {name : 'WalkOnAbyssGauntlet4', x : 10, y : 43};
+mappages["abyss_final"].features[60] = {name : 'WalkOnAbyssGauntlet3', x : 8, y : 49};
+mappages["abyss_final"].features[61] = {name : 'WalkOnAbyssGauntlet3', x : 9, y : 49};
+mappages["abyss_final"].features[62] = {name : 'WalkOnAbyssGauntlet3', x : 10, y : 49};
+mappages["abyss_final"].features[63] = {name : 'WalkOnAbyssGauntlet2', x : 8, y : 54};
+mappages["abyss_final"].features[64] = {name : 'WalkOnAbyssGauntlet2', x : 9, y : 54};
+mappages["abyss_final"].features[65] = {name : 'WalkOnAbyssGauntlet2', x : 10, y : 54};
+mappages["abyss_final"].features[66] = {name : 'WalkOnAbyssGauntlet1', x : 8, y : 59};
+mappages["abyss_final"].features[67] = {name : 'WalkOnAbyssGauntlet1', x : 9, y : 59};
+mappages["abyss_final"].features[68] = {name : 'WalkOnAbyssGauntlet1', x : 10, y : 59};
 
 
 mappages["abyss_final"].npcs = [];
+mappages["abyss_final"].npcs[0] = {name : 'MageVillagerNPC', x : 9, y : 4, NPCName: 'Spirit of Xoricco', Desc: 'spirit', Conversation: 'xoricco', Gender: 'female', NPCBand: '0', OverrideGraphic: '303.gif', skintone: '1'};
 
 mappages["abyss_final"].desc = "???";
 mappages["abyss_final"].longdesc = ``;
