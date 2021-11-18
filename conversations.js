@@ -303,14 +303,6 @@ Conversation.prototype.say = function(speaker, saywhat, skipahead) {
 //                     start_shop -- change game state, do merchanty things
 //                     start_sell -- change game state, sell stuff to merchant
 
-function ConvNode(flags, noflag_response, flag_response, triggers) {
-  this.flags = flags;
-  this.responses = [ noflag_response, flag_response ] ;  
-  this.triggers = triggers;
-}
-ConvNode.prototype = new Object();
-//Deprecated
-
 function InnRoom(xc,yc,doors,innmap) {
   if (DU.gameflags.getFlag("music")) {
     StopMusic();
@@ -1194,6 +1186,24 @@ OnConvTriggers["peter_caught"] = function(speaker,keyword) {
   let basement = maps.getMap("olympus0");
   peter = FindNPCByName("Peter",basement);
   basement.moveThing(24,18,peter);
+}
+
+OnConvTriggers["pc_abyss"] = function(speaker,keyword) {
+
+  FadeOut();
+  setTimeout(function() {
+    PC.setHP(PC.preabysshp);
+    MoveBetweenMaps(PC,PC.getHomeMap(), PC.preabyssmap, PC.preabyssx, PC.preabyssy);
+    delete PC.preabyssmap;
+    delete PC.preabyssx;
+    delete PC.preabyssy;
+    delete PC.preabysshp;
+    
+    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(),PC.gety());
+    PC.endTurn();
+  }, 1500);
+
+  return -1;
 }
 
 function ConvTestFlags() {};

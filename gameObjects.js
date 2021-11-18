@@ -15141,8 +15141,8 @@ AmuletOfReflectionsTile.prototype.use = function(who) {
         who.preabyssmap = who.getHomeMap().getName();
         who.preabyssx = who.getx();
         who.preabyssy = who.gety();
-        who.preabysshp = who.gethp();
-        who.sethp(who.getmaxhp());
+        who.preabysshp = who.getHP();
+        who.setHP(who.getMaxHP());
         DrawCharFrame();
         MoveBetweenMaps(who,themap,newmap,8,8);
         FadeIn(2000);
