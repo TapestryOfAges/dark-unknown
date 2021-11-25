@@ -1749,6 +1749,7 @@ function PerformUse(who) {
 function PerformUseFromInventory() {
 
   if (PC.getHomeMap().getName().indexOf("abyss") > -1) {
+    let retval = {};
     retval["txt"] = "You cannot do that here.";
     retval["fin"] = 2;
     return retval;

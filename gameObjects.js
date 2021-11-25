@@ -8408,7 +8408,12 @@ WalkOnAbyssTile.prototype = new FeatureObject();
 
 WalkOnAbyssTile.prototype.walkon = function(walker) {
   let themap=walker.getHomeMap();
-  newmap = maps.getMap(this.destmap);
+  let newmap;
+  if ((this.destmap === "abyss_castle_1") || (this.destmap === "abyss_final")) {
+    newmap = maps.addMap(this.destmap);
+  } else {
+    newmap = maps.getMap(this.destmap);
+  }
   if (!this.destx) {
     this.destx = walker.getx();
     this.desty = walker.gety();
@@ -8489,7 +8494,7 @@ function WalkOnAbyss4Tile() {
 	this.prefix = "an";
 	this.desc = "invisible walkon tile";
 	this.invisible = 1;
-	this.destmap = "abyss_castle_1";
+	this.destmap = "abyss5";
 	this.destx = 0;
 	this.desty = 0;
 	this.say = 'Voice: "Through this portal you shall be challenged. Prove your mastery of the self and you shall be counted as one of the great."';
@@ -8504,10 +8509,10 @@ function WalkOnAbyss5Tile() {
 	this.prefix = "an";
 	this.desc = "invisible walkon tile";
 	this.invisible = 1;
-	this.destmap = "abyss5";
-	this.destx = 0;
-	this.desty = 0;
-	this.say = 'Voice: "TEXTHERE"';
+	this.destmap = "abyss_final";
+	this.destx = 9;
+	this.desty = 68;
+	this.say = '';
 }
 WalkOnAbyss5Tile.prototype = new WalkOnAbyssTile();
 
@@ -8536,7 +8541,7 @@ WalkOnAbyssCastleTile.prototype.walkon = function(walker) {
   while (!dest || (dest === themap.getName())) {
     dest = "abyss_castle_" + Dice.roll("1d8");
   }
-  newmap = maps.getMap(dest);
+  let newmap = maps.getMap(dest);
   MoveBetweenMaps(walker,themap,newmap,this.getx(),this.gety());
   DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
   DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
@@ -8707,7 +8712,7 @@ WalkOnAbyssGauntletTile.prototype.walkon = function(walker) {
   if (this.effect === "earthquake") {
     Earthquake();
     DUPlaySound("sfx_earthquake");
-  } else if (effect) {
+  } else if (this.effect) {
     retval.override = 3;  // I think this propagates through and tells main to not end turn
     let dmg = walker.getMaxHP()/12;
     let boltgraphic = {};
@@ -15116,10 +15121,10 @@ AmuletOfReflectionsTile.prototype = new EquipableItemObject();
 AmuletOfReflectionsTile.prototype.use = function(who) {
   let themap = who.getHomeMap();
   let retval = {};
-//  if (themap.getName() === "olympus2") {
-    let standbefore = themap.getTile(who.getx(), who.gety()-1);
-    let ismirror = standbefore.getTopFeature();
-    if (ismirror.getName() === "mirror") {
+  let standbefore = themap.getTile(who.getx(), who.gety()-1);
+  let ismirror = standbefore.getTopFeature();
+  if (ismirror) {
+    if (ismirror.getName() === "Mirror") {
       // you are in the right map standing at the right place. GO.
       // remove buffs/debuffs - doesn't cure poison, I guess you can die of
       // poison while your mind is elsewhere? Don't do it, people.
@@ -15145,6 +15150,7 @@ AmuletOfReflectionsTile.prototype.use = function(who) {
         who.setHP(who.getMaxHP());
         DrawCharFrame();
         MoveBetweenMaps(who,themap,newmap,8,8);
+        DrawMainFrame("draw",newmap,8,8);
         FadeIn(2000);
         setTimeout(function() {
           gamestate.setMode("player");
@@ -15155,7 +15161,7 @@ AmuletOfReflectionsTile.prototype.use = function(who) {
       retval["fin"] = -2;
       DUPlaySound("sfx_spellcast");
       return retval;
-//    } 
+    }
   }
   retval["txt"] = "Nothing happens here.";
   retval["fin"] = 1;

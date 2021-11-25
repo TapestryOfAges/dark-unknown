@@ -319,15 +319,15 @@ mappages["abyss4"].features[9] = {name : 'WalkOnAbyss4', x : 7, y : 3};
 
 
 mappages["abyss4"].npcs = [];
-mappages["abyss4"].npcs[0] = {name : 'AbyssYouNPC', x : 6, y : 3, skintone: '1'};
+mappages["abyss4"].npcs[0] = {name : 'AbyssYouNPC', x : 6, y : 3, NPCName: 'Subject Name Here', Conversation: 'abyssyou', Gender: 'male', NPCBand: '0', skintone: '1'};
 
 mappages["abyss4"].desc = "The Stygian Abyss";
 mappages["abyss4"].longdesc = ``;
 mappages["abyss4"].music = 'The Great Abyss';
 mappages["abyss4"].savename = `Stygian Abyss`;
-mappages["abyss4"].exitmap = '';
-mappages["abyss4"].exitx = '65';
-mappages["abyss4"].exity = '70';
+mappages["abyss4"].exitmap = 'abyss0';
+mappages["abyss4"].exitx = '8';
+mappages["abyss4"].exity = '8';
 mappages["abyss4"].wraps = 'None';
 mappages["abyss4"].enterx = '65';
 mappages["abyss4"].entery = '70';
@@ -340,13 +340,17 @@ mappages["abyss4"].undergroundDesc = '';
 mappages["abyss4"].enterscript = '';
 mappages["abyss4"].entertestscript = '';
 mappages["abyss4"].exitscript = '';
-mappages["abyss4"].exittestscript = '';
+mappages["abyss4"].exittestscript = 'block_escape';
 mappages["abyss4"].returnmap = '';
 mappages["abyss4"].returnx = 'NaN';
 mappages["abyss4"].returny = 'NaN';
 mappages["abyss4"].returninfused = '0';
 mappages["abyss4"].linkedMaps = ["abyss1","abyss2","abyss3","abyss0","abyss5"];
 mappages["abyss4"].editorLabels = '{}';
+
+mappages["abyss4"].block_escape = function(mapref) {
+  map_block_escape(mapref);
+}
 
 // MAP BEGINS HERE
 mappages["abyss5"] = {};
@@ -394,9 +398,9 @@ mappages["abyss5"].desc = "The Stygian Abyss";
 mappages["abyss5"].longdesc = ``;
 mappages["abyss5"].music = '';
 mappages["abyss5"].savename = `Stygian Abyss`;
-mappages["abyss5"].exitmap = '';
-mappages["abyss5"].exitx = '65';
-mappages["abyss5"].exity = '70';
+mappages["abyss5"].exitmap = 'abyss0';
+mappages["abyss5"].exitx = '8';
+mappages["abyss5"].exity = '8';
 mappages["abyss5"].wraps = 'None';
 mappages["abyss5"].enterx = '65';
 mappages["abyss5"].entery = '70';
@@ -409,7 +413,7 @@ mappages["abyss5"].undergroundDesc = '';
 mappages["abyss5"].enterscript = '';
 mappages["abyss5"].entertestscript = '';
 mappages["abyss5"].exitscript = '';
-mappages["abyss5"].exittestscript = '';
+mappages["abyss5"].exittestscript = 'block_escape';
 mappages["abyss5"].returnmap = '';
 mappages["abyss5"].returnx = 'NaN';
 mappages["abyss5"].returny = 'NaN';
@@ -424,6 +428,19 @@ mappages["abyss5"].onload = function(mapref) {
     mgate.destmap = "abyss_castle_1";
     mgate.destx = 33;
     mgate.desty = 37;
+  }
+}
+
+mappages["abyss5"].block_escape = function(mapref) {
+  map_block_escape(mapref);
+}
+
+function map_block_escape(mapref) {
+  mapref.ExitTest = function(who,tomap,fromx,fromy,tox,toy) {
+    if ((who.getx() > 0) && (who.getx() < 12) && (who.gety() > 0) &&  (who.gety() < 12)) {
+      return 1; 
+    }
+    return 0;
   }
 }
 
@@ -5410,7 +5427,7 @@ mappages["abyss_final"].wraps = '';
 mappages["abyss_final"].enterx = '65';
 mappages["abyss_final"].entery = '70';
 mappages["abyss_final"].seeBelow = '';
-mappages["abyss_final"].lightLevel = '';
+mappages["abyss_final"].lightLevel = 'bright';
 mappages["abyss_final"].alwaysRemember = '0';
 mappages["abyss_final"].scale = '1';
 mappages["abyss_final"].underground = '0';

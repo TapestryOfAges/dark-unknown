@@ -1193,6 +1193,12 @@ OnConvTriggers["pc_abyss"] = function(speaker,keyword) {
   FadeOut();
   setTimeout(function() {
     PC.setHP(PC.preabysshp);
+    let newmap = new GameMap();
+    if (maps.getMap(PC.preabyssmap)) {
+      newmap = maps.getMap(PC.preabyssmap);
+    } else {
+      newmap = maps.addMap(PC.preabyssmap);
+    }
     MoveBetweenMaps(PC,PC.getHomeMap(), PC.preabyssmap, PC.preabyssx, PC.preabyssy);
     delete PC.preabyssmap;
     delete PC.preabyssx;
