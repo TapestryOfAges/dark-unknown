@@ -3202,7 +3202,7 @@ function ShowSaveGames(toptext) {
       let thisloc = saveIndex[i].loc.slice(0,13);
       table += "<td style='color:white;text-align:center;v-align:center;width:23'>" + i + "</td>";
       let hours = Math.floor(saveIndex[i].timeplayed/(60*60));
-      let minutes = Math.floor((saveIndex[i].timeplayed-hours)/60);
+      let minutes = Math.floor((saveIndex[i].timeplayed-(hours*60*60))/60);
       if (minutes < 10) { minutes = "0" + minutes; }
 
       table += "<td style='color:white;v-align:center;padding-left:5px;width:100%;font-size:smaller'>" + saveIndex[i].charname + " (" + thisloc + ") " + thisdate.toLocaleDateString() + " " + thistime + " [" + hours + ":" + minutes +"]</td>";
