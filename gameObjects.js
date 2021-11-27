@@ -8704,8 +8704,6 @@ WalkOnAbyssGauntletTile.prototype = new FeatureObject();
 
 WalkOnAbyssGauntletTile.prototype.walkon = function(walker) {
   let themap = this.getHomeMap();
-  let xoricco = themap.getTile(9,4).getTopNPC();
-  themap.moveThing(walker.getx(),walker.gety()-7,xoricco);
   let desc = walker.getDesc();
   let retval = {msg:""};
 
@@ -8715,12 +8713,15 @@ WalkOnAbyssGauntletTile.prototype.walkon = function(walker) {
   } else if (this.effect) {
     retval.override = 3;  // I think this propagates through and tells main to not end turn
     let dmg = walker.getMaxHP()/12;
+    let thismap = this.getHomeMap();
+    let caster = thismap.getTile(9,4).getTopNPC();
+    thismap.moveThing(walker.getx(),walker.gety()-7,caster);
     let boltgraphic = {};
     boltgraphic.graphic = "fireicelightning.gif";
     boltgraphic.yoffset = 0;
     boltgraphic.xoffset = 0;
     boltgraphic.directionalammo = 1;
-    boltgraphic = GetEffectGraphic(caster,tgt,boltgraphic);
+    boltgraphic = GetEffectGraphic(caster,walker,boltgraphic);
     let descval = {txt: desc};
     let sndsfx;
     let dmgtype;
@@ -8739,14 +8740,14 @@ WalkOnAbyssGauntletTile.prototype.walkon = function(walker) {
 
     let sounds = {};
     let fromcoords = getCoords(caster.getHomeMap(),caster.getx(), caster.gety());
-    let tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
-    let duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
+    let tocoords = getCoords(walker.getHomeMap(),walker.getx(), walker.gety());
+    let duration = (Math.pow( Math.pow(walker.getx() - caster.getx(), 2) + Math.pow (walker.gety() - caster.gety(), 2)  , .5)) * 100;
     let destgraphic = {graphic:"master_spritesheet.png", xoffset:-128, yoffset:-1856, overlay:"spacer.gif"};
     DUPlaySound(sndsfx);
     let weapon = localFactory.createTile("SpellWeapon");
     weapon.dmgtype = "fire";
-    AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:dmgtype, weapon:weapon});
-  
+    AnimateEffect(caster, walker, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:dmgtype, weapon:weapon});
+    thismap.moveThing(9,4,caster);
   }
 
   if (this.say) {
