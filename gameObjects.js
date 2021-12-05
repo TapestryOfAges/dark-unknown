@@ -8703,7 +8703,6 @@ function WalkOnAbyssGauntletTile() {
 WalkOnAbyssGauntletTile.prototype = new FeatureObject();
 
 WalkOnAbyssGauntletTile.prototype.walkon = function(walker) {
-  let themap = this.getHomeMap();
   let desc = walker.getDesc();
   let retval = {msg:""};
 
@@ -8746,8 +8745,9 @@ WalkOnAbyssGauntletTile.prototype.walkon = function(walker) {
     DUPlaySound(sndsfx);
     let weapon = localFactory.createTile("SpellWeapon");
     weapon.dmgtype = "fire";
-    AnimateEffect(caster, walker, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:dmgtype, weapon:weapon});
+    AnimateEffect(caster, walker, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:0, retval:descval, dmgtype:dmgtype, weapon:weapon});
     thismap.moveThing(9,4,caster);
+    setTimeout(function() { PC.endTurn(); }, duration);
   }
 
   if (this.say) {

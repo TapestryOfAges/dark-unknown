@@ -95,6 +95,8 @@ function PerformCommand(code, ctrl) {
     if (success["fin"] === -3) {
       retval["fin"] = -3; 
       retval["txt"] = "";
+    } else if (success["fin"] === 3) {
+      retval["fin"] = 3;
     }
 		retval["initdelay"] = success["initdelay"];
 	}
@@ -128,6 +130,8 @@ function PerformCommand(code, ctrl) {
     if (success["fin"] === -3) {
       retval["fin"] = -3; 
       retval["txt"] = "";
+    } else if (success["fin"] === 3) {
+      retval["fin"] = 3;
     }
 		retval["initdelay"] = success["initdelay"];
 	}
@@ -161,6 +165,8 @@ function PerformCommand(code, ctrl) {
     if (success["fin"] === -3) {
       retval["fin"] = -3; 
       retval["txt"] = "";
+    } else if (success["fin"] === 3) {
+      retval["fin"] = 3;
     }
 		retval["initdelay"] = success["initdelay"];
 	}
