@@ -15189,8 +15189,8 @@ AbyssFireFieldTile.prototype = new FeatureObject();
 
 AbyssFireFieldTile.prototype.walkon = function(person) {
   let resp = {msg:"The fire burns you!"};
-  let dmg = person.getmaxhp()/6;  // should wind up an integer because maxhp is a multiple of 30
-  if (person.gethp() === 1) {
+  let dmg = person.getMaxHP()/6;  // should wind up an integer because maxhp is a multiple of 30
+  if (person.getHP() === 1) {
     // teleport to end
     resp.msg = "Despite the damage you have taken, you grit your teeth and take one more step. The world spins around you...";
     gamestate.setMode("null");
@@ -15203,9 +15203,9 @@ AbyssFireFieldTile.prototype.walkon = function(person) {
     return resp;
   }
   else if (dmg > person.gethp()) {
-    dmg = person.gethp()-1; 
+    dmg = person.getHP()-1; 
   }
-  person.sethp(person.gethp()-dmg);
+  person.setHP(person.getHP()-dmg);
   DrawCharFrame();
   DamageFlash();
   DUPlaySound("sfx_fire_hit");
