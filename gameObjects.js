@@ -8703,8 +8703,10 @@ function WalkOnAbyssGauntletTile() {
 WalkOnAbyssGauntletTile.prototype = new FeatureObject();
 
 WalkOnAbyssGauntletTile.prototype.walkon = function(walker) {
-  let desc = walker.getDesc();
   let retval = {msg:""};
+  if (DU.gameflags.getFlag(this.getName())) { return retval; }
+  DU.gameflags.setFlag(this.getName(), 1); // prevents the same gauntlet tile from triggering twice
+  let desc = walker.getDesc();
 
   if (this.effect === "earthquake") {
     Earthquake();
@@ -15122,6 +15124,11 @@ AmuletOfReflectionsTile.prototype = new EquipableItemObject();
 AmuletOfReflectionsTile.prototype.use = function(who) {
   let themap = who.getHomeMap();
   let retval = {};
+  if (DU.gameflags.getFlag("pc_abyss")) {
+    retval["txt"] = "You have already crossed the Great Abyss.";
+    retval["fin"] = 1;
+    return retval;
+  }
   let standbefore = themap.getTile(who.getx(), who.gety()-1);
   let ismirror = standbefore.getTopFeature();
   if (ismirror) {
@@ -15193,16 +15200,18 @@ AbyssFireFieldTile.prototype.walkon = function(person) {
   if (person.getHP() === 1) {
     // teleport to end
     resp.msg = "Despite the damage you have taken, you grit your teeth and take one more step. The world spins around you...";
-    gamestate.setMode("null");
+    gamestate.setMode("waiting");
+    resp["override"] = 3;
     FadeOut();
     setTimeout(function() { 
       person.getHomeMap().moveThing(9,8,person);
+      DrawMainFrame("draw",person.getHomeMap(),person.getx(),person.gety());
       FadeIn();
-      gamestate.setmode("player");
+      gamestate.setMode("player");
      }, 1500); 
     return resp;
   }
-  else if (dmg > person.gethp()) {
+  else if (dmg > person.getHP()) {
     dmg = person.getHP()-1; 
   }
   person.setHP(person.getHP()-dmg);

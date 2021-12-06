@@ -1199,13 +1199,16 @@ OnConvTriggers["pc_abyss"] = function(speaker,keyword) {
     } else {
       newmap = maps.addMap(PC.preabyssmap);
     }
-    MoveBetweenMaps(PC,PC.getHomeMap(), PC.preabyssmap, PC.preabyssx, PC.preabyssy);
+    MoveBetweenMaps(PC,PC.getHomeMap(), newmap, PC.preabyssx, PC.preabyssy);
+    AdjustStartingLocations(newmap);
     delete PC.preabyssmap;
     delete PC.preabyssx;
     delete PC.preabyssy;
     delete PC.preabysshp;
     
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(),PC.gety());
+		DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
+    FadeIn();
     PC.endTurn();
   }, 1500);
 

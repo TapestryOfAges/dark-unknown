@@ -5443,3 +5443,8 @@ mappages["abyss_final"].returninfused = '0';
 mappages["abyss_final"].linkedMaps = [""];
 mappages["abyss_final"].editorLabels = '{}';
 // MAP ENDS HERE
+
+mappages["abyss_final"].onload = function(mapref) {
+  //  mapref.setBackground("clouds-mass.gif");
+  mapref.worldlayer = "ether.gif";
+}
