@@ -13920,7 +13920,12 @@ WalkOnAbyssTile.prototype = new FeatureObject();
 
 WalkOnAbyssTile.prototype.walkon = function(walker) {
   let themap=walker.getHomeMap();
-  newmap = maps.getMap(this.destmap);
+  let newmap;
+  if ((this.destmap === "abyss_castle_1") || (this.destmap === "abyss_final")) {
+    newmap = maps.addMap(this.destmap);
+  } else {
+    newmap = maps.getMap(this.destmap);
+  }
   if (!this.destx) {
     this.destx = walker.getx();
     this.desty = walker.gety();
@@ -13946,7 +13951,7 @@ function WalkOnAbyss0Tile() {
 	this.destmap = "abyss1";
 	this.destx = 0;
 	this.desty = 0;
-	this.say = 'Voice: "As you learn, and feel, and gain experience, you fill your landscape with knowledge."';
+	this.say = 'A voice speaks, from empty air: "As you learn, and feel, and gain experience, you fill your landscape with knowledge."';
 }
 WalkOnAbyss0Tile.prototype = new WalkOnAbyssTile();
 
@@ -13975,6 +13980,7 @@ function WalkOnAbyss2Tile() {
 	this.destmap = "abyss3";
 	this.destx = 0;
 	this.desty = 0;
+  this.say = 'Voice: "To attain the higher initiation, you must first master yourself."';
 }
 WalkOnAbyss2Tile.prototype = new WalkOnAbyssTile();
 
@@ -13989,7 +13995,6 @@ function WalkOnAbyss3Tile() {
 	this.destmap = "abyss4";
 	this.destx = 0;
 	this.desty = 0;
-	this.say = 'Voice: "To attain the higher initiation, you must first master yourself."';
 }
 WalkOnAbyss3Tile.prototype = new WalkOnAbyssTile();
 
@@ -14007,6 +14012,341 @@ function WalkOnAbyss4Tile() {
 	this.say = 'Voice: "Through this portal you shall be challenged. Prove your mastery of the self and you shall be counted as one of the great."';
 }
 WalkOnAbyss4Tile.prototype = new WalkOnAbyssTile();
+
+function WalkOnAbyss5Tile() {
+  this.name = "WalkOnAbyss5";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+	this.destmap = "abyss_final";
+	this.destx = 9;
+	this.desty = 68;
+	this.say = '';
+}
+WalkOnAbyss5Tile.prototype = new WalkOnAbyssTile();
+
+function WalkOnAbyssCastleTile() {
+  this.name = "WalkOnAbyssCastle";
+	this.graphic = "walkon2.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+	this.say = '';
+}
+WalkOnAbyssCastleTile.prototype = new FeatureObject();
+
+WalkOnAbyssCastleTile.prototype.walkon = function(walker) {
+  let themap=walker.getHomeMap();
+  if (walker.lastteleportx) {
+    if (GetDistance(walker.lastteleportx,walker.lasteleporty,this.getx(),this.gety()) <= 1) {
+      walker.lastteleportx = this.getx();
+      walker.lastteleporty = this.gety();
+      return {msg:""};
+    }
+  }
+  let dest;
+  while (!dest || (dest === themap.getName())) {
+    dest = "abyss_castle_" + Dice.roll("1d8");
+  }
+  let newmap = maps.getMap(dest);
+  MoveBetweenMaps(walker,themap,newmap,this.getx(),this.gety());
+  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+  DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
+  let retval = {overridedraw: 1,msg:""};
+  return retval;
+}
+
+function WalkOnAbyssCastleSayTile() {
+  this.name = "WalkOnAbyssCastleSay";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+	this.say = '';
+}
+WalkOnAbyssCastleSayTile.prototype = new FeatureObject();
+
+WalkOnAbyssCastleSayTile.prototype.walkon = function(walker) {
+  if (this.qnum === walker.lastq) { return {msg:""}; }
+  walker.lastq = this.qnum;
+  return {msg: this.say};
+}
+
+function WalkOnAbyssCastleSay1Tile() {
+  this.name = "WalkOnAbyssCastleSay1";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+  this.qnum = 1;
+	this.say = 'Voice: "Before you lies a path, and you will choose your direction as you know your answers. You are here, because you seek greater power, but why? Travel west if you desire to increase your personal power. Travel east if the power is a means to accomplish an end."';
+}
+WalkOnAbyssCastleSay1Tile.prototype = new WalkOnAbyssCastleSayTile();
+
+function WalkOnAbyssCastleSay2Tile() {
+  this.name = "WalkOnAbyssCastleSay2";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+  this.qnum = 2;
+	this.say = 'Voice: "While walking the woods, you stumble upon a glade, wherein you see a foe about to lay a mortal wound upon a friend. Without thought, your power rises. If your first thought would be to strike at the enemy, walk north. If your first thought would be to create a shield to protect your friend, walk south."';
+}
+WalkOnAbyssCastleSay2Tile.prototype = new WalkOnAbyssCastleSayTile();
+
+function WalkOnAbyssCastleSay3Tile() {
+  this.name = "WalkOnAbyssCastleSay3";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+  this.qnum = 3;
+	this.say = 'Voice: "Your quest nears its end, but to secure victory now would require you to sacrifice your life. If you would willingly do so to ensure victory, walk east. If you would pull back and hope to find another solution, walk west."';
+}
+WalkOnAbyssCastleSay3Tile.prototype = new WalkOnAbyssCastleSayTile();
+
+function WalkOnAbyssCastleSay4Tile() {
+  this.name = "WalkOnAbyssCastleSay4";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+  this.qnum = 4;
+	this.say = 'Voice: "Power undreamed of is within your reach. Go north if you seek it to have power over others. Go south if you seek it that others have no dominion over you."';
+}
+WalkOnAbyssCastleSay4Tile.prototype = new WalkOnAbyssCastleSayTile();
+
+function WalkOnAbyssCastleSayOnceTile() {
+  this.name = "WalkOnAbyssCastleSayOnce";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+	this.say = '';
+}
+WalkOnAbyssCastleSayOnceTile.prototype = new FeatureObject();
+
+WalkOnAbyssCastleSayOnceTile.prototype.walkon = function(walker) {
+  if (DU.gameflags.getFlag(this.getName())) { return {msg:""}; }
+  DU.gameflags.setFlag(this.getName(), 1);
+  return {msg: this.say};
+}
+
+function WalkOnAbyssCastleSay5Tile() {
+  this.name = "WalkOnAbyssCastleSay5";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+  this.qnum = 5;
+	this.say = 'A new voice speaks without sound. "You have arrived in the Fortress of the Mind."';
+}
+WalkOnAbyssCastleSay5Tile.prototype = new WalkOnAbyssCastleSayOnceTile();
+
+function WalkOnAbyssCastleSay6Tile() {
+  this.name = "WalkOnAbyssCastleSay6";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+  this.qnum = 6;
+	this.say = 'Voice: "Here, you will be asked questions. Fear not- you are not here to be judged. There is no objective right or wrong answer. We do not seek to learn if you are good or evil. these things matter not."';
+}
+WalkOnAbyssCastleSay6Tile.prototype = new WalkOnAbyssCastleSayOnceTile();
+
+function WalkOnAbyssCastleSay7Tile() {
+  this.name = "WalkOnAbyssCastleSay7";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+  this.qnum = 7;
+	this.say = 'Voice: "I know the answers in your heart. I know the truth of your soul. What we are here to judge is simply: Do you?"';
+}
+WalkOnAbyssCastleSay7Tile.prototype = new WalkOnAbyssCastleSayOnceTile();
+
+function WalkOnAbyssCastleSay8Tile() {
+  this.name = "WalkOnAbyssCastleSay8";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+  this.qnum = 8;
+	this.say = 'Voice: "If you can know yourself, and can answer these questions in truth and in fact... then you will be found worthy."';
+}
+WalkOnAbyssCastleSay8Tile.prototype = new WalkOnAbyssCastleSayOnceTile();
+
+function WalkOnAbyssGauntletTile() {
+  this.name = "WalkOnAbyssGauntlet";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+	this.say = '';
+  this.effect = '';
+}
+WalkOnAbyssGauntletTile.prototype = new FeatureObject();
+
+WalkOnAbyssGauntletTile.prototype.walkon = function(walker) {
+  let retval = {msg:""};
+  if (DU.gameflags.getFlag(this.getName())) { return retval; }
+  DU.gameflags.setFlag(this.getName(), 1); // prevents the same gauntlet tile from triggering twice
+  let desc = walker.getDesc();
+
+  if (this.effect === "earthquake") {
+    Earthquake();
+    DUPlaySound("sfx_earthquake");
+  } else if (this.effect) {
+    retval.override = 3;  // I think this propagates through and tells main to not end turn
+    let dmg = walker.getMaxHP()/12;
+    let thismap = this.getHomeMap();
+    let caster = thismap.getTile(9,4).getTopNPC();
+    thismap.moveThing(walker.getx(),walker.gety()-7,caster);
+    let boltgraphic = {};
+    boltgraphic.graphic = "fireicelightning.gif";
+    boltgraphic.yoffset = 0;
+    boltgraphic.xoffset = 0;
+    boltgraphic.directionalammo = 1;
+    boltgraphic = GetEffectGraphic(caster,walker,boltgraphic);
+    let descval = {txt: desc};
+    let sndsfx;
+    let dmgtype;
+    if (this.effect === "fireball") {
+      sndsfx = "sfx_fireball";
+      dmgtype = "fire";
+    } else if (this.effect === "lightning") {
+      sndsfx = "sfx_small_zap";
+      boltgraphic.yoffset = -64;
+      dmgtype = "lightning";
+    } else if (this.effect === "bolt") {
+      boltgraphic.graphic = "magic-bolt.gif";
+      sndsfx = "sfx_magic_bolt";
+      dmgtype = "force";
+    }
+
+    let sounds = {};
+    let fromcoords = getCoords(caster.getHomeMap(),caster.getx(), caster.gety());
+    let tocoords = getCoords(walker.getHomeMap(),walker.getx(), walker.gety());
+    let duration = (Math.pow( Math.pow(walker.getx() - caster.getx(), 2) + Math.pow (walker.gety() - caster.gety(), 2)  , .5)) * 100;
+    let destgraphic = {graphic:"master_spritesheet.png", xoffset:-128, yoffset:-1856, overlay:"spacer.gif"};
+    DUPlaySound(sndsfx);
+    let weapon = localFactory.createTile("SpellWeapon");
+    weapon.dmgtype = "fire";
+    AnimateEffect(caster, walker, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:0, retval:descval, dmgtype:dmgtype, weapon:weapon});
+    thismap.moveThing(9,4,caster);
+    setTimeout(function() { PC.endTurn(); }, duration);
+  }
+
+  if (this.say) {
+    retval.msg = this.say;
+  }
+  return retval;
+}
+
+function WalkOnAbyssGauntlet1Tile() {
+  this.name = "WalkOnAbyssGauntlet1";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+	this.say = 'You wish to have power. You will be subject to power.';
+  this.effect = 'lightning';
+}
+WalkOnAbyssGauntlet1Tile.prototype = new WalkOnAbyssGauntletTile();
+
+function WalkOnAbyssGauntlet2Tile() {
+  this.name = "WalkOnAbyssGauntlet2";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+	this.say = 'You desire to wield might. You will taste the flames.';
+  this.effect = 'fireball';
+}
+WalkOnAbyssGauntlet2Tile.prototype = new WalkOnAbyssGauntletTile();
+
+function WalkOnAbyssGauntlet3Tile() {
+  this.name = "WalkOnAbyssGauntlet3";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+	this.say = 'You yearn to learn the higher mysteries. The firm certainty upon which you stand will tremble beneath you.';
+  this.effect = 'earthquake';
+}
+WalkOnAbyssGauntlet3Tile.prototype = new WalkOnAbyssGauntletTile();
+
+function WalkOnAbyssGauntlet4Tile() {
+  this.name = "WalkOnAbyssGauntlet4";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+	this.say = 'You need to stand at the precipice, and look upwards to the stars. What will your soul do, when they look back?';
+  this.effect = 'bolt';
+}
+WalkOnAbyssGauntlet4Tile.prototype = new WalkOnAbyssGauntletTile();
+
+function WalkOnAbyssGauntlet5Tile() {
+  this.name = "WalkOnAbyssGauntlet5";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+	this.say = 'You strain to hear the voice of magic itself. You will know true loneliness.';
+  this.effect = '';
+}
+WalkOnAbyssGauntlet5Tile.prototype = new WalkOnAbyssGauntletTile();
+
+function WalkOnAbyssGauntlet6Tile() {
+  this.name = "WalkOnAbyssGauntlet6";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+	this.say = 'Can you endure the pain required to hold on to the ether?';
+  this.effect = '';
+}
+WalkOnAbyssGauntlet6Tile.prototype = new WalkOnAbyssGauntletTile();
 
 function NightshadeSpawnerTile() {
   this.name = "NightshadeSpawner";
@@ -20618,10 +20958,15 @@ AmuletOfReflectionsTile.prototype = new EquipableItemObject();
 AmuletOfReflectionsTile.prototype.use = function(who) {
   let themap = who.getHomeMap();
   let retval = {};
-//  if (themap.getName() === "olympus2") {
-    let standbefore = themap.getTile(who.getx(), who.gety()-1);
-    let ismirror = standbefore.getTopFeature();
-    if (ismirror.getName() === "mirror") {
+  if (DU.gameflags.getFlag("pc_abyss")) {
+    retval["txt"] = "You have already crossed the Great Abyss.";
+    retval["fin"] = 1;
+    return retval;
+  }
+  let standbefore = themap.getTile(who.getx(), who.gety()-1);
+  let ismirror = standbefore.getTopFeature();
+  if (ismirror) {
+    if (ismirror.getName() === "Mirror") {
       // you are in the right map standing at the right place. GO.
       // remove buffs/debuffs - doesn't cure poison, I guess you can die of
       // poison while your mind is elsewhere? Don't do it, people.
@@ -20640,7 +20985,14 @@ AmuletOfReflectionsTile.prototype.use = function(who) {
         } else {
           newmap = maps.addMap("abyss0");
         }
+        who.preabyssmap = who.getHomeMap().getName();
+        who.preabyssx = who.getx();
+        who.preabyssy = who.gety();
+        who.preabysshp = who.getHP();
+        who.setHP(who.getMaxHP());
+        DrawCharFrame();
         MoveBetweenMaps(who,themap,newmap,8,8);
+        DrawMainFrame("draw",newmap,8,8);
         FadeIn(2000);
         setTimeout(function() {
           gamestate.setMode("player");
@@ -20651,13 +21003,57 @@ AmuletOfReflectionsTile.prototype.use = function(who) {
       retval["fin"] = -2;
       DUPlaySound("sfx_spellcast");
       return retval;
-//    } 
+    }
   }
   retval["txt"] = "Nothing happens here.";
   retval["fin"] = 1;
   return retval;
 }
 
+function AbyssFireFieldTile() {
+	this.name = "AbyssFireField";
+	this.graphic = "fields.gif";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.blocklos = 0;
+  this.prefix = "a";
+	this.desc = "fire field";
+	this.spritexoffset = "-64";
+  this.spriteyoffset = "0";
+  this.expires = 0;
+	
+	this.initdelay = 1.5;
+	this.pathweight = 5;
+	
+	HasAmbientNoise.call(this,"sfx_fire_crackle",1.5);
+}
+AbyssFireFieldTile.prototype = new FeatureObject();
+
+AbyssFireFieldTile.prototype.walkon = function(person) {
+  let resp = {msg:"The fire burns you!"};
+  let dmg = person.getMaxHP()/6;  // should wind up an integer because maxhp is a multiple of 30
+  if (person.getHP() === 1) {
+    // teleport to end
+    resp.msg = "Despite the damage you have taken, you grit your teeth and take one more step. The world spins around you...";
+    gamestate.setMode("waiting");
+    resp["override"] = 3;
+    FadeOut();
+    setTimeout(function() { 
+      person.getHomeMap().moveThing(9,8,person);
+      DrawMainFrame("draw",person.getHomeMap(),person.getx(),person.gety());
+      FadeIn();
+      gamestate.setMode("player");
+     }, 1500); 
+    return resp;
+  }
+  else if (dmg > person.getHP()) {
+    dmg = person.getHP()-1; 
+  }
+  person.setHP(person.getHP()-dmg);
+  DrawCharFrame();
+  DamageFlash();
+  DUPlaySound("sfx_fire_hit");
+  return resp;
+}
 
 // ARMOR
 

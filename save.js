@@ -57,6 +57,7 @@ let saveIndex = [];
         saveIndex[i]["charname"] = file.charname;
         saveIndex[i]["loc"] = file.loc;
         saveIndex[i]["graphic"] = file.graphic;
+        saveIndex[i]["timeplayed"] = file.timeplayed;
       }
     }
   }).catch((error) => {

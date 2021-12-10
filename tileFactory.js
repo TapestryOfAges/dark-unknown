@@ -3758,6 +3758,101 @@ tileFactory.prototype.makeWalkOnAbyss4Tile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWalkOnAbyss5Tile = function() {
+  let newTile = new WalkOnAbyss5Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssCastleTile = function() {
+  let newTile = new WalkOnAbyssCastleTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssCastleSayTile = function() {
+  let newTile = new WalkOnAbyssCastleSayTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssCastleSay1Tile = function() {
+  let newTile = new WalkOnAbyssCastleSay1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssCastleSay2Tile = function() {
+  let newTile = new WalkOnAbyssCastleSay2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssCastleSay3Tile = function() {
+  let newTile = new WalkOnAbyssCastleSay3Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssCastleSay4Tile = function() {
+  let newTile = new WalkOnAbyssCastleSay4Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssCastleSayOnceTile = function() {
+  let newTile = new WalkOnAbyssCastleSayOnceTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssCastleSay5Tile = function() {
+  let newTile = new WalkOnAbyssCastleSay5Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssCastleSay6Tile = function() {
+  let newTile = new WalkOnAbyssCastleSay6Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssCastleSay7Tile = function() {
+  let newTile = new WalkOnAbyssCastleSay7Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssCastleSay8Tile = function() {
+  let newTile = new WalkOnAbyssCastleSay8Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssGauntletTile = function() {
+  let newTile = new WalkOnAbyssGauntletTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssGauntlet1Tile = function() {
+  let newTile = new WalkOnAbyssGauntlet1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssGauntlet2Tile = function() {
+  let newTile = new WalkOnAbyssGauntlet2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssGauntlet3Tile = function() {
+  let newTile = new WalkOnAbyssGauntlet3Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssGauntlet4Tile = function() {
+  let newTile = new WalkOnAbyssGauntlet4Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssGauntlet5Tile = function() {
+  let newTile = new WalkOnAbyssGauntlet5Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyssGauntlet6Tile = function() {
+  let newTile = new WalkOnAbyssGauntlet6Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeNightshadeSpawnerTile = function() {
   let newTile = new NightshadeSpawnerTile();
   return newTile;
@@ -5290,6 +5385,11 @@ tileFactory.prototype.makeRingOfEtherealFocusTile = function() {
 
 tileFactory.prototype.makeAmuletOfReflectionsTile = function() {
   let newTile = new AmuletOfReflectionsTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAbyssFireFieldTile = function() {
+  let newTile = new AbyssFireFieldTile();
   return newTile;
 }
 

@@ -1504,6 +1504,7 @@ GameMap.prototype.saveMap = function (name) {
   }
   if (name === null) {return;}
   let printerwin = window.open('','printarray');
+  printerwin.document.writeln('// MAP BEGINS HERE<br />');
   printerwin.document.writeln('mappages["' + name + '"] = {};<br />');
   let oldname=name;
   name = 'mappages["' + name + '"].terrain';
@@ -1708,7 +1709,8 @@ GameMap.prototype.saveMap = function (name) {
   } else {
     printerwin.document.write(name + ".linkedMaps = [];<br />\n");
   }
-  printerwin.document.write(name + ".editorLabels = '" + JSON.stringify(this.allLabels).replace("'","\\'") + "';<br /><br />\n");
+  printerwin.document.write(name + ".editorLabels = '" + JSON.stringify(this.allLabels).replace("'","\\'") + "';<br />\n");
+  printerwin.document.write('// MAP ENDS HERE<br />\n');
   printerwin.document.close();
 }
 
