@@ -2978,7 +2978,7 @@ magic[SPELL_EMPOWER_LEVEL][SPELL_EMPOWER_ID].executeSpell = function(caster, inf
 
   CreateTargetCursor({sticky: 0, command:'c',spellName:'Empower',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "feature"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 1});
   resp["txt"] = "";
-  resp["input"] = "&gt; Choose target- ";
+  resp["input"] = "&gt; Choose object to be Empowered- ";
   resp["fin"] = 4;  // was 0
   gamestate.setMode("target");
   return resp;
