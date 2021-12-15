@@ -355,11 +355,11 @@ mappages["abyss4"].block_escape = function(mapref) {
 // MAP BEGINS HERE
 mappages["abyss5"] = {};
 mappages["abyss5"].terrain = [];
- mappages["abyss5"].terrain[0] = '^^ ^^ .. .. .. RR .. ,, .. .` ww ww ww';
- mappages["abyss5"].terrain[1] = '^^ ,, ,, .. .. RR .. .. .. .. RR .` ww';
- mappages["abyss5"].terrain[2] = '^^ ^^ nn .. RR RR RR RR RR RR RR .| ww';
- mappages["abyss5"].terrain[3] = '^^ nn nn ,, RR nn ,, ,, .. ,, u, .. .`';
- mappages["abyss5"].terrain[4] = 'RR RR RR RR RR nn nn .. .. .. .. .. ,,';
+ mappages["abyss5"].terrain[0] = '^^ ^^ .. .. .. Rm .. ,, .. .` ww ww ww';
+ mappages["abyss5"].terrain[1] = '^^ ,, ,, .. .. Rm .. .. .. .. RJ .` ww';
+ mappages["abyss5"].terrain[2] = '^^ ^^ nn .. Rv R} Rp R8 R5 Rp RG .| ww';
+ mappages["abyss5"].terrain[3] = '^^ nn nn ,, Rm nn ,, ,, .. ,, u, .. .`';
+ mappages["abyss5"].terrain[4] = 'Rp Rp R8 Rs RA nn nn .. .. .. .. .. ,,';
  mappages["abyss5"].terrain[5] = '^^ u, .. .. nn nn .. .. .. .. .. ,, ,,';
  mappages["abyss5"].terrain[6] = '^^ ^^ ,, ^^ nn ,, .. .. .. .. .. .. ..';
  mappages["abyss5"].terrain[7] = '.. ^^ ^^ ^^ nn .. .. .. u, .. .. ,, ..';
