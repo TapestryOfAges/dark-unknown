@@ -16780,7 +16780,7 @@ function MoongateTile() {
   this.name = "Moongate";
   this.graphic = "static.png";
   this.spritexoffset = 0;
-  this.spriteyoffset = -118*32;
+  this.spriteyoffset = -119*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "gate";
