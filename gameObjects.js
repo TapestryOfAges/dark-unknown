@@ -1070,7 +1070,7 @@ function ManualAnimation(params) {
   this.currframenum;
 
   this.startAnimation = function() {
-//    console.log("startAnimation called for " + this.getName());
+    console.log("startAnimation called for " + this.getName());
     if (this.animstyle === "pingpong") { this.animdir = 1; }
     if (this.startframe === "start") { 
       if (this.animdir === "vertical") {
@@ -1085,13 +1085,17 @@ function ManualAnimation(params) {
       this.currframe = -1*(sf-1)*32 + this.spritexoffset;
       this.currframenum = sf;
     }
-//    console.log("currframenum: " + this.currframenum);
-//    console.log("currframe: " + this.currframe);
+    console.log("currframenum: " + this.currframenum);
+    console.log("currframe: " + this.currframe);
+    this.animating = 0; // this.animating gets saved, but we want it to always start at 0
   }
 
   this.IWasJustDrawn = function() {
     console.log("IWasJustDrawn (" + this.getName() + ")");
-    if (this.animating) { return; } // animateMe cycle is already going 
+    if (this.animating) {
+      console.log("Already animating: " + this.animating);
+      return; 
+    } // animateMe cycle is already going 
     this.animating = 1;
 
     let waittime = Math.floor(Math.random() * (this.framedurationmax - this.framedurationmin +1)) + this.framedurationmin;
@@ -12891,7 +12895,7 @@ function DescendWaterfall(who, waterfall) {
 
 function GrassWaterfallTile() {
   this.name = "GrassWaterfall";
-  this.layers = [["static.png","",-3*32,-60*32]];
+//  this.layers = [["static.png","",-3*32,-60*32]];
 }
 GrassWaterfallTile.prototype = new WaterfallTile();
 

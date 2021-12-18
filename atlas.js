@@ -1411,7 +1411,7 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride,noactivate) {
   
     if (!noactivate) {
       newthing.activate(timeoverride);
-      if (newthing.hasOwnProperty("startAnimation")) { newthing.startAnimation(); }
+      if ('startAnimation' in newthing) { newthing.startAnimation(); }
     }
 
 	  //update pathfinding

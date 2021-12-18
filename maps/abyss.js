@@ -5448,3 +5448,4 @@ mappages["abyss_final"].onload = function(mapref) {
   //  mapref.setBackground("clouds-mass.gif");
   mapref.worldlayer = "ether.gif";
 }
+
