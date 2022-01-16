@@ -1418,6 +1418,12 @@ function PerformSearch(who) {
 		retval["fin"] = 0;
 		return retval;
 	}
+  if ("onSearched" in searched) {
+    let searchresult = searched.onSearched(who);
+    if (searchresult.exitOut) {
+      return searchresult;
+    }
+  }
 	if (searched.isContainer) {  // add doors to the list
 	  // search for traps and such rather than searching for items
 	  if (searched.trapped && (who.getInt() >= searched.trapchallenge-5)) {
