@@ -4227,6 +4227,35 @@ function CaveTile() {
 }
 CaveTile.prototype = new FeatureObject();
 
+function SecretCaveTile() {
+  this.name = "SecretCave";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "0";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "mountain";
+
+  Enterable.call(this, "null", 0, 0);
+}
+SecretCaveTile.prototype = new FeatureObject();
+
+SecretCaveTile.prototype.onSearched = function(who) {
+  let retval = {};
+  if (this.getDesc() === "mountain") {
+    this.desc = "cave entrance";
+    this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+    this.spritexoffset = "-160";
+    this.spriteyoffset = "-832";
+    retval.txt = "After careful inspection, you find the entrance to a cave!";
+    retval.fin = 1;
+    retval.exitOut = 1;
+    DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
+  }
+  return retval;
+}
+
 function TowneTile() {
   this.name = "Towne";
   this.graphic = "152.gif";

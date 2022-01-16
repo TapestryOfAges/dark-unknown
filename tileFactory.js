@@ -898,6 +898,11 @@ tileFactory.prototype.makeCaveTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeSecretCaveTile = function() {
+  let newTile = new SecretCaveTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeTowneTile = function() {
   let newTile = new TowneTile();
   return newTile;
