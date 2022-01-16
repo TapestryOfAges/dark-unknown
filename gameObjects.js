@@ -7825,13 +7825,13 @@ CaveTile.prototype = new FeatureObject();
 
 function SecretCaveTile() {
   this.name = "SecretCave";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "0";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
-  this.desc = "mountain";
+  this.desc = "mountains";
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -7842,8 +7842,8 @@ SecretCaveTile.prototype.onSearched = function(who) {
   if (this.getDesc() === "mountain") {
     this.desc = "cave entrance";
     this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-    this.spritexoffset = "-160";
-    this.spriteyoffset = "-832";
+    this.spritexoffset = -6*32;
+    this.spriteyoffset = -3*32;
     retval.txt = "After careful inspection, you find the entrance to a cave!";
     retval.fin = 1;
     retval.exitOut = 1;
