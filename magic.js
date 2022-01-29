@@ -77,7 +77,7 @@ function CheckResist (caster, tgt, infused, diffmod) {
   // 15% harder to resist if infused
   // caster having super-high Int (>20) makes spell 10% harder to resist
   let chance = BASE_RESIST_CHANCE + tgt.getResist("magic") + tgt.getLevel()*5 - caster.getLevel()*5 - infused*15;
-  if (caster.getInt() > 20) { chance -= 10; }
+  if (caster.getIntForPower() > 20) { chance -= 10; }
   if (diffmod) { chance += diffmod; }
   
   if (chance < 0) { chance = 0; }
@@ -444,7 +444,7 @@ magic[SPELL_DISARM_TRAP_LEVEL][SPELL_DISARM_TRAP_ID].executeSpell = function(cas
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   let mult = 1;
-  let power = caster.getInt();
+  let power = caster.getIntForPower();
   if (free) {
     power = 15;
   }
@@ -498,10 +498,10 @@ magic[SPELL_DISARM_TRAP_LEVEL][SPELL_DISARM_TRAP_ID].executeSpell = function(cas
 
 // Distract
 magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].getLongDesc = function () {
-  if (PC.getInt() > 20) {
-    return "Enemies within a radius of 4 resist or become distracted, lowering their chance to hit by " + Math.round(PC.getInt()/2) + "%.";
+  if (PC.getIntForPower() > 20) {
+    return "Enemies within a radius of 4 resist or become distracted, lowering their chance to hit by " + Math.round(PC.getIntForPower()/2) + "%.";
   } else {
-    return "Enemies within a radius of 3 resist or become distracted, lowering their chance to hit " + Math.round(PC.getInt()/2) + "%.";
+    return "Enemies within a radius of 3 resist or become distracted, lowering their chance to hit " + Math.round(PC.getIntForPower()/2) + "%.";
   }
 }
 magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].getInfusedDesc = function () {
@@ -520,9 +520,9 @@ magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell = function(caster, i
   resp["fin"] = 1;
   
   let radius = 3;
-  if (!free & caster.getInt() > 20) { radius = 4; }
+  if (!free & caster.getIntForPower() > 20) { radius = 4; }
   if (infused) { radius = radius * 1.5; } 
-  let power = caster.getInt()/2;
+  let power = caster.getIntForPower()/2;
   if (free) { power = Dice.roll("1d3+7"); }
   if (infused) { power = power*1.5; }
   let castermap = caster.getHomeMap();
@@ -591,7 +591,7 @@ magic[SPELL_FLAME_BLADE_LEVEL][SPELL_FLAME_BLADE_ID].executeSpell = function(cas
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   let flameblade = localFactory.createTile("FlameBlade");
-  let duration = caster.getInt() * 2 * SCALE_TIME;
+  let duration = caster.getIntForPower() * 2 * SCALE_TIME;
   if (free) { duration = 30*SCALE_TIME; }
   flameblade.uses = 1;
   flameblade.damage = DMG_NEGLIGABLE;
@@ -631,7 +631,7 @@ magic[SPELL_LIGHT_LEVEL][SPELL_LIGHT_ID].executeSpell = function(caster, infused
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   let liobj = localFactory.createTile("Light");
-  let dur = 20 * caster.getInt() * .3;
+  let dur = 20 * caster.getIntForPower() * .3;
   if (free) { dur = 100; }
   if (infused) {dur = dur * 3; }
   let endtime = dur + DU.DUTime.getGameClock();
@@ -749,7 +749,7 @@ function PerformVulnerability(caster, infused, free, tgt) {
   if (!CheckResist(caster,tgt,infused,0)) {
     let vulobj = localFactory.createTile("Vulnerability");
     
-    let dur = caster.getInt()/2;
+    let dur = caster.getIntForPower()/2;
     if (infused) { dur = dur * 1.5;}
     if (free) { dur = Dice.roll("1d4+5"); }
     ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
@@ -843,7 +843,7 @@ function PerformIllusion(caster, infused, free, tgt) {
   if ((caster === PC) || (caster.getAttitude() === "friendly")) {
     illusion.setAttitude("friendly");
   }
-  let duration = caster.getInt();
+  let duration = caster.getIntForPower();
   if (free) { duration = Dice.roll("1d6+12"); }
   duration = duration*2*SCALE_TIME;
   illusion.expiresTime = DUTime.getGameClock() + duration;  // illusion AI needs to check expiresTime and go poof if it is reached
@@ -861,11 +861,11 @@ function PerformIllusion(caster, infused, free, tgt) {
 
 // Iron Flesh
 magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].getLongDesc = function() {
-  let absorb = PC.getInt() * 5;
+  let absorb = PC.getIntForPower() * 5;
   return `Absorbs 5 points from hits on you until it has absorbed ${absorb}.`;
 }
 magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].getInfusedDesc = function() {
-  let absorb = PC.getInt() * 10;
+  let absorb = PC.getIntForPower() * 10;
   return `Until it has absorbed ${absorb} points of damage.`;
 }
 
@@ -883,14 +883,14 @@ magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell = function(caste
   }
   let liobj = localFactory.createTile("IronFlesh");
   
-  let dur = caster.getInt() * .5;
+  let dur = caster.getIntForPower() * .5;
   if (free) { dur = 10; }
   if (infused) {dur = dur * 2; }
   let endtime = dur + DU.DUTime.getGameClock();
   DebugWrite("magic", "Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />");
   liobj.setExpiresTime(endtime);
-  let power = PC.getInt()*5;
-  if (infused) { power = PC.getInt()*10;}   
+  let power = PC.getIntForPower()*5;
+  if (infused) { power = PC.getIntForPower()*10;}   
   liobj.setPower(power);
   
   tgt.addSpellEffect(liobj, Math.max(0, free-1) );
@@ -946,7 +946,7 @@ magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell = function(cas
 
 // Magic Bolt
 magic[SPELL_MAGIC_BOLT_LEVEL][SPELL_MAGIC_BOLT_ID].getLongDesc = function() {
-  return "Deals " + (Dice.rollmin(DMG_NEGLIGABLE)+Math.floor(PC.getInt()/5)+1) + "-" + (Dice.rollmax(DMG_NEGLIGABLE)+Math.floor(PC.getInt()/5)+1) + " magic damage to a single target. Half damage if resisted.";
+  return "Deals " + (Dice.rollmin(DMG_NEGLIGABLE)+Math.floor(PC.getIntForPower()/5)+1) + "-" + (Dice.rollmax(DMG_NEGLIGABLE)+Math.floor(PC.getIntForPower()/5)+1) + " magic damage to a single target. Half damage if resisted.";
 }
 magic[SPELL_MAGIC_BOLT_LEVEL][SPELL_MAGIC_BOLT_ID].getInfusedDesc = function() {
   return "Damage is increased by 1.5x.";
@@ -1004,7 +1004,7 @@ function PerformMagicBolt(caster, infused, free, tgt) {
     TurnMapHostile(caster.getHomeMap());
   }
   tgt.setHitBySpell(caster,SPELL_MAGIC_BOLT_LEVEL);
-  let power = caster.getInt();
+  let power = caster.getIntForPower();
   if (free) { power = Dice.roll("1d5+12"); }
   let dmg = RollDamage(DMG_NEGLIGABLE, Math.floor(power/5)+1);
   if (infused) {
@@ -1041,7 +1041,7 @@ function PerformMagicBolt(caster, infused, free, tgt) {
 
 // Poison Cloud
 magic[SPELL_POISON_CLOUD_LEVEL][SPELL_POISON_CLOUD_ID].getLongDesc = function() {
-  let rad = Math.floor(PC.getInt()/10)+1;
+  let rad = Math.floor(PC.getIntForPower()/10)+1;
   return "Attempts to poison anyone within " + rad + " steps of the selected space.";
 }
 magic[SPELL_POISON_CLOUD_LEVEL][SPELL_POISON_CLOUD_ID].getInfusedDesc = function() {
@@ -1088,7 +1088,7 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
-  let power = caster.getInt();
+  let power = caster.getIntForPower();
   if (free) { power = Dice.roll("1d5+12"); }  
   let radius = Math.floor(power/10) +1; 
 
@@ -1149,10 +1149,10 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
 
 // Protection
 magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].getLongDesc = function() {
-  return "Decreases your chance of being hit by " + ((PC.getInt()*2/3)+1) + "%.";
+  return "Decreases your chance of being hit by " + ((PC.getIntForPower()*2/3)+1) + "%.";
 }
 magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].getLongDesc = function() {
-  return "Decreases your chance of being hit by " + Math.floor(((PC.getInt()*2/3)+1)*1.5) + "% instead.";
+  return "Decreases your chance of being hit by " + Math.floor(((PC.getIntForPower()*2/3)+1)*1.5) + "% instead.";
 }
 
 magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].executeSpell = function(caster, infused, free, tgt) {
@@ -1167,8 +1167,8 @@ magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].executeSpell = function(caste
   if (!tgt || (caster === PC)) { tgt = caster; }
 
   let prot = localFactory.createTile("Protection");
-  let duration = caster.getInt() * 3 * SCALE_TIME;
-  let power = Math.floor(caster.getInt()*2/3)+1;
+  let duration = caster.getIntForPower() * 3 * SCALE_TIME;
+  let power = Math.floor(caster.getIntForPower()*2/3)+1;
   if (infused) { 
     duration = duration * 2; 
     power = Math.floor(power*1.5);
@@ -1395,7 +1395,7 @@ magic[SPELL_FIRE_ARMOR_LEVEL][SPELL_FIRE_ARMOR_ID].executeSpell = function(caste
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   let prot = localFactory.createTile("FireArmor");
-  let duration = caster.getInt() * 3 * SCALE_TIME;
+  let duration = caster.getIntForPower() * 3 * SCALE_TIME;
   if (free) { duration = Dice.roll("1d6 + 12") * 3 * SCALE_TIME; }
   let power = DMG_NEGLIGABLE;
   if (infused) { 
@@ -1571,7 +1571,7 @@ function PerformIceball(caster, infused, free, tgt) {
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
   
   let frozen = localFactory.createTile("Slow");
-  let dur = caster.getInt()/3;
+  let dur = caster.getIntForPower()/3;
   if (free) { dur = Dice.roll("1d2+3"); }
   let endtime = dur*SCALE_TIME + DU.DUTime.getGameClock();
   frozen.setExpiresTime(endtime);
@@ -1735,7 +1735,7 @@ magic[SPELL_TELEPATHY_LEVEL][SPELL_TELEPATHY_ID].executeSpell = function(caster,
   }
   resp["fin"] = 1;
   let prot = localFactory.createTile("Telepathy");
-  let duration = caster.getInt() * 2 * SCALE_TIME;
+  let duration = caster.getIntForPower() * 2 * SCALE_TIME;
   if (free) { duration = Dice.roll("1d6 + 12") * 2 * SCALE_TIME; }
   if (infused) { 
     duration = duration * 2; 
@@ -1798,7 +1798,7 @@ function PerformWallOfFlame(caster, infused, free, tgt) {
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
-  let duration = caster.getInt() * SCALE_TIME;
+  let duration = caster.getIntForPower() * SCALE_TIME;
   if (infused) { duration = duration * 2; }
   let expires = duration + DU.DUTime.getGameClock();
   
@@ -1989,7 +1989,7 @@ function TryToPlaceField(mapref, wherex, wherey, fieldname) {
 
 // Blessing
 magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].getLongDesc = function() {
-  return "Raises your STR, DEX, and INT by " + (Math.floor(PC.getInt()/5)+1) + ".";
+  return "Raises your STR, DEX, and INT by " + (Math.floor(PC.getIntForPower()/5)+1) + ".";
 }
 magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].getInfusedDesc = function() {
   return "Extends the duration.";
@@ -2008,9 +2008,9 @@ magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].executeSpell = function(caster, i
 
   let levobj = localFactory.createTile("Blessing");
   
-  let dur = caster.getInt() * SCALE_TIME;
+  let dur = caster.getIntForPower() * SCALE_TIME;
   if (infused) { dur = dur * 3; }
-  let power = Math.floor(caster.getInt()/5)+1;
+  let power = Math.floor(caster.getIntForPower()/5)+1;
   if (free) {
     dur = Dice.roll("2d10+15") * SCALE_TIME;
     power = Dice.roll("1d4+1");
@@ -2398,7 +2398,7 @@ magic[SPELL_WATER_WALK_LEVEL][SPELL_WATER_WALK_ID].executeSpell = function(caste
 
   let levobj = localFactory.createTile("Levitate");
   
-  let dur = caster.getInt()+5;
+  let dur = caster.getIntForPower()+5;
   if (free) { dur = Dice.roll("1d10+35"); }
   if (infused) { dur = dur * 3; }
   let endtime = dur + DU.DUTime.getGameClock();
@@ -2435,8 +2435,8 @@ magic[SPELL_CRYSTAL_TRAP_LEVEL][SPELL_CRYSTAL_TRAP_ID].executeSpell = function(c
   
   let trap = localFactory.createTile("CrystalTrapSpace");
   trap.owner = caster.getSerial();
-  trap.duration = caster.getInt() * SCALE_TIME;
-  trap.power = caster.getInt();
+  trap.duration = caster.getIntForPower() * SCALE_TIME;
+  trap.power = caster.getIntForPower();
   trap.infused = infused;
   if (infused) { trap.power = trap.power + 4; }
 
@@ -2469,7 +2469,7 @@ magic[SPELL_MIRROR_WARD_LEVEL][SPELL_MIRROR_WARD_ID].executeSpell = function(cas
 
   let mwobj = localFactory.createTile("MirrorWard");
   
-  let dur = caster.getInt();
+  let dur = caster.getIntForPower();
   if (free) { dur = Dice.roll("1d10+35"); }
   if (infused) { dur = dur * 3; }
   let endtime = (dur * SCALE_TIME) + DU.DUTime.getGameClock();
@@ -2535,7 +2535,7 @@ function PerformParalyze(caster, infused, free, tgt) {
   if (!CheckResist(caster,tgt,infused,0)) {
     let vulobj = localFactory.createTile("Paralyze");
   
-    let dur = caster.getInt()/2;
+    let dur = caster.getIntForPower()/2;
     if (infused) { dur = dur * 1.5;}
     if (free) { dur = Dice.roll("1d4+5"); }
     ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
@@ -2831,7 +2831,7 @@ function PerformSummonAlly(caster, infused, free, tgt) {
       break;
   }
   ally = localFactory.createTile(eletype+"NPC");
-  let duration = caster.getInt() * SCALE_TIME;
+  let duration = caster.getIntForPower() * SCALE_TIME;
   if (free) { duration = Dice.roll("1d6+12"); }
   if (infused) {
     ally.setStr(ally.getStr()+5);
@@ -3129,7 +3129,7 @@ magic[SPELL_JINX_LEVEL][SPELL_JINX_ID].executeSpell = function(caster, infused, 
   }
 
   var radius = 4;
-  if (!free & caster.getInt() > 20) { radius = 5; }
+  if (!free & caster.getIntForPower() > 20) { radius = 5; }
   if (infused) { radius = radius * 1.5; }  // level 6+ spells can't be infused, but let's cover the case anyway
   let castermap = caster.getHomeMap();
   let npcs = castermap.getNPCsAndPCs();
@@ -3153,7 +3153,7 @@ magic[SPELL_JINX_LEVEL][SPELL_JINX_ID].executeSpell = function(caster, infused, 
             ShowEffect(val, 700, "X.gif");
           }       
         } else {
-          let duration = 8 + Dice.roll("1d4") - val.getInt()/5;
+          let duration = 8 + Dice.roll("1d4") - val.getIntForPower()/5;
           let jinx = localFactory.createTile("Confused");
           jinx.setPower(power);
           jinx.setExpiresTime(duration*SCALE_TIME + DUTime.getGameClock());
@@ -3180,8 +3180,8 @@ magic[SPELL_JINX_LEVEL][SPELL_JINX_ID].executeSpell = function(caster, infused, 
 // Mass Curse
 magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].getLongDesc = function() {
   let rad = "four";
-  if (PC.getInt() > 20) { rad = "five"; }
-  return "All creatures within " +rad+ " steps of you have their stats lowered by " + (2+Math.floor(PC.getInt()/5)) + " unless they resist.";
+  if (PC.getIntForPower() > 20) { rad = "five"; }
+  return "All creatures within " +rad+ " steps of you have their stats lowered by " + (2+Math.floor(PC.getIntForPower()/5)) + " unless they resist.";
 }
 
 magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].executeSpell = function(caster, infused, free) {
@@ -3194,7 +3194,7 @@ magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].executeSpell = function(caste
   }
 
   let radius = 4;
-  if (!free & caster.getInt() > 20) { radius = 5; }
+  if (!free & caster.getIntForPower() > 20) { radius = 5; }
   if (infused) { radius = radius * 1.5; }  // level 6+ spells can't be infused, but let's cover the case anyway
   let castermap = caster.getHomeMap();
   let npcs = castermap.getNPCsAndPCs();
@@ -3207,7 +3207,7 @@ magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].executeSpell = function(caste
         val.setHitBySpell(caster,SPELL_MASS_CURSE_LEVEL);
         let resist = CheckResist(caster,val,infused,0);
         let curse = localFactory.createTile("Curse");
-        let power = 2 + Math.floor(caster.getInt()/5);
+        let power = 2 + Math.floor(caster.getIntForPower()/5);
         if (resist) {
           if (val === PC) {
             desc = "You resist, but are more vulnerable to magic.";
@@ -3221,7 +3221,7 @@ magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].executeSpell = function(caste
             desc = "You are cursed! Your thoughts feel sluggish, you feel clumsier, and you feel weaker.";
           }
         }
-        let duration = 10 + Dice.roll("1d8") - val.getInt()/4;
+        let duration = 10 + Dice.roll("1d8") - val.getIntForPower()/4;
         curse.setPower(power);
         curse.setExpiresTime(duration*SCALE_TIME + DUTime.getGameClock());
         val.addSpellEffect(curse);          
@@ -3259,7 +3259,7 @@ magic[SPELL_NEGATE_MAGIC_LEVEL][SPELL_NEGATE_MAGIC_ID].executeSpell = function(c
   PlayCastSound(caster,"sfx_dangerous_buff");
 
   let castermap = caster.getHomeMap();
-  let duration = caster.getInt() + DU.DUTime.getGameClock();
+  let duration = caster.getIntForPower() + DU.DUTime.getGameClock();
   let negated = DU.gameflags.getFlag("negate");
   negated[castermap.getName()] = duration * SCALE_TIME;
   DU.gameflags.setFlag("negate", negated);
@@ -3388,7 +3388,7 @@ function PerformCharm(caster, infused, free, tgt) {
   if (!CheckResist(caster,tgt,infused,0)) {
     let charmobj = localFactory.createTile("Charm");
   
-    let dur = caster.getInt()/2;
+    let dur = caster.getIntForPower()/2;
     if (infused) { dur = dur * 1.5;}  // can't be infused, but just in case
     if (free) { dur = Dice.roll("1d4+5"); }
     ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
@@ -3425,7 +3425,7 @@ function PerformCharm(caster, infused, free, tgt) {
 // Fear
 magic[SPELL_FEAR_LEVEL][SPELL_FEAR_ID].getLongDesc = function() {
   let rad = "four";
-  if (PC.getInt() > 20) { rad = "five"; }
+  if (PC.getIntForPower() > 20) { rad = "five"; }
   return "Enemies within " + rad + " steps will become afraid and flee from you unless they resist.";
 }
 
@@ -3439,7 +3439,7 @@ magic[SPELL_FEAR_LEVEL][SPELL_FEAR_ID].executeSpell = function(caster, infused, 
   }
 
   let radius = 4;
-  if (!free & caster.getInt() > 20) { radius = 5; }
+  if (!free & caster.getIntForPower() > 20) { radius = 5; }
   if (infused) { radius = radius * 1.5; }  // level 6+ spells can't be infused, but let's cover the case anyway
   let castermap = caster.getHomeMap();
   let npcs = castermap.getNPCsAndPCs();
@@ -3462,7 +3462,7 @@ magic[SPELL_FEAR_LEVEL][SPELL_FEAR_ID].executeSpell = function(caster, infused, 
             desc = val.getDesc() + " was already afraid!";
           } else {
             var fear = localFactory.createTile("Fear");
-            var duration = 10 + Dice.roll("1d8") - val.getInt()/4;
+            var duration = 10 + Dice.roll("1d8") - val.getIntForPower()/4;
             fear.setPower(1);
             fear.setExpiresTime(duration*SCALE_TIME + DUTime.getGameClock());
             val.addSpellEffect(fear);          
@@ -3587,7 +3587,7 @@ magic[SPELL_INVULNERABILITY_LEVEL][SPELL_INVULNERABILITY_ID].executeSpell = func
 // Meteor Swarm
 magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].getLongDesc = function() {
   let rad = "four";
-  if (PC.getInt() > 20) { rad = "five"; }
+  if (PC.getIntForPower() > 20) { rad = "five"; }
   let min = Dice.rollmin(DMG_MEDIUM) + Dice.rollmin(DMG_LIGHT);
   let max = Dice.rollmax(DMG_MEDIUM) + Dice.rollmax(DMG_LIGHT);
   return "All enemies within " + rad + " steps are dealt " + min + "-" + max + " fire damage, half if they resist.";
@@ -3603,7 +3603,7 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(c
   }
 
   let radius = 4;
-  if (!free & caster.getInt() > 20) { radius = 5; }
+  if (!free & caster.getIntForPower() > 20) { radius = 5; }
   if (infused) { radius = radius * 1.5; }  // level 6+ spells can't be infused, but let's cover the case anyway
   let castermap = caster.getHomeMap();
   let npcs = castermap.getNPCsAndPCs();
@@ -3719,7 +3719,7 @@ function PerformArrowOfGlass(caster, infused, free, tgt) {
     TurnMapHostile(caster.getHomeMap());
   }
 //  var dmg = Dice.roll("2d6+" + Math.floor(caster.getInt()/5));
-  let power = caster.getInt();
+  let power = caster.getIntForPower();
   if (free) { power = Dice.roll("1d5+12"); }
   let dmg = RollDamage(DMG_TREMENDOUS) + power;
   if (infused) {  // can't be infused, but check anyway
@@ -3760,7 +3760,7 @@ function PerformArrowOfGlass(caster, infused, free, tgt) {
 // Conflagration
 magic[SPELL_CONFLAGRATION_LEVEL][SPELL_CONFLAGRATION_ID].getLongDesc = function() {
   let rad = "four";
-  if (PC.getInt() > 20) { rad = "five"; }
+  if (PC.getIntForPower() > 25) { rad = "five"; }
   let min = Dice.rollmin(DMG_HEAVY);
   let max = Dice.rollmax(DMG_HEAVY);
   return "All enemies within " + rad + " steps are dealt " + min + "-" + max + " fire damage, half if they resist.";
@@ -3777,7 +3777,7 @@ magic[SPELL_CONFLAGRATION_LEVEL][SPELL_CONFLAGRATION_ID].executeSpell = function
 
   PlayCastSound(caster,"sfx_fireball");
   let radius = 4;
-  if (!free & caster.getInt() > 25) { radius = 5; }
+  if (!free & caster.getIntForPower() > 25) { radius = 5; }
   if (infused) { radius = radius * 1.5; }  // level 6+ spells can't be infused, but let's cover the case anyway
   let castermap = caster.getHomeMap();
   let npcs = castermap.getNPCsAndPCs();
@@ -3853,7 +3853,7 @@ function PerformConjureDaemon(caster, infused, free, tgt) {
 
   let ally = localFactory.createTile("Daemon");
   PlayCastSound(caster,"sfx_summon");
-  let duration = caster.getInt() * SCALE_TIME;
+  let duration = caster.getIntForPower() * SCALE_TIME;
   if ((caster === PC) || (caster.getAttitude() === "friendly")) {
     ally.setAttitude("friendly");
   }
@@ -3896,7 +3896,7 @@ magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID].executeSpell = function(caster,
   
   let liobj = localFactory.createTile("Quickness");
   
-  let dur = caster.getInt() * SCALE_TIME;
+  let dur = caster.getIntForPower() * SCALE_TIME;
   if (free) { 
     dur = Dice.roll("1d10+5") * SCALE_TIME;
   }
@@ -3931,7 +3931,7 @@ magic[SPELL_TIME_STOP_LEVEL][SPELL_TIME_STOP_ID].executeSpell = function(caster,
   
   let liobj = localFactory.createTile("TimeStop");
   
-  let dur = caster.getInt() * .3;
+  let dur = caster.getIntForPower() * .3;
   if (free) { dur = 5; }
   if (infused) {dur = dur * 3; }
   let endtime = dur + DU.DUTime.getGameClock();
