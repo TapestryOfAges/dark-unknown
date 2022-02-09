@@ -34,7 +34,7 @@ health_samuel - has asked Samuel HEALTH
 health_ingrid - has asked Ingrid HEALTH
 all_health - has set all the above health_ flags
 hazel_hood - you've brought Hazel an Executioner's Hood and she will now pay you less for more of them
-derek_pony - You've told Derek about Amos
+derek_pony - You've told Derek about Amos 
 derek_pony2 - you've left town since telling Derek about Amos; Amos has helped Derek's pony Faithful
 robert_map - you've given the map to Robert
 tyler_start - Tyler asked you to talk to town leaders
@@ -107,7 +107,7 @@ franklin_debt_mayor - you have cleared Franklin's name with the mayor
 franklin_debt_paid - Franklin has acknowledged that you have paid his debt
 franklin_offered - you offered money to Franklin (and could actually afford to)
 franklin_karma - you had your one shot at karma for offering him money
-franklin_gift - Franklin sent you the AN Jinx
+franklin_gift - Franklin sent you the AN Jinx   **
 knowsgreenpotion - you know that green potions are poison
 knowsdarkgreenpotion - you know that dark green potions are quickness
 knowssilverpotion - you know that silver potions are strength
@@ -148,7 +148,7 @@ learned_ww - you've learned Water Walk
 oracle_tome - you've brought the Tome of Sight to Ashlin
 infusion_learned - you know infusion
 borogard_killed - you've killed the talking ettin
-rhiannon_recipe - you've found a recipe to help the Gauntlet Tavern
+rhiannon_recipe - you've found a recipe to help the Gauntlet Tavern **
 gauntlet_recipe - you've left Gauntlet since giving the recipe
 ask_poverty - Kelly has asked you to ask the King to help Poverty
 
@@ -183,3 +183,4 @@ beldskae - Beldskae was attacked (set with either "saved" or "razed")
 beldskae_king - Daragen has talked to you about Beldskae (whether it was saved or razed)
 beldskae_jharden - Jharden has talked to you about the Abyss (which happens after Beldskae is attacked)
 jharden_abyss - you've talked to Jharden after crossing the Abyss
+rune_gems - used the Rune of Kings in the appropriate place in Kalton Mine to uncover the perfect ruby

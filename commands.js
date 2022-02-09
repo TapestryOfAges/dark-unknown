@@ -917,15 +917,15 @@ function PerformSpellbook(code) {
       retval["input"] = "&gt;";
       return retval;
     }      
-    if (lvl*3 > PC.getInt()) {
-      spelltxt += "...";
-      maintext.addText(spelltxt);
-      maintext.addText("Your intelligence is insufficient to cast that spell.");
-      let retval = {};
-      retval["fin"] = 2;
-      retval["input"] = "&gt;";
-      return retval;      
-    }
+//    if (lvl*3 > PC.getInt()) {
+//      spelltxt += "...";
+//      maintext.addText(spelltxt);
+//      maintext.addText("Your intelligence is insufficient to cast that spell.");
+//      let retval = {};
+//      retval["fin"] = 2;
+//      retval["input"] = "&gt;";
+//      return retval;      
+//    }
     if (PC.getMana() >= manacost) {
       spelltxt += "!";
       maintext.addText(spelltxt);
@@ -1268,6 +1268,32 @@ function PerformRuneChoice() {
         retval["txt"] = "You reach for the earth... and it reaches back. But you then, carefully, redirect the earth's energies to your brother, lying wan and sickly beside you. As the warm power reaches him, you see color return to his face. He takes a sudden breath and his eyes open.";
         PC.forcedTalk = lance;
         
+      }
+    } else if (themap.getName() === "kaltonmine3") {
+      if ((PC.getx() <=16) && (PC.gety() >= 22)) {
+        if (!DU.getflags.getFlag("rune_gems")) {
+          let alreadydone = 0;
+          let fea = themap.features.getAll();
+          for (let i=0;i<fea.length;i++) {
+            // checks to see if you've used the rune and are trying to use it again while gems litter the floor
+            if (fea[i].getName() === "UncutLargeRuby") { alreadydone = 1; }
+          }
+          if (!alreadydone) {
+            let gems = localFactory.createTile("UncutLargeRuby");
+            themap.placeThing(6,27,gems);
+            gems = localFactory.createTile("UncutRuby");
+            themap.placeThing(9,26,gems);
+            gems = localFactory.createTile("UncutRuby");
+            themap.placeThing(12,23,gems);
+            gems = localFactory.createTile("UncutSapphire");
+            themap.placeThing(8,25,gems);
+            gems = localFactory.createTile("UncutGems");
+            themap.placeThing(13,25,gems);
+          }
+        }
+        DrawMainFrame("draw",themap,PC.getx(),PC.gety());
+        Earthquake();
+        DUPlaySound("sfx_earthquake");
       }
     }
     if (PC.getHP() < PC.getMaxHP()) {

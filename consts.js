@@ -32,6 +32,7 @@ const DMG_AUTOKILL = "255";
 
 const MANA_REGEN = 10;
 const HP_REGEN = 25;
+const INT_POWER = 1.5;
 
 // For sparkles
 const COLOR_YELLOW = 0;

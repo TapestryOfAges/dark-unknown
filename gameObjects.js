@@ -17605,6 +17605,10 @@ function UncutLargeRubyTile() {
 }
 UncutLargeRubyTile.prototype = new ItemObject();
 
+UncutLargeRubyTile.prototype.onGet = function(who) {
+  DU.gameflags.setFlag("rune_gems",1);
+}
+
 function RubyTile() {
   //Graphics Upgraded
 	this.name = "Ruby";
@@ -22530,6 +22534,12 @@ NPCObject.prototype.getInt = function() {
   let theint = this.getBaseInt() + this.getModInt() + this.getOrbInt();
   theint = Math.max(theint, 3);
 	return theint;
+}
+
+NPCObject.prototype.getIntForPower = function() {
+  let theint = this.getInt();
+  if (theint < 10) { return theint; }
+  return ((theint - 10)*1.5 + 10);
 }
 
 NPCObject.prototype.getBaseInt = function() {
