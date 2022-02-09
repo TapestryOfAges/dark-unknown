@@ -4783,6 +4783,11 @@ tileFactory.prototype.makeSpireScrapTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeLayneJournalTile = function() {
+  let newTile = new LayneJournalTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeLanceRuneNotesTile = function() {
   let newTile = new LanceRuneNotesTile();
   return newTile;
