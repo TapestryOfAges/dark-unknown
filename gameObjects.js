@@ -12758,6 +12758,21 @@ function SpireScrapTile() {
 }
 SpireScrapTile.prototype = new BookItemObject();
 
+function LayneJournalTile() {
+  this.name = "LayneJournal";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1184";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "well marked scroll";
+  this.prefix = "a";
+  this.contents = "<span class='conv'>Herein are the words of Layne son of Timothy, squire to Sir Caradawg of the Knights of Hilden. I record our travels into the depths of the earth, as he seeks to venture into this newly discovered underworld.</span>%%<span class='conv'>We traveled through the mine- which is beginning to see trouble from the monsters below- and emerged on an island in a lake deeply underground, within the hugest cavern you have ever seen. With great craftiness we crossed the lake, the entrance to the mine at our backs, and found ourselves facing a wide tunnel leading deeper into the underworld.</span>%%<span class='conv'>Day 2 underground: After several battles with underworld denizens, we found ourselves... back at the banks of that self-same lake. Dismayed, we continued skirting the lake and found another path, which we followed until we were blocked by a great pool of lava. And so we backtracked, continued around the lake, and took the next path outward, making camp to rest.</span>%%<span class='conv'>Day 3: This passage is much quieter- worryingly so. We quickly reached a fork, and turned right, and stalked along until the ground turned swampy and muddy. The air was dank and unpleasant, and we began to be swarmed by insects. Two exits presented themselves from here, and we chose to travel again to the right.</span>%%<span class='conv'>This twisted and turned and we were suddenly beset by monstrous beings that walked like humans. But we slew them, and reached another fork, one path smooth and the other very much like a series of rough hills. Fearing to be seen from too great a distance on the flat paths, we chose the hills.</span>%%<span class='conv'>After several hours, the hills gave way to flatland once more. We ignored a side passage on our left, and reached a large cavern with paths leaving in four directions. We chose to go right, which almost immediately turned into a dead end where we took advantage of the secure position to make camp.</span>%%<span class='conv'>Day 4: Emerging from the cave, we saw that to the right was more swampland, and we decided not to travel that way, so we continued straight across. We chose right and then right again quickly thereafter. While walking this path we were attacked by great beasts, and wounded badly but not severely. With the beasts dispatched (truly, is Sir Caradawg a great warrior!), we turned to the question of where they had came from, and my lord found, in the crook of the wall where the cave curved again to the left, a small, well hidden cave. We entered.</span>%%<span class='conv'>Day 7: I have not had the opportunity to write in some time. Calamity has struck. We entered the small cave, and traveled a short way inside, when we were surrounded by demonic faces. They attacked without mercy and it was clear that we could not stand against them. Sir Caradawg ordered me to flee and carry word back home, and with a heavy heart I turned and ran. I have been running and hiding through this awful place since, but yet I live.</span>%%<span class='conv'>Day 8: Aha! Thank the gods, I have found an entrance to a dungeon that, if I am blessed by the luck, will take me to the surface. I write this just outside the great entrance (wondering, again, just who built these?), and will write again when I reach a place of safety inside it.</span>%%<span class='conv'>(Nothing more is written here.)</span>";
+  this.longdesc = "A scroll containing a squire's journal.";
+}
+LayneJournalTile.prototype = new BookItemObject();
+
 function LanceRuneNotesTile() {
   this.name = "LanceRuneNotes";
   //this.graphic = "master_spritesheet_d.gif";
