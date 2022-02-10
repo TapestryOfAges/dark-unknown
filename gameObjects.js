@@ -18547,11 +18547,11 @@ function SpireScrapTile() {
 SpireScrapTile.prototype = new BookItemObject();
 
 function LayneJournalTile() {
+  //Graphics Upgraded
   this.name = "LayneJournal";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-1184";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -35*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "well marked scroll";
