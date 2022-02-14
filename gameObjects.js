@@ -12127,7 +12127,7 @@ function StolenJewelryTile() {
 StolenJewelryTile.prototype = new ItemObject();
 
 StolenJewelryTile.prototype.onGet = function(who) {
-  DU.gameflag.setFlag("stolenjewelry_taken",1);
+  DU.gameflags.setFlag("stolenjewelry_taken",1);
 }
 
 function GoldTile() {
@@ -15643,18 +15643,18 @@ MagicSwordTile.prototype = new WeaponObject();
 
 function UnenchantedSwordTile() {
   this.name = "UnenchantedSword";
-  this.damage = "4d6+10";  // when broken, 2d4
+  this.damage = "2d4";  // when fixed, 4d6+10
   this.strdamage = .5;
   //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "magic-sword.gif";
   this.spritexoffset = "-32";
-  this.desc = "unenchanted sword";
+  this.desc = "once-enchanted sword";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "an";
   this.longdesc = "Set this during enchantment.";
   
-  this.brokendesc = "unenchanted, broken sword";
+  this.brokendesc = "broken, once-enchanted sword";
   this.repairNeedsInfusion = 1;
   Breakable.call(this,["magic-sword_.gif", "", "0", "0"],1);
 }
@@ -15665,6 +15665,14 @@ UnenchantedSwordTile.prototype.getLongDesc = function() {
     return "A broken sword. Once it was enchanted.";
   }
   return this.longdesc + "In your hands, it deals %ave% damage on average.";
+}
+
+UnenchantedSwordTile.prototype.onGet = function(who) {
+  DU.gameflags.setFlag("unenchanted_sword",1);
+}
+
+UnenchantedSwordTile.prototype.onMend = function() {
+  this.damage = "4d6+10";
 }
 
 // LightningSword, FlamingSword, SwordOfDefense, VenomSword ?
