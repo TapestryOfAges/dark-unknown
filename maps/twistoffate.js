@@ -111,6 +111,36 @@ mappages["twistoffate1"].returninfused = '0';
 mappages["twistoffate1"].linkedMaps = ["twistoffate2","twistoffate3"];
 mappages["twistoffate1"].editorLabels = '{}';
 
+
+mappages["twistoffate1"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) { 
+    let spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["GremlinNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(10);
+    spawn.setSpawnRadius(3);
+
+    let freq = 30 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(31,18,spawn);
+
+    spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["EttinNPC", "EttinNPC", "EttinSorcererNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(3);
+    spawn.setSpawnRadius(3);
+
+    let freq = 90 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(19,10,spawn);
+
+  }
+}
+
 mappages["twistoffate2"] = {};
 mappages["twistoffate2"].terrain = [];
  mappages["twistoffate2"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';

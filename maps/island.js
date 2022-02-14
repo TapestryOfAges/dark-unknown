@@ -409,7 +409,7 @@ mappages["island_cave"].editorLabels = '{}';
 // Added manually below
 
 mappages["island_cave"].onload = function(mapref) {
-  if (gamestate.getMode() !== "loadgame") {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) { 
     let walkonloc = mapref.getTile(42,0);
     let walkontile = walkonloc.getTopFeature();
     walkontile.setxto = 30;
@@ -434,6 +434,31 @@ mappages["island_cave"].onload = function(mapref) {
     walkontile = walkonloc.getTopFeature();
     walkontile.setxto = 33;
     walkontile.setyto = 47;
+
+    let spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["TrollNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(3);
+    spawn.setSpawnRadius(3);
+
+    let freq = 90 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(51,42,spawn);
+
+    spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["TrollNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(3);
+    spawn.setSpawnRadius(3);
+
+    let freq = 90 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(25,20,spawn);
+
   }
 
 }
