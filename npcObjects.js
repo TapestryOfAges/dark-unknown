@@ -3795,7 +3795,7 @@ function IllusionNPCTile() {
   this.int = 15;
   this.alignment = 'Good';
   this.attitude = 'hostile';
-  this.peaceAI = 'followSummoner';
+  this.peaceAI = 'seekPC-10';
   this.forgetAt = 0;
   this.withdraw = 0;
   this.graphic = '338.gif';
@@ -3831,7 +3831,7 @@ function InfusedIllusionNPCTile() {
   this.int = 18;
   this.alignment = 'Good';
   this.attitude = 'hostile';
-  this.peaceAI = 'followSummoner';
+  this.peaceAI = 'seekPC-10';
   this.forgetAt = 0;
   this.withdraw = 0;
   this.graphic = '338.gif';
