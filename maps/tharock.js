@@ -129,4 +129,4 @@ mappages["tharock"].returnmap = 'darkunknown';
 mappages["tharock"].returnx = '69';
 mappages["tharock"].returny = '74';
 mappages["tharock"].returninfused = '1';
-mappages["tharock"].linkedMaps = ["shadowtharock"];
+mappages["tharock"].linkedMaps = [""];
