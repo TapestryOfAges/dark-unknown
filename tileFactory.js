@@ -1703,6 +1703,16 @@ tileFactory.prototype.makeWalkOnChangeExitTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWalkOnCairns1Tile = function() {
+  let newTile = new WalkOnCairns1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnCairns2Tile = function() {
+  let newTile = new WalkOnCairns2Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWalkOnHC1Tile = function() {
   let newTile = new WalkOnHC1Tile();
   return newTile;
