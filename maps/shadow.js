@@ -93,6 +93,7 @@ mappages["shadow1"].onload = function(mapref) {
   }
 }
 
+// MAP BEGINS HERE
 mappages["shadow2"] = {};
 mappages["shadow2"].terrain = [];
  mappages["shadow2"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -161,23 +162,23 @@ mappages["shadow2"].features[0] = {name : 'LadderUp', x : 7, y : 30, entermap : 
 mappages["shadow2"].features[1] = {name : 'LadderDown', x : 43, y : 30, entermap : 'shadow3', enterx : 43, entery : 30};
 mappages["shadow2"].features[2] = {name : 'SiriCloak', x : 40, y : 49};
 mappages["shadow2"].features[3] = {name : 'SkeletonDecoration', x : 39, y : 49};
-mappages["shadow2"].features[4] = {name : 'Chest', x : 11, y : 11, locked : 0, lootgroup : 'headlesscave', lootedid : 'shadow2_1'};
-mappages["shadow2"].features[5] = {name : 'Chest', x : 11, y : 12, locked : 0, lootgroup : 'headlesscave', lootedid : 'shadow2_2'};
-mappages["shadow2"].features[6] = {name : 'Campfire', x : 15, y : 12};
-mappages["shadow2"].features[7] = {name : 'Chest', x : 53, y : 4, locked : 0, lootgroup : 'Shadow2', lootedid : 'Shadow2_3'};
-mappages["shadow2"].features[8] = {name : 'Chest', x : 55, y : 4, locked : 0, lootgroup : 'Shadow2', lootedid : 'Shadow2_4'};
-mappages["shadow2"].features[9] = {name : 'Chest', x : 51, y : 26, locked : 0, lootgroup : 'Shadow2', lootedid : 'Shadow2_5'};
-mappages["shadow2"].features[10] = {name : 'Chest', x : 51, y : 27, locked : 0, lootgroup : 'Shadow2', lootedid : 'Shadow2_6'};
+mappages["shadow2"].features[4] = {name : 'Chest', x : 11, y : 11, lootgroup : 'headlesscave', lootedid : 'shadow2_1'};
+mappages["shadow2"].features[5] = {name : 'Chest', x : 11, y : 12, lootgroup : 'headlesscave', lootedid : 'shadow2_2'};
+mappages["shadow2"].features[6] = {name : 'Chest', x : 53, y : 4, lootgroup : 'Shadow2', lootedid : 'Shadow2_3'};
+mappages["shadow2"].features[7] = {name : 'Chest', x : 55, y : 4, lootgroup : 'Shadow2', lootedid : 'Shadow2_4'};
+mappages["shadow2"].features[8] = {name : 'Chest', x : 51, y : 26, lootgroup : 'Shadow2', lootedid : 'Shadow2_5'};
+mappages["shadow2"].features[9] = {name : 'Chest', x : 51, y : 27, lootgroup : 'Shadow2', lootedid : 'Shadow2_6'};
+mappages["shadow2"].features[10] = {name : 'Campfire', x : 15, y : 12};
 
 
 mappages["shadow2"].npcs = [];
 mappages["shadow2"].npcs[0] = {name : 'HeadlessNPC', x : 51, y : 43, skintone: '1'};
 mappages["shadow2"].npcs[1] = {name : 'HeadlessNPC', x : 54, y : 41, skintone: '1'};
 mappages["shadow2"].npcs[2] = {name : 'HeadlessNPC', x : 53, y : 38, skintone: '1'};
-mappages["shadow2"].npcs[3] = {name : 'HeadlessNPC', x : 41, y : 39, skintone: '1'};
-mappages["shadow2"].npcs[4] = {name : 'HeadlessNPC', x : 40, y : 41, skintone: '1'};
-mappages["shadow2"].npcs[5] = {name : 'HeadlessNPC', x : 43, y : 41, skintone: '1'};
-mappages["shadow2"].npcs[6] = {name : 'HeadlessNPC', x : 41, y : 45, skintone: '1'};
+mappages["shadow2"].npcs[3] = {name : 'HeadlessNPC', x : 41, y : 39, Gender: 'monster', NPCBand: '5', skintone: '1'};
+mappages["shadow2"].npcs[4] = {name : 'HeadlessNPC', x : 40, y : 41, Gender: 'monster', NPCBand: '5', skintone: '1'};
+mappages["shadow2"].npcs[5] = {name : 'HeadlessNPC', x : 43, y : 41, Gender: 'monster', NPCBand: '5', skintone: '1'};
+mappages["shadow2"].npcs[6] = {name : 'HeadlessNPC', x : 41, y : 45, Gender: 'monster', NPCBand: '5', skintone: '1'};
 mappages["shadow2"].npcs[7] = {name : 'HeadlessNPC', x : 33, y : 51, skintone: '1'};
 mappages["shadow2"].npcs[8] = {name : 'HeadlessNPC', x : 26, y : 53, skintone: '1'};
 mappages["shadow2"].npcs[9] = {name : 'GiantBatNPC', x : 29, y : 33, skintone: '1'};
@@ -185,28 +186,28 @@ mappages["shadow2"].npcs[10] = {name : 'GiantBatNPC', x : 28, y : 40, skintone: 
 mappages["shadow2"].npcs[11] = {name : 'GiantBatNPC', x : 22, y : 45, skintone: '1'};
 mappages["shadow2"].npcs[12] = {name : 'GiantBatNPC', x : 16, y : 50, skintone: '1'};
 mappages["shadow2"].npcs[13] = {name : 'GiantBatNPC', x : 17, y : 50, skintone: '1'};
-mappages["shadow2"].npcs[14] = {name : 'SlimeNPC', x : 11, y : 29, skintone: '1'};
-mappages["shadow2"].npcs[15] = {name : 'SlimeNPC', x : 13, y : 31, skintone: '1'};
-mappages["shadow2"].npcs[16] = {name : 'SlimeNPC', x : 10, y : 33, skintone: '1'};
-mappages["shadow2"].npcs[17] = {name : 'OrcNPC', x : 13, y : 10, skintone: '1'};
-mappages["shadow2"].npcs[18] = {name : 'OrcNPC', x : 16, y : 9, skintone: '1'};
-mappages["shadow2"].npcs[19] = {name : 'OrcNPC', x : 18, y : 12, skintone: '1'};
-mappages["shadow2"].npcs[20] = {name : 'OrcNPC', x : 15, y : 14, skintone: '1'};
-mappages["shadow2"].npcs[21] = {name : 'OrcNPC', x : 18, y : 16, skintone: '1'};
-mappages["shadow2"].npcs[22] = {name : 'TrollNPC', x : 53, y : 5, skintone: '1'};
-mappages["shadow2"].npcs[23] = {name : 'TrollNPC', x : 55, y : 8, skintone: '1'};
+mappages["shadow2"].npcs[14] = {name : 'SlimeNPC', x : 11, y : 29, Gender: 'monster', NPCBand: '4', skintone: '1'};
+mappages["shadow2"].npcs[15] = {name : 'SlimeNPC', x : 13, y : 31, Gender: 'monster', NPCBand: '4', skintone: '1'};
+mappages["shadow2"].npcs[16] = {name : 'SlimeNPC', x : 10, y : 33, Gender: 'monster', NPCBand: '4', skintone: '1'};
+mappages["shadow2"].npcs[17] = {name : 'OrcNPC', x : 13, y : 10, Gender: 'monster', NPCBand: '2', skintone: '1'};
+mappages["shadow2"].npcs[18] = {name : 'OrcNPC', x : 16, y : 9, Gender: 'monster', NPCBand: '2', skintone: '1'};
+mappages["shadow2"].npcs[19] = {name : 'OrcNPC', x : 18, y : 12, Gender: 'monster', NPCBand: '2', skintone: '1'};
+mappages["shadow2"].npcs[20] = {name : 'OrcNPC', x : 15, y : 14, Gender: 'monster', NPCBand: '2', skintone: '1'};
+mappages["shadow2"].npcs[21] = {name : 'OrcNPC', x : 18, y : 16, Gender: 'monster', NPCBand: '2', skintone: '1'};
+mappages["shadow2"].npcs[22] = {name : 'TrollNPC', x : 53, y : 5, Gender: 'monster', NPCBand: '1', skintone: '1'};
+mappages["shadow2"].npcs[23] = {name : 'TrollNPC', x : 55, y : 8, Gender: 'monster', NPCBand: '1', skintone: '1'};
 mappages["shadow2"].npcs[24] = {name : 'TremendousSpiderNPC', x : 39, y : 7, skintone: '1'};
-mappages["shadow2"].npcs[25] = {name : 'OrcNPC', x : 51, y : 8, skintone: '1'};
-mappages["shadow2"].npcs[26] = {name : 'OrcNPC', x : 49, y : 9, skintone: '1'};
-mappages["shadow2"].npcs[27] = {name : 'OrcNPC', x : 52, y : 10, skintone: '1'};
+mappages["shadow2"].npcs[25] = {name : 'OrcNPC', x : 51, y : 8, Gender: 'monster', NPCBand: '1', skintone: '1'};
+mappages["shadow2"].npcs[26] = {name : 'OrcNPC', x : 49, y : 9, Gender: 'monster', NPCBand: '1', skintone: '1'};
+mappages["shadow2"].npcs[27] = {name : 'OrcNPC', x : 52, y : 10, Gender: 'monster', NPCBand: '1', skintone: '1'};
 mappages["shadow2"].npcs[28] = {name : 'MimicNPC', x : 54, y : 3, skintone: '1'};
-mappages["shadow2"].npcs[29] = {name : 'TrollNPC', x : 49, y : 26, skintone: '1'};
-mappages["shadow2"].npcs[30] = {name : 'TrollNPC', x : 46, y : 26, skintone: '1'};
+mappages["shadow2"].npcs[29] = {name : 'TrollNPC', x : 49, y : 26, Gender: 'monster', NPCBand: '3', skintone: '1'};
+mappages["shadow2"].npcs[30] = {name : 'TrollNPC', x : 46, y : 26, Gender: 'monster', NPCBand: '3', skintone: '1'};
 
 mappages["shadow2"].desc = "Dungeon Shadow (L2)";
-mappages["shadow2"].longdesc = '';
+mappages["shadow2"].longdesc = ``;
 mappages["shadow2"].music = 'Dungeon';
-mappages["shadow2"].savename = 'Shadow';
+mappages["shadow2"].savename = `Shadow`;
 mappages["shadow2"].exitmap = '';
 mappages["shadow2"].exitx = '65';
 mappages["shadow2"].exity = '70';
@@ -229,6 +230,7 @@ mappages["shadow2"].returny = '31';
 mappages["shadow2"].returninfused = '0';
 mappages["shadow2"].linkedMaps = ["shadow1","shadow3"];
 mappages["shadow2"].editorLabels = '{}';
+// MAP ENDS HERE
 
 mappages["shadow2"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
@@ -238,6 +240,90 @@ mappages["shadow2"].onload = function(mapref) {
         mapref.deleteThing(cloak);
       }
     }
+
+    let spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["OrcNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(5);
+    spawn.setSpawnRadius(2);
+
+    let freq = 70 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(16,12,spawn);
+
+    let orc1 = mapref.getTile(16,9).getTopNPC();
+    let orc2 = mapref.getTile(13,10).getTopNPC();
+    let orc3 = mapref.getTile(18,12).getTopNPC();
+    let orc4 = mapref.getTile(15,14).getTopNPC();
+    let orc5 = mapref.getTile(18,16).getTopNPC();
+
+    spawn.addSpawn(orc1);
+    spawn.addSpawn(orc2);
+    spawn.addSpawn(orc3);
+    spawn.addSpawn(orc4);
+    spawn.addSpawn(orc5);
+
+    orc1.setSpawnedBy(spawn);
+    orc2.setSpawnedBy(spawn);
+    orc3.setSpawnedBy(spawn);
+    orc4.setSpawnedBy(spawn);
+    orc5.setSpawnedBy(spawn);
+
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["TrollNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(3);
+    spawn.setSpawnRadius(2);
+
+    freq = 70 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(52,8,spawn);
+
+    orc1 = mapref.getTile(53,5).getTopNPC();
+    orc2 = mapref.getTile(55,8).getTopNPC();
+    orc3 = mapref.getTile(49,9).getTopNPC();
+    
+    spawn.addSpawn(orc1);
+    spawn.addSpawn(orc2);
+    spawn.addSpawn(orc3);
+    
+    orc1.setSpawnedBy(spawn);
+    orc2.setSpawnedBy(spawn);
+    orc3.setSpawnedBy(spawn);
+
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["HeadlessNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(5);
+    spawn.setSpawnRadius(2);
+
+    freq = 70 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(42,41,spawn);
+
+    orc1 = mapref.getTile(40,41).getTopNPC();
+    orc2 = mapref.getTile(43,41).getTopNPC();
+    orc3 = mapref.getTile(41,39).getTopNPC();
+    orc4 = mapref.getTile(41,45).getTopNPC();
+    orc5 = mapref.getTile(53,38).getTopNPC();
+    
+    spawn.addSpawn(orc1);
+    spawn.addSpawn(orc2);
+    spawn.addSpawn(orc3);
+    spawn.addSpawn(orc4);
+    spawn.addSpawn(orc5);
+    
+    orc1.setSpawnedBy(spawn);
+    orc2.setSpawnedBy(spawn);
+    orc3.setSpawnedBy(spawn);
+    orc4.setSpawnedBy(spawn);
+    orc5.setSpawnedBy(spawn);
   }
 }
 

@@ -60,19 +60,19 @@ mappages["twistoffate1"].features[2] = {name : 'LadderDown', x : 26, y : 11, ent
 
 
 mappages["twistoffate1"].npcs = [];
-mappages["twistoffate1"].npcs[0] = {name : 'GremlinNPC', x : 26, y : 16, skintone: '1'};
-mappages["twistoffate1"].npcs[1] = {name : 'GremlinNPC', x : 27, y : 17, skintone: '1'};
-mappages["twistoffate1"].npcs[2] = {name : 'GremlinNPC', x : 28, y : 15, skintone: '1'};
-mappages["twistoffate1"].npcs[3] = {name : 'GremlinNPC', x : 29, y : 16, skintone: '1'};
-mappages["twistoffate1"].npcs[4] = {name : 'GremlinNPC', x : 30, y : 17, skintone: '1'};
-mappages["twistoffate1"].npcs[5] = {name : 'GremlinNPC', x : 29, y : 18, skintone: '1'};
-mappages["twistoffate1"].npcs[6] = {name : 'GremlinNPC', x : 31, y : 16, skintone: '1'};
-mappages["twistoffate1"].npcs[7] = {name : 'GremlinNPC', x : 31, y : 18, skintone: '1'};
-mappages["twistoffate1"].npcs[8] = {name : 'GremlinNPC', x : 32, y : 19, skintone: '1'};
-mappages["twistoffate1"].npcs[9] = {name : 'GremlinNPC', x : 33, y : 20, skintone: '1'};
-mappages["twistoffate1"].npcs[10] = {name : 'GremlinNPC', x : 34, y : 19, skintone: '1'};
-mappages["twistoffate1"].npcs[11] = {name : 'GremlinNPC', x : 33, y : 18, skintone: '1'};
-mappages["twistoffate1"].npcs[12] = {name : 'GremlinNPC', x : 32, y : 21, skintone: '1'};
+mappages["twistoffate1"].npcs[0] = {name : 'GremlinNPC', x : 26, y : 16, NPCBand: '1', skintone: '1'};
+mappages["twistoffate1"].npcs[1] = {name : 'GremlinNPC', x : 27, y : 17, NPCBand: '1', skintone: '1'};
+mappages["twistoffate1"].npcs[2] = {name : 'GremlinNPC', x : 28, y : 15, NPCBand: '1', skintone: '1'};
+mappages["twistoffate1"].npcs[3] = {name : 'GremlinNPC', x : 29, y : 16, NPCBand: '1', skintone: '1'};
+mappages["twistoffate1"].npcs[4] = {name : 'GremlinNPC', x : 30, y : 17, NPCBand: '1', skintone: '1'};
+mappages["twistoffate1"].npcs[5] = {name : 'GremlinNPC', x : 29, y : 18, NPCBand: '1', skintone: '1'};
+mappages["twistoffate1"].npcs[6] = {name : 'GremlinNPC', x : 31, y : 16, NPCBand: '1', skintone: '1'};
+mappages["twistoffate1"].npcs[7] = {name : 'GremlinNPC', x : 31, y : 18, NPCBand: '1', skintone: '1'};
+mappages["twistoffate1"].npcs[8] = {name : 'GremlinNPC', x : 32, y : 19, NPCBand: '1', skintone: '1'};
+mappages["twistoffate1"].npcs[9] = {name : 'GremlinNPC', x : 33, y : 20, NPCBand: '1', skintone: '1'};
+mappages["twistoffate1"].npcs[10] = {name : 'GremlinNPC', x : 34, y : 19, NPCBand: '1', skintone: '1'};
+mappages["twistoffate1"].npcs[11] = {name : 'GremlinNPC', x : 33, y : 18, NPCBand: '1', skintone: '1'};
+mappages["twistoffate1"].npcs[12] = {name : 'GremlinNPC', x : 32, y : 21, NPCBand: '1', skintone: '1'};
 mappages["twistoffate1"].npcs[13] = {name : 'CyclopsNPC', x : 34, y : 20, skintone: '1'};
 mappages["twistoffate1"].npcs[14] = {name : 'CyclopsNPC', x : 33, y : 21, skintone: '1'};
 mappages["twistoffate1"].npcs[15] = {name : 'ReaperNPC', x : 21, y : 41, skintone: '1'};
@@ -127,13 +127,13 @@ mappages["twistoffate1"].onload = function(mapref) {
     mapref.placeThing(31,18,spawn);
 
     spawn = localFactory.createTile("Spawner");
-    let spawngroup = ["EttinNPC", "EttinNPC", "EttinSorcererNPC"];
+    spawngroup = ["EttinNPC", "EttinNPC", "EttinSorcererNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(3);
     spawn.setSpawnRadius(3);
 
-    let freq = 90 + Dice.roll("1d20");
+    freq = 90 + Dice.roll("1d20");
     spawn.setSpawnFreq(freq);
   
     mapref.placeThing(19,10,spawn);
@@ -332,6 +332,35 @@ mappages["twistoffate2"].returny = '117';
 mappages["twistoffate2"].returninfused = '0';
 mappages["twistoffate2"].linkedMaps = ["twistoffate1","twistoffate3"];
 mappages["twistoffate2"].editorLabels = '{}';
+
+mappages["twistoffate2"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) { 
+    let spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["GazerNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(3);
+    spawn.setSpawnRadius(3);
+
+    let freq = 70 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(17,17,spawn);
+
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["EttinNPC", "EttinNPC", "EttinSorcererNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(3);
+    spawn.setSpawnRadius(3);
+
+    freq = 90 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(39,31,spawn);
+
+  }
+}
 
 
 mappages["twistoffate3"] = {};

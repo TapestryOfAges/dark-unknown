@@ -1,5 +1,6 @@
 "use strict";
 
+// MAP BEGINS HERE
 mappages["pitdespair1"] = {};
 mappages["pitdespair1"].terrain = [];
  mappages["pitdespair1"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -102,46 +103,47 @@ mappages["pitdespair1"].features[47] = {name : 'RightTable', x : 16, y : 38};
 
 
 mappages["pitdespair1"].npcs = [];
-mappages["pitdespair1"].npcs[0] = {name : 'SlimeNPC', x : 8, y : 23};
-mappages["pitdespair1"].npcs[1] = {name : 'SlimeNPC', x : 9, y : 24};
-mappages["pitdespair1"].npcs[2] = {name : 'SlimeNPC', x : 8, y : 26};
-mappages["pitdespair1"].npcs[3] = {name : 'SlimeNPC', x : 10, y : 26};
-mappages["pitdespair1"].npcs[4] = {name : 'SlimeNPC', x : 21, y : 20};
-mappages["pitdespair1"].npcs[5] = {name : 'SlimeNPC', x : 22, y : 19};
-mappages["pitdespair1"].npcs[6] = {name : 'SlimeNPC', x : 22, y : 21};
-mappages["pitdespair1"].npcs[7] = {name : 'SlimeNPC', x : 23, y : 21};
-mappages["pitdespair1"].npcs[8] = {name : 'SlimeNPC', x : 24, y : 19};
-mappages["pitdespair1"].npcs[9] = {name : 'GiantInsectsNPC', x : 24, y : 20};
-mappages["pitdespair1"].npcs[10] = {name : 'GiantInsectsNPC', x : 24, y : 21};
-mappages["pitdespair1"].npcs[11] = {name : 'GiantInsectsNPC', x : 17, y : 23};
-mappages["pitdespair1"].npcs[12] = {name : 'GiantInsectsNPC', x : 18, y : 24};
-mappages["pitdespair1"].npcs[13] = {name : 'GiantInsectsNPC', x : 16, y : 25};
-mappages["pitdespair1"].npcs[14] = {name : 'GiantRatNPC', x : 16, y : 28};
-mappages["pitdespair1"].npcs[15] = {name : 'GiantRatNPC', x : 17, y : 28};
-mappages["pitdespair1"].npcs[16] = {name : 'GiantRatNPC', x : 17, y : 29};
-mappages["pitdespair1"].npcs[17] = {name : 'GiantRatNPC', x : 18, y : 30};
-mappages["pitdespair1"].npcs[18] = {name : 'GiantRatNPC', x : 18, y : 27};
-mappages["pitdespair1"].npcs[19] = {name : 'HoodNPC', x : 19, y : 11};
-mappages["pitdespair1"].npcs[20] = {name : 'HoodNPC', x : 20, y : 11};
-mappages["pitdespair1"].npcs[21] = {name : 'HoodNPC', x : 21, y : 12};
-mappages["pitdespair1"].npcs[22] = {name : 'RogueNPC', x : 20, y : 13};
-mappages["pitdespair1"].npcs[23] = {name : 'RogueNPC', x : 19, y : 14};
-mappages["pitdespair1"].npcs[24] = {name : 'RogueNPC', x : 21, y : 14};
-mappages["pitdespair1"].npcs[25] = {name : 'GiantBatNPC', x : 30, y : 29};
-mappages["pitdespair1"].npcs[26] = {name : 'GiantBatNPC', x : 31, y : 28};
-mappages["pitdespair1"].npcs[27] = {name : 'GiantBatNPC', x : 32, y : 30};
-mappages["pitdespair1"].npcs[28] = {name : 'GiantBatNPC', x : 30, y : 31};
-mappages["pitdespair1"].npcs[29] = {name : 'GiantBatNPC', x : 31, y : 32};
-mappages["pitdespair1"].npcs[30] = {name : 'GiantBatNPC', x : 20, y : 37};
-mappages["pitdespair1"].npcs[31] = {name : 'GiantBatNPC', x : 19, y : 38};
-mappages["pitdespair1"].npcs[32] = {name : 'GiantBatNPC', x : 20, y : 39};
-mappages["pitdespair1"].npcs[33] = {name : 'GiantRatNPC', x : 22, y : 37};
-mappages["pitdespair1"].npcs[34] = {name : 'GiantRatNPC', x : 23, y : 38};
-mappages["pitdespair1"].npcs[35] = {name : 'GiantRatNPC', x : 22, y : 39};
+mappages["pitdespair1"].npcs[0] = {name : 'SlimeNPC', x : 8, y : 23, Gender: 'monster', NPCBand: '3', skintone: '1'};
+mappages["pitdespair1"].npcs[1] = {name : 'SlimeNPC', x : 9, y : 24, Gender: 'monster', NPCBand: '3', skintone: '1'};
+mappages["pitdespair1"].npcs[2] = {name : 'SlimeNPC', x : 8, y : 26, Gender: 'monster', NPCBand: '3', skintone: '1'};
+mappages["pitdespair1"].npcs[3] = {name : 'SlimeNPC', x : 10, y : 26, Gender: 'monster', NPCBand: '3', skintone: '1'};
+mappages["pitdespair1"].npcs[4] = {name : 'SlimeNPC', x : 21, y : 20, Gender: 'monster', NPCBand: '2', skintone: '1'};
+mappages["pitdespair1"].npcs[5] = {name : 'SlimeNPC', x : 22, y : 19, Gender: 'monster', NPCBand: '2', skintone: '1'};
+mappages["pitdespair1"].npcs[6] = {name : 'SlimeNPC', x : 22, y : 21, Gender: 'monster', NPCBand: '2', skintone: '1'};
+mappages["pitdespair1"].npcs[7] = {name : 'SlimeNPC', x : 23, y : 21, Gender: 'monster', NPCBand: '2', skintone: '1'};
+mappages["pitdespair1"].npcs[8] = {name : 'SlimeNPC', x : 24, y : 19, Gender: 'monster', NPCBand: '2', skintone: '1'};
+mappages["pitdespair1"].npcs[9] = {name : 'GiantInsectsNPC', x : 24, y : 20, skintone: '1'};
+mappages["pitdespair1"].npcs[10] = {name : 'GiantInsectsNPC', x : 24, y : 21, skintone: '1'};
+mappages["pitdespair1"].npcs[11] = {name : 'GiantInsectsNPC', x : 17, y : 23, skintone: '1'};
+mappages["pitdespair1"].npcs[12] = {name : 'GiantInsectsNPC', x : 18, y : 24, skintone: '1'};
+mappages["pitdespair1"].npcs[13] = {name : 'GiantInsectsNPC', x : 16, y : 25, skintone: '1'};
+mappages["pitdespair1"].npcs[14] = {name : 'GiantRatNPC', x : 16, y : 28, Gender: 'monster', NPCBand: '4', skintone: '1'};
+mappages["pitdespair1"].npcs[15] = {name : 'GiantRatNPC', x : 17, y : 28, Gender: 'monster', NPCBand: '4', skintone: '1'};
+mappages["pitdespair1"].npcs[16] = {name : 'GiantRatNPC', x : 17, y : 29, Gender: 'monster', NPCBand: '4', skintone: '1'};
+mappages["pitdespair1"].npcs[17] = {name : 'GiantRatNPC', x : 18, y : 30, Gender: 'monster', NPCBand: '4', skintone: '1'};
+mappages["pitdespair1"].npcs[18] = {name : 'GiantRatNPC', x : 18, y : 27, Gender: 'monster', NPCBand: '4', skintone: '1'};
+mappages["pitdespair1"].npcs[19] = {name : 'HoodNPC', x : 19, y : 11, Gender: 'monster', NPCBand: '1', skintone: '1'};
+mappages["pitdespair1"].npcs[20] = {name : 'HoodNPC', x : 20, y : 11, Gender: 'monster', NPCBand: '1', skintone: '1'};
+mappages["pitdespair1"].npcs[21] = {name : 'HoodNPC', x : 21, y : 12, Gender: 'monster', NPCBand: '1', skintone: '1'};
+mappages["pitdespair1"].npcs[22] = {name : 'RogueNPC', x : 20, y : 13, Gender: 'monster', NPCBand: '1', skintone: '1'};
+mappages["pitdespair1"].npcs[23] = {name : 'RogueNPC', x : 19, y : 14, Gender: 'monster', NPCBand: '1', skintone: '1'};
+mappages["pitdespair1"].npcs[24] = {name : 'RogueNPC', x : 21, y : 14, Gender: 'monster', NPCBand: '1', skintone: '1'};
+mappages["pitdespair1"].npcs[25] = {name : 'GiantBatNPC', x : 30, y : 29, Gender: 'monster', NPCBand: '5', skintone: '1'};
+mappages["pitdespair1"].npcs[26] = {name : 'GiantBatNPC', x : 31, y : 28, Gender: 'monster', NPCBand: '5', skintone: '1'};
+mappages["pitdespair1"].npcs[27] = {name : 'GiantBatNPC', x : 32, y : 30, Gender: 'monster', NPCBand: '5', skintone: '1'};
+mappages["pitdespair1"].npcs[28] = {name : 'GiantBatNPC', x : 30, y : 31, Gender: 'monster', NPCBand: '5', skintone: '1'};
+mappages["pitdespair1"].npcs[29] = {name : 'GiantBatNPC', x : 31, y : 32, Gender: 'monster', NPCBand: '5', skintone: '1'};
+mappages["pitdespair1"].npcs[30] = {name : 'GiantBatNPC', x : 20, y : 37, Gender: 'monster', NPCBand: '6', skintone: '1'};
+mappages["pitdespair1"].npcs[31] = {name : 'GiantBatNPC', x : 19, y : 38, Gender: 'monster', NPCBand: '6', skintone: '1'};
+mappages["pitdespair1"].npcs[32] = {name : 'GiantBatNPC', x : 20, y : 39, Gender: 'monster', NPCBand: '6', skintone: '1'};
+mappages["pitdespair1"].npcs[33] = {name : 'GiantRatNPC', x : 22, y : 37, Gender: 'monster', NPCBand: '6', skintone: '1'};
+mappages["pitdespair1"].npcs[34] = {name : 'GiantRatNPC', x : 23, y : 38, Gender: 'monster', NPCBand: '6', skintone: '1'};
+mappages["pitdespair1"].npcs[35] = {name : 'GiantRatNPC', x : 22, y : 39, Gender: 'monster', NPCBand: '6', skintone: '1'};
 
 mappages["pitdespair1"].desc = "Pit of Despair (L1)";
+mappages["pitdespair1"].longdesc = ``;
 mappages["pitdespair1"].music = 'Dungeon';
-mappages["pitdespair1"].savename = 'Pit of Despair';
+mappages["pitdespair1"].savename = `Pit of Despair`;
 mappages["pitdespair1"].exitmap = 'darkunknown';
 mappages["pitdespair1"].exitx = '65';
 mappages["pitdespair1"].exity = '70';
@@ -164,6 +166,7 @@ mappages["pitdespair1"].returny = '76';
 mappages["pitdespair1"].returninfused = '0';
 mappages["pitdespair1"].linkedMaps = ["pitdespair2","pitdespair3","pitdespair4"];
 mappages["pitdespair1"].editorLabels = '{}';
+// MAP ENDS HERE
 
 mappages["pitdespair1"].onload = function(mapref) {
     
@@ -242,7 +245,7 @@ mappages["pitdespair2"].terrain[25] = 'BK BK BK BK BK BK BK BK %% cf cf cf %% cf
 mappages["pitdespair2"].terrain[26] = 'BK BK BK BK BK BK BK BK %% cf cf cf %% cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw cw BK cw cw cw cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["pitdespair2"].terrain[27] = 'BK BK BK BK BK BK BK BK %% %% %% %% %% cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw cw cf cf cf cf cf cf cf cf cf cw BK BK BK BK ## ## ## ## ## ## ## ## ## ## BK BK BK BK BK BK BK BK BK';
 mappages["pitdespair2"].terrain[28] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK ## ++ ++ ++ ++ ++ ++ ++ ++ ## BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[29] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK ## ++ ++ ++ ++ ++ +o ++ ++ ## BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[29] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK ## ++ ++ ++ ++ ++ +o ++ ++ ## BK BK BK BK BK BK BK BK BK';
 mappages["pitdespair2"].terrain[30] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cw cw cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK ## ++ ++ ++ ++ +o ++ ++ ++ ## BK BK BK BK BK BK BK BK BK';
 mappages["pitdespair2"].terrain[31] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cw cw cw cw cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK ## +o ++ ++ ++ ++ ++ ++ ++ ## BK BK BK BK BK BK BK BK BK';
 mappages["pitdespair2"].terrain[32] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cw cw BK BK cw cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK ## ++ ++ ++ +o ++ ++ ++ ++ ## BK BK BK BK BK BK BK BK BK';
@@ -346,11 +349,23 @@ mappages["pitdespair2"].linkedMaps = ["pitdespair1","pitdespair3","pitdespair4"]
 
 mappages["pitdespair2"].onload = function(mapref) {
     
-  if (gamestate.getMode() !== "loadgame") {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     mapref.getTile(46,28).getTopFeature().setDestination({map:"pitdespair2", x:10, y:43});
     mapref.getTile(10,43).getTopFeature().setDestination({map:"pitdespair2", x:46, y:28});
     mapref.getTile(48,42).getTopFeature().setDestination({map:"pitdespair2", x:53, y:35});
     mapref.getTile(53,35).getTopFeature().setDestination({map:"pitdespair2", x:48, y:42});
+
+    let spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["CorpserNPC","LurkerNPC","LurkerNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(3);
+    spawn.setSpawnRadius(3);
+
+    let freq = 70 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(34,30,spawn);
   }
 }
 
@@ -576,6 +591,23 @@ mappages["pitdespair3"].returny = '76';
 mappages["pitdespair3"].returninfused = '0';
 mappages["pitdespair3"].linkedMaps = ["pitdespair1","pitdespair2","pitdespair4"];
 mappages["pitdespair3"].editorLabels = '{}';
+
+mappages["pitdespair3"].onload = function(mapref) {
+    
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    let spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["HydraNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(2);
+    spawn.setSpawnRadius(3);
+
+    let freq = 70 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(17,26,spawn);
+  }
+}
 
 mappages["pitdespair4"] = {};
 mappages["pitdespair4"].terrain = [];

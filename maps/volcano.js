@@ -265,13 +265,13 @@ mappages["lavatubes"].onload = function(mapref) {
 
 
     spawn = localFactory.createTile("Spawner");
-    let spawngroup = ["FireLizardNPC"];
+    spawngroup = ["FireLizardNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(3);
     spawn.setSpawnRadius(3);
 
-    let freq = 90 + Dice.roll("1d20");
+    freq = 90 + Dice.roll("1d20");
     spawn.setSpawnFreq(freq);
   
     mapref.placeThing(11,11,spawn);
@@ -542,13 +542,13 @@ mappages["deeplavatubes"].onload = function(mapref) {
     mapref.placeThing(21,5,spawn);
 
     spawn = localFactory.createTile("Spawner");
-    let spawngroup = ["FireLizardNPC", "DrakeNPC"];
+    spawngroup = ["FireLizardNPC", "DrakeNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(3);
     spawn.setSpawnRadius(3);
 
-    let freq = 90 + Dice.roll("1d20");
+    freq = 90 + Dice.roll("1d20");
     spawn.setSpawnFreq(freq);
   
     mapref.placeThing(33,36,spawn);
