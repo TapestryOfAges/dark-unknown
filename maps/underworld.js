@@ -128,7 +128,7 @@ mappages["underworld"].features = [];
 mappages["underworld"].features[0] = {name : 'Whirlpool', x : 83, y : 106, entermap : 'darkunknown', enterx : 66, entery : 122};
 mappages["underworld"].features[1] = {name : 'Dungeon', x : 28, y : 100, entermap : 'kaltonmine3', enterx : 26, entery : 26};
 mappages["underworld"].features[2] = {name : 'Dungeon', x : 36, y : 54, entermap : 'null', enterx : 0, entery : 0};
-mappages["underworld"].features[3] = {name : 'SecretCave', x : 63, y : 27, entermap : 'null', enterx : 0, entery : 0};
+mappages["underworld"].features[3] = {name : 'SecretCave', x : 63, y : 27, entermap : 'hidden_cave', enterx : 14, entery : 1};
 mappages["underworld"].features[4] = {name : 'Cave', x : 36, y : 91, entermap : 'null', enterx : 0, entery : 0};
 mappages["underworld"].features[5] = {name : 'Lava', x : 38, y : 85};
 mappages["underworld"].features[6] = {name : 'Lava', x : 39, y : 85};
@@ -213,3 +213,90 @@ mappages["underworld"].returninfused = '1';
 mappages["underworld"].linkedMaps = [""];
 mappages["underworld"].editorLabels = '{}';
 // MAP ENDS HERE
+
+// MAP BEGINS HERE
+mappages["hidden_cave"] = {};
+mappages["hidden_cave"].terrain = [];
+ mappages["hidden_cave"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["hidden_cave"].terrain[1] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["hidden_cave"].terrain[2] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["hidden_cave"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["hidden_cave"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["hidden_cave"].terrain[5] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["hidden_cave"].terrain[6] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["hidden_cave"].terrain[7] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["hidden_cave"].terrain[8] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["hidden_cave"].terrain[9] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["hidden_cave"].terrain[10] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["hidden_cave"].terrain[11] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK BK';
+mappages["hidden_cave"].terrain[12] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK';
+mappages["hidden_cave"].terrain[13] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK';
+mappages["hidden_cave"].terrain[14] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK';
+mappages["hidden_cave"].terrain[15] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK';
+mappages["hidden_cave"].terrain[16] = 'BK BK BK BK BK BK BK BK cw cw cw cw cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK BK BK';
+mappages["hidden_cave"].terrain[17] = 'BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["hidden_cave"].terrain[18] = 'BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["hidden_cave"].terrain[19] = 'BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["hidden_cave"].terrain[20] = 'BK BK BK BK BK BK BK BK cw cw cw cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["hidden_cave"].terrain[21] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["hidden_cave"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["hidden_cave"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["hidden_cave"].terrain[24] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["hidden_cave"].terrain[25] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["hidden_cave"].terrain[26] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["hidden_cave"].terrain[27] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["hidden_cave"].terrain[28] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["hidden_cave"].terrain[29] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["hidden_cave"].terrain[30] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["hidden_cave"].terrain[31] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+
+mappages["hidden_cave"].features = [];
+mappages["hidden_cave"].features[0] = {name : 'SkeletonDecoration', x : 16, y : 13};
+mappages["hidden_cave"].features[1] = {name : 'UnenchantedSword', x : 17, y : 13};
+mappages["hidden_cave"].features[2] = {name : 'PlateArmor', x : 16, y : 14};
+
+
+mappages["hidden_cave"].npcs = [];
+mappages["hidden_cave"].npcs[0] = {name : 'EarthenTyrantNPC', x : 10, y : 22, skintone: '1'};
+mappages["hidden_cave"].npcs[1] = {name : 'EarthenTyrantNPC', x : 23, y : 13, skintone: '1'};
+mappages["hidden_cave"].npcs[2] = {name : 'EarthenTyrantNPC', x : 20, y : 19, skintone: '1'};
+
+mappages["hidden_cave"].desc = "A hidden cave";
+mappages["hidden_cave"].longdesc = ``;
+mappages["hidden_cave"].music = 'Cave';
+mappages["hidden_cave"].savename = `Hidden cave`;
+mappages["hidden_cave"].exitmap = '';
+mappages["hidden_cave"].exitx = '65';
+mappages["hidden_cave"].exity = '70';
+mappages["hidden_cave"].wraps = '';
+mappages["hidden_cave"].enterx = '65';
+mappages["hidden_cave"].entery = '70';
+mappages["hidden_cave"].seeBelow = '';
+mappages["hidden_cave"].lightLevel = 'dark';
+mappages["hidden_cave"].alwaysRemember = '0';
+mappages["hidden_cave"].scale = '1';
+mappages["hidden_cave"].underground = '1';
+mappages["hidden_cave"].undergroundDesc = 'Underground';
+mappages["hidden_cave"].enterscript = '';
+mappages["hidden_cave"].entertestscript = '';
+mappages["hidden_cave"].exitscript = '';
+mappages["hidden_cave"].exittestscript = '';
+mappages["hidden_cave"].returnmap = 'darkunknown';
+mappages["hidden_cave"].returnx = '69';
+mappages["hidden_cave"].returny = '74';
+mappages["hidden_cave"].returninfused = '1';
+mappages["hidden_cave"].linkedMaps = [""];
+mappages["hidden_cave"].editorLabels = '{}';
+// MAP ENDS HERE
+
+mappages["hidden_cave"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    if (DU.gameflags.getFlag("unenchanted_sword")) {
+      let feas = mapref.features.getAll();
+      for (let i=0;i<feas.length;i++) {
+        if (feas[i].getName() === "UnenchantedSword") { mapref.deleteThing(feas[i]); }
+        if (feas[i].getName() === "PlateArmor") { mapref.deleteThing(feas[i]); }
+      }
+    }
+  }
+}

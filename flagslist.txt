@@ -184,3 +184,4 @@ beldskae_king - Daragen has talked to you about Beldskae (whether it was saved o
 beldskae_jharden - Jharden has talked to you about the Abyss (which happens after Beldskae is attacked)
 jharden_abyss - you've talked to Jharden after crossing the Abyss
 rune_gems - used the Rune of Kings in the appropriate place in Kalton Mine to uncover the perfect ruby
+unenchanted_sword - broken Ezwilden has been picked up

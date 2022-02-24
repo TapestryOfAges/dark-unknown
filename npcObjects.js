@@ -2959,7 +2959,7 @@ function WaterElementalNPCTile() {
   this.meleeStrDamage = .66
   this.missileAttackAs = 'none';
   this.armorAs = 'ChainArmor';
-  this.movetype = MOVE_SWIM;
+  this.movetype = MOVE_SWIM + MOVE_WALK;
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'a';
@@ -4286,7 +4286,7 @@ function IllusionNPCTile() {
   this.int = 15;
   this.alignment = 'Good';
   this.attitude = 'hostile';
-  this.peaceAI = 'followSummoner';
+  this.peaceAI = 'seekPC-10';
   this.forgetAt = 0;
   this.withdraw = 0;
   this.graphic = '338.gif';
@@ -4322,7 +4322,7 @@ function InfusedIllusionNPCTile() {
   this.int = 18;
   this.alignment = 'Good';
   this.attitude = 'hostile';
-  this.peaceAI = 'followSummoner';
+  this.peaceAI = 'seekPC-10';
   this.forgetAt = 0;
   this.withdraw = 0;
   this.graphic = '338.gif';

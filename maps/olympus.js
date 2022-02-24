@@ -1463,12 +1463,12 @@ mappages["olympus1"].onload = function(mapref) {
       davin.realgraphic = ["310.gif","","0","0"];
     }
     
-    if (!DU.gameflags.getFlag("act2") || DU.gameflag.getFlag("guard_thief_talk")) {
+    if (!DU.gameflags.getFlag("act2") || DU.gameflags.getFlag("guard_thief_talk")) {
       mapref.deleteThing(coll);
       DUTime.removeEntityFrom(coll);  
     }
 
-    if (!DU.gameflags.getFlag("act2") || DU.gameflag.getFlag("stolenjewelry_taken")) {
+    if (!DU.gameflags.getFlag("act2") || DU.gameflags.getFlag("stolenjewelry_taken")) {
       let box = mapref.getTile(83,38).getTopFeature();
       mapref.deleteThing(box);
     }

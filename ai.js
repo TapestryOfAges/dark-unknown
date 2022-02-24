@@ -22,7 +22,7 @@ ais.seekPC = function(who,radius) {
         if (GetDistance(who.getx(),who.gety(),foe.getx(),foe.gety()) <= radius) {
           // if can see
           let losresult = whomap.getLOS(who.getx(), who.gety(), foe.getx(), foe.gety());
-          if (losresult < LOS_THRESHOLD) {
+          if ((losresult < LOS_THRESHOLD) || (who.getMovetype() & MOVE_ETHEREAL)) {  // can automatically see if can move ethereal
             DebugWrite("ai", "SeekPC: Nearby and can see the an enemy (" + foe.getName() + ")! Aggroing.<br />");
             // Go aggro, turn team aggro if part of a band
             if (who.getNPCBand()) {
@@ -39,9 +39,11 @@ ais.seekPC = function(who,radius) {
   if (who.specials.wander) {
     let moveval = ais.Randomwalk(who,25,25,25,25);
   } else if (who.summoned) {
-    if (whomap === who.getSpawnedBy().getHomeMap()) {
-      if (!IsAdjacent(who,who.getSpawnedBy())) {
-        let path = whomap.getPath(who.getx(),who.gety(),who.startx,who.starty,who.getMovetype());
+    let summoner = who.getSpawnedBy();
+    if (whomap === summoner.getHomeMap()) {
+//      if (!IsAdjacent(who,who.getSpawnedBy())) {
+      if (GetDistance(who.getx(),who.gety(),summoner.getx(),summoner.gety(),"square") > 2) {
+        let path = whomap.getPath(who.getx(),who.gety(),summoner.getx(),summoner.gety(),who.getMovetype());
         path.shift();
         let moved = StepOrSidestep(who,path[0],[who.startx, who.starty]);
         if (!moved) {
@@ -744,7 +746,7 @@ ais.AshardenBook = function(who) {
       if ((PC.getHomeMap() === themap) && (PC.getx() < 35) && (PC.getx() > 13) && (PC.gety() < 21) && (PC.gety() > 14)) {
         path = themap.getPath(gx,gy,PC.getx()+1, PC.gety(), who.getMovetype());
       } else {
-        path = themap.getPath(gx,gy,28,18, who.getMoveType()); 
+        path = themap.getPath(gx,gy,28,18, who.getMovetype()); 
       }
     } else if (who.dest === 6) {
       if (IsAdjacent(who,PC)) {
@@ -1085,7 +1087,7 @@ ais.HuntPC = function(who, radius) {
 	// in the game display
 	if (GetDistance(who.getx(), who.gety(), locx, locy) > (radius/3)) {       
     let losresult = themap.getLOS(who.getx(), who.gety(), locx, locy);
-    if (losresult > 2) { 
+    if ((losresult > 2) && !(who.getMovetype() & MOVE_ETHEREAL)) { 
       DebugWrite("ai", "PC is within radius but not in sight, no hunt.<br />");
       return 0; 
     }  // can't see the PC and they aren't really close, no hunt

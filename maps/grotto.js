@@ -165,6 +165,7 @@ mappages["grotto"].linkedMaps = ["grotto2","undergrotto"];
 mappages["grotto"].editorLabels = '{}';
 
 
+// MAP BEGINS HERE
 mappages["grotto2"] = {};
 mappages["grotto2"].terrain = [];
  mappages["grotto2"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -341,6 +342,33 @@ mappages["grotto2"].features[104] = {name : 'PileOfRocks', x : 73, y : 29};
 
 
 mappages["grotto2"].npcs = [];
+mappages["grotto2"].npcs[0] = {name : 'NixieNPC', x : 43, y : 9, Gender: 'monster', NPCBand: '2', skintone: '1'};
+mappages["grotto2"].npcs[1] = {name : 'NixieNPC', x : 44, y : 7, Gender: 'monster', NPCBand: '2', skintone: '1'};
+mappages["grotto2"].npcs[2] = {name : 'NixieNPC', x : 47, y : 9, Gender: 'monster', NPCBand: '2', skintone: '1'};
+mappages["grotto2"].npcs[3] = {name : 'NixieNPC', x : 49, y : 9, Gender: 'monster', NPCBand: '2', skintone: '1'};
+mappages["grotto2"].npcs[4] = {name : 'NixieNPC', x : 47, y : 6, Gender: 'monster', NPCBand: '2', skintone: '1'};
+mappages["grotto2"].npcs[5] = {name : 'NixieNPC', x : 40, y : 25, Gender: 'monster', NPCBand: '1', skintone: '1'};
+mappages["grotto2"].npcs[6] = {name : 'NixieNPC', x : 42, y : 27, Gender: 'monster', NPCBand: '1', skintone: '1'};
+mappages["grotto2"].npcs[7] = {name : 'NixieNPC', x : 73, y : 21, Gender: 'monster', NPCBand: '4', skintone: '1'};
+mappages["grotto2"].npcs[8] = {name : 'NixieNPC', x : 79, y : 24, Gender: 'monster', NPCBand: '4', skintone: '1'};
+mappages["grotto2"].npcs[9] = {name : 'NixieNPC', x : 79, y : 20, Gender: 'monster', NPCBand: '4', skintone: '1'};
+mappages["grotto2"].npcs[10] = {name : 'DeepNixieNPC', x : 37, y : 27, Gender: 'monster', NPCBand: '1', skintone: '1'};
+mappages["grotto2"].npcs[11] = {name : 'DeepNixieNPC', x : 39, y : 29, Gender: 'monster', NPCBand: '1', skintone: '1'};
+mappages["grotto2"].npcs[12] = {name : 'DeepNixieNPC', x : 55, y : 33, skintone: '1'};
+mappages["grotto2"].npcs[13] = {name : 'DeepNixieNPC', x : 77, y : 34, Gender: 'monster', NPCBand: '5', skintone: '1'};
+mappages["grotto2"].npcs[14] = {name : 'DeepNixieNPC', x : 79, y : 35, Gender: 'monster', NPCBand: '5', skintone: '1'};
+mappages["grotto2"].npcs[15] = {name : 'DeepNixieNPC', x : 77, y : 37, Gender: 'monster', NPCBand: '5', skintone: '1'};
+mappages["grotto2"].npcs[16] = {name : 'DeepNixieNPC', x : 96, y : 23, skintone: '1'};
+mappages["grotto2"].npcs[17] = {name : 'DeepNixieNPC', x : 94, y : 16, skintone: '1'};
+mappages["grotto2"].npcs[18] = {name : 'SeaSerpentNPC', x : 91, y : 18, skintone: '1'};
+mappages["grotto2"].npcs[19] = {name : 'SeaSerpentNPC', x : 107, y : 25, skintone: '1'};
+mappages["grotto2"].npcs[20] = {name : 'SeaSerpentNPC', x : 67, y : 14, Gender: 'monster', NPCBand: '3', skintone: '1'};
+mappages["grotto2"].npcs[21] = {name : 'SeaSerpentNPC', x : 68, y : 12, Gender: 'monster', NPCBand: '3', skintone: '1'};
+mappages["grotto2"].npcs[22] = {name : 'SeaSerpentNPC', x : 70, y : 12, Gender: 'monster', NPCBand: '3', skintone: '1'};
+mappages["grotto2"].npcs[23] = {name : 'KrakenNPC', x : 90, y : 24, skintone: '1'};
+mappages["grotto2"].npcs[24] = {name : 'KrakenNPC', x : 66, y : 34, skintone: '1'};
+mappages["grotto2"].npcs[25] = {name : 'WaterElementalNPC', x : 101, y : 45, Gender: 'monster', NPCBand: '6', skintone: '1'};
+mappages["grotto2"].npcs[26] = {name : 'WaterElementalNPC', x : 105, y : 45, Gender: 'monster', NPCBand: '6', skintone: '1'};
 
 mappages["grotto2"].desc = "Underwater Grotto";
 mappages["grotto2"].longdesc = ``;
@@ -368,6 +396,60 @@ mappages["grotto2"].returny = '30';
 mappages["grotto2"].returninfused = '0';
 mappages["grotto2"].linkedMaps = ["grotto","undergrotto"];
 mappages["grotto2"].editorLabels = '{}';
+// MAP ENDS HERE
+
+mappages["grotto2"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    let spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["NixieNPC","DeepNixieNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(5);
+    spawn.setSpawnRadius(8);
+
+    let freq = 70 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(55,31,spawn);
+
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["FlukeNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(1);
+    spawn.setSpawnRadius(3);
+
+    freq = 70 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(41,19,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["DeepNixieNPC","SeaSerpentNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(4);
+    spawn.setSpawnRadius(6);
+
+    freq = 70 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(75,23,spawn);
+
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["DeepNixieNPC","KrakenNPC","SeaSerpentNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(2);
+    spawn.setSpawnRadius(6);
+
+    freq = 70 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(96,19,spawn);
+  }
+}
 
 mappages["undergrotto"] = {};
 mappages["undergrotto"].terrain = [];

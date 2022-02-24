@@ -13400,6 +13400,68 @@ WalkOnChangeExitTile.prototype.walkon = function(walker) {
   return {msg:""};
 }
 
+function WalkOnCairns1Tile() {
+  this.name = "WalkOnCairns1";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnCairns1Tile.prototype = new FeatureObject();
+
+WalkOnCairns1Tile.prototype.walkon = function(walker) {
+  let themap = this.getHomeMap();
+  if (!themap.skeletons1) {
+    themap.skeletons1 = 1;
+    // awaken the skeletons in the SE chamber to attack
+    // then create 2nd walkon to make bodies in NE chamber to rise as specters
+    let skel1 = themap.getTile(34,38).getTopFeature();
+    let skel2 = themap.getTile(30,32).getTopFeature();
+    let skel3 = themap.getTile(36,29).getTopFeature();
+    themap.deleteThing(skel1);
+    themap.deleteThing(skel2);
+    themap.deleteThing(skel3);
+    skelmob1 = localFactory.createTile("SkeletonNPC");
+    skelmob2 = localFactory.createTile("SkeletonNPC");
+    skelmob3 = localFactory.createTile("SkeletonNPC");
+    themap.placeThing(34,38,skelmob1);
+    themap.placeThing(30,32,skelmob2);
+    themap.placeThing(36,29,skelmob3);
+
+    return {msg:"The skeletons entombed here suddenly rise at your approach!"};
+  }
+  return {msg:""};
+}
+
+function WalkOnCairns2Tile() {
+  this.name = "WalkOnCairns2";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnCairns2Tile.prototype = new FeatureObject();
+
+WalkOnCairns2Tile.prototype.walkon = function(walker) {
+  let themap = this.getHomeMap();
+  if (!themap.skeletons2) {
+    themap.skeletons2 = 1;
+    spec1 = localFactory.createTile("SpecterNPC");
+    spec2 = localFactory.createTile("SpecterNPC");
+    spec3 = localFactory.createTile("SpecterNPC");
+    themap.placeThing(48,12,spec1);
+    themap.placeThing(44,21,spec2);
+    themap.placeThing(52,17,spec3);
+
+    return {msg:"Restless spirits seem to sense your approach!"};
+  }
+  return {msg:""};
+}
+
 function WalkOnHC1Tile() {
   this.name = "WalkOnHC1";
 	this.graphic = "walkon.gif";
@@ -14560,6 +14622,17 @@ SpawnerTile.prototype.myTurn = function() {
           this[idx] = val;
         }
       }
+    }
+  }
+  if (this.sleepUntilPlayer) {
+    let NPCevent = new GameEvent(this);
+    if (this.getHomeMap() === PC.getHomeMap()) {
+      delete this.sleepUntilPlayer;
+      let timetonext = (this.getSpawnFreq() + (Math.random()*((this.getSpawnFreq()/2)+1)));
+      DUTime.addAtTimeInterval(NPCevent,timetonext);
+    } else {
+      DUTime.addAtTimeInterval(NPCevent,1);
+      return 1;
     }
   }
   
@@ -17907,7 +17980,7 @@ function StolenJewelryTile() {
 StolenJewelryTile.prototype = new ItemObject();
 
 StolenJewelryTile.prototype.onGet = function(who) {
-  DU.gameflag.setFlag("stolenjewelry_taken",1);
+  DU.gameflags.setFlag("stolenjewelry_taken",1);
 }
 
 function GoldTile() {
@@ -21502,18 +21575,18 @@ MagicSwordTile.prototype = new WeaponObject();
 function UnenchantedSwordTile() {
   //Graphics Upgraded
   this.name = "UnenchantedSword";
-  this.damage = "4d6+10";  // when broken, 2d4
+  this.damage = "2d4";  // when fixed, 4d6+10
   this.strdamage = .5;
   this.graphic = "static.png";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -68*32;
-  this.desc = "unenchanted sword";
+  this.desc = "once-enchanted sword";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "an";
   this.longdesc = "Set this during enchantment.";
   
-  this.brokendesc = "unenchanted, broken sword";
+  this.brokendesc = "broken, once-enchanted sword";
   this.repairNeedsInfusion = 1;
   Breakable.call(this,["static.png", "", -7*32, -68*32],1);
 }
@@ -21524,6 +21597,14 @@ UnenchantedSwordTile.prototype.getLongDesc = function() {
     return "A broken sword. Once it was enchanted.";
   }
   return this.longdesc + "In your hands, it deals %ave% damage on average.";
+}
+
+UnenchantedSwordTile.prototype.onGet = function(who) {
+  DU.gameflags.setFlag("unenchanted_sword",1);
+}
+
+UnenchantedSwordTile.prototype.onMend = function() {
+  this.damage = "4d6+10";
 }
 
 // LightningSword, FlamingSword, SwordOfDefense, VenomSword ?
