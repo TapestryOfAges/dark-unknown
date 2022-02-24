@@ -72,7 +72,14 @@ foreach my $line (<$npcdoc>) {
     print $out "  this.armorResist = $armorvals[2];\n";
   }
   $fields[16] = uc($fields[16]);
-  print $out "  this.movetype = MOVE_$fields[16];\n";
+  my @moves = split(',',$fields[16]);
+  my $movetype = "";
+  foreach my $move (@moves) {
+    $move =~ s/ //g;
+    if (!$movetype) { $movetype = "MOVE_$move"; }
+    else { $movetype .= " + MOVE_$move"; }
+  }
+  print $out "  this.movetype = $movetype;\n";
   print $out "  this.leavesCorpse = '$fields[17]';\n";
   print $out "  this.lootTable = '$fields[18]';\n";
   if ($fields[19] =~ /^(an*) /) {
