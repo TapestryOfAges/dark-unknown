@@ -724,6 +724,42 @@ ChickenNPCTile.prototype = new NPCObject();
 
 // Townsfolk
 
+function RoosterNPCTile() {
+  this.name = 'RoosterNPC';
+  this.level = 1;
+  this.addhp = -5;
+  this.str = 3;
+  this.dex = 3;
+  this.int = 3;
+  this.alignment = 'Good';
+  this.attitude = 'friendly';
+  this.peaceAI = 'townsfolk';
+  this.forgetAt = 0;
+  this.withdraw = 0;
+  this.graphic = 'chicken.gif';
+  this.meleeAttackAs = 'none';
+  this.meleeDamage = '1d2'
+  this.meleeStrDamage = .33
+  this.missileAttackAs = 'none';
+  this.armorAs = 'none';
+  this.armorDefense = 0;
+  this.armorAbsorb = 0;
+  this.armorResist = 0;
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.prefix = 'a';
+  this.desc = "chicken";
+  this.meleeChance = 100;
+  this.resists = {};
+  this.meleeHitSound = 'sfx_melee_hit';
+  this.meleeAttackSound = 'sfx_melee_miss';
+}
+RoosterNPCTile.prototype = new NPCObject();
+
+
+// Townsfolk
+
 function HorseNPCTile() {
   this.name = 'HorseNPC';
   this.level = 2;
@@ -2613,7 +2649,7 @@ function WaterElementalNPCTile() {
   this.meleeStrDamage = .66
   this.missileAttackAs = 'none';
   this.armorAs = 'ChainArmor';
-  this.movetype = MOVE_SWIM;
+  this.movetype = MOVE_SWIM + MOVE_WALK;
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'a';
