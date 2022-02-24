@@ -288,6 +288,7 @@ mappages["island"].onload = function(mapref) {
 
 }
 
+// MAP BEGINS HERE
 mappages["island_cave"] = {};
 mappages["island_cave"].terrain = [];
  mappages["island_cave"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -370,9 +371,9 @@ mappages["island_cave"].features[4] = {name : 'WalkOnChangeExit', x : 33, y : 69
 
 
 mappages["island_cave"].npcs = [];
-mappages["island_cave"].npcs[0] = {name : 'TrollNPC', x : 49, y : 50, skintone: '1'};
-mappages["island_cave"].npcs[1] = {name : 'TrollNPC', x : 52, y : 48, skintone: '1'};
-mappages["island_cave"].npcs[2] = {name : 'TrollNPC', x : 52, y : 52, skintone: '1'};
+mappages["island_cave"].npcs[0] = {name : 'TrollNPC', x : 49, y : 50, Gender: 'monster', NPCBand: '1', skintone: '1'};
+mappages["island_cave"].npcs[1] = {name : 'TrollNPC', x : 52, y : 48, Gender: 'monster', NPCBand: '1', skintone: '1'};
+mappages["island_cave"].npcs[2] = {name : 'TrollNPC', x : 52, y : 52, Gender: 'monster', NPCBand: '1', skintone: '1'};
 mappages["island_cave"].npcs[3] = {name : 'LurkerNPC', x : 35, y : 32, skintone: '1'};
 mappages["island_cave"].npcs[4] = {name : 'GiantSnakeNPC', x : 22, y : 45, skintone: '1'};
 mappages["island_cave"].npcs[5] = {name : 'GiantSnakeNPC', x : 19, y : 43, skintone: '1'};
@@ -380,7 +381,7 @@ mappages["island_cave"].npcs[6] = {name : 'DrakeNPC', x : 10, y : 35, skintone: 
 mappages["island_cave"].npcs[7] = {name : 'CyclopsNPC', x : 29, y : 7, skintone: '1'};
 
 mappages["island_cave"].desc = "Narrow Cave";
-mappages["island_cave"].longdesc = '';
+mappages["island_cave"].longdesc = ``;
 mappages["island_cave"].music = 'Cave';
 mappages["island_cave"].savename = `A Cave`;
 mappages["island_cave"].exitmap = 'island';
@@ -405,6 +406,7 @@ mappages["island_cave"].returny = '47';
 mappages["island_cave"].returninfused = '0';
 mappages["island_cave"].linkedMaps = [""];
 mappages["island_cave"].editorLabels = '{}';
+// MAP ENDS HERE
 
 // Added manually below
 
@@ -448,13 +450,13 @@ mappages["island_cave"].onload = function(mapref) {
     mapref.placeThing(51,42,spawn);
 
     spawn = localFactory.createTile("Spawner");
-    let spawngroup = ["TrollNPC"];
+    spawngroup = ["TrollNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(3);
     spawn.setSpawnRadius(3);
 
-    let freq = 90 + Dice.roll("1d20");
+    freq = 90 + Dice.roll("1d20");
     spawn.setSpawnFreq(freq);
   
     mapref.placeThing(25,20,spawn);
@@ -479,6 +481,7 @@ mappages["island_cave"].exit_south = function(feature) {
 	}	
 }
 
+// MAP BEGINS HERE
 mappages["abandoned_mine"] = {};
 mappages["abandoned_mine"].terrain = [];
  mappages["abandoned_mine"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -544,18 +547,18 @@ mappages["abandoned_mine"].features[25] = {name : 'Voidstone', x : 25, y : 18};
 
 
 mappages["abandoned_mine"].npcs = [];
-mappages["abandoned_mine"].npcs[0] = {name : 'SkeletonNPC', x : 21, y : 15, skintone: '1'};
-mappages["abandoned_mine"].npcs[1] = {name : 'SkeletonNPC', x : 23, y : 16, skintone: '1'};
-mappages["abandoned_mine"].npcs[2] = {name : 'SkeletonNPC', x : 9, y : 14, skintone: '1'};
-mappages["abandoned_mine"].npcs[3] = {name : 'SkeletonNPC', x : 7, y : 14, skintone: '1'};
-mappages["abandoned_mine"].npcs[4] = {name : 'SkeletonNPC', x : 7, y : 17, skintone: '1'};
-mappages["abandoned_mine"].npcs[5] = {name : 'SkeletonNPC', x : 14, y : 5, skintone: '1'};
-mappages["abandoned_mine"].npcs[6] = {name : 'SkeletonNPC', x : 12, y : 4, skintone: '1'};
-mappages["abandoned_mine"].npcs[7] = {name : 'PhantomNPC', x : 11, y : 6, skintone: '1'};
-mappages["abandoned_mine"].npcs[8] = {name : 'PhantomNPC', x : 7, y : 19, skintone: '1'};
+mappages["abandoned_mine"].npcs[0] = {name : 'SkeletonNPC', x : 21, y : 15, Gender: 'monster', NPCBand: '3', skintone: '1'};
+mappages["abandoned_mine"].npcs[1] = {name : 'SkeletonNPC', x : 23, y : 16, Gender: 'monster', NPCBand: '3', skintone: '1'};
+mappages["abandoned_mine"].npcs[2] = {name : 'SkeletonNPC', x : 9, y : 14, Gender: 'monster', NPCBand: '1', skintone: '1'};
+mappages["abandoned_mine"].npcs[3] = {name : 'SkeletonNPC', x : 7, y : 14, Gender: 'monster', NPCBand: '1', skintone: '1'};
+mappages["abandoned_mine"].npcs[4] = {name : 'SkeletonNPC', x : 7, y : 17, Gender: 'monster', NPCBand: '1', skintone: '1'};
+mappages["abandoned_mine"].npcs[5] = {name : 'SkeletonNPC', x : 14, y : 5, Gender: 'monster', NPCBand: '2', skintone: '1'};
+mappages["abandoned_mine"].npcs[6] = {name : 'SkeletonNPC', x : 12, y : 4, Gender: 'monster', NPCBand: '2', skintone: '1'};
+mappages["abandoned_mine"].npcs[7] = {name : 'PhantomNPC', x : 11, y : 6, Gender: 'monster', NPCBand: '2', skintone: '1'};
+mappages["abandoned_mine"].npcs[8] = {name : 'PhantomNPC', x : 7, y : 19, Gender: 'monster', NPCBand: '1', skintone: '1'};
 
 mappages["abandoned_mine"].desc = "Abandoned Mine";
-mappages["abandoned_mine"].longdesc = '';
+mappages["abandoned_mine"].longdesc = ``;
 mappages["abandoned_mine"].music = 'Cave';
 mappages["abandoned_mine"].savename = `Mine`;
 mappages["abandoned_mine"].exitmap = 'island';
@@ -580,3 +583,4 @@ mappages["abandoned_mine"].returny = '77';
 mappages["abandoned_mine"].returninfused = '0';
 mappages["abandoned_mine"].linkedMaps = [""];
 mappages["abandoned_mine"].editorLabels = '{}';
+// MAP ENDS HERE
