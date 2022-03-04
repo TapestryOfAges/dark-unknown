@@ -3007,18 +3007,20 @@ function PerformEmpower(caster, infused, free, tgt) {
     retval.input = "&gt;";
     return retval;
   }
-  gamestate.setMode("zstats");
-  targetCursor.restrictTo = "reagents";
-  targetCursor.page = 2;
-  targetCursor.chosenReagents = {};
-  
-  DisplayInventory("reagents");
+  gamestate.setMode("empower");
+  ShowEmpowerReagentChoice(tgt, mademenu);
 
   retval["txt"] = "";
-  retval["input"] = "&gt; Include which reagents (press ESC when done): ";
+  retval["input"] = "&gt; Include which reagents: ";
   retval["fin"] = 3;	
 
   return retval;
+}
+
+function ShowEmpowerReagentChoice(item,reagents) {
+  document.getElementById('uiinterface').innerHTML = "";
+  document.getElementById('uiinterface').style.backgroundColor = "black";
+
 }
 
 // Explosion
