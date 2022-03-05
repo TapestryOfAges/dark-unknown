@@ -3020,6 +3020,14 @@ function PerformEmpower(caster, infused, free, tgt) {
 function ShowEmpowerReagentChoice(item,reagents) {
   document.getElementById('uiinterface').innerHTML = "";
   document.getElementById('uiinterface').style.backgroundColor = "black";
+  for (let i=0;i<5;i++) {
+    for (let j=0;j<2;j++) {
+      let leftedge = 30+45*i;
+      let topedge = 20+45*j;
+      document.getElementById('uiinterface').innerHTML += "<div id='inv_"+i+"x"+j+"' style='position:absolute; left: " + leftedge + "; top: " + topedge + "; width:32px; height: 32; border:3px; border-style: solid; border-color:#999;'></div>";
+
+    }
+  }
 
 }
 
