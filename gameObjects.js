@@ -20091,8 +20091,8 @@ function ScrollConjureDaemonTile() {
   this.name = "ScrollConjureDaemon";
   this.desc = "scroll of Conjure Daemon";
   this.prefix = "a";
-  this.spelllevel = SPELL_SUMMON_DAEMON_LEVEL;
-  this.spellnum = SPELL_SUMMON_DAEMON_ID;
+  this.spelllevel = SPELL_CONJURE_DAEMON_LEVEL;
+  this.spellnum = SPELL_CONJURE_DAEMON_ID;
 }
 ScrollConjureDaemonTile.prototype = new ScrollItemObject();
 
