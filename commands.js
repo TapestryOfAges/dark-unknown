@@ -3283,12 +3283,15 @@ function DisplayInventory(restrictTo) {
   for (let j=0;j<5;j++) {
     for (let i=0;i<8;i++) {
       let leftedge = 30+45*i;
-      let topedge = 20+45*j;
+      let topedge = 10+55*j;
+      let qleftedge = leftedge + 18;
+      let qtopedge = topedge + 36;
+      document.getElementById('uiinterface').innerHTML += "<div id='invquant_"+i+"x"+j+"' style='position:absolute; left: " + qleftedge + "; top: " + qtopedge + "; width:12px; height: 10px; border:2px; border-style: solid; border-color:#999; visibility:hidden'></div>";
       document.getElementById('uiinterface').innerHTML += "<div id='inv_"+i+"x"+j+"' style='position:absolute; left: " + leftedge + "; top: " + topedge + "; width:32px; height: 32px; border:3px; border-style: solid; border-color:#999;'></div>";
     }
   }
 
-  document.getElementById('uiinterface').innerHTML += "<div id='inv_desc_window' style='position:absolute; left: 35px; top: 260px; border: 3px; border-style: solid; border-color:#ccc; width:340px; height: 125px'></div>";
+  document.getElementById('uiinterface').innerHTML += "<div id='inv_desc_window' style='position:absolute; left: 35px; top: 280px; border: 3px; border-style: solid; border-color:#ccc; width:340px; height: 125px'></div>";
   document.getElementById('inv_desc_window').innerHTML = "<table cellpadding='4' cellspacing='4' border='0' style='margin-top:5px'><tr><td rowspan='2' style='text-align:center; width: 100px'><div id='inv_image' style='position:absolute; top: 16px; left: 34px; width: 32px; height:32px'></div><p id='inv_name' class='charcreate' style='position:absolute; top:52px; width:100px; text-align:center'></p></td><td><p class='charcreate' id='inv_desc' style='top:20px'></p></td></tr><td><p class='charcreate' id='inv_use' style='color:yellow'></p></td></tr></table>";
   let invskip = targetCursor.invskiprow*8;
   let writetox = 0;
@@ -3311,16 +3314,7 @@ function DisplayInventory(restrictTo) {
     innerdiv.style.backgroundImage = "url('graphics/" + showgraphic[0] + "')";
     innerdiv.style.backgroundRepeat = "no-repeat";
     innerdiv.style.backgroundPosition = showgraphic[2] + "px " + showgraphic[3] + "px";
-
-    if (inventorylist[i].getQuantity() && (inventorylist[i].getQuantity() > 1)) {
-      innerdiv.style.verticalAlign = "bottom";
-      innerdiv.style.textAlign = "right";
-      innerdiv.style.fontSize = 12;
-      innerdiv.style.color = "white";
-      innerdiv.style.fontFamily = "Commodore64";
-      innerdiv.style.lineHeight = "24px";
-      innerdiv.innerHTML = "<p>" + inventorylist[i].getQuantity() + "</p>";
-    }
+    innerdiv.style.position = "fixed";
 
     if (PC.isEquipped(inventorylist[i])) {
       invdiv.style.borderColor = "#000099";
@@ -3331,6 +3325,17 @@ function DisplayInventory(restrictTo) {
       }
     }
     invdiv.appendChild(innerdiv);
+    if (inventorylist[i].getQuantity() && (inventorylist[i].getQuantity() > 1)) {
+      let quant = document.getElementById('invquant_'+writetox+"x"+writetoy);
+      quant.style.fontSize = 12;
+      quant.style.color = "white";
+      quant.style.fontFamily = "Commodore64";
+      quant.style.textAlign = "right";
+      quant.style.visibility = "visible";
+
+      quant.innerHTML = "<span style='position:relative;top:-2px'>" + inventorylist[i].getQuantity() + "</span>";
+    }
+
   }
 
   let invselect = targetCursor.invskiprow*8 + targetCursor.invy*8 + targetCursor.invx;
