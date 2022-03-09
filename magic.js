@@ -3008,7 +3008,10 @@ function PerformEmpower(caster, infused, free, tgt) {
     return retval;
   }
   gamestate.setMode("empower");
-  ShowEmpowerReagentChoice(tgt, mademenu);
+  targetCursor.invx = 0; 
+  targetCursor.invy = 0; 
+  targetCursor.tgt = tgt;
+  ShowEmpowerReagentChoice(caster);
 
   retval["txt"] = "";
   retval["input"] = "&gt; Include which reagents: ";
@@ -3017,17 +3020,107 @@ function PerformEmpower(caster, infused, free, tgt) {
   return retval;
 }
 
-function ShowEmpowerReagentChoice(item,reagents) {
+function ShowEmpowerReagentChoice(caster) {
   document.getElementById('uiinterface').innerHTML = "";
   document.getElementById('uiinterface').style.backgroundColor = "black";
+  document.getElementById('uiinterface').innerHTML += "<div style='position: absolute; left: 100px; top:15px; color: white; font-size: 16pt; font-family: Commodore64'>Available reagents:</div>";
   for (let i=0;i<5;i++) {
     for (let j=0;j<2;j++) {
-      let leftedge = 30+45*i;
-      let topedge = 20+45*j;
+      let leftedge = 100+45*i;
+      let topedge = 40+45*j;
+      let qleftedge = leftedge + 18;
+      let qtopedge = topedge + 36;
+      document.getElementById('uiinterface').innerHTML += "<div id='invquant_"+i+"x"+j+"' style='position:absolute; left: " + qleftedge + "; top: " + qtopedge + "; width:12px; height: 10px; border:2px; border-style: solid; border-color:#999; visibility:hidden'></div>";
       document.getElementById('uiinterface').innerHTML += "<div id='inv_"+i+"x"+j+"' style='position:absolute; left: " + leftedge + "; top: " + topedge + "; width:32px; height: 32; border:3px; border-style: solid; border-color:#999;'></div>";
-
     }
   }
+  document.getElementById('uiinterface').innerHTML += "<div id='inv_desc_window' style='position:absolute; left: 35px; top: 310px; border: 3px; border-style: solid; border-color:#ccc; width:340px; height: 60px'></div>";
+  document.getElementById('inv_desc_window').innerHTML = "<table cellpadding='4' cellspacing='4' border='0' style='margin-top:5px'><tr><td rowspan='2' style='text-align:center; width: 100px'><div id='inv_image' style='position:absolute; top: 16px; left: 34px; width: 32px; height:32px'></div><p id='inv_name' class='charcreate' style='position:absolute; top:52px; width:100px; text-align:center'></p></td><td><p class='charcreate' id='inv_desc' style='top:20px'></p></td></tr><td><p class='charcreate' id='inv_use' style='color:yellow'></p></td></tr></table>";
+
+  let mortar = caster.checkInventory("Mortar");
+  if ((caster.checkInventory("DragonBone")) && (caster.checkInventory("CrystalMortar"))) {
+    mortar = caster.checkInventory("CrystalMortar");
+  }
+  let showgraphic = mortar.getGraphicArray();
+  document.getElementById('uiinterface').innerHTML += "<div style='position:absolute; left: 40px; top: 200px; width: 32px; height: 32px; background-image: url(\"graphics/" + showgraphic[0] + "\"); background-position: " +showgraphic[2] + "px " + showgraphic[3] + "px;' ></div>";
+  document.getElementById('uiinterface').innerHTML += "<div style='position: absolute; left: 100px; top:170px; color: white; font-size: 16pt; font-family: Commodore64'>Reagents in mortar:</div>";
+
+  for (let i=0;i<5;i++) {
+    let leftedge = 100+45*i;
+    let topedge = 200;
+    document.getElementById('uiinterface').innerHTML += "<div id='inv_"+i+"x2' style='position:absolute; left: " + leftedge + "; top: " + topedge + "; width:32px; height: 32; border:3px; border-style: solid; border-color:#999;'></div>";
+  }
+
+  document.getElementById('uiinterface').innerHTML += "<div style='position: absolute; left: 150px; top:270px; color: white; font-size: 16pt; font-family: Commodore64'>Begin grinding</div>";
+  document.getElementById('inv_' + targetCursor.invx + 'x' + targetCursor.invy).style.borderColor = "#ffffff";
+
+  let reagents = MakeInventoryList("reagent");
+  let ridx = 0;
+  let midx = 0;
+  for (let i=0;i<reagents.length;i++) {
+    let regname = reagents[i].getName();
+    let showgraphic = reagents[i].getGraphicArray();
+    if (targetCursor.mortar[regname]) {
+      let invdiv = document.getElementById('inv_'+midx+"x2");
+      let innerdiv = document.createElement("div");
+      innerdiv.id = "divid_" + inventorylist[i].getSerial();
+      innerdiv.style.width = "32px";
+      innerdiv.style.height = "32px";
+      innerdiv.style.backgroundImage = "url('graphics/" + showgraphic[0] + "')";
+      innerdiv.style.backgroundRepeat = "no-repeat";
+      innerdiv.style.backgroundPosition = showgraphic[2] + "px " + showgraphic[3] + "px";
+      innerdiv.style.position = "fixed";
+      invdiv.appendChild(innerdiv);
+
+      if ((targetCursor.invx === midx) && (targetCursor.invx === 2)) {
+        document.getElementById('inv_image').style.backgroundImage = "url('graphics/" + showgraphic[0] + "')";
+        document.getElementById('inv_image').style.backgroundRepeat = "no-repeat";
+        document.getElementById('inv_image').style.backgroundPosition = showgraphic[2] + "px " + showgraphic[3] + "px";
+        let descname = reagents[i].getDesc();
+        descname = descname.charAt(0).toUpperCase() + descname.slice(1);
+        document.getElementById('inv_name').innerHTML = descname;
+        document.getElementById('inv_use').innerHTML = "Press Enter to remove from the mortar.";
+      }
+      midx++;
+    } else {
+      let writetox = ridx % 5;
+      let writetoy = 0;
+      if (ridx >= 5) { writetoy = 1; }
+      let invdiv = document.getElementById('inv_'+writetox+"x"+writetoy);
+      let innerdiv = document.createElement("div");
+      innerdiv.id = "divid_" + inventorylist[i].getSerial();
+      innerdiv.style.width = "32px";
+      innerdiv.style.height = "32px";
+      innerdiv.style.backgroundImage = "url('graphics/" + showgraphic[0] + "')";
+      innerdiv.style.backgroundRepeat = "no-repeat";
+      innerdiv.style.backgroundPosition = showgraphic[2] + "px " + showgraphic[3] + "px";
+      innerdiv.style.position = "fixed";
+      invdiv.appendChild(innerdiv);
+
+      if (inventorylist[i].getQuantity() && (inventorylist[i].getQuantity() > 1)) {
+        let quant = document.getElementById('invquant_'+writetox+"x"+writetoy);
+        quant.style.fontSize = 12;
+        quant.style.color = "white";
+        quant.style.fontFamily = "Commodore64";
+        quant.style.textAlign = "right";
+        quant.style.visibility = "visible";
+  
+        quant.innerHTML = "<span style='position:relative;top:-2px'>" + inventorylist[i].getQuantity() + "</span>";
+      }
+
+      if ((targetCursor.invx === writetox) && (targetCursor.invx === writetoy)) {
+        document.getElementById('inv_image').style.backgroundImage = "url('graphics/" + showgraphic[0] + "')";
+        document.getElementById('inv_image').style.backgroundRepeat = "no-repeat";
+        document.getElementById('inv_image').style.backgroundPosition = showgraphic[2] + "px " + showgraphic[3] + "px";
+        let descname = reagents[i].getDesc();
+        descname = descname.charAt(0).toUpperCase() + descname.slice(1);
+        document.getElementById('inv_name').innerHTML = descname;
+        document.getElementById('inv_use').innerHTML = "Press Enter to add to the mortar.";
+      }
+      ridx++;
+    }
+  }
+  document.getElementById('inv_'+targetCursor.invx+"x"+targetCursor.invy).style.borderColor = "#ffffff";
 
 }
 
