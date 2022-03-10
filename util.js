@@ -1066,9 +1066,11 @@ function GetAllWithin(type,rad,map,center) {
 function IsOnPentagram(who) {
   let themap = who.getHomeMap();
   let tile = themap.getTile(who.getx(), who.gety());
-  let terrain = tile.getTerrain();
-  if (terrain.getGraphic() === "pentagram.gif") {
-    return 1;
+  let fea = tile.getFeatures();
+  for (let i=0;i<fea.length;i++) {
+    if (fea[i].getName().includes("Pentagram")) { 
+      return 1;
+    }
   } 
   return 0;
 }
