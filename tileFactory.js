@@ -3923,6 +3923,46 @@ tileFactory.prototype.makePentagramSETile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeCrenellationNWTile = function() {
+  let newTile = new CrenellationNWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCrenellationNTile = function() {
+  let newTile = new CrenellationNTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCrenellationNETile = function() {
+  let newTile = new CrenellationNETile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCrenellationWTile = function() {
+  let newTile = new CrenellationWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCrenellationETile = function() {
+  let newTile = new CrenellationETile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCrenellationSWTile = function() {
+  let newTile = new CrenellationSWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCrenellationSTile = function() {
+  let newTile = new CrenellationSTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCrenellationSETile = function() {
+  let newTile = new CrenellationSETile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWeaponCounterDaggerTile = function() {
   let newTile = new WeaponCounterDaggerTile();
   return newTile;

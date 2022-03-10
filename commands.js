@@ -3305,7 +3305,6 @@ function DisplayInventory(restrictTo) {
     writetox = i%8;
     
     let showgraphic = inventorylist[i].getGraphicArray();
-    let bordercolor = "#ccc";
     let invdiv = document.getElementById('inv_'+writetox+"x"+writetoy);
     let innerdiv = document.createElement("div");
     innerdiv.id = "divid_" + inventorylist[i].getSerial();
