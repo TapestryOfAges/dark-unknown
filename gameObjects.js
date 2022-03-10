@@ -9259,6 +9259,102 @@ function PentagramSETile() {
 }
 PentagramSETile.prototype = new FeatureObject();
 
+function CrenellationNWTile() {
+  this.name = "CrenellationNW";
+  this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-192";
+	this.spriteyoffset = "-1760";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.prefix = "a";
+  this.desc = "crenellation";
+}
+CrenellationNWTile.prototype = new FeatureObject();
+
+function CrenellationNTile() {
+  this.name = "CrenellationN";
+  this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-224";
+	this.spriteyoffset = "-1760";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.prefix = "a";
+  this.desc = "crenellation";
+}
+CrenellationNTile.prototype = new FeatureObject();
+
+function CrenellationNETile() {
+  this.name = "CrenellationNE";
+  this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-256";
+	this.spriteyoffset = "-1760";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.prefix = "a";
+  this.desc = "crenellation";
+}
+CrenellationNETile.prototype = new FeatureObject();
+
+function CrenellationWTile() {
+  this.name = "CrenellationW";
+  this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-192";
+	this.spriteyoffset = "-1792";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.prefix = "a";
+  this.desc = "crenellation";
+}
+CrenellationWTile.prototype = new FeatureObject();
+
+function CrenellationETile() {
+  this.name = "CrenellationE";
+  this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-256";
+	this.spriteyoffset = "-1792";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.prefix = "a";
+  this.desc = "crenellation";
+}
+CrenellationETile.prototype = new FeatureObject();
+
+function CrenellationSWTile() {
+  this.name = "CrenellationSW";
+  this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-192";
+	this.spriteyoffset = "-1824";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.prefix = "a";
+  this.desc = "crenellation";
+}
+CrenellationSWTile.prototype = new FeatureObject();
+
+function CrenellationSTile() {
+  this.name = "CrenellationS";
+  this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-224";
+	this.spriteyoffset = "-1824";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.prefix = "a";
+  this.desc = "crenellation";
+}
+CrenellationSTile.prototype = new FeatureObject();
+
+function CrenellationSETile() {
+  this.name = "CrenellationSE";
+  this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-256";
+	this.spriteyoffset = "-1824";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.prefix = "a";
+  this.desc = "crenellation";
+}
+CrenellationSETile.prototype = new FeatureObject();
+
 function WeaponCounterDaggerTile() {
   this.name = "WeaponCounterDagger";
   this.graphic = "master_spritesheet.png";
@@ -11890,8 +11986,24 @@ function PerfectRubyTile() {
   this.longdesc = "A perfect ruby gemstone. Flawless.";
   this.prefix = "a";
   this.valuable = 1;
+  this.enchantable = 1;
 }
 PerfectRubyTile.prototype = new ItemObject();
+
+function EnchantedPerfectRubyTile() {
+	this.name = "EnchantedPerfectRuby";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-1376";
+	this.blocklos = 0;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "enchanted, perfect ruby gemstone";
+  this.longdesc = "A perfect ruby gemstone. Flawless. You have enchanted it, but it needs more.";
+  this.prefix = "an";
+  this.valuable = 1;
+}
+EnchantedPerfectRubyTile.prototype = new ItemObject();
 
 function UncutLargeRubyTile() {
 	this.name = "UncutLargeRuby";
@@ -12031,6 +12143,7 @@ function DecorativeArmorTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.longdesc = "a suit of purely decorative armor. It would not actually provide protection.";
+  this.enchantable = 1;
 }
 DecorativeArmorTile.prototype = new ItemObject();
 
@@ -15729,6 +15842,7 @@ function UnenchantedSwordTile() {
   
   this.brokendesc = "broken, once-enchanted sword";
   this.repairNeedsInfusion = 1;
+  this.enchantable = 1;
   Breakable.call(this,["magic-sword_.gif", "", "0", "0"],1);
 }
 UnenchantedSwordTile.prototype = new WeaponObject();
