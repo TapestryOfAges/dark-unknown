@@ -1300,6 +1300,25 @@ function DoAction(code, ctrl) {
       maintext.setInputLine("Purchase how many? " + targetCursor.buyqty);
       maintext.drawTextFrame();
     }
+  } else if (gamestate.getMode() === "empower") {
+    let retval = EmpowerReagentCommands(code);
+    if (retval["fin"] === 1) {
+      delete targetCursor.invx;
+      delete targetCursor.invx_old;
+      delete targetCursor.invy;
+      delete targetCursor.mortar;
+      delete targetCursor.tgt;
+      document.getElementById('uiinterface').innerHTML = "";
+      document.getElementById('uiinterface').style.backgroundColor = "";
+      maintext.setInputLine("&gt;");
+      maintext.drawTextFrame();
+      DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
+      DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+      gamestate.setMode("player");
+      gamestate.setTurn(PC);
+    } else if (retval["fin"] === 0) {
+      ShowEmpowerReagentChoice(PC);
+    }
   }
   maintext.flushDelayedText();
 }

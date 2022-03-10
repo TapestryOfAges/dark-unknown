@@ -3007,10 +3007,16 @@ function PerformEmpower(caster, infused, free, tgt) {
     retval.input = "&gt;";
     return retval;
   }
+  if (!caster.IsOnPentagram()) {
+    retval.txt = "This spell must be cast while standing in a circle of power.";
+    retval.input = "&gt;";
+    return retval;
+  }
   gamestate.setMode("empower");
   targetCursor.invx = 0; 
   targetCursor.invy = 0; 
   targetCursor.tgt = tgt;
+  targetCursor.mortar = {};
   ShowEmpowerReagentChoice(caster);
 
   retval["txt"] = "";
@@ -3035,7 +3041,7 @@ function ShowEmpowerReagentChoice(caster) {
     }
   }
   document.getElementById('uiinterface').innerHTML += "<div id='inv_desc_window' style='position:absolute; left: 35px; top: 310px; border: 3px; border-style: solid; border-color:#ccc; width:340px; height: 60px'></div>";
-  document.getElementById('inv_desc_window').innerHTML = "<table cellpadding='4' cellspacing='4' border='0' style='margin-top:5px'><tr><td rowspan='2' style='text-align:center; width: 100px'><div id='inv_image' style='position:absolute; top: 16px; left: 34px; width: 32px; height:32px'></div><p id='inv_name' class='charcreate' style='position:absolute; top:52px; width:100px; text-align:center'></p></td><td><p class='charcreate' id='inv_desc' style='top:20px'></p></td></tr><td><p class='charcreate' id='inv_use' style='color:yellow'></p></td></tr></table>";
+  document.getElementById('inv_desc_window').innerHTML = "<table cellpadding='4' cellspacing='4' border='0' style='margin-top:5px'><tr><td rowspan='2' style='text-align:center; width: 100px'><div id='inv_image' style='position:absolute; top: 6px; left: 34px; width: 32px; height:32px'></div><p id='inv_name' class='charcreate' style='position:absolute; top:42px; width:100px; text-align:center'></p></td><td><p class='charcreate' id='inv_desc' style='top:20px'></p></td></tr><td><p class='charcreate' id='inv_use' style='color:yellow'></p></td></tr></table>";
 
   let mortar = caster.checkInventory("Mortar");
   if ((caster.checkInventory("DragonBone")) && (caster.checkInventory("CrystalMortar"))) {
@@ -3051,7 +3057,7 @@ function ShowEmpowerReagentChoice(caster) {
     document.getElementById('uiinterface').innerHTML += "<div id='inv_"+i+"x2' style='position:absolute; left: " + leftedge + "; top: " + topedge + "; width:32px; height: 32; border:3px; border-style: solid; border-color:#999;'></div>";
   }
 
-  document.getElementById('uiinterface').innerHTML += "<div style='position: absolute; left: 150px; top:270px; color: white; font-size: 16pt; font-family: Commodore64'>Begin grinding</div>";
+  document.getElementById('uiinterface').innerHTML += "<div id='inv_1x3' style='position: absolute; left: 150px; top:270px; color: white; font-size: 16pt; font-family: Commodore64'>Begin grinding</div>";
   document.getElementById('inv_' + targetCursor.invx + 'x' + targetCursor.invy).style.borderColor = "#ffffff";
 
   let reagents = MakeInventoryList("reagent");
@@ -3063,7 +3069,7 @@ function ShowEmpowerReagentChoice(caster) {
     if (targetCursor.mortar[regname]) {
       let invdiv = document.getElementById('inv_'+midx+"x2");
       let innerdiv = document.createElement("div");
-      innerdiv.id = "divid_" + inventorylist[i].getSerial();
+      innerdiv.id = "divid_" + reagents[i].getSerial();
       innerdiv.style.width = "32px";
       innerdiv.style.height = "32px";
       innerdiv.style.backgroundImage = "url('graphics/" + showgraphic[0] + "')";
@@ -3088,7 +3094,7 @@ function ShowEmpowerReagentChoice(caster) {
       if (ridx >= 5) { writetoy = 1; }
       let invdiv = document.getElementById('inv_'+writetox+"x"+writetoy);
       let innerdiv = document.createElement("div");
-      innerdiv.id = "divid_" + inventorylist[i].getSerial();
+      innerdiv.id = "divid_" + reagents[i].getSerial();
       innerdiv.style.width = "32px";
       innerdiv.style.height = "32px";
       innerdiv.style.backgroundImage = "url('graphics/" + showgraphic[0] + "')";
@@ -3097,7 +3103,7 @@ function ShowEmpowerReagentChoice(caster) {
       innerdiv.style.position = "fixed";
       invdiv.appendChild(innerdiv);
 
-      if (inventorylist[i].getQuantity() && (inventorylist[i].getQuantity() > 1)) {
+      if (reagents[i].getQuantity() && (reagents[i].getQuantity() > 1)) {
         let quant = document.getElementById('invquant_'+writetox+"x"+writetoy);
         quant.style.fontSize = 12;
         quant.style.color = "white";
@@ -3122,6 +3128,78 @@ function ShowEmpowerReagentChoice(caster) {
   }
   document.getElementById('inv_'+targetCursor.invx+"x"+targetCursor.invy).style.borderColor = "#ffffff";
 
+}
+
+function EmpowerReagentCommands(cmd) {
+  let retval = {};
+  if (cmd === 27) { // ESC
+    retval["fin"] = 1;
+    return retval;
+  } else if (cmd === 38) { // Up
+    retval["fin"] = 0;
+    if (targetCursor.invy === 0) { return retval; }
+    if (targetCursor.invy === 3) { 
+      targetCursor.invx = targetCursor.invx_old;
+      delete targetCursor.invx_old;
+    }
+    targetCursor.invy--;
+    return retval;
+  } else if (cmd === 37) { // Left
+    retval["fin"] = 0;
+    if (targetCursor.invy === 3) {
+      return retval;
+    }
+    if (targetCursor.invx > 0) { targetCursor.invx--; }
+    return retval;
+  } else if (cmd === 39) { // Right
+    retval["fin"] = 0;
+    if (targetCursor.invy === 3) {
+      return retval;
+    }
+  } else if (cmd === 40) { // Down
+    retval["fin"] = 0;
+    if (targetCursor.invy === 3) {
+      return retval;
+    }
+    if (targetCursor.invy === 2) {
+      targetCursor.invx_old = targetCursor.invx;
+      targetCursor.invx = 0;
+    }
+    targetCursor.invy++;
+    return retval;
+  } else if ((code === 13) || (code === 32)) {  // space or enter
+    retval["fin"] = 0;
+    let reglist=[];
+    let mortlist=[];
+    let reagents = MakeInventoryList("reagent");
+    for (let i=0;i<reagents.length;i++) {
+      if (targetCursor.mortar[reagents[i].getName()]) {
+        mortlist.push(reagents[i].getName());
+      } else { reglist.push(reagents[i].getName()); }
+    }
+    if ((targetCursor.invy === 0) || (targetCursor.invy === 1)) {
+      let idx = targetCursor.invx + 5*targetCursor.invy;
+      targetCursor.mortar[reglist[idx]] = 1;
+      return retval;
+    } else if (targetCursor.invy=2) {
+      targetCursor.mortar[mortlist[targetCursor.invx]] = 0;
+      return retval;
+    } else {
+      // Do magic!
+      let tobeenchanted = targetCursor.tgt.getDesc();
+      let mortar = caster.checkInventory("Mortar");
+      if ((caster.checkInventory("DragonBone")) && (caster.checkInventory("CrystalMortar"))) {
+        mortar = caster.checkInventory("CrystalMortar");
+      }
+      let mortardesc = mortar.getDesc();
+      let starttext = `You place the ${tobeenchanted} in front of you, in the center of the pentagram, and carefully place the chosen reagents in the ${mortardesc}. `;
+      let failuretext = [`As you begin the incantation and feel the power gather, your heightened mystical senses perceive that this combination of reagents, and this object to be empowered, will not generate a useful enchantment.`];
+      failuretext.push(`You cease casting the spell before you begin mixing the reagents together. You will need to consider a different combination of materials.`);
+
+    }
+  }
+  retval["fin"] = 0;
+  return retval;
 }
 
 // Explosion
