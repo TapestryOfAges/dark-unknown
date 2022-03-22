@@ -7234,6 +7234,35 @@ KitchenBarrel3Tile.prototype.use = function(who) {
   return retval;
 }
 
+function SunLensTile() {
+  this.name = "SunLens";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1760";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "magical lens";
+  this.pathweight = 10; 
+  this.civilizedpathweight = 10; // paths should never go through this unless there is no choice
+	
+	Pushable.call(this);
+}
+SunLensTile.prototype = new FeatureObject();
+
+SunLensTile.prototype.use = function(who) {
+  let retval = { fin: 1 };
+  if ((this.getx() >= 11) && (this.getx() <= 17) && (this.gety() >= 11) && (this.gety() <= 15) && CheckTimeBetween("12:00","12:59")) {
+    let frozen = localFactory.createTile("FrozenSunlight");
+    who.addToInventory(frozen,1);
+    retval["txt"] = "You angle the lens to catch the sunlight, and on the other side the light is concentrated to a point. There is a haze, and then in a flash a small glowing crystal coalesces. You catch it before it can fall to the ground.";
+    maintext.delayedAddText = "<span class='sysconv'>You have gained: crystalized sunlight.</span>";
+  } else {
+    retval["txt"] = "Nothing happens when you try to use the strange device.";
+  }
+  return retval;
+}
+
 function MirrorTile() {
   this.name = "Mirror";
   this.graphic = "master_spritesheet_d.gif";
@@ -11560,6 +11589,38 @@ function ChaliceTile() {
 }
 ChaliceTile.prototype = new ItemObject();
 
+function FrozenSunlightTile() {
+  this.name = "FrozenSunlight";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-1792";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "frozen sunlight";
+  this.longdesc = "Sunlight, frozen solid. Somehow.";
+
+  this.addType("Quest");  
+  this.addType("Reagent");
+}
+FrozenSunlightTile.prototype = new ItemObject();
+
+FrozenSunlightTile.prototype.myTurn = function() {
+  if (PC.checkInventory("FrozenSunlight")) {
+    PC.removeFromInventory(this);
+    maintext.addText("The frozen sunlight dissipates with a golden glow and is gone.");
+  } else {
+    if (!maps.getMap(this.getHomeMap().getName())) {
+      return 1; 
+    }
+    if (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety()) <= 6) {
+      maintext.addText("The frozen sunlight dissipates with a golden glow and is gone.");
+    }
+    this.getHomeMap().deleteThing(this);
+  }
+  
+  return 1;
+}
+
 function CourierPouchTile() {
   this.name = "CourierPouch";
   this.graphic = "master_spritesheet_d.gif";
@@ -12825,6 +12886,22 @@ function ATreatiseOnDragonsTile() {
   this.longdesc = "The book <i>A Treatise on Dragons</i>. A summary of facts known, rumored, and debated about dragons and dragonkind.";
 }
 ATreatiseOnDragonsTile.prototype = new BookItemObject();
+
+
+function AWarningOnDaemonsTile() {
+  this.name = "AWarningOnDaemons";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-1216";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "A Warning On Daemons";
+  this.prefix = "";
+  this.contents = "You open the book.%%<span class='conv'>Little is known for certain about the class of entities we call \"daemons\". But some things are known.</span>%%<span class='conv'>One: they are powerful. Two: They are evil, and seem to be as part of their inherent nature. Three: They are not native to this world.</span>%%<span class='conv'>The place from which they hail is commonly called Hell by the unsophisticated. It is unknown whether it existed before our own world was born, or if they came into being together.</span>%%<span class='conv'>Daemons in the world are rare, and the result of an unwise wizard's magic. These wizards are sometimes seduced by offers of power.</span>%%The book is long, but you feel like you have gotten the gist. You close the book.";
+  this.longdesc = "The book <i>A Treatise on Dragons</i>. A summary of facts known, rumored, and debated about dragons and dragonkind.";
+}
+AWarningOnDaemonsTile.prototype = new BookItemObject();
 
 function NatassaJournalTile() {
   this.name = "NatassaJournal";
@@ -15842,7 +15919,6 @@ function UnenchantedSwordTile() {
   
   this.brokendesc = "broken, once-enchanted sword";
   this.repairNeedsInfusion = 1;
-  this.enchantable = 1;
   Breakable.call(this,["magic-sword_.gif", "", "0", "0"],1);
 }
 UnenchantedSwordTile.prototype = new WeaponObject();
@@ -15860,6 +15936,8 @@ UnenchantedSwordTile.prototype.onGet = function(who) {
 
 UnenchantedSwordTile.prototype.onMend = function() {
   this.damage = "4d6+10";
+  this.enchantable = 1;
+  // only becomes enchantable once you Mend it
 }
 
 // LightningSword, FlamingSword, SwordOfDefense, VenomSword ?
