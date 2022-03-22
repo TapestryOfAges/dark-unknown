@@ -828,6 +828,32 @@ OnConvTriggers["place_tod"] = function(speaker,keyword) {
   }
 }
 
+OnConvTriggers["place_wod"] = function(speaker,keyword) {
+  let tile = speaker.getHomeMap().getTile(36,32);
+  let shelf = tile.getTopFeature();
+  if (shelf.getName() !== "AWarningOnDaemons") {
+    shelf.setSearchYield(["AWarningOnDaemons"]);
+  }
+}
+
+function HasLibraryBooks() {
+  let hasbook = 0;
+  if (PC.checkInventory("MapsAndLegends")) {
+    hasbook = 1;
+    PC.removeFromInventory("MapsAndLegends");
+  }
+  if (PC.checkInventory("ATreatiseOnDragons")) {
+    hasbook = 1;
+    PC.removeFromInventory("ATreatiseOnDragons");
+  }
+  if (PC.checkInventory("AWarningOnDaemons")) {
+    hasbook = 1;
+    PC.removeFromInventory("AWarningOnDaemons");
+  }
+  return hasbook;
+
+}
+
 OnConvTriggers["sirius_book1"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("sirius_book1");
   let bookshelfLeft = localFactory.createTile("BookshelfLeft");
