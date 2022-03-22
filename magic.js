@@ -3012,6 +3012,11 @@ function PerformEmpower(caster, infused, free, tgt) {
     retval.input = "&gt;";
     return retval;
   }
+//  if ((tgt.getName() === "PerfectRuby") && (mortar.getName() === "Mortar")) {
+//    retval.txt = "The enchantment you seek to place on the ruby is too powerful to be cast with that mortar. You must find something that will survive the casting.";
+//    retval.input = "&gt;"
+//    return retval;
+//  }
   gamestate.setMode("empower");
   targetCursor.invx = 0; 
   targetCursor.invy = 0; 
@@ -3195,7 +3200,26 @@ function EmpowerReagentCommands(cmd) {
       let starttext = `You place the ${tobeenchanted} in front of you, in the center of the pentagram, and carefully place the chosen reagents in the ${mortardesc}. `;
       let failuretext = [`As you begin the incantation and feel the power gather, your heightened mystical senses perceive that this combination of reagents, and this object to be empowered, will not generate a useful enchantment.`];
       failuretext.push(`You cease casting the spell before you begin mixing the reagents together. You will need to consider a different combination of materials.`);
+      let successtext = [];
+      if (tgt.getName() === "PerfectRuby") {
+        if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["Mistletoe"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["SulfurousAsh"]) {
 
+        }
+      } else if (tgt.getName() === "DecorativeArmor") {
+        if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["BloodMoss"]) {
+
+        }
+      } else if (tgt.getName() === "UnenchantedSword") {
+        if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["LightningWood"]) {
+
+        } else if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["Nightshade"]) {
+
+        } else if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["BloodMoss"]) {
+
+        } else if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["SulfurousAsh"]) {
+
+        }
+      }
     }
   }
   retval["fin"] = 0;
