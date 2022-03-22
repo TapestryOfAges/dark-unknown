@@ -382,7 +382,7 @@ mappages["spire3"].terrain = [];
 mappages["spire3"].terrain[10] = '_^ _^ _^ _^ _^ _^ _^ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ _^ _^ _^ _^ _^ _^ _^ _^ _^ _^';
 mappages["spire3"].terrain[11] = '_^ _^ _^ _^ _^ _^ _^ ++ ++ ++ ++ ## ## ## ## ## ## ## ++ ++ ++ ++ _^ _^ _^ _^ _^ _^ _^ _^ _^ _^';
 mappages["spire3"].terrain[12] = '_^ _^ _^ _^ _^ _^ _^ ++ ++ ++ ++ ## ++ ++ ## ++ ++ ## ++ ++ ++ ++ _^ _^ _^ _^ _^ _^ _^ _^ _^ _^';
-mappages["spire3"].terrain[13] = '_^ _^ _^ _^ _^ _^ _^ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ## ++ ++ ++ ++ _^ _^ _^ _^ _^ _^ _^ _^ _^ _^';
+mappages["spire3"].terrain[13] = '_^ _^ _^ _^ _^ _^ _^ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ++ _^ _^ _^ _^ _^ _^ _^ _^ _^ _^';
 mappages["spire3"].terrain[14] = '_^ _^ _^ _^ _^ _^ _^ ++ ++ ++ ++ ## ++ ++ ## ++ ++ ## ++ ++ ++ ++ _^ _^ _^ _^ _^ _^ _^ _^ _^ _^';
 mappages["spire3"].terrain[15] = '_^ _^ _^ _^ _^ _^ _^ ++ ++ ++ ++ ## ## ## ## ## ## ## ++ ++ ++ ++ _^ _^ _^ _^ _^ _^ _^ _^ _^ _^';
 mappages["spire3"].terrain[16] = '_^ _^ _^ _^ _^ _^ _^ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ _^ _^ _^ _^ _^ _^ _^ _^ _^ _^';
@@ -481,6 +481,9 @@ mappages["spire3"].features[74] = {name : 'CrenellationE', x : 21, y : 10};
 mappages["spire3"].features[75] = {name : 'CrenellationE', x : 21, y : 10};
 mappages["spire3"].features[76] = {name : 'CrenellationE', x : 21, y : 9};
 mappages["spire3"].features[77] = {name : 'CrenellationE', x : 21, y : 9};
+mappages["spire3"].features[78] = {name : 'Door', x : 17, y : 13};
+mappages["spire3"].features[79] = {name : 'SunLens', x : 15, y : 12};
+mappages["spire3"].features[80] = {name : 'BookshelfOne', x : 16, y : 12};
 
 
 mappages["spire3"].npcs = [];
