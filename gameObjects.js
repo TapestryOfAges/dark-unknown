@@ -12880,13 +12880,12 @@ function ATreatiseOnDragonsTile() {
   this.spriteyoffset = "-1216";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "A Treatise On Dragons";
+  this.desc = 'A book named "A Treatise On Dragons"';
   this.prefix = "";
   this.contents = "You open the book.%%<span class='conv'>A dragon is a mighty reptile with great magical and physical power. Its destructive power is so great that it is hardly a surprise that it came to be associated with Tethlokel the Destroyer.</span>%%<span class='conv'>The average dragon is roughly 60 feet long, breathes fire hot enough to easily set wooden buildings aflame, and can fly for hours without rest.</span>%%<span class='conv'>They prefer to live in caves in high mountains far from civilization, and so are infrequently seen.</span>%%<span class='conv'>Rarely, a dragon may grow to become an Elder. Elder Dragons are thought to have better than human intelligence and incredible magical power, allowing them to make plans that span decades.</span>%%<span class='conv'>It is fortunate that they are so rare, as they are evil of bent and desire power and conquest.</span>%%The book is long, but you feel like you have gotten the gist. You close the book.";
   this.longdesc = "The book <i>A Treatise on Dragons</i>. A summary of facts known, rumored, and debated about dragons and dragonkind.";
 }
 ATreatiseOnDragonsTile.prototype = new BookItemObject();
-
 
 function AWarningOnDaemonsTile() {
   this.name = "AWarningOnDaemons";
@@ -12896,12 +12895,28 @@ function AWarningOnDaemonsTile() {
   this.spriteyoffset = "-1216";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "A Warning On Daemons";
+  this.desc = 'A book named "A Warning On Daemons"';
   this.prefix = "";
   this.contents = "You open the book.%%<span class='conv'>Little is known for certain about the class of entities we call \"daemons\". But some things are known.</span>%%<span class='conv'>One: they are powerful. Two: They are evil, and seem to be as part of their inherent nature. Three: They are not native to this world.</span>%%<span class='conv'>The place from which they hail is commonly called Hell by the unsophisticated. It is unknown whether it existed before our own world was born, or if they came into being together.</span>%%<span class='conv'>Daemons in the world are rare, and the result of an unwise wizard's magic. These wizards are sometimes seduced by offers of power.</span>%%The book is long, but you feel like you have gotten the gist. You close the book.";
-  this.longdesc = "The book <i>A Treatise on Dragons</i>. A summary of facts known, rumored, and debated about dragons and dragonkind.";
+  this.longdesc = "The book <i>A Warning On Daemons</i>. A text about daemons, elucidating what is known and what is rumoured.";
 }
 AWarningOnDaemonsTile.prototype = new BookItemObject();
+
+function WhatIsMagicTile() {
+  this.name = "WhatIsMagic";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-1216";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = 'A thin book named "What Is Magic?"';
+  this.prefix = "";
+  this.contents = "You open the book.%%<span class='conv'>What is magic? Magic is all around us. As you live, you are constantly making magic in small ways.</span>%%<span class='conv'>Some rare people can use magic directly. These people are called \"Wizards\".</span>%%<span class='conv'>By speaking the right magic words, moving their hands in the right gestures, and thinking really hard, they can do what is called \"cast spells\"- making a small glowing ball of light, or a giant flying ball of fire.</span>%%You come to realize that the book was not written for readers of your age. You close the book.";
+  this.longdesc = "The book <i>What Is Magic?</i>. The book is quite thin and appears to be aimed at children.";
+}
+WhatIsMagicTile.prototype = new BookItemObject();
+
 
 function NatassaJournalTile() {
   this.name = "NatassaJournal";
