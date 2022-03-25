@@ -21,7 +21,7 @@
   },
   "homepage": "http://tapestryofages.com",
   "devDependencies": {
-    "electron": "^7.3.3",
+    "electron": "^13.6.6",
     "electron-packager": "^14.2.1"
   },
   "productName": "The Dark Unknown",
