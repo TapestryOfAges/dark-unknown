@@ -127,7 +127,7 @@ mappages["clearlake"].features[55] = {name : 'BedHead', x : 23, y : 9};
 mappages["clearlake"].features[56] = {name : 'BedFoot', x : 24, y : 9};
 mappages["clearlake"].features[57] = {name : 'BedFoot', x : 24, y : 17};
 mappages["clearlake"].features[58] = {name : 'Door', x : 38, y : 31};
-mappages["clearlake"].features[59] = {name : 'Door', x : 38, y : 39, desc : "locked door", locked : 1};
+mappages["clearlake"].features[59] = {name : 'Door', x : 38, y : 39};
 mappages["clearlake"].features[60] = {name : 'WBridgeNS', x : 35, y : 27};
 mappages["clearlake"].features[61] = {name : 'WBridgeNS', x : 35, y : 26};
 mappages["clearlake"].features[62] = {name : 'WBridgeNS', x : 35, y : 25};
@@ -567,7 +567,7 @@ mappages["clearlake2"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 36, y : 20,
 mappages["clearlake2"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 36, y : 19, NPCName: 'Aubrey', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'aubrey', Conversation: 'aubrey', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_green.2.gif', skintone: '1'};
 //mappages["clearlake2"].npcs[3] = {name : 'TownsfolkVillagerNPC', x : 40, y : 34, NPCName: 'Ernest', Desc: 'ex-gambler', Schedule: 'ernest_clearlake', Conversation: 'ernest_clearlake', Gender: 'male', NPCBand: '0', OverrideGraphic: 'civ_green.2.gif', skintone: '1'};
 //mappages["clearlake2"].npcs[4] = {name : 'ShepherdVillagerNPC', x : 4, y : 52, NPCName: 'Lydia', Desc: 'civilian', Schedule: 'lydia', Conversation: 'lydia', Gender: 'female', NPCBand: '0', OverrideGraphic: '301.gif', skintone: '1'};
-//mappages["clearlake2"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 31, y : 17, NPCName: 'Jonah', Schedule: 'jonah', Conversation: 'jonah', Gender: 'monster', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: '1'};
+//mappages["clearlake2"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 31, y : 17, NPCName: 'Jonah', Schedule: 'jonah', Conversation: 'jonah', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: '1'};
 
 mappages["clearlake2"].desc = "Clear Lake";
 mappages["clearlake2"].longdesc = ``;
