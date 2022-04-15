@@ -121,7 +121,7 @@ mappages["swainhil"].features[53] = {name : 'RightTable', x : 7, y : 14};
 mappages["swainhil"].features[54] = {name : 'TopChair', x : 7, y : 13};
 mappages["swainhil"].features[55] = {name : 'BottomChair', x : 8, y : 12};
 mappages["swainhil"].features[56] = {name : 'SingleSignpost', x : 11, y : 10};
-mappages["swainhil"].features[57] = {name : 'TavernSign', x : 11, y : 9, desc : "sign: \"The Hearth\""};
+mappages["swainhil"].features[57] = {name : 'TavernSign', x : 11, y : 9, desc : "sign: \"The Lakeside Tavern\""};
 mappages["swainhil"].features[58] = {name : 'DoorWindow', x : 50, y : 23};
 mappages["swainhil"].features[59] = {name : 'DoorWindow', x : 43, y : 23};
 mappages["swainhil"].features[60] = {name : 'AlchemistSign', x : 56, y : 22, desc : "sign: \"Crystal Works\"", prefix : "a"};
@@ -484,7 +484,7 @@ mappages["swainhil"].npcs[9] = {name : 'TownGuardNPC', x : 51, y : 39, NPCName: 
 mappages["swainhil"].npcs[10] = {name : 'TownGuardNPC', x : 33, y : 33, NPCName: 'Marge', PeaceAI: 'scheduled', Schedule: 'marge', Conversation: 'marge', Gender: 'female', NPCBand: '0', skintone: '1'};
 mappages["swainhil"].npcs[11] = {name : 'TownGuardNPC', x : 51, y : 41, NPCName: 'Fran', PeaceAI: 'scheduled', Schedule: 'fran', Conversation: 'fran', Gender: 'female', NPCBand: '0', skintone: '1'};
 mappages["swainhil"].npcs[12] = {name : 'TownGuardNPC', x : 57, y : 4, NPCName: 'Edgar', PeaceAI: 'scheduled', Schedule: 'edgar', Conversation: 'edgar', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["swainhil"].npcs[13] = {name : 'TinkerVillagerNPC', x : 25, y : 10, NPCName: 'Ian', Desc: 'soldier', Schedule: 'ian', Conversation: 'ian', Gender: 'monster', NPCBand: '0', OverrideGraphic: 'tinker-offcolor.gif', skintone: '1'};
+//mappages["swainhil"].npcs[13] = {name : 'TinkerVillagerNPC', x : 25, y : 10, NPCName: 'Ian', Desc: 'soldier', Schedule: 'ian', Conversation: 'ian', Gender: 'male', NPCBand: '0', OverrideGraphic: 'tinker-offcolor.gif', skintone: '1'};
 
 mappages["swainhil"].desc = "The Towne of Swainhil";
 mappages["swainhil"].longdesc = '';
