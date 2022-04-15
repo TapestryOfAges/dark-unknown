@@ -479,6 +479,20 @@ OnConvTriggers["inn_cl"] = function(speaker,keyword) {
   return -1;
 }
 
+OnConvTriggers["inn_swain"] = function(speaker,keyword) {
+  DU.gameflags.deleteFlag("inn_swain");
+  if (PC.getGold() < 6) {
+    maintext.addText("You don't have enough gold!");
+    return 1;
+  } else {
+    PC.addGold(-6);
+    let pronoun = "She";
+    maintext.addText(pronoun + " takes you to your room.");
+    InnRoom(17,30,[20,30,23,23]);
+  }
+  return -1;
+}
+
 OnConvTriggers["inn_20_y"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("inn_20_y");
   DU.gameflags.deleteFlag("inn_20");
