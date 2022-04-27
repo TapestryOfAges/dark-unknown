@@ -3473,6 +3473,11 @@ tileFactory.prototype.makeCrackedMirrorTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeSunLensTile = function() {
+  let newTile = new SunLensTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeMirrorTile = function() {
   let newTile = new MirrorTile();
   return newTile;
@@ -4438,6 +4443,11 @@ tileFactory.prototype.makeChaliceTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeFrozenSunlightTile = function() {
+  let newTile = new FrozenSunlightTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeCourierPouchTile = function() {
   let newTile = new CourierPouchTile();
   return newTile;
@@ -4565,6 +4575,11 @@ tileFactory.prototype.makeBottledEtherTile = function() {
 
 tileFactory.prototype.makePerfectRubyTile = function() {
   let newTile = new PerfectRubyTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeEnchantedPerfectRubyTile = function() {
+  let newTile = new EnchantedPerfectRubyTile();
   return newTile;
 }
 

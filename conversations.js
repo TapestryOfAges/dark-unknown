@@ -481,6 +481,20 @@ OnConvTriggers["inn_cl"] = function(speaker,keyword) {
   return -1;
 }
 
+OnConvTriggers["inn_swain"] = function(speaker,keyword) {
+  DU.gameflags.deleteFlag("inn_swain");
+  if (PC.getGold() < 6) {
+    maintext.addText("You don't have enough gold!");
+    return 1;
+  } else {
+    PC.addGold(-6);
+    let pronoun = "She";
+    maintext.addText(pronoun + " takes you to your room.");
+    InnRoom(17,30,[20,30,23,23]);
+  }
+  return -1;
+}
+
 OnConvTriggers["inn_20_y"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("inn_20_y");
   DU.gameflags.deleteFlag("inn_20");
@@ -828,6 +842,32 @@ OnConvTriggers["place_tod"] = function(speaker,keyword) {
   if (shelf.getName() !== "ATreatiseOnDragons") {
     shelf.setSearchYield(["ATreatiseOnDragons"]);
   }
+}
+
+OnConvTriggers["place_wod"] = function(speaker,keyword) {
+  let tile = speaker.getHomeMap().getTile(36,32);
+  let shelf = tile.getTopFeature();
+  if (shelf.getName() !== "AWarningOnDaemons") {
+    shelf.setSearchYield(["AWarningOnDaemons"]);
+  }
+}
+
+function HasLibraryBooks() {
+  let hasbook = 0;
+  if (PC.checkInventory("MapsAndLegends")) {
+    hasbook = 1;
+    PC.removeFromInventory("MapsAndLegends");
+  }
+  if (PC.checkInventory("ATreatiseOnDragons")) {
+    hasbook = 1;
+    PC.removeFromInventory("ATreatiseOnDragons");
+  }
+  if (PC.checkInventory("AWarningOnDaemons")) {
+    hasbook = 1;
+    PC.removeFromInventory("AWarningOnDaemons");
+  }
+  return hasbook;
+
 }
 
 OnConvTriggers["sirius_book1"] = function(speaker,keyword) {

@@ -1306,6 +1306,16 @@ function PerformRuneChoice() {
       retval["txt"] += "You feel the warm touch of the earth below your feet, but do not currently need its help with healing.";
     }
 
+  } else if (targetCursoe.runeChoice === 2) {
+
+  } else if (targetCursor.runeChoice === 3) {
+
+  } else if (targetCursor.runeChoice === 4) {
+    let fs = PC.checkInventory("FrozenSunlight");
+    if (fs && !fs.stabilized) {
+      fs.stabilized = 1;
+      retval["txt"] += "You hold the frozen sunlight in the palm of your hand, and reach out with the power of your mastery over fire. The sunlight, which had been fading and dissolving as you watched, solidifies into a stable form.";
+    }
   }
   delete targetCursor.runeChoice;
   return retval;

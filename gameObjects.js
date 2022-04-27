@@ -12639,6 +12639,38 @@ function CrackedMirrorTile() {
 }
 CrackedMirrorTile.prototype = new FeatureObject();
 
+function SunLensTile() {
+  this.name = "SunLens";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1760";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "magical lens";
+  this.pathweight = 10; 
+  this.civilizedpathweight = 10; // paths should never go through this unless there is no choice
+	
+	Pushable.call(this);
+}
+SunLensTile.prototype = new FeatureObject();
+
+SunLensTile.prototype.use = function(who) {
+  let retval = { fin: 1 };
+  if ((this.getx() >= 11) && (this.getx() <= 17) && (this.gety() >= 11) && (this.gety() <= 15) && CheckTimeBetween("12:00","12:59")) {
+    let frozen = localFactory.createTile("FrozenSunlight");
+    let NPCevent = new GameEvent(frozen);
+    DUTime.addAtTimeInterval(NPCevent,3*SCALE_TIME);
+
+    who.addToInventory(frozen,1);
+    retval["txt"] = "You angle the lens to catch the sunlight, and on the other side the light is concentrated to a point. There is a haze, and then in a flash a small glowing crystal coalesces. You catch it before it can fall to the ground.";
+    maintext.delayedAddText = "<span class='sysconv'>You have gained: crystalized sunlight.</span>";
+  } else {
+    retval["txt"] = "Nothing happens when you try to use the strange device.";
+  }
+  return retval;
+}
+
 function MirrorTile() {
   //Graphics Upgraded
   this.name = "Mirror";
@@ -17341,6 +17373,39 @@ function ChaliceTile() {
 }
 ChaliceTile.prototype = new ItemObject();
 
+function FrozenSunlightTile() {
+  this.name = "FrozenSunlight";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-1792";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "frozen sunlight";
+  this.longdesc = "Sunlight, frozen solid. Somehow.";
+
+  this.addType("Quest");  
+  this.addType("Reagent");
+}
+FrozenSunlightTile.prototype = new ItemObject();
+
+FrozenSunlightTile.prototype.myTurn = function() {
+  if (this.stabilized) { return 1; }
+  if (PC.checkInventory("FrozenSunlight")) {
+    PC.removeFromInventory(this);
+    maintext.addText("The frozen sunlight dissipates with a golden glow and is gone.");
+  } else {
+    if (!maps.getMap(this.getHomeMap().getName())) {
+      return 1; 
+    }
+    if (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety()) <= 6) {
+      maintext.addText("The frozen sunlight dissipates with a golden glow and is gone.");
+    }
+    this.getHomeMap().deleteThing(this);
+  }
+  
+  return 1;
+}
+
 function CourierPouchTile() {
   //Graphics Upgraded
   this.name = "CourierPouch";
@@ -18531,7 +18596,7 @@ function FallOfTargrionTile() {
   this.spriteyoffset = -37*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Fall of Targrion";
+  this.desc = 'A book named "Fall of Targrion"';
   this.prefix = "The";
   this.contents = `You open to a random page:%%<span class='conv'>Targrion blazed, and fields became deserts and mountains cracked. "You challenge the supremacy of the sun? Do you not see that my fire is unchallenged, my light gives life?"</span>%%<span class='conv'>But Luhgon shook his fire-crested head. "The sun will gaze down in its majesty for all eternity, and I do not dispute the truth of your words. I only dispute your right to say them. Your mantle I will take, and the greatest light of the sky shall be mine to raise and draw down."</span>%%<span class='conv'>And Targrion was uncertain, for the coming of this upstart was foretold; but so, too, was their battle. "It may be destined that I fall," roared Targrion, "but I shall strive to stand athwart of this destiny. Come, and burn!"</span>`;
   this.longdesc = "The Fall of Targrion. A story of old myth. Sought by Olivia.";
@@ -18546,7 +18611,7 @@ function BookOfLoreTile() {
   this.spriteyoffset = -37*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Book of Lore";
+  this.desc = 'A book named "Book of Lore"';
   this.prefix = "the";
   this.contents = "You open to a random page:%%<span class='conv'>Look up. Above you are the stars, embedded in the ether, which is the power of magic.</span>%%<span class='conv'>The ether is shaped by the will of the mage, who shapes it with mana. This is primarily done with the application of spells. But, it is possible to shape the ether directly- the monstrous Gazer, for example, does not cast a spell each morning to float above the earth.</span>%%<span class='conv'>When did we learn magic? Who crafted the first spells? This knowledge is lost, but it is said it began with the fall of a star...</span>";
   this.longdesc = "The Book of Lore. Its simple cover belies its rich contents. Sought by Arlan.";
@@ -18576,7 +18641,7 @@ function TomeOfSightTile() {
   this.spriteyoffset = -37*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Tome of Sight";
+  this.desc = 'A book named "Tome of Sight"';
   this.prefix = "the";
   this.contents = "You open to a random page:%%<span class='conv'>...for the Eye of Man can be deceived, but the Eye of Magic is Immutable.</span>%%<span class='conv'>Mortals all live in the fog of illusion and unseeing, but the talent of seeing the truth below need not be the sole providence of the gods.</span>%%<span class='conv'>We toil in darkness, but with their fire may we be forged anew...</span>";
   this.longdesc = "The Tome of Sight. The leather cover is decorated with eye motifs.";
@@ -18591,7 +18656,7 @@ function MapsAndLegendsTile() {
   this.spriteyoffset = -37*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Maps and Legends";
+  this.desc = 'A book named "Maps and Legends"';
   this.prefix = "";
   this.contents = "You flip through the pages and find a chapter on magical phenomenon.%%Searching, you find the section you seek:%%<span class='conv'>\"The Brilliant Pool\"</span>%%<span class='conv'>Once, this mythical place was considered the source of all magic.</span>%%<span class='conv'>Now, it is known that magic's power is drawn from the ethereal plane, and it is not known whether the Brilliant Pool ever truly existed, or still exists.</span>%%<span class='conv'>Another story has it that it is a star, misplaced on our plane, its power too great for any mortal to harness directly.</span>%%Seeing nothing more of use, you close the book.";
   this.longdesc = "The book <i>Maps and Legends</i>. Within are described many rumored and legendary phenomenon.";
@@ -18606,12 +18671,43 @@ function ATreatiseOnDragonsTile() {
   this.spriteyoffset = -38*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "A Treatise On Dragons";
+  this.desc = 'A book named "A Treatise On Dragons"';
   this.prefix = "";
   this.contents = "You open the book.%%<span class='conv'>A dragon is a mighty reptile with great magical and physical power. Its destructive power is so great that it is hardly a surprise that it came to be associated with Tethlokel the Destroyer.</span>%%<span class='conv'>The average dragon is roughly 60 feet long, breathes fire hot enough to easily set wooden buildings aflame, and can fly for hours without rest.</span>%%<span class='conv'>They prefer to live in caves in high mountains far from civilization, and so are infrequently seen.</span>%%<span class='conv'>Rarely, a dragon may grow to become an Elder. Elder Dragons are thought to have better than human intelligence and incredible magical power, allowing them to make plans that span decades.</span>%%<span class='conv'>It is fortunate that they are so rare, as they are evil of bent and desire power and conquest.</span>%%The book is long, but you feel like you have gotten the gist. You close the book.";
   this.longdesc = "The book <i>A Treatise on Dragons</i>. A summary of facts known, rumored, and debated about dragons and dragonkind.";
 }
 ATreatiseOnDragonsTile.prototype = new BookItemObject();
+
+function AWarningOnDaemonsTile() {
+  this.name = "AWarningOnDaemons";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-1216";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = 'A book named "A Warning On Daemons"';
+  this.prefix = "";
+  this.contents = "You open the book.%%<span class='conv'>Little is known for certain about the class of entities we call \"daemons\". But some things are known.</span>%%<span class='conv'>One: they are powerful. Two: They are evil, and seem to be as part of their inherent nature. Three: They are not native to this world.</span>%%<span class='conv'>The place from which they hail is commonly called Hell by the unsophisticated. It is unknown whether it existed before our own world was born, or if they came into being together.</span>%%<span class='conv'>Daemons in the world are rare, and the result of an unwise wizard's magic. These wizards are sometimes seduced by offers of power.</span>%%The book is long, but you feel like you have gotten the gist. You close the book.";
+  this.longdesc = "The book <i>A Warning On Daemons</i>. A text about daemons, elucidating what is known and what is rumoured.";
+}
+AWarningOnDaemonsTile.prototype = new BookItemObject();
+
+function WhatIsMagicTile() {
+  this.name = "WhatIsMagic";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-1216";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = 'A thin book named "What Is Magic?"';
+  this.prefix = "";
+  this.contents = "You open the book.%%<span class='conv'>What is magic? Magic is all around us. As you live, you are constantly making magic in small ways.</span>%%<span class='conv'>Some rare people can use magic directly. These people are called \"Wizards\".</span>%%<span class='conv'>By speaking the right magic words, moving their hands in the right gestures, and thinking really hard, they can do what is called \"cast spells\"- making a small glowing ball of light, or a giant flying ball of fire.</span>%%You come to realize that the book was not written for readers of your age. You close the book.";
+  this.longdesc = "The book <i>What Is Magic?</i>. The book is quite thin and appears to be aimed at children.";
+}
+WhatIsMagicTile.prototype = new BookItemObject();
+
 
 function NatassaJournalTile() {
   //Graphics Upgraded
@@ -18657,6 +18753,21 @@ function NatassaResearch2Tile() {
   this.longdesc = "Natassa's Research Notes, Vol 2.";
 }
 NatassaResearch2Tile.prototype = new BookItemObject();
+
+function NatassaResearch3Tile() {
+  this.name = "NatassaResearch3";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1536";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "collection of notes";
+  this.prefix = "a";
+  this.contents = "You closely read the notes.%%<span class='conv'>8-3-101: I've had a dream several times in the past month. A hand, holding a piece of the sun.</span>%%<span class='conv'>11-21-107: The underworld is even more dangerous than I had considered. I reached the Oracle- blessings upon Xoricco's research that revealed it to me! But was unable to obtain a full answer before I was forced to flee to the surface. I will work on the riddles.</span>%%<span class='conv'>4-15-109: Wind Change is not enough. King Erik has called upon me to try to recreate Xoricco's magics that made sea travel possible. The storms are too great to be uncreated just by temporarily stilling their winds. The Pool can wait.</span>%%<span class='conv'>10-19-113: Toshin is seeking the Pool. I must find it first- she cannot be permitted to draw upon its powers. She could be a second Tharock.</span>%%<span class='conv'>1-9-114: I have narrowed it down- the Pool has strong magic but it hides itself. But the Oracle taught me how to find the secondary resonances, and it is either underneath the city of Onyx, in the ruins under old Hildendain, or in the dungeon of Mt Drash.</span>%%<span class='conv'>3-21-114: I fear she has found it. I must confront her.</span>";
+  this.longdesc = "Natassa's Research Notes, Project Sunlight";
+}
+NatassaResearch3Tile.prototype = new BookItemObject();
 
 function ToshinJournalTile() {
   //Graphics Upgraded
@@ -21719,6 +21830,8 @@ UnenchantedSwordTile.prototype.onGet = function(who) {
 
 UnenchantedSwordTile.prototype.onMend = function() {
   this.damage = "4d6+10";
+  this.enchantable = 1;
+  // only becomes enchantable once you Mend it
 }
 
 // LightningSword, FlamingSword, SwordOfDefense, VenomSword ?
