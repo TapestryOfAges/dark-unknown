@@ -93,7 +93,7 @@ mappages["poverty"].npcs[3] = {name : 'RangerVillagerNPC', x : 19, y : 8, NPCNam
 mappages["poverty"].npcs[4] = {name : 'TownGuardNPC', x : 12, y : 20, NPCName: 'Arthur', PeaceAI: 'scheduled', Schedule: 'arthur', Conversation: 'arthur', Gender: 'male', NPCBand: '0', skintone: '2'};
 mappages["poverty"].npcs[5] = {name : 'BardVillagerNPC', x : 7, y : 12, NPCName: 'Kelly', Desc: 'mayor', PeaceAI: 'scheduled', Schedule: 'kelly', Conversation: 'kelly', Gender: 'female', NPCBand: '0', OverrideGraphic: '311.gif', skintone: '1'};
 mappages["poverty"].npcs[6] = {name : 'AdventurerVillagerNPC', x : 5, y : 16, NPCName: 'Damien', Desc: 'farmer', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'damien', Conversation: 'damien', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["poverty"].npcs[7] = {name : 'BeggarVillagerNPC', x : 4, y : 12, NPCName: 'Garth', PeaceAI: 'scheduled', Schedule: 'garth', Conversation: 'garth', Gender: 'male', NPCBand: '0', skintone: '1'};
+mappages["poverty"].npcs[7] = {name : 'TownsfolkVillagerNPC', x : 4, y : 12, NPCName: 'Garth', PeaceAI: 'scheduled', Schedule: 'garth', Conversation: 'garth', Gender: 'male', NPCBand: '0', skintone: '1'};
 mappages["poverty"].npcs[8] = {name : 'TownsfolkVillagerNPC', x : 10, y : 15, NPCName: 'Anna', PeaceAI: 'scheduled', Schedule: 'anna_poverty', Conversation: 'anna', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: '2'};
 
 mappages["poverty"].desc = "Village of Poverty";

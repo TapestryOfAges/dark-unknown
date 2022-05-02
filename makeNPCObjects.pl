@@ -185,7 +185,11 @@ foreach my $line (<$npcdoc>) {
 
   }
   print $out "}\n";
-  print $out "$fields[0]" . "NPCTile.prototype = new NPCObject();\n\n";
+  if ($fields[48]) {
+    print $out "$fields[0]" . "NPCTile.prototype = new NPCHumanObject();\n\n";
+  } else {
+    print $out "$fields[0]" . "NPCTile.prototype = new NPCObject();\n\n";
+  }
 }
 
 close $npcdoc;

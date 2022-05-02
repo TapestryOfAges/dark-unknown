@@ -23964,9 +23964,8 @@ NPCGroupObject.prototype.populate = function() {
 // wear armor, wield various weapons, etc.
 function NPCHumanObject() {
   this.wornlayers = {
-    pants: null,
-    shirt: null,
-    helmet: null,
+    body: null,
+    head: null,
     back: null,
     offhand: null,
     cloak: null,
@@ -23975,6 +23974,115 @@ function NPCHumanObject() {
   this.addType("human");
 }
 NPCHumanObject.prototype = new NPCObject();
+
+let HumanParts = {
+  // Bodies
+  WhiteTunic: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  BlueDress: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  YellowDress: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  Bard1: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  Bard2: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  ChildPale: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  ChildDark: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  Jester: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  King1: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  King2: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  King3: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  King4: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  Queen: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  NoblePurple: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  NobleGreen: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  PurpleFancy: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  BlueFancy: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  YellowTunic: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  OrangeTunic: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  WhiteTunic2: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  BlueTunic: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  OrangeTunic2: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  GreenTunic: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  Gambison: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  PlateWhiteTabard: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  PlateCheckardTabard: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  LeatherArmor: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  ChainMail: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  PlatePaladin: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  PlateSash: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  PlateKnight: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  Plate: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  Plate2: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  BlueRobeHood: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  BlueRobe: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  RedRobe: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  GreenRobe: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  BlueRobePlain: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  BrownRobeHood: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  BrownRobe: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  BrownRobeFancy: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+
+  // Heads
+  DarkOpenHelm: { type: "head", spritex: 0, spritey: 0, frames: 2 },
+  GoldClosedHelm: { type: "head", spritex: 0, spritey: 0, frames: 2 },
+  BlueSolidHelm: { type: "head", spritex: 0, spritey: 0, frames: 2 },
+  PaleOpenHelm: { type: "head", spritex: 0, spritey: 0, frames: 2 },
+  BlueClosedHelm: { type: "head", spritex: 0, spritey: 0, frames: 2 },
+  BeardedPale: { type: "head", spritex: 0, spritey: 0, frames: 2 },
+  OldManPale: { type: "head", spritex: 0, spritey: 0, frames: 2 },
+  LongBrownHairPale: { type: "head", spritex: 0, spritey: 0, frames: 2 },
+  BaldBeardedDark: { type: "head", spritex: 0, spritey: 0, frames: 2 },
+  ShortBrownPale: { type: "head", spritex: 0, spritey: 0, frames: 2 },
+  KingHead: { type: "head", spritex: 0, spritey: 0, frames: 2 },
+  GoldCircletDark: { type: "head", spritex: 0, spritey: 0, frames: 2 },
+  SmallCrownPale: { type: "head", spritex: 0, spritey: 0, frames: 2 },
+  SilverCircletPale: { type: "head", spritex: 0, spritey: 0, frames: 2 },
+  BlondePale: { type: "head", spritex: 0, spritey: 0, frames: 2 },
+  Hood1: { type: "head", spritex: 0, spritey: 0, frames: 2 },
+  Hood2: { type: "head", spritex: 0, spritey: 0, frames: 2 },
+  OldManPale2: { type: "head", spritex: 0, spritey: 0, frames: 2 },
+  ShortBlackDark: { type: "head", spritex: 0, spritey: 0, frames: 2 },
+  VanDykePale: { type: "head", spritex: 0, spritey: 0, frames: 2 },
+  BrownDark: { type: "head", spritex: 0, spritey: 0, frames: 2 },
+  LongBlondePale: { type: "head", spritex: 0, spritey: 0, frames: 2 },
+  RedheadWomanPale: { type: "head", spritex: 0, spritey: 0, frames: 2 },
+  BrunetteWomanPale: { type: "head", spritex: 0, spritey: 0, frames: 2 },
+  WomanDark: { type: "head", spritex: 0, spritey: 0, frames: 2 },
+  
+  //Cloak
+  CloakBlue: { type: "cloak", spritex: 0, spritey: 0, frames: 2 },
+  CloakRed: { type: "cloak", spritex: 0, spritey: 0, frames: 2 },
+
+  //Back:
+  Quiver: { type: "back", spritex: 0, spritey: 0, frames: 2 },
+
+  //Hands
+  HandsPale: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
+  HandsDark: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
+  HandsPaleArms: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
+  Gauntlets: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
+  Shortsword: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
+  Dagger: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
+  Longsword: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
+  SwordFromStone: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
+  FlamingSword: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
+  LightningSword: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
+  VenomSword: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
+  SwordOfDefense: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
+  Maul: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
+  Hammer: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
+  Mace: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
+  Axe: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
+  Halberd: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
+  Quarterstaff: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
+  Crook: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
+  Wand: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
+  SerpentStaff: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
+  Bow: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
+  Crossbow: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
+
+  //Offhand
+  KiteShield: { type: "offhand", spritex: 0, spritey: 0, frames: 2 },
+  RoundShield: { type: "offhand", spritex: 0, spritey: 0, frames: 2 },
+  OffhandDagger: { type: "offhand", spritex: 0, spritey: 0, frames: 2 },
+};
 
 function PCObject() {
 	this.name = "PC";
