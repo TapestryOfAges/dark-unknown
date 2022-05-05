@@ -33,7 +33,10 @@ foreach my $line (<$npcdoc>) {
   print $out "  this.forgetAt = $fields[10];\n";
   print $out "  this.withdraw = $fields[11];\n";
   if (!$fields[45]) { # no animation override
-    if ($fields[12] =~ /,/) {
+    if ($fields[48]) {
+      print $out "  this.graphic = HumanParts[$fields[46]];\n";
+    }
+    else if ($fields[12] =~ /,/) {
       $fields[12] =~ s/ //g;
       my @graphics = split(',', $fields[12]);
       print $out "  this.graphic = '$graphics[0]';\n";
