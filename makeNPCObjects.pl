@@ -34,7 +34,19 @@ foreach my $line (<$npcdoc>) {
   print $out "  this.withdraw = $fields[11];\n";
   if (!$fields[45]) { # no animation override
     if ($fields[48]) {
-      print $out "  this.graphic = HumanParts[$fields[46]];\n";
+      print $out "  this.graphic = 'static.png';\n";
+      print $out "  this.spritexoffset = HumanParts[$fields[46]].spritex;\n";
+      print $out "  this.spriteyoffset = HumanParts[$fields[46]].spritey;\n";
+
+      print $out "\n  ManualAnimation.call(this, { \n";
+      print $out "    animstart: HumanParts[$fields[46]].spritex,\n";
+      print $out "    animlength: HumanParts[$fields[46]].frames,\n";
+      print $out "    animstyle: \"random\",\n";
+      print $out "    allowrepeat: 0,\n";
+      print $out "    framedurationmin: 120,\n";
+      print $out "    framedurationmax: 170,\n";
+      print $out "    startframe: \"random\"\n";
+      print $out "  });\n";
     }
     else if ($fields[12] =~ /,/) {
       $fields[12] =~ s/ //g;
