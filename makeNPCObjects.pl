@@ -46,7 +46,14 @@ foreach my $line (<$npcdoc>) {
       print $out "    framedurationmin: 120,\n";
       print $out "    framedurationmax: 170,\n";
       print $out "    startframe: \"random\"\n";
-      print $out "  });\n";
+      print $out "  });\n\n";
+
+      print $out "  this.wornlayers.body = '$fields[46]'\n";
+      print $out "  this.wornlayers.head = '$fields[47]'\n";
+      print $out "  this.wornlayers.back = '$fields[48]'\n";
+      print $out "  this.wornlayers.cloak = '$fields[49]'\n";
+      print $out "  this.wornlayers.offhand = '$fields[50]'\n";
+      print $out "  this.wornlayers.hands = '$fields[51]'\n\n";
     }
     else if ($fields[12] =~ /,/) {
       $fields[12] =~ s/ //g;
