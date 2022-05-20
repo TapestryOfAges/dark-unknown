@@ -3032,17 +3032,25 @@ magic[SPELL_EMPOWER_LEVEL][SPELL_EMPOWER_ID].executeSpell = function(caster, inf
     return resp;
   }
 
-  CreateTargetCursor({sticky: 0, command:'c',spellName:'Empower',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "feature"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 1});
+//  CreateTargetCursor({sticky: 0, command:'c',spellName:'Empower',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "feature"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 1});
+  targetCursor.manacost = this.getManaCost();
   resp["txt"] = "";
   resp["input"] = "&gt; Choose object to be Empowered- ";
   resp["fin"] = 4;  // was 0
-  gamestate.setMode("target");
+//  gamestate.setMode("target");
+  gamestate.setMode("zstats");
+  targetCursor.page = 2;
+  targetCursor.spellName = "Empower";
+  targetCursor.command = 'c';
+
+  DisplayInventory();
+
   return resp;
 
 }
 
 function PerformEmpower(caster, infused, free, tgt) {
-  let retval = { fin: 1};
+  let retval = { fin: 2, usefin: 1, initdelay: 0};
   if (!tgt.enchantable) {
     retval.txt = "That object is not able to hold an enchantment.";
     retval.input = "&gt;";
@@ -3063,7 +3071,7 @@ function PerformEmpower(caster, infused, free, tgt) {
     retval.input = "&gt;";
     return retval;
   }
-  if (!caster.IsOnPentagram()) {
+  if (!IsOnPentagram(caster)) {
     retval.txt = "This spell must be cast while standing in a circle of power.";
     retval.input = "&gt;";
     return retval;
@@ -3082,7 +3090,8 @@ function PerformEmpower(caster, infused, free, tgt) {
 
   retval["txt"] = "";
   retval["input"] = "&gt; Include which reagents: ";
-  retval["fin"] = 3;	
+//  retval["fin"] = 3;	
+  retval["fin"] = 1;
 
   return retval;
 }
@@ -3101,7 +3110,7 @@ function ShowEmpowerReagentChoice(caster) {
       document.getElementById('uiinterface').innerHTML += "<div id='inv_"+i+"x"+j+"' style='position:absolute; left: " + leftedge + "; top: " + topedge + "; width:32px; height: 32; border:3px; border-style: solid; border-color:#999;'></div>";
     }
   }
-  document.getElementById('uiinterface').innerHTML += "<div id='inv_desc_window' style='position:absolute; left: 35px; top: 310px; border: 3px; border-style: solid; border-color:#ccc; width:340px; height: 60px'></div>";
+  document.getElementById('uiinterface').innerHTML += "<div id='inv_desc_window' style='position:absolute; left: 35px; top: 310px; border: 3px; border-style: solid; border-color:#ccc; width:340px; height: 100px'></div>";
   document.getElementById('inv_desc_window').innerHTML = "<table cellpadding='4' cellspacing='4' border='0' style='margin-top:5px'><tr><td rowspan='2' style='text-align:center; width: 100px'><div id='inv_image' style='position:absolute; top: 6px; left: 34px; width: 32px; height:32px'></div><p id='inv_name' class='charcreate' style='position:absolute; top:42px; width:100px; text-align:center'></p></td><td><p class='charcreate' id='inv_desc' style='top:20px'></p></td></tr><td><p class='charcreate' id='inv_use' style='color:yellow'></p></td></tr></table>";
 
   let mortar = caster.checkInventory("Mortar");
@@ -3118,8 +3127,12 @@ function ShowEmpowerReagentChoice(caster) {
     document.getElementById('uiinterface').innerHTML += "<div id='inv_"+i+"x2' style='position:absolute; left: " + leftedge + "; top: " + topedge + "; width:32px; height: 32; border:3px; border-style: solid; border-color:#999;'></div>";
   }
 
-  document.getElementById('uiinterface').innerHTML += "<div id='inv_1x3' style='position: absolute; left: 150px; top:270px; color: white; font-size: 16pt; font-family: Commodore64'>Begin grinding</div>";
-  document.getElementById('inv_' + targetCursor.invx + 'x' + targetCursor.invy).style.borderColor = "#ffffff";
+  if (targetCursor.invy === 3) {
+    document.getElementById('uiinterface').innerHTML += "<div id='inv_1x3' style='position: absolute; left: 150px; top:270px; color: black; background-color:white; font-size: 16pt; font-family: Commodore64'>Begin grinding</div>";
+  } else {
+    document.getElementById('uiinterface').innerHTML += "<div id='inv_1x3' style='position: absolute; left: 150px; top:270px; color: white; font-size: 16pt; font-family: Commodore64'>Begin grinding</div>";
+    document.getElementById('inv_' + targetCursor.invx + 'x' + targetCursor.invy).style.borderColor = "#ffffff";
+  }
 
   let reagents = MakeInventoryList("reagent");
   let ridx = 0;
@@ -3139,7 +3152,7 @@ function ShowEmpowerReagentChoice(caster) {
       innerdiv.style.position = "fixed";
       invdiv.appendChild(innerdiv);
 
-      if ((targetCursor.invx === midx) && (targetCursor.invx === 2)) {
+      if ((targetCursor.invx === midx) && (targetCursor.invy === 2)) {
         document.getElementById('inv_image').style.backgroundImage = "url('graphics/" + showgraphic[0] + "')";
         document.getElementById('inv_image').style.backgroundRepeat = "no-repeat";
         document.getElementById('inv_image').style.backgroundPosition = showgraphic[2] + "px " + showgraphic[3] + "px";
@@ -3175,7 +3188,7 @@ function ShowEmpowerReagentChoice(caster) {
         quant.innerHTML = "<span style='position:relative;top:-2px'>" + inventorylist[i].getQuantity() + "</span>";
       }
 
-      if ((targetCursor.invx === writetox) && (targetCursor.invx === writetoy)) {
+      if ((targetCursor.invx === writetox) && (targetCursor.invy === writetoy)) {
         document.getElementById('inv_image').style.backgroundImage = "url('graphics/" + showgraphic[0] + "')";
         document.getElementById('inv_image').style.backgroundRepeat = "no-repeat";
         document.getElementById('inv_image').style.backgroundPosition = showgraphic[2] + "px " + showgraphic[3] + "px";
@@ -3217,6 +3230,8 @@ function EmpowerReagentCommands(cmd) {
     if (targetCursor.invy === 3) {
       return retval;
     }
+    if (targetCursor.invx < 4) { targetCursor.invx++; }
+    return retval;
   } else if (cmd === 40) { // Down
     retval["fin"] = 0;
     if (targetCursor.invy === 3) {
@@ -3224,11 +3239,11 @@ function EmpowerReagentCommands(cmd) {
     }
     if (targetCursor.invy === 2) {
       targetCursor.invx_old = targetCursor.invx;
-      targetCursor.invx = 0;
+      targetCursor.invx = 1;
     }
     targetCursor.invy++;
     return retval;
-  } else if ((code === 13) || (code === 32)) {  // space or enter
+  } else if ((cmd === 13) || (cmd === 32)) {  // space or enter
     retval["fin"] = 0;
     let reglist=[];
     let mortlist=[];
@@ -3247,10 +3262,11 @@ function EmpowerReagentCommands(cmd) {
       return retval;
     } else {
       // Do magic!
-      let tobeenchanted = targetCursor.tgt.getDesc();
-      let mortar = caster.checkInventory("Mortar");
-      if ((caster.checkInventory("DragonBone")) && (caster.checkInventory("CrystalMortar"))) {
-        mortar = caster.checkInventory("CrystalMortar");
+      let tgt = targetCursor.tgt;
+      let tobeenchanted = tgt.getDesc();
+      let mortar = PC.checkInventory("Mortar");
+      if ((PC.checkInventory("DragonBone")) && (PC.checkInventory("CrystalMortar"))) {
+        mortar = PC.checkInventory("CrystalMortar");
       }
       let mortardesc = mortar.getDesc();
       let starttext = `You place the ${tobeenchanted} in front of you, in the center of the pentagram, and carefully place the chosen reagents in the ${mortardesc}. `;
@@ -3259,14 +3275,20 @@ function EmpowerReagentCommands(cmd) {
       let successtext = [];
       if (tgt.getName() === "PerfectRuby") {
         if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["Mistletoe"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["SulfurousAsh"] && targetCursor.mortar["FrozenSunlight"]) {
+          if (mortar.getName() !== "CrystalMortar") {
+            retval["fin"] = 2;
+            retval["outcome"] = ["You place the reagents in the mortar and begin the incancation, but quickly realize something is wrong.","This mortar will shatter under the strain of this enchantment. You will need to find something more enduring before you can perform this ritual.","You remove the reagents from the mortar and put them away."];
+            return retval;
+          }   
           successtext.push(`You place the ruby in front of you, in the center of the pentagram, and begin the incantation.`);
           successtext.push(`You crush the mandrake and mistletoe together, in the mortar of crystal. Then, you add the spider silk and the sulfurous ash to the mix. Finally, you carefully add the frozen sunlight and tentatively apply the pestle to it.`);
           successtext.push(`There is a rush of power, as strong as anything you have ever experienced. The world goes white for a moment.`);
           successtext.push(`When your vision returns, the mortar is empty. You pick up the gemstone and hold it before you; it is warm in your hand, and gives off a pleasant light. You can feel the power deep within it.`);
           successtext.push(`<span class='sysconv'>You have obtained: Ruby of the Sun.</span>`);
           successtext.unshift(starttext);
-          CastSpellMana(PC,this.getManaCost());
+          CastSpellMana(PC,targetCursor.manacost);
           ShowEffect(PC, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+          PlayCastSound(PC,"sfx_enchant");
           PC.removeFromInventory(PC.checkInventory("MandrakeRoot"));
           PC.removeFromInventory(PC.checkInventory("Mistletoe"));
           PC.removeFromInventory(PC.checkInventory("SpiderSilk"));
@@ -3286,8 +3308,9 @@ function EmpowerReagentCommands(cmd) {
           successtext.push(`The power flows from the mortar in your hands into the armor. You can see it bind to the metal, glowing faintly, strengthening and protecting.`);
           successtext.push(`<span class='sysconv'>You have obtained: Exotic Armor.</span>`);
           successtext.unshift(starttext);
-          CastSpellMana(PC,this.getManaCost());
+          CastSpellMana(PC,targetCursor.manacost);
           ShowEffect(PC, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+          PlayCastSound(PC,"sfx_enchant");
           PC.removeFromInventory(PC.checkInventory("MandrakeRoot"));
           PC.removeFromInventory(PC.checkInventory("SpiderSilk"));
           PC.removeFromInventory(PC.checkInventory("BloodMoss"));
@@ -3304,8 +3327,9 @@ function EmpowerReagentCommands(cmd) {
           successtext.push(`You crush the mandrake together with the spider silk and the lightning blasted wood, and feel the magic build.`);
           successtext.push(`In a bolt, the power strikes the sword, which begins to crackle and shake. Wisps of lightning appear and disappear, chasing each other around the blade.`);
           successtext.push(`<span class='sysconv'>You have obtained: Lightning Sword.</span>`);
-          CastSpellMana(PC,this.getManaCost());
+          CastSpellMana(PC,targetCursor.manacost);
           ShowEffect(PC, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+          PlayCastSound(PC,"sfx_enchant");
           PC.removeFromInventory(PC.checkInventory("MandrakeRoot"));
           PC.removeFromInventory(PC.checkInventory("SpiderSilk"));
           PC.removeFromInventory(PC.checkInventory("LightningWood"));
@@ -3321,8 +3345,9 @@ function EmpowerReagentCommands(cmd) {
           PC.removeFromInventory(PC.checkInventory("MandrakeRoot"));
           PC.removeFromInventory(PC.checkInventory("SpiderSilk"));
           PC.removeFromInventory(PC.checkInventory("Nightshade"));
-          CastSpellMana(PC,this.getManaCost());
+          CastSpellMana(PC,targetCursor.manacost);
           ShowEffect(PC, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+          PlayCastSound(PC,"sfx_enchant");
           let sword = localFactory.createTile("VenomSword");
           PC.addToInventory(sword,1);
           retval["fin"] = 2;
@@ -3335,8 +3360,9 @@ function EmpowerReagentCommands(cmd) {
           PC.removeFromInventory(PC.checkInventory("MandrakeRoot"));
           PC.removeFromInventory(PC.checkInventory("SpiderSilk"));
           PC.removeFromInventory(PC.checkInventory("BloodMoss"));
-          CastSpellMana(PC,this.getManaCost());
+          CastSpellMana(PC,targetCursor.manacost);
           ShowEffect(PC, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+          PlayCastSound(PC,"sfx_enchant");
           let sword = localFactory.createTile("SwordOfDefense");
           PC.addToInventory(sword,1);
           retval["fin"] = 2;
@@ -3349,8 +3375,9 @@ function EmpowerReagentCommands(cmd) {
           PC.removeFromInventory(PC.checkInventory("MandrakeRoot"));
           PC.removeFromInventory(PC.checkInventory("SpiderSilk"));
           PC.removeFromInventory(PC.checkInventory("SulfurousAsh"));
-          CastSpellMana(PC,this.getManaCost());
+          CastSpellMana(PC,targetCursor.manacost);
           ShowEffect(PC, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+          PlayCastSound(PC,"sfx_enchant");
           let sword = localFactory.createTile("FlamingSword");
           PC.addToInventory(sword,1);
           retval["fin"] = 2;
@@ -3358,11 +3385,12 @@ function EmpowerReagentCommands(cmd) {
           return retval;
         }
       }
+      retval["fin"] = 2;
+      retval["outcome"] = failuretext;
+      return retval;    
     }
   }
-  retval["fin"] = 1;
-  retval["outcome"] = failuretext;
-  return retval;
+  alert("How did you get here? EmpowerReagentCommands end.");
 }
 
 // Explosion
@@ -4758,7 +4786,7 @@ function PerformSpellcast() {
 	      let thetile = targetCursor.spelldetails.caster.getHomeMap().getTile(targetCursor.x, targetCursor.y);
 	      let fea = thetile.getTopFeature();
 	      if (fea && fea.checkType("item")) {
-	        resp = PerformEmpower(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, fea);
+	        resp = PerformEmpower(PC, 0, 0, fea);
   	    } else {
           resp["fin"] = 0;
           resp["txt"] = "That cannot be empowered.";

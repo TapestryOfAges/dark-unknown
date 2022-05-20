@@ -3314,7 +3314,8 @@ function DisplayInventory(restrictTo) {
     if (PC.isEquipped(inventorylist[i])) {
       invdiv.style.borderColor = "#000099";
     }
-    if ((targetCursor.command === "c") && (targetCursor.spellName === "Empower")) {
+    // empower but specifically choosing regs
+    if ((targetCursor.command === "c") && (targetCursor.spellName === "Empower") && (gamestate.getMode() === "empower")) {  
       if (targetCursor.chosenReagents[inventorylist[i].getName()]) {
         invdiv.style.borderColor = "#000099";
       }
@@ -3416,7 +3417,7 @@ function PerformInventoryScreen(code, restrict) {
             retval["fin"] = 0;
             return retval;
           } else {
-            retval = PerformEmpower(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
+            retval = PerformEmpower(PC, 0, 0, tgt);
           }
         }
       } else {

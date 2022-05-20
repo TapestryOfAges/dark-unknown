@@ -1318,6 +1318,7 @@ function DoAction(code, ctrl) {
       delete targetCursor.invy;
       delete targetCursor.mortar;
       delete targetCursor.tgt;
+      delete targetCursor.manacost;
       document.getElementById('uiinterface').innerHTML = "";
       document.getElementById('uiinterface').style.backgroundColor = "";
       maintext.setInputLine("&gt;");
@@ -1334,6 +1335,7 @@ function DoAction(code, ctrl) {
       delete targetCursor.invy;
       delete targetCursor.mortar;
       delete targetCursor.tgt;
+      delete targetCursor.manacost;
       document.getElementById('uiinterface').innerHTML = "";
       document.getElementById('uiinterface').style.backgroundColor = "";
       maintext.setInputLine("&gt;");
@@ -1347,6 +1349,7 @@ function DoAction(code, ctrl) {
       delete targetCursor.invy;
       delete targetCursor.mortar;
       delete targetCursor.tgt;
+      delete targetCursor.manacost;
       document.getElementById('uiinterface').innerHTML = "";
       document.getElementById('uiinterface').style.backgroundColor = "";
       DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
