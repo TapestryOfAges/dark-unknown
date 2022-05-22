@@ -101,6 +101,8 @@ DUSound["sfx_iceball"] = "sfx/Ice 7.mp3"; // Magic Spells SFX B Stereo/Ice/Ice 7
 DUSound["sfx_thunder"] = "sfx/Spell - Thunder 1.mp3"; // MF SFX P Spells/Spell - Thunder 1.mp3
 DUSound["sfx_long_thunder"] = "sfx/Thunder 7.mp3"; // Magic Spells SFX B Stereo/Thunder/Thunder 7
 DUSound["sfx_fire_ice"] = "sfx/Fire (elemental).mp3"; // Magic Spells SFX B Stereo/Fire/Fire (elemental)
+DUSound["sfx_enchant"] = "sfx/Shield 1.mp3";  // Magic Spells SFX B Stereo/Shield
+DUSound["sfx_deep_resonant"] = "sfx/Sleep-Silence 7.mp3"; // Magic Spells SFX B Stereo/Sleep-Silence
 
 // Monster sounds
 DUSound["sfx_fire_hit"] = "sfx/Fire 4.mp3"; // NS SFX B Stereo/Fire/Fire 4

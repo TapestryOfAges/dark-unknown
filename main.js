@@ -297,6 +297,16 @@ function DoAction(code, ctrl) {
       } else {
         gamestate.setMode("anykey");
       }
+    } else if (targetCursor.command === "empower") {
+      maintext.addText(targetCursor.txt[targetCursor.idx]);
+      targetCursor.idx++;
+      if (targetCursor.idx === targetCursor.txt.length) {
+        maintext.setInputLine("&gt;");
+        maintext.drawTextFrame();
+        PC.endTurn();
+      } else {
+        // now that I think of it, I don't think I need to do anything here.
+      }
     } else if (targetCursor.command === "summon") {
       let aredone = PlaySummonScene(targetCursor.phase);
       maintext.drawTextFrame();
@@ -1087,8 +1097,8 @@ function DoAction(code, ctrl) {
       let response = PerformSpellbook(code);
       if (response["fin"] === 1) {
         maintext.setInputLine("&gt;");
-        maintext.drawTextFrame();
         maintext.addText(response["txt"]);
+        maintext.drawTextFrame();
         PC.endTurn();
       } else if (response["fin"] === 4) {
         maintext.setInputLine(response["input"]);
@@ -1107,7 +1117,7 @@ function DoAction(code, ctrl) {
         maintext.drawTextFrame();
         maintext.addText(response["txt"]);
         gamestate.setMode("null");
-      }
+      } // response["fin"] === 0 keeps state the same- used for moving around the spellbook
     }
   }
   else if (gamestate.getMode() === "buy") {
@@ -1329,12 +1339,13 @@ function DoAction(code, ctrl) {
     }
   } else if (gamestate.getMode() === "empower") {
     let retval = EmpowerReagentCommands(code);
-    if (retval["fin"] === 1) {
+    if (retval["fin"] === -1) {
       delete targetCursor.invx;
       delete targetCursor.invx_old;
       delete targetCursor.invy;
       delete targetCursor.mortar;
       delete targetCursor.tgt;
+      delete targetCursor.manacost;
       document.getElementById('uiinterface').innerHTML = "";
       document.getElementById('uiinterface').style.backgroundColor = "";
       maintext.setInputLine("&gt;");
@@ -1345,6 +1356,45 @@ function DoAction(code, ctrl) {
       gamestate.setTurn(PC);
     } else if (retval["fin"] === 0) {
       ShowEmpowerReagentChoice(PC);
+    } else if (retval["fin"] === 1) {
+      delete targetCursor.invx;
+      delete targetCursor.invx_old;
+      delete targetCursor.invy;
+      delete targetCursor.mortar;
+      delete targetCursor.tgt;
+      delete targetCursor.manacost;
+      document.getElementById('uiinterface').innerHTML = "";
+      document.getElementById('uiinterface').style.backgroundColor = "";
+      maintext.setInputLine("&gt;");
+      maintext.drawTextFrame();
+      DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
+      DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+      PC.endTurn();
+    } else if (retval["fin"] === 2) {
+      delete targetCursor.invx;
+      delete targetCursor.invx_old;
+      delete targetCursor.invy;
+      delete targetCursor.mortar;
+      delete targetCursor.tgt;
+      delete targetCursor.manacost;
+      document.getElementById('uiinterface').innerHTML = "";
+      document.getElementById('uiinterface').style.backgroundColor = "";
+      DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
+      DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+      if (retval["outcome"].length === 1) {
+        maintext.addText(retval["outcome"][0]);
+        maintext.setInputLine("&gt;");
+        maintext.drawTextFrame();
+        PC.endTurn();
+      } else {
+        targetCursor.command = "empower";
+        targetCursor.txt = retval["outcome"];
+        targetCursor.idx = 1;
+        gamestate.setMode("anykey");
+        maintext.addText(retval["outcome"][0]);
+        maintext.setInputLine("[MORE]");
+        maintext.drawTextFrame();
+      }
     }
   }
   maintext.flushDelayedText();

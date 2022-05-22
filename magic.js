@@ -327,7 +327,7 @@ magic[SPELL_AUDACHTA_SCRIBE_LEVEL][SPELL_AUDACHTA_SCRIBE_ID].executeSpell = func
 
   let mademenu = MakeInventoryList("audachta");
   if (!mademenu.length) {
-    resp["fin"] = 0;
+    resp["fin"] = 2;
     resp["txt"] = "You have no audachta nemesos.";
     resp["input"] = "&gt;";
 
@@ -517,7 +517,6 @@ magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell = function(caster, i
     CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
-  resp["fin"] = 1;
   
   let radius = 3;
   if (!free & caster.getIntForPower() > 20) { radius = 4; }
@@ -581,7 +580,7 @@ magic[SPELL_FLAME_BLADE_LEVEL][SPELL_FLAME_BLADE_ID].executeSpell = function(cas
     if (caster === PC) {
       maintext.addText("You must have a weapon equipped.");
     }
-    resp["fin"] = 0;
+    resp["fin"] = 2;
     return resp;  
   }
   if (!free) {
@@ -656,7 +655,7 @@ magic[SPELL_MEND_LEVEL][SPELL_MEND_ID].getInfusedDesc = function() {
 
 magic[SPELL_MEND_LEVEL][SPELL_MEND_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Mend.<br />");
-  let resp = {fin:1};
+  let resp = {};
 
   if (caster !== PC) {
     resp = PerformMend(caster, infused, free, tgt);
@@ -706,7 +705,7 @@ magic[SPELL_VULNERABILITY_LEVEL][SPELL_VULNERABILITY_ID].getInfusedDesc = functi
 
 magic[SPELL_VULNERABILITY_LEVEL][SPELL_VULNERABILITY_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Vulnerability.<br />");
-  let resp = {fin:1};
+  let resp = {};
   if (caster !== PC) {
     resp = PerformVulnerability(caster, infused, free, tgt);
     return resp;
@@ -1520,7 +1519,15 @@ magic[SPELL_ICEBALL_LEVEL][SPELL_ICEBALL_ID].executeSpell = function(caster, inf
     let resp = PerformIceball(caster, infused, free, tgt);
     return resp;
   }
+
   let resp = {};
+  
+  if (!caster.getHomeMap().getScale()) {
+    resp["fin"] = 2;
+    resp["txt"] = "There is no benefit to casting that spell here.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
   
   CreateTargetCursor({sticky: 1, command:'c',spellName:'Iceball',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});      
   resp["txt"] = "";
@@ -1613,7 +1620,15 @@ magic[SPELL_TELEKINESIS_LEVEL][SPELL_TELEKINESIS_ID].executeSpell = function(cas
     let resp = PerformTelekinesis(caster, infused, free, tgt);
     return resp;
   }
+
   let resp = {};
+
+  if (!caster.getHomeMap().getScale()) {
+    resp["fin"] = 2;
+    resp["txt"] = "There is no benefit to casting that spell here.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
 
   CreateTargetCursor({sticky: 0, command:'c',spellName:'Telekinesis',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "usable"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});        
   resp["txt"] = "";
@@ -1726,14 +1741,13 @@ magic[SPELL_TELEPATHY_LEVEL][SPELL_TELEPATHY_ID].getInfusedDesc = function() {
 
 magic[SPELL_TELEPATHY_LEVEL][SPELL_TELEPATHY_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Telepathy.<br />");
-  let resp = {};
+  let resp = {fin:1};
   if (!free) {
     free = 0;
     let mana = this.getManaCost(infused);
     CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
-  resp["fin"] = 1;
   let prot = localFactory.createTile("Telepathy");
   let duration = caster.getIntForPower() * 2 * SCALE_TIME;
   if (free) { duration = Dice.roll("1d6 + 12") * 2 * SCALE_TIME; }
@@ -2194,7 +2208,15 @@ magic[SPELL_LIFE_DRAIN_LEVEL][SPELL_LIFE_DRAIN_ID].executeSpell = function(caste
     let resp = PerformLifeDrain(caster, infused, free, tgt);
     return resp;
   }
+
   let resp = {};
+
+  if (!caster.getHomeMap().getScale()) {
+    resp["fin"] = 2;
+    resp["txt"] = "There is no benefit to casting that spell here.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
 
   CreateTargetCursor({sticky: 1, command:'c',spellName:'Life Drain',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});        
   resp["txt"] = "";
@@ -2282,6 +2304,13 @@ magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID].executeSpell = function(caster, infused
     let mana = this.getManaCost(infused);
     CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+
+  if (!caster.getHomeMap().getScale()) {
+    resp["fin"] = 2;
+    resp["txt"] = "There is no benefit to casting that spell here.";
+    resp["input"] = "&gt;";
+    return resp;
   }
  
   let radius = 3;
@@ -2497,7 +2526,15 @@ magic[SPELL_PARALYZE_LEVEL][SPELL_PARALYZE_ID].executeSpell = function(caster, i
     let resp = PerformParalyze(caster, infused, free, tgt);
     return resp;
   }
+
   let resp = {};
+
+  if (!caster.getHomeMap().getScale()) {
+    resp["fin"] = 2;
+    resp["txt"] = "There is no benefit to casting that spell here.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
   
   CreateTargetCursor({sticky: 1, command:'c',spellName:'Paralyze',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});      
   resp["txt"] = "";
@@ -2578,7 +2615,7 @@ magic[SPELL_PEER_LEVEL][SPELL_PEER_ID].getInfusedDesc = function() {
 
 magic[SPELL_PEER_LEVEL][SPELL_PEER_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Peer.<br />");
-  let resp = {fin:0};
+  let resp = {fin:4};
   if (!free) {
     free = 0;
     let mana = this.getManaCost(infused);
@@ -2735,6 +2772,13 @@ magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].executeSpell = function(caster,
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
+  if (!caster.getHomeMap().getScale()) {
+    resp["fin"] = 2;
+    resp["txt"] = "There is no benefit to casting that spell here.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
+
   PlayCastSound(caster,"sfx_thunder");
   let spellmap = caster.getHomeMap();
   for (let xdiff=-1; xdiff<=1; xdiff++) {
@@ -2877,6 +2921,13 @@ magic[SPELL_SWORDSTRIKE_LEVEL][SPELL_SWORDSTRIKE_ID].executeSpell = function(cas
     return resp;
   }
   let resp = {};
+
+  if (!caster.getHomeMap().getScale()) {
+    resp["fin"] = 2;
+    resp["txt"] = "There is no benefit to casting that spell here.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
   
   CreateTargetCursor({sticky: 1, command:'c',spellName:'Swordstrike',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});      
   resp["txt"] = "";
@@ -2976,17 +3027,30 @@ magic[SPELL_EMPOWER_LEVEL][SPELL_EMPOWER_ID].executeSpell = function(caster, inf
     return resp;
   }
 
-  CreateTargetCursor({sticky: 0, command:'c',spellName:'Empower',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "feature"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 1});
+  if (!PC.checkInventory("Mortar") && !PC.checkInventory("CrystalMortar")) { 
+    resp["fin"] = 2;
+    return resp;
+  }
+
+//  CreateTargetCursor({sticky: 0, command:'c',spellName:'Empower',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "feature"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 1});
+  targetCursor.manacost = this.getManaCost();
   resp["txt"] = "";
   resp["input"] = "&gt; Choose object to be Empowered- ";
   resp["fin"] = 4;  // was 0
-  gamestate.setMode("target");
+//  gamestate.setMode("target");
+  gamestate.setMode("zstats");
+  targetCursor.page = 2;
+  targetCursor.spellName = "Empower";
+  targetCursor.command = 'c';
+
+  DisplayInventory();
+
   return resp;
 
 }
 
 function PerformEmpower(caster, infused, free, tgt) {
-  let retval = { fin: 1};
+  let retval = { fin: 2, usefin: 1, initdelay: 0};
   if (!tgt.enchantable) {
     retval.txt = "That object is not able to hold an enchantment.";
     retval.input = "&gt;";
@@ -3007,7 +3071,7 @@ function PerformEmpower(caster, infused, free, tgt) {
     retval.input = "&gt;";
     return retval;
   }
-  if (!caster.IsOnPentagram()) {
+  if (!IsOnPentagram(caster)) {
     retval.txt = "This spell must be cast while standing in a circle of power.";
     retval.input = "&gt;";
     return retval;
@@ -3026,7 +3090,8 @@ function PerformEmpower(caster, infused, free, tgt) {
 
   retval["txt"] = "";
   retval["input"] = "&gt; Include which reagents: ";
-  retval["fin"] = 3;	
+//  retval["fin"] = 3;	
+  retval["fin"] = 1;
 
   return retval;
 }
@@ -3045,7 +3110,7 @@ function ShowEmpowerReagentChoice(caster) {
       document.getElementById('uiinterface').innerHTML += "<div id='inv_"+i+"x"+j+"' style='position:absolute; left: " + leftedge + "; top: " + topedge + "; width:32px; height: 32; border:3px; border-style: solid; border-color:#999;'></div>";
     }
   }
-  document.getElementById('uiinterface').innerHTML += "<div id='inv_desc_window' style='position:absolute; left: 35px; top: 310px; border: 3px; border-style: solid; border-color:#ccc; width:340px; height: 60px'></div>";
+  document.getElementById('uiinterface').innerHTML += "<div id='inv_desc_window' style='position:absolute; left: 35px; top: 310px; border: 3px; border-style: solid; border-color:#ccc; width:340px; height: 100px'></div>";
   document.getElementById('inv_desc_window').innerHTML = "<table cellpadding='4' cellspacing='4' border='0' style='margin-top:5px'><tr><td rowspan='2' style='text-align:center; width: 100px'><div id='inv_image' style='position:absolute; top: 6px; left: 34px; width: 32px; height:32px'></div><p id='inv_name' class='charcreate' style='position:absolute; top:42px; width:100px; text-align:center'></p></td><td><p class='charcreate' id='inv_desc' style='top:20px'></p></td></tr><td><p class='charcreate' id='inv_use' style='color:yellow'></p></td></tr></table>";
 
   let mortar = caster.checkInventory("Mortar");
@@ -3062,8 +3127,12 @@ function ShowEmpowerReagentChoice(caster) {
     document.getElementById('uiinterface').innerHTML += "<div id='inv_"+i+"x2' style='position:absolute; left: " + leftedge + "; top: " + topedge + "; width:32px; height: 32; border:3px; border-style: solid; border-color:#999;'></div>";
   }
 
-  document.getElementById('uiinterface').innerHTML += "<div id='inv_1x3' style='position: absolute; left: 150px; top:270px; color: white; font-size: 16pt; font-family: Commodore64'>Begin grinding</div>";
-  document.getElementById('inv_' + targetCursor.invx + 'x' + targetCursor.invy).style.borderColor = "#ffffff";
+  if (targetCursor.invy === 3) {
+    document.getElementById('uiinterface').innerHTML += "<div id='inv_1x3' style='position: absolute; left: 150px; top:270px; color: black; background-color:white; font-size: 16pt; font-family: Commodore64'>Begin grinding</div>";
+  } else {
+    document.getElementById('uiinterface').innerHTML += "<div id='inv_1x3' style='position: absolute; left: 150px; top:270px; color: white; font-size: 16pt; font-family: Commodore64'>Begin grinding</div>";
+    document.getElementById('inv_' + targetCursor.invx + 'x' + targetCursor.invy).style.borderColor = "#ffffff";
+  }
 
   let reagents = MakeInventoryList("reagent");
   let ridx = 0;
@@ -3083,7 +3152,7 @@ function ShowEmpowerReagentChoice(caster) {
       innerdiv.style.position = "fixed";
       invdiv.appendChild(innerdiv);
 
-      if ((targetCursor.invx === midx) && (targetCursor.invx === 2)) {
+      if ((targetCursor.invx === midx) && (targetCursor.invy === 2)) {
         document.getElementById('inv_image').style.backgroundImage = "url('graphics/" + showgraphic[0] + "')";
         document.getElementById('inv_image').style.backgroundRepeat = "no-repeat";
         document.getElementById('inv_image').style.backgroundPosition = showgraphic[2] + "px " + showgraphic[3] + "px";
@@ -3119,7 +3188,7 @@ function ShowEmpowerReagentChoice(caster) {
         quant.innerHTML = "<span style='position:relative;top:-2px'>" + inventorylist[i].getQuantity() + "</span>";
       }
 
-      if ((targetCursor.invx === writetox) && (targetCursor.invx === writetoy)) {
+      if ((targetCursor.invx === writetox) && (targetCursor.invy === writetoy)) {
         document.getElementById('inv_image').style.backgroundImage = "url('graphics/" + showgraphic[0] + "')";
         document.getElementById('inv_image').style.backgroundRepeat = "no-repeat";
         document.getElementById('inv_image').style.backgroundPosition = showgraphic[2] + "px " + showgraphic[3] + "px";
@@ -3138,7 +3207,7 @@ function ShowEmpowerReagentChoice(caster) {
 function EmpowerReagentCommands(cmd) {
   let retval = {};
   if (cmd === 27) { // ESC
-    retval["fin"] = 1;
+    retval["fin"] = -1;
     return retval;
   } else if (cmd === 38) { // Up
     retval["fin"] = 0;
@@ -3161,6 +3230,8 @@ function EmpowerReagentCommands(cmd) {
     if (targetCursor.invy === 3) {
       return retval;
     }
+    if (targetCursor.invx < 4) { targetCursor.invx++; }
+    return retval;
   } else if (cmd === 40) { // Down
     retval["fin"] = 0;
     if (targetCursor.invy === 3) {
@@ -3168,11 +3239,11 @@ function EmpowerReagentCommands(cmd) {
     }
     if (targetCursor.invy === 2) {
       targetCursor.invx_old = targetCursor.invx;
-      targetCursor.invx = 0;
+      targetCursor.invx = 1;
     }
     targetCursor.invy++;
     return retval;
-  } else if ((code === 13) || (code === 32)) {  // space or enter
+  } else if ((cmd === 13) || (cmd === 32)) {  // space or enter
     retval["fin"] = 0;
     let reglist=[];
     let mortlist=[];
@@ -3186,15 +3257,16 @@ function EmpowerReagentCommands(cmd) {
       let idx = targetCursor.invx + 5*targetCursor.invy;
       targetCursor.mortar[reglist[idx]] = 1;
       return retval;
-    } else if (targetCursor.invy=2) {
+    } else if (targetCursor.invy===2) {
       targetCursor.mortar[mortlist[targetCursor.invx]] = 0;
       return retval;
     } else {
       // Do magic!
-      let tobeenchanted = targetCursor.tgt.getDesc();
-      let mortar = caster.checkInventory("Mortar");
-      if ((caster.checkInventory("DragonBone")) && (caster.checkInventory("CrystalMortar"))) {
-        mortar = caster.checkInventory("CrystalMortar");
+      let tgt = targetCursor.tgt;
+      let tobeenchanted = tgt.getDesc();
+      let mortar = PC.checkInventory("Mortar");
+      if ((PC.checkInventory("DragonBone")) && (PC.checkInventory("CrystalMortar"))) {
+        mortar = PC.checkInventory("CrystalMortar");
       }
       let mortardesc = mortar.getDesc();
       let starttext = `You place the ${tobeenchanted} in front of you, in the center of the pentagram, and carefully place the chosen reagents in the ${mortardesc}. `;
@@ -3202,28 +3274,137 @@ function EmpowerReagentCommands(cmd) {
       failuretext.push(`You cease casting the spell before you begin mixing the reagents together. You will need to consider a different combination of materials.`);
       let successtext = [];
       if (tgt.getName() === "PerfectRuby") {
-        if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["Mistletoe"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["SulfurousAsh"]) {
+        if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["Mistletoe"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["SulfurousAsh"] && targetCursor.mortar["FrozenSunlight"]) {
+          if (mortar.getName() !== "CrystalMortar") {
+            retval["fin"] = 2;
+            retval["outcome"] = ["You place the reagents in the mortar and begin the incancation, but quickly realize something is wrong.","This mortar will shatter under the strain of this enchantment. You will need to find something more enduring before you can perform this ritual.","You remove the reagents from the mortar and put them away."];
+            return retval;
+          }   
+          successtext.push(`You place the ruby in front of you, in the center of the pentagram, and begin the incantation.`);
+          successtext.push(`You crush the mandrake and mistletoe together, in the mortar of crystal. Then, you add the spider silk and the sulfurous ash to the mix. Finally, you carefully add the frozen sunlight and tentatively apply the pestle to it.`);
+          successtext.push(`There is a rush of power, as strong as anything you have ever experienced. The world goes white for a moment.`);
+          successtext.push(`When your vision returns, the mortar is empty. You pick up the gemstone and hold it before you; it is warm in your hand, and gives off a pleasant light. You can feel the power deep within it.`);
+          successtext.push(`<span class='sysconv'>You have obtained: Ruby of the Sun.</span>`);
+          successtext.unshift(starttext);
+          CastSpellMana(PC,targetCursor.manacost);
+          ShowEffect(PC, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+          PlayCastSound(PC,"sfx_enchant");
+          PC.removeFromInventory(PC.checkInventory("MandrakeRoot"));
+          PC.removeFromInventory(PC.checkInventory("Mistletoe"));
+          PC.removeFromInventory(PC.checkInventory("SpiderSilk"));
+          PC.removeFromInventory(PC.checkInventory("SulfurousAsh"));
+          PC.removeFromInventory(PC.checkInventory("FrozenSunlight"));
+          PC.removeFromInventory(PC.checkInventory("PerfectRuby"));
+          let ruby = localFactory.createTile("RubyGemoftheSun");
+          PC.addToInventory(ruby,1);
 
+          let oldlight = PC.getSpellEffectsByName("Light");
+          oldlight.endEffect(1);
+
+          // Having the Ruby means permanent infused Light
+          let liobj = localFactory.createTile("Light");
+          liobj.setExpiresTime(-1);
+          liobj.setPower(4); 
+          
+          PC.addSpellEffect(liobj, 1);
+          
+          DrawCharFrame();
+        
+          retval["fin"] = 2;
+          retval["outcome"] = successtext;
+
+          return retval;
         }
       } else if (tgt.getName() === "DecorativeArmor") {
         if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["BloodMoss"]) {
-
+          successtext.push(`You pile the suit of armor in front of you, on the pentagram, and then begin the incantation.`);
+          successtext.push(`You crush the mandrake together with the moss and the spider silk, and feel the magic build.`);
+          successtext.push(`The power flows from the mortar in your hands into the armor. You can see it bind to the metal, glowing faintly, strengthening and protecting.`);
+          successtext.push(`<span class='sysconv'>You have obtained: Exotic Armor.</span>`);
+          successtext.unshift(starttext);
+          CastSpellMana(PC,targetCursor.manacost);
+          ShowEffect(PC, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+          PlayCastSound(PC,"sfx_enchant");
+          PC.removeFromInventory(PC.checkInventory("MandrakeRoot"));
+          PC.removeFromInventory(PC.checkInventory("SpiderSilk"));
+          PC.removeFromInventory(PC.checkInventory("BloodMoss"));
+          PC.removeFromInventory(PC.checkInventory("DecorativeArmor"));
+          let armor = localFactory.createTile("ExoticArmor");
+          PC.addToInventory(armor,1);
+          retval["fin"] = 2;
+          retval["outcome"] = successtext;
+          return retval;
         }
       } else if (tgt.getName() === "UnenchantedSword") {
+        successtext.push(`You carefully place the repaired sword into the center of the pentagram, and begin the incancation.`);
         if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["LightningWood"]) {
-
+          successtext.push(`You crush the mandrake together with the spider silk and the lightning blasted wood, and feel the magic build.`);
+          successtext.push(`In a bolt, the power strikes the sword, which begins to crackle and shake. Wisps of lightning appear and disappear, chasing each other around the blade.`);
+          successtext.push(`<span class='sysconv'>You have obtained: Lightning Sword.</span>`);
+          CastSpellMana(PC,targetCursor.manacost);
+          ShowEffect(PC, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+          PlayCastSound(PC,"sfx_enchant");
+          PC.removeFromInventory(PC.checkInventory("MandrakeRoot"));
+          PC.removeFromInventory(PC.checkInventory("SpiderSilk"));
+          PC.removeFromInventory(PC.checkInventory("LightningWood"));
+          let sword = localFactory.createTile("LightningSword");
+          PC.addToInventory(sword,1);
+          retval["fin"] = 2;
+          retval["outcome"] = successtext;
+          return retval;
         } else if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["Nightshade"]) {
-
+          successtext.push(`You crush the mandrake together with the spider silk and the nightshade, and feel the magic build.`);
+          successtext.push(`Wisps of green smoke appear before you and seem to be drawn into the sword blade. The metal takes on a green, oily sheen, though it is dry to the touch.`);
+          successtext.push(`<span class='sysconv'>You have obtained: Sword of Venom.</span>`);
+          PC.removeFromInventory(PC.checkInventory("MandrakeRoot"));
+          PC.removeFromInventory(PC.checkInventory("SpiderSilk"));
+          PC.removeFromInventory(PC.checkInventory("Nightshade"));
+          CastSpellMana(PC,targetCursor.manacost);
+          ShowEffect(PC, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+          PlayCastSound(PC,"sfx_enchant");
+          let sword = localFactory.createTile("VenomSword");
+          PC.addToInventory(sword,1);
+          retval["fin"] = 2;
+          retval["outcome"] = successtext;
+          return retval;
         } else if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["BloodMoss"]) {
-
+          successtext.push(`You crush the mandrake together with the spider silk and the moss, and feel the magic build.`);
+          successtext.push(`Motes of light float out of the mortar and begin orbiting closely around the blade of the sword.`);
+          successtext.push(`<span class='sysconv'>You have obtained: Sword of Defense.</span>`);
+          PC.removeFromInventory(PC.checkInventory("MandrakeRoot"));
+          PC.removeFromInventory(PC.checkInventory("SpiderSilk"));
+          PC.removeFromInventory(PC.checkInventory("BloodMoss"));
+          CastSpellMana(PC,targetCursor.manacost);
+          ShowEffect(PC, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+          PlayCastSound(PC,"sfx_enchant");
+          let sword = localFactory.createTile("SwordOfDefense");
+          PC.addToInventory(sword,1);
+          retval["fin"] = 2;
+          retval["outcome"] = successtext;
+          return retval;
         } else if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["SulfurousAsh"]) {
-
+          successtext.push(`You crush the mandrake together with the spider silk and the sulfurous ash, and feel the magic build.`);
+          successtext.push(`There is a bright flash, and the blade of the sword alights with flame, which never ceases.`);
+          successtext.push(`<span class='sysconv'>You have obtained: Flaming Sword.</span>`);
+          PC.removeFromInventory(PC.checkInventory("MandrakeRoot"));
+          PC.removeFromInventory(PC.checkInventory("SpiderSilk"));
+          PC.removeFromInventory(PC.checkInventory("SulfurousAsh"));
+          CastSpellMana(PC,targetCursor.manacost);
+          ShowEffect(PC, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+          PlayCastSound(PC,"sfx_enchant");
+          let sword = localFactory.createTile("FlamingSword");
+          PC.addToInventory(sword,1);
+          retval["fin"] = 2;
+          retval["outcome"] = successtext;
+          return retval;
         }
       }
+      retval["fin"] = 2;
+      retval["outcome"] = failuretext;
+      return retval;    
     }
   }
-  retval["fin"] = 0;
-  return retval;
+  alert("How did you get here? EmpowerReagentCommands end.");
 }
 
 // Explosion
@@ -3241,6 +3422,13 @@ magic[SPELL_EXPLOSION_LEVEL][SPELL_EXPLOSION_ID].executeSpell = function(caster,
   }
   let resp = {};
   
+  if (!caster.getHomeMap().getScale()) {
+    resp["fin"] = 2;
+    resp["txt"] = "There is no benefit to casting that spell here.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
+
   CreateTargetCursor({sticky: 0, command:'c',spellName:'Explosion',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "open"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});      
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
@@ -3333,7 +3521,14 @@ magic[SPELL_JINX_LEVEL][SPELL_JINX_ID].executeSpell = function(caster, infused, 
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
-  var radius = 4;
+  if (!caster.getHomeMap().getScale()) {
+    resp["fin"] = 2;
+    resp["txt"] = "There is no benefit to casting that spell here.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
+
+  let radius = 4;
   if (!free & caster.getIntForPower() > 20) { radius = 5; }
   if (infused) { radius = radius * 1.5; }  // level 6+ spells can't be infused, but let's cover the case anyway
   let castermap = caster.getHomeMap();
@@ -3396,6 +3591,13 @@ magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].executeSpell = function(caste
     let mana = this.getManaCost(infused);
     CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+
+  if (!caster.getHomeMap().getScale()) {
+    resp["fin"] = 2;
+    resp["txt"] = "There is no benefit to casting that spell here.";
+    resp["input"] = "&gt;";
+    return resp;
   }
 
   let radius = 4;
@@ -3522,7 +3724,7 @@ magic[SPELL_STORM_LEVEL][SPELL_STORM_ID].executeSpell = function(caster, infused
   let castermap = caster.getHomeMap();
   if (!castermap.getScale()) {
     DebugWrite("magic", "Tried to cast Storm on an overland map.<br />");
-    maintext.AddText("You summon a small storm, which soon ends.");
+    resp["txt"] = "You summon a small storm, which soon ends.";
     return resp;
   }
   let liobj = localFactory.createTile("Storm");
@@ -3556,6 +3758,13 @@ magic[SPELL_CHARM_LEVEL][SPELL_CHARM_ID].executeSpell = function(caster, infused
     return resp;
   }
   let resp = {};
+
+  if (!caster.getHomeMap().getScale()) {
+    resp["fin"] = 2;
+    resp["txt"] = "There is no benefit to casting that spell here.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
   
   CreateTargetCursor({sticky: 1, command:'c',spellName:'Charm',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});      
   resp["txt"] = "";
@@ -3643,6 +3852,13 @@ magic[SPELL_FEAR_LEVEL][SPELL_FEAR_ID].executeSpell = function(caster, infused, 
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
+  if (!caster.getHomeMap().getScale()) {
+    resp["fin"] = 2;
+    resp["txt"] = "There is no benefit to casting that spell here.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
+
   let radius = 4;
   if (!free & caster.getIntForPower() > 20) { radius = 5; }
   if (infused) { radius = radius * 1.5; }  // level 6+ spells can't be infused, but let's cover the case anyway
@@ -3698,11 +3914,18 @@ magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].getLongDesc = function() 
 
 magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Fire and Ice.<br />");
-  let resp = {fin:-1};
+  let resp = {fin:3};
   if (!free) {
     let mana = this.getManaCost(infused);
     CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+
+  if (!caster.getHomeMap().getScale()) {
+    resp["fin"] = 2;
+    resp["txt"] = "There is no benefit to casting that spell here.";
+    resp["input"] = "&gt;";
+    return resp;
   }
 
   PlayCastSound(caster,"sfx_fire_ice");
@@ -3807,6 +4030,13 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(c
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
+  if (!caster.getHomeMap().getScale()) {
+    resp["fin"] = 2;
+    resp["txt"] = "There is no benefit to casting that spell here.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
+
   let radius = 4;
   if (!free & caster.getIntForPower() > 20) { radius = 5; }
   if (infused) { radius = radius * 1.5; }  // level 6+ spells can't be infused, but let's cover the case anyway
@@ -3885,6 +4115,13 @@ magic[SPELL_ARROW_OF_GLASS_LEVEL][SPELL_ARROW_OF_GLASS_ID].executeSpell = functi
     return resp;
   }
   let resp = {};
+
+  if (!caster.getHomeMap().getScale()) {
+    resp["fin"] = 2;
+    resp["txt"] = "There is no benefit to casting that spell here.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
   
   CreateTargetCursor({sticky: 1, command:'c',spellName:'Arrow of Glass',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});      
   resp["txt"] = "";
@@ -3978,6 +4215,13 @@ magic[SPELL_CONFLAGRATION_LEVEL][SPELL_CONFLAGRATION_ID].executeSpell = function
     let mana = this.getManaCost(infused);
     CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+
+  if (!caster.getHomeMap().getScale()) {
+    resp["fin"] = 2;
+    resp["txt"] = "There is no benefit to casting that spell here.";
+    resp["input"] = "&gt;";
+    return resp;
   }
 
   PlayCastSound(caster,"sfx_fireball");
@@ -4556,7 +4800,7 @@ function PerformSpellcast() {
 	      let thetile = targetCursor.spelldetails.caster.getHomeMap().getTile(targetCursor.x, targetCursor.y);
 	      let fea = thetile.getTopFeature();
 	      if (fea && fea.checkType("item")) {
-	        resp = PerformEmpower(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, fea);
+	        resp = PerformEmpower(PC, 0, 0, fea);
   	    } else {
           resp["fin"] = 0;
           resp["txt"] = "That cannot be empowered.";
