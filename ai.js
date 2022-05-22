@@ -2486,7 +2486,9 @@ ais.ai_cast = function(who) {
           spelloptions.push("MagicBolt");
         }
         if ((who.getLevel() >= 3) && (who.getMana() >= 3)) {
-          spelloptions.push("Fireball");
+          if (!who.spellsknown.banned || !who.spellsknown.banned.includes("Fire")) {
+            spelloptions.push("Fireball");
+          }
         }
         if ((who.getLevel() >= 4) && (who.getMana() >= 4)) {
           if (!who.spellsknown.banned || !who.spellsknown.banned.includes("Ice")) {
