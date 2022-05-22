@@ -3297,8 +3297,22 @@ function EmpowerReagentCommands(cmd) {
           PC.removeFromInventory(PC.checkInventory("PerfectRuby"));
           let ruby = localFactory.createTile("RubyGemoftheSun");
           PC.addToInventory(ruby,1);
+
+          let oldlight = PC.getSpellEffectsByName("Light");
+          oldlight.endEffect(1);
+
+          // Having the Ruby means permanent infused Light
+          let liobj = localFactory.createTile("Light");
+          liobj.setExpiresTime(-1);
+          liobj.setPower(4); 
+          
+          PC.addSpellEffect(liobj, 1);
+          
+          DrawCharFrame();
+        
           retval["fin"] = 2;
           retval["outcome"] = successtext;
+
           return retval;
         }
       } else if (tgt.getName() === "DecorativeArmor") {
