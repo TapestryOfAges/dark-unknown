@@ -187,3 +187,4 @@ rune_gems - used the Rune of Kings in the appropriate place in Kalton Mine to un
 unenchanted_sword - broken Ezwilden has been picked up
 given_regalia - Shelaria gave you her crown and scepter
 oracle_spoke - the Oracle has told you what to do
+elder_killed - Elder Dragon is dead
