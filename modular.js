@@ -273,6 +273,11 @@ OnDeathFuncs["destroycrystals"] = function(who) {
   }
 }
 
+OnDeathFuncs["Elder"] = function() {
+  DU.gameflags.setFlag("elder_killed");
+  maintext.addText('The dragon slumps to the ground, and opens one huge eye to gaze at you. Its voice rattles forth, "It is done. I see the path before you, mortal: You venture into a darkness the likes the world has ne\'er seen. May you never return to the lands of light..." The dragon\'s labored breathing ceases.');
+}
+
 OnDeathFuncs["endact"] = function() {
   // WORKING HERE
   let endact = localFactory.createTile("UnconsciousEndAct");
