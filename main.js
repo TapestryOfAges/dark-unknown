@@ -296,6 +296,8 @@ function DoAction(code, ctrl) {
       } else {
         gamestate.setMode("anykey");
       }
+    } else if (targetCursor.command === "elderstart") {
+      ais.elderdragonintro(targetCursor.dragon);
     } else if (targetCursor.command === "empower") {
       maintext.addText(targetCursor.txt[targetCursor.idx]);
       targetCursor.idx++;
