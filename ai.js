@@ -3302,3 +3302,107 @@ function FindMissileTarget(who,radius) {
   }
 }
 
+ais.elderdragon = function(who) {
+  let retval = {fin:0};
+  if (!who.roused) {
+    if (PC.gety() < 21) {
+      retval["wait"] = 1;
+      maintext.setInputLine("&gt;[MORE]");
+      maintext.drawTextFrame(); 
+      gamestate.setMode("null");
+      targetCursor.command = "elderstart";
+      targetCursor.dragon = who;
+      targetCursor.stage = 0;
+      targetCursor.camx = PC.getx();
+      targetCursor.camy = PC.gety();
+      ais.elderdragonintro(who);
+    }
+  } else {
+    // in a fight
+    if (who.breathing) {
+      let tgt = who.getHomeMap().getTile(who.breathx,who.breathy).getTopNPC();
+      if (!tgt) { 
+        if ((PC.getx() === who.breathx) && (PC.gety() === who.breathy)) { tgt = PC; }
+      }
+      let boltgraphic = {};
+      boltgraphic.graphic = "fireicelightning.gif";
+      boltgraphic.yoffset = 0;
+      boltgraphic.xoffset = 0;
+      boltgraphic.directionalammo = 1;
+      boltgraphic = GetEffectGraphic(who,{x:who.breathx,y:who.breathy},boltgraphic);
+
+      let destgraphic = {graphic:"master_spritesheet.png", xoffset:-128, yoffset:-1856, overlay:"spacer.gif"};
+
+      let weapon = localFactory.createTile("SpellWeapon");
+      weapon.dmgtype = "fire";
+
+      let duration = (Math.pow( Math.pow(who.breathx - who.getx(), 2) + Math.pow (who.breathy - who.gety(), 2)  , .5)) * 100;
+      let descval;
+      if (tgt) {
+        let tgtdesc = "you";
+        if (tgt !== PC) {
+          tgtdesc = tgt.getFullDesc();
+        }
+        descval = `The dragon breaths a torrential outburst of flame at ${tgtdesc}!`;
+      } else {
+        let tgtdesc = "you";
+        if (who.breathing !== PC) {
+          tgtdesc = who.breathing.getFullDesc();
+        }
+        descval = `The dragon breaths a torrential outburst of flame at the space where ${tgtdesc} stood!`;
+      }
+      AnimateEffect(who,tgt,{x:who.getx(),y:who.gety()},{x:who.breathx,y:who.breathy},boltgraphic,destgraphic,{},{type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"fire", weapon:weapon});
+
+      delete who.breathing;
+      delete who.breathx;
+      delete who.breathy;
+    } else {
+      let foes = [];
+      foes.push(PC);
+      let npcs = this.getHomeMap().npcs.getAll();
+      for (let i=0;i<npcs.length;npcs++) {
+        if (npcs[i].getAttitude() === "friendly") { foes.push(npcs[i]); }
+      }
+      let isadj;
+      for (let i=0;i>foes.length;i++) {
+        if (!isadj) {
+          isadj = IsAdjacent(who,foes[i]);
+          for (let j=0;j<who.attachedParts.length;j++) {
+            if (!isadj) { isadj = IsAdjacent(who.attachedParts[j],foes[i]); }
+          }
+        }
+      }
+    }
+
+  }
+  return retval;
+}
+
+ais.elderdragonintro = function(who) {
+  if (targetCursor.stage < 1) {
+    let camera = {};
+    camera.x = Math.round((PC.getx() + who.getx())/2);
+    camera.y = Math.round((PC.gety() + who.gety())/2);
+
+    if ((camera.x === targetCursor.camx) && (camera.y === targetCursor.camy)) {
+      who.roused = 1;
+      targetCursor.stage = 1;
+      maintext.addText('The dragon beholds your entrance, and then opens its mouth. "So, you have finally come. I have felt your approach for some time now, little one. Your time-bound intensity."');
+      gamestate.setMode("anykey");
+      return;
+    } else {
+      if (camera.x > targetCursor.camx) { targetCursor.camx++; }
+      if (camera.x < targetCursor.camx) { targetCursor.camx--; }
+      if (camera.y > targetCursor.camy) { targetCursor.camy++; }
+      if (camera.y < targetCursor.camy) { targetCursor.camy--; }
+      DrawMainFrame("draw", PC.getHomeMap(), targetCursor.camx, targetCursor.camy);
+      setTimeout(ais.elderdragonintro(who), 500);
+    }
+  } else {
+    maintext.addText('"I have been here since before your kind raised its cities. And I am so tired. Perhaps it is time for an ending. But if I will go, I will go shrouded in glory. Come, little one, and we shall raise glorious battle, and bring an ending to one of us. Hail, and farewell!"');
+    who.endTurn();
+  }
+}
+
+
+//ais.ai_cast(who)
