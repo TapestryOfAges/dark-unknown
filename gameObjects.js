@@ -9972,6 +9972,20 @@ function ResetRoyalPuzzle(where) {
   CheckLasers(where);
 }
 
+function SunBeaconTile() {
+  this.name = "SunBeacon";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-1792";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "beacon of sunlight";
+  
+  LightEmitting.call(this, 2);
+}
+SunBeaconTile.prototype = new FeatureObject();
+
 function SandstoneWallTile() {
   this.name = "SandstoneWall";
   this.graphic = "master_spritesheet.png";
@@ -12055,21 +12069,6 @@ function PerfectRubyTile() {
 }
 PerfectRubyTile.prototype = new ItemObject();
 
-function EnchantedPerfectRubyTile() {
-	this.name = "EnchantedPerfectRuby";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1376";
-	this.blocklos = 0;
-	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "enchanted, perfect ruby gemstone";
-  this.longdesc = "A perfect ruby gemstone. Flawless. You have enchanted it, but it needs more.";
-  this.prefix = "an";
-  this.valuable = 1;
-}
-EnchantedPerfectRubyTile.prototype = new ItemObject();
-
 function UncutLargeRubyTile() {
 	this.name = "UncutLargeRuby";
   //this.graphic = "master_spritesheet_d.gif";
@@ -12196,6 +12195,64 @@ RubyGemoftheSunTile.prototype = new ItemObject();
 RubyGemoftheSunTile.prototype.use = function(who) {
   // do something
   // working here
+  let retval = { fin: 1 };
+  let themap = who.getHomeMap();
+  if ((themap.getName() === "underworld") && (who.getx() === 96) && (who.gety() === 101)) {
+    if (DU.gameflags.getFlag("bonebeacon")) {
+      retval["txt"] = "You raise the ruby before you, but you cannot add to the light that already shines here.";
+    } else {
+      let sunmote = localFactory.createTile("SunBeacon");
+      themap.placeThing(sunmote,96,101);
+      DrawMainFrame("draw",themap,96,101);
+      retval["txt"] = "You raise the ruby before you and focus your will upon it. You command it to let the sun into the underworld, and in this place you feel it pierce the veil above you, and now a beacon of sunlight dances above the hill.";
+      let daemon = localFactory.createTile("ArchdaemonOfBone");
+      themap.placeThing(daemon,91,105);
+      daemon.activate();
+      DU.gameflags.setFlag("bonebeacon",1);
+    }
+  } else if ((themap.getName() === "underworld") && (who.getx() === 106) && (who.gety() === 76)) {
+    if (DU.gameflags.getFlag("icebeacon")) {
+      retval["txt"] = "You raise the ruby before you, but you cannot add to the light that already shines here.";
+    } else {
+      let sunmote = localFactory.createTile("SunBeacon");
+      themap.placeThing(sunmote,106,76);
+      DrawMainFrame("draw",themap,106,76);
+      retval["txt"] = "You raise the ruby before you and focus your will upon it. You command it to let the sun into the underworld, and in this place you feel it pierce the veil above you, and now a beacon of sunlight dances above the hill.";
+      let daemon = localFactory.createTile("ArchdaemonOfIce");
+      themap.placeThing(daemon,104,70);
+      daemon.activate();
+      DU.gameflags.setFlag("icebeacon",1);
+    }
+  } else if ((themap.getName() === "underworld") && (who.getx() === 57) && (who.gety() === 55)) {
+    if (DU.gameflags.getFlag("dustbeacon")) {
+      retval["txt"] = "You raise the ruby before you, but you cannot add to the light that already shines here.";
+    } else {
+      let sunmote = localFactory.createTile("SunBeacon");
+      themap.placeThing(sunmote,57,55);
+      DrawMainFrame("draw",themap,57,55);
+      retval["txt"] = "You raise the ruby before you and focus your will upon it. You command it to let the sun into the underworld, and in this place you feel it pierce the veil above you, and now a beacon of sunlight dances above the hill.";
+      let daemon = localFactory.createTile("ArchdaemonOfDust");
+      themap.placeThing(daemon,63,55);
+      daemon.activate();
+      DU.gameflags.setFlag("dustbeacon",1);
+    }
+  } else if ((themap.getName() === "underworld") && (who.getx() === 55) && (who.gety() === 85)) {
+    if (DU.gameflags.getFlag("ashesbeacon")) {
+      retval["txt"] = "You raise the ruby before you, but you cannot add to the light that already shines here.";
+    } else {
+      let sunmote = localFactory.createTile("SunBeacon");
+      themap.placeThing(sunmote,55,85);
+      DrawMainFrame("draw",themap,55,85);
+      retval["txt"] = "You raise the ruby before you and focus your will upon it. You command it to let the sun into the underworld, and in this place you feel it pierce the veil above you, and now a beacon of sunlight dances above the hill.";
+      let daemon = localFactory.createTile("ArchdaemonOfAshes");
+      themap.placeThing(daemon,53,80);
+      daemon.activate();
+      DU.gameflags.setFlag("ashesbeacon",1);
+    }
+  } else {
+    retval["txt"] = "You raise the ruby before you, motes of sunlight glinting within its facets. You focus upon it and light blazes forth, illuminating every cranny, before fading back to the brightness it holds usually.";
+  }
+  return retval;
 }
 
 
@@ -16709,6 +16766,13 @@ NPCObject.prototype.processDeath = function(droploot){
         map.placeThing(thisx,thisy, chest);
       }  
     }
+    let redrawtype = "one";
+    if (this.attachedParts) {
+      for (let i=0;i<attachedParts.length;i++) {
+        map.deleteThing(this.attachedParts[i]);
+      }
+      redrawtype = "draw";
+    }
     map.deleteThing(this);
     if (this.summonedby) {
       delete this.summonedby.summoned;
@@ -16717,6 +16781,9 @@ NPCObject.prototype.processDeath = function(droploot){
     if (this.summoned) {
       delete this.summoned.summonedby;
       delete this.summoned;
+    }
+    if ((typeof this.getLight === "function") && (Math.abs(this.getLight()) > 0)) {
+      redrawtype = "draw";
     }
     if (map.getName() === "shadow1") {
       let npcs = map.npcs.getAll();
@@ -16728,7 +16795,7 @@ NPCObject.prototype.processDeath = function(droploot){
       };
       if (safe === 1) { DU.gameflags.setFlag("shadow_safe", 1); } 
     }
-    DrawMainFrame("one",map,thisx,thisy);
+    DrawMainFrame(redrawtype,map,thisx,thisy);
     DUTime.removeEntityFrom(this);
     CheckPostDeathMusic(map);
     let spawner=this.getSpawnedBy();
