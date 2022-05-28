@@ -24,6 +24,59 @@ function MultiSegment() {
 }
 MultiSegment.prototype = new NPCObject();
 
+// now, to override a bunch of NPCObject functions.
+MultiSegment.prototype.getHP = function() {
+  return this.attachedTo.getHP();
+}
+
+MultiSegment.prototype.getDefense = function() {
+  return this.attachedTo.getDefense();
+}
+
+MultiSegment.prototype.setHitBySpell = function(caster,lvl) {
+  return this.attachedTo.setHitBySpell(caster,lvl);
+}
+
+MultiSegment.prototype.getHitBySpell = function() {
+  return this.attachedTo.getHitBySpell();
+}
+
+MultiSegment.prototype.getAlignment = function() {
+  return this.attachedTo.getAlignment();
+}
+
+MultiSegment.prototype.getAttitude = function() {
+  return this.attachedTo.getAttitude();
+}
+
+MultiSegment.prototype.getSpellEffects = function() {
+  return this.attachedTo.getSpellEffects();
+}
+
+MultiSegment.prototype.getSpellEffectsByName = function(spname) {
+  return this.attachedTo.getSpellEffectsByName(spname);
+}
+
+MultiSegment.prototype.addSpellEffect = function(speff) {
+  return this.attachedTo.addSpellEffect(speff);
+}
+
+MultiSegment.prototype.deleteSpellEffect = function(speff) {
+  return this.attachedTo.deleteSpellEffect(speff);
+}
+
+MultiSegment.prototype.dealDamage = function(dmg,src,type) {
+  return this.attachedTo.dealDamage(dmg,src,type);
+}
+
+MultiSegment.prototype.getAbsorb = function() {
+  return this.attachedTo.getAbsorb();
+}
+
+MultiSegment.prototype.getResist = function(rtype) {
+  return this.attachedTo.getResist(rtype);
+}
+
 function HorseAndCartNPCTile() {
   this.name = 'HorseAndCartNPC';
   this.level = 1;
@@ -88,3 +141,65 @@ function CartSegmentTile() {
   this.alwaystop = 1;
 }
 CartSegmentTile.prototype = new MultiSegment();
+
+function ElderDragonNPCTile() {
+  this.name = 'ElderDragonNPC';
+  this.level = 8;
+  this.addhp = 15;
+  this.str = 30;
+  this.dex = 30;
+  this.int = 30;
+  this.alignment = 'Evil';
+  this.attitude = 'hostile';
+  this.peaceAI = 'elderdragon';
+  this.forgetAt = 10;
+  this.withdraw = 0;
+  this.graphic = '353.gif';
+  this.altgraphic = ['387.gif',];
+  this.meleeAttackAs = 'none';
+  this.meleeDamage = '5d8+15'
+  this.meleeStrDamage = 1
+  this.missileAttackAs = 'none';
+  this.armorAs = 'PlateArmor';
+  this.movetype = MOVE_FLY;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'elderdragon';
+  this.prefix = 'an';
+  this.desc = "elder dragon";
+  this.meleeChance = 70;
+  this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, };
+  this.resists = { fire:50 };
+  this.meleeHitSound = 'sfx_roar_hit';
+  this.meleeAttackSound = 'sfx_roar_miss';
+  this.special = 'miniboss,ondeathElder';
+
+  MultiTileNPC.call(this, ["ElderDragonForelimbSegment","ElderDragonHindlimbSegment","ElderDragonTailSegment"], [[0,1],[1,1],[1,0]])
+}
+ElderDragonNPCTile.prototype = new NPCObject();
+
+function ElderDragonForelimbSegmentTile() {
+  this.name = "ElderDragonForelimbSegment";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-1536";
+  this.alwaystop = 1;
+}
+ElderDragonForelimbSegmentTile.prototype = new MultiSegment();
+
+function ElderDragonHindlimbSegmentTile() {
+  this.name = "ElderDragonHindlimbSegment";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-1536";
+  this.alwaystop = 1;
+}
+ElderDragonHindlimbSegmentTile.prototype = new MultiSegment();
+
+function ElderDragonTailSegmentTile() {
+  this.name = "ElderDragonTailSegment";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-1536";
+  this.alwaystop = 1;
+}
+ElderDragonTailSegmentTile.prototype = new MultiSegment();
