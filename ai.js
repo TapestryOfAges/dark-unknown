@@ -3351,7 +3351,14 @@ ais.elderdragon = function(who) {
         }
         descval = `The dragon breaths a torrential outburst of flame at the space where ${tgtdesc} stood!`;
       }
-      AnimateEffect(who,tgt,{x:who.getx(),y:who.gety()},{x:who.breathx,y:who.breathy},boltgraphic,destgraphic,{},{type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"fire", weapon:weapon});
+
+      let cb = function(atk,def,cbp) {
+        let firefield = localFactory.createTile("FireField");
+        atk.getHomeMap().placeThing(cbp.x,cbp.y,firefield);
+        DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+      }
+
+      AnimateEffect(who,tgt,{x:who.getx(),y:who.gety()},{x:who.breathx,y:who.breathy},boltgraphic,destgraphic,{},{type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"fire", weapon:weapon, finishcallback:cb, callbackparam: {x:who.breathx, y:who.breathy}});
 
       delete who.breathing;
       delete who.breathx;

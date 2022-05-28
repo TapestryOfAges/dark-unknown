@@ -58,6 +58,7 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
   // param.endturn - 1 if this ends atk's turn
   // param.retval - retval from calling function
   // param.finishcallback - function to run when animation finishes, just before turn ends
+  // param.callbackparam - object with parameters to feed to callback
   let type = param.type;
   let duration = param.duration;
   let ammoreturn = param.ammoreturn;
@@ -180,7 +181,7 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
     maintext.setInputLine("&gt;");
     maintext.drawInputLine();
 
-    if (param.finishcallback) { param.finishcallback(atk,def); }
+    if (param.finishcallback) { param.finishcallback(atk,def,cbp); }
     
     if ((!doagain) && (endturn)) {
 //      console.log("Ending turn.");
