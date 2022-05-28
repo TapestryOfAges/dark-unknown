@@ -12736,9 +12736,15 @@ function StoneOfShadowTile() {
   this.desc = "Stone of Shadow";
   this.prefix = "the";
   this.longdesc = "The Stone of Shadow.";
-  this.usedesc = "If used in the right place, this will allow you entrance to the warded castle.";
+  this.usedesc = "Unknown.";
 }
 StoneOfShadowTile.prototype = new KeyItemObject();  
+
+StoneOfShadowTile.prototype.onGet = function() {
+  if (DU.gameflags.getFlag("stoneshadow")) { 
+    this.usedesc = "If used in the right place, this will allow you entrance to the warded castle."
+  }
+}
 
 // Books/Journals
 function BookItemObject() {
