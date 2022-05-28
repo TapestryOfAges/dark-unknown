@@ -54,8 +54,10 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
   // param.duration - time for animation 
   // param.ammoreturn - whether the animation doubles back
   // param.dmg - damage dealt by whatever generates this effect
+  // param.dmgtype - type of damage: force, fire, ice, physical, etc
   // param.endturn - 1 if this ends atk's turn
   // param.retval - retval from calling function
+  // param.finishcallback - function to run when animation finishes, just before turn ends
   let type = param.type;
   let duration = param.duration;
   let ammoreturn = param.ammoreturn;
@@ -137,7 +139,7 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
     if (eventcount2) { console.log("FinishAnimation called twice."); return; }
     eventcount2 = 1;
 //    console.log("FinishAnimation called.");
-    if (dmg !== 0) {
+    if ((dmg !== 0) && def) {
       let prehp = def.getHP(); 
       // handle onDamaged stuff here
       if (def.onDamaged) {
@@ -178,6 +180,8 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
     maintext.setInputLine("&gt;");
     maintext.drawInputLine();
 
+    if (param.finishcallback) { param.finishcallback(atk,def); }
+    
     if ((!doagain) && (endturn)) {
 //      console.log("Ending turn.");
       atk.endTurn(retval["initdelay"]);
