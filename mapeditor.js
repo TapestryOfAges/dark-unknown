@@ -282,6 +282,7 @@ function clickmap(xval,yval) {
     }
     else if (selectionval.getName() === "Eraser") { erasefeature(xval,yval); }
     else if (selectionval.checkType("Feature")) {
+      if (document.replaceft.elements[0].checked) { erasefeature(xval,yval); }
     	addfeaturetomap(xval,yval,selectionval); 
     }
     else if (selectionval.checkType("npc")) {
