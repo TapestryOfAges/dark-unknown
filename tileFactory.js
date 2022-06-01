@@ -1693,6 +1693,11 @@ tileFactory.prototype.makeWalkOnConsolationTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWalkOnTharockTile = function() {
+  let newTile = new WalkOnTharockTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeToshinWalkOnTile = function() {
   let newTile = new ToshinWalkOnTile();
   return newTile;
@@ -2145,6 +2150,11 @@ tileFactory.prototype.makeRoyalPuzzleLaserNSTile = function() {
 
 tileFactory.prototype.makeRoyalPuzzleLaserCrossTile = function() {
   let newTile = new RoyalPuzzleLaserCrossTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSunBeaconTile = function() {
+  let newTile = new SunBeaconTile();
   return newTile;
 }
 
@@ -2603,11 +2613,6 @@ tileFactory.prototype.makePerfectRubyTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeEnchantedPerfectRubyTile = function() {
-  let newTile = new EnchantedPerfectRubyTile();
-  return newTile;
-}
-
 tileFactory.prototype.makeUncutLargeRubyTile = function() {
   let newTile = new UncutLargeRubyTile();
   return newTile;
@@ -2833,6 +2838,16 @@ tileFactory.prototype.makeATreatiseOnDragonsTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeAWarningOnDaemonsTile = function() {
+  let newTile = new AWarningOnDaemonsTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWhatIsMagicTile = function() {
+  let newTile = new WhatIsMagicTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeNatassaJournalTile = function() {
   let newTile = new NatassaJournalTile();
   return newTile;
@@ -2845,6 +2860,11 @@ tileFactory.prototype.makeNatassaResearchTile = function() {
 
 tileFactory.prototype.makeNatassaResearch2Tile = function() {
   let newTile = new NatassaResearch2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeNatassaResearch3Tile = function() {
+  let newTile = new NatassaResearch3Tile();
   return newTile;
 }
 
@@ -4385,6 +4405,26 @@ tileFactory.prototype.makeHorseAndCartNPCTile = function() {
 
 tileFactory.prototype.makeCartSegmentTile = function() {
   let newTile = new CartSegmentTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeElderDragonNPCTile = function() {
+  let newTile = new ElderDragonNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeElderDragonForelimbSegmentTile = function() {
+  let newTile = new ElderDragonForelimbSegmentTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeElderDragonHindlimbSegmentTile = function() {
+  let newTile = new ElderDragonHindlimbSegmentTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeElderDragonTailSegmentTile = function() {
+  let newTile = new ElderDragonTailSegmentTile();
   return newTile;
 }
 
