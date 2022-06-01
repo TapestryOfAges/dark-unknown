@@ -189,3 +189,4 @@ given_regalia - Shelaria gave you her crown and scepter
 oracle_spoke - the Oracle has told you what to do
 elder_killed - Elder Dragon is dead
 stoneshadow - You have been told about the use for the Stone of Shadow
+given_crystal - Tharock has given you the crystal mortar
