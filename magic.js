@@ -3494,7 +3494,7 @@ function PerformExplosion(caster, infused, free, tgt) {
         //badguy.dealDamage(dmg,caster,"fire");
         DealandDisplayDamage(badguy,caster,localdmg,"fire");
         ShowEffect(badguy, 700, "master_spritesheet.png", -128, -1856);
-        if (!hostile && (caster === PC) && (tgt.getAttitude() === "friendly")) {
+        if (!hostile && (caster === PC) && (badguy.getAttitude() === "friendly")) {
           TurnMapHostile(castmap);
           hostile = 1;
         }
@@ -4695,8 +4695,8 @@ function PerformSpellcast() {
     }
     
   } else if ((targetCursor.spelldetails.targettype === "open") || (targetCursor.spelldetails.targettype === "fullopen")) {
-    let nonpcs = 0;
-    if (targetCursor.spelldetails.targettype === "fullopen") { nonpcs = 1; }
+    let nonpcs = 1;
+    if (targetCursor.spelldetails.targettype === "fullopen") { nonpcs = 0; }
     let canmove = targettile.canMoveHere(MOVE_WALK,nonpcs);
     if (!canmove["canmove"]) {
       resp["fin"] = 0;
