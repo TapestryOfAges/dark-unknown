@@ -55,7 +55,7 @@ mappages["volcano"].terrain[48] = 'WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW 
 mappages["volcano"].terrain[49] = 'WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW';
 
 mappages["volcano"].features = [];
-mappages["volcano"].features[0] = {name : 'Ruins', x : 14, y : 37, entermap : 'null', enterx : 0, entery : 0};
+mappages["volcano"].features[0] = {name : 'Ruins', x : 14, y : 37, entermap : 'skarabrae', enterx : 17, entery : 34};
 mappages["volcano"].features[1] = {name : 'Cave', x : 16, y : 28, entermap : 'null', enterx : 0, entery : 0};
 mappages["volcano"].features[2] = {name : 'BrokenShrine', x : 11, y : 34};
 mappages["volcano"].features[3] = {name : 'BridgeEW', x : 13, y : 38};
