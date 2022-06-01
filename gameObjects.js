@@ -7833,6 +7833,41 @@ WalkOnConsolationTile.prototype.walkon = function(walker) {
   }
 }
 
+function WalkOnTharockTile() {
+	this.name = "WalkOnTharock";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnTharockTile.prototype = new FeatureObject();
+
+WalkOnTharockTile.prototype.walkon = function(walker) {
+  let msg = "";
+  let map = this.getHomeMap();
+  let statue = map.getTile(32,27).getTopFeature();
+  if (statue) {
+    let liche = localFactory.createTile("LicheNPC");
+    map.deleteThing(statue);
+    map.placeThing(32,27,liche);
+    liche.onDeath = "tharock";
+    msg = 'As you step further into the room, the statue suddenly begins to move! It no longer looks human, and a skeletal face gazes out from under the hood. "An intruder," it says. "I had thought there were none left who would be so bold. No matter- now you will die."';
+    DUPlaySound("sfx_teleport");
+    let fea = map.features.getAll();
+    for (let i=0;i<fea.length;i++) {
+      if (fea[i].getName() === "WalkOnTharock") {
+        map.deleteThing(fea[i]);
+      }
+    }
+  }
+  DrawMainFrame("draw",map,PC.getx(),PC.gety());
+  return {msg:msg};
+}
+
 function ToshinWalkOnTile() {
 	this.name = "ToshinWalkOn";
   this.graphic = "master_spritesheet.png";
@@ -9573,7 +9608,7 @@ function BDCLeverTile() {
 BDCLeverTile.prototype = new FeatureObject();
 
 BDCLeverTile.prototype.use = function(who) {
-  var retval = {};
+  let retval = {};
   retval["fin"] = 1;
   retval["txt"] = "The lever refuses to budge.";
   return retval;
@@ -12744,6 +12779,74 @@ StoneOfShadowTile.prototype.onGet = function() {
   if (DU.gameflags.getFlag("stoneshadow")) { 
     this.usedesc = "If used in the right place, this will allow you entrance to the warded castle."
   }
+}
+
+StoneOfShadowTile.prototype.use = function(who) {
+  let retval = {};
+  if ((who.getHomeMap().getName() !== "tharock_castle") && (who.getHomeMap().getName() !== "tharock_castle_shadow")) {
+    retval["fin"] = 1;
+    retval["txt"] = "Nothing happens when you try to use that here.";
+    return retval;  
+  } else if (who.getHomeMap().getName() === "tharock_castle") {
+    if ((who.getx() >= 15) && (who.getx() <= 17) && (who.gety() >= 53) && (who.gety() <= 55)) {
+      retval = this.swap(who);
+    } else if ((who.getx() >= 37) && (who.getx() <= 39) && (who.gety() >= 41) && (who.gety() <= 43)) {
+      retval = this.swap(who);
+    } else {
+      retval["fin"] = 1;
+      retval["txt"] = "Nothing happens when you try to use that here.";
+      return retval;  
+    }
+  } else { // in tharock_castle_shadow
+    if ((who.getx() >= 15) && (who.getx() <= 17) && (who.gety() >= 53) && (who.gety() <= 55)) {
+      retval = this.swap(who);
+    } else if ((who.getx() >= 37) && (who.getx() <= 39) && (who.gety() >= 41) && (who.gety() <= 43)) {
+      retval = this.swap(who);
+    } else {
+      retval["fin"] = 1;
+      retval["txt"] = "Nothing happens when you try to use that here.";
+      return retval;  
+    }
+  }
+  return retval;
+}
+
+StoneOfShadowTile.prototype.swap = function(who) {
+  let retval = {fin:2,override:-1};  // I think?
+  maintext.addText("You touch the Stone of Shadow to the strange altar...");
+  maintext.setInputLine("&gt;");
+  maintext.drawTextFrame();
+  let destmap = "tharock_castle_shadow";
+  let destsong = "Shadows";
+  if (who.getHomeMap().getName() === "tharock_castle_shadow") {
+    destmap = "tharock_castle";
+    destsong = "Lost Hope";
+  }
+  let dmap;
+  if (maps.getMap(destmap)) {
+    dmap = maps.getMap(destmap);
+  } else {
+    dmap = maps.addMap(destmap);
+    // though, it should already be in memory
+  }
+  let currtime;
+  if (nowplaying.song) {
+    if (!nowplaying.song.ended) {
+      currtime = nowplaying.song.currentTime;
+    }
+    nowplaying.song.pause();
+  }
+  DUPlaySound("sfx_dark_transition");
+  gamestate.setMode("null");
+  setTimeout(function() {
+    MoveBetweenMaps(who,who.getHomeMap(),dmap,who.getx(),who.gety());
+    DrawMainFrame("draw",dmap,who.getx(),who.gety());
+    DUPlayMusic(destsong,{startat: currtime});
+    maintext.addText("The world shifts around you!");
+    who.endTurn();
+  }, 5000);
+  
+  return retval;
 }
 
 // Books/Journals
