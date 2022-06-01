@@ -101,9 +101,9 @@ foreach my $line (<$npcdoc>) {
   if ($fields[22]) {
     print $out "  this.initmult = $fields[22];\n";
   }
-  if ($fields[23]) {
+#  if ($fields[23]) {
     print $out "  this.meleeChance = $fields[23];\n";
-  }
+#  }
   if ($fields[24] or $fields[25] or $fields[26] or $fields[27] or $fields[28] or $fields[29] or $fields[31] or $fields[32]) {
     print $out "  this.spellsknown = { ";
     print $out "heal: 1, " if $fields[24];
