@@ -185,7 +185,7 @@ OnDamagedFuncs["incorporeal"] = function(atk,who,dmg,weapon) {
   let chance = 40;
   if ((weapon.getName() === "MagicAxe") || (weapon.getName() === "Wand") || (weapon.getName() === "MagicSword") || (weapon.getName() === "LightningSword") || (weapon.getName() === "FlamingSword") || (weapon.getName() === "SwordOfDefense") || (weapon.getName() === "VenomSword")) {
     chance = 20;
-  } else if (weapon.getname() === "SpellWeapon") {
+  } else if (weapon.getName() === "SpellWeapon") {
     if ((weapon.dmgtype === "force") || (weapon.dmgtype === "drain")) {
       chance = 0;
     } else {
@@ -336,6 +336,13 @@ OnDeathFuncs["scouring"] = function() {
     if (npcs[i].getName() === "TownGuardNPC") {
       npcs[i].setAggro(0);
     }
+  }
+}
+
+OnDeathFuncs["tharock"] = function() {
+  let tharock = PC.getHomeMap().getTile(65,0).getTopNPC();
+  if (tharock) {
+    tharock.timer = 1;
   }
 }
 
