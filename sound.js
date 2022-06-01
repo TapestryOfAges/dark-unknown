@@ -81,6 +81,7 @@ DUSound["sfx_lute"] = "sfx/sfx_lute.wav"; // MFSFXP Misc/Button 3
 DUSound["sfx_harp"] = "sfx/sfx_harp.wav"; // MFSFXP Stings/Event 9
 DUSound["sfx_horn"] = "sfx/sfx_horn.wav"; // MFSFXP Stings/Event 5
 DUSound["sfx_drum"] = "sfx/sfx_drum.wav"; // MFSFXP Stings/Event 1
+DUSound["sfx_dark_transition"] = "sfx/Dark Transition.wav"; // RPGSEB Dark Transition
 
 // Magic spell sounds
 DUSound["sfx_spellcast"] = "sfx/Enchantment 2.wav"; // RPGSEB Enchantment 2
@@ -227,6 +228,7 @@ function StartSong(sound, params) {
   playing.name = sound; 
   playing.song.loop = loopval;
   playing.song.volume = DU.gameflags.getFlag("music");
+  if (params.startat) { playing.song.currentTime = params.startat; }
   playing.song.play();
   nowplaying = playing;
   if (params.queue) { QueueMusic(params.queue); }
