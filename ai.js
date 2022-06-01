@@ -693,7 +693,7 @@ ais.Isaac_initiate = function(who) {
   } 
   if (who.dest === 2) {
     if ((who.getx() !== 57) || (who.gety() !== 47)) { console.log("Isaac is in the wrong place."); }
-    let door = themap.getAcre(57,48).getTopFeature();
+    let door = themap.getTile(57,48).getTopFeature();
     door.unlockMe();
     MakeUseHappen(who,door,"map");
     who.dest++;
@@ -702,7 +702,7 @@ ais.Isaac_initiate = function(who) {
     who.dest++;
   } else if (who.dest === 4) {
     StepOrSidestep(who,[57,49],[57,49]);
-    let door = themap.getAcre(57,48).getTopFeature();
+    let door = themap.getTile(57,48).getTopFeature();
     MakeUseHappen(who,door,"map");
     door.lockMe(2);
     who.dest++;
@@ -1189,7 +1189,7 @@ ais.CollGuard = function(who) {
   if (!DU.gameflags.getFlag("guard_thief_talk")) {
     if (PC.getHomeMap() === who.getHomeMap()) {
       if (GetDistance(PC.getx(),PC.gety(),who.getx(),who.gety()) <= 2) {
-        PC.forcedTalk(who);
+        PC.forcedTalk = who;
       }
     }
   }
@@ -3300,6 +3300,22 @@ function FindMissileTarget(who,radius) {
   } else {
     return 0;
   }
+}
+
+ais.Tharock = function(who) {
+  if (who.timer) {
+    if (who.timer === 3) {
+      let tox, toy;
+      if (PC.gety() >= 27) { tox=30; toy=25; }
+      else if ((PC.getx() >= 27) && (PC.getx() <= 30) && (PC.gety() >= 24) && (PC.gety() <= 26)) { tox=29; toy=28; }
+      else { tox=29; toy=26; }
+      who.getHomeMap().moveThing(tox,toy,who);
+      PC.forcedTalk = who;
+      DrawMainFrame("one",who.getHomeMap(),tox,toy);
+      delete who.timer;
+    } else { who.timer++;}
+  } 
+  return {fin:1};
 }
 
 ais.elderdragon = function(who) {
