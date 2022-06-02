@@ -13178,6 +13178,21 @@ function ArcheoJournalTile() {
 }
 ArcheoJournalTile.prototype = new BookItemObject();
 
+function RuinsJournalTile() {
+  this.name = "RuinsJournal";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1216";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "journal";
+  this.prefix = "a";
+  this.contents = "You open the journal.%%<span class='conv'>I fear we are beyond help. I write this down just to get the story out of my head-perhaps someday, someone will see it.</span>%%<span class='conv'>Our boat arrived here, with a crew of three dozen-an island of supremely fertile land, uncertainly attached to a volcano that we very much hoped Terrance was correct that it was dormant.</span>%%<span class='conv'>Terrance, our weather adept, enabled us to cross the ocean, and then built our side of the Gateway back to the duchy. As soon as it was open, half of our people returned there, and were replaced with a score of new settlers, bringing building materials.</span>%%<span class='conv'>As we built, we began to hear rumors of The Hydra. A huge beast with a dozen heads that would roam the island at night. One of our bravest soldiers went forth with her magic weapon to try to destroy it, and never returned.</span>%%<span class='conv'>We built, and we prepared to plant, when one day, two weeks ago, the portal just… closed. Disappeared. We are trapped, 30 people in a half-built village, no way to get more supplies, no way to go home.</span>%%<span class='conv'>We will never know what happened. To whomever is reading this, I don’t know how you found it, but this is our tale. Remember us.</span>";
+  this.longdesc = "A small bound book found in a chest in Skara Brae.";
+}
+RuinsJournalTile.prototype = new BookItemObject();
+
 function AdelusLetterTile() {
   this.name = "AdelusLetter";
   this.graphic = "master_spritesheet.png";

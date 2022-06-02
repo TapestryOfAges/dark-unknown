@@ -56,7 +56,7 @@ mappages["volcano"].terrain[49] = 'WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW 
 
 mappages["volcano"].features = [];
 mappages["volcano"].features[0] = {name : 'Ruins', x : 14, y : 37, entermap : 'skarabrae', enterx : 17, entery : 34};
-mappages["volcano"].features[1] = {name : 'Cave', x : 16, y : 28, entermap : 'null', enterx : 0, entery : 0};
+mappages["volcano"].features[1] = {name : 'Cave', x : 16, y : 28, entermap : 'hydracave', enterx : 11, entery : 23};
 mappages["volcano"].features[2] = {name : 'BrokenShrine', x : 11, y : 34};
 mappages["volcano"].features[3] = {name : 'BridgeEW', x : 13, y : 38};
 mappages["volcano"].features[4] = {name : 'BridgeEW', x : 16, y : 38};
@@ -674,4 +674,72 @@ mappages["skarabrae"].returny = '37';
 mappages["skarabrae"].returninfused = '0';
 mappages["skarabrae"].linkedMaps = [""];
 mappages["skarabrae"].editorLabels = '{}';
+// MAP ENDS HERE
+
+// MAP BEGINS HERE
+mappages["hydracave"] = {};
+mappages["hydracave"].terrain = [];
+ mappages["hydracave"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["hydracave"].terrain[1] = 'BK BK BK BK BK BK BK BK cw cw cw cw cw cw cw BK BK BK BK BK BK BK BK BK';
+ mappages["hydracave"].terrain[2] = 'BK BK BK BK BK cw cw cw cw cf cf cf cf cf cw cw cw cw BK BK BK BK BK BK';
+ mappages["hydracave"].terrain[3] = 'BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK';
+ mappages["hydracave"].terrain[4] = 'BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK';
+ mappages["hydracave"].terrain[5] = 'BK BK BK BK BK cw cf cf cf cw cf cf cf cf cf cf cf cf cw BK BK BK BK BK';
+ mappages["hydracave"].terrain[6] = 'BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cw cw cw BK BK BK BK BK';
+ mappages["hydracave"].terrain[7] = 'BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK';
+ mappages["hydracave"].terrain[8] = 'BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK';
+ mappages["hydracave"].terrain[9] = 'BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK';
+mappages["hydracave"].terrain[10] = 'BK BK BK BK BK BK cw cf cf cw cw cw cf cf cf cw cw BK BK BK BK BK BK BK';
+mappages["hydracave"].terrain[11] = 'BK BK BK BK BK BK cw cw cw cw cw cw cf cf cf cf cw BK BK BK BK BK BK BK';
+mappages["hydracave"].terrain[12] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw cw BK BK BK BK BK BK BK';
+mappages["hydracave"].terrain[13] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw cw BK BK BK BK BK BK BK';
+mappages["hydracave"].terrain[14] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cw BK BK BK BK BK BK BK';
+mappages["hydracave"].terrain[15] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cw BK BK BK BK BK BK BK';
+mappages["hydracave"].terrain[16] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw cw BK BK BK BK BK BK BK';
+mappages["hydracave"].terrain[17] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw cw BK BK BK BK BK BK BK BK';
+mappages["hydracave"].terrain[18] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK';
+mappages["hydracave"].terrain[19] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK';
+mappages["hydracave"].terrain[20] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK';
+mappages["hydracave"].terrain[21] = 'BK BK BK BK BK BK BK BK BK cw cw cf cf cf cw BK BK BK BK BK BK BK BK BK';
+mappages["hydracave"].terrain[22] = 'BK BK BK BK BK BK BK BK cw cw cf cf cf cw cw BK BK BK BK BK BK BK BK BK';
+mappages["hydracave"].terrain[23] = 'BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK';
+
+mappages["hydracave"].features = [];
+mappages["hydracave"].features[0] = {name : 'MagicAxe', x : 7, y : 10};
+mappages["hydracave"].features[1] = {name : 'Gold', x : 7, y : 9};
+mappages["hydracave"].features[2] = {name : 'Gold', x : 8, y : 10};
+
+
+mappages["hydracave"].npcs = [];
+mappages["hydracave"].npcs[0] = {name : 'HydraNPC', x : 10, y : 7, skintone: '1'};
+mappages["hydracave"].npcs[1] = {name : 'HydraNPC', x : 15, y : 4, skintone: '1'};
+mappages["hydracave"].npcs[2] = {name : 'GazerNPC', x : 12, y : 13, skintone: '1'};
+mappages["hydracave"].npcs[3] = {name : 'GazerNPC', x : 13, y : 17, skintone: '1'};
+
+mappages["hydracave"].desc = "Small Cave";
+mappages["hydracave"].longdesc = ``;
+mappages["hydracave"].music = 'Cave';
+mappages["hydracave"].savename = `Small Cave`;
+mappages["hydracave"].exitmap = '';
+mappages["hydracave"].exitx = '65';
+mappages["hydracave"].exity = '70';
+mappages["hydracave"].wraps = '';
+mappages["hydracave"].enterx = '11';
+mappages["hydracave"].entery = '23';
+mappages["hydracave"].seeBelow = '';
+mappages["hydracave"].lightLevel = 'dark';
+mappages["hydracave"].alwaysRemember = '0';
+mappages["hydracave"].scale = '1';
+mappages["hydracave"].underground = '1';
+mappages["hydracave"].undergroundDesc = 'Small Cave';
+mappages["hydracave"].enterscript = '';
+mappages["hydracave"].entertestscript = '';
+mappages["hydracave"].exitscript = '';
+mappages["hydracave"].exittestscript = '';
+mappages["hydracave"].returnmap = 'volcano';
+mappages["hydracave"].returnx = '16';
+mappages["hydracave"].returny = '28';
+mappages["hydracave"].returninfused = '0';
+mappages["hydracave"].linkedMaps = [""];
+mappages["hydracave"].editorLabels = '{}';
 // MAP ENDS HERE

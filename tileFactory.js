@@ -2878,6 +2878,11 @@ tileFactory.prototype.makeArcheoJournalTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeRuinsJournalTile = function() {
+  let newTile = new RuinsJournalTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeAdelusLetterTile = function() {
   let newTile = new AdelusLetterTile();
   return newTile;
@@ -4135,6 +4140,26 @@ tileFactory.prototype.makeElderDragonNPCTile = function() {
 
 tileFactory.prototype.makeBalronNPCTile = function() {
   let newTile = new BalronNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeArchdaemonOfAshesNPCTile = function() {
+  let newTile = new ArchdaemonOfAshesNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeArchdaemonOfDustNPCTile = function() {
+  let newTile = new ArchdaemonOfDustNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeArchdaemonOfIceNPCTile = function() {
+  let newTile = new ArchdaemonOfIceNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeArchdaemonOfBoneNPCTile = function() {
+  let newTile = new ArchdaemonOfBoneNPCTile();
   return newTile;
 }
 
