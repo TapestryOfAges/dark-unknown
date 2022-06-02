@@ -78,8 +78,8 @@ mappages["underworld"].terrain = [];
  mappages["underworld"].terrain[72] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ;; ;; ;; ;; ^^ ;; ;; ^^ ^^ ^^ ,, ,, ,, ,, ,, ,, ,, ,, ,, ,, ,, ,, ,, ,, ,, ,, ,, ,, ,, ,, ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. ,, ,, ;; ;; ^^ ;; ;; ;; ;; ;; ^^ ;; ;; ;; ;; ;; ;; ^^ ^^ ^^ ^^ ^^ ^^ ^^';
  mappages["underworld"].terrain[73] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. ^^ ^^ ^^ ;; ;; ;; ;; ;; ;; ;; ;; ^^ ^^ ^^ ^^ ,, ,, ,, ^^ ^^ ^^ ,, ,, ,, ,, ,, ,, ,, ,, ,, ,, ,, ,, ,, ^^ ^^ .. .. .. .. .. .. .. .. .. .. ,, ,, ;; ^^ ^^ ;; ^^ ^^ ^^ ,, ^^ ^^ ;; ;; ;; ;; ;; ;; ^^ ^^ ^^ ^^ ^^ ^^';
  mappages["underworld"].terrain[74] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ,, ,, ,, ,, ,, ,, ,, ,, ,, ,, ,, ,, ,, .. .. .. .. .. .. .. .. ,, ,, ,, ^^ ^^ ^^ ;; ;; ;; ^^ ., ., ., ^^ ^^ ;; ;; ;; ;; ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["underworld"].terrain[75] = '^^ ^^ ^^ ^^ ^^ ^^ .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. ^^ ^^ ^^ ^^ .. .. .. ^^ ^^ .. .. ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. ^^ ^^ ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ,, ,, ,, ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. ,, ,, ,, ^^ ^^ ^^ ^^ ^^ ;; ;; ^^ ., ., ., ww ^^ ^^ ^^ ;; ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["underworld"].terrain[76] = '^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ;; ;; ;; ^^ ^^ ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ,, ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ,, ,, ,, ^^ ^^ ^^ ^^ ^^ ^^ ;; ;; ^^ ., ., nn ww uu uu ^^ ;; ;; ;; ^^ ^^ ^^ ^^ ^^ ^^';
+ mappages["underworld"].terrain[75] = '^^ ^^ ^^ ^^ ^^ ^^ .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. ^^ ^^ ^^ ^^ .. .. .. ^^ ^^ .. .. ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. ^^ ^^ ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ,, ,, ,, ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. ,, ,, ,, ^^ ^^ ^^ ^^ ^^ ;; ;; ^^ ., ., b| ww ^^ ^^ ^^ ;; ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+ mappages["underworld"].terrain[76] = '^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ;; ;; ;; ^^ ^^ ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ,, ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ,, ,, ,, ^^ ^^ ^^ ^^ ^^ ^^ ;; ;; ^^ ., _b nn ww uu uu ^^ ;; ;; ;; ^^ ^^ ^^ ^^ ^^ ^^';
  mappages["underworld"].terrain[77] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. ^^ ^^ ff ff ^^ ^^ .. .. .. .. .. .. .. .. ^^ ^^ ^^ ;; ;; ^^ ^^ ^^ ^^ ^^ ^^ ;; ;; ;; ;; ;; ;; ;; ^^ ^^ ^^ ^^ ^^ ^^ ^^ ,, ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ,, ^^ ^^ ^^ ^^ ^^ ^^ ^^ ;; ;; ^^ ^^ ww ww ww ww uu ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
  mappages["underworld"].terrain[78] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. ff ff ff ff ff .. .. .. ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ ;; ;; ^^ ,, ,, ;; ^^ ^^ ^^ ^^ ;; ;; ;; ;; ^^ ^^ ^^ ^^ ^^ ,, ,, ,, ,, .. .. .. .. .. .. .. .. .. ,, ,, .. ,, .. .. .. .. .. ^^ ^^ ,, ,, ;; ;; ^^ ^^ ;; ;; ;; ^^ ^^ uu ww ww ww ww ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
  mappages["underworld"].terrain[79] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ff ff ff ff ff .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ;; ;; ^^ ^^ ,, ;; ;; ,, ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ;; ;; ,, ,, ,, .. .. .. .. .. .. .. .. .. .. ,, .. .. .. .. .. .. .. .. ^^ ,, ,, ,, ,, ^^ ^^ ^^ ^^ ;; ;; ;; ^^ uu uu ww ww /. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
@@ -129,7 +129,7 @@ mappages["underworld"].features[0] = {name : 'Whirlpool', x : 83, y : 106, enter
 mappages["underworld"].features[1] = {name : 'Dungeon', x : 28, y : 100, entermap : 'kaltonmine3', enterx : 26, entery : 26};
 mappages["underworld"].features[2] = {name : 'Dungeon', x : 36, y : 54, entermap : 'null', enterx : 0, entery : 0};
 mappages["underworld"].features[3] = {name : 'SecretCave', x : 63, y : 27, entermap : 'hidden_cave', enterx : 14, entery : 1};
-mappages["underworld"].features[4] = {name : 'Cave', x : 36, y : 91, entermap : 'null', enterx : 0, entery : 0};
+mappages["underworld"].features[4] = {name : 'Cave', x : 36, y : 91, entermap : 'eldercave', enterx : 15, entery : 30};
 mappages["underworld"].features[5] = {name : 'PileOfRocks', x : 104, y : 74};
 mappages["underworld"].features[6] = {name : 'Lava', x : 38, y : 85};
 mappages["underworld"].features[7] = {name : 'Lava', x : 39, y : 85};
@@ -215,6 +215,43 @@ mappages["underworld"].linkedMaps = [""];
 mappages["underworld"].editorLabels = '{}';
 // MAP ENDS HERE
 
+mappages["underworld"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    if (DU.gameflags.getFlag("bonebeacon")) {
+      mapref.placeThing(localFactory.createTile("SunBeacon"),96,101);
+      if (!PC.checkInventory("KeyOfBone")) {
+        let daemon = localFactory.createTile("ArchdaemonOfBone");
+        mapref.placeThing(daemon,91,105);
+        daemon.activate();
+      }
+    } 
+    if (DU.gameflags.getFlag("icebeacon")) {
+      mapref.placeThing(localFactory.createTile("SunBeacon"),106,76);
+      if (!PC.checkInventory("KeyOfIce")) {
+        let daemon = localFactory.createTile("ArchdaemonOfIce");
+        mapref.placeThing(daemon,104,70);
+        daemon.activate();
+      }
+    }
+    if (DU.gameflags.getFlag("dustbeacon")) {
+      mapref.placeThing(localFactory.createTile("SunBeacon"),57,55);
+      if (!PC.checkInventory("KeyOfDust")) {
+        let daemon = localFactory.createTile("ArchdaemonOfDust");
+        mapref.placeThing(daemon,63,55);
+        daemon.activate();
+      }
+    }
+    if (DU.gameflags.getFlag("ashesbeacon")) {
+      mapref.placeThing(localFactory.createTile("SunBeacon"),55,85);
+      if (!PC.checkInventory("KeyOfAshes")) {
+        let daemon = localFactory.createTile("ArchdaemonOfAshes");
+        mapref.placeThing(daemon,53,80);
+        daemon.activate();
+      }
+    }
+  }
+}
+
 // MAP BEGINS HERE
 mappages["hidden_cave"] = {};
 mappages["hidden_cave"].terrain = [];
@@ -298,6 +335,135 @@ mappages["hidden_cave"].onload = function(mapref) {
         if (feas[i].getName() === "UnenchantedSword") { mapref.deleteThing(feas[i]); }
         if (feas[i].getName() === "PlateArmor") { mapref.deleteThing(feas[i]); }
       }
+    }
+  }
+}
+
+// MAP BEGINS HERE
+mappages["dragon_lair"] = {};
+mappages["dragon_lair"].terrain = [];
+ mappages["dragon_lair"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["dragon_lair"].terrain[1] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["dragon_lair"].terrain[2] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["dragon_lair"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["dragon_lair"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["dragon_lair"].terrain[5] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["dragon_lair"].terrain[6] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["dragon_lair"].terrain[7] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cf cf cf cw cw cw cw BK BK BK BK BK BK BK BK BK';
+ mappages["dragon_lair"].terrain[8] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK';
+ mappages["dragon_lair"].terrain[9] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf ww ww cf cf cw BK BK BK BK BK BK BK BK';
+mappages["dragon_lair"].terrain[10] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf ww ww ww cf cw cw BK BK BK BK BK BK BK';
+mappages["dragon_lair"].terrain[11] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf ww ww cf cf cw BK BK BK BK BK BK BK';
+mappages["dragon_lair"].terrain[12] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK';
+mappages["dragon_lair"].terrain[13] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK';
+mappages["dragon_lair"].terrain[14] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK';
+mappages["dragon_lair"].terrain[15] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK';
+mappages["dragon_lair"].terrain[16] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK';
+mappages["dragon_lair"].terrain[17] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK';
+mappages["dragon_lair"].terrain[18] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK';
+mappages["dragon_lair"].terrain[19] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK';
+mappages["dragon_lair"].terrain[20] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK';
+mappages["dragon_lair"].terrain[21] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK BK BK';
+mappages["dragon_lair"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["dragon_lair"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["dragon_lair"].terrain[24] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["dragon_lair"].terrain[25] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["dragon_lair"].terrain[26] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["dragon_lair"].terrain[27] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["dragon_lair"].terrain[28] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["dragon_lair"].terrain[29] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["dragon_lair"].terrain[30] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["dragon_lair"].terrain[31] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+
+mappages["dragon_lair"].features = [];
+mappages["dragon_lair"].features[0] = {name : 'PileOfRocks', x : 21, y : 18};
+mappages["dragon_lair"].features[1] = {name : 'PileOfRocks', x : 13, y : 18};
+mappages["dragon_lair"].features[2] = {name : 'Chest', x : 17, y : 7, locked : 0, lootgroup : 'castlechest', lootedid : 'elderlair2'};
+mappages["dragon_lair"].features[3] = {name : 'Chest', x : 16, y : 7, locked : 0, lootgroup : 'castlechest', lootedid : 'elderlair1'};
+mappages["dragon_lair"].features[4] = {name : 'Chest', x : 17, y : 12, locked : 0, lootgroup : 'castlechest', lootedid : 'elderlair5'};
+mappages["dragon_lair"].features[5] = {name : 'Chest', x : 17, y : 13};
+mappages["dragon_lair"].features[6] = {name : 'Chest', x : 17, y : 13, locked : 0, lootgroup : 'castlechest', lootedid : 'elderlair7'};
+mappages["dragon_lair"].features[7] = {name : 'Chest', x : 18, y : 12, locked : 0, lootgroup : 'castlechest', lootedid : 'elderlair6'};
+mappages["dragon_lair"].features[8] = {name : 'Chest', x : 18, y : 13};
+mappages["dragon_lair"].features[9] = {name : 'Chest', x : 18, y : 13, locked : 0, lootgroup : 'castlechest', lootedid : 'elderlair8'};
+mappages["dragon_lair"].features[10] = {name : 'Chest', x : 12, y : 10, locked : 0, lootgroup : 'castlechest', lootedid : 'elderlair3'};
+mappages["dragon_lair"].features[11] = {name : 'Chest', x : 12, y : 11};
+mappages["dragon_lair"].features[12] = {name : 'Chest', x : 12, y : 11, locked : 0, lootgroup : 'castlechest', lootedid : 'elderlair4'};
+
+
+mappages["dragon_lair"].npcs = [];
+
+mappages["dragon_lair"].desc = "Elder Dragon Lair";
+mappages["dragon_lair"].longdesc = `The heat is, if anything, even more intense as you enter this cave. From within, you hear a muffled rumbling sound. Possibly, something breathing...`;
+mappages["dragon_lair"].music = 'Cave';
+mappages["dragon_lair"].savename = `dragon lair`;
+mappages["dragon_lair"].exitmap = '';
+mappages["dragon_lair"].exitx = '65';
+mappages["dragon_lair"].exity = '70';
+mappages["dragon_lair"].wraps = '';
+mappages["dragon_lair"].enterx = '65';
+mappages["dragon_lair"].entery = '70';
+mappages["dragon_lair"].seeBelow = '';
+mappages["dragon_lair"].lightLevel = 'dark';
+mappages["dragon_lair"].alwaysRemember = '0';
+mappages["dragon_lair"].scale = '1';
+mappages["dragon_lair"].underground = '1';
+mappages["dragon_lair"].undergroundDesc = 'Elder Dragon Lair';
+mappages["dragon_lair"].enterscript = '';
+mappages["dragon_lair"].entertestscript = '';
+mappages["dragon_lair"].exitscript = '';
+mappages["dragon_lair"].exittestscript = '';
+mappages["dragon_lair"].returnmap = 'underworld';
+mappages["dragon_lair"].returnx = '36';
+mappages["dragon_lair"].returny = '91';
+mappages["dragon_lair"].returninfused = '0';
+mappages["dragon_lair"].linkedMaps = [""];
+mappages["dragon_lair"].editorLabels = '{}';
+// MAP ENDS HERE
+
+mappages["dragon_lair"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    if (!DU.gameflags.getFlag("elder_killed")) {
+      let gold = localFactory.createTile("Gold");
+      gold.setQuantity(250);
+      mapref.placeThing(17,11);
+      gold = localFactory.createTile("Gold");
+      gold.setQuantity(250);
+      mapref.placeThing(18,11);
+      gold = localFactory.createTile("Gold");
+      gold.setQuantity(250);
+      mapref.placeThing(16,12);
+      gold = localFactory.createTile("Gold");
+      gold.setQuantity(250);
+      mapref.placeThing(17,12);
+      gold = localFactory.createTile("Gold");
+      gold.setQuantity(250);
+      mapref.placeThing(18,12);
+      gold = localFactory.createTile("Gold");
+      gold.setQuantity(250);
+      mapref.placeThing(19,12);
+      gold = localFactory.createTile("Gold");
+      gold.setQuantity(250);
+      mapref.placeThing(16,13);
+      gold = localFactory.createTile("Gold");
+      gold.setQuantity(250);
+      mapref.placeThing(17,13);
+      gold = localFactory.createTile("Gold");
+      gold.setQuantity(250);
+      mapref.placeThing(18,13);
+      gold = localFactory.createTile("Gold");
+      gold.setQuantity(250);
+      mapref.placeThing(19,13);
+      gold = localFactory.createTile("Gold");
+      gold.setQuantity(250);
+      mapref.placeThing(17,14);
+      gold = localFactory.createTile("Gold");
+      gold.setQuantity(250);
+      mapref.placeThing(18,14);
+
+      let dragon = localFactory.createTile("ElderDragonNPC");
+      mapref.placeThing(17,12,dragon);
+      dragon.activate();
     }
   }
 }

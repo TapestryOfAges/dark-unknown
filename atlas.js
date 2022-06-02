@@ -1135,7 +1135,8 @@ GameMap.prototype.setLightLevel = function(lightlevel) {
 
 GameMap.prototype.getAmbientLight = function() {
   if (this.getLightLevel() === "bright") { return 1; }
-  if (this.getLightLevel() === "cycle") {
+  else if (this.getLightLevel() === "dim") { return .7; }
+  else if (this.getLightLevel() === "cycle") {
     let sunlight = 0;
     if (CheckTimeBetween("6:00","17:59")) {
       sunlight = 1;

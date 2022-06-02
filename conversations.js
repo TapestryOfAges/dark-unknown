@@ -1257,6 +1257,13 @@ OnConvTriggers["pc_abyss"] = function(speaker,keyword) {
   return -1;
 }
 
+OnConvTriggers["given_crystal"] = function(speaker,keyword) {
+  let fromx = speaker.getx();
+  let fromy = speaker.gety();
+  speaker.getHomeMap().moveThing(65,0,speaker);
+  DrawMainFrame("one",speaker.getHomeMap(),fromx,fromy);
+}
+
 function ConvTestFlags() {};
 
 ConvTestFlags["warren_close"] = function(speaker,keyword) {

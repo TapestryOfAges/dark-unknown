@@ -170,7 +170,7 @@ mappages["pitdespair1"].editorLabels = '{}';
 
 mappages["pitdespair1"].onload = function(mapref) {
     
-  if (gamestate.getMode() !== "loadgame") {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     
     let lever = mapref.getTile(18,11).getTopFeature();
     lever.attached = { x: 11, y:9 };

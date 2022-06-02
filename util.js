@@ -851,8 +851,10 @@ function GetEffectGraphic(start, dest, params) {
   let ammo = {};
   ammo.graphic = params.graphic;
   ammo.yoffset = params.yoffset;
-  let diffx = dest.getx() - start.getx();
-  let diffy = dest.gety() - start.gety();
+//  let diffx = dest.getx() - start.getx();
+  let diffx = dest.x - start.x;
+//  let diffy = dest.gety() - start.gety();
+  let diffy = dest.y - start.y;
   ammo.fired = GetOctant(diffx,diffy);
   ammo.xoffset = ammo.fired * -32;
   if (!params.directionalammo) {

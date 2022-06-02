@@ -55,8 +55,8 @@ mappages["volcano"].terrain[48] = 'WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW 
 mappages["volcano"].terrain[49] = 'WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW';
 
 mappages["volcano"].features = [];
-mappages["volcano"].features[0] = {name : 'Ruins', x : 14, y : 37, entermap : 'null', enterx : 0, entery : 0};
-mappages["volcano"].features[1] = {name : 'Cave', x : 16, y : 28, entermap : 'null', enterx : 0, entery : 0};
+mappages["volcano"].features[0] = {name : 'Ruins', x : 14, y : 37, entermap : 'skarabrae', enterx : 17, entery : 34};
+mappages["volcano"].features[1] = {name : 'Cave', x : 16, y : 28, entermap : 'hydracave', enterx : 11, entery : 23};
 mappages["volcano"].features[2] = {name : 'BrokenShrine', x : 11, y : 34};
 mappages["volcano"].features[3] = {name : 'BridgeEW', x : 13, y : 38};
 mappages["volcano"].features[4] = {name : 'BridgeEW', x : 16, y : 38};
@@ -555,3 +555,191 @@ mappages["deeplavatubes"].onload = function(mapref) {
 
   }
 }
+
+// MAP BEGINS HERE
+mappages["skarabrae"] = {};
+mappages["skarabrae"].terrain = [];
+ mappages["skarabrae"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. __ __ __ __ __ __ __ __ .. .. .. .. .. ./ uu uu uu uu uu';
+ mappages["skarabrae"].terrain[1] = '.. .. .. .. .. .. .. .. .. __ __ __ __ __ __ __ ./ uu uu uu uu uu uu uu uu `. __ __ ./ uu uu uu uu uu uu uu';
+ mappages["skarabrae"].terrain[2] = '.. .. .. .. .. .. __ __ ./ uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu';
+ mappages["skarabrae"].terrain[3] = '.. .. .. .. .. ./ uu uu uu uu uu uu uu uu uu uu uu uu uu /. -- -- -- .` uu uu uu uu uu uu /. -- -- .` uu /.';
+ mappages["skarabrae"].terrain[4] = '.. .. .. __ ./ uu uu uu uu uu /. -- -- -- -- -- -- -- -- .. .. .. .. .. -- -- -- -- -- -- .. .. .. .| uu `.';
+ mappages["skarabrae"].terrain[5] = '.. .. .| uu uu uu uu /. -- -- .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ,, .. .. .. .. .| uu uu';
+ mappages["skarabrae"].terrain[6] = '.. .. ./ uu uu /. -- .. ,, .. .. .. ,, .. .. .. .. .. .. .. .. .. .. .. ,, .. .. .. .. .. .. ,, .. .| uu uu';
+ mappages["skarabrae"].terrain[7] = '.. .| uu uu /. .. .. .. ,, ,, .. ,, ,, ,, .. .. .. .. ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. .| uu uu';
+ mappages["skarabrae"].terrain[8] = '.. .| uu uu |. .. .. .. .. .. .. ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ./ uu /.';
+ mappages["skarabrae"].terrain[9] = '.. ./ uu uu |, .. .. .. .. .. %% %% %% %% %% .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .| uu /. ..';
+mappages["skarabrae"].terrain[10] = '.| uu uu /. .. ,, .. .. .. %% %% .. .. .. %% %% .. .. .. .. .. .. .. .. .. .. .. .. ,, .. .. .. .| uu `. ..';
+mappages["skarabrae"].terrain[11] = '.| uu uu |. .. .. .. .. .. .. .. .. .. ,, .. %% %% .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .` uu |.';
+mappages["skarabrae"].terrain[12] = '.. .` uu `. .. .. .. .. .. .. .. .. ,, ,, ,, .. %% .. .. .. .. .. .. .. .. .. .. ,, .. .. .. .. .. .| uu |.';
+mappages["skarabrae"].terrain[13] = '.. .| uu uu |. .. .. .. .. .. .. .. .. .. ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ,, .. .| uu |.';
+mappages["skarabrae"].terrain[14] = '.. .| uu uu |. .. .. .. %% .. ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .| uu |.';
+mappages["skarabrae"].terrain[15] = '.. ./ uu uu |. .. .. .. %% ,, %% ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ,, .. ./ uu |.';
+mappages["skarabrae"].terrain[16] = '.| uu uu uu |. .. .. .. .. ,, %% %% .. .. .. .. .. .. .. .. .. .. .. ,, ,, !# !# .. .. !# .. ,, .| uu /. ..';
+mappages["skarabrae"].terrain[17] = '.| uu uu /. .. ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ,, ,, !# !# !! .. .. !# !# .. .| uu `. ..';
+mappages["skarabrae"].terrain[18] = '.| uu uu |. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. !# !! !! .. .. .. !# .. .. .` uu |.';
+mappages["skarabrae"].terrain[19] = '.| uu uu |. ,, .. ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. !! !# .. .. ,| uu |.';
+mappages["skarabrae"].terrain[20] = '.| uu uu |. ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. !! !# .. .. .| uu `.';
+mappages["skarabrae"].terrain[21] = './ uu uu |. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. !# !# .. .. ./ uu uu';
+mappages["skarabrae"].terrain[22] = 'uu uu /. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. !# .. .. .| uu uu /.';
+mappages["skarabrae"].terrain[23] = 'uu uu |. .. .. ,, .. .. .. .. .. .. .. .. .. .. .. !# !# .. .. .. .. .. .. .. .. .. .. .. .. .. ./ uu uu |.';
+mappages["skarabrae"].terrain[24] = 'uu uu |. .. .. ,, .. .. .. .. .. .. .. .. -= .. .. .. !# .. .. .. .. .. .. .. .. .. .. .. .. .| uu uu /. ..';
+mappages["skarabrae"].terrain[25] = 'uu /. .. .. .. .. .. .. .. !# -= .. .. .. .. .. -= -= .. .. .. .. .. .. .. .. .. .. .. .. .. .. .` uu `. ..';
+mappages["skarabrae"].terrain[26] = 'uu |. .. .. .. .. .. ,, .. !# -= -= -= .. .. .. .. -= .. .. .. ,, ,, ,, .. .. .. .. .. .. .. .. .| uu uu |.';
+mappages["skarabrae"].terrain[27] = '/. .. .. .. .. .. .. .. .. !# !# -= -= .. .. .. .. .. .. .. .. ,, %% ,, %% .. %% %% .. .. .. .. .| uu uu `.';
+mappages["skarabrae"].terrain[28] = '.. .. .. .. .. .. .. .. .. .. .. .. ,, ,, .. .. .. .. .. .. .. .. %% -= .. -= -= .. .. .. ,, .. .. .` uu uu';
+mappages["skarabrae"].terrain[29] = '.. .. .. .. .. .. .. .. .. .. .. ,, ,, .. .. .. .. .. .. .. .. .. %% -= .. .. .. .. .. %% ,, ,, .. .| uu uu';
+mappages["skarabrae"].terrain[30] = '.. .. ,, .. ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. -= .. .. .. .. .. .. .. .` uu';
+mappages["skarabrae"].terrain[31] = '.. .. .. .. ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. -= -= .. %% .. .. .. .. .. .`';
+mappages["skarabrae"].terrain[32] = '.. .. .. .. .. .. .. .. .. ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. %% %% %% .. .. .. .. .. .. .. .. ..';
+mappages["skarabrae"].terrain[33] = '.. .. .. ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["skarabrae"].terrain[34] = '.. .. .. .. .. .. .. ,, .. .. .. .. .. .. .. .. ,, .. .. .. .. .. .. .. .. .. .. .. .. .. ,, .. .. ,, .. ..';
+mappages["skarabrae"].terrain[35] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ,, ,, .. ..';
+
+mappages["skarabrae"].features = [];
+mappages["skarabrae"].features[0] = {name : 'RuinsWallTallLeftMidRight', x : 11, y : 27};
+mappages["skarabrae"].features[1] = {name : 'RuinsWallMidLeftMidRight', x : 12, y : 27};
+mappages["skarabrae"].features[2] = {name : 'RuinsWallMidLeftBottomRight', x : 13, y : 27};
+mappages["skarabrae"].features[3] = {name : 'RuinsWallBottomLeftMidRight', x : 15, y : 23};
+mappages["skarabrae"].features[4] = {name : 'RuinsWallMidLeftTallRight', x : 16, y : 23};
+mappages["skarabrae"].features[5] = {name : 'RuinsWallMidLeftTallRight', x : 17, y : 23};
+mappages["skarabrae"].features[6] = {name : 'RuinsWallTallLeftMidRight', x : 27, y : 16};
+mappages["skarabrae"].features[7] = {name : 'RuinsWallMidLeftTallRight', x : 28, y : 16};
+mappages["skarabrae"].features[8] = {name : 'RuinsWallMidLeftTallRight', x : 28, y : 22};
+mappages["skarabrae"].features[9] = {name : 'RuinsWallBottomLeftMidRight', x : 27, y : 22};
+mappages["skarabrae"].features[10] = {name : 'FenceNW', x : 21, y : 8};
+mappages["skarabrae"].features[11] = {name : 'FenceEW', x : 22, y : 8};
+mappages["skarabrae"].features[12] = {name : 'FenceEW', x : 23, y : 8};
+mappages["skarabrae"].features[13] = {name : 'FenceEW', x : 24, y : 8};
+mappages["skarabrae"].features[14] = {name : 'FenceEWS', x : 25, y : 8};
+mappages["skarabrae"].features[15] = {name : 'FenceEW', x : 26, y : 8};
+mappages["skarabrae"].features[16] = {name : 'FenceNS', x : 21, y : 9};
+mappages["skarabrae"].features[17] = {name : 'FenceNS', x : 21, y : 10};
+mappages["skarabrae"].features[18] = {name : 'FenceEW', x : 17, y : 17};
+mappages["skarabrae"].features[19] = {name : 'FenceEW', x : 18, y : 17};
+mappages["skarabrae"].features[20] = {name : 'DeadTree', x : 11, y : 31};
+mappages["skarabrae"].features[21] = {name : 'DeadTree', x : 7, y : 30};
+mappages["skarabrae"].features[22] = {name : 'DeadTree', x : 6, y : 32};
+mappages["skarabrae"].features[23] = {name : 'DeadTree', x : 5, y : 26};
+mappages["skarabrae"].features[24] = {name : 'DeadTree', x : 7, y : 21};
+mappages["skarabrae"].features[25] = {name : 'DeadTree', x : 13, y : 20};
+mappages["skarabrae"].features[26] = {name : 'DeadTree', x : 11, y : 22};
+mappages["skarabrae"].features[27] = {name : 'DeadTree', x : 23, y : 22};
+mappages["skarabrae"].features[28] = {name : 'DeadTree', x : 19, y : 29};
+mappages["skarabrae"].features[29] = {name : 'DeadTree', x : 16, y : 31};
+mappages["skarabrae"].features[30] = {name : 'DeadTree', x : 21, y : 34};
+mappages["skarabrae"].features[31] = {name : 'DeadTree', x : 31, y : 27};
+mappages["skarabrae"].features[32] = {name : 'DeadTree', x : 28, y : 25};
+mappages["skarabrae"].features[33] = {name : 'DeadTree', x : 29, y : 12};
+mappages["skarabrae"].features[34] = {name : 'DeadTree', x : 24, y : 13};
+mappages["skarabrae"].features[35] = {name : 'DeadTree', x : 29, y : 7};
+mappages["skarabrae"].features[36] = {name : 'DeadTree', x : 21, y : 6};
+mappages["skarabrae"].features[37] = {name : 'DeadTree', x : 19, y : 8};
+mappages["skarabrae"].features[38] = {name : 'DeadTree', x : 7, y : 8};
+mappages["skarabrae"].features[39] = {name : 'DeadTree', x : 5, y : 12};
+mappages["skarabrae"].features[40] = {name : 'DeadTree', x : 19, y : 14};
+mappages["skarabrae"].features[41] = {name : 'Chest', x : 10, y : 26, locked : 0, lootedid : 'skarabrae', searchyield : 'RuinsJournal'};
+mappages["skarabrae"].features[42] = {name : 'Evergreen', x : 19, y : 20};
+mappages["skarabrae"].features[43] = {name : 'Evergreen', x : 15, y : 29};
+mappages["skarabrae"].features[44] = {name : 'Evergreen', x : 31, y : 33};
+mappages["skarabrae"].features[45] = {name : 'Evergreen', x : 15, y : 6};
+mappages["skarabrae"].features[46] = {name : 'Evergreen', x : 2, y : 2};
+
+
+mappages["skarabrae"].npcs = [];
+
+mappages["skarabrae"].desc = "Skara Brae";
+mappages["skarabrae"].longdesc = `The village here never had a chance to thrive. It is clear that it was abandoned, or worse, before they even were able to finish building it. Any people here are long since gone.`;
+mappages["skarabrae"].music = 'Ruins';
+mappages["skarabrae"].savename = `Skara Brae`;
+mappages["skarabrae"].exitmap = '';
+mappages["skarabrae"].exitx = '65';
+mappages["skarabrae"].exity = '70';
+mappages["skarabrae"].wraps = '';
+mappages["skarabrae"].enterx = '17';
+mappages["skarabrae"].entery = '34';
+mappages["skarabrae"].seeBelow = '';
+mappages["skarabrae"].lightLevel = 'cycle';
+mappages["skarabrae"].alwaysRemember = '0';
+mappages["skarabrae"].scale = '1';
+mappages["skarabrae"].underground = '0';
+mappages["skarabrae"].undergroundDesc = '';
+mappages["skarabrae"].enterscript = '';
+mappages["skarabrae"].entertestscript = '';
+mappages["skarabrae"].exitscript = '';
+mappages["skarabrae"].exittestscript = '';
+mappages["skarabrae"].returnmap = 'volcano';
+mappages["skarabrae"].returnx = '14';
+mappages["skarabrae"].returny = '37';
+mappages["skarabrae"].returninfused = '0';
+mappages["skarabrae"].linkedMaps = [""];
+mappages["skarabrae"].editorLabels = '{}';
+// MAP ENDS HERE
+
+// MAP BEGINS HERE
+mappages["hydracave"] = {};
+mappages["hydracave"].terrain = [];
+ mappages["hydracave"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["hydracave"].terrain[1] = 'BK BK BK BK BK BK BK BK cw cw cw cw cw cw cw BK BK BK BK BK BK BK BK BK';
+ mappages["hydracave"].terrain[2] = 'BK BK BK BK BK cw cw cw cw cf cf cf cf cf cw cw cw cw BK BK BK BK BK BK';
+ mappages["hydracave"].terrain[3] = 'BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK';
+ mappages["hydracave"].terrain[4] = 'BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK';
+ mappages["hydracave"].terrain[5] = 'BK BK BK BK BK cw cf cf cf cw cf cf cf cf cf cf cf cf cw BK BK BK BK BK';
+ mappages["hydracave"].terrain[6] = 'BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cw cw cw BK BK BK BK BK';
+ mappages["hydracave"].terrain[7] = 'BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK';
+ mappages["hydracave"].terrain[8] = 'BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK';
+ mappages["hydracave"].terrain[9] = 'BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK';
+mappages["hydracave"].terrain[10] = 'BK BK BK BK BK BK cw cf cf cw cw cw cf cf cf cw cw BK BK BK BK BK BK BK';
+mappages["hydracave"].terrain[11] = 'BK BK BK BK BK BK cw cw cw cw cw cw cf cf cf cf cw BK BK BK BK BK BK BK';
+mappages["hydracave"].terrain[12] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw cw BK BK BK BK BK BK BK';
+mappages["hydracave"].terrain[13] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw cw BK BK BK BK BK BK BK';
+mappages["hydracave"].terrain[14] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cw BK BK BK BK BK BK BK';
+mappages["hydracave"].terrain[15] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cw BK BK BK BK BK BK BK';
+mappages["hydracave"].terrain[16] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw cw BK BK BK BK BK BK BK';
+mappages["hydracave"].terrain[17] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw cw BK BK BK BK BK BK BK BK';
+mappages["hydracave"].terrain[18] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK';
+mappages["hydracave"].terrain[19] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK';
+mappages["hydracave"].terrain[20] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK';
+mappages["hydracave"].terrain[21] = 'BK BK BK BK BK BK BK BK BK cw cw cf cf cf cw BK BK BK BK BK BK BK BK BK';
+mappages["hydracave"].terrain[22] = 'BK BK BK BK BK BK BK BK cw cw cf cf cf cw cw BK BK BK BK BK BK BK BK BK';
+mappages["hydracave"].terrain[23] = 'BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK';
+
+mappages["hydracave"].features = [];
+mappages["hydracave"].features[0] = {name : 'MagicAxe', x : 7, y : 10};
+mappages["hydracave"].features[1] = {name : 'Gold', x : 7, y : 9};
+mappages["hydracave"].features[2] = {name : 'Gold', x : 8, y : 10};
+
+
+mappages["hydracave"].npcs = [];
+mappages["hydracave"].npcs[0] = {name : 'HydraNPC', x : 10, y : 7, skintone: '1'};
+mappages["hydracave"].npcs[1] = {name : 'HydraNPC', x : 15, y : 4, skintone: '1'};
+mappages["hydracave"].npcs[2] = {name : 'GazerNPC', x : 12, y : 13, skintone: '1'};
+mappages["hydracave"].npcs[3] = {name : 'GazerNPC', x : 13, y : 17, skintone: '1'};
+
+mappages["hydracave"].desc = "Small Cave";
+mappages["hydracave"].longdesc = ``;
+mappages["hydracave"].music = 'Cave';
+mappages["hydracave"].savename = `Small Cave`;
+mappages["hydracave"].exitmap = '';
+mappages["hydracave"].exitx = '65';
+mappages["hydracave"].exity = '70';
+mappages["hydracave"].wraps = '';
+mappages["hydracave"].enterx = '11';
+mappages["hydracave"].entery = '23';
+mappages["hydracave"].seeBelow = '';
+mappages["hydracave"].lightLevel = 'dark';
+mappages["hydracave"].alwaysRemember = '0';
+mappages["hydracave"].scale = '1';
+mappages["hydracave"].underground = '1';
+mappages["hydracave"].undergroundDesc = 'Small Cave';
+mappages["hydracave"].enterscript = '';
+mappages["hydracave"].entertestscript = '';
+mappages["hydracave"].exitscript = '';
+mappages["hydracave"].exittestscript = '';
+mappages["hydracave"].returnmap = 'volcano';
+mappages["hydracave"].returnx = '16';
+mappages["hydracave"].returny = '28';
+mappages["hydracave"].returninfused = '0';
+mappages["hydracave"].linkedMaps = [""];
+mappages["hydracave"].editorLabels = '{}';
+// MAP ENDS HERE

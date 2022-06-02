@@ -102,6 +102,7 @@ function MageVillagerNPCTile() {
   this.lootTable = 'Townsfolk';
   this.prefix = 'a';
   this.desc = "mage";
+  this.meleeChance = 0;
   this.spellsknown = { lowcontrol: 1, summon: 1, attack: 1, };
   this.resists = {};
   this.special = 'open_door';
@@ -419,6 +420,7 @@ function ChildVillagerNPCTile() {
   this.lootTable = 'none';
   this.prefix = 'a';
   this.desc = "small child";
+  this.meleeChance = 0;
   this.resists = {};
   this.special = 'coward, open_door';
   this.meleeHitSound = 'sfx_melee_hit';
@@ -457,6 +459,7 @@ function BeggarVillagerNPCTile() {
   this.lootTable = 'none';
   this.prefix = 'a';
   this.desc = "beggar";
+  this.meleeChance = 0;
   this.resists = {};
   this.special = 'coward, open_door';
   this.meleeHitSound = 'sfx_melee_hit';
@@ -495,6 +498,7 @@ function JesterNPCTile() {
   this.lootTable = 'none';
   this.prefix = 'a';
   this.desc = "jester";
+  this.meleeChance = 0;
   this.resists = {};
   this.special = 'coward, open_door';
   this.meleeHitSound = 'sfx_melee_hit';
@@ -950,6 +954,7 @@ function CourierNPCTile() {
   this.lootTable = 'Courier';
   this.prefix = 'a';
   this.desc = "courier";
+  this.meleeChance = 0;
   this.resists = {};
   this.special = 'open_door, courierSurrender';
   this.meleeHitSound = 'sfx_melee_hit';
@@ -1337,6 +1342,7 @@ function ApprenticeNPCTile() {
   this.lootTable = 'Minor Adventurer';
   this.prefix = 'an';
   this.desc = "apprentice";
+  this.meleeChance = 0;
   this.spellsknown = { lowcontrol: 1, summon: 1, attack: 1, };
   this.resists = {};
   this.special = 'open_door';
@@ -3499,6 +3505,7 @@ function ArchmageNPCTile() {
   this.lootTable = 'Archmage';
   this.prefix = 'an';
   this.desc = "archmage";
+  this.meleeChance = 0;
   this.spellsknown = { heal: 1, lowcontrol: 1, summon: 1, attack: 1, buff: 1, };
   this.resists = {};
   this.special = 'open_door';
@@ -3971,6 +3978,7 @@ function JusticeNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'none';
   this.desc = "Justice";
+  this.meleeChance = 0;
   this.spellsknown = { summon: 1, attack: 1, highattack: 1, };
   this.resists = {};
   this.special = 'miniboss, unkillable';
@@ -3989,7 +3997,7 @@ function LicheNPCTile() {
   this.addhp = -10;
   this.str = 14;
   this.dex = 16;
-  this.int = 26;
+  this.int = 30;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
@@ -4007,9 +4015,10 @@ function LicheNPCTile() {
   this.armorResist = 40;
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
-  this.lootTable = 'Liche';
+  this.lootTable = 'none';
   this.prefix = 'a';
   this.desc = "liche";
+  this.meleeChance = 0;
   this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, buff: 1, highbuff: 1, };
   this.resists = { ice:66, poison: 100 };
   this.special = 'necromancer, undead, open_door';
@@ -4187,6 +4196,150 @@ function BalronNPCTile() {
   });
 }
 BalronNPCTile.prototype = new NPCObject();
+
+
+// Monster
+
+function ArchdaemonOfAshesNPCTile() {
+  this.name = 'ArchdaemonOfAshesNPC';
+  this.level = 8;
+  this.addhp = 25;
+  this.str = 26;
+  this.dex = 26;
+  this.int = 26;
+  this.alignment = 'Evil';
+  this.attitude = 'hostile';
+  this.peaceAI = 'seekPC-10';
+  this.forgetAt = 15;
+  this.withdraw = 0;
+  this.graphic = '354.gif';
+  this.altgraphic = ['388.gif',];
+  this.meleeAttackAs = 'none';
+  this.meleeDamage = '5d10+22'
+  this.meleeStrDamage = 1
+  this.missileAttackAs = 'none';
+  this.armorAs = 'PlateArmor';
+  this.movetype = MOVE_FLY;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'archdaemon_ashes';
+  this.prefix = 'the';
+  this.desc = "Archdaemon of Ashes";
+  this.meleeChance = 75;
+  this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, banned: 'Ice', };
+  this.resists = { fire:60, ice:30,poison: 60 };
+  this.special = 'archdaemon_ashes';
+  this.meleeHitSound = 'sfx_melee_hit';
+  this.meleeAttackSound = 'sfx_melee_miss';
+}
+ArchdaemonOfAshesNPCTile.prototype = new NPCObject();
+
+
+// Monster
+
+function ArchdaemonOfDustNPCTile() {
+  this.name = 'ArchdaemonOfDustNPC';
+  this.level = 8;
+  this.addhp = 25;
+  this.str = 26;
+  this.dex = 26;
+  this.int = 26;
+  this.alignment = 'Evil';
+  this.attitude = 'hostile';
+  this.peaceAI = 'seekPC-10';
+  this.forgetAt = 15;
+  this.withdraw = 0;
+  this.graphic = '354.gif';
+  this.altgraphic = ['388.gif',];
+  this.meleeAttackAs = 'none';
+  this.meleeDamage = '5d10+22'
+  this.meleeStrDamage = 1
+  this.missileAttackAs = 'none';
+  this.armorAs = 'PlateArmor';
+  this.movetype = MOVE_FLY;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'archdaemon_dust';
+  this.prefix = 'the';
+  this.desc = "Archdaemon of Dust";
+  this.meleeChance = 75;
+  this.spellsknown = { lowcontrol: 1, highcontrol: 1, attack: 1, highattack: 1, };
+  this.resists = { fire:40, ice:40,poison: 60 };
+  this.special = 'archdaemon_dust';
+  this.meleeHitSound = 'sfx_melee_hit';
+  this.meleeAttackSound = 'sfx_melee_miss';
+}
+ArchdaemonOfDustNPCTile.prototype = new NPCObject();
+
+
+// Monster
+
+function ArchdaemonOfIceNPCTile() {
+  this.name = 'ArchdaemonOfIceNPC';
+  this.level = 8;
+  this.addhp = 25;
+  this.str = 26;
+  this.dex = 26;
+  this.int = 26;
+  this.alignment = 'Evil';
+  this.attitude = 'hostile';
+  this.peaceAI = 'seekPC-10';
+  this.forgetAt = 15;
+  this.withdraw = 0;
+  this.graphic = '354.gif';
+  this.altgraphic = ['388.gif',];
+  this.meleeAttackAs = 'none';
+  this.meleeDamage = '5d10+22'
+  this.meleeStrDamage = 1
+  this.missileAttackAs = 'none';
+  this.armorAs = 'PlateArmor';
+  this.movetype = MOVE_FLY;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'archdaemon_ice';
+  this.prefix = 'the';
+  this.desc = "Archdaemon of Ice";
+  this.meleeChance = 75;
+  this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, banned: 'Fire', };
+  this.resists = { fire:30, ice:60,poison: 60 };
+  this.special = 'archdaemon_ice';
+  this.meleeHitSound = 'sfx_melee_hit';
+  this.meleeAttackSound = 'sfx_melee_miss';
+}
+ArchdaemonOfIceNPCTile.prototype = new NPCObject();
+
+
+// Monster
+
+function ArchdaemonOfBoneNPCTile() {
+  this.name = 'ArchdaemonOfBoneNPC';
+  this.level = 8;
+  this.addhp = 25;
+  this.str = 26;
+  this.dex = 26;
+  this.int = 26;
+  this.alignment = 'Evil';
+  this.attitude = 'hostile';
+  this.peaceAI = 'seekPC-10';
+  this.forgetAt = 15;
+  this.withdraw = 0;
+  this.graphic = '354.gif';
+  this.altgraphic = ['388.gif',];
+  this.meleeAttackAs = 'none';
+  this.meleeDamage = '5d10+22'
+  this.meleeStrDamage = 1
+  this.missileAttackAs = 'none';
+  this.armorAs = 'PlateArmor';
+  this.movetype = MOVE_FLY;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'archdaemon_bone';
+  this.prefix = 'the';
+  this.desc = "Archdaemon of Bone";
+  this.meleeChance = 75;
+  this.spellsknown = { summon: 1, attack: 1, highattack: 1, };
+  this.resists = { fire:40, ice:40,poison: 60 };
+  this.special = 'archdaemon_bone';
+  this.meleeHitSound = 'sfx_melee_hit';
+  this.meleeAttackSound = 'sfx_melee_miss';
+}
+ArchdaemonOfBoneNPCTile.prototype = new NPCObject();
 
 
 // Monster
@@ -4372,6 +4525,7 @@ function ToshinSentinelNPCTile() {
   this.lootTable = 'none';
   this.prefix = 'a';
   this.desc = "floating sentinel";
+  this.meleeChance = 0;
   this.resists = { fire:100, poison:100 };
   this.special = 'unkillable';
   this.meleeHitSound = 'sfx_animal_hit';
@@ -4407,6 +4561,7 @@ function AbyssYouNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.desc = "yourself";
+  this.meleeChance = 0;
   this.resists = {};
   this.special = 'mirror';
   this.meleeHitSound = 'sfx_melee_hit';
@@ -4440,6 +4595,7 @@ function NegatorGnomeNPCTile() {
   this.lootTable = 'none';
   this.prefix = 'a';
   this.desc = "negator gnome";
+  this.meleeChance = 0;
   this.resists = {};
 }
 NegatorGnomeNPCTile.prototype = new NPCObject();
@@ -4473,6 +4629,7 @@ function CrystalBarrierNPCTile() {
   this.lootTable = 'none';
   this.prefix = 'a';
   this.desc = "crystal barrier";
+  this.meleeChance = 0;
   this.resists = { fire:30, poison:100 };
   this.special = 'crumbles,stationary,noact,ondeathDestroyCrystal';
   this.xpval = 0;

@@ -185,7 +185,7 @@ OnDamagedFuncs["incorporeal"] = function(atk,who,dmg,weapon) {
   let chance = 40;
   if ((weapon.getName() === "MagicAxe") || (weapon.getName() === "Wand") || (weapon.getName() === "MagicSword") || (weapon.getName() === "LightningSword") || (weapon.getName() === "FlamingSword") || (weapon.getName() === "SwordOfDefense") || (weapon.getName() === "VenomSword")) {
     chance = 20;
-  } else if (weapon.getname() === "SpellWeapon") {
+  } else if (weapon.getName() === "SpellWeapon") {
     if ((weapon.dmgtype === "force") || (weapon.dmgtype === "drain")) {
       chance = 0;
     } else {
@@ -273,6 +273,11 @@ OnDeathFuncs["destroycrystals"] = function(who) {
   }
 }
 
+OnDeathFuncs["Elder"] = function() {
+  DU.gameflags.setFlag("elder_killed");
+  maintext.addText('The dragon slumps to the ground, and opens one huge eye to gaze at you. Its voice rattles forth, "It is done. I see the path before you, mortal: You venture into a darkness the likes the world has ne\'er seen. May you never return to the lands of light..." The dragon\'s labored breathing ceases.');
+}
+
 OnDeathFuncs["endact"] = function() {
   // WORKING HERE
   let endact = localFactory.createTile("UnconsciousEndAct");
@@ -331,6 +336,13 @@ OnDeathFuncs["scouring"] = function() {
     if (npcs[i].getName() === "TownGuardNPC") {
       npcs[i].setAggro(0);
     }
+  }
+}
+
+OnDeathFuncs["tharock"] = function() {
+  let tharock = PC.getHomeMap().getTile(65,0).getTopNPC();
+  if (tharock) {
+    tharock.timer = 1;
   }
 }
 
