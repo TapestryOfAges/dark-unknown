@@ -10,8 +10,9 @@ function MultiTileNPC(othertilearray,othertilelocationsarray) {
       this.attachedLocations[i] = [othertilelocationsarray[i][0], othertilelocationsarray[i][1]];
       let part = localFactory.createTile(othertilearray[i]);
       this.attachedParts[this.attachedParts.length] = part;
-      mymap.placeThing(this.getx() + othertilelocationsarray[i][0], this.gety() + othertilelocationsarray[i][1], part);
+      mymap.placeThing(this.getx() + othertilelocationsarray[i][0], this.gety() + othertilelocationsarray[i][1], part,0,1);
       part.attachedTo = this;
+      part.activate();
     }
   }
 }
@@ -75,6 +76,14 @@ MultiSegment.prototype.getAbsorb = function() {
 
 MultiSegment.prototype.getResist = function(rtype) {
   return this.attachedTo.getResist(rtype);
+}
+
+MultiSegment.prototype.getDesc = function(rtype) {
+  return this.attachedTo.getDesc(rtype);
+}
+
+MultiSegment.prototype.getFullDesc = function(rtype) {
+  return this.attachedTo.getFullDesc(rtype);
 }
 
 function HorseAndCartNPCTile() {
@@ -154,11 +163,12 @@ function ElderDragonNPCTile() {
   this.peaceAI = 'elderdragon';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '353.gif';
-  this.altgraphic = ['387.gif',];
+  this.graphic = 'elderdragon.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
   this.meleeAttackAs = 'none';
-  this.meleeDamage = '5d8+15'
-  this.meleeStrDamage = 1
+  this.meleeDamage = '5d8+15';
+  this.meleeStrDamage = 1;
   this.missileAttackAs = 'none';
   this.armorAs = 'PlateArmor';
   this.movetype = MOVE_FLY;
@@ -179,27 +189,27 @@ ElderDragonNPCTile.prototype = new NPCObject();
 
 function ElderDragonForelimbSegmentTile() {
   this.name = "ElderDragonForelimbSegment";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-1536";
+  this.graphic = 'elderdragon.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = -32;
   this.alwaystop = 1;
 }
 ElderDragonForelimbSegmentTile.prototype = new MultiSegment();
 
 function ElderDragonHindlimbSegmentTile() {
   this.name = "ElderDragonHindlimbSegment";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-1536";
+  this.graphic = 'elderdragon.gif';
+  this.spritexoffset = -32;
+  this.spriteyoffset = -32;
   this.alwaystop = 1;
 }
 ElderDragonHindlimbSegmentTile.prototype = new MultiSegment();
 
 function ElderDragonTailSegmentTile() {
   this.name = "ElderDragonTailSegment";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-1536";
+  this.graphic = 'elderdragon.gif';
+  this.spritexoffset = -32;
+  this.spriteyoffset = 0;
   this.alwaystop = 1;
 }
 ElderDragonTailSegmentTile.prototype = new MultiSegment();
