@@ -190,3 +190,4 @@ oracle_spoke - the Oracle has told you what to do
 elder_killed - Elder Dragon is dead
 stoneshadow - You have been told about the use for the Stone of Shadow
 given_crystal - Tharock has given you the crystal mortar
+returned_alchemy - you've brought the box of alchemy equipment back from the cave, on the IoLH
