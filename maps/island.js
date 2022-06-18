@@ -108,7 +108,7 @@ mappages["island"].features[10] = {name : 'BrokenShrine', x : 60, y : 63};
 mappages["island"].features[11] = {name : 'Village', x : 54, y : 74, entermap : 'lifeshope', enterx : 1, entery : 21};
 mappages["island"].features[12] = {name : 'Waterfall', x : 54, y : 52};
 mappages["island"].features[13] = {name : 'Waterfall', x : 53, y : 23};
-mappages["island"].features[14] = {name : 'Cave', x : 54, y : 48, entermap : 'null', enterx : 0, entery : 0};
+mappages["island"].features[14] = {name : 'Cave', x : 54, y : 48, entermap : 'waterfallcave', enterx : 18, entery : 24};
 mappages["island"].features[15] = {name : 'Cave', x : 30, y : 77, entermap : 'abandoned_mine', enterx : 14, entery : 29};
 mappages["island"].features[16] = {name : 'Lava', x : 20, y : 42};
 mappages["island"].features[17] = {name : 'Lava', x : 20, y : 43};
@@ -1690,3 +1690,95 @@ mappages["tharock_castle2"].returninfused = '0';
 mappages["tharock_castle2"].linkedMaps = ["tharock_castle","tharock_castle_shadow"];
 mappages["tharock_castle2"].editorLabels = '{}';
 // MAP ENDS HERE
+
+// MAP BEGINS HERE
+mappages["waterfallcave"] = {};
+mappages["waterfallcave"].terrain = [];
+ mappages["waterfallcave"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["waterfallcave"].terrain[1] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["waterfallcave"].terrain[2] = 'BK BK BK BK cw cw cw cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["waterfallcave"].terrain[3] = 'BK BK BK cw cw cf cw cw cf cf cf cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["waterfallcave"].terrain[4] = 'BK BK BK cw cf cf cf cf cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK';
+ mappages["waterfallcave"].terrain[5] = 'BK BK BK cw cf cf cf cf cf cw cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK';
+ mappages["waterfallcave"].terrain[6] = 'BK BK BK cw cf cf cf cf cw cw cw cw cw cf cf cf cw cw BK BK BK BK BK BK BK BK';
+ mappages["waterfallcave"].terrain[7] = 'BK BK BK cw cw cf cw cw cw BK BK BK cw cw cf cf cf cw cw cw BK BK BK BK BK BK';
+ mappages["waterfallcave"].terrain[8] = 'BK BK BK BK cw cw cw BK BK BK BK BK BK cw cw cf cf cf cf cw BK BK BK BK BK BK';
+ mappages["waterfallcave"].terrain[9] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cw cw BK BK BK BK BK';
+mappages["waterfallcave"].terrain[10] = 'BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cf cf cw BK BK BK BK BK';
+mappages["waterfallcave"].terrain[11] = 'BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK';
+mappages["waterfallcave"].terrain[12] = 'BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cw cw cf cf cf cw cw BK BK BK BK';
+mappages["waterfallcave"].terrain[13] = 'BK BK BK BK BK BK BK BK cw cf cf cf cf cw cw cw cw cf cf cf cf cw BK BK BK BK';
+mappages["waterfallcave"].terrain[14] = 'BK BK BK BK BK BK BK cw cw cf cf cw cw cw BK BK cw cw cf cf cf cw cw BK BK BK';
+mappages["waterfallcave"].terrain[15] = 'BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK cw cf cf cf cf cf cw cw BK BK';
+mappages["waterfallcave"].terrain[16] = 'BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK cw cf cf cf cf cf cf cw BK BK';
+mappages["waterfallcave"].terrain[17] = 'BK BK BK BK BK BK cw cw cf cf cf cw BK BK BK BK cw cf cf cf cf cf cf cw BK BK';
+mappages["waterfallcave"].terrain[18] = 'BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK cw cw cf cf cf cf cf cw BK BK';
+mappages["waterfallcave"].terrain[19] = 'BK BK BK BK BK cw cw cf cf cf cw cw BK BK BK BK BK cw cf cf cf cf cw cw BK BK';
+mappages["waterfallcave"].terrain[20] = 'BK BK BK BK cw cw cf cf cf cf cw BK BK BK BK BK cw cw cf cf cf cw cw BK BK BK';
+mappages["waterfallcave"].terrain[21] = 'BK BK BK BK cw cf cf cf cf cw cw BK BK BK BK BK cw cf cf cf cw cw BK BK BK BK';
+mappages["waterfallcave"].terrain[22] = 'BK BK BK BK cw cf cf cf cf cw BK BK BK BK BK BK cw cf cf cf cw cw BK BK BK BK';
+mappages["waterfallcave"].terrain[23] = 'BK BK BK BK cw cw cf cf cw cw BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK';
+mappages["waterfallcave"].terrain[24] = 'BK BK BK BK BK cw cw cw cw BK BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK';
+mappages["waterfallcave"].terrain[25] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cw cw BK BK BK BK';
+
+mappages["waterfallcave"].features = [];
+mappages["waterfallcave"].features[0] = {name : 'Campfire', x : 7, y : 21};
+mappages["waterfallcave"].features[1] = {name : 'PushablePileOfRocks', x : 21, y : 16};
+mappages["waterfallcave"].features[2] = {name : 'PushablePileOfRocks', x : 22, y : 17};
+mappages["waterfallcave"].features[3] = {name : 'PushablePileOfRocks', x : 22, y : 18};
+mappages["waterfallcave"].features[4] = {name : 'PushablePileOfRocks', x : 20, y : 17};
+mappages["waterfallcave"].features[5] = {name : 'PushablePileOfRocks', x : 21, y : 18};
+mappages["waterfallcave"].features[6] = {name : 'AlchemyCrate', x : 21, y : 17};
+mappages["waterfallcave"].features[7] = {name : 'PushablePileOfRocks', x : 21, y : 17};
+
+mappages["waterfallcave"].npcs = [];
+mappages["waterfallcave"].npcs[0] = {name : 'CyclopsNPC', x : 8, y : 19, skintone: '1'};
+mappages["waterfallcave"].npcs[1] = {name : 'CyclopsNPC', x : 6, y : 21, skintone: '1'};
+mappages["waterfallcave"].npcs[2] = {name : 'CyclopsNPC', x : 7, y : 23, skintone: '1'};
+mappages["waterfallcave"].npcs[3] = {name : 'EttinNPC', x : 10, y : 14, skintone: '1'};
+mappages["waterfallcave"].npcs[4] = {name : 'EttinNPC', x : 11, y : 4, skintone: '1'};
+mappages["waterfallcave"].npcs[5] = {name : 'EttinNPC', x : 7, y : 5, skintone: '1'};
+
+mappages["waterfallcave"].desc = "Small Cave";
+mappages["waterfallcave"].longdesc = `As your eyes adjust to the light, you do not see any motion... but you do hear something, moving in the darkness beyond your vision.`;
+mappages["waterfallcave"].music = 'Cave';
+mappages["waterfallcave"].savename = `Small Cave`;
+mappages["waterfallcave"].exitmap = 'island';
+mappages["waterfallcave"].exitx = '54';
+mappages["waterfallcave"].exity = '48';
+mappages["waterfallcave"].wraps = '';
+mappages["waterfallcave"].enterx = '18';
+mappages["waterfallcave"].entery = '24';
+mappages["waterfallcave"].seeBelow = '';
+mappages["waterfallcave"].lightLevel = 'dark';
+mappages["waterfallcave"].alwaysRemember = '0';
+mappages["waterfallcave"].scale = '1';
+mappages["waterfallcave"].underground = '1';
+mappages["waterfallcave"].undergroundDesc = 'Small Cave';
+mappages["waterfallcave"].enterscript = '';
+mappages["waterfallcave"].entertestscript = '';
+mappages["waterfallcave"].exitscript = '';
+mappages["waterfallcave"].exittestscript = '';
+mappages["waterfallcave"].returnmap = 'island';
+mappages["waterfallcave"].returnx = '54';
+mappages["waterfallcave"].returny = '48';
+mappages["waterfallcave"].returninfused = '0';
+mappages["waterfallcave"].linkedMaps = [""];
+mappages["waterfallcave"].editorLabels = '{}';
+// MAP ENDS HERE
+
+mappages["waterfallcave"].onload = function(mapref) {
+  
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    if (DU.gameflags.getFlag("returned_alchemy") || (PC.checkInventory("AlchemyCrate"))) {
+      let fea = mapref.getTile(21,17).getFeatures();
+      let crate;
+      for (let i=0;i<fea.length;i++) {
+        if (fea[i].getName() === "AlchemyCrate") { crate = fea[i]; }
+      }
+      mapref.deleteThing(crate);
+    }
+
+
+  }
+}
