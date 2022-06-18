@@ -958,6 +958,11 @@ tileFactory.prototype.makePileOfRocksTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makePushablePileOfRocksTile = function() {
+  let newTile = new PushablePileOfRocksTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeDoorwayTile = function() {
   let newTile = new DoorwayTile();
   return newTile;
@@ -2655,6 +2660,11 @@ tileFactory.prototype.makeRubyGemoftheSunTile = function() {
 
 tileFactory.prototype.makeDecorativeArmorTile = function() {
   let newTile = new DecorativeArmorTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAlchemyCrateTile = function() {
+  let newTile = new AlchemyCrateTile();
   return newTile;
 }
 

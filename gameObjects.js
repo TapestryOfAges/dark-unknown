@@ -4458,6 +4458,20 @@ function PileOfRocksTile() {
 }
 PileOfRocksTile.prototype = new FeatureObject();
 
+function PushablePileOfRocksTile() {
+  this.name = "PushablePileOfRocks";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-672";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "pile of rocks";
+  this.peerview = "#606060";
+  Pushable.call(this);
+}
+PushablePileOfRocksTile.prototype = new FeatureObject();
+
 function DoorwayTile() {
   this.name = "Doorway";
   this.graphic = "master_spritesheet.png";
@@ -12303,6 +12317,20 @@ function DecorativeArmorTile() {
   this.enchantable = 1;
 }
 DecorativeArmorTile.prototype = new ItemObject();
+
+function AlchemyCrateTile() {
+  this.name = "AlchemyCrate";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-384";
+	this.desc = "crate full of flasks, tools, and notes";
+	this.blocklos = 0;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.addType("Quest");
+  this.prefix = "a";
+  this.longdesc = "A crate full of flasks, tools, and notes, left behind in a cave.";
+}
+AlchemyCrateTile.prototype = new ItemObject();
 
 function FluteTile() {
   this.name = "Flute";
