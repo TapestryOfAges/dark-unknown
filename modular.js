@@ -221,7 +221,7 @@ OnDamagedFuncs["split"] = function(atk,who,dmg,weapon) {
         for (let j=-1;j<=1;j++) {
           let tile = whomap.getTile(who.getx()+i,who.gety()+j);
           if (tile !== "OoB") {
-            if (!tile.getTopFeature() && !tile.getTopNPC() && !tile.getTopPC() && tile.canMoveHere(MOVE_WALK)) {
+            if (!tile.getTopFeature() && !tile.getTopNPC() && !tile.getTopPC() && tile.canMoveHere(MOVE_WALK).canmove) {
               tileopts.push({x:who.getx()+i,y:who.gety()+j});
             }
           }
@@ -273,9 +273,16 @@ OnDeathFuncs["destroycrystals"] = function(who) {
   }
 }
 
-OnDeathFuncs["Elder"] = function() {
+OnDeathFuncs["Elder"] = function(who) {
   DU.gameflags.setFlag("elder_killed");
+  let dgmap = who.getHomeMap();
   maintext.addText('The dragon slumps to the ground, and opens one huge eye to gaze at you. Its voice rattles forth, "It is done. I see the path before you, mortal: You venture into a darkness the likes the world has ne\'er seen. May you never return to the lands of light..." The dragon\'s labored breathing ceases.');
+  for (let i=0;i<3;i++) {
+    let chest = localFactory.createTile("Chest");
+    chest.setLootgroup("castlechest");
+    AddLoot(chest);
+    dgmap.placeThing(who.attachedParts[i].getx(), who.attachedParts[i].gety(), chest);
+  }
 }
 
 OnDeathFuncs["endact"] = function() {
