@@ -22,6 +22,7 @@ function MultiSegment() {
   this.attachedTo = {};
   this.currentAI = "segment";
   this.peaceAI = "segment";
+  this.special = 'noact';  // segments turns are skipped
 }
 MultiSegment.prototype = new NPCObject();
 
@@ -159,13 +160,14 @@ function ElderDragonNPCTile() {
   this.dex = 30;
   this.int = 30;
   this.alignment = 'Evil';
-  this.attitude = 'hostile';
+  this.attitude = 'friendly';
   this.peaceAI = 'elderdragon';
   this.forgetAt = 10;
   this.withdraw = 0;
   this.graphic = 'elderdragon.gif';
   this.spritexoffset = 0;
   this.spriteyoffset = 0;
+  this.level = 7;
   this.meleeAttackAs = 'none';
   this.meleeDamage = '5d8+15';
   this.meleeStrDamage = 1;
@@ -173,7 +175,7 @@ function ElderDragonNPCTile() {
   this.armorAs = 'PlateArmor';
   this.movetype = MOVE_FLY;
   this.leavesCorpse = 'none';
-  this.lootTable = 'elderdragon';
+  this.lootTable = 'castlechest';
   this.prefix = 'an';
   this.desc = "elder dragon";
   this.meleeChance = 70;
@@ -181,7 +183,7 @@ function ElderDragonNPCTile() {
   this.resists = { fire:50 };
   this.meleeHitSound = 'sfx_roar_hit';
   this.meleeAttackSound = 'sfx_roar_miss';
-  this.special = 'miniboss,ondeathElder';
+  this.special = 'miniboss,ondeathElder,reach';
 
   MultiTileNPC.call(this, ["ElderDragonForelimbSegment","ElderDragonHindlimbSegment","ElderDragonTailSegment"], [[0,1],[1,1],[1,0]])
 }
