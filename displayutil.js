@@ -181,7 +181,7 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
     maintext.setInputLine("&gt;");
     maintext.drawInputLine();
 
-    if (param.finishcallback) { param.finishcallback(atk,def,cbp); }
+    if (param.finishcallback) { param.finishcallback(atk,def,param.callbackparam); }
     
     if ((!doagain) && (endturn)) {
 //      console.log("Ending turn.");
