@@ -2478,6 +2478,26 @@ tileFactory.prototype.makeFrozenSunlightTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeRippedAudachtaNemesosTile = function() {
+  let newTile = new RippedAudachtaNemesosTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosPage1Tile = function() {
+  let newTile = new AudachtaNemesosPage1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosPage2Tile = function() {
+  let newTile = new AudachtaNemesosPage2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosPage3Tile = function() {
+  let newTile = new AudachtaNemesosPage3Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeCourierPouchTile = function() {
   let newTile = new CourierPouchTile();
   return newTile;
@@ -3470,6 +3490,11 @@ tileFactory.prototype.makeAudachtaNemesosMeteorSwarmTile = function() {
 
 tileFactory.prototype.makeAudachtaNemesosMindBlastTile = function() {
   let newTile = new AudachtaNemesosMindBlastTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosPermanenceTile = function() {
+  let newTile = new AudachtaNemesosPermanenceTile();
   return newTile;
 }
 

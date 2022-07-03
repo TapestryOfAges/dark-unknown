@@ -10063,7 +10063,7 @@ SandstoneWallTile.prototype.use = function(who) {
   }
   let desttile = themap.getTile(this.getx()+diffx, this.gety()+diffy);
   let ontile = desttile.canMoveHere(MOVE_WALK,0);
-  if (!ontile) {
+  if (!ontile["canmove"]) {
     retval["txt"] = "Something is in the way.";
     return retval;
   }
@@ -11688,6 +11688,84 @@ FrozenSunlightTile.prototype.myTurn = function() {
   return 1;
 }
 
+function RippedAudachtaNemesosTile() {
+  this.name = "RippedAudachtaNemesos";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-1216";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a"
+  this.desc = "ripped Audachta Nemesos";
+  this.longdesc = "An Audachta Nemesos that has had three pages torn out, rendering it unreadable.";
+
+  this.addType("Quest");  
+  Breakable.call(this,["master_spritesheet.png", "", "-160", "-1216"],1);
+  this.cannotrepair = 1; 
+}
+RippedAudachtaNemesosTile.prototype = new ItemObject();
+
+RippedAudachtaNemesosTile.prototype.onMend = function(who) {
+  if (who.checkInventory("AudachtaNemesosPage1") && who.checkInventory("AudachtaNemesosPage2") && who.checkInventory("AudachtaNemesosPage3")) {
+    maintext.addText("You put the pages together with the book, and cast Mending. The entire thing glows for several heartbeats, then fades, now intact.");
+    maintext.addText("<span class='sysconv'>You now have: Audachta Nemesos: Permanence.</span>");
+    who.removeFromInventory(this);
+    who.removeFromInventory(who.checkInventory("AudachtaNemesosPage1"));
+    who.removeFromInventory(who.checkInventory("AudachtaNemesosPage2"));
+    who.removeFromInventory(who.checkInventory("AudachtaNemesosPage3"));
+    who.addToInventory(localFactory.createTile("AudachtaNemesosPermanence"),1);
+    return 0;
+  } else {
+    maintext.addText("The torn book glows briefly, but nothing happens. You don't have all the missing pages.");
+    return 0;
+  }
+}
+
+function AudachtaNemesosPage1Tile() {
+  this.name = "AudachtaNemesosPage1";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1536";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a"
+  this.desc = "page torn from a Audachta Nemesos";
+  this.longdesc = "A page that has been torn from an Audachta Nemesos.";
+
+  this.addType("Quest");  
+}
+AudachtaNemesosPage1Tile.prototype = new ItemObject();
+
+function AudachtaNemesosPage2Tile() {
+  this.name = "AudachtaNemesosPage2";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1536";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a"
+  this.desc = "page torn from a Audachta Nemesos";
+  this.longdesc = "A page that has been torn from an Audachta Nemesos.";
+
+  this.addType("Quest");  
+}
+AudachtaNemesosPage2Tile.prototype = new ItemObject();
+
+function AudachtaNemesosPage3Tile() {
+  this.name = "AudachtaNemesosPage3";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1536";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a"
+  this.desc = "page torn from a Audachta Nemesos";
+  this.longdesc = "A page that has been torn from an Audachta Nemesos.";
+
+  this.addType("Quest");  
+}
+AudachtaNemesosPage3Tile.prototype = new ItemObject();
+
 function CourierPouchTile() {
   this.name = "CourierPouch";
   this.graphic = "master_spritesheet_d.gif";
@@ -12501,6 +12579,125 @@ StolenJewelryTile.prototype.onGet = function(who) {
   DU.gameflags.setFlag("stolenjewelry_taken",1);
 }
 
+function KeyOfAshesTile() {
+  this.name = "KeyOfAshes";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-1312";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Key of Ashes";
+  this.prefix = "the";
+  this.longdesc = "The key of ashes. It feels strangely fragile...";
+  this.usedesc = "Unknown.";
+}
+KeyOfAshesTile.prototype = new ItemObject();  
+
+function KeyOfIceTile() {
+  this.name = "KeyOfIce";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-1312";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Key of Ice";
+  this.prefix = "the";
+  this.longdesc = "The Key of Ice. Cold to the touch, but does not seem to melt.";
+  this.usedesc = "Unknown.";
+}
+KeyOfIceTile.prototype = new ItemObject();  
+
+function KeyOfBoneTile() {
+  this.name = "KeyOfBone";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-1312";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Key of Bone";
+  this.prefix = "the";
+  this.longdesc = "The Key of Bone. Looking at it gives you an uncomfortable feeling.";
+  this.usedesc = "Unknown.";
+}
+KeyOfBoneTile.prototype = new ItemObject();  
+
+function KeyOfDustTile() {
+  this.name = "KeyOfDust";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-1312";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Key of Dust";
+  this.prefix = "the";
+  this.longdesc = "The Key of Dust. How is it held together...?";
+  this.usedesc = "Unknown.";
+}
+KeyOfDustTile.prototype = new ItemObject();  
+
+function AltarOfAshesTile() {
+	this.name = "AltarOfAshes";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-736";
+	this.passable = MOVE_ETHEREAL + MOVE_FLY;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "altar";
+	this.peerview = "white";
+}
+AltarOfAshesTile.prototype = new FeatureObject();
+
+function AltarOfIceTile() {
+	this.name = "AltarOfIce";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-736";
+	this.passable = MOVE_ETHEREAL + MOVE_FLY;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "altar";
+	this.peerview = "white";
+}
+AltarOfIceTile.prototype = new FeatureObject();
+
+function AltarOfBoneTile() {
+	this.name = "AltarOfBone";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-736";
+	this.passable = MOVE_ETHEREAL + MOVE_FLY;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "altar";
+	this.peerview = "white";
+}
+AltarOfBoneTile.prototype = new FeatureObject();
+
+function AltarOfDustTile() {
+	this.name = "AltarOfDust";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-736";
+	this.passable = MOVE_ETHEREAL + MOVE_FLY;
+	this.blocklos = 0;
+	this.prefix = "a";
+	this.desc = "grey altar, covered with a coating of dust";
+	this.peerview = "white";
+}
+AltarOfDustTile.prototype = new FeatureObject();
+
+AlterOfDustTile.prototype.use = function(who) {
+  let retval = {};
+  retval["fin"] = 1;
+  retval["txt"] = "You sweep your hand across the top, but even as you cast dust off to the side, some always seems to remain. You do see, however, a slot in the top surface, into which something could be inserted.";
+  retval["input"] = "&gt;";
+}
+
 function GoldTile() {
   this.name = "Gold";
   //this.graphic = "master_spritesheet_d.gif";
@@ -12713,66 +12910,6 @@ function BlackDragonKeyTile() {
   this.usedesc = "Opens locked doors in Black Dragon Castle.";
 }
 BlackDragonKeyTile.prototype = new KeyItemObject();  
-
-function KeyOfAshesTile() {
-  this.name = "KeyOfAshes";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-1312";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Key of Ashes";
-  this.prefix = "the";
-  this.longdesc = "The key of ashes. It feels strangely fragile...";
-  this.usedesc = "Unknown.";
-}
-KeyOfAshesTile.prototype = new KeyItemObject();  
-
-function KeyOfIceTile() {
-  this.name = "KeyOfIce";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1312";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Key of Ice";
-  this.prefix = "the";
-  this.longdesc = "The Key of Ice. Cold to the touch, but does not seem to melt.";
-  this.usedesc = "Unknown.";
-}
-KeyOfIceTile.prototype = new KeyItemObject();  
-
-function KeyOfBoneTile() {
-  this.name = "KeyOfBone";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-1312";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Key of Bone";
-  this.prefix = "the";
-  this.longdesc = "The Key of Bone. Looking at it gives you an uncomfortable feeling.";
-  this.usedesc = "Unknown.";
-}
-KeyOfBoneTile.prototype = new KeyItemObject();  
-
-function KeyOfDustTile() {
-  this.name = "KeyOfDust";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1312";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Key of Dust";
-  this.prefix = "the";
-  this.longdesc = "The Key of Dust. How is it held together...?";
-  this.usedesc = "Unknown.";
-}
-KeyOfDustTile.prototype = new KeyItemObject();  
 
 function KeyOfSunTile() {
   this.name = "KeyOfSun";
@@ -13216,7 +13353,7 @@ function RuinsJournalTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
   this.prefix = "a";
-  this.contents = "You open the journal.%%<span class='conv'>I fear we are beyond help. I write this down just to get the story out of my head-perhaps someday, someone will see it.</span>%%<span class='conv'>Our boat arrived here, with a crew of three dozen-an island of supremely fertile land, uncertainly attached to a volcano that we very much hoped Terrance was correct that it was dormant.</span>%%<span class='conv'>Terrance, our weather adept, enabled us to cross the ocean, and then built our side of the Gateway back to the duchy. As soon as it was open, half of our people returned there, and were replaced with a score of new settlers, bringing building materials.</span>%%<span class='conv'>As we built, we began to hear rumors of The Hydra. A huge beast with a dozen heads that would roam the island at night. One of our bravest soldiers went forth with her magic weapon to try to destroy it, and never returned.</span>%%<span class='conv'>We built, and we prepared to plant, when one day, two weeks ago, the portal just… closed. Disappeared. We are trapped, 30 people in a half-built village, no way to get more supplies, no way to go home.</span>%%<span class='conv'>We will never know what happened. To whomever is reading this, I don’t know how you found it, but this is our tale. Remember us.</span>";
+  this.contents = "You open the journal.%%<span class='conv'>I fear we are beyond help. I write this down just to get the story out of my head-perhaps someday, someone will see it.</span>%%<span class='conv'>Our boat arrived here, with a crew of three dozen-an island of supremely fertile land, uncertainly attached to a volcano that we very much hoped Terrance was correct that it was dormant.</span>%%<span class='conv'>Terrance, our weather adept, enabled us to cross the ocean, and then built our side of the Gateway back to the duchy. As soon as it was open, half of our people returned there, and were replaced with a score of new settlers, bringing building materials.</span>%%<span class='conv'>As we built, we began to hear rumors of The Devourer. A huge beast with a dozen heads that would roam the island at night. One of our bravest soldiers went forth with her magic weapon to try to destroy it, and never returned.</span>%%<span class='conv'>We built, and we prepared to plant, when one day, two weeks ago, the portal just… closed. Disappeared. We are trapped, 30 people in a half-built village, no way to get more supplies, no way to go home.</span>%%<span class='conv'>We will never know what happened. To whomever is reading this, I don’t know how you found it, but this is our tale. Remember us.</span>";
   this.longdesc = "A small bound book found in a chest in Skara Brae.";
 }
 RuinsJournalTile.prototype = new BookItemObject();
@@ -15296,6 +15433,19 @@ function AudachtaNemesosMindBlastTile() {
 }
 AudachtaNemesosMindBlastTile.prototype = new AudachtaNemesosObject();
 
+function AudachtaNemesosPermanenceTile() {
+  this.name = "AudachtaNemesosPermanence";
+  this.desc = "Audachta Nemesos: Permanence";
+  this.prefix = "an";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-1216";
+  this.spelllevel = SPELL_PERMANENCE_LEVEL;
+  this.spellnum = SPELL_PERMANENCE_ID;
+  this.spellname = "Permanence";
+}
+AudachtaNemesosPermanenceTile.prototype = new AudachtaNemesosObject();
+
 function AudachtaNemesosArrowOfGlassTile() {
   this.name = "AudachtaNemesosArrowOfGlass";
   this.desc = "Audachta Nemesos: Arrow of Glass";
@@ -16181,6 +16331,7 @@ UnenchantedSwordTile.prototype.onMend = function() {
   this.damage = "4d6+10";
   this.enchantable = 1;
   // only becomes enchantable once you Mend it
+  return 1;
 }
 
 // LightningSword, FlamingSword, SwordOfDefense, VenomSword ?
@@ -16918,12 +17069,13 @@ NPCObject.prototype.processDeath = function(droploot){
         map.placeThing(thisx,thisy, chest);
       }  
     }
-    let redrawtype = "one";
     if (this.attachedParts) {
-      for (let i=0;i<attachedParts.length;i++) {
+      for (let i=0;i<this.attachedParts.length;i++) {
+        let dx = this.attachedParts[i].getx();
+        let dy = this.attachedParts[i].gety()        
         map.deleteThing(this.attachedParts[i]);
+        DrawMainFrame("one",map,dx,dy);
       }
-      redrawtype = "draw";
     }
     map.deleteThing(this);
     if (this.summonedby) {
@@ -16935,7 +17087,7 @@ NPCObject.prototype.processDeath = function(droploot){
       delete this.summoned;
     }
     if ((typeof this.getLight === "function") && (Math.abs(this.getLight()) > 0)) {
-      redrawtype = "draw";
+      DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
     }
     if (map.getName() === "shadow1") {
       let npcs = map.npcs.getAll();
@@ -16947,7 +17099,7 @@ NPCObject.prototype.processDeath = function(droploot){
       };
       if (safe === 1) { DU.gameflags.setFlag("shadow_safe", 1); } 
     }
-    DrawMainFrame(redrawtype,map,thisx,thisy);
+    DrawMainFrame("one",map,thisx,thisy);
     DUTime.removeEntityFrom(this);
     CheckPostDeathMusic(map);
     let spawner=this.getSpawnedBy();
@@ -17463,8 +17615,10 @@ NPCObject.prototype.activate = function(timeoverride) {
 	
   	this.spellbook = [];
 	  this.spellEffects = new Collection();
-	
-  	this.resists = {};   // fire, ice
+
+    if (!this.resists) {
+    	this.resists = {};   // fire, ice
+    }
 
 	  this.lastLocation = {};
     this.lastLocation.map = "";
