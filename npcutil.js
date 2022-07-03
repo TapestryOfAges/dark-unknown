@@ -36,7 +36,7 @@ NPCSpecialFuncs["light"] = function(who,how) {
 
 NPCSpecialFuncs["flamearmor"] = function(who,how) {
   let qobj = localFactory.createTile("FireArmor");
-  if (how !== 1) {
+  if (how) {
     qobj.setPower(how);
   } else {
     qobj.setPower("2d4");
@@ -83,6 +83,10 @@ NPCSpecialFuncs["ondeathCult"] = function(who,how) {
 
 NPCSpecialFuncs["ondeathDestroyCrystal"] = function(who,how) {
   who.onDeath = "destroycrystals";
+}
+
+NPCSpecialFuncs["ondeathElder"] = function(who,how) {
+  who.onDeath = "Elder";
 }
 
 function DestroyJusticeCrystals() {
@@ -233,7 +237,7 @@ function Attack(atk, def) {
     DebugWrite("combat", "Hit! Dealing " + dmg + " damage.<br />");
     if (atk.getOnHit()) {
       let onhits = atk.getOnHit().split(",");
-      for (let i=0;i<=onhits.length;i++) {
+      for (let i=0;i<onhits.length;i++) {
         if (typeof OnHitFuncs[onhits[i]] === "function") {
           DebugWrite("combat", "Undertaking onhit: " + onhits[i] + "<br />");
           OnHitFuncs[onhits[i]](atk,def,dmg);
