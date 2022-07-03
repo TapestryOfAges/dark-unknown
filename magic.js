@@ -685,11 +685,17 @@ function PerformMend(caster,infused,free,tgt) {
     desc = desc.charAt(0).toUpperCase() + desc.slice(1);
     resp["txt"] = desc;
   } else {
-    tgt.repair();
-    let desc = "The " + tgt.getDesc() + " glows briefly, and is mended!";
-    desc = desc.charAt(0).toUpperCase() + desc.slice(1);
-    PlayCastSound(caster,"sfx_ding");
-    resp["txt"] = desc;    
+    if (tgt.cannotrepair) {
+      // for quest things that need Mending but don't break/repair
+      tgt.onMend(caster);
+      PlayCastSound(caster,"sfx_ding");
+    } else {
+      tgt.repair();
+      let desc = "The " + tgt.getDesc() + " glows briefly, and is mended!";
+      desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+      PlayCastSound(caster,"sfx_ding");
+      resp["txt"] = desc;    
+    }
   }
   resp["input"] = "&gt;";
   return resp;
