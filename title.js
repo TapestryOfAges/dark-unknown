@@ -890,6 +890,7 @@ function SaveChar() {
   
   themap = maps.addMap("darkunknown");
   maps.addMap("ellusus_limbo");
+  maps.addMap("underworld");
 
   PC.setHomeMap(themap);
   PC.setx(69);
