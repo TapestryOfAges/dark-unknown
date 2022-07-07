@@ -353,6 +353,18 @@ OnDeathFuncs["tharock"] = function() {
   }
 }
 
+OnDeathFuncs["archdaemon_bone"] = function() {
+  maintext.addText('Having been struck a mortal blow, the daemon straightens and stands tall. It spreads its wings and looks balefully into your eyes. "I know you now, Lightbearer." There is a flash of darkness, and it is gone.');
+}
+
+OnDeathFuncs["archdaemon_ashes"] = function() {
+  maintext.addText('As the daemon is struck down, it gasps: "You are... stronger than you appear, ... little one. But it will not... avail you..."');
+}
+
+OnDeathFuncs["archdaemon_dust"] = function() {
+  maintext.addText('As the daemon collapses, it cries out: "Great Shepherd of the Dark, I have failed you!"');
+}
+
 function PerformActEnd() {
   let endact = PC.getSpellEffectsByName("UnconsciousEndAct");
   if (endact.getPower() === 1) {
