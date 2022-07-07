@@ -194,7 +194,11 @@ mappages["underworld"].features[64] = {name : 'EnergyField', x : 85, y : 54};
 mappages["underworld"].features[65] = {name : 'EnergyField', x : 86, y : 54};
 mappages["underworld"].features[66] = {name : 'EnergyField', x : 87, y : 54};
 mappages["underworld"].features[67] = {name : 'EnergyField', x : 88, y : 54};
-mappages["underworld"].features[62] = {name : 'Chest', x : 61, y : 95, locked : 0, lootgroup : 'Underworld3'};
+mappages["underworld"].features[68] = {name : 'Chest', x : 61, y : 95, locked : 0, lootgroup : 'Underworld3'};
+mappages["underworld"].features[69] = {name : 'AltarOfIce', x : 97, y : 58};
+mappages["underworld"].features[70] = {name : 'AltarOfAshes', x : 96, y : 60};
+mappages["underworld"].features[71] = {name : 'AltarOfDust', x : 89, y : 61};
+mappages["underworld"].features[72] = {name : 'AltarOfBone', x : 95, y : 62};
 
 mappages["underworld"].npcs = [];
 
@@ -825,9 +829,9 @@ mappages["eldercave"].desc = "Elder Dragon Lair";
 mappages["eldercave"].longdesc = `The heat is, if anything, even more intense as you enter this cave. From within, you hear a muffled rumbling sound. Possibly, something breathing...`;
 mappages["eldercave"].music = 'Cave';
 mappages["eldercave"].savename = `dragon lair`;
-mappages["eldercave"].exitmap = '';
-mappages["eldercave"].exitx = '65';
-mappages["eldercave"].exity = '70';
+mappages["eldercave"].exitmap = 'underworld';
+mappages["eldercave"].exitx = '36';
+mappages["eldercave"].exity = '91';
 mappages["eldercave"].wraps = '';
 mappages["eldercave"].enterx = '65';
 mappages["eldercave"].entery = '70';
