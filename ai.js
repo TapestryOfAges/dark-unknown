@@ -90,6 +90,9 @@ ais.combat = function(who) {
       return retval; 
     } 
   }
+  if (who.specials.archdaemon_ice || who.specials.archdaemon_dust || who.specials.archdaemon_ashes || who.specials.archdaemon_bone) {
+    DoArchdaemon(who);
+  }
   
   // check to see if we should cease to aggro
   // need no one in your Band be within "forgetAt" radius
