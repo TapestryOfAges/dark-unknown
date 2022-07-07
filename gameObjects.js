@@ -12382,6 +12382,15 @@ RubyGemoftheSunTile.prototype.use = function(who) {
   return retval;
 }
 
+function GetNumberBeacons() {
+  let num = 0;
+  if (DU.gameflags.getFlag("ashesbeacon")) { num++; }
+  if (DU.gameflags.getFlag("dustbeacon")) { num++; }
+  if (DU.gameflags.getFlag("icebeacon")) { num++; }
+  if (DU.gameflags.getFlag("bonebeacon")) { num++; }
+
+  return num;
+}
 
 function DecorativeArmorTile() {
 	this.name = "DecorativeArmor";
@@ -12579,66 +12588,6 @@ StolenJewelryTile.prototype.onGet = function(who) {
   DU.gameflags.setFlag("stolenjewelry_taken",1);
 }
 
-function KeyOfAshesTile() {
-  this.name = "KeyOfAshes";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-1312";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Key of Ashes";
-  this.prefix = "the";
-  this.longdesc = "The key of ashes. It feels strangely fragile...";
-  this.usedesc = "Unknown.";
-}
-KeyOfAshesTile.prototype = new ItemObject();  
-
-function KeyOfIceTile() {
-  this.name = "KeyOfIce";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1312";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Key of Ice";
-  this.prefix = "the";
-  this.longdesc = "The Key of Ice. Cold to the touch, but does not seem to melt.";
-  this.usedesc = "Unknown.";
-}
-KeyOfIceTile.prototype = new ItemObject();  
-
-function KeyOfBoneTile() {
-  this.name = "KeyOfBone";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-1312";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Key of Bone";
-  this.prefix = "the";
-  this.longdesc = "The Key of Bone. Looking at it gives you an uncomfortable feeling.";
-  this.usedesc = "Unknown.";
-}
-KeyOfBoneTile.prototype = new ItemObject();  
-
-function KeyOfDustTile() {
-  this.name = "KeyOfDust";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1312";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Key of Dust";
-  this.prefix = "the";
-  this.longdesc = "The Key of Dust. How is it held together...?";
-  this.usedesc = "Unknown.";
-}
-KeyOfDustTile.prototype = new ItemObject();  
-
 function AltarOfAshesTile() {
 	this.name = "AltarOfAshes";
   this.graphic = "master_spritesheet.png";
@@ -12646,11 +12595,18 @@ function AltarOfAshesTile() {
   this.spriteyoffset = "-736";
 	this.passable = MOVE_ETHEREAL + MOVE_FLY;
 	this.blocklos = 0;
-	this.prefix = "an";
-	this.desc = "altar";
+	this.prefix = "a";
+	this.desc = "mottled white and dark altar";
 	this.peerview = "white";
 }
 AltarOfAshesTile.prototype = new FeatureObject();
+
+AltarOfAshesTile.prototype.use = function(who) {
+  let retval = {};
+  retval["fin"] = 1;
+  retval["txt"] = "You realize that the altar itself is pure white, but coated in a thick layer of ash, which resists any attempts to wipe away. On top, obscured by the ash, there is a slot into which something could be inserted.";
+  retval["input"] = "&gt;";
+}
 
 function AltarOfIceTile() {
 	this.name = "AltarOfIce";
@@ -12660,10 +12616,17 @@ function AltarOfIceTile() {
 	this.passable = MOVE_ETHEREAL + MOVE_FLY;
 	this.blocklos = 0;
 	this.prefix = "an";
-	this.desc = "altar";
+	this.desc = "iridescent altar";
 	this.peerview = "white";
 }
 AltarOfIceTile.prototype = new FeatureObject();
+
+AltarOfIceTile.prototype.use = function(who) {
+  let retval = {};
+  retval["fin"] = 1;
+  retval["txt"] = "As you approach the altar you are assailed by a bitter cold. Light glistens strangely off the icy surface, on which you see a slot into which something could be inserted.";
+  retval["input"] = "&gt;";
+}
 
 function AltarOfBoneTile() {
 	this.name = "AltarOfBone";
@@ -12673,10 +12636,17 @@ function AltarOfBoneTile() {
 	this.passable = MOVE_ETHEREAL + MOVE_FLY;
 	this.blocklos = 0;
 	this.prefix = "an";
-	this.desc = "altar";
+	this.desc = "altar of pure white, made of many small angular pieces";
 	this.peerview = "white";
 }
 AltarOfBoneTile.prototype = new FeatureObject();
+
+AltarOfBoneTile.prototype.use = function(who) {
+  let retval = {};
+  retval["fin"] = 1;
+  retval["txt"] = "On closer inspection, you realize that this altar is made up of hundreds of clean bones. On the top, you see a slot into which something could be inserted.";
+  retval["input"] = "&gt;";
+}
 
 function AltarOfDustTile() {
 	this.name = "AltarOfDust";
@@ -12691,7 +12661,7 @@ function AltarOfDustTile() {
 }
 AltarOfDustTile.prototype = new FeatureObject();
 
-AlterOfDustTile.prototype.use = function(who) {
+AltarOfDustTile.prototype.use = function(who) {
   let retval = {};
   retval["fin"] = 1;
   retval["txt"] = "You sweep your hand across the top, but even as you cast dust off to the side, some always seems to remain. You do see, however, a slot in the top surface, into which something could be inserted.";
@@ -13450,6 +13420,138 @@ function ConsumableItemObject() {
   this.addType("Consumable");
 }
 ConsumableItemObject.prototype = new ItemObject();
+
+function KeyOfAshesTile() {
+  this.name = "KeyOfAshes";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-1312";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Key of Ashes";
+  this.prefix = "the";
+  this.longdesc = "The key of ashes. It feels strangely fragile...";
+  this.usedesc = "Unknown.";
+}
+KeyOfAshesTile.prototype = new ConsumableItemObject();  
+
+KeyOfAshesTile.prototype.use = function(who) {
+  let retval = {fin:1};
+  if ((who.getx() === 95) && (who.gety() === 60)) {
+    let stuff = who.getHomeMap().getTile(88,54).getFeatures();
+    let field;
+    for (let i=0;i<stuff.length;i++) {
+      if (stuff[i].getName() === "EnergyField") { field = stuff[i]; }
+    }
+    who.getHomeMap().deleteThing(field);
+    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+    retval["txt"] = "You insert the key into the opening on the ash covered surface, and carefully turn. There is a click, and then the key crumbles into ash that mixes with what is already present.";
+  } else {
+    retval["txt"] = "You cannot find a place to use that here.";
+    retval["preserve"] = 1;
+  }
+  return retval;
+}
+
+function KeyOfIceTile() {
+  this.name = "KeyOfIce";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-1312";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Key of Ice";
+  this.prefix = "the";
+  this.longdesc = "The Key of Ice. Cold to the touch, but does not seem to melt.";
+  this.usedesc = "Unknown.";
+}
+KeyOfIceTile.prototype = new ConsumableItemObject();  
+
+KeyOfIceTile.prototype.use = function(who) {
+  let retval = {fin:1};
+  if ((who.getx() === 96) && (who.gety() === 58)) {
+    let stuff = who.getHomeMap().getTile(86,54).getFeatures();
+    let field;
+    for (let i=0;i<stuff.length;i++) {
+      if (stuff[i].getName() === "EnergyField") { field = stuff[i]; }
+    }
+    who.getHomeMap().deleteThing(field);
+    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+    retval["txt"] = "You insert the key into the opening on the slick, icy surface, and gracefully turn. There is a click, and then the key melts in your hand, the water running down the altar until it freezes.";
+  } else {
+    retval["txt"] = "You cannot find a place to use that here.";
+    retval["preserve"] = 1;
+  }
+  return retval;
+}
+
+function KeyOfBoneTile() {
+  this.name = "KeyOfBone";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-1312";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Key of Bone";
+  this.prefix = "the";
+  this.longdesc = "The Key of Bone. Looking at it gives you an uncomfortable feeling.";
+  this.usedesc = "Unknown.";
+}
+KeyOfBoneTile.prototype = new ConsumableItemObject();  
+
+KeyOfBoneTile.prototype.use = function(who) {
+  let retval = {fin:1};
+  if ((who.getx() === 94) && (who.gety() === 62)) {
+    let stuff = who.getHomeMap().getTile(85,54).getFeatures();
+    let field;
+    for (let i=0;i<stuff.length;i++) {
+      if (stuff[i].getName() === "EnergyField") { field = stuff[i]; }
+    }
+    who.getHomeMap().deleteThing(field);
+    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+    retval["txt"] = "You insert the key into the opening on the strange, bone surface, and carefully turn. There is a click, and then the key glows brightly for a moment... and then is gone.";
+  } else {
+    retval["txt"] = "You cannot find a place to use that here.";
+    retval["preserve"] = 1;
+  }
+  return retval;
+}
+
+function KeyOfDustTile() {
+  this.name = "KeyOfDust";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-1312";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Key of Dust";
+  this.prefix = "the";
+  this.longdesc = "The Key of Dust. How is it held together...?";
+  this.usedesc = "Unknown.";
+}
+KeyOfDustTile.prototype = new ConsumableItemObject();  
+
+KeyOfDustTile.prototype.use = function(who) {
+  let retval = {fin:1};
+  if ((who.getx() === 90) && (who.gety() === 61)) {
+    let stuff = who.getHomeMap().getTile(87,54).getFeatures();
+    let field;
+    for (let i=0;i<stuff.length;i++) {
+      if (stuff[i].getName() === "EnergyField") { field = stuff[i]; }
+    }
+    who.getHomeMap().deleteThing(field);
+    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+    retval["txt"] = "You insert the key into the opening on the dust coated surface, and turn. There is a click, and then the key disintegrates into dust.";
+  } else {
+    retval["txt"] = "You cannot find a place to use that here.";
+    retval["preserve"] = 1;
+  }
+  return retval;
+}
 
 function StoneOfCursesTile() {
   this.name = "StoneOfCurses";
