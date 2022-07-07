@@ -1565,6 +1565,18 @@ function CheckForCourier(mapref, enterx, entery, exitx, exity) {
   }
 }
 
+function SuppressMove(txt, direction) {
+  let test = "Move " + direction + ".";
+  if (txt === test) { return ""; }
+  test = "Move " + direction + " - Blocked!";
+  if (txt === test) { return ""; }
+  test = "Move " + direction + ".<br />";
+  if (txt.includes(test)) {
+    return (txt.replace(test,""));
+  }
+  return txt;
+}
+
 //EXTERNALLY SOURCED
 
 // this function found on stackexchange
