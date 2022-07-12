@@ -1208,6 +1208,24 @@ GameMap.prototype.createPathGrid = function() {
   }
 }
 
+GameMap.prototype.createSinglePathGrid = function(movetype) {
+  if (!this.pathGrid[movetype]) {
+    this.pathGrid[movetype] = new PF.Grid(this.getWidth(), this.getHeight());
+    for (let i=0; i<this.getWidth(); i++) {
+      for (let j=0; j<this.getHeight(); j++) {
+        let thisspot = this.getTile(i,j);
+        let response = thisspot.canMoveHere(movetype, 1);
+        if (!response["canmove"]) { this.setWalkableAt(i,j,false,movetype); }
+        let pathweight;
+        if (movetype===MOVE_WALK_DOOR) { pathweight = thisspot.getPathWeight("civilized"); }
+        else { pathweight = thisspot.getPathWeight(); }
+        if (!pathweight) { pathweight = 1; }
+        this.setWeightAt(i,j,pathweight,movetype);
+      }
+    }
+  }
+}
+
 GameMap.prototype.getPath = function(fromx,fromy,tox,toy,movetype) {
   if (!movetype) { alert("getPath called with no movetype"); }
   
@@ -1225,11 +1243,15 @@ GameMap.prototype.getPath = function(fromx,fromy,tox,toy,movetype) {
 }
 
 GameMap.prototype.setWalkableAt = function(x,y,canwalk,movetype) {
-  this.pathGrid[movetype].setWalkableAt(x,y,canwalk);
+  if (this.pathGrid[movetype]) {
+    this.pathGrid[movetype].setWalkableAt(x,y,canwalk);
+  }
 }
 
 GameMap.prototype.setWeightAt = function(x,y,cost,movetype) {
-  this.pathGrid[movetype].setWeightAt(x,y,cost);
+  if (this.pathGrid[movetype]) {
+    this.pathGrid[movetype].setWeightAt(x,y,cost);
+  }
 }
 
 
@@ -1388,6 +1410,9 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride,noactivate) {
     if (newthing.checkType("NPC") && (typeof this.Enter === "function")) {
       this.Enter(newthing,"",0,0,x,y);
     }
+    if (newthing.checkType("NPC")) {
+      this.createSinglePathGrid(newthing.getMovetype());
+    }
 
     let type = newthing.getTypeForMap() + "s";
     if (!this.data[type]) { this.data[type] = new Collection(); }
@@ -1418,7 +1443,8 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride,noactivate) {
 	  //update pathfinding
 	  if ((type !== "npcs") && (type !== "pcs")) {
       let tile = this.getTile(x,y);
-      for (let itr=1; itr<=32; itr=itr*2) {
+//      for (let itr=1; itr<=32; itr=itr*2) {
+      for (let itr in this.pathGrid) {
         let response = tile.canMoveHere(itr, 1);
 	      if (response["canmove"]) { this.setWalkableAt(x,y,true,itr); }
         else { this.setWalkableAt(x,y,false,itr); }
@@ -1458,7 +1484,8 @@ GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump
   if ((type !== "npcs") && (type !== "pcs")) {
     let oldtile = this.getTile(oldx,oldy);
     let tile = this.getTile(x,y);
-  	for (let i=1; i<=32; i=i*2) {
+//  	for (let i=1; i<=32; i=i*2) {
+    for (let i in this.pathGrid) {
 	    let response = oldtile.canMoveHere(i, 1);
       if (response["canmove"]) { this.setWalkableAt(oldx,oldy,true,i); }
       else { this.setWalkableAt(oldx,oldy,false,i); }
@@ -1490,7 +1517,8 @@ GameMap.prototype.deleteThing = function(thing) {
 	//update pathfinding
 	if ((type !== "npcs") && (type !== "pcs")) {
     let tile = this.getTile(oldx,oldy);
-	  for (let i=1; i<=32; i=i*2) {
+//	  for (let i=1; i<=32; i=i*2) {
+    for (let i in this.pathGrid) {
 	    let response = tile.canMoveHere(i, 1);
   	  if (response["canmove"]) { this.setWalkableAt(oldx,oldy,true,i); }
 	    else { this.setWalkableAt(oldx,oldy,false,i); }
@@ -1793,7 +1821,8 @@ GameMap.prototype.loadMap = function (name) {
   }
   
   this.setName(name);
-  this.createPathGrid();
+  //this.createPathGrid();
+  this.createSinglePathGrid(MOVE_WALK_DOOR);
 
   let litfeatures = [];
 

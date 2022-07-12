@@ -221,7 +221,7 @@ OnDamagedFuncs["split"] = function(atk,who,dmg,weapon) {
         for (let j=-1;j<=1;j++) {
           let tile = whomap.getTile(who.getx()+i,who.gety()+j);
           if (tile !== "OoB") {
-            if (!tile.getTopFeature() && !tile.getTopNPC() && !tile.getTopPC() && tile.canMoveHere(MOVE_WALK)) {
+            if (!tile.getTopFeature() && !tile.getTopNPC() && !tile.getTopPC() && tile.canMoveHere(MOVE_WALK).canmove) {
               tileopts.push({x:who.getx()+i,y:who.gety()+j});
             }
           }
@@ -273,9 +273,16 @@ OnDeathFuncs["destroycrystals"] = function(who) {
   }
 }
 
-OnDeathFuncs["Elder"] = function() {
+OnDeathFuncs["Elder"] = function(who) {
   DU.gameflags.setFlag("elder_killed");
+  let dgmap = who.getHomeMap();
   maintext.addText('The dragon slumps to the ground, and opens one huge eye to gaze at you. Its voice rattles forth, "It is done. I see the path before you, mortal: You venture into a darkness the likes the world has ne\'er seen. May you never return to the lands of light..." The dragon\'s labored breathing ceases.');
+  for (let i=0;i<3;i++) {
+    let chest = localFactory.createTile("Chest");
+    chest.setLootgroup("castlechest");
+    AddLoot(chest);
+    dgmap.placeThing(who.attachedParts[i].getx(), who.attachedParts[i].gety(), chest);
+  }
 }
 
 OnDeathFuncs["endact"] = function() {
@@ -344,6 +351,18 @@ OnDeathFuncs["tharock"] = function() {
   if (tharock) {
     tharock.timer = 1;
   }
+}
+
+OnDeathFuncs["archdaemon_bone"] = function() {
+  maintext.addText('Having been struck a mortal blow, the daemon straightens and stands tall. It spreads its wings and looks balefully into your eyes. "I know you now, Lightbearer." There is a flash of darkness, and it is gone.');
+}
+
+OnDeathFuncs["archdaemon_ashes"] = function() {
+  maintext.addText('As the daemon is struck down, it gasps: "You are... stronger than you appear, ... little one. But it will not... avail you..."');
+}
+
+OnDeathFuncs["archdaemon_dust"] = function() {
+  maintext.addText('As the daemon collapses, it cries out: "Great Shepherd of the Dark, I have failed you!"');
 }
 
 function PerformActEnd() {

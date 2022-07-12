@@ -36,7 +36,7 @@ NPCSpecialFuncs["light"] = function(who,how) {
 
 NPCSpecialFuncs["flamearmor"] = function(who,how) {
   let qobj = localFactory.createTile("FireArmor");
-  if (how !== 1) {
+  if (how) {
     qobj.setPower(how);
   } else {
     qobj.setPower("2d4");
@@ -83,6 +83,22 @@ NPCSpecialFuncs["ondeathCult"] = function(who,how) {
 
 NPCSpecialFuncs["ondeathDestroyCrystal"] = function(who,how) {
   who.onDeath = "destroycrystals";
+}
+
+NPCSpecialFuncs["ondeathElder"] = function(who,how) {
+  who.onDeath = "Elder";
+}
+
+NPCSpecialFuncs["archdaemon_ashes"] = function(who,how) {
+  who.onDeath = "archdaemon_ashes";
+}
+
+NPCSpecialFuncs["archdaemon_dust"] = function(who,how) {
+  who.onDeath = "archdaemon_dust";
+}
+
+NPCSpecialFuncs["archdaemon_bone"] = function(who,how) {
+  who.onDeath = "archdaemon_bone";
 }
 
 function DestroyJusticeCrystals() {
@@ -233,7 +249,7 @@ function Attack(atk, def) {
     DebugWrite("combat", "Hit! Dealing " + dmg + " damage.<br />");
     if (atk.getOnHit()) {
       let onhits = atk.getOnHit().split(",");
-      for (let i=0;i<=onhits.length;i++) {
+      for (let i=0;i<onhits.length;i++) {
         if (typeof OnHitFuncs[onhits[i]] === "function") {
           DebugWrite("combat", "Undertaking onhit: " + onhits[i] + "<br />");
           OnHitFuncs[onhits[i]](atk,def,dmg);
@@ -823,4 +839,33 @@ function CheckAreEnemies(who1,who2) {
   if ((who1.getAttitude() === "ally") && (who2.getAttitude() === "enemy")) { return 1; }
   if ((who2.getAttitude() === "ally") && (who1.getAttitude() === "enemy")) { return 1; }
   return 0;
+}
+
+function DoArchaemon(who) {
+  if (who.spoken === 3) { return; }
+  if (Dice.roll("1d100") <= 35) {
+    if (IsVisibleOnScreen(who.getx(),who.gety())) {
+      if (!who.spoken) { 
+        if (who.specials.archdaemon_ashes) { maintext.addText('The great daemon speaks. "Tremble, mortal. You face Kayora, Flayer of Stars. My darkness will be the last thing that you see."'); }
+        if (who.specials.archdaemon_dust) { maintext.addText('The huge daemon opens its mouth. "Ah, little firefly, you have come at last. Hail, and farewell."'); }
+        if (who.specials.archdaemon_ice) { maintext.addText('A voice speaks in your head: "Ith\'Kynian, the Silent Void, comes for you now."'); }
+        if (who.specials.archdaemon_bone) { maintext.addText('In a harsh voice, the daemon speaks. "Begone, mortal. You stand before Khar-Ebbeth, Death\'s Harbinger."'); }
+        who.spoken=1;
+      } else if (who.spoken === 1) {
+        if (who.specials.archdaemon_ashes) { maintext.addText('"Soon, we will breach the surface. There, I will put out every point of light in your sky."'); }
+        if (who.specials.archdaemon_dust) { maintext.addText('"I am Kassotar, Unmaker of Dawn. The sun itself trembles before me."'); }
+        if (who.specials.archdaemon_ice) { maintext.addText('In your head, icy cold and poisonous: "It has been scores of millennia since we have been imprisoned. But some of us… remember the light. And we hate you for having it.'); }
+        if (who.specials.archdaemon_bone) { maintext.addText('"Those who came before you strove to make gods out of light and stone. But we have always been here in the dark. We are why they are no more."'); }
+        who.spoken=2;
+      } else if (who.spoken === 2) {
+        let numb = GetNumberBeacons();
+        if (numb === 1) { maintext.addText('"Your tiny pinprick will not pierce our darkness."'); }
+        else if (numb === 2) { maintext.addText('"Why do you bring light here, little one? What do you think you can do with it?"'); }
+        else if (numb === 3) { maintext.addText('"Your light begins to annoy, we will admit. But nothing more, and that is all it shall ever be."'); }
+        else if (numb === 4) { maintext.addText('"Why do you persist? This underland has never been so bright. When I tear you limb from limb, I will put out your lights."'); }
+        who.spoken = 3;
+      }
+      
+    }
+  }
 }

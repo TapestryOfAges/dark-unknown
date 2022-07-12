@@ -63,6 +63,9 @@ function PerformCommand(code, ctrl) {
     } else if (success["fin"] === 3) {
       retval["fin"] = 3;
     }
+    if (!DU.gameflags.getFlag("show_move")) {
+      retval["txt"] = SuppressMove(retval["txt"], "North");
+    }
 		retval["initdelay"] = success["initdelay"];
 	}
 	else if (code === 37) {  // LEFT ARROW 
@@ -97,6 +100,9 @@ function PerformCommand(code, ctrl) {
       retval["txt"] = "";
     } else if (success["fin"] === 3) {
       retval["fin"] = 3;
+    }
+    if (!DU.gameflags.getFlag("show_move")) {
+      retval["txt"] = SuppressMove(retval["txt"], "West");
     }
 		retval["initdelay"] = success["initdelay"];
 	}
@@ -133,6 +139,9 @@ function PerformCommand(code, ctrl) {
     } else if (success["fin"] === 3) {
       retval["fin"] = 3;
     }
+    if (!DU.gameflags.getFlag("show_move")) {
+      retval["txt"] = SuppressMove(retval["txt"], "East");
+    }
 		retval["initdelay"] = success["initdelay"];
 	}
 	else if (code === 40) { // DOWN ARROW 
@@ -167,6 +176,9 @@ function PerformCommand(code, ctrl) {
       retval["txt"] = "";
     } else if (success["fin"] === 3) {
       retval["fin"] = 3;
+    }
+    if (!DU.gameflags.getFlag("show_move")) {
+      retval["txt"] = SuppressMove(retval["txt"], "South");
     }
 		retval["initdelay"] = success["initdelay"];
 	}
@@ -2681,7 +2693,7 @@ function DrawOptions() {
   optdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
   optdiv += "<tr><td style='text-decoration:underline'>OPTIONS</td><td></td><td></td></tr>";
   optdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td>&nbsp;&nbsp;&nbsp;</td></tr>";
-  optdiv += "<tr><td><span style='text-decoration:underline'>SOUND AND MUSIC</span><br /></td><td></td><td></td></tr>";
+  optdiv += "<tr><td>=======SOUND AND MUSIC=======</td><td></td><td></td></tr>";
   optdiv += "<tr><td>MUSIC VOLUME:</td><td></td><td";
   if (targetCursor.page === 1) { 
     optdiv += " class='highlight'";
@@ -2728,7 +2740,7 @@ function DrawOptions() {
     optdiv += "NO";
   }
   optdiv += "</td></tr>";  
-  optdiv += "<tr><td><br /><span style='text-decoration:underline'>USER INTERFACE</span><br /></td><td></td><td></td></tr>";
+  optdiv += "<tr><td><br />=======USER INTERFACE=======</td><td></td><td></td></tr>";
   optdiv += "<tr><td>MOVE OPENS DOORS:</td><td></td><td";
   if (targetCursor.page === 5) { 
     optdiv += " class='highlight'";
@@ -2777,8 +2789,20 @@ function DrawOptions() {
   }
   optdiv += "</td></tr>";
 
+  optdiv += "<tr><td>SHOW MOVES IN LOG:</td><td></td><td";
+  if (targetCursor.page === 9) {
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  if (DU.gameflags.getFlag("show_move")) {
+    optdiv += "YES";
+  } else {
+    optdiv += "NO";
+  }
+  optdiv += "</td></tr>";
+
   optdiv += "<tr><td>ZOOM:</td><td></td><td";
-  if (targetCursor.page === 9) { 
+  if (targetCursor.page === 10) { 
     optdiv += " class='highlight'";
   }
   optdiv += ">";
@@ -2788,7 +2812,7 @@ function DrawOptions() {
   optdiv += "</td></tr>";
 
   optdiv += "<tr><td>SKIP THEFT WARNING:</td><td></td><td";
-  if (targetCursor.page === 10) { 
+  if (targetCursor.page === 11) { 
     optdiv += " class='highlight'";
   }
   optdiv += ">";
@@ -2799,17 +2823,7 @@ function DrawOptions() {
   }
   optdiv += "</td></tr>";
 
-//  optdiv += "<tr><td>SHOW IN SAVE UI:</td><td></td><td";
-//  if (targetCursor.page === 11) { 
-//    optdiv += " class='highlight'";
-//  }
-//  optdiv += ">";
-//  if (DU.gameflags.getFlag("save_ui_date")) {
-//    optdiv += "DATE/TIME";
-//  } else {
-//    optdiv += "TIME PLAYED";
-//  }
-//  optdiv += "</td></tr>";
+
 
   optdiv += "</table></div></div>";
   
@@ -2988,7 +3002,7 @@ function performOptions(code) {
   else if ((code === 40) || (code === 191)) { // scroll down
     targetCursor.page++;
     if (targetCursor.cmd === "o") {
-      if (targetCursor.page === 11) { targetCursor.page = 10; }
+      if (targetCursor.page === 12) { targetCursor.page = 11; }
     } else if (targetCursor.cmd === "debug") {
       if (targetCursor.page === 13) { targetCursor.page = 12; }
     }
@@ -3015,7 +3029,7 @@ function performOptions(code) {
           newvol = newvol/10;
           DU.gameflags.setFlag("sound", newvol);
         }
-      } else if (targetCursor.page === 9) { // zoom
+      } else if (targetCursor.page === 10) { // zoom
         if (DU.gameflags.getFlag("zoom") === 1.5) {
           DU.gameflags.setFlag("zoom",1);
           webFrame.setZoomFactor(1);
@@ -3048,7 +3062,7 @@ function performOptions(code) {
         newvol = parseInt(newvol+.001);
         newvol = newvol/10;
         DU.gameflags.setFlag("sound", newvol);
-      } else if (targetCursor.page === 9) { // zoom
+      } else if (targetCursor.page === 10) { // zoom
         if (DU.gameflags.getFlag("zoom") === 1) {
           DU.gameflags.setFlag("zoom",1.5);
           webFrame.setZoomFactor(1.5);
@@ -3241,6 +3255,20 @@ function ToggleOption(opt) {
       DU.gameflags.setFlag("storymode", 0);
     } else {
       DU.gameflags.setFlag("storymode", 1);
+    }
+  } else if (opt === 9) {
+    if (DU.gameflags.getFlag("show_move")) {
+      DU.gameflags.setFlag("show_move", 0);
+    } else {
+      DU.gameflags.setFlag("show_move", 1);
+    }
+  } else if (opt === 10) {
+    // ZOOM HANDLED ELSEWHERE
+  } else if (opt === 11) {
+    if (DU.gameflags.getFlag("skip_theft_warning")) {
+      DU.gameflags.setFlag("skip_theft_warning", 0);
+    } else {
+      DU.gameflags.setFlag("skip_theft_warning", 1);
     }
   }
 }

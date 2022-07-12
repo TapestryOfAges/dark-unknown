@@ -90,6 +90,9 @@ ais.combat = function(who) {
       return retval; 
     } 
   }
+  if (who.specials.archdaemon_ice || who.specials.archdaemon_dust || who.specials.archdaemon_ashes || who.specials.archdaemon_bone) {
+    DoArchdaemon(who);
+  }
   
   // check to see if we should cease to aggro
   // need no one in your Band be within "forgetAt" radius
@@ -1273,7 +1276,7 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
         DebugWrite("ai", "successfully. New location: " + who.getx() + ", " + who.gety() + "<br />");
         if (debug && debugflags.ai) {
           let tile = who.getHomeMap().getTile(who.getx(), who.gety());
-          if (!tile.canMoveHere(MOVE_WALK)) {
+          if (!tile.canMoveHere(MOVE_WALK,1).canmove) {
             DebugWrite("ai", "<span style='font-weight:bold; text-decoration:underline'>AI moved onto a tile that cannot be walked on: " + tile.getTerrain().getName() + ".</span><br />");
           }
         }
@@ -2482,8 +2485,10 @@ ais.ai_cast = function(who) {
       let cho = choices[dr];
 
       if (cho === "attack") {
-        if ((!who.spellsknown.highattack) || (who.getMana() < 5)) {
-          spelloptions.push("MagicBolt");
+        if (who.getMana()) {
+          if ((!who.spellsknown.highattack) || (who.getMana() < 5)) {
+            spelloptions.push("MagicBolt");
+          }
         }
         if ((who.getLevel() >= 3) && (who.getMana() >= 3)) {
           if (!who.spellsknown.banned || !who.spellsknown.banned.includes("Fire")) {
@@ -2536,7 +2541,7 @@ ais.ai_cast = function(who) {
             pretarget.poisoncloud = enemies[i];
           }
           if (numwi2[i] > maxnear2) {
-            maxnear1 = numwi2[i];
+            maxnear2 = numwi2[i];
             pretarget.explosion = enemies[i];
           }
         }
@@ -3321,10 +3326,8 @@ ais.Tharock = function(who) {
 ais.elderdragon = function(who) {
   let retval = {fin:0};
   if (!who.roused) {
-    if (PC.gety() < 21) {
+    if (PC.gety() < 20) {
       retval["wait"] = 1;
-      maintext.setInputLine("&gt;[MORE]");
-      maintext.drawTextFrame(); 
       gamestate.setMode("null");
       targetCursor.command = "elderstart";
       targetCursor.dragon = who;
@@ -3332,10 +3335,16 @@ ais.elderdragon = function(who) {
       targetCursor.camx = PC.getx();
       targetCursor.camy = PC.gety();
       ais.elderdragonintro(who);
+      who.earth = 2;
+      who.air = 2;
+      who.water = 2;
+      who.fire = 2;
     }
   } else {
     // in a fight
+    if (!who.first) { who.first = 1; return retval; }
     if (who.breathing) {
+      console.log("Dragon is exhaling.");
       let tgt = who.getHomeMap().getTile(who.breathx,who.breathy).getTopNPC();
       if (!tgt) { 
         if ((PC.getx() === who.breathx) && (PC.gety() === who.breathy)) { tgt = PC; }
@@ -3353,19 +3362,19 @@ ais.elderdragon = function(who) {
       weapon.dmgtype = "fire";
 
       let duration = (Math.pow( Math.pow(who.breathx - who.getx(), 2) + Math.pow (who.breathy - who.gety(), 2)  , .5)) * 100;
-      let descval;
+      let descval = {};
       if (tgt) {
         let tgtdesc = "you";
         if (tgt !== PC) {
           tgtdesc = tgt.getFullDesc();
         }
-        descval = `The dragon breaths a torrential outburst of flame at ${tgtdesc}!`;
+        descval['txt'] = `The dragon breaths a torrential outburst of flame at ${tgtdesc}!`;
       } else {
         let tgtdesc = "you";
         if (who.breathing !== PC) {
           tgtdesc = who.breathing.getFullDesc();
         }
-        descval = `The dragon breaths a torrential outburst of flame at the space where ${tgtdesc} stood!`;
+        descval['txt'] = `The dragon breaths a torrential outburst of flame at the space where ${tgtdesc} stood!`;
       }
 
       let cb = function(atk,def,cbp) {
@@ -3373,27 +3382,298 @@ ais.elderdragon = function(who) {
         atk.getHomeMap().placeThing(cbp.x,cbp.y,firefield);
         DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
       }
-
-      AnimateEffect(who,tgt,{x:who.getx(),y:who.gety()},{x:who.breathx,y:who.breathy},boltgraphic,destgraphic,{},{type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"fire", weapon:weapon, finishcallback:cb, callbackparam: {x:who.breathx, y:who.breathy}});
+      let dmg = Dice.roll(DMG_TREMENDOUS);
+      let fromcoords = getCoords(who.getHomeMap(),who.getx(),who.gety());
+      let tocoords = getCoords(who.getHomeMap(),who.breathx,who.breathy);
+      AnimateEffect(who,tgt,fromcoords,tocoords,boltgraphic,destgraphic,{},{type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"fire", weapon:weapon, finishcallback:cb, callbackparam: {x:who.breathx, y:who.breathy}});
 
       delete who.breathing;
       delete who.breathx;
       delete who.breathy;
+      retval["wait"] = 1;
+      return retval;
     } else {
+      let dragonmap = who.getHomeMap();
       let foes = [];
-      foes.push(PC);
-      let npcs = this.getHomeMap().npcs.getAll();
-      for (let i=0;i<npcs.length;npcs++) {
-        if (npcs[i].getAttitude() === "friendly") { foes.push(npcs[i]); }
+      let nearby;
+      if (GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety(),"square") <= 7) { foes.push(PC); nearby = PC;}
+      let npcs = dragonmap.npcs.getAll();
+      for (let i=0;i<npcs.length;i++) {
+        if ((npcs[i].getAttitude() === "friendly") && (GetDistance(who.getx(),who.gety(),npcs[i].getx(),npcs[i].gety(),"square") <= 7)) { foes.push(npcs[i]); }
       }
       let isadj;
-      for (let i=0;i>foes.length;i++) {
+      let mindist = 100;
+      for (let i=0;i<foes.length;i++) {
         if (!isadj) {
           isadj = IsAdjacent(who,foes[i]);
+          if (isadj) { nearby = foes[i]; }
+          else {
+            let dist = GetDistance(who,foes[i]);
+            if (dist < mindist) { mindist = dist; nearby = foes[i]; }
+          }
           for (let j=0;j<who.attachedParts.length;j++) {
-            if (!isadj) { isadj = IsAdjacent(who.attachedParts[j],foes[i]); }
+            if (!isadj) { 
+              isadj = IsAdjacent(who.attachedParts[j],foes[i]); 
+              if (isadj) { 
+                nearby = foes[i]; 
+              } else {
+                let dist = GetDistance(who.attachedParts[j],foes[i]);
+                if (dist < mindist) { mindist = dist; nearby = foes[i]; }
+              }
+            }
           }
         }
+      }
+      let action;
+      let roll = Dice.roll("1d100");
+      let elementals = who.earth + who.fire + who.water + who.air;
+      console.log("Remaining elemental summons: " + elementals);
+      console.log("Die roll: " + roll);
+      if (isadj) { console.log("Using adjacent moveset."); }
+      else { console.log("Using no-adjacent moveset."); }
+      if (isadj) {
+        if (roll <= 15) { action = "bite"; }
+        else if (roll <= 40) { action = "claw"; }
+        else if (roll <= 60) { action = "wing"; }
+        else if (roll <= 70) { action = "spellcast"; }
+        else if (roll <= 85) { 
+          if (elementals) { action = "conjure"; } 
+          else { action = "spellcast"; }
+        }
+        else { action = "backoff"; }
+      } else {
+        if (roll <= 15) { action = "breathe"; }
+        else if (roll <= 45) { action = "spellcast"; }
+        else if (roll <= 60) { action = "conjure"; }
+        else  { action = "approach"; }
+      }
+      console.log("Chosen action: " + action);
+
+      if (foes.length === 0) {
+        // All enemies are very distant from the dragon, so it will head towards the player
+        action = "approach";
+        nearby = PC;
+        console.log("All enemies are distant. Overriding action choice: action is now APPROACH.");          
+      }
+
+
+      if (action === "bite") {
+        who.meleeDamage = '5d8+15';
+        who.setOnHit("");
+        retval = Attack(who,nearby);
+      } else if (action === "claw") {
+        who.meleeDamage = '4d8';
+        who.setOnHit("knockback");
+        retval = Attack(who,nearby);
+      } else if (action === "wing") {
+        // finish here - knockback multiple spaces, no damage, needs to animate each space of movement
+        if (nearby === PC) {
+          maintext.addText("The great dragon spreads its winds wide, and with a mighty beat, the air presses on you, pushing you back!");
+        } else {
+          maintext.addText(`The great dragon spreads its winds wide, and with a mighty beat, the air presses on the ${nearby.getDesc()}, pushing the ${nearby.getDesc()} back!`);
+        }
+        retval["fin"] = 0;
+        retval["wait"] = 1;
+        let xdiff = nearby.getx() - who.getx();
+        let ydiff = nearby.gety() - who.gety();
+        let pushdir=[];
+        if ((xdiff < 0) && (ydiff < 0)) { pushdir = [-1,-1]; }
+        else if ((xdiff > 1) && (ydiff < 0)) { pushdir = [1,-1]; }
+        else if ((xdiff < 0) && (ydiff > 1)) { pushdir = [-1,1]; }
+        else if ((xdiff > 1) && (ydiff > 1)) { pushdir = [1,1]; }
+        else if (xdiff > 1) { pushdir = [1,0]; }
+        else if (xdiff < 0) { pushdir = [-1,0]; }
+        else if (ydiff > 1) { pushdir = [0,1]; }
+        else if (ydiff < 0) { pushdir = [0,-1]; }
+        setTimeout(function(){ WingBuffet(nearby,pushdir,who,1); },50);
+        DUPlaySound("sfx_woosh");
+        return retval;
+
+      } else if (action === "spellcast") {
+        let cast = ais.ai_cast(who);
+        if (cast === "special_wait") { retval["wait"] = 1; }
+      } else if (action === "conjure") {
+        roll = Dice.roll("1d"+elementals);
+        console.log("Rolled " + roll + " to determine elemental choice.");
+        if (roll < who.air) {
+          let coords = {};
+          let coordsfound = 0;
+          while (!coordsfound) {
+            coords.x = Dice.roll("1d8+12");
+            coords.y = Dice.roll("1d9+8");
+            let tile = dragonmap.getTile(coords.x,coords.y);
+            if (!tile.getTopNPC()) { coordsfound = 1; }
+          }
+          let airel = localFactory.createTile("AirElementalNPC");
+          dragonmap.placeThing(coords.x,coords.y,airel);
+          maintext.addText("The dragon trumpets a roar upwards, and the airs begin to swirl to life!");
+          DUPlaySound("sfx_summon");
+          who.air--;
+          DrawMainFrame("one",dragonmap,coords.x,coords.y);
+        } else if (roll < (who.air + who.earth)) {
+          let fea = dragonmap.getTile(13,18).getFeatures();
+          let rock;
+          for (let i=0;i<fea.length;i++) {
+            if (fea[i].getName() === "PileOfRocks") { 
+              rock = fea[i];
+            }
+          }
+          if (!rock) {
+            fea = dragonmap.getTile(21,18).getFeatures();
+            for (let i=0;i<fea.length;i++) {
+              if (fea[i].getName() === "PileOfRocks") { 
+                rock = fea[i];
+              }
+            }
+          }
+          if (rock) {
+            let coords = {x:rock.getx(), y:rock.gety()};
+            dragonmap.deleteThing(rock);
+            let earthel = localFactory.createTile("EarthElementalNPC");
+            dragonmap.placeThing(coords.x,coords.y,earthel);
+            maintext.addText("The dragon speaks several syllables in a tongue unfamiliar to you. Near the entrance to this cavern, a pile of rocks animates and begins to move towards you.");
+            DUPlaySound("sfx_summon");
+            who.earth--;
+            DrawMainFrame("one",dragonmap,coords.x,coords.y);
+          }
+        } else if (roll < (who.air + who.earth + who.fire)) {
+          let coords = {};
+          let coordsfound = 0;
+          while (!coordsfound) {
+            coords.x = Dice.roll("1d8+12");
+            coords.y = Dice.roll("1d9+8");
+            let tile = dragonmap.getTile(coords.x,coords.y);
+            if (!tile.getTopNPC()) { coordsfound = 1; }
+          }
+          let fireel = localFactory.createTile("FireElementalNPC");
+          dragonmap.placeThing(coords.x,coords.y,fireel);
+          maintext.addText("The dragon breathes a stream of fire! When it strikes the cave floor, it gathers itself into place, and begins to move.");
+          DUPlaySound("sfx_summon");
+          who.fire--;
+          DrawMainFrame("draw",dragonmap,PC.getx(),PC.gety());
+        } else {
+          let waterel = localFactory.createTile("WaterElementalNPC");
+          if (!dragonmap.getTile(20,10).getTopNPC() && (PC.getx() !== 20) && (PC.gety() !== 10)) { dragonmap.placeThing(20,10,waterel); DrawMainFrame("one",dragonmap,20,10); }
+          else if (!dragonmap.getTile(19,10).getTopNPC() && (PC.getx() !== 19) && (PC.gety() !== 10)) { dragonmap.placeThing(19,10,waterel); DrawMainFrame("one",dragonmap,19,10); }
+          else if (!dragonmap.getTile(20,11).getTopNPC() && (PC.getx() !== 20) && (PC.gety() !== 11)) { dragonmap.placeThing(20,11,waterel); DrawMainFrame("one",dragonmap,20,11); }
+          else if (!dragonmap.getTile(21,11).getTopNPC() && (PC.getx() !== 21) && (PC.gety() !== 11)) { dragonmap.placeThing(21,11,waterel); DrawMainFrame("one",dragonmap,21,11); }
+          else if (!dragonmap.getTile(19,9).getTopNPC() && (PC.getx() !== 19) && (PC.gety() !== 9)) { dragonmap.placeThing(19,9,waterel); DrawMainFrame("one",dragonmap,19,9); }
+          else if (!dragonmap.getTile(20,9).getTopNPC() && (PC.getx() !== 20) && (PC.gety() !== 9)) { dragonmap.placeThing(20,9,waterel); DrawMainFrame("one",dragonmap,20,9); }
+          else if (!dragonmap.getTile(21,10).getTopNPC() && (PC.getx() !== 21) && (PC.gety() !== 10)) { dragonmap.placeThing(21,10,waterel); DrawMainFrame("one",dragonmap,21,10); }
+          maintext.addText("The dragon utters a single, resonant word. Water fountains upwards from the surface of the small underground pond, and forms into a vaguely humanoid shape.");
+          who.water--;
+          DUPlaySound("sfx_summon");          
+        }
+      } else if (action === "breathe") {
+        maintext.addText("The dragon inhales a deep breath, pulling air from throughout the cavern. It looks around as it prepares to exhale...");
+        let chk = Dice.roll("1d"+foes.length+"-1");
+        who.breathx = foes[chk].getx();
+        who.breathy = foes[chk].gety();
+        console.log("Breathing at:");
+        console.log(foes[chk]);
+        who.breathing = foes[chk];
+      } else if (action === "backoff") {
+        let xdiff = nearby.getx() - who.getx();
+        let ydiff = nearby.gety() - who.gety();
+        let wanttomove = {};
+        if ((xdiff < 0 ) && dragonmap.getTile(who.getx()+2,who.gety()).canMoveHere(MOVE_WALK).canmove && dragonmap.getTile(who.getx()+2,who.gety()+1).canMoveHere(MOVE_WALK).canmove)  {
+          wanttomove.east = 1;
+        }
+        if ((xdiff > 1 ) && dragonmap.getTile(who.getx()-1,who.gety()).canMoveHere(MOVE_WALK).canmove && dragonmap.getTile(who.getx()-1,who.gety()+1).canMoveHere(MOVE_WALK).canmove) {
+          wanttomove.west = 1;
+        }
+        if ((ydiff < 0 ) && dragonmap.getTile(who.getx(),who.gety()+2).canMoveHere(MOVE_WALK).canmove && dragonmap.getTile(who.getx()+1,who.gety()+2).canMoveHere(MOVE_WALK).canmove) {
+          wanttomove.south = 1;
+        }
+        if ((ydiff > 1 ) && dragonmap.getTile(who.getx(),who.gety()-1).canMoveHere(MOVE_WALK).canmove && dragonmap.getTile(who.getx()+1,who.gety()-1).canMoveHere(MOVE_WALK).canmove) {
+          wanttomove.north = 1;
+        }
+        let dragonne, dragonse, dragonsw;
+        for (let i=0;i<who.attachedParts.length;i++) {
+          if (who.attachedParts[i].getx() === who.getx()) { dragonsw = who.attachedParts[i]; }
+          else {
+            if (who.attachedParts[i].gety() === who.gety()) { dragonne = who.attachedParts[i]; }
+            else { dragonse = who.attachedParts[i]; }
+          }
+        }
+        if (wanttomove.south) {
+          dragonse.moveMe(0,1);
+          dragonsw.moveMe(0,1);
+          dragonne.moveMe(0,1);
+          who.moveMe(0,1);
+          DrawMainFrame("draw",dragonmap,PC.getx(),PC.gety());
+        } else if (wanttomove.west) {
+          who.moveMe(-1,0);
+          dragonsw.moveMe(-1,0);
+          dragonne.moveMe(-1,0);
+          dragonse.moveMe(-1,0);
+          DrawMainFrame("draw",dragonmap,PC.getx(),PC.gety());
+        } else if (wanttomove.east) {
+          dragonne.moveMe(1,0);
+          dragonse.moveMe(1,0);
+          dragonsw.moveMe(1,0);
+          who.moveMe(1,0);
+          DrawMainFrame("draw",dragonmap,PC.getx(),PC.gety());
+        } else if (wanttomove.north) {
+          dragonne.moveMe(0,-1);
+          who.moveMe(0,-1);
+          dragonse.moveMe(0,-1);
+          dragonsw.moveMe(0,-1);
+          DrawMainFrame("draw",dragonmap,PC.getx(),PC.gety());
+        }
+      } else if (action === "approach") {
+        console.log(nearby);
+        let xdiff = nearby.getx() - who.getx();
+        let ydiff = nearby.gety() - who.gety();
+        let wanttomove = {};
+        if ((xdiff > 1 ) && dragonmap.getTile(who.getx()+2,who.gety()).canMoveHere(MOVE_WALK).canmove && dragonmap.getTile(who.getx()+2,who.gety()+1).canMoveHere(MOVE_WALK).canmove)  {
+          wanttomove.east = 1;
+        }
+        if ((xdiff < 0 ) && dragonmap.getTile(who.getx()-1,who.gety()).canMoveHere(MOVE_WALK).canmove && dragonmap.getTile(who.getx()-1,who.gety()+1).canMoveHere(MOVE_WALK).canmove) {
+          wanttomove.west = 1;
+        }
+        if ((ydiff > 1 ) && dragonmap.getTile(who.getx(),who.gety()+2).canMoveHere(MOVE_WALK).canmove && dragonmap.getTile(who.getx()+1,who.gety()+2).canMoveHere(MOVE_WALK).canmove) {
+          wanttomove.south = 1;
+        }
+        if ((ydiff < 0 ) && dragonmap.getTile(who.getx(),who.gety()-1).canMoveHere(MOVE_WALK).canmove && dragonmap.getTile(who.getx()+1,who.gety()-1).canMoveHere(MOVE_WALK).canmove) {
+          wanttomove.north = 1;
+        }
+        console.log(wanttomove);
+        let dragonne, dragonse, dragonsw;
+        for (let i=0;i<who.attachedParts.length;i++) {
+          if (who.attachedParts[i].getx() === who.getx()) { dragonsw = who.attachedParts[i]; }
+          else {
+            if (who.attachedParts[i].gety() === who.gety()) { dragonne = who.attachedParts[i]; }
+            else { dragonse = who.attachedParts[i]; }
+          }
+        }
+        if (wanttomove.south) {
+          dragonse.moveMe(0,1);
+          dragonsw.moveMe(0,1);
+          dragonne.moveMe(0,1);
+          who.moveMe(0,1);
+          DrawMainFrame("draw",dragonmap,PC.getx(),PC.gety());
+        } else if (wanttomove.west) {
+          who.moveMe(-1,0);
+          dragonsw.moveMe(-1,0);
+          dragonne.moveMe(-1,0);
+          dragonse.moveMe(-1,0);
+          DrawMainFrame("draw",dragonmap,PC.getx(),PC.gety());
+        } else if (wanttomove.east) {
+          dragonne.moveMe(1,0);
+          dragonse.moveMe(1,0);
+          dragonsw.moveMe(1,0);
+          who.moveMe(1,0);
+          DrawMainFrame("draw",dragonmap,PC.getx(),PC.gety());
+        } else if (wanttomove.north) {
+          dragonne.moveMe(0,-1);
+          who.moveMe(0,-1);
+          dragonse.moveMe(0,-1);
+          dragonsw.moveMe(0,-1);
+          DrawMainFrame("draw",dragonmap,PC.getx(),PC.gety());
+        }
+      } else {
+        alert("How did you get here? In Elder Dragon AI, no Action chosen?");
       }
     }
 
@@ -3409,9 +3689,13 @@ ais.elderdragonintro = function(who) {
 
     if ((camera.x === targetCursor.camx) && (camera.y === targetCursor.camy)) {
       who.roused = 1;
+      who.setAttitude("hostile");
+      who.setMana(60);
       targetCursor.stage = 1;
       maintext.addText('The dragon beholds your entrance, and then opens its mouth. "So, you have finally come. I have felt your approach for some time now, little one. Your time-bound intensity."');
       gamestate.setMode("anykey");
+      maintext.setInputLine("&gt;[MORE]");
+      maintext.drawTextFrame(); 
       return;
     } else {
       if (camera.x > targetCursor.camx) { targetCursor.camx++; }
@@ -3419,13 +3703,32 @@ ais.elderdragonintro = function(who) {
       if (camera.y > targetCursor.camy) { targetCursor.camy++; }
       if (camera.y < targetCursor.camy) { targetCursor.camy--; }
       DrawMainFrame("draw", PC.getHomeMap(), targetCursor.camx, targetCursor.camy);
-      setTimeout(ais.elderdragonintro(who), 500);
+      setTimeout(function() { ais.elderdragonintro(who) }, 350);
     }
-  } else {
+  } else if (targetCursor.stage === 1) {
     maintext.addText('"I have been here since before your kind raised its cities. And I am so tired. Perhaps it is time for an ending. But if I will go, I will go shrouded in glory. Come, little one, and we shall raise glorious battle, and bring an ending to one of us. Hail, and farewell!"');
+    targetCursor.stage = 2;
+  } else {
     who.endTurn();
+    delete targetCursor.stage;
+    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+    maintext.setInputLine("&gt;");
+    maintext.drawTextFrame();
   }
 }
 
-
-//ais.ai_cast(who)
+function WingBuffet(who, dir, dragon, count) {
+  let desttile = who.getHomeMap().getTile(who.getx()+dir[0], who.gety()+dir[0]);
+  if (desttile.canMoveHere(MOVE_WALK).canmove) {
+    who.moveMe(dir[0],dir[1]);
+  } else {
+    dragon.endTurn();
+    return;
+  }
+  count++;
+  if (count < 3) {
+    setTimeout(function() { WingBuffet(who,dir,dragon,count); }, 200);
+  } else {
+    dragon.endTurn();
+  }
+}

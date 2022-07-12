@@ -273,7 +273,6 @@ function DoAction(code, ctrl) {
     if (response["fin"]) { 
       maintext.addText(response["txt"]);
       maintext.setInputLine(response["input"]);
-      let inp = response["input"];
       maintext.drawTextFrame();
       if (response["fin"] === 1) {
         PC.endTurn(response["initdelay"]);

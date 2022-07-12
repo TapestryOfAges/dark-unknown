@@ -711,10 +711,9 @@ mappages["hydracave"].features[2] = {name : 'Gold', x : 8, y : 10};
 
 
 mappages["hydracave"].npcs = [];
-mappages["hydracave"].npcs[0] = {name : 'HydraNPC', x : 10, y : 7, skintone: '1'};
-mappages["hydracave"].npcs[1] = {name : 'HydraNPC', x : 15, y : 4, skintone: '1'};
-mappages["hydracave"].npcs[2] = {name : 'GazerNPC', x : 12, y : 13, skintone: '1'};
-mappages["hydracave"].npcs[3] = {name : 'GazerNPC', x : 13, y : 17, skintone: '1'};
+mappages["hydracave"].npcs[0] = {name : 'DevourerNPC', x : 10, y : 7, skintone: '1'};
+mappages["hydracave"].npcs[1] = {name : 'GazerNPC', x : 12, y : 13, skintone: '1'};
+mappages["hydracave"].npcs[2] = {name : 'GazerNPC', x : 13, y : 17, skintone: '1'};
 
 mappages["hydracave"].desc = "Small Cave";
 mappages["hydracave"].longdesc = ``;

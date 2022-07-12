@@ -1,6 +1,7 @@
 "use strict";
 
 // MAP BEGINS HERE
+// MAP BEGINS HERE
 mappages["underworld"] = {};
 mappages["underworld"].terrain = [];
   mappages["underworld"].terrain[0] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
@@ -61,11 +62,11 @@ mappages["underworld"].terrain = [];
  mappages["underworld"].terrain[55] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ ,, .. nn .. ,, ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .| ww ww ww ww ww ^^ ^^ ;; ;; ;; ^^ ^^ ^^ ,, .. .. .. .. .. .. .. .. .. .. ,, ,, ,, ,, .. .. .. .. .. .. ^^ ^^ ;; ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
  mappages["underworld"].terrain[56] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ;; ,, .. ,, ,, ;; ^^ .. .. .. .. .. .. .. .. .. .. .. .. ./ ww ww ww ww ww ww ^^ ^^ ^^ ^^ ^^ ^^ ;; .. .. .. .. .. .. .. .. .. .. ,, ,, ,, ^^ ,, ,, .. .. .. .. .. .. ^^ ;; ;; ^^ ^^ ^^ ^^ ^^ ^^ ^^';
  mappages["underworld"].terrain[57] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ;; ,, ;; ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. ^^ ^^ ^^ .. .| ww ww ww ww ww ww ww ww ww ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ,, .. .. .. .. .. .. ^^ ^^ ;; ;; ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["underworld"].terrain[58] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. ^^ .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ;; ;; ;; ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ww ww ww ww ww ww ww ww ww ww ww ww `. .. .. .. .. .. .. .. .. .. ;; ;; ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. ^^ ^^ ^^ ;; ^^ ^^ ^^ ^^ ^^ ^^';
+ mappages["underworld"].terrain[58] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. ^^ .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ;; ;; ;; ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ww ww ww ww ww ww ww ww ww ww ww ww `. .. .. .. .. .. .. .. .. .. ,, ,, ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. ^^ ^^ ^^ ;; ^^ ^^ ^^ ^^ ^^ ^^';
  mappages["underworld"].terrain[59] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ;; ;; ;; ;; ;; ^^ ^^ ^^ ^^ ;; ;; ;; ;; ^^ ^^ ^^ ^^ ww ww ww ww ww ww ww ww ww ww ww `. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. ^^ ^^ ;; ;; ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["underworld"].terrain[60] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ;; ;; ,, ,, ^^ ^^ ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ^^ ^^ ww ww ww ww ww ww ww ww ww ww ww ww ^^ .. .. .. .. .. .. ;; ;; ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. ^^ ^^ ;; ;; ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["underworld"].terrain[61] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ nn nn ^^ ^^ .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ;; ;; ^^ ,, ,, ,, ^^ ^^ ;; ;; ^^ ^^ ^^ ^^ ^^ ^^ ;; ;; ^^ ;; ;; ;; ;; ww ww ww ww ^^ ^^ ww ww ww ww ww ww ww ^^ ;; ;; .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. ^^ ^^ ;; ;; ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["underworld"].terrain[62] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ nn nn nn nn nn .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ;; ^^ ^^ ^^ ,, ,, ,, ^^ ^^ ^^ ^^ ,, ,, ,, ,, ^^ ^^ ^^ ^^ ^^ ;; ;; ww ww ww ww ^^ ^^ ^^ ^^ ww ww ww ww ww ^^ ^^ ^^ ^^ ^^ .. .. ;; ;; ^^ ^^ ^^ ^^ .. .. .. .. .. ^^ ^^ ^^ ^^ ;; ;; ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+ mappages["underworld"].terrain[60] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ;; ;; ,, ,, ^^ ^^ ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ^^ ^^ ww ww ww ww ww ww ww ww ww ww ww ww ^^ ^^ ^^ .. .. .. .. ,, ,, ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. ^^ ^^ ;; ;; ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+ mappages["underworld"].terrain[61] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ nn nn ^^ ^^ .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ;; ;; ^^ ,, ,, ,, ^^ ^^ ;; ;; ^^ ^^ ^^ ^^ ^^ ^^ ;; ;; ^^ ;; ;; ;; ;; ww ww ww ww ^^ ^^ ww ww ww ww ww ww ww ^^ ,, ,, .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. ^^ ^^ ;; ;; ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+ mappages["underworld"].terrain[62] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ nn nn nn nn nn .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ;; ^^ ^^ ^^ ,, ,, ,, ^^ ^^ ^^ ^^ ,, ,, ,, ,, ^^ ^^ ^^ ^^ ^^ ;; ;; ww ww ww ww ^^ ^^ ^^ ^^ ww ww ww ww ww ^^ ^^ ^^ ^^ ^^ .. .. ,, ,, ^^ ^^ ^^ ^^ .. .. .. .. .. ^^ ^^ ^^ ^^ ;; ;; ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
  mappages["underworld"].terrain[63] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. ^^ ^^ .. .. .. ^^ .. ^^ ^^ .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ nn nn ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ;; ^^ ^^ ^^ ,, ,, ,, ,, ,, ,, ,, ,, ,, ^^ ^^ ^^ ^^ ;; ;; ^^ ^^ ww ww ww ^^ ^^ ^^ ^^ ^^ ^^ ^^ ww ww ww ww ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. ^^ ^^ ;; ;; ;; ;; ;; ^^ ;; ;; ^^ ^^ ^^ ^^ ^^ ^^';
  mappages["underworld"].terrain[64] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ nn nn nn ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ ;; ;; ^^ ^^ ^^ ,, .. ,, ,, ,, ,, ,, ^^ ^^ ^^ ^^ ;; ;; ;; ;; ^^ ww ww ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ww ww ww ^^ ^^ ^^ ,, ,, ,, ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ;; ;; ;; ;; ;; ;; ^^ ^^ ^^ ^^ ^^ ^^';
  mappages["underworld"].terrain[65] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ nn nn ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ;; ;; ^^ ^^ ,, ,, .. ,, ,, ^^ ^^ ^^ ^^ ^^ ^^ ;; ;; ;; ;; ^^ ww ^^ ^^ ^^ ,, ,, ,, ,, ,, ^^ ^^ ww ww ^^ ^^ ,, ,, ,, ,, ,, ,, ^^ ^^ ^^ .. .. .. .. .. ^^ ^^ ^^ ;; ;; ^^ ^^ ;; ;; ;; ;; ;; ^^ ^^ ^^ ^^ ^^ ^^';
@@ -125,7 +126,7 @@ mappages["underworld"].terrain[118] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^
 mappages["underworld"].terrain[119] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
 
 mappages["underworld"].features = [];
-mappages["underworld"].features[0] = {name : 'Whirlpool', x : 83, y : 106, entermap : 'darkunknown', enterx : 66, entery : 122};
+mappages["underworld"].features[0] = {name : 'Whirlpool', x : 70, y : 106, entermap : 'darkunknown', enterx : 66, entery : 122};
 mappages["underworld"].features[1] = {name : 'Dungeon', x : 28, y : 100, entermap : 'kaltonmine3', enterx : 26, entery : 26};
 mappages["underworld"].features[2] = {name : 'Dungeon', x : 36, y : 54, entermap : 'null', enterx : 0, entery : 0};
 mappages["underworld"].features[3] = {name : 'SecretCave', x : 63, y : 27, entermap : 'hidden_cave', enterx : 14, entery : 1};
@@ -183,7 +184,21 @@ mappages["underworld"].features[54] = {name : 'Lava', x : 41, y : 89};
 mappages["underworld"].features[55] = {name : 'Lava', x : 42, y : 89};
 mappages["underworld"].features[56] = {name : 'Lava', x : 42, y : 88};
 mappages["underworld"].features[57] = {name : 'Lava', x : 36, y : 90};
-
+mappages["underworld"].features[58] = {name : 'Chest', x : 94, y : 5, locked : 0, lootgroup : 'Archmage'};
+mappages["underworld"].features[59] = {name : 'Chest', x : 93, y : 6, locked : 0, lootgroup : 'Underworld'};
+mappages["underworld"].features[60] = {name : 'Chest', x : 92, y : 6, locked : 0, lootgroup : 'Archmage'};
+mappages["underworld"].features[61] = {name : 'Chest', x : 16, y : 108, locked : 0, lootgroup : 'Archmage'};
+mappages["underworld"].features[62] = {name : 'Chest', x : 20, y : 113, locked : 0, lootgroup : 'Underworld2'};
+mappages["underworld"].features[63] = {name : 'Dungeon', x : 73, y : 50, entermap : 'uttermostdark', enterx : 0, entery : 0};
+mappages["underworld"].features[64] = {name : 'EnergyField', x : 85, y : 54};
+mappages["underworld"].features[65] = {name : 'EnergyField', x : 86, y : 54};
+mappages["underworld"].features[66] = {name : 'EnergyField', x : 87, y : 54};
+mappages["underworld"].features[67] = {name : 'EnergyField', x : 88, y : 54};
+mappages["underworld"].features[68] = {name : 'Chest', x : 61, y : 95, locked : 0, lootgroup : 'Underworld3'};
+mappages["underworld"].features[69] = {name : 'AltarOfIce', x : 97, y : 58};
+mappages["underworld"].features[70] = {name : 'AltarOfAshes', x : 96, y : 60};
+mappages["underworld"].features[71] = {name : 'AltarOfDust', x : 89, y : 61};
+mappages["underworld"].features[72] = {name : 'AltarOfBone', x : 95, y : 62};
 
 mappages["underworld"].npcs = [];
 
@@ -199,7 +214,7 @@ mappages["underworld"].enterx = '65';
 mappages["underworld"].entery = '70';
 mappages["underworld"].seeBelow = '';
 mappages["underworld"].lightLevel = 'dark';
-mappages["underworld"].alwaysRemember = '0';
+mappages["underworld"].alwaysRemember = '1';
 mappages["underworld"].scale = '1';
 mappages["underworld"].underground = '1';
 mappages["underworld"].undergroundDesc = 'Underground';
@@ -216,40 +231,461 @@ mappages["underworld"].editorLabels = '{}';
 // MAP ENDS HERE
 
 mappages["underworld"].onload = function(mapref) {
-  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
-    if (DU.gameflags.getFlag("bonebeacon")) {
-      mapref.placeThing(localFactory.createTile("SunBeacon"),96,101);
-      if (!PC.checkInventory("KeyOfBone")) {
-        let daemon = localFactory.createTile("ArchdaemonOfBone");
-        mapref.placeThing(daemon,91,105);
-        daemon.activate();
-      }
-    } 
-    if (DU.gameflags.getFlag("icebeacon")) {
-      mapref.placeThing(localFactory.createTile("SunBeacon"),106,76);
-      if (!PC.checkInventory("KeyOfIce")) {
-        let daemon = localFactory.createTile("ArchdaemonOfIce");
-        mapref.placeThing(daemon,104,70);
-        daemon.activate();
-      }
-    }
-    if (DU.gameflags.getFlag("dustbeacon")) {
-      mapref.placeThing(localFactory.createTile("SunBeacon"),57,55);
-      if (!PC.checkInventory("KeyOfDust")) {
-        let daemon = localFactory.createTile("ArchdaemonOfDust");
-        mapref.placeThing(daemon,63,55);
-        daemon.activate();
-      }
-    }
-    if (DU.gameflags.getFlag("ashesbeacon")) {
-      mapref.placeThing(localFactory.createTile("SunBeacon"),55,85);
-      if (!PC.checkInventory("KeyOfAshes")) {
-        let daemon = localFactory.createTile("ArchdaemonOfAshes");
-        mapref.placeThing(daemon,53,80);
-        daemon.activate();
-      }
-    }
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) { 
+    // sea serpents in the lake
+    let spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["SeaSerpentNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(2);
+    spawn.setSpawnRadius(5);
+
+    let freq = 30 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(21,99,spawn);
+
+    // Huge humanoids in the SW cavern
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["EttinNPC","EttinNPC","EttinSorcererNPC","GiantNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(5);
+    spawn.setSpawnRadius(3);
+
+    freq = 50 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(16,111,spawn);
+
+    // Corpsers in the loop south of the lake
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["CorsperNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(4);
+    spawn.setSpawnRadius(5);
+
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(36,112,spawn);
+
+    // reapers down little jag west of the lake
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["ReaperNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(2);
+    spawn.setSpawnRadius(3);
+
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(10,103,spawn);
+
+    // lava pool spawns magmaspawn
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["MagmaSpawnNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(4);
+    spawn.setSpawnRadius(5);
+
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(40,88,spawn);
+
+    // caves NW of lake have humanoids, two spawners
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["HeadlessNPC","OrcNPC","OrcCaptainNPC","OrcShamanNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(9);
+    spawn.setSpawnRadius(1);
+
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(10,81,spawn);
+
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["EttinNPC","CyclopsNPC","EttinSorcererNPC","GiantNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(1);
+    spawn.setSpawnRadius(3);
+
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(14,81,spawn);
+
+    // swamp N of lava full of gazers and occasional reaper
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["GazerNPC","GazerNPC","GazerNPC","EyeOfSpiteNPC","ReaperNPC","ReaperLordNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(4);
+    spawn.setSpawnRadius(3);
+
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(37,79,spawn);
+
+    // dungeon cave: full of bats
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["GiantBatNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(10);
+    spawn.setSpawnRadius(5);
+
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(35,56,spawn);
+
+    // tunnel out from above dungeon has corpsers
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["CorsperNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(4);
+    spawn.setSpawnRadius(2);
+
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(18,64,spawn);
+
+    // The hiiiills are alive with the sounds of dragons
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["DragonNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(3);
+    spawn.setSpawnRadius(3);
+
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(35,64,spawn);
+
+    // World Sculptor outpost overrun by large humanoids that find their chairs to be pretty comfy, actually
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["TitanNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(1);
+    spawn.setSpawnRadius(5);
+
+    freq = 100 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(16,46,spawn);
+
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["EttinNPC","EttinSorcererNPC","GiantNPC","GiantNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(8);
+    spawn.setSpawnRadius(10);
+
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(13,45,spawn);
+
+    // northern swamp has gazers, reapers, and corpsers
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["GazerNPC","GazerNPC","GazerNPC","CorpserNPC","ReaperNPC","CorpserNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(5);
+    spawn.setSpawnRadius(2);
+
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(22,20,spawn);
+
+    // long dirt path has adventurers
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["ArchmageNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(1);
+    spawn.setSpawnRadius(1);
+
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(32,35,spawn);
+
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["RangerNPC","PaladinNPC","WizardNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(4);
+    spawn.setSpawnRadius(3);
+
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(21,31,spawn);
+
+    // northern tunnel
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["CorpserNPC","CorpserNPC","LurkerNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(4);
+    spawn.setSpawnRadius(3);
+
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(67,16,spawn);
+
+    // cave floor section- delvers
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["DelverNPC","DelverNPC","DelverNPC","EarthenTyrantNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(5);
+    spawn.setSpawnRadius(5);
+
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(83,26,spawn);
+
+    // cave floor section- delvers
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["DelverNPC","DelverNPC","DelverNPC","EarthenTyrantNPC"];
+    
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(5);
+    spawn.setSpawnRadius(5);
+    
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+      
+    mapref.placeThing(83,26,spawn);
+
+    // NE swamp- more gazers, it's a swamp thing
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["GazerNPC"];
+    
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(3);
+    spawn.setSpawnRadius(3);
+    
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+      
+    mapref.placeThing(63,36,spawn);
+
+    // SE cavern- more humanoids
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["GiantNPC","TrollNPC","EttinNPC","TrollNPC","EttinSorcererNPC"];
+    
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(5);
+    spawn.setSpawnRadius(5);
+    
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+      
+    mapref.placeThing(49,110,spawn);
+
+    // far eastern cavern- reapers
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["ReaperNPC"];
+    
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(4);
+    spawn.setSpawnRadius(5);
+    
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+      
+    mapref.placeThing(104,40,spawn);
+
+    // Northern lake 
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["KrakenNPC"];
+    
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(2);
+    spawn.setSpawnRadius(3);
+    
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+      
+    mapref.placeThing(106,18,spawn);
+
+    // cave off northern lake
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["DaemonNPC"];
+    
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(2);
+    spawn.setSpawnRadius(3);
+    
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+      
+    mapref.placeThing(94,7,spawn);
+
+    // clearing N of oracle
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["ReaperNPC"];
+    
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(3);
+    spawn.setSpawnRadius(3);
+    
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+      
+    mapref.placeThing(58,91,spawn);
+
+    // off E edge of southern water
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["EttinNPC","EttinSorcererNPC","GiantNPC","GiantNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(6);
+    spawn.setSpawnRadius(10);
+
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(109,101,spawn);
+
+    // Big central part of E underworld
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["EttinSorcererNPC","GiantNPC","GiantNPC","TitanNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(10);
+    spawn.setSpawnRadius(10);
+
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(83,89,spawn);
+
+    // woods SW of pond
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["DaemonNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(2);
+    spawn.setSpawnRadius(2);
+
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(103,82,spawn);
+
+    // pond
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["KrakenNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(1);
+    spawn.setSpawnRadius(1);
+
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(108,78,spawn);
+
+    // northern lake in E underworld
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["SeaSerpentNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(2);
+    spawn.setSpawnRadius(4);
+
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(80,58,spawn);
+
+    // plains W of above lake
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["EttinSorcererNPC","GiantNPC","GiantNPC","TitanNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(4);
+    spawn.setSpawnRadius(3);
+
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(68,54,spawn);
+
+    // woods S of above
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["ReaperLordNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(2);
+    spawn.setSpawnRadius(1);
+
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(61,59,spawn);
+
+    // woods farther N of oracle
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["DragonNPC","DaemonNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(4);
+    spawn.setSpawnRadius(2);
+
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(62,76,spawn);
+
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["EttinNPC","EttinSorcererNPC","GiantNPC","GiantNPC","TitanNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(4);
+    spawn.setSpawnRadius(3);
+
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(60,67,spawn);
+
+    // key altars
+    spawn = localFactory.createTile("Spawner");
+    spawngroup = ["DaemonNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(2);
+    spawn.setSpawnRadius(3);
+
+    freq = 60 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+  
+    mapref.placeThing(92,57,spawn);
+
   }
+
+
 }
 
 // MAP BEGINS HERE
@@ -340,130 +776,128 @@ mappages["hidden_cave"].onload = function(mapref) {
 }
 
 // MAP BEGINS HERE
-mappages["dragon_lair"] = {};
-mappages["dragon_lair"].terrain = [];
- mappages["dragon_lair"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["dragon_lair"].terrain[1] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["dragon_lair"].terrain[2] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["dragon_lair"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["dragon_lair"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["dragon_lair"].terrain[5] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["dragon_lair"].terrain[6] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["dragon_lair"].terrain[7] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cf cf cf cw cw cw cw BK BK BK BK BK BK BK BK BK';
- mappages["dragon_lair"].terrain[8] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK';
- mappages["dragon_lair"].terrain[9] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf ww ww cf cf cw BK BK BK BK BK BK BK BK';
-mappages["dragon_lair"].terrain[10] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf ww ww ww cf cw cw BK BK BK BK BK BK BK';
-mappages["dragon_lair"].terrain[11] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf ww ww cf cf cw BK BK BK BK BK BK BK';
-mappages["dragon_lair"].terrain[12] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK';
-mappages["dragon_lair"].terrain[13] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK';
-mappages["dragon_lair"].terrain[14] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK';
-mappages["dragon_lair"].terrain[15] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK';
-mappages["dragon_lair"].terrain[16] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK';
-mappages["dragon_lair"].terrain[17] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK';
-mappages["dragon_lair"].terrain[18] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK';
-mappages["dragon_lair"].terrain[19] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK';
-mappages["dragon_lair"].terrain[20] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK';
-mappages["dragon_lair"].terrain[21] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK BK BK';
-mappages["dragon_lair"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["dragon_lair"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["dragon_lair"].terrain[24] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["dragon_lair"].terrain[25] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["dragon_lair"].terrain[26] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["dragon_lair"].terrain[27] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["dragon_lair"].terrain[28] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["dragon_lair"].terrain[29] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["dragon_lair"].terrain[30] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["dragon_lair"].terrain[31] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["eldercave"] = {};
+mappages["eldercave"].terrain = [];
+ mappages["eldercave"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["eldercave"].terrain[1] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["eldercave"].terrain[2] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["eldercave"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["eldercave"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["eldercave"].terrain[5] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["eldercave"].terrain[6] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["eldercave"].terrain[7] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cf cf cf cw cw cw cw BK BK BK BK BK BK BK BK BK';
+ mappages["eldercave"].terrain[8] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK';
+ mappages["eldercave"].terrain[9] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf ww ww cf cf cw BK BK BK BK BK BK BK BK';
+mappages["eldercave"].terrain[10] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf ww ww ww cf cw cw BK BK BK BK BK BK BK';
+mappages["eldercave"].terrain[11] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf ww ww cf cf cw BK BK BK BK BK BK BK';
+mappages["eldercave"].terrain[12] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK';
+mappages["eldercave"].terrain[13] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK';
+mappages["eldercave"].terrain[14] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK';
+mappages["eldercave"].terrain[15] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK';
+mappages["eldercave"].terrain[16] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK';
+mappages["eldercave"].terrain[17] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK';
+mappages["eldercave"].terrain[18] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK';
+mappages["eldercave"].terrain[19] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK';
+mappages["eldercave"].terrain[20] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK';
+mappages["eldercave"].terrain[21] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK BK BK';
+mappages["eldercave"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["eldercave"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["eldercave"].terrain[24] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["eldercave"].terrain[25] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["eldercave"].terrain[26] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["eldercave"].terrain[27] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["eldercave"].terrain[28] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["eldercave"].terrain[29] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["eldercave"].terrain[30] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["eldercave"].terrain[31] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 
-mappages["dragon_lair"].features = [];
-mappages["dragon_lair"].features[0] = {name : 'PileOfRocks', x : 21, y : 18};
-mappages["dragon_lair"].features[1] = {name : 'PileOfRocks', x : 13, y : 18};
-mappages["dragon_lair"].features[2] = {name : 'Chest', x : 17, y : 7, locked : 0, lootgroup : 'castlechest', lootedid : 'elderlair2'};
-mappages["dragon_lair"].features[3] = {name : 'Chest', x : 16, y : 7, locked : 0, lootgroup : 'castlechest', lootedid : 'elderlair1'};
-mappages["dragon_lair"].features[4] = {name : 'Chest', x : 17, y : 12, locked : 0, lootgroup : 'castlechest', lootedid : 'elderlair5'};
-mappages["dragon_lair"].features[5] = {name : 'Chest', x : 17, y : 13};
-mappages["dragon_lair"].features[6] = {name : 'Chest', x : 17, y : 13, locked : 0, lootgroup : 'castlechest', lootedid : 'elderlair7'};
-mappages["dragon_lair"].features[7] = {name : 'Chest', x : 18, y : 12, locked : 0, lootgroup : 'castlechest', lootedid : 'elderlair6'};
-mappages["dragon_lair"].features[8] = {name : 'Chest', x : 18, y : 13};
-mappages["dragon_lair"].features[9] = {name : 'Chest', x : 18, y : 13, locked : 0, lootgroup : 'castlechest', lootedid : 'elderlair8'};
-mappages["dragon_lair"].features[10] = {name : 'Chest', x : 12, y : 10, locked : 0, lootgroup : 'castlechest', lootedid : 'elderlair3'};
-mappages["dragon_lair"].features[11] = {name : 'Chest', x : 12, y : 11};
-mappages["dragon_lair"].features[12] = {name : 'Chest', x : 12, y : 11, locked : 0, lootgroup : 'castlechest', lootedid : 'elderlair4'};
+mappages["eldercave"].features = [];
+mappages["eldercave"].features[0] = {name : 'PileOfRocks', x : 21, y : 18};
+mappages["eldercave"].features[1] = {name : 'PileOfRocks', x : 13, y : 18};
+mappages["eldercave"].features[2] = {name : 'Chest', x : 17, y : 7, locked : 0, lootgroup : 'castlechest', lootedid : 'elderlair2'};
+mappages["eldercave"].features[3] = {name : 'Chest', x : 16, y : 7, locked : 0, lootgroup : 'castlechest', lootedid : 'elderlair1'};
+mappages["eldercave"].features[4] = {name : 'Chest', x : 12, y : 10, locked : 0, lootgroup : 'castlechest', lootedid : 'elderlair3'};
+mappages["eldercave"].features[5] = {name : 'Chest', x : 12, y : 11, locked : 0, lootgroup : 'castlechest', lootedid : 'elderlair4'};
+mappages["eldercave"].features[6] = {name : 'FireField', x : 15, y : 10};
+mappages["eldercave"].features[7] = {name : 'FireField', x : 21, y : 15};
+mappages["eldercave"].features[8] = {name : 'FireField', x : 14, y : 15};
+mappages["eldercave"].features[8] = {name : 'FireField', x : 21, y : 9};
 
+mappages["eldercave"].npcs = [];
 
-mappages["dragon_lair"].npcs = [];
-
-mappages["dragon_lair"].desc = "Elder Dragon Lair";
-mappages["dragon_lair"].longdesc = `The heat is, if anything, even more intense as you enter this cave. From within, you hear a muffled rumbling sound. Possibly, something breathing...`;
-mappages["dragon_lair"].music = 'Cave';
-mappages["dragon_lair"].savename = `dragon lair`;
-mappages["dragon_lair"].exitmap = '';
-mappages["dragon_lair"].exitx = '65';
-mappages["dragon_lair"].exity = '70';
-mappages["dragon_lair"].wraps = '';
-mappages["dragon_lair"].enterx = '65';
-mappages["dragon_lair"].entery = '70';
-mappages["dragon_lair"].seeBelow = '';
-mappages["dragon_lair"].lightLevel = 'dark';
-mappages["dragon_lair"].alwaysRemember = '0';
-mappages["dragon_lair"].scale = '1';
-mappages["dragon_lair"].underground = '1';
-mappages["dragon_lair"].undergroundDesc = 'Elder Dragon Lair';
-mappages["dragon_lair"].enterscript = '';
-mappages["dragon_lair"].entertestscript = '';
-mappages["dragon_lair"].exitscript = '';
-mappages["dragon_lair"].exittestscript = '';
-mappages["dragon_lair"].returnmap = 'underworld';
-mappages["dragon_lair"].returnx = '36';
-mappages["dragon_lair"].returny = '91';
-mappages["dragon_lair"].returninfused = '0';
-mappages["dragon_lair"].linkedMaps = [""];
-mappages["dragon_lair"].editorLabels = '{}';
+mappages["eldercave"].desc = "Elder Dragon Lair";
+mappages["eldercave"].longdesc = `The heat is, if anything, even more intense as you enter this cave. From within, you hear a muffled rumbling sound. Possibly, something breathing...`;
+mappages["eldercave"].music = 'Cave';
+mappages["eldercave"].savename = `dragon lair`;
+mappages["eldercave"].exitmap = 'underworld';
+mappages["eldercave"].exitx = '36';
+mappages["eldercave"].exity = '91';
+mappages["eldercave"].wraps = '';
+mappages["eldercave"].enterx = '65';
+mappages["eldercave"].entery = '70';
+mappages["eldercave"].seeBelow = '';
+mappages["eldercave"].lightLevel = 'dark';
+mappages["eldercave"].alwaysRemember = '0';
+mappages["eldercave"].scale = '1';
+mappages["eldercave"].underground = '1';
+mappages["eldercave"].undergroundDesc = 'Elder Dragon Lair';
+mappages["eldercave"].enterscript = '';
+mappages["eldercave"].entertestscript = '';
+mappages["eldercave"].exitscript = '';
+mappages["eldercave"].exittestscript = '';
+mappages["eldercave"].returnmap = 'underworld';
+mappages["eldercave"].returnx = '36';
+mappages["eldercave"].returny = '91';
+mappages["eldercave"].returninfused = '0';
+mappages["eldercave"].linkedMaps = [""];
+mappages["eldercave"].editorLabels = '{}';
 // MAP ENDS HERE
 
-mappages["dragon_lair"].onload = function(mapref) {
+mappages["eldercave"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     if (!DU.gameflags.getFlag("elder_killed")) {
       let gold = localFactory.createTile("Gold");
       gold.setQuantity(250);
-      mapref.placeThing(17,11);
+      mapref.placeThing(17,11,gold);
       gold = localFactory.createTile("Gold");
       gold.setQuantity(250);
-      mapref.placeThing(18,11);
+      mapref.placeThing(18,11,gold);
       gold = localFactory.createTile("Gold");
       gold.setQuantity(250);
-      mapref.placeThing(16,12);
+      mapref.placeThing(16,12,gold);
       gold = localFactory.createTile("Gold");
       gold.setQuantity(250);
-      mapref.placeThing(17,12);
+      mapref.placeThing(17,12,gold);
       gold = localFactory.createTile("Gold");
       gold.setQuantity(250);
-      mapref.placeThing(18,12);
+      mapref.placeThing(18,12,gold);
       gold = localFactory.createTile("Gold");
       gold.setQuantity(250);
-      mapref.placeThing(19,12);
+      mapref.placeThing(19,12,gold);
       gold = localFactory.createTile("Gold");
       gold.setQuantity(250);
-      mapref.placeThing(16,13);
+      mapref.placeThing(16,13,gold);
       gold = localFactory.createTile("Gold");
       gold.setQuantity(250);
-      mapref.placeThing(17,13);
+      mapref.placeThing(17,13,gold);
       gold = localFactory.createTile("Gold");
       gold.setQuantity(250);
-      mapref.placeThing(18,13);
+      mapref.placeThing(18,13,gold);
       gold = localFactory.createTile("Gold");
       gold.setQuantity(250);
-      mapref.placeThing(19,13);
+      mapref.placeThing(19,13,gold);
       gold = localFactory.createTile("Gold");
       gold.setQuantity(250);
-      mapref.placeThing(17,14);
+      mapref.placeThing(17,14,gold);
       gold = localFactory.createTile("Gold");
       gold.setQuantity(250);
-      mapref.placeThing(18,14);
+      mapref.placeThing(18,14,gold);
 
       let dragon = localFactory.createTile("ElderDragonNPC");
       mapref.placeThing(17,12,dragon);
-      dragon.activate();
+    } else if (!PC.checkInventory("DragonBone")) {
+      let bone = localFactory.createTile("DragonBone");
+      mapref.placeThing(17,13,bone);
     }
   }
 }

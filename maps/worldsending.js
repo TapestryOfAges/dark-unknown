@@ -1,5 +1,6 @@
 "use strict";
 
+// MAP BEGINS HERE
 mappages["worldsending1"] = {};
 mappages["worldsending1"].terrain = [];
  mappages["worldsending1"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -66,9 +67,9 @@ mappages["worldsending1"].terrain[60] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw 
 mappages["worldsending1"].terrain[61] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## p* p* p* ## BK BK BK BK BK BK BK cw cw cf cf cf cf cf cw cw BK BK BK BK BK BK cw cw cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[62] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## p* p* p* ## BK BK BK BK BK BK BK cw cf cf cf cf cf cf cw BK BK BK BK BK BK BK cw cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[63] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf p* cf cw cw BK BK BK BK BK BK cw cf cf cf cf cf cw cw BK BK BK BK BK BK cw cw cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["worldsending1"].terrain[64] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cw cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw p* cf cf cf cw cw BK BK BK BK BK cw cf cf cf cf cf cw BK BK BK BK BK BK BK cw cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["worldsending1"].terrain[65] = 'BK BK BK BK BK BK BK cw cw cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw cw cw BK BK BK BK BK BK BK BK BK cw cw cf cf cf p* cf cf cw BK BK BK BK BK cw cw cf cf cw cw cw BK BK BK BK BK BK cw cw cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["worldsending1"].terrain[66] = 'BK BK BK BK cw cw cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK cw cf cf p* cf cf cf cf cw cw BK BK BK BK BK cw cw cw cw BK BK BK BK BK BK BK BK cw cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending1"].terrain[64] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf df cf cf cf cf cf cw cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw p* cf cf cf cw cw BK BK BK BK BK cw cf cf cf cf cf cw BK BK BK BK BK BK BK cw cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending1"].terrain[65] = 'BK BK BK BK BK BK BK cw cw cw cw cf cf cf df df df cf cf cf cf cf cf cf cf cf cw cw cw cw BK BK BK BK BK BK BK BK BK cw cw cf cf cf p* cf cf cw BK BK BK BK BK cw cw cf cf cw cw cw BK BK BK BK BK BK cw cw cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending1"].terrain[66] = 'BK BK BK BK cw cw cw cw cf cf cf cf cf cf cf df cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK cw cf cf p* cf cf cf cf cw cw BK BK BK BK BK cw cw cw cw BK BK BK BK BK BK BK BK cw cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[67] = 'BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK cw p* cf cf cf cf p* cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[68] = 'BK BK BK BK cw cw cf cf cf cf cf cf cw cw cw cf cw cw cw cf cf cw cf cf cw cw cf cf cf cf cw cw BK BK BK BK BK BK BK cw cw cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[69] = 'BK BK BK BK BK cw cw cw cf cf cf cf cw BK cw cw cw BK cw cw cw cw cw cw cw cw cw cf cf cf cf cw BK BK BK BK BK BK BK BK cw cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -77,13 +78,13 @@ mappages["worldsending1"].terrain[71] = 'BK BK BK BK BK BK BK BK cw cw cw BK BK 
 mappages["worldsending1"].terrain[72] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK cw cw cw cw cw BK cw cw cf cf cf cf cw cw cw cw BK BK cw cw cf cf cf cf cw BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[73] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cw cw cw cw cw cf cf cf cw cw cw cf cf cf cf cf cf cf cf cw cw cw cw cf cf cf cf cf cw cw cw cw cw cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[74] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["worldsending1"].terrain[75] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["worldsending1"].terrain[76] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw cf cf cf cf cw cw cw cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["worldsending1"].terrain[77] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw cw cw cw cw cw cw BK cw cw cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["worldsending1"].terrain[78] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw cw cw cf cf cf cf cf cf cf cf cf cf cf cw cw cw cw BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["worldsending1"].terrain[79] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cw cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["worldsending1"].terrain[80] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["worldsending1"].terrain[81] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending1"].terrain[75] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf ++ ++ cf cf ++ ++ ++ ++ cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending1"].terrain[76] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf ++ ++ ++ ++ ++ ++ ++ ++ cf cf cf cf cf cw cw cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw cf cf cf cf cw cw cw cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending1"].terrain[77] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf ++ ++ ++ ++ ++ ++ ++ ++ cf cf cf cf cw cw BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw cw cw cw cw cw cw BK cw cw cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending1"].terrain[78] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw cw cw cf cf ++ ++ ++ ++ ++ ++ ++ cf cf cw cw cw cw BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending1"].terrain[79] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cw cf cf cf ++ ++ ++ ++ ++ ++ ++ ++ cf cw cw BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending1"].terrain[80] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf ++ ++ ++ ++ ++ ++ ++ ++ cw cw BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending1"].terrain[81] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf ++ ++ cf cw BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[82] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cw cw cw cw cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[83] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cw cw cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[84] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -144,9 +145,31 @@ mappages["worldsending1"].features[36] = {name : 'Door', x : 35, y : 47};
 mappages["worldsending1"].features[37] = {name : 'Door', x : 31, y : 47};
 mappages["worldsending1"].features[38] = {name : 'Door', x : 31, y : 43};
 mappages["worldsending1"].features[39] = {name : 'UnlitBrazier', x : 34, y : 22};
+mappages["worldsending1"].features[40] = {name : 'LadderDown', x : 72, y : 23, entermap : 'null', enterx : 0, entery : 0};
+mappages["worldsending1"].features[41] = {name : 'OrbDexterity', x : 75, y : 83};
+mappages["worldsending1"].features[42] = {name : 'Well', x : 18, y : 87};
+mappages["worldsending1"].features[43] = {name : 'FireField', x : 22, y : 80};
+mappages["worldsending1"].features[44] = {name : 'BrokenFountain', x : 15, y : 65};
 
 
 mappages["worldsending1"].npcs = [];
+mappages["worldsending1"].npcs[0] = {name : 'AnimatedArmorNPC', x : 44, y : 71, skintone: '1'};
+mappages["worldsending1"].npcs[1] = {name : 'AnimatedArmorNPC', x : 42, y : 74, skintone: '1'};
+mappages["worldsending1"].npcs[2] = {name : 'AnimatedArmorNPC', x : 46, y : 74, skintone: '1'};
+mappages["worldsending1"].npcs[3] = {name : 'EttinNPC', x : 78, y : 82, skintone: '1'};
+mappages["worldsending1"].npcs[4] = {name : 'TrollNPC', x : 55, y : 64, skintone: '1'};
+mappages["worldsending1"].npcs[5] = {name : 'TrollNPC', x : 56, y : 62, skintone: '1'};
+mappages["worldsending1"].npcs[6] = {name : 'TrollNPC', x : 58, y : 63, skintone: '1'};
+mappages["worldsending1"].npcs[7] = {name : 'TrollNPC', x : 58, y : 60, skintone: '1'};
+mappages["worldsending1"].npcs[8] = {name : 'TrollNPC', x : 60, y : 58, skintone: '1'};
+mappages["worldsending1"].npcs[9] = {name : 'TrollNPC', x : 61, y : 57, skintone: '1'};
+mappages["worldsending1"].npcs[10] = {name : 'TrollNPC', x : 60, y : 55, skintone: '1'};
+mappages["worldsending1"].npcs[11] = {name : 'OrcShamanNPC', x : 70, y : 25, skintone: '1'};
+mappages["worldsending1"].npcs[12] = {name : 'OrcCaptainNPC', x : 74, y : 23, skintone: '1'};
+mappages["worldsending1"].npcs[13] = {name : 'OrcCaptainNPC', x : 76, y : 45, skintone: '1'};
+mappages["worldsending1"].npcs[14] = {name : 'MimicNPC', x : 32, y : 77, skintone: '1'};
+mappages["worldsending1"].npcs[15] = {name : 'MimicNPC', x : 32, y : 79, skintone: '1'};
+mappages["worldsending1"].npcs[16] = {name : 'DrakeNPC', x : 14, y : 55, skintone: '1'};
 
 mappages["worldsending1"].desc = "World's Ending (L1)";
 mappages["worldsending1"].longdesc = ``;
@@ -174,6 +197,7 @@ mappages["worldsending1"].returny = '44';
 mappages["worldsending1"].returninfused = '0';
 mappages["worldsending1"].linkedMaps = ["spire2","spire3"];
 mappages["worldsending1"].editorLabels = '{}';
+// MAP ENDS HERE
 
 mappages["worldsending1"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
