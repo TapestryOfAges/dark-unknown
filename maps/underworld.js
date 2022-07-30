@@ -260,7 +260,7 @@ mappages["underworld"].onload = function(mapref) {
 
     // Corpsers in the loop south of the lake
     spawn = localFactory.createTile("Spawner");
-    spawngroup = ["CorsperNPC"];
+    spawngroup = ["CorpserNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(4);
@@ -324,7 +324,7 @@ mappages["underworld"].onload = function(mapref) {
 
     // swamp N of lava full of gazers and occasional reaper
     spawn = localFactory.createTile("Spawner");
-    spawngroup = ["GazerNPC","GazerNPC","GazerNPC","EyeOfSpiteNPC","ReaperNPC","ReaperLordNPC"];
+    spawngroup = ["GazerNPC","GazerNPC","GazerNPC","EyesOfSpiteNPC","ReaperNPC","ReaperLordNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(4);
@@ -350,7 +350,7 @@ mappages["underworld"].onload = function(mapref) {
 
     // tunnel out from above dungeon has corpsers
     spawn = localFactory.createTile("Spawner");
-    spawngroup = ["CorsperNPC"];
+    spawngroup = ["CorpserNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(4);
