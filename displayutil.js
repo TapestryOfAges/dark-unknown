@@ -406,6 +406,7 @@ function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev, skipfeatures, 
           if (!makeCell.graphics1) { makeCell.graphics1 = "spacer.gif"; }
           makeCell.graphics2 = displayStack[i].layers[j][2];
           makeCell.graphics3 = displayStack[i].layers[j][3];
+          makeCell.divid = displayStack[i].divid + "_" + j;
           returnStack.push(makeCell);
         }
       }

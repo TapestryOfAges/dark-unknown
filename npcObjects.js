@@ -15,8 +15,25 @@ function DruidVillagerNPCTile() {
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
   this.withdraw = 75;
-  this.graphic = '302.gif';
-  this.altgraphic = ['druid-offcolor.1.gif','druid-offcolor.gif',];
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['GreenRobe'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'GreenRobe'
+  this.wornlayers.head = 'ShortBrownPale'
+  this.wornlayers.offhand = 'OffhandPale'
+  this.wornlayers.mainhand = 'SerpentStaffPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d2'
   this.meleeStrDamage = .33
@@ -36,7 +53,7 @@ function DruidVillagerNPCTile() {
   this.initOverride = 10;
   this.gender = 'random';
 }
-DruidVillagerNPCTile.prototype = new NPCObject();
+DruidVillagerNPCTile.prototype = new NPCHumanObject();
 
 
 // Townsfolk
@@ -53,8 +70,25 @@ function ShepherdVillagerNPCTile() {
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
   this.withdraw = 0;
-  this.graphic = '301.gif';
-  this.altgraphic = ['shepherd-offcolor.1.gif',];
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['BrownRobe'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'BrownRobe'
+  this.wornlayers.head = 'ShortBrownPale'
+  this.wornlayers.offhand = 'OffhandPale'
+  this.wornlayers.mainhand = 'CrookPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d4+1'
   this.meleeStrDamage = .33
@@ -73,7 +107,7 @@ function ShepherdVillagerNPCTile() {
   this.initOverride = 10;
   this.gender = 'random';
 }
-ShepherdVillagerNPCTile.prototype = new NPCObject();
+ShepherdVillagerNPCTile.prototype = new NPCHumanObject();
 
 
 // Townsfolk
@@ -90,8 +124,25 @@ function MageVillagerNPCTile() {
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
   this.withdraw = 50;
-  this.graphic = '303.gif';
-  this.altgraphic = ['303.2.gif','mage-offcolor.gif',];
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['BlueRobePlain'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'BlueRobePlain'
+  this.wornlayers.head = 'ShortBrownPale'
+  this.wornlayers.offhand = 'OffhandPale'
+  this.wornlayers.mainhand = 'QuarterstaffPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d2'
   this.meleeStrDamage = .33
@@ -111,7 +162,7 @@ function MageVillagerNPCTile() {
   this.initOverride = 10;
   this.gender = 'random';
 }
-MageVillagerNPCTile.prototype = new NPCObject();
+MageVillagerNPCTile.prototype = new NPCHumanObject();
 
 
 // Townsfolk
@@ -128,8 +179,25 @@ function TinkerVillagerNPCTile() {
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
   this.withdraw = 50;
-  this.graphic = '304.gif';
-  this.altgraphic = ['304.2.gif','tinker-offcolor.gif',];
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['LeatherArmor'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'LeatherArmor'
+  this.wornlayers.head = 'ShortBrownPale'
+  this.wornlayers.offhand = 'OffhandPale'
+  this.wornlayers.mainhand = 'HammerPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d4+1'
   this.meleeStrDamage = .33
@@ -152,7 +220,7 @@ function TinkerVillagerNPCTile() {
   this.initOverride = 10;
   this.gender = 'random';
 }
-TinkerVillagerNPCTile.prototype = new NPCObject();
+TinkerVillagerNPCTile.prototype = new NPCHumanObject();
 
 
 // Townsfolk
@@ -169,8 +237,26 @@ function RangerVillagerNPCTile() {
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
   this.withdraw = 50;
-  this.graphic = '305.gif';
-  this.altgraphic = ['ranger-offcolor.gif',];
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['LeatherArmor'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'LeatherArmor'
+  this.wornlayers.head = 'ShortBrownPale'
+  this.wornlayers.back = 'Quiver'
+  this.wornlayers.offhand = 'OffhandPale'
+  this.wornlayers.mainhand = 'BowPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d4+1'
   this.meleeStrDamage = .33
@@ -193,7 +279,7 @@ function RangerVillagerNPCTile() {
   this.initOverride = 10;
   this.gender = 'random';
 }
-RangerVillagerNPCTile.prototype = new NPCObject();
+RangerVillagerNPCTile.prototype = new NPCHumanObject();
 
 
 // Townsfolk
@@ -210,7 +296,26 @@ function AdventurerVillagerNPCTile() {
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
   this.withdraw = 0;
-  this.graphic = '306.gif';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['ChainMail'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'ChainMail'
+  this.wornlayers.head = 'ShortBrownPale'
+  this.wornlayers.cloak = 'BlueCloak'
+  this.wornlayers.offhand = 'OffhandPale'
+  this.wornlayers.mainhand = 'LongswordPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
@@ -233,7 +338,7 @@ function AdventurerVillagerNPCTile() {
   this.initOverride = 10;
   this.gender = 'random';
 }
-AdventurerVillagerNPCTile.prototype = new NPCObject();
+AdventurerVillagerNPCTile.prototype = new NPCHumanObject();
 
 
 // Townsfolk
@@ -250,8 +355,26 @@ function PaladinVillagerNPCTile() {
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
   this.withdraw = 0;
-  this.graphic = '307.gif';
-  this.altgraphic = ['307.2.gif','paladin-offcolor.gif',];
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['PlatePaladin'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'PlatePaladin'
+  this.wornlayers.head = 'ShortBrownPale'
+  this.wornlayers.cloak = 'BlueCloak'
+  this.wornlayers.offhand = 'KiteShield'
+  this.wornlayers.mainhand = 'LongswordPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
@@ -271,7 +394,7 @@ function PaladinVillagerNPCTile() {
   this.initOverride = 10;
   this.gender = 'random';
 }
-PaladinVillagerNPCTile.prototype = new NPCObject();
+PaladinVillagerNPCTile.prototype = new NPCHumanObject();
 
 
 // Townsfolk
@@ -288,8 +411,25 @@ function FighterVillagerNPCTile() {
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
   this.withdraw = 0;
-  this.graphic = '308.gif';
-  this.altgraphic = ['fighter-offcolor.gif',];
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['Plate'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'Plate'
+  this.wornlayers.head = 'ShortBrownPale'
+  this.wornlayers.offhand = 'RoundShield'
+  this.wornlayers.mainhand = 'LongswordPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
@@ -311,7 +451,7 @@ function FighterVillagerNPCTile() {
   this.initOverride = 10;
   this.gender = 'random';
 }
-FighterVillagerNPCTile.prototype = new NPCObject();
+FighterVillagerNPCTile.prototype = new NPCHumanObject();
 
 
 // Townsfolk
@@ -328,8 +468,25 @@ function TownsfolkVillagerNPCTile() {
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
   this.withdraw = 0;
-  this.graphic = '310.gif';
-  this.altgraphic = ['310.2.gif','civ_blue.2.gif','civ_blue.gif','civ_green.2.gif','civ_green.gif','civ_red.2.gif','civ_red.gif',];
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['WhiteTunic'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'WhiteTunic'
+  this.wornlayers.head = 'ShortBrownPale'
+  this.wornlayers.offhand = 'OffhandPale'
+  this.wornlayers.mainhand = 'MainHandPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d4+1'
   this.meleeStrDamage = .33
@@ -348,7 +505,7 @@ function TownsfolkVillagerNPCTile() {
   this.initOverride = 10;
   this.gender = 'random';
 }
-TownsfolkVillagerNPCTile.prototype = new NPCObject();
+TownsfolkVillagerNPCTile.prototype = new NPCHumanObject();
 
 
 // Townsfolk
@@ -365,8 +522,21 @@ function BardVillagerNPCTile() {
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
   this.withdraw = 66;
-  this.graphic = '311.gif';
-  this.altgraphic = ['bard-offcolor.gif',];
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['Bard1'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'Bard1'
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d4+1'
   this.meleeStrDamage = .33
@@ -389,7 +559,7 @@ function BardVillagerNPCTile() {
   this.initOverride = 10;
   this.gender = 'random';
 }
-BardVillagerNPCTile.prototype = new NPCObject();
+BardVillagerNPCTile.prototype = new NPCHumanObject();
 
 
 // Townsfolk
@@ -406,7 +576,21 @@ function ChildVillagerNPCTile() {
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
   this.withdraw = 0;
-  this.graphic = '312.gif';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['ChildPale'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'ChildPale'
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d2'
   this.meleeStrDamage = .33
@@ -428,7 +612,7 @@ function ChildVillagerNPCTile() {
   this.initOverride = 10;
   this.gender = 'random';
 }
-ChildVillagerNPCTile.prototype = new NPCObject();
+ChildVillagerNPCTile.prototype = new NPCHumanObject();
 
 
 // Townsfolk
@@ -484,7 +668,21 @@ function JesterNPCTile() {
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
   this.withdraw = 0;
-  this.graphic = '314.gif';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['Jester'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'Jester'
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d2'
   this.meleeStrDamage = .33
@@ -506,7 +704,7 @@ function JesterNPCTile() {
   this.initOverride = 10;
   this.gender = 'random';
 }
-JesterNPCTile.prototype = new NPCObject();
+JesterNPCTile.prototype = new NPCHumanObject();
 
 
 // Townsfolk
@@ -523,7 +721,25 @@ function TownGuardNPCTile() {
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
   this.withdraw = 0;
-  this.graphic = '309.gif';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['PlateCheckeredTabard'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'PlateCheckeredTabard'
+  this.wornlayers.head = 'ShortBrownPale'
+  this.wornlayers.offhand = 'OffhandPale'
+  this.wornlayers.mainhand = 'HalberdPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '5d4+15'
   this.meleeStrDamage = 1
@@ -542,7 +758,7 @@ function TownGuardNPCTile() {
   this.initOverride = 10;
   this.gender = 'random';
 }
-TownGuardNPCTile.prototype = new NPCObject();
+TownGuardNPCTile.prototype = new NPCHumanObject();
 
 
 // Townsfolk
@@ -559,7 +775,21 @@ function KingNPCTile() {
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
   this.withdraw = 0;
-  this.graphic = '315.gif';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['King3'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'King3'
   this.meleeAttackAs = 'none';
   this.meleeDamage = '5d10+22'
   this.meleeStrDamage = 1
@@ -578,7 +808,7 @@ function KingNPCTile() {
   this.initOverride = 10;
   this.gender = 'male';
 }
-KingNPCTile.prototype = new NPCObject();
+KingNPCTile.prototype = new NPCHumanObject();
 
 
 // Townsfolk
@@ -595,7 +825,21 @@ function QueenNPCTile() {
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
   this.withdraw = 0;
-  this.graphic = '315.2.gif';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['Queen'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'Queen'
   this.meleeAttackAs = 'none';
   this.meleeDamage = '5d10+22'
   this.meleeStrDamage = 1
@@ -614,7 +858,7 @@ function QueenNPCTile() {
   this.initOverride = 10;
   this.gender = 'female';
 }
-QueenNPCTile.prototype = new NPCObject();
+QueenNPCTile.prototype = new NPCHumanObject();
 
 
 // Townsfolk
@@ -631,7 +875,22 @@ function PrinceNPCTile() {
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
   this.withdraw = 0;
-  this.graphic = 'prince.gif';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['PlateKnight'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'PlateKnight'
+  this.wornlayers.head = 'PrinceHead'
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+9'
   this.meleeStrDamage = .66
@@ -650,7 +909,7 @@ function PrinceNPCTile() {
   this.initOverride = 10;
   this.gender = 'male';
 }
-PrinceNPCTile.prototype = new NPCObject();
+PrinceNPCTile.prototype = new NPCHumanObject();
 
 
 // Townsfolk
@@ -867,7 +1126,22 @@ function CorruptPrinceNPCTile() {
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
   this.withdraw = 0;
-  this.graphic = 'prince.gif';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['PlateKnight'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'PlateKnight'
+  this.wornlayers.head = 'PrinceHead'
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+9'
   this.meleeStrDamage = .66
@@ -885,7 +1159,7 @@ function CorruptPrinceNPCTile() {
   this.meleeAttackSound = 'sfx_melee_miss';
   this.gender = 'male';
 }
-CorruptPrinceNPCTile.prototype = new NPCObject();
+CorruptPrinceNPCTile.prototype = new NPCHumanObject();
 
 
 // CorruptTownsfolk
@@ -902,7 +1176,25 @@ function CorruptGuardsNPCTile() {
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
   this.withdraw = 0;
-  this.graphic = '309.gif';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['PlateCheckeredTabard'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'PlateCheckeredTabard'
+  this.wornlayers.head = 'ShortBrownPale'
+  this.wornlayers.offhand = 'OffhandPale'
+  this.wornlayers.mainhand = 'HalberdPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+9'
   this.meleeStrDamage = .66
@@ -920,7 +1212,7 @@ function CorruptGuardsNPCTile() {
   this.meleeAttackSound = 'sfx_melee_miss';
   this.gender = 'random';
 }
-CorruptGuardsNPCTile.prototype = new NPCObject();
+CorruptGuardsNPCTile.prototype = new NPCHumanObject();
 
 
 // CorruptTownsfolk
@@ -937,7 +1229,22 @@ function CourierNPCTile() {
   this.peaceAI = 'courier';
   this.forgetAt = 0;
   this.withdraw = 0;
-  this.graphic = '310.2.gif';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['WhiteTunic'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'WhiteTunic'
+  this.wornlayers.head = 'ShortBrownPale'
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
@@ -961,7 +1268,7 @@ function CourierNPCTile() {
   this.meleeAttackSound = 'sfx_melee_miss';
   this.gender = 'random';
 }
-CourierNPCTile.prototype = new NPCObject();
+CourierNPCTile.prototype = new NPCHumanObject();
 
 
 // CorruptTownsfolk
@@ -978,7 +1285,25 @@ function CourierGuardNPCTile() {
   this.peaceAI = 'seekPC-15';
   this.forgetAt = 0;
   this.withdraw = 0;
-  this.graphic = '309.gif';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['PlateWhiteTabard'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'PlateWhiteTabard'
+  this.wornlayers.head = 'ShortBrownPale'
+  this.wornlayers.offhand = 'OffhandPale'
+  this.wornlayers.mainhand = 'HalberdPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+3'
   this.meleeStrDamage = 1
@@ -996,7 +1321,7 @@ function CourierGuardNPCTile() {
   this.meleeAttackSound = 'sfx_melee_miss';
   this.gender = 'random';
 }
-CourierGuardNPCTile.prototype = new NPCObject();
+CourierGuardNPCTile.prototype = new NPCHumanObject();
 
 
 // Animal
@@ -1204,8 +1529,25 @@ function HoodNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '375.gif';
-  this.altgraphic = ['341.gif',];
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['LeatherArmor'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'LeatherArmor'
+  this.wornlayers.head = 'ShortBrownPale'
+  this.wornlayers.offhand = 'OffhandDagger'
+  this.wornlayers.mainhand = 'DaggerPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d4+1'
   this.meleeStrDamage = .33
@@ -1224,7 +1566,7 @@ function HoodNPCTile() {
   this.meleeAttackSound = 'sfx_melee_miss';
   this.gender = 'random';
 }
-HoodNPCTile.prototype = new NPCObject();
+HoodNPCTile.prototype = new NPCHumanObject();
 
 
 // CorruptTownsfolk
@@ -1241,7 +1583,22 @@ function MinstrelNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 50;
-  this.graphic = '311.gif';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['Bard1'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'Bard1'
+  this.wornlayers.head = 'ShortBrownPale'
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d4+1'
   this.meleeStrDamage = .33
@@ -1264,7 +1621,7 @@ function MinstrelNPCTile() {
   this.meleeAttackSound = 'sfx_melee_miss';
   this.gender = 'random';
 }
-MinstrelNPCTile.prototype = new NPCObject();
+MinstrelNPCTile.prototype = new NPCHumanObject();
 
 
 // Monster
@@ -1330,8 +1687,25 @@ function ApprenticeNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 75;
-  this.graphic = '303.gif';
-  this.altgraphic = ['303.2.gif',];
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['BlueRobePlain'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'BlueRobePlain'
+  this.wornlayers.head = 'ShortBrownPale'
+  this.wornlayers.offhand = 'OffhandPale'
+  this.wornlayers.mainhand = 'DaggerPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d2'
   this.meleeStrDamage = .33
@@ -1350,7 +1724,7 @@ function ApprenticeNPCTile() {
   this.meleeAttackSound = 'sfx_melee_miss';
   this.gender = 'random';
 }
-ApprenticeNPCTile.prototype = new NPCObject();
+ApprenticeNPCTile.prototype = new NPCHumanObject();
 
 
 // CorruptTownsfolk
@@ -1367,8 +1741,26 @@ function FighterNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '308.gif';
-  this.altgraphic = ['fighter-offcolor.gif',];
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['Plate'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'Plate'
+  this.wornlayers.head = 'ShortBrownPale'
+  this.wornlayers.cloak = 'RedCloak'
+  this.wornlayers.offhand = 'RoundShield'
+  this.wornlayers.mainhand = 'AxePale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+3'
   this.meleeStrDamage = 1
@@ -1386,7 +1778,7 @@ function FighterNPCTile() {
   this.meleeAttackSound = 'sfx_melee_miss';
   this.gender = 'random';
 }
-FighterNPCTile.prototype = new NPCObject();
+FighterNPCTile.prototype = new NPCHumanObject();
 
 
 // Monster
@@ -1595,7 +1987,25 @@ function RogueNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '306.gif';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['LeatherArmor'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'LeatherArmor'
+  this.wornlayers.head = 'ShortBrownPale'
+  this.wornlayers.offhand = 'OffhandDagger'
+  this.wornlayers.mainhand = 'ShortswordPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
@@ -1614,7 +2024,7 @@ function RogueNPCTile() {
   this.meleeAttackSound = 'sfx_melee_miss';
   this.gender = 'random';
 }
-RogueNPCTile.prototype = new NPCObject();
+RogueNPCTile.prototype = new NPCHumanObject();
 
 
 // CorruptTownsfolk
@@ -1631,7 +2041,25 @@ function PitRogueNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '306.gif';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['LeatherArmor'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'LeatherArmor'
+  this.wornlayers.head = 'ShortBrownPale'
+  this.wornlayers.offhand = 'OffhandDagger'
+  this.wornlayers.mainhand = 'ShortswordPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
@@ -1650,7 +2078,7 @@ function PitRogueNPCTile() {
   this.meleeAttackSound = 'sfx_melee_miss';
   this.gender = 'random';
 }
-PitRogueNPCTile.prototype = new NPCObject();
+PitRogueNPCTile.prototype = new NPCHumanObject();
 
 
 // Monster
@@ -1747,7 +2175,26 @@ function ArcherNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 66;
-  this.graphic = 'ranger-offcolor.gif';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['WhiteTunic'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'WhiteTunic'
+  this.wornlayers.head = 'ShortBrownPale'
+  this.wornlayers.back = 'Quiver'
+  this.wornlayers.offhand = 'OffhandPale'
+  this.wornlayers.mainhand = 'BowPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+3'
   this.meleeStrDamage = 1
@@ -1769,7 +2216,7 @@ function ArcherNPCTile() {
   this.meleeAttackSound = 'sfx_missile_miss';
   this.gender = 'random';
 }
-ArcherNPCTile.prototype = new NPCObject();
+ArcherNPCTile.prototype = new NPCHumanObject();
 
 
 // CorruptTownsfolk
@@ -1786,7 +2233,22 @@ function BardNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 50;
-  this.graphic = 'bard-offcolor.gif';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['Bard1'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'Bard1'
+  this.wornlayers.head = 'ShortBrownPale'
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
@@ -1808,7 +2270,7 @@ function BardNPCTile() {
   this.meleeAttackSound = 'sfx_melee_miss';
   this.gender = 'random';
 }
-BardNPCTile.prototype = new NPCObject();
+BardNPCTile.prototype = new NPCHumanObject();
 
 
 // CorruptTownsfolk
@@ -1825,8 +2287,25 @@ function DruidNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 50;
-  this.graphic = '302.gif';
-  this.altgraphic = ['druid-offcolor.gif','druid-offcolor.1.gif',];
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['GreenRobe'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'GreenRobe'
+  this.wornlayers.head = 'ShortBrownPale'
+  this.wornlayers.offhand = 'OffhandPale'
+  this.wornlayers.mainhand = 'SerpentStaffPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
@@ -1845,7 +2324,7 @@ function DruidNPCTile() {
   this.meleeAttackSound = 'sfx_melee_miss';
   this.gender = 'random';
 }
-DruidNPCTile.prototype = new NPCObject();
+DruidNPCTile.prototype = new NPCHumanObject();
 
 
 // Animal
@@ -2079,7 +2558,25 @@ function HandlerNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = 'shepherd-offcolor.1.gif';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['BrownRobe'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'BrownRobe'
+  this.wornlayers.head = 'ShortBrownPale'
+  this.wornlayers.offhand = 'OffhandPale'
+  this.wornlayers.mainhand = 'CrookPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+3'
   this.meleeStrDamage = 1
@@ -2098,7 +2595,7 @@ function HandlerNPCTile() {
   this.meleeAttackSound = 'sfx_melee_miss';
   this.gender = 'random';
 }
-HandlerNPCTile.prototype = new NPCObject();
+HandlerNPCTile.prototype = new NPCHumanObject();
 
 
 // Monster
@@ -2285,7 +2782,25 @@ function ThiefNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '306.gif';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['LeatherArmor'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'LeatherArmor'
+  this.wornlayers.head = 'ShortBrownPale'
+  this.wornlayers.offhand = 'OffhandPale'
+  this.wornlayers.mainhand = 'ShortswordPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+3'
   this.meleeStrDamage = 1
@@ -2307,7 +2822,7 @@ function ThiefNPCTile() {
   this.meleeAttackSound = 'sfx_melee_miss';
   this.gender = 'random';
 }
-ThiefNPCTile.prototype = new NPCObject();
+ThiefNPCTile.prototype = new NPCHumanObject();
 
 
 // Monster
@@ -2830,8 +3345,25 @@ function PaladinNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '307.gif';
-  this.altgraphic = ['307.2.gif','paladin-offcolor.gif',];
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['Plate'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'Plate'
+  this.wornlayers.head = 'ShortBrownPale'
+  this.wornlayers.offhand = 'KiteShield'
+  this.wornlayers.mainhand = 'LongswordPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+9'
   this.meleeStrDamage = .66
@@ -2853,7 +3385,7 @@ function PaladinNPCTile() {
   this.meleeAttackSound = 'sfx_melee_miss';
   this.gender = 'random';
 }
-PaladinNPCTile.prototype = new NPCObject();
+PaladinNPCTile.prototype = new NPCHumanObject();
 
 
 // Animal
@@ -2994,7 +3526,25 @@ function WizardNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 50;
-  this.graphic = 'mage-offcolor.gif';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['BlueRobePlain'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'BlueRobePlain'
+  this.wornlayers.head = 'ShortBrownPale'
+  this.wornlayers.offhand = 'OffhandPale'
+  this.wornlayers.mainhand = 'QuarterstaffPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+3'
   this.meleeStrDamage = 1
@@ -3013,7 +3563,7 @@ function WizardNPCTile() {
   this.meleeAttackSound = 'sfx_melee_miss';
   this.gender = 'random';
 }
-WizardNPCTile.prototype = new NPCObject();
+WizardNPCTile.prototype = new NPCHumanObject();
 
 
 // Monster
@@ -3162,7 +3712,24 @@ function CultistNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '301.gif';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['BrownRobeHood'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'BrownRobeHood'
+  this.wornlayers.offhand = 'OffhandDagger'
+  this.wornlayers.mainhand = 'DaggerPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+9'
   this.meleeStrDamage = .66
@@ -3180,7 +3747,7 @@ function CultistNPCTile() {
   this.meleeAttackSound = 'sfx_melee_miss';
   this.gender = 'random';
 }
-CultistNPCTile.prototype = new NPCObject();
+CultistNPCTile.prototype = new NPCHumanObject();
 
 
 // Monster
@@ -3363,7 +3930,26 @@ function RangerNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '305.gif';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['LeatherArmor'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'LeatherArmor'
+  this.wornlayers.head = 'ShortBrownPale'
+  this.wornlayers.back = 'Quiver'
+  this.wornlayers.offhand = 'OffhandPale'
+  this.wornlayers.mainhand = 'BowPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+9'
   this.meleeStrDamage = .66
@@ -3385,7 +3971,7 @@ function RangerNPCTile() {
   this.meleeAttackSound = 'sfx_melee_miss';
   this.gender = 'random';
 }
-RangerNPCTile.prototype = new NPCObject();
+RangerNPCTile.prototype = new NPCHumanObject();
 
 
 // Monster
@@ -3490,8 +4076,25 @@ function ArchmageNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 50;
-  this.graphic = '347.gif';
-  this.altgraphic = ['381.gif',];
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['RedRobe'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'RedRobe'
+  this.wornlayers.head = 'ShortBrownPale'
+  this.wornlayers.offhand = 'OffhandPale'
+  this.wornlayers.mainhand = 'QuarterstaffPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+3'
   this.meleeStrDamage = 1
@@ -3513,7 +4116,7 @@ function ArchmageNPCTile() {
   this.meleeAttackSound = 'sfx_melee_miss';
   this.gender = 'random';
 }
-ArchmageNPCTile.prototype = new NPCObject();
+ArchmageNPCTile.prototype = new NPCHumanObject();
 
 
 // Monster
@@ -3965,7 +4568,25 @@ function JusticeNPCTile() {
   this.peaceAI = 'Justice';
   this.forgetAt = 15;
   this.withdraw = 0;
-  this.graphic = '303.gif';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['BlueRobe'].frames,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: 1
+  });
+
+  this.wornlayers.body = 'BlueRobe'
+  this.wornlayers.head = 'LongBrownHairPale'
+  this.wornlayers.offhand = 'OffhandPale'
+  this.wornlayers.mainhand = 'QuarterstaffPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4'
   this.meleeStrDamage = 1
@@ -3986,7 +4607,7 @@ function JusticeNPCTile() {
   this.meleeAttackSound = 'sfx_melee_miss';
   this.gender = 'female';
 }
-JusticeNPCTile.prototype = new NPCObject();
+JusticeNPCTile.prototype = new NPCHumanObject();
 
 
 // Monster
@@ -4212,8 +4833,6 @@ function ArchdaemonOfAshesNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 15;
   this.withdraw = 0;
-  this.graphic = '354.gif';
-  this.altgraphic = ['388.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '5d10+22'
   this.meleeStrDamage = 1
@@ -4222,14 +4841,27 @@ function ArchdaemonOfAshesNPCTile() {
   this.movetype = MOVE_FLY;
   this.leavesCorpse = 'none';
   this.lootTable = 'archdaemon_ashes';
-  this.prefix = 'the';
-  this.desc = "Archdaemon of Ashes";
+  this.prefix = 'an';
+  this.desc = "archdaemon";
   this.meleeChance = 75;
   this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, banned: 'Ice', };
   this.resists = { fire:60, ice:30,poison: 60 };
   this.special = 'archdaemon_ashes';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -126 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 ArchdaemonOfAshesNPCTile.prototype = new NPCObject();
 
@@ -4248,8 +4880,6 @@ function ArchdaemonOfDustNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 15;
   this.withdraw = 0;
-  this.graphic = '354.gif';
-  this.altgraphic = ['388.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '5d10+22'
   this.meleeStrDamage = 1
@@ -4258,14 +4888,27 @@ function ArchdaemonOfDustNPCTile() {
   this.movetype = MOVE_FLY;
   this.leavesCorpse = 'none';
   this.lootTable = 'archdaemon_dust';
-  this.prefix = 'the';
-  this.desc = "Archdaemon of Dust";
+  this.prefix = 'an';
+  this.desc = "archdaemon";
   this.meleeChance = 75;
   this.spellsknown = { lowcontrol: 1, highcontrol: 1, attack: 1, highattack: 1, };
   this.resists = { fire:40, ice:40,poison: 60 };
   this.special = 'archdaemon_dust';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -126 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 ArchdaemonOfDustNPCTile.prototype = new NPCObject();
 
@@ -4284,8 +4927,6 @@ function ArchdaemonOfIceNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 15;
   this.withdraw = 0;
-  this.graphic = '354.gif';
-  this.altgraphic = ['388.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '5d10+22'
   this.meleeStrDamage = 1
@@ -4294,14 +4935,27 @@ function ArchdaemonOfIceNPCTile() {
   this.movetype = MOVE_FLY;
   this.leavesCorpse = 'none';
   this.lootTable = 'archdaemon_ice';
-  this.prefix = 'the';
-  this.desc = "Archdaemon of Ice";
+  this.prefix = 'an';
+  this.desc = "archdaemon";
   this.meleeChance = 75;
   this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, banned: 'Fire', };
   this.resists = { fire:30, ice:60,poison: 60 };
   this.special = 'archdaemon_ice';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -126 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 ArchdaemonOfIceNPCTile.prototype = new NPCObject();
 
@@ -4320,8 +4974,6 @@ function ArchdaemonOfBoneNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 15;
   this.withdraw = 0;
-  this.graphic = '354.gif';
-  this.altgraphic = ['388.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '5d10+22'
   this.meleeStrDamage = 1
@@ -4330,14 +4982,27 @@ function ArchdaemonOfBoneNPCTile() {
   this.movetype = MOVE_FLY;
   this.leavesCorpse = 'none';
   this.lootTable = 'archdaemon_bone';
-  this.prefix = 'the';
-  this.desc = "Archdaemon of Bone";
+  this.prefix = 'an';
+  this.desc = "archdaemon";
   this.meleeChance = 75;
   this.spellsknown = { summon: 1, attack: 1, highattack: 1, };
   this.resists = { fire:40, ice:40,poison: 60 };
   this.special = 'archdaemon_bone';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -126 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 ArchdaemonOfBoneNPCTile.prototype = new NPCObject();
 
