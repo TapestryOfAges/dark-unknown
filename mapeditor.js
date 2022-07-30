@@ -37,6 +37,7 @@ var localatlas = new Atlas();
 PopulateAtlas(localatlas);
 
 var graphicpicks = [];
+let humanpicks = {};
 var optindex = 0;
 let fillselect;
 
@@ -379,6 +380,7 @@ function clickmap(xval,yval) {
       document.npceditpopup.npcprefix.value = editnpcs.getPrefix();
       document.npceditpopup.npcnpcband.value = editnpcs.getNPCBand();
       
+      // this will get overwritten if it's a human
       graphicpicks = [];
       optindex=0;
       var tmpdude = localFactory.createTile(editnpcs.getName());
@@ -402,6 +404,95 @@ function clickmap(xval,yval) {
         $("#opt"+optindex).css("background-color","red");
       } else if (optindex) {
         $("#opt"+optindex).css("background-color","red");
+      }
+      
+      // New human parts picker
+      if (editnpcs.checkType("human")) {
+        let humanpartshtml = "<table><tr><td id='humandisplay' colspan='2' width='32' height='32' style='position:relative'>";
+        let xpos = 0;
+        let ypos = -120*32;
+        if (editnpcs.wornlayers.back) {
+          xpos = HumanParts[editnpcs.wornlayers.back].spritex + editnpcs.wornlayernudges.back.x;
+          ypos = HumanParts[editnpcs.wornlayers.back].spritey + editnpcs.wornlayernudges.back.y;
+        }
+        humanpartshtml += `<div id='humanback' style='position:absolute;left:0;top:0;background-image:url("graphics/humans.png");background-position: ${xpos}px ${ypos}px;width:32px;height:32px'></div>`;
+
+        xpos = 0;
+        ypos = -120*32;
+        if (editnpcs.wornlayers.cloak) {
+          xpos = HumanParts[editnpcs.wornlayers.cloak].spritex + editnpcs.wornlayernudges.cloak.x;
+          ypos = HumanParts[editnpcs.wornlayers.cloak].spritey + editnpcs.wornlayernudges.cloak.y;
+        }
+        humanpartshtml += `<div id='humancloak' style='position:absolute;left:0;top:0;background-image:url("graphics/humans.png");background-position: ${xpos}px ${ypos}px;width:32px;height:32px'></div>`;
+
+        xpos = 0;
+        ypos = -120*32;
+        if (editnpcs.wornlayers.body) {
+          xpos = HumanParts[editnpcs.wornlayers.body].spritex + editnpcs.wornlayernudges.body.x;
+          ypos = HumanParts[editnpcs.wornlayers.body].spritey + editnpcs.wornlayernudges.body.y;
+        }
+        humanpartshtml += `<div id='humanbody' style='position:absolute;left:0;top:0;background-image:url("graphics/humans.png");background-position: ${xpos}px ${ypos}px;width:32px;height:32px'></div>`;
+
+        xpos = 0;
+        ypos = -120*32;
+        if (editnpcs.wornlayers.head) {
+          xpos = HumanParts[editnpcs.wornlayers.head].spritex + editnpcs.wornlayernudges.head.x;
+          ypos = HumanParts[editnpcs.wornlayers.head].spritey + editnpcs.wornlayernudges.head.y;
+        }
+        humanpartshtml += `<div id='humanhead' style='position:absolute;left:0;top:0;background-image:url("graphics/humans.png");background-position: ${xpos}px ${ypos}px;width:32px;height:32px'></div>`;
+
+        xpos = 0;
+        ypos = -120*32;
+        if (editnpcs.wornlayers.mainhand) {
+          xpos = HumanParts[editnpcs.wornlayers.mainhand].spritex + editnpcs.wornlayernudges.mainhand.x;
+          ypos = HumanParts[editnpcs.wornlayers.mainhand].spritey + editnpcs.wornlayernudges.mainhand.y;
+        }
+        humanpartshtml += `<div id='humanmainhand' style='position:absolute;left:0;top:0;background-image:url("graphics/humans.png");background-position: ${xpos}px ${ypos}px;width:32px;height:32px'></div>`;
+
+        xpos = 0;
+        ypos = -120*32;
+        if (editnpcs.wornlayers.offhand) {
+          xpos = HumanParts[editnpcs.wornlayers.offhand].spritex + editnpcs.wornlayernudges.offhand.x;
+          ypos = HumanParts[editnpcs.wornlayers.offhand].spritey + editnpcs.wornlayernudges.offhand.y;
+        }
+        humanpartshtml += `<div id='humanoffhand' style='position:absolute;left:0;top:0;background-image:url("graphics/humans.png");background-position: ${xpos}px ${ypos}px;width:32px;height:32px'></div>`;
+
+        humanpartshtml += "</td></tr>";
+        let bits = Object.keys(HumanParts);
+        let seloptions = { body: "", back: "", cloak: "", head: "", mainhand: "", offhand: "" };
+        for (let i=0;i<bits.length;i++) {
+          let selected = "";
+          if (editnpcs.wornlayers[HumanParts[bits[i]].type] === bits[i]) { selected = " SELECTED "; }
+          seloptions[HumanParts[bits[i]].type] += `<option value='${bits[i]}' ${selected}>${bits[i]}</option>`;
+        }
+
+        humanpartshtml += "<tr><td>Body: <select name='bodysel' id='bodysel' onChange='ChangeHumanDisplay(\"body\")'><option value=''></option>";
+        humanpartshtml += seloptions.body;
+        humanpartshtml += `</select></td><td>x: <input type='text' name='bodyxn' id='bodyxn' value='${editnpcs.wornlayernudges.body.x}' size='2' onChange='ChangeHumanDisplay(\"body\")' /> y: <input type='text' name='bodyyn' id='bodyyn' value='${editnpcs.wornlayernudges.body.y}' size='2' onChange='ChangeHumanDisplay(\"body\")' /> </td></tr>`;
+
+        humanpartshtml += "<tr><td>Back: <select name='backsel' id='backsel' onChange='ChangeHumanDisplay(\"back\")'><option value=''></option>";
+        humanpartshtml += seloptions.back;
+        humanpartshtml += `</select></td><td>x: <input type='text' name='backxn' id='backxn' value='${editnpcs.wornlayernudges.back.x}' size='2' onChange='ChangeHumanDisplay(\"back\")' /> y: <input type='text' name='backyn' id='backyn' value='${editnpcs.wornlayernudges.back.y}' size='2' onChange='ChangeHumanDisplay(\"back\")' /> </td></tr>`;
+
+        humanpartshtml += "<tr><td>Cloak: <select name='cloaksel' id='cloaksel' onChange='ChangeHumanDisplay(\"cloak\")'><option value=''></option>";
+        humanpartshtml += seloptions.cloak;
+        humanpartshtml += `</select></td><td>x: <input type='text' name='cloakxn' id='cloakxn' value='${editnpcs.wornlayernudges.cloak.x}' size='2' onChange='ChangeHumanDisplay(\"cloak\")' /> y: <input type='text' name='cloakyn' id='cloakyn' value='${editnpcs.wornlayernudges.cloak.y}' size='2' onChange='ChangeHumanDisplay(\"cloak\")' /> </td></tr>`;
+
+        humanpartshtml += "<tr><td>Head: <select name='headsel' id='headsel' onChange='ChangeHumanDisplay(\"head\")'><option value=''></option>";
+        humanpartshtml += seloptions.head;
+        humanpartshtml += `</select></td><td>x: <input type='text' name='headxn' id='headxn' value='${editnpcs.wornlayernudges.head.x}' size='2' onChange='ChangeHumanDisplay(\"head\")' /> y: <input type='text' name='headyn' id='headyn' value='${editnpcs.wornlayernudges.head.y}' size='2' onChange='ChangeHumanDisplay(\"head\")' /> </td></tr>`;
+
+        humanpartshtml += "<tr><td>Main Hand: <select name='mainhandsel' id='mainhandsel' onChange='ChangeHumanDisplay(\"mainhand\")'><option value=''></option>";
+        humanpartshtml += seloptions.mainhand;
+        humanpartshtml += `</select></td><td>x: <input type='text' name='mainhandxn' id='mainhandxn' value='${editnpcs.wornlayernudges.mainhand.x}' size='2' onChange='ChangeHumanDisplay(\"mainhand\")' /> y: <input type='text' name='mainhandyn' id='mainhandyn' value='${editnpcs.wornlayernudges.mainhand.y}' size='2' onChange='ChangeHumanDisplay(\"mainhand\")' /> </td></tr>`;
+
+        humanpartshtml += "<tr><td>Off Hand: <select name='offhandsel' id='offhandsel' onChange='ChangeHumanDisplay(\"offhand\")'><option value=''></option>";
+        humanpartshtml += seloptions.offhand;
+        humanpartshtml += `</select></td><td>x: <input type='text' name='offhandxn' id='offhandxn' value='${editnpcs.wornlayernudges.offhand.x}' size='2' onChange='ChangeHumanDisplay(\"offhand\")' /> y: <input type='text' name='offhandyn' id='offhandyn' value='${editnpcs.wornlayernudges.offhand.y}' size='2' onChange='ChangeHumanDisplay(\"offhand\")' /> </td></tr>`;
+
+        humanpartshtml += "</table>";
+        humanpartshtml += "<input type='button' value='Clear Override Graphic' onClick='delete editnpcs.overrideGraphic' />";
+        $("#pickgraphics").html(humanpartshtml);
       }
     }
   	else if (!editnpcs && (document.editlayer.showfeatures.checked)) {
@@ -659,6 +750,62 @@ function submitEditNPC(change) {
 		if (document.npceditpopup.npcnpcband.value !== editnpcs.getNPCBand()) {
 			editnpcs.setNPCBand(document.npceditpopup.npcnpcband.value);
 		}
+    if (document.npceditpopup.bodysel.value !== editnpcs.wornlayers.body) {
+      editnpcs.wornlayers.body = document.npceditpopup.bodysel.value;
+    }
+    if (parseInt(document.npceditpopup.bodyxn.value) !== editnpcs.wornlayernudges.body.x) {
+      editnpcs.wornlayernudges.body.x = parseInt(document.npceditpopup.bodyxn.value);
+    }
+    if (parseInt(document.npceditpopup.bodyyn.value) !== editnpcs.wornlayernudges.body.y) {
+      editnpcs.wornlayernudges.body.y = parseInt(document.npceditpopup.bodyyn.value);
+    }
+    if (document.npceditpopup.backsel.value !== editnpcs.wornlayers.back) {
+      editnpcs.wornlayers.back = document.npceditpopup.backsel.value;
+    }
+    if (parseInt(document.npceditpopup.backxn.value) !== editnpcs.wornlayernudges.back.x) {
+      editnpcs.wornlayernudges.back.x = parseInt(document.npceditpopup.backxn.value);
+    }
+    if (parseInt(document.npceditpopup.backyn.value) !== editnpcs.wornlayernudges.back.y) {
+      editnpcs.wornlayernudges.back.y = parseInt(document.npceditpopup.backyn.value);
+    }
+    if (document.npceditpopup.cloaksel.value !== editnpcs.wornlayers.cloak) {
+      editnpcs.wornlayers.cloak = document.npceditpopup.cloaksel.value;
+    }
+    if (parseInt(document.npceditpopup.cloakxn.value) !== editnpcs.wornlayernudges.cloak.x) {
+      editnpcs.wornlayernudges.cloak.x = parseInt(document.npceditpopup.cloakxn.value);
+    }
+    if (parseInt(document.npceditpopup.cloakyn.value) !== editnpcs.wornlayernudges.cloak.y) {
+      editnpcs.wornlayernudges.cloak.y = parseInt(document.npceditpopup.cloakyn.value);
+    }
+    if (document.npceditpopup.headsel.value !== editnpcs.wornlayers.head) {
+      editnpcs.wornlayers.head = document.npceditpopup.headsel.value;
+    }
+    if (parseInt(document.npceditpopup.headxn.value) !== editnpcs.wornlayernudges.head.x) {
+      editnpcs.wornlayernudges.head.x = parseInt(document.npceditpopup.headxn.value);
+    }
+    if (parseInt(document.npceditpopup.headyn.value) !== editnpcs.wornlayernudges.head.y) {
+      editnpcs.wornlayernudges.head.y = parseInt(document.npceditpopup.headyn.value);
+    }
+    if (document.npceditpopup.mainhandsel.value !== editnpcs.wornlayers.mainhand) {
+      editnpcs.wornlayers.mainhand = document.npceditpopup.mainhandsel.value;
+    }
+    if (parseInt(document.npceditpopup.mainhandxn.value) !== editnpcs.wornlayernudges.mainhand.x) {
+      editnpcs.wornlayernudges.mainhand.x = parseInt(document.npceditpopup.mainhandxn.value);
+    }
+    if (parseInt(document.npceditpopup.mainhandyn.value) !== editnpcs.wornlayernudges.mainhand.y) {
+      editnpcs.wornlayernudges.mainhand.y = parseInt(document.npceditpopup.mainhandyn.value);
+    }
+    if (document.npceditpopup.offhandsel.value !== editnpcs.wornlayers.offhand) {
+      editnpcs.wornlayers.offhand = document.npceditpopup.offhandsel.value;
+    }
+    if (parseInt(document.npceditpopup.offhandxn.value) !== editnpcs.wornlayernudges.offhand.x) {
+      editnpcs.wornlayernudges.offhand.x = parseInt(document.npceditpopup.offhandxn.value);
+    }
+    if (parseInt(document.npceditpopup.offhandyn.value) !== editnpcs.wornlayernudges.offhand.y) {
+      editnpcs.wornlayernudges.offhand.y = parseInt(document.npceditpopup.offhandyn.value);
+    }
+    if (editnpcs.checkType("human")) { delete editnpcs.overrideGraphic; }
+
 		if (optindex) {
 		  editnpcs.overrideGraphic = graphicpicks[optindex];
 		} else {
@@ -1352,4 +1499,16 @@ function CleanDuplicates() {
       }
     }
   }
+}
+
+function ChangeHumanDisplay(which) {
+  let changeme = document.getElementById("human" + which);
+  let selid = document.getElementById(which + "sel").value;
+  let xpos = 0;
+  let ypos = -120*32;
+  if (selid) {
+    xpos = parseInt(HumanParts[selid].spritex) + parseInt(document.getElementById(which + "xn").value);
+    ypos = parseInt(HumanParts[selid].spritey) + parseInt(document.getElementById(which + "yn").value);
+  }
+  changeme.style.backgroundPosition = xpos + "px " + ypos + "px";
 }
