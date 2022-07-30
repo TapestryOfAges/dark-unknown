@@ -3355,6 +3355,11 @@ function EmpowerReagentCommands(cmd) {
           PC.removeFromInventory(PC.checkInventory("LightningWood"));
           let sword = localFactory.createTile("LightningSword");
           PC.addToInventory(sword,1);
+          if (PC.getWeapon() === tgt) { // PC has the Unenchanted Sword equipped
+            tgt.unEquipMe();
+            sword.equipMe(PC);
+          }
+          PC.removeFromInventory(tgt);
           retval["fin"] = 2;
           retval["outcome"] = successtext;
           return retval;
@@ -3370,6 +3375,11 @@ function EmpowerReagentCommands(cmd) {
           PlayCastSound(PC,"sfx_enchant");
           let sword = localFactory.createTile("VenomSword");
           PC.addToInventory(sword,1);
+          if (PC.getWeapon() === tgt) { // PC has Unenchanted Sword equipped
+            tgt.unEquipMe();
+            sword.equipMe(PC);
+          }
+          PC.removeFromInventory(tgt);
           retval["fin"] = 2;
           retval["outcome"] = successtext;
           return retval;
@@ -3385,6 +3395,11 @@ function EmpowerReagentCommands(cmd) {
           PlayCastSound(PC,"sfx_enchant");
           let sword = localFactory.createTile("SwordOfDefense");
           PC.addToInventory(sword,1);
+          if (PC.getWeapon() === tgt) { // PC has Unenchanted Sword equipped
+            tgt.unEquipMe();
+            sword.equipMe(PC);
+          }
+          PC.removeFromInventory(tgt);
           retval["fin"] = 2;
           retval["outcome"] = successtext;
           return retval;
@@ -3400,6 +3415,11 @@ function EmpowerReagentCommands(cmd) {
           PlayCastSound(PC,"sfx_enchant");
           let sword = localFactory.createTile("FlamingSword");
           PC.addToInventory(sword,1);
+          if (PC.getWeapon() === tgt) { // PC has Unenchanted Sword equipped
+            tgt.unEquipMe();
+            sword.equipMe(PC);
+          }
+          PC.removeFromInventory(tgt);
           retval["fin"] = 2;
           retval["outcome"] = successtext;
           return retval;
