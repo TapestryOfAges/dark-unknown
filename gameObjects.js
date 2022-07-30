@@ -224,6 +224,8 @@ ProtoObject.prototype.copy = function(type) {
       copydata[idx] = val;
     } else if (idx === "wornlayers") { 
       copydata[idx] = val;
+    } else if (idx === "wornlayernudges") {
+      copydata[idx] = val;
     } else {
       DebugWrite("saveload", "<br /><span style='color:red;font-weight:bold'>" + idx + " is type " + typeof val + "</span>,  ");
       alert(savename + " SAVE NEEDS " + idx + "!");
@@ -1105,7 +1107,8 @@ function ManualAnimation(params) {
 
   this.animateMe = function() {
 //    console.log("In animateMe " + this.getName() + " , (" + this.getx() + "," + this.gety() + ")");
-    let div = document.getElementById("divid_" + this.getSerial());
+    let divid = "divid_" + this.getSerial();
+    let div = document.getElementById(divid);
     if (!div) { this.animating = 0; return; }
 
     if (this.animstyle === "cycle") {
@@ -1141,6 +1144,15 @@ function ManualAnimation(params) {
       div.style.backgroundPosition = this.spritexoffset + "px " + this.currframe + "px";
     } else {
       div.style.backgroundPosition = this.currframe + "px " + this.spriteyoffset + "px";
+
+      if (this.checkType("human")) {
+        this.makeLayers(this.currframenum);
+        for (let i=0;i<this.layers.length;i++) {
+          let fdiv = document.getElementById(divid + "_" + i);
+          div.style.backgroundPosition = this.layers[i].spritex + "px " + this.spriteyoffset + "px";
+        }
+      }
+      
     }
 
     let waittime = Math.floor(Math.random() * (this.framedurationmax - this.framedurationmin +1)) + this.framedurationmin;
@@ -9677,6 +9689,8 @@ ThroneTile.prototype = new FeatureObject();
 ThroneTile.prototype.walkon = function(who) {
   let response = {msg:""};
   who.realgraphic = who.getGraphicArray();
+  who.reallayers = who.layers;
+  delete who.layers;
   if (who.getGraphic() === "315.gif") {
     who.setGraphicArray(["throned_king.gif","throned_king.gif",0,0]);
     return response;
@@ -9699,6 +9713,8 @@ ThroneTile.prototype.walkoff = function(who) {
   if (who.realgraphic) {
     who.setGraphicArray(who.realgraphic);
     delete who.realgraphic;
+    who.layers = who.reallayers;
+    delete who.reallayers;
     DebugWrite("gameobj", "Changed the graphic of " + who.getNPCName() + " from sitting.<br />");
   } else {
     alert("Entity failed to have a standing graphic. See console.");
@@ -9723,6 +9739,8 @@ BDThroneTile.prototype = new FeatureObject();
 BDThroneTile.prototype.walkon = function(who) {
   let response = {msg:""};
   who.realgraphic = who.getGraphicArray();
+  who.reallayers = who.layers;
+  delete who.layers;
   let cc = "";
   if (parseInt(who.skintone) === 2) {
     cc = ".1";
@@ -9737,6 +9755,8 @@ BDThroneTile.prototype.walkoff = function(who) {
   if (who.realgraphic) {
     who.setGraphicArray(who.realgraphic);
     delete who.realgraphic;
+    who.layers = who.reallayers;
+    delete who.reallayers;
     DebugWrite("gameobj", "Changed the graphic of " + who.getNPCName() + " from sitting.<br />");
   } else {
     alert("Entity failed to have a standing graphic. See console.");
@@ -11214,6 +11234,8 @@ BridgeEWBrokenTile.prototype = new FeatureObject();
 function SitDown(who,what) {
   let direction;
   who.realgraphic = who.getGraphicArray();
+  who.reallayers = who.layers;
+  delete who.layers;
   let cc = "";
   let rf = "";
   if (parseInt(who.skintone) === 2) {
@@ -11245,6 +11267,8 @@ function SitDown(who,what) {
 function StandUp(who) {
   if (who.realgraphic) {
     who.setGraphicArray(who.realgraphic);
+    who.layers = who.reallayers;
+    delete who.reallayers;
     delete who.realgraphic;
     DebugWrite("gameobj", "Changed the graphic of " + who.getNPCName() + " from sitting.<br />");
   } else {
@@ -11665,6 +11689,8 @@ function BedWalkOn(bedwho,bedarr) {
     bedarr[2] += -2*32;
   } else if (parseInt(bedwho.skintone) !== 1) { console.log("Missing skintone on "); console.log(bedwho); }
   bedwho.realgraphic = bedwho.getGraphicArray();
+  bedwho.reallayers = bedwho.layers;
+  delete bedwho.layers;
   bedwho.setGraphicArray(bedarr);
   DebugWrite("gameobj", "Changed the graphic of " + bedwho.getNPCName() + " to sleeping.<br />");
 
@@ -11689,6 +11715,8 @@ function BedWalkOff(who, bed) {
   if (who.realgraphic) {
     who.setGraphicArray(who.realgraphic);
     delete who.realgraphic;
+    bedwho.layers = bedwho.reallayers;
+    delete bedwho.reallayers;
     DebugWrite("gameobj", "Changed the graphic of " + who.getNPCName() + " from sleeping.<br />");
   } else {
     alert("Entity failed to have a waking graphic. See console.");
@@ -11753,6 +11781,8 @@ DoubleBedHeadTile.prototype = new FeatureObject();
 
 DoubleBedHeadTile.prototype.walkon = function(who) {
   who.realgraphic = who.getGraphicArray();
+  who.reallayers = who.layers;
+  delete who.layers;
   who.setGraphicArray(["spacer.gif","",0,0]);
 
   this.addOccupant(who);
@@ -11765,6 +11795,8 @@ DoubleBedHeadTile.prototype.walkoff = function(who) {
   if (who.realgraphic) {
     who.setGraphicArray(who.realgraphic);
     delete who.realgraphic;
+    who.layers = who.reallayers;
+    delete who.reallayers;
     DebugWrite("gameobj", "Changed the graphic of " + who.getNPCName() + " from sleeping.<br />");
   } else {
     alert("Entity failed to have a waking graphic. See console.");
@@ -18105,7 +18137,6 @@ RubyGemoftheSunTile.prototype.use = function(who) {
       retval["txt"] = "You raise the ruby before you and focus your will upon it. You command it to let the sun into the underworld, and in this place you feel it pierce the veil above you, and now a beacon of sunlight dances above the hill.";
       let daemon = localFactory.createTile("ArchdaemonOfBone");
       themap.placeThing(daemon,91,105);
-      daemon.activate();
       DU.gameflags.setFlag("bonebeacon",1);
     }
   } else if ((themap.getName() === "underworld") && (who.getx() === 106) && (who.gety() === 76)) {
@@ -18118,7 +18149,6 @@ RubyGemoftheSunTile.prototype.use = function(who) {
       retval["txt"] = "You raise the ruby before you and focus your will upon it. You command it to let the sun into the underworld, and in this place you feel it pierce the veil above you, and now a beacon of sunlight dances above the hill.";
       let daemon = localFactory.createTile("ArchdaemonOfIce");
       themap.placeThing(daemon,104,70);
-      daemon.activate();
       DU.gameflags.setFlag("icebeacon",1);
     }
   } else if ((themap.getName() === "underworld") && (who.getx() === 57) && (who.gety() === 55)) {
@@ -18131,7 +18161,6 @@ RubyGemoftheSunTile.prototype.use = function(who) {
       retval["txt"] = "You raise the ruby before you and focus your will upon it. You command it to let the sun into the underworld, and in this place you feel it pierce the veil above you, and now a beacon of sunlight dances above the hill.";
       let daemon = localFactory.createTile("ArchdaemonOfDust");
       themap.placeThing(daemon,63,55);
-      daemon.activate();
       DU.gameflags.setFlag("dustbeacon",1);
     }
   } else if ((themap.getName() === "underworld") && (who.getx() === 55) && (who.gety() === 85)) {
@@ -18144,7 +18173,6 @@ RubyGemoftheSunTile.prototype.use = function(who) {
       retval["txt"] = "You raise the ruby before you and focus your will upon it. You command it to let the sun into the underworld, and in this place you feel it pierce the veil above you, and now a beacon of sunlight dances above the hill.";
       let daemon = localFactory.createTile("ArchdaemonOfAshes");
       themap.placeThing(daemon,53,80);
-      daemon.activate();
       DU.gameflags.setFlag("ashesbeacon",1);
     }
   } else {
@@ -21573,7 +21601,17 @@ EquipableItemObject.prototype.equipMe = function(who) {
       who.setEquipment("ring2", this);
     } else { who.setEquipment("ring1", this); }
   }
-  
+
+  if (this.wornlayer && (who === PC)) {
+    let wln = this.wornlayername;
+    if (this.wornlayer === "mainhand") {
+      if (PC.skintone === 1) { wln += "Pale"; }
+      else { wln += "Dark"; }
+    }
+    PC.wornlayers[this.wornlayer] = wln;
+    PC.makeLayers();
+    DrawMainFrame("one",PC.getHomeMap(),PC.getx(),PC.gety());
+  }
   return 1;
 }
 
@@ -21935,6 +21973,9 @@ function ClothArmorTile() {
   this.desc = "cloth armor";
   this.longdesc = "A suit of cloth armor. Better than nothing.";
   this.usedesc = "Equip the armor.";
+
+  this.wornlayer = "body";
+  this.wornlayername = "BlueRobe";
 }
 ClothArmorTile.prototype = new ArmorObject();
 
@@ -21951,6 +21992,9 @@ function LeatherArmorTile() {
   this.desc = "leather armor";
   this.longdesc = "A suit of leather armor. Provides some protection.";
   this.usedesc = "Equip the armor.";
+
+  this.wornlayer = "body";
+  this.wornlayername = "LeatherArmor";
 }
 LeatherArmorTile.prototype = new ArmorObject();
 
@@ -21968,6 +22012,9 @@ function ChainArmorTile() {
   this.desc = "chain mail armor";
   this.longdesc = "A suit of chain mail. Requires a 14 Strength to wear.";
   this.usedesc = "Equip the armor.";
+
+  this.wornlayer = "body";
+  this.wornlayername = "ChainMail";
 }
 ChainArmorTile.prototype = new ArmorObject();
 
@@ -21985,6 +22032,9 @@ function PlateArmorTile() {
   this.desc = "plate armor";
   this.longdesc = "A suit of plate armor. Requires a 18 Strength to wear.";
   this.usedesc = "Equip the armor.";
+
+  this.wornlayer = "body";
+  this.wornlayername = "Plate";
 }
 PlateArmorTile.prototype = new ArmorObject();
 
@@ -22010,6 +22060,9 @@ function ExoticArmorTile() {
     framedurationmax: 300,
     startframe: "random"
   });
+
+  this.wornlayer = "body";
+  this.wornlayername = "PlateWhiteTabard";
 }
 ExoticArmorTile.prototype = new ArmorObject();
 
@@ -22152,6 +22205,9 @@ function DaggerTile() {
 	this.desc = "dagger";
   this.prefix = "a";
   this.longdesc = "A dagger. In your hands, it does %ave% damage on average.";
+
+  this.wornlayer = "mainhand";
+  this.wornlayername = "Dagger";
 }
 DaggerTile.prototype = new WeaponObject();
 
@@ -22167,6 +22223,9 @@ function ShortswordTile() {
 	this.desc = "shortsword";
   this.prefix = "a";
   this.longdesc = "A shortsword. In your hands, it does %ave% damage on average.";
+
+  this.wornlayer = "mainhand";
+  this.wornlayername = "Shortsword";
 }
 ShortswordTile.prototype = new WeaponObject();
 
@@ -22182,6 +22241,9 @@ function MaceTile() {
 	this.desc = "mace";
   this.prefix = "a";
   this.longdesc = "A mace. In your hands, it does %ave% damage on average.";
+
+  this.wornlayer = "mainhand";
+  this.wornlayername = "Mace";
 }
 MaceTile.prototype = new WeaponObject();
 
@@ -22197,6 +22259,9 @@ function AxeTile() {
 	this.desc = "axe";
   this.prefix = "an";
   this.longdesc = "An axe. In your hands, it does %ave% damage on average.";
+
+  this.wornlayer = "mainhand";
+  this.wornlayername = "Axe";
 }
 AxeTile.prototype = new WeaponObject();
 
@@ -22212,6 +22277,9 @@ function LongswordTile() {
 	this.desc = "longsword";
   this.prefix = "a";
   this.longdesc = "A longsword. In your hands, it does %ave% damage on average.";
+
+  this.wornlayer = "mainhand";
+  this.wornlayername = "Longsword";
 }
 LongswordTile.prototype = new WeaponObject();
 
@@ -22227,6 +22295,9 @@ function HalberdTile() {
 	this.desc = "halberd";
   this.prefix = "a";
   this.longdesc = "A halberd. In your hands, it does %ave% damage on average.";
+
+  this.wornlayer = "mainhand";
+  this.wornlayername = "Halberd";
 }
 HalberdTile.prototype = new WeaponObject();
 
@@ -22253,6 +22324,8 @@ function MagicSwordTile() {
     startframe: "random"
   });
 
+  this.wornlayer = "mainhand";
+  this.wornlayername = "SwordFromStone";
 }
 MagicSwordTile.prototype = new WeaponObject();
 
@@ -22274,6 +22347,9 @@ function UnenchantedSwordTile() {
   this.repairNeedsInfusion = 1;
   this.enchantable = 1;
   Breakable.call(this,["static.png", "", -7*32, -68*32],1);
+
+  this.wornlayer = "mainhand";
+  this.wornlayername = "Longsword";   // isn't a separate graphic for this from other longsword
 }
 UnenchantedSwordTile.prototype = new WeaponObject();
 
@@ -22413,6 +22489,9 @@ function BowTile() {
   this.directionalammo = 1;
   this.attackSound = "sfx_bow";
   this.longdesc = "A bow. It requires a Dexterity of 14 to use. In your hands, it does %ave% damage on average.";
+
+  this.wornlayer = "mainhand";
+  this.wornlayername = "Bow";
 }
 BowTile.prototype = new MissileWeaponObject();
 
@@ -22433,6 +22512,9 @@ function CrossbowTile() {
   this.directionalammo = 1;
   this.attackSound = "sfx_bow";
   this.longdesc = "A crossbow. It requires a Dexterity of 17 to use. In your hands, it does %ave% damage on average.";
+
+  this.wornlayer = "mainhand";
+  this.wornlayername = "Crossbow";
 }
 CrossbowTile.prototype = new MissileWeaponObject();
 
@@ -22460,6 +22542,9 @@ function WandTile() {
     framedurationmax: 170,
     startframe: "random"
   });
+
+  this.wornlayer = "mainhand";
+  this.wornlayername = "Wand";
 }
 WandTile.prototype = new MissileWeaponObject();
 
@@ -22490,6 +22575,9 @@ function MagicAxeTile() {
     framedurationmax: 100,
     startframe: "start"
   });
+
+  this.wornlayer = "mainhand";
+//  this.wornlayername = "MagicAxe";
 }
 MagicAxeTile.prototype = new MissileWeaponObject();
 
@@ -23624,7 +23712,7 @@ NPCObject.prototype.activate = function(timeoverride) {
 
     DebugWrite("ai", "<span style='font-weight:bold'>NPC " + this.getName() + "(" + this.getSerial() + ") (" + this.getNPCName() + ") activating at " + this.getx() + "," + this.gety() + ".</span><br />");
   
-    if (this.overrideGraphic) {
+    if (this.overrideGraphic && !this.checkType("human")) {
       if (this.realgraphic) {
         this.realgraphic = this.overrideGraphic; 
         alert("Why is this happening?");
@@ -23727,6 +23815,10 @@ NPCObject.prototype.activate = function(timeoverride) {
       this.specials = tmpspc;
     }
                   
+    if (this.checkType("human")) {
+      this.makeLayers(1);
+    }
+
     let timing = this.nextActionTime(0);
     timing = timing/2;
     if (timeoverride) {
@@ -24445,136 +24537,179 @@ function NPCHumanObject() {
     cloak: null,
     mainhand: null
   };
+  this.wornlayernudges = {
+    body: { x: 0, y: 0 },
+    head: { x: 0, y: 0 },
+    back: { x: 0, y: 0 },
+    offhand: { x: 0, y: 0 },
+    cloak: { x: 0, y: 0 },
+    mainhand: { x: 0, y: 0 }
+  };
   this.addType("human");
 }
 NPCHumanObject.prototype = new NPCObject();
 
+NPCHumanObject.prototype.makeLayers = function(frame) {
+  if (!frame) { frame = 1; }
+  let layer = [];
+  if (this.wornlayers.back) { 
+    let newlayer = ["humans.png", "", HumanParts[this.wornlayers.back].spritex + this.wornlayernudges.back.x - 32*(frame-1), HumanParts[this.wornlayers.back].spritey + this.wornlayernudges.back.y];
+    layer.push(newlayer);
+  }
+  if (this.wornlayers.cloak) { 
+    let newlayer = ["humans.png", "", HumanParts[this.wornlayers.cloak].spritex + this.wornlayernudges.cloak.x - 32*(frame-1), HumanParts[this.wornlayers.cloak].spritey + this.wornlayernudges.cloak.y];
+    layer.push(newlayer);
+  }
+  layer.push(["humans.png", "", HumanParts[this.wornlayers.body].spritex + this.wornlayernudges.body.x - 32*(frame-1), HumanParts[this.wornlayers.body].spritey + this.wornlayernudges.body.y]);
+  if (this.wornlayers.head) { 
+    let newlayer = ["humans.png", "", HumanParts[this.wornlayers.head].spritex + this.wornlayernudges.head.x - 32*(frame-1), HumanParts[this.wornlayers.head].spritey + this.wornlayernudges.head.y];
+    layer.push(newlayer);
+  }
+  if (this.wornlayers.mainhand) { 
+    let newlayer = ["humans.png", "", HumanParts[this.wornlayers.mainhand].spritex + this.wornlayernudges.mainhand.x - 32*(frame-1), HumanParts[this.wornlayers.mainhand].spritey + this.wornlayernudges.mainhand.y];
+    layer.push(newlayer);
+  }
+  if (this.wornlayers.offhand) { 
+    let newlayer = ["humans.png", "", HumanParts[this.wornlayers.offhand].spritex + this.wornlayernudges.offhand.x - 32*(frame-1), HumanParts[this.wornlayers.offhand].spritey + this.wornlayernudges.offhand.y];
+    layer.push(newlayer);
+  }
+  this.layers = layer;
+
+}
+
 let HumanParts = {
   // Bodies
   WhiteTunic: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  BlueDress: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  YellowDress: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  Bard1: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  Bard2: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  ChildPale: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  ChildDark: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  Jester: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  King1: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  King2: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  King3: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  King4: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  Queen: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  NoblePurple: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  NobleGreen: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  PurpleFancy: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  BlueFancy: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  YellowTunic: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  OrangeTunic: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  WhiteTunic2: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  BlueTunic: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  OrangeTunic2: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  GreenTunic: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  Gambison: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  PlateWhiteTabard: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  PlateCheckardTabard: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  LeatherArmor: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  ChainMail: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  PlatePaladin: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  PlateSash: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  PlateKnight: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  Plate: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  Plate2: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  BlueRobeHood: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  BlueRobe: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  RedRobe: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  GreenRobe: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  BlueRobePlain: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  BrownRobeHood: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  BrownRobe: { type: "body", spritex: 0, spritey: 0, frames: 2 },
-  BrownRobeFancy: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  BlueDress: { type: "body", spritex: 0, spritey: -1*32, frames: 2 },
+  YellowDress: { type: "body", spritex: 0, spritey: -2*32, frames: 2 },
+  Bard1: { type: "body", spritex: 0, spritey: -3*32, frames: 2 },
+  Bard2: { type: "body", spritex: 0, spritey: -4*32, frames: 2 },
+  ChildPale: { type: "body", spritex: 0, spritey: -5*32, frames: 2 },
+  ChildDark: { type: "body", spritex: 0, spritey: -6*32, frames: 2 },
+  Jester: { type: "body", spritex: 0, spritey: -7*32, frames: 2 },
+  King1: { type: "body", spritex: 0, spritey: -8*32, frames: 2 },
+  King2: { type: "body", spritex: 0, spritey: -9*32, frames: 2 },
+  King3: { type: "body", spritex: 0, spritey: -10*32, frames: 2 },
+  King4: { type: "body", spritex: 0, spritey: -11*32, frames: 2 },
+  Queen: { type: "body", spritex: 0, spritey: -12*32, frames: 2 },
+  NoblePurple: { type: "body", spritex: 0, spritey: -13*32, frames: 2 },
+  NobleGreen: { type: "body", spritex: 0, spritey: -14*32, frames: 2 },
+  PurpleFancy: { type: "body", spritex: 0, spritey: -15*32, frames: 2 },
+  BlueFancy: { type: "body", spritex: 0, spritey: -16*32, frames: 2 },
+  YellowTunic: { type: "body", spritex: 0, spritey: -17*32, frames: 2 },
+  OrangeTunic: { type: "body", spritex: 0, spritey: -18*32, frames: 2 },
+  WhiteTunic2: { type: "body", spritex: 0, spritey: -19*32, frames: 2 },
+  BlueTunic: { type: "body", spritex: 0, spritey: -20*32, frames: 2 },
+  OrangeTunic2: { type: "body", spritex: 0, spritey: -21*32, frames: 2 },
+  GreenTunic: { type: "body", spritex: 0, spritey: -22*32, frames: 2 },
+  Gambison: { type: "body", spritex: 0, spritey: -23*32, frames: 2 },
+  PlateWhiteTabard: { type: "body", spritex: 0, spritey: -24*32, frames: 2 },
+  PlateCheckeredTabard: { type: "body", spritex: 0, spritey: -25*32, frames: 2 },
+  LeatherArmor: { type: "body", spritex: 0, spritey: -26*32, frames: 2 },
+  ChainMail: { type: "body", spritex: 0, spritey: -27*32, frames: 2 },
+  PlatePaladin: { type: "body", spritex: 0, spritey: -28*32, frames: 2 },
+  PlateSash: { type: "body", spritex: 0, spritey: -29*32, frames: 2 },
+  PlateKnight: { type: "body", spritex: 0, spritey: -30*32, frames: 2 },
+  Plate: { type: "body", spritex: 0, spritey: -31*32, frames: 2 },
+  Plate2: { type: "body", spritex: 0, spritey: -32*32, frames: 2 },
+  BlueRobeHood: { type: "body", spritex: 0, spritey: -33*32, frames: 2 },
+  BlueRobe: { type: "body", spritex: 0, spritey: -34*32, frames: 2 },
+  RedRobe: { type: "body", spritex: 0, spritey: -35*32, frames: 2 },
+  GreenRobe: { type: "body", spritex: 0, spritey: -36*32, frames: 2 },
+  BlueRobePlain: { type: "body", spritex: 0, spritey: -37*32, frames: 2 },
+  BrownRobeHood: { type: "body", spritex: 0, spritey: -38*32, frames: 2 },
+  BrownRobe: { type: "body", spritex: 0, spritey: -39*32, frames: 2 },
+  BrownRobeFancy: { type: "body", spritex: 0, spritey: -40*32, frames: 2 },
 
   // Heads
-  DarkOpenHelm: { type: "head", spritex: 0, spritey: 0, frames: 2 },
-  GoldClosedHelm: { type: "head", spritex: 0, spritey: 0, frames: 2 },
-  BlueSolidHelm: { type: "head", spritex: 0, spritey: 0, frames: 2 },
-  PaleOpenHelm: { type: "head", spritex: 0, spritey: 0, frames: 2 },
-  BlueClosedHelm: { type: "head", spritex: 0, spritey: 0, frames: 2 },
-  BeardedPale: { type: "head", spritex: 0, spritey: 0, frames: 2 },
-  OldManPale: { type: "head", spritex: 0, spritey: 0, frames: 2 },
-  LongBrownHairPale: { type: "head", spritex: 0, spritey: 0, frames: 2 },
-  BaldBeardedDark: { type: "head", spritex: 0, spritey: 0, frames: 2 },
-  ShortBrownPale: { type: "head", spritex: 0, spritey: 0, frames: 2 },
-  KingHead: { type: "head", spritex: 0, spritey: 0, frames: 2 },
-  GoldCircletDark: { type: "head", spritex: 0, spritey: 0, frames: 2 },
-  PrinceHead: { type: "head", spritex: 0, spritey: 0, frames: 2 },
-  SilverCircletPale: { type: "head", spritex: 0, spritey: 0, frames: 2 },
-  BlondePale: { type: "head", spritex: 0, spritey: 0, frames: 2 },
-  Hood1: { type: "head", spritex: 0, spritey: 0, frames: 2 },
-  Hood2: { type: "head", spritex: 0, spritey: 0, frames: 2 },
-  OldManPale2: { type: "head", spritex: 0, spritey: 0, frames: 2 },
-  ShortBlackDark: { type: "head", spritex: 0, spritey: 0, frames: 2 },
-  VanDykePale: { type: "head", spritex: 0, spritey: 0, frames: 2 },
-  BrownDark: { type: "head", spritex: 0, spritey: 0, frames: 2 },
-  LongBlondePale: { type: "head", spritex: 0, spritey: 0, frames: 2 },
-  RedheadWomanPale: { type: "head", spritex: 0, spritey: 0, frames: 2 },
-  BrunetteWomanPale: { type: "head", spritex: 0, spritey: 0, frames: 2 },
-  WomanDark: { type: "head", spritex: 0, spritey: 0, frames: 2 },
+  DarkOpenHelm: { type: "head", spritex: 0, spritey: -41*32, frames: 2 },
+  GoldClosedHelm: { type: "head", spritex: 0, spritey: -42*32, frames: 2 },
+  BlueSolidHelm: { type: "head", spritex: 0, spritey: -43*32, frames: 2 },
+  PaleOpenHelm: { type: "head", spritex: 0, spritey: -44*32, frames: 2 },
+  BlueClosedHelm: { type: "head", spritex: 0, spritey: 45*32, frames: 2 },
+  BeardedPale: { type: "head", spritex: 0, spritey: -46*32, frames: 2 },
+  OldManPale: { type: "head", spritex: 0, spritey: -47*32, frames: 2 },
+  LongBrownHairPale: { type: "head", spritex: 0, spritey: -48*32, frames: 2 },
+  BaldBeardedDark: { type: "head", spritex: 0, spritey: -49*32, frames: 2 },
+  ShortBrownPale: { type: "head", spritex: 0, spritey: -50*32, frames: 2 },
+  KingHead: { type: "head", spritex: 0, spritey: -51*32, frames: 2 },
+  GoldCircletDark: { type: "head", spritex: 0, spritey: -52*32, frames: 2 },
+  PrinceHead: { type: "head", spritex: 0, spritey: -53*32, frames: 2 },
+  SilverCircletPale: { type: "head", spritex: 0, spritey: -54*32, frames: 2 },
+  BlondePale: { type: "head", spritex: 0, spritey: -55*32, frames: 2 },
+  Hood1: { type: "head", spritex: 0, spritey: -56*32, frames: 2 },
+  Hood2: { type: "head", spritex: 0, spritey: -57*32, frames: 2 },
+  OldManPale2: { type: "head", spritex: 0, spritey: -58*32, frames: 2 },
+  ShortBlackDark: { type: "head", spritex: 0, spritey: -59*32, frames: 2 },
+  VanDykePale: { type: "head", spritex: 0, spritey: -60*32, frames: 2 },
+  BrownDark: { type: "head", spritex: 0, spritey: -61*32, frames: 2 },
+  LongBlondePale: { type: "head", spritex: 0, spritey: -62*32, frames: 2 },
+  RedheadWomanPale: { type: "head", spritex: 0, spritey: -63*32, frames: 2 },
+  BrunetteWomanPale: { type: "head", spritex: 0, spritey: -64*32, frames: 2 },
+  WomanDark: { type: "head", spritex: 0, spritey: -65*32, frames: 2 },
+  BardDark: { type: "head", spritex: 0, spritey: -66*32, frames: 2 },
   
   //Cloak
-  BlueCloak: { type: "cloak", spritex: 0, spritey: 0, frames: 2 },
-  RedCloak: { type: "cloak", spritex: 0, spritey: 0, frames: 2 },
+  RedCloak: { type: "cloak", spritex: 0, spritey: -67*32, frames: 2 },
+  BlueCloak: { type: "cloak", spritex: 0, spritey: -68*32, frames: 2 },
 
   //Back:
-  Quiver: { type: "back", spritex: 0, spritey: 0, frames: 2 },
+  Quiver: { type: "back", spritex: 0, spritey: -69*32, frames: 2 },
 
   //Hands
-  HandsPale: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  HandsDark: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  HandsPaleArms: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  Gauntlets: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  ShortswordPale: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  DaggerPale: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  LongswordPale: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  SwordFromStonePale: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  FlamingSwordPale: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  LightningSwordPale: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  VenomSwordPale: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  SwordOfDefensePale: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  MaulPale: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  HammerPale: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  MacePale: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  AxePale: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  HalberdPale: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  QuarterstaffPale: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  CrookPale: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  WandPale: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  SerpentStaffPale: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  BowPale: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  CrossbowPale: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  ShortswordDark: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  DaggerDark: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  LongswordDark: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  SwordFromStoneDark: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  FlamingSwordDark: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  LightningSwordDark: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  VenomSwordDark: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  SwordOfDefenseDark: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  MaulDark: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  HammerDark: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  MaceDark: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  AxeDark: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  HalberdDark: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  QuarterstaffDark: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  CrookDark: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  WandDark: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  SerpentStaffDark: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  BowDark: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
-  CrossbowDark: { type: "hands", spritex: 0, spritey: 0, frames: 2 },
+  MainHandPale: { type: "mainhand", spritex: 0, spritey: -70*32, frames: 2 },
+  MainHandDark: { type: "mainhand", spritex: 0, spritey: -72*32, frames: 2 },
+  HandsPaleArms: { type: "mainhand", spritex: 0, spritey: -74*32, frames: 2 },
+  HandsDarkArms: { type: "mainhand", spritex: 0, spritey: -75*32, frames: 2 },
+  Gauntlets: { type: "mainhand", spritex: 0, spritey: -76*32, frames: 2 },
+  ShortswordPale: { type: "mainhand", spritex: 0, spritey: -77*32, frames: 2 },
+  DaggerPale: { type: "mainhand", spritex: 0, spritey: -81*32, frames: 2 },
+  LongswordPale: { type: "mainhand", spritex: 0, spritey: -83*32, frames: 2 },
+  SwordFromStonePale: { type: "mainhand", spritex: 0, spritey: -85*32, frames: 2 },
+  LightningSwordPale: { type: "mainhand", spritex: 0, spritey: -87*32, frames: 2 },
+  FlamingSwordPale: { type: "mainhand", spritex: 0, spritey: -89*32, frames: 2 },
+  VenomSwordPale: { type: "mainhand", spritex: 0, spritey: -91*32, frames: 2 },
+  SwordOfDefensePale: { type: "mainhand", spritex: 0, spritey: -93*32, frames: 2 },
+  MaulPale: { type: "mainhand", spritex: 0, spritey: -95*32, frames: 2 },
+  HammerPale: { type: "mainhand", spritex: 0, spritey: -97*32, frames: 2 },
+  MacePale: { type: "mainhand", spritex: 0, spritey: -99*32, frames: 2 },
+  AxePale: { type: "mainhand", spritex: 0, spritey: -101*32, frames: 2 },
+  HalberdPale: { type: "mainhand", spritex: 0, spritey: -103*32, frames: 2 },
+  QuarterstaffPale: { type: "mainhand", spritex: 0, spritey: -105*32, frames: 2 },
+  CrookPale: { type: "mainhand", spritex: 0, spritey: -107*32, frames: 2 },
+  WandPale: { type: "mainhand", spritex: 0, spritey: -109*32, frames: 2 },
+  SerpentStaffPale: { type: "mainhand", spritex: 0, spritey: -111*32, frames: 2 },
+  BowPale: { type: "mainhand", spritex: 0, spritey: -113*32, frames: 2 },
+  CrossbowPale: { type: "mainhand", spritex: 0, spritey: -115*32, frames: 2 },
+  ShortswordDark: { type: "mainhand", spritex: 0, spritey: -79*32, frames: 2 },
+  DaggerDark: { type: "mainhand", spritex: 0, spritey: -82*32, frames: 2 },
+  LongswordDark: { type: "mainhand", spritex: 0, spritey: -84*32, frames: 2 },
+  SwordFromStoneDark: { type: "mainhand", spritex: 0, spritey: -86*32, frames: 2 },
+  LightningSwordDark: { type: "mainhand", spritex: 0, spritey: -88*32, frames: 2 },
+  FlamingSwordDark: { type: "mainhand", spritex: 0, spritey: -90*32, frames: 2 },
+  VenomSwordDark: { type: "mainhand", spritex: 0, spritey: -92*32, frames: 2 },
+  SwordOfDefenseDark: { type: "mainhand", spritex: 0, spritey: -94*32, frames: 2 },
+  MaulDark: { type: "mainhand", spritex: 0, spritey: -96*32, frames: 2 },
+  HammerDark: { type: "mainhand", spritex: 0, spritey: -98*32, frames: 2 },
+  MaceDark: { type: "mainhand", spritex: 0, spritey: -100*32, frames: 2 },
+  AxeDark: { type: "mainhand", spritex: 0, spritey: -102*32, frames: 2 },
+  HalberdDark: { type: "mainhand", spritex: 0, spritey: -104*32, frames: 2 },
+  QuarterstaffDark: { type: "mainhand", spritex: 0, spritey: -106*32, frames: 2 },
+  CrookDark: { type: "mainhand", spritex: 0, spritey: -108*32, frames: 2 },
+  WandDark: { type: "mainhand", spritex: 0, spritey: -110*32, frames: 2 },
+  SerpentStaffDark: { type: "mainhand", spritex: 0, spritey: -112*32, frames: 2 },
+  BowDark: { type: "mainhand", spritex: 0, spritey: -114*32, frames: 2 },
+  CrossbowDark: { type: "mainhand", spritex: 0, spritey: -116*32, frames: 2 },
 
   //Offhand
-  KiteShield: { type: "offhand", spritex: 0, spritey: 0, frames: 2 },
-  RoundShield: { type: "offhand", spritex: 0, spritey: 0, frames: 2 },
-  OffhandDagger: { type: "offhand", spritex: 0, spritey: 0, frames: 2 },
+  OffhandPale: { type: "offhand", spritex: 0, spritey: -71*32, frames: 2 }, 
+  OffhandDark: { type: "offhand", spritex: 0, spritey: -73*32, frames: 2 }, 
+  OpenOffhandPale: { type: "offhand", spritex: 0, spritey: -78*32, frames: 2 },
+  OpenOffhandDark: { type: "offhand", spritex: 0, spritey: -80*32, frames: 2 },
+  KiteShield: { type: "offhand", spritex: 0, spritey: -117*32, frames: 2 },
+  RoundShield: { type: "offhand", spritex: 0, spritey: -118*32, frames: 2 },
+  OffhandDaggerPale: { type: "offhand", spritex: 0, spritey: -119*32, frames: 2 },
+  OffhandDaggerDark: { type: "offhand", spritex: 0, spritey: -120*32, frames: 2 },
 };
 
 function PCObject() {
