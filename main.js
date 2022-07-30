@@ -149,9 +149,9 @@ function MainViewDrawTile(themap, centerx, centery, j, i, tp, ev, displayspecs) 
     <img id='tile${j}x${i}' src='graphics/${thiscell[k].graphics1}' border='0' alt='tile${j}x${i} los: ${thiscell[k].losresult} light:${thiscell[k].lighthere}' width='32' height='32' title='${thiscell[k].desc}'/></div>`;
     mview.innerHTML += newdiv;
     if ((opac > 0) && (opac < 1)) {
-      mview.innerHTML += "<div style='background-image: url(\"graphics/shadow.gif\"); position:absolute;left:0px;top:0px;width:32px;height:32px' /></div>";
+      mview.innerHTML += "<div style='background-image: url(\"graphics/shadow.gif\"); position:absolute;left:0px;top:0px;width:32px;height:32px' ></div>";
     } else if (opac === 0) {
-      mview.innerHTML += "<div style='background-image: url(\"graphics/static.png\"); background-position:0px -3104px; position:absolute;left:0px;top:0px;width:32px;height:32px' /></div>";
+      mview.innerHTML += "<div style='background-image: url(\"graphics/static.png\"); background-position:0px -3104px; position:absolute;left:0px;top:0px;width:32px;height:32px' ></div>";
     }  
   }
 
