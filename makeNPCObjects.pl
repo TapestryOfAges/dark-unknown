@@ -34,28 +34,38 @@ foreach my $line (<$npcdoc>) {
   print $out "  this.withdraw = $fields[11];\n";
   if (!$fields[45]) { # no animation override
     if ($fields[48]) {
-      print $out "  this.graphic = 'static.png';\n";
-      print $out "  this.spritexoffset = HumanParts[$fields[46]].spritex;\n";
-      print $out "  this.spriteyoffset = HumanParts[$fields[46]].spritey;\n";
+      print $out "  this.graphic = 'spacer.gif';\n";
+      print $out "  this.spritexoffset = 0;\n";
+      print $out "  this.spriteyoffset = 0;\n";
 
       print $out "\n  ManualAnimation.call(this, { \n";
-      print $out "    animstart: HumanParts[$fields[46]].spritex,\n";
-      print $out "    animlength: HumanParts[$fields[46]].frames,\n";
+      print $out "    animstart: 0,\n";
+      print $out "    animlength: HumanParts['$fields[49]'].frames,\n";
       print $out "    animstyle: \"random\",\n";
       print $out "    allowrepeat: 0,\n";
       print $out "    framedurationmin: 120,\n";
       print $out "    framedurationmax: 170,\n";
-      print $out "    startframe: \"random\"\n";
+      print $out "    startframe: 1\n";
       print $out "  });\n\n";
 
-      print $out "  this.wornlayers.body = '$fields[46]'\n";
-      print $out "  this.wornlayers.head = '$fields[47]'\n";
-      print $out "  this.wornlayers.back = '$fields[48]'\n";
-      print $out "  this.wornlayers.cloak = '$fields[49]'\n";
-      print $out "  this.wornlayers.offhand = '$fields[50]'\n";
-      print $out "  this.wornlayers.hands = '$fields[51]'\n\n";
+      print $out "  this.wornlayers.body = '$fields[49]'\n";
+      if ($fields[50]) {
+        print $out "  this.wornlayers.head = '$fields[50]'\n";
+      } 
+      if ($fields[51]) {
+        print $out "  this.wornlayers.back = '$fields[51]'\n";
+      }
+      if ($fields[52]) {
+        print $out "  this.wornlayers.cloak = '$fields[52]'\n";
+      }
+      if ($fields[53]) {
+        print $out "  this.wornlayers.offhand = '$fields[53]'\n";
+      }
+      if ($fields[54]) {
+        print $out "  this.wornlayers.mainhand = '$fields[54]'\n\n";
+      }
     }
-    else if ($fields[12] =~ /,/) {
+    elsif ($fields[12] =~ /,/) {
       $fields[12] =~ s/ //g;
       my @graphics = split(',', $fields[12]);
       print $out "  this.graphic = '$graphics[0]';\n";
