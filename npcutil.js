@@ -194,6 +194,18 @@ function Attack(atk, def) {
       // shouldn't this be done with an event/observer?
       TurnMapHostile(def.getHomeMap());
     }
+
+    if (weapon.wornlayer) {   // PC holds the latest weapon they attacked with
+      let wln = weapon.wornlayername;
+      if (weapon.wornlayer === "mainhand") {
+        if (atk.skintone === 1) { wln += "Pale"; }
+        else { wln += "Dark"; }
+      }
+      atk.wornlayers[weapon.wornlayer] = wln;
+      atk.makeLayers();
+      DrawMainFrame("one",atk.getHomeMap(),atk.getx(),atk.gety());
+    }
+  
   } else {
     retval["txt"] =  atk.getDesc() + " attacks " + def.getDesc();
     retval["txt"] = retval["txt"].charAt(0).toUpperCase() + retval["txt"].slice(1);
