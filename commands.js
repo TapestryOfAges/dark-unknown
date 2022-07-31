@@ -2690,8 +2690,6 @@ function StatsCategory(stuff, label) {
 function DrawOptions() {
   let optdiv = "<div><div id='opt' class='zstats'>";
   optdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
-  optdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
-  optdiv += "<tr><td style='text-decoration:underline'>OPTIONS</td><td></td><td></td></tr>";
   optdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td>&nbsp;&nbsp;&nbsp;</td></tr>";
   optdiv += "<tr><td>=======SOUND AND MUSIC=======</td><td></td><td></td></tr>";
   optdiv += "<tr><td>MUSIC VOLUME:</td><td></td><td";
@@ -2777,20 +2775,8 @@ function DrawOptions() {
   }
   optdiv += "</td></tr>";
 
-  optdiv += "<tr><td>DIFFICULTY:</td><td></td><td";
-  if (targetCursor.page === 8) { 
-    optdiv += " class='highlight'";
-  }
-  optdiv += ">";
-  if (DU.gameflags.getFlag("storymode")) {
-    optdiv += "STORY";
-  } else {
-    optdiv += "NORMAL";
-  }
-  optdiv += "</td></tr>";
-
   optdiv += "<tr><td>SHOW MOVES IN LOG:</td><td></td><td";
-  if (targetCursor.page === 9) {
+  if (targetCursor.page === 8) {
     optdiv += " class='highlight'";
   }
   optdiv += ">";
@@ -2802,7 +2788,7 @@ function DrawOptions() {
   optdiv += "</td></tr>";
 
   optdiv += "<tr><td>ZOOM:</td><td></td><td";
-  if (targetCursor.page === 10) { 
+  if (targetCursor.page === 9) { 
     optdiv += " class='highlight'";
   }
   optdiv += ">";
@@ -2812,7 +2798,7 @@ function DrawOptions() {
   optdiv += "</td></tr>";
 
   optdiv += "<tr><td>SKIP THEFT WARNING:</td><td></td><td";
-  if (targetCursor.page === 11) { 
+  if (targetCursor.page === 10) { 
     optdiv += " class='highlight'";
   }
   optdiv += ">";
@@ -2823,7 +2809,30 @@ function DrawOptions() {
   }
   optdiv += "</td></tr>";
 
+  optdiv += "<tr><td><br />=======GAMEPLAY=======</td><td></td><td></td></tr>";
+  optdiv += "<tr><td>DIFFICULTY:</td><td></td><td";
+  if (targetCursor.page === 11) { 
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  if (DU.gameflags.getFlag("storymode")) {
+    optdiv += "STORY";
+  } else {
+    optdiv += "NORMAL";
+  }
+  optdiv += "</td></tr>";
 
+//  optdiv += "<tr><td>RANDOMIZE POTION COLORS:</td><td></td><td";
+//  if (targetCursor.page === 12) { 
+//    optdiv += " class='highlight'";
+//  }
+//  optdiv += ">";
+//  if (DU.gameflags.getFlag("randomize_potions")) {
+//    optdiv += "YES";
+//  } else {
+//    optdiv += "NO";
+//  }
+//  optdiv += "</td></tr>";
 
   optdiv += "</table></div></div>";
   
@@ -3029,7 +3038,7 @@ function performOptions(code) {
           newvol = newvol/10;
           DU.gameflags.setFlag("sound", newvol);
         }
-      } else if (targetCursor.page === 10) { // zoom
+      } else if (targetCursor.page === 9) { // zoom
         if (DU.gameflags.getFlag("zoom") === 1.5) {
           DU.gameflags.setFlag("zoom",1);
           webFrame.setZoomFactor(1);
@@ -3251,24 +3260,30 @@ function ToggleOption(opt) {
       DU.gameflags.setFlag("sticky_target", 1);
     }
   } else if (opt === 8) {
-    if (DU.gameflags.getFlag("storymode")) {
-      DU.gameflags.setFlag("storymode", 0);
-    } else {
-      DU.gameflags.setFlag("storymode", 1);
-    }
-  } else if (opt === 9) {
     if (DU.gameflags.getFlag("show_move")) {
       DU.gameflags.setFlag("show_move", 0);
     } else {
       DU.gameflags.setFlag("show_move", 1);
     }
-  } else if (opt === 10) {
+  } else if (opt === 9) {
     // ZOOM HANDLED ELSEWHERE
-  } else if (opt === 11) {
+  } else if (opt === 10) {
     if (DU.gameflags.getFlag("skip_theft_warning")) {
       DU.gameflags.setFlag("skip_theft_warning", 0);
     } else {
       DU.gameflags.setFlag("skip_theft_warning", 1);
+    }
+  } else if (opt === 11) {
+    if (DU.gameflags.getFlag("storymode")) {
+      DU.gameflags.setFlag("storymode", 0);
+    } else {
+      DU.gameflags.setFlag("storymode", 1);
+    }
+  } else if (opt === 12) {
+    if (DU.gameflags.getFlag("randomize_potions")) {
+      DU.gameflags.setFlag("randomize_potions", 0);
+    } else {
+      DU.gameflags.setFlag("randomize_potions", 1);
     }
   }
 }
