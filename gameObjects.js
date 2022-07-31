@@ -19708,7 +19708,7 @@ function GreenPotionTile() {
   this.graphic = "static.png";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -21*32;
-  this.usedesc = "Drink the potion, or throw the potion.";
+  this.usedesc = "Drink it.";
 }
 GreenPotionTile.prototype = new PotionItemObject();
 
