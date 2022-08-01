@@ -28,7 +28,7 @@ function SetMerchants() {
   bill.coral = {};
   bill.coral.stock = [ { item: "AudachtaNemesosUnlock", quantity: 1, price: 500, desc: "Audachta Nemesos: Unlock", sale: 'She winks. "So easy, it\'s almost cheating."' },
                        { item: "ScrollPeer", quantity: 5, price: 150, desc: "Scroll of Peer", sale: '"Good for finding a back way somewhere."' },
-                       { item: "DarkGreenPotion", quantity: 1, price: 150, desc: "Potion of Haste", sale: '"Sometimes you need to get out in a hurry."' },
+                       { item: "DarkGreenPotion", quantity: 1, price: 150, desc: "Quickness Potion", sale: '"Sometimes you need to get out in a hurry."' },
                 ];
   bill.coral.type =  "stuff";
 
@@ -85,8 +85,8 @@ function SetMerchants() {
   
   // Poverty
   bill.brooke = {};
-  bill.brooke.stock = [ { item: "RedPotion", quantity: 2, price: 50, desc: "Red Potion", sale: '"I added extra sugar, to make it go down easier."', sellqty: 1},
-                        { item: "YellowPotion", quantity: 4, price: 35, desc: "Yellow Potion", sale: '"You can never have too many of these."', sellqty: 1},
+  bill.brooke.stock = [ { item: "RedPotion", quantity: 2, price: 50, desc: "Cure Potion", sale: '"I added extra sugar, to make it go down easier."', sellqty: 1},
+                        { item: "YellowPotion", quantity: 4, price: 35, desc: "Lesser Heal Potion", sale: '"You can never have too many of these."', sellqty: 1},
                                 ];
   bill.brooke.type = "stuff";
 
@@ -100,24 +100,24 @@ function SetMerchants() {
   bill.severyn.type = "stuff";
 
   bill.dale = {};
-  bill.dale.stock = [ { item: "YellowPotion", quantity: 4, price: 50, desc: "Yellow Potion", sale: '"Would you like anything else?"', sellqty: 1},
+  bill.dale.stock = [ { item: "YellowPotion", quantity: 4, price: 50, desc: "Lesser Heal Potion", sale: '"Would you like anything else?"', sellqty: 1},
                         { item: "PurplePotion", quantity: 4, price: 80, desc: "Purple Potion", sale: '"Would you like anything else?"', sellqty: 1},
                         { item: "ScrollFireArmor", quantity: 2, price: 100, desc: "Scroll of Fire Armor", sale: '"Excellent choice."', sellqty: 1},
                         { item: "ScrollSmite", quantity: 1, price: 130, desc: "Scroll of Smite", sale: '"Something will be sure to regret meeting you."', sellqty: 1},
                         { item: "AudachtaNemesosIronFlesh", quantity: 1, price: 250, desc: "Audachta Nemesos: Iron Flesh", sale: '"Ah, an eye for the rare and valuable."', sellqty: 1},
-                        { item: "GreenPotion", quantity: 0, price: 10, desc: "Green Potion", sale: '"Useful for dealing with rats, I suppose."', sellqty: 1},
-                        { item: "DarkGreenPotion", quantity: 0, price: 150, desc: "Dark Green Potion", sale: '"Would you like anything else?"', sellqty: 1},
-                        { item: "SilverPotion", quantity: 0, price: 80, desc: "Silver Potion", sale: '"Would you like anything else?"', sellqty: 1},
-                        { item: "PinkPotion", quantity: 0, price: 80, desc: "Pink Potion", sale: '"Would you like anything else?"', sellqty: 1},
-                        { item: "GreyPotion", quantity: 0, price: 80, desc: "Grey Potion", sale: '"Would you like anything else?"', sellqty: 1},
-                        { item: "BrownPotion", quantity: 0, price: 120, desc: "Brown Potion", sale: '"Would you like anything else?"', sellqty: 1},
-                        { item: "RedPotion", quantity: 0, price: 75, desc: "Red Potion", sale: '"Would you like anything else?"', sellqty: 1},
-                        { item: "WhitePotion", quantity: 0, price: 30, desc: "White Potion", sale: '"Would you like anything else?"', sellqty: 1},
-                        { item: "BlackPotion", quantity: 0, price: 120, desc: "Black Potion", sale: '"Would you like anything else?"', sellqty: 1},
-                        { item: "BluePotion", quantity: 0, price: 100, desc: "Blue Potion", sale: '"Would you like anything else?"', sellqty: 1},
-                        { item: "DeepBluePotion", quantity: 0, price: 150, desc: "Deep Blue Potion", sale: '"Would you like anything else?"', sellqty: 1},
-                        { item: "TanPotion", quantity: 0, price: 50, desc: "Tan Potion", sale: '"Would you like anything else?"', sellqty: 1},
-                        { item: "OrangePotion", quantity: 0, price: 80, desc: "Orange Potion", sale: '"Would you like anything else?"', sellqty: 1},
+                        { item: "GreenPotion", quantity: 0, price: 10, desc: "Poison Potion", sale: '"Useful for dealing with rats, I suppose."', sellqty: 1},
+                        { item: "DarkGreenPotion", quantity: 0, price: 150, desc: "Quickness Potion", sale: '"Would you like anything else?"', sellqty: 1},
+                        { item: "SilverPotion", quantity: 0, price: 80, desc: "Strength Potion", sale: '"Would you like anything else?"', sellqty: 1},
+                        { item: "PinkPotion", quantity: 0, price: 80, desc: "Dexterity Potion", sale: '"Would you like anything else?"', sellqty: 1},
+                        { item: "GreyPotion", quantity: 0, price: 80, desc: "Intelligence Potion", sale: '"Would you like anything else?"', sellqty: 1},
+                        { item: "BrownPotion", quantity: 0, price: 120, desc: "Greater Mana Potion", sale: '"Would you like anything else?"', sellqty: 1},
+                        { item: "RedPotion", quantity: 0, price: 75, desc: "Cure Potion", sale: '"Would you like anything else?"', sellqty: 1},
+                        { item: "WhitePotion", quantity: 0, price: 30, desc: "Light Potion", sale: '"Would you like anything else?"', sellqty: 1},
+                        { item: "BlackPotion", quantity: 0, price: 120, desc: "Bless Potion", sale: '"Would you like anything else?"', sellqty: 1},
+                        { item: "BluePotion", quantity: 0, price: 100, desc: "Heal Potion", sale: '"Would you like anything else?"', sellqty: 1},
+                        { item: "DeepBluePotion", quantity: 0, price: 150, desc: "Ethereal Vision Potion", sale: '"Would you like anything else?"', sellqty: 1},
+                        { item: "TanPotion", quantity: 0, price: 50, desc: "Iron Flesh Potion", sale: '"Would you like anything else?"', sellqty: 1},
+                        { item: "OrangePotion", quantity: 0, price: 80, desc: "Mana Potion", sale: '"Would you like anything else?"', sellqty: 1},
                                 ];
   bill.dale.type = "stuff";
 

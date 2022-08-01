@@ -1256,6 +1256,14 @@ function DoAction(code, ctrl) {
         PC.addGold(-(merinv.stock[idx].price));
         DUPlaySound("sfx_coin");
         PC.addToInventory(newitem,1);
+
+        // if you bought a potion, you now know what that color potion is
+        if (newitem.checkType("potion")) {
+          let known = newitem.getName().toLowerCase();
+          known = "knows" + known;
+          DU.gameflags.setFlag(known, 1);
+        }
+
         maintext.addText(" ");
         maintext.addText(newitem.getDesc().charAt(0).toUpperCase() + newitem.getDesc().slice(1) + ": Purchased. Anything else?");
         maintext.setInputLine("Buy what: ");
