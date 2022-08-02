@@ -21975,7 +21975,7 @@ function ClothArmorTile() {
   this.usedesc = "Equip the armor.";
 
   this.wornlayer = "body";
-  this.wornlayername = "BlueRobe";
+  this.wornlayername = "WhiteTunic";
 }
 ClothArmorTile.prototype = new ArmorObject();
 
