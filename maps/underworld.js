@@ -324,7 +324,7 @@ mappages["underworld"].onload = function(mapref) {
 
     // swamp N of lava full of gazers and occasional reaper
     spawn = localFactory.createTile("Spawner");
-    spawngroup = ["GazerNPC","GazerNPC","GazerNPC","EyesOfSpiteNPC","ReaperNPC","ReaperLordNPC"];
+    spawngroup = ["GazerNPC","GazerNPC","GazerNPC","EyesofSpiteNPC","ReaperNPC","ReaperLordNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(4);
