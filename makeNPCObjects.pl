@@ -48,21 +48,21 @@ foreach my $line (<$npcdoc>) {
       print $out "    startframe: 1\n";
       print $out "  });\n\n";
 
-      print $out "  this.wornlayers.body = '$fields[49]'\n";
+      print $out "  this.defwornlayers.body = '$fields[49]'\n";
       if ($fields[50]) {
-        print $out "  this.wornlayers.head = '$fields[50]'\n";
+        print $out "  this.defwornlayers.head = '$fields[50]'\n";
       } 
       if ($fields[51]) {
-        print $out "  this.wornlayers.back = '$fields[51]'\n";
+        print $out "  this.defwornlayers.back = '$fields[51]'\n";
       }
       if ($fields[52]) {
-        print $out "  this.wornlayers.cloak = '$fields[52]'\n";
+        print $out "  this.defwornlayers.cloak = '$fields[52]'\n";
       }
       if ($fields[53]) {
-        print $out "  this.wornlayers.offhand = '$fields[53]'\n";
+        print $out "  this.defwornlayers.offhand = '$fields[53]'\n";
       }
       if ($fields[54]) {
-        print $out "  this.wornlayers.mainhand = '$fields[54]'\n\n";
+        print $out "  this.defwornlayers.mainhand = '$fields[54]'\n\n";
       }
     }
     elsif ($fields[12] =~ /,/) {

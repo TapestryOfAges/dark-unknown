@@ -23726,6 +23726,24 @@ NPCObject.prototype.activate = function(timeoverride) {
       this.graphic = PickOne(this.altgraphic);
       this.altgraphic = []; // no longer need to store this
     }
+    if (this.checkType("human")) {
+      this.wornlayers = {
+        body: this.defwornlayers.body,
+        head: this.defwornlayers.head,
+        back: this.defwornlayers.back,
+        offhand: this.defwornlayers.offhand,
+        cloak: this.defwornlayers.cloak,
+        mainhand: this.defwornlayers.mainhand
+      };
+      this.wornlayernudges = {
+        body: { x: this.defwornlayernudges.body.x, y: this.defwornlayernudges.body.y },
+        head: { x: this.defwornlayernudges.head.x, y: this.defwornlayernudges.head.y},
+        back: { x: this.defwornlayernudges.back.x, y: this.defwornlayernudges.back.y },
+        offhand: { x: this.defwornlayernudges.offhand.x, y: this.defwornlayernudges.offhand.y },
+        cloak: { x: this.defwornlayernudges.cloak.x, y: this.defwornlayernudges.cloak.y },
+        mainhand: { x: this.defwornlayernudges.mainhand.x, y: this.defwornlayernudges.mainhand.y }
+      };
+    }
   
     this.setMana(-1);
     this.setMaxMana(-1);
@@ -24529,7 +24547,7 @@ NPCGroupObject.prototype.populate = function() {
 // This adds "worn" item layers for rendering, so a humanoid can have a different icon if they wear a helm, 
 // wear armor, wield various weapons, etc.
 function NPCHumanObject() {
-  this.wornlayers = {
+  this.defwornlayers = {
     body: null,
     head: null,
     back: null,
@@ -24537,7 +24555,7 @@ function NPCHumanObject() {
     cloak: null,
     mainhand: null
   };
-  this.wornlayernudges = {
+  this.defwornlayernudges = {
     body: { x: 0, y: 0 },
     head: { x: 0, y: 0 },
     back: { x: 0, y: 0 },
