@@ -29,10 +29,10 @@ function DruidVillagerNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'GreenRobe'
-  this.wornlayers.head = 'ShortBrownPale'
-  this.wornlayers.offhand = 'OffhandPale'
-  this.wornlayers.mainhand = 'SerpentStaffPale'
+  this.defwornlayers.body = 'GreenRobe'
+  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'SerpentStaffPale'
 
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d2'
@@ -84,10 +84,10 @@ function ShepherdVillagerNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'BrownRobe'
-  this.wornlayers.head = 'ShortBrownPale'
-  this.wornlayers.offhand = 'OffhandPale'
-  this.wornlayers.mainhand = 'CrookPale'
+  this.defwornlayers.body = 'BrownRobe'
+  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'CrookPale'
 
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d4+1'
@@ -138,10 +138,10 @@ function MageVillagerNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'BlueRobePlain'
-  this.wornlayers.head = 'ShortBrownPale'
-  this.wornlayers.offhand = 'OffhandPale'
-  this.wornlayers.mainhand = 'QuarterstaffPale'
+  this.defwornlayers.body = 'BlueRobePlain'
+  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'QuarterstaffPale'
 
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d2'
@@ -193,10 +193,10 @@ function TinkerVillagerNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'LeatherArmor'
-  this.wornlayers.head = 'ShortBrownPale'
-  this.wornlayers.offhand = 'OffhandPale'
-  this.wornlayers.mainhand = 'HammerPale'
+  this.defwornlayers.body = 'LeatherArmor'
+  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'HammerPale'
 
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d4+1'
@@ -251,11 +251,11 @@ function RangerVillagerNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'LeatherArmor'
-  this.wornlayers.head = 'ShortBrownPale'
-  this.wornlayers.back = 'Quiver'
-  this.wornlayers.offhand = 'OffhandPale'
-  this.wornlayers.mainhand = 'BowPale'
+  this.defwornlayers.body = 'LeatherArmor'
+  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.back = 'Quiver'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'BowPale'
 
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d4+1'
@@ -310,11 +310,11 @@ function AdventurerVillagerNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'ChainMail'
-  this.wornlayers.head = 'ShortBrownPale'
-  this.wornlayers.cloak = 'BlueCloak'
-  this.wornlayers.offhand = 'OffhandPale'
-  this.wornlayers.mainhand = 'LongswordPale'
+  this.defwornlayers.body = 'ChainMail'
+  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.cloak = 'BlueCloak'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'LongswordPale'
 
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
@@ -369,11 +369,11 @@ function PaladinVillagerNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'PlatePaladin'
-  this.wornlayers.head = 'ShortBrownPale'
-  this.wornlayers.cloak = 'BlueCloak'
-  this.wornlayers.offhand = 'KiteShield'
-  this.wornlayers.mainhand = 'LongswordPale'
+  this.defwornlayers.body = 'PlatePaladin'
+  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.cloak = 'BlueCloak'
+  this.defwornlayers.offhand = 'KiteShield'
+  this.defwornlayers.mainhand = 'LongswordPale'
 
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
@@ -425,10 +425,10 @@ function FighterVillagerNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'Plate'
-  this.wornlayers.head = 'ShortBrownPale'
-  this.wornlayers.offhand = 'RoundShield'
-  this.wornlayers.mainhand = 'LongswordPale'
+  this.defwornlayers.body = 'Plate'
+  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.offhand = 'RoundShield'
+  this.defwornlayers.mainhand = 'LongswordPale'
 
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
@@ -482,10 +482,10 @@ function TownsfolkVillagerNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'WhiteTunic'
-  this.wornlayers.head = 'ShortBrownPale'
-  this.wornlayers.offhand = 'OffhandPale'
-  this.wornlayers.mainhand = 'MainHandPale'
+  this.defwornlayers.body = 'WhiteTunic'
+  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'MainHandPale'
 
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d4+1'
@@ -536,7 +536,7 @@ function BardVillagerNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'Bard1'
+  this.defwornlayers.body = 'Bard1'
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d4+1'
   this.meleeStrDamage = .33
@@ -590,7 +590,7 @@ function ChildVillagerNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'ChildPale'
+  this.defwornlayers.body = 'ChildPale'
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d2'
   this.meleeStrDamage = .33
@@ -682,7 +682,7 @@ function JesterNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'Jester'
+  this.defwornlayers.body = 'Jester'
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d2'
   this.meleeStrDamage = .33
@@ -735,10 +735,10 @@ function TownGuardNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'PlateCheckeredTabard'
-  this.wornlayers.head = 'ShortBrownPale'
-  this.wornlayers.offhand = 'OffhandPale'
-  this.wornlayers.mainhand = 'HalberdPale'
+  this.defwornlayers.body = 'PlateCheckeredTabard'
+  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'HalberdPale'
 
   this.meleeAttackAs = 'none';
   this.meleeDamage = '5d4+15'
@@ -789,7 +789,7 @@ function KingNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'King3'
+  this.defwornlayers.body = 'King3'
   this.meleeAttackAs = 'none';
   this.meleeDamage = '5d10+22'
   this.meleeStrDamage = 1
@@ -839,7 +839,7 @@ function QueenNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'Queen'
+  this.defwornlayers.body = 'Queen'
   this.meleeAttackAs = 'none';
   this.meleeDamage = '5d10+22'
   this.meleeStrDamage = 1
@@ -889,8 +889,8 @@ function PrinceNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'PlateKnight'
-  this.wornlayers.head = 'PrinceHead'
+  this.defwornlayers.body = 'PlateKnight'
+  this.defwornlayers.head = 'PrinceHead'
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+9'
   this.meleeStrDamage = .66
@@ -1140,8 +1140,8 @@ function CorruptPrinceNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'PlateKnight'
-  this.wornlayers.head = 'PrinceHead'
+  this.defwornlayers.body = 'PlateKnight'
+  this.defwornlayers.head = 'PrinceHead'
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+9'
   this.meleeStrDamage = .66
@@ -1190,10 +1190,10 @@ function CorruptGuardsNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'PlateCheckeredTabard'
-  this.wornlayers.head = 'ShortBrownPale'
-  this.wornlayers.offhand = 'OffhandPale'
-  this.wornlayers.mainhand = 'HalberdPale'
+  this.defwornlayers.body = 'PlateCheckeredTabard'
+  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'HalberdPale'
 
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+9'
@@ -1243,8 +1243,8 @@ function CourierNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'WhiteTunic'
-  this.wornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.body = 'WhiteTunic'
+  this.defwornlayers.head = 'ShortBrownPale'
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
@@ -1299,10 +1299,10 @@ function CourierGuardNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'PlateWhiteTabard'
-  this.wornlayers.head = 'ShortBrownPale'
-  this.wornlayers.offhand = 'OffhandPale'
-  this.wornlayers.mainhand = 'HalberdPale'
+  this.defwornlayers.body = 'PlateWhiteTabard'
+  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'HalberdPale'
 
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+3'
@@ -1543,10 +1543,10 @@ function HoodNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'LeatherArmor'
-  this.wornlayers.head = 'ShortBrownPale'
-  this.wornlayers.offhand = 'OffhandDagger'
-  this.wornlayers.mainhand = 'DaggerPale'
+  this.defwornlayers.body = 'LeatherArmor'
+  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.offhand = 'OffhandDagger'
+  this.defwornlayers.mainhand = 'DaggerPale'
 
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d4+1'
@@ -1597,8 +1597,8 @@ function MinstrelNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'Bard1'
-  this.wornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.body = 'Bard1'
+  this.defwornlayers.head = 'ShortBrownPale'
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d4+1'
   this.meleeStrDamage = .33
@@ -1701,10 +1701,10 @@ function ApprenticeNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'BlueRobePlain'
-  this.wornlayers.head = 'ShortBrownPale'
-  this.wornlayers.offhand = 'OffhandPale'
-  this.wornlayers.mainhand = 'DaggerPale'
+  this.defwornlayers.body = 'BlueRobePlain'
+  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'DaggerPale'
 
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d2'
@@ -1755,11 +1755,11 @@ function FighterNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'Plate'
-  this.wornlayers.head = 'ShortBrownPale'
-  this.wornlayers.cloak = 'RedCloak'
-  this.wornlayers.offhand = 'RoundShield'
-  this.wornlayers.mainhand = 'AxePale'
+  this.defwornlayers.body = 'Plate'
+  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.cloak = 'RedCloak'
+  this.defwornlayers.offhand = 'RoundShield'
+  this.defwornlayers.mainhand = 'AxePale'
 
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+3'
@@ -2001,10 +2001,10 @@ function RogueNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'LeatherArmor'
-  this.wornlayers.head = 'ShortBrownPale'
-  this.wornlayers.offhand = 'OffhandDagger'
-  this.wornlayers.mainhand = 'ShortswordPale'
+  this.defwornlayers.body = 'LeatherArmor'
+  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.offhand = 'OffhandDagger'
+  this.defwornlayers.mainhand = 'ShortswordPale'
 
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
@@ -2055,10 +2055,10 @@ function PitRogueNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'LeatherArmor'
-  this.wornlayers.head = 'ShortBrownPale'
-  this.wornlayers.offhand = 'OffhandDagger'
-  this.wornlayers.mainhand = 'ShortswordPale'
+  this.defwornlayers.body = 'LeatherArmor'
+  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.offhand = 'OffhandDagger'
+  this.defwornlayers.mainhand = 'ShortswordPale'
 
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
@@ -2189,11 +2189,11 @@ function ArcherNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'WhiteTunic'
-  this.wornlayers.head = 'ShortBrownPale'
-  this.wornlayers.back = 'Quiver'
-  this.wornlayers.offhand = 'OffhandPale'
-  this.wornlayers.mainhand = 'BowPale'
+  this.defwornlayers.body = 'WhiteTunic'
+  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.back = 'Quiver'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'BowPale'
 
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+3'
@@ -2247,8 +2247,8 @@ function BardNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'Bard1'
-  this.wornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.body = 'Bard1'
+  this.defwornlayers.head = 'ShortBrownPale'
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
@@ -2301,10 +2301,10 @@ function DruidNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'GreenRobe'
-  this.wornlayers.head = 'ShortBrownPale'
-  this.wornlayers.offhand = 'OffhandPale'
-  this.wornlayers.mainhand = 'SerpentStaffPale'
+  this.defwornlayers.body = 'GreenRobe'
+  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'SerpentStaffPale'
 
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
@@ -2572,10 +2572,10 @@ function HandlerNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'BrownRobe'
-  this.wornlayers.head = 'ShortBrownPale'
-  this.wornlayers.offhand = 'OffhandPale'
-  this.wornlayers.mainhand = 'CrookPale'
+  this.defwornlayers.body = 'BrownRobe'
+  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'CrookPale'
 
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+3'
@@ -2796,10 +2796,10 @@ function ThiefNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'LeatherArmor'
-  this.wornlayers.head = 'ShortBrownPale'
-  this.wornlayers.offhand = 'OffhandPale'
-  this.wornlayers.mainhand = 'ShortswordPale'
+  this.defwornlayers.body = 'LeatherArmor'
+  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'ShortswordPale'
 
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+3'
@@ -3359,10 +3359,10 @@ function PaladinNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'Plate'
-  this.wornlayers.head = 'ShortBrownPale'
-  this.wornlayers.offhand = 'KiteShield'
-  this.wornlayers.mainhand = 'LongswordPale'
+  this.defwornlayers.body = 'Plate'
+  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.offhand = 'KiteShield'
+  this.defwornlayers.mainhand = 'LongswordPale'
 
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+9'
@@ -3540,10 +3540,10 @@ function WizardNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'BlueRobePlain'
-  this.wornlayers.head = 'ShortBrownPale'
-  this.wornlayers.offhand = 'OffhandPale'
-  this.wornlayers.mainhand = 'QuarterstaffPale'
+  this.defwornlayers.body = 'BlueRobePlain'
+  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'QuarterstaffPale'
 
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+3'
@@ -3726,9 +3726,9 @@ function CultistNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'BrownRobeHood'
-  this.wornlayers.offhand = 'OffhandDagger'
-  this.wornlayers.mainhand = 'DaggerPale'
+  this.defwornlayers.body = 'BrownRobeHood'
+  this.defwornlayers.offhand = 'OffhandDagger'
+  this.defwornlayers.mainhand = 'DaggerPale'
 
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+9'
@@ -3944,11 +3944,11 @@ function RangerNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'LeatherArmor'
-  this.wornlayers.head = 'ShortBrownPale'
-  this.wornlayers.back = 'Quiver'
-  this.wornlayers.offhand = 'OffhandPale'
-  this.wornlayers.mainhand = 'BowPale'
+  this.defwornlayers.body = 'LeatherArmor'
+  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.back = 'Quiver'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'BowPale'
 
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+9'
@@ -4090,10 +4090,10 @@ function ArchmageNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'RedRobe'
-  this.wornlayers.head = 'ShortBrownPale'
-  this.wornlayers.offhand = 'OffhandPale'
-  this.wornlayers.mainhand = 'QuarterstaffPale'
+  this.defwornlayers.body = 'RedRobe'
+  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'QuarterstaffPale'
 
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+3'
@@ -4582,10 +4582,10 @@ function JusticeNPCTile() {
     startframe: 1
   });
 
-  this.wornlayers.body = 'BlueRobe'
-  this.wornlayers.head = 'LongBrownHairPale'
-  this.wornlayers.offhand = 'OffhandPale'
-  this.wornlayers.mainhand = 'QuarterstaffPale'
+  this.defwornlayers.body = 'BlueRobe'
+  this.defwornlayers.head = 'LongBrownHairPale'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'QuarterstaffPale'
 
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4'
