@@ -383,8 +383,8 @@ function clickmap(xval,yval) {
       // this will get overwritten if it's a human
       graphicpicks = [];
       optindex=0;
-      var tmpdude = localFactory.createTile(editnpcs.getName());
-      var picksblock = "<table><tr><td style='background-color:777777; border:inset' id='opt1' onClick='selectGraphic(1,\"" + tmpdude.getGraphic() + "\")' >";
+      let tmpdude = localFactory.createTile(editnpcs.getName());
+      let picksblock = "<table><tr><td style='background-color:777777; border:inset' id='opt1' onClick='selectGraphic(1,\"" + tmpdude.getGraphic() + "\")' >";
       picksblock = picksblock + "<img src='graphics/" + tmpdude.getGraphic() + "' /></td>";
       graphicpicks[1] = tmpdude.getGraphic();
       var optnum = 2;
@@ -804,7 +804,7 @@ function submitEditNPC(change) {
     if (parseInt(document.npceditpopup.offhandyn.value) !== editnpcs.wornlayernudges.offhand.y) {
       editnpcs.wornlayernudges.offhand.y = parseInt(document.npceditpopup.offhandyn.value);
     }
-    if (editnpcs.checkType("human")) { delete editnpcs.overrideGraphic; }
+    if (editnpcs.checkType("human")) { delete editnpcs.overrideGraphic; editnpcs.makeLayers(); }
 
 		if (optindex) {
 		  editnpcs.overrideGraphic = graphicpicks[optindex];
