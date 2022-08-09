@@ -1696,6 +1696,11 @@ GameMap.prototype.saveMap = function (name) {
     if (mapnpcs[i].skintone) {
   	  printerwin.document.write(", skintone: " + mapnpcs[i].skintone);
  	  }
+    if (basenpc.checkType("human")) {
+      let jwornlayers = JSON.stringify(mapnpcs[i].wornlayers);
+      let jnudge = JSON.stringify(mapnpcs[i].wornlayernudges);
+      printerwin.document.write(", wornlayers: '" + jwornlayers + "', nudges: '" + jnudge + "'");
+    }
  	  printerwin.document.write("};<br />\n");
   }
  
@@ -1898,6 +1903,8 @@ GameMap.prototype.loadMap = function (name) {
   			  if (npckey === "NPCBand") { newnpc.setNPCBand(loadnpcs[npci].NPCBand); }
           if (npckey === "OverrideGraphic") { newnpc.overrideGraphic = loadnpcs[npci].OverrideGraphic; }
           if (npckey === "skintone") { newnpc.skintone = loadnpcs[npci].skintone; }
+          if (npckey === "wornlayers") {  newnpc.wornlayers = JSON.parse(localnpcs[npci].wornlayers); }
+          if (npckey === "nudges") { newnpc.wornlayernudges = JSON.parse(localnpcs[npci].nudges); }
         }
         if ((newnpc.getPeaceAI() === "scheduled") && (!DU.gameflags.getFlag("editor"))) {
           let loc = DU.schedules[newnpc.getSchedule()].getNPCLocationByTime(GetClockTime(), 1, 1, this);
