@@ -226,6 +226,10 @@ ProtoObject.prototype.copy = function(type) {
       copydata[idx] = val;
     } else if (idx === "wornlayernudges") {
       copydata[idx] = val;
+    } else if (idx === "defwornlayernudges") {
+      copydata[idx] = val;
+    } else if (idx === "defwornlayers") {
+      copydata[idx] = val;
     } else {
       DebugWrite("saveload", "<br /><span style='color:red;font-weight:bold'>" + idx + " is type " + typeof val + "</span>,  ");
       alert(savename + " SAVE NEEDS " + idx + "!");

@@ -915,10 +915,22 @@ function SaveChar() {
   PC.setPCName(charname);
   PC.setGraphic(graphic);
   PC.setGender(gender);
-  PC.wornlayers.body = nuavatars[avatarselect.y][avatarselect.x][0];
-  PC.wornlayers.head = nuavatars[avatarselect.y][avatarselect.x][1];
-  PC.wornlayers.mainhand = nuavatars[avatarselect.y][avatarselect.x][2];
-  PC.wornlayers.offhand = nuavatars[avatarselect.y][avatarselect.x][3];
+  PC.wornlayers = {
+    body: nuavatars[avatarselect.y][avatarselect.x][0],
+    head: nuavatars[avatarselect.y][avatarselect.x][1],
+    back: null,
+    offhand: nuavatars[avatarselect.y][avatarselect.x][3],
+    cloak: null,
+    mainhand: nuavatars[avatarselect.y][avatarselect.x][2]
+  };
+  PC.wornlayernudges = {
+    body: { x: 0, y: 0 },
+    head: { x: 0, y: 0 },
+    back: { x: 0, y: 0 },
+    offhand: { x: 0, y: 0 },
+    cloak: { x: 0, y: 0 },
+    mainhand: { x: 0, y: 0 }
+  };
   PC.makeLayers();
   PC.skintone = nuavskin[avatarselect.y][avatarselect.x];
   
