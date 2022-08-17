@@ -4199,6 +4199,20 @@ function WaterRockTile() {
 }
 WaterRockTile.prototype = new FeatureObject();
 
+function WorldsEndingRaftTile() {
+  this.name = "WorldsEndingRaft";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-160";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "raft";
+  this.peerview = "#602000";
+  this.walkSound = "stone";
+}
+WorldsEndingRaftTile.prototype = new FeatureObject();
+
 function DungeonTile() {
   this.name = "Dungeon";
   this.graphic = "master_spritesheet.png";
