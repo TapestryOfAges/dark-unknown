@@ -277,13 +277,15 @@ Conversation.prototype.say = function(speaker, saywhat, skipahead) {
   
   let speech = saywhat.split("%%");
   let skipped = "";
+  let whospoke = "<span class='mainspeaker'>" + speaker.getFullDesc() + "</span>: ";
   while (skipahead) {
     speech.shift();
     skipahead--;
     skipped = "<br />";
+    whospoke = "";
   }
   speech[0] = speech[0].charAt(0).toUpperCase() + speech[0].slice(1);
-  maintext.addText(skipped + "<span class='conv'>" + speech[0] + "</span>");
+  maintext.addText(whospoke + skipped + "<span class='conv'>" + speech[0] + "</span>");
   speech.shift();
   
   if (speech[0]) {

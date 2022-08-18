@@ -255,6 +255,8 @@ p.menuplain { color:white;
 span.leveled { color: red; }
 span.conv {color: lightyellow; }
 span.sysconv { color: yellow; }
+span.mainspeaker { color: orange; }
+span.offspeaker { color: blue; }
 
 
 div.demotop { text-align:center; 
