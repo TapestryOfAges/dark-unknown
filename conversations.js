@@ -277,7 +277,9 @@ Conversation.prototype.say = function(speaker, saywhat, skipahead) {
   
   let speech = saywhat.split("%%");
   let skipped = "";
-  let whospoke = "<span class='mainspeaker'>" + speaker.getFullDesc() + "</span>: ";
+  let whospoke = speaker.getFullDesc();
+  whospoke = whospoke.charAt(0).toUpperCase() + whospoke.slice(1);
+  whospoke = "<span class='mainspeaker'>" + whospoke + "</span>: ";
   while (skipahead) {
     speech.shift();
     skipahead--;
