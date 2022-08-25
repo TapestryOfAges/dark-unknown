@@ -4213,6 +4213,165 @@ function WorldsEndingRaftTile() {
 }
 WorldsEndingRaftTile.prototype = new FeatureObject();
 
+function WorldsEndingCenterRaftTile() {
+  this.name = "WorldsEndingCenterRaft";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-160";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "raft";
+  this.peerview = "#602000";
+  this.walkSound = "stone";
+}
+WorldsEndingCenterRaftTile.prototype = new FeatureObject();
+
+WorldsEndingCenterRaftTile.prototype.activate = function() {
+  if (gamestate.getMode() !== "loadgame") {
+    let NPCevent = new GameEvent(this);
+    DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
+  }
+}
+
+WorldsEndingCenterRaftTile.prototype.myTurn = function() {
+  let mymap = this.getHomeMap();
+  if (!maps.getMap(mymap.getName())) {
+
+    if (!DebugWrite("gameobj", "<span style='font-weight:bold'>Raft " + this.getSerial() + " removed from game- map gone.</span><br />")) {
+      DebugWrite("magic", "<span style='font-weight:bold'>Raft " + this.getSerial() + " removed from game- map gone.</span><br />");
+    }
+
+    return 1;
+  }
+  
+  let lever = mymap.getTile(40,28).getTopFeature();
+  if (lever.spritexoffset === "-192") {
+    // raft only moves if lever is set to ON
+    let movedir = "";
+    if ((this.getx() >= 34) && (this.getx() <= 48) && (this.gety() === 24)) { movedir = "E"; }
+    else if ((this.getx() === 49) && (this.gety() === 24)) { movedir = "N"; }
+    else if ((this.getx() === 49) && (this.gety() === 23)) { movedir = "E"; }
+    else if ((this.getx() === 50) && (this.gety() === 23)) { movedir = "N"; }
+    else if ((this.getx() >= 50) && (this.getx() <= 53) && (this.gety() === 22)) { movedir = "E"; }
+    else if ((this.getx() === 54) && (this.gety() === 22)) { movedir = "N"; }
+    else if ((this.getx() >= 54) && (this.getx() <= 55) && (this.gety() === 21)) { movedir = "E"; }
+    else if ((this.getx() === 56) && (this.gety() <= 21) && (this.gety() >= 16)) { movedir = "N"; }
+    else if ((this.getx() === 56) && (this.gety() === 15)) { movedir = "W"; }
+    else if ((this.getx() === 55) && (this.gety() === 15)) { movedir = "N"; }
+    else if ((this.getx() === 55) && (this.gety() === 14)) { movedir = "N"; }
+    else if ((this.getx() <= 55) && (this.getx() >= 43) && (this.gety() === 13)) { movedir = "W"; }
+    else if ((this.getx() === 42) && (this.gety() === 13)) { movedir = "S"; }
+    else if ((this.getx() <= 42) && (this.getx() >= 35) && (this.gety() === 14)) { movedir = "W"; }
+    else if ((this.getx() === 34) && (this.gety() === 14)) { movedir = "S"; }
+    else if ((this.getx() <= 34) && (this.getx() >= 32) && (this.gety() === 15)) { movedir = "W"; }
+    else if ((this.getx() === 31) && (this.gety() === 15)) { movedir = "S"; }
+    else if ((this.getx() === 31) && (this.gety() === 16)) { movedir = "W"; }
+    else if ((this.getx() === 30) && (this.gety() <= 21) && (this.gety() >= 15)) { movedir = "S"; }
+    else if ((this.getx() === 30) && (this.gety() === 22)) { movedir = "E"; }
+    else if ((this.getx() === 31) && (this.gety() === 22)) { movedir = "S"; }
+    else if ((this.getx() >= 31) && (this.getx() <= 33) && (this.gety() === 23)) { movedir = "E"; }
+    else if ((this.getx() === 34) && (this.gety() === 23)) { movedir = "S"; }
+
+    let spaces = [];
+    if (!movedir) {
+      alert("Failure to find myself: raft at " + this.getx() + "," + this.gety());
+    } else if (movedir === "E") {
+      spaces[0] = mymap.getTile(this.getx()+2,this.gety()-1);
+      spaces[1] = mymap.getTile(this.getx()+2,this.gety());
+      spaces[2] = mymap.getTile(this.getx()+2,this.gety()+1);
+    } else if (movedir === "W") {
+      spaces[0] = mymap.getTile(this.getx()-2,this.gety()-1);
+      spaces[1] = mymap.getTile(this.getx()-2,this.gety());
+      spaces[2] = mymap.getTile(this.getx()-2,this.gety()+1);
+    } else if (movedir === "N") {
+      spaces[0] = mymap.getTile(this.getx()-1,this.gety()-2);
+      spaces[1] = mymap.getTile(this.getx(),this.gety()-2);
+      spaces[2] = mymap.getTile(this.getx()+1,this.gety()-2);
+    } else if (movedir === "S") {
+      spaces[0] = mymap.getTile(this.getx()-2,this.gety()-1);
+      spaces[1] = mymap.getTile(this.getx()-2,this.gety());
+      spaces[2] = mymap.getTile(this.getx()-2,this.gety()+1);
+    }
+
+    let blocked = 0;
+    for (let i=0;i<=2;i++) {
+      if (spaces[i].canMoveHere(MOVE_SWIM)) { blocked = 1; }
+    }
+
+    if (!blocked) {
+      let raftparts = [];
+      for (let i=-1;i<=1;i++) {
+        for (let j=-1;j<=1;j++) {
+          let feastack = mymap.getTile(this.getx()+i,this.gety()+j).getFeatures();
+          for (let k=0;k<feastack.length;k++) { raftparts.push(feastack[k]); }
+          let npcstack = mymap.getTile(this.getx()+i,this.gety()+j).getNPCs();
+          for (let k=0;k<npcstack.length;k++) { raftparts.push(npcstack[k]); }
+        }
+      }
+
+      for (let i=0;i<raftparts.length;i++) {
+        if (movedir === "E") {
+          mymap.moveThing(raftparts[i].getx()+1,raftparts[i].gety(),raftparts[i]);
+        } else if (movedir === "W") {
+          mymap.moveThing(raftparts[i].getx()-1,raftparts[i].gety(),raftparts[i]);
+        } else if (movedir === "N") {
+          mymap.moveThing(raftparts[i].getx(),raftparts[i].gety()-1,raftparts[i]);
+        } else if (movedir === "S") {
+          mymap.moveThing(raftparts[i].getx(),raftparts[i].gety()+1,raftparts[i]);
+        }
+      }
+
+      DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+    }
+
+  }
+   
+  let NPCevent = new GameEvent(this);
+  DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
+  
+  return 1;
+}
+
+function PotentialReceptacleTile() {
+  this.name = "PotentialReceptacle";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-1120";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "metal platform with a hexagonal socket in the top";
+}
+PotentialReceptacleTile.prototype = new FeatureObject();
+
+function WorldsEndingRaftSwitchTile() {
+  this.name = "WorldsEndingRaftSwitch";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-608";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "large lever";
+}
+WorldsEndingRaftSwitchTile.prototype = new FeatureObject();
+
+WorldsEndingRaftSwitchTile.prototype.use = function(who) {
+  let retval = {fin:1};
+  if (!DU.gameflags.getFlag("worldsendingraft")) { retval["txt"] = "The lever will not budge."; return retval; }
+
+  if (this.spritexoffset === "-160") { 
+    this.spritexoffset = "-192";
+    retval["txt"] = "The lever moves with a satisfying click.";
+    DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
+  } else {
+    this.spritexoffset = "-160";
+    retval["txt"] = "The lever moves with a satisfying click.";
+    DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
+  }
+}
+
 function DungeonTile() {
   this.name = "Dungeon";
   this.graphic = "master_spritesheet.png";
@@ -11653,6 +11812,52 @@ function SceptreTile() {
 }
 SceptreTile.prototype = new ItemObject();
 
+function KineticCrystalTile() {
+  this.name = "KineticCrystal";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-1824";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "softly glowing crystal";
+  this.longdesc = "This pale crystal glows softly, but radiates no heat.";
+  this.prefix = "a";
+
+  this.addType("Quest");  
+}
+KineticCrystalTile.prototype = new ItemObject();
+
+KineticCrystalTile.prototype.onGet = function(who) {
+  let wemap = who.getHomeMap();
+  let gazer = localFactory.createTile("GazerNPC");
+  wemap.placeThing(gazer,30,47);
+  gazer = localFactory.createTile("GazerNPC");
+  wemap.placeThing(gazer,29,46);
+  gazer = localFactory.createTile("GazerNPC");
+  wemap.placeThing(gazer,34,51);
+  gazer = localFactory.createTile("GazerNPC");
+  wemap.placeThing(gazer,31,50);
+}
+
+KineticCrystalTile.prototype.use = function(who) {
+  let retval = {};
+  retval["fin"] = 1;
+  retval["input"] = "&gt;";
+  retval["txt"] = "You hold the crystal in your hand, but are not sure what to do with it.";
+  let wemap = who.getHomeMap();
+  if (wemap.getName() === "worldsending2") {
+    if (((who.getx() === 38) && (who.gety() === 28)) || ((who.getx() === 39) && (who.gety() === 29))) {
+      retval["txt"] = "You place the crystal into the socket, and hear a profound CLICK, and then a low, resonant hum.";
+      let receptacle = wemap.getTile(39,28).getTopFeature();
+      receptacle.spritexoffset = '-128';
+      receptacle.spriteyoffset = '-1792';
+      // MAKE SURE TO UPDATE THIS
+      // FIXME IN NEW ART
+      DU.gameflags.setFlag("worldsendingraft",1);
+    }
+  }
+}
+
 function ChaliceTile() {
   this.name = "Chalice";
   //this.graphic = "master_spritesheet_d.gif";
@@ -13355,6 +13560,20 @@ function AdelusLetterTile() {
   this.longdesc = "A letter from Natassa to Adelus the bard.";
 }
 AdelusLetterTile.prototype = new BookItemObject();
+
+function StephaneNoteTile() {
+  this.name = "StephaneNote";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-1248";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "letter";
+  this.prefix = "a";
+  this.contents = "<span class='conv'>I lie here, grievously wounded. I fear that I am not going to make it.</span>%%<span class='conv'>To whomever finds this note: please, I beg you, tell my brother my fate... assuming you do not share it. </span>%%<span class='conv'>His name is Ian, and he lives in Swainhil. You have my thanks in advance, stranger. I am sorry to ask this of you... but not as sorry as I am that I cannot do it myself.</span>%%There is a trailing of ink after this point, but no further writing.";
+  this.longdesc = "A note found near a corpse in World's Ending.";
+}
+StephaneNoteTile.prototype = new BookItemObject();
 
 function RhysLetterTile() {
   this.name = "RhysLetter";
@@ -16105,7 +16324,7 @@ function ClothArmorTile() {
 	this.defense = 5;
 	this.absorb = 10;
   //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "armorweapons.gif";
 	this.spritexoffset = "0";
 	this.spriteyoffset = "0";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -16121,7 +16340,7 @@ function LeatherArmorTile() {
 	this.absorb = 20;
 	this.resist = 10;
   //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "0";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -16138,7 +16357,7 @@ function ChainArmorTile() {
 	this.resist = 10;
 	this.strReq = 14;
   //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-64";
 	this.spriteyoffset = "0";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -16155,7 +16374,7 @@ function PlateArmorTile() {
 	this.resist = 15;
 	this.strReq = 18;
   //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-96";
 	this.spriteyoffset = "0";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -16172,7 +16391,7 @@ function ExoticArmorTile() {
   this.resist = 40;
   this.strReq = 16;
   //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-128";
 	this.spriteyoffset = "0";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -16313,7 +16532,7 @@ function DaggerTile() {
 	this.damage = "1d4+1";
 	this.strdamage = 1/3;
   //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "armorweapons.gif";
 	this.spritexoffset = "0";
 	this.spriteyoffset = "-32";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -16328,7 +16547,7 @@ function ShortswordTile() {
 	this.damage = "2d4+1";
 	this.strdamage = 1/2;
   //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "-32";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -16343,7 +16562,7 @@ function MaceTile() {
 	this.damage = "2d4+3";
 	this.strdamage = 1;
   //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-64";
 	this.spriteyoffset = "-32";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -16358,7 +16577,7 @@ function AxeTile() {
 	this.damage = "2d4+8";
 	this.strdamage = 2/3;
   //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-96";
 	this.spriteyoffset = "-32";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -16373,7 +16592,7 @@ function LongswordTile() {
 	this.damage = "4d4+9";
 	this.strdamage = 2/3;
   //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-128";
 	this.spriteyoffset = "-32";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -16388,7 +16607,7 @@ function HalberdTile() {
 	this.damage = "5d4+15";
 	this.strdamage = 1;
   //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-160";
 	this.spriteyoffset = "-32";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -16403,7 +16622,7 @@ function MagicSwordTile() {
 	this.damage = "5d10+22";
 	this.strdamage = 1;
   //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-192";
 	this.spriteyoffset = "-32";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -16536,7 +16755,7 @@ function SlingTile() {
 	this.name = "Sling";
 	this.damage = "1d3+0";
   //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "armorweapons.gif";
 	this.spritexoffset = "0";
 	this.spriteyoffset = "-64";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -16554,7 +16773,7 @@ function BowTile() {
 	this.name = "Bow";
 	this.damage = "1d12+1";
   //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "-64";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -16574,7 +16793,7 @@ function CrossbowTile() {
 	this.name = "Crossbow";
 	this.damage = "4d8+-1";
   //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-64";
 	this.spriteyoffset = "-64";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -16590,11 +16809,28 @@ function CrossbowTile() {
 }
 CrossbowTile.prototype = new MissileWeaponObject();
 
+function YewWandTile() {
+	this.name = "YewWand";
+	this.damage = "4d12+0";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.spritexoffset = "-96";
+	this.spriteyoffset = "-64";
+	this.desc = "magic wand";
+	this.prefix = "a";
+  this.ammoxoffset = "-64";
+  this.ammoyoffset = "-128";
+  this.attackSound = "sfx_wand";
+  this.longdesc = "A wand made of yew, which fires bolts of magical energy.";
+}
+YewWandTile.prototype = new MissileWeaponObject();
+
 function WandTile() {
 	this.name = "Wand";
 	this.damage = "4d12+0";
   //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "armorweapons.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.spritexoffset = "-96";
 	this.spriteyoffset = "-64";
@@ -16611,7 +16847,7 @@ function MagicAxeTile() {
 	this.name = "MagicAxe";
 	this.damage = "4d12+12";
   //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "armorweapons.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.spritexoffset = "-128";
 	this.spriteyoffset = "-64";
