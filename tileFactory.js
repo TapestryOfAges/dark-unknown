@@ -893,6 +893,21 @@ tileFactory.prototype.makeWorldsEndingRaftTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWorldsEndingCenterRaftTile = function() {
+  let newTile = new WorldsEndingCenterRaftTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePotentialReceptacleTile = function() {
+  let newTile = new PotentialReceptacleTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWorldsEndingRaftSwitchTile = function() {
+  let newTile = new WorldsEndingRaftSwitchTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeDungeonTile = function() {
   let newTile = new DungeonTile();
   return newTile;
@@ -2473,6 +2488,11 @@ tileFactory.prototype.makeSceptreTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeKineticCrystalTile = function() {
+  let newTile = new KineticCrystalTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeChaliceTile = function() {
   let newTile = new ChaliceTile();
   return newTile;
@@ -2920,6 +2940,11 @@ tileFactory.prototype.makeRuinsJournalTile = function() {
 
 tileFactory.prototype.makeAdelusLetterTile = function() {
   let newTile = new AdelusLetterTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeStephaneNoteTile = function() {
+  let newTile = new StephaneNoteTile();
   return newTile;
 }
 
@@ -3675,6 +3700,11 @@ tileFactory.prototype.makeBowTile = function() {
 
 tileFactory.prototype.makeCrossbowTile = function() {
   let newTile = new CrossbowTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeYewWandTile = function() {
+  let newTile = new YewWandTile();
   return newTile;
 }
 
