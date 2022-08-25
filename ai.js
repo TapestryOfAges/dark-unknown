@@ -90,9 +90,6 @@ ais.combat = function(who) {
       return retval; 
     } 
   }
-  if (who.specials.archdaemon_ice || who.specials.archdaemon_dust || who.specials.archdaemon_ashes || who.specials.archdaemon_bone) {
-    DoArchdaemon(who);
-  }
   
   // check to see if we should cease to aggro
   // need no one in your Band be within "forgetAt" radius
@@ -112,7 +109,7 @@ ais.combat = function(who) {
     }
   }
   
-  if (!who.specials.undead && !who.specials.construct && !who.specials.mindless && !who.specials.tempbrave && (who.getHP() < .15*who.getMaxHP()) && (Dice.roll("1d2") === 1)) {
+  if (!who.specials.noflee && !who.specials.undead && !who.specials.construct && !who.specials.mindless && !who.specials.tempbrave && (who.getHP() < .15*who.getMaxHP()) && (Dice.roll("1d2") === 1)) {
     // 50/50 chance each turn at 15% of life of dropping it all and fleeing
     DebugWrite("ai", "Too wounded, becoming a coward.<br />");
     // consider making this a check of some kind
@@ -176,6 +173,10 @@ ais.combat = function(who) {
     return retval;
   }
   // whoo boy, here we are: still aggro, still on right map. Go!
+
+  if (who.specials.archdaemon_ice || who.specials.archdaemon_dust || who.specials.archdaemon_ashes || who.specials.archdaemon_bone) {
+    DoArchdaemon(who);
+  }
 
   // decide if meleeing/approaching
   let chance = who.meleeChance;
@@ -3732,3 +3733,4 @@ function WingBuffet(who, dir, dragon, count) {
     dragon.endTurn();
   }
 }
+
