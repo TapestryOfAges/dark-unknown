@@ -17631,9 +17631,9 @@ SceptreTile.prototype = new ItemObject();
 
 function KineticCrystalTile() {
   this.name = "KineticCrystal";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-1824";
+  this.graphic = "static.png";
+  this.spritexoffset = -1*32;
+  this.spriteyoffset = -97*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "softly glowing crystal";
