@@ -7720,10 +7720,11 @@ function CoralTile() {
 CoralTile.prototype = new FeatureObject();
 
 function WorldsEndingRaftTile() {
+  //Graphics Upgraded
   this.name = "WorldsEndingRaft";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-160";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -7*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -7734,10 +7735,11 @@ function WorldsEndingRaftTile() {
 WorldsEndingRaftTile.prototype = new FeatureObject();
 
 function WorldsEndingCenterRaftTile() {
+  //Graphics Upgraded
   this.name = "WorldsEndingCenterRaft";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-160";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -7*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -7855,9 +7857,9 @@ WorldsEndingCenterRaftTile.prototype.myTurn = function() {
 
 function PotentialReceptacleTile() {
   this.name = "PotentialReceptacle";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1120";
+  this.graphic = "static.png";
+  this.spritexoffset = 0*32;
+  this.spriteyoffset = -97*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -17630,6 +17632,7 @@ function SceptreTile() {
 SceptreTile.prototype = new ItemObject();
 
 function KineticCrystalTile() {
+  //Graphics upgraded
   this.name = "KineticCrystal";
   this.graphic = "static.png";
   this.spritexoffset = -1*32;
@@ -17666,10 +17669,7 @@ KineticCrystalTile.prototype.use = function(who) {
     if (((who.getx() === 38) && (who.gety() === 28)) || ((who.getx() === 39) && (who.gety() === 29))) {
       retval["txt"] = "You place the crystal into the socket, and hear a profound CLICK, and then a low, resonant hum.";
       let receptacle = wemap.getTile(39,28).getTopFeature();
-      receptacle.spritexoffset = '-128';
-      receptacle.spriteyoffset = '-1792';
-      // MAKE SURE TO UPDATE THIS
-      // FIXME IN NEW ART
+      receptacle.spritexoffset = -1*32;
       DU.gameflags.setFlag("worldsendingraft",1);
     }
   }
