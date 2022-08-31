@@ -4210,6 +4210,7 @@ function WorldsEndingRaftTile() {
   this.desc = "raft";
   this.peerview = "#602000";
   this.walkSound = "stone";
+  this.bridge = 1;
 }
 WorldsEndingRaftTile.prototype = new FeatureObject();
 
@@ -4224,6 +4225,7 @@ function WorldsEndingCenterRaftTile() {
   this.desc = "raft";
   this.peerview = "#602000";
   this.walkSound = "stone";
+  this.bridge = 1;
 }
 WorldsEndingCenterRaftTile.prototype = new FeatureObject();
 
@@ -4289,14 +4291,14 @@ WorldsEndingCenterRaftTile.prototype.myTurn = function() {
       spaces[1] = mymap.getTile(this.getx(),this.gety()-2);
       spaces[2] = mymap.getTile(this.getx()+1,this.gety()-2);
     } else if (movedir === "S") {
-      spaces[0] = mymap.getTile(this.getx()-2,this.gety()-1);
-      spaces[1] = mymap.getTile(this.getx()-2,this.gety());
-      spaces[2] = mymap.getTile(this.getx()-2,this.gety()+1);
+      spaces[0] = mymap.getTile(this.getx()-1,this.gety()+2);
+      spaces[1] = mymap.getTile(this.getx(),this.gety()+2);
+      spaces[2] = mymap.getTile(this.getx()+1,this.gety()+2);
     }
 
     let blocked = 0;
     for (let i=0;i<=2;i++) {
-      if (spaces[i].canMoveHere(MOVE_SWIM)) { blocked = 1; }
+      if (!spaces[i].canMoveHere(MOVE_SWIM).canmove) { blocked = 1; }
     }
 
     if (!blocked) {
@@ -4307,6 +4309,7 @@ WorldsEndingCenterRaftTile.prototype.myTurn = function() {
           for (let k=0;k<feastack.length;k++) { raftparts.push(feastack[k]); }
           let npcstack = mymap.getTile(this.getx()+i,this.gety()+j).getNPCs();
           for (let k=0;k<npcstack.length;k++) { raftparts.push(npcstack[k]); }
+          if ((this.getx()+i === PC.getx()) && (this.gety()+j === PC.gety())) { raftparts.push(PC); }
         }
       }
 
@@ -4370,6 +4373,7 @@ WorldsEndingRaftSwitchTile.prototype.use = function(who) {
     retval["txt"] = "The lever moves with a satisfying click.";
     DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
   }
+  return retval;
 }
 
 function DungeonTile() {
@@ -11830,13 +11834,13 @@ KineticCrystalTile.prototype = new ItemObject();
 KineticCrystalTile.prototype.onGet = function(who) {
   let wemap = who.getHomeMap();
   let gazer = localFactory.createTile("GazerNPC");
-  wemap.placeThing(gazer,30,47);
+  wemap.placeThing(30,47,gazer);
   gazer = localFactory.createTile("GazerNPC");
-  wemap.placeThing(gazer,29,46);
+  wemap.placeThing(29,46,gazer);
   gazer = localFactory.createTile("GazerNPC");
-  wemap.placeThing(gazer,34,51);
+  wemap.placeThing(34,51,gazer);
   gazer = localFactory.createTile("GazerNPC");
-  wemap.placeThing(gazer,31,50);
+  wemap.placeThing(31,50,gazer);
 }
 
 KineticCrystalTile.prototype.use = function(who) {
@@ -11856,6 +11860,7 @@ KineticCrystalTile.prototype.use = function(who) {
       DU.gameflags.setFlag("worldsendingraft",1);
     }
   }
+  return retval;
 }
 
 function ChaliceTile() {
