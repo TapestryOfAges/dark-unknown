@@ -911,7 +911,11 @@ magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].getLongDesc = function() {
   return "Heals you for " + Dice.rollmin(PC.getLevel() + "d6+" + PC.getLevel()) + "-" + Dice.rollmax(PC.getLevel() + "d6+" + PC.getLevel()) + "HP.";
 }
 magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].getInfusedDesc = function() {
-  return "Heals for 1.5x as much.";
+  let minheal = Dice.rollmin(PC.getLevel() + "d6+" + PC.getLevel());
+  minheal = Math.floor(minheal * 1.5);
+  let maxheal = Dice.rollmax(PC.getLevel() + "d6+" + PC.getLevel());
+  maxheal = Math.floor(maxheal * 1.5);
+  return "Heals for " + minheal + "-" + maxheal + "HP instead.";
 }
 
 magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell = function(caster, infused, free, tgt) {
@@ -954,7 +958,11 @@ magic[SPELL_MAGIC_BOLT_LEVEL][SPELL_MAGIC_BOLT_ID].getLongDesc = function() {
   return "Deals " + (Dice.rollmin(DMG_NEGLIGABLE)+Math.floor(PC.getIntForPower()/5)+1) + "-" + (Dice.rollmax(DMG_NEGLIGABLE)+Math.floor(PC.getIntForPower()/5)+1) + " magic damage to a single target. Half damage if resisted.";
 }
 magic[SPELL_MAGIC_BOLT_LEVEL][SPELL_MAGIC_BOLT_ID].getInfusedDesc = function() {
-  return "Damage is increased by 1.5x.";
+  let mindmg = Dice.rollmin(DMG_NEGLIGABLE)+Math.floor(PC.getIntForPower()/5)+1;
+  mindmg = Math.floor(1.5*mindmg);
+  let maxdmg = Dice.rollmax(DMG_NEGLIGABLE)+Math.floor(PC.getIntForPower()/5)+1;
+  maxdmg = Math.floor(1.5*maxdmg);
+  return "Deals " + mindmg + "-" + maxdmg + " magic damage instead.";
 }
 
 magic[SPELL_MAGIC_BOLT_LEVEL][SPELL_MAGIC_BOLT_ID].executeSpell = function(caster, infused, free, tgt) {
@@ -1154,10 +1162,14 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
 
 // Protection
 magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].getLongDesc = function() {
-  return "Decreases your chance of being hit by " + ((PC.getIntForPower()*2/3)+1) + "%.";
+  let power = (PC.getIntForPower()*2/3)+1;
+  power = power.toFixed(2);
+  return "Decreases your chance of being hit by " + power + "%.";
 }
-magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].getLongDesc = function() {
-  return "Decreases your chance of being hit by " + Math.floor(((PC.getIntForPower()*2/3)+1)*1.5) + "% instead.";
+magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].getInfusedDesc = function() {
+  let power = ((PC.getIntForPower()*2/3)+1)*1.5;
+  power = power.toFixed(2);
+  return "Decreases your chance of being hit by " + power + "% instead.";
 }
 
 magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].executeSpell = function(caster, infused, free, tgt) {
@@ -1194,6 +1206,13 @@ magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].executeSpell = function(caste
 }
 
 // Unlock
+magic[SPELL_UNLOCK_LEVEL][SPELL_UNLOCK_ID].getLongDesc = function() {
+  return "Unlocks a locked door.";
+}
+magic[SPELL_UNLOCK_LEVEL][SPELL_UNLOCK_ID].getInfusedDesc = function() {
+  return "Can also unlock most magically locked doors.";
+}
+
 magic[SPELL_UNLOCK_LEVEL][SPELL_UNLOCK_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Unlock.<br />");
   let resp = {fin:1};
@@ -1336,7 +1355,11 @@ magic[SPELL_DISRUPT_UNDEAD_LEVEL][SPELL_DISRUPT_UNDEAD_ID].getLongDesc = functio
   return "Deals " + Dice.rollmin(DMG_MEDIUM) + "-" + Dice.rollmax(DMG_MEDIUM) + " damage to all undead within 6 steps.";
 }
 magic[SPELL_DISRUPT_UNDEAD_LEVEL][SPELL_DISRUPT_UNDEAD_ID].getInfusedDesc = function() {
-  return "Damage increased by 1.5x.";
+  let mindmg = Dice.rollmin(DMG_MEDIUM);
+  mindmg = Math.floor(1.5*mindmg);
+  let maxdmg = Dice.rollmax(DMG_MEDIUM);
+  maxdmg = Math.floor(1.5*maxdmg);
+  return "Deals " + mindmg + "-" + maxdmg + " instead.";
 }
 
 magic[SPELL_DISRUPT_UNDEAD_LEVEL][SPELL_DISRUPT_UNDEAD_ID].executeSpell = function(caster, infused, free) {
@@ -1422,7 +1445,11 @@ magic[SPELL_FIREBALL_LEVEL][SPELL_FIREBALL_ID].getLongDesc = function() {
   return "Deals " + Dice.rollmin(DMG_MEDIUM) + "-" + Dice.rollmax(DMG_MEDIUM) + " fire damage to a single target. Half damage if resisted."
 }
 magic[SPELL_FIREBALL_LEVEL][SPELL_FIREBALL_ID].getInfusedDesc = function() {
-  return "Damage increased by 1.5x.";
+  let mindmg = Dice.rollmin(DMG_MEDIUM);
+  mindmg = Math.floor(1.5 * mindmg);
+  let maxdmg = Dice.rollmax(DMG_MEDIUM);
+  maxdmg = Math.floor(1.5 * maxdmg);
+  return "Deals " + mindmg + "-" + maxdmg + " fire damage instead.";
 }
 
 magic[SPELL_FIREBALL_LEVEL][SPELL_FIREBALL_ID].executeSpell = function(caster, infused, free, tgt) {
@@ -1511,104 +1538,135 @@ function PerformFireball(caster, infused, free, tgt) {
   return resp;
 }
 
-// Iceball
-magic[SPELL_ICEBALL_LEVEL][SPELL_ICEBALL_ID].getLongDesc = function() {
-  return "Deals " + Dice.rollmin(DMG_MEDIUM) + "-" + Dice.rollmax(DMG_MEDIUM) + " ice damage to a single target, half if resisted. The target is slowed.";
+//Open Gate
+magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID].getLongDesc = function()  {
+  return "When cast at a circle of stones Gate, opens a portal to the destination circle.";
 }
-magic[SPELL_ICEBALL_LEVEL][SPELL_ICEBALL_ID].getInfusedDesc = function() {
-  return "Damage increased by 1.5x.";
+magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID].getInfusedDesc = function() {
+  return "Opens the portal even if the gate has been damaged.";
 }
 
-magic[SPELL_ICEBALL_LEVEL][SPELL_ICEBALL_ID].executeSpell = function(caster, infused, free, tgt) {
-  DebugWrite("magic", "Casting Iceball.<br />");
-  if (caster !== PC) {
-    let resp = PerformIceball(caster, infused, free, tgt);
-    return resp;
-  }
-
+magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID].executeSpell = function(caster, infused, free) {
+  DebugWrite("magic", "Casting Open Gate.<br />");
   let resp = {};
-  
-  if (!caster.getHomeMap().getScale()) {
-    resp["fin"] = 2;
-    resp["txt"] = "There is no benefit to casting that spell here.";
-    resp["input"] = "&gt;";
-    return resp;
+  resp["fin"] = 3;  // end of turn waits on end of animation
+
+  let loc = caster.getHomeMap().getTile(caster.getx(), caster.gety());
+  let shrine = loc.getTopFeature();
+  if ((shrine) && (shrine.gotomap)) {
+    if (shrine.getName() === "Shrine") {
+      if (shrine.hasOwnProperty("gotomap")) {
+        DU.maps.addMap(shrine.gotomap);
+        let destmap = DU.maps.getMap(shrine.gotomap);
+        if (!free) {
+          free = 0;
+          let mana = this.getManaCost(infused);
+          CastSpellMana(caster,mana);
+          DebugWrite("magic", "Spent " + mana + " mana.<br />");
+        }    
+        PlayCastSound(caster,"sfx_teleport");
+        TravelByMoongate(caster,"blue", destmap, shrine.gotox, shrine.gotoy);
+      } else {
+        maintext.addText("The gateway seems incomplete. The spell will not work until there is another gate linked to this one.");
+        resp["fin"] = 1;
+      }
+    } else if (shrine.getName() === "BrokenShrine") {
+      if (infused) {
+        DU.maps.addMap(shrine.gotomap);
+        let destmap = DU.maps.getMap(shrine.gotomap);
+        PlayCastSound(caster,"sfx_teleport");
+        TravelByMoongate(caster,"blue", destmap, shrine.gotox, shrine.gotoy);
+        if (!free) {
+          free = 0;
+          let mana = this.getManaCost(infused);
+          CastSpellMana(caster,mana);
+          DebugWrite("magic", "Spent " + mana + " mana.<br />");
+        }      
+      } else {
+        maintext.addText("The spell sputters and the broken node remains closed.");
+        resp["fin"] = 1;
+        if (!free) {
+          free = 0;
+          let mana = this.getManaCost(infused);
+          CastSpellMana(caster,mana);
+          DebugWrite("magic", "Spent " + mana + " mana.<br />");
+        }      
+        PlayCastSound(caster);
+      }
+    }
+  } else {
+    maintext.addText("The spell sputters, finding no gate node to open."); 
+    resp["fin"] = 1;
   }
   
-  CreateTargetCursor({sticky: 1, command:'c',spellName:'Iceball',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});      
-  resp["txt"] = "";
-  resp["input"] = "&gt; Choose target- ";
-  resp["fin"] = 4;
-  gamestate.setMode("target");
+  DrawCharFrame();
   return resp;
 }
 
-function PerformIceball(caster, infused, free, tgt) {
-  gamestate.setMode("null");
-  let resp = {fin:1};
-  let desc = tgt.getDesc();
-
-  if (caster.getHomeMap().getLOS(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), 1) >= LOS_THRESHOLD) { 
-    resp["fin"] = 2;
-    resp["txt"] = "Your spell cannot reach that target!";
-    return resp;
+//Return
+magic[SPELL_RETURN_LEVEL][SPELL_RETURN_ID].getLongDesc = function() {
+  if (PC.getHomeMap().getReturnInfused()) {
+    return "No effect from this location.";
+  } else {
+    let dest = PC.getHomeMap().getReturnMap();
+    let destx = PC.getHomeMap().getReturnx();
+    let desty = PC.getHomeMap().getReturny();
+    if ((dest === "darkunknown") && (destx === 69) && (desty === 74)) {
+      return "Transports you to Castle dea Olympus.";
+    } else if (PC.getHomeMap().underground) {
+      return "Brings you to the surface.";
+    } else {
+      return "Brings you to the entrance to this map.";
+    }
   }
-  
+}
+magic[SPELL_RETURN_LEVEL][SPELL_RETURN_ID].getInfusedDesc = function() {
+  if (PC.getHomeMap().getReturnInfused()) {
+    return "Transports you to Castle dea Olympus.";
+  } else {
+    return "No additional effect from this location.";
+  }
+}
+
+magic[SPELL_RETURN_LEVEL][SPELL_RETURN_ID].executeSpell = function(caster, infused, free) {
+  DebugWrite("magic", "Casting Return.<br />");
+  let resp = {fin:1};
   if (!free) {
-    let mana = magic[SPELL_ICEBALL_LEVEL][SPELL_ICEBALL_ID].getManaCost(infused);
+    free = 0;
+    let mana = this.getManaCost(infused);
     CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
-  let newtgt = CheckMirrorWard(tgt, caster);
-  while (newtgt !== tgt) {
-    tgt = newtgt;
-    newtgt = CheckMirrorWard(tgt, caster);
-  }
-    
-  tgt = newtgt;
-  tgt.setHitBySpell(caster,SPELL_ICEBALL_LEVEL);
-  if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
-    TurnMapHostile(caster.getHomeMap());
-  }
-
-  let dmg = RollDamage(DMG_MEDIUM);
-  if (infused) {
-    dmg = dmg * 1.5;
+  let returndest = {};
+  
+  let castermap = caster.getHomeMap();
+  if (castermap.getName().indexOf("combat") > -1) {
+    let fighton = castermap.getExitToMap();
+    if ((fighton === "darkunknown") || (infused)) {
+      returndest.map = "darkunknown";
+      returndest.x = 68;
+      returndest.y = 73;
+    }
+  } else {
+    if ((castermap.getReturnInfused() && infused) || !castermap.getReturnInfused()) {
+      returndest.map = castermap.getReturnMap();
+      returndest.x = castermap.getReturnx();
+      returndest.y = castermap.getReturny();
+    }
   }
   
-  if (CheckResist(caster,tgt,infused,0)) {
-    dmg = Math.floor(dmg/2)+1;
+  if (returndest.map) {
+    let destmap = DU.maps.getMap(returndest.map);
+    PlayCastSound(caster,"sfx_teleport");  
+    TravelByMoongate(caster,"blue", destmap, returndest.x, returndest.y);
+    resp["fin"] = 3;
+  } else {
+    maintext.addText("The spell sputters as the distances are too great.");
+    resp["fin"] = 1;
+    PlayCastSound(caster);
   }
-  DebugWrite("magic", "Dealing " + dmg + " damage.<br />");
-  desc = desc.charAt(0).toUpperCase() + desc.slice(1);
   
-  let frozen = localFactory.createTile("Slow");
-  let dur = caster.getIntForPower()/3;
-  if (free) { dur = Dice.roll("1d2+3"); }
-  let endtime = dur*SCALE_TIME + DU.DUTime.getGameClock();
-  frozen.setExpiresTime(endtime);
-  tgt.addSpellEffect(frozen);
-  
-  let boltgraphic = {};
-  boltgraphic.graphic = "fireicelightning.gif";
-  boltgraphic.yoffset = -32;
-  boltgraphic.xoffset = 0;
-  boltgraphic.directionalammo = 1;
-  boltgraphic = GetEffectGraphic(caster,tgt,boltgraphic);
-  let descval = {txt: desc};
-
-  let sounds = {};
-  let fromcoords = getCoords(caster.getHomeMap(),caster.getx(), caster.gety());
-  let tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
-  let duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
-  let destgraphic = {graphic:"master_spritesheet.png", xoffset:-96, yoffset:-1856, overlay:"spacer.gif"};
-  PlayCastSound(caster,"sfx_iceball");
-  let weapon = localFactory.createTile("SpellWeapon");
-  weapon.dmgtype = "ice";
-  AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"ice"});
-  
-  resp["fin"] = -1;
   return resp;
 }
 
@@ -1735,38 +1793,6 @@ function PerformTelekinesisMove(caster, infused, free, tgt) {  // NOTE- tgt need
   retval["txt"] = "Telekinesis on " + usedname + ": " + retval["txt"];
 
   return retval;
-}
-
-// Telepathy
-magic[SPELL_TELEPATHY_LEVEL][SPELL_TELEPATHY_ID].getLongDesc = function() {
-  return "Allows you to see the location of all nearby creatures with a mind, even if they are behind walls or invisible.";
-}
-magic[SPELL_TELEPATHY_LEVEL][SPELL_TELEPATHY_ID].getInfusedDesc = function() {
-  return "Doubles the duration of the spell.";
-}
-
-magic[SPELL_TELEPATHY_LEVEL][SPELL_TELEPATHY_ID].executeSpell = function(caster, infused, free) {
-  DebugWrite("magic", "Casting Telepathy.<br />");
-  let resp = {fin:1};
-  if (!free) {
-    free = 0;
-    let mana = this.getManaCost(infused);
-    CastSpellMana(caster,mana);
-    DebugWrite("magic", "Spent " + mana + " mana.<br />");
-  }
-  let prot = localFactory.createTile("Telepathy");
-  let duration = caster.getIntForPower() * 2 * SCALE_TIME;
-  if (free) { duration = Dice.roll("1d6 + 12") * 2 * SCALE_TIME; }
-  if (infused) { 
-    duration = duration * 2; 
-  }
-  let endtime = duration + DUTime.getGameClock();
-  DebugWrite("magic", "End time is " + endtime + ".<br />");
-  prot.setExpiresTime(endtime);
-  caster.addSpellEffect(prot, Math.max(0, free-1) );
-  PlayCastSound(caster,"sfx_buff");
-
-  return resp;
 }
 
 // Wall of Flame
@@ -2097,7 +2123,7 @@ magic[SPELL_BLINK_LEVEL][SPELL_BLINK_ID].executeSpell = function(caster, infused
   if (!success) { 
     maintext.addText("The spell fizzles.");
   }
-  PlayCastSound(caster);
+  PlayCastSound(caster, "sfx_teleport");
   // be sure to test this in a location with no valid destinations
   return resp;  
 }
@@ -2128,48 +2154,16 @@ function PerformBlink(caster,destx, desty) {
   }
 }
 
-// Ethereal Vision
-magic[SPELL_ETHEREAL_VISION_LEVEL][SPELL_ETHEREAL_VISION_ID].getLongDesc = function() {
-  return "You can briefly see through solid objects.";
-}
-magic[SPELL_ETHEREAL_VISION_LEVEL][SPELL_ETHEREAL_VISION_ID].getInfusedDesc = function() {
-  return "The duration is doubled.";
-}
-
-magic[SPELL_ETHEREAL_VISION_LEVEL][SPELL_ETHEREAL_VISION_ID].executeSpell = function(caster, infused, free) {
-  DebugWrite("magic", "Casting Ethereal Vision.<br />");
-  let resp = {fin:1};
-  if (!free) {
-    free = 0;
-    let mana = this.getManaCost(infused);
-    CastSpellMana(caster,mana);
-    DebugWrite("magic", "Spent " + mana + " mana.<br />");
-  }
-
-  let levobj = localFactory.createTile("EtherealVision");
-  
-  let dur = 3 * SCALE_TIME;
-  if (infused) { dur = dur * 2; }
-
-  let endtime = dur + DU.DUTime.getGameClock();
-  DebugWrite("magic", "Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />");
-  levobj.setExpiresTime(endtime);
-  
-  caster.addSpellEffect(levobj, Math.max(0,free-1) );
-
-  ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
-    
-  PlayCastSound(caster,"sfx_buff");
-  DrawCharFrame();
-  return resp;  
-}
-
 // Heal
 magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].getLongDesc = function() {
-  return "Heals you for " + Dice.rollmin(PC.getLevel() + "d8" + (PC.getLevel()*2)) + "-" + Dice.rollmax(PC.getLevel() + "d8" + (PC.getLevel()*2)) + ".";
+  return "Heals you for " + Dice.rollmin(PC.getLevel() + "d8+" + (PC.getLevel()*2)) + "-" + Dice.rollmax(PC.getLevel() + "d8+" + (PC.getLevel()*2)) + ".";
 }
 magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].getInfusedDesc = function() {
-  return "Heal is increased by 1.5x.";
+  let minheal = Dice.rollmin(PC.getLevel() + "d8+" + (PC.getLevel()*2));
+  minheal = Math.floor(1.5 * minheal);
+  let maxheal = Dice.rollmax(PC.getLevel() + "d8+" + (PC.getLevel()*2));
+  maxheal = Math.floor(1.5 * maxheal);
+  return "Heals " + minheal + "-" + maxheal + "HP instead.";
 }
 
 magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].executeSpell = function(caster, infused, free, tgt) {
@@ -2200,12 +2194,125 @@ magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].executeSpell = function(caster, infused, 
   return resp;
 }
 
+// Iceball
+magic[SPELL_ICEBALL_LEVEL][SPELL_ICEBALL_ID].getLongDesc = function() {
+  return "Deals " + Dice.rollmin(DMG_MEDIUM) + "-" + Dice.rollmax(DMG_MEDIUM) + " ice damage to a single target, half if resisted. The target is slowed.";
+}
+magic[SPELL_ICEBALL_LEVEL][SPELL_ICEBALL_ID].getInfusedDesc = function() {
+  let mindmg = Dice.rollmin(DMG_MEDIUM);
+  mindmg = Math.floor(1.5 * mindmg);
+  let maxdmg = Dice.rollmax(DMG_MEDIUM);
+  maxdmg = Math.floor(1.5 * maxdmg);
+  return "Deals " + mindmg + "-" + maxdmg + " ice damage instead.";
+}
+
+magic[SPELL_ICEBALL_LEVEL][SPELL_ICEBALL_ID].executeSpell = function(caster, infused, free, tgt) {
+  DebugWrite("magic", "Casting Iceball.<br />");
+  if (caster !== PC) {
+    let resp = PerformIceball(caster, infused, free, tgt);
+    return resp;
+  }
+
+  let resp = {};
+  
+  if (!caster.getHomeMap().getScale()) {
+    resp["fin"] = 2;
+    resp["txt"] = "There is no benefit to casting that spell here.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
+  
+  CreateTargetCursor({sticky: 1, command:'c',spellName:'Iceball',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});      
+  resp["txt"] = "";
+  resp["input"] = "&gt; Choose target- ";
+  resp["fin"] = 4;
+  gamestate.setMode("target");
+  return resp;
+}
+
+function PerformIceball(caster, infused, free, tgt) {
+  gamestate.setMode("null");
+  let resp = {fin:1};
+  let desc = tgt.getDesc();
+
+  if (caster.getHomeMap().getLOS(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), 1) >= LOS_THRESHOLD) { 
+    resp["fin"] = 2;
+    resp["txt"] = "Your spell cannot reach that target!";
+    return resp;
+  }
+  
+  if (!free) {
+    let mana = magic[SPELL_ICEBALL_LEVEL][SPELL_ICEBALL_ID].getManaCost(infused);
+    CastSpellMana(caster,mana);
+    DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+  
+  let newtgt = CheckMirrorWard(tgt, caster);
+  while (newtgt !== tgt) {
+    tgt = newtgt;
+    newtgt = CheckMirrorWard(tgt, caster);
+  }
+    
+  tgt = newtgt;
+  tgt.setHitBySpell(caster,SPELL_ICEBALL_LEVEL);
+  if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
+    TurnMapHostile(caster.getHomeMap());
+  }
+
+  let dmg = RollDamage(DMG_MEDIUM);
+  if (infused) {
+    dmg = dmg * 1.5;
+  }
+  
+  if (CheckResist(caster,tgt,infused,0)) {
+    dmg = Math.floor(dmg/2)+1;
+  }
+  DebugWrite("magic", "Dealing " + dmg + " damage.<br />");
+  desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+  
+  let frozen = localFactory.createTile("Slow");
+  let dur = caster.getIntForPower()/3;
+  if (free) { dur = Dice.roll("1d2+3"); }
+  let endtime = dur*SCALE_TIME + DU.DUTime.getGameClock();
+  frozen.setExpiresTime(endtime);
+  tgt.addSpellEffect(frozen);
+  
+  let boltgraphic = {};
+  boltgraphic.graphic = "fireicelightning.gif";
+  boltgraphic.yoffset = -32;
+  boltgraphic.xoffset = 0;
+  boltgraphic.directionalammo = 1;
+  boltgraphic = GetEffectGraphic(caster,tgt,boltgraphic);
+  let descval = {txt: desc};
+
+  let sounds = {};
+  let fromcoords = getCoords(caster.getHomeMap(),caster.getx(), caster.gety());
+  let tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
+  let duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
+  let destgraphic = {graphic:"master_spritesheet.png", xoffset:-96, yoffset:-1856, overlay:"spacer.gif"};
+  PlayCastSound(caster,"sfx_iceball");
+  let weapon = localFactory.createTile("SpellWeapon");
+  weapon.dmgtype = "ice";
+  AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"ice"});
+  
+  resp["fin"] = -1;
+  return resp;
+}
+
 //Life Drain
 magic[SPELL_LIFE_DRAIN_LEVEL][SPELL_LIFE_DRAIN_ID].getLongDesc = function() {
   return "Deals a single target " + Dice.rollmin(DMG_MEDIUM) + "-" + Dice.rollmax(DMG_MEDIUM) + " and heals you for " + Dice.rollmin("2d8+10") + "-" + Dice.rollmax("2d8+10") + ".";
 }
 magic[SPELL_LIFE_DRAIN_LEVEL][SPELL_LIFE_DRAIN_ID].getInfusedDesc = function() {
-  return "Damage and healing increased by 1.5x."
+  let mindmg = Dice.rollmin(DMG_MEDIUM);
+  mindmg = Math.floor(1.5 * mindmg);
+  let maxdmg = Dice.rollmax(DMG_MEDIUM);
+  maxdmg = Math.floor(1.5 * maxdmg);
+  let minheal = Dice.rollmin("2d8+10");
+  minheal = Math.floor(1.5 * minheal);
+  let maxheal = Dice.rollmax("2d8+10");
+  maxheal = Math.floor(1.5 * maxheal);
+  return "Deals " + mindmg + "-" + maxdmg + " damage and heals for " + minheal + "-" + maxheal + "HP instead.";
 }
 
 magic[SPELL_LIFE_DRAIN_LEVEL][SPELL_LIFE_DRAIN_ID].executeSpell = function(caster, infused, free, tgt) {
@@ -2300,7 +2407,11 @@ magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID].getLongDesc = function() {
   return "Deals " + Dice.rollmin(DMG_MEDIUM) + "-" + Dice.rollmax(DMG_MEDIUM) + " magic damage to three random nearby enemies.";
 }
 magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID].getInfusedDesc = function() {
-  return "Damage is increased by 1.5x."
+  let mindmg = Dice.rollmin(DMG_MEDIUM);
+  mindmg = Math.floor(1.5*mindmg);
+  let maxdmg = Dice.rollmax(DMG_MEDIUM);
+  maxdmg = Math.floor(1.5*maxdmg);
+  return "Deals " + mindmg + "-" + maxdmg + " damage instead.";
 }
 
 magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID].executeSpell = function(caster, infused, free) {
@@ -2321,7 +2432,7 @@ magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID].executeSpell = function(caster, infused
  
   let radius = 3;
   if (infused) { radius = 4; }
-  let foes = GetAllWithin("npcs",radius,caster.getHomeMap(),{x: caster.getx(), y: caster.gety()});
+  let foes = GetAllWithin("npcs",radius,caster.getHomeMap(),{x: caster.getx(), y: caster.gety()},"loe");
   foes = ShuffleArray(foes);
   
   if (!foes[0]) {
@@ -2348,68 +2459,35 @@ magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID].executeSpell = function(caster, infused
   return resp;  
 }
 
-//Open Gate
-magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID].getLongDesc = function()  {
-  return "When cast at a circle of stones Gate, opens a portal to the destination circle.";
+// Telepathy
+magic[SPELL_TELEPATHY_LEVEL][SPELL_TELEPATHY_ID].getLongDesc = function() {
+  return "Allows you to see the location of all nearby creatures with a mind, even if they are behind walls or invisible.";
 }
-magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID].getInfusedDesc = function() {
-  return "Opens the portal even if the gate has been damaged.";
+magic[SPELL_TELEPATHY_LEVEL][SPELL_TELEPATHY_ID].getInfusedDesc = function() {
+  return "Doubles the duration of the spell.";
 }
 
-magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID].executeSpell = function(caster, infused, free) {
-  DebugWrite("magic", "Casting Open Gate.<br />");
-  let resp = {};
-  resp["fin"] = 3;  // end of turn waits on end of animation
-
-  let loc = caster.getHomeMap().getTile(caster.getx(), caster.gety());
-  let shrine = loc.getTopFeature();
-  if ((shrine) && (shrine.gotomap)) {
-    if (shrine.getName() === "Shrine") {
-      if (shrine.hasOwnProperty("gotomap")) {
-        DU.maps.addMap(shrine.gotomap);
-        let destmap = DU.maps.getMap(shrine.gotomap);
-        if (!free) {
-          free = 0;
-          let mana = this.getManaCost(infused);
-          CastSpellMana(caster,mana);
-          DebugWrite("magic", "Spent " + mana + " mana.<br />");
-        }    
-        PlayCastSound(caster,"sfx_teleport");
-        TravelByMoongate(caster,"blue", destmap, shrine.gotox, shrine.gotoy);
-      } else {
-        maintext.addText("The gateway seems incomplete. The spell will not work until there is another gate linked to this one.");
-        resp["fin"] = 1;
-      }
-    } else if (shrine.getName() === "BrokenShrine") {
-      if (infused) {
-        DU.maps.addMap(shrine.gotomap);
-        let destmap = DU.maps.getMap(shrine.gotomap);
-        PlayCastSound(caster,"sfx_teleport");
-        TravelByMoongate(caster,"blue", destmap, shrine.gotox, shrine.gotoy);
-        if (!free) {
-          free = 0;
-          let mana = this.getManaCost(infused);
-          CastSpellMana(caster,mana);
-          DebugWrite("magic", "Spent " + mana + " mana.<br />");
-        }      
-      } else {
-        maintext.addText("The spell sputters and the broken node remains closed.");
-        resp["fin"] = 1;
-        if (!free) {
-          free = 0;
-          let mana = this.getManaCost(infused);
-          CastSpellMana(caster,mana);
-          DebugWrite("magic", "Spent " + mana + " mana.<br />");
-        }      
-        PlayCastSound(caster);
-      }
-    }
-  } else {
-    maintext.addText("The spell sputters, finding no gate node to open."); 
-    resp["fin"] = 1;
+magic[SPELL_TELEPATHY_LEVEL][SPELL_TELEPATHY_ID].executeSpell = function(caster, infused, free) {
+  DebugWrite("magic", "Casting Telepathy.<br />");
+  let resp = {fin:1};
+  if (!free) {
+    free = 0;
+    let mana = this.getManaCost(infused);
+    CastSpellMana(caster,mana);
+    DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
-  
-  DrawCharFrame();
+  let prot = localFactory.createTile("Telepathy");
+  let duration = caster.getIntForPower() * 2 * SCALE_TIME;
+  if (free) { duration = Dice.roll("1d6 + 12") * 2 * SCALE_TIME; }
+  if (infused) { 
+    duration = duration * 2; 
+  }
+  let endtime = duration + DUTime.getGameClock();
+  DebugWrite("magic", "End time is " + endtime + ".<br />");
+  prot.setExpiresTime(endtime);
+  caster.addSpellEffect(prot, Math.max(0, free-1) );
+  PlayCastSound(caster,"sfx_buff");
+
   return resp;
 }
 
@@ -2482,6 +2560,42 @@ magic[SPELL_CRYSTAL_TRAP_LEVEL][SPELL_CRYSTAL_TRAP_ID].executeSpell = function(c
 
   return resp;
 
+}
+
+// Ethereal Vision
+magic[SPELL_ETHEREAL_VISION_LEVEL][SPELL_ETHEREAL_VISION_ID].getLongDesc = function() {
+  return "You can briefly see through solid objects.";
+}
+magic[SPELL_ETHEREAL_VISION_LEVEL][SPELL_ETHEREAL_VISION_ID].getInfusedDesc = function() {
+  return "The duration is doubled.";
+}
+
+magic[SPELL_ETHEREAL_VISION_LEVEL][SPELL_ETHEREAL_VISION_ID].executeSpell = function(caster, infused, free) {
+  DebugWrite("magic", "Casting Ethereal Vision.<br />");
+  let resp = {fin:1};
+  if (!free) {
+    free = 0;
+    let mana = this.getManaCost(infused);
+    CastSpellMana(caster,mana);
+    DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+
+  let levobj = localFactory.createTile("EtherealVision");
+  
+  let dur = 3 * SCALE_TIME;
+  if (infused) { dur = dur * 2; }
+
+  let endtime = dur + DU.DUTime.getGameClock();
+  DebugWrite("magic", "Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />");
+  levobj.setExpiresTime(endtime);
+  
+  caster.addSpellEffect(levobj, Math.max(0,free-1) );
+
+  ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+    
+  PlayCastSound(caster,"sfx_buff");
+  DrawCharFrame();
+  return resp;  
 }
 
 //Mirror Ward
@@ -2694,79 +2808,16 @@ magic[SPELL_PEER_LEVEL][SPELL_PEER_ID].executeSpell = function(caster, infused, 
   return resp;
 }
 
-//Return
-magic[SPELL_RETURN_LEVEL][SPELL_RETURN_ID].getLongDesc = function() {
-  if (PC.getHomeMap().getReturnInfused()) {
-    return "No effect from this location.";
-  } else {
-    let dest = PC.getHomeMap().getReturnMap();
-    let destx = PC.getHomeMap().getReturnx();
-    let desty = PC.getHomeMap().getReturny();
-    if ((dest === "darkunknown") && (destx === 69) && (desty === 74)) {
-      return "Transports you to Castle dea Olympus.";
-    } else if (PC.getHomeMap().underground) {
-      return "Brings you to the surface.";
-    } else {
-      return "Brings you to the entrance to this map.";
-    }
-  }
-}
-magic[SPELL_RETURN_LEVEL][SPELL_RETURN_ID].getInfusedDesc = function() {
-  if (PC.getHomeMap().getReturnInfused()) {
-    return "Transports you to Castle dea Olympus.";
-  } else {
-    return "No additional effect from this location.";
-  }
-}
-
-magic[SPELL_RETURN_LEVEL][SPELL_RETURN_ID].executeSpell = function(caster, infused, free) {
-  DebugWrite("magic", "Casting Return.<br />");
-  let resp = {fin:1};
-  if (!free) {
-    free = 0;
-    let mana = this.getManaCost(infused);
-    CastSpellMana(caster,mana);
-    DebugWrite("magic", "Spent " + mana + " mana.<br />");
-  }
-  
-  let returndest = {};
-  
-  let castermap = caster.getHomeMap();
-  if (castermap.getName().indexOf("combat") > -1) {
-    let fighton = castermap.getExitToMap();
-    if ((fighton === "darkunknown") || (infused)) {
-      returndest.map = "darkunknown";
-      returndest.x = 68;
-      returndest.y = 73;
-    }
-  } else {
-    if ((castermap.getReturnInfused() && infused) || !castermap.getReturnInfused()) {
-      returndest.map = castermap.getReturnMap();
-      returndest.x = castermap.getReturnx();
-      returndest.y = castermap.getReturny();
-    }
-  }
-  
-  if (returndest.map) {
-    let destmap = DU.maps.getMap(returndest.map);
-    PlayCastSound(caster,"sfx_teleport");  
-    TravelByMoongate(caster,"blue", destmap, returndest.x, returndest.y);
-    resp["fin"] = 3;
-  } else {
-    maintext.addText("The spell sputters as the distances are too great.");
-    resp["fin"] = 1;
-    PlayCastSound(caster);
-  }
-  
-  return resp;
-}
-
 // Shockwave
 magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].getLongDesc = function() {
   return "Deals " + Dice.rollmin(DMG_MEDIUM) + "-" + Dice.rollmax(DMG_MEDIUM) + " to all adjacent enemies and pushes them. Half damage and unmoved if resisted.";
 }
 magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].getInfusedDesc = function() {
-  return "More difficult to resist, and damage increased by 1.5x.";
+  let mindmg = Dice.rollmin(DMG_MEDIUM);
+  mindmg = Math.floor(1.5 * mindmg);
+  let maxdmg = Dice.rollmin(DMG_MEDIUM);
+  maxdmg = Math.floor(1.5 * maxdmg);
+  return "Deals " + mindmg + "-" + maxdmg + " damage instead, and the damage is more difficult to resist.";
 }
 
 magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].executeSpell = function(caster, infused, free) {
@@ -2917,7 +2968,9 @@ magic[SPELL_SWORDSTRIKE_LEVEL][SPELL_SWORDSTRIKE_ID].getLongDesc = function() {
   return "Deals " + Dice.rollmin(DMG_HEAVY) + "-" + Dice.rollmax(DMG_HEAVY) + " physical damage to a single target, and " + Dice.rollmin(DMG_LIGHT) + "-" + Dice.rollmax(DMG_LIGHT) + " damage to each neighboring enemy. Half damage if resisted.";
 }
 magic[SPELL_SWORDSTRIKE_LEVEL][SPELL_SWORDSTRIKE_ID].getInfusedDesc = function() {
-  return "Increases the damage by 1.5x.";
+  let mindmg = Math.floor(1.5 * Dice.rollmin(DMG_HEAVY));
+  let maxdmg = Math.floor(1.5 * Dice.rollmax(DMG_HEAVY));
+  return "Deals " + mindmg + "-" + maxdmg + " damage instead.";
 }
 
 magic[SPELL_SWORDSTRIKE_LEVEL][SPELL_SWORDSTRIKE_ID].executeSpell = function(caster, infused, free, tgt) {
@@ -3749,8 +3802,73 @@ magic[SPELL_STORM_LEVEL][SPELL_STORM_ID].executeSpell = function(caster, infused
 }
 
 // Tremor
+magic[SPELL_TREMOR_LEVEL][SPELL_TREMOR_ID].getLongDesc = function() {
+  return "Deals " + Dice.rollmin(DMG_MEDIUM) + "-" + Dice.rollmax(DMG_MEDIUM) + " damage to all nearby enemies. Flying enemies take reduced damage.";
+}
+
+magic[SPELL_TREMOR_LEVEL][SPELL_TREMOR_ID].executeSpell = function(caster, infused, free) {
+  DebugWrite("magic", "Casting Tremor.<br />");
+  let resp = {fin:1};
+  if (!free) {
+    let mana = this.getManaCost(infused);
+    CastSpellMana(caster,mana);
+    DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+
+  if (!caster.getHomeMap().getScale()) {
+    resp["fin"] = 2;
+    resp["txt"] = "There is no benefit to casting that spell here.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
+ 
+  let radius = 5;
+  let foes = GetAllWithin("npcs",radius,caster.getHomeMap(),{x: caster.getx(), y: caster.gety()},"loe");
+  foes = ShuffleArray(foes);
+  
+  if (!foes[0]) {
+    resp["txt"] = "No enemies nearby.";
+    PlayCastSound(caster);
+    return resp;
+  }
+  PlayCastSound(caster,"sfx_earthquake");
+  Earthquake();
+  PlayCastSound(caster,"sfx_default_hit");
+  for (let i=0; i<foes.length; i++) {
+    if (foes[i]) {
+      foes[i].setHitBySpell(caster,SPELL_TREMOR_LEVEL);
+      let dmg = RollDamage(DMG_MEDIUM);
+      if (foes[i].movetype & MOVE_FLY) {
+        dmg = Math.floor(dmg/2)+1;
+      }
+      //foes[i].dealDamage(dmg,caster,"force");
+      DealandDisplayDamage(foes[i],caster,dmg,"force");
+      DebugWrite("magic", "Dealing " + dmg + " damage to target " + foes[i].getName() + " " + foes[i].getSerial() + ".<br />");
+      
+      setTimeout(function() { ShowEffect(foes[i], 700, "master_spritesheet.png", -128, -1856); }, 1000);
+    }
+  }
+  return resp;  
+}
 
 // Weather Control
+magic[SPELL_WEATHER_CONTROL_LEVEL][SPELL_WEATHER_CONTROL_ID].getLongDesc = function() {
+  return "Over the next hour, the weather will shift to the weather you desire. (This has no game effect.)";
+}
+
+magic[SPELL_WEATHER_CONTROL_LEVEL][SPELL_WEATHER_CONTROL_ID].executeSpell = function(caster, infused, free, tgt) {
+  DebugWrite("magic", "Casting Weather Control.<br />");
+  let resp = {fin:1};
+  if (!free) {
+    let mana = this.getManaCost(infused);
+    CastSpellMana(caster,mana);
+    DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+
+  resp["txt"] = "You cast the spell, and the weather begins to calm.";
+  PlayCastSound(caster);
+  return resp;
+}
 
 // Charm
 magic[SPELL_CHARM_LEVEL][SPELL_CHARM_ID].getLongDesc = function() {
@@ -3808,7 +3926,7 @@ function PerformCharm(caster, infused, free, tgt) {
   if (!CheckResist(caster,tgt,infused,0)) {
     let charmobj = localFactory.createTile("Charm");
   
-    let dur = caster.getIntForPower()/2;
+    let dur = caster.getIntForPower()/2 * SCALE_TIME;
     if (infused) { dur = dur * 1.5;}  // can't be infused, but just in case
     if (free) { dur = Dice.roll("1d4+5"); }
     ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
@@ -3999,7 +4117,7 @@ magic[SPELL_INVULNERABILITY_LEVEL][SPELL_INVULNERABILITY_ID].executeSpell = func
   }
 
   let prot = localFactory.createTile("Invulnerable");
-  duration = 3 * SCALE_TIME;
+  let duration = 3 * SCALE_TIME;
   let power = 1;
   if (infused) { 
     duration = duration +1; 
@@ -4351,7 +4469,7 @@ magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID].executeSpell = function(caster,
   
   let liobj = localFactory.createTile("Quickness");
   
-  let dur = caster.getIntForPower() * SCALE_TIME;
+  let dur = caster.getIntForPower()/2 * SCALE_TIME;
   if (free) { 
     dur = Dice.roll("1d10+5") * SCALE_TIME;
   }
