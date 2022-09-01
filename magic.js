@@ -4222,6 +4222,83 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(c
 }
 
 // Mind Blast
+magic[SPELL_MIND_BLAST_LEVEL][SPELL_MIND_BLAST_ID].getLongDesc = function() {
+  return "Deals enough damage to instantly slay most foes.";
+}
+
+magic[SPELL_MIND_BLAST_LEVEL][SPELL_MIND_BLAST_ID].executeSpell = function(caster, infused, free, tgt) {
+  DebugWrite("magic", "Casting Mind Blast.<br />");
+  if (caster !== PC) {
+    let resp = PerformMindBlast(caster, infused, free, tgt);
+    return resp;
+  }
+  let resp = {};
+
+  if (!caster.getHomeMap().getScale()) {
+    resp["fin"] = 2;
+    resp["txt"] = "There is no benefit to casting that spell here.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
+  
+  CreateTargetCursor({sticky: 1, command:'c',spellName:'Mind Blast',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});      
+  resp["txt"] = "";
+  resp["input"] = "&gt; Choose target- ";
+  resp["fin"] = 4;
+  gamestate.setMode("target");
+  return resp;
+}
+
+
+function PerformMindBlast(caster, infused, free, tgt) {
+  gamestate.setMode("null");
+  let resp = {fin:1};
+  let desc = tgt.getDesc();
+
+  if (caster.getHomeMap().getLOS(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), 1) >= LOS_THRESHOLD) { 
+    resp["fin"] = 2;
+    resp["txt"] = "Your spell cannot reach that target!";
+    return resp;
+  }
+  
+  if (!free) {
+    let mana = magic[SPELL_MIND_BLAST_LEVEL][SPELL_MIND_BLAST_ID].getManaCost(infused);
+    CastSpellMana(caster,mana);
+    DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+  
+  let newtgt = CheckMirrorWard(tgt, caster);
+  while (newtgt !== tgt) {
+    tgt = newtgt;
+    newtgt = CheckMirrorWard(tgt, caster);
+  }
+    
+  tgt = newtgt;
+  tgt.setHitBySpell(caster,SPELL_MIND_BLAST_LEVEL);
+  if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
+    TurnMapHostile(caster.getHomeMap());
+  }
+  let power = caster.getIntForPower();
+  if (free) { power = Dice.roll("1d5+12"); }
+  let dmg = RollDamage(DMG_TREMENDOUS) + power;
+  if (infused) {  // can't be infused, but check anyway
+    dmg = dmg * 1.5;
+  }
+  
+  if (CheckResist(caster,tgt,infused,-5)) {
+    dmg = Math.floor(dmg/2)+1;
+  }
+
+  DebugWrite("magic", "Dealing " + dmg + " damage.<br />");
+
+  DealandDisplayDamage(tgt, caster, dmg, "drain");
+  desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+    
+  ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
+  PlayCastSound(caster, "sfx_mind");
+
+  return resp;
+}
 
 // Permanance
 
@@ -4284,10 +4361,10 @@ function PerformArrowOfGlass(caster, infused, free, tgt) {
   if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
     TurnMapHostile(caster.getHomeMap());
   }
-//  var dmg = Dice.roll("2d6+" + Math.floor(caster.getInt()/5));
   let power = caster.getIntForPower();
   if (free) { power = Dice.roll("1d5+12"); }
-  let dmg = RollDamage(DMG_TREMENDOUS) + power;
+//  let dmg = RollDamage(DMG_TREMENDOUS) + power;
+  let dmg = parseInt(DMG_AUTOKILL);
   if (infused) {  // can't be infused, but check anyway
     dmg = dmg * 1.5;
   }
