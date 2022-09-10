@@ -7804,6 +7804,19 @@ function SecretDoorTile() {
 }
 SecretDoorTile.prototype = new FeatureObject();
 
+function ShiftingWallTile() {
+  this.name = "ShiftingWall";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "0";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "wall";
+  this.peerview = "white";
+}
+ShiftingWallTile.prototype = new FeatureObject();
+
 function DestructableStoneWallTile() {
   this.name = "DestructableStoneWall";
   this.graphic = "master_spritesheet.png";
@@ -7986,6 +7999,151 @@ WalkOnWingTile.prototype.walkon = function(walker) {
   }
   return {msg:""};
 }
+
+function WalkOnWE31Tile() {
+  this.name = "WalkOnWE31";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnWE31Tile.prototype = new FeatureObject();
+
+WalkOnWE31Tile.prototype.walkon = function(walker) {
+
+  return {msg:""};
+}
+
+function WalkOnWE32Tile() {
+  this.name = "WalkOnWE32";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnWE32Tile.prototype = new FeatureObject();
+
+WalkOnWE32Tile.prototype.walkon = function(walker) {
+
+  return {msg:""};
+}
+
+function WalkOnWE33Tile() {
+  this.name = "WalkOnWE33";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnWE33Tile.prototype = new FeatureObject();
+
+WalkOnWE33Tile.prototype.walkon = function(walker) {
+
+  return {msg:""};
+}
+
+function WalkOnWE34Tile() {
+  this.name = "WalkOnWE34";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnWE34Tile.prototype = new FeatureObject();
+
+WalkOnWE34Tile.prototype.walkon = function(walker) {
+
+  return {msg:""};
+}
+
+function WalkOnWE35Tile() {
+  this.name = "WalkOnWE35";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnWE35Tile.prototype = new FeatureObject();
+
+WalkOnWE35Tile.prototype.walkon = function(walker) {
+
+  return {msg:""};
+}
+
+function WalkOnWE36Tile() {
+  this.name = "WalkOnWE36";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnWE36Tile.prototype = new FeatureObject();
+
+WalkOnWE36Tile.prototype.walkon = function(walker) {
+
+  return {msg:""};
+}
+
+function WalkOnWE37Tile() {
+  this.name = "WalkOnWE37";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnWE37Tile.prototype = new FeatureObject();
+
+WalkOnWE37Tile.prototype.walkon = function(walker) {
+
+  return {msg:""};
+}
+
+function WalkOnWE38Tile() {
+  this.name = "WalkOnWE38";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnWE38Tile.prototype = new FeatureObject();
+
+WalkOnWE38Tile.prototype.walkon = function(walker) {
+
+  return {msg:""};
+}
+
 
 function WalkOnConsolationTile() {
 	this.name = "WalkOnConsolation";
@@ -11858,6 +12016,7 @@ KineticCrystalTile.prototype.use = function(who) {
       // MAKE SURE TO UPDATE THIS
       // FIXME IN NEW ART
       DU.gameflags.setFlag("worldsendingraft",1);
+      PC.removeFromInventory(this);
     }
   }
   return retval;
@@ -17246,6 +17405,12 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
   }
   this.modHP(dmg*-1);
   if (this.getHP() <= 0) { // killed!
+    let reincarnate = this.getSpellEffectsByName("Reincarnate");
+    if (reincarnate) {
+      reincarnate.endEffect();
+      this.setHP(this.getMaxHP()/2);
+      return 0;
+    }
     this.processDeath(1);
     if (src === PC) {
       let XP = this.getXPVal();
@@ -17903,14 +18068,21 @@ NPCObject.prototype.addSpellEffect = function(spellobj, silent) {
         if (otherEffects[i].getPower() > spellobj.getPower()) {  // keep old one, extend it
           let adddur = (1/(totin - 1))*(spellobj.getPower() / otherEffects[i].getPower()) * (spellobj.getExpiresTime() - DU.DUTime.getGameClock());
           DebugWrite("magic", "Old one is stronger, extending by " + adddur + ".<br />");
-          otherEffects[i].setExpiresTime(otherEffects[i].getExpiresTime() + adddur);
+          if (otherEffects[i].getExpiresTime() > -1) {  // don't change expire time if it's permanent
+            otherEffects[i].setExpiresTime(otherEffects[i].getExpiresTime() + adddur);
+          }
           otherEffects[i].setInstances(otherEffects[i].getInstances() + spellobj.getInstances());
           otherEffects[i].mergeSpells("old");
           addme = 0; 
           return 0;
         } else {
-          let adddur = (1/(totin - 1))*(otherEffects[i].getPower() / spellobj.getPower()) * (otherEffects[i].getExpiresTime() - DU.DUTime.getGameClock());
-          spellobj.setExpiresTime(spellobj.getExpiresTime() + adddur);
+          if (otherEffects[i].getExpiresTime() > -1) {
+            let adddur = (1/(totin - 1))*(otherEffects[i].getPower() / spellobj.getPower()) * (otherEffects[i].getExpiresTime() - DU.DUTime.getGameClock());
+            spellobj.setExpiresTime(spellobj.getExpiresTime() + adddur);
+          } else {
+            // you can still strengthen permanent spells
+            spellobj.setExpiresTime(-1);
+          }
           DebugWrite("magic", "New one is stronger. Replacing old and extending new by " + adddur + ".<br />");
           otherEffects[i].endEffect(1);
           spellobj.setInstances(otherEffects[i].getInstances() + spellobj.getInstances());
