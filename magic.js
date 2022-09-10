@@ -1,5 +1,11 @@
 "use strict";
 
+// fin lists:
+// 1: spell is complete, turn ends
+// 2: cancel spellcast, return control to player
+// 3: wait for animation, which will end the turn
+// 4: spell has set a mode
+
 let magic = {};
 let bookmark = {};
 
@@ -3073,7 +3079,7 @@ function PerformSwordstrike(caster, infused, free, tgt) {
 
 // Empower
 magic[SPELL_EMPOWER_LEVEL][SPELL_EMPOWER_ID].getLongDesc = function() {
-  return "Create a magic item.";
+  return "Create a magic item. Requires the appropriate reagents, and must be cast on a pentagram.";
 }
 
 magic[SPELL_EMPOWER_LEVEL][SPELL_EMPOWER_ID].executeSpell = function(caster, infused, free, tgt) {
@@ -3086,8 +3092,16 @@ magic[SPELL_EMPOWER_LEVEL][SPELL_EMPOWER_ID].executeSpell = function(caster, inf
     return resp;
   }
 
+  if (!IsOnPentagram(caster)) {
+    resp.txt = "This spell must be cast while standing in a circle of power.";
+    resp.input = "&gt;";
+    resp.fin = 2;
+    return retval;
+  }
+
   if (!PC.checkInventory("Mortar") && !PC.checkInventory("CrystalMortar")) { 
     resp["fin"] = 2;
+    resp["txt"] = "You have no mortar to grind the reagents in.";
     return resp;
   }
 
@@ -3127,11 +3141,6 @@ function PerformEmpower(caster, infused, free, tgt) {
   let mademenu = MakeInventoryList("reagent");
   if (!mademenu.length) { 
     retval.txt = "You have no reagents to mix for this spell.";
-    retval.input = "&gt;";
-    return retval;
-  }
-  if (!IsOnPentagram(caster)) {
-    retval.txt = "This spell must be cast while standing in a circle of power.";
     retval.input = "&gt;";
     return retval;
   }
@@ -4300,9 +4309,164 @@ function PerformMindBlast(caster, infused, free, tgt) {
   return resp;
 }
 
-// Permanance
+// Permanence
+magic[SPELL_PERMANENCE_LEVEL][SPELL_PERMANENCE_ID].getLongDesc = function() {
+  return "Make permanent a spell. Can be applied to the following spells: Flame Blade, Light, Protection, Fire Armor, Blessing, Water Walking, and Telepathy. Must be cast in a pentagram, and consumes one mandrake root with each casting.";
+}
+
+magic[SPELL_PERMANENCE_LEVEL][SPELL_PERMANENCE_ID].executeSpell = function(caster, infused, free, tgt) {
+  DebugWrite("magic", "Casting Permanence.<br />");
+
+  let resp = {fin:1};
+
+  if (caster !== PC) {
+    resp = PerformPermanence(caster, infused, free, tgt);   // not that AIs will ever cast Permanence, either
+    return resp;
+  }
+
+  if (!IsOnPentagram(caster)) {
+    resp["fin"] = 2;
+    resp["txt"] = "This spell must be cast while standing in a circle of power.";
+    return resp;
+  }
+
+  if (!PC.checkInventory("Mortar") && !PC.checkInventory("CrystalMortar")) { 
+    resp["fin"] = 2;
+    resp["txt"] = "You have no mortar to grind the reagents in.";
+    return resp;
+  }
+
+  if (!PC.checkInventory("MandrakeRoot")) {
+    resp["fin"] = 2;
+    resp["txt"] = "You need to provide a mandrake root to empower this spell.";
+    return resp;
+  }
+
+  if (!PC.getSpellEffectsByName("FlameBlade") && !PC.getSpellEffectsByName("Light") && !PC.getSpellEffectsByName("Protection") && !PC.getSpellEffectsByName("FireArmor") && !PC.getSpellEffectsByName("Blessing") && !PC.getSpellEffectsByName("Levitate") && !PC.getSpellEffectsByName("Telepathy")) {
+    resp["fin"] = 2;
+    resp["txt"] = "You have no spells on you that can be made permanent.";
+    return resp;
+  }
+
+  targetCursor.manacost = this.getManaCost();
+  resp["txt"] = "";
+  resp["input"] = "&gt; Choose a spell to make permanent- ";
+  let idx = 1;
+  if (PC.getSpellEffectsByName("FlameBlade")) {
+    resp["txt"] += `<br /> ${idx}- Flame Blade`;
+    idx++;
+  } 
+  if (PC.getSpellEffectsByName("Light")) {
+    resp["txt"] += `<br /> ${idx}- Light`;
+    idx++;
+  } 
+  if (PC.getSpellEffectsByName("Protection")) {
+    resp["txt"] += `<br /> ${idx}- Protection`;
+    idx++;
+  }
+  if (PC.getSpellEffectsByName("FireArmor")) {
+    resp["txt"] += `<br /> ${idx}- Fire Armor`;
+    idx++;
+  }
+  if (PC.getSpellEffectsByName("Blessing")) {
+    resp["txt"] += `<br /> ${idx}- Blessing`;
+    idx++;
+  }
+  if (PC.getSpellEffectsByName("Levitate")) {
+    resp["txt"] += `<br /> ${idx}- Water Walk`;
+    idx++;
+  }
+  if (PC.getSpellEffectsByName("Telepathy")) {
+    resp["txt"] += `<br /> ${idx}- Telepathy`;
+    idx++;
+  }
+
+  resp["fin"] = 4;  // was 0
+
+  gamestate.setMode("singlenumber");
+  targetCursor.spellName = "Permanence";
+  targetCursor.command = 'c';
+
+  return resp;
+
+}
+
+function PerformPermanence(caster, infused, free, tgt) {
+  console.log(tgt);
+  let optionarr = [];
+  let retval = { fin: 1 }
+  if (PC.getSpellEffectsByName("FlameBlade")) {
+    optionarr.push("FlameBlade");
+  } 
+  if (PC.getSpellEffectsByName("Light")) {
+    optionarr.push("Light");
+  } 
+  if (PC.getSpellEffectsByName("Protection")) {
+    optionarr.push("Protection");  }
+  if (PC.getSpellEffectsByName("FireArmor")) {
+    optionarr.push("FireArmor");  }
+  if (PC.getSpellEffectsByName("Blessing")) {
+    optionarr.push("Blessing");  }
+  if (PC.getSpellEffectsByName("Levitate")) {
+    optionarr.push("Levitate");  }
+  if (PC.getSpellEffectsByName("Telepathy")) {
+    optionarr.push("Telepathy");  }
+
+  let idx = tgt - 49;
+  if (optionarr[idx]) {
+    let effect = PC.getSpellEffectsByName(optionarr[idx]);
+    PC.removeFromInventory(PC.checkInventory("MandrakeRoot"));
+    effect.setExpiresTime(-1);
+    retval["txt"] = `The ${effect.getDesc()} spell has been rendered permanent.`;
+  } else {
+    retval["fin"] = 0;
+    return retval;
+  }
+  return retval;
+}
 
 // Armageddon
+magic[SPELL_ARMAGEDDON_LEVEL][SPELL_ARMAGEDDON_ID].getLongDesc = function() {
+  return "Ends the world.";
+}
+
+magic[SPELL_ARMAGEDDON_LEVEL][SPELL_ARMAGEDDON_ID].executeSpell = function(caster, infused, free) {
+  DebugWrite("magic", "Casting Armageddon.<br />");
+  let resp = {fin:4};
+  if (!free) {
+    free = 0;
+    let mana = this.getManaCost(infused);
+    CastSpellMana(caster,mana);
+    DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+
+  resp["txt"] = "You complete the twisted incantation, longer and more complicated than any spell you have ever cast before. When you finish, there is a moment where everything, everywhere, goes still, and you realize you have made the worst and last mistake of your life.";
+  gamestate.setMode("anykey");
+  targetCursor.command = "armageddon";
+  targetCursor.step = 1;
+  resp["input"] = "[MORE]";
+  return resp;
+}
+
+function ArmageddonNarration(step) {
+  if (step === 1) {
+    maintext.addText("A wave of energy flashes out from you in all directions, snuffing out all life it touches. You know that it will not stop until it has touched the entire world. The silence is deafening.");
+  } else if (step === 2) {
+    maintext.addText("As everything else reaches its inevitable, premature end, you realize the worst part of it all- you are still alive, in an empty world.");
+  } else if (step === 3) {
+    maintext.addText("As the balance fails in the world around you, great fires burn, stars fall, winds drive huge waves against unfeeling rocks. This is what you will see, for however so long as you live, wherever you look, whatever happens.");
+    let mainframe = document.getElementById("displayframe");
+    mainframe.innerHTML = "<img src='graphics/splash/Armageddon.gif' />";
+  } else if (step === 4) {
+    maintext.addText("This is how it ends, this is how it has ended. By your hand.");
+  } else { 
+    maintext.addText("Your quest has ended.");
+    gamestate.setMode("null");
+    maintext.setInputLine("&gt;");
+    maintext.drawTextFrame();
+  }
+
+}
 
 // Arrow of Glass
 magic[SPELL_ARROW_OF_GLASS_LEVEL][SPELL_ARROW_OF_GLASS_ID].getLongDesc = function() {
@@ -4564,6 +4728,37 @@ magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID].executeSpell = function(caster,
 }
 
 // Reincarnate 
+magic[SPELL_REINCARNATE_LEVEL][SPELL_REINCARNATE_ID].getLongDesc = function() {
+  return "Places an enchantment upon you: the next time you would die, you are instead revived at half health. Must be cast in a pentagram.";
+}
+
+magic[SPELL_REINCARNATE_LEVEL][SPELL_REINCARNATE_ID].executeSpell = function(caster, infused, free) {
+  DebugWrite("magic", "Casting Reincarnate.<br />");
+  let resp = {fin:1};
+
+  if (!IsOnPentagram(caster)) {
+    resp["fin"] = 2;
+    resp["txt"] = "This spell must be cast while standing in a circle of power.";
+    return resp;
+  }
+
+  if (!free) {
+    free = 0;
+    let mana = this.getManaCost(infused);
+    CastSpellMana(caster,mana);
+    DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+
+  let rein = localFactory.createTile("Reincarnate");
+  rein.setExpiresTime(-1);
+
+  caster.addSpellEffect(liobj, Math.max(0, free-1) );
+  PlayCastSound(caster,"sfx_buff");
+
+  ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+  DrawCharFrame();
+  return resp;  
+}
 
 // Time Stop
 magic[SPELL_TIME_STOP_LEVEL][SPELL_TIME_STOP_ID].getLongDesc = function() {
