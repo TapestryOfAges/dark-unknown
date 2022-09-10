@@ -22,6 +22,14 @@ function EphemeralObject() {
 }
 EphemeralObject.prototype = new ProtoObject();
 
+EphemeralObject.prototype.getDesc = function() {
+  return this.desc;
+}
+
+EphemeralObject.prototype.setDesc = function(what) {
+  this.desc = what;
+}
+
 EphemeralObject.prototype.getZstatdesc = function() {
   return this.zstatdesc;
 }
@@ -1290,6 +1298,36 @@ QuicknessTile.prototype.endEffect = function(silent) {
   who.deleteSpellEffect(this);
   if ((who === PC) && !silent) {
     maintext.addText("You slow down again.");
+  }
+  DrawCharFrame();  
+}
+
+function ReincarnateTile() {
+  this.addType("buff");
+  this.name = "Reincarnate";
+  this.display = "<span style='color:c0c0c0'>R</span>";
+  this.power = .5;
+  this.zstatdesc = "You will revive upon your next death.";
+  this.desc = "Reincarnate";
+  this.level = 8;
+}
+ReincarnateTile.prototype = new EphemeralObject();
+
+
+ReincarnateTile.prototype.applyEffect = function(silent) {
+  let who = this.getAttachedTo();
+
+  if ((who === PC) && !silent) {
+    maintext.delayedAddText("You will revive upon your next death.");
+  }
+  return 1;
+}
+
+ReincarnateTile.prototype.endEffect = function(silent) {
+  let who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+  if ((who === PC) && !silent) {
+    maintext.addText("You die... but before you fall, you revive. The Reincarnation spell protects you, and then fades.");
   }
   DrawCharFrame();  
 }
