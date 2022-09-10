@@ -799,7 +799,6 @@ mappages["worldsending2"].linkedMaps = [""];
 mappages["worldsending2"].editorLabels = '{}';
 // MAP ENDS HERE
 
-
 mappages["worldsending2"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     let crystal = mapref.getTile(40,65).getTopFeature();
@@ -814,3 +813,109 @@ mappages["worldsending2"].onload = function(mapref) {
     }
   }
 }
+
+// MAP BEGINS HERE
+mappages["worldsending3"] = {};
+mappages["worldsending3"].terrain = [];
+ mappages["worldsending3"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["worldsending3"].terrain[1] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["worldsending3"].terrain[2] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["worldsending3"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["worldsending3"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["worldsending3"].terrain[5] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["worldsending3"].terrain[6] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["worldsending3"].terrain[7] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["worldsending3"].terrain[8] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["worldsending3"].terrain[9] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[10] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[11] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[12] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[13] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[14] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[15] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[16] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[17] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[18] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[19] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[20] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[21] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[24] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[25] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[26] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[27] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[28] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[29] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[30] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf %% %% %% %% hf hf hf %% %% %% %% %% hf hf hf %% %% %% %% %% %% hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[31] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf %% BK BK %% hf hf hf %% BK BK BK %% hf hf hf %% BK BK BK BK %% hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[32] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf %% BK BK %% hf hf hf %% BK BK BK %% hf hf hf %% BK BK BK BK %% hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[33] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf %% BK BK %% hf hf hf %% BK BK BK %% hf hf hf %% BK BK BK BK %% hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[34] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf %% %% %% %% hf hf hf %% %% %% %% %% hf hf hf %% %% %% %% %% %% hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[35] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[36] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[37] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[38] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf %% %% %% %% hf hf hf %% %% %% %% %% hf hf hf %% %% %% %% %% %% hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[39] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf %% BK BK %% hf hf hf %% BK BK BK %% hf hf hf %% BK BK BK BK %% hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[40] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf %% BK BK %% hf hf hf %% BK BK BK %% hf hf hf %% BK BK BK BK %% hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[41] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf %% BK BK %% hf hf hf %% BK BK BK %% hf hf hf %% BK BK BK BK %% hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[42] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf %% BK BK %% hf hf hf %% BK BK BK %% hf hf hf %% BK BK BK BK %% hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[43] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf %% %% %% %% hf hf hf %% %% %% %% %% hf hf hf %% %% %% %% %% %% hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[44] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[45] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[46] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[47] = 'BK BK BK BK BK BK BK BK BK BK BK %% %% %% %% hf hf hf %% %% %% %% hf hf hf %% %% %% %% %% hf hf hf %% %% %% %% %% %% hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[48] = 'BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf hf hf hf %% BK BK %% hf hf hf %% BK BK BK %% hf hf hf %% BK BK BK BK %% hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[49] = 'BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf hf hf hf %% BK BK %% hf hf hf %% BK BK BK %% hf hf hf %% BK BK BK BK %% hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[50] = 'BK BK BK BK BK BK BK BK BK BK BK %% %% %% %% hf hf hf %% %% %% %% hf hf hf %% %% %% %% %% hf hf hf %% %% %% %% %% %% hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[51] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[52] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[53] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[54] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% %% hf hf hf %% %% %% %% %% %% %% %% %% %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[55] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[56] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[57] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[58] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% %% %% %% %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[59] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[60] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[61] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[62] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending3"].terrain[63] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+
+mappages["worldsending3"].features = [];
+mappages["worldsending3"].features[0] = {name : 'LadderUp', x : 31, y : 56, entermap : 'null', enterx : 0, entery : 0};
+mappages["worldsending3"].features[1] = {name : 'LadderDown', x : 31, y : 49, entermap : 'null', enterx : 0, entery : 0};
+mappages["worldsending3"].features[2] = {name : 'Chest', x : 12, y : 48, locked : 0, lootgroup : 'we3c1', lootedid : 'we3c1'};
+mappages["worldsending3"].features[3] = {name : 'Chest', x : 12, y : 49, locked : 0, lootgroup : 'we3c2', lootedid : 'we3c2'};
+
+
+mappages["worldsending3"].npcs = [];
+
+mappages["worldsending3"].desc = "World's Ending (L3)";
+mappages["worldsending3"].longdesc = ``;
+mappages["worldsending3"].music = 'Dungeon';
+mappages["worldsending3"].savename = `World's Ending`;
+mappages["worldsending3"].exitmap = '';
+mappages["worldsending3"].exitx = '65';
+mappages["worldsending3"].exity = '70';
+mappages["worldsending3"].wraps = '';
+mappages["worldsending3"].enterx = '65';
+mappages["worldsending3"].entery = '70';
+mappages["worldsending3"].seeBelow = '';
+mappages["worldsending3"].lightLevel = 'dark';
+mappages["worldsending3"].alwaysRemember = '0';
+mappages["worldsending3"].scale = '1';
+mappages["worldsending3"].underground = '1';
+mappages["worldsending3"].undergroundDesc = 'Level 3';
+mappages["worldsending3"].enterscript = '';
+mappages["worldsending3"].entertestscript = '';
+mappages["worldsending3"].exitscript = '';
+mappages["worldsending3"].exittestscript = '';
+mappages["worldsending3"].returnmap = 'darkunknown';
+mappages["worldsending3"].returnx = '27';
+mappages["worldsending3"].returny = '44';
+mappages["worldsending3"].returninfused = '0';
+mappages["worldsending3"].linkedMaps = ["worldsending2","worldsending1"];
+mappages["worldsending3"].editorLabels = '{}';
+// MAP ENDS HERE
+
