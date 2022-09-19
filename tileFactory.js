@@ -1748,6 +1748,11 @@ tileFactory.prototype.makeWalkOnWE36Tile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWalkOnWE3TeleporterTile = function() {
+  let newTile = new WalkOnWE3TeleporterTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWalkOnWE37Tile = function() {
   let newTile = new WalkOnWE37Tile();
   return newTile;
@@ -1755,6 +1760,11 @@ tileFactory.prototype.makeWalkOnWE37Tile = function() {
 
 tileFactory.prototype.makeWalkOnWE38Tile = function() {
   let newTile = new WalkOnWE38Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnWE39Tile = function() {
+  let newTile = new WalkOnWE39Tile();
   return newTile;
 }
 
