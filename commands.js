@@ -3019,11 +3019,13 @@ function performOptions(code) {
         if (DU.gameflags.getFlag("zoom") === 1.5) {
           DU.gameflags.setFlag("zoom",1);
           webFrame.setZoomFactor(1);
-          ipcRenderer.send('resize', 1);
+//          ipcRenderer.send('resize', 1);
+          OutOfContext.resize(1);
         } else if (DU.gameflags.getFlag("zoom") === 2) {
           DU.gameflags.setFlag("zoom",1.5);
           webFrame.setZoomFactor(1.5);
-          ipcRenderer.send('resize', 1.5);
+//          ipcRenderer.send('resize', 1.5);
+          OutOfContext.resize(1.5);
         }
       }
     }
@@ -3052,11 +3054,13 @@ function performOptions(code) {
         if (DU.gameflags.getFlag("zoom") === 1) {
           DU.gameflags.setFlag("zoom",1.5);
           webFrame.setZoomFactor(1.5);
-          ipcRenderer.send('resize', 1.5);
+//          ipcRenderer.send('resize', 1.5);
+          OutOfContext.resize(1.5);
         } else if (DU.gameflags.getFlag("zoom") === 1.5) {
           DU.gameflags.setFlag("zoom",2);
           webFrame.setZoomFactor(2);
-          ipcRenderer.send('resize', 2);
+//          ipcRenderer.send('resize', 2);
+          OutOfContext.resize(2);
         }
       }
     }

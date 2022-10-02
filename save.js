@@ -1,69 +1,75 @@
 "use strict";
 
-const fs = require("fs");
-const path = require("path");
+//const fs = require("fs");
+//const path = require("path");
 
-const savePath = path.join(`${__dirname}`,'..','..','saves');
+//const savePath = path.join(`${__dirname}`,'..','..','saves');
 
 let saveIndex = [];
 
-{
+//{
   // found on stackoverflow: https://stackoverflow.com/questions/13696148/node-js-create-folder-or-use-existing
-  function createDirectory(directory) {
+//  function createDirectory(directory) {
 //    const directory = path.normalize(directoryPath);
   
-    return new Promise((resolve, reject) => {
-      fs.stat(directory, (error) => {
-        if (error) {
-          if (error.code === 'ENOENT') {
-            fs.mkdir(directory, (error) => {
-              if (error) {
-                reject(error);
-              } else {
-                resolve(directory);
-              }
-            });
-          } else {
-            reject(error);
-          }
-        } else {
-          resolve(directory);
-        }
-      });
-    });
-  }
+//    return new Promise((resolve, reject) => {
+//      fs.stat(directory, (error) => {
+//        if (error) {
+//          if (error.code === 'ENOENT') {
+//            fs.mkdir(directory, (error) => {
+//              if (error) {
+//                reject(error);
+//              } else {
+//                resolve(directory);
+//              }
+//            });
+//          } else {
+//            reject(error);
+//          }
+//        } else {
+//          resolve(directory);
+//        }
+//      });
+//    });
+//  }
     
-  createDirectory(savePath).then((path) => {
-    console.log(`Successfully created directory: '${path}'`);
-    try {
-      fs.readFileSync(`${savePath}/save3`,'utf8');
-    } catch(err) {
-      if (err.message.indexOf("no such file") !== -1) {
-        gamestate.initializeSaveGames();
-        console.log("Initialized saved games.");    
-      } else {
-        console.log("Unknown error with saved games:");
-        console.log(err.message);
-      }
-    }
-    // populate saveIndex
-    for (let i=0;i<=9;i++) {
-      saveIndex[i] = {datestamp: 0, charname:"",loc:"",graphic:""};
-      let file = fs.readFileSync(`${savePath}/save${i}`,'utf8');
-      if (file) {
-        file = JSON.parse(file);
-        let stats = fs.statSync(`${savePath}/save${i}`);
-        saveIndex[i]["datestamp"] = stats.mtimeMs;
-        saveIndex[i]["charname"] = file.charname;
-        saveIndex[i]["loc"] = file.loc;
-        saveIndex[i]["graphic"] = file.graphic;
-        saveIndex[i]["timeplayed"] = file.timeplayed;
-      }
-    }
-  }).catch((error) => {
-    console.log(`Problem creating directory: ${error.message}`)
-  }); 
-}
+//  createDirectory(savePath).then((path) => {
+//    console.log(`Successfully created directory: '${path}'`);
+//    try {
+//      fs.readFileSync(`${savePath}/save3`,'utf8');
+//    } catch(err) {
+//      if (err.message.indexOf("no such file") !== -1) {
+//        gamestate.initializeSaveGames();
+//        console.log("Initialized saved games.");    
+//      } else {
+//        console.log("Unknown error with saved games:");
+//        console.log(err.message);
+//      }
+//    }
+//    // populate saveIndex
+//    for (let i=0;i<=9;i++) {
+//      saveIndex[i] = {datestamp: 0, charname:"",loc:"",graphic:""};
+//      let file = fs.readFileSync(`${savePath}/save${i}`,'utf8');
+//      if (file) {
+//        file = JSON.parse(file);
+//        let stats = fs.statSync(`${savePath}/save${i}`);
+//        saveIndex[i]["datestamp"] = stats.mtimeMs;
+//        saveIndex[i]["charname"] = file.charname;
+//        saveIndex[i]["loc"] = file.loc;
+//        saveIndex[i]["graphic"] = file.graphic;
+//        saveIndex[i]["timeplayed"] = file.timeplayed;
+//      }
+//    }
+//  }).catch((error) => {
+//    console.log(`Problem creating directory: ${error.message}`)
+//  }); 
+//}
+
+OutOfContext.onGetSaveIndex((event,value) => {
+  saveIndex = value;
+});
+
+OutOfContext.create_dir();
 
 function Gameflags() {
   this.music = 0;
@@ -259,7 +265,8 @@ GameStateData.prototype.saveGame = function(flag) {
       maintext.addText("<span style='sysconv'>Unable to open new window for save export.</span>");
     }
   }	else {
-    fs.writeFileSync(`${savePath}/save${flag}`, serialized);
+//    fs.writeFileSync(`${savePath}/save${flag}`, serialized);
+    OutOfContext.write_save([flag,serialized]);
 //    localStorage["save"+flag] = serialized;
     saveIndex[flag].datestamp = Date.now();
     saveIndex[flag].timeplayed = savedata.timeplayed;
@@ -276,7 +283,8 @@ GameStateData.prototype.initializeSaveGames = function() {
   for (let i=0;i<=9;i++) {
     saves[i] = {datestamp: 0, charname:"",loc:"",graphic:""};
     let saveslot = "save" + i;
-    fs.writeFileSync(`${savePath}/${saveslot}`, "");
+//    fs.writeFileSync(`${savePath}/${saveslot}`, "");
+    OutOfContext.write_save(i, "");
 //    localStorage[saveslot] = "";
   }
   saveIndex = saves;
@@ -299,25 +307,12 @@ GameStateData.prototype.getLatestSaveIndex = function() {
 
 GameStateData.prototype.loadGame = function(idx) {
   gamestate.setMode("loadgame");
-  
-//  let compressed;
-  let serialized;
-  
   DebugWrite("saveload", "<p><span style='font-weight:bold'>Start load procedure from slot " + idx + ":</span><br />");
+  OutOfContext.load_game(idx);
+}
 
-  if (localStorage.manualsave) {
-    serialized = localStorage.manualsave;
-    delete localStorage.manualsave;
-  } else if (idx === "tmp") {
-    DebugWrite("saveload", "<br /><br /><p>LOADING TMP VALUES</p><br />");
-    gamestate.loadTmp();
-    return;
-  } else {
-//    compressed = localStorage["save"+idx];
-//    serialized = LZString.decompressFromUTF16(compressed);
-    serialized = fs.readFileSync(`${savePath}/save${idx}`,'utf8');
-    //serialized = localStorage["save"+idx];
-  }
+
+OutOfContext.onLoadData((event,serialized) => {
 
   DebugWrite("saveload", "<br /><br /><p>" + serialized + "</p><br />");
   let savedata = JSON.parse(serialized);  
@@ -553,7 +548,7 @@ GameStateData.prototype.loadGame = function(idx) {
   }
   ProcessAmbientNoise(PC.getHomeMap().getTile(PC.getx(),PC.gety()));
   startScheduler();
-}
+});
 
 GameStateData.prototype.setMode = function(mode) {
 	this.mode = mode;

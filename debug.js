@@ -64,7 +64,8 @@ function OldActivateDebug(startup) {
 
 function ActivateDebug(startup) { 
 
-  ipcRenderer.send('open_debug');
+//  ipcRenderer.send('open_debug');
+  OutOfContext.open_debug();
 
   if (!startup) {  
     targetCursor.page = 1;
@@ -105,7 +106,8 @@ function DebugWrite(category, html) {
     if (whoseturn === watchon) { watched = 1; }
     let samemap = 0;
     if (whoseturn.getHomeMap() === PC.getHomeMap()) { samemap = 1; }
-    ipcRenderer.send('sendDebug', {html: html, cat: category, sid: serialid, watched: watched, samemap: samemap});
+//    ipcRenderer.send('sendDebug', {html: html, cat: category, sid: serialid, watched: watched, samemap: samemap});
+    OutOfContext.sendDebug({html: html, cat: category, sid: serialid, watched: watched, samemap: samemap});
     SetDebugToBottom();
 
     return 1;

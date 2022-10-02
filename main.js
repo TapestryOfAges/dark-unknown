@@ -1,5 +1,5 @@
 "use strict";
-const isDev = require('electron-is-dev');
+//const isDev = require('electron-is-dev');
 let maxserial = 0;
 let beta = 0;  // set to one for additional analytics
 
@@ -261,7 +261,11 @@ function SoundLoaded() {
 }
 
 function DoAction(code, ctrl) {
-  if (ctrl && (code === 73)) { ipcRenderer.send('toggle_dev'); return; }  // ctrl-i opens dev console no matter the mode
+  if (ctrl && (code === 73)) { 
+//    ipcRenderer.send('toggle_dev'); 
+    OutOfContext.toggle_dev();
+    return; 
+  }  // ctrl-i opens dev console no matter the mode
   if (debug && ctrl && (code === 88)) { 
     // BE VERY CAREFUL WITH THIS.
     // recovers from syntax errors, returns control to player
