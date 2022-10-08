@@ -2567,6 +2567,18 @@ function BlueTilesTile() {
 }
 BlueTilesTile.prototype = new TerrainObject();
 
+function BlackFloorTile() {
+  this.name = "BlackFloor";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-128";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "emptiness";
+  this.peerview = "black";
+  this.walkSound = "stone";
+}
+BlackFloorTile.prototype = new TerrainObject();
 
 function PlanksEWTile() {
   this.name = "PlanksEW";

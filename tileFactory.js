@@ -373,6 +373,11 @@ tileFactory.prototype.makeBlueTilesTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeBlackFloorTile = function() {
+  let newTile = new BlackFloorTile();
+  return newTile;
+}
+
 tileFactory.prototype.makePlanksEWTile = function() {
   let newTile = new PlanksEWTile();
   return newTile;
