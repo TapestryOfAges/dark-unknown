@@ -5137,6 +5137,19 @@ function BlueTilesTile() {
 }
 BlueTilesTile.prototype = new TerrainObject();
 
+function BlackFloorTile() {
+  this.name = "BlackFloor";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-128";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "emptiness";
+  this.peerview = "black";
+  this.walkSound = "stone";
+}
+BlackFloorTile.prototype = new TerrainObject();
+
 function PlanksEWTile() {
   //Graphics Upgraded
   this.name = "PlanksEW";
@@ -7731,6 +7744,7 @@ function WorldsEndingRaftTile() {
   this.desc = "raft";
   this.peerview = "#602000";
   this.walkSound = "stone";
+  this.bridge = 1;
 }
 WorldsEndingRaftTile.prototype = new FeatureObject();
 
@@ -7746,6 +7760,7 @@ function WorldsEndingCenterRaftTile() {
   this.desc = "raft";
   this.peerview = "#602000";
   this.walkSound = "stone";
+  this.bridge = 1;
 }
 WorldsEndingCenterRaftTile.prototype = new FeatureObject();
 
@@ -7811,14 +7826,14 @@ WorldsEndingCenterRaftTile.prototype.myTurn = function() {
       spaces[1] = mymap.getTile(this.getx(),this.gety()-2);
       spaces[2] = mymap.getTile(this.getx()+1,this.gety()-2);
     } else if (movedir === "S") {
-      spaces[0] = mymap.getTile(this.getx()-2,this.gety()-1);
-      spaces[1] = mymap.getTile(this.getx()-2,this.gety());
-      spaces[2] = mymap.getTile(this.getx()-2,this.gety()+1);
+      spaces[0] = mymap.getTile(this.getx()-1,this.gety()+2);
+      spaces[1] = mymap.getTile(this.getx(),this.gety()+2);
+      spaces[2] = mymap.getTile(this.getx()+1,this.gety()+2);
     }
 
     let blocked = 0;
     for (let i=0;i<=2;i++) {
-      if (spaces[i].canMoveHere(MOVE_SWIM)) { blocked = 1; }
+      if (!spaces[i].canMoveHere(MOVE_SWIM).canmove) { blocked = 1; }
     }
 
     if (!blocked) {
@@ -7829,6 +7844,7 @@ WorldsEndingCenterRaftTile.prototype.myTurn = function() {
           for (let k=0;k<feastack.length;k++) { raftparts.push(feastack[k]); }
           let npcstack = mymap.getTile(this.getx()+i,this.gety()+j).getNPCs();
           for (let k=0;k<npcstack.length;k++) { raftparts.push(npcstack[k]); }
+          if ((this.getx()+i === PC.getx()) && (this.gety()+j === PC.gety())) { raftparts.push(PC); }
         }
       }
 
@@ -7892,6 +7908,7 @@ WorldsEndingRaftSwitchTile.prototype.use = function(who) {
     retval["txt"] = "The lever moves with a satisfying click.";
     DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
   }
+  return retval;
 }
 
 function DungeonTile() {
@@ -13302,6 +13319,19 @@ function GreySecretDoorTile() {
 }
 GreySecretDoorTile.prototype = new FeatureObject();
 
+function ShiftingWallTile() {
+  this.name = "ShiftingWall";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "0";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "wall";
+  this.peerview = "white";
+}
+ShiftingWallTile.prototype = new FeatureObject();
+
 function DestructableStoneWallTile() {
   this.name = "DestructableStoneWall";
   this.graphic = "master_spritesheet.png";
@@ -13533,6 +13563,328 @@ WalkOnWingTile.prototype.walkon = function(walker) {
       DrawCharFrame();
     }
     return {msg: "The sound of water rushing over the edge and plummeting below fills you with a sense of great peace and tranquility. You feel refreshed." };
+  }
+  return {msg:""};
+}
+
+function WalkOnWE31Tile() {
+  this.name = "WalkOnWE31";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnWE31Tile.prototype = new FeatureObject();
+
+WalkOnWE31Tile.prototype.walkon = function(walker) {
+  let wallmap = this.getHomeMap();
+  let wall1 = wallmap.getTile(24,32).getTopFeature();
+  if (wall1 && (wall1.getName() === "ShiftingWall") && (walker === PC)) {
+    let wall2 = wallmap.getTile(24,33).getTopFeature();
+    let wall3 = wallmap.getTile(24,34).getTopFeature();
+    wallmap.moveThing(25,31,wall1);
+    wallmap.moveThing(26,31,wall2);
+    wallmap.moveThing(27,31,wall3);
+    let wall4 = localFactory.createTile("ShiftingWall");
+    wallmap.placeThing(28,32,wall4);
+    let wall5 = localFactory.createTile("ShiftingWall");
+    wallmap.placeThing(28,33,wall5);
+    let wall6 = localFactory.createTile("ShiftingWall");
+    wallmap.placeThing(28,34,wall6);
+    DUPlaySound("sfx_stone_drag");
+  }
+  return {msg:""};
+}
+
+function WalkOnWE32Tile() {
+  this.name = "WalkOnWE32";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnWE32Tile.prototype = new FeatureObject();
+
+WalkOnWE32Tile.prototype.walkon = function(walker) {
+  let wallmap = this.getHomeMap();
+  let wall1 = wallmap.getTile(17,31).getTopFeature();
+  if (wall1 && (wall1.getName() === "ShiftingWall") && (walker === PC)) {
+    let wall2 = wallmap.getTile(18,31).getTopFeature();
+    let wall3 = wallmap.getTile(19,31).getTopFeature();
+    wallmap.moveThing(16,32,wall1);
+    wallmap.moveThing(16,33,wall2);
+    wallmap.moveThing(16,34,wall3);
+    DUPlaySound("sfx_stone_drag");
+  }
+  return {msg:""};
+}
+
+function WalkOnWE33Tile() {
+  this.name = "WalkOnWE33";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnWE33Tile.prototype = new FeatureObject();
+
+WalkOnWE33Tile.prototype.walkon = function(walker) {
+  let wallmap = this.getHomeMap();
+  let wall1 = wallmap.getTile(17,24).getTopFeature();
+  if (wall1 && (wall1.getName() === "ShiftingWall") && (walker === PC)) {
+    let wall2 = wallmap.getTile(18,24).getTopFeature();
+    let wall3 = wallmap.getTile(19,24).getTopFeature();
+    wallmap.moveThing(20,25,wall1);
+    wallmap.moveThing(20,26,wall2);
+    wallmap.moveThing(20,27,wall3);
+    DUPlaySound("sfx_stone_drag");
+  }
+  return {msg:""};
+}
+
+function WalkOnWE34Tile() {
+  this.name = "WalkOnWE34";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnWE34Tile.prototype = new FeatureObject();
+
+WalkOnWE34Tile.prototype.walkon = function(walker) {
+  let wallmap = this.getHomeMap();
+  let wall1 = wallmap.getTile(17,15).getTopFeature();
+  if (wall1 && (wall1.getName() === "ShiftingWall") && (walker === PC)) {
+    let wall2 = wallmap.getTile(18,15).getTopFeature();
+    let wall3 = wallmap.getTile(19,15).getTopFeature();
+    wallmap.moveThing(17,19,wall1);
+    wallmap.moveThing(18,19,wall2);
+    wallmap.moveThing(19,19,wall3);
+    let wall4 = wallmap.getTile(20,16).getTopFeature();
+    let wall5 = wallmap.getTile(20,17).getTopFeature();
+    let wall6 = wallmap.getTile(20,18).getTopFeature();
+    wallmap.moveThing(22,12,wall4);
+    wallmap.moveThing(22,13,wall5);
+    wallmap.moveThing(22,14,wall6);
+
+    let wall7 = wallmap.getTile(33,25).getTopFeature();
+    let wall8 = wallmap.getTile(33,26).getTopFeature();
+    let wall9 = wallmap.getTile(33,27).getTopFeature();
+    wallmap.deleteThing(wall7);
+    wallmap.deleteThing(wall8);
+    wallmap.deleteThing(wall9);
+    DUPlaySound("sfx_stone_drag");
+  }
+
+  return {msg:""};
+}
+
+function WalkOnWE35Tile() {
+  this.name = "WalkOnWE35";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnWE35Tile.prototype = new FeatureObject();
+
+WalkOnWE35Tile.prototype.walkon = function(walker) {
+  let wallmap = this.getHomeMap();
+  let wall1 = wallmap.getTile(16,8).getTopFeature();
+  if (wall1 && (wall1.getName() === "ShiftingWall") && (walker === PC)) {
+    let wall2 = wallmap.getTile(16,9).getTopFeature();
+    let wall3 = wallmap.getTile(16,10).getTopFeature();
+    wallmap.moveThing(13,8,wall1);
+    wallmap.moveThing(13,9,wall2);
+    wallmap.moveThing(13,10,wall3);
+    let wall4 = wallmap.getTile(24,8).getTopFeature();
+    let wall5 = wallmap.getTile(24,9).getTopFeature();
+    let wall6 = wallmap.getTile(24,10).getTopFeature();
+    wallmap.moveThing(28,8,wall4);
+    wallmap.moveThing(28,9,wall5);
+    wallmap.moveThing(28,10,wall6);
+    DUPlaySound("sfx_stone_drag");
+  }
+  return {msg:""};
+}
+
+function WalkOnWE36Tile() {
+  this.name = "WalkOnWE36";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnWE36Tile.prototype = new FeatureObject();
+
+WalkOnWE36Tile.prototype.walkon = function(walker) {
+  let wallmap = this.getHomeMap();
+  let playsound = 0;
+  let wall1 = wallmap.getTile(9,29).getTopFeature();
+  if (wall1 && (wall1.getName() === "ShiftingWall") && (walker === PC)) {
+    let wall2 = wallmap.getTile(9,30).getTopFeature();
+    wallmap.moveThing(5,29,wall1);
+    wallmap.moveThing(5,30,wall2);  
+  }
+  let walla = wallmap.getTile(13,8).getTopFeature();
+  if (walla && (walla.getName() === "ShiftingWall") && (walker === PC)) {
+    let wallb = wallmap.getTile(13,9).getTopFeature();
+    let wallc = wallmap.getTile(13,10).getTopFeature();
+    wallmap.moveThing(16,8,walla);
+    wallmap.moveThing(16,9,wallb);
+    wallmap.moveThing(16,10,wallc);
+  }
+  let walld = wallmap.getTile(28,8).getTopFeature();
+  if (walld && (walld.getName() === "ShiftingWall") && (walker === PC)) {
+    let walle = wallmap.getTile(28,9).getTopFeature();
+    let wallf = wallmap.getTile(28,10).getTopFeature();
+    wallmap.moveThing(24,8,walld);
+    wallmap.moveThing(24,9,walle);
+    wallmap.moveThing(24,10,wallf);
+  }
+  if (playsound) { DUPlaySound("sfx_stone_drag"); } 
+  return {msg:""};
+}
+
+function WalkOnWE3TeleporterTile() {
+  this.name = "WalkOnWE3Teleporter";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnWE3TeleporterTile.prototype = new FeatureObject();
+
+WalkOnWE3TeleporterTile.prototype.walkon = function(walker) {
+  if (walker === PC) {
+    let wallmap = this.getHomeMap();
+    wallmap.moveThing(9,17,walker);
+    DUPlaySound("sfx_teleport_pad");
+  }
+
+  return {msg:""};
+}
+
+function WalkOnWE37Tile() {
+  this.name = "WalkOnWE37";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnWE37Tile.prototype = new FeatureObject();
+
+WalkOnWE37Tile.prototype.walkon = function(walker) {
+  let wallmap = this.getHomeMap();
+  let wall1 = wallmap.getTile(34,15).getTopFeature();
+  if (wall1 && (wall1.getName() === "ShiftingWall") && (walker === PC)) {
+    let wall2 = wallmap.getTile(35,15).getTopFeature();
+    let wall3 = wallmap.getTile(36,15).getTopFeature();
+    wallmap.moveThing(33,16,wall1);
+    wallmap.moveThing(33,17,wall2);
+    wallmap.moveThing(33,18,wall3);
+
+    let wall4 = wallmap.getTile(31,25).getTopFeature();
+    let wall5 = wallmap.getTile(31,26).getTopFeature();
+    let wall6 = wallmap.getTile(31,27).getTopFeature();
+    wallmap.deleteThing(wall4);
+    wallmap.deleteThing(wall5);
+    wallmap.deleteThing(wall6);
+    DUPlaySound("sfx_stone_drag");
+  }
+
+  return {msg:""};
+}
+
+function WalkOnWE38Tile() {
+  this.name = "WalkOnWE38";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnWE38Tile.prototype = new FeatureObject();
+
+WalkOnWE38Tile.prototype.walkon = function(walker) {
+  let wallmap = this.getHomeMap();
+  let wall1 = wallmap.getTile(25,28).getTopFeature();
+  if (wall1 && (wall1.getName() === "ShiftingWall") && (walker === PC)) {
+    let wall2 = wallmap.getTile(26,28).getTopFeature();
+    let wall3 = wallmap.getTile(27,28).getTopFeature();
+    wallmap.moveThing(25,24,wall1);
+    wallmap.moveThing(26,24,wall2);
+    wallmap.moveThing(27,24,wall3);
+    let wall4 = localFactory.createTile("ShiftingWall");
+    wallmap.placeThing(24,25,wall4);
+    let wall5 = localFactory.createTile("ShiftingWall");
+    wallmap.placeThing(24,26,wall5);
+    let wall6 = localFactory.createTile("ShiftingWall");
+    wallmap.placeThing(24,27,wall6);
+    DUPlaySound("sfx_stone_drag");
+  }
+  return {msg:""};
+}
+
+
+function WalkOnWE39Tile() {
+  this.name = "WalkOnWE39";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnWE39Tile.prototype = new FeatureObject();
+
+WalkOnWE39Tile.prototype.walkon = function(walker) {
+  let wallmap = this.getHomeMap();
+  let wall1 = wallmap.getTile(29,25).getTopFeature();
+  if (wall1 && (wall1.getName() === "ShiftingWall") && (walker === PC)) {
+    let wall2 = wallmap.getTile(29,26).getTopFeature();
+    let wall3 = wallmap.getTile(29,27).getTopFeature();
+    wallmap.deleteThing(wall1);
+    wallmap.deleteThing(wall2);
+    wallmap.deleteThing(wall3);
+    DUPlaySound("sfx_stone_drag");
   }
   return {msg:""};
 }
@@ -17650,13 +18002,13 @@ KineticCrystalTile.prototype = new ItemObject();
 KineticCrystalTile.prototype.onGet = function(who) {
   let wemap = who.getHomeMap();
   let gazer = localFactory.createTile("GazerNPC");
-  wemap.placeThing(gazer,30,47);
+  wemap.placeThing(30,47,gazer);
   gazer = localFactory.createTile("GazerNPC");
-  wemap.placeThing(gazer,29,46);
+  wemap.placeThing(29,46,gazer);
   gazer = localFactory.createTile("GazerNPC");
-  wemap.placeThing(gazer,34,51);
+  wemap.placeThing(34,51,gazer);
   gazer = localFactory.createTile("GazerNPC");
-  wemap.placeThing(gazer,31,50);
+  wemap.placeThing(31,50,gazer);
 }
 
 KineticCrystalTile.prototype.use = function(who) {
@@ -17671,8 +18023,10 @@ KineticCrystalTile.prototype.use = function(who) {
       let receptacle = wemap.getTile(39,28).getTopFeature();
       receptacle.spritexoffset = -1*32;
       DU.gameflags.setFlag("worldsendingraft",1);
+      PC.removeFromInventory(this);
     }
   }
+  return retval;
 }
 
 function ChaliceTile() {
@@ -23227,6 +23581,12 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
   }
   this.modHP(dmg*-1);
   if (this.getHP() <= 0) { // killed!
+    let reincarnate = this.getSpellEffectsByName("Reincarnate");
+    if (reincarnate) {
+      reincarnate.endEffect();
+      this.setHP(this.getMaxHP()/2);
+      return 0;
+    }
     this.processDeath(1);
     if (src === PC) {
       let XP = this.getXPVal();
@@ -23885,14 +24245,21 @@ NPCObject.prototype.addSpellEffect = function(spellobj, silent) {
         if (otherEffects[i].getPower() > spellobj.getPower()) {  // keep old one, extend it
           let adddur = (1/(totin - 1))*(spellobj.getPower() / otherEffects[i].getPower()) * (spellobj.getExpiresTime() - DU.DUTime.getGameClock());
           DebugWrite("magic", "Old one is stronger, extending by " + adddur + ".<br />");
-          otherEffects[i].setExpiresTime(otherEffects[i].getExpiresTime() + adddur);
+          if (otherEffects[i].getExpiresTime() > -1) {  // don't change expire time if it's permanent
+            otherEffects[i].setExpiresTime(otherEffects[i].getExpiresTime() + adddur);
+          }
           otherEffects[i].setInstances(otherEffects[i].getInstances() + spellobj.getInstances());
           otherEffects[i].mergeSpells("old");
           addme = 0; 
           return 0;
         } else {
-          let adddur = (1/(totin - 1))*(otherEffects[i].getPower() / spellobj.getPower()) * (otherEffects[i].getExpiresTime() - DU.DUTime.getGameClock());
-          spellobj.setExpiresTime(spellobj.getExpiresTime() + adddur);
+          if (otherEffects[i].getExpiresTime() > -1) {
+            let adddur = (1/(totin - 1))*(otherEffects[i].getPower() / spellobj.getPower()) * (otherEffects[i].getExpiresTime() - DU.DUTime.getGameClock());
+            spellobj.setExpiresTime(spellobj.getExpiresTime() + adddur);
+          } else {
+            // you can still strengthen permanent spells
+            spellobj.setExpiresTime(-1);
+          }
           DebugWrite("magic", "New one is stronger. Replacing old and extending new by " + adddur + ".<br />");
           otherEffects[i].endEffect(1);
           spellobj.setInstances(otherEffects[i].getInstances() + spellobj.getInstances());
