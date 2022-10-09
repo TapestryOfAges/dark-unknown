@@ -3,8 +3,7 @@
 
 function Atlas() {
 
-  this.key = {
-  }
+  this.key = {}
 
 }
 
@@ -101,6 +100,7 @@ function PopulateAtlas(atlasref) {
   atlasref.insertkey("LeftCounter",'[:');
   atlasref.insertkey("CounterBox",'[]');
   atlasref.insertkey("BlankBlack",'BK');
+  atlasref.insertkey("BlackFloor",'BF');
   atlasref.insertkey("Darkness",'DK');
   atlasref.insertkey("Wall",'##');
   atlasref.insertkey("FireplaceWall",'f#');
