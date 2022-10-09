@@ -1,5 +1,5 @@
 "use strict";
-const isDev = require('electron-is-dev');
+//const isDev = require('electron-is-dev');
 let maxserial = 0;
 let beta = 0;  // set to one for additional analytics
 
@@ -262,7 +262,11 @@ function SoundLoaded() {
 }
 
 function DoAction(code, ctrl) {
-  if (ctrl && (code === 73)) { ipcRenderer.send('toggle_dev'); return; }  // ctrl-i opens dev console no matter the mode
+  if (ctrl && (code === 73)) { 
+//    ipcRenderer.send('toggle_dev'); 
+    OutOfContext.toggle_dev();
+    return; 
+  }  // ctrl-i opens dev console no matter the mode
   if (debug && ctrl && (code === 88)) { 
     // BE VERY CAREFUL WITH THIS.
     // recovers from syntax errors, returns control to player
@@ -298,6 +302,9 @@ function DoAction(code, ctrl) {
       }
     } else if (targetCursor.command === "elderstart") {
       ais.elderdragonintro(targetCursor.dragon);
+    } else if (targetCursor.command === "armageddon") {
+      ArmageddonNarration(targetCursor.step);
+      targetCursor.step++;
     } else if (targetCursor.command === "empower") {
       maintext.addText(targetCursor.txt[targetCursor.idx]);
       targetCursor.idx++;
@@ -973,8 +980,28 @@ function DoAction(code, ctrl) {
     	
     }
   } else if (gamestate.getMode() === "singlenumber") {
-    if (((code >= 48) && (code <= 57)) || (code === 27)) {
-      if (targetCursor.itemname === "InfiniteScroll") {
+    if (((code >= 49) && (code <= 57)) || (code === 27)) {
+      if ((targetCursor.command === "c") && (targetCursor.spellName === "Permanence")) {
+        if (code === 27) {
+          maintext.setInputLine("&gt;");
+          maintext.addText("Cancelled.");
+          maintext.drawTextFrame();
+          gamestate.setMode("player");
+          delete targetCursor.spellName;
+          delete targetCursor.command;
+          gamestate.setTurn(PC);
+        } else if ((code >= 49) && (code <= 54)) {  // 1-6, there are only 6 options so don't even bother passing a 7+ along
+          let retval = PerformPermanence(PC,0,0,code);
+          if (retval["fin"] === 1) {
+            maintext.addText(retval["txt"]);
+            maintext.setInputLine("&gt;");
+            maintext.drawTextFrame();
+            delete targetCursor.command;
+            delete targetCursor.spellName;
+            PC.endTurn();
+          } // else, if 0, pressed a button that doesn't go with an active effect, treat as no-op
+        }
+      } else if (targetCursor.itemname === "InfiniteScroll") {
         let retval;
         if ((code >= 49) && (code <=56)) {  // 1-8
           let scroll = targetCursor.itemSource;
@@ -983,6 +1010,7 @@ function DoAction(code, ctrl) {
             maintext.addText(retval["txt"]);
             maintext.setInputLine("&gt;");
             maintext.drawTextFrame();
+            delete targetCursor.itemSource;
             PC.endTurn();
           } else {
             retval = scroll.firstResponse(code);
@@ -994,6 +1022,7 @@ function DoAction(code, ctrl) {
           maintext.addText("Cancelled.");
           maintext.drawTextFrame();
           gamestate.setMode("player");
+          delete targetCursor.itemSource;
           gamestate.setTurn(PC);
         }
       } else if (inputText.cmd === "t") {
