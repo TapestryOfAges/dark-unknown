@@ -1423,6 +1423,11 @@ tileFactory.prototype.makeBlueTilesTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeBlackFloorTile = function() {
+  let newTile = new BlackFloorTile();
+  return newTile;
+}
+
 tileFactory.prototype.makePlanksEWTile = function() {
   let newTile = new PlanksEWTile();
   return newTile;
@@ -3583,6 +3588,11 @@ tileFactory.prototype.makeSecretDoorTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeShiftingWallTile = function() {
+  let newTile = new ShiftingWallTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeGreySecretDoorTile = function() {
   let newTile = new GreySecretDoorTile();
   return newTile;
@@ -3655,6 +3665,56 @@ tileFactory.prototype.makeWalkOnTile = function() {
 
 tileFactory.prototype.makeWalkOnWingTile = function() {
   let newTile = new WalkOnWingTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnWE31Tile = function() {
+  let newTile = new WalkOnWE31Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnWE32Tile = function() {
+  let newTile = new WalkOnWE32Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnWE33Tile = function() {
+  let newTile = new WalkOnWE33Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnWE34Tile = function() {
+  let newTile = new WalkOnWE34Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnWE35Tile = function() {
+  let newTile = new WalkOnWE35Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnWE36Tile = function() {
+  let newTile = new WalkOnWE36Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnWE3TeleporterTile = function() {
+  let newTile = new WalkOnWE3TeleporterTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnWE37Tile = function() {
+  let newTile = new WalkOnWE37Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnWE38Tile = function() {
+  let newTile = new WalkOnWE38Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnWE39Tile = function() {
+  let newTile = new WalkOnWE39Tile();
   return newTile;
 }
 
@@ -6670,6 +6730,11 @@ tileFactory.prototype.makeProtectionTile = function() {
 
 tileFactory.prototype.makeQuicknessTile = function() {
   let newTile = new QuicknessTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeReincarnateTile = function() {
+  let newTile = new ReincarnateTile();
   return newTile;
 }
 
