@@ -1043,7 +1043,7 @@ function DisplayTestMap() {
   debugmap.document.close()
 }
 
-function GetAllWithin(type,rad,map,center) {
+function GetAllWithin(type,rad,map,center,requires) {
   let everything;
   if (type === "features") {
     everything = map.getAllFeatures();
@@ -1058,7 +1058,14 @@ function GetAllWithin(type,rad,map,center) {
   for (let i=0;i<everything.length;i++) {
     let val=everything[i];
     if (GetDistance(val.getx(), val.gety(),center.x, center.y) < rad) {
-      within.push(val);
+      if (requires) {
+        let loe = 0;
+        if (requires = "loe") { loe = 1; } // check LOE; otherwise, check LOS
+        let losresult = map.getLOS(val.getx(),val.gety(),center.x,center.y,loe);
+        if (losresult < LOS_THRESHOLD) { within.push(val); }
+      } else {
+        within.push(val);
+      }
     }
   }
   
