@@ -5597,6 +5597,32 @@ DoorTile.prototype.bumpinto = function(who) {
   return BumpIntoDoor(this,who);
 }
 
+function DaemonDoorTile() {
+  Lockable.call(this, ["master_spritesheet.png","",'-224','-704'], ["master_spritesheet.png","",'-256','-704'], ["master_spritesheet.png","",'-288','-704'], "a", "door", "a", "locked door", "a", "magically locked door");
+  	
+	this.name = "DaemonDoor";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-704";
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 1; 
+	this.prefix = "a";
+  this.desc = "door";
+  
+  this.pathweight = 2; 
+
+	Openable.call(this, ["master_spritesheet.png", "", "-224", "-704"], ["master_spritesheet.png","",'-192','-704'], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+}
+DaemonDoorTile.prototype = new FeatureObject();
+
+DaemonDoorTile.prototype.bumpinto = function(who) {
+  return BumpIntoDoor(this,who);
+}
+
+DaemonDoorTile.prototype.activate = function() {
+  this.lockMe(3);
+}
+
 function TalkingDoorTile() {
   this.name = "TalkingDoor";
   this.conversation = "ash_door";
