@@ -2823,6 +2823,11 @@ tileFactory.prototype.makeDoorTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeDaemonDoorTile = function() {
+  let newTile = new DaemonDoorTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeTalkingDoorTile = function() {
   let newTile = new TalkingDoorTile();
   return newTile;

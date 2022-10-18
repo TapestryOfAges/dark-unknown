@@ -904,29 +904,29 @@ mappages["eldercave"].onload = function(mapref) {
 // MAP BEGINS HERE
 mappages["uttermostdark"] = {};
 mappages["uttermostdark"].terrain = [];
- mappages["uttermostdark"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["uttermostdark"].terrain[0] = 'BF BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["uttermostdark"].terrain[1] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["uttermostdark"].terrain[2] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["uttermostdark"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["uttermostdark"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["uttermostdark"].terrain[5] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["uttermostdark"].terrain[6] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["uttermostdark"].terrain[7] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["uttermostdark"].terrain[8] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["uttermostdark"].terrain[9] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## ## ## ## ## ## ## ## BK BK BK';
-mappages["uttermostdark"].terrain[10] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK p* p* p* p* p* p* p* ## BK BK BK';
-mappages["uttermostdark"].terrain[11] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## p* p* p* p* p* p* ## DK DK DK';
-mappages["uttermostdark"].terrain[12] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK p* p* p* p* p* p* p* p* DF DF DF';
-mappages["uttermostdark"].terrain[13] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## p* p* p* p* p* p* ## DK DK DK';
-mappages["uttermostdark"].terrain[14] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK p* p* p* p* p* p* p* ## BK BK BK';
-mappages["uttermostdark"].terrain[15] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## ## ## ## ## ## ## ## BK BK BK';
-mappages["uttermostdark"].terrain[16] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["uttermostdark"].terrain[17] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["uttermostdark"].terrain[18] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["uttermostdark"].terrain[19] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["uttermostdark"].terrain[20] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["uttermostdark"].terrain[21] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["uttermostdark"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["uttermostdark"].terrain[7] = 'BK BK BK BK BK DK DK DK DK DK DK DK DK DK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["uttermostdark"].terrain[8] = 'BK BK BK BK BK DK p* p* p* p* p* p* p* DK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["uttermostdark"].terrain[9] = 'BK BK BK BK BK DK p* p* p* p* p* p* p* DK DK DK DK DK DK DK DK ## ## ## ## ## ## ## ## BK BK BK';
+mappages["uttermostdark"].terrain[10] = 'BK BK BK BK BK DK p* p* p* p* p* p* p* BF BF BF BF BF BF BF BF p* p* p* p* p* p* p* ## BK BK BK';
+mappages["uttermostdark"].terrain[11] = 'BK BK BK BK BK DK p* p* p* p* p* p* p* DK DK DK DK DK DK DK DK ## p* p* p* p* p* p* ## DK DK DK';
+mappages["uttermostdark"].terrain[12] = 'BK BK BK BK BK DK p* p* p* p* p* p* p* DK BK BK BK BK BK DK BF p* p* p* p* p* p* p* p* BF BF BF';
+mappages["uttermostdark"].terrain[13] = 'BK BK BK BK BK DK DK DK DK DK DK DK DK DK BK BK BK BK BK DK DK ## p* p* p* p* p* p* ## DK DK DK';
+mappages["uttermostdark"].terrain[14] = 'BK BK BK BK BK BK BK BK BK BK DK BF BF BF BF BF BF BF BF BF BF p* p* p* p* p* p* p* ## BK BK BK';
+mappages["uttermostdark"].terrain[15] = 'BK BK BK BK BK BK BK BK BK BK DK BF DK DK DK DK DK DK DK DK DK ## ## ## ## ## ## ## ## BK BK BK';
+mappages["uttermostdark"].terrain[16] = 'BK BK BK BK BK BK BK BK BK BK DK BF DK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["uttermostdark"].terrain[17] = 'BK BK BK BK BK BK BK BK BK BK DK BF DK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["uttermostdark"].terrain[18] = 'BK BK BK BK BK BK BK BK BK BK DK BF DK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["uttermostdark"].terrain[19] = 'BK BK BK BK BK BK BK BK BK BK DK BF DK ## ## ## ## ## ## ## BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["uttermostdark"].terrain[20] = 'BK BK BK BK BK BK BK BK BK BK DK BF DK ## p* p* p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["uttermostdark"].terrain[21] = 'BK BK BK BK BK BK BK BK BK BK DK BF BF p* p* p* p* p* p* p* BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["uttermostdark"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK DK DK DK ## ## ## ## ## ## ## BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["uttermostdark"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["uttermostdark"].terrain[24] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["uttermostdark"].terrain[25] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -939,12 +939,19 @@ mappages["uttermostdark"].terrain[31] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK 
 
 mappages["uttermostdark"].features = [];
 mappages["uttermostdark"].features[0] = {name : 'Doorway', x : 28, y : 12};
+mappages["uttermostdark"].features[1] = {name : 'DaemonDoorway', x : 21, y : 10};
+mappages["uttermostdark"].features[2] = {name : 'DaemonDoorway', x : 21, y : 12};
+mappages["uttermostdark"].features[3] = {name : 'DaemonDoorway', x : 21, y : 14};
+mappages["uttermostdark"].features[4] = {name : 'DaemonDoor', x : 21, y : 10};
+mappages["uttermostdark"].features[5] = {name : 'DaemonDoor', x : 21, y : 12};
+mappages["uttermostdark"].features[6] = {name : 'DaemonDoor', x : 21, y : 14};
 
 
 mappages["uttermostdark"].npcs = [];
+mappages["uttermostdark"].npcs[0] = {name : 'BalronNPC', x : 0, y : 0, skintone: '1'};
 
 mappages["uttermostdark"].desc = "The Uttermost Dark";
-mappages["uttermostdark"].longdesc = ``;
+mappages["uttermostdark"].longdesc = `You step into the darkness. It gives way only reluctantly to your light, and on all sides you can feel its fierce desire to overwhelm it. Behind you is a crack in the mountainside, a gap you can't see, and when the wind blows through it, it makes no sound.`;
 mappages["uttermostdark"].music = 'Dark Dungeon';
 mappages["uttermostdark"].savename = `Uttermost Dark`;
 mappages["uttermostdark"].exitmap = '';
@@ -970,3 +977,11 @@ mappages["uttermostdark"].returninfused = '0';
 mappages["uttermostdark"].linkedMaps = [""];
 mappages["uttermostdark"].editorLabels = '{}';
 // MAP ENDS HERE
+
+mappages["uttermostdark"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    let daemon = mapref.getTile(0,0).getTopNPC();
+    daemon.setPeaceAI("Darkness");
+    daemon.setCurrentAI("Darkness");
+  }
+}

@@ -101,6 +101,10 @@ NPCSpecialFuncs["archdaemon_bone"] = function(who,how) {
   who.onDeath = "archdaemon_bone";
 }
 
+NPCSpecialFuncs["ondeathShadow"] = function(who,how) {
+  who.onDeath = "shadow";
+}
+
 function DestroyJusticeCrystals() {
   let jmap = PC.getHomeMap();
   let crystals = jmap.npcs.getAll();
