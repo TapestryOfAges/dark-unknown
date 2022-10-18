@@ -2348,6 +2348,26 @@ tileFactory.prototype.makeCoralTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWorldsEndingRaftTile = function() {
+  let newTile = new WorldsEndingRaftTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWorldsEndingCenterRaftTile = function() {
+  let newTile = new WorldsEndingCenterRaftTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePotentialReceptacleTile = function() {
+  let newTile = new PotentialReceptacleTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWorldsEndingRaftSwitchTile = function() {
+  let newTile = new WorldsEndingRaftSwitchTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeDungeonTile = function() {
   let newTile = new DungeonTile();
   return newTile;
@@ -2380,31 +2400,6 @@ tileFactory.prototype.makeDungeon6Tile = function() {
 
 tileFactory.prototype.makeDungeon7Tile = function() {
   let newTile = new Dungeon7Tile();
-  return newTile;
-}
-
-tileFactory.prototype.makeWorldsEndingRaftTile = function() {
-  let newTile = new WorldsEndingRaftTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeWorldsEndingCenterRaftTile = function() {
-  let newTile = new WorldsEndingCenterRaftTile();
-  return newTile;
-}
-
-tileFactory.prototype.makePotentialReceptacleTile = function() {
-  let newTile = new PotentialReceptacleTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeWorldsEndingRaftSwitchTile = function() {
-  let newTile = new WorldsEndingRaftSwitchTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeDungeonTile = function() {
-  let newTile = new DungeonTile();
   return newTile;
 }
 
@@ -2540,6 +2535,11 @@ tileFactory.prototype.makeGreyDoorwayTile = function() {
 
 tileFactory.prototype.makeGreyDoorwayDarkenedTile = function() {
   let newTile = new GreyDoorwayDarkenedTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDaemonDoorwayTile = function() {
+  let newTile = new DaemonDoorwayTile();
   return newTile;
 }
 
@@ -2820,11 +2820,6 @@ tileFactory.prototype.makeRuinsWallDoor2Tile = function() {
 
 tileFactory.prototype.makeDoorTile = function() {
   let newTile = new DoorTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeDaemonDoorTile = function() {
-  let newTile = new DaemonDoorTile();
   return newTile;
 }
 
@@ -3593,13 +3588,13 @@ tileFactory.prototype.makeSecretDoorTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeShiftingWallTile = function() {
-  let newTile = new ShiftingWallTile();
+tileFactory.prototype.makeGreySecretDoorTile = function() {
+  let newTile = new GreySecretDoorTile();
   return newTile;
 }
 
-tileFactory.prototype.makeGreySecretDoorTile = function() {
-  let newTile = new GreySecretDoorTile();
+tileFactory.prototype.makeShiftingWallTile = function() {
+  let newTile = new ShiftingWallTile();
   return newTile;
 }
 
@@ -3820,6 +3815,11 @@ tileFactory.prototype.makeWardukeWalkOnTile = function() {
 
 tileFactory.prototype.makeWalkOnCOA2Tile = function() {
   let newTile = new WalkOnCOA2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnShadowTile = function() {
+  let newTile = new WalkOnShadowTile();
   return newTile;
 }
 
@@ -4455,6 +4455,11 @@ tileFactory.prototype.makeEtherGateTile = function() {
 
 tileFactory.prototype.makeMoongateTile = function() {
   let newTile = new MoongateTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDaemonMoongateTile = function() {
+  let newTile = new DaemonMoongateTile();
   return newTile;
 }
 
