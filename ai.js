@@ -3734,3 +3734,27 @@ function WingBuffet(who, dir, dragon, count) {
   }
 }
 
+ais.Darkness = function(who) {
+  if (!who.intro) {
+    who.intro = Dice.roll("1d3+6");
+    return;
+  } else if (who.intro && !who.introspoke) {
+    if (who.intro === 1) {
+      maintext.addText('A voice echoes in the darkness. <span class="daemontext">"Come, my little firefly. Come into the dark, where I can see you."</span>');
+      who.introspoke = 1;
+    } else {
+      who.intro--;
+    }
+  } else if (!who.second) {
+    if (PC.getx() < 20) {
+      who.second = Dice.roll("1d5+2");
+    } 
+  } else if (who.second && !who.secondspoke) {
+    if (who.second === 1) {
+      maintext.addText('<span class="daemontext">Little bug, with your lightning in a bottle. Facets of reflected glory.</span>');
+      who.secondspoke = 1;
+    } else {
+      who.second--;
+    }
+  }
+}
