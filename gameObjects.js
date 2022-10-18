@@ -4673,6 +4673,18 @@ function DoorwayTile() {
 }
 DoorwayTile.prototype = new FeatureObject();
 
+function DaemonDoorwayTile() {
+  this.name = "DaemonDoorway";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-704";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "archway";
+}
+DaemonDoorwayTile.prototype = new FeatureObject();
+
 function StoneDoorwayTile() {
   this.name = "StoneDoorway";
   this.graphic = "master_spritesheet.png";
@@ -8958,7 +8970,35 @@ WalkOnCOA2Tile.prototype.walkon = function(walker) {
       }
     }
   }
-  
+  return {msg:""};
+}
+
+function WalkOnShadowTile() {
+	this.name = "WalkOnShadow";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnShadowTile.prototype = new FeatureObject();
+
+WalkOnShadowTile.prototype.walkon = function(walker) {
+  let themap = walker.getHomeMap();
+
+  let shadow = localFactory.createTile("ShadowNPC");
+  themap.placeThing(6,8,shadow);
+  shadow = localFactory.createTile("ShadowNPC");
+  themap.placeThing(12,8,shadow);
+  shadow = localFactory.createTile("ShadowNPC");
+  themap.placeThing(6,12,shadow);
+  shadow = localFactory.createTile("ShadowNPC");
+  themap.placeThing(12,12,shadow);
+
+  return {msg: "<span class='daemontext'>Did you ever wonder where shadows go to hide? It is here, little one. In the absence of light, how can you tell... if you are surrounded by shadows?</span>"};
 }
 
 function SpinnerTile() {
@@ -11885,7 +11925,7 @@ MoongateTile.prototype = new FeatureObject();
 
 MoongateTile.prototype.walkon = function(who) {
   let response = {msg:""};
-  if (this.destmap && this.destx && this.desty) {
+  if (this.destmap && this.destx && this.desty && (this.destmap !== who.getHomeMap().getName())) {
     let newmap = new GameMap();
     if (maps.getMap(this.destmap)) {
       newmap = maps.getMap(this.destmap);
@@ -11896,7 +11936,41 @@ MoongateTile.prototype.walkon = function(who) {
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
     if (who === PC) { return {overridedraw: 1}; }
-  } 
+  } else if (this.destmap && this.destx && this.desty) {
+    who.getHomeMap().moveThing(this.destx,this.desty,who);
+    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+    DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
+  }
+  // needs SOUND
+  return response;
+}
+
+function DaemonMoongateTile() {
+  this.name = "DaemonMoongate";
+  this.graphic = "moongates.gif";
+  this.spritexoffset = '-128';
+  this.spriteyoffset = '0';
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "gate";
+
+  HasAmbientNoise.call(this,"sfx_portal_ambient",1.5);
+}
+DaemonMoongateTile.prototype = new FeatureObject();
+
+DaemonMoongateTile.prototype.walkon = function(who) {
+  let response = {msg:""};
+  if (this.destmap && this.destx && this.desty) {
+    who.getHomeMap().moveThing(this.destx,this.desty,who);
+    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+    DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
+
+    if (this.first) {
+//working here - do door dissolve, and prompt next Daemon speech
+    } else if (this.second) {
+//other door dissolve, daemon speech?
+    }
+  }
   // needs SOUND
   return response;
 }
