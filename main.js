@@ -13,7 +13,7 @@ let eidos = new Platonic();
 //var universe = new Object;
 
 let DU = {};
-DU.version = "0.9.1";
+DU.version = "0.9.2";
 
 DU.PC = new PCObject();
 DU.gamelength = 0;
@@ -30,9 +30,7 @@ let laststep = "left";
 
 DU.maps = new MapMemory();
 let maps = DU.maps; // alias
-//var worldmap = new GameMap();
-//var losgrid = new LOSMatrix(13);      // WAS RESTRICTING TO SIZE OF VIEWSCREEN
-let losgrid = new LOSMatrix(30);  // BIGGER FOR AI USE
+let losgrid = new LOSMatrix(30);  // BIGGER FOR AI USE, NO LONGER RESTRICTING TO SIZE OF VIEWSCREEN
 
 DU.DUTime = new Timeline(0);
 let DUTime = DU.DUTime; // alias
