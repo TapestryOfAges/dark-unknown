@@ -293,7 +293,7 @@ OnDeathFuncs["endact"] = function() {
   PC.addSpellEffect(endact);
 }
 
-OnDeathFuncs["cult"] = function() {
+OnDeathFuncs["cult"] = function(who) {
   let themap = who.getHomeMap();
   if (themap.getName() !== "Shadow3") { alert("Somehow on the wrong map"); }
   // check to see if both imps and cultists are dead, if so Rhys says something.
@@ -302,8 +302,8 @@ OnDeathFuncs["cult"] = function() {
   let npcs = themap.npcs.getAll();
   let rhys;
   for (let i=0;i<npcs.length;i++) {
-    if (npcs[i].getName() === "ImpNPC") { impcount++; }
-    if (npcs[i].getName() === "CultistNPC") { cultistcount++; }
+    if (npcs[i].getName() === "ImpNPC") { if (npcs[i] !== who) { impcount++; } }
+    if (npcs[i].getName() === "CultistNPC") { if (npcs[i] !== who) { cultistcount++; } }
     if (npcs[i].getNPCName() === "Rhys") { rhys = npcs[i]; }
   }
   if (!impcount && !cultistcount) {
@@ -312,7 +312,7 @@ OnDeathFuncs["cult"] = function() {
   }
 }
 
-OnDeathFuncs["scouring"] = function() {
+OnDeathFuncs["scouring"] = function(who) {
   let themap = who.getHomeMap();
   if (themap.getName() !== "beldskae_scour") { alert("Somehow on wrong map."); }
   let npcs = themap.npcs.getAll();
@@ -363,6 +363,19 @@ OnDeathFuncs["archdaemon_ashes"] = function() {
 
 OnDeathFuncs["archdaemon_dust"] = function() {
   maintext.addText('As the daemon collapses, it cries out: "Great Shepherd of the Dark, I have failed you!"');
+}
+
+OnDeathFuncs["shadow"] = function(who) {
+  let npcs = who.getHomeMap().npcs.getAll();
+  let shadowcount = 0;
+  for (let i=0;i<npcs.length;i++) {
+    if ((npcs[i].getName() === "ShadowNPC") && (npcs[i] !== who)) { shadowcount++; }
+  }
+  if (shadowcount === 0) {
+    let moongate = localFactory.createTile("DaemonMoongate");
+    who.getHomeMap().placeThing(who.getx(),who.gety(),moongate);
+    moongate.first = 1;
+  }
 }
 
 function PerformActEnd() {
