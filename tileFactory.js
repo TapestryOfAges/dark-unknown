@@ -993,6 +993,11 @@ tileFactory.prototype.makeDoorwayTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeDaemonDoorwayTile = function() {
+  let newTile = new DaemonDoorwayTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeStoneDoorwayTile = function() {
   let newTile = new StoneDoorwayTile();
   return newTile;
@@ -1160,6 +1165,11 @@ tileFactory.prototype.makeThroneTile = function() {
 
 tileFactory.prototype.makeDoorTile = function() {
   let newTile = new DoorTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDaemonDoorTile = function() {
+  let newTile = new DaemonDoorTile();
   return newTile;
 }
 
