@@ -3491,6 +3491,41 @@ function DaemonNPCTile() {
 DaemonNPCTile.prototype = new NPCObject();
 
 
+// CorruptTownsfolk
+
+function DoppelgangerNPCTile() {
+  this.name = 'DoppelgangerNPC';
+  this.level = 7;
+  this.addhp = 5;
+  this.str = 20;
+  this.dex = 20;
+  this.int = 20;
+  this.alignment = 'Evil';
+  this.attitude = 'hostile';
+  this.peaceAI = 'seekPC-10';
+  this.forgetAt = 10;
+  this.withdraw = 0;
+  this.graphic = '307.gif';
+  this.altgraphic = ['307.2.gif','paladin-offcolor.gif',];
+  this.meleeAttackAs = 'none';
+  this.meleeDamage = '5d10+22'
+  this.meleeStrDamage = 1
+  this.missileAttackAs = 'none';
+  this.armorAs = 'PlateArmor';
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.desc = "your reflection";
+  this.meleeChance = 66;
+  this.spellsknown = { heal: 1, attack: 1, highattack: 1, buff: 1, };
+  this.resists = {};
+  this.meleeHitSound = 'sfx_melee_hit';
+  this.meleeAttackSound = 'sfx_melee_miss';
+  this.gender = 'random';
+}
+DoppelgangerNPCTile.prototype = new NPCObject();
+
+
 // Monster
 
 function EarthenTyrantNPCTile() {
@@ -3685,6 +3720,43 @@ ReaperLordNPCTile.prototype = new NPCObject();
 
 // Monster
 
+function ShadowNPCTile() {
+  this.name = 'ShadowNPC';
+  this.level = 7;
+  this.addhp = 0;
+  this.str = 17;
+  this.dex = 17;
+  this.int = 17;
+  this.alignment = 'Evil';
+  this.attitude = 'hostile';
+  this.peaceAI = 'seekPC-10';
+  this.forgetAt = 10;
+  this.withdraw = 0;
+  this.graphic = '330.gif';
+  this.altgraphic = ['364.gif',];
+  this.meleeAttackAs = 'none';
+  this.meleeDamage = '4d4+9'
+  this.meleeStrDamage = .66
+  this.missileAttackAs = 'none';
+  this.armorAs = 'PlateArmor';
+  this.movetype = MOVE_ETHEREAL;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.prefix = 'a';
+  this.desc = "shadow";
+  this.onDamaged = 'incorporeal';
+  this.meleeChance = 66;
+  this.spellsknown = { attack: 1, highattack: 1, };
+  this.resists = { poison:100 };
+  this.special = 'phase,undead,ondeathShadow';
+  this.meleeHitSound = 'sfx_ghost_hit';
+  this.meleeAttackSound = 'sfx_ghost_miss';
+}
+ShadowNPCTile.prototype = new NPCObject();
+
+
+// Monster
+
 function ElderDragonNPCTile() {
   this.name = 'ElderDragonNPC';
   this.level = 8;
@@ -3778,12 +3850,12 @@ function ArchdaemonOfAshesNPCTile() {
   this.movetype = MOVE_FLY;
   this.leavesCorpse = 'none';
   this.lootTable = 'archdaemon_ashes';
-  this.prefix = 'the';
-  this.desc = "Archdaemon of Ashes";
+  this.prefix = 'an';
+  this.desc = "archdaemon";
   this.meleeChance = 75;
   this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, banned: 'Ice', };
   this.resists = { fire:60, ice:30,poison: 60 };
-  this.special = 'archdaemon_ashes';
+  this.special = 'archdaemon_ashes, noflee';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
 }
@@ -3814,12 +3886,12 @@ function ArchdaemonOfDustNPCTile() {
   this.movetype = MOVE_FLY;
   this.leavesCorpse = 'none';
   this.lootTable = 'archdaemon_dust';
-  this.prefix = 'the';
-  this.desc = "Archdaemon of Dust";
+  this.prefix = 'an';
+  this.desc = "archdaemon";
   this.meleeChance = 75;
   this.spellsknown = { lowcontrol: 1, highcontrol: 1, attack: 1, highattack: 1, };
   this.resists = { fire:40, ice:40,poison: 60 };
-  this.special = 'archdaemon_dust';
+  this.special = 'archdaemon_dust, noflee';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
 }
@@ -3850,12 +3922,12 @@ function ArchdaemonOfIceNPCTile() {
   this.movetype = MOVE_FLY;
   this.leavesCorpse = 'none';
   this.lootTable = 'archdaemon_ice';
-  this.prefix = 'the';
-  this.desc = "Archdaemon of Ice";
+  this.prefix = 'an';
+  this.desc = "archdaemon";
   this.meleeChance = 75;
   this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, banned: 'Fire', };
   this.resists = { fire:30, ice:60,poison: 60 };
-  this.special = 'archdaemon_ice';
+  this.special = 'archdaemon_ice, noflee';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
 }
@@ -3886,12 +3958,12 @@ function ArchdaemonOfBoneNPCTile() {
   this.movetype = MOVE_FLY;
   this.leavesCorpse = 'none';
   this.lootTable = 'archdaemon_bone';
-  this.prefix = 'the';
-  this.desc = "Archdaemon of Bone";
+  this.prefix = 'an';
+  this.desc = "archdaemon";
   this.meleeChance = 75;
   this.spellsknown = { summon: 1, attack: 1, highattack: 1, };
   this.resists = { fire:40, ice:40,poison: 60 };
-  this.special = 'archdaemon_bone';
+  this.special = 'archdaemon_bone, noflee';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
 }
@@ -3971,6 +4043,38 @@ function AbyssalKrakenNPCTile() {
   this.meleeAttackSound = 'sfx_animal_miss';
 }
 AbyssalKrakenNPCTile.prototype = new NPCObject();
+
+
+// Monster
+
+function ShepherdOfDarkNPCTile() {
+  this.name = 'ShepherdOfDarkNPC';
+  this.level = 100;
+  this.addhp = 10000;
+  this.str = 30;
+  this.dex = 30;
+  this.int = 30;
+  this.alignment = 'Evil';
+  this.attitude = 'hostile';
+  this.peaceAI = 'Darkness';
+  this.forgetAt = 0;
+  this.withdraw = 0;
+  this.graphic = '354.gif';
+  this.altgraphic = ['388.gif',];
+  this.meleeAttackAs = 'none';
+  this.meleeDamage = '5d10+22'
+  this.meleeStrDamage = 1
+  this.missileAttackAs = 'none';
+  this.armorAs = 'PlateArmor';
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.prefix = 'the';
+  this.desc = "Shepherd of the Dark";
+  this.meleeChance = 0;
+  this.resists = {};
+}
+ShepherdOfDarkNPCTile.prototype = new NPCObject();
 
 
 // Summoned
