@@ -638,7 +638,7 @@ function Enterable(entermap, enterx, entery) {
 function LightEmitting(lightlevel) {
 	this.light = lightlevel;
 	this.ignite = function() {
-	this.setLight(lightlevel);
+	  this.setLight(lightlevel);
 	}
 	this.extinguish = function() {
     this.setLight(0);
@@ -675,7 +675,7 @@ function Breakable(brokengraphicarray, startsbroken, breaksound) {
   
   this.getBroken = function() { return this.broken; }
   this.setBroken = function(broke) { this.broken = broke; return this.broken; }  // note, set broken doesn't change graphics, etc
-  this.break = function(who) { 
+  this.break = function(who, notext, silent) { 
     this.broken = 1; 
     this.setGraphicArray(brokengraphicarray);
     if (!this.fixeddesc) {
@@ -684,7 +684,7 @@ function Breakable(brokengraphicarray, startsbroken, breaksound) {
     let olddesc = this.getDesc();
     this.setDesc(this.brokendesc);
     //play sound effect
-    if (breaksound && who) {
+    if (breaksound && who && !silent) {
       if (GetDistance(who.getx(),who.gety(),this.getx(),this.gety()) <= 5) {
         DUPlaySound(breaksound);
       }
@@ -700,7 +700,8 @@ function Breakable(brokengraphicarray, startsbroken, breaksound) {
     }
     let retval = {};
     retval["fin"] = 1;
-    retval["txt"] =  "You break the " + olddesc + "!";
+    if (notext) { retval["txt"] = ""; }
+    else { retval["txt"] =  "You break the " + olddesc + "!"; }
     retval["input"] = "&gt;";
     return retval;
   }
@@ -7666,6 +7667,88 @@ CursedReflectionTile.prototype.walkon = function(who) {
   return {msg:""};
 }
 
+function DaemonicMirrorTile() {
+  this.name = "DaemonicMirror";
+  this.graphic = "master_spritesheet_d.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-384";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "mirror";
+  
+  Breakable.call(this,["master_spritesheet_d.gif", "", "-224", "-384"],0,"sfx_break_glass");
+  this.brokendesc = "broken mirror";
+}
+DaemonicMirrorTile.prototype = new FeatureObject();
+
+DaemonicMirrorTile.prototype.activate = function() {
+  if (!DU.gameflags.getFlag("editor")) {
+    let reflection = localFactory.createTile("DaemonicReflection");
+    reflection.mirror = this;
+    let homemap = this.getHomeMap();
+    homemap.placeThing(this.getx(),this.gety()+1,reflection);
+  }
+  return 1;
+}
+
+DaemonicMirrorTile.prototype.onBreak = function(who) {
+  let thismap = this.getHomeMap();
+  let allbroke = 1;
+  let reflection = thismap.getTile(this.getx(),this.gety()+1).getTopFeature();
+  if (reflection.getName() === "DaemonicReflection") { 
+    thismap.deleteThing(reflection);
+  }
+
+  for (let i=14;i<=18;i++) {
+    let mirror = thismap.getTile(i,20).getTopFeature();
+    if (!mirror.broken) { allbroke = 0; }
+  }
+  if (allbroke && (whoseturn === PC)) {
+    DUPlaySound("sfx_thunder");
+    let daemon = localFactory.createTile("DaemonNPC");
+    this.getHomeMap().placeThing(23,21,daemon);
+  }
+}
+
+function DaemonicReflectionTile() {
+  this.name = "DaemonicReflection";
+  this.graphic = "walkon.gif";
+  this.invisible = 1;
+  this.passable = MOVE_WALK + MOVE_LEVITATE + MOVE_ETHEREAL + MOVE_FLY;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "reflection walkon";
+  this.nosave = 1;
+}
+DaemonicReflectionTile.prototype = new FeatureObject();
+
+DaemonicReflectionTile.prototype.walkon = function(who) {
+  // add reflection to attached mirror
+  if (!this.mirror.getBroken()) {
+    this.mirror.setGraphicArray([who.getGraphic(), "mirror-reflection_d.gif", "0", "7"]);
+    //	this.graphic = "master_spritesheet_d.gif";    // spritesheet version of reflection. Can't work yet because of need to be overlay
+    // this.spritexoffset = "-288"; 
+    // this.spriteyoffset = "-1344";
+    this.mirror.reflecting = 1;
+  }
+  return {msg:""};
+}
+
+DaemonicReflectionTile.prototype.walkoff = function(who) {
+  let allreflect = 1;
+  let thismap = this.getHomeMap();
+  for (let i=14;i<=18;i++) {
+    let mirror = thismap.getTile(i,20).getTopFeature();
+    if (!mirror.reflecting) { allreflect = 0; }
+  }
+  if (allreflect) {
+    let darkness = thismap.getTile(18,32).getTopNPC();
+    darkness.reflecting = 1;
+  }
+  return {msg:""};
+}
+
 function AlchemyLabTopTile() {
   this.name = "AlchemyLabTop";
   this.graphic = "master_spritesheet.png";
@@ -11960,19 +12043,54 @@ DaemonMoongateTile.prototype = new FeatureObject();
 
 DaemonMoongateTile.prototype.walkon = function(who) {
   let response = {msg:""};
-  if (this.destmap && this.destx && this.desty) {
+  if (this.destx && this.desty) {
     who.getHomeMap().moveThing(this.destx,this.desty,who);
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
 
     if (this.first) {
-//working here - do door dissolve, and prompt next Daemon speech
+      let door = this.getHomeMap().getTile(21,24).getTopFeature();
+      setTimeout(function() { DissolveDoor(door,1);}, 250);
     } else if (this.second) {
 //other door dissolve, daemon speech?
     }
   }
   // needs SOUND
   return response;
+}
+
+function DissolveDoor(door, which) {
+  // working here- replace with new graphic locations when I have them
+  if (door.spriteyoffset === "-704") {
+    door.spriteyoffset = "-1856";
+    door.spritexoffset = "-192";
+    DrawMainFrame("one",door.getHomeMap(),door.getx(),door.gety());
+    setTimeout(function() { DissolveDoor(door,which);}, 250);
+  } else if (door.spritexoffset === "-192") {
+    door.spritexoffset = "-224";
+    DrawMainFrame("one",door.getHomeMap(),door.getx(),door.gety());
+    setTimeout(function() { DissolveDoor(door,which);}, 250);
+  } else if (door.spritexoffset === "-224") {
+    door.spritexoffset = "-256";
+    DrawMainFrame("one",door.getHomeMap(),door.getx(),door.gety());
+    setTimeout(function() { DissolveDoor(door,which);}, 250);
+  } else if (door.spritexoffset === "-256") {
+    door.spritexoffset = "-288";
+    DrawMainFrame("one",door.getHomeMap(),door.getx(),door.gety());
+    setTimeout(function() { DissolveDoor(door,which);}, 250);
+  } else {
+    let dmap = door.getHomeMap();
+    let dx = door.getx();
+    let dy = door.gety();
+    dmap.deleteThing(door);
+    DrawMainFrame("one",dmap,dx,dy);
+    let darkness = dmap.getTile(18,32).getTopNPC();
+    if (which === 1) {
+      darkness.firstgate = 1;
+    } else {
+      darkness.secondgate = 1;
+    }
+  }
 }
 
 function PetrifiedReaperTile() {
