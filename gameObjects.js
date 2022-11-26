@@ -839,7 +839,7 @@ function OpenContainer(opensound, lockedsound) {
   
   this.usePrompt = function(code) {
     if (code === 89) {
-      PC.diffKarma(1-this.getKarmaPenalty);
+      PC.diffKarma(0-this.getKarmaPenalty());
       this.setKarmaPenalty(0);
       return this.use(PC);
     } else {
@@ -859,7 +859,7 @@ function OpenContainer(opensound, lockedsound) {
     
     if (this.getKarmaPenalty() && (who === PC) && !fire) {
       if (DU.gameflags.getFlag("skip_theft_warning")) {
-        PC.diffKarma(0-this.getKarmaPenalty);
+        PC.diffKarma(0-this.getKarmaPenalty());
       } else {
         retval["override"] = -1;
         retval["fin"] = -1;
