@@ -3751,10 +3751,48 @@ ais.Darkness = function(who) {
     } 
   } else if (who.second && !who.secondspoke) {
     if (who.second === 1) {
-      maintext.addText('<span class="daemontext">Little bug, with your lightning in a bottle. Facets of reflected glory.</span>');
+      maintext.addText('<span class="daemontext">"Little bug, with your lightning in a bottle. Facets of reflected glory."</span>');
       who.secondspoke = 1;
     } else {
       who.second--;
+    }
+  } else if (!who.third && who.firstgate) {
+    who.third = Dice.roll("1d5+2");
+  } else if (who.third && !who.thirdspoke) {
+    if (who.third === 1) {
+      maintext.addText('<span class="daemontext">"There is not enough light in all the worlds to fill a void without end and without limit."</span>');
+    } else {
+      who.third--;
+    }
+  } else if (!who.fourth && who.secondgate) {
+    who.fourth = Dice.roll("1d6+2");
+  } else if (who.fourth && !who.fourthspoke) {
+    if (who.fourth === 1) {
+      maintext.addText('<span class="daemontext">"Those who came before you strove to make gods out of light and stone. But we have always been here in the dark. We are why they are no more."</span>');
+    } else {
+      who.fourth--;
+    }
+  }
+
+  if (who.reflecting && !who.reflected) {
+    let thismap = who.getHomeMap();
+    if ((PC.getx() >= 21) && (PC.gety() > 18)) {
+      who.reflected = 1;
+      for (let i=14;i<=18;i++) {
+        let mirror = thismap.getTile(i,20).getTopFeature();
+        if (!mirror.broken) {
+          mirror.break(PC);
+          let reflection = thismap.getTile(i,21).getTopFeature();
+          if (reflection.getName() === "DaemonicReflection") { 
+            thismap.deleteThing(reflection);
+          }
+          let doppel = localFactory.createTile("DoppelgangerNPC");
+          doppel.setGraphic(PC.getGraphic());  // in other branch, set to look like human layers WORKING HERE
+          doppel.onDeath = "doppelganger";
+          thismap.placething(i,21,doppel);
+        }
+      }
+    
     }
   }
 }

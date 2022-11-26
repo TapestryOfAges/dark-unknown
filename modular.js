@@ -378,6 +378,29 @@ OnDeathFuncs["shadow"] = function(who) {
   }
 }
 
+OnDeathFuncs["doppelganger"] = function(who) {
+  let gatex = 24;
+  let gatey = 21;
+  if (who.getName() === "DaemonNPC") { 
+    gatex = who.getx();
+    gatey = who.gety();
+  }
+  // check for doppelgangers
+  let thismap = who.getHomeMap();
+  let npcs = thismap.npcs.getAll();
+  let dops = 0;
+  for (let i=0;i<npcs.length;i++) {
+    if ((npcs[i] !== who) && (npcs[i].getName() === "DoppelgangerNPC")) {
+      dops = 1;
+    }
+  }
+  if (!dops) {
+    let moongate = localFactory.createTile("DaemonMoongate");
+    who.getHomeMap().placeThing(gatex,gatey,moongate);
+    moongate.second = 1;
+  }
+}
+
 function PerformActEnd() {
   let endact = PC.getSpellEffectsByName("UnconsciousEndAct");
   if (endact.getPower() === 1) {

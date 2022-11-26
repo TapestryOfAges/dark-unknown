@@ -3533,6 +3533,16 @@ tileFactory.prototype.makeCursedReflectionTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeDaemonicMirrorTile = function() {
+  let newTile = new DaemonicMirrorTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDaemonicReflectionTile = function() {
+  let newTile = new DaemonicReflectionTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeAlchemyLabTopTile = function() {
   let newTile = new AlchemyLabTopTile();
   return newTile;
@@ -6248,6 +6258,11 @@ tileFactory.prototype.makeDaemonNPCTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeDoppelgangerNPCTile = function() {
+  let newTile = new DoppelgangerNPCTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeEarthenTyrantNPCTile = function() {
   let newTile = new EarthenTyrantNPCTile();
   return newTile;
@@ -6270,6 +6285,11 @@ tileFactory.prototype.makeEyesofSpiteNPCTile = function() {
 
 tileFactory.prototype.makeReaperLordNPCTile = function() {
   let newTile = new ReaperLordNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeShadowNPCTile = function() {
+  let newTile = new ShadowNPCTile();
   return newTile;
 }
 
@@ -6310,6 +6330,11 @@ tileFactory.prototype.makeTitanNPCTile = function() {
 
 tileFactory.prototype.makeAbyssalKrakenNPCTile = function() {
   let newTile = new AbyssalKrakenNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeShepherdOfDarkNPCTile = function() {
+  let newTile = new ShepherdOfDarkNPCTile();
   return newTile;
 }
 
