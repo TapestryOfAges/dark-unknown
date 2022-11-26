@@ -861,7 +861,7 @@ function OpenContainer(opensound, lockedsound) {
   
   this.usePrompt = function(code) {
     if (code === 89) {
-      PC.diffKarma(1-this.getKarmaPenalty);
+      PC.diffKarma(0-this.getKarmaPenalty());
       this.setKarmaPenalty(0);
       return this.use(PC);
     } else {
