@@ -484,7 +484,15 @@ function Pushable() {
       let pushto = objmap.getTile(this.getx()+diffx,this.gety()+diffy);
       if (pushto === "OoB") { return this.pullMe(); }
       let canmove = pushto.canMoveHere(MOVE_WALK);
+      let canpush = 0;
       if (canmove["canmove"]) {
+        canpush = 1;
+        let fea = pushto.features.getAll();
+        for (let i=0;i<fea.length;i++) {
+          if (fea[i].nopush) { canpush = 0; }
+        }
+      }
+      if (canpush) {
         objmap.moveThing(this.getx()+diffx,this.gety()+diffy,this);
         retval["txt"] = "Push: " + this.getDesc() + ".";
         if ("facing" in this) {
@@ -851,7 +859,7 @@ function OpenContainer(opensound, lockedsound) {
     
     if (this.getKarmaPenalty() && (who === PC) && !fire) {
       if (DU.gameflags.getFlag("skip_theft_warning")) {
-        PC.diffKarma(1-this.getKarmaPenalty);
+        PC.diffKarma(0-this.getKarmaPenalty);
       } else {
         retval["override"] = -1;
         retval["fin"] = -1;
