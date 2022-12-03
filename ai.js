@@ -3795,4 +3795,13 @@ ais.Darkness = function(who) {
     
     }
   }
+
+  if ((who.getMaxHP() - who.getHP()) > 100) {
+    if (!who.rebuked) {
+      who.rebuked = 1;
+      maintext.addText('<span class="daemontext">"And what, precisely, do you believe this to be accomplishing?"</span>');
+    }
+    who.setHP(who.getMaxHP()-100);
+    who.healedcount++;
+  }
 }
