@@ -1332,6 +1332,37 @@ ReincarnateTile.prototype.endEffect = function(silent) {
   DrawCharFrame();  
 }
 
+function RubyLightTile() {
+  this.addType("buff");
+  this.name = "RubyLight";
+  this.display = "<span style='color:red'>R</span>";
+  this.power = 10;
+  this.zstatdesc = "The space around you is lit by the power of the ruby.";
+  this.desc = "Ruby's Light";
+  this.level = 1;
+}
+RubyLightTile.prototype = new EphemeralObject();
+
+RubyLightTile.prototype.applyEffect = function(silent) {
+  let who = this.getAttachedTo();
+  let power = this.getPower();
+  if (who) {
+    who.setLight(who.getLight() + power);
+  }
+  return 1;
+}
+
+RubyLightTile.prototype.eachTurn = function() {
+  this.endEffect();
+}
+
+RubyLightTile.prototype.endEffect = function(silent) {
+  let who = this.getAttachedTo();
+  who.setLight(who.getLight() - this.getPower());
+  who.deleteSpellEffect(this);
+  DrawCharFrame();
+}
+
 function SleepTile() {
   this.addType("debuff");
   this.name = "Sleep";

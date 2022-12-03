@@ -13174,8 +13174,12 @@ RubyGemoftheSunTile.prototype.use = function(who) {
       daemon.activate();
       DU.gameflags.setFlag("ashesbeacon",1);
     }
+  } else if ((themap.getName() === "uttermostdark") && (who.gety() > 27) && (who.getx() > 13)) {
+    
   } else {
     retval["txt"] = "You raise the ruby before you, motes of sunlight glinting within its facets. You focus upon it and light blazes forth, illuminating every cranny, before fading back to the brightness it holds usually.";
+    let light = localFactory.createTile("RubyLight");
+    who.addSpellEffect(light);
   }
   return retval;
 }
