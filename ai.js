@@ -1874,7 +1874,7 @@ ais.Justice = function(who) {
     retval.wait = 1; // animation will occur, we'll handle restarting the scheduler
     maintext.addText('Justice gasps, then says, "You are more formidable than I anticipated. But it will not avail you. What has been put into motion cannot be stopped! Good-bye!"');
     DU.gameflags.setFlag("justice_flees",1);
-    maintext.setInputLine("[MORE]");
+    maintext.setInputLine("&gt;[MORE]");
     maintext.drawTextFrame();
     gamestate.setMode("anykey");
     targetCursor.command="justice";
@@ -1917,7 +1917,7 @@ ais.Justice = function(who) {
     retval.wait = 1; // animation will occur, we'll handle restarting the scheduler
     console.log("Justice is out of mana for a second time.");
     maintext.addText('Justice growls and cries, "How is it that you still stand? No matter... what has been put into motion cannot be stopped. Good-bye!"');
-    maintext.setInputLine("[MORE]");
+    maintext.setInputLine("&gt;[MORE]");
     maintext.drawTextFrame();
     gamestate.setMode("anykey");
     DU.gameflags.setFlag("justice_flees",1);
@@ -3771,6 +3771,11 @@ ais.Darkness = function(who) {
       maintext.addText('<span class="daemontext">"Those who came before you strove to make gods out of light and stone. But we have always been here in the dark. We are why they are no more."</span>');
     } else {
       who.fourth--;
+    }
+  } else if (!who.alone) {
+    if ((PC.gety() > 27) && (PC.getx() > 11)) {
+      who.alone = 1;
+      if (DU.gameflags.getFlag("music")) { DUPlayMusic("Heartbeat", {fade:1}); }
     }
   }
 
