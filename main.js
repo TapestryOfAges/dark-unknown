@@ -603,7 +603,7 @@ function DoAction(code, ctrl) {
         }
         if (resp["fin"] >= 2) {
           if ((targetCursor.command === "u") && (resp["fin"] === 3)) {
-            maintext.setInputLine("[MORE]");
+            maintext.setInputLine("&gt;[MORE]");
             maintext.addText(resp["txt"]);
             gamestate.setMode("anykey");
             maintext.drawTextFrame();
@@ -767,7 +767,7 @@ function DoAction(code, ctrl) {
     }
     else if (response["fin"] === 3) {
       // books
-      maintext.setInputLine("[MORE]");
+      maintext.setInputLine("&gt;[MORE]");
       maintext.addText(response["txt"]);
       gamestate.setMode("anykey");
       maintext.drawTextFrame();
@@ -810,7 +810,7 @@ function DoAction(code, ctrl) {
 
     if (response["fin"] === 3) {
       // drinking from the brilliant pool
-      maintext.setInputLine("[MORE]");
+      maintext.setInputLine("&gt;[MORE]");
       maintext.addText(response["txt"]);
       gamestate.setMode("anykey");
       maintext.drawTextFrame();
@@ -894,7 +894,7 @@ function DoAction(code, ctrl) {
       }
       else if (response["usefin"] === 3) {
         // books
-        maintext.setInputLine("[MORE]");
+        maintext.setInputLine("&gt;[MORE]");
         maintext.addText(response["txt"]);
         gamestate.setMode("anykey");
         maintext.drawTextFrame();
@@ -1401,10 +1401,57 @@ function DoAction(code, ctrl) {
         targetCursor.idx = 1;
         gamestate.setMode("anykey");
         maintext.addText(retval["outcome"][0]);
-        maintext.setInputLine("[MORE]");
+        maintext.setInputLine("&gt;[MORE]");
         maintext.drawTextFrame();
       }
     }
+  } else if (gamestate.getMode() === "endgame") {
+    if (targetCursor.dark === 1) {
+      maintext.addText("Before you stands your ultimate foe, the architect of all your struggles. Its face is unreadable within the shadows, but it does not move as you lift the ruby up to eye level.");
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 2) {
+      maintext.addText("You are so far from the sun, here.");
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 3) {
+      maintext.addText("But you can feel the motes of the sun's strength that you have seeded in the underworld. Precisely arranged, to focus their power where it is needed.");
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 4) {
+      maintext.addText("You focus on the ruby, and command it to bring forth light. There is a flicker...");
+      targetCursor.dark++;
+      uii.style.backgroundImage = `url('graphics/splash/DemonGem-Part2.gif')`;  
+    } else if (targetCursor.dark === 5) {
+      maintext.addText("For a heartbeat, the light grows.");
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 6) {
+      maintext.addText("And then, it goes out.")
+      uii.style.backgroundImage = ``;  
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 7) {
+      maintext.addText("A voice speaks. The voice you have been hearing all through your striving deeper into the dark.");
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 8) {
+      maintext.addText('"This is a marvelous enchantment that you have brought here before me. It is truly my nemesis, the undoing of all my schemes. And yet."');
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 9) {
+      maintext.addText('"To use this amazing artifact, this gemstone of sunlight’s radiance, you must concentrate your will upon it- to invoke light, and life, and power. You have to want, so that your will sparks forth, and the ruby lights."');
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 10) {
+      maintext.addText("And here, alone in the dark? My will overpowers yours like a hurricane snuffing a candle.");
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 11) {
+      maintext.addText("This is the end of your quest, little hero, failed lightbringer. It is over.");
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 12) {
+      maintext.addText("You cannot move. It is challenging to think. The will of the Shepherd of the Dark surrounds you like a miasma. Within and without... all goes dark.");
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 13) {
+      maintext.addText("...");
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 14) {
+      maintext.addText("You try to rouse yourself. You are not done fighting... and then there is another voice, in your head. One you know as well as you know your own.")
+      targetCursor.dark++;
+    }
+
   }
   maintext.flushDelayedText();
 }
