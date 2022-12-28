@@ -1450,6 +1450,12 @@ function DoAction(code, ctrl) {
     } else if (targetCursor.dark === 14) {
       maintext.addText("You try to rouse yourself. You are not done fighting... and then there is another voice, in your head. One you know as well as you know your own.")
       targetCursor.dark++;
+    } else if (targetCursor.dark === 15) {
+      maintext.addText(`"${PC.getPCName()}? ${PC.getPCName()}, can you hear me?"`);
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 16) {
+      maintext.addText("Your brother. In your mind, you see a vision of him, and standing to either side of him are your mother and your father. The Rune of Kings blazes on the flesh of each, tying each of you to the land, to the kingdom, and to each other. Each of them reaches out a hand, and hold fast to your shoulders.");
+      targetCursor.dark++;
     }
 
   }

@@ -1025,19 +1025,19 @@ mappages["uttermostdark"].onload = function(mapref) {
 // MAP BEGINS HERE
 mappages["endgame"] = {};
 mappages["endgame"].terrain = [];
- mappages["endgame"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["endgame"].terrain[1] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["endgame"].terrain[2] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["endgame"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["endgame"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["endgame"].terrain[5] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["endgame"].terrain[6] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["endgame"].terrain[7] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["endgame"].terrain[8] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["endgame"].terrain[9] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["endgame"].terrain[10] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["endgame"].terrain[11] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["endgame"].terrain[12] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["endgame"].terrain[0] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch';
+ mappages["endgame"].terrain[1] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch';
+ mappages["endgame"].terrain[2] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch';
+ mappages["endgame"].terrain[3] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch';
+ mappages["endgame"].terrain[4] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch';
+ mappages["endgame"].terrain[5] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch';
+ mappages["endgame"].terrain[6] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch';
+ mappages["endgame"].terrain[7] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch';
+ mappages["endgame"].terrain[8] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch';
+ mappages["endgame"].terrain[9] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch';
+mappages["endgame"].terrain[10] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch';
+mappages["endgame"].terrain[11] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch';
+mappages["endgame"].terrain[12] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch';
 
 mappages["endgame"].features = [];
 
