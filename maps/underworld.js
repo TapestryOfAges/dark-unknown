@@ -1021,3 +1021,53 @@ mappages["uttermostdark"].onload = function(mapref) {
     }
   }
 }
+
+// MAP BEGINS HERE
+mappages["endgame"] = {};
+mappages["endgame"].terrain = [];
+ mappages["endgame"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["endgame"].terrain[1] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["endgame"].terrain[2] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["endgame"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["endgame"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["endgame"].terrain[5] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["endgame"].terrain[6] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["endgame"].terrain[7] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["endgame"].terrain[8] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["endgame"].terrain[9] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["endgame"].terrain[10] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["endgame"].terrain[11] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["endgame"].terrain[12] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK';
+
+mappages["endgame"].features = [];
+
+
+mappages["endgame"].npcs = [];
+
+mappages["endgame"].desc = "The Uttermost Dark";
+mappages["endgame"].longdesc = ``;
+mappages["endgame"].music = 'Alone';
+mappages["endgame"].savename = ``;
+mappages["endgame"].exitmap = '';
+mappages["endgame"].exitx = '65';
+mappages["endgame"].exity = '70';
+mappages["endgame"].wraps = '';
+mappages["endgame"].enterx = '65';
+mappages["endgame"].entery = '70';
+mappages["endgame"].seeBelow = '';
+mappages["endgame"].lightLevel = 'bright';
+mappages["endgame"].alwaysRemember = '0';
+mappages["endgame"].scale = '1';
+mappages["endgame"].underground = '0';
+mappages["endgame"].undergroundDesc = '';
+mappages["endgame"].enterscript = '';
+mappages["endgame"].entertestscript = '';
+mappages["endgame"].exitscript = '';
+mappages["endgame"].exittestscript = '';
+mappages["endgame"].returnmap = '';
+mappages["endgame"].returnx = 'NaN';
+mappages["endgame"].returny = 'NaN';
+mappages["endgame"].returninfused = '0';
+mappages["endgame"].linkedMaps = [""];
+mappages["endgame"].editorLabels = '{}';
+// MAP ENDS HERE
