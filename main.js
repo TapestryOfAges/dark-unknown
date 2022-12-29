@@ -1456,6 +1456,23 @@ function DoAction(code, ctrl) {
     } else if (targetCursor.dark === 16) {
       maintext.addText("Your brother. In your mind, you see a vision of him, and standing to either side of him are your mother and your father. The Rune of Kings blazes on the flesh of each, tying each of you to the land, to the kingdom, and to each other. Each of them reaches out a hand, and hold fast to your shoulders.");
       targetCursor.dark++;
+      let endmap = maps.addMap("endgame");
+      MoveBetweenMaps(PC,PC.getHomeMap(), endmap, 6, 6);
+    } else if (targetCursor.dark === 17) {
+      let lance = localFactory.createTile("PrinceNPC");
+      let endmap = maps.getMap("endgame");
+      endmap.placeThing(7,6,lance);
+      maintext.addText(`<span class='npcspeaker'>Lance:</span> "Thank goodness! It worked, we've reached you!"`);
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 18) {
+      maintext.addText(`<span class='npcspeaker'>King Daragen:</span> "You have gone forth into the darkness at the end of the world… but you are not alone."`);
+      let king = localFactory.createTile("KingNPC");
+      let endmap = maps.getMap("endgame");
+      endmap.placeThing(6,6,king);
+      targetCursor.dark++;
+      if (DU.gameflags.getFlag("music")) { DUPlayMusic("Alone", {fade:1}); }
+    } else if (targetCursor.dark === 19) {
+
     }
 
   }
