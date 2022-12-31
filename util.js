@@ -99,7 +99,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
   }
 
 	if (who === PC) { ProcessAmbientNoise(tile); }
-	if ((DU.gameflags.getFlag("music")) && (who === PC) && (tomap.getMusic() !== nowplaying.name)) {
+	if ((DU.gameflags.getFlag("music")) && (who === PC) && tomap.getMusic() && (tomap.getMusic() !== nowplaying.name)) {
 //	  StopMusic(nowplaying);
 	  let song = tomap.getMusic();
 	  DUPlayMusic(song);
@@ -1221,6 +1221,17 @@ function GetClockTime(usethistime) {
   usethistime = usethistime*5;   // Without this, a step is 1 min on world map and .2 in town
   usethistime = usethistime + 9*60;  // Game starts at 9am on day 1
   usethistime = usethistime + 4*28*24*60 + 3*24*60; // Game starts on 4/3
+  let minutes = Math.floor(usethistime%60);
+  let hours = Math.floor((usethistime/60)%24);
+  let days = Math.floor(((usethistime/60)/24)%28);
+  let months = Math.floor((((usethistime/60)/24)/28)%12);
+  let years = Math.floor((((usethistime/60)/24)/28)/12);
+  return ([years,months,days,hours,minutes]);
+}
+
+function GetClockTimePassed(usethistime) {
+  if (!usethistime) { usethistime = DUTime.getGameClock(); }
+  usethistime = usethistime*5;   // Without this, a step is 1 min on world map and .2 in town
   let minutes = Math.floor(usethistime%60);
   let hours = Math.floor((usethistime/60)%24);
   let days = Math.floor(((usethistime/60)/24)%28);
