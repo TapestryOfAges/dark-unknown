@@ -1046,7 +1046,7 @@ mappages["endgame"].npcs = [];
 
 mappages["endgame"].desc = "The Uttermost Dark";
 mappages["endgame"].longdesc = ``;
-mappages["endgame"].music = 'Alone';
+mappages["endgame"].music = '';
 mappages["endgame"].savename = ``;
 mappages["endgame"].exitmap = '';
 mappages["endgame"].exitx = '65';
@@ -1070,4 +1070,69 @@ mappages["endgame"].returny = 'NaN';
 mappages["endgame"].returninfused = '0';
 mappages["endgame"].linkedMaps = [""];
 mappages["endgame"].editorLabels = '{}';
+// MAP ENDS HERE
+
+// MAP BEGINS HERE
+mappages["endgame2"] = {};
+mappages["endgame2"].terrain = [];
+ mappages["endgame2"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["endgame2"].terrain[1] = '## ## ## ## ## br ## br ## ## ## ## ##';
+ mappages["endgame2"].terrain[2] = '++ ++ ++ ++ +o ++ ++ ++ +o ++ ++ ++ ++';
+ mappages["endgame2"].terrain[3] = '++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++';
+ mappages["endgame2"].terrain[4] = '+o ++ ++ +o ++ r1 r2 r3 ++ +o ++ ++ +o';
+ mappages["endgame2"].terrain[5] = '++ ++ ++ ++ ++ r8 r0 r4 ++ ++ ++ ++ ++';
+ mappages["endgame2"].terrain[6] = '++ ++ ++ ++ ++ r8 r0 r4 ++ ++ ++ ++ ++';
+ mappages["endgame2"].terrain[7] = '+o ++ ++ +o ++ r8 r0 r4 ++ +o ++ ++ +o';
+ mappages["endgame2"].terrain[8] = '++ ++ ++ ++ ++ r8 r0 r4 ++ ++ ++ ++ ++';
+ mappages["endgame2"].terrain[9] = '++ ++ ++ ++ ++ r7 r6 r5 ++ ++ ++ ++ ++';
+mappages["endgame2"].terrain[10] = '## ## ## ## ## ## ++ ## ## ## ## ## ##';
+mappages["endgame2"].terrain[11] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["endgame2"].terrain[12] = '.. .. .. +* .. .. .. .. .. +* .. .. ..';
+
+mappages["endgame2"].features = [];
+mappages["endgame2"].features[0] = {name : 'Throne', x : 6, y : 3};
+mappages["endgame2"].features[1] = {name : 'Brazier', x : 10, y : 2};
+mappages["endgame2"].features[2] = {name : 'Brazier', x : 2, y : 2};
+mappages["endgame2"].features[3] = {name : 'Doorway', x : 6, y : 10};
+mappages["endgame2"].features[4] = {name : 'WallPlaque', x : 5, y : 10};
+mappages["endgame2"].features[5] = {name : 'WallPlaque', x : 7, y : 10};
+mappages["endgame2"].features[6] = {name : 'Evergreen', x : 4, y : 11};
+mappages["endgame2"].features[7] = {name : 'Evergreen', x : 8, y : 11};
+
+mappages["endgame2"].npcs = [];
+mappages["endgame2"].npcs[0] = {name : 'TownGuardNPC', x : 8, y : 9, skintone: '1'};
+mappages["endgame2"].npcs[1] = {name : 'TownGuardNPC', x : 4, y : 9, skintone: '1'};
+mappages["endgame2"].npcs[2] = {name : 'KingNPC', x : 5, y : 4, skintone: '1'};
+mappages["endgame2"].npcs[3] = {name : 'QueenNPC', x : 7, y : 4, skintone: '1'};
+mappages["endgame2"].npcs[4] = {name : 'PrinceNPC', x : 8, y : 6, skintone: '1'};
+mappages["endgame2"].npcs[5] = {name : 'RangerVillagerNPC', x : 9, y : 5, Gender: 'monster', NPCBand: '0', OverrideGraphic: '305.gif', skintone: '1'};
+mappages["endgame2"].npcs[6] = {name : 'FighterVillagerNPC', x : 3, y : 5, Gender: 'monster', NPCBand: '0', OverrideGraphic: '308.gif', skintone: '1'};
+mappages["endgame2"].npcs[7] = {name : 'MageVillagerNPC', x : 4, y : 7, Gender: 'monster', NPCBand: '0', OverrideGraphic: 'mage-offcolor.gif', skintone: '1'};
+
+mappages["endgame2"].desc = "Castle dea'Olympus";
+mappages["endgame2"].longdesc = ``;
+mappages["endgame2"].music = '';
+mappages["endgame2"].savename = ``;
+mappages["endgame2"].exitmap = '';
+mappages["endgame2"].exitx = '65';
+mappages["endgame2"].exity = '70';
+mappages["endgame2"].wraps = '';
+mappages["endgame2"].enterx = '65';
+mappages["endgame2"].entery = '70';
+mappages["endgame2"].seeBelow = '';
+mappages["endgame2"].lightLevel = 'bright';
+mappages["endgame2"].alwaysRemember = '0';
+mappages["endgame2"].scale = '1';
+mappages["endgame2"].underground = '0';
+mappages["endgame2"].undergroundDesc = '';
+mappages["endgame2"].enterscript = '';
+mappages["endgame2"].entertestscript = '';
+mappages["endgame2"].exitscript = '';
+mappages["endgame2"].exittestscript = '';
+mappages["endgame2"].returnmap = '';
+mappages["endgame2"].returnx = 'NaN';
+mappages["endgame2"].returny = 'NaN';
+mappages["endgame2"].returninfused = '0';
+mappages["endgame2"].linkedMaps = [""];
+mappages["endgame2"].editorLabels = '{}';
 // MAP ENDS HERE
