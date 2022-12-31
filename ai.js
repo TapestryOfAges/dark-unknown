@@ -3737,7 +3737,7 @@ function WingBuffet(who, dir, dragon, count) {
 ais.Darkness = function(who) {
   if (!who.intro) {
     who.intro = Dice.roll("1d3+6");
-    return;
+    return {fin:1};
   } else if (who.intro && !who.introspoke) {
     if (who.intro === 1) {
       maintext.addText('A voice echoes in the darkness. <span class="daemontext">"Come, my little firefly. Come into the dark, where I can see you."</span>');
@@ -3809,4 +3809,5 @@ ais.Darkness = function(who) {
     who.setHP(who.getMaxHP()-100);
     who.healedcount++;
   }
+  return {fin:1};
 }
