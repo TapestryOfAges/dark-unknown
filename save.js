@@ -550,11 +550,16 @@ OutOfContext.onLoadData((event,serialized) => {
     DUMusic["Dark Towne"] = "Dark Towne";
   }
   if (DU.gameflags.getFlag("music")) {  
-    let song = PC.getHomeMap().getMusic();
-    DUPlayMusic(song);
+    if (DU.gameflags.getFlag("final_music")) {
+      DUPlayMusic("Final");
+    } else {
+      let song = PC.getHomeMap().getMusic();
+      DUPlayMusic(song);
+    }
   }
   ProcessAmbientNoise(PC.getHomeMap().getTile(PC.getx(),PC.gety()));
   startScheduler();
+  StartPostLoad();
 });
 
 GameStateData.prototype.setMode = function(mode) {

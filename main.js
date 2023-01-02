@@ -233,7 +233,9 @@ function SoundLoaded() {
   } else {
     gamestate.loadGame(whichsave);
   }
+}
 
+function StartPostLoad() {
   DrawCharFrame();
   DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
   DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
@@ -624,7 +626,7 @@ function DoAction(code, ctrl) {
         }
         if (resp["fin"] >= 2) {
           if ((targetCursor.command === "u") && (resp["fin"] === 3)) {
-            maintext.setInputLine("[MORE]");
+            maintext.setInputLine("&gt;[MORE]");
             maintext.addText(resp["txt"]);
             gamestate.setMode("anykey");
             maintext.drawTextFrame();
@@ -794,7 +796,7 @@ function DoAction(code, ctrl) {
     }
     else if (response["fin"] === 3) {
       // books
-      maintext.setInputLine("[MORE]");
+      maintext.setInputLine("&gt;[MORE]");
       maintext.addText(response["txt"]);
       gamestate.setMode("anykey");
       maintext.drawTextFrame();
@@ -837,7 +839,7 @@ function DoAction(code, ctrl) {
 
     if (response["fin"] === 3) {
       // drinking from the brilliant pool
-      maintext.setInputLine("[MORE]");
+      maintext.setInputLine("&gt;[MORE]");
       maintext.addText(response["txt"]);
       gamestate.setMode("anykey");
       maintext.drawTextFrame();
@@ -921,7 +923,7 @@ function DoAction(code, ctrl) {
       }
       else if (response["usefin"] === 3) {
         // books
-        maintext.setInputLine("[MORE]");
+        maintext.setInputLine("&gt;[MORE]");
         maintext.addText(response["txt"]);
         gamestate.setMode("anykey");
         maintext.drawTextFrame();
@@ -1428,10 +1430,267 @@ function DoAction(code, ctrl) {
         targetCursor.idx = 1;
         gamestate.setMode("anykey");
         maintext.addText(retval["outcome"][0]);
-        maintext.setInputLine("[MORE]");
+        maintext.setInputLine("&gt;[MORE]");
         maintext.drawTextFrame();
       }
     }
+  } else if (gamestate.getMode() === "endgame") {
+    if (targetCursor.dark === 1) {
+      maintext.addText("Before you stands your ultimate foe, the architect of all your struggles. Its face is unreadable within the shadows, but it does not move as you lift the ruby up to eye level.");
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 2) {
+      maintext.addText("You are so far from the sun, here.");
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 3) {
+      maintext.addText("But you can feel the motes of the sun's strength that you have seeded in the underworld. Precisely arranged, to focus their power where it is needed.");
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 4) {
+      maintext.addText("You focus on the ruby, and command it to bring forth light. There is a flicker...");
+      targetCursor.dark++; 
+      document.getElementById('uiinterface').style.backgroundImage = `url('graphics/splash/DemonGem-Part2.gif')`;  
+    } else if (targetCursor.dark === 5) {
+      maintext.addText("For a heartbeat, the light grows.");
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 6) {
+      maintext.addText("And then, it goes out.");
+      document.getElementById('uiinterface').style.backgroundColor = "black";
+      document.getElementById('uiinterface').style.backgroundImage = ``;  
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 7) {
+      maintext.addText("A voice speaks. The voice you have been hearing all through your striving deeper into the dark.");
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 8) {
+      maintext.addText('"This is a marvelous enchantment that you have brought here before me. It is truly my nemesis, the undoing of all my schemes. And yet."');
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 9) {
+      maintext.addText(`"To use this amazing artifact, this gemstone of sunlight's radiance, you must concentrate your will upon it- to invoke light, and life, and power. You have to want, so that your will sparks forth, and the ruby lights."`);
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 10) {
+      maintext.addText(`"And here, alone in the dark? My will overpowers yours like a hurricane snuffing a candle."`);
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 11) {
+      maintext.addText(`"This is the end of your quest, little hero, failed lightbringer. It is over."`);
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 12) {
+      maintext.addText("You cannot move. It is challenging to think. The will of the Shepherd of the Dark surrounds you like a miasma. Within and without... all goes dark.");
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 13) {
+      maintext.addText("...");
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 14) {
+      maintext.addText("You try to rouse yourself. You are not done fighting... and then there is another voice, in your head. One you know as well as you know your own.")
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 15) {
+      maintext.addText(`"${PC.getPCName()}? ${PC.getPCName()}, can you hear me?"`);
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 16) {
+      maintext.addText("Your brother. In your mind, you see a vision of him, and standing to either side of him are your mother and your father. The Rune of Kings blazes on the flesh of each, tying each of you to the land, to the kingdom, and to each other. Each of them reaches out a hand, and hold fast to your shoulders.");
+      targetCursor.dark++;
+      let endmap = maps.addMap("endgame");
+      MoveBetweenMaps(PC,PC.getHomeMap(), endmap, 6, 6);
+      let uii = document.getElementById('uiinterface');
+      uii.style.backgroundColor = "";
+      uii.style.backgroundImage = ``;  
+      DrawMainFrame("draw",PC.getHomeMap(),6,6);
+    } else if (targetCursor.dark === 17) {
+      let lance = localFactory.createTile("PrinceNPC");
+      let endmap = maps.getMap("endgame");
+      endmap.placeThing(6,5,lance);
+      maintext.addText(`<span class='npcspeaker'>Lance:</span> "Thank goodness! It worked, we've reached you!"`);
+      targetCursor.dark++;
+      DrawMainFrame("one", PC.getHomeMap(),6,5);
+    } else if (targetCursor.dark === 18) {
+      maintext.addText(`<span class='npcspeaker'>King Daragen:</span> "You have gone forth into the darkness at the end of the world... but you are not alone."`);
+      let king = localFactory.createTile("KingNPC");
+      let endmap = maps.getMap("endgame");
+      endmap.placeThing(5,5,king);
+      targetCursor.dark++;
+      if (DU.gameflags.getFlag("music")) { DUPlayMusic("Alone", {fade:1}); }
+      DrawMainFrame("one", PC.getHomeMap(),5,5);
+    } else if (targetCursor.dark === 19) {
+      maintext.addText(`<span class='npcspeaker'>Queen Shelaria:</span> "We love you so much, ${PC.getPCName()}. But there are so many others whose lives you have touched, and made better, and who care about you. You will always be connected to them."`);
+      let queen = localFactory.createTile("QueenNPC");
+      let endmap = maps.getMap("endgame");
+      endmap.placeThing(7,5,queen);
+      targetCursor.dark++;
+      DrawMainFrame("one", PC.getHomeMap(),7,5);
+      targetCursor.darkchar = 0;
+    } else if (targetCursor.dark === 20) {
+      if (targetCursor.darkchar === 0) {
+        if (DU.gameflags.getFlag("rescued_sam")) {
+          maintext.addText(`<span class='npcspeaker'>Kylee:</span> "You brought my daughter back to me. I will never forget that. Thank you."`);
+          let kylee = localFactory.createTile("TownsfolkNPC");
+          kylee.setOverrideGraphic("civ_red.gif");
+          let sam = localFactory.createTile("ChildVillagerNPC");
+          let endmap = maps.getMap("endgame");
+          endmap.placeThing(3,8,kylee);
+          endmap.placeThing(4,8,sam);
+          DrawMainFrame("one",PC.getHomeMap(),3,8);
+          DrawMainFrame("one",PC.getHomeMap(),4,8);
+        } else { targetCursor.darkchar = 2; }
+      }
+      if (targetCursor.darkchar === 1) {
+        maintext.addText(`<span class='npcspeaker'>Sam:</span> "You're a hero! You brought me out of the dark!"`);
+      }
+      if (targetCursor.darkchar === 2) {
+        if (DU.gameflags.getFlag("anna_left")) {
+          maintext.addText(`<span class='npcspeaker'>Anna:</span> "Oh, ${PC.getPCName()}! Thank you for showing me the truth about Garrick."`);
+          let anna = localFactory.createTile("TownsfolkVillagerNPC");
+          anna.setOverrideGraphic("310.2.gif");
+          let endmap = maps.getMap("endgame");
+          endmap.placeThing(9,1,anna);
+          DrawMainFrame("one",PC.getHomeMap(),9,1);
+        } else {targetCursor.darkchar = 5; }
+      }
+      if (targetCursor.darkchar === 3) {
+        maintext.addText(`She stands with her arm around two people, one each on either side of her. Damien and Brooke also smile at you.`);
+        let brooke = localFactory.createTile("TownsfolkVillagerNPC");
+        brooke.setOverrideGraphic("civ_green.2.gif");
+        let damien = localFactory.createTile("AdventurerVillagerNPC");
+        let endmap = maps.getMap("endgame");
+        endmap.placeThing(8,1,brooke);
+        endmap.placeThing(10,1,damien);
+        DrawMainFrame("one",PC.getHomeMap(),8,1);
+        DrawMainFrame("one",PC.getHomeMap(),10,1);
+      }
+      if (targetCursor.darkchar === 4) {
+        maintext.addText(`<span class='npcspeaker'>Anna:</span> "I don't know what the future will bring. But we've learned a lot about finding the love that is out there. We're going to find that future... together."`);
+      }
+      if (targetCursor.darkchar === 5) {
+        if (DU.gameflags.getFlag("returned_cloak")) {
+          maintext.addText(`<span class='npcspeaker'>Warren:</span> "You brought back to us a memento of our dear fallen friend. It may seem like a small thing... and perhaps it is. Sometimes the smallest deeds have a greater impact than you can imagine. We owe you."`);
+          let warren = localFactory.createTile("AdventurerVillagerNPC");
+          let garen = localFactory.createTile("RangerVillagerNPC");
+          garen.setOverrideGraphic("ranger-offcolor.gif");
+          let endmap = maps.getMap("endgame");
+          endmap.placeThing(3,2,warren);
+          endmap.placeThing(3,3,garen);
+          DrawMainFrame("one",PC.getHomeMap(),3,2);
+          DrawMainFrame("one",PC.getHomeMap(),3,3);
+        } else {targetCursor.darkchar = 6; }
+      }
+      if (targetCursor.darkchar === 6) {
+        if (DU.gameflags.getFlag("franklin_gift")) {
+          maintext.addText(`<span class='npcspeaker'>Franklin:</span> "I thought that was it- I would be on the road forever, never staying too long in any town, for fear my debts would catch up to me. I appreciate you and what you've done for me."`);
+          let franklin = localFactory.createTile("BardVillagerNPC");
+          franklin.setOverrideGraphic("311.gif");
+          let endmap = maps.getMap("endgame");
+          endmap.placeThing(11,4,franklin);
+          DrawMainFrame("one",PC.getHomeMap(),11,4);
+        } else { targetCursor.darkchar = 7; }
+      } 
+      if (targetCursor.darkchar === 7) {
+        if (DU.gameflags.getFlag("rhiannon_recipe")) {
+          maintext.addText(`<span class='npcspeaker'>Rhiannon:</span> "The tavern's been booming, since you helped me out with that recipe. Come by again any time- your meal's on me."`);
+          let rhi = localFactory.createTile("TownsfolkVillagerNPC");
+          rhi.setOverrideGraphic("310.gif");
+          let endmap = maps.getMap("endgame");
+          endmap.placeThing(1,5,rhi);
+          DrawMainFrame("one",PC.getHomeMap(),1,5);
+        } else { targetCursor.darkchar = 8; }
+      }
+      if (targetCursor.darkchar === 8) {
+        if (DU.gameflags.getFlag("solved_pheran")) {
+          maintext.addText(`<span class='npcspeaker'>Chera:</span> "Did you think that death would lessen our gratitude? Without you we would still be bound to our curse. Thank you."`);
+          let ghost1 = localFactory.createTile("GhostNPC");
+          let ghost2 = localFactory.createTile("GhostNPC");
+          let ghost3 = localFactory.createTile("GhostNPC");
+          let endmap = maps.getMap("endgame");
+          endmap.placeThing(9,9,ghost1);
+          endmap.placeThing(9,8,ghost2);
+          endmap.placeThing(8,9,ghost3);
+          DrawMainFrame("one",PC.getHomeMap(),9,9);
+          DrawMainFrame("one",PC.getHomeMap(),9,8);
+          DrawMainFrame("one",PC.getHomeMap(),8,9);
+        } else { targetCursor.darkchar = 9; }
+      }
+      if (targetCursor.darkchar === 9) {
+        if (DU.gameflags.getFlag("blanche_returned")) {
+          maintext.addText(`<span class='npcspeaker'>Blanche:</span> "I owe you. You found me my missing jewelry without any expectation of reward, just because you are a good person. Don't think we didn't notice."`);
+          let blanche = localFactory.createTile("FighterVillagerNPC");
+          let endmap = maps.getMap("endgame");
+          endmap.placeThing(6,10,blanche);
+          DrawMainFrame("one",PC.getHomeMap(),6,10);
+        } else { targetCursor.darkchar = 10; }
+      }
+      if (targetCursor.darkchar === 10) {
+        if (DU.gameflags.getFlag("rhys_summoning")) {
+          maintext.addText(`<span class='npcspeaker'>Rhys:</span> "I know he's your brother, but to me, you're the one who saved my closest friend. You drove off Justice, and sat with me as we conjured information about the enemy. I'm proud to know you, and call you friend. Thank you, for all you've done."`);
+          let rhys = localFactory.createTile("RangerVillagerNPC");
+          rhys.setOverrideGraphic("305.gif");
+          let endmap = maps.getMap("endgame");
+          endmap.placeThing(6,4,rhys);
+          DrawMainFrame("one",PC.getHomeMap(),6,4);
+        } else { targetCursor.darkchar = 11; }
+      }
+      if (targetCursor.darkchar === 11) {
+        maintext.addText(`<span class='npcspeaker'>Lance:</span> "You've made it this far. And you are not alone. You can finish it."`);
+      }
+      targetCursor.darkchar++;
+      if (targetCursor.darkchar === 12) { targetCursor.dark++; }
+    } else if (targetCursor.dark === 21) {
+      maintext.addText("...");
+      targetCursor.dark++;
+      FadeOut();
+      gamestate.setMode("null");
+      maintext.setInputLine("&gt;");
+      setTimeout(function() { gamestate.setMode("endgame"); maintext.setInputLine("&gt;[MORE]"); maintext.drawTextFrame(); }, 2000);
+    } else if (targetCursor.dark === 22) {
+      let uii = document.getElementById('uiinterface');
+      uii.style.backgroundColor = "black";
+      uii.style.opacity = 1;
+      uii.style.backgroundImage = `url('graphics/splash/DemonGem-Part1.gif')`; 
+      document.getElementById('spelleffects').innerHTML = "";
+      maintext.addText("Your eyes open with a snap. You sense that only seconds have passed. You feel the will of the Shepherd of the Dark oppressing you, but now you know that you are strong enough to stand against it.");
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 23) {
+      maintext.addText(`You hear the Shepherd's voice in your head, tone no longer mocking. "What? What is this?"`);
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 24) {
+      maintext.addText("Pure and bright, your will strikes the ruby like steel on flint. And the ruby awakes.");
+      document.getElementById('uiinterface').style.backgroundImage = `url('graphics/splash/DemonGem-Part3.gif')`; 
+      if (DU.gameflags.getFlag("music")) { DUPlayMusic("Light", {fade:1}); QueueMusic("Theme");}
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 25) {
+      maintext.addText("Light bursts forth, as bright as the sun, more pure than anything you've ever seen. You cannot see the daemon well, because it is not a thing that can be lit. But against this light, you see it cringe away, step back, cry out; against this light, it cannot stand.")
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 26) {
+      maintext.addText(`You hear the voice, one last time. "How? I do not... I cannot...! No. NO!"`);
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 27) {
+      maintext.addText("And then... all is silent.");
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 28) {
+      maintext.addText("Your foe is frozen, as though in ice, surrounded in a cocoon of light. You lower the ruby, but the light does not change. The daemon is imprisoned, here in the depths, under the world. Hopefully, with luck, forever.");
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 29) {
+      maintext.addText("It is a long trek back to the surface. But eventually, exhausted, you reach your destination: home.");
+      document.getElementById('uiinterface').style.backgroundColor = "black";
+      document.getElementById('uiinterface').style.backgroundImage = ``;
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 30) {
+      maintext.addText(`"My ${PC.getPCName()}, you have done it," says your mother with exuberance. "Prevented a war; saved the kingdom; saved your family. It is more than any one person should have been asked to do, but you were strong enough to win through. We must now be ever vigilant to the threat that you have caged beneath our land. We must never forget. For you, there will be pageants and celebrations... after you have had a week of sleep! Your quest is done. Thank you!"`);
+      let endmap = maps.addMap("endgame2");
+      MoveBetweenMaps(PC,PC.getHomeMap(), endmap, 6, 6);
+      let uii = document.getElementById('uiinterface');
+      uii.style.backgroundColor = "";
+      uii.style.backgroundImage = ``; 
+      DrawMainFrame("draw",PC.getHomeMap(),6,6);
+      targetCursor.dark++;
+    } else if (targetCursor.dark === 31) {
+      let clock = GetClockTimePassed();
+      let timedesc = "";
+      if (clock[0]) { timedesc = `${clock[0]} years, `; }
+      if (clock[1]) { timedesc += `${clock[1]} months, `; }
+      timedesc += `${clock[2]} days, ${clock[3]} hours, and ${clock[4]} minutes`;
+      maintext.addText(`YOU HAVE WON CHRONICLES OF ELLUSUS I: THE DARK UNKNOWN IN ${timedesc}! CONGRATULATIONS!`);
+      maintext.setInputLine("");
+      targetCursor.dark++;
+      gamestate.setMode("null");
+    } else {
+      alert("How did we get here? Bottom of main.");
+    }
+    maintext.drawTextFrame();
   }
   maintext.flushDelayedText();
 }

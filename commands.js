@@ -1744,7 +1744,7 @@ function PerformTalk(talkto, convo, topic) {
   }
   
   if (conval === 2) {
-    retval["input"] = "[MORE]";
+    retval["input"] = "&gt;[MORE]";
     gamestate.setMode("anykey");
   } else if (conval === 3) {
     retval["input"] = "Buy what: ";

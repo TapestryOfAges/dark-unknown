@@ -1874,7 +1874,7 @@ ais.Justice = function(who) {
     retval.wait = 1; // animation will occur, we'll handle restarting the scheduler
     maintext.addText('Justice gasps, then says, "You are more formidable than I anticipated. But it will not avail you. What has been put into motion cannot be stopped! Good-bye!"');
     DU.gameflags.setFlag("justice_flees",1);
-    maintext.setInputLine("[MORE]");
+    maintext.setInputLine("&gt;[MORE]");
     maintext.drawTextFrame();
     gamestate.setMode("anykey");
     targetCursor.command="justice";
@@ -1917,7 +1917,7 @@ ais.Justice = function(who) {
     retval.wait = 1; // animation will occur, we'll handle restarting the scheduler
     console.log("Justice is out of mana for a second time.");
     maintext.addText('Justice growls and cries, "How is it that you still stand? No matter... what has been put into motion cannot be stopped. Good-bye!"');
-    maintext.setInputLine("[MORE]");
+    maintext.setInputLine("&gt;[MORE]");
     maintext.drawTextFrame();
     gamestate.setMode("anykey");
     DU.gameflags.setFlag("justice_flees",1);
@@ -3737,7 +3737,7 @@ function WingBuffet(who, dir, dragon, count) {
 ais.Darkness = function(who) {
   if (!who.intro) {
     who.intro = Dice.roll("1d3+6");
-    return;
+    return {fin:1};
   } else if (who.intro && !who.introspoke) {
     if (who.intro === 1) {
       maintext.addText('A voice echoes in the darkness. <span class="daemontext">"Come, my little firefly. Come into the dark, where I can see you."</span>');
@@ -3772,6 +3772,11 @@ ais.Darkness = function(who) {
     } else {
       who.fourth--;
     }
+  } else if (!who.alone) {
+    if ((PC.gety() > 27) && (PC.getx() > 11)) {
+      who.alone = 1;
+      if (DU.gameflags.getFlag("music")) { DUPlayMusic("Heartbeat", {fade:1}); }
+    }
   }
 
   if (who.reflecting && !who.reflected) {
@@ -3795,4 +3800,14 @@ ais.Darkness = function(who) {
     
     }
   }
+
+  if ((who.getMaxHP() - who.getHP()) > 100) {
+    if (!who.rebuked) {
+      who.rebuked = 1;
+      maintext.addText('<span class="daemontext">"And what, precisely, do you believe this to be accomplishing?"</span>');
+    }
+    who.setHP(who.getMaxHP()-100);
+    who.healedcount++;
+  }
+  return {fin:1};
 }

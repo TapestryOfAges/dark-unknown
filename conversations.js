@@ -1180,7 +1180,7 @@ OnConvTriggers["rhys_summoned"] = function(speaker,keyword) {
           targetCursor.command = "summon";
           targetCursor.phase = 1;
           maintext.addText("The three of you progress to the back room, sealing the door behind you, and stand in an arc around the pentagram.");
-          maintext.setInputLine("[MORE]");
+          maintext.setInputLine("&gt;[MORE]");
           maintext.drawTextFrame();
 
           delete PC.replaceTurnWith;

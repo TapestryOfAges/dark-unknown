@@ -82,7 +82,7 @@ trusted_courier - you've delivered the message to the Prince
 endAct1 - Negate was cast and freed the prince
 act2 - black dragon has been killed
 prince_awake - prince has woken up and recovered
-returned_cloak - did quest for warren/garren  ** (endgame support)
+returned_cloak - did quest for warren/garen  ** (endgame support)
 can_train - PC has training points
 jharden_newspell - At this new level, Jharden has a spell to teach you
 ash_newspell - At this new level, Asharden has a spell to teach you
@@ -192,3 +192,4 @@ stoneshadow - You have been told about the use for the Stone of Shadow
 given_crystal - Tharock has given you the crystal mortar
 returned_alchemy - you've brought the box of alchemy equipment back from the cave, on the IoLH
 worldsendingraft - you've placed the kinetic crystal to make the raft go in World's Ending
+final_music - the "Final" music track has started playing in Uttermost Dark

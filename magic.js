@@ -2129,33 +2129,48 @@ magic[SPELL_BLINK_LEVEL][SPELL_BLINK_ID].executeSpell = function(caster, infused
   let castermap = caster.getHomeMap();
   let casterx = caster.getx();
   let castery = caster.gety();
-  let castermove = caster.getMovetype();
-  let possdest = [];
-  for (let i=-4;i<=4;i++) {
-    for (let j=-4;j<=4;j++) {
-      if ((i==casterx) && (j==castery)) { continue; }
-      let loc = {};
-      loc.x = casterx+i;
-      loc.y = castery+j;
-      possdest.push(loc);
+
+  let noblink = 0;
+  let failtext = "The spell fizzles.";
+  // Places where you cannot Blink
+  if (castermap.getName() === "uttermostdark") {
+    if (castery > 27) {
+      noblink = 1;
+      failtext = "The darkness encircles you and you feel a sense of vertigo. But when your vision clears, you have not moved.";
     }
   }
-  ShuffleArray(possdest);
-  while (!success && possdest[0]) {
-    let tile = castermap.getTile(possdest[0].x,possdest[0].y);
-    if (tile.canMoveHere(castermove, 1).canmove) {
-      let path = castermap.getPath(casterx,castery,possdest[0].x,possdest[0].y,MOVE_WALK);
-      if (path.length) {
-        success = PerformBlink(caster,possdest[0].x,possdest[0].y);
+
+  if (!noblink) {
+    let castermove = caster.getMovetype();
+    let possdest = [];
+    for (let i=-4;i<=4;i++) {
+      for (let j=-4;j<=4;j++) {
+        if ((i==casterx) && (j==castery)) { continue; }
+        let loc = {};
+        loc.x = casterx+i;
+        loc.y = castery+j;
+        possdest.push(loc);
       }
     }
-    if (!success) { possdest.shift(); }
+    ShuffleArray(possdest);
+    while (!success && possdest[0]) {
+      let tile = castermap.getTile(possdest[0].x,possdest[0].y);
+      if (tile.canMoveHere(castermove, 1).canmove) {
+        let path = castermap.getPath(casterx,castery,possdest[0].x,possdest[0].y,MOVE_WALK);
+        if (path.length) {
+          success = PerformBlink(caster,possdest[0].x,possdest[0].y);
+        }
+      }
+      if (!success) { possdest.shift(); }
+    }
   }
 
   if (!success) { 
-    maintext.addText("The spell fizzles.");
+    maintext.addText(failtext);
+    PlayCastSound(caster, "sfx_spell_fail");
+  } else {
+    PlayCastSound(caster, "sfx_teleport");
   }
-  PlayCastSound(caster, "sfx_teleport");
   // be sure to test this in a location with no valid destinations
   return resp;  
 }
@@ -2836,7 +2851,7 @@ magic[SPELL_PEER_LEVEL][SPELL_PEER_ID].executeSpell = function(caster, infused, 
   if (free !== 2) {
     resp["txt"] = "You receive a bird's eye view.";
   }
-  resp["input"] = "[MORE]";
+  resp["input"] = "&gt;[MORE]";
   return resp;
 }
 
@@ -4490,7 +4505,7 @@ magic[SPELL_ARMAGEDDON_LEVEL][SPELL_ARMAGEDDON_ID].executeSpell = function(caste
   gamestate.setMode("anykey");
   targetCursor.command = "armageddon";
   targetCursor.step = 1;
-  resp["input"] = "[MORE]";
+  resp["input"] = "&gt;[MORE]";
   return resp;
 }
 
