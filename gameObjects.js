@@ -17261,6 +17261,33 @@ TeleporterPlatformTile.prototype.walkon = function(who) {
   return response;
 }
 
+function UDTeleporterPlatformTile() {
+  this.name = "UDTeleporterPlatform";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-896";
+  this.prefix = "a";
+  this.desc = "platform";
+  this.destination;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+}
+UDTeleporterPlatformTile.prototype = new FeatureObject();
+
+UDTeleporterPlatformTile.prototype.walkon = function(who) {
+  let response = {msg:""};
+  let themap = who.getHomeMap();
+  themap.moveThing(7, 32, who);
+  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+  ShowEffect(who, 500, "spellsparkles-anim.gif", 0, -64);
+  if (who === PC) { 
+    DUPlaySound("sfx_teleport"); 
+    response.overridedraw = 1; 
+    if (DU.gameflags.getFlag("music")) { DUPlayMusic("Final", {fade:1}); }
+    DU.gameflags.setFlag("final_music",1);
+  }
+  return response;
+}
+
 function PitTeleporterPlatformTile() {
   this.name = "PitTeleporterPlatform";
   this.graphic = "teleporter.gif";
@@ -18884,7 +18911,7 @@ function RubyGemoftheSunTile() {
   this.spriteyoffset = -23*32;
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.desc = "ruby gem";
+	this.desc = "ruby gem of the sun";
   this.prefix = "the";
   this.longdesc = "Your ruby gem that harnesses the power of the sun.";
   this.usedesc = "Call upon the power of sunlight.";
@@ -18944,8 +18971,28 @@ RubyGemoftheSunTile.prototype.use = function(who) {
       themap.placeThing(daemon,53,80);
       DU.gameflags.setFlag("ashesbeacon",1);
     }
+  } else if ((themap.getName() === "uttermostdark") && (who.gety() > 27) && (who.getx() > 13)) {
+    if (DU.gameflags.getFlag("music")) { DUPlayMusic("Despair", {fade:1}); }
+    let uii = document.getElementById('uiinterface');
+    if (uii) {
+      uii.innerHTML = `<img src="graphics/spacer.gif" width="416" height="416" />`;
+      uii.style.backgroundColor = "black";
+      uii.style.opacity = 1;
+      uii.style.backgroundImage = `url('graphics/splash/DemonGem-Part1.gif')`;  
+    }
+//    retval["txt"] = "You raise the ruby before you. The light that is usually within it seems hollow and wan, here in the heart of the dark.";
+//    retval["input"] = "&gt;[MORE]";
+    targetCursor.dark = 1;
+    gamestate.setMode("endgame");
+    retval["override"] = 1;
+    retval["fin"] = 2;
+    maintext.addText("Use: ruby gem of the sun<br />You raise the ruby before you. The light that is usually within it seems hollow and wan, here in the heart of the dark.");
+    maintext.setInputLine("&gt;[MORE]");
+    maintext.drawTextFrame();
   } else {
     retval["txt"] = "You raise the ruby before you, motes of sunlight glinting within its facets. You focus upon it and light blazes forth, illuminating every cranny, before fading back to the brightness it holds usually.";
+    let light = localFactory.createTile("RubyLight");
+    who.addSpellEffect(light);
   }
   return retval;
 }
