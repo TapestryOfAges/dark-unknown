@@ -13216,11 +13216,11 @@ RubyGemoftheSunTile.prototype.use = function(who) {
     gamestate.setMode("endgame");
     retval["override"] = 1;
     retval["fin"] = 2;
-    maintext.addText("You raise the ruby before you. The light that is usually within it seems hollow and wan, here in the heart of the dark.");
+    maintext.addText("Use: ruby gem of the sun<br />You raise the ruby before you. The light that is usually within it seems hollow and wan, here in the heart of the dark.");
     maintext.setInputLine("&gt;[MORE]");
     maintext.drawTextFrame();
   } else {
-    retval["txt"] = "Use: ruby gem of the sun<br />You raise the ruby before you, motes of sunlight glinting within its facets. You focus upon it and light blazes forth, illuminating every cranny, before fading back to the brightness it holds usually.";
+    retval["txt"] = "You raise the ruby before you, motes of sunlight glinting within its facets. You focus upon it and light blazes forth, illuminating every cranny, before fading back to the brightness it holds usually.";
     let light = localFactory.createTile("RubyLight");
     who.addSpellEffect(light);
   }
