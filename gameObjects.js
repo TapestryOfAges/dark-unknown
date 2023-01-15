@@ -2964,7 +2964,7 @@ DarknessTile.prototype = new TerrainObject();
 function ShinyWallTile() {
   //Graphics Upgraded. Actually, new.
   this.name = "ShinyWall";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "static.png";
   this.spritexoffset = 0;
   this.spriteyoffset = -12*32;
   this.passable = MOVE_ETHEREAL;
@@ -12663,7 +12663,7 @@ AppleTreeTile.prototype = new FeatureObject();
 function OlympusTapestryTile() {
   this.name = "OlympusTapestry";
   this.graphic = "static.png";
-  this.spritexoffset = -7*32;
+  this.spritexoffset = -9*32;
   this.spriteyoffset = -19*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 2;
@@ -12675,7 +12675,7 @@ OlympusTapestryTile.prototype = new FeatureObject();
 function PaladinTapestryTile() {
   this.name = "PaladinTapestry";
   this.graphic = "static.png";
-  this.spritexoffset = -8*32;
+  this.spritexoffset = -7*32;
   this.spriteyoffset = -19*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 2;
@@ -12687,7 +12687,7 @@ PaladinTapestryTile.prototype = new FeatureObject();
 function HildendainTapestryTile() {
   this.name = "HildendainTapestry";
   this.graphic = "static.png";
-  this.spritexoffset = -9*32;
+  this.spritexoffset = -8*32;
   this.spriteyoffset = -19*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 2;
@@ -17833,14 +17833,23 @@ MoongateTile.prototype.walkon = function(who) {
 
 function DaemonMoongateTile() {
   this.name = "DaemonMoongate";
-  this.graphic = "moongates.gif";
-  this.spritexoffset = '-128';
-  this.spriteyoffset = '0';
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -146*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "gate";
 
   HasAmbientNoise.call(this,"sfx_portal_ambient",1.5);
+
+  ManualAnimation.call(this, { animstart: 0,
+    animlength: 8,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 150,
+    startframe: "start"
+  });
 }
 DaemonMoongateTile.prototype = new FeatureObject();
 
@@ -17898,9 +17907,9 @@ function DissolveDoor(door, which) {
 
 function PetrifiedReaperTile() {
   this.name = "PetrifiedReaper";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-640";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -98*32;
   this.passable = MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "petrified reaper";
@@ -17935,43 +17944,43 @@ OracleObject.prototype = new FeatureObject();
 
 function OracleLowerLeftTile() {
   this.name = "OracleLowerLeft";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-1600";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -93*32;
 }
 OracleLowerLeftTile.prototype = new OracleObject();
 
 function OracleLowerRightTile() {
   this.name = "OracleLowerRight";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-1600";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -93*32;
 }
 OracleLowerRightTile.prototype = new OracleObject();
 
 function OracleMidLeftTile() {
   this.name = "OracleMidLeft";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-1568";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -92*32;
 }
 OracleMidLeftTile.prototype = new OracleObject();
 
 function OracleMidRightTile() {
   this.name = "OracleMidRight";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-1568";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -92*32;
 }
 OracleMidRightTile.prototype = new OracleObject();
 
 function OracleTopLeftTile() {
   this.name = "OracleTopLeft";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-1536";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -91*32;
 }
 OracleTopLeftTile.prototype = new OracleObject();
 
 function OracleTopRightTile() {
   this.name = "OracleTopRight";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-1536";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -91*32;
 }
 OracleTopRightTile.prototype = new OracleObject();
 
@@ -19022,10 +19031,11 @@ function DecorativeArmorTile() {
 DecorativeArmorTile.prototype = new ItemObject();
 
 function AlchemyCrateTile() {
+  // Graphics Upgraded
   this.name = "AlchemyCrate";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-384";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -79*32;
 	this.desc = "crate full of flasks, tools, and notes";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
