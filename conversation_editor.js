@@ -239,6 +239,8 @@ function edit_response(convname, keyword) {
   document.responseeditpopup.questlog1_val.value = "";
   document.responseeditpopup.questcomp1.checked = false;
   document.responseeditpopup.questcomp1_val.value = "";
+  document.responseeditpopup.altspeaker1.checked = false;
+  document.responseeditpopup.altspeaker1_val.value = "";
   document.responseeditpopup.flags2.value = "";
   document.responseeditpopup.flags2val.value = "";
   document.responseeditpopup.response2.value = "";
@@ -263,6 +265,8 @@ function edit_response(convname, keyword) {
   document.responseeditpopup.questlog2_val.value = "";
   document.responseeditpopup.questcomp2.checked = false;
   document.responseeditpopup.questcomp2_val.value = "";
+  document.responseeditpopup.altspeaker2.checked = false;
+  document.responseeditpopup.altspeaker2_val.value = "";
 
   if (keyword) {
     document.responseeditpopup.responsekeyword.value = keyword;
@@ -306,13 +310,17 @@ function edit_response(convname, keyword) {
       else if (idx === "start_sell") {
         document.responseeditpopup.start_sell1.checked = "true";
       } 
-      else if (idx = "questlog") {
+      else if (idx === "questlog") {
         document.responseeditpopup.questlog1.checked = "true";
         document.responseeditpopup.questlog1_val.value = val;
       }
-      else if (idx = "questcomp") {
+      else if (idx === "questcomp") {
         document.responseeditpopup.questcomp1.checked = "true";
         document.responseeditpopup.questcomp1_val.value = val;
+      }
+      else if (idx === "altspeaker") {
+        document.responseeditpopup.altspeaker1.checked = "true";
+        document.responseeditpopup.altspeaker1_val.value = val;
       }
       else { alert("Weird trigger: " + idx + " : " + val); }
     });
@@ -367,13 +375,16 @@ function edit_response(convname, keyword) {
       else if (idx === "start_sell") {
         document.responseeditpopup.start_sell2.checked = "true";
       }
-      else if (idx = "questlog") {
+      else if (idx === "questlog") {
         document.responseeditpopup.questlog2.checked = "true";
         document.responseeditpopup.questlog2_val.value = val;
       }
-      else if (idx = "questcomp") {
+      else if (idx === "questcomp") {
         document.responseeditpopup.questcomp2.checked = "true";
         document.responseeditpopup.questcomp2_val.value = val;
+      } else if (idx === "altspeaker") {
+        document.responseeditpopup.altspeaker2.checked = "true";
+        document.responseeditpopup.altspeaker2_val.value = val;
       }
       else { alert("Weird trigger: " + idx + " : " + val); }
     });
@@ -536,6 +547,12 @@ function submitEditResponse(val, linked) {
         return;
       }
     }
+    if (document.responseeditpopup.altspeaker1.checked) {
+      triggers1.altspeaker = 1;
+      if (document.responseeditpopup.altspeaker1_val.value) {
+        triggers1.altspeaker = document.responseeditpopup.altspeaker1_val.value;
+      } 
+    }
 
     if (document.responseeditpopup.end_convo2.checked) {
       if (document.responseeditpopup.end_convo2_val.value) {
@@ -644,6 +661,13 @@ function submitEditResponse(val, linked) {
         return;
       }
     }
+    if (document.responseeditpopup.altspeaker2.checked) {
+      triggers2.altspeaker = 1;
+      if (document.responseeditpopup.altspeaker2_val.value) {
+        triggers2.altspeaker = document.responseeditpopup.altspeaker2_val.value;
+      } 
+    }
+
     
     conversations[convname][keyword].triggers = [ triggers1, triggers2 ];
     conversations[convname]._location = document.responseeditpopup.location.value; 
