@@ -24096,7 +24096,7 @@ NPCObject.prototype.getGenderedTerms = function() {
   } else if (this.gender === "other") {
     gt.pronoun = "they";
     gt.possessive = "theirs";
-    gt.objective = "their";
+    gt.objective = "them";
     gt.titled = "Lord";
     gt.formal = "Heir";
     gt.sibling = "sibling";
