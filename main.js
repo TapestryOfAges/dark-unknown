@@ -1469,11 +1469,11 @@ function DoAction(code, ctrl) {
       let lance = localFactory.createTile("PrinceNPC");
       let endmap = maps.getMap("endgame");
       endmap.placeThing(6,5,lance);
-      maintext.addText(`<span class='npcspeaker'>Lance:</span> "Thank goodness! It worked, we've reached you!"`);
+      maintext.addText(`<span class='mainspeaker'>Lance:</span> "Thank goodness! It worked, we've reached you!"`);
       targetCursor.dark++;
       DrawMainFrame("one", PC.getHomeMap(),6,5);
     } else if (targetCursor.dark === 18) {
-      maintext.addText(`<span class='npcspeaker'>King Daragen:</span> "You have gone forth into the darkness at the end of the world... but you are not alone."`);
+      maintext.addText(`<span class='mainspeaker'>King Daragen:</span> "You have gone forth into the darkness at the end of the world... but you are not alone."`);
       let king = localFactory.createTile("KingNPC");
       let endmap = maps.getMap("endgame");
       endmap.placeThing(5,5,king);
@@ -1481,7 +1481,7 @@ function DoAction(code, ctrl) {
       if (DU.gameflags.getFlag("music")) { DUPlayMusic("Alone", {fade:1}); }
       DrawMainFrame("one", PC.getHomeMap(),5,5);
     } else if (targetCursor.dark === 19) {
-      maintext.addText(`<span class='npcspeaker'>Queen Shelaria:</span> "We love you so much, ${PC.getPCName()}. But there are so many others whose lives you have touched, and made better, and who care about you. You will always be connected to them."`);
+      maintext.addText(`<span class='mainspeaker'>Queen Shelaria:</span> "We love you so much, ${PC.getPCName()}. But there are so many others whose lives you have touched, and made better, and who care about you. You will always be connected to them."`);
       let queen = localFactory.createTile("QueenNPC");
       let endmap = maps.getMap("endgame");
       endmap.placeThing(7,5,queen);
@@ -1491,7 +1491,7 @@ function DoAction(code, ctrl) {
     } else if (targetCursor.dark === 20) {
       if (targetCursor.darkchar === 0) {
         if (DU.gameflags.getFlag("rescued_sam")) {
-          maintext.addText(`<span class='npcspeaker'>Kylee:</span> "You brought my daughter back to me. I will never forget that. Thank you."`);
+          maintext.addText(`<span class='mainspeaker'>Kylee:</span> "You brought my daughter back to me. I will never forget that. Thank you."`);
           let kylee = localFactory.createTile("TownsfolkNPC");
           kylee.setOverrideGraphic("civ_red.gif");
           let sam = localFactory.createTile("ChildVillagerNPC");
@@ -1503,11 +1503,11 @@ function DoAction(code, ctrl) {
         } else { targetCursor.darkchar = 2; }
       }
       if (targetCursor.darkchar === 1) {
-        maintext.addText(`<span class='npcspeaker'>Sam:</span> "You're a hero! You brought me out of the dark!"`);
+        maintext.addText(`<span class='mainspeaker'>Sam:</span> "You're a hero! You brought me out of the dark!"`);
       }
       if (targetCursor.darkchar === 2) {
         if (DU.gameflags.getFlag("anna_left")) {
-          maintext.addText(`<span class='npcspeaker'>Anna:</span> "Oh, ${PC.getPCName()}! Thank you for showing me the truth about Garrick."`);
+          maintext.addText(`<span class='mainspeaker'>Anna:</span> "Oh, ${PC.getPCName()}! Thank you for showing me the truth about Garrick."`);
           let anna = localFactory.createTile("TownsfolkVillagerNPC");
           anna.setOverrideGraphic("310.2.gif");
           let endmap = maps.getMap("endgame");
@@ -1527,11 +1527,11 @@ function DoAction(code, ctrl) {
         DrawMainFrame("one",PC.getHomeMap(),10,1);
       }
       if (targetCursor.darkchar === 4) {
-        maintext.addText(`<span class='npcspeaker'>Anna:</span> "I don't know what the future will bring. But we've learned a lot about finding the love that is out there. We're going to find that future... together."`);
+        maintext.addText(`<span class='mainspeaker'>Anna:</span> "I don't know what the future will bring. But we've learned a lot about finding the love that is out there. We're going to find that future... together."`);
       }
       if (targetCursor.darkchar === 5) {
         if (DU.gameflags.getFlag("returned_cloak")) {
-          maintext.addText(`<span class='npcspeaker'>Warren:</span> "You brought back to us a memento of our dear fallen friend. It may seem like a small thing... and perhaps it is. Sometimes the smallest deeds have a greater impact than you can imagine. We owe you."`);
+          maintext.addText(`<span class='mainspeaker'>Warren:</span> "You brought back to us a memento of our dear fallen friend. It may seem like a small thing... and perhaps it is. Sometimes the smallest deeds have a greater impact than you can imagine. We owe you."`);
           let warren = localFactory.createTile("AdventurerVillagerNPC");
           let garen = localFactory.createTile("RangerVillagerNPC");
           garen.setOverrideGraphic("ranger-offcolor.gif");
@@ -1544,7 +1544,7 @@ function DoAction(code, ctrl) {
       }
       if (targetCursor.darkchar === 6) {
         if (DU.gameflags.getFlag("franklin_gift")) {
-          maintext.addText(`<span class='npcspeaker'>Franklin:</span> "I thought that was it- I would be on the road forever, never staying too long in any town, for fear my debts would catch up to me. I appreciate you and what you've done for me."`);
+          maintext.addText(`<span class='mainspeaker'>Franklin:</span> "I thought that was it- I would be on the road forever, never staying too long in any town, for fear my debts would catch up to me. I appreciate you and what you've done for me."`);
           let franklin = localFactory.createTile("BardVillagerNPC");
           franklin.setOverrideGraphic("311.gif");
           let endmap = maps.getMap("endgame");
@@ -1554,7 +1554,7 @@ function DoAction(code, ctrl) {
       } 
       if (targetCursor.darkchar === 7) {
         if (DU.gameflags.getFlag("rhiannon_recipe")) {
-          maintext.addText(`<span class='npcspeaker'>Rhiannon:</span> "The tavern's been booming, since you helped me out with that recipe. Come by again any time- your meal's on me."`);
+          maintext.addText(`<span class='mainspeaker'>Rhiannon:</span> "The tavern's been booming, since you helped me out with that recipe. Come by again any time- your meal's on me."`);
           let rhi = localFactory.createTile("TownsfolkVillagerNPC");
           rhi.setOverrideGraphic("310.gif");
           let endmap = maps.getMap("endgame");
@@ -1564,7 +1564,7 @@ function DoAction(code, ctrl) {
       }
       if (targetCursor.darkchar === 8) {
         if (DU.gameflags.getFlag("solved_pheran")) {
-          maintext.addText(`<span class='npcspeaker'>Chera:</span> "Did you think that death would lessen our gratitude? Without you we would still be bound to our curse. Thank you."`);
+          maintext.addText(`<span class='mainspeaker'>Chera:</span> "Did you think that death would lessen our gratitude? Without you we would still be bound to our curse. Thank you."`);
           let ghost1 = localFactory.createTile("GhostNPC");
           let ghost2 = localFactory.createTile("GhostNPC");
           let ghost3 = localFactory.createTile("GhostNPC");
@@ -1579,7 +1579,7 @@ function DoAction(code, ctrl) {
       }
       if (targetCursor.darkchar === 9) {
         if (DU.gameflags.getFlag("blanche_returned")) {
-          maintext.addText(`<span class='npcspeaker'>Blanche:</span> "I owe you. You found me my missing jewelry without any expectation of reward, just because you are a good person. Don't think we didn't notice."`);
+          maintext.addText(`<span class='mainspeaker'>Blanche:</span> "I owe you. You found me my missing jewelry without any expectation of reward, just because you are a good person. Don't think we didn't notice."`);
           let blanche = localFactory.createTile("FighterVillagerNPC");
           let endmap = maps.getMap("endgame");
           endmap.placeThing(6,10,blanche);
@@ -1588,7 +1588,7 @@ function DoAction(code, ctrl) {
       }
       if (targetCursor.darkchar === 10) {
         if (DU.gameflags.getFlag("rhys_summoning")) {
-          maintext.addText(`<span class='npcspeaker'>Rhys:</span> "I know he's your brother, but to me, you're the one who saved my closest friend. You drove off Justice, and sat with me as we conjured information about the enemy. I'm proud to know you, and call you friend. Thank you, for all you've done."`);
+          maintext.addText(`<span class='mainspeaker'>Rhys:</span> "I know he's your brother, but to me, you're the one who saved my closest friend. You drove off Justice, and sat with me as we conjured information about the enemy. I'm proud to know you, and call you friend. Thank you, for all you've done."`);
           let rhys = localFactory.createTile("RangerVillagerNPC");
           rhys.setOverrideGraphic("305.gif");
           let endmap = maps.getMap("endgame");
@@ -1597,7 +1597,7 @@ function DoAction(code, ctrl) {
         } else { targetCursor.darkchar = 11; }
       }
       if (targetCursor.darkchar === 11) {
-        maintext.addText(`<span class='npcspeaker'>Lance:</span> "You've made it this far. And you are not alone. You can finish it."`);
+        maintext.addText(`<span class='mainspeaker'>Lance:</span> "You've made it this far. And you are not alone. You can finish it."`);
       }
       targetCursor.darkchar++;
       if (targetCursor.darkchar === 12) { targetCursor.dark++; }
