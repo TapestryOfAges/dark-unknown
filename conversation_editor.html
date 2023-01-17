@@ -26,7 +26,13 @@
     <div id='mainbody'></div>
 
   	<div class="bubble" id="responsebubble"><form name="responseeditpopup"><table cellpadding="2" cellspacing="1" border="1">
-		<tr><td colspan='3' style='text-align:center; font-weight:bold' id='responseid'>Keyword: <input type='text' size='10' name='responsekeyword'></td></tr>
+		<tr><td colspan='4' style='text-align:center; font-weight:bold' id='responseid'>Keyword: <input type='text' size='10' name='responsekeyword'></td>
+			<td rowspan="5" valign="center">Special Characters Key:<br />=keyword= : Highlight keyword<br />%FORMAL% : Prince/Princess/Heir<br />%TITLED% : Lord/Lady<br />
+			%NAME% : PC Name<br />%BR% : Line break<br />%MYNAME% : NPC's name/desc<br />%MYREALNAME% : NPC's name<br />%PRONOUN% : PC's pronoun<br />
+			%POSSESSIVE% : PC his/hers/theirs<br />%OBJ% : PC him/her/them<br />%SIBLING% : brother/sister/sibling<br />%KIDDIE% : PC son/daughter/child<br />
+			%SELF_PRONOUN% : NPC pronoun<br />%SYS%foo%SYS% : wraps foo in sys color<br />%MS% : repeats speaker text<br />%AS:foo% : presents foo as second speaker
+		</td>
+		</tr>
 		<tr><td></td><td><textarea id='response1' name='response1' rows='2' cols='60'></textarea></td>
 		  <td><input type="checkbox" id="end_convo1" name="end_convo1" value="end_convo1" /> end_convo <input type='text' id='end_convo1_val' name='end_convo1_val' size='10' /><br />
 		  <input type="checkbox" id="give_item1" name="give_item1" value="give_item1" /> give_item <input type='text' id="item_given1" name='item_given1' size='10' /><br />
@@ -35,11 +41,15 @@
 		  <input type="checkbox" id="give_gold1" name="give_gold1" value="give_gold1" /> give_gold <input type='text' id="gold_given1" name='gold_given1' size='10' /><br />
 		  <input type="checkbox" id="give_karma1" name="give_karma1" value="give_karma1" /> give_karma <input type='text' id="karma_given1" name='karma_given1' size='10' /><br />
 		  <input type="checkbox" id="give_xp1" name="give_xp1" value="give_xp1" /> give_xp <input type='text' id="xp_given1" name='xp_given1' size='10' /><br />
-		  <input type="checkbox" id="set_yesno1" name="set_yesno1" value="set_yesno1" /> yes_no <br />
-		  <input type="checkbox" id="start_shop1" name="start_shop1" value="start_shop1" /> start_shop<br />
-			<input type="checkbox" id="start_sell1" name="start_sell1" value="start_sell1" /> start_sell<br />
 			<input type="checkbox" id="questlog1" name="questlog1" value="questlog1" /> quest_log <input type='text' id='questlog1_val' name='questlog1_val' size='10' /><br />
-		  <input type="checkbox" id="questcomp1" name="questcomp1" value="questcomp1" /> quest_comp <input type='text' id='questcomp1_val' name='questcomp1_val' size='10' /></td>
+		  <input type="checkbox" id="questcomp1" name="questcomp1" value="questcomp1" /> quest_comp <input type='text' id='questcomp1_val' name='questcomp1_val' size='10' /><br />
+			<input type="checkbox" id="altspeaker1" name="altspeaker1" value="altspeaker1" /> alt_speaker <input type='text' id='altspeaker1_val' name='altspeaker1_val' size='10' />
+		  </td>
+			<td>
+				<input type="checkbox" id="set_yesno1" name="set_yesno1" value="set_yesno1" /> yes_no <br />
+		    <input type="checkbox" id="start_shop1" name="start_shop1" value="start_shop1" /> start_shop<br />
+			  <input type="checkbox" id="start_sell1" name="start_sell1" value="start_sell1" /> start_sell<br />
+			</td>
 		</tr>
 		<tr><td id='flags2td'><select id='flags2' name='flags2'><option value=""></option><option value="flags_met">flags_met</option><option value="has_item">has_item</option><option value="has_gold">has_gold</option><option value="has_condition">has_condition</option><option value="function_call">function_call</option><option value="between_times">Between Times</option></select><br />
 		  <input type='text' id='flags2val' name='flags2val' size='10' /></td>
@@ -51,14 +61,17 @@
 		  <input type="checkbox" id="give_gold2" name="give_gold2" value="give_gold2" /> give_gold <input type='text' id="gold_given2" name='gold_given2' size='10' /><br />
 		  <input type="checkbox" id="give_karma2" name="give_karma2" value="give_karma2" /> give_karma <input type='text' id="karma_given2" name='karma_given2' size='10' /><br />
 		  <input type="checkbox" id="give_xp2" name="give_xp2" value="give_xp2" /> give_xp <input type='text' id="xp_given2" name='xp_given2' size='10' /><br />
-		  <input type="checkbox" id="set_yesno2" name="set_yesno2" value="set_yesno2" /> yes_no <br />
-		  <input type="checkbox" id='start_shop2' name="start_shop2" value="start_shop2" /> start_shop<br />
-      <input type="checkbox" id='start_sell2' name="start_sell2" value="start_sell2" /> start_sell<br />
 			<input type="checkbox" id="questlog2" name="questlog2" value="questlog2" /> quest_log <input type='text' id='questlog2_val' name='questlog2_val' size='10' /><br />
-		  <input type="checkbox" id="questcomp2" name="questcomp2" value="questcomp2" /> quest_comp <input type='text' id='questcomp2_val' name='questcomp2_val' size='10' /></td>
+		  <input type="checkbox" id="questcomp2" name="questcomp2" value="questcomp2" /> quest_comp <input type='text' id='questcomp2_val' name='questcomp2_val' size='10' /><br />
+			<input type="checkbox" id="altspeaker2" name="altspeaker2" value="altspeaker2" /> alt_speaker <input type='text' id='altspeaker2_val' name='altspeaker2_val' size='10' /></td>
+			<td>
+				<input type="checkbox" id="set_yesno2" name="set_yesno2" value="set_yesno2" /> yes_no <br />
+				<input type="checkbox" id='start_shop2' name="start_shop2" value="start_shop2" /> start_shop<br />
+				<input type="checkbox" id='start_sell2' name="start_sell2" value="start_sell2" /> start_sell<br />	
+			</td>
 		</tr>
-		<tr><td><input type="hidden" id='theconv' name='theconv' /></td><td>Location: <input type="text" name="location" id="location" size="30" /></td><td></td></tr>
-		<tr><td><input type="submit" value="Edit" onClick="submitEditResponse(1);" class="jqmClose" /> <span id="linkedbutton"><input type="submit" value="Linked Edit" onClick="submitEditResponse(1,1);" class="jqmClose" /></span></td><td><input type="submit" value="Cancel" onClick="submitEditResponse(0);" class="jqmClose" /> <input type="submit" value="Delete Response" onClick="submitEditResponse(-1);" class="jqmClose" /></td></tr>
+		<tr><td><input type="hidden" id='theconv' name='theconv' /></td><td>Location: <input type="text" name="location" id="location" size="30" /></td><td></td><td></td></tr>
+		<tr><td><input type="submit" value="Edit" onClick="submitEditResponse(1);" class="jqmClose" /> <span id="linkedbutton"><input type="submit" value="Linked Edit" onClick="submitEditResponse(1,1);" class="jqmClose" /></span></td><td><input type="submit" value="Cancel" onClick="submitEditResponse(0);" class="jqmClose" /> <input type="submit" value="Delete Response" onClick="submitEditResponse(-1);" class="jqmClose" /></td><td></td><td></td></tr>
 		</table></form>
 	</div>
 
