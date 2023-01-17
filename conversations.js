@@ -28,10 +28,11 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
 
   let re = /^[a-z]/;
   if (re.test(keyword)) { 
-//    console.log("CONV: truncating keyword " + keyword);
     keyword = keyword.slice(0,6);
-//    console.log("New keyword: " + keyword);
   }
+
+  let noshowmainspeaker = 0;
+  let altspeaker = "";
 
   while (checkkeyword)  {
     flags_met = 1;
@@ -85,12 +86,20 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     
   }
   
+  let triggers = this[keyword].triggers[flags_met];
+  if (triggers.hasOwnProperty("altspeaker")) {
+    noshowmainspeaker = 1;
+    console.log(noshowmainspeaker);
+    if ((triggers.altspeaker !== 1) && (triggers.altspeaker !== "1")) { altspeaker = flags.altspeaker; }
+  }  // this one trigger needs to be checked before speech 
+  // Technically I should rewrite so this is neither a flag nor a trigger, but that's a much larger code refactor, and this hack should suffice
+
   if (!convlog[convlog.length-1].hasOwnProperty("hasResponse")) { 
     convlog[convlog.length-1].hasResponse = addtolog.hasResponse;
     convlog[convlog.length-1].flagsmet = addtolog.flagsmet;
     convlog[convlog.length-1].itemsowned = addtolog.itemsowned;
   }
-  keep_talking = this.say(speaker, this[keyword].responses[flags_met], skipahead);
+  keep_talking = this.say(speaker, this[keyword].responses[flags_met], skipahead, noshowmainspeaker, altspeaker);
   
   if (keep_talking === 2) { 
     targetCursor.keyword = keyword;
@@ -100,7 +109,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   targetCursor.keyword = "";
   targetCursor.skipahead = 0;
   // handle triggers
-  let triggers = this[keyword].triggers[flags_met];
+  triggers = this[keyword].triggers[flags_met];  // should be redundant, but just to be sure
   
   if (triggers.hasOwnProperty("give_item")) {
     let newitem = localFactory.createTile(triggers.give_item);
@@ -173,7 +182,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   }
   if (triggers.hasOwnProperty("end_convo")) {
     if ((triggers.end_convo !== 1) && (triggers.end_convo !== "1")) {
-      this.say(speaker, triggers.end_convo);
+      this.say(speaker, triggers.end_convo, 0, noshowmainspeaker, altspeaker);
     }
     maintext.addText(" ");
     if (keep_talking !== -1) {
@@ -190,7 +199,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
         // set up merchanting!
       }
     } else {
-      keep_talking = this.say(speaker, this["_soldout"].responses[flags_met], skipahead);
+      keep_talking = this.say(speaker, this["_soldout"].responses[flags_met], skipahead, noshowmainspeaker, altspeaker);
     }
 
   }
@@ -226,16 +235,20 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     keep_talking = 4;
   }
 
+
   if ((keep_talking === 0) || (keep_talking === -1)) { HideTurnFrame(); }  
   return keep_talking;
   
 }
 
-Conversation.prototype.say = function(speaker, saywhat, skipahead) {
+Conversation.prototype.say = function(speaker, saywhat, skipahead, nospeaker, altspeaker) {
   let gterms = PC.getGenderedTerms();
   let pcname = PC.getPCName();
   let npcterms = speaker.getGenderedTerms();
   let npcname = speaker.getNPCName();
+  let speakertext = speaker.getFullDesc();
+  speakertext = speakertext.charAt(0).toUpperCase() + speakertext.slice(1);
+  speakertext = "<span class='mainspeaker'>" + speakertext + "</span>: ";
   
   saywhat = saywhat.replace(/=(\w+)=/g, "<span style='color:cyan'>$1</span>");
   saywhat = saywhat.replace(/%FORMAL%/g, gterms.formal);
@@ -255,6 +268,8 @@ Conversation.prototype.say = function(speaker, saywhat, skipahead) {
   saywhat = saywhat.replace(/%KIDDIE%/g, gterms.kiddie);
   saywhat = saywhat.replace(/%SELF_PRONOUN%/g, npcterms.pronoun);
   saywhat = saywhat.replace(/%SYS%(.+?)%SYS%/g, "<span class='sysconv'>$1</span>");
+  saywhat = saywhat.replace(/%MS%/g, speakertext);
+  saywhat = saywhat.replace(/%AS:(.+?)%/g, "<span class='altspeaker'>$1</span>");
 
   let diffspeak = /\@\w+/.exec(saywhat);
   if (diffspeak) {
@@ -277,9 +292,13 @@ Conversation.prototype.say = function(speaker, saywhat, skipahead) {
   
   let speech = saywhat.split("%%");
   let skipped = "";
-  let whospoke = speaker.getFullDesc();
-  whospoke = whospoke.charAt(0).toUpperCase() + whospoke.slice(1);
-  whospoke = "<span class='mainspeaker'>" + whospoke + "</span>: ";
+  let whospoke = "";
+  if (!nospeaker) {
+    whospoke = speakertext;
+  }
+  if (altspeaker) {
+    whospoke = "<span class='altspeaker'>" + altspeaker + "</span>: ";
+  }
   while (skipahead) {
     speech.shift();
     skipahead--;
@@ -975,16 +994,19 @@ OnConvTriggers["solved_pheran"] = function(speaker,keyword) {
 }
 
 OnConvTriggers["where_king"] = function(speaker,keyword) {
+  let speakertext = speaker.getFullDesc();
+  speakertext = speakertext.charAt(0).toUpperCase() + speakertext.slice(1);
+  speakertext = "<span class='mainspeaker'>" + speakertext + "</span>: ";
   if (CheckTimeBetween("6:15","7:30")) {
-    maintext.addText('"The King is at his morning meeting with the chancellor. He will soon make his way to the throne room."');
+    maintext.addText(speakertext + '"The King is at his morning meeting with the chancellor. He will soon make his way to the throne room."');
   } else if (CheckTimeBetween("7:31","12:00")) {
-    maintext.addText('"Your father can be found in the throne room."');
+    maintext.addText(speakertext + '"Your father can be found in the throne room."');
   } else if (CheckTimeBetween("12:01","17:00")) {
-    maintext.addText('"Your father can be found in the great hall."');
+    maintext.addText(speakertext + '"Your father can be found in the great hall."');
   } else if (CheckTimeBetween("17:01","19:00")) {
-    maintext.addText('"Your father can be found in the throne room."');
+    maintext.addText(speakertext + '"Your father can be found in the throne room."');
   } else {
-    maintext.addText('"The King has retired for the night."');
+    maintext.addText(speakertext + '"The King has retired for the night."');
   }
   DU.gameflags.deleteFlag("where_king");
 }
