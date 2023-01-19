@@ -114,6 +114,15 @@ ProtoObject.prototype.copy = function(type) {
         copydata[idx][i] = val[i].getSerial();
         DebugWrite("saveload", idx + " an array containing serial " + copydata[idx][i] + "...  ");
       }
+    } else if (idx === "occupants") {
+      copydata[idx] = [];
+      for (let i=0;i<val.length;i++) {
+        if (val[i]==="") { copydata[idx][i] = ""; }
+        else {
+          copydata[idx][i] = val[i].getSerial();
+        }
+        DebugWrite("saveload", idx + " an array containing serial " + copydata[idx][i] + "...  ");
+      }
     } else if (idx === "attachedTo") {
       copydata[idx] = val.getSerial();
     } else if (Array.isArray(val)) {
@@ -212,6 +221,14 @@ ProtoObject.prototype.copy = function(type) {
     } else if (idx === "destination") {  // on teleporters
       copydata[idx] = val;   
     } else if (idx === "val") {  // on ToshinPanel at the least
+      copydata[idx] = val;
+    } else if (idx === "wornlayers") { 
+      copydata[idx] = val;
+    } else if (idx === "wornlayernudges") {
+      copydata[idx] = val;
+    } else if (idx === "defwornlayernudges") {
+      copydata[idx] = val;
+    } else if (idx === "defwornlayers") {
       copydata[idx] = val;
     } else {
       DebugWrite("saveload", "<br /><span style='color:red;font-weight:bold'>" + idx + " is type " + typeof val + "</span>,  ");
@@ -333,6 +350,7 @@ GameObject.prototype.setGraphicArray = function(newgraphics) {
 	this.overlay = newgraphics[1];
 	this.spritexoffset = newgraphics[2];
   this.spriteyoffset = newgraphics[3];
+  if (newgraphics[4]) { alert("Newgraphic trying to add a layer"); }
 }
 
 GameObject.prototype.getGraphic = function() {
@@ -340,7 +358,7 @@ GameObject.prototype.getGraphic = function() {
   if (returnGraphic) { return(returnGraphic); }
 }
 
-GameObject.prototype.getGraphicArray = function() {
+GameObject.prototype.getGraphicArray = function(getbase) {
 	let returnGraphic = this.graphic;
   let returnOverlay = this.overlay;
   let returnVars = [];
@@ -351,17 +369,21 @@ GameObject.prototype.getGraphicArray = function() {
   else {
   	returnVars[1] = "spacer.gif";
   }
-  if (this.spritexoffset) {
-    returnVars[2] = this.spritexoffset;
-  }
-  else {
-  	returnVars[2] = "0";
+  if (getbase || !this.hasOwnProperty("currframe")) {
+    if (this.spritexoffset) {
+      returnVars[2] = this.spritexoffset;
+    } else {
+  	  returnVars[2] = "0";
+    }
+  } else {
+    returnVars[2] = this.currframe;
   }
   if (this.spriteyoffset) {
     returnVars[3] = this.spriteyoffset;
   } else {
   	returnVars[3] = "0";
   }
+  
   return(returnVars); 
 }
 
@@ -990,10 +1012,15 @@ function Tiling(tileval) {
 }
 
 // Abstract class Tiling-spritesheet
-function TilingSpritesheet(tileval) {
+function TilingSpritesheet(tileval, horizonly) {
   this.doTile = function(tilingx,tilingy,tilegraphic) {
-		tilingx = (tilingx % tileval)*32; 
-    tilingy = (tilingy % tileval)*32;
+    if (!horizonly) {
+  		tilingx = (tilingx % tileval)*32; 
+      tilingy = (tilingy % tileval)*32;
+    } else {
+      tilingx = (((tilingy % 2) + tilingx) % tileval) * 32;
+      tilingy = 0;
+    }
     let tileme = {};
     if (!tilegraphic) {tilegraphic = this.getGraphicArray(); }
     tileme.spritexoffset = parseInt(tilegraphic.graphics2) - tilingx;
@@ -1022,6 +1049,130 @@ function MobileEnterable(destmap, destx, desty) {
   	return mapdata;
   }
 }
+
+//Abstract class ManualAnimation
+function ManualAnimation(params) {
+  // animstart is the spritex values of the first animation frame
+  this.animstart = params.animstart;
+  this.animlength = params.animlength;  // number of frames
+  // animstyle is random, cycle (1-4 and back to 1), pingpong (1-4-1), flow 
+  this.animstyle = params.animstyle;
+  this.animdir = params.animdir;  // vertical or horizontal, if animstyle is "flow"; 1 or -1, if animstyle is "pingpong"
+  // can it animate to the same frame twice in a row?
+  this.allowrepeat = 0;
+  if (params.allowrepeat) { this.allowrepeat = 1; }
+  // min and max duration times. If there are specific frames I want to be able to linger on maybe I'll change this
+  this.framedurationmin = params.framedurationmin;
+  this.framedurationmax = params.framedurationmax;
+  
+  // start frame = start or random (start meaning leftmost spritex)
+  this.startframe = params.startframe;
+
+  // used to denote if it is on screen or not
+  this.animating = 0;
+
+  // will be initially set in startAnimation, which is called in Activate. If this exists, it will be used rather than
+  // spritexoffset to determine what to display
+  this.currframe; 
+  this.currframenum;
+
+  this.startAnimation = function() {
+    console.log("startAnimation called for " + this.getName());
+    if (this.animstyle === "pingpong") { this.animdir = 1; }
+    if (this.startframe === "start") { 
+      if (this.animdir === "vertical") {
+        this.currframe = this.spriteyoffset;
+      } else {
+        this.currframe = this.spritexoffset; 
+      }
+      this.currframenum = 1;
+    } 
+    else { 
+      let sf = Dice.roll("1d"+this.animlength);
+      this.currframe = -1*(sf-1)*32 + this.spritexoffset;
+      this.currframenum = sf;
+    }
+    console.log("currframenum: " + this.currframenum);
+    console.log("currframe: " + this.currframe);
+    this.animating = 0; // this.animating gets saved, but we want it to always start at 0
+  }
+
+  this.IWasJustDrawn = function() {
+    console.log("IWasJustDrawn (" + this.getName() + ")");
+    if (this.animating) {
+      console.log("Already animating: " + this.animating);
+      return; 
+    } // animateMe cycle is already going 
+    this.animating = 1;
+
+    let waittime = Math.floor(Math.random() * (this.framedurationmax - this.framedurationmin +1)) + this.framedurationmin;
+    let ts = this;
+    setTimeout(function() { ts.animateMe(); }, waittime);
+  }
+
+  this.animateMe = function() {
+//    console.log("In animateMe " + this.getName() + " , (" + this.getx() + "," + this.gety() + ")");
+    let divid = "divid_" + this.getSerial();
+    let div = document.getElementById(divid);
+    if (!div) { this.animating = 0; return; }
+
+    if (this.animstyle === "cycle") {
+      this.currframenum++;
+      if (this.currframenum > this.animlength) { this.currframenum = 1; }
+      this.currframe = -1*(this.currframenum-1)*32 + this.spritexoffset;
+    } else if (this.animstyle === "pingpong") {
+      this.currframenum = this.currframenum + this.animdir;
+      if (this.currframenum === this.animlength) { this.animdir = -1; }
+      if (this.currframenum === 1) { this.animdir = 1; }
+      this.currframe = -1*(this.currframenum-1)*32 + this.spritexoffset;
+    } else if (this.animstyle === "flow") {
+      this.currframenum++;
+      if (this.currframenum > this.animlength) { this.currframenum = 1; }
+      if (this.animdir === "horizontal") {
+        this.currframe = -1*(this.currframenum-1) + this.spritexoffset;
+      } else {
+        this.currframe = -1*(this.currframenum-1) + this.spriteyoffset;
+      }
+    } else { // random
+      let diesize = this.animlength;
+      if (!this.allowrepeat) { diesize = diesize-1; }
+      let sf = Dice.roll("1d"+diesize);
+      if (!this.allowrepeat && (sf >= this.currframenum)) { 
+        // if you can't repeat, die size was one too small. Therefore if you roll the current frame or higher, add one.
+        sf++; 
+      }
+      this.currframenum = sf;
+      this.currframe = -1*(sf-1)*32 + this.spritexoffset;
+    }
+
+    if (this.animdir === "vertical") {
+      div.style.backgroundPosition = this.spritexoffset + "px " + this.currframe + "px";
+    } else {
+      div.style.backgroundPosition = this.currframe + "px " + this.spriteyoffset + "px";
+
+      if (this.checkType("human")) {
+        this.makeLayers(this.currframenum);
+        for (let i=0;i<this.layers.length;i++) {
+          let fdiv = document.getElementById(divid + "_" + i);
+          div.style.backgroundPosition = this.layers[i].spritex + "px " + this.spriteyoffset + "px";
+        }
+      }
+      
+    }
+
+    let waittime = Math.floor(Math.random() * (this.framedurationmax - this.framedurationmin +1)) + this.framedurationmin;
+    let ts = this;
+    setTimeout(function() { ts.animateMe(); }, waittime);
+  }
+}
+
+// uncomment if I want to take flowing animations away from animating gifs, but for now that seems fine, honestly
+//function UniversalFlowModulator() {
+//  universalFlow++;
+//  if (universalFlow === 33) { universalFlow = 1;}
+
+//  setTimeout(function() { UniversalFlowModulator(); }, 150);
+//}
 
 // General func 
 function SetByBelow() {
@@ -1143,39 +1294,45 @@ function SetBySurroundCoast() {
     let ocean;
     let water;
     let shallow;
+    let still;
     let localacre = themap.getTile(x,y-1);
     let tile; 
     if (localacre !== "OoB") {
     	tile = localacre.terrain;
     	if ((tile.getName() === "Ocean") || (tile.getName() === "ShadowOcean")) { ocean = tile; }
     	if ((tile.getName() === "Water") || (tile.getName() === "ShadowWater")) { water = tile; }
-    	if ((tile.getName() === "Shallows") || (tile.getName() === "ShadowShallows")) { shallow = tile; }
+      if ((tile.getName() === "Shallows") || (tile.getName() === "ShadowShallows")) { shallow = tile; }
+      if ((tile.getName() === "StillWater") || (tile.getName() === "ShadowStillWater")) { still = tile; }
     }
     localacre = themap.getTile(x,y+1);
     if (localacre !== "OoB") {
     	tile = localacre.terrain;
     	if ((tile.getName() === "Ocean") || (tile.getName() === "ShadowOcean")) { ocean = tile; }
     	if ((tile.getName() === "Water") || (tile.getName() === "ShadowWater")) { water = tile; }
-    	if ((tile.getName() === "Shallows") || (tile.getName() === "ShadowShallows")) { shallow = tile;; }
+      if ((tile.getName() === "Shallows") || (tile.getName() === "ShadowShallows")) { shallow = tile;; }
+      if ((tile.getName() === "StillWater") || (tile.getName() === "ShadowStillWater")) { still = tile; }
     }
     localacre = themap.getTile(x+1,y);
     if (localacre !== "OoB") {
     	tile = localacre.terrain;
     	if ((tile.getName() === "Ocean") || (tile.getName() === "ShadowOcean")) { ocean = tile; }
     	if ((tile.getName() === "Water") || (tile.getName() === "ShadowWater")) { water = tile; }
-    	if ((tile.getName() === "Shallows") || (tile.getName() === "ShadowShallows")) { shallow = tile; }
+      if ((tile.getName() === "Shallows") || (tile.getName() === "ShadowShallows")) { shallow = tile; }
+      if ((tile.getName() === "StillWater") || (tile.getName() === "ShadowStillWater")) { still = tile; }
     }
     localacre = themap.getTile(x-1,y);
     if (localacre !== "OoB") {
     	tile = localacre.terrain;
     	if ((tile.getName() === "Ocean") || (tile.getName() === "ShadowOcean")) { ocean = tile; }
     	if ((tile.getName() === "Water") || (tile.getName() === "ShadowWater")) { water = tile; }
-    	if ((tile.getName() === "Shallows") || (tile.getName() === "ShadowShallows")) { shallow = tile; }
+      if ((tile.getName() === "Shallows") || (tile.getName() === "ShadowShallows")) { shallow = tile; }
+      if ((tile.getName() === "StillWater") || (tile.getName() === "ShadowStillWater")) { still = tile; }
     }
     let chosentile;
     if (shallow) { chosentile = shallow; }
     else if (water) { chosentile = water; }
     else if (ocean) { chosentile = ocean; }
+    else if (still) { chosentile = still; }
     // kludge fix for clear lake
     else if (themap.getName() === "clearlake") { 
       shallow = eidos.getForm("Shallows");
@@ -1230,40 +1387,40 @@ function SetBySurroundRoad() {
 	  if ((suffix === "e") || (suffix === "w")) { suffix = "ew"; }
     if ((suffix === "n") || (suffix === "s")) { suffix = "ns"; }
     
-    graphics[0] = "master_spritesheet.png";
+    graphics[0] = "static.png";
     switch (suffix) {
       case "en": 
-      graphics[2] = "-32"; graphics[3] = "-736";
+      graphics[2] = -9*32; graphics[3] = -8*32;
       return graphics;
       case "ens":
-      graphics[2] = "-64"; graphics[3] = "-736";
+      graphics[2] = -9*32; graphics[3] = -9*32;
       return graphics;
       case "es":
-      graphics[2] = "-96"; graphics[3] = "-736";
+      graphics[2] = -6*32; graphics[3] = -8*32;
       return graphics;
       case "ew":
-      graphics[2] = "-128"; graphics[3] = "-736";
+      graphics[2] = -7*32; graphics[3] = -9*32;
       return graphics;
       case "ewn":
-      graphics[2] = "-160"; graphics[3] = "-736";
+      graphics[2] = -6*32; graphics[3] = -9*32;
       return graphics;
       case "ews":
-      graphics[2] = "-192"; graphics[3] = "-736";
+      graphics[2] = -9*32; graphics[3] = -7*32;
       return graphics;
       case "ns":
-      graphics[2] = "-224"; graphics[3] = "-736";
+      graphics[2] = -8*32; graphics[3] = -7*32;
       return graphics;
       case "wn":
-      graphics[2] = "-256"; graphics[3] = "-736";
+      graphics[2] = -8*32; graphics[3] = -8*32;
       return graphics;
       case "wns":
-      graphics[2] = "-288"; graphics[3] = "-736";
+      graphics[2] = -6*32; graphics[3] = -10*32;
       return graphics;
       case "ws":
-      graphics[2] = "0"; graphics[3] = "-768";
+      graphics[2] = -7*32; graphics[3] = -8*32;
       return graphics;
       case "x":
-      graphics[2] = "-32"; graphics[3] = "-768";
+      graphics[2] = -8*32; graphics[3] = -9*32;
       return graphics;
     }
 //	  graphics[0] = "road-" + suffix + ".gif";
@@ -1272,7 +1429,7 @@ function SetBySurroundRoad() {
 }
 
 // General func
-function SetBySurroundRiver() {
+function SetBySurroundRiver(terraintype) {
 	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
 		if (losresult >= LOS_THRESHOLD) {
 			let displaytile = eidos.getForm('BlankBlack');
@@ -1314,9 +1471,9 @@ function SetBySurroundRiver() {
 		} else { west = 1; }
 		if ((north === 1) && (south === 1) && (east === 1) && (west === 1)) {
 			// this shouldn't happen, if it does I need to draw a + river piece
-			graphics[1] = "spacer.gif";
+      graphics[1] = "spacer.gif";
 		} else if ((north === 1) && (east === 1) && (south === 1)) {
-			graphics[1] = "riverTright.gif";
+      graphics[1] = "riverTright.gif";
 		} else if ((north === 1) && (west === 1) && (south === 1)) {
 			graphics[1] = "riverTleft.gif";
 		} else if ((north === 1) && (east === 1) && (west === 1)) {
