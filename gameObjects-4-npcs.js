@@ -2000,7 +2000,7 @@ NPCHumanObject.prototype.makeLayers = function(frame) {
 
 let HumanParts = {
   // Bodies
-  WhiteTunic: { type: "body", spritex: 0, spritey: 0, frames: 2 },
+  WhiteTunic: { type: "body", spritex: 0, spritey: -19*32, frames: 2 },
   BlueDress: { type: "body", spritex: 0, spritey: -1*32, frames: 2 },
   YellowDress: { type: "body", spritex: 0, spritey: -2*32, frames: 2 },
   Bard1: { type: "body", spritex: 0, spritey: -3*32, frames: 2 },

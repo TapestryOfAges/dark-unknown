@@ -11756,17 +11756,18 @@ function StoneOfConflagrationsTile() {
 StoneOfConflagrationsTile.prototype = new ItemObject();
 
 function BrokenArrowTile() {
+  // Graphic Upgraded
   this.name = "BrokenArrow";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-1728";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -73*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "green-fletched arrow";
   this.prefix = "a";
   this.longdesc = "A broken arrow with green fletching. Return to Ladonna when Mended.";
   this.addType("Quest");
-  Breakable.call(this,["master_spritesheet.png", "", "-128", "-1728"],0,"");
+  Breakable.call(this,["static.png", "", -32, -98*32],0,"");
   this.brokendesc = "broken green-fletched arrow";
   this.repairNeedsInfusion = 1;
 }
