@@ -151,6 +151,9 @@ borogard_killed - you've killed the talking ettin
 rhiannon_recipe - you've found a recipe to help the Gauntlet Tavern **
 gauntlet_recipe - you've left Gauntlet since giving the recipe
 ask_poverty - Kelly has asked you to ask the King to help Poverty
+rebuild_decide - the king has brought to you the decision
+rebuild_poverty - king agreed to rebuild Poverty
+rebuild_no - king is instead funding highway patrols
 
 jharden_act2 - you've spoken to Jharden in act 2
 nyrani_act2
