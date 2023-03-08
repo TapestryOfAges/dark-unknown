@@ -875,6 +875,16 @@ OnConvTriggers["place_wod"] = function(speaker,keyword) {
   }
 }
 
+OnConvTriggers["rebuild_poverty"] = function(speaker,keyword) {
+  DU.gameflags.deleteFlag("rebuild_decide");
+  // WORKING HERE - swap poverty map
+}
+
+OnConvTriggers["rebuild_no"] = function(speaker,keyword) {
+  DU.gameflags.deleteFlag("rebuild_decide");
+  // WORKING HERE - create guards on map, their AI, and their zoomed-in map
+}
+
 function HasLibraryBooks() {
   let hasbook = 0;
   if (PC.checkInventory("MapsAndLegends")) {
