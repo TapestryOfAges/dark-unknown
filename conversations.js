@@ -87,7 +87,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   }
   
   let triggers = this[keyword].triggers[flags_met];
-  if (triggers.hasOwnProperty("altspeaker")) {
+  if (triggers.hasOwnProperty("altspeaker") || (keyword === "_start") || (keyword === "look")) {
     noshowmainspeaker = 1;
     console.log(noshowmainspeaker);
     if ((triggers.altspeaker !== 1) && (triggers.altspeaker !== "1")) { altspeaker = flags.altspeaker; }
