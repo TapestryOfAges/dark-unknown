@@ -694,6 +694,35 @@ ais.Isaac_initiate = function(who) {
     } else {
       who.dest++;
     }
+
+    // Add 4 paladins to floor 2: Skar, Linley, Yelena, and Amaeryl (56-59,51)
+    // then add a walkon just at the top of the stairs where Isaac bids you sit beside him
+    // add two walkons in the seats on either side of him that trigger the ceremony. 
+    let swain2 = maps.getMap("swainhil2");
+    let yelena = localFactory.createTile("PaladinVillagerNPC");
+    yelena.setGraphic("307.gif"); // WORKING HERE - replace in newart branch
+    yelena.skintone = 1;
+    yelena.setConversation("yelena_initiation");
+    yelena.setNPCName("Yelena");
+    let amaeryl = localFactory.createTile("PaladinVillagerNPC");
+    amaeryl.setGraphic("307.2.gif");
+    amaeryl.skintone = 2;
+    amaeryl.setConversation("amaeryl_initiation");
+    amaeryl.setNPCName("Amaeryl");
+    let skar = localFactory.createTile("PaladinVillagerNPC");
+    skar.setGraphic("307.2.gif");
+    skar.skintone = 2;
+    skar.setConversation("skar_initiation");
+    skar.setNPCName("Urskar");
+    let linley = localFactory.createTile("PaladinVillagerNPC");
+    linley.setGraphic("paladin-offcolor.gif");
+    linley.skincolor = 1;
+    linley.setConversation("linley_initiation");
+    linley.setNPCName("Linley");
+    swain2.placeThing(yelena,56,51);
+    swain2.placeThing(amaeryl,57,51);
+    swain2.placeThing(skar,58,51);
+    swain2.placeThing(linley,59,51);
   } 
   if (who.dest === 2) {
     if ((who.getx() !== 57) || (who.gety() !== 47)) { console.log("Isaac is in the wrong place."); }

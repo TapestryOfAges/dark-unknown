@@ -515,7 +515,9 @@ mappages["swainhil"].editorLabels = '{"div_tile52x8":"Severyn","div_tile25x15":"
 
 mappages["swainhil"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
-    Listener.createListener("SimonHarp", "Harpsichord Plays", [], "swainhil");
+    if (!DU.gameflags.getFlag("bard_simon_played")) {
+      Listener.createListener("SimonHarp", "Harpsichord Plays", [], "swainhil");
+    }
   }
 }
 

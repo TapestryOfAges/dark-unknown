@@ -969,6 +969,11 @@ OnConvTriggers["given_box"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("kyvek_fetch_incomplete");
 }
 
+OnConvTriggers["bard_commended"] = function(speaker,keyword) {
+  DU.gameflags.setFlag("bard_simon_confirmed",1);
+  DU.gameflags.setFlag("bard_book_alison",1);
+}
+
 OnConvTriggers["paladin_initiation"] = function(speaker,keyword) {
   DU.gameflags.setFlag("paladin_initiation_time", DUTime.getGameClock() + 120*.2);
   speaker.setCurrentAI("Isaac_initiate");
