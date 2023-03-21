@@ -96,9 +96,11 @@ bard_neophyte - you've talked to markus about joining the bards
 bard_journeyman - you've joined the guild as an apprentice
 bard_master - you're a full member of the guild
 bard_book_quest - you've found the book Olivia is looking for
+bard_book_alison - Alison has responded to you finding Olivia's book
 bard_simon_ask - Simon has asked for a performance
 bard_simon_played - you've played for Simon
 bard_simon_confirmed - Alison has responded to you playing for Simon
+bard_commended - you've performed all the tasks for Alison and need to report to Markus
 cave_cleared - you've cleared out the cave west of the castle
 cave_cleared_paid - Nyrani has paid you for clearing the cave
 nyrani_supplied - Nyrani has given you some supplies to hit the cave with
