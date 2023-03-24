@@ -7822,6 +7822,68 @@ WalkOnShadowTile.prototype.walkon = function(walker) {
   return {msg: "<span class='daemontext'>Did you ever wonder where shadows go to hide? It is here, little one. In the absence of light, how can you tell... if you are surrounded by shadows?</span>"};
 }
 
+function WalkOnPaladinInitTile() {
+	this.name = "WalkOnPaladinInit";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnPaladinInitTile.prototype = new FeatureObject();
+
+WalkOnPaladinInitTile.prototype.walkon = function(walker) {
+  if (walker === PC){ 
+    this.getHomeMap().deleteThing(this);
+    let retval = { msg: 'Isaac smiles as you enter the room. "Please, come sit beside me, and then we will begin."' };
+    return retval;
+  }
+  return {msg:""};
+}
+
+function WalkOnPaladinInit2Tile() {
+	this.name = "WalkOnPaladinInit2";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnPaladinInit2Tile.prototype = new FeatureObject();
+
+WalkOnPaladinInit2Tile.prototype.walkon = function(walker) {
+  if (walker === PC) {
+    gamestate.setMode("anykey");
+    targetCursor.command = "PaladinInit";
+    targetCursor.step = 1;
+    let retval = {};
+    retval.override = 3;
+    retval.msg = 'Isaac nods at you as you sit. He looks across to the other table, and says in a resonant voice, "We have gathered here today to welcome into the Order our newest companion."';
+    maintext.setInputLine("&gt; [MORE]"); 
+
+    let x = this.getx()+2;
+    if (x === 60) { x = 56; }
+    let otherwalkon;
+    let swain = this.getHomeMap();
+    let pile = swain.getTile(x,this.gety()).features.getAll();
+    for (let i=0;i<pile.length;i++) {
+      if (pile[i].getName() === this.getName()) { otherwalkon = pile[i]; }
+    }
+    swain.deleteThing(otherwalkon);
+    swain.deleteThing(this);
+
+    return retval;
+  }
+
+  return {msg:""};
+}
+
 function SpinnerTile() {
   this.name = "Spinner";
 	this.graphic = "walkon.gif";

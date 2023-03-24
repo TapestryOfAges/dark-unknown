@@ -694,7 +694,7 @@ ais.Isaac_initiate = function(who) {
     } else {
       who.dest++;
     }
-
+  } else if (who.dest === 2) {
     // Add 4 paladins to floor 2: Skar, Linley, Yelena, and Amaeryl (56-59,51)
     // then add a walkon just at the top of the stairs where Isaac bids you sit beside him
     // add two walkons in the seats on either side of him that trigger the ceremony. 
@@ -723,8 +723,7 @@ ais.Isaac_initiate = function(who) {
     swain2.placeThing(amaeryl,57,51);
     swain2.placeThing(skar,58,51);
     swain2.placeThing(linley,59,51);
-  } 
-  if (who.dest === 2) {
+
     if ((who.getx() !== 57) || (who.gety() !== 47)) { console.log("Isaac is in the wrong place."); }
     let door = themap.getTile(57,48).getTopFeature();
     door.unlockMe();
@@ -738,6 +737,37 @@ ais.Isaac_initiate = function(who) {
     let door = themap.getTile(57,48).getTopFeature();
     MakeUseHappen(who,door,"map");
     door.lockMe(2);
+    who.dest++;
+  } else if (who.dest === 5) {
+    let thepath = themap.getPath(who.getx(),who.gety(),57,57,MOVE_WALK_DOOR);
+    path.shift();
+    if (path[0]) {
+      StepOrSidestep(who,path[0],[57,47]);
+    } else {
+      who.dest++;
+    }
+  } else if (who.dest === 6) {
+    let swain2 = maps.getMap("swainhil2");
+    MoveBetweenMaps(who,who.getHomeMap(),swain2,who.getx(),who.gety());
+    who.dest++;
+  } else if (who.dest === 7) {
+    let thepath = themap.getPath(who.getx(),who.gety(),57,55,MOVE_WALK_DOOR);
+    path.shift();
+    if (path[0]) {
+      StepOrSidestep(who,path[0],[57,47]);
+    } else {
+      who.dest++;
+    }
+  } else if (who.dest === 8) {
+    let swain2 = maps.getMap("swainhil2");
+    let wo1 = localFactory.createTile("WalkOnPaladinInit");
+    swain2.placeThing(wo1,57,56);
+
+    let wo2 = localFactory.createTile("WalkOnPaladinInit2");
+    swain2.placeThing(wo2,56,55);
+    let wo3 = localFactory.createTile("WalkOnPaladinInit2");
+    swain2.placeThing(wo3,58,55);
+
     who.dest++;
   }
 }
