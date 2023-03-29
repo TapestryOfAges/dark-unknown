@@ -5192,8 +5192,8 @@ WalkOnNoGalaxyTile.prototype.walkon = function(walker) {
       DUPlayMusic(normalsong, {fade:1});
     }
     DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
-    return {msg:""};
   }
+  return {msg:""};
 }
 
 function WalkOnGalaxy1Tile() {
@@ -5220,8 +5220,8 @@ WalkOnGalaxy1Tile.prototype.walkon = function(walker) {
       DUPlayMusic(song, {fade:1});
     }
     DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
-    return {msg:""};
   }
+  return {msg:""};
 }
 
 function WalkOnGalaxy2Tile() {
@@ -5248,8 +5248,8 @@ WalkOnGalaxy2Tile.prototype.walkon = function(walker) {
      DUPlayMusic(song, {fade:1});
     }
     DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
-    return {msg:""};
   }
+  return {msg:""};
 }
 
 function WalkOnGalaxy3Tile() {
@@ -5276,8 +5276,8 @@ WalkOnGalaxy3Tile.prototype.walkon = function(walker) {
       DUPlayMusic(song, {fade:1});
     }
     DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
-    return {msg:""};
   }
+  return {msg:""};
 }
 
 function WardukeWalkOnTile() {
