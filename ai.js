@@ -768,6 +768,10 @@ ais.Isaac_initiate = function(who) {
     let wo3 = localFactory.createTile("WalkOnPaladinInit2");
     swain2.placeThing(wo3,58,55);
 
+    let swain = maps.getMap("swainhil");
+    let door = swain.getTile(57,48).getTopFeature();
+    door.unlockMe();
+    
     who.dest++;
   }
 }
