@@ -9984,6 +9984,21 @@ function HomeKeyTile() {
 }
 HomeKeyTile.prototype = new KeyItemObject();
 
+function PaladinKeyTile() {
+  this.name = "PaladinKey";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-1280";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "the";
+  this.desc = "key to the Paladin tower";
+  this.longdesc = "The key to the Paladin's tower in Swainhil.";
+  this.usedesc = "Unlocks the doors to the Paladin tower.";
+}
+PaladinKeyTile.prototype = new KeyItemObject();
+
 function ToshinKeyTile() {
   this.name = "ToshinKey";
   //this.graphic = "master_spritesheet_d.gif";
@@ -9992,6 +10007,7 @@ function ToshinKeyTile() {
   this.spriteyoffset = "-1280";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "the";
   this.desc = "key to Toshin's Tower";
   this.longdesc = "A key found in a fireplace in Toshin's Tower.";
   this.usedesc = "Unlocks doors in Toshin's Tower.";
