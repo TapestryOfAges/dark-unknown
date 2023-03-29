@@ -444,6 +444,59 @@ function DoAction(code, ctrl) {
           PC.endTurn(retval["initdelay"]);
         }          
       }
+    } else if (targetCursor.command === "PaladinInit") {
+      if (targetCursor.step === 1) {
+        maintext.addText(`<span class='mainspeaker'>Isaac</span>: "${PC.getPCName()} has undertaken the trials and proven ${PC.getGenderedTerms().reflexive} worthy of standing beside us. Now we must show ourselves worth of standing with ${PC.getGenderedTerms().objective} in turn. For this we will strive, until our deaths or the ending of the world."`);
+        targetCursor.step++;
+      } else if (targetCursor.step === 2) {
+        maintext.addText(`Isaac lifts a golden goblet off the table in front of him.`);
+        targetCursor.step++;
+      } else if (targetCursor.step === 3) {
+        maintext.addText(`<span class='mainspeaker'>Isaac</span>: "This chalice represents a Paladin. For a Paladin's goal is to serve, to make the world better, to guide and protect. And to do that, we must first empty ourselves. Empty of our selfishness, our desires, our greed, our ambition. And instead..."`);
+        targetCursor.step++;
+      } else if (targetCursor.step === 4) {
+        maintext.addText(`He lifts a large earthenware jug with his other hand, and begins to pour into the chalice.`);
+        targetCursor.step++;
+      } else if (targetCursor.step === 5) {
+        maintext.addText(`<span class='mainspeaker'>Isaac</span>: "Instead, we allow ourselves to be filled. With courage. With honor. With fidelity. With integrity. And then, you are a Paladin."`);
+        targetCursor.step ++;
+      } else if (targetCursor.step === 6) {
+        maintext.addText(`<span class='mainspeaker'>Isaac</span>: "When you drink this, you accept these four precepts of our order."`);
+        targetCursor.step++;
+      } else if (targetCursor.step === 7) {
+        maintext.addText(`<span class='altspeaker'>Yelena</span>: "The world is not as it should be. But we will, with each breath, continue to make it better."`);
+        targetCursor.step++;
+      } else if (targetCursor.step === 8) {
+        maintext.addText(`<span class='altspeaker'>Amaeryl</span>: "These here are as your brothers and sisters. Support them always, and they will always support you."`);
+        targetCursor.step++;
+      } else if (targetCursor.step === 9) {
+        maintext.addText(`<span class='altspeaker'>Urskar</span>: "Everywhere we go, we will seek to inspire those we encounter, and we will be an example to all, of bravery and right action."`);
+        targetCursor.step++;
+      } else if (targetCursor.step === 10) {
+        maintext.addText(`<span class='altspeaker'>Linley</span>: "In all things, you will always comport yourself with honor.”`);
+        targetCursor.step++;
+      } else if (targetCursor.step === 11) {
+        maintext.addText(`<span class='mainspeaker'>Isaac</span>: He passes you the goblet. "And as we strive to do good, we may fail, but when we fail, we will try and try again. Until all has been set right."`);
+        targetCursor.step++;
+      } else if (targetCursor.step === 12) {
+        maintext.addText(`<span class='mainspeaker'>Isaac</span>: "Now is the time of choice. You may drink, and accept, and become one of us; or you may let the chalice pass you by. There is no shame in declining. The choice is yours."`);
+        targetCursor.step++;
+      } else if (targetCursor.step === 13) {
+        maintext.addText(`You raise the chalice before you, and take a deep drink. Isaac and the others cheer wildly!`);
+        targetCursor.step++;
+      } else if (targetCursor.step === 14) {
+        let newkey = localFactory.createTile("PaladinKey");
+        PC.addToInventory(newkey,1);
+        DU.gameflags.setFlag("paladin_joined",1);
+        maintext.addText(`<span class='mainspeaker'>Isaac</span>: "The first thing I need to do now, is give you access to this tower. Here now is a key. What is in this tower is yours as well as ours, now- take anything you need."<br /><span class='sysconv'>You have obtained: " + newkey.getFullDesc() + ".</span>`);
+        targetCursor.step++;
+      } else if (targetCursor.step === 15) {
+        maintext.addText(`<span class='mainspeaker'>Isaac</span>: "Welcome to the Paladins, ${PC.getPCName()}! From here, go forth, and continue to do good. Hip hip..."`);
+        targetCursor.step++;
+      } else if (targetCursor.step === 16) {
+        maintext.addText(`<span class='mainspeaker'>Everyone</span>: "Hooray!"`);
+        gamestate.setMode("player");
+      }
     } else {
       if (((code >= 65) && (code <= 90)) || (code === 32) || (code === 13)) {  // letter, space, or enter
         if (targetCursor.command === "c") {

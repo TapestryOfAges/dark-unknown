@@ -757,7 +757,7 @@ mappages["swainhil2"].npcs[0] = {name : 'BardVillagerNPC', x : 27, y : 37, NPCNa
 mappages["swainhil2"].npcs[1] = {name : 'BardVillagerNPC', x : 32, y : 49, NPCName: 'Markus', PeaceAI: 'scheduled', Schedule: 'markus', Conversation: 'markus', ConversationFlag: 'markus', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '311.gif', skintone: '1'};
 mappages["swainhil2"].npcs[2] = {name : 'BardVillagerNPC', x : 40, y : 37, NPCName: 'Rebecca', PeaceAI: 'scheduled', Schedule: 'rebecca', Conversation: 'rebecca', ConversationFlag: 'rebecca', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '311.gif', skintone: '1'};
 mappages["swainhil2"].npcs[3] = {name : 'BardVillagerNPC', x : 33, y : 37, NPCName: 'Simon', PeaceAI: 'scheduled', Schedule: 'simon', Conversation: 'simon', ConversationFlag: 'simon', Bark: '0', NPCBand: '0', OverrideGraphic: 'bard-offcolor.gif', skintone: '1'};
-mappages["swainhil2"].npcs[4] = {name : 'AdventurerVillagerNPC', x : 8, y : 13, NPCName: 'Edward', Desc: 'tavernkeeper', Prefix: 'a', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'edward', Conversation: 'edward', Gender: 'male', NPCBand: '0', skintone: '1'};
+mappages["swainhil2"].npcs[4] = {name : 'AdventurerVillagerNPC', x : 8, y : 13, NPCName: 'Eddie', Desc: 'tavernkeeper', Prefix: 'a', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'eddie', Conversation: 'eddie', Gender: 'male', NPCBand: '0', skintone: '1'};
 
 mappages["swainhil2"].desc = "The Towne of Swainhil";
 mappages["swainhil2"].longdesc = ``;
