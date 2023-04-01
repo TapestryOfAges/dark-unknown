@@ -1898,6 +1898,16 @@ tileFactory.prototype.makeWalkOnShadowTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWalkOnPaladinInitTile = function() {
+  let newTile = new WalkOnPaladinInitTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnPaladinInit2Tile = function() {
+  let newTile = new WalkOnPaladinInit2Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSpinnerTile = function() {
   let newTile = new SpinnerTile();
   return newTile;
@@ -2438,6 +2448,11 @@ tileFactory.prototype.makeTeleporterPlatformTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeUDTeleporterPlatformTile = function() {
+  let newTile = new UDTeleporterPlatformTile();
+  return newTile;
+}
+
 tileFactory.prototype.makePitTeleporterPlatformTile = function() {
   let newTile = new PitTeleporterPlatformTile();
   return newTile;
@@ -2885,6 +2900,11 @@ tileFactory.prototype.makeGoldTile = function() {
 
 tileFactory.prototype.makeHomeKeyTile = function() {
   let newTile = new HomeKeyTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePaladinKeyTile = function() {
+  let newTile = new PaladinKeyTile();
   return newTile;
 }
 
@@ -4800,6 +4820,11 @@ tileFactory.prototype.makeQuicknessTile = function() {
 
 tileFactory.prototype.makeReincarnateTile = function() {
   let newTile = new ReincarnateTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRubyLightTile = function() {
+  let newTile = new RubyLightTile();
   return newTile;
 }
 
