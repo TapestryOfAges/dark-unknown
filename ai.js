@@ -688,9 +688,9 @@ ais.Isaac_initiate = function(who) {
   if (!who.dest) { who.dest = 1; }
   if (who.dest === 1) {
     let thepath = themap.getPath(who.getx(),who.gety(),57,47,MOVE_WALK_DOOR);
-    path.shift();
-    if (path[0]) {
-      StepOrSidestep(who,path[0],[57,47]);
+    thepath.shift();
+    if (thepath[0]) {
+      StepOrSidestep(who,thepath[0],[57,47]);
     } else {
       who.dest++;
     }
@@ -719,10 +719,14 @@ ais.Isaac_initiate = function(who) {
     linley.skincolor = 1;
     linley.setConversation("linley_initiation");
     linley.setNPCName("Linley");
-    swain2.placeThing(yelena,56,51);
-    swain2.placeThing(amaeryl,57,51);
-    swain2.placeThing(skar,58,51);
-    swain2.placeThing(linley,59,51);
+    swain2.placeThing(56,51,yelena);
+    swain2.getTile(56,51).executeWalkons(yelena);  
+    swain2.placeThing(57,51,amaeryl);
+    swain2.getTile(57,51).executeWalkons(amaeryl);  
+    swain2.placeThing(58,51,skar);
+    swain2.getTile(58,51).executeWalkons(skar);
+    swain2.placeThing(59,51,linley);
+    swain2.getTile(59,51).executeWalkons(linley);  
 
     if ((who.getx() !== 57) || (who.gety() !== 47)) { console.log("Isaac is in the wrong place."); }
     let door = themap.getTile(57,48).getTopFeature();
@@ -740,9 +744,9 @@ ais.Isaac_initiate = function(who) {
     who.dest++;
   } else if (who.dest === 5) {
     let thepath = themap.getPath(who.getx(),who.gety(),57,57,MOVE_WALK_DOOR);
-    path.shift();
-    if (path[0]) {
-      StepOrSidestep(who,path[0],[57,47]);
+    thepath.shift();
+    if (thepath[0]) {
+      StepOrSidestep(who,thepath[0],[57,47]);
     } else {
       who.dest++;
     }
@@ -752,21 +756,21 @@ ais.Isaac_initiate = function(who) {
     who.dest++;
   } else if (who.dest === 7) {
     let thepath = themap.getPath(who.getx(),who.gety(),57,55,MOVE_WALK_DOOR);
-    path.shift();
-    if (path[0]) {
-      StepOrSidestep(who,path[0],[57,47]);
+    thepath.shift();
+    if (thepath[0]) {
+      StepOrSidestep(who,thepath[0],[57,47]);
     } else {
       who.dest++;
     }
   } else if (who.dest === 8) {
     let swain2 = maps.getMap("swainhil2");
     let wo1 = localFactory.createTile("WalkOnPaladinInit");
-    swain2.placeThing(wo1,57,56);
+    swain2.placeThing(57,56,wo1);
 
     let wo2 = localFactory.createTile("WalkOnPaladinInit2");
-    swain2.placeThing(wo2,56,55);
+    swain2.placeThing(56,55,wo2);
     let wo3 = localFactory.createTile("WalkOnPaladinInit2");
-    swain2.placeThing(wo3,58,55);
+    swain2.placeThing(58,55,wo3);
 
     let swain = maps.getMap("swainhil");
     let door = swain.getTile(57,48).getTopFeature();
@@ -774,6 +778,9 @@ ais.Isaac_initiate = function(who) {
     
     who.dest++;
   }
+  let retval = {};
+  retval["fin"] = 1;
+  return retval;
 }
 
 ais.AshardenBook = function(who) {
