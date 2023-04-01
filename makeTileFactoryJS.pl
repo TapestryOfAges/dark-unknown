@@ -3,8 +3,6 @@
 use strict;
 use warnings;
 
-open GAMEOBJS, "gameObjects.js" or die "can't open gameObjects\n";
-
 open (my $output, ">", "tileFactory.js") or die "Can't open output tileFactory\n";
 
 print $output '"use strict";';
@@ -18,6 +16,31 @@ print $output "  } else {\n";
 print $output "    alert(tileName + \" is not a thing.\");\n";
 print $output "  }\n}\n\n";
 
+open GAMEOBJS, "gameObjects-1-foundation.js" or die "can't open gameObjects1\n";
+
+foreach my $line (<GAMEOBJS>) {
+  if ($line =~ /function (.*)Tile\(\)/) {
+    print $output "tileFactory.prototype.make" . $1 . "Tile = function() {\n  let newTile = new ". $1 . "Tile();\n  return newTile;\n}\n\n";
+  }
+}
+
+open GAMEOBJS, "gameObjects-2-terrain.js" or die "can't open gameObjects2\n";
+
+foreach my $line (<GAMEOBJS>) {
+  if ($line =~ /function (.*)Tile\(\)/) {
+    print $output "tileFactory.prototype.make" . $1 . "Tile = function() {\n  let newTile = new ". $1 . "Tile();\n  return newTile;\n}\n\n";
+  }
+}
+
+open GAMEOBJS, "gameObjects-3-features.js" or die "can't open gameObjects3\n";
+
+foreach my $line (<GAMEOBJS>) {
+  if ($line =~ /function (.*)Tile\(\)/) {
+    print $output "tileFactory.prototype.make" . $1 . "Tile = function() {\n  let newTile = new ". $1 . "Tile();\n  return newTile;\n}\n\n";
+  }
+}
+
+open GAMEOBJS, "gameObjects-4-npcs.js" or die "can't open gameObjects4\n";
 
 foreach my $line (<GAMEOBJS>) {
   if ($line =~ /function (.*)Tile\(\)/) {
