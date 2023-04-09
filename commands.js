@@ -62,6 +62,8 @@ function PerformCommand(code, ctrl) {
       retval["txt"] = "";
     } else if (success["fin"] === 3) {
       retval["fin"] = 3;
+    } else if (success["fin"] === 4) {
+      retval["fin"] = 4; 
     }
     if (!DU.gameflags.getFlag("show_move")) {
       retval["txt"] = SuppressMove(retval["txt"], "North");
