@@ -875,11 +875,19 @@ OnConvTriggers["place_wod"] = function(speaker,keyword) {
 
 OnConvTriggers["rebuild_poverty"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("rebuild_decide");
-  // WORKING HERE - swap poverty map
+  let dumap = maps.getMap("darkunknown");
+  let feas = dumap.features.getAll();
+  for (let i=0;i<feas.length;i++) {
+    if (feas[i].getDesc = "Towne of Poverty") {
+      feas[i].entermap = "poverty2";
+    }
+  }
 }
 
 OnConvTriggers["rebuild_no"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("rebuild_decide");
+  let dumap = maps.getMap("darkunknown");
+  
   // WORKING HERE - create guards on map, their AI, and their zoomed-in map
 }
 
