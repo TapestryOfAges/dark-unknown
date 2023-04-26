@@ -3908,5 +3908,5 @@ ais.PatrolS = function(who) {
 }
 
 ais.GuardPatrol = function(who,dests) {
-
+  
 }
