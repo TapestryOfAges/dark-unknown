@@ -3881,3 +3881,32 @@ ais.Darkness = function(who) {
   }
   return {fin:1};
 }
+
+ais.PatrolOH = function(who) {
+  let points = [[52,65],[62,118]];
+  return ais.GuardPatrol(who,points);
+}
+
+ais.PatrolNP = function(who) {
+  let points = [[42,49],[71,75]];
+  return ais.GuardPatrol(who,points);
+}
+
+ais.PatrolCL = function(who) {
+  let points = [[108,52],[81,25]];
+  return ais.GuardPatrol(who,points);
+}
+
+ais.PatrolB = function(who) {
+  let points = [[110,52],[125,16]];
+  return ais.GuardPatrol(who,points);
+}
+
+ais.PatrolS = function(who) {
+  let points = [[109,53],[121,101]];
+  return ais.GuardPatrol(who,points);
+}
+
+ais.GuardPatrol = function(who,dests) {
+
+}
