@@ -3908,5 +3908,30 @@ ais.PatrolS = function(who) {
 }
 
 ais.GuardPatrol = function(who,dests) {
-  
+  let themap = who.getHomeMap();
+  let nearby = FindNearestNPC(who,"",PC);  // nearest entity on this map that isn't the PC
+  let nearbydist = GetDistance(who.getx(),who.gety(),nearby.getx(),nearby.gety(),"manhatten");
+  if ((!nearby.getDesc().includes("guard patrol")) && (nearbydist <= 3)) {
+    // there is a non-guard, non-PC nearby. Head towards it unless you're too far from the road
+    if (nearbydist === 1) {
+      // adjacent to a monster- smite or be smote
+      
+    }
+    let offroad = 1;
+    for (let i=who.getx()-3;i<=who.getx()+3; i++) {
+      for (let j=who.gety()-3;j<=who.gety()+3; j++) {
+        if (themap.getTile(i,j).getTerrain().getName() === "Road") {
+          offroad = 0;
+          break;
+        }
+        if (!offroad) { break; }
+      }
+    } 
+    if (!offroad) {
+      // we haven't moved too far away from the road we are patrolling yet
+
+    }
+  } 
+  // either there is nothing to engage, or we're too far from the road- continue on the path
+
 }
