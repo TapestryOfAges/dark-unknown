@@ -998,7 +998,7 @@ function FindNearby(what,map,radius,shape,tox,toy) {
 function FindNearestNPC(from, align, except) {
   if (!except) { except = []; }
   let found = from.getHomeMap().npcs.getAll();
-  if (PC.getHomeMap() === from.getHomeMap()) { 
+  if ((PC.getHomeMap() === from.getHomeMap()) && (!except.includes(PC))) { 
     if (!align || ((align === "enemy") && (CheckAreEnemies(from,PC))) || ((align === "ally") && (from.getAttitude() === PC.getAttitude()))) {
       found.push(PC); 
     }

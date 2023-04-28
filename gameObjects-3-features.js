@@ -7863,7 +7863,7 @@ WalkOnPaladinInit2Tile.prototype.walkon = function(walker) {
     targetCursor.command = "PaladinInit";
     targetCursor.step = 1;
     let retval = {};
-    retval.override = 3;
+    retval.override = 4;
     retval.msg = 'Isaac nods at you as you sit. He looks across to the other table, and says in a resonant voice, "We have gathered here today to welcome into the Order our newest companion."';
     maintext.setInputLine("&gt; [MORE]"); 
 

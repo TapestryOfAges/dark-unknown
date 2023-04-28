@@ -287,7 +287,10 @@ function DoAction(code, ctrl) {
         maintext.drawTextFrame();
       } else if (response["fin"] === 3) {
         gamestate.setMode("waiting");
-      } 
+      } else if (response["fin"] === 4) {
+        maintext.setInputLine("&gt; [MORE]");
+        maintext.drawTextFrame();
+      }
     }  
   }
   else if (gamestate.getMode() === "anykey") {
@@ -473,7 +476,7 @@ function DoAction(code, ctrl) {
         maintext.addText(`<span class='altspeaker'>Urskar</span>: "Everywhere we go, we will seek to inspire those we encounter, and we will be an example to all, of bravery and right action."`);
         targetCursor.step++;
       } else if (targetCursor.step === 10) {
-        maintext.addText(`<span class='altspeaker'>Linley</span>: "In all things, you will always comport yourself with honor.”`);
+        maintext.addText(`<span class='altspeaker'>Linley</span>: "In all things, you will always comport yourself with honor."`);
         targetCursor.step++;
       } else if (targetCursor.step === 11) {
         maintext.addText(`<span class='mainspeaker'>Isaac</span>: He passes you the goblet. "And as we strive to do good, we may fail, but when we fail, we will try and try again. Until all has been set right."`);
@@ -488,7 +491,7 @@ function DoAction(code, ctrl) {
         let newkey = localFactory.createTile("PaladinKey");
         PC.addToInventory(newkey,1);
         DU.gameflags.setFlag("paladin_joined",1);
-        maintext.addText(`<span class='mainspeaker'>Isaac</span>: "The first thing I need to do now, is give you access to this tower. Here now is a key. What is in this tower is yours as well as ours, now- take anything you need."<br /><span class='sysconv'>You have obtained: " + newkey.getFullDesc() + ".</span>`);
+        maintext.addText(`<span class='mainspeaker'>Isaac</span>: "The first thing I need to do now, is give you access to this tower. Here now is a key. What is in this tower is yours as well as ours, now- take anything you need."<br /><span class='sysconv'>You have obtained: ${newkey.getFullDesc()}.</span>`);
         targetCursor.step++;
       } else if (targetCursor.step === 15) {
         maintext.addText(`<span class='mainspeaker'>Isaac</span>: "Welcome to the Paladins, ${PC.getPCName()}! From here, go forth, and continue to do good. Hip hip..."`);
@@ -496,6 +499,7 @@ function DoAction(code, ctrl) {
       } else if (targetCursor.step === 16) {
         maintext.addText(`<span class='mainspeaker'>Everyone</span>: "Hooray!"`);
         gamestate.setMode("player");
+        maintext.setInputLine("&gt; ");
       }
     } else {
       if (((code >= 65) && (code <= 90)) || (code === 32) || (code === 13)) {  // letter, space, or enter

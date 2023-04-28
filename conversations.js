@@ -877,11 +877,79 @@ OnConvTriggers["place_wod"] = function(speaker,keyword) {
 
 OnConvTriggers["rebuild_poverty"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("rebuild_decide");
-  // WORKING HERE - swap poverty map
+  let dumap = maps.getMap("darkunknown");
+  let feas = dumap.features.getAll();
+  for (let i=0;i<feas.length;i++) {
+    if (feas[i].getDesc = "Towne of Poverty") {
+      feas[i].entermap = "poverty2";
+    }
+  }
 }
 
 OnConvTriggers["rebuild_no"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("rebuild_decide");
+  let dumap = maps.getMap("darkunknown");
+  
+  let spawn = localFactory.createTile("Spawner");
+  let sgroup = ["OnyxToHildendainGuardsGroup"];
+
+  spawn.setSpawngroup(sgroup);
+  spawn.setMaxSpawns(1);
+  spawn.setSpawnRadius(1);
+  
+  let freq = 90 + Dice.roll("1d20");
+  spawn.setSpawnFreq(freq);
+  
+  dumap.placeThing(61,118,spawn);
+
+  spawn = localFactory.createTile("Spawner");
+  sgroup = ["NaurglenToPovertyGuardsGroup"];
+
+  spawn.setSpawngroup(sgroup);
+  spawn.setMaxSpawns(1);
+  spawn.setSpawnRadius(1);
+  
+  freq = 90 + Dice.roll("1d20");
+  spawn.setSpawnFreq(freq);
+  
+  dumap.placeThing(71,75,spawn);
+
+  spawn = localFactory.createTile("Spawner");
+  sgroup = ["ClearLakeGuardsGroup"];
+
+  spawn.setSpawngroup(sgroup);
+  spawn.setMaxSpawns(1);
+  spawn.setSpawnRadius(1);
+  
+  freq = 90 + Dice.roll("1d20");
+  spawn.setSpawnFreq(freq);
+  
+  dumap.placeThing(81,25,spawn);
+
+  spawn = localFactory.createTile("Spawner");
+  sgroup = ["BeldskaeGuardsGroup"];
+
+  spawn.setSpawngroup(sgroup);
+  spawn.setMaxSpawns(1);
+  spawn.setSpawnRadius(1);
+  
+  freq = 90 + Dice.roll("1d20");
+  spawn.setSpawnFreq(freq);
+  
+  dumap.placeThing(125,17,spawn);
+
+  spawn = localFactory.createTile("Spawner");
+  sgroup = ["SwainhilGuardsGroup"];
+
+  spawn.setSpawngroup(sgroup);
+  spawn.setMaxSpawns(1);
+  spawn.setSpawnRadius(1);
+  
+  freq = 90 + Dice.roll("1d20");
+  spawn.setSpawnFreq(freq);
+  
+  dumap.placeThing(121,102,spawn);
+
   // WORKING HERE - create guards on map, their AI, and their zoomed-in map
 }
 
