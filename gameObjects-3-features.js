@@ -9657,9 +9657,9 @@ SunBeaconTile.prototype = new FeatureObject();
 
 function SandstoneWallTile() {
   this.name = "SandstoneWall";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-416";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -97*32;
   this.blocklos = 0;
   this.passable = MOVE_ETHEREAL;
   this.prefix = "a"
