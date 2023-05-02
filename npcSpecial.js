@@ -118,6 +118,7 @@ function HorseAndCartNPCTile() {
   this.alwaystop = 1;
 
   MultiTileNPC.call(this, ["CartSegment"], [[-1,0]])
+  MobileEnterable.call(this, "oliviaCart", 1, 7);
 }
 HorseAndCartNPCTile.prototype = new NPCObject();
 

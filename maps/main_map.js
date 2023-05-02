@@ -1048,17 +1048,18 @@ mappages["landsbeyond"].returny = '';
 mappages["landsbeyond"].returninfused = '0';
 mappages["landsbeyond"].linkedMaps = [""];
 
+// MAP BEGINS HERE
 mappages["oliviaCart"] = {};
 mappages["oliviaCart"].terrain = [];
  mappages["oliviaCart"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
  mappages["oliviaCart"].terrain[1] = '.. .. .. .. .. u, .. .. .. .. .. u, ..';
  mappages["oliviaCart"].terrain[2] = '.. .. .. .. .. .. .. u, .. .. .. .. ..';
- mappages["oliviaCart"].terrain[3] = '.. .. u, .. .. .. .. .. .. .. .. u, ..';
- mappages["oliviaCart"].terrain[4] = '.. .. .. .. -= -= -= -= .. .. .. .. ..';
- mappages["oliviaCart"].terrain[5] = '.. .. .. .. -= -= -= -= .. .. .. .. ..';
- mappages["oliviaCart"].terrain[6] = '.. .. .. .. -= -= -= -= .. .. .. .. ..';
- mappages["oliviaCart"].terrain[7] = '.. .. .. u, .. .. .. .. .. .. .. .. ..';
- mappages["oliviaCart"].terrain[8] = '.. .. .. .. .. .. .. .. .. u, .. .. ..';
+ mappages["oliviaCart"].terrain[3] = '., .. ., ., ., ., ., ., ., ., ., .. .,';
+ mappages["oliviaCart"].terrain[4] = '., ., ., ., -= -= -= -= ., ., ., ., .,';
+ mappages["oliviaCart"].terrain[5] = '., ., ., ., -= -= -= -= ., ., ., ., .,';
+ mappages["oliviaCart"].terrain[6] = '., ., ., ., -= -= -= -= ., ., ., ., .,';
+ mappages["oliviaCart"].terrain[7] = '., ., ., ., -= -= -= -= ., ., ., ., .,';
+ mappages["oliviaCart"].terrain[8] = '., ., ., ., .. ., ., ., ., ., ., ., .,';
  mappages["oliviaCart"].terrain[9] = '.. .. .. .. .. .. .. u, .. .. .. .. ..';
 mappages["oliviaCart"].terrain[10] = '.. u, .. .. .. .. .. .. .. .. .. u, ..';
 mappages["oliviaCart"].terrain[11] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
@@ -1069,15 +1070,24 @@ mappages["oliviaCart"].features[0] = {name : 'Tree', x : 9, y : 2};
 mappages["oliviaCart"].features[1] = {name : 'Tree', x : 2, y : 1};
 mappages["oliviaCart"].features[2] = {name : 'Tree', x : 4, y : 11};
 mappages["oliviaCart"].features[3] = {name : 'LeftChair', x : 6, y : 5};
+mappages["oliviaCart"].features[4] = {name : 'LeftChair', x : 6, y : 6};
+mappages["oliviaCart"].features[5] = {name : 'FenceEW', x : 5, y : 4};
+mappages["oliviaCart"].features[6] = {name : 'FenceEW', x : 5, y : 7};
+mappages["oliviaCart"].features[7] = {name : 'FenceSE', x : 6, y : 7};
+mappages["oliviaCart"].features[8] = {name : 'FenceNW', x : 4, y : 4};
+mappages["oliviaCart"].features[9] = {name : 'FenceNE', x : 6, y : 4};
+mappages["oliviaCart"].features[10] = {name : 'FenceNS', x : 4, y : 5};
+mappages["oliviaCart"].features[11] = {name : 'FenceNS', x : 4, y : 6};
+mappages["oliviaCart"].features[12] = {name : 'FenceSW', x : 4, y : 7};
 
 
 mappages["oliviaCart"].npcs = [];
 mappages["oliviaCart"].npcs[0] = {name : 'BardVillagerNPC', x : 6, y : 5, NPCName: 'Olivia', Conversation: 'olivia_cart', Gender: 'female', NPCBand: '0', OverrideGraphic: '311.gif', skintone: '1'};
-mappages["oliviaCart"].npcs[1] = {name : 'HorseNPC', x : 8, y : 4, skintone: '1'};
-mappages["oliviaCart"].npcs[2] = {name : 'HorseNPC', x : 8, y : 6, skintone: '1'};
+mappages["oliviaCart"].npcs[1] = {name : 'HorseNPC', x : 8, y : 4, Gender: 'monster', NPCBand: '0', OverrideGraphic: 'horse.gif', skintone: '1'};
+mappages["oliviaCart"].npcs[2] = {name : 'HorseNPC', x : 8, y : 7, Gender: 'monster', NPCBand: '0', OverrideGraphic: 'horse.gif', skintone: '1'};
 
 mappages["oliviaCart"].desc = "Olivia's Cart";
-mappages["oliviaCart"].longdesc = '';
+mappages["oliviaCart"].longdesc = ``;
 mappages["oliviaCart"].music = 'Village';
 mappages["oliviaCart"].savename = `Olivia's Cart`;
 mappages["oliviaCart"].exitmap = 'darkunknown';
@@ -1102,9 +1112,67 @@ mappages["oliviaCart"].returny = '74';
 mappages["oliviaCart"].returninfused = '0';
 mappages["oliviaCart"].linkedMaps = [""];
 mappages["oliviaCart"].editorLabels = '{}';
+// MAP ENDS HERE
 
 mappages["oliviaCart"].set_exits = function(mapref) {
   maps_set_exits(mapref);
   // See combatmaps.js for maps_set_exits
 }
 
+// MAP BEGINS HERE
+mappages["guardmap"] = {};
+mappages["guardmap"].terrain = [];
+ mappages["guardmap"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["guardmap"].terrain[1] = '.. .. .. .. .. .. .. .. .. ,, .. .. ..';
+ mappages["guardmap"].terrain[2] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["guardmap"].terrain[3] = '., ., .. .. ., ., ., .. .. .. ., ., .,';
+ mappages["guardmap"].terrain[4] = '., ., ., ., ., ., ., ., ., ., ., ., .,';
+ mappages["guardmap"].terrain[5] = '., ., ., ., ., ., ., ., ., ., ., ., .,';
+ mappages["guardmap"].terrain[6] = '., ., ., ., ., ., ., ., ., ., ., ., .,';
+ mappages["guardmap"].terrain[7] = '.. ., ., ., ., .. .. .. ., ., ., ., ..';
+ mappages["guardmap"].terrain[8] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["guardmap"].terrain[9] = '.. .. .. .. .. .. ,, .. .. .. .. .. ..';
+mappages["guardmap"].terrain[10] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["guardmap"].terrain[11] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["guardmap"].terrain[12] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+
+mappages["guardmap"].features = [];
+mappages["guardmap"].features[0] = {name : 'PileOfRocks', x : 2, y : 1};
+mappages["guardmap"].features[1] = {name : 'PileOfRocks', x : 10, y : 10};
+mappages["guardmap"].features[2] = {name : 'Tree', x : 3, y : 11};
+
+
+mappages["guardmap"].npcs = [];
+mappages["guardmap"].npcs[0] = {name : 'TownGuardNPC', x : 3, y : 8, skintone: '1'};
+mappages["guardmap"].npcs[1] = {name : 'TownGuardNPC', x : 9, y : 7, skintone: '1'};
+mappages["guardmap"].npcs[2] = {name : 'TownGuardNPC', x : 6, y : 5, skintone: '1'};
+mappages["guardmap"].npcs[3] = {name : 'TownGuardNPC', x : 4, y : 3, skintone: '1'};
+mappages["guardmap"].npcs[4] = {name : 'TownGuardNPC', x : 10, y : 3, skintone: '1'};
+
+mappages["guardmap"].desc = "Guard Patrol";
+mappages["guardmap"].longdesc = ``;
+mappages["guardmap"].music = 'Dark Unknown';
+mappages["guardmap"].savename = `Guard Patrol`;
+mappages["guardmap"].exitmap = '';
+mappages["guardmap"].exitx = '65';
+mappages["guardmap"].exity = '70';
+mappages["guardmap"].wraps = '';
+mappages["guardmap"].enterx = '1';
+mappages["guardmap"].entery = '7';
+mappages["guardmap"].seeBelow = '';
+mappages["guardmap"].lightLevel = 'cycle';
+mappages["guardmap"].alwaysRemember = '0';
+mappages["guardmap"].scale = '1';
+mappages["guardmap"].underground = '0';
+mappages["guardmap"].undergroundDesc = '';
+mappages["guardmap"].enterscript = '';
+mappages["guardmap"].entertestscript = '';
+mappages["guardmap"].exitscript = '';
+mappages["guardmap"].exittestscript = '';
+mappages["guardmap"].returnmap = '';
+mappages["guardmap"].returnx = 'NaN';
+mappages["guardmap"].returny = 'NaN';
+mappages["guardmap"].returninfused = '0';
+mappages["guardmap"].linkedMaps = [""];
+mappages["guardmap"].editorLabels = '{}';
+// MAP ENDS HERE
