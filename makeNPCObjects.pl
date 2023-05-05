@@ -208,7 +208,8 @@ foreach my $line (<$groupdoc>) {
   print $out "  this.attackword = '$fields[13]';\n";
   if ($fields[14]) { 
     if ($fields[14] eq "guardenter") {
-      print $out '  MobileEnterable.call(this, "guardmap", 1, 7);\n';
+      print $out '  this.special = "remain";\n';
+    #  print $out '  this.special = "remain";\n\n  MobileEnterable.call(this, "guardmap", 1, 7);\n';
     } else {
       print $out "  this.special = '$fields[14]';\n";
     }

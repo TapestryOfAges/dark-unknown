@@ -1018,7 +1018,7 @@ function MobileEnterable(destmap, destx, desty) {
   this.entery = desty;
 
   this.getEnterMap = function() {
-  	let mapdata = { entermap : this.destmap , enterx : this.destx, entery : this.desty };
+  	let mapdata = { entermap : this.enterto , enterx : this.enterx, entery : this.entery };
   	return mapdata;
   }
 }

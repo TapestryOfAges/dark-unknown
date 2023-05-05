@@ -1564,9 +1564,9 @@ function CheckForCourier(mapref, enterx, entery, exitx, exity) {
   }
 
   if (DU.gameflags.getFlag("paladin_stage1") && !DU.gameflags.getFlag("paladin_stage2")) {
-    if ((DUTime.getGameClock() >= DU.gameflags.getFlag("paladin_stage1")+2016) && (PC.getKarma() >= 15) && (PC.negkarma < 2)) {
+    if ((DUTime.getGameClock() >= DU.gameflags.getFlag("paladin_stage1")+2016) && (PC.getKarma() >= 15) && (PC.negkarma < 2) && (DU.gameflags.getFlag("coward") <= 5)) {
       // It's been at least a week since Isaac said the paladins would watch you, you have at least 15 karma, and you've done
-      // at most one thing that has ever had a karma penalty
+      // at most one thing that has ever had a karma penalty, and you've been a coward no more than 5 times.
       let courier = localFactory.createTile("TownsfolkVillagerNPC");
       courier.setDesc("courier");
       courier.setPeaceAI("PaladinCourier");

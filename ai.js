@@ -3919,6 +3919,10 @@ ais.GuardPatrol = function(who,dests) {
         let whox = who.getx();
         let whoy = who.gety();
         DUTime.removeEntityFrom(who);
+        let spawner=who.getSpawnedBy();
+        if (spawner) {
+          spawner.deleteSpawned(who);
+        }
         themap.deleteThing(who);
         if (PC.getHomeMap() === themap) {
           DrawMainFrame("one",themap,whox,whoy);

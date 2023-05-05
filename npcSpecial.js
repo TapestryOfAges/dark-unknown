@@ -116,9 +116,10 @@ function HorseAndCartNPCTile() {
   this.meleeAttackSound = 'sfx_animal_miss';
   this.initOverride = 10;
   this.alwaystop = 1;
+  this.special = 'remain';
 
   MultiTileNPC.call(this, ["CartSegment"], [[-1,0]])
-  MobileEnterable.call(this, "oliviaCart", 1, 7);
+//  MobileEnterable.call(this, "oliviaCart", 1, 7);
 }
 HorseAndCartNPCTile.prototype = new NPCObject();
 
@@ -150,6 +151,8 @@ function CartSegmentTile() {
   this.spritexoffset = "-224";
   this.spriteyoffset = "-1536";
   this.alwaystop = 1;
+  this.special = 'remain';
+//  MobileEnterable.call(this, "oliviaCart", 1, 7);
 }
 CartSegmentTile.prototype = new MultiSegment();
 

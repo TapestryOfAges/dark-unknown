@@ -1124,11 +1124,11 @@ function maps_check_escape(mapref) {
     
     if (who === PC) {
       // possibly check for bribery if I decide to go that route
-      if ((PC.getHP() > (PC.getMaxHP() * (1/5))) || (PC.getLevel() === 1)) {
+      if ((PC.getHP() > (PC.getMaxHP() * (1/5))) && (PC.getLevel() !== 1)) {
         DebugWrite("combat","PC has more than 1/5 its hp, gains coward point for fleeing.<br />");
-        DU.gameflags["coward"]++;
+        DU.gameflags.setFlag("coward",DU.gameflags.getFlag("coward")+1);
       } else {
-        DebugWrite("combat","PC has less than 1/5 its hp, able to flee freely.<br />");
+        DebugWrite("combat","PC has less than 1/5 its hp or is level 1, able to flee freely.<br />");
       }
       
     }

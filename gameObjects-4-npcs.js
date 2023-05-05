@@ -359,7 +359,7 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
     this.processDeath(1);
     if (src === PC) {
       let XP = this.getXPVal();
-      XP = XP * (1 + PC.getKarma()/100);
+      XP = XP * (1 + PC.getKarma()/100 - DU.gameflags.getFlag("coward")/200);
       PC.addxp(XP);
 
       let rof = PC.checkInventory("RingOfEtherealFocus");
