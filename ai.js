@@ -3888,7 +3888,7 @@ ais.PatrolOH = function(who) {
 }
 
 ais.PatrolNP = function(who) {
-  let points = [[42,49],[71,75]];
+  let points = [[42,29],[71,75]];
   return ais.GuardPatrol(who,points);
 }
 
@@ -3909,7 +3909,7 @@ ais.PatrolS = function(who) {
 
 ais.GuardPatrol = function(who,dests) {
   let themap = who.getHomeMap();
-  let nearby = FindNearestNPC(who,"",PC);  // nearest entity on this map that isn't the PC
+  let nearby = FindNearestNPC(who,"",[PC]);  // nearest entity on this map that isn't the PC
   let nearbydist = GetDistance(who.getx(),who.gety(),nearby.getx(),nearby.gety(),"manhatten");
   if ((!nearby.getDesc().includes("guard patrol")) && (nearbydist <= 3)) {
     // there is a non-guard, non-PC nearby. Head towards it unless you're too far from the road
@@ -3965,5 +3965,5 @@ ais.GuardPatrol = function(who,dests) {
   path.shift();
   StepOrSidestep(who,path[0],dests[who.destidx]);
 
-  return;
+  return {fin:1};
 }

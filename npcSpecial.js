@@ -117,6 +117,7 @@ function HorseAndCartNPCTile() {
   this.initOverride = 10;
   this.alwaystop = 1;
   this.special = 'remain';
+  this.overridecombat = 'oliviaCart';
 
   MultiTileNPC.call(this, ["CartSegment"], [[-1,0]])
 //  MobileEnterable.call(this, "oliviaCart", 1, 7);
@@ -152,6 +153,7 @@ function CartSegmentTile() {
   this.spriteyoffset = "-1536";
   this.alwaystop = 1;
   this.special = 'remain';
+  this.overridecombat = 'oliviaCart';
 //  MobileEnterable.call(this, "oliviaCart", 1, 7);
 }
 CartSegmentTile.prototype = new MultiSegment();

@@ -4638,6 +4638,31 @@ tileFactory.prototype.makeCourierGroupTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeOnyxToHildendainGuardsGroupTile = function() {
+  let newTile = new OnyxToHildendainGuardsGroupTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeNaurglenToPovertyGuardsGroupTile = function() {
+  let newTile = new NaurglenToPovertyGuardsGroupTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeClearLakeGuardsGroupTile = function() {
+  let newTile = new ClearLakeGuardsGroupTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBeldskaeGuardsGroupTile = function() {
+  let newTile = new BeldskaeGuardsGroupTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSwainhilGuardsGroupTile = function() {
+  let newTile = new SwainhilGuardsGroupTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeHorseAndCartNPCTile = function() {
   let newTile = new HorseAndCartNPCTile();
   return newTile;

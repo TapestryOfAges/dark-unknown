@@ -888,6 +888,15 @@ OnConvTriggers["rebuild_no"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("rebuild_decide");
   let dumap = maps.getMap("darkunknown");
   
+  let feas = dumap.features.getAll();
+  for (let i=0; i<feas.length; i++) {
+    if (feas[i].getName() === "Spawner") {
+      if (feas[i].getMaxSpawns() > 1) {
+        feas[i].setMaxSpawns(feas[i].getMaxSpawns()-1);
+      }
+    }
+  }
+
   let spawn = localFactory.createTile("Spawner");
   let sgroup = ["OnyxToHildendainGuardsGroup"];
 
@@ -898,7 +907,7 @@ OnConvTriggers["rebuild_no"] = function(speaker,keyword) {
   let freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
   
-  dumap.placeThing(61,118,spawn);
+//  dumap.placeThing(61,118,spawn);
 
   spawn = localFactory.createTile("Spawner");
   sgroup = ["NaurglenToPovertyGuardsGroup"];
@@ -911,6 +920,7 @@ OnConvTriggers["rebuild_no"] = function(speaker,keyword) {
   spawn.setSpawnFreq(freq);
   
   dumap.placeThing(71,75,spawn);
+console.log(spawn);
 
   spawn = localFactory.createTile("Spawner");
   sgroup = ["ClearLakeGuardsGroup"];
@@ -922,7 +932,7 @@ OnConvTriggers["rebuild_no"] = function(speaker,keyword) {
   freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
   
-  dumap.placeThing(81,25,spawn);
+//  dumap.placeThing(81,25,spawn);
 
   spawn = localFactory.createTile("Spawner");
   sgroup = ["BeldskaeGuardsGroup"];
@@ -934,7 +944,7 @@ OnConvTriggers["rebuild_no"] = function(speaker,keyword) {
   freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
   
-  dumap.placeThing(125,17,spawn);
+//  dumap.placeThing(125,17,spawn);
 
   spawn = localFactory.createTile("Spawner");
   sgroup = ["SwainhilGuardsGroup"];
@@ -946,7 +956,7 @@ OnConvTriggers["rebuild_no"] = function(speaker,keyword) {
   freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
   
-  dumap.placeThing(121,102,spawn);
+//  dumap.placeThing(121,102,spawn);
 
   // WORKING HERE - create guards on map, their AI, and their zoomed-in map
 }
