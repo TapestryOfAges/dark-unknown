@@ -1009,12 +1009,15 @@ function FindNearestNPC(from, align, except) {
     let val = found[i];
     if ((val !== from) && (!except.includes(val))) {
       if (!align || ((align === "enemy") && (CheckAreEnemies(from,val))) || ((align === "ally") && (from.getAttitude() === val.getAttitude()))) {
-        let movetype = from.getMovetype();
-        if (from.specials.open_door) { movetype = MOVE_WALK_DOOR; }
-        let dist = GetDistanceByPath(from,val,movetype);
-        if (dist < distance) {
-          nearest = val;
-          distance = dist;
+        let mandist = GetDistance(from.getx(),from.gety(),val.getx(),val.gety(),"manhatten");
+        if (mandist < distance) {
+          let movetype = from.getMovetype();
+          if (from.specials.open_door) { movetype = MOVE_WALK_DOOR; }
+          let dist = GetDistanceByPath(from,val,movetype);
+          if (dist && (dist < distance)) {
+            nearest = val;
+            distance = dist;
+          }
         }
       }
     }

@@ -3911,6 +3911,8 @@ ais.GuardPatrol = function(who,dests) {
   let themap = who.getHomeMap();
   let nearby = FindNearestNPC(who,"",[PC]);  // nearest entity on this map that isn't the PC
   let nearbydist = GetDistance(who.getx(),who.gety(),nearby.getx(),nearby.gety(),"manhatten");
+  console.log(nearby);
+  console.log(nearbydist);
   if ((!nearby.getDesc().includes("guard patrol")) && (nearbydist <= 3)) {
     // there is a non-guard, non-PC nearby. Head towards it unless you're too far from the road
     if (nearbydist === 1) {
@@ -3936,7 +3938,7 @@ ais.GuardPatrol = function(who,dests) {
           DrawMainFrame("one",themap,nearx,neary);
         }  
       }
-      return;
+      return {fin:1};
     }
     let offroad = 1;
     for (let i=who.getx()-3;i<=who.getx()+3; i++) {
@@ -3953,7 +3955,7 @@ ais.GuardPatrol = function(who,dests) {
       let path = themap.getPath(who.getx(),who.gety(),nearby.getx(),nearby.gety(),MOVE_WALK);
       path.shift();
       StepOrSidestep(who,path[0],[nearby.getx(),nearby.gety()]);
-      return;
+      return {fin:1};
     }
   } 
   // either there is nothing to engage, or we're too far from the road- continue on the path
