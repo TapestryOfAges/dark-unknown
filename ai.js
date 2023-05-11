@@ -3911,8 +3911,6 @@ ais.GuardPatrol = function(who,dests) {
   let themap = who.getHomeMap();
   let nearby = FindNearestNPC(who,"",[PC]);  // nearest entity on this map that isn't the PC
   let nearbydist = GetDistance(who.getx(),who.gety(),nearby.getx(),nearby.gety(),"manhatten");
-  console.log(nearby);
-  console.log(nearbydist);
   if ((!nearby.getDesc().includes("guard patrol")) && (nearbydist <= 3)) {
     // there is a non-guard, non-PC nearby. Head towards it unless you're too far from the road
     if (nearbydist === 1) {
