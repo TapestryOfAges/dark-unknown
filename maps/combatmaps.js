@@ -1173,15 +1173,165 @@ function maps_check_escape(mapref) {
     
     if (who === PC) {
       // possibly check for bribery if I decide to go that route
-      if ((PC.getHP() > (PC.getMaxHP() * (1/5))) || (PC.getLevel() === 1)) {
+      if ((PC.getHP() > (PC.getMaxHP() * (1/5))) && (PC.getLevel() !== 1)) {
         DebugWrite("combat","PC has more than 1/5 its hp, gains coward point for fleeing.<br />");
-        DU.gameflags["coward"]++;
+        DU.gameflags.setFlag("coward",DU.gameflags.getFlag("coward")+1);
       } else {
-        DebugWrite("combat","PC has less than 1/5 its hp, able to flee freely.<br />");
+        DebugWrite("combat","PC has less than 1/5 its hp or is level 1, able to flee freely.<br />");
       }
       
     }
     
     return 1;  
   }
+}
+
+// MAP BEGINS HERE
+mappages["oliviaCart"] = {};
+mappages["oliviaCart"].terrain = [];
+ mappages["oliviaCart"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["oliviaCart"].terrain[1] = '.. .. .. .. .. u, .. .. .. .. .. u, ..';
+ mappages["oliviaCart"].terrain[2] = '.. .. .. .. .. .. .. u, .. .. .. .. ..';
+ mappages["oliviaCart"].terrain[3] = '., .. ., ., ., ., ., ., ., ., ., .. .,';
+ mappages["oliviaCart"].terrain[4] = '., ., ., ., -= -= -= -= ., ., ., ., .,';
+ mappages["oliviaCart"].terrain[5] = '., ., ., ., -= -= -= -= ., ., ., ., .,';
+ mappages["oliviaCart"].terrain[6] = '., ., ., ., -= -= -= -= ., ., ., ., .,';
+ mappages["oliviaCart"].terrain[7] = '., ., ., ., -= -= -= -= ., ., ., ., .,';
+ mappages["oliviaCart"].terrain[8] = '., ., ., ., .. ., ., ., ., ., ., ., .,';
+ mappages["oliviaCart"].terrain[9] = '.. .. .. .. .. .. .. u, .. .. .. .. ..';
+mappages["oliviaCart"].terrain[10] = '.. u, .. .. .. .. .. .. .. .. .. u, ..';
+mappages["oliviaCart"].terrain[11] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["oliviaCart"].terrain[12] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+
+mappages["oliviaCart"].features = [];
+mappages["oliviaCart"].features[0] = {name : 'Tree', x : 9, y : 2};
+mappages["oliviaCart"].features[1] = {name : 'Tree', x : 2, y : 1};
+mappages["oliviaCart"].features[2] = {name : 'Tree', x : 4, y : 11};
+mappages["oliviaCart"].features[3] = {name : 'LeftChair', x : 6, y : 5};
+mappages["oliviaCart"].features[4] = {name : 'LeftChair', x : 6, y : 6};
+mappages["oliviaCart"].features[5] = {name : 'FenceEW', x : 5, y : 4};
+mappages["oliviaCart"].features[6] = {name : 'FenceEW', x : 5, y : 7};
+mappages["oliviaCart"].features[7] = {name : 'FenceSE', x : 6, y : 7};
+mappages["oliviaCart"].features[8] = {name : 'FenceNW', x : 4, y : 4};
+mappages["oliviaCart"].features[9] = {name : 'FenceNE', x : 6, y : 4};
+mappages["oliviaCart"].features[10] = {name : 'FenceNS', x : 4, y : 5};
+mappages["oliviaCart"].features[11] = {name : 'FenceNS', x : 4, y : 6};
+mappages["oliviaCart"].features[12] = {name : 'FenceSW', x : 4, y : 7};
+
+
+mappages["oliviaCart"].npcs = [];
+mappages["oliviaCart"].npcs[0] = {name : 'BardVillagerNPC', x : 6, y : 5, NPCName: 'Olivia', Conversation: 'olivia_cart', Gender: 'female', NPCBand: '0', OverrideGraphic: '311.gif', skintone: '1'};
+mappages["oliviaCart"].npcs[1] = {name : 'HorseNPC', x : 8, y : 4, Gender: 'monster', NPCBand: '0', OverrideGraphic: 'horse.gif', skintone: '1'};
+mappages["oliviaCart"].npcs[2] = {name : 'HorseNPC', x : 8, y : 7, Gender: 'monster', NPCBand: '0', OverrideGraphic: 'horse.gif', skintone: '1'};
+
+mappages["oliviaCart"].desc = "Olivia's Cart";
+mappages["oliviaCart"].longdesc = ``;
+mappages["oliviaCart"].music = 'Village';
+mappages["oliviaCart"].savename = `Olivia's Cart`;
+mappages["oliviaCart"].exitmap = 'darkunknown';
+mappages["oliviaCart"].exitx = '65';
+mappages["oliviaCart"].exity = '70';
+mappages["oliviaCart"].wraps = 'None';
+mappages["oliviaCart"].enterx = '6';
+mappages["oliviaCart"].entery = '11';
+mappages["oliviaCart"].seeBelow = '';
+mappages["oliviaCart"].lightLevel = 'bright';
+mappages["oliviaCart"].alwaysRemember = '0';
+mappages["oliviaCart"].scale = '1';
+mappages["oliviaCart"].underground = '0';
+mappages["oliviaCart"].undergroundDesc = '';
+mappages["oliviaCart"].enterscript = 'set_exits';
+mappages["oliviaCart"].entertestscript = '';
+mappages["oliviaCart"].exitscript = '';
+mappages["oliviaCart"].exittestscript = 'check_escape';
+mappages["oliviaCart"].returnmap = 'darkunknown';
+mappages["oliviaCart"].returnx = '69';
+mappages["oliviaCart"].returny = '74';
+mappages["oliviaCart"].returninfused = '0';
+mappages["oliviaCart"].linkedMaps = [""];
+mappages["oliviaCart"].editorLabels = '{}';
+// MAP ENDS HERE
+
+mappages["oliviaCart"].onload = function(mapref) {
+  let olivia = mapref.getTile(6,5).getTopNPC();
+  olivia.onDeath = "oliviaDead";
+  mapref.getTile(6,5).executeWalkons(olivia);
+}
+
+mappages["oliviaCart"].set_exits = function(mapref) {
+  maps_set_exits(mapref);
+}
+
+mappages["oliviaCart"].check_escape = function(mapref) {
+  maps_check_escape(mapref);
+}
+
+// MAP BEGINS HERE
+mappages["guardPatrol"] = {};
+mappages["guardPatrol"].terrain = [];
+ mappages["guardPatrol"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["guardPatrol"].terrain[1] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["guardPatrol"].terrain[2] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["guardPatrol"].terrain[3] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["guardPatrol"].terrain[4] = '.. ., ., ., ., .. .. .. .. ., ., .. ..';
+ mappages["guardPatrol"].terrain[5] = '., ., ., ., ., ., ., ., ., ., ., ., .,';
+ mappages["guardPatrol"].terrain[6] = '., ., ., ., ., ., ., ., ., ., ., ., .,';
+ mappages["guardPatrol"].terrain[7] = '., ., ., ., ., ., ., ., ., ., ., ., .,';
+ mappages["guardPatrol"].terrain[8] = '., ., ., .. .. .. .. ., ., ., ., ., ..';
+ mappages["guardPatrol"].terrain[9] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["guardPatrol"].terrain[10] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["guardPatrol"].terrain[11] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["guardPatrol"].terrain[12] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+
+mappages["guardPatrol"].features = [];
+
+
+mappages["guardPatrol"].npcs = [];
+mappages["guardPatrol"].npcs[0] = {name : 'TownGuardNPC', x : 3, y : 4, NPCName: 'Taran', Conversation: 'taran', Gender: 'male', NPCBand: '0', skintone: '1'};
+mappages["guardPatrol"].npcs[1] = {name : 'TownGuardNPC', x : 6, y : 3, NPCName: 'Alan', Conversation: 'alan', Gender: 'male', NPCBand: '0', skintone: '1'};
+mappages["guardPatrol"].npcs[2] = {name : 'TownGuardNPC', x : 9, y : 5, NPCName: 'Jerome', Conversation: 'jerome', Gender: 'male', NPCBand: '0', skintone: '1'};
+mappages["guardPatrol"].npcs[3] = {name : 'TownGuardNPC', x : 8, y : 8, NPCName: 'Alanis', Conversation: 'alanis', Gender: 'female', NPCBand: '0', skintone: '1'};
+mappages["guardPatrol"].npcs[4] = {name : 'TownGuardNPC', x : 4, y : 7, NPCName: 'Dara', Conversation: 'dara', Gender: 'female', NPCBand: '0', skintone: '1'};
+
+mappages["guardPatrol"].desc = "Combat";
+mappages["guardPatrol"].longdesc = ``;
+mappages["guardPatrol"].music = 'Dark Unknown';
+mappages["guardPatrol"].savename = `Combat`;
+mappages["guardPatrol"].exitmap = '';
+mappages["guardPatrol"].exitx = '65';
+mappages["guardPatrol"].exity = '70';
+mappages["guardPatrol"].wraps = 'None';
+mappages["guardPatrol"].enterx = '5';
+mappages["guardPatrol"].entery = '11';
+mappages["guardPatrol"].seeBelow = '';
+mappages["guardPatrol"].lightLevel = 'bright';
+mappages["guardPatrol"].alwaysRemember = '0';
+mappages["guardPatrol"].scale = '1';
+mappages["guardPatrol"].underground = '0';
+mappages["guardPatrol"].undergroundDesc = '';
+mappages["guardPatrol"].enterscript = 'set_exits';
+mappages["guardPatrol"].entertestscript = '';
+mappages["guardPatrol"].exitscript = '';
+mappages["guardPatrol"].exittestscript = 'check_escape';
+mappages["guardPatrol"].returnmap = '';
+mappages["guardPatrol"].returnx = 'NaN';
+mappages["guardPatrol"].returny = 'NaN';
+mappages["guardPatrol"].returninfused = '0';
+mappages["guardPatrol"].linkedMaps = [""];
+mappages["guardPatrol"].editorLabels = '{}';
+// MAP ENDS HERE
+
+mappages["guardPatrol"].onload = function(mapref) {
+  let npcs = mapref.npcs.getAll();
+  for (let i=0;i<npcs.length;i++) {
+    npcs[i].onDeath = "patrolDead";
+  }
+}
+
+mappages["guardPatrol"].set_exits = function(mapref) {
+  maps_set_exits(mapref);
+}
+
+mappages["guardPatrol"].check_escape = function(mapref) {
+  maps_check_escape(mapref);
 }

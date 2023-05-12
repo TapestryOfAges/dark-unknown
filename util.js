@@ -1009,12 +1009,15 @@ function FindNearestNPC(from, align, except) {
     let val = found[i];
     if ((val !== from) && (!except.includes(val))) {
       if (!align || ((align === "enemy") && (CheckAreEnemies(from,val))) || ((align === "ally") && (from.getAttitude() === val.getAttitude()))) {
-        let movetype = from.getMovetype();
-        if (from.specials.open_door) { movetype = MOVE_WALK_DOOR; }
-        let dist = GetDistanceByPath(from,val,movetype);
-        if (dist < distance) {
-          nearest = val;
-          distance = dist;
+        let mandist = GetDistance(from.getx(),from.gety(),val.getx(),val.gety(),"manhatten");
+        if (mandist < distance) {
+          let movetype = from.getMovetype();
+          if (from.specials.open_door) { movetype = MOVE_WALK_DOOR; }
+          let dist = GetDistanceByPath(from,val,movetype);
+          if (dist && (dist < distance)) {
+            nearest = val;
+            distance = dist;
+          }
         }
       }
     }
@@ -1564,9 +1567,9 @@ function CheckForCourier(mapref, enterx, entery, exitx, exity) {
   }
 
   if (DU.gameflags.getFlag("paladin_stage1") && !DU.gameflags.getFlag("paladin_stage2")) {
-    if ((DUTime.getGameClock() >= DU.gameflags.getFlag("paladin_stage1")+2016) && (PC.getKarma() >= 15) && (PC.negkarma < 2)) {
+    if ((DUTime.getGameClock() >= DU.gameflags.getFlag("paladin_stage1")+2016) && (PC.getKarma() >= 15) && (PC.negkarma < 2) && (DU.gameflags.getFlag("coward") <= 5)) {
       // It's been at least a week since Isaac said the paladins would watch you, you have at least 15 karma, and you've done
-      // at most one thing that has ever had a karma penalty
+      // at most one thing that has ever had a karma penalty, and you've been a coward no more than 5 times.
       let courier = localFactory.createTile("TownsfolkVillagerNPC");
       courier.setDesc("courier");
       courier.setPeaceAI("PaladinCourier");

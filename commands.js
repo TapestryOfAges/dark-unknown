@@ -751,23 +751,33 @@ function PerformAttackMap(who) {
   let atkwho = localacre.npcs.getTop();
   let retval = {};
   if (atkwho) { // there's something there!
-    let combatmapname = GetCombatMap(who,atkwho);
-    let newmap = new GameMap();
-    newmap = maps.addMap(combatmapname);
+    if (atkwho.overridecombat) {
+      let combatmapname = atkwho.overridecombat;
+      let newmap = new GameMap();
+      newmap = maps.addMap(combatmapname);
 
-    if ((!atkwho.special) || (!atkwho.special.includes("remain"))) {
-      PC.getHomeMap().deleteThing(atkwho);
-      let spawner=atkwho.getSpawnedBy();
-      if (spawner) {
-        spawner.deleteSpawned(atkwho);
+      MoveBetweenMaps(PC,PC.getHomeMap(),newmap, newmap.getEnterX(), newmap.getEnterY());
+    } else {
+      let combatmapname = GetCombatMap(who,atkwho);
+      let newmap = new GameMap();
+      newmap = maps.addMap(combatmapname);
+
+      if ((!atkwho.special) || (!atkwho.special.includes("remain"))) {
+        PC.getHomeMap().deleteThing(atkwho);
+        let spawner=atkwho.getSpawnedBy();
+        if (spawner) {
+          spawner.deleteSpawned(atkwho);
+        }
+
+        DUTime.removeEntityFrom(atkwho);
       }
 
-      DUTime.removeEntityFrom(atkwho);
+      let monsters = PlaceMonsters(newmap,atkwho,1);
+      let desttile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, newmap.getEnterX(), newmap.getEnterY());
     }
-
-    let monsters = PlaceMonsters(newmap,atkwho,1);
-    let desttile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, newmap.getEnterX(), newmap.getEnterY());
     
+    PC.lastAttackedx = targetCursor.x;
+    PC.lastAttackedy = targetCursor.y;
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     retval["txt"] = "Attack: " + atkwho.getDesc() + ".";
     retval["fin"] = 0;

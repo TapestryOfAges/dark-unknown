@@ -254,6 +254,70 @@ OnDeathFuncs["insects"] = function(who) {
   }
 }
 
+OnDeathFuncs["Patrol"] = function(who) {
+  let combatmap = who.getHomeMap();
+  let guardsleft = 0;
+  if (combatmap.getName().includes("combat")) {
+    // this is a guard patrol. Otherwise, it was a guard killed in town.
+    let npcs = combatmap.npcs.getAll();
+    for (let i=0;i<npcs.length;i++) {
+      if (npcs[i].getName().includes("Guard")) { guardsleft++; }
+    }
+    if (!guardsleft) {
+      let worldmap = combatmap.getExitToMap();
+      let pcx = combatmap.getExitToX();
+      let pcy = combatmap.getExitToY();
+      for (let x = pcx-1; x<=pcx+1; x++) {
+        for (let y = pcy-1; y<=pcy+1; y++) {
+          let tile = worldmap.getTile(pcx,pcy);
+          let npc = tile.getTopNPC();
+          if (npc.getName().includes("Guard")) {
+            // If, somehow, the PC has attacked a guard patrol while adjacent to _another_ guard patrol, there's a chance the wrong
+            // one will disappear. I'm not concerned.
+            DUTime.removeEntityFrom(npc);
+            worldmap.deleteThing(npc);
+            return;
+          }
+        }
+      }
+    }
+  }
+}
+
+OnDeathFuncs["oliviaDead"] = function(who) {
+  //deal with temporarily removing the cart
+  //make its next schedule index point to "move to limbo"
+  let worldmap = maps.getMap("darkunknown");
+  let npcs = worldmap.npcs.getAll();
+  for (let i=0;i<npcs.length;i++) {
+    if (npcs[i].getName() === "HorseAndCartNPC") {
+      let schidx = npcs[i].getCurrentScheduleIndex();
+      console.log(schidx);
+      if (schidx < 4) { 
+        npcs[i].setCurrentScheduleIndex(4);
+        delete npcs[i].flags.activityComplete;
+        return;
+      } 
+      npcs[i].setCurrentScheduleIndex(11);
+      delete npcs[i].flags.activityComplete;
+    }
+  }
+}
+
+OnDeathFuncs["patrolDead"] = function(who) {
+  let npcs = who.getHomeMap().npcs.getAll();
+  let guardsleft = 0;
+  for (let i=0;i<npcs.length;i++) {
+    if (npcs[i].getName().includes("Guard")) { guardsleft = 1; }
+  }
+  if (!guardsleft) {
+    let worldmap = maps.getMap("darkunknown");
+    let patrol = worldmap.getTile(PC.lastAttackedx,PC.lastAttackedy).getTopNPC();
+    DUTime.removeEntityFrom(patrol);
+    worldmap.deleteThing(patrol);
+  }
+}
+
 OnDeathFuncs["Warduke"] = function() {
   DU.gameflags.setFlag("warduke_defeated",1);
   PC.diffKarma(2);

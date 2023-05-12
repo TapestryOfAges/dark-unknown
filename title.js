@@ -955,6 +955,7 @@ function SaveChar() {
   PC.addToInventory(homekey,1);
 
   DU.gameflags.setFlag("knows_avery", 1);
+  DU.gameflags.setFlag("coward", 0); 
   
   let PCEvent = new GameEvent(PC);
 	DUTime.addAtTimeInterval(PCEvent,.0001);

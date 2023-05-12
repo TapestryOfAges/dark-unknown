@@ -272,7 +272,12 @@ foreach my $line (<$groupdoc>) {
   print $out "  this.movetype = MOVE_$fields[12];\n";
   print $out "  this.attackword = '$fields[13]';\n";
   if ($fields[14]) { 
-    print $out "  this.special = '$fields[14]';\n";
+    if ($fields[14] eq "guardenter") {
+      print $out '  this.special = "remain";\n';
+    #  print $out '  this.special = "remain";\n\n  MobileEnterable.call(this, "guardmap", 1, 7);\n';
+    } else {
+      print $out "  this.special = '$fields[14]';\n";
+    }
   }
 
   if ($fields[17]) {

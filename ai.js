@@ -3888,7 +3888,7 @@ ais.PatrolOH = function(who) {
 }
 
 ais.PatrolNP = function(who) {
-  let points = [[42,49],[71,75]];
+  let points = [[42,29],[71,75]];
   return ais.GuardPatrol(who,points);
 }
 
@@ -3909,13 +3909,34 @@ ais.PatrolS = function(who) {
 
 ais.GuardPatrol = function(who,dests) {
   let themap = who.getHomeMap();
-  let nearby = FindNearestNPC(who,"",PC);  // nearest entity on this map that isn't the PC
+  let nearby = FindNearestNPC(who,"",[PC]);  // nearest entity on this map that isn't the PC
   let nearbydist = GetDistance(who.getx(),who.gety(),nearby.getx(),nearby.gety(),"manhatten");
   if ((!nearby.getDesc().includes("guard patrol")) && (nearbydist <= 3)) {
     // there is a non-guard, non-PC nearby. Head towards it unless you're too far from the road
     if (nearbydist === 1) {
       // adjacent to a monster- smite or be smote
-      
+      if ((nearby.getName().includes("Dragon")) || (nearby.getName().includes("Daemon"))) {
+        let whox = who.getx();
+        let whoy = who.gety();
+        DUTime.removeEntityFrom(who);
+        let spawner=who.getSpawnedBy();
+        if (spawner) {
+          spawner.deleteSpawned(who);
+        }
+        themap.deleteThing(who);
+        if (PC.getHomeMap() === themap) {
+          DrawMainFrame("one",themap,whox,whoy);
+        }  
+      } else {
+        let nearx = nearby.getx();
+        let neary = nearby.gety();
+        DUTime.removeEntityFrom(nearby);
+        themap.deleteThing(nearby);
+        if (PC.getHomeMap() === themap) {
+          DrawMainFrame("one",themap,nearx,neary);
+        }  
+      }
+      return {fin:1};
     }
     let offroad = 1;
     for (let i=who.getx()-3;i<=who.getx()+3; i++) {
@@ -3928,10 +3949,21 @@ ais.GuardPatrol = function(who,dests) {
       }
     } 
     if (!offroad) {
-      // we haven't moved too far away from the road we are patrolling yet
-
+      // we haven't moved too far away from the road we are patrolling yet 
+      let path = themap.getPath(who.getx(),who.gety(),nearby.getx(),nearby.gety(),MOVE_WALK);
+      path.shift();
+      StepOrSidestep(who,path[0],[nearby.getx(),nearby.gety()]);
+      return {fin:1};
     }
   } 
   // either there is nothing to engage, or we're too far from the road- continue on the path
+  if (!who.destidx) { who.destidx = 0; }
+  if ((who.getx() === dests[who.destidx][0]) && (who.gety() === dests[who.destidx][1])) {
+    if (who.destidx) { who.destidx = 0; } else { who.destidx = 1; }
+  }
+  let path = themap.getPath(who.getx(),who.gety(),dests[who.destidx][0],dests[who.destidx][1],MOVE_WALK);
+  path.shift();
+  StepOrSidestep(who,path[0],dests[who.destidx]);
 
+  return {fin:1};
 }

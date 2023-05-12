@@ -69,6 +69,10 @@ NPCSpecialFuncs["ondeathInsects"] = function(who,how) {
   who.onDeath = "insects";
 }
 
+NPCSpecialFuncs["ondeathPatrol"] = function(who,how) {
+  who.onDeath = "patrol";
+}
+
 NPCSpecialFuncs["ondeathWarduke"] = function(who,how) {
   who.onDeath = "Warduke";
 }
@@ -105,6 +109,10 @@ NPCSpecialFuncs["ondeathShadow"] = function(who,how) {
   who.onDeath = "shadow";
 }
 
+NPCSpecialFuncs["patrol"] = function(who,how) {
+  who.overridecombat = 'guardPatrol';
+}
+
 function DestroyJusticeCrystals() {
   let jmap = PC.getHomeMap();
   let crystals = jmap.npcs.getAll();
@@ -123,7 +131,7 @@ function TurnMapHostile(map) {
   let localnpcs = map.npcs.getAll();
   for (let idx=0;idx<localnpcs.length;idx++) {
     let val = localnpcs[idx];
-    if (val.getAttitude() === "friendly") {
+    if ((val.getAttitude() === "friendly") && (!val.summonedby)) {
       val.setAttitude("hostile");
       val.setAggro(1);
       DebugWrite("combat", val.getName() + " (serial: " + val.getSerial() + ") turns hostile!<br />");

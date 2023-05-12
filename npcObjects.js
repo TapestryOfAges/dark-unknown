@@ -6301,3 +6301,63 @@ function CourierGroupTile() {
 }
 CourierGroupTile.prototype = new NPCGroupObject();
 
+function OnyxToHildendainGuardsGroupTile() {
+  this.name = 'OnyxToHildendainGuardsGroup';
+  this.desc = 'a guard patrol';
+  this.peaceAI = 'PatrolOH';
+  this.graphic = '309.gif';
+  this.group = [];
+  this.group[0] = new NPCList('GuardNPC', '5d1');
+  this.movetype = MOVE_WALK;
+  this.attackword = 'attacks';
+}
+OnyxToHildendainGuardsGroupTile.prototype = new NPCGroupObject();
+
+function NaurglenToPovertyGuardsGroupTile() {
+  this.name = 'NaurglenToPovertyGuardsGroup';
+  this.desc = 'a guard patrol';
+  this.peaceAI = 'PatrolNP';
+  this.graphic = '309.gif';
+  this.group = [];
+  this.group[0] = new NPCList('GuardNPC', '5d1');
+  this.movetype = MOVE_WALK;
+  this.attackword = 'attacks';
+}
+NaurglenToPovertyGuardsGroupTile.prototype = new NPCGroupObject();
+
+function ClearLakeGuardsGroupTile() {
+  this.name = 'ClearLakeGuardsGroup';
+  this.desc = 'a guard patrol';
+  this.peaceAI = 'PatrolCL';
+  this.graphic = '309.gif';
+  this.group = [];
+  this.group[0] = new NPCList('GuardNPC', '5d1');
+  this.movetype = MOVE_WALK;
+  this.attackword = 'attacks';
+}
+ClearLakeGuardsGroupTile.prototype = new NPCGroupObject();
+
+function BeldskaeGuardsGroupTile() {
+  this.name = 'BeldskaeGuardsGroup';
+  this.desc = 'a guard patrol';
+  this.peaceAI = 'PatrolB';
+  this.graphic = '309.gif';
+  this.group = [];
+  this.group[0] = new NPCList('GuardNPC', '5d1');
+  this.movetype = MOVE_WALK;
+  this.attackword = 'attacks';
+}
+BeldskaeGuardsGroupTile.prototype = new NPCGroupObject();
+
+function SwainhilGuardsGroupTile() {
+  this.name = 'SwainhilGuardsGroup';
+  this.desc = 'a guard patrol';
+  this.peaceAI = 'PatrolS';
+  this.graphic = '309.gif';
+  this.group = [];
+  this.group[0] = new NPCList('GuardNPC', '5d1');
+  this.movetype = MOVE_WALK;
+  this.attackword = 'attacks';
+}
+SwainhilGuardsGroupTile.prototype = new NPCGroupObject();
+
