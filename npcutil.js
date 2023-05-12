@@ -109,6 +109,10 @@ NPCSpecialFuncs["ondeathShadow"] = function(who,how) {
   who.onDeath = "shadow";
 }
 
+NPCSpecialFuncs["patrol"] = function(who,how) {
+  who.overridecombat = 'guardPatrol';
+}
+
 function DestroyJusticeCrystals() {
   let jmap = PC.getHomeMap();
   let crystals = jmap.npcs.getAll();

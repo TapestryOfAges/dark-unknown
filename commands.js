@@ -776,6 +776,8 @@ function PerformAttackMap(who) {
       let desttile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, newmap.getEnterX(), newmap.getEnterY());
     }
     
+    PC.lastAttackedx = targetCursor.x;
+    PC.lastAttackedy = targetCursor.y;
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     retval["txt"] = "Attack: " + atkwho.getDesc() + ".";
     retval["fin"] = 0;

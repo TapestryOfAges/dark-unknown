@@ -304,6 +304,20 @@ OnDeathFuncs["oliviaDead"] = function(who) {
   }
 }
 
+OnDeathFuncs["patrolDead"] = function(who) {
+  let npcs = who.getHomeMap().npcs.getAll();
+  let guardsleft = 0;
+  for (let i=0;i<npcs.length;i++) {
+    if (npcs[i].getName().includes("Guard")) { guardsleft = 1; }
+  }
+  if (!guardsleft) {
+    let worldmap = maps.getMap("darkunknown");
+    let patrol = worldmap.getTile(PC.lastAttackedx,PC.lastAttackedy).getTopNPC();
+    DUTime.removeEntityFrom(patrol);
+    worldmap.deleteThing(patrol);
+  }
+}
+
 OnDeathFuncs["Warduke"] = function() {
   DU.gameflags.setFlag("warduke_defeated",1);
   PC.diffKarma(2);
