@@ -3908,6 +3908,7 @@ ais.PatrolS = function(who) {
 }
 
 ais.GuardPatrol = function(who,dests) {
+  if (PC.getHomeMap().getName() === "guardPatrol") { return {fin:1}; }   // don't move if PC is on a guard patrol map
   let themap = who.getHomeMap();
   let nearby = FindNearestNPC(who,"",[PC]);  // nearest entity on this map that isn't the PC
   let nearbydist = GetDistance(who.getx(),who.gety(),nearby.getx(),nearby.gety(),"manhatten");

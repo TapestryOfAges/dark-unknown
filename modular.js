@@ -313,6 +313,10 @@ OnDeathFuncs["patrolDead"] = function(who) {
   if (!guardsleft) {
     let worldmap = maps.getMap("darkunknown");
     let patrol = worldmap.getTile(PC.lastAttackedx,PC.lastAttackedy).getTopNPC();
+    let spawner = patrol.getSpawnedBy();
+    if (spawner) {
+      spawner.deleteSpawned(patrol);
+    }
     DUTime.removeEntityFrom(patrol);
     worldmap.deleteThing(patrol);
   }
