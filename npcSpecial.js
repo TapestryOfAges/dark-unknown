@@ -119,7 +119,7 @@ function HorseAndCartNPCTile() {
   this.special = 'remain';
   this.overridecombat = 'oliviaCart';
 
-  MultiTileNPC.call(this, ["CartSegment"], [[-1,0]])
+  MultiTileNPC.call(this, ["CartSegment"], [[-1,0]]);
 //  MobileEnterable.call(this, "oliviaCart", 1, 7);
 }
 HorseAndCartNPCTile.prototype = new NPCObject();
@@ -221,3 +221,50 @@ function ElderDragonTailSegmentTile() {
   this.alwaystop = 1;
 }
 ElderDragonTailSegmentTile.prototype = new MultiSegment();
+
+function TitanNPCTile() {
+  this.name = 'TitanNPC';
+  this.level = 8;
+  this.addhp = 20;
+  this.str = 30;
+  this.dex = 20;
+  this.int = 14;
+  this.alignment = 'Evil';
+  this.attitude = 'hostile';
+  this.peaceAI = 'seekPC-10';
+  this.forgetAt = 10;
+  this.withdraw = 0;
+  this.graphic = '345.gif';
+  this.altgraphic = ['379.gif',];
+  this.meleeAttackAs = 'none';
+  this.meleeDamage = '5d4+15'
+  this.meleeStrDamage = 1
+  this.missileAttackAs = 'none';
+  this.missileDamage = '2d12+3'
+  this.missileStrDamage = 0
+  this.missileRange = 5
+  this.armorAs = 'PlateArmor';
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'Titan';
+  this.prefix = 'a';
+  this.desc = "titan";
+  this.onHit = 'knockback, stun';
+  this.meleeChance = 70;
+  this.resists = {};
+  this.special = 'open_door, reach';
+  this.meleeHitSound = 'sfx_melee_hit';
+  this.meleeAttackSound = 'sfx_melee_miss';
+
+  MultiTileNPC.call(this, ["TitanHeadSegment"], [[0,-1]])
+}
+TitanNPCTile.prototype = new NPCObject();
+
+function TitanHeadSegmentTile() {
+  this.name = "TitanHeadSegment";
+  this.graphic = 'elderdragon.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = -32;
+  this.alwaystop = 1;
+}
+TitanHeadSegmentTile.prototype = new MultiSegment();
