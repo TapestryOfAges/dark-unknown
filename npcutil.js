@@ -110,7 +110,8 @@ NPCSpecialFuncs["ondeathShadow"] = function(who,how) {
 }
 
 NPCSpecialFuncs["patrol"] = function(who,how) {
-  who.overridecombat = 'guardPatrol';
+  let ainame = who.getPeaceAI();
+  who.overridecombat = 'guard' + ainame;
 }
 
 function DestroyJusticeCrystals() {

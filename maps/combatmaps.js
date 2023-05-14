@@ -1267,71 +1267,352 @@ mappages["oliviaCart"].check_escape = function(mapref) {
 }
 
 // MAP BEGINS HERE
-mappages["guardPatrol"] = {};
-mappages["guardPatrol"].terrain = [];
- mappages["guardPatrol"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
- mappages["guardPatrol"].terrain[1] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
- mappages["guardPatrol"].terrain[2] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
- mappages["guardPatrol"].terrain[3] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
- mappages["guardPatrol"].terrain[4] = '.. ., ., ., ., .. .. .. .. ., ., .. ..';
- mappages["guardPatrol"].terrain[5] = '., ., ., ., ., ., ., ., ., ., ., ., .,';
- mappages["guardPatrol"].terrain[6] = '., ., ., ., ., ., ., ., ., ., ., ., .,';
- mappages["guardPatrol"].terrain[7] = '., ., ., ., ., ., ., ., ., ., ., ., .,';
- mappages["guardPatrol"].terrain[8] = '., ., ., .. .. .. .. ., ., ., ., ., ..';
- mappages["guardPatrol"].terrain[9] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
-mappages["guardPatrol"].terrain[10] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
-mappages["guardPatrol"].terrain[11] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
-mappages["guardPatrol"].terrain[12] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["guardPatrolOH"] = {};
+mappages["guardPatrolOH"].terrain = [];
+ mappages["guardPatrolOH"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["guardPatrolOH"].terrain[1] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["guardPatrolOH"].terrain[2] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["guardPatrolOH"].terrain[3] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["guardPatrolOH"].terrain[4] = '.. ., ., ., ., .. .. .. .. ., ., .. ..';
+ mappages["guardPatrolOH"].terrain[5] = '., ., ., ., ., ., ., ., ., ., ., ., .,';
+ mappages["guardPatrolOH"].terrain[6] = '., ., ., ., ., ., ., ., ., ., ., ., .,';
+ mappages["guardPatrolOH"].terrain[7] = '., ., ., ., ., ., ., ., ., ., ., ., .,';
+ mappages["guardPatrolOH"].terrain[8] = '., ., ., .. .. .. .. ., ., ., ., ., ..';
+ mappages["guardPatrolOH"].terrain[9] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["guardPatrolOH"].terrain[10] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["guardPatrolOH"].terrain[11] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["guardPatrolOH"].terrain[12] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
 
-mappages["guardPatrol"].features = [];
+mappages["guardPatrolOH"].features = [];
 
 
-mappages["guardPatrol"].npcs = [];
-mappages["guardPatrol"].npcs[0] = {name : 'TownGuardNPC', x : 3, y : 4, NPCName: 'Taran', Conversation: 'taran', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["guardPatrol"].npcs[1] = {name : 'TownGuardNPC', x : 6, y : 3, NPCName: 'Alan', Conversation: 'alan', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["guardPatrol"].npcs[2] = {name : 'TownGuardNPC', x : 9, y : 5, NPCName: 'Jerome', Conversation: 'jerome', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["guardPatrol"].npcs[3] = {name : 'TownGuardNPC', x : 8, y : 8, NPCName: 'Alanis', Conversation: 'alanis', Gender: 'female', NPCBand: '0', skintone: '1'};
-mappages["guardPatrol"].npcs[4] = {name : 'TownGuardNPC', x : 4, y : 7, NPCName: 'Dara', Conversation: 'dara', Gender: 'female', NPCBand: '0', skintone: '1'};
+mappages["guardPatrolOH"].npcs = [];
+mappages["guardPatrolOH"].npcs[0] = {name : 'TownGuardNPC', x : 3, y : 4, NPCName: 'Torin', Desc: 'soldier', Conversation: 'torin', Gender: 'male', NPCBand: '0', skintone: '1'};
+mappages["guardPatrolOH"].npcs[1] = {name : 'TownGuardNPC', x : 6, y : 3, NPCName: 'Alan', Desc: 'soldier', Conversation: 'alan', Gender: 'male', NPCBand: '0', skintone: '1'};
+mappages["guardPatrolOH"].npcs[2] = {name : 'TownGuardNPC', x : 9, y : 5, NPCName: 'Jerome', Desc: 'soldier', Conversation: 'jerome', Gender: 'male', NPCBand: '0', skintone: '1'};
+mappages["guardPatrolOH"].npcs[3] = {name : 'TownGuardNPC', x : 8, y : 8, NPCName: 'Alanis', Desc: 'soldier', Conversation: 'alanis', Gender: 'female', NPCBand: '0', skintone: '1'};
+mappages["guardPatrolOH"].npcs[4] = {name : 'TownGuardNPC', x : 4, y : 7, NPCName: 'Dara', Desc: 'soldier', Conversation: 'dara', Gender: 'female', NPCBand: '0', skintone: '1'};
 
-mappages["guardPatrol"].desc = "Combat";
-mappages["guardPatrol"].longdesc = ``;
-mappages["guardPatrol"].music = 'Dark Unknown';
-mappages["guardPatrol"].savename = `Combat`;
-mappages["guardPatrol"].exitmap = '';
-mappages["guardPatrol"].exitx = '65';
-mappages["guardPatrol"].exity = '70';
-mappages["guardPatrol"].wraps = 'None';
-mappages["guardPatrol"].enterx = '5';
-mappages["guardPatrol"].entery = '11';
-mappages["guardPatrol"].seeBelow = '';
-mappages["guardPatrol"].lightLevel = 'bright';
-mappages["guardPatrol"].alwaysRemember = '0';
-mappages["guardPatrol"].scale = '1';
-mappages["guardPatrol"].underground = '0';
-mappages["guardPatrol"].undergroundDesc = '';
-mappages["guardPatrol"].enterscript = 'set_exits';
-mappages["guardPatrol"].entertestscript = '';
-mappages["guardPatrol"].exitscript = '';
-mappages["guardPatrol"].exittestscript = 'check_escape';
-mappages["guardPatrol"].returnmap = '';
-mappages["guardPatrol"].returnx = 'NaN';
-mappages["guardPatrol"].returny = 'NaN';
-mappages["guardPatrol"].returninfused = '0';
-mappages["guardPatrol"].linkedMaps = [""];
-mappages["guardPatrol"].editorLabels = '{}';
+mappages["guardPatrolOH"].desc = "Combat";
+mappages["guardPatrolOH"].longdesc = ``;
+mappages["guardPatrolOH"].music = 'Dark Unknown';
+mappages["guardPatrolOH"].savename = `Combat`;
+mappages["guardPatrolOH"].exitmap = '';
+mappages["guardPatrolOH"].exitx = '65';
+mappages["guardPatrolOH"].exity = '70';
+mappages["guardPatrolOH"].wraps = 'None';
+mappages["guardPatrolOH"].enterx = '5';
+mappages["guardPatrolOH"].entery = '11';
+mappages["guardPatrolOH"].seeBelow = '';
+mappages["guardPatrolOH"].lightLevel = 'bright';
+mappages["guardPatrolOH"].alwaysRemember = '0';
+mappages["guardPatrolOH"].scale = '1';
+mappages["guardPatrolOH"].underground = '0';
+mappages["guardPatrolOH"].undergroundDesc = '';
+mappages["guardPatrolOH"].enterscript = 'set_exits';
+mappages["guardPatrolOH"].entertestscript = '';
+mappages["guardPatrolOH"].exitscript = '';
+mappages["guardPatrolOH"].exittestscript = 'check_escape';
+mappages["guardPatrolOH"].returnmap = '';
+mappages["guardPatrolOH"].returnx = 'NaN';
+mappages["guardPatrolOH"].returny = 'NaN';
+mappages["guardPatrolOH"].returninfused = '0';
+mappages["guardPatrolOH"].linkedMaps = [""];
+mappages["guardPatrolOH"].editorLabels = '{}';
 // MAP ENDS HERE
 
-mappages["guardPatrol"].onload = function(mapref) {
+mappages["guardPatrolOH"].onload = function(mapref) {
   let npcs = mapref.npcs.getAll();
   for (let i=0;i<npcs.length;i++) {
     npcs[i].onDeath = "patrolDead";
   }
 }
 
-mappages["guardPatrol"].set_exits = function(mapref) {
+mappages["guardPatrolOH"].set_exits = function(mapref) {
   maps_set_exits(mapref);
 }
 
-mappages["guardPatrol"].check_escape = function(mapref) {
+mappages["guardPatrolOH"].check_escape = function(mapref) {
+  maps_check_escape(mapref);
+}
+
+
+// MAP BEGINS HERE
+mappages["guardPatrolNP"] = {};
+mappages["guardPatrolNP"].terrain = [];
+ mappages["guardPatrolNP"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["guardPatrolNP"].terrain[1] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["guardPatrolNP"].terrain[2] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["guardPatrolNP"].terrain[3] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["guardPatrolNP"].terrain[4] = '.. ., ., ., ., .. .. .. .. ., ., .. ..';
+ mappages["guardPatrolNP"].terrain[5] = '., ., ., ., ., ., ., ., ., ., ., ., .,';
+ mappages["guardPatrolNP"].terrain[6] = '., ., ., ., ., ., ., ., ., ., ., ., .,';
+ mappages["guardPatrolNP"].terrain[7] = '., ., ., ., ., ., ., ., ., ., ., ., .,';
+ mappages["guardPatrolNP"].terrain[8] = '., ., ., .. .. .. .. ., ., ., ., ., ..';
+ mappages["guardPatrolNP"].terrain[9] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["guardPatrolNP"].terrain[10] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["guardPatrolNP"].terrain[11] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["guardPatrolNP"].terrain[12] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+
+mappages["guardPatrolNP"].features = [];
+
+
+mappages["guardPatrolNP"].npcs = [];
+mappages["guardPatrolNP"].npcs[0] = {name : 'TownGuardNPC', x : 3, y : 4, NPCName: 'Curtr', Desc: 'soldier', Conversation: 'curtr', Gender: 'male', NPCBand: '0', skintone: '1'};
+mappages["guardPatrolNP"].npcs[1] = {name : 'TownGuardNPC', x : 6, y : 3, NPCName: 'Beauregard', Desc: 'soldier', Conversation: 'beauregard', Gender: 'male', NPCBand: '0', skintone: '1'};
+mappages["guardPatrolNP"].npcs[2] = {name : 'TownGuardNPC', x : 9, y : 5, NPCName: 'Geoff', Desc: 'soldier', Conversation: 'geoff', Gender: 'male', NPCBand: '0', skintone: '1'};
+mappages["guardPatrolNP"].npcs[3] = {name : 'TownGuardNPC', x : 8, y : 8, NPCName: 'Tanya', Desc: 'soldier', Conversation: 'tanya', Gender: 'female', NPCBand: '0', skintone: '1'};
+mappages["guardPatrolNP"].npcs[4] = {name : 'TownGuardNPC', x : 4, y : 7, NPCName: 'Celeste', Desc: 'soldier', Conversation: 'celeste', Gender: 'female', NPCBand: '0', skintone: '1'};
+
+mappages["guardPatrolNP"].desc = "Combat";
+mappages["guardPatrolNP"].longdesc = ``;
+mappages["guardPatrolNP"].music = 'Dark Unknown';
+mappages["guardPatrolNP"].savename = `Combat`;
+mappages["guardPatrolNP"].exitmap = '';
+mappages["guardPatrolNP"].exitx = '65';
+mappages["guardPatrolNP"].exity = '70';
+mappages["guardPatrolNP"].wraps = 'None';
+mappages["guardPatrolNP"].enterx = '5';
+mappages["guardPatrolNP"].entery = '11';
+mappages["guardPatrolNP"].seeBelow = '';
+mappages["guardPatrolNP"].lightLevel = 'bright';
+mappages["guardPatrolNP"].alwaysRemember = '0';
+mappages["guardPatrolNP"].scale = '1';
+mappages["guardPatrolNP"].underground = '0';
+mappages["guardPatrolNP"].undergroundDesc = '';
+mappages["guardPatrolNP"].enterscript = 'set_exits';
+mappages["guardPatrolNP"].entertestscript = '';
+mappages["guardPatrolNP"].exitscript = '';
+mappages["guardPatrolNP"].exittestscript = 'check_escape';
+mappages["guardPatrolNP"].returnmap = '';
+mappages["guardPatrolNP"].returnx = 'NaN';
+mappages["guardPatrolNP"].returny = 'NaN';
+mappages["guardPatrolNP"].returninfused = '0';
+mappages["guardPatrolNP"].linkedMaps = [""];
+mappages["guardPatrolNP"].editorLabels = '{}';
+// MAP ENDS HERE
+
+mappages["guardPatrolNP"].onload = function(mapref) {
+  let npcs = mapref.npcs.getAll();
+  for (let i=0;i<npcs.length;i++) {
+    npcs[i].onDeath = "patrolDead";
+  }
+}
+
+mappages["guardPatrolNP"].set_exits = function(mapref) {
+  maps_set_exits(mapref);
+}
+
+mappages["guardPatrolNP"].check_escape = function(mapref) {
+  maps_check_escape(mapref);
+}
+
+// MAP BEGINS HERE
+mappages["guardPatrolCL"] = {};
+mappages["guardPatrolCL"].terrain = [];
+ mappages["guardPatrolCL"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["guardPatrolCL"].terrain[1] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["guardPatrolCL"].terrain[2] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["guardPatrolCL"].terrain[3] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["guardPatrolCL"].terrain[4] = '.. ., ., ., ., .. .. .. .. ., ., .. ..';
+ mappages["guardPatrolCL"].terrain[5] = '., ., ., ., ., ., ., ., ., ., ., ., .,';
+ mappages["guardPatrolCL"].terrain[6] = '., ., ., ., ., ., ., ., ., ., ., ., .,';
+ mappages["guardPatrolCL"].terrain[7] = '., ., ., ., ., ., ., ., ., ., ., ., .,';
+ mappages["guardPatrolCL"].terrain[8] = '., ., ., .. .. .. .. ., ., ., ., ., ..';
+ mappages["guardPatrolCL"].terrain[9] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["guardPatrolCL"].terrain[10] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["guardPatrolCL"].terrain[11] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["guardPatrolCL"].terrain[12] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+
+mappages["guardPatrolCL"].features = [];
+
+
+mappages["guardPatrolCL"].npcs = [];
+mappages["guardPatrolCL"].npcs[0] = {name : 'TownGuardNPC', x : 3, y : 4, NPCName: 'Er Thom', Desc: 'soldier', Conversation: 'erthom', Gender: 'male', NPCBand: '0', skintone: '1'};
+mappages["guardPatrolCL"].npcs[1] = {name : 'TownGuardNPC', x : 6, y : 3, NPCName: 'Richard', Desc: 'soldier', Conversation: 'richard', Gender: 'male', NPCBand: '0', skintone: '1'};
+mappages["guardPatrolCL"].npcs[2] = {name : 'TownGuardNPC', x : 9, y : 5, NPCName: 'Homer', Desc: 'soldier', Conversation: 'homer', Gender: 'male', NPCBand: '0', skintone: '1'};
+mappages["guardPatrolCL"].npcs[3] = {name : 'TownGuardNPC', x : 8, y : 8, NPCName: 'Sally', Desc: 'soldier', Conversation: 'sally', Gender: 'female', NPCBand: '0', skintone: '1'};
+mappages["guardPatrolCL"].npcs[4] = {name : 'TownGuardNPC', x : 4, y : 7, NPCName: 'Patty', Desc: 'soldier', Conversation: 'patty', Gender: 'female', NPCBand: '0', skintone: '1'};
+
+mappages["guardPatrolCL"].desc = "Combat";
+mappages["guardPatrolCL"].longdesc = ``;
+mappages["guardPatrolCL"].music = 'Dark Unknown';
+mappages["guardPatrolCL"].savename = `Combat`;
+mappages["guardPatrolCL"].exitmap = '';
+mappages["guardPatrolCL"].exitx = '65';
+mappages["guardPatrolCL"].exity = '70';
+mappages["guardPatrolCL"].wraps = 'None';
+mappages["guardPatrolCL"].enterx = '5';
+mappages["guardPatrolCL"].entery = '11';
+mappages["guardPatrolCL"].seeBelow = '';
+mappages["guardPatrolCL"].lightLevel = 'bright';
+mappages["guardPatrolCL"].alwaysRemember = '0';
+mappages["guardPatrolCL"].scale = '1';
+mappages["guardPatrolCL"].underground = '0';
+mappages["guardPatrolCL"].undergroundDesc = '';
+mappages["guardPatrolCL"].enterscript = 'set_exits';
+mappages["guardPatrolCL"].entertestscript = '';
+mappages["guardPatrolCL"].exitscript = '';
+mappages["guardPatrolCL"].exittestscript = 'check_escape';
+mappages["guardPatrolCL"].returnmap = '';
+mappages["guardPatrolCL"].returnx = 'NaN';
+mappages["guardPatrolCL"].returny = 'NaN';
+mappages["guardPatrolCL"].returninfused = '0';
+mappages["guardPatrolCL"].linkedMaps = [""];
+mappages["guardPatrolCL"].editorLabels = '{}';
+// MAP ENDS HERE
+
+mappages["guardPatrolCL"].onload = function(mapref) {
+  let npcs = mapref.npcs.getAll();
+  for (let i=0;i<npcs.length;i++) {
+    npcs[i].onDeath = "patrolDead";
+  }
+}
+
+mappages["guardPatrolCL"].set_exits = function(mapref) {
+  maps_set_exits(mapref);
+}
+
+mappages["guardPatrolCL"].check_escape = function(mapref) {
+  maps_check_escape(mapref);
+}
+
+// MAP BEGINS HERE
+mappages["guardPatrolB"] = {};
+mappages["guardPatrolB"].terrain = [];
+ mappages["guardPatrolB"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["guardPatrolB"].terrain[1] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["guardPatrolB"].terrain[2] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["guardPatrolB"].terrain[3] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["guardPatrolB"].terrain[4] = '.. ., ., ., ., .. .. .. .. ., ., .. ..';
+ mappages["guardPatrolB"].terrain[5] = '., ., ., ., ., ., ., ., ., ., ., ., .,';
+ mappages["guardPatrolB"].terrain[6] = '., ., ., ., ., ., ., ., ., ., ., ., .,';
+ mappages["guardPatrolB"].terrain[7] = '., ., ., ., ., ., ., ., ., ., ., ., .,';
+ mappages["guardPatrolB"].terrain[8] = '., ., ., .. .. .. .. ., ., ., ., ., ..';
+ mappages["guardPatrolB"].terrain[9] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["guardPatrolB"].terrain[10] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["guardPatrolB"].terrain[11] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["guardPatrolB"].terrain[12] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+
+mappages["guardPatrolB"].features = [];
+
+
+mappages["guardPatrolB"].npcs = [];
+mappages["guardPatrolB"].npcs[0] = {name : 'TownGuardNPC', x : 3, y : 4, NPCName: 'Marcy', Desc: 'soldier', Conversation: 'marcy', Gender: 'female', NPCBand: '0', skintone: '1'};
+mappages["guardPatrolB"].npcs[1] = {name : 'TownGuardNPC', x : 6, y : 3, NPCName: 'Chuck', Desc: 'soldier', Conversation: 'chuck', Gender: 'male', NPCBand: '0', skintone: '1'};
+mappages["guardPatrolB"].npcs[2] = {name : 'TownGuardNPC', x : 9, y : 5, NPCName: 'Ford', Desc: 'soldier', Conversation: 'ford', Gender: 'male', NPCBand: '0', skintone: '1'};
+mappages["guardPatrolB"].npcs[3] = {name : 'TownGuardNPC', x : 8, y : 8, NPCName: 'Andromeda', Desc: 'soldier', Conversation: 'andromeda', Gender: 'female', NPCBand: '0', skintone: '1'};
+mappages["guardPatrolB"].npcs[4] = {name : 'TownGuardNPC', x : 4, y : 7, NPCName: 'Beverly', Desc: 'soldier', Conversation: 'beverly', Gender: 'female', NPCBand: '0', skintone: '1'};
+
+mappages["guardPatrolB"].desc = "Combat";
+mappages["guardPatrolB"].longdesc = ``;
+mappages["guardPatrolB"].music = 'Dark Unknown';
+mappages["guardPatrolB"].savename = `Combat`;
+mappages["guardPatrolB"].exitmap = '';
+mappages["guardPatrolB"].exitx = '65';
+mappages["guardPatrolB"].exity = '70';
+mappages["guardPatrolB"].wraps = 'None';
+mappages["guardPatrolB"].enterx = '5';
+mappages["guardPatrolB"].entery = '11';
+mappages["guardPatrolB"].seeBelow = '';
+mappages["guardPatrolB"].lightLevel = 'bright';
+mappages["guardPatrolB"].alwaysRemember = '0';
+mappages["guardPatrolB"].scale = '1';
+mappages["guardPatrolB"].underground = '0';
+mappages["guardPatrolB"].undergroundDesc = '';
+mappages["guardPatrolB"].enterscript = 'set_exits';
+mappages["guardPatrolB"].entertestscript = '';
+mappages["guardPatrolB"].exitscript = '';
+mappages["guardPatrolB"].exittestscript = 'check_escape';
+mappages["guardPatrolB"].returnmap = '';
+mappages["guardPatrolB"].returnx = 'NaN';
+mappages["guardPatrolB"].returny = 'NaN';
+mappages["guardPatrolB"].returninfused = '0';
+mappages["guardPatrolB"].linkedMaps = [""];
+mappages["guardPatrolB"].editorLabels = '{}';
+// MAP ENDS HERE
+
+mappages["guardPatrolB"].onload = function(mapref) {
+  let npcs = mapref.npcs.getAll();
+  for (let i=0;i<npcs.length;i++) {
+    npcs[i].onDeath = "patrolDead";
+  }
+}
+
+mappages["guardPatrolB"].set_exits = function(mapref) {
+  maps_set_exits(mapref);
+}
+
+mappages["guardPatrolB"].check_escape = function(mapref) {
+  maps_check_escape(mapref);
+}
+
+// MAP BEGINS HERE
+mappages["guardPatrolS"] = {};
+mappages["guardPatrolS"].terrain = [];
+ mappages["guardPatrolS"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["guardPatrolS"].terrain[1] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["guardPatrolS"].terrain[2] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["guardPatrolS"].terrain[3] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["guardPatrolS"].terrain[4] = '.. ., ., ., ., .. .. .. .. ., ., .. ..';
+ mappages["guardPatrolS"].terrain[5] = '., ., ., ., ., ., ., ., ., ., ., ., .,';
+ mappages["guardPatrolS"].terrain[6] = '., ., ., ., ., ., ., ., ., ., ., ., .,';
+ mappages["guardPatrolS"].terrain[7] = '., ., ., ., ., ., ., ., ., ., ., ., .,';
+ mappages["guardPatrolS"].terrain[8] = '., ., ., .. .. .. .. ., ., ., ., ., ..';
+ mappages["guardPatrolS"].terrain[9] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["guardPatrolS"].terrain[10] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["guardPatrolS"].terrain[11] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["guardPatrolS"].terrain[12] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+
+mappages["guardPatrolS"].features = [];
+
+
+mappages["guardPatrolS"].npcs = [];
+mappages["guardPatrolS"].npcs[0] = {name : 'TownGuardNPC', x : 3, y : 4, NPCName: 'Melody', Desc: 'soldier', Conversation: 'melody', Gender: 'female', NPCBand: '0', skintone: '1'};
+mappages["guardPatrolS"].npcs[1] = {name : 'TownGuardNPC', x : 6, y : 3, NPCName: 'Steven', Desc: 'soldier', Conversation: 'steven', Gender: 'male', NPCBand: '0', skintone: '1'};
+mappages["guardPatrolS"].npcs[2] = {name : 'TownGuardNPC', x : 9, y : 5, NPCName: 'Bart', Desc: 'soldier', Conversation: 'bart', Gender: 'male', NPCBand: '0', skintone: '1'};
+mappages["guardPatrolS"].npcs[3] = {name : 'TownGuardNPC', x : 8, y : 8, NPCName: 'Sigrun', Desc: 'soldier', Conversation: 'sigrun', Gender: 'female', NPCBand: '0', skintone: '1'};
+mappages["guardPatrolS"].npcs[4] = {name : 'TownGuardNPC', x : 4, y : 7, NPCName: 'Seraphina', Desc: 'soldier', Conversation: 'seraphina', Gender: 'female', NPCBand: '0', skintone: '1'};
+
+mappages["guardPatrolS"].desc = "Combat";
+mappages["guardPatrolS"].longdesc = ``;
+mappages["guardPatrolS"].music = 'Dark Unknown';
+mappages["guardPatrolS"].savename = `Combat`;
+mappages["guardPatrolS"].exitmap = '';
+mappages["guardPatrolS"].exitx = '65';
+mappages["guardPatrolS"].exity = '70';
+mappages["guardPatrolS"].wraps = 'None';
+mappages["guardPatrolS"].enterx = '5';
+mappages["guardPatrolS"].entery = '11';
+mappages["guardPatrolS"].seeBelow = '';
+mappages["guardPatrolS"].lightLevel = 'bright';
+mappages["guardPatrolS"].alwaysRemember = '0';
+mappages["guardPatrolS"].scale = '1';
+mappages["guardPatrolS"].underground = '0';
+mappages["guardPatrolS"].undergroundDesc = '';
+mappages["guardPatrolS"].enterscript = 'set_exits';
+mappages["guardPatrolS"].entertestscript = '';
+mappages["guardPatrolS"].exitscript = '';
+mappages["guardPatrolS"].exittestscript = 'check_escape';
+mappages["guardPatrolS"].returnmap = '';
+mappages["guardPatrolS"].returnx = 'NaN';
+mappages["guardPatrolS"].returny = 'NaN';
+mappages["guardPatrolS"].returninfused = '0';
+mappages["guardPatrolS"].linkedMaps = [""];
+mappages["guardPatrolS"].editorLabels = '{}';
+// MAP ENDS HERE
+
+mappages["guardPatrolS"].onload = function(mapref) {
+  let npcs = mapref.npcs.getAll();
+  for (let i=0;i<npcs.length;i++) {
+    npcs[i].onDeath = "patrolDead";
+  }
+}
+
+mappages["guardPatrolS"].set_exits = function(mapref) {
+  maps_set_exits(mapref);
+}
+
+mappages["guardPatrolS"].check_escape = function(mapref) {
   maps_check_escape(mapref);
 }
