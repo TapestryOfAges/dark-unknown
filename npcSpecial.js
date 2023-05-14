@@ -263,6 +263,7 @@ TitanNPCTile.prototype = new NPCObject();
 function TitanHeadSegmentTile() {
   this.name = "TitanHeadSegment";
   this.graphic = 'elderdragon.gif';
+  this.movetype = MOVE_ETHEREAL;
   this.spritexoffset = 0;
   this.spriteyoffset = -32;
   this.alwaystop = 1;
