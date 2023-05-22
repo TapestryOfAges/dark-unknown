@@ -11259,8 +11259,10 @@ function SwordInStoneTile() {
   //Graphics Upgraded
   this.name = "SwordInStone";
   this.graphic = "static.png";
-  this.spritexoffset = -4*32;
-  this.spriteyoffset = -75*32;
+//  this.spritexoffset = -4*32;
+//  this.spriteyoffset = -75*32;
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -120*32;
   this.passable = MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "sword driven into a stone";
@@ -16430,13 +16432,16 @@ function HalberdTile() {
 HalberdTile.prototype = new WeaponObject();
 
 function MagicSwordTile() {
+  //Graphics Upgraded
 	this.name = "MagicSword";
 	this.damage = "5d10+22";
 	this.strdamage = 1;
   //this.graphic = "master_spritesheet_d.gif";
   this.graphic = "static.png";
-	this.spritexoffset = -6*32;
-	this.spriteyoffset = -124*32;
+//	this.spritexoffset = -6*32;
+//	this.spriteyoffset = -124*32;
+	this.spritexoffset = -2*32;
+	this.spriteyoffset = -123*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "magic sword";
   this.prefix = "a";
