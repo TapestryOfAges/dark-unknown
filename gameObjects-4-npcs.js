@@ -1262,7 +1262,24 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 	let passx = startx + parseInt(diffx);
 	let passy = starty + parseInt(diffy);
 	let tile = map.getTile(passx,passy);
-	if (tile === "OoB") { 
+  let alltiles = [tile];
+  let allpassx = [passx];
+  let allpassy = [passy];
+  let anyoob = 0;
+  if (tile === "OoB") { anyoob = 1; }
+  if (this.attachedLocations) {
+    for (let i=0;i<this.attachedLocations.length;i++) {
+      let tx = passx+this.attachedLocation[i][0];
+      let ty = passy+this.attachedLocation[i][1];
+      let ttile = map.getTile(tx, ty);
+      alltiles.push(ttile);
+      allpassx.push(tx);
+      allpassy.push(ty);
+      if (ttile === "OoB") { anyoob = 1; }
+    }
+  }
+  
+	if (anyoob) { 
 	  if (noexit) {
 	    // NPC won't step out of the map
 	    DebugWrite("map", this.getDesc() + " won't move out of the map.<br />");
@@ -1304,8 +1321,15 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
       let wrap = map.getWrap();
       if ((passx < 0) && ((wrap === "Horizontal") || (wrap === "Both"))) { passx = map.getWidth()+passx; }
       else if ((passx >= map.getWidth()) && ((wrap === "Horizontal") || (wrap === "Both"))) { passx = passx-map.getWidth(); }
-      else if ((passy < 0) && ((wrap === "Vertical") || (wrap === "Both"))) { passy = map.getHeight()+passy; }
+      if ((passy < 0) && ((wrap === "Vertical") || (wrap === "Both"))) { passy = map.getHeight()+passy; }
       else if ((passy >= map.getHeight()) && ((wrap === "Vertical") || (wrap === "Both"))) { passy = passy-map.getHeight(); }
+
+      for (let i=0;i<allpassx.length;i++) {
+        if ((allpassx[i] < 0) && ((wrap === "Horizontal") || (wrap === "Both"))) { allpassx[i] = map.getWidth()+allpassx[i]; }
+        else if ((allpassx[i] >= map.getWidth()) && ((wrap === "Horizontal") || (wrap === "Both"))) { allpassx[i] = allpassx[i]-map.getWidth(); }
+        if ((allpassy[i] < 0) && ((wrap === "Vertical") || (wrap === "Both"))) { allpassy[i] = map.getHeight()+allpassy[i]; }
+        else if ((allpassy[i] >= map.getHeight()) && ((wrap === "Vertical") || (wrap === "Both"))) { allpassy[i] = allpassy[i]-map.getHeight(); }  
+      }
     }
 		retval = tile.getBumpIntoResult(this);
 		if (retval["canmove"] === 0) { return retval; }
