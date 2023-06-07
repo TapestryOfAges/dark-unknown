@@ -4693,6 +4693,16 @@ tileFactory.prototype.makeElderDragonTailSegmentTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeTitanNPCTile = function() {
+  let newTile = new TitanNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTitanHeadSegmentTile = function() {
+  let newTile = new TitanHeadSegmentTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeBlessingTile = function() {
   let newTile = new BlessingTile();
   return newTile;
