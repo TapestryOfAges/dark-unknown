@@ -19,7 +19,7 @@ ais.seekPC = function(who,radius) {
     foe = npcs[i];
     if (CheckAreEnemies(who,foe)) {
       if (whomap === foe.getHomeMap()) {
-        if (GetDistance(who.getx(),who.gety(),foe.getx(),foe.gety()) <= radius) {
+        if (GetDistanceFromPerson(who,foe.getx(),foe.gety()) <= radius) {
           // if can see
           let losresult = whomap.getLOS(who.getx(), who.gety(), foe.getx(), foe.gety());
           if ((losresult < LOS_THRESHOLD) || (who.getMovetype() & MOVE_ETHEREAL)) {  // can automatically see if can move ethereal
@@ -42,7 +42,7 @@ ais.seekPC = function(who,radius) {
     let summoner = who.getSpawnedBy();
     if (whomap === summoner.getHomeMap()) {
 //      if (!IsAdjacent(who,who.getSpawnedBy())) {
-      if (GetDistance(who.getx(),who.gety(),summoner.getx(),summoner.gety(),"square") > 2) {
+      if (GetDistanceFromPerson(who,summoner.getx(),summoner.gety(),"square") > 2) {
         let path = whomap.getPath(who.getx(),who.gety(),summoner.getx(),summoner.gety(),who.getMovetype());
         path.shift();
         let moved = StepOrSidestep(who,path[0],[who.startx, who.starty]);
@@ -1408,6 +1408,7 @@ ais.Randomwalk = function(who, chance_north, chance_east, chance_south, chance_w
   let retval = {};
   let diffx = 0;
   let diffy = 0;
+  let homemap = who.getHomeMap();
   
   if (chance_north + chance_west + chance_east + chance_south  > 100) {
     chance_north = 25;
@@ -1431,31 +1432,43 @@ ais.Randomwalk = function(who, chance_north, chance_east, chance_south, chance_w
   }
   let destx = who.getx()+diffx;
   let desty = who.gety()+diffy;
-  let desttile = who.getHomeMap().getTile(destx, desty);
-  if (desttile === "OoB") {
-    retval["nomove"] = 1;
-    retval["canmove"] = 0;
-    retval["diffx"] = diffx;
-    retval["diffy"] = diffy;
-    return retval;     
-  }
-  
-  if (desttile.isHostileTo(who)) {
-    DebugWrite("ai", who.getName() + " refused to randomwalk onto a hostile tile at " + (destx) + "," + (desty) + ".");
-    retval["nomove"] = 1;
-    retval["canmove"] = 0;
-    retval["diffx"] = diffx;
-    retval["diffy"] = diffy;
-    return retval; 
+  let desttile = [homemap.getTile(destx, desty)];
+
+  if (who.attachedLocations) {
+    for (let i=0;i<who.attachedLocations.length;i++) {
+      let partdestx = destx + who.attachedLocations[i][0];
+      let partdesty = desty + who.attachedLocations[i][1];
+      let partdesttile = homemap.getTile(partdestx,partdesty);
+      desttile.push(partdesttile);
+    }
   }
 
-  if (desttile.noWander()) {
-    DebugWrite("ai", who.getName() + " refused to randomwalk onto a nowander tile at " + (destx) + "," + (desty) + ".");
-    retval["nomove"] = 1;
-    retval["canmove"] = 0;
-    retval["diffx"] = diffx;
-    retval["diffy"] = diffy;
-    return retval; 
+  for (let i=0;i<desttile.length;i++) {
+    if (desttile[i] === "OoB") {
+      retval["nomove"] = 1;
+      retval["canmove"] = 0;
+      retval["diffx"] = diffx;
+      retval["diffy"] = diffy;
+      return retval;     
+    }
+  
+    if (desttile[i].isHostileTo(who)) {
+      DebugWrite("ai", who.getName() + " refused to randomwalk onto a hostile tile at " + (destx) + "," + (desty) + ".");
+      retval["nomove"] = 1;
+      retval["canmove"] = 0;
+      retval["diffx"] = diffx;
+      retval["diffy"] = diffy;
+      return retval; 
+    }
+
+    if (desttile[i].noWander()) {
+      DebugWrite("ai", who.getName() + " refused to randomwalk onto a nowander tile at " + (destx) + "," + (desty) + ".");
+      retval["nomove"] = 1;
+      retval["canmove"] = 0;
+      retval["diffx"] = diffx;
+      retval["diffy"] = diffy;
+      return retval; 
+    }
   }
 
   if (who.getHomeMap().getScale() === 0) {  // only care about it if on an outdoor map
@@ -3467,10 +3480,10 @@ ais.elderdragon = function(who) {
       let dragonmap = who.getHomeMap();
       let foes = [];
       let nearby;
-      if (GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety(),"square") <= 7) { foes.push(PC); nearby = PC;}
+      if (GetDistanceFromPerson(who,PC.getx(),PC.gety(),"square") <= 7) { foes.push(PC); nearby = PC;}
       let npcs = dragonmap.npcs.getAll();
       for (let i=0;i<npcs.length;i++) {
-        if ((npcs[i].getAttitude() === "friendly") && (GetDistance(who.getx(),who.gety(),npcs[i].getx(),npcs[i].gety(),"square") <= 7)) { foes.push(npcs[i]); }
+        if ((npcs[i].getAttitude() === "friendly") && (GetDistanceFromPerson(who,npcs[i].getx(),npcs[i].gety(),"square") <= 7)) { foes.push(npcs[i]); }
       }
       let isadj;
       let mindist = 100;
@@ -3479,20 +3492,21 @@ ais.elderdragon = function(who) {
           isadj = IsAdjacent(who,foes[i]);
           if (isadj) { nearby = foes[i]; }
           else {
-            let dist = GetDistance(who,foes[i]);
+            let dist = GetDistanceFromPerson(who,foes[i].getx(),foes[i].gety());
             if (dist < mindist) { mindist = dist; nearby = foes[i]; }
           }
-          for (let j=0;j<who.attachedParts.length;j++) {
-            if (!isadj) { 
-              isadj = IsAdjacent(who.attachedParts[j],foes[i]); 
-              if (isadj) { 
-                nearby = foes[i]; 
-              } else {
-                let dist = GetDistance(who.attachedParts[j],foes[i]);
-                if (dist < mindist) { mindist = dist; nearby = foes[i]; }
-              }
-            }
-          }
+//          for (let j=0;j<who.attachedParts.length;j++) {
+//            if (!isadj) { 
+//              isadj = IsAdjacent(who.attachedParts[j],foes[i]); 
+//              if (isadj) { 
+//                nearby = foes[i]; 
+//              } else {
+//                let dist = GetDistance(who.attachedParts[j],foes[i]);
+//                if (dist < mindist) { mindist = dist; nearby = foes[i]; }
+//              }
+//            }
+//          }
+// changes to GetDistance and IsAdjacent now include attached parts
         }
       }
       let action;
