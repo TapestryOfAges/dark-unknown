@@ -871,9 +871,9 @@ PedestalTile.prototype = new FeatureObject();
 
 function WoodSignTile() {
   this.name = "WoodSign";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-576";
+  this.graphic = "static.png";
+  this.spritexoffset = -1*32;
+  this.spriteyoffset = -106*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -993,7 +993,7 @@ WorldsEndingCenterRaftTile.prototype.myTurn = function() {
   }
   
   let lever = mymap.getTile(40,28).getTopFeature();
-  if (lever.spritexoffset === "-192") {
+  if (lever.spritexoffset === -9*32) {
     // raft only moves if lever is set to ON
     let movedir = "";
     if ((this.getx() >= 34) && (this.getx() <= 48) && (this.gety() === 24)) { movedir = "E"; }
@@ -1094,10 +1094,11 @@ function PotentialReceptacleTile() {
 PotentialReceptacleTile.prototype = new FeatureObject();
 
 function WorldsEndingRaftSwitchTile() {
+  //Graphic Upgraded
   this.name = "WorldsEndingRaftSwitch";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-608";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -107*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -1109,12 +1110,12 @@ WorldsEndingRaftSwitchTile.prototype.use = function(who) {
   let retval = {fin:1};
   if (!DU.gameflags.getFlag("worldsendingraft")) { retval["txt"] = "The lever will not budge."; return retval; }
 
-  if (this.spritexoffset === "-160") { 
-    this.spritexoffset = "-192";
+  if (this.spritexoffset === -8*32) { 
+    this.spritexoffset = -9*32;
     retval["txt"] = "The lever moves with a satisfying click.";
     DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
   } else {
-    this.spritexoffset = "-160";
+    this.spritexoffset = -8*32;
     retval["txt"] = "The lever moves with a satisfying click.";
     DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
   }
@@ -2947,13 +2948,26 @@ CrystalTrapSpaceTile.prototype.myTurn = function() {
 
 function SpitTile() {
 	this.name = "Spit";
-	this.graphic = "spit.gif";
+	this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -162*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0;
   this.prefix = "a";
 	this.desc = "campfire";
 	
 	LightEmitting.call(this, 2);
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 170,
+    startframe: "random"
+  });
+
 }
 SpitTile.prototype = new FeatureObject();
 
@@ -4401,9 +4415,9 @@ UnfinishedSign2Tile.prototype = new FeatureObject();
 
 function TombstoneTile() {
   this.name = "Tombstone";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-512";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -109*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -4411,19 +4425,6 @@ function TombstoneTile() {
   this.peerview = "#541909";
 }
 TombstoneTile.prototype = new FeatureObject();
-
-function TombstoneRIPTile() {
-  this.name = "TombstoneRIP";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-512";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.prefix = "a";
-  this.desc = "tombstone";
-  this.peerview = "#541909";
-}
-TombstoneRIPTile.prototype = new FeatureObject();
 
 function TrainingDummyTile() {
   //Graphics Upgraded
@@ -6104,10 +6105,11 @@ function CrackedMirrorTile() {
 CrackedMirrorTile.prototype = new FeatureObject();
 
 function SunLensTile() {
+  //Graphics Upgraded
   this.name = "SunLens";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-1760";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -109*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -8388,7 +8390,7 @@ WalkOnAbyssGauntletTile.prototype.walkon = function(walker) {
     let fromcoords = getCoords(caster.getHomeMap(),caster.getx(), caster.gety());
     let tocoords = getCoords(walker.getHomeMap(),walker.getx(), walker.gety());
     let duration = (Math.pow( Math.pow(walker.getx() - caster.getx(), 2) + Math.pow (walker.gety() - caster.gety(), 2)  , .5)) * 100;
-    let destgraphic = {graphic:"master_spritesheet.png", xoffset:-128, yoffset:-1856, overlay:"spacer.gif"};
+    let destgraphic = {graphic:"static.png", xoffset:-3*32, yoffset:-96*32, overlay:"spacer.gif"};
     DUPlaySound(sndsfx);
     let weapon = localFactory.createTile("SpellWeapon");
     weapon.dmgtype = "fire";
@@ -9197,6 +9199,7 @@ function ShieldDisplayTile() {
 ShieldDisplayTile.prototype = new FeatureObject();
 
 function SkeletonDecorationTile() {
+  //Graphic Upgraded
   this.name = "SkeletonDecoration";
   this.graphic = "static.png";
   this.spritexoffset = -8*32;
@@ -9210,20 +9213,21 @@ SkeletonDecorationTile.prototype = new FeatureObject();
 
 function MoatLeverOffTile() {
   this.name = "MoatLeverOff";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-608";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -108*32;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "lever";
 }
 MoatLeverOffTile.prototype = new FeatureObject();
 
-function LeverOffTile() {
+function LeverOffTile() {  // is this even used?
+  //Graphic Upgraded
   this.name = "LeverOff";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-608";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -108*32;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "lever";
@@ -9233,8 +9237,8 @@ LeverOffTile.prototype = new FeatureObject();
 function BDCLeverTile() {
   this.name = "BDCLever";
   this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-608";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -108*32;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "lever";
@@ -9250,9 +9254,9 @@ BDCLeverTile.prototype.use = function(who) {
 
 function GrottoLeverOffTile() {
   this.name = "GrottoLeverOff";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-608";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -109*32;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "lever";
@@ -9262,7 +9266,7 @@ GrottoLeverOffTile.prototype = new FeatureObject();
 GrottoLeverOffTile.prototype.use = function(who) {
   let retval = {};
   retval["txt"] = "There is a deafening sound of rushing water! The water levels recede.";
-  this.spritexoffset = "-256";
+  this.spritexoffset = -9*32;
   let frommap = this.getHomeMap();
   let tomap = maps.getMap("grotto2");
   DUPlaySound("sfx_large_lever");
@@ -9284,10 +9288,11 @@ GrottoLeverOffTile.prototype.use = function(who) {
 }
 
 function GrottoBridgeLever1Tile() {
+  //Graphic Upgraded
   this.name = "GrottoBridgeLever1";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-608";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -107*32;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "switch";
@@ -9300,17 +9305,18 @@ GrottoBridgeLever1Tile.prototype.use = function(who) {
   let mymap = this.getHomeMap();
   GrottoBridgePuzzle(mymap,102,31);
   GrottoBridgePuzzle(mymap,102,32);
-  if (this.spritexoffset === "-224") { this.spritexoffset = "-256";}
-  else { this.spritexoffset = "-192";}
+  if (this.spritexoffset === -8*32) { this.spritexoffset = -9*32;}
+  else { this.spritexoffset = -8*32;}
   DUPlaySound("sfx_small_lever");
   return { fin: 1, txt: "Lever thrown."};
 }
 
 function GrottoBridgeLever2Tile() {
+  //Graphic Upgradedf
   this.name = "GrottoBridgeLever2";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-608";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -107*32;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "switch";
@@ -9323,17 +9329,18 @@ GrottoBridgeLever2Tile.prototype.use = function(who) {
   let mymap = this.getHomeMap();
   GrottoBridgePuzzle(mymap,102,33);
   GrottoBridgePuzzle(mymap,102,32);
-  if (this.spritexoffset === "-224") { this.spritexoffset = "-256";}
-  else { this.spritexoffset = "-192";}
+  if (this.spritexoffset === -8*32) { this.spritexoffset = -9*32;}
+  else { this.spritexoffset = -8*32;}
   DUPlaySound("sfx_small_lever");
   return { fin: 1, txt: "Lever thrown."};
 }
 
 function GrottoBridgeLever3Tile() {
+  //Graphic Upgraded
   this.name = "GrottoBridgeLever3";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-608";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -107*32;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "switch";
@@ -9346,8 +9353,8 @@ GrottoBridgeLever3Tile.prototype.use = function(who) {
   let mymap = this.getHomeMap();
   GrottoBridgePuzzle(mymap,102,34);
   GrottoBridgePuzzle(mymap,102,32);
-  if (this.spritexoffset === "-224") { this.spritexoffset = "-256";}
-  else { this.spritexoffset = "-192";}
+  if (this.spritexoffset === -8*32) { this.spritexoffset = -9*32;}
+  else { this.spritexoffset = -8*32;}
   DUPlaySound("sfx_small_lever");
   return { fin: 1, txt: "Lever thrown."};
 }
@@ -9383,10 +9390,11 @@ function GrottoBridgePuzzle(mymap,locx,locy) {
 }
 
 function MetalTwisterLeverTile() {
+  //Graphic Upgraded
   this.name = "MetalTwisterLever";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-608";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -110*32;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "lever";
@@ -9403,8 +9411,8 @@ MetalTwisterLeverTile.prototype.use = function(user) {
     otherlevel = maps.addMap("metaltwister2");
     level2 = otherlevel;
   }
-  if (this.spritexoffset === "-224") {  // This switch hasn't been thrown
-    this.spritexoffset = "-256";
+  if (this.spritexoffset === -8*32) {  // This switch hasn't been thrown
+    this.spritexoffset = -9*32;
     retval["txt"] = "Click!";
     
     let checkboth = 1;
@@ -9412,7 +9420,7 @@ MetalTwisterLeverTile.prototype.use = function(user) {
     let ports = [];
     for (let i=0; i<floor3features.length; i++) {
       if (floor3features[i].getName() == "LeverOff") {
-        if (floor3features[i].spritexoffset === "-224") {
+        if (floor3features[i].spritexoffset === -8*32) {
           checkboth = 0;
         }
       }
@@ -9441,10 +9449,11 @@ MetalTwisterLeverTile.prototype.use = function(user) {
 }
 
 function PitDespairLeverTile() {
+  //Graphic Upgraded
   this.name = "PitDespairLever";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-608";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -109*32;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "lever";
@@ -9464,9 +9473,9 @@ PitDespairLeverTile.prototype.use = function(user) {
     for (let i=0;i<ftrs.length;i++) {
       if (ftrs[i].getName() === "WallPortcullis") { door = ftrs[i]; }
     };
-    if (this.spritexoffset === "-224") {
+    if (this.spritexoffset === -8*32) {
       door.locked = 0;
-      door.setGraphicArray(["master_spritesheet.png", "", "-256", "-832"]);
+      door.setGraphicArray(["static.png", "", 0, -17*32]);
 			
 			door.closedLOS = door.getBlocksLOSArray();
 			let seethru = [];
@@ -9476,7 +9485,7 @@ PitDespairLeverTile.prototype.use = function(user) {
 			door.addPassable(MOVE_WALK);
 			door.open = 1;
 			
-			this.spritexoffset = "-256";
+			this.spritexoffset = -9*32;
     } else {
       let mobs = doortile.getNPCs();
       let diffx = 0;
@@ -9493,7 +9502,7 @@ PitDespairLeverTile.prototype.use = function(user) {
         mobs[i].dealDamage(1000, door);
       };
       door.locked = 1;
-      door.setGraphicArray(["master_spritesheet.png", "", "-224", "-832"]);
+      door.setGraphicArray(["static.png", "", -9*32, -16*32]);
       
       door.setBlocksLOSArray(door.closedLOS);
       door.closedLOS = [];
@@ -9501,7 +9510,7 @@ PitDespairLeverTile.prototype.use = function(user) {
       door.removePassable(MOVE_WALK);
       door.open = 0;
       
-      this.spritexoffset = "-224";
+      this.spritexoffset = -8*32;
     }
     retval["fin"] = 1;
     retval["txt"] = "Switch thrown.";
@@ -9516,8 +9525,8 @@ PitDespairLeverTile.prototype.use = function(user) {
 function ToshinLeverOffTile() {
   this.name = "ToshinLeverOff";
   this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-608";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -109*32;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "lever";
@@ -9544,13 +9553,13 @@ ToshinLeverOffTile.prototype.use = function(who) {
       door = doors[i];
     }
   }
-  if (this.spritexoffset === "-160") {
-    this.spritexoffset = "-192";
-    otherlever.spritexoffset = "-192";
+  if (this.spritexoffset === -8*32) {
+    this.spritexoffset = -9*32;
+    otherlever.spritexoffset = -9*32;
     door.unlockMe();
   } else {
-    this.spritexoffset = "-160";
-    otherlever.spritexoffset = "-160";
+    this.spritexoffset = -8*32;
+    otherlever.spritexoffset = -8*32;
     door.lockMe(2);
   }
   DUPlaySound("sfx_small_lever");
@@ -9561,16 +9570,26 @@ ToshinLeverOffTile.prototype.use = function(who) {
 }
 
 function RoyalPuzzleLaserEWTile() {
+  //Graphic Upgraded
   this.name = "RoyalPuzzleLaserEW";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-448";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -160*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "shimmering beam";
   
   LightEmitting.call(this, 1);
+
+  ManualAnimation.call(this, { animstart: 0,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 RoyalPuzzleLaserEWTile.prototype = new FeatureObject();
 
@@ -9580,39 +9599,30 @@ RoyalPuzzleLaserEWTile.prototype.walkon = function(who) {
 }
 
 function RoyalPuzzleLaserNSTile() {
+  //Graphic Upgraded
   this.name = "RoyalPuzzleLaserNS";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-448";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -160*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "shimmering beam";
   
   LightEmitting.call(this, 1);
+
+  ManualAnimation.call(this, { animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 RoyalPuzzleLaserNSTile.prototype = new FeatureObject();
 
 RoyalPuzzleLaserNSTile.prototype.walkon = function(who) {
-  let resp = InALaser(who);
-  return resp;
-}
-
-function RoyalPuzzleLaserCrossTile() {
-  this.name = "RoyalPuzzleLaserCross";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-448";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.prefix = "a";
-  this.desc = "shimmering beam";
-  
-  LightEmitting.call(this, 1);
-}
-RoyalPuzzleLaserCrossTile.prototype = new FeatureObject();
-
-RoyalPuzzleLaserCrossTile.prototype.walkon = function(who) {
   let resp = InALaser(who);
   return resp;
 }
@@ -10334,6 +10344,31 @@ function FountainTile() {
 }
 FountainTile.prototype = new FeatureObject();
 
+function WideFountainTile() {
+  //Graphics Upgraded
+  this.name = "WideFountain";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -123*32;
+  this.prefix = "a";
+  this.desc = "fountain";
+  this.peerview = "#a0a0a0";
+  this.passable = MOVE_ETHEREAL + MOVE_FLY;
+  
+  HasAmbientNoise.call(this,"sfx_fountain_splash",2);
+
+  ManualAnimation.call(this, { animstart: -192,
+    animlength: 4,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
+
+}
+WideFountainTile.prototype = new FeatureObject();
+
 function BrokenFountainTile() {
   this.name = "BrokenFountain";
   this.graphic = "master_spritesheet.png";
@@ -10491,10 +10526,11 @@ function WhiteCrystalTile() {
 WhiteCrystalTile.prototype = new FeatureObject();
 
 function TeleporterPlatformTile() {
+  //Graphic Upgraded
   this.name = "TeleporterPlatform";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-896";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -110*32;
   this.prefix = "a";
   this.desc = "platform";
   this.destination;
@@ -10533,10 +10569,11 @@ TeleporterPlatformTile.prototype.walkon = function(who) {
 }
 
 function UDTeleporterPlatformTile() {
+  //Graphic Upgraded
   this.name = "UDTeleporterPlatform";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-896";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -110*32;
   this.prefix = "a";
   this.desc = "platform";
   this.destination;
@@ -10560,8 +10597,11 @@ UDTeleporterPlatformTile.prototype.walkon = function(who) {
 }
 
 function PitTeleporterPlatformTile() {
+  //Graphic Upgraded
   this.name = "PitTeleporterPlatform";
-  this.graphic = "teleporter.gif";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -110*32;
   this.prefix = "a";
   this.desc = "platform";
   this.destination;
@@ -10607,8 +10647,8 @@ function ToshinPanelTile() {
   //Graphics Upgraded
   this.name = "ToshinPanel";
   this.graphic = "static.png";
-  this.spritexoffset = -5*32;
-  this.spriteyoffset = -77*32;
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -106*32;
   this.prefix = "a";
   this.desc = "panel covered with buttons";
   this.val = {};
@@ -10791,8 +10831,8 @@ function PerformToshinAltar(code) {
 function ToshinMoatLeverOffTile() {
   this.name = "ToshinMoatLeverOff";
   this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-608";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -110*32;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "lever";
@@ -10813,14 +10853,14 @@ ToshinMoatLeverOffTile.prototype.use = function(who) {
   let lever2 = lever2tile.getTopFeature();
   DUPlaySound("sfx_small_lever");
   
-  if (this.spritexoffset === "-160") {
+  if (this.spritexoffset === -8*32) {
     door.unlockMe();
-    lever1.spritexoffset = "-192";
-    lever2.spritexoffset = "-192";
+    lever1.spritexoffset = -9*32;
+    lever2.spritexoffset = -9*32;
   } else {
     door.lockMe(2);
-    lever1.spritexoffset = "-160";
-    lever2.spritexoffset = "-160";
+    lever1.spritexoffset = -8*32;
+    lever2.spritexoffset = -8*32;
   }
   DrawMainFrame("draw",themap,PC.getx(), PC.gety());
   
@@ -10849,7 +10889,7 @@ OrbToggleTile.prototype.use = function(who) {
     let orb2 = orb2tile.getTopFeature();
     let orb3tile = sp.getTile(37,32);
     let orb3 = orb3tile.getTopFeature();
-    if ((orb1.spritexoffset == '-32') && (orb2.spritexoffset == '-96') && (orb3.spritexoffset == '-64')) {
+    if ((orb1.spritexoffset === -32) && (orb2.spritexoffset === -96) && (orb3.spritexoffset === -64)) {
       let moongate = localFactory.createTile("Moongate");
       moongate.destmap = "skypalace2";
       moongate.destx = 11;
@@ -10895,7 +10935,7 @@ DrashOrbToggleTile.prototype.use = function(who) {
     let orb2 = orb2tile.getTopFeature();
     let orb3tile = sp.getTile(9,9);
     let orb3 = orb3tile.getTopFeature();
-    if ((orb1.spritexoffset == '-128') && (orb2.spritexoffset == '-128') && (orb3.spritexoffset == '-32')) {
+    if ((orb1.spritexoffset === -128) && (orb2.spritexoffset === -128) && (orb3.spritexoffset === -32)) {
       let pile = sp.getTile(14,12).getFeatures();
       let spinner;
       for (let i=0;i<pile.length;i++) {
@@ -11455,9 +11495,9 @@ CrownTile.prototype = new ItemObject();
 
 function CrownJewelTile() {
   this.name = "CrownJewel";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-1312";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -98*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "royal necklace";
@@ -11547,10 +11587,11 @@ function ChaliceTile() {
 ChaliceTile.prototype = new ItemObject();
 
 function FrozenSunlightTile() {
+  //Graphic Upgraded
   this.name = "FrozenSunlight";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-1792";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -162*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "frozen sunlight";
@@ -11558,6 +11599,15 @@ function FrozenSunlightTile() {
 
   this.addType("Quest");  
   this.addType("Reagent");
+
+  ManualAnimation.call(this, { animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 FrozenSunlightTile.prototype = new ItemObject();
 
@@ -11816,6 +11866,16 @@ function StoneOfConflagrationsTile() {
   this.prefix = "the";
   this.longdesc = "The Stone of Conflagrations. It has an aura of fiery power.";
   this.addType("Quest");
+
+  ManualAnimation.call(this, { animstart: 0,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
+
 }
 StoneOfConflagrationsTile.prototype = new ItemObject();
 
@@ -12065,8 +12125,8 @@ function PerfectRubyTile() {
   //Graphics Upgraded
 	this.name = "PerfectRuby";
   this.graphic = "static.png";
-  this.spritexoffset = -6*32;
-  this.spriteyoffset = -23*32;
+  this.spritexoffset = 0*32;
+  this.spriteyoffset = -106*32;
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "perfect ruby gemstone";
@@ -12190,14 +12250,24 @@ function RubyGemoftheSunTile() {
   //Graphics Upgraded
 	this.name = "RubyGemoftheSun";
   this.graphic = "static.png";
-  this.spritexoffset = -7*32;
-  this.spriteyoffset = -23*32;
+  this.spritexoffset = 0*32;
+  this.spriteyoffset = -161*32;
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "ruby gem of the sun";
   this.prefix = "the";
   this.longdesc = "Your ruby gem that harnesses the power of the sun.";
   this.usedesc = "Call upon the power of sunlight.";
+
+  ManualAnimation.call(this, { animstart: 0,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
+
 }
 RubyGemoftheSunTile.prototype = new ItemObject();
 
@@ -12480,11 +12550,11 @@ GoldLocketTile.prototype.onGet = function(who) {
 }
 
 function StolenJewelryTile() {
+  //Graphic Upgraded
   this.name = "StolenJewelry";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spriteyoffset = "-160";
-  this.spritexoffset = "-1760";
+  this.graphic = "static.png";
+  this.spriteyoffset = -9*32;
+  this.spritexoffset = -98*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stolen jewelry";
@@ -12959,11 +13029,11 @@ function PerformRead() {
 }
 
 function SheafOfNotesTile() {
-  //Graphics Upgraded (might upgrade again)
+  //Graphics Upgraded 
   this.name = "SheafOfNotes";
   this.graphic = "static.png";
-  this.spritexoffset = 0;
-  this.spriteyoffset = -35*32;
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -100*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "sheaf of notes";
@@ -12974,11 +13044,11 @@ function SheafOfNotesTile() {
 SheafOfNotesTile.prototype = new BookItemObject();
 
 function XoriccoRecipeTile() {
-  //Graphics Upgraded (might upgrade again)
+  //Graphics Upgraded 
   this.name = "XoriccoRecipe";
   this.graphic = "static.png";
-  this.spritexoffset = 0;
-  this.spriteyoffset = -35*32;
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -100*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "recipe";
@@ -12989,11 +13059,11 @@ function XoriccoRecipeTile() {
 XoriccoRecipeTile.prototype = new BookItemObject();
 
 function ClearLakeReportTile() {
-  //Graphics Upgraded (might upgrade again)
+  //Graphics Upgraded 
   this.name = "ClearLakeReport";
   this.graphic = "static.png";
-  this.spritexoffset = 0;
-  this.spriteyoffset = -35*32;
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -100*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "report from Clear Lake";
@@ -13004,11 +13074,11 @@ function ClearLakeReportTile() {
 ClearLakeReportTile.prototype = new BookItemObject();
 
 function BeldskaeReportTile() {
-  //Graphics Upgraded (might upgrade again)
+  //Graphics Upgraded 
   this.name = "BeldskaeReport";
   this.graphic = "static.png";
-  this.spritexoffset = 0;
-  this.spriteyoffset = -35*32;
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -100*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "report from Beldskae";
@@ -13019,11 +13089,11 @@ function BeldskaeReportTile() {
 BeldskaeReportTile.prototype = new BookItemObject();
 
 function SwainhilReportTile() {
-  //Graphics Upgraded (might upgrade again)
+  //Graphics Upgraded 
   this.name = "SwainhilReport";
   this.graphic = "static.png";
-  this.spritexoffset = 0;
-  this.spriteyoffset = -35*32;
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -100*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "report from Swainhil";
@@ -13245,11 +13315,11 @@ function ArcheoJournalTile() {
 ArcheoJournalTile.prototype = new BookItemObject();
 
 function RuinsJournalTile() {
+  //Graphics Upgraded
   this.name = "RuinsJournal";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -97*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
@@ -13499,9 +13569,9 @@ KeyOfDustTile.prototype.use = function(who) {
 
 function StoneOfCursesTile() {
   this.name = "StoneOfCurses";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-1248";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -159*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Stone of Curses";
@@ -13531,10 +13601,11 @@ StoneOfCursesTile.prototype.use = function(who) {
 }
 
 function TorchTile() {
+  //Graphic Upgraded
   this.name = "Torch";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-1344";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -163*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "torch";
