@@ -711,14 +711,26 @@ function StepOrSidestep(who, path, finaldest, nopush) {
     let fully = finaldest[1] - who.gety();
 
     let RandomwalkPassthrough = function(npc,dx,dy) {
-      let newtile = npc.getHomeMap().getTile(npc.getx()+dx,npc.gety()+dy);
+      let themap = npc.getHomeMap();
+      let tdiffx = npc.getx()+dx;
+      let tdiffy = npc.gety()+dy;
+      let newtile = [themap.getTile(tdiffx,tdiffy)];
+      if (npc.attachedLocations) {
+        for (let k=0;k<npc.attachedLocations.length;k++) {
+          let atile = themap.getTile(tdiffx+npc.attachedLocations[k][0],tdiffy+npc.attachedlocations[k][1]);
+          newtile.push(atile);
+        }
+      }
       let retval = {};
-      if (newtile.isHostileTo(npc) || newtile.noWander()) {
-        retval["nomove"] = 1;
-        retval["canmove"] = 0;
-        retval["diffx"] = diffx;
-        retval["diffy"] = diffy;
-      } else {
+      for (let k=0;k<newtile.length;k++) {
+        if (newtile[k].isHostileTo(npc) || newtile[k].noWander()) {
+          retval["nomove"] = 1;
+          retval["canmove"] = 0;
+          retval["diffx"] = diffx;
+          retval["diffy"] = diffy;
+        }
+      }
+      if (!retval.nomove) {
         retval = npc.moveMe(dx,dy,1);
       }
       return retval;

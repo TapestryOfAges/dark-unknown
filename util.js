@@ -626,6 +626,21 @@ function CheckMapForHostiles(who) {
   return arehostiles;
 }
 
+function GetDistanceFromPerson(who,x2,y2,disttype) {
+  let x = who.getx();
+  let y = who.gety();
+  let mindist = GetDistance(x,y,x2,y2,disttype);
+  if (who.attachedParts) {
+    for (let i=0;i<who.attachedParts.length;i++) {
+      let x1 = x + who.attachedLocations[i][0];
+      let y1 = y + who.attachedlocations[i][1];
+      let dist = GetDistance(x1,y1,x2,y2,disttype);
+      if (dist < mindist) { mindist = dist; }
+    }
+  }
+  return mindist;
+}
+
 function GetDistance(x1,y1,x2,y2,disttype) {
   if (disttype === "square") { return GetSquareDistance(x1,y1,x2,y2); }
   if (disttype === "manhatten") { return GetManhattenDistance(x1,y1,x2,y2); }
@@ -909,8 +924,20 @@ function RollDamage(dam_val,extra) {
 
 function IsAdjacent(one,two,nodiag) {
   if (one.getHomeMap() !== two.getHomeMap()) { return 0; }
-  if (!nodiag && (Math.abs(one.getx() - two.getx()) <= 1) && (Math.abs(one.gety() - two.gety()) <= 1)) { return 1; }
-  if (((Math.abs(one.getx() - two.getx()) === 1) && (Math.abs(one.gety() - two.gety()) === 0)) || ((Math.abs(one.getx() - two.getx()) === 0) && (Math.abs(one.gety() - two.gety()) === 1))) { return 1; }
+  let componentsone = [one];
+  if (one.attachedParts) {
+    for (let i=0;i<one.attachedParts.length;i++) { componentsone.push(one.attachedParts[i]); }
+  }
+  let componentstwo = [two];
+  if (two.attachedParts) {
+    for (let i=0;i<two.attachedParts.length;i++) { componentstwo.push(two.attachedParts[i]); }
+  }
+  for (let i=0;i<componentsone.length;i++) {
+    for (let j=0;j<componentstwo.length;j++) {
+      if (!nodiag && (Math.abs(componentsone[i].getx() - componentstwo[j].getx()) <= 1) && (Math.abs(componentsone[i].gety() - componentstwo[j].gety()) <= 1)) { return 1; }
+      if (((Math.abs(componentsone[i].getx() - componentstwo[j].getx()) === 1) && (Math.abs(componentsone[i].gety() - componentstwo[j].gety()) === 0)) || ((Math.abs(componentsone[i].getx() - componentstwo[j].getx()) === 0) && (Math.abs(componentsone[i].gety() - componentstwo[j].gety()) === 1))) { return 1; }    
+    }
+  }
   return 0;
 }
 
