@@ -3421,13 +3421,13 @@ ais.elderdragon = function(who) {
         if ((PC.getx() === who.breathx) && (PC.gety() === who.breathy)) { tgt = PC; }
       }
       let boltgraphic = {};
-      boltgraphic.graphic = "fireicelightning.gif";
+      boltgraphic.graphic = "blasts.gif";
       boltgraphic.yoffset = 0;
       boltgraphic.xoffset = 0;
       boltgraphic.directionalammo = 1;
       boltgraphic = GetEffectGraphic(who,{x:who.breathx,y:who.breathy},boltgraphic);
 
-      let destgraphic = {graphic:"master_spritesheet.png", xoffset:-128, yoffset:-1856, overlay:"spacer.gif"};
+      let destgraphic = {graphic:"static.png", xoffset:-3*32, yoffset:-96*32, overlay:"spacer.gif"};
 
       let weapon = localFactory.createTile("SpellWeapon");
       weapon.dmgtype = "fire";
