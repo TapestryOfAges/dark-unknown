@@ -377,7 +377,7 @@ function Open_BDC_Gate(mapref) {
   // makes sense for this to be here. Called in onload if rebellion is over, and by the outer guard if you have the pin
   // working here
   if ((mapref.getName() === "blackdragon") || (mapref.getName() === "blackdragon_int") || (mapref.getName() === "blackdragon_act2")) {
-    mapref.getTile(11,39).getTopFeature().setGraphicArray(["master_spritesheet.png","",-192,-608]);
+    mapref.getTile(11,39).getTopFeature().setGraphicArray(["static.png","",-9*32,-108*32]);
     let gate = mapref.getTile(12,38).getTopFeature();
     gate.unlockMe();
     gate.use();
