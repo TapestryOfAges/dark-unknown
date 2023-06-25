@@ -1393,7 +1393,7 @@ magic[SPELL_DISRUPT_UNDEAD_LEVEL][SPELL_DISRUPT_UNDEAD_ID].executeSpell = functi
         DebugWrite("magic", "Found " + val.getName() + " , dealing it " + dmg + " damage.<br />");
         //val.dealDamage(dmg);
         DealandDisplayDamage(val,caster,dmg,"force");
-        ShowEffect(val, 700, "master_spritesheet.png", -128, -1856);
+        ShowEffect(val, 700, "static.png", -3*32, -96*32);
         let desc = val.getDesc() + " disrupted!";
         desc = desc.charAt(0).toUpperCase() + desc.slice(1);      
         maintext.addText(desc);
@@ -2325,7 +2325,7 @@ function PerformIceball(caster, infused, free, tgt) {
   tgt.addSpellEffect(frozen);
   
   let boltgraphic = {};
-  boltgraphic.graphic = "fireicelightning.gif";
+  boltgraphic.graphic = "blasts.gif";
   boltgraphic.yoffset = -32;
   boltgraphic.xoffset = 0;
   boltgraphic.directionalammo = 1;
@@ -2336,7 +2336,7 @@ function PerformIceball(caster, infused, free, tgt) {
   let fromcoords = getCoords(caster.getHomeMap(),caster.getx(), caster.gety());
   let tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
   let duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
-  let destgraphic = {graphic:"master_spritesheet.png", xoffset:-96, yoffset:-1856, overlay:"spacer.gif"};
+  let destgraphic = {graphic:"static.png", xoffset:-4*32, yoffset:-96*32, overlay:"spacer.gif"};
   PlayCastSound(caster,"sfx_iceball");
   let weapon = localFactory.createTile("SpellWeapon");
   weapon.dmgtype = "ice";
@@ -2905,7 +2905,7 @@ magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].executeSpell = function(caster,
         }
         //badguy.dealDamage(dmg,caster,"force");
         DealandDisplayDamage(badguy,caster,dmg,"force");
-        ShowEffect(badguy, 700, "master_spritesheet.png", -128, -1856);
+        ShowEffect(badguy, 700, "static.png", -3*32, -96*32);
       }
     }
   }
@@ -3096,7 +3096,7 @@ function PerformSwordstrike(caster, infused, free, tgt) {
         if (CheckResist(caster,PC,infused,0)) { dmg = dmg/2 +1; }
         //PC.dealDamage(dmg,caster,"physical");
         DealandDisplayDamage(PC,caster,dmg,"physical");
-        ShowEffect(PC, 700, "master_spritesheet.png", -128, -1856);
+        ShowEffect(PC, 700, "static.png", -3*32, -96*32);
         continue;
       }
       let tile = castmap.getTile(tgt.getx()+diffx,tgt.gety()+diffy);
@@ -3611,7 +3611,7 @@ function PerformExplosion(caster, infused, free, tgt) {
         if (CheckResist(caster,PC,infused,0)) { localdmg = localdmg/2 +1; }
         //PC.dealDamage(dmg,caster,"fire");
         DealandDisplayDamage(PC,caster,localdmg,"fire");
-        ShowEffect(PC, 700, "master_spritesheet.png", -128, -1856);
+        ShowEffect(PC, 700, "static.png", -3*32, -96*32);
         continue;
       }
       let tile = castmap.getTile(tgt.x+diffx,tgt.y+diffy);
@@ -3622,7 +3622,7 @@ function PerformExplosion(caster, infused, free, tgt) {
         if (CheckResist(caster,badguy,infused,0)) { localdmg = localdmg/2+1; }
         //badguy.dealDamage(dmg,caster,"fire");
         DealandDisplayDamage(badguy,caster,localdmg,"fire");
-        ShowEffect(badguy, 700, "master_spritesheet.png", -128, -1856);
+        ShowEffect(badguy, 700, "static.png", -3*32, -96*32);
         if (!hostile && (caster === PC) && (badguy.getAttitude() === "friendly")) {
           TurnMapHostile(castmap);
           hostile = 1;
@@ -3915,7 +3915,7 @@ magic[SPELL_TREMOR_LEVEL][SPELL_TREMOR_ID].executeSpell = function(caster, infus
       DealandDisplayDamage(foes[i],caster,dmg,"force");
       DebugWrite("magic", "Dealing " + dmg + " damage to target " + foes[i].getName() + " " + foes[i].getSerial() + ".<br />");
       
-      setTimeout(function() { ShowEffect(foes[i], 700, "master_spritesheet.png", -128, -1856); }, 1000);
+      setTimeout(function() { ShowEffect(foes[i], 700, "static.png", -3*32, -96*32); }, 1000);
     }
   }
   return resp;  
