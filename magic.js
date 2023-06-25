@@ -2325,8 +2325,8 @@ function PerformIceball(caster, infused, free, tgt) {
   tgt.addSpellEffect(frozen);
   
   let boltgraphic = {};
-  boltgraphic.graphic = "blasts.gif";
-  boltgraphic.yoffset = -32;
+  boltgraphic.graphic = "ice.gif";
+  boltgraphic.yoffset = 0;
   boltgraphic.xoffset = 0;
   boltgraphic.directionalammo = 1;
   boltgraphic = GetEffectGraphic(caster,tgt,boltgraphic);
@@ -4603,9 +4603,9 @@ function PerformArrowOfGlass(caster, infused, free, tgt) {
 
   PlayCastSound(caster,"sfx_break_glass");
   let boltgraphic = {};
-  boltgraphic.graphic = "blasts.gif";  // CHANGE ONCE ARROW OF GLASS GRAPHIC MADE
+  boltgraphic.graphic = "static.png";  // Arrow of Glass
   boltgraphic.xoffset = 0;
-  boltgraphic.yoffset = -32;
+  boltgraphic.yoffset = -164*32;
   boltgraphic.directionalammo = 1;
   boltgraphic = GetEffectGraphic(caster,tgt,boltgraphic);
   let descval = {txt: desc};
