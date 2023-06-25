@@ -15117,7 +15117,7 @@ WalkOnAbyssGauntletTile.prototype.walkon = function(walker) {
     let fromcoords = getCoords(caster.getHomeMap(),caster.getx(), caster.gety());
     let tocoords = getCoords(walker.getHomeMap(),walker.getx(), walker.gety());
     let duration = (Math.pow( Math.pow(walker.getx() - caster.getx(), 2) + Math.pow (walker.gety() - caster.gety(), 2)  , .5)) * 100;
-    let destgraphic = {graphic:"master_spritesheet.png", xoffset:-128, yoffset:-1856, overlay:"spacer.gif"};
+    let destgraphic = {graphic:"static.png", xoffset:-3*32, yoffset:-96*32, overlay:"spacer.gif"};
     DUPlaySound(sndsfx);
     let weapon = localFactory.createTile("SpellWeapon");
     weapon.dmgtype = "fire";
