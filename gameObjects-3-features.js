@@ -2768,14 +2768,12 @@ function CheckWEEntrance(themap) {
 
 function IllusionaryEnergyFieldTile() {
 	this.name = "IllusionaryEnergyField";
-  this.graphic = "fields.gif";
+  this.graphic = "electricfield.gif";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 2;
 	this.blockloe = 2;
   this.prefix = "a"; 
 	this.desc = "wall";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "0";
 	
   this.invisible = 1;
 }
@@ -11554,9 +11552,9 @@ FrozenSunlightTile.prototype.myTurn = function() {
 
 function RippedAudachtaNemesosTile() {
   this.name = "RippedAudachtaNemesos";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -38*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a"
@@ -11587,9 +11585,9 @@ RippedAudachtaNemesosTile.prototype.onMend = function(who) {
 
 function AudachtaNemesosPage1Tile() {
   this.name = "AudachtaNemesosPage1";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-1536";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -100*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a"
@@ -11602,9 +11600,9 @@ AudachtaNemesosPage1Tile.prototype = new ItemObject();
 
 function AudachtaNemesosPage2Tile() {
   this.name = "AudachtaNemesosPage2";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-1536";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -100*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a"
@@ -11617,9 +11615,9 @@ AudachtaNemesosPage2Tile.prototype = new ItemObject();
 
 function AudachtaNemesosPage3Tile() {
   this.name = "AudachtaNemesosPage3";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-1536";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -100*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a"
@@ -12491,9 +12489,9 @@ StolenJewelryTile.prototype.onGet = function(who) {
 
 function AltarOfAshesTile() {
 	this.name = "AltarOfAshes";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-736";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -77*32;
 	this.passable = MOVE_ETHEREAL + MOVE_FLY;
 	this.blocklos = 0;
 	this.prefix = "a";
@@ -12511,9 +12509,9 @@ AltarOfAshesTile.prototype.use = function(who) {
 
 function AltarOfIceTile() {
 	this.name = "AltarOfIce";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-736";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -77*32;
 	this.passable = MOVE_ETHEREAL + MOVE_FLY;
 	this.blocklos = 0;
 	this.prefix = "an";
@@ -12531,9 +12529,9 @@ AltarOfIceTile.prototype.use = function(who) {
 
 function AltarOfBoneTile() {
 	this.name = "AltarOfBone";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-736";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -77*32;
 	this.passable = MOVE_ETHEREAL + MOVE_FLY;
 	this.blocklos = 0;
 	this.prefix = "an";
@@ -12551,9 +12549,9 @@ AltarOfBoneTile.prototype.use = function(who) {
 
 function AltarOfDustTile() {
 	this.name = "AltarOfDust";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-736";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -77*32;
 	this.passable = MOVE_ETHEREAL + MOVE_FLY;
 	this.blocklos = 0;
 	this.prefix = "a";
@@ -13563,9 +13561,9 @@ TorchTile.prototype.use = function(who) {
 
 function KyvekBoxTile() {
   this.name = "KyvekBox";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-704";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -79*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "box";
