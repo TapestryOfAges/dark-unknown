@@ -3264,6 +3264,33 @@ DoorTile.prototype.bumpinto = function(who) {
   return BumpIntoDoor(this,who);
 }
 
+function DaemonDoorTile() {
+  //Graphics Upgraded
+  Lockable.call(this, ["static.png","",-32,-16*32], ["static.png","",-32,-17*32], ["static.png","",-2*32,-16*32], "a", "door", "a", "locked door", "a", "magically locked door");
+  	
+	this.name = "DaemonDoor";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -16*32;
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 1; 
+	this.prefix = "a";
+  this.desc = "door";
+  
+  this.pathweight = 2; 
+
+	Openable.call(this, ["static.png", "", -32, -16*32], ["static.png","",-8*32,-16*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+}
+DaemonDoorTile.prototype = new FeatureObject();
+
+DaemonDoorTile.prototype.bumpinto = function(who) {
+  return BumpIntoDoor(this,who);
+}
+
+DaemonDoorTile.prototype.activate - function() {
+  this.lockMe(3);
+}
+
 function TalkingDoorTile() {
   this.name = "TalkingDoor";
   this.conversation = "ash_door";
@@ -9758,10 +9785,12 @@ BlackDragonLadderWallTile.prototype.use = function(who) {
 }
 
 function WallOfWavesTile() {
+  //Graphic Upgraded
   this.name = "WallOfWaves";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1536";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -15*32;
+  this.layers = [["static.png","",-6*32,-161*32]];
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Waves";
@@ -9785,40 +9814,13 @@ WallOfWavesTile.prototype.bumpInto = function(who) {
   return retval;
 }
 
-function RuneOfWavesTile() {
-  this.name = "RuneOfWaves";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1568";
-  this.blocklos = 2;
-  this.prefix = "the";
-  this.desc = "rune of Waves";
-  this.peerview = "white";
-}
-RuneOfWavesTile.prototype = new FeatureObject();
-
-RuneOfWavesTile.prototype.use = function(user) {
-  let retval = {fin:1};
-  if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
-    retval["txt"] = "The rune glows for a moment, and then fades.";
-    return retval;
-  }
-  ApplyRune(user, "waves", this);
-  return retval;
-}
-
-RuneOfWavesTile.prototype.bumpInto = function(who) {
-  let retval = {fin:1};
-  ApplyRune(user, "waves", this);
-  return retval;
-}
-
-
 function WallOfWindsTile() {
+  //Graphic Upgraded
   this.name = "WallOfWinds";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-1536";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -15*32;
+  this.layers = [["static.png","",-7*32,-161*32]];
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Winds";
@@ -9842,40 +9844,13 @@ WallOfWindsTile.prototype.bumpInto = function(who) {
   return retval;
 }
 
-function RuneOfWindsTile() {
-  this.name = "RuneOfWinds";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-1568";
-  this.blocklos = 2;
-  this.prefix = "the";
-  this.desc = "rune of Winds";
-  this.peerview = "white";
-}
-RuneOfWindsTile.prototype = new FeatureObject();
-
-RuneOfWindsTile.prototype.use = function(user) {
-  let retval = {fin:1};
-  if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
-    retval["txt"] = "The rune glows for a moment, and then fades.";
-    return retval;
-  }
-  ApplyRune(user, "winds", this);
-  return retval;
-}
-
-RuneOfWindsTile.prototype.bumpInto = function(who) {
-  let retval = {fin:1};
-  ApplyRune(user, "winds", this);
-  return retval;
-}
-
-
 function WallOfKingsTile() {
+  //Graphics Upgraded
   this.name = "WallOfKings";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1536";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -15*32;
+  this.layers = [["static.png","",-5*32,-161*32]];
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Kings";
@@ -9899,39 +9874,13 @@ WallOfKingsTile.prototype.bumpInto = function(who) {
   return retval;
 }
 
-function RuneOfKingsTile() {
-  this.name = "RuneOfKings";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1568";
-  this.blocklos = 2;
-  this.prefix = "the";
-  this.desc = "rune of Kings";
-  this.peerview = "white";
-}
-RuneOfKingsTile.prototype = new FeatureObject();
-
-RuneOfKingsTile.prototype.use = function(user) {
-  let retval = {fin:1};
-  if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
-    retval["txt"] = "The rune glows for a moment, and then fades.";
-    return retval;
-  }
-  ApplyRune(user, "kings", this);
-  return retval;
-}
-
-RuneOfKingsTile.prototype.bumpInto = function(who) {
-  let retval = {fin:1};
-  ApplyRune(user, "kings", this);
-  return retval;
-}
-
 function WallOfFlamesTile() {
+  //Graphics Upgraded
   this.name = "WallOfFlames";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-1536";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -15*32;
+  this.layers = [["static.png","",-8*32,-161*32]];
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Flames";
@@ -9955,40 +9904,13 @@ WallOfFlamesTile.prototype.bumpInto = function(who) {
   return retval;
 }
 
-function RuneOfFlamesTile() {
-  this.name = "RuneOfFlames";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-1568";
-  this.blocklos = 2;
-  this.prefix = "the";
-  this.desc = "rune of Flames";
-  this.peerview = "white";
-}
-RuneOfFlamesTile.prototype = new FeatureObject();
-
-RuneOfFlamesTile.prototype.use = function(user) {
-  let retval = {fin:1};
-  if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
-    retval["txt"] = "The rune glows for a moment, and then fades.";
-    return retval;
-  }
-  ApplyRune(user, "flames", this);
-  return retval;
-}
-
-RuneOfFlamesTile.prototype.bumpInto = function(who) {
-  let retval = {fin:1};
-  ApplyRune(user, "flames", this);
-  return retval;
-}
-
-
 function WallOfVoidTile() {
+  //Graphics Upgraded
   this.name = "WallOfVoid";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-1536";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -15*32;
+  this.layers = [["static.png","",-9*32,-161*32]];
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Void";
@@ -10012,39 +9934,13 @@ WallOfVoidTile.prototype.bumpInto = function(who) {
   return retval;
 }
 
-function RuneOfVoidTile() {
-  this.name = "RuneOfVoid";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-1568";
-  this.blocklos = 2;
-  this.prefix = "the";
-  this.desc = "rune of Void";
-  this.peerview = "white";
-}
-RuneOfVoidTile.prototype = new FeatureObject();
-
-RuneOfVoidTile.prototype.use = function(user) {
-  let retval = {fin:1};
-  if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
-    retval["txt"] = "The rune glows for a moment, and then fades.";
-    return retval;
-  }
-  ApplyRune(user, "void", this);
-  return retval;
-}
-
-RuneOfVoidTile.prototype.bumpInto = function(who) {
-  let retval = {fin:1};
-  ApplyRune(user, "void", this);
-  return retval;
-}
-
 function PlatformOfWavesTile() {
+  //Graphics Upgraded
   this.name = "PlatformOfWaves";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1600";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -110*32;
+  this.layers = [["static.png","",-6*32,-161*32]];
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
@@ -10052,10 +9948,12 @@ function PlatformOfWavesTile() {
 PlatformOfWavesTile.prototype = new FeatureObject();
 
 function PlatformOfWindsTile() {
+  //Graphics Upgraded
   this.name = "PlatformOfWinds";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-1600";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -110*32;
+  this.layers = [["static.png","",-7*32,-161*32]];
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
@@ -10100,10 +9998,12 @@ function whoosh(whozat, windlist, spawnwhere, spawnthing) {
 }
 
 function PlatformOfKingsTile() {
+  //Graphics Upgraded
   this.name = "PlatformOfKings";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1600";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -110*32;
+  this.layers = [["static.png","",-5*32,-161*32]];
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
@@ -10111,10 +10011,12 @@ function PlatformOfKingsTile() {
 PlatformOfKingsTile.prototype = new FeatureObject();
 
 function PlatformOfFlamesTile() {
+  //Graphics Upgraded
   this.name = "PlatformOfFlames";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-1600";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -110*32;
+  this.layers = [["static.png","",-8*32,-161*32]];
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
@@ -10122,10 +10024,12 @@ function PlatformOfFlamesTile() {
 PlatformOfFlamesTile.prototype = new FeatureObject();
 
 function PlatformOfVoidTile() {
+  //Graphics Upgraded
   this.name = "PlatformOfVoid";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-1600";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -110*32;
+  this.layers = [["static.png","",-9*32,-161*32]];
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
@@ -10133,10 +10037,11 @@ function PlatformOfVoidTile() {
 PlatformOfVoidTile.prototype = new FeatureObject();
 
 function MarkOfKingsTile() {
+  //Graphics Upgraded
   this.name = "MarkOfKings";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1568";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -161*32;
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "Rune of Kings";
@@ -10212,10 +10117,11 @@ MarkOfKingsTile.prototype.use = function(user) {
 }  
 
 function MarkOfWavesTile() {
+  //Graphics Upgraded
   this.name = "MarkOfWaves";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1568";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -161*32;
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "Rune of Waves";
@@ -10228,10 +10134,11 @@ MarkOfWavesTile.prototype.use = function(user) {
 }  
   
 function MarkOfWindsTile() {
+  //Graphics Upgraded
   this.name = "MarkOfWinds";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-1568";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -161*32;
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "Rune of Winds";
@@ -10243,10 +10150,11 @@ MarkOfWindsTile.prototype.use = function(user) {
 }  
 
 function MarkOfFlamesTile() {
+  //Graphics Upgraded
   this.name = "MarkOfFlames";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-1568";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -161*32;
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "Rune of Flames";
@@ -10257,6 +10165,21 @@ MarkOfFlamesTile.prototype.use = function(user) {
   // various random effects- flame armor, flame sword, burn foe
 }  
 
+function MarkOfVoidTile() {
+  //Graphics Upgraded
+  this.name = "MarkOfVoid";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -161*32;
+  this.blocklos = 2;
+  this.prefix = "the";
+  this.desc = "Rune of Void";
+}
+MarkOfVoidTile.prototype = new FeatureObject();
+  
+MarkOfVoidTile.prototype.use = function(user) {
+  // Not sure it can be used, so this may not be useful
+}  
 
 function FlameEternalTile() {
   this.name = "FlameEternal";
@@ -11184,21 +11107,21 @@ DaemonMoongateTile.prototype.walkon = function(who) {
 
 function DissolveDoor(door, which) {
   // working here- replace with new graphic locations when I have them
-  if (door.spriteyoffset === "-704") {
-    door.spriteyoffset = "-1856";
-    door.spritexoffset = "-192";
+  if (door.spriteyoffset === -16*32) {
+    door.spriteyoffset = -163*32;
+    door.spritexoffset = 0;
     DrawMainFrame("one",door.getHomeMap(),door.getx(),door.gety());
     setTimeout(function() { DissolveDoor(door,which);}, 250);
-  } else if (door.spritexoffset === "-192") {
-    door.spritexoffset = "-224";
+  } else if (door.spritexoffset === 0) {
+    door.spritexoffset = -1*32;
     DrawMainFrame("one",door.getHomeMap(),door.getx(),door.gety());
     setTimeout(function() { DissolveDoor(door,which);}, 250);
-  } else if (door.spritexoffset === "-224") {
-    door.spritexoffset = "-256";
+  } else if (door.spritexoffset === -32) {
+    door.spritexoffset = -2*32;
     DrawMainFrame("one",door.getHomeMap(),door.getx(),door.gety());
     setTimeout(function() { DissolveDoor(door,which);}, 250);
-  } else if (door.spritexoffset === "-256") {
-    door.spritexoffset = "-288";
+  } else if (door.spritexoffset === -2*32) {
+    door.spritexoffset = -3*32;
     DrawMainFrame("one",door.getHomeMap(),door.getx(),door.gety());
     setTimeout(function() { DissolveDoor(door,which);}, 250);
   } else {
@@ -13194,11 +13117,11 @@ function ATreatiseOnDragonsTile() {
 ATreatiseOnDragonsTile.prototype = new BookItemObject();
 
 function AWarningOnDaemonsTile() {
+  //Graphics Upgraded
   this.name = "AWarningOnDaemons";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -37*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = 'A book named "A Warning On Daemons"';
@@ -13209,11 +13132,11 @@ function AWarningOnDaemonsTile() {
 AWarningOnDaemonsTile.prototype = new BookItemObject();
 
 function WhatIsMagicTile() {
+  //Graphics Upgraded
   this.name = "WhatIsMagic";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -37*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = 'A thin book named "What Is Magic?"';
@@ -13258,7 +13181,7 @@ function NatassaResearch2Tile() {
   //Graphics Upgraded
   this.name = "NatassaResearch2";
   this.graphic = "static.png";
-  this.spritexoffset = -7*32;
+  this.spritexoffset = -8*32;
   this.spriteyoffset = -37*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -13270,11 +13193,11 @@ function NatassaResearch2Tile() {
 NatassaResearch2Tile.prototype = new BookItemObject();
 
 function NatassaResearch3Tile() {
+  //Graphics Upgraded
   this.name = "NatassaResearch3";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-1536";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -37*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "collection of notes";
@@ -13303,8 +13226,8 @@ function ArcheoJournalTile() {
   //Graphics Upgraded
   this.name = "ArcheoJournal";
   this.graphic = "static.png";
-  this.spritexoffset = -9*32;
-  this.spriteyoffset = -37*32;
+  this.spritexoffset = 0;
+  this.spriteyoffset = -38*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
@@ -13346,9 +13269,9 @@ AdelusLetterTile.prototype = new BookItemObject();
 
 function StephaneNoteTile() {
   this.name = "StephaneNote";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1248";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -35*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "letter";
@@ -13376,7 +13299,7 @@ function SpireScrapTile() {
   //Graphics Upgraded 
   this.name = "SpireScrap";
   this.graphic = "static.png";
-  this.spritexoffset = 0;
+  this.spritexoffset = -32;
   this.spriteyoffset = -35*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -13406,8 +13329,8 @@ function LanceRuneNotesTile() {
   //Graphics Upgraded
   this.name = "LanceRuneNotes";
   this.graphic = "static.png";
-  this.spritexoffset = -7*32;
-  this.spriteyoffset = -37*32;
+  this.spritexoffset = -1*32;
+  this.spriteyoffset = -38*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
@@ -13420,8 +13343,8 @@ LanceRuneNotesTile.prototype = new BookItemObject();
 function XApprenticeJournalTile() {
   this.name = "XApprenticeJournal";
   this.graphic = "static.png";
-  this.spritexoffset = 0;
-  this.spriteyoffset = -38*32;
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -37*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
@@ -15123,7 +15046,7 @@ function AudachtaNemesosPoisonCloudTile() {
   this.desc = "Audachta Nemesos: Poison Cloud";
   this.prefix = "an";
   this.graphic = "static.png";
-  this.spritexoffset = -5*32;
+  this.spritexoffset = -7*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_POISON_CLOUD_LEVEL;
   this.spellnum = SPELL_POISON_CLOUD_ID;
@@ -15594,12 +15517,13 @@ function AudachtaNemesosMindBlastTile() {
 AudachtaNemesosMindBlastTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosPermanenceTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosPermanence";
   this.desc = "Audachta Nemesos: Permanence";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_PERMANENCE_LEVEL;
   this.spellnum = SPELL_PERMANENCE_ID;
   this.spellname = "Permanence";
@@ -15640,7 +15564,7 @@ function AudachtaNemesosConflagrationTile() {
   this.desc = "Audachta Nemesos: Conflagration";
   this.prefix = "an";
   this.graphic = "static.png";
-  this.spritexoffset = -8*32;
+  this.spritexoffset = -7*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_CONFLAGRATION_LEVEL;
   this.spellnum = SPELL_CONFLAGRATION_ID;
@@ -15668,7 +15592,7 @@ function AudachtaNemesosQuicknessTile() {
   this.desc = "Audachta Nemesos: Quickness";
   this.prefix = "an";
   this.graphic = "static.png";
-  this.spritexoffset = -5*32;
+  this.spritexoffset = -2*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_QUICKNESS_LEVEL;
   this.spellnum = SPELL_QUICKNESS_ID;
@@ -15696,7 +15620,7 @@ function AudachtaNemesosTimeStopTile() {
   this.desc = "Audachta Nemesos: Time Stop";
   this.prefix = "an";
   this.graphic = "static.png";
-  this.spritexoffset = -2*32;
+  this.spritexoffset = -7*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_TIME_STOP_LEVEL;
   this.spellnum = SPELL_TIME_STOP_ID;
