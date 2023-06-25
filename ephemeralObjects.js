@@ -829,7 +829,7 @@ FireArmorTile.prototype.flashback = function(attacker) {
   }
   //let dead = attacker.dealDamage(dmg, this.getAttachedTo(), "fire");
   let dead = DealandDisplayDamage(attacker, this.getAttachedTo(), dmg, "fire");
-  ShowEffect(attacker, 700, "static.png", -3*32, -96*32);
+  ShowEffect(attacker, 700, "static.png", RED_SPLAT_X, RED_SPLAT_Y);
   return dead;
 }
 
