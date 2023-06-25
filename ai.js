@@ -3440,7 +3440,7 @@ ais.elderdragon = function(who) {
       boltgraphic.directionalammo = 1;
       boltgraphic = GetEffectGraphic(who,{x:who.breathx,y:who.breathy},boltgraphic);
 
-      let destgraphic = {graphic:"static.png", xoffset:-3*32, yoffset:-96*32, overlay:"spacer.gif"};
+      let destgraphic = {graphic:"static.png", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
 
       let weapon = localFactory.createTile("SpellWeapon");
       weapon.dmgtype = "fire";
