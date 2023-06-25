@@ -105,7 +105,7 @@ mappages["ether"].terrain = [];
 mappages["ether"].terrain[100] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
 
 mappages["ether"].features = [];
-mappages["ether"].features[0] = {name : 'RuneOfVoid', x : 50, y : 50};
+mappages["ether"].features[0] = {name : 'WallOfVoid', x : 50, y : 50};
 mappages["ether"].features[1] = {name : 'EnergyField', x : 49, y : 51};
 mappages["ether"].features[2] = {name : 'EnergyField', x : 49, y : 50};
 mappages["ether"].features[3] = {name : 'EnergyField', x : 49, y : 49};
