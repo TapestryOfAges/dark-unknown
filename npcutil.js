@@ -717,7 +717,7 @@ function StepOrSidestep(who, path, finaldest, nopush) {
       let newtile = [themap.getTile(tdiffx,tdiffy)];
       if (npc.attachedLocations) {
         for (let k=0;k<npc.attachedLocations.length;k++) {
-          let atile = themap.getTile(tdiffx+npc.attachedLocations[k][0],tdiffy+npc.attachedlocations[k][1]);
+          let atile = themap.getTile(tdiffx+npc.attachedLocations[k][0],tdiffy+npc.attachedLocations[k][1]);
           newtile.push(atile);
         }
       }
