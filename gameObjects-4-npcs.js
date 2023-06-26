@@ -1261,24 +1261,49 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 	let starty = this.gety();
 	let passx = startx + parseInt(diffx);
 	let passy = starty + parseInt(diffy);
+  
+  let leftx = startx;
+  let rightx = startx;
+  let topy = starty;
+  let bottomy = starty;
+
 	let tile = map.getTile(passx,passy);
   let alltiles = [tile];
   let allpassx = [passx];
   let allpassy = [passy];
+  let allparts = [this];
   let anyoob = 0;
   if (tile === "OoB") { anyoob = 1; }
   if (this.attachedLocations) {
     for (let i=0;i<this.attachedLocations.length;i++) {
-      let tx = passx+this.attachedLocation[i][0];
-      let ty = passy+this.attachedLocation[i][1];
+      let herex = startx + this.attachedLocations[i][0];
+      let herey = starty + this.attachedLocations[i][1];
+      if (herex > rightx) { rightx = herex; }
+      if (herex < leftx) { leftx = herex; }
+      if (herey > bottomy) { bottomy = herey; }
+      if (herey < topy) { topy = herey; }
+
+      let tx = passx+this.attachedLocations[i][0];
+      let ty = passy+this.attachedLocations[i][1];
       let ttile = map.getTile(tx, ty);
       alltiles.push(ttile);
       allpassx.push(tx);
       allpassy.push(ty);
+      allparts.push(this.attachedParts[i]);
       if (ttile === "OoB") { anyoob = 1; }
     }
   }
   
+  // alltiles is a list of all the tiles it is trying to move onto, whether already occupied by
+  // the creature (if multi-tile) or not. It's just one tile if this is a normal 1 tile entity.
+  // allpassx and allpassy are the coordinates of all said tiles.
+  // anyoob is 1 if any of the destination tiles are OoB
+
+  // leftx, rightx, topy, bottomy are the current edges of the entity's space
+  // to be used to see if a tile has part moving off but a different part moving on- in which case,
+  // skip bump, walkoff, and walkon
+
+
 	if (anyoob) { 
 	  if (noexit) {
 	    // NPC won't step out of the map
@@ -1331,11 +1356,34 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
         else if ((allpassy[i] >= map.getHeight()) && ((wrap === "Vertical") || (wrap === "Both"))) { allpassy[i] = allpassy[i]-map.getHeight(); }  
       }
     }
-		retval = tile.getBumpIntoResult(this);
-		if (retval["canmove"] === 0) { return retval; }
-    DebugWrite("ai", this.getName() + " trying to move, checking canMoveHere for " + passx + "," + passy +".</span><br />");
-		let moveval = tile.canMoveHere(this.getMovetype());
-		retval["canmove"] = moveval["canmove"];
+    if (this.attachedLocations) {
+      for (let i=0;i<allpassx.length;i++) {
+        if ((allpassx[i] < leftx) || (allpassx[i] > rightx) || (allpassy[i] < topy) || (allpassy[i] > bottomy)) {
+          // check if the space is a NEW space, rather than something another tile of this
+          // entity is already standing on
+          retval = alltiles[i].getBumpIntoResult(this);
+          if (retval["canmove"] === 0) { return retval; }
+        }
+      }
+    } else {
+  		retval = tile.getBumpIntoResult(this);
+	  	if (retval["canmove"] === 0) { return retval; }
+    }
+
+    let moveval;
+    if (this.attachedLocations) {
+      retval["canmove"] = 1;
+      for (let i=0;i<allpassx.length;i++) {
+        if ((allpassx[i] < leftx) || (allpassx[i] > rightx) || (allpassy[i] < topy) || (allpassy[i] > bottomy)) {
+          moveval = alltiles[i].canMoveHere(allparts[i].getMovetype());
+          if (!moveval["canmove"]) { retval["canmove"] = 0; }
+        }
+      }
+    } else {
+      DebugWrite("ai", this.getName() + " trying to move, checking canMoveHere for " + passx + "," + passy +".</span><br />");
+	  	moveval = tile.canMoveHere(this.getMovetype());
+		  retval["canmove"] = moveval["canmove"];
+    }
 	
 		if (retval["msg"] === "") {
 			if (moveval["msg"] === "") { retval["msg"] = "."; }
@@ -1349,20 +1397,44 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 	}
 	
 	if (retval["canmove"] === 1) {
-    let exittile = map.getTile(this.getx(),this.gety());
-    let walkofftest = { success: 1 };
-    if (exittile.walkofftest) {
-      walkofftest = exittile.walkofftest(this);
-      if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
-      retval["msg"] += walkofftest["txt"];
+    let exittiles = [];
+    let entertiles = [];
+    for (let i=0;i<alltiles.length;i++) {
+      if ((allpassx[i] < leftx) || (allpassx[i] > rightx) || (allpassy[i] < topy) || (allpassy[i] > bottomy)) {
+        entertiles.push(alltiles[i]);
+      }
     }
-    if (walkofftest.success) {
-      let walkofftile = exittile.executeWalkoffs(this);
-	    if (walkofftile.msg) {
-	      if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
-	      retval["msg"] += walkoffval.msg;
-  	  }
-      map.moveThing(this.getx()+diffx,this.gety()+diffy,this);
+    if (!alltiles.includes(map.getTile(this.getx(),this.gety()))) { exittiles.push(map.getTile(this.getx(),this.gety())); }
+    if (this.attachedParts) {
+      for (let i=0;i<this.attachedParts.length;i++) {
+        let parttile = map.getTile(this.getx()+this.attachedLocations[i][0],this.gety() + this.attachedLocations[i][1]);
+        if (!alltiles.includes(parttile)) { exittiles.push(parttile); }
+      }
+    }
+
+//    let exittile = map.getTile(this.getx(),this.gety());
+    let walkoffsuccess = 1;
+    for (let i=0;i<exittiles.length;i++) {
+      if (exittiles[i].walkofftest) {
+        let walkofftest = exittiles[i].walkofftest(this);
+        if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
+        retval["msg"] += walkofftest["txt"];
+        if (!walkofftest.success) { walkoffsuccess = 0; }
+      }
+    }
+
+    if (walkoffsuccess) {
+      for (let i=0;i<exittiles.length;i++) {
+        let walkofftile = exittiles[i].executeWalkoffs(this);
+	      if (walkofftile.msg) {
+	        if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
+	        retval["msg"] += walkoffval.msg;
+  	    }
+      }
+//      map.moveThing(this.getx()+diffx,this.gety()+diffy,this);
+      for (let i=0;i<allparts.length;i++) {
+        map.moveThing(allparts[i].getx()+diffx,allparts[i].gety()+diffy,allparts[i]);
+      }
       retval["fin"] = 1;
 		  if (this === PC) {
 		    let sfx = "sfx_walk_";
@@ -1381,16 +1453,21 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 		  }
 
       let distfrom = getDisplayCenter(map, PC.getx(), PC.gety());
-      let walkonval = tile.executeWalkons(this);
       let overridedraw = 0;
-      if (walkonval.overridedraw) { overridedraw = 1; }
-		  if (walkonval.msg) {
-  		  if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
-        retval["msg"] += walkonval.msg;
+      let override;
+
+      for (let i=0;i<entertiles.length;i++) {
+        let walkonval = entertiles[i].executeWalkons(this);
+        if (walkonval.overridedraw) { overridedraw = 1; }
+		    if (walkonval.msg) {
+  		    if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
+          retval["msg"] += walkonval.msg;
+        }
+        if (walkonval.override) { override = walkonval.override; }
       }
-      if (walkonval.override) {
-        retval.fin = walkonval.override;
-        if (walkonval.override === -3) {
+      if (override) {
+        retval.fin = override;
+        if (override === -3) {
           retval["msg"] = "";
         }
       }

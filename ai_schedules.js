@@ -978,7 +978,7 @@ ais.CartMoves = function(who, params) {
         return {fin:1};
         DebugWrite("schedules", "PC at destination, giving up and setting activityComplete.<br />");
       }
-      who.getHomeMap().moveThing(who.getx()+who.attachedLocations[0][0],who.gety()+who.attachedLocations[0][1],otherhalf);
+//      who.getHomeMap().moveThing(who.getx()+who.attachedLocations[0][0],who.gety()+who.attachedLocations[0][1],otherhalf);
       if (who.getHomeMap() === PC.getHomeMap()) {
         DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
         DrawMainFrame("one",who.getHomeMap(),origx,origy);
