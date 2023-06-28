@@ -34,16 +34,13 @@ avatars[1] = ["303.2.gif", "303.gif", "304.2.gif", "304.gif", "305.gif", "ranger
 avatars[2] = ["306.gif", "307.2.gif", "307.gif", "308.gif", "311.gif", "tinker-offcolor.gif"];
 avatars[3] = ["bard-offcolor.gif", "fighter-offcolor.gif", "paladin-offcolor.gif", "mage-offcolor.gif", "", ""];
 
-let nuavatars = [];
-nuavatars[0] = [ ["WhiteTunic", "ShortBrownPale", "DaggerPale", "OffhandPale"], 
-                 ["WhiteTunic", "BaldBeardedDark", "DaggerDark", "OffhandDark"],
-                 ["WhiteTunic", "BeardedPale", "DaggerPale", "OffhandPale"],
-                 ["WhiteTunic", "ShortBlackDark", "DaggerDark", "OffhandDark"],
-                 ];
-nuavatars[1] = [ ["WhiteTunic", "VanDykePale", "DaggerPale", "OffhandPale"],
-                 ["WhiteTunic", "BrownDark", "DaggerDark", "OffhandDark"],
-                 ["WhiteTunic", "LongBrownHairPale", "DaggerPale", "OffhandPale"],
-                 ["WhiteTunic", "BlondePale", "DaggerPale", "OffhandPale"], ];
+let nuavatars = [ ["WhiteTunic", "ShortBlackPale", "DaggerPale", "OffhandPale"], 
+["WhiteTunic", "ShortBlackDark", "DaggerDark", "OffhandDark"],
+["WhiteTunic", "ShortBrownPale", "DaggerPale", "OffhandPale"],
+["WhiteTunic", "BrownDark", "DaggerDark", "OffhandDark"],
+["WhiteTunic", "BlondePale", "DaggerPale", "OffhandPale"],
+["WhiteTunic", "BaldBeardedDark", "DaggerDark", "OffhandDark"]
+];
 
 let avskin = [];
 avskin[0] = [2,1,1,1,1,1];
@@ -51,7 +48,7 @@ avskin[1] = [2,1,2,1,1,1];
 avskin[2] = [1,2,1,2,1,1];
 avskin[3] = [1,1,1,1];
 
-let nuavskin = [[1,2,1,2],[1,2,1,1]];
+let nuavskin = [[1,2,1,2,1,2]];
 
 let avatarselect = {};
 avatarselect.x = 0;
@@ -827,11 +824,7 @@ function DoActionTitle(code, e) {
     }
   } else if (gamestate.getMode() === "graphic") {
     if ((code === 38) || (code === 219)) { // up
-      if (avatarselect.y > 0) {
-        document.getElementById(avatarselect.y + "x" + avatarselect.x).style.backgroundColor = "black";
-        avatarselect.y--;
-        document.getElementById(avatarselect.y + "x" + avatarselect.x).style.backgroundColor = "white";
-      }
+ 
     } else if ((code === 37) || (code === 186)) {  // left
       if (avatarselect.x > 0) {
         document.getElementById(avatarselect.y + "x" + avatarselect.x).style.backgroundColor = "black";
@@ -839,17 +832,13 @@ function DoActionTitle(code, e) {
         document.getElementById(avatarselect.y + "x" + avatarselect.x).style.backgroundColor = "white";
       }
     } else if ((code === 39) || (code === 222)) { // right
-      if (avatarselect.x < 3) {
+      if (avatarselect.x < 5) {
         document.getElementById(avatarselect.y + "x" + avatarselect.x).style.backgroundColor = "black";
         avatarselect.x++;
         document.getElementById(avatarselect.y + "x" + avatarselect.x).style.backgroundColor = "white";
       }
     } else if ((code === 40) || (code === 191)) { // down
-      if (avatarselect.y < 1) {
-        document.getElementById(avatarselect.y + "x" + avatarselect.x).style.backgroundColor = "black";
-        avatarselect.y++;
-        document.getElementById(avatarselect.y + "x" + avatarselect.x).style.backgroundColor = "white";
-      }
+ 
     } else if ((code === 32) || (code === 13)) { // space or enter
 //      graphic = avatars[avatarselect.y][avatarselect.x];
       graphic = "spacer.gif";
@@ -877,30 +866,29 @@ function ChooseGraphic() {
   chartxt += "</span></p><p class='charcreate'>Choose your avatar:</p>";
   
   chartxt += "<table cellpadding='0' cellspacing='10' cellborder='0'>";
-  for (let i=0; i<=1; i++) {
-    chartxt += "<tr>";
-    for (let j=0; j<=3; j++) {
-//      if ((i!==3) || (j<4)) { 
-//        chartxt += "<td id='" + i + "x" + j + "'><img src='graphics/" + avatars[i][j] + "' /></td>";
-        chartxt += "<td id='" + i + "x" + j + "' style='position:relative; width:36px; height:36px'>";
+  chartxt += "<tr>";
+  for (let i=0; i<nuavatars.length; i++) {
+        chartxt += "<td id='" + i + "x1' style='position:relative; width:36px; height:36px'>";
         chartxt += `<div style='position:absolute;left:2;top:2;background-image:url("graphics/static.png");background-position: -96px -2784px; width:32px; height: 32px'></div>`;
-        let xpos = HumanParts[nuavatars[i][j][0]].spritex;
-        let ypos = HumanParts[nuavatars[i][j][0]].spritey;
-        chartxt += `<div style='position:absolute;left:2;top:2;background-image:url("graphics/humans.png");background-position: ${xpos}px ${ypos}px; width:32px; height: 32px'></div>`;
-        xpos = HumanParts[nuavatars[i][j][1]].spritex;
-        ypos = HumanParts[nuavatars[i][j][1]].spritey;
-        chartxt += `<div style='position:absolute;left:2;top:2;background-image:url("graphics/humans.png");background-position: ${xpos}px ${ypos}px; width:32px; height: 32px'></div>`;
-        xpos = HumanParts[nuavatars[i][j][2]].spritex;
-        ypos = HumanParts[nuavatars[i][j][2]].spritey;
-        chartxt += `<div style='position:absolute;left:2;top:2;background-image:url("graphics/humans.png");background-position: ${xpos}px ${ypos}px; width:32px; height: 32px'></div>`;
-        xpos = HumanParts[nuavatars[i][j][3]].spritex;
-        ypos = HumanParts[nuavatars[i][j][3]].spritey;
-        chartxt += `<div style='position:absolute;left:2;top:2;background-image:url("graphics/humans.png");background-position: ${xpos}px ${ypos}px; width:32px; height: 32px'></div>`;
+        let xpos = HumanParts[nuavatars[i][0]].spritex;
+        let ypos = HumanParts[nuavatars[i][0]].spritey;
+        let source = HumanParts[nuavatars[i][0]].src;
+        chartxt += `<div style='position:absolute;left:2;top:2;background-image:url("graphics/${source}");background-position: ${xpos}px ${ypos}px; width:32px; height: 32px'></div>`;
+        xpos = HumanParts[nuavatars[i][1]].spritex;
+        ypos = HumanParts[nuavatars[i][1]].spritey;
+        source = HumanParts[nuavatars[i][1]].src;
+        chartxt += `<div style='position:absolute;left:2;top:2;background-image:url("graphics/${source}");background-position: ${xpos}px ${ypos}px; width:32px; height: 32px'></div>`;
+        xpos = HumanParts[nuavatars[i][2]].spritex;
+        ypos = HumanParts[nuavatars[i][2]].spritey;
+        source = HumanParts[nuavatars[i][2]].src;
+        chartxt += `<div style='position:absolute;left:2;top:2;background-image:url("graphics/${source}");background-position: ${xpos}px ${ypos}px; width:32px; height: 32px'></div>`;
+        xpos = HumanParts[nuavatars[i][3]].spritex;
+        ypos = HumanParts[nuavatars[i][3]].spritey;
+        source = HumanParts[nuavatars[i][3]].src;
+        chartxt += `<div style='position:absolute;left:2;top:2;background-image:url("graphics/${source}");background-position: ${xpos}px ${ypos}px; width:32px; height: 32px'></div>`;
         chartxt += '</td>';
-//      }
-    }
-    chartxt += "</tr>";
   }
+  chartxt += "</tr>";
   chartxt += "</table></div>";
   document.getElementById('maindiv').innerHTML = chartxt;
 
@@ -916,12 +904,12 @@ function SaveChar() {
   PC.setGraphic(graphic);
   PC.setGender(gender);
   PC.wornlayers = {
-    body: nuavatars[avatarselect.y][avatarselect.x][0],
-    head: nuavatars[avatarselect.y][avatarselect.x][1],
+    body: nuavatars[avatarselect.x][0],
+    head: nuavatars[avatarselect.x][1],
     back: null,
-    offhand: nuavatars[avatarselect.y][avatarselect.x][3],
+    offhand: nuavatars[avatarselect.x][3],
     cloak: null,
-    mainhand: nuavatars[avatarselect.y][avatarselect.x][2]
+    mainhand: nuavatars[avatarselect.x][2]
   };
   PC.wornlayernudges = {
     body: { x: 0, y: 0 },
@@ -932,7 +920,7 @@ function SaveChar() {
     mainhand: { x: 0, y: 0 }
   };
   PC.makeLayers();
-  PC.skintone = nuavskin[avatarselect.y][avatarselect.x];
+  PC.skintone = nuavskin[avatarselect.x];
   
   themap = maps.addMap("darkunknown");
   maps.addMap("ellusus_limbo");
