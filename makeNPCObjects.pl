@@ -41,11 +41,11 @@ foreach my $line (<$npcdoc>) {
       print $out "\n  ManualAnimation.call(this, { \n";
       print $out "    animstart: 0,\n";
       print $out "    animlength: HumanParts['$fields[49]'].frames,\n";
-      print $out "    animstyle: \"random\",\n";
+      print $out "    animstyle: \"cycle\",\n";
       print $out "    allowrepeat: 0,\n";
-      print $out "    framedurationmin: 120,\n";
-      print $out "    framedurationmax: 170,\n";
-      print $out "    startframe: 1\n";
+      print $out "    framedurationmin: 240,\n";
+      print $out "    framedurationmax: 340,\n";
+      print $out "    startframe: \"random\"\n";
       print $out "  });\n\n";
 
       print $out "  this.defwornlayers.body = '$fields[49]'\n";
