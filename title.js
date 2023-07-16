@@ -868,7 +868,7 @@ function ChooseGraphic() {
   chartxt += "<table cellpadding='0' cellspacing='10' cellborder='0'>";
   chartxt += "<tr>";
   for (let i=0; i<nuavatars.length; i++) {
-        chartxt += "<td id='" + i + "x1' style='position:relative; width:36px; height:36px'>";
+        chartxt += "<td id='0x" + i + "' style='position:relative; width:36px; height:36px'>";
         chartxt += `<div style='position:absolute;left:2;top:2;background-image:url("graphics/static.png");background-position: -96px -2784px; width:32px; height: 32px'></div>`;
         let xpos = HumanParts[nuavatars[i][0]].spritex;
         let ypos = HumanParts[nuavatars[i][0]].spritey;
