@@ -271,7 +271,7 @@ Conversation.prototype.say = function(speaker, saywhat, skipahead, nospeaker, al
   saywhat = saywhat.replace(/%SELF_PRONOUN%/g, npcterms.pronoun);
   saywhat = saywhat.replace(/%SYS%(.+?)%SYS%/g, "<span class='sysconv'>$1</span>");
   saywhat = saywhat.replace(/%MS%/g, speakertext);
-  saywhat = saywhat.replace(/%AS:(.+?)%/g, "<span class='altspeaker'>$1</span>");
+  saywhat = saywhat.replace(/%AS:(.+?)%/g, "<span class='offspeaker'>$1</span>:");
 
   let diffspeak = /\@\w+/.exec(saywhat);
   if (diffspeak) {
