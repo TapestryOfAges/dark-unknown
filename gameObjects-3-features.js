@@ -3113,6 +3113,12 @@ function ThroneTile() {
 	this.blocklos = 0;
 	this.prefix = "the";
 	this.desc = "throne";
+
+  this.nowander = 1;
+  this.nopush = 1;
+
+  this.pathweight = 5; 
+  this.civilizedpathweight = 5; // prefer to go around
 }
 ThroneTile.prototype = new FeatureObject();
 
@@ -3163,6 +3169,12 @@ function BDThroneTile() {
 	this.blocklos = 0;
 	this.prefix = "the";
 	this.desc = "throne";
+
+  this.nowander = 1;
+  this.nopush = 1;
+
+  this.pathweight = 5; 
+  this.civilizedpathweight = 5; // prefer to go around
 }
 BDThroneTile.prototype = new FeatureObject();
 
@@ -16157,7 +16169,7 @@ function PlateArmorTile() {
   this.usedesc = "Equip the armor.";
 
   this.wornlayer = "body";
-  this.wornlayername = "Plate";
+  this.wornlayername = "PlateWhiteTabard";
 }
 PlateArmorTile.prototype = new ArmorObject();
 
