@@ -22,11 +22,11 @@ function DruidVillagerNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['GreenRobe'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'GreenRobe'
@@ -77,11 +77,11 @@ function ShepherdVillagerNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['BrownRobe'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'BrownRobe'
@@ -131,11 +131,11 @@ function MageVillagerNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['BlueRobePlain'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'BlueRobePlain'
@@ -186,11 +186,11 @@ function TinkerVillagerNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['LeatherArmor'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'LeatherArmor'
@@ -244,11 +244,11 @@ function RangerVillagerNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['LeatherArmor'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'LeatherArmor'
@@ -303,11 +303,11 @@ function AdventurerVillagerNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['ChainMail'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'ChainMail'
@@ -362,11 +362,11 @@ function PaladinVillagerNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['PlatePaladin'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'PlatePaladin'
@@ -417,15 +417,15 @@ function FighterVillagerNPCTile() {
 
   ManualAnimation.call(this, { 
     animstart: 0,
-    animlength: HumanParts['Plate'].frames,
-    animstyle: "random",
+    animlength: HumanParts['Plate2'].frames,
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
-  this.defwornlayers.body = 'Plate'
+  this.defwornlayers.body = 'Plate2'
   this.defwornlayers.head = 'ShortBrownPale'
   this.defwornlayers.offhand = 'RoundShield'
   this.defwornlayers.mainhand = 'LongswordPale'
@@ -475,11 +475,11 @@ function TownsfolkVillagerNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['WhiteTunic'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'WhiteTunic'
@@ -529,11 +529,11 @@ function BardVillagerNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['Bard1'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'Bard1'
@@ -583,11 +583,11 @@ function ChildVillagerNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['ChildPale'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'ChildPale'
@@ -675,11 +675,11 @@ function JesterNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['Jester'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'Jester'
@@ -728,11 +728,11 @@ function TownGuardNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['PlateCheckeredTabard'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'PlateCheckeredTabard'
@@ -752,7 +752,7 @@ function TownGuardNPCTile() {
   this.desc = "guard";
   this.meleeChance = 100;
   this.resists = {};
-  this.special = 'open_door';
+  this.special = 'open_door, onDeathPatrol';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.initOverride = 10;
@@ -782,11 +782,11 @@ function KingNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['King3'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'King3'
@@ -832,11 +832,11 @@ function QueenNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['Queen'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'Queen'
@@ -882,11 +882,11 @@ function PrinceNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['PlateKnight'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'PlateKnight'
@@ -1059,8 +1059,6 @@ function HorseNPCTile() {
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
   this.withdraw = 0;
-  this.graphic = 'horse.gif';
-  this.altgraphic = ['horse2.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
@@ -1075,6 +1073,19 @@ function HorseNPCTile() {
   this.resists = {};
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -149 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 HorseNPCTile.prototype = new NPCObject();
 
@@ -1093,7 +1104,6 @@ function BullNPCTile() {
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
   this.withdraw = 0;
-  this.graphic = '316.gif';
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
@@ -1108,8 +1118,66 @@ function BullNPCTile() {
   this.resists = {};
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -148 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 BullNPCTile.prototype = new NPCObject();
+
+
+// Townsfolk
+
+function CowNPCTile() {
+  this.name = 'CowNPC';
+  this.level = 2;
+  this.addhp = 10;
+  this.str = 25;
+  this.dex = 12;
+  this.int = 3;
+  this.alignment = 'Good';
+  this.attitude = 'friendly';
+  this.peaceAI = 'townsfolk';
+  this.forgetAt = 0;
+  this.withdraw = 0;
+  this.meleeAttackAs = 'none';
+  this.meleeDamage = '2d4+1'
+  this.meleeStrDamage = .5
+  this.missileAttackAs = 'none';
+  this.armorAs = 'LeatherArmor';
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.prefix = 'a';
+  this.desc = "cow";
+  this.meleeChance = 100;
+  this.resists = {};
+  this.meleeHitSound = 'sfx_melee_hit';
+  this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -147 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
+}
+CowNPCTile.prototype = new NPCObject();
 
 
 // CorruptTownsfolk
@@ -1133,11 +1201,11 @@ function CorruptPrinceNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['PlateKnight'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'PlateKnight'
@@ -1183,11 +1251,11 @@ function CorruptGuardsNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['PlateCheckeredTabard'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'PlateCheckeredTabard'
@@ -1236,15 +1304,18 @@ function CourierNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['WhiteTunic'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'WhiteTunic'
   this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'MainHandPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
@@ -1292,11 +1363,11 @@ function CourierGuardNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['PlateWhiteTabard'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'PlateWhiteTabard'
@@ -1536,11 +1607,11 @@ function HoodNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['LeatherArmor'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'LeatherArmor'
@@ -1590,11 +1661,11 @@ function MinstrelNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['Bard1'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'Bard1'
@@ -1694,11 +1765,11 @@ function ApprenticeNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['BlueRobePlain'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'BlueRobePlain'
@@ -1748,11 +1819,11 @@ function FighterNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['Plate'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'Plate'
@@ -1994,11 +2065,11 @@ function RogueNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['LeatherArmor'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'LeatherArmor'
@@ -2048,11 +2119,11 @@ function PitRogueNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['LeatherArmor'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'LeatherArmor'
@@ -2182,11 +2253,11 @@ function ArcherNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['WhiteTunic'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'WhiteTunic'
@@ -2240,11 +2311,11 @@ function BardNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['Bard1'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'Bard1'
@@ -2294,11 +2365,11 @@ function DruidNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['GreenRobe'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'GreenRobe'
@@ -2341,8 +2412,6 @@ function FireLizardNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '349.gif';
-  this.altgraphic = ['383.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+8'
   this.meleeStrDamage = .66
@@ -2358,6 +2427,19 @@ function FireLizardNPCTile() {
   this.special = 'firebreath';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -151 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 FireLizardNPCTile.prototype = new NPCObject();
 
@@ -2473,8 +2555,6 @@ function GiantSpiderNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '329.gif';
-  this.altgraphic = ['363.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+8'
   this.meleeStrDamage = .66
@@ -2493,6 +2573,19 @@ function GiantSpiderNPCTile() {
   this.resists = {};
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -156 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 GiantSpiderNPCTile.prototype = new NPCObject();
 
@@ -2565,11 +2658,11 @@ function HandlerNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['BrownRobe'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'BrownRobe'
@@ -2789,11 +2882,11 @@ function ThiefNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['LeatherArmor'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'LeatherArmor'
@@ -3126,7 +3219,6 @@ function EarthElementalNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = 'earth_elemental.gif';
   this.meleeAttackAs = 'none';
   this.meleeDamage = '5d4+15'
   this.meleeStrDamage = 1
@@ -3146,6 +3238,19 @@ function EarthElementalNPCTile() {
   this.special = 'mindless, wander';
   this.meleeHitSound = 'sfx_boulder_hit';
   this.meleeAttackSound = 'sfx_boulder_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -130 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 EarthElementalNPCTile.prototype = new NPCObject();
 
@@ -3164,7 +3269,6 @@ function FireElementalNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = 'fire_elemental.gif';
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+8'
   this.meleeStrDamage = .66
@@ -3181,6 +3285,19 @@ function FireElementalNPCTile() {
   this.special = 'flamearmor, mindless,wander,light:1';
   this.meleeHitSound = 'sfx_fire_hit';
   this.meleeAttackSound = 'sfx_fire_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -151 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 FireElementalNPCTile.prototype = new NPCObject();
 
@@ -3352,11 +3469,11 @@ function PaladinNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['Plate'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'Plate'
@@ -3533,11 +3650,11 @@ function WizardNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['BlueRobePlain'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'BlueRobePlain'
@@ -3719,11 +3836,11 @@ function CultistNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['BrownRobeHood'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'BrownRobeHood'
@@ -3859,8 +3976,6 @@ function MagmaSpawnNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '349.gif';
-  this.altgraphic = ['383.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+9'
   this.meleeStrDamage = .66
@@ -3876,6 +3991,19 @@ function MagmaSpawnNPCTile() {
   this.special = 'magmaspit, magmaheal';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -154 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 MagmaSpawnNPCTile.prototype = new NPCObject();
 
@@ -3894,8 +4022,6 @@ function PhantomNPCTile() {
   this.peaceAI = 'seekPC-15';
   this.forgetAt = 15;
   this.withdraw = 0;
-  this.graphic = '338.gif';
-  this.altgraphic = ['372.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+9'
   this.meleeStrDamage = .66
@@ -3912,6 +4038,19 @@ function PhantomNPCTile() {
   this.special = 'undead';
   this.meleeHitSound = 'sfx_ghost_hit';
   this.meleeAttackSound = 'sfx_ghost_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -155 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 PhantomNPCTile.prototype = new NPCObject();
 
@@ -3937,11 +4076,11 @@ function RangerNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['LeatherArmor'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'LeatherArmor'
@@ -4039,8 +4178,6 @@ function DelverNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '350.gif';
-  this.altgraphic = ['384.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '5d4+15'
   this.meleeStrDamage = 1
@@ -4058,6 +4195,19 @@ function DelverNPCTile() {
   this.resists = {};
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -147 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 DelverNPCTile.prototype = new NPCObject();
 
@@ -4083,11 +4233,11 @@ function ArchmageNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['RedRobe'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'RedRobe'
@@ -4265,8 +4415,6 @@ function EttinSorcererNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '343.gif';
-  this.altgraphic = ['377.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+9'
   this.meleeStrDamage = .66
@@ -4286,6 +4434,19 @@ function EttinSorcererNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -149 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 EttinSorcererNPCTile.prototype = new NPCObject();
 
@@ -4304,8 +4465,6 @@ function GiantNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '345.gif';
-  this.altgraphic = ['379.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+9'
   this.meleeStrDamage = .66
@@ -4325,6 +4484,19 @@ function GiantNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -152 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 GiantNPCTile.prototype = new NPCObject();
 
@@ -4443,8 +4615,6 @@ function SpecterNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '330.gif';
-  this.altgraphic = ['364.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+9'
   this.meleeStrDamage = .66
@@ -4462,6 +4632,19 @@ function SpecterNPCTile() {
   this.special = 'phase, undead';
   this.meleeHitSound = 'sfx_ghost_hit';
   this.meleeAttackSound = 'sfx_ghost_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -144 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 SpecterNPCTile.prototype = new NPCObject();
 
@@ -4530,8 +4713,25 @@ function DoppelgangerNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '307.gif';
-  this.altgraphic = ['307.2.gif','paladin-offcolor.gif',];
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['Plate'].frames,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+
+  this.defwornlayers.body = 'Plate'
+  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.offhand = 'KiteShield'
+  this.defwornlayers.mainhand = 'LongswordPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '5d10+22'
   this.meleeStrDamage = 1
@@ -4548,7 +4748,7 @@ function DoppelgangerNPCTile() {
   this.meleeAttackSound = 'sfx_melee_miss';
   this.gender = 'random';
 }
-DoppelgangerNPCTile.prototype = new NPCObject();
+DoppelgangerNPCTile.prototype = new NPCHumanObject();
 
 
 // Monster
@@ -4565,8 +4765,6 @@ function EarthenTyrantNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '350.gif';
-  this.altgraphic = ['384.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '5d4+15'
   this.meleeStrDamage = 1
@@ -4585,6 +4783,19 @@ function EarthenTyrantNPCTile() {
   this.special = 'summonearthelemental';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -148 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 EarthenTyrantNPCTile.prototype = new NPCObject();
 
@@ -4610,11 +4821,11 @@ function JusticeNPCTile() {
   ManualAnimation.call(this, { 
     animstart: 0,
     animlength: HumanParts['BlueRobe'].frames,
-    animstyle: "random",
+    animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: 1
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
   });
 
   this.defwornlayers.body = 'BlueRobe'
@@ -4659,8 +4870,6 @@ function LicheNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '348.gif';
-  this.altgraphic = ['382.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+8'
   this.meleeStrDamage = .66
@@ -4681,6 +4890,19 @@ function LicheNPCTile() {
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.gender = 'male';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -153 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 LicheNPCTile.prototype = new NPCObject();
 
@@ -4786,8 +5008,6 @@ function ShadowNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '330.gif';
-  this.altgraphic = ['364.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+9'
   this.meleeStrDamage = .66
@@ -4805,6 +5025,19 @@ function ShadowNPCTile() {
   this.special = 'phase,undead,ondeathShadow';
   this.meleeHitSound = 'sfx_ghost_hit';
   this.meleeAttackSound = 'sfx_ghost_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -153 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 ShadowNPCTile.prototype = new NPCObject();
 
@@ -5081,8 +5314,8 @@ ArchdaemonOfBoneNPCTile.prototype = new NPCObject();
 
 // Monster
 
-function TitanNPCTile() {
-  this.name = 'TitanNPC';
+function TitanUNUSEDNPCTile() {
+  this.name = 'TitanUNUSEDNPC';
   this.level = 8;
   this.addhp = 20;
   this.str = 30;
@@ -5115,7 +5348,7 @@ function TitanNPCTile() {
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
 }
-TitanNPCTile.prototype = new NPCObject();
+TitanUNUSEDNPCTile.prototype = new NPCObject();
 
 
 // Monster
@@ -5193,6 +5426,7 @@ function ShepherdOfDarkNPCTile() {
   this.desc = "Shepherd of the Dark";
   this.meleeChance = 0;
   this.resists = {};
+  this.special = 'light: .5';
 }
 ShepherdOfDarkNPCTile.prototype = new NPCObject();
 
@@ -5211,7 +5445,6 @@ function IllusionNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 0;
   this.withdraw = 0;
-  this.graphic = '338.gif';
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
@@ -5229,6 +5462,19 @@ function IllusionNPCTile() {
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.xpval = 0;
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -152 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 IllusionNPCTile.prototype = new NPCObject();
 
@@ -5283,7 +5529,6 @@ function ToshinSentinelNPCTile() {
   this.peaceAI = 'Sentinel';
   this.forgetAt = 0;
   this.withdraw = 0;
-  this.graphic = 'sentinel.gif';
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d2'
   this.meleeStrDamage = .33
@@ -5299,6 +5544,19 @@ function ToshinSentinelNPCTile() {
   this.special = 'unkillable';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -150 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 10,
+    animstyle: "pingpong",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 ToshinSentinelNPCTile.prototype = new NPCObject();
 
