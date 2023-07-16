@@ -2144,7 +2144,7 @@ let HumanParts = {
   BrownRobeFancy: { src: "humanparts.png", type: "body", spritex: 0, spritey: -28*32, frames: 5 },
 
   // Heads
-  DarkOpenHelm: { src: "humanarts.png", type: "head", spritex: 0, spritey: -38*32, frames: 5 },
+  DarkOpenHelm: { src: "humanparts.png", type: "head", spritex: 0, spritey: -38*32, frames: 5 },
   GoldClosedHelm: { src: "humanparts.png", type: "head", spritex: 0, spritey: -39*32, frames: 5 },
   BlueSolidHelm: { src: "humanparts.png", type: "head", spritex: 0, spritey: -40*32, frames: 5 },
   PaleOpenHelm: { src: "humanparts.png", type: "head", spritex: 0, spritey: -41*32, frames: 5 },
@@ -2155,6 +2155,7 @@ let HumanParts = {
   ShortBlackPale: { src: "humanparts.png", type: "head", spritex: 0, spritey: -44*32, frames: 5 },
   BaldBeardedDark: { src: "humanparts.png", type: "head", spritex: 0, spritey: -45*32, frames: 5 },
   ShortBrownPale: { src: "humanparts.png", type: "head", spritex: 0, spritey: -46*32, frames: 5 },
+  RedHeadPale: { src: "humanparts.png", type: "head", spritex: 0, spritey: -103*32, frames:5 },
   KingHead: { src: "humanparts.png", type: "head", spritex: 0, spritey: -47*32, frames: 5 },
   GoldCircletDark: { src: "humanparts.png", type: "head", spritex: 0, spritey: -48*32, frames: 5 },
   PrinceHead: { src: "humanparts.png", type: "head", spritex: 0, spritey: -49*32, frames: 5 },
@@ -2173,68 +2174,69 @@ let HumanParts = {
   BardDark: { src: "humanparts.png", type: "head", spritex: 0, spritey: -2*32, frames: 5 },
   
   //Cloak
-  RedCloak: { src: "humans.png", type: "cloak", spritex: 0, spritey: -67*32, frames: 2 },
-  BlueCloak: { src: "humans.png", type: "cloak", spritex: 0, spritey: -68*32, frames: 2 },
+  RedCloak: { src: "humanparts.png", type: "cloak", spritex: 0, spritey: -103*32, frames: 5 },
+  BlueCloak: { src: "humanparts.png", type: "cloak", spritex: 0, spritey: -104*32, frames: 5 },
 
   //Back:
-  Quiver: { src: "humans.png", type: "back", spritex: 0, spritey: -69*32, frames: 2 },
+  Quiver: { src: "humanparts.png", type: "back", spritex: 0, spritey: -105*32, frames: 5 },
 
   //Hands
-  MainHandPale: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -70*32, frames: 2 },
-  MainHandDark: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -72*32, frames: 2 },
-  HandsPaleArms: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -74*32, frames: 2 },
-  HandsDarkArms: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -75*32, frames: 2 },
-  Gauntlets: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -76*32, frames: 2 },
-  ShortswordPale: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -77*32, frames: 2 },
-  DaggerPale: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -81*32, frames: 2 },
-  LongswordPale: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -83*32, frames: 2 },
+  MainHandPale: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -59*32, frames: 5 },
+  MainHandDark: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -61*32, frames: 5 },
+  HandsPaleArms: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -57*32, frames: 5 },
+  HandsDarkArms: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -58*32, frames: 5 },
+  Gauntlets: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -63*32, frames: 5 },
+  ShortswordPale: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -65*32, frames: 5 },
+  DaggerPale: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -69*32, frames: 5 },
+  LongswordPale: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -71*32, frames: 5 },
   SwordFromStonePale: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -85*32, frames: 2 },  // needs art
-  UnenchantedPale: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -85*32, frames: 2 },
+  UnenchantedPale: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -73*32, frames: 5 },
   LightningSwordPale: { src: "animweapons.gif", type: "mainhand", spritex: 0, spritey: -2*32, frames: 5 },
   FlamingSwordPale: { src: "animweapons.gif", type: "mainhand", spritex: 0, spritey: 0, frames: 5 },
   VenomSwordPale: { src: "animweapons.gif", type: "mainhand", spritex: 0, spritey: -4*32, frames: 5 },
   SwordOfDefensePale: {  src: "animweapons.gif", type: "mainhand", spritex: 0, spritey: -6*32, frames: 5 },
-  MaulPale: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -95*32, frames: 2 },
-  HammerPale: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -97*32, frames: 2 },
-  MacePale: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -99*32, frames: 2 },
-  AxePale: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -101*32, frames: 2 },
-  HalberdPale: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -103*32, frames: 2 },
-  QuarterstaffPale: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -105*32, frames: 2 },
-  CrookPale: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -107*32, frames: 2 },
+  MaulPale: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -75*32, frames: 5 },
+  HammerPale: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -77*32, frames: 5 },
+  MacePale: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -79*32, frames: 5 },
+  AxePale: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -81*32, frames: 5 },
+  HalberdPale: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -83*32, frames: 5 },
+  QuarterstaffPale: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -85*32, frames: 5 },
+  CrookPale: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -87*32, frames: 5 },
   WandPale: { src: "animweapons.gif", type: "mainhand", spritex: 0, spritey: -8*32, frames: 5 },
-  SerpentStaffPale: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -111*32, frames: 2 },
-  BowPale: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -113*32, frames: 2 },
-  CrossbowPale: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -115*32, frames: 2 },
-  ShortswordDark: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -79*32, frames: 2 },
-  DaggerDark: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -82*32, frames: 2 },
-  LongswordDark: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -84*32, frames: 2 },
-  UnenchantedDark: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -86*32, frames: 2 },
+  SerpentStaffPale: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -89*32, frames: 5 },
+  BowPale: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -91*32, frames: 5 },
+  CrossbowPale: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -93*32, frames: 5 },
+  ShortswordDark: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -67*32, frames: 5 },
+  DaggerDark: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -70*32, frames: 5 },
+  LongswordDark: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -72*32, frames: 5 },
+  UnenchantedDark: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -74*32, frames: 5 },
   SwordFromStoneDark: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -86*32, frames: 2 }, // needs art
   LightningSwordDark: { src: "animweapons.gif", type: "mainhand", spritex: 0, spritey: -3*32, frames: 5 },
   FlamingSwordDark: { src: "animweapons.gif", type: "mainhand", spritex: 0, spritey: -1*32, frames: 5 },
   VenomSwordDark: { src: "animweapons.gif", type: "mainhand", spritex: 0, spritey: -5*32, frames: 5 },
   SwordOfDefenseDark: { src: "animweapons.gif", type: "mainhand", spritex: 0, spritey: -7*32, frames: 5 },
-  MaulDark: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -96*32, frames: 2 },
-  HammerDark: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -98*32, frames: 2 },
-  MaceDark: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -100*32, frames: 2 },
-  AxeDark: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -102*32, frames: 2 },
-  HalberdDark: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -104*32, frames: 2 },
-  QuarterstaffDark: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -106*32, frames: 2 },
-  CrookDark: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -108*32, frames: 2 },
+  MaulDark: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -76*32, frames: 5 },
+  HammerDark: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -78*32, frames: 5 },
+  MaceDark: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -80*32, frames: 5 },
+  AxeDark: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -82*32, frames: 5 },
+  HalberdDark: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -84*32, frames: 5 },
+  QuarterstaffDark: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -86*32, frames: 5 },
+  CrookDark: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -88*32, frames: 5 },
   WandDark: { src: "animweapons.gif", type: "mainhand", spritex: 0, spritey: -9*32, frames: 5 },
-  SerpentStaffDark: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -112*32, frames: 2 },
-  BowDark: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -114*32, frames: 2 },
-  CrossbowDark: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -116*32, frames: 2 },
+  SerpentStaffDark: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -90*32, frames: 5 },
+  BowDark: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -92*32, frames: 5 },
+  CrossbowDark: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -94*32, frames: 5 },
 
   //Offhand
-  OffhandPale: { src: "humans.png", type: "offhand", spritex: 0, spritey: -71*32, frames: 2 }, 
-  OffhandDark: { src: "humans.png", type: "offhand", spritex: 0, spritey: -73*32, frames: 2 }, 
-  OpenOffhandPale: { src: "humans.png", type: "offhand", spritex: 0, spritey: -78*32, frames: 2 },
-  OpenOffhandDark: { src: "humans.png", type: "offhand", spritex: 0, spritey: -80*32, frames: 2 },
-  KiteShield: { src: "humans.png", type: "offhand", spritex: 0, spritey: -117*32, frames: 2 },
+  OffhandPale: { src: "humanparts.png", type: "offhand", spritex: 0, spritey: -60*32, frames: 5 }, 
+  OffhandDark: { src: "humanparts.png", type: "offhand", spritex: 0, spritey: -62*32, frames: 5 }, 
+  OffhandGauntlet: { src: "humanparts.png", type: "offhand", spritex: 0, spritey: -64*32, frames: 5 }, 
+  OpenOffhandPale: { src: "humanparts.png", type: "offhand", spritex: 0, spritey: -66*32, frames: 5 },
+  OpenOffhandDark: { src: "humanparts.png", type: "offhand", spritex: 0, spritey: -68*32, frames: 5 },
+  KiteShield: { src: "humanparts.png", type: "offhand", spritex: 0, spritey: -95*32, frames: 5 },
   RoundShield: { src: "humans.png", type: "offhand", spritex: 0, spritey: -118*32, frames: 2 },
-  OffhandDaggerPale: { src: "humans.png", type: "offhand", spritex: 0, spritey: -119*32, frames: 2 },
-  OffhandDaggerDark: { src: "humans.png", type: "offhand", spritex: 0, spritey: -120*32, frames: 2 },
+  OffhandDaggerPale: { src: "humanparts.png", type: "offhand", spritex: 0, spritey: -97*32, frames: 5 },
+  OffhandDaggerDark: { src: "humanparts.png", type: "offhand", spritex: 0, spritey: -98*32, frames: 5 },
 };
 
 function PCObject() {
@@ -2273,6 +2275,8 @@ function PCObject() {
   this.casinonet = 0;
   this.karma = 0;
   this.negkarma = 0;
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
   
 	LightEmitting.call(this, 0.5);
 	this.addType("pc");
@@ -2306,6 +2310,16 @@ function PCObject() {
 	
 	this.nextMana = MANA_REGEN;
 	this.nextHP = HP_REGEN;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['WhiteTunic'].frames,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
 
 }
 PCObject.prototype = new NPCHumanObject();
