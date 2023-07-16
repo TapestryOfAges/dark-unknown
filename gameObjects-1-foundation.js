@@ -1145,6 +1145,7 @@ function ManualAnimation(params) {
       this.currframe = -1*(sf-1)*32 + this.spritexoffset;
     }
 
+    let delaymult = 1;
     if (this.animdir === "vertical") {
       div.style.backgroundPosition = this.spritexoffset + "px " + this.currframe + "px";
     } else {
@@ -1154,13 +1155,16 @@ function ManualAnimation(params) {
         this.makeLayers(this.currframenum);
         for (let i=0;i<this.layers.length;i++) {
           let fdiv = document.getElementById(divid + "_" + i);
-          div.style.backgroundPosition = this.layers[i].spritex + "px " + this.spriteyoffset + "px";
+          fdiv.style.backgroundPosition = this.layers[i][2] + "px " + this.layers[i][3] + "px";
         }
+        if (this.currframenum === 1) { delaymult = 3; }
       }
       
     }
 
     let waittime = Math.floor(Math.random() * (this.framedurationmax - this.framedurationmin +1)) + this.framedurationmin;
+    waittime = waittime * delaymult;
+//    if (this.checkType("human")) { console.log(waittime); }
     let ts = this;
     setTimeout(function() { ts.animateMe(); }, waittime);
   }
