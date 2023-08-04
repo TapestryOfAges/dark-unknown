@@ -141,19 +141,30 @@ CastleGrassTile.prototype.bumpinto = function(who) {
 }
 
 function LavaTile() {
+  //Graphic Upgraded
   this.name = "Lava";
-  this.graphic = "flowing_animations.gif";
+  this.graphic = "static.png";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK + MOVE_SWIM;
   this.blocklos = 0;
   this.desc = "lava";
   this.initdelay = 1.2;
   this.pathweight = 5;
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "0";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -165*32;
   
   HasAmbientNoise.call(this,"sfx_bubbling_lava",1.5);
   LightEmitting.call(this, 1);
   this.peerview = "#fc2000";
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: 10,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 200,
+    framedurationmax: 200,
+    startframe: "start"
+  });
 }
 LavaTile.prototype = new FeatureObject();
 
@@ -5027,26 +5038,28 @@ function RightTableTile() {
 RightTableTile.prototype = new FeatureObject();
 
 function FoodSouthTile() {
+  //Graphic Upgraded
   this.name = "FoodSouth";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-640";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -113*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
-  this.desc = "table with food";
+  this.desc = "plate of food";
 }
 FoodSouthTile.prototype = new FeatureObject();
 
 function FoodNorthTile() {
+  //Graphic Upgraded
   this.name = "FoodNorth";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-640";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -114*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
-  this.desc = "table with food";
+  this.desc = "plate of food";
 }
 FoodNorthTile.prototype = new FeatureObject();
 
@@ -5141,22 +5154,19 @@ function BedWalkOn(bedwho,bedarr) {
 //  console.log(bedwho);
 //  console.log(bedarr);
 //  console.log(bedwho.getGraphicArray());
-  if (parseInt(bedwho.skintone) === 2) {
-    bedarr[2] += -2*32;
-  } else if (parseInt(bedwho.skintone) !== 1) { console.log("Missing skintone on "); console.log(bedwho); }
-  bedwho.realgraphic = bedwho.getGraphicArray();
-  bedwho.reallayers = bedwho.layers;
-  delete bedwho.layers;
-  bedwho.setGraphicArray(bedarr);
-  DebugWrite("gameobj", "Changed the graphic of " + bedwho.getNPCName() + " to sleeping.<br />");
+  bedwho.noAnim = 1;
+  bedwho.animating = 0;  
+  bedwho.inBed = "single";
+  bedwho.makeLayers();
+  DrawMainFrame("one",bedwho.getHomeMap(),bedwho.getx(),bedwho.gety());
 
-  let fea = bedwho.getHomeMap().getTile(bedwho.getx()+1,bedwho.gety()).features.getAll();
 //  console.log(fea);
-  let foot;
+  let fea = bedwho.getHomeMap().getTile(bedwho.getx()+1,bedwho.gety()).features.getAll();
   for (let i=0;i<fea.length;i++) {
     if (fea[i].getName() === "BedFoot") { 
       fea[i].setGraphicArray(["static.png","",-6*32,-90*32]); 
       fea[i].passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
+      DrawMainFrame("one",fea[i].getHomeMap(),fea[i].getx(),fea[i].gety());
     }
   }
 //  console.log(bedwho);
@@ -5168,24 +5178,17 @@ function BedWalkOn(bedwho,bedarr) {
 function BedWalkOff(who, bed) {
 //  console.log("Bed walk off.");
 //  console.log(who);
-  if (who.realgraphic) {
-    who.setGraphicArray(who.realgraphic);
-    delete who.realgraphic;
-    bedwho.layers = bedwho.reallayers;
-    delete bedwho.reallayers;
-    DebugWrite("gameobj", "Changed the graphic of " + who.getNPCName() + " from sleeping.<br />");
-  } else {
-    alert("Entity failed to have a waking graphic. See console.");
-    console.log(who);
-  }
+  delete who.noAnim;
+  delete who.inBed;
+  who.makeLayers();
+  DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
+
   let fea = who.getHomeMap().getTile(who.getx()+1,who.gety()).features.getAll();
-  let foot;
   for (let i=0;i<fea.length;i++) {
-    if (fea[i].getName() === "BedFoot") { foot = fea[i]; }
-  }
-  if (foot) {
-    foot.setGraphicArray(["static.png","",-9*32,-89*32]);
-    foot.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+    if (fea[i].getName() === "BedFoot") { 
+      fea[i].setGraphicArray(["static.png","",-9*32,-89*32]);
+      fea[i].passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+    }
   }
 
   //  console.log(who);
