@@ -2074,26 +2074,48 @@ NPCHumanObject.prototype = new NPCObject();
 NPCHumanObject.prototype.makeLayers = function(frame) {
   if (!frame) { frame = 1; }
   let layer = [];
+  if (this.hasOwnProperty("inBed")) {
+    let headindex;
+    if (this.wornlayers.realhead) {
+      headindex = this.wornlayers.realhead;
+    } else { headindex = this.wornlayers.head; }
+    if (!HumanPartsBed[headindex]) { headindex = "ShortBlackPale"; }
+    let newlayer = [HumanPartsBed[headindex].src, "", HumanPartsBed[headindex][this.inBed].x, HumanPartsBed[headindex][this.inBed].y];
+    layer.push(newlayer);
+    this.layers = layer;
+    return;
+  }
   if (this.wornlayers.back) { 
     let newlayer = [HumanParts[this.wornlayers.back].src, "", HumanParts[this.wornlayers.back].spritex + this.wornlayernudges.back.x - 32*(frame-1), HumanParts[this.wornlayers.back].spritey + this.wornlayernudges.back.y];
     layer.push(newlayer);
+    let shadowlayer = [HumanParts[this.wornlayers.back].src, "", HumanParts[this.wornlayers.back].spritex -5*32 + this.wornlayernudges.back.x - 32*(frame-1), HumanParts[this.wornlayers.back].spritey + this.wornlayernudges.back.y];
+    layer.unshift(shadowlayer);
   }
   if (this.wornlayers.cloak) { 
     let newlayer = [HumanParts[this.wornlayers.cloak].src, "", HumanParts[this.wornlayers.cloak].spritex + this.wornlayernudges.cloak.x - 32*(frame-1), HumanParts[this.wornlayers.cloak].spritey + this.wornlayernudges.cloak.y];
     layer.push(newlayer);
+    let shadowlayer = [HumanParts[this.wornlayers.cloak].src, "", HumanParts[this.wornlayers.cloak].spritex -5*32 + this.wornlayernudges.cloak.x - 32*(frame-1), HumanParts[this.wornlayers.cloak].spritey + this.wornlayernudges.cloak.y];
+    layer.unshift(shadowlayer);
   }
   layer.push([HumanParts[this.wornlayers.body].src, "", HumanParts[this.wornlayers.body].spritex + this.wornlayernudges.body.x - 32*(frame-1), HumanParts[this.wornlayers.body].spritey + this.wornlayernudges.body.y]);
+  layer.unshift([HumanParts[this.wornlayers.body].src, "", HumanParts[this.wornlayers.body].spritex -5*32 + this.wornlayernudges.body.x - 32*(frame-1), HumanParts[this.wornlayers.body].spritey + this.wornlayernudges.body.y]);
   if (this.wornlayers.head) { 
     let newlayer = [HumanParts[this.wornlayers.head].src, "", HumanParts[this.wornlayers.head].spritex + this.wornlayernudges.head.x - 32*(frame-1), HumanParts[this.wornlayers.head].spritey + this.wornlayernudges.head.y];
     layer.push(newlayer);
+    let shadowlayer = [HumanParts[this.wornlayers.head].src, "", HumanParts[this.wornlayers.head].spritex -5*32 + this.wornlayernudges.head.x - 32*(frame-1), HumanParts[this.wornlayers.head].spritey + this.wornlayernudges.head.y];
+    layer.unshift(shadowlayer);
   }
   if (this.wornlayers.mainhand) { 
     let newlayer = [HumanParts[this.wornlayers.mainhand].src, "", HumanParts[this.wornlayers.mainhand].spritex + this.wornlayernudges.mainhand.x - 32*(frame-1), HumanParts[this.wornlayers.mainhand].spritey + this.wornlayernudges.mainhand.y];
     layer.push(newlayer);
+    let shadowlayer = [HumanParts[this.wornlayers.mainhand].src, "", HumanParts[this.wornlayers.mainhand].spritex -5*32 + this.wornlayernudges.mainhand.x - 32*(frame-1), HumanParts[this.wornlayers.mainhand].spritey + this.wornlayernudges.mainhand.y];
+    layer.unshift(shadowlayer);
   }
   if (this.wornlayers.offhand) { 
     let newlayer = [HumanParts[this.wornlayers.offhand].src, "", HumanParts[this.wornlayers.offhand].spritex + this.wornlayernudges.offhand.x - 32*(frame-1), HumanParts[this.wornlayers.offhand].spritey + this.wornlayernudges.offhand.y];
     layer.push(newlayer);
+    let shadowlayer = [HumanParts[this.wornlayers.offhand].src, "", HumanParts[this.wornlayers.offhand].spritex -5*32 + this.wornlayernudges.offhand.x - 32*(frame-1), HumanParts[this.wornlayers.offhand].spritey + this.wornlayernudges.offhand.y];
+    layer.unshift(shadowlayer);
   }
   this.layers = layer;
 
@@ -2189,7 +2211,7 @@ let HumanParts = {
   ShortswordPale: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -65*32, frames: 5 },
   DaggerPale: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -69*32, frames: 5 },
   LongswordPale: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -71*32, frames: 5 },
-  SwordFromStonePale: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -85*32, frames: 2 },  // needs art
+  SwordFromStonePale: { src: "animweapons.png", type: "mainhand", spritex: 0, spritey: -10*32, frames: 5 },  
   UnenchantedPale: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -73*32, frames: 5 },
   LightningSwordPale: { src: "animweapons.gif", type: "mainhand", spritex: 0, spritey: -2*32, frames: 5 },
   FlamingSwordPale: { src: "animweapons.gif", type: "mainhand", spritex: 0, spritey: 0, frames: 5 },
@@ -2210,7 +2232,7 @@ let HumanParts = {
   DaggerDark: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -70*32, frames: 5 },
   LongswordDark: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -72*32, frames: 5 },
   UnenchantedDark: { src: "humanparts.png", type: "mainhand", spritex: 0, spritey: -74*32, frames: 5 },
-  SwordFromStoneDark: { src: "humans.png", type: "mainhand", spritex: 0, spritey: -86*32, frames: 2 }, // needs art
+  SwordFromStoneDark: { src: "animweapons.png", type: "mainhand", spritex: 0, spritey: -11*32, frames: 5 }, 
   LightningSwordDark: { src: "animweapons.gif", type: "mainhand", spritex: 0, spritey: -3*32, frames: 5 },
   FlamingSwordDark: { src: "animweapons.gif", type: "mainhand", spritex: 0, spritey: -1*32, frames: 5 },
   VenomSwordDark: { src: "animweapons.gif", type: "mainhand", spritex: 0, spritey: -5*32, frames: 5 },
@@ -2234,10 +2256,55 @@ let HumanParts = {
   OpenOffhandPale: { src: "humanparts.png", type: "offhand", spritex: 0, spritey: -66*32, frames: 5 },
   OpenOffhandDark: { src: "humanparts.png", type: "offhand", spritex: 0, spritey: -68*32, frames: 5 },
   KiteShield: { src: "humanparts.png", type: "offhand", spritex: 0, spritey: -95*32, frames: 5 },
-  RoundShield: { src: "humans.png", type: "offhand", spritex: 0, spritey: -118*32, frames: 2 },
+  RoundShield: { src: "humanparts.png", type: "offhand", spritex: 0, spritey: -104*32, frames: 5 },
   OffhandDaggerPale: { src: "humanparts.png", type: "offhand", spritex: 0, spritey: -97*32, frames: 5 },
   OffhandDaggerDark: { src: "humanparts.png", type: "offhand", spritex: 0, spritey: -98*32, frames: 5 },
 };
+
+let HumanPartsBed = {
+  // Real Heads for beds
+  OldManPale: { src: "static.png", dblsinglelower: { x: -7*32, y: -169*32},
+                                   dblsingleupper: { x: -7*32, y: -170*32},
+                                   dbldbllower: { x: -7*32, y: -171*32},
+                                   dbldblupper: { x: -7*32, y: -172*32},
+                                   single: { x: -7*32, y: -173*32} },
+  ShortBlackPale: { src: "static.png", dblsinglelower: { x: 0, y: -169*32},
+                                       dblsingleupper: { x: 0, y: -170*32},
+                                       dbldbllower: { x: 0, y: -171*32},
+                                       dbldblupper: { x: 0, y: -172*32},
+                                       single: { x: 0, y: -173*32} },
+  BaldBeardedDark: { src: "static.png", dblsinglelower: { x: -3*32, y: -169*32},
+                                        dblsingleupper: { x: -3*32, y: -170*32},
+                                        dbldbllower: { x: -3*32, y: -171*32},
+                                        dbldblupper: { x: -3*32, y: -172*32},
+                                        single: { x: -3*32, y: -173*32} },
+  ShortBrownPale: { src: "static.png", dblsinglelower: { x: -5*32, y: -169*32},
+                                       dblsingleupper: { x: -5*32, y: -170*32},
+                                       dbldbllower: { x: -5*32, y: -171*32},
+                                       dbldblupper: { x: -5*32, y: -172*32},
+                                       single: { x: -7*32, y: -173*32} },
+  RedHeadPale: { src: "static.png", dblsinglelower: { x: -6*32, y: -169*32},
+                                    dblsingleupper: { x: -6*32, y: -170*32},
+                                    dbldbllower: { x: -6*32, y: -171*32},
+                                    dbldblupper: { x: -6*32, y: -172*32},
+                                    single: { x: -6*32, y: -173*32} },
+  BlondePale: { src: "static.png", dblsinglelower: { x: -4*32, y: -169*32},
+                                   dblsingleupper: { x: -4*32, y: -170*32},
+                                   dbldbllower: { x: -4*32, y: -171*32},
+                                   dbldblupper: { x: -4*32, y: -172*32},
+                                   single: { x: -4*32, y: -173*32} },
+  ShortBlackDark: { src: "static.png", dblsinglelower: { x: -1*32, y: -169*32},
+                                       dblsingleupper: { x: -1*32, y: -170*32},
+                                       dbldbllower: { x: -1*32, y: -171*32},
+                                       dbldblupper: { x: -1*32, y: -172*32},
+                                       single: { x: -1*32, y: -173*32} },
+  BrownDark: { src: "static.png", dblsinglelower: { x: -2*32, y: -169*32},
+                                  dblsingleupper: { x: -2*32, y: -170*32},
+                                  dbldbllower: { x: -2*32, y: -171*32},
+                                  dbldblupper: { x: -2*32, y: -172*32},
+                                  single: { x: -2*32, y: -173*32} },
+  
+};  
 
 function PCObject() {
 	this.name = "PC";
