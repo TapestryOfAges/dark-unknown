@@ -454,7 +454,7 @@ ais.PlaceFood = function(who,params) {
 
   let isVisible = 0
   if (params.table === 1) {
-    let item = localFactory.createTile("FoodSouthEdge");
+    let item = localFactory.createTile("FoodSouth");
     who.getHomeMap().placeThing(61, 23, item);
     if (IsVisibleOnScreen(61,23)) {
       isVisible = 1;
@@ -469,7 +469,7 @@ ais.PlaceFood = function(who,params) {
     if (IsVisibleOnScreen(63,23)) {
       isVisible = 1;
     }      
-    item = localFactory.createTile("FoodNorthEdge");
+    item = localFactory.createTile("FoodNorth");
     who.getHomeMap().placeThing(64, 23, item);
     if (IsVisibleOnScreen(64,23)) {
       isVisible = 1;
@@ -477,7 +477,7 @@ ais.PlaceFood = function(who,params) {
   }
 
   if (params.table === 2) {
-    let item = localFactory.createTile("FoodSouthEdge");
+    let item = localFactory.createTile("FoodSouth");
     who.getHomeMap().placeThing(67, 23, item);
     if (IsVisibleOnScreen(67,23)) {
       isVisible = 1;
@@ -492,7 +492,7 @@ ais.PlaceFood = function(who,params) {
     if (IsVisibleOnScreen(69,23)) {
       isVisible = 1;
     }      
-    item = localFactory.createTile("FoodNorthEdge");
+    item = localFactory.createTile("FoodNorth");
     who.getHomeMap().placeThing(70, 23, item);
     if (IsVisibleOnScreen(70,23)) {
       isVisible = 1;
@@ -543,7 +543,7 @@ ais.PlaceFood = function(who,params) {
     if (IsVisibleOnScreen(69,27)) {
       isVisible = 1;
     }      
-    item = localFactory.createTile("FoodNorthEdge");
+    item = localFactory.createTile("FoodNorth");
     who.getHomeMap().placeThing(70, 27, item);
     if (IsVisibleOnScreen(70,27)) {
       isVisible = 1;
@@ -580,7 +580,7 @@ ais.CleanTable = function(who,params) {
 
   let isVisible = 0
   if (params.table === 1) {
-    CFood("FoodSouthEdge",61,23);
+    CFood("FoodSouth",61,23);
     if (IsVisibleOnScreen(61,23)) {
       isVisible = 1;
     }      
@@ -592,14 +592,14 @@ ais.CleanTable = function(who,params) {
     if (IsVisibleOnScreen(63,23)) {
       isVisible = 1;
     }      
-    CFood("FoodNorthEdge",64,23);
+    CFood("FoodNorth",64,23);
     if (IsVisibleOnScreen(64,23)) {
       isVisible = 1;
     }      
   }
 
   if (params.table === 2) {
-    CFood("FoodSouthEdge",67,23);
+    CFood("FoodSouth",67,23);
     if (IsVisibleOnScreen(67,23)) {
       isVisible = 1;
     }      
@@ -611,7 +611,7 @@ ais.CleanTable = function(who,params) {
     if (IsVisibleOnScreen(69,23)) {
       isVisible = 1;
     }      
-    CFood("FoodNorthEdge",70,23);
+    CFood("FoodNorth",70,23);
     if (IsVisibleOnScreen(70,23)) {
       isVisible = 1;
     }      
@@ -653,7 +653,7 @@ ais.CleanTable = function(who,params) {
     if (IsVisibleOnScreen(69,27)) {
       isVisible = 1;
     }      
-    CFood("FoodNorthEdge",70,27);
+    CFood("FoodNorth",70,27);
     if (IsVisibleOnScreen(70,27)) {
       isVisible = 1;
     }      
