@@ -170,9 +170,9 @@ function ElderDragonNPCTile() {
   this.peaceAI = 'elderdragon';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = 'elderdragon.gif';
+  this.graphic = 'static.png';
   this.spritexoffset = 0;
-  this.spriteyoffset = 0;
+  this.spriteyoffset = -167*32;
   this.level = 7;
   this.meleeAttackAs = 'none';
   this.meleeDamage = '5d8+15';
@@ -191,34 +191,75 @@ function ElderDragonNPCTile() {
   this.meleeAttackSound = 'sfx_roar_miss';
   this.special = 'miniboss,ondeathElder,reach';
 
-  MultiTileNPC.call(this, ["ElderDragonForelimbSegment","ElderDragonHindlimbSegment","ElderDragonTailSegment"], [[0,1],[1,1],[1,0]])
+  MultiTileNPC.call(this, ["ElderDragonForelimbSegment","ElderDragonHindlimbSegment","ElderDragonTailSegment"], [[0,1],[1,1],[1,0]]);
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: 5,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "start"
+  });
+
 }
 ElderDragonNPCTile.prototype = new NPCObject();
 
 function ElderDragonForelimbSegmentTile() {
   this.name = "ElderDragonForelimbSegment";
-  this.graphic = 'elderdragon.gif';
+  this.graphic = 'static.png';
   this.spritexoffset = 0;
-  this.spriteyoffset = -32;
+  this.spriteyoffset = -168*32;
   this.alwaystop = 1;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: 5,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "start"
+  });
 }
 ElderDragonForelimbSegmentTile.prototype = new MultiSegment();
 
 function ElderDragonHindlimbSegmentTile() {
   this.name = "ElderDragonHindlimbSegment";
-  this.graphic = 'elderdragon.gif';
-  this.spritexoffset = -32;
-  this.spriteyoffset = -32;
+  this.graphic = 'static.png';
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -168*32;
   this.alwaystop = 1;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "start"
+  });
 }
 ElderDragonHindlimbSegmentTile.prototype = new MultiSegment();
 
 function ElderDragonTailSegmentTile() {
   this.name = "ElderDragonTailSegment";
-  this.graphic = 'elderdragon.gif';
-  this.spritexoffset = -32;
-  this.spriteyoffset = 0;
+  this.graphic = 'static.png';
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -167*32;
   this.alwaystop = 1;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "start"
+  });
 }
 ElderDragonTailSegmentTile.prototype = new MultiSegment();
 
