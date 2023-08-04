@@ -1099,22 +1099,25 @@ function ManualAnimation(params) {
 
   this.IWasJustDrawn = function() {
     console.log("IWasJustDrawn (" + this.getName() + ")");
-    if (this.animating) {
-      console.log("Already animating: " + this.animating);
+    let who = this;
+    if (this.hasOwnProperty("attachedTo")) { who = this.attachedTo; }
+    if (who.animating) {
+      console.log("Already animating: " + who.animating);
       return; 
     } // animateMe cycle is already going 
-    this.animating = 1;
+    who.animating = 1;
 
-    let waittime = Math.floor(Math.random() * (this.framedurationmax - this.framedurationmin +1)) + this.framedurationmin;
-    let ts = this;
+    let waittime = Math.floor(Math.random() * (who.framedurationmax - who.framedurationmin +1)) + who.framedurationmin;
+    let ts = who;
     setTimeout(function() { ts.animateMe(); }, waittime);
   }
 
   this.animateMe = function() {
 //    console.log("In animateMe " + this.getName() + " , (" + this.getx() + "," + this.gety() + ")");
+    if (this.noAnim) { return; }
     let divid = "divid_" + this.getSerial();
     let div = document.getElementById(divid);
-    if (!div) { this.animating = 0; return; }
+    let animated = 0;
 
     if (this.animstyle === "cycle") {
       this.currframenum++;
@@ -1147,26 +1150,52 @@ function ManualAnimation(params) {
 
     let delaymult = 1;
     if (this.animdir === "vertical") {
-      div.style.backgroundPosition = this.spritexoffset + "px " + this.currframe + "px";
-    } else {
-      div.style.backgroundPosition = this.currframe + "px " + this.spriteyoffset + "px";
-
-      if (this.checkType("human")) {
-        this.makeLayers(this.currframenum);
-        for (let i=0;i<this.layers.length;i++) {
-          let fdiv = document.getElementById(divid + "_" + i);
-          fdiv.style.backgroundPosition = this.layers[i][2] + "px " + this.layers[i][3] + "px";
-        }
-        if (this.currframenum === 1) { delaymult = 3; }
+      if (div) {
+        div.style.backgroundPosition = this.spritexoffset + "px " + this.currframe + "px";
+        animated = 1;
       }
-      
+    } else {
+      if (div) {
+        div.style.backgroundPosition = this.currframe + "px " + this.spriteyoffset + "px";
+        animated = 1;
+
+        if (this.checkType("human")) {
+          this.makeLayers(this.currframenum);
+          for (let i=0;i<this.layers.length;i++) {
+            let fdiv = document.getElementById(divid + "_" + i);
+            fdiv.style.backgroundPosition = this.layers[i][2] + "px " + this.layers[i][3] + "px";
+          }
+          if (this.currframenum === 1) { delaymult = 3; }
+        }
+      }
     }
 
-    let waittime = Math.floor(Math.random() * (this.framedurationmax - this.framedurationmin +1)) + this.framedurationmin;
-    waittime = waittime * delaymult;
+    if (this.hasOwnProperty("attachedParts")) {
+      // animate the other segments to the same frame
+      for (let i=0;i<this.attachedParts.length;i++) {
+        divid = "divid_" + this.attachedParts[i].getSerial();
+        div = document.getElementById(divid);
+        if (div) {
+          animated = 1;
+          this.attachedParts[i].currframe = -1*(this.currframenum-1)*32 + this.attachedParts[i].spritexoffset;
+          if (this.animdir === "vertical") {
+            div.style.backgroundPosition = this.attachedParts[i].spritexoffset + "px " + this.attachedParts[i].currframe + "px";
+          } else {
+            div.style.backgroundPosition = this.attachedParts[i].currframe + "px " + this.attachedParts[i].spriteyoffset + "px";
+          }
+        }
+      }
+    }
+
+    if (animated) {
+      let waittime = Math.floor(Math.random() * (this.framedurationmax - this.framedurationmin +1)) + this.framedurationmin;
+      waittime = waittime * delaymult;
 //    if (this.checkType("human")) { console.log(waittime); }
-    let ts = this;
-    setTimeout(function() { ts.animateMe(); }, waittime);
+      let ts = this;
+      setTimeout(function() { ts.animateMe(); }, waittime);
+    } else {
+      this.animating = 0;
+    }
   }
 }
 
