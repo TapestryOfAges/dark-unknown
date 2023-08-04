@@ -1025,11 +1025,11 @@ NPCObject.prototype.addSpellEffect = function(spellobj, silent) {
           if (otherEffects[i].getExpiresTime() > -1) {
             let adddur = (1/(totin - 1))*(otherEffects[i].getPower() / spellobj.getPower()) * (otherEffects[i].getExpiresTime() - DU.DUTime.getGameClock());
             spellobj.setExpiresTime(spellobj.getExpiresTime() + adddur);
+            DebugWrite("magic", "New one is stronger. Replacing old and extending new by " + adddur + ".<br />");
           } else {
             // you can still strengthen permanent spells
             spellobj.setExpiresTime(-1);
           }
-          DebugWrite("magic", "New one is stronger. Replacing old and extending new by " + adddur + ".<br />");
           otherEffects[i].endEffect(1);
           spellobj.setInstances(otherEffects[i].getInstances() + spellobj.getInstances());
           spellobj.mergeSpells("new");
