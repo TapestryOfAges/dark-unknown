@@ -410,52 +410,64 @@ function clickmap(xval,yval) {
       if (editnpcs.checkType("human")) {
         let humanpartshtml = "<table><tr><td id='humandisplay' colspan='2' width='32' height='32' style='position:relative'>";
         let xpos = 0;
-        let ypos = -120*32;
+        let ypos = -104*32;
+        let hsrc = "humanparts.png";
         if (editnpcs.wornlayers.back) {
           xpos = HumanParts[editnpcs.wornlayers.back].spritex + editnpcs.wornlayernudges.back.x;
           ypos = HumanParts[editnpcs.wornlayers.back].spritey + editnpcs.wornlayernudges.back.y;
+          hsrc = HumanParts[editnpcs.wornlayers.back].src;
         }
-        humanpartshtml += `<div id='humanback' style='position:absolute;left:0;top:0;background-image:url("graphics/humans.png");background-position: ${xpos}px ${ypos}px;width:32px;height:32px'></div>`;
+        humanpartshtml += `<div id='humanback' style='position:absolute;left:0;top:0;background-image:url("graphics/${hsrc}");background-position: ${xpos}px ${ypos}px;width:32px;height:32px'></div>`;
 
         xpos = 0;
-        ypos = -120*32;
+        ypos = -104*32;
+        hsrc = "humanparts.png";
         if (editnpcs.wornlayers.cloak) {
           xpos = HumanParts[editnpcs.wornlayers.cloak].spritex + editnpcs.wornlayernudges.cloak.x;
           ypos = HumanParts[editnpcs.wornlayers.cloak].spritey + editnpcs.wornlayernudges.cloak.y;
+          hsrc = HumanParts[editnpcs.wornlayers.cloak].src;
         }
-        humanpartshtml += `<div id='humancloak' style='position:absolute;left:0;top:0;background-image:url("graphics/humans.png");background-position: ${xpos}px ${ypos}px;width:32px;height:32px'></div>`;
+        humanpartshtml += `<div id='humancloak' style='position:absolute;left:0;top:0;background-image:url("graphics/${hsrc}");background-position: ${xpos}px ${ypos}px;width:32px;height:32px'></div>`;
 
         xpos = 0;
-        ypos = -120*32;
+        ypos = -104*32;
+        hsrc = "humanparts.png";
         if (editnpcs.wornlayers.body) {
           xpos = HumanParts[editnpcs.wornlayers.body].spritex + editnpcs.wornlayernudges.body.x;
           ypos = HumanParts[editnpcs.wornlayers.body].spritey + editnpcs.wornlayernudges.body.y;
+          hsrc = HumanParts[editnpcs.wornlayers.body].src;
         }
-        humanpartshtml += `<div id='humanbody' style='position:absolute;left:0;top:0;background-image:url("graphics/humans.png");background-position: ${xpos}px ${ypos}px;width:32px;height:32px'></div>`;
+        humanpartshtml += `<div id='humanbody' style='position:absolute;left:0;top:0;background-image:url("graphics/${hsrc}");background-position: ${xpos}px ${ypos}px;width:32px;height:32px'></div>`;
 
         xpos = 0;
-        ypos = -120*32;
+        ypos = -104*32;
+        hsrc = "humanparts.png";
         if (editnpcs.wornlayers.head) {
           xpos = HumanParts[editnpcs.wornlayers.head].spritex + editnpcs.wornlayernudges.head.x;
           ypos = HumanParts[editnpcs.wornlayers.head].spritey + editnpcs.wornlayernudges.head.y;
+          hsrc = HumanParts[editnpcs.wornlayers.head].src;
         }
-        humanpartshtml += `<div id='humanhead' style='position:absolute;left:0;top:0;background-image:url("graphics/humans.png");background-position: ${xpos}px ${ypos}px;width:32px;height:32px'></div>`;
+        humanpartshtml += `<div id='humanhead' style='position:absolute;left:0;top:0;background-image:url("graphics/${hsrc}");background-position: ${xpos}px ${ypos}px;width:32px;height:32px'></div>`;
 
         xpos = 0;
-        ypos = -120*32;
+        ypos = -104*32;
+        hsrc = "humanparts.png";
         if (editnpcs.wornlayers.mainhand) {
           xpos = HumanParts[editnpcs.wornlayers.mainhand].spritex + editnpcs.wornlayernudges.mainhand.x;
           ypos = HumanParts[editnpcs.wornlayers.mainhand].spritey + editnpcs.wornlayernudges.mainhand.y;
+          hsrc = HumanParts[editnpcs.wornlayers.mainhand].src;
         }
-        humanpartshtml += `<div id='humanmainhand' style='position:absolute;left:0;top:0;background-image:url("graphics/humans.png");background-position: ${xpos}px ${ypos}px;width:32px;height:32px'></div>`;
+        humanpartshtml += `<div id='humanmainhand' style='position:absolute;left:0;top:0;background-image:url("graphics/${hsrc}");background-position: ${xpos}px ${ypos}px;width:32px;height:32px'></div>`;
 
         xpos = 0;
-        ypos = -120*32;
+        ypos = -104*32;
+        hsrc = "humanparts.png";
         if (editnpcs.wornlayers.offhand) {
           xpos = HumanParts[editnpcs.wornlayers.offhand].spritex + editnpcs.wornlayernudges.offhand.x;
           ypos = HumanParts[editnpcs.wornlayers.offhand].spritey + editnpcs.wornlayernudges.offhand.y;
+          hsrc = HumanParts[editnpcs.wornlayers.offhand].src;
         }
-        humanpartshtml += `<div id='humanoffhand' style='position:absolute;left:0;top:0;background-image:url("graphics/humans.png");background-position: ${xpos}px ${ypos}px;width:32px;height:32px'></div>`;
+        humanpartshtml += `<div id='humanoffhand' style='position:absolute;left:0;top:0;background-image:url("graphics/${hsrc}");background-position: ${xpos}px ${ypos}px;width:32px;height:32px'></div>`;
 
         humanpartshtml += "</td></tr>";
         let bits = Object.keys(HumanParts);
@@ -464,6 +476,13 @@ function clickmap(xval,yval) {
           let selected = "";
           if (editnpcs.wornlayers[HumanParts[bits[i]].type] === bits[i]) { selected = " SELECTED "; }
           seloptions[HumanParts[bits[i]].type] += `<option value='${bits[i]}' ${selected}>${bits[i]}</option>`;
+        }
+        let bedoptions = "";
+        bits = Object.keys(HumanPartsBed);
+        for (let i=0;i<bits.length;i++) {
+          let selected = "";
+          if (editnpcs.wornlayers["realhead"] === bits[i]) { selected = " SELECTED "; }
+          bedoptions += `<option value='${bits[i]}' ${selected}>${bits[i]}</option>`;
         }
 
         humanpartshtml += "<tr><td>Body: <select name='bodysel' id='bodysel' onChange='ChangeHumanDisplay(\"body\")'><option value=''></option>";
@@ -489,6 +508,10 @@ function clickmap(xval,yval) {
         humanpartshtml += "<tr><td>Off Hand: <select name='offhandsel' id='offhandsel' onChange='ChangeHumanDisplay(\"offhand\")'><option value=''></option>";
         humanpartshtml += seloptions.offhand;
         humanpartshtml += `</select></td><td>x: <input type='text' name='offhandxn' id='offhandxn' value='${editnpcs.wornlayernudges.offhand.x}' size='2' onChange='ChangeHumanDisplay(\"offhand\")' /> y: <input type='text' name='offhandyn' id='offhandyn' value='${editnpcs.wornlayernudges.offhand.y}' size='2' onChange='ChangeHumanDisplay(\"offhand\")' /> </td></tr>`;
+
+        humanpartshtml += "<tr><td colspan='3'>Real Head: <select name='realheadsel' id='realheadsel''><option value=''></option>";
+        humanpartshtml += bedoptions;
+        humanpartshtml += `</select></td></tr>`;
 
         humanpartshtml += "</table>";
         humanpartshtml += "<input type='button' value='Clear Override Graphic' onClick='delete editnpcs.overrideGraphic' />";
@@ -803,6 +826,9 @@ function submitEditNPC(change) {
     }
     if (parseInt(document.npceditpopup.offhandyn.value) !== editnpcs.wornlayernudges.offhand.y) {
       editnpcs.wornlayernudges.offhand.y = parseInt(document.npceditpopup.offhandyn.value);
+    }
+    if (document.npceditpopup.realheadsel.value !== editnpcs.wornlayers.realhead) {
+      editnpcs.wornlayers.realhead = document.npceditpopup.realheadsel.value;
     }
     if (editnpcs.checkType("human")) { delete editnpcs.overrideGraphic; editnpcs.makeLayers(); }
 
