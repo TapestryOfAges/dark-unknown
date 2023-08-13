@@ -628,10 +628,15 @@ function StepOrSidestep(who, path, finaldest, nopush) {
               }
               return moved;
             } else if (fea && (fea.getName() === "DoubleBedHead")) { // joining an NPC in bed
-              who.getHomeMap().moveThing(path[0],path[1],who);
-              tile.executeWalkons(who);
-              moved["canmove"] = 1;
-              DrawMainFrame(who.getHomeMap(),"draw",PC.getx(),PC.gety());
+              if (fea.checkForSpace()) {
+                who.getHomeMap().moveThing(path[0],path[1],who);
+                tile.executeWalkons(who);
+                moved["canmove"] = 1;
+                DrawMainFrame(who.getHomeMap(),"draw",PC.getx(),PC.gety());
+              } else {
+                // bed is, somehow, full
+                moved["canmove"] = 0;
+              }
               return moved;
             } else {
               // PC is probably in your chair or something. Give up and let them keep it.
