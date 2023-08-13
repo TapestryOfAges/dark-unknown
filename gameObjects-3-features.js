@@ -5239,10 +5239,6 @@ function DoubleBedHeadTile() {
 DoubleBedHeadTile.prototype = new FeatureObject();
 
 DoubleBedHeadTile.prototype.walkon = function(who) {
-  who.realgraphic = who.getGraphicArray();
-  who.reallayers = who.layers;
-  delete who.layers;
-  who.setGraphicArray(["spacer.gif","",0,0]);
 
   this.addOccupant(who);
   this.setLook();
@@ -5251,16 +5247,10 @@ DoubleBedHeadTile.prototype.walkon = function(who) {
 }
 
 DoubleBedHeadTile.prototype.walkoff = function(who) {
-  if (who.realgraphic) {
-    who.setGraphicArray(who.realgraphic);
-    delete who.realgraphic;
-    who.layers = who.reallayers;
-    delete who.reallayers;
-    DebugWrite("gameobj", "Changed the graphic of " + who.getNPCName() + " from sleeping.<br />");
-  } else {
-    alert("Entity failed to have a waking graphic. See console.");
-    console.log(who);
-  }
+  delete who.noAnim;
+  delete who.inBed;
+  who.makeLayers();
+  DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
 
   this.removeOccupant(who);
   this.setLook();
@@ -5305,41 +5295,41 @@ DoubleBedHeadTile.prototype.setLook = function() {
   let foot;
   for (let i=0;i<fea.length;i++) { if (fea[i].getName() === "DoubleBedFoot") { foot = fea[i]; } }
   if (!this.occupants[0] && !this.occupants[1]) {
-    this.setGraphicArray(["static.png","",-4*32,-91*32]);
     foot.setGraphicArray(["static.png","",-5*32,-91*32]);
     foot.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+    DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
+    DrawMainFrame("one",this.getHomeMap(),this.getx()+1,this.gety());
   } else if (this.occupants[0] && !this.occupants[1]) {
-    if (parseInt(this.occupants[0].skintone) === 1) {
-      this.setGraphicArray(["static.png","",-6*32,-91*32]);
-    } else {
-      this.setGraphicArray(["static.png","",-8*32,-91*32]);
-    }
+    this.occupants[0].inBed = "dblsinglelower";
+    this.occupants[0].noAnim = 1;
+    this.occupants[0].animating = 0;  
+    this.occupants[0].makeLayers();
     foot.setGraphicArray(["static.png","",-7*32,-91*32]);
     foot.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
+    DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
+    DrawMainFrame("one",this.getHomeMap(),this.getx()+1,this.gety());
   } else if (!this.occupants[0] && this.occupants[1]) {
-    if (parseInt(this.occupants[1].skintone) === 1) {
-      this.setGraphicArray(["static.png","",-9*32,-91*32]);
-    } else {
-      this.setGraphicArray(["static.png","",-9*32,-90*32]);
-    }
+    this.occupants[1].inBed = "dblsingleupper";
+    this.occupants[1].noAnim = 1;
+    this.occupants[1].animating = 0; 
+    this.occupants[1].makeLayers(); 
     foot.setGraphicArray(["static.png","",-7*32,-91*32]);
     foot.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
+    DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
+    DrawMainFrame("one",this.getHomeMap(),this.getx()+1,this.gety());
   } else if (this.occupants[0] && this.occupants[1]) {
-    if (parseInt(this.occupants[0].skintone) === 1) {
-      if (parseInt(this.occupants[1].skintone) === 1) {
-        this.setGraphicArray(["static.png","",-7*32,-92*32]);
-      } else {
-        this.setGraphicArray(["static.png","",-5*32,-92*32]);
-      }
-    } else {
-      if (parseInt(this.occupants[1].skintone) === 1) {
-        this.setGraphicArray(["static.png","",-8*32,-92*32]);
-      } else {
-        this.setGraphicArray(["static.png","",-6*32,-92*32]);
-      }
-    }
+    this.occupants[0].inBed = "dbldbllower";
+    this.occupants[1].inBed = "dbldblupper";
+    this.occupants[0].noAnim = 1;
+    this.occupants[1].noAnim = 1;
+    this.occupants[0].animating = 0;  
+    this.occupants[1].animating = 0;  
+    this.occupants[0].makeLayers();
+    this.occupants[1].makeLayers();
     foot.setGraphicArray(["static.png","",-7*32,-91*32]);
     foot.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
+    DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
+    DrawMainFrame("one",this.getHomeMap(),this.getx()+1,this.gety());
   } else {
     alert("How did I get here? (Doublebed setlook occupant fail.)"); 
   }
