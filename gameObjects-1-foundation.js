@@ -1105,6 +1105,10 @@ function ManualAnimation(params) {
       console.log("Already animating: " + who.animating);
       return; 
     } // animateMe cycle is already going 
+    if (who.noAnim) {
+      console.log("noAnim set, not (re)starting animating.");
+      return;
+    }
     who.animating = 1;
 
     let waittime = Math.floor(Math.random() * (who.framedurationmax - who.framedurationmin +1)) + who.framedurationmin;
