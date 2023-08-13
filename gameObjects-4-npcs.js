@@ -1130,22 +1130,33 @@ NPCObject.prototype.activate = function(timeoverride) {
       this.altgraphic = []; // no longer need to store this
     }
     if (this.checkType("human")) {
-      this.wornlayers = {
-        body: this.defwornlayers.body,
-        head: this.defwornlayers.head,
-        back: this.defwornlayers.back,
-        offhand: this.defwornlayers.offhand,
-        cloak: this.defwornlayers.cloak,
-        mainhand: this.defwornlayers.mainhand
-      };
-      this.wornlayernudges = {
-        body: { x: this.defwornlayernudges.body.x, y: this.defwornlayernudges.body.y },
-        head: { x: this.defwornlayernudges.head.x, y: this.defwornlayernudges.head.y},
-        back: { x: this.defwornlayernudges.back.x, y: this.defwornlayernudges.back.y },
-        offhand: { x: this.defwornlayernudges.offhand.x, y: this.defwornlayernudges.offhand.y },
-        cloak: { x: this.defwornlayernudges.cloak.x, y: this.defwornlayernudges.cloak.y },
-        mainhand: { x: this.defwornlayernudges.mainhand.x, y: this.defwornlayernudges.mainhand.y }
-      };
+      if (!this.hasOwnProperty("wornlayers")) {
+        this.wornlayers = {
+          body: this.defwornlayers.body,
+          head: this.defwornlayers.head,
+          back: this.defwornlayers.back,
+          offhand: this.defwornlayers.offhand,
+          cloak: this.defwornlayers.cloak,
+          mainhand: this.defwornlayers.mainhand
+        };
+        this.wornlayernudges = {
+          body: { x: this.defwornlayernudges.body.x, y: this.defwornlayernudges.body.y },
+          head: { x: this.defwornlayernudges.head.x, y: this.defwornlayernudges.head.y},
+          back: { x: this.defwornlayernudges.back.x, y: this.defwornlayernudges.back.y },
+          offhand: { x: this.defwornlayernudges.offhand.x, y: this.defwornlayernudges.offhand.y },
+          cloak: { x: this.defwornlayernudges.cloak.x, y: this.defwornlayernudges.cloak.y },
+          mainhand: { x: this.defwornlayernudges.mainhand.x, y: this.defwornlayernudges.mainhand.y }
+        };
+      } else if (!this.hasOwnProperty("wornlayernudges")) {
+        this.wornlayernudges = {
+          body: { x: 0, y: 0 },
+          head: { x: 0, y: 0},
+          back: { x: 0, y: 0 },
+          offhand: { x: 0, y: 0 },
+          cloak: { x: 0, y: 0 },
+          mainhand: { x: 0, y: 0 }
+        };
+      }
     }
   
     this.setMana(-1);
