@@ -1698,8 +1698,10 @@ GameMap.prototype.saveMap = function (name) {
  	  }
     if (basenpc.checkType("human")) {
       let jwornlayers = JSON.stringify(mapnpcs[i].wornlayers);
-      let jnudge = JSON.stringify(mapnpcs[i].wornlayernudges);
-      printerwin.document.write(", wornlayers: '" + jwornlayers + "', nudges: '" + jnudge + "'");
+//      let jnudge = JSON.stringify(mapnpcs[i].defwornlayernudges);
+//      printerwin.document.write(", wornlayers: '" + jwornlayers + "', nudges: '" + jnudge + "'");
+//      UNCOMMENT IF NUDGES BECOME A THING AGAIN
+      printerwin.document.write(", wornlayers: '" + jwornlayers + "'");
     }
  	  printerwin.document.write("};<br />\n");
   }
@@ -1903,8 +1905,8 @@ GameMap.prototype.loadMap = function (name) {
   			  if (npckey === "NPCBand") { newnpc.setNPCBand(loadnpcs[npci].NPCBand); }
           if (npckey === "OverrideGraphic") { newnpc.overrideGraphic = loadnpcs[npci].OverrideGraphic; }
           if (npckey === "skintone") { newnpc.skintone = loadnpcs[npci].skintone; }
-          if (npckey === "wornlayers") {  newnpc.wornlayers = JSON.parse(localnpcs[npci].wornlayers); }
-          if (npckey === "nudges") { newnpc.wornlayernudges = JSON.parse(localnpcs[npci].nudges); }
+          if (npckey === "wornlayers") { newnpc.wornlayers = JSON.parse(loadnpcs[npci].wornlayers); }
+          if (npckey === "nudges") { newnpc.wornlayernudges = JSON.parse(loadnpcs[npci].nudges); }
         }
         if ((newnpc.getPeaceAI() === "scheduled") && (!DU.gameflags.getFlag("editor"))) {
           let loc = DU.schedules[newnpc.getSchedule()].getNPCLocationByTime(GetClockTime(), 1, 1, this);

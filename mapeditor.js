@@ -381,33 +381,35 @@ function clickmap(xval,yval) {
       document.npceditpopup.npcnpcband.value = editnpcs.getNPCBand();
       
       // this will get overwritten if it's a human
-      graphicpicks = [];
-      optindex=0;
-      let tmpdude = localFactory.createTile(editnpcs.getName());
-      let picksblock = "<table><tr><td style='background-color:777777; border:inset' id='opt1' onClick='selectGraphic(1,\"" + tmpdude.getGraphic() + "\")' >";
-      picksblock = picksblock + "<img src='graphics/" + tmpdude.getGraphic() + "' /></td>";
-      graphicpicks[1] = tmpdude.getGraphic();
-      var optnum = 2;
-      $.each(tmpdude.altgraphic, function(idx,val) {
-        picksblock = picksblock + " <td style='background-color:777777; border:inset' id='opt" + optnum + "' onClick='selectGraphic(" + optnum+",\"" + val + "\")' >";
-        picksblock = picksblock + "<img src='graphics/" + val + "' /></td>";
-        graphicpicks[optnum] = val;
-        optnum++;
-      });
-      picksblock = picksblock += "</tr></table>";
-      $("#pickgraphics").html(picksblock);
+      if (!editnpcs.checkType("human")) {
+        graphicpicks = [];
+        optindex=0;
+        let tmpdude = localFactory.createTile(editnpcs.getName());
+        let picksblock = "<table><tr><td style='background-color:777777; border:inset' id='opt1' onClick='selectGraphic(1,\"" + tmpdude.getGraphic() + "\")' >";
+        picksblock = picksblock + "<img src='graphics/" + tmpdude.getGraphic() + "' /></td>";
+        graphicpicks[1] = tmpdude.getGraphic();
+        var optnum = 2;
+        $.each(tmpdude.altgraphic, function(idx,val) {
+          picksblock = picksblock + " <td style='background-color:777777; border:inset' id='opt" + optnum + "' onClick='selectGraphic(" + optnum+",\"" + val + "\")' >";
+          picksblock = picksblock + "<img src='graphics/" + val + "' /></td>";
+          graphicpicks[optnum] = val;
+          optnum++;
+        });  
+        picksblock = picksblock += "</tr></table>";
+        $("#pickgraphics").html(picksblock);
       
-      if (editnpcs.overrideGraphic && !optindex) {
-        $.each(graphicpicks, function(idx,val) {
-          if (val === editnpcs.overrideGraphic) { optindex = idx; }
-        });
-        $("#opt"+optindex).css("background-color","red");
-      } else if (optindex) {
-        $("#opt"+optindex).css("background-color","red");
+        if (editnpcs.overrideGraphic && !optindex) {
+          $.each(graphicpicks, function(idx,val) {
+            if (val === editnpcs.overrideGraphic) { optindex = idx; }
+          });
+          $("#opt"+optindex).css("background-color","red");
+        } else if (optindex) {
+          $("#opt"+optindex).css("background-color","red");
+        }
       }
       
       // New human parts picker
-      if (editnpcs.checkType("human")) {
+      else {
         let humanpartshtml = "<table><tr><td id='humandisplay' colspan='2' width='32' height='32' style='position:relative'>";
         let xpos = 0;
         let ypos = -104*32;
@@ -830,13 +832,18 @@ function submitEditNPC(change) {
     if (document.npceditpopup.realheadsel.value !== editnpcs.wornlayers.realhead) {
       editnpcs.wornlayers.realhead = document.npceditpopup.realheadsel.value;
     }
-    if (editnpcs.checkType("human")) { delete editnpcs.overrideGraphic; editnpcs.makeLayers(); }
+    if (editnpcs.checkType("human")) { 
+      delete editnpcs.overrideGraphic; 
+      editnpcs.makeLayers(); 
+    }
 
-		if (optindex) {
+		else if (optindex) {
 		  editnpcs.overrideGraphic = graphicpicks[optindex];
 		} else {
 		  editnpcs.overrideGraphic = "";
 		}
+    $("#pickgraphics").html("");
+    editnpcs = "";
 	}
 	else if (change === -1) {
 	  // add an "Are you sure? Yes/No" prompt
