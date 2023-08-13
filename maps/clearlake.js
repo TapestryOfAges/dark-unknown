@@ -1,5 +1,6 @@
 "use strict";
 
+// MAP BEGINS HERE
 mappages["clearlake"] = {};
 mappages["clearlake"].terrain = [];
  mappages["clearlake"].terrain[0] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww';
@@ -336,57 +337,57 @@ mappages["clearlake"].features[264] = {name : 'WoodenPillar', x : 13, y : 8};
 mappages["clearlake"].features[265] = {name : 'WoodenPillar', x : 13, y : 6};
 mappages["clearlake"].features[266] = {name : 'WoodenPillar', x : 11, y : 6};
 mappages["clearlake"].features[267] = {name : 'WoodenPillar', x : 11, y : 8};
-mappages["clearlake"].features[268] = {name : 'Fireplace', x : 20, y : 12};
-mappages["clearlake"].features[269] = {name : 'Fireplace', x : 20, y : 17};
-mappages["clearlake"].features[270] = {name : 'Fireplace', x : 20, y : 22};
-mappages["clearlake"].features[271] = {name : 'TorchWest', x : 31, y : 12};
-mappages["clearlake"].features[272] = {name : 'TorchWest', x : 31, y : 19};
-mappages["clearlake"].features[273] = {name : 'TorchEast', x : 40, y : 12};
-mappages["clearlake"].features[274] = {name : 'TorchEast', x : 40, y : 19};
-mappages["clearlake"].features[275] = {name : 'Spit', x : 32, y : 11};
-mappages["clearlake"].features[276] = {name : 'Fireplace', x : 28, y : 51};
-mappages["clearlake"].features[277] = {name : 'Fireplace', x : 29, y : 51};
-mappages["clearlake"].features[278] = {name : 'Brazier', x : 35, y : 51};
-mappages["clearlake"].features[279] = {name : 'Brazier', x : 24, y : 51};
-mappages["clearlake"].features[280] = {name : 'Campfire', x : 43, y : 58};
-mappages["clearlake"].features[281] = {name : 'Brazier', x : 18, y : 36};
-mappages["clearlake"].features[282] = {name : 'Brazier', x : 18, y : 34};
-mappages["clearlake"].features[283] = {name : 'Brazier', x : 22, y : 34};
-mappages["clearlake"].features[284] = {name : 'Brazier', x : 16, y : 51};
-mappages["clearlake"].features[285] = {name : 'Brazier', x : 13, y : 56};
-mappages["clearlake"].features[286] = {name : 'Brazier', x : 39, y : 30};
-mappages["clearlake"].features[287] = {name : 'Brazier', x : 39, y : 40};
-mappages["clearlake"].features[288] = {name : 'TorchEast', x : 27, y : 19};
-mappages["clearlake"].features[289] = {name : 'TorchEast', x : 27, y : 12};
-mappages["clearlake"].features[290] = {name : 'Brazier', x : 4, y : 51};
-mappages["clearlake"].features[291] = {name : 'Brazier', x : 3, y : 40};
-mappages["clearlake"].features[292] = {name : 'Brazier', x : 7, y : 34};
-mappages["clearlake"].features[293] = {name : 'TorchEast', x : 29, y : 58};
-mappages["clearlake"].features[294] = {name : 'TorchEast', x : 29, y : 60};
-mappages["clearlake"].features[295] = {name : 'Fireplace', x : 43, y : 39};
-mappages["clearlake"].features[296] = {name : 'Brazier', x : 36, y : 16};
-mappages["clearlake"].features[297] = {name : 'DoubleBedHead', x : 4, y : 57};
-mappages["clearlake"].features[298] = {name : 'DoubleBedFoot', x : 5, y : 57};
+mappages["clearlake"].features[268] = {name : 'DoubleBedHead', x : 4, y : 57};
+mappages["clearlake"].features[269] = {name : 'DoubleBedFoot', x : 5, y : 57};
+mappages["clearlake"].features[270] = {name : 'Fireplace', x : 20, y : 12};
+mappages["clearlake"].features[271] = {name : 'Fireplace', x : 20, y : 17};
+mappages["clearlake"].features[272] = {name : 'Fireplace', x : 20, y : 22};
+mappages["clearlake"].features[273] = {name : 'TorchWest', x : 31, y : 12};
+mappages["clearlake"].features[274] = {name : 'TorchWest', x : 31, y : 19};
+mappages["clearlake"].features[275] = {name : 'TorchEast', x : 40, y : 12};
+mappages["clearlake"].features[276] = {name : 'TorchEast', x : 40, y : 19};
+mappages["clearlake"].features[277] = {name : 'Spit', x : 32, y : 11};
+mappages["clearlake"].features[278] = {name : 'Fireplace', x : 28, y : 51};
+mappages["clearlake"].features[279] = {name : 'Fireplace', x : 29, y : 51};
+mappages["clearlake"].features[280] = {name : 'Brazier', x : 35, y : 51};
+mappages["clearlake"].features[281] = {name : 'Brazier', x : 24, y : 51};
+mappages["clearlake"].features[282] = {name : 'Campfire', x : 43, y : 58};
+mappages["clearlake"].features[283] = {name : 'Brazier', x : 18, y : 36};
+mappages["clearlake"].features[284] = {name : 'Brazier', x : 18, y : 34};
+mappages["clearlake"].features[285] = {name : 'Brazier', x : 22, y : 34};
+mappages["clearlake"].features[286] = {name : 'Brazier', x : 16, y : 51};
+mappages["clearlake"].features[287] = {name : 'Brazier', x : 13, y : 56};
+mappages["clearlake"].features[288] = {name : 'Brazier', x : 39, y : 30};
+mappages["clearlake"].features[289] = {name : 'Brazier', x : 39, y : 40};
+mappages["clearlake"].features[290] = {name : 'TorchEast', x : 27, y : 19};
+mappages["clearlake"].features[291] = {name : 'TorchEast', x : 27, y : 12};
+mappages["clearlake"].features[292] = {name : 'Brazier', x : 4, y : 51};
+mappages["clearlake"].features[293] = {name : 'Brazier', x : 3, y : 40};
+mappages["clearlake"].features[294] = {name : 'Brazier', x : 7, y : 34};
+mappages["clearlake"].features[295] = {name : 'TorchEast', x : 29, y : 58};
+mappages["clearlake"].features[296] = {name : 'TorchEast', x : 29, y : 60};
+mappages["clearlake"].features[297] = {name : 'Fireplace', x : 43, y : 39};
+mappages["clearlake"].features[298] = {name : 'Brazier', x : 36, y : 16};
 
 
 mappages["clearlake"].npcs = [];
-mappages["clearlake"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 23, y : 32, NPCName: 'Flora', PeaceAI: 'scheduled', Schedule: 'flora', Conversation: 'flora', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: '2'};
-mappages["clearlake"].npcs[1] = {name : 'BardVillagerNPC', x : 23, y : 11, NPCName: 'Xylia', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'xylia', Conversation: 'xylia', Gender: 'female', NPCBand: '0', OverrideGraphic: '311.gif', skintone: '1'};
-mappages["clearlake"].npcs[2] = {name : 'ChildVillagerNPC', x : 9, y : 12, NPCName: 'Maggie', PeaceAI: 'scheduled', Schedule: 'maggie', Conversation: 'maggie', Gender: 'female', NPCBand: '0', skintone: '1'};
-mappages["clearlake"].npcs[3] = {name : 'TownsfolkVillagerNPC', x : 39, y : 15, NPCName: 'Julian', Desc: 'worried man', PeaceAI: 'scheduled', Schedule: 'julian', Conversation: 'julian', ConversationFlag: 'julian', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: '2'};
-mappages["clearlake"].npcs[4] = {name : 'RangerVillagerNPC', x : 14, y : 54, NPCName: 'Lisa', PeaceAI: 'scheduled', Schedule: 'lisa', Conversation: 'lisa', Gender: 'female', Merch: 'lisa', NPCBand: '0', OverrideGraphic: '305.gif', skintone: '1'};
-mappages["clearlake"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 34, y : 54, NPCName: 'Robert', Desc: 'mapmaker', PeaceAI: 'scheduled', Schedule: 'robert', Conversation: 'robert', Gender: 'male', NPCBand: '0', OverrideGraphic: 'civ_blue.gif', skintone: '1'};
-mappages["clearlake"].npcs[6] = {name : 'TinkerVillagerNPC', x : 25, y : 54, NPCName: 'Colin', Desc: 'whitesmith', PeaceAI: 'scheduled', Schedule: 'colin', Conversation: 'colin', Gender: 'male', NPCBand: '0', OverrideGraphic: '304.2.gif', skintone: '2'};
-mappages["clearlake"].npcs[7] = {name : 'TownsfolkVillagerNPC', x : 9, y : 18, NPCName: 'Melissa', Desc: 'grocer', PeaceAI: 'scheduled', Schedule: 'melissa', Conversation: 'melissa', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_green.2.gif', skintone: '2'};
-mappages["clearlake"].npcs[8] = {name : 'TownGuardNPC', x : 34, y : 58, NPCName: 'Carix', PeaceAI: 'scheduled', Schedule: 'carix', Conversation: 'carix', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["clearlake"].npcs[9] = {name : 'TownGuardNPC', x : 34, y : 60, NPCName: 'Exouna', PeaceAI: 'scheduled', Schedule: 'exouna', Conversation: 'exouna', Gender: 'female', NPCBand: '0', skintone: '2'};
-mappages["clearlake"].npcs[10] = {name : 'TownGuardNPC', x : 31, y : 60, NPCName: 'Cinia', PeaceAI: 'scheduled', Schedule: 'cinia', Conversation: 'cinia', Gender: 'female', NPCBand: '0', skintone: '2'};
-mappages["clearlake"].npcs[11] = {name : 'TownGuardNPC', x : 31, y : 58, NPCName: 'Samo', PeaceAI: 'scheduled', Schedule: 'samo', Conversation: 'samo', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["clearlake"].npcs[12] = {name : 'TownGuardNPC', x : 12, y : 46, NPCName: 'Moria', PeaceAI: 'scheduled', Schedule: 'moria', Conversation: 'moria', Gender: 'female', NPCBand: '0', skintone: '1'};
-mappages["clearlake"].npcs[13] = {name : 'TownGuardNPC', x : 15, y : 29, NPCName: 'Vecius', PeaceAI: 'scheduled', Schedule: 'vecius', Conversation: 'vecius', Gender: 'male', NPCBand: '0', skintone: '2'};
-mappages["clearlake"].npcs[14] = {name : 'TownGuardNPC', x : 37, y : 28, NPCName: 'Catta', PeaceAI: 'scheduled', Schedule: 'catta', Conversation: 'catta', Gender: 'female', NPCBand: '0', skintone: '1'};
-mappages["clearlake"].npcs[15] = {name : 'TownGuardNPC', x : 36, y : 48, NPCName: 'Butiro', PeaceAI: 'scheduled', Schedule: 'butiro', Conversation: 'butiro', Gender: 'male', NPCBand: '0', skintone: '2'};
-mappages["clearlake"].npcs[16] = {name : 'ShepherdVillagerNPC', x : 23, y : 22, NPCName: 'Paulon', Desc: 'scholar', Schedule: 'paulon', Conversation: 'paulon', Gender: 'male', NPCBand: '0', OverrideGraphic: '301.gif', skintone: '1'};
+mappages["clearlake"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 23, y : 32, NPCName: 'Flora', PeaceAI: 'scheduled', Schedule: 'flora', Conversation: 'flora', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PurpleFancy","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"ShortBlackDark"}'};
+mappages["clearlake"].npcs[1] = {name : 'BardVillagerNPC', x : 23, y : 11, NPCName: 'Xylia', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'xylia', Conversation: 'xylia', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"Bard1","head":"","back":"","offhand":"","cloak":"","mainhand":"","realhead":"RedHeadPale"}'};
+mappages["clearlake"].npcs[2] = {name : 'ChildVillagerNPC', x : 9, y : 12, NPCName: 'Maggie', PeaceAI: 'scheduled', Schedule: 'maggie', Conversation: 'maggie', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"ChildPale","head":"","back":"","offhand":"","cloak":"","mainhand":"","realhead":"BlondePale"}'};
+mappages["clearlake"].npcs[3] = {name : 'TownsfolkVillagerNPC', x : 39, y : 15, NPCName: 'Julian', Desc: 'worried man', PeaceAI: 'scheduled', Schedule: 'julian', Conversation: 'julian', ConversationFlag: 'julian', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"GreenTunic","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBlackPale"}'};
+mappages["clearlake"].npcs[4] = {name : 'RangerVillagerNPC', x : 14, y : 54, NPCName: 'Lisa', PeaceAI: 'scheduled', Schedule: 'lisa', Conversation: 'lisa', Gender: 'female', Merch: 'lisa', NPCBand: '0', skintone: 1, wornlayers: '{"body":"LeatherArmor","head":"BlondePale","back":"Quiver","offhand":"OffhandPale","cloak":"","mainhand":"BowPale","realhead":"BlondePale"}'};
+mappages["clearlake"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 34, y : 54, NPCName: 'Robert', Desc: 'mapmaker', PeaceAI: 'scheduled', Schedule: 'robert', Conversation: 'robert', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"OrangeTunic2","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBrownPale"}'};
+mappages["clearlake"].npcs[6] = {name : 'TinkerVillagerNPC', x : 25, y : 54, NPCName: 'Colin', Desc: 'whitesmith', PeaceAI: 'scheduled', Schedule: 'colin', Conversation: 'colin', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"LeatherArmor","head":"BaldBeardedDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HammerDark","realhead":"BaldBeardedDark"}'};
+mappages["clearlake"].npcs[7] = {name : 'TownsfolkVillagerNPC', x : 9, y : 18, NPCName: 'Melissa', Desc: 'grocer', PeaceAI: 'scheduled', Schedule: 'melissa', Conversation: 'melissa', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"BlueDress","head":"WomanDark","back":"","offhand":"","cloak":"","mainhand":"","realhead":"BrownDark"}'};
+mappages["clearlake"].npcs[8] = {name : 'TownGuardNPC', x : 34, y : 58, NPCName: 'Carix', PeaceAI: 'scheduled', Schedule: 'carix', Conversation: 'carix', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateWhiteTabard","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"ShortBlackPale"}'};
+mappages["clearlake"].npcs[9] = {name : 'TownGuardNPC', x : 34, y : 60, NPCName: 'Exouna', PeaceAI: 'scheduled', Schedule: 'exouna', Conversation: 'exouna', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateWhiteTabard","head":"BrownDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BrownDark"}'};
+mappages["clearlake"].npcs[10] = {name : 'TownGuardNPC', x : 31, y : 60, NPCName: 'Cinia', PeaceAI: 'scheduled', Schedule: 'cinia', Conversation: 'cinia', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateWhiteTabard","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"ShortBlackDark"}'};
+mappages["clearlake"].npcs[11] = {name : 'TownGuardNPC', x : 31, y : 58, NPCName: 'Samo', PeaceAI: 'scheduled', Schedule: 'samo', Conversation: 'samo', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateWhiteTabard","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"ShortBrownPale"}'};
+mappages["clearlake"].npcs[12] = {name : 'TownGuardNPC', x : 12, y : 46, NPCName: 'Moria', PeaceAI: 'scheduled', Schedule: 'moria', Conversation: 'moria', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateWhiteTabard","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"ShortBlackPale"}'};
+mappages["clearlake"].npcs[13] = {name : 'TownGuardNPC', x : 15, y : 29, NPCName: 'Vecius', PeaceAI: 'scheduled', Schedule: 'vecius', Conversation: 'vecius', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateWhiteTabard","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"ShortBlackDark"}'};
+mappages["clearlake"].npcs[14] = {name : 'TownGuardNPC', x : 37, y : 28, NPCName: 'Catta', PeaceAI: 'scheduled', Schedule: 'catta', Conversation: 'catta', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateWhiteTabard","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"ShortBrownPale"}'};
+mappages["clearlake"].npcs[15] = {name : 'TownGuardNPC', x : 36, y : 48, NPCName: 'Butiro', PeaceAI: 'scheduled', Schedule: 'butiro', Conversation: 'butiro', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateWhiteTabard","head":"BrownDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BrownDark"}'};
+mappages["clearlake"].npcs[16] = {name : 'ShepherdVillagerNPC', x : 23, y : 22, NPCName: 'Paulon', Desc: 'scholar', Schedule: 'paulon', Conversation: 'paulon', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BrownRobeFancy","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBrownPale"}'};
 
 mappages["clearlake"].desc = "Clear Lake";
 mappages["clearlake"].longdesc = `The noise and scents of the sea fill the air as you enter the coastal town of Clear Lake. It is built on the shore and several islands, connected by sturdy bridges.`;
@@ -414,6 +415,7 @@ mappages["clearlake"].returny = '23';
 mappages["clearlake"].returninfused = '0';
 mappages["clearlake"].linkedMaps = ["clearlake2","clearlake0"];
 mappages["clearlake"].editorLabels = '{"div_tile5x52":"Colin and Maggie","div_tile5x38":"Flora","div_tile22x10":"Xylia","div_tile40x31":"Julian","div_tile40x39":"Rhys (act 2)","div_tile15x57":"Lisa","div_tile22x15":"PC"}';
+// MAP ENDS HERE
 
 mappages["clearlake"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
@@ -434,6 +436,7 @@ mappages["clearlake"].onload = function(mapref) {
   }
 }
 
+// MAP BEGINS HERE
 mappages["clearlake2"] = {};
 mappages["clearlake2"].terrain = [];
  mappages["clearlake2"].terrain[0] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
@@ -561,25 +564,21 @@ mappages["clearlake2"].features[55] = {name : 'RightTable', x : 42, y : 36};
 mappages["clearlake2"].features[56] = {name : 'BottomChair', x : 41, y : 31};
 mappages["clearlake2"].features[57] = {name : 'BottomChair', x : 41, y : 37};
 mappages["clearlake2"].features[58] = {name : 'SmallBox', x : 42, y : 34};
-mappages["clearlake2"].features[59] = {name : 'Fireplace', x : 40, y : 19};
-mappages["clearlake2"].features[60] = {name : 'Fireplace', x : 31, y : 19};
-mappages["clearlake2"].features[61] = {name : 'UnlitBrazier', x : 40, y : 36};
-mappages["clearlake2"].features[62] = {name : 'UnlitBrazier', x : 40, y : 30};
-mappages["clearlake2"].features[63] = {name : 'Brazier', x : 33, y : 11};
-mappages["clearlake2"].features[64] = {name : 'Brazier', x : 31, y : 15};
-mappages["clearlake2"].features[65] = {name : 'Brazier', x : 38, y : 15};
-mappages["clearlake2"].features[66] = {name : 'DoubleBedHead', x : 36, y : 20};
-mappages["clearlake2"].features[67] = {name : 'DoubleBedFoot', x : 37, y : 20};
-
+mappages["clearlake2"].features[59] = {name : 'DoubleBedHead', x : 36, y : 20};
+mappages["clearlake2"].features[60] = {name : 'DoubleBedFoot', x : 37, y : 20};
+mappages["clearlake2"].features[61] = {name : 'Fireplace', x : 40, y : 19};
+mappages["clearlake2"].features[62] = {name : 'Fireplace', x : 31, y : 19};
+mappages["clearlake2"].features[63] = {name : 'UnlitBrazier', x : 40, y : 36};
+mappages["clearlake2"].features[64] = {name : 'UnlitBrazier', x : 40, y : 30};
+mappages["clearlake2"].features[65] = {name : 'Brazier', x : 33, y : 11};
+mappages["clearlake2"].features[66] = {name : 'Brazier', x : 31, y : 15};
+mappages["clearlake2"].features[67] = {name : 'Brazier', x : 38, y : 15};
 
 
 mappages["clearlake2"].npcs = [];
-mappages["clearlake2"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 40, y : 39, NPCName: 'Suzanne', Desc: 'fisherman', PeaceAI: 'scheduled', Schedule: 'suzanne', Conversation: 'suzanne', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_blue.2.gif', skintone: '2'};
-mappages["clearlake2"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 36, y : 20, NPCName: 'Kiki', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'kiki', Conversation: 'grace', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_blue.2.gif', skintone: '1'};
-mappages["clearlake2"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 36, y : 19, NPCName: 'Aubrey', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'aubrey', Conversation: 'aubrey', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_green.2.gif', skintone: '1'};
-//mappages["clearlake2"].npcs[3] = {name : 'TownsfolkVillagerNPC', x : 40, y : 34, NPCName: 'Ernest', Desc: 'ex-gambler', Schedule: 'ernest_clearlake', Conversation: 'ernest_clearlake', Gender: 'male', NPCBand: '0', OverrideGraphic: 'civ_green.2.gif', skintone: '1'};
-//mappages["clearlake2"].npcs[4] = {name : 'ShepherdVillagerNPC', x : 4, y : 52, NPCName: 'Lydia', Desc: 'civilian', Schedule: 'lydia', Conversation: 'lydia', Gender: 'female', NPCBand: '0', OverrideGraphic: '301.gif', skintone: '1'};
-//mappages["clearlake2"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 31, y : 17, NPCName: 'Jonah', Schedule: 'jonah', Conversation: 'jonah', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: '1'};
+mappages["clearlake2"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 40, y : 39, NPCName: 'Suzanne', Desc: 'fisherman', PeaceAI: 'scheduled', Schedule: 'suzanne', Conversation: 'suzanne', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"WhiteTunic2","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"ShortBlackDark"}'};
+mappages["clearlake2"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 36, y : 20, NPCName: 'Kiki', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'kiki', Conversation: 'grace', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"YellowTunic","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBlackPale"}'};
+mappages["clearlake2"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 36, y : 19, NPCName: 'Aubrey', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'aubrey', Conversation: 'aubrey', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"GreenTunic","head":"BlondePale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"BlondePale"}'};
 
 mappages["clearlake2"].desc = "Clear Lake";
 mappages["clearlake2"].longdesc = ``;
@@ -607,6 +606,7 @@ mappages["clearlake2"].returny = '23';
 mappages["clearlake2"].returninfused = '0';
 mappages["clearlake2"].linkedMaps = ["clearlake","clearlake0"];
 mappages["clearlake2"].editorLabels = '{"div_tile41x38":"Suzanne","div_tile40x32":"Ernest post-Scour","div_tile32x53":"Robert","div_tile6x52":"Lydia","div_tile32x19":"Jonah","div_tile36x18":"Aubrey and Kiki"}';
+// MAP ENDS HERE
 
 mappages["clearlake2"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
