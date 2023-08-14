@@ -1,5 +1,6 @@
 "use strict";
 
+// MAP BEGINS HERE
 mappages["naurglen"] = {};
 mappages["naurglen"].terrain = [];
  mappages["naurglen"].terrain[0] = '.. ,, .. .. ,, ,, .. .. .. .. ,, .. .. ,, .. .. .. .. .. u, .. .. .. .. .. .. u, .. .. .. .. .. u, .. .. .. .. .. .. .. .. .. .. .. ,, .. .. .. Rm .. u, .. ,, .. .. .. .. .. .. .. .. u, .. .. .. ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
@@ -542,44 +543,46 @@ mappages["naurglen"].features[487] = {name : 'PileOfRocks', x : 61, y : 11};
 mappages["naurglen"].features[488] = {name : 'PileOfRocks', x : 57, y : 11};
 mappages["naurglen"].features[489] = {name : 'PileOfRocks', x : 57, y : 14};
 mappages["naurglen"].features[490] = {name : 'PileOfRocks', x : 61, y : 13};
-mappages["naurglen"].features[491] = {name : 'Brazier', x : 30, y : 38};
-mappages["naurglen"].features[492] = {name : 'Brazier', x : 56, y : 39};
-mappages["naurglen"].features[493] = {name : 'Fireplace', x : 66, y : 37};
-mappages["naurglen"].features[494] = {name : 'UnlitBrazier', x : 94, y : 36};
-mappages["naurglen"].features[495] = {name : 'UnlitBrazier', x : 94, y : 32};
-mappages["naurglen"].features[496] = {name : 'TorchWest', x : 89, y : 28};
-mappages["naurglen"].features[497] = {name : 'TorchWest', x : 89, y : 30};
-mappages["naurglen"].features[498] = {name : 'Fireplace', x : 65, y : 23};
-mappages["naurglen"].features[499] = {name : 'Brazier', x : 54, y : 39};
-mappages["naurglen"].features[500] = {name : 'Spit', x : 66, y : 21};
-mappages["naurglen"].features[501] = {name : 'Fireplace', x : 47, y : 6};
-mappages["naurglen"].features[502] = {name : 'UnlitBrazier', x : 50, y : 10};
-mappages["naurglen"].features[503] = {name : 'Fireplace', x : 14, y : 40};
-mappages["naurglen"].features[504] = {name : 'UnlitBrazier', x : 5, y : 24};
-mappages["naurglen"].features[505] = {name : 'TorchEast', x : 77, y : 24};
-mappages["naurglen"].features[506] = {name : 'Brazier', x : 74, y : 25};
-mappages["naurglen"].features[507] = {name : 'TorchEast', x : 94, y : 26};
-mappages["naurglen"].features[508] = {name : 'SignpostLeft', x : 85, y : 35};
-mappages["naurglen"].features[509] = {name : 'MerchantCounter', x : 94, y : 27};
-mappages["naurglen"].features[510] = {name : 'MerchantCounterBill', x : 93, y : 27};
-mappages["naurglen"].features[511] = {name : 'MerchantCounterEdge', x : 92, y : 27};
-mappages["naurglen"].features[512] = {name : 'LooseFloorboardEW', x : 8, y : 4, lootedid : 'naurglenloosefloor', searchyield : 'GildedBridle'};
+mappages["naurglen"].features[491] = {name : 'SignpostLeft', x : 85, y : 35};
+mappages["naurglen"].features[492] = {name : 'MerchantCounter', x : 94, y : 27};
+mappages["naurglen"].features[493] = {name : 'MerchantCounterBill', x : 93, y : 27};
+mappages["naurglen"].features[494] = {name : 'MerchantCounterEdge', x : 92, y : 27};
+mappages["naurglen"].features[495] = {name : 'LooseFloorboardEW', x : 8, y : 4, lootedid : 'naurglenloosefloor', searchyield : 'GildedBridle'};
+mappages["naurglen"].features[496] = {name : 'Brazier', x : 30, y : 38};
+mappages["naurglen"].features[497] = {name : 'Brazier', x : 56, y : 39};
+mappages["naurglen"].features[498] = {name : 'Fireplace', x : 66, y : 37};
+mappages["naurglen"].features[499] = {name : 'UnlitBrazier', x : 94, y : 36};
+mappages["naurglen"].features[500] = {name : 'UnlitBrazier', x : 94, y : 32};
+mappages["naurglen"].features[501] = {name : 'TorchWest', x : 89, y : 28};
+mappages["naurglen"].features[502] = {name : 'TorchWest', x : 89, y : 30};
+mappages["naurglen"].features[503] = {name : 'Fireplace', x : 65, y : 23};
+mappages["naurglen"].features[504] = {name : 'Brazier', x : 54, y : 39};
+mappages["naurglen"].features[505] = {name : 'Spit', x : 66, y : 21};
+mappages["naurglen"].features[506] = {name : 'Fireplace', x : 47, y : 6};
+mappages["naurglen"].features[507] = {name : 'UnlitBrazier', x : 50, y : 10};
+mappages["naurglen"].features[508] = {name : 'Fireplace', x : 14, y : 40};
+mappages["naurglen"].features[509] = {name : 'UnlitBrazier', x : 5, y : 24};
+mappages["naurglen"].features[510] = {name : 'TorchEast', x : 77, y : 24};
+mappages["naurglen"].features[511] = {name : 'Brazier', x : 74, y : 25};
+mappages["naurglen"].features[512] = {name : 'TorchEast', x : 94, y : 26};
+
 
 mappages["naurglen"].npcs = [];
-mappages["naurglen"].npcs[0] = {name : 'ChickenNPC', x : 36, y : 14, skintone: '1'};
-mappages["naurglen"].npcs[1] = {name : 'ChickenNPC', x : 38, y : 15, skintone: '1'};
-mappages["naurglen"].npcs[2] = {name : 'RoosterNPC', x : 40, y : 14, skintone: '1'};
-mappages["naurglen"].npcs[3] = {name : 'ChickenNPC', x : 40, y : 17, skintone: '1'};
-mappages["naurglen"].npcs[4] = {name : 'DruidVillagerNPC', x : 67, y : 36, NPCName: 'Hazel', Desc: 'healer', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'hazel', Conversation: 'hazel', ConversationFlag: 'hazel', Gender: 'female', Leash: 2, NPCBand: '0', OverrideGraphic: 'druid-offcolor.1.gif', skintone: '1'};
-mappages["naurglen"].npcs[5] = {name : 'ChildVillagerNPC', x : 67, y : 38, NPCName: 'Amy', PeaceAI: 'scheduled', Schedule: 'amy', Conversation: 'amy', ConversationFlag: 'amy', Gender: 'female', Leash: 4, Bark: '0', NPCBand: '0', skintone: '1'};
-mappages["naurglen"].npcs[6] = {name : 'TownGuardNPC', x : 59, y : 30, NPCName: 'Grayson', Alignment: '', PeaceAI: 'scheduled', Schedule: 'grayson', Conversation: 'grayson', ConversationFlag: 'grayson', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '2'};
-mappages["naurglen"].npcs[7] = {name : 'ShepherdVillagerNPC', x : 23, y : 4, NPCName: 'Samuel', Desc: 'blind shepherd', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'samuel', Conversation: 'samuel', ConversationFlag: 'samuel', Gender: 'male', NPCBand: '0', OverrideGraphic: '301.gif', skintone: '1'};
-mappages["naurglen"].npcs[8] = {name : 'TownsfolkVillagerNPC', x : 29, y : 40, NPCName: 'Kylee', Desc: 'farmer', PeaceAI: 'scheduled', Schedule: 'kylee', Conversation: 'kylee', ConversationFlag: 'kylee', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_red.2.gif', skintone: '2'};
-mappages["naurglen"].npcs[9] = {name : 'PaladinVillagerNPC', x : 51, y : 38, NPCName: 'Amaeryl', PeaceAI: 'scheduled', Schedule: 'amaeryl', Conversation: 'amaeryl', ConversationFlag: 'amaeryl', Gender: 'female', OverrideGraphic: '307.2.gif', skintone: '2'};
-mappages["naurglen"].npcs[10] = {name : 'TownsfolkVillagerNPC', x : 93, y : 26, NPCName: 'Daniel', Desc: 'innkeeper', Prefix: 'an', PeaceAI: 'scheduled', Schedule: 'daniel', Conversation: 'daniel', ConversationFlag: 'daniel', Gender: 'male', NPCBand: '0', OverrideGraphic: 'civ_red.gif', skintone: '1'};
-mappages["naurglen"].npcs[11] = {name : 'TinkerVillagerNPC', x : 93, y : 34, NPCName: 'Kyvek', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'kyvek', Conversation: 'kyvek', ConversationFlag: 'kyvek', Gender: 'male', NPCBand: '0', OverrideGraphic: '304.2.gif', skintone: '2'};
-mappages["naurglen"].npcs[12] = {name : 'TownsfolkVillagerNPC', x : 21, y : 24, NPCName: 'Derek', PeaceAI: 'scheduled', Schedule: 'derek', Conversation: 'derek', ConversationFlag: 'derek', Gender: 'male', Leash: 4, Bark: '0', NPCBand: '0', OverrideGraphic: 'civ_blue.gif', skintone: '1'};
-mappages["naurglen"].npcs[13] = {name : 'FighterVillagerNPC', x : 7, y : 20, NPCName: 'Blanche', Desc: 'soldier', Conversation: 'blanche', Gender: 'female', NPCBand: '0', skintone: '1'};
+mappages["naurglen"].npcs[0] = {name : 'ChickenNPC', x : 36, y : 14, skintone: 1};
+mappages["naurglen"].npcs[1] = {name : 'ChickenNPC', x : 38, y : 15, skintone: 1};
+mappages["naurglen"].npcs[2] = {name : 'RoosterNPC', x : 40, y : 14, skintone: 1};
+mappages["naurglen"].npcs[3] = {name : 'ChickenNPC', x : 40, y : 17, skintone: 1};
+mappages["naurglen"].npcs[4] = {name : 'DruidVillagerNPC', x : 67, y : 36, NPCName: 'Hazel', Desc: 'healer', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'hazel', Conversation: 'hazel', ConversationFlag: 'hazel', Gender: 'female', Leash: 2, NPCBand: '0', skintone: 1, wornlayers: '{"body":"GreenRobe","head":"RedHeadPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"SerpentStaffPale","realhead":"RedHeadPale"}'};
+mappages["naurglen"].npcs[5] = {name : 'ChildVillagerNPC', x : 67, y : 38, NPCName: 'Amy', PeaceAI: 'scheduled', Schedule: 'amy', Conversation: 'amy', ConversationFlag: 'amy', Gender: 'female', Leash: 4, Bark: '0', NPCBand: '0', skintone: 1, wornlayers: '{"body":"ChildPale","head":"","back":"","offhand":"","cloak":"","mainhand":"","realhead":"BlondePale"}'};
+mappages["naurglen"].npcs[6] = {name : 'TownGuardNPC', x : 59, y : 30, NPCName: 'Grayson', Alignment: '', PeaceAI: 'scheduled', Schedule: 'grayson', Conversation: 'grayson', ConversationFlag: 'grayson', Gender: 'male', Bark: '0', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateCheckeredTabard","head":"ShortBrownPale","back":null,"offhand":"OffhandPale","cloak":null,"mainhand":"HalberdPale"}'};
+mappages["naurglen"].npcs[7] = {name : 'ShepherdVillagerNPC', x : 23, y : 4, NPCName: 'Samuel', Desc: 'blind shepherd', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'samuel', Conversation: 'samuel', ConversationFlag: 'samuel', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BrownRobe","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"CrookPale","realhead":"ShortBrownPale"}'};
+mappages["naurglen"].npcs[8] = {name : 'TownsfolkVillagerNPC', x : 29, y : 40, NPCName: 'Kylee', Desc: 'farmer', PeaceAI: 'scheduled', Schedule: 'kylee', Conversation: 'kylee', ConversationFlag: 'kylee', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"OrangeTunic2","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"ShortBlackDark"}'};
+mappages["naurglen"].npcs[9] = {name : 'PaladinVillagerNPC', x : 51, y : 38, NPCName: 'Amaeryl', PeaceAI: 'scheduled', Schedule: 'amaeryl', Conversation: 'amaeryl', ConversationFlag: 'amaeryl', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlatePaladin","head":"BrownDark","back":"","offhand":"KiteShield","cloak":"BlueCloak","mainhand":"LongswordDark","realhead":"BrownDark"}'};
+mappages["naurglen"].npcs[10] = {name : 'TownsfolkVillagerNPC', x : 93, y : 26, NPCName: 'Daniel', Desc: 'innkeeper', Prefix: 'an', PeaceAI: 'scheduled', Schedule: 'daniel', Conversation: 'daniel', ConversationFlag: 'daniel', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueTunic","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBrownPale"}'};
+mappages["naurglen"].npcs[11] = {name : 'TinkerVillagerNPC', x : 93, y : 34, NPCName: 'Kyvek', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'kyvek', Conversation: 'kyvek', ConversationFlag: 'kyvek', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"LeatherArmor","head":"RedHeadPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HammerPale","realhead":"RedHeadPale"}'};
+mappages["naurglen"].npcs[12] = {name : 'TownsfolkVillagerNPC', x : 21, y : 24, NPCName: 'Derek', PeaceAI: 'scheduled', Schedule: 'derek', Conversation: 'derek', ConversationFlag: 'derek', Gender: 'male', Leash: 4, Bark: '0', NPCBand: '0', OverrideGraphic: 'civ_blue.gif', skintone: 1, wornlayers: '{"body":"WhiteTunic","head":"ShortBrownPale","back":null,"offhand":"OffhandPale","cloak":null,"mainhand":"MainHandPale"}'};
+mappages["naurglen"].npcs[13] = {name : 'FighterVillagerNPC', x : 7, y : 20, NPCName: 'Blanche', Desc: 'soldier', Conversation: 'blanche', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"ChainMail","head":"BlondePale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"LongswordPale","realhead":"BlondePale"}'};
+mappages["naurglen"].npcs[14] = {name : 'ChildVillagerNPC', x : 25, y : 40, NPCName: 'Samantha', Desc: 'excited girl', Prefix: 'an', Schedule: 'samantha2', Conversation: 'samantha2', Gender: 'female', Leash: 3, NPCBand: '0', skintone: 2, wornlayers: 'undefined'};
 
 mappages["naurglen"].desc = "Naurglen";
 mappages["naurglen"].longdesc = `A small village that primarily supports the nearby castle, Naurglen is commonly split into its East and West halves. On the East is the town square and anything a visitor might need. The West is primarily farmland.%%On the far western border is one thing of interest: your house.`;
@@ -607,7 +610,7 @@ mappages["naurglen"].returny = '75';
 mappages["naurglen"].returninfused = '0';
 mappages["naurglen"].linkedMaps = ["naurglen2","naurglen_limbo"];
 mappages["naurglen"].editorLabels = '{"div_tile66x16":"Evelyn","div_tile74x14":"Grayson","div_tile89x17":"Dora and Ingrid","div_tile92x33":"Kyvek Room","div_tile56x37":"Amaeryl","div_tile26x39":"Kylee and Sam","div_tile45x8":"Warren and Garen","div_tile23x22":"Derek","div_tile9x38":"PC Home","div_tile74x37":"Hazel","div_tile22x6":"Samuel","div_tile7x23":"Blanche"}';
-
+// MAP ENDS HERE
 
 mappages["naurglen"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
@@ -630,21 +633,12 @@ mappages["naurglen"].onload = function(mapref) {
           break;
         }
       }
-      let sam = localFactory.createTile("ChildVillagerNPC");
-      sam.setNPCName("Samantha");
-      sam.setConversation("samantha2");
-      sam.setGender("female");
-      sam.setDesc("excited girl");
-      sam.setPrefix("an");
+      let sam = mapref.getTile(25,40).getTopNPC();
       sam.setBark("sam");
-      sam.setSchedule("samantha2");
-      sam.setPeaceAI("scheduled");
-      sam.setLeash(3);
-      let loc = DU.schedules["samantha2"].getNPCLocationByTime(GetClockTime(), 1, 1, mapref, sam);
-      mapref.placeThing(loc.x,loc.y,sam);
-      let samtile = mapref.getTile(loc.x,loc.y);
-      samtile.executeWalkons(sam);
-    } 
+    } else {
+      let sam = mapref.getTile(25,40).getTopNPC();
+      mapref.deleteThing(sam);
+    }
     if (DU.gameflags.getFlag("derek_pony")) { DU.gameflags.setFlag("derek_pony2", 1); }
     if (!DU.gameflags.getFlag("act2")) {
       let blanche = FindNPCByName("Blanche",mapref);
@@ -657,6 +651,7 @@ mappages["naurglen"].onload = function(mapref) {
   }
 }
 
+// MAP BEGINS HERE
 mappages["naurglen2"] = {};
 mappages["naurglen2"].terrain = [];
  mappages["naurglen2"].terrain[0] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
@@ -772,27 +767,27 @@ mappages["naurglen2"].features[60] = {name : 'DoubleBedTopHead', x : 89, y : 29}
 mappages["naurglen2"].features[61] = {name : 'DoubleBedBottomHead', x : 89, y : 30};
 mappages["naurglen2"].features[62] = {name : 'DoubleBedTopFoot', x : 90, y : 29};
 mappages["naurglen2"].features[63] = {name : 'DoubleBedBottomFoot', x : 90, y : 30};
-mappages["naurglen2"].features[64] = {name : 'UnlitBrazier', x : 9, y : 39};
-mappages["naurglen2"].features[65] = {name : 'UnlitBrazier', x : 91, y : 17};
-mappages["naurglen2"].features[66] = {name : 'UnlitBrazier', x : 73, y : 13};
-mappages["naurglen2"].features[67] = {name : 'UnlitBrazier', x : 69, y : 13};
-mappages["naurglen2"].features[68] = {name : 'Fireplace', x : 14, y : 40};
-mappages["naurglen2"].features[69] = {name : 'Fireplace', x : 47, y : 6};
-mappages["naurglen2"].features[70] = {name : 'Brazier', x : 91, y : 29};
-mappages["naurglen2"].features[71] = {name : 'UnlitBrazier', x : 91, y : 32};
-mappages["naurglen2"].features[72] = {name : 'UnlitBrazier', x : 91, y : 38};
-mappages["naurglen2"].features[73] = {name : 'DoubleBedHead', x : 49, y : 9};
-mappages["naurglen2"].features[74] = {name : 'DoubleBedFoot', x : 50, y : 9};
+mappages["naurglen2"].features[64] = {name : 'DoubleBedHead', x : 49, y : 9};
+mappages["naurglen2"].features[65] = {name : 'DoubleBedFoot', x : 50, y : 9};
+mappages["naurglen2"].features[66] = {name : 'UnlitBrazier', x : 9, y : 39};
+mappages["naurglen2"].features[67] = {name : 'UnlitBrazier', x : 91, y : 17};
+mappages["naurglen2"].features[68] = {name : 'UnlitBrazier', x : 73, y : 13};
+mappages["naurglen2"].features[69] = {name : 'UnlitBrazier', x : 69, y : 13};
+mappages["naurglen2"].features[70] = {name : 'Fireplace', x : 14, y : 40};
+mappages["naurglen2"].features[71] = {name : 'Fireplace', x : 47, y : 6};
+mappages["naurglen2"].features[72] = {name : 'Brazier', x : 91, y : 29};
+mappages["naurglen2"].features[73] = {name : 'UnlitBrazier', x : 91, y : 32};
+mappages["naurglen2"].features[74] = {name : 'UnlitBrazier', x : 91, y : 38};
 
 
 mappages["naurglen2"].npcs = [];
-mappages["naurglen2"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 7, y : 37, NPCName: 'Avery', PeaceAI: 'scheduled', Schedule: 'avery', Conversation: 'avery', ConversationFlag: 'avery', Gender: 'male', Leash: 2, Bark: '0', NPCBand: '0', OverrideGraphic: 'civ_blue.gif', skintone: 1};
-mappages["naurglen2"].npcs[1] = {name : 'RangerVillagerNPC', x : 49, y : 8, NPCName: 'Garen', PeaceAI: 'scheduled', Schedule: 'garen', Conversation: 'garen', ConversationFlag: 'garen', Gender: 'male', OverrideGraphic: 'ranger-offcolor.gif', skintone: 1};
-mappages["naurglen2"].npcs[2] = {name : 'AdventurerVillagerNPC', x : 49, y : 9, NPCName: 'Warren', PeaceAI: 'scheduled', Schedule: 'warren', Conversation: 'warren', ConversationFlag: 'warren', Gender: 'male', OverrideGraphic: '306.gif', skintone: 1};
-mappages["naurglen2"].npcs[3] = {name : 'TownGuardNPC', x : 65, y : 13, NPCName: 'Evelyn', PeaceAI: 'scheduled', Schedule: 'evelyn', Conversation: 'evelyn', ConversationFlag: 'evelyn', Gender: 'female', Bark: '0', NPCBand: '0', skintone: 2};
-mappages["naurglen2"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 89, y : 15, NPCName: 'Dora', PeaceAI: 'scheduled', Schedule: 'dora', Conversation: 'dora', ConversationFlag: 'dora', Gender: 'female', Leash: 2, Bark: '0', NPCBand: '0', OverrideGraphic: 'civ_red.gif', skintone: 1};
-mappages["naurglen2"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 89, y : 19, NPCName: 'Ingrid', Desc: 'tavern keeper', PeaceAI: 'scheduled', Schedule: 'ingrid', Conversation: 'ingrid', ConversationFlag: 'ingrid', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.gif', skintone: 1};
-mappages["naurglen2"].npcs[6] = {name : 'TownsfolkVillagerNPC', x : 89, y : 30, NPCName: 'Sand', Desc: 'innkeeper', Prefix: 'an', PeaceAI: 'scheduled', Schedule: 'sand', Conversation: 'sand', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif', skintone: 1};
+mappages["naurglen2"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 7, y : 37, NPCName: 'Avery', PeaceAI: 'scheduled', Schedule: 'avery', Conversation: 'avery', ConversationFlag: 'avery', Gender: 'male', Leash: 2, Bark: '0', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueFancy","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBlackPale"}'};
+mappages["naurglen2"].npcs[1] = {name : 'RangerVillagerNPC', x : 49, y : 8, NPCName: 'Garen', PeaceAI: 'scheduled', Schedule: 'garen', Conversation: 'garen', ConversationFlag: 'garen', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"LeatherArmor","head":"ShortBrownPale","back":"Quiver","offhand":"OffhandPale","cloak":"","mainhand":"BowPale","realhead":"ShortBrownPale"}'};
+mappages["naurglen2"].npcs[2] = {name : 'AdventurerVillagerNPC', x : 49, y : 9, NPCName: 'Warren', PeaceAI: 'scheduled', Schedule: 'warren', Conversation: 'warren', ConversationFlag: 'warren', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"ChainMail","head":"OldManPale","back":"","offhand":"OffhandPale","cloak":"BlueCloak","mainhand":"LongswordPale","realhead":"OldManPale"}'};
+mappages["naurglen2"].npcs[3] = {name : 'TownGuardNPC', x : 65, y : 13, NPCName: 'Evelyn', PeaceAI: 'scheduled', Schedule: 'evelyn', Conversation: 'evelyn', ConversationFlag: 'evelyn', Gender: 'female', Bark: '0', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateWhiteTabard","head":"BrownDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BrownDark"}'};
+mappages["naurglen2"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 89, y : 15, NPCName: 'Dora', PeaceAI: 'scheduled', Schedule: 'dora', Conversation: 'dora', ConversationFlag: 'dora', Gender: 'female', Leash: 2, Bark: '0', NPCBand: '0', skintone: 1, wornlayers: '{"body":"YellowDress","head":"BrunetteWomanPale","back":"","offhand":"","cloak":"","mainhand":"","realhead":"ShortBrownPale"}'};
+mappages["naurglen2"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 89, y : 19, NPCName: 'Ingrid', Desc: 'tavern keeper', PeaceAI: 'scheduled', Schedule: 'ingrid', Conversation: 'ingrid', ConversationFlag: 'ingrid', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueTunic","head":"BlondePale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"BlondePale"}'};
+mappages["naurglen2"].npcs[6] = {name : 'TownsfolkVillagerNPC', x : 89, y : 30, NPCName: 'Sand', Desc: 'innkeeper', Prefix: 'an', PeaceAI: 'scheduled', Schedule: 'sand', Conversation: 'sand', Gender: 'female', Bark: '0', NPCBand: '0', skintone: 1, wornlayers: '{"body":"NobleGreen","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBrownPale"}'};
 
 mappages["naurglen2"].desc = "Naurglen";
 mappages["naurglen2"].longdesc = ``;
@@ -820,7 +815,7 @@ mappages["naurglen2"].returny = '75';
 mappages["naurglen2"].returninfused = '0';
 mappages["naurglen2"].linkedMaps = ["naurglen","naurglen_limbo"];
 mappages["naurglen2"].editorLabels = '{"div_tile66x16":"Evelyn","div_tile74x14":"Grayson","div_tile89x17":"Dora and Ingrid","div_tile92x33":"Kyvek Room","div_tile56x37":"Amaeryl","div_tile26x39":"Kylee and Sam","div_tile45x8":"Warren and Garen","div_tile23x22":"Derek","div_tile9x38":"PC Home","div_tile74x37":"Hazel","div_tile22x6":"Soldier","div_tile7x23":"Soldier"}';
-
+// MAP ENDS HERE
 
 
 mappages["naurglen_limbo"] = {};

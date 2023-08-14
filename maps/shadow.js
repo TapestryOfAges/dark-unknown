@@ -1,5 +1,6 @@
 "use strict";
 
+// MAP BEGINS HERE
 mappages["shadow1"] = {};
 mappages["shadow1"].terrain = [];
  mappages["shadow1"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -46,20 +47,21 @@ mappages["shadow1"].features[2] = {name : 'OrbStrength', x : 29, y : 30};
 
 
 mappages["shadow1"].npcs = [];
-mappages["shadow1"].npcs[0] = {name : 'GiantRatNPC', x : 20, y : 10, Gender: 'monster', Bark: '0', NPCBand: '1'};
-mappages["shadow1"].npcs[1] = {name : 'GiantRatNPC', x : 23, y : 14, Gender: 'monster', Bark: '0', NPCBand: '1'};
-mappages["shadow1"].npcs[2] = {name : 'PythonNPC', x : 26, y : 9, NPCBand: '1'};
-mappages["shadow1"].npcs[3] = {name : 'GiantRatNPC', x : 18, y : 15, NPCBand: '1'};
-mappages["shadow1"].npcs[4] = {name : 'GiantRatNPC', x : 26, y : 13, NPCBand: '1'};
-mappages["shadow1"].npcs[5] = {name : 'SlimeNPC', x : 27, y : 26, NPCBand: '3'};
-mappages["shadow1"].npcs[6] = {name : 'SlimeNPC', x : 28, y : 27, NPCBand: '3'};
-mappages["shadow1"].npcs[7] = {name : 'SlimeNPC', x : 26, y : 29, NPCBand: '3'};
-mappages["shadow1"].npcs[8] = {name : 'ChildVillagerNPC', x : 18, y : 21, NPCName: 'Samantha', Attitude: 'neutral', Conversation: 'samantha', ConversationFlag: 'samantha', Gender: 'female', NPCBand: '0', skintone: '1'};
-mappages["shadow1"].npcs[9] = {name : 'HeadlessNPC', x : 9, y : 26};
+mappages["shadow1"].npcs[0] = {name : 'GiantRatNPC', x : 20, y : 10, Gender: 'monster', Bark: '0', NPCBand: '1', skintone: 1};
+mappages["shadow1"].npcs[1] = {name : 'GiantRatNPC', x : 23, y : 14, Gender: 'monster', Bark: '0', NPCBand: '1', skintone: 1};
+mappages["shadow1"].npcs[2] = {name : 'PythonNPC', x : 26, y : 9, NPCBand: '1', skintone: 1};
+mappages["shadow1"].npcs[3] = {name : 'GiantRatNPC', x : 18, y : 15, NPCBand: '1', skintone: 1};
+mappages["shadow1"].npcs[4] = {name : 'GiantRatNPC', x : 26, y : 13, NPCBand: '1', skintone: 1};
+mappages["shadow1"].npcs[5] = {name : 'SlimeNPC', x : 27, y : 26, NPCBand: '3', skintone: 1};
+mappages["shadow1"].npcs[6] = {name : 'SlimeNPC', x : 28, y : 27, NPCBand: '3', skintone: 1};
+mappages["shadow1"].npcs[7] = {name : 'SlimeNPC', x : 26, y : 29, NPCBand: '3', skintone: 1};
+mappages["shadow1"].npcs[8] = {name : 'ChildVillagerNPC', x : 18, y : 21, NPCName: 'Samantha', Attitude: 'neutral', Conversation: 'samantha', ConversationFlag: 'samantha', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"ChildDark","head":"","back":"","offhand":"","cloak":"","mainhand":"","realhead":"ShortBlackDark"}'};
+mappages["shadow1"].npcs[9] = {name : 'HeadlessNPC', x : 9, y : 26, skintone: 1};
 
 mappages["shadow1"].desc = "Dungeon Shadow (L1)";
+mappages["shadow1"].longdesc = ``;
 mappages["shadow1"].music = 'Dungeon';
-mappages["shadow1"].savename = 'Shadow';
+mappages["shadow1"].savename = `Shadow`;
 mappages["shadow1"].exitmap = 'darkunknown';
 mappages["shadow1"].exitx = '96';
 mappages["shadow1"].exity = '31';
@@ -81,6 +83,8 @@ mappages["shadow1"].returnx = '96';
 mappages["shadow1"].returny = '31';
 mappages["shadow1"].returninfused = '0';
 mappages["shadow1"].linkedMaps = ["shadow2","shadow3"];
+mappages["shadow1"].editorLabels = '{}';
+// MAP ENDS HERE
 
 mappages["shadow1"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
