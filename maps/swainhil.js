@@ -1,5 +1,6 @@
 "use strict";
 
+// MAP BEGINS HERE
 mappages["swainhil"] = {};
 mappages["swainhil"].terrain = [];
  mappages["swainhil"].terrain[0] = 'ww ww ww ww |. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
@@ -453,68 +454,68 @@ mappages["swainhil"].features[385] = {name : 'PurpleCarpetS', x : 57, y : 56};
 mappages["swainhil"].features[386] = {name : 'PurpleCarpetSW', x : 56, y : 56};
 mappages["swainhil"].features[387] = {name : 'OlympusTapestry', x : 56, y : 52};
 mappages["swainhil"].features[388] = {name : 'HildendainTapestry', x : 58, y : 52};
-mappages["swainhil"].features[389] = {name : 'Fireplace', x : 8, y : 4};
-mappages["swainhil"].features[390] = {name : 'Fireplace', x : 7, y : 4};
-mappages["swainhil"].features[391] = {name : 'Brazier', x : 9, y : 14};
-mappages["swainhil"].features[392] = {name : 'Fireplace', x : 28, y : 25};
-mappages["swainhil"].features[393] = {name : 'Fireplace', x : 16, y : 25};
-mappages["swainhil"].features[394] = {name : 'Fireplace', x : 16, y : 28};
-mappages["swainhil"].features[395] = {name : 'Fireplace', x : 16, y : 31};
-mappages["swainhil"].features[396] = {name : 'Fireplace', x : 28, y : 32};
-mappages["swainhil"].features[397] = {name : 'Brazier', x : 54, y : 30};
-mappages["swainhil"].features[398] = {name : 'Brazier', x : 30, y : 46};
-mappages["swainhil"].features[399] = {name : 'TorchWest', x : 32, y : 37};
-mappages["swainhil"].features[400] = {name : 'TorchWest', x : 32, y : 41};
-mappages["swainhil"].features[401] = {name : 'TorchEast', x : 34, y : 37};
-mappages["swainhil"].features[402] = {name : 'TorchEast', x : 34, y : 41};
-mappages["swainhil"].features[403] = {name : 'TorchEast', x : 30, y : 37};
-mappages["swainhil"].features[404] = {name : 'TorchWest', x : 26, y : 37};
-mappages["swainhil"].features[405] = {name : 'Brazier', x : 40, y : 24};
-mappages["swainhil"].features[406] = {name : 'Brazier', x : 40, y : 30};
-mappages["swainhil"].features[407] = {name : 'Fireplace', x : 48, y : 16};
-mappages["swainhil"].features[408] = {name : 'Fireplace', x : 49, y : 16};
-mappages["swainhil"].features[409] = {name : 'Fireplace', x : 50, y : 16};
-mappages["swainhil"].features[410] = {name : 'TorchWest', x : 52, y : 13};
-mappages["swainhil"].features[411] = {name : 'Brazier', x : 39, y : 16};
-mappages["swainhil"].features[412] = {name : 'Brazier', x : 40, y : 7};
-mappages["swainhil"].features[413] = {name : 'TorchEast', x : 59, y : 50};
-mappages["swainhil"].features[414] = {name : 'TorchWest', x : 55, y : 50};
-mappages["swainhil"].features[415] = {name : 'TorchWest', x : 55, y : 54};
-mappages["swainhil"].features[416] = {name : 'TorchEast', x : 59, y : 54};
-mappages["swainhil"].features[417] = {name : 'TorchEast', x : 21, y : 7};
-mappages["swainhil"].features[418] = {name : 'TorchWest', x : 16, y : 7};
-mappages["swainhil"].features[419] = {name : 'Brazier', x : 20, y : 15};
-mappages["swainhil"].features[420] = {name : 'Brazier', x : 29, y : 7};
-mappages["swainhil"].features[421] = {name : 'Brazier', x : 44, y : 9};
-mappages["swainhil"].features[422] = {name : 'TorchEast', x : 57, y : 37};
-mappages["swainhil"].features[423] = {name : 'TorchEast', x : 57, y : 42};
-mappages["swainhil"].features[424] = {name : 'TorchEast', x : 52, y : 37};
-mappages["swainhil"].features[425] = {name : 'TorchEast', x : 52, y : 42};
-mappages["swainhil"].features[426] = {name : 'TorchWest', x : 54, y : 37};
-mappages["swainhil"].features[427] = {name : 'TorchWest', x : 54, y : 42};
-mappages["swainhil"].features[428] = {name : 'TorchWest', x : 48, y : 42};
-mappages["swainhil"].features[429] = {name : 'TorchWest', x : 48, y : 37};
-mappages["swainhil"].features[430] = {name : 'DoubleBedHead', x : 25, y : 10};
-mappages["swainhil"].features[431] = {name : 'DoubleBedHead', x : 20, y : 9};
-mappages["swainhil"].features[432] = {name : 'DoubleBedFoot', x : 26, y : 10};
-mappages["swainhil"].features[433] = {name : 'DoubleBedFoot', x : 21, y : 9};
+mappages["swainhil"].features[389] = {name : 'DoubleBedHead', x : 25, y : 10};
+mappages["swainhil"].features[390] = {name : 'DoubleBedHead', x : 20, y : 9};
+mappages["swainhil"].features[391] = {name : 'DoubleBedFoot', x : 26, y : 10};
+mappages["swainhil"].features[392] = {name : 'DoubleBedFoot', x : 21, y : 9};
+mappages["swainhil"].features[393] = {name : 'Fireplace', x : 8, y : 4};
+mappages["swainhil"].features[394] = {name : 'Fireplace', x : 7, y : 4};
+mappages["swainhil"].features[395] = {name : 'Brazier', x : 9, y : 14};
+mappages["swainhil"].features[396] = {name : 'Fireplace', x : 28, y : 25};
+mappages["swainhil"].features[397] = {name : 'Fireplace', x : 16, y : 25};
+mappages["swainhil"].features[398] = {name : 'Fireplace', x : 16, y : 28};
+mappages["swainhil"].features[399] = {name : 'Fireplace', x : 16, y : 31};
+mappages["swainhil"].features[400] = {name : 'Fireplace', x : 28, y : 32};
+mappages["swainhil"].features[401] = {name : 'Brazier', x : 54, y : 30};
+mappages["swainhil"].features[402] = {name : 'Brazier', x : 30, y : 46};
+mappages["swainhil"].features[403] = {name : 'TorchWest', x : 32, y : 37};
+mappages["swainhil"].features[404] = {name : 'TorchWest', x : 32, y : 41};
+mappages["swainhil"].features[405] = {name : 'TorchEast', x : 34, y : 37};
+mappages["swainhil"].features[406] = {name : 'TorchEast', x : 34, y : 41};
+mappages["swainhil"].features[407] = {name : 'TorchEast', x : 30, y : 37};
+mappages["swainhil"].features[408] = {name : 'TorchWest', x : 26, y : 37};
+mappages["swainhil"].features[409] = {name : 'Brazier', x : 40, y : 24};
+mappages["swainhil"].features[410] = {name : 'Brazier', x : 40, y : 30};
+mappages["swainhil"].features[411] = {name : 'Fireplace', x : 48, y : 16};
+mappages["swainhil"].features[412] = {name : 'Fireplace', x : 49, y : 16};
+mappages["swainhil"].features[413] = {name : 'Fireplace', x : 50, y : 16};
+mappages["swainhil"].features[414] = {name : 'TorchWest', x : 52, y : 13};
+mappages["swainhil"].features[415] = {name : 'Brazier', x : 39, y : 16};
+mappages["swainhil"].features[416] = {name : 'Brazier', x : 40, y : 7};
+mappages["swainhil"].features[417] = {name : 'TorchEast', x : 59, y : 50};
+mappages["swainhil"].features[418] = {name : 'TorchWest', x : 55, y : 50};
+mappages["swainhil"].features[419] = {name : 'TorchWest', x : 55, y : 54};
+mappages["swainhil"].features[420] = {name : 'TorchEast', x : 59, y : 54};
+mappages["swainhil"].features[421] = {name : 'TorchEast', x : 21, y : 7};
+mappages["swainhil"].features[422] = {name : 'TorchWest', x : 16, y : 7};
+mappages["swainhil"].features[423] = {name : 'Brazier', x : 20, y : 15};
+mappages["swainhil"].features[424] = {name : 'Brazier', x : 29, y : 7};
+mappages["swainhil"].features[425] = {name : 'Brazier', x : 44, y : 9};
+mappages["swainhil"].features[426] = {name : 'TorchEast', x : 57, y : 37};
+mappages["swainhil"].features[427] = {name : 'TorchEast', x : 57, y : 42};
+mappages["swainhil"].features[428] = {name : 'TorchEast', x : 52, y : 37};
+mappages["swainhil"].features[429] = {name : 'TorchEast', x : 52, y : 42};
+mappages["swainhil"].features[430] = {name : 'TorchWest', x : 54, y : 37};
+mappages["swainhil"].features[431] = {name : 'TorchWest', x : 54, y : 42};
+mappages["swainhil"].features[432] = {name : 'TorchWest', x : 48, y : 42};
+mappages["swainhil"].features[433] = {name : 'TorchWest', x : 48, y : 37};
 
 
 mappages["swainhil"].npcs = [];
-mappages["swainhil"].npcs[0] = {name : 'ShepherdVillagerNPC', x : 39, y : 9, NPCName: 'Mandy', Desc: 'healer', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'mandy', Conversation: 'mandy', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '301.gif', skintone: '1'};
-mappages["swainhil"].npcs[1] = {name : 'FighterVillagerNPC', x : 16, y : 14, NPCName: 'Deirdre', PeaceAI: 'scheduled', Schedule: 'deirdre', Conversation: 'deirdre', Gender: 'female', Merch: 'deirdre', NPCBand: '0', OverrideGraphic: '308.gif', skintone: '1'};
-mappages["swainhil"].npcs[2] = {name : 'MageVillagerNPC', x : 24, y : 14, NPCName: 'Dale', PeaceAI: 'scheduled', Schedule: 'dale', Conversation: 'dale', Gender: 'male', Merch: 'dale', Bark: '0', NPCBand: '0', OverrideGraphic: 'mage-offcolor.gif', skintone: '1'};
-mappages["swainhil"].npcs[3] = {name : 'DruidVillagerNPC', x : 53, y : 9, NPCName: 'Severyn', PeaceAI: 'scheduled', Schedule: 'severyn', Conversation: 'severyn', ConversationFlag: 'severyn', Gender: 'female', Merch: 'severyn', Bark: '0', NPCBand: '0', OverrideGraphic: '302.gif', skintone: '1'};
-mappages["swainhil"].npcs[4] = {name : 'PaladinVillagerNPC', x : 20, y : 9, NPCName: 'Isaac', PeaceAI: 'scheduled', Schedule: 'isaac', Conversation: 'isaac', ConversationFlag: 'isaac', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '307.2.gif', skintone: '2'};
-mappages["swainhil"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 25, y : 9, NPCName: 'Carey', Desc: 'innkeeper', Prefix: 'an', PeaceAI: 'scheduled', Schedule: 'carey', Conversation: 'carey', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_green.gif', skintone: '1'};
-mappages["swainhil"].npcs[6] = {name : 'TownsfolkVillagerNPC', x : 46, y : 9, NPCName: 'Elaine', Desc: 'innkeeper', Prefix: 'an', PeaceAI: 'scheduled', Schedule: 'elaine', Conversation: 'elaine', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_blue.2.gif', skintone: '2'};
-mappages["swainhil"].npcs[7] = {name : 'TownGuardNPC', x : 48, y : 39, NPCName: 'Rayne', PeaceAI: 'scheduled', Schedule: 'rayne', Conversation: 'rayne', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["swainhil"].npcs[8] = {name : 'TownGuardNPC', x : 12, y : 20, NPCName: 'Gwanda', PeaceAI: 'scheduled', Schedule: 'gwanda', Conversation: 'gwanda', Gender: 'female', NPCBand: '0', skintone: '1'};
-mappages["swainhil"].npcs[9] = {name : 'TownGuardNPC', x : 51, y : 39, NPCName: 'Edward', PeaceAI: 'scheduled', Schedule: 'edward', Conversation: 'edward', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["swainhil"].npcs[10] = {name : 'TownGuardNPC', x : 33, y : 33, NPCName: 'Marge', PeaceAI: 'scheduled', Schedule: 'marge', Conversation: 'marge', Gender: 'female', NPCBand: '0', skintone: '1'};
-mappages["swainhil"].npcs[11] = {name : 'TownGuardNPC', x : 51, y : 41, NPCName: 'Fran', PeaceAI: 'scheduled', Schedule: 'fran', Conversation: 'fran', Gender: 'female', NPCBand: '0', skintone: '1'};
-mappages["swainhil"].npcs[12] = {name : 'TownGuardNPC', x : 57, y : 4, NPCName: 'Edgar', PeaceAI: 'scheduled', Schedule: 'edgar', Conversation: 'edgar', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["swainhil"].npcs[13] = {name : 'TinkerVillagerNPC', x : 25, y : 10, NPCName: 'Ian', Desc: 'soldier', Schedule: 'ian', Conversation: 'ian', Gender: 'male', NPCBand: '0', OverrideGraphic: 'tinker-offcolor.gif', skintone: '1'};
+mappages["swainhil"].npcs[0] = {name : 'ShepherdVillagerNPC', x : 39, y : 9, NPCName: 'Mandy', Desc: 'healer', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'mandy', Conversation: 'mandy', Gender: 'female', Bark: '0', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BrownRobe","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"CrookPale","realhead":"ShortBlackPale"}'};
+mappages["swainhil"].npcs[1] = {name : 'FighterVillagerNPC', x : 16, y : 14, NPCName: 'Deirdre', PeaceAI: 'scheduled', Schedule: 'deirdre', Conversation: 'deirdre', Gender: 'female', Merch: 'deirdre', NPCBand: '0', skintone: 1, wornlayers: '{"body":"Plate2","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HammerPale","realhead":"ShortBrownPale"}'};
+mappages["swainhil"].npcs[2] = {name : 'MageVillagerNPC', x : 24, y : 14, NPCName: 'Dale', PeaceAI: 'scheduled', Schedule: 'dale', Conversation: 'dale', Gender: 'male', Merch: 'dale', Bark: '0', NPCBand: '0', skintone: 1, wornlayers: '{"body":"RedRobe","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"QuarterstaffPale","realhead":"ShortBrownPale"}'};
+mappages["swainhil"].npcs[3] = {name : 'DruidVillagerNPC', x : 53, y : 9, NPCName: 'Severyn', PeaceAI: 'scheduled', Schedule: 'severyn', Conversation: 'severyn', ConversationFlag: 'severyn', Gender: 'female', Merch: 'severyn', Bark: '0', NPCBand: '0', skintone: 1, wornlayers: '{"body":"GreenRobe","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"SerpentStaffPale","realhead":"ShortBlackPale"}'};
+mappages["swainhil"].npcs[4] = {name : 'PaladinVillagerNPC', x : 20, y : 9, NPCName: 'Isaac', PeaceAI: 'scheduled', Schedule: 'isaac', Conversation: 'isaac', ConversationFlag: 'isaac', Gender: 'male', Bark: '0', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlatePaladin","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"BlueCloak","mainhand":"LongswordDark","realhead":"ShortBlackDark"}'};
+mappages["swainhil"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 25, y : 9, NPCName: 'Carey', Desc: 'innkeeper', Prefix: 'an', PeaceAI: 'scheduled', Schedule: 'carey', Conversation: 'carey', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"OrangeTunic2","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBrownPale"}'};
+mappages["swainhil"].npcs[6] = {name : 'TownsfolkVillagerNPC', x : 46, y : 9, NPCName: 'Elaine', Desc: 'innkeeper', Prefix: 'an', PeaceAI: 'scheduled', Schedule: 'elaine', Conversation: 'elaine', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"BlueTunic","head":"BrownDark","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"BrownDark"}'};
+mappages["swainhil"].npcs[7] = {name : 'TownGuardNPC', x : 48, y : 39, NPCName: 'Rayne', PeaceAI: 'scheduled', Schedule: 'rayne', Conversation: 'rayne', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"OldManPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"OldManPale"}'};
+mappages["swainhil"].npcs[8] = {name : 'TownGuardNPC', x : 12, y : 20, NPCName: 'Gwanda', PeaceAI: 'scheduled', Schedule: 'gwanda', Conversation: 'gwanda', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"BlondePale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"BlondePale"}'};
+mappages["swainhil"].npcs[9] = {name : 'TownGuardNPC', x : 51, y : 39, NPCName: 'Edward', PeaceAI: 'scheduled', Schedule: 'edward', Conversation: 'edward', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"ShortBrownPale"}'};
+mappages["swainhil"].npcs[10] = {name : 'TownGuardNPC', x : 33, y : 33, NPCName: 'Marge', PeaceAI: 'scheduled', Schedule: 'marge', Conversation: 'marge', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"ShortBrownPale","back":null,"offhand":"OffhandPale","cloak":null,"mainhand":"HalberdPale"}'};
+mappages["swainhil"].npcs[11] = {name : 'TownGuardNPC', x : 51, y : 41, NPCName: 'Fran', PeaceAI: 'scheduled', Schedule: 'fran', Conversation: 'fran', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"RedHeadPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"LongswordPale","realhead":"RedHeadPale"}'};
+mappages["swainhil"].npcs[12] = {name : 'TownGuardNPC', x : 57, y : 4, NPCName: 'Edgar', PeaceAI: 'scheduled', Schedule: 'edgar', Conversation: 'edgar', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateCheckeredTabard","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"ShortBlackDark"}'};
+mappages["swainhil"].npcs[13] = {name : 'TinkerVillagerNPC', x : 25, y : 10, NPCName: 'Ian', Desc: 'soldier', Schedule: 'ian', Conversation: 'ian', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"LeatherArmor","head":"OldManPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"ShortswordPale","realhead":"OldManPale"}'};
 
 mappages["swainhil"].desc = "The Towne of Swainhil";
 mappages["swainhil"].longdesc = ``;
@@ -542,6 +543,7 @@ mappages["swainhil"].returny = '74';
 mappages["swainhil"].returninfused = '0';
 mappages["swainhil"].linkedMaps = ["swainhil2","swainhil3"];
 mappages["swainhil"].editorLabels = '{"div_tile52x8":"Severyn","div_tile25x15":"Dale","div_tile38x8":"Mandy","div_tile18x8":"Isaac","div_tile26x8":"Ian and Carey","div_tile45x8":"Elaine"}';
+// MAP ENDS HERE
 
 mappages["swainhil"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
@@ -562,6 +564,7 @@ mappages["swainhil"].add_pheran = function(mapref) {
   }
 }
 
+// MAP BEGINS HERE
 mappages["swainhil2"] = {};
 mappages["swainhil2"].terrain = [];
  mappages["swainhil2"].terrain[0] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
@@ -753,11 +756,11 @@ mappages["swainhil2"].features[123] = {name : 'Brazier', x : 6, y : 14};
 
 
 mappages["swainhil2"].npcs = [];
-mappages["swainhil2"].npcs[0] = {name : 'BardVillagerNPC', x : 27, y : 37, NPCName: 'Alison', PeaceAI: 'scheduled', Schedule: 'alison', Conversation: 'alison', ConversationFlag: 'alison', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: 'bard-offcolor.gif', skintone: '1'};
-mappages["swainhil2"].npcs[1] = {name : 'BardVillagerNPC', x : 32, y : 49, NPCName: 'Markus', PeaceAI: 'scheduled', Schedule: 'markus', Conversation: 'markus', ConversationFlag: 'markus', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '311.gif', skintone: '1'};
-mappages["swainhil2"].npcs[2] = {name : 'BardVillagerNPC', x : 40, y : 37, NPCName: 'Rebecca', PeaceAI: 'scheduled', Schedule: 'rebecca', Conversation: 'rebecca', ConversationFlag: 'rebecca', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '311.gif', skintone: '1'};
-mappages["swainhil2"].npcs[3] = {name : 'BardVillagerNPC', x : 33, y : 37, NPCName: 'Simon', PeaceAI: 'scheduled', Schedule: 'simon', Conversation: 'simon', ConversationFlag: 'simon', Bark: '0', NPCBand: '0', OverrideGraphic: 'bard-offcolor.gif', skintone: '1'};
-mappages["swainhil2"].npcs[4] = {name : 'AdventurerVillagerNPC', x : 8, y : 13, NPCName: 'Eddie', Desc: 'tavernkeeper', Prefix: 'a', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'eddie', Conversation: 'eddie', Gender: 'male', NPCBand: '0', skintone: '1'};
+mappages["swainhil2"].npcs[0] = {name : 'BardVillagerNPC', x : 27, y : 37, NPCName: 'Alison', PeaceAI: 'scheduled', Schedule: 'alison', Conversation: 'alison', ConversationFlag: 'alison', Gender: 'female', Bark: '0', NPCBand: '0', skintone: 1, wornlayers: '{"body":"Bard1","head":"","back":"","offhand":"","cloak":"","mainhand":"","realhead":"ShortBlackDark"}'};
+mappages["swainhil2"].npcs[1] = {name : 'BardVillagerNPC', x : 32, y : 49, NPCName: 'Markus', PeaceAI: 'scheduled', Schedule: 'markus', Conversation: 'markus', ConversationFlag: 'markus', Gender: 'male', Bark: '0', NPCBand: '0', skintone: 1, wornlayers: '{"body":"Bard1","head":"","back":"","offhand":"","cloak":"","mainhand":"","realhead":"ShortBlackPale"}'};
+mappages["swainhil2"].npcs[2] = {name : 'BardVillagerNPC', x : 40, y : 37, NPCName: 'Rebecca', PeaceAI: 'scheduled', Schedule: 'rebecca', Conversation: 'rebecca', ConversationFlag: 'rebecca', Gender: 'female', Bark: '0', NPCBand: '0', skintone: 2, wornlayers: '{"body":"Bard1","head":"BardDark","back":"","offhand":"","cloak":"","mainhand":"","realhead":"ShortBlackDark"}'};
+mappages["swainhil2"].npcs[3] = {name : 'BardVillagerNPC', x : 33, y : 37, NPCName: 'Simon', PeaceAI: 'scheduled', Schedule: 'simon', Conversation: 'simon', ConversationFlag: 'simon', Gender: 'monster', Bark: '0', NPCBand: '0', skintone: 1, wornlayers: '{"body":"Bard2","head":"","back":"","offhand":"","cloak":"","mainhand":"","realhead":"ShortBlackDark"}'};
+mappages["swainhil2"].npcs[4] = {name : 'AdventurerVillagerNPC', x : 8, y : 13, NPCName: 'Eddie', Desc: 'tavernkeeper', Prefix: 'a', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'eddie', Conversation: 'eddie', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"ChainMail","head":"ShortBrownPale","back":null,"offhand":"OffhandPale","cloak":"BlueCloak","mainhand":"LongswordPale"}'};
 
 mappages["swainhil2"].desc = "The Towne of Swainhil";
 mappages["swainhil2"].longdesc = ``;
@@ -785,7 +788,10 @@ mappages["swainhil2"].returny = '74';
 mappages["swainhil2"].returninfused = '0';
 mappages["swainhil2"].linkedMaps = ["swainhil","swainhil3"];
 mappages["swainhil2"].editorLabels = '{"div_tile31x47":"Markus","div_tile26x38":"Alison","div_tile32x38":"Simon","div_tile40x38":"Rebecca"}';
+// MAP ENDS HERE
 
+
+// MAP BEGINS HERE
 mappages["swainhil3"] = {};
 mappages["swainhil3"].terrain = [];
  mappages["swainhil3"].terrain[0] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
@@ -914,7 +920,7 @@ mappages["swainhil3"].features[60] = {name : 'Brazier', x : 39, y : 46};
 
 
 mappages["swainhil3"].npcs = [];
-mappages["swainhil3"].npcs[0] = {name : 'BardVillagerNPC', x : 41, y : 41, NPCName: 'Sirius', PeaceAI: 'scheduled', Schedule: 'sirius', Conversation: 'sirius', ConversationFlag: 'sirius', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '311.gif', skintone: '1'};
+mappages["swainhil3"].npcs[0] = {name : 'BardVillagerNPC', x : 41, y : 41, NPCName: 'Sirius', PeaceAI: 'scheduled', Schedule: 'sirius', Conversation: 'sirius', ConversationFlag: 'sirius', Gender: 'male', Bark: '0', NPCBand: '0', skintone: 2, wornlayers: '{"body":"Bard2","head":"BardDark","back":"","offhand":"","cloak":"","mainhand":"","realhead":"BrownDark"}'};
 
 mappages["swainhil3"].desc = "The Towne of Swainhil";
 mappages["swainhil3"].longdesc = ``;
@@ -942,4 +948,5 @@ mappages["swainhil3"].returny = '74';
 mappages["swainhil3"].returninfused = '0';
 mappages["swainhil3"].linkedMaps = ["swainhil","swainhil2"];
 mappages["swainhil3"].editorLabels = '{}';
+// MAP ENDS HERE
 

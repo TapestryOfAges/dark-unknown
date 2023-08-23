@@ -1,5 +1,6 @@
 "use strict";
 
+// MAP BEGINS HERE
 mappages["beldskae"] = {};
 mappages["beldskae"].terrain = [];
  mappages["beldskae"].terrain[0] = 'nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn ., ., ., nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn';
@@ -260,64 +261,64 @@ mappages["beldskae"].features[212] = {name : 'DoubleBedHead', x : 53, y : 19};
 mappages["beldskae"].features[213] = {name : 'DoubleBedFoot', x : 54, y : 19};
 mappages["beldskae"].features[214] = {name : 'DoubleBedHead', x : 53, y : 17};
 mappages["beldskae"].features[215] = {name : 'DoubleBedFoot', x : 54, y : 17};
-mappages["beldskae"].features[216] = {name : 'TorchEast', x : 31, y : 24};
-mappages["beldskae"].features[217] = {name : 'TorchEast', x : 31, y : 16};
-mappages["beldskae"].features[218] = {name : 'TorchEast', x : 31, y : 8};
-mappages["beldskae"].features[219] = {name : 'TorchEast', x : 31, y : 32};
-mappages["beldskae"].features[220] = {name : 'TorchWest', x : 27, y : 32};
-mappages["beldskae"].features[221] = {name : 'TorchWest', x : 27, y : 23};
-mappages["beldskae"].features[222] = {name : 'TorchWest', x : 27, y : 17};
-mappages["beldskae"].features[223] = {name : 'TorchWest', x : 27, y : 8};
-mappages["beldskae"].features[224] = {name : 'TorchEast', x : 16, y : 17};
-mappages["beldskae"].features[225] = {name : 'TorchEast', x : 16, y : 22};
-mappages["beldskae"].features[226] = {name : 'Brazier', x : 40, y : 22};
-mappages["beldskae"].features[227] = {name : 'TorchWest', x : 33, y : 14};
-mappages["beldskae"].features[228] = {name : 'TorchWest', x : 33, y : 26};
-mappages["beldskae"].features[229] = {name : 'Brazier', x : 33, y : 22};
-mappages["beldskae"].features[230] = {name : 'TorchEast', x : 19, y : 17};
-mappages["beldskae"].features[231] = {name : 'TorchEast', x : 19, y : 20};
-mappages["beldskae"].features[232] = {name : 'TorchWest', x : 22, y : 10};
-mappages["beldskae"].features[233] = {name : 'TorchWest', x : 22, y : 30};
-mappages["beldskae"].features[234] = {name : 'Brazier', x : 46, y : 23};
-mappages["beldskae"].features[235] = {name : 'Spit', x : 54, y : 28};
-mappages["beldskae"].features[236] = {name : 'Fireplace', x : 42, y : 20};
-mappages["beldskae"].features[237] = {name : 'Brazier', x : 51, y : 22};
-mappages["beldskae"].features[238] = {name : 'Brazier', x : 6, y : 26};
-mappages["beldskae"].features[239] = {name : 'Brazier', x : 6, y : 17};
-mappages["beldskae"].features[240] = {name : 'Brazier', x : 25, y : 17};
-mappages["beldskae"].features[241] = {name : 'Brazier', x : 25, y : 23};
-mappages["beldskae"].features[242] = {name : 'Brazier', x : 43, y : 16};
-mappages["beldskae"].features[243] = {name : 'Brazier', x : 51, y : 17};
-mappages["beldskae"].features[244] = {name : 'Fireplace', x : 41, y : 18};
-mappages["beldskae"].features[245] = {name : 'Fireplace', x : 37, y : 10};
-mappages["beldskae"].features[246] = {name : 'DisplayCounterN', x : 22, y : 12};
-mappages["beldskae"].features[247] = {name : 'DisplayCounterS', x : 22, y : 13};
-mappages["beldskae"].features[248] = {name : 'Shortsword', x : 22, y : 12};
+mappages["beldskae"].features[216] = {name : 'DisplayCounterN', x : 22, y : 12};
+mappages["beldskae"].features[217] = {name : 'DisplayCounterS', x : 22, y : 13};
+mappages["beldskae"].features[218] = {name : 'Shortsword', x : 22, y : 12};
+mappages["beldskae"].features[219] = {name : 'TorchEast', x : 31, y : 24};
+mappages["beldskae"].features[220] = {name : 'TorchEast', x : 31, y : 16};
+mappages["beldskae"].features[221] = {name : 'TorchEast', x : 31, y : 8};
+mappages["beldskae"].features[222] = {name : 'TorchEast', x : 31, y : 32};
+mappages["beldskae"].features[223] = {name : 'TorchWest', x : 27, y : 32};
+mappages["beldskae"].features[224] = {name : 'TorchWest', x : 27, y : 23};
+mappages["beldskae"].features[225] = {name : 'TorchWest', x : 27, y : 17};
+mappages["beldskae"].features[226] = {name : 'TorchWest', x : 27, y : 8};
+mappages["beldskae"].features[227] = {name : 'TorchEast', x : 16, y : 17};
+mappages["beldskae"].features[228] = {name : 'TorchEast', x : 16, y : 22};
+mappages["beldskae"].features[229] = {name : 'Brazier', x : 40, y : 22};
+mappages["beldskae"].features[230] = {name : 'TorchWest', x : 33, y : 14};
+mappages["beldskae"].features[231] = {name : 'TorchWest', x : 33, y : 26};
+mappages["beldskae"].features[232] = {name : 'Brazier', x : 33, y : 22};
+mappages["beldskae"].features[233] = {name : 'TorchEast', x : 19, y : 17};
+mappages["beldskae"].features[234] = {name : 'TorchEast', x : 19, y : 20};
+mappages["beldskae"].features[235] = {name : 'TorchWest', x : 22, y : 10};
+mappages["beldskae"].features[236] = {name : 'TorchWest', x : 22, y : 30};
+mappages["beldskae"].features[237] = {name : 'Brazier', x : 46, y : 23};
+mappages["beldskae"].features[238] = {name : 'Spit', x : 54, y : 28};
+mappages["beldskae"].features[239] = {name : 'Fireplace', x : 42, y : 20};
+mappages["beldskae"].features[240] = {name : 'Brazier', x : 51, y : 22};
+mappages["beldskae"].features[241] = {name : 'Brazier', x : 6, y : 26};
+mappages["beldskae"].features[242] = {name : 'Brazier', x : 6, y : 17};
+mappages["beldskae"].features[243] = {name : 'Brazier', x : 25, y : 17};
+mappages["beldskae"].features[244] = {name : 'Brazier', x : 25, y : 23};
+mappages["beldskae"].features[245] = {name : 'Brazier', x : 43, y : 16};
+mappages["beldskae"].features[246] = {name : 'Brazier', x : 51, y : 17};
+mappages["beldskae"].features[247] = {name : 'Fireplace', x : 41, y : 18};
+mappages["beldskae"].features[248] = {name : 'Fireplace', x : 37, y : 10};
 
 
 mappages["beldskae"].npcs = [];
-mappages["beldskae"].npcs[0] = {name : 'FighterVillagerNPC', x : 43, y : 25, NPCName: 'Ariel', PeaceAI: 'scheduled', Schedule: 'ariel', Conversation: 'ariel', Gender: 'female', Merch: 'ariel', NPCBand: '0', skintone: 1};
-mappages["beldskae"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 36, y : 27, NPCName: 'Mia', PeaceAI: 'scheduled', Schedule: 'mia', Conversation: 'mia', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_blue.2.gif', skintone: 2};
-mappages["beldskae"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 6, y : 14, NPCName: 'Denise', PeaceAI: 'scheduled', Schedule: 'denise', Conversation: 'denise', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: 2};
-mappages["beldskae"].npcs[3] = {name : 'TownsfolkVillagerNPC', x : 35, y : 9, NPCName: 'Lilith', Desc: 'tavernkeeper', PeaceAI: 'scheduled', Schedule: 'lilith', Conversation: 'lilith', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_green.gif', skintone: 1};
-mappages["beldskae"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 21, y : 17, NPCName: 'Barri', Desc: 'tavernkeeper', PeaceAI: 'scheduled', Schedule: 'barri', Conversation: 'barri', Gender: 'male', NPCBand: '0', OverrideGraphic: 'civ_green.2.gif', skintone: 2};
-mappages["beldskae"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 39, y : 17, NPCName: 'Molly', Desc: 'dealer', PeaceAI: 'scheduled', Schedule: 'molly', Conversation: 'molly', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_blue.2.gif', skintone: 2};
-mappages["beldskae"].npcs[6] = {name : 'TownsfolkVillagerNPC', x : 39, y : 20, NPCName: 'Ace', Desc: 'dealer', PeaceAI: 'scheduled', Schedule: 'ace', Conversation: 'ace', Gender: 'male', NPCBand: '0', OverrideGraphic: 'civ_red.gif', skintone: 1};
-mappages["beldskae"].npcs[7] = {name : 'TownsfolkVillagerNPC', x : 21, y : 23, NPCName: 'Serge', Desc: 'dealer', PeaceAI: 'scheduled', Schedule: 'serge', Conversation: 'serge', Gender: 'male', NPCBand: '0', OverrideGraphic: 'civ_blue.gif', skintone: 1};
-mappages["beldskae"].npcs[8] = {name : 'TownsfolkVillagerNPC', x : 37, y : 18, NPCName: 'Allan', Desc: 'gambler', PeaceAI: 'scheduled', Schedule: 'allan', Conversation: 'allan', Gender: 'male', NPCBand: '0', OverrideGraphic: 'civ_red.gif', skintone: 1};
-mappages["beldskae"].npcs[9] = {name : 'TownsfolkVillagerNPC', x : 37, y : 19, NPCName: 'Steph', Desc: 'gambler', PeaceAI: 'scheduled', Schedule: 'steph', Conversation: 'steph', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_green.gif', skintone: 1};
-mappages["beldskae"].npcs[10] = {name : 'TownsfolkVillagerNPC', x : 36, y : 21, NPCName: 'Ernest', Desc: 'gambler', PeaceAI: 'scheduled', Schedule: 'ernest', Conversation: 'ernest', Gender: 'male', NPCBand: '0', OverrideGraphic: 'civ_green.2.gif', skintone: 2};
-mappages["beldskae"].npcs[11] = {name : 'TownsfolkVillagerNPC', x : 34, y : 20, NPCName: 'Kelse', Desc: 'gambler', PeaceAI: 'scheduled', Schedule: 'kelse', Conversation: 'kelse', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.gif', skintone: 1};
-mappages["beldskae"].npcs[12] = {name : 'TownsfolkVillagerNPC', x : 53, y : 19, NPCName: 'Graham', PeaceAI: 'scheduled', Schedule: 'graham', Conversation: 'graham', Gender: 'male', NPCBand: '0', OverrideGraphic: 'civ_red.gif', skintone: 1};
-mappages["beldskae"].npcs[13] = {name : 'TinkerVillagerNPC', x : 53, y : 20, NPCName: 'Kathleen', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'kathleen', Conversation: 'kathleen', Gender: 'female', NPCBand: '0', OverrideGraphic: '304.2.gif', skintone: 2};
-mappages["beldskae"].npcs[14] = {name : 'AdventurerVillagerNPC', x : 35, y : 18, NPCName: 'Conrad', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'conrad', Conversation: 'conrad', Gender: 'male', NPCBand: '0', skintone: 1};
-mappages["beldskae"].npcs[15] = {name : 'TownsfolkVillagerNPC', x : 37, y : 16, NPCName: 'Ursula', PeaceAI: 'scheduled', Schedule: 'ursula', Conversation: 'ursula', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_green.2.gif', skintone: 2};
-mappages["beldskae"].npcs[16] = {name : 'TownGuardNPC', x : 14, y : 16, NPCName: 'Gabe', PeaceAI: 'scheduled', Schedule: 'gabe', Conversation: 'gabe', Gender: 'male', NPCBand: '0', OverrideGraphic: '309.gif', skintone: 1};
-mappages["beldskae"].npcs[17] = {name : 'TownGuardNPC', x : 37, y : 21, NPCName: 'Kalli', PeaceAI: 'scheduled', Schedule: 'kalli', Conversation: 'kalli', Gender: 'female', NPCBand: '0', skintone: 1};
-mappages["beldskae"].npcs[18] = {name : 'TownGuardNPC', x : 29, y : 10, NPCName: 'Bennett', PeaceAI: 'scheduled', Schedule: 'bennett', Conversation: 'bennett', Gender: 'male', NPCBand: '0', skintone: 2};
-mappages["beldskae"].npcs[19] = {name : 'TownGuardNPC', x : 29, y : 29, NPCName: 'Pia', PeaceAI: 'scheduled', Schedule: 'pia', Conversation: 'pia', Gender: 'female', NPCBand: '0', skintone: 2};
-mappages["beldskae"].npcs[20] = {name : 'TownGuardNPC', x : 40, y : 24, NPCName: 'Sorcha', PeaceAI: 'scheduled', Schedule: 'sorcha', Conversation: 'sorcha', Gender: 'female', NPCBand: '0', skintone: 1};
-mappages["beldskae"].npcs[21] = {name : 'TownGuardNPC', x : 21, y : 19, NPCName: 'Rocco', PeaceAI: 'scheduled', Schedule: 'rocco', Conversation: 'rocco', Gender: 'male', NPCBand: '0', skintone: 1};
+mappages["beldskae"].npcs[0] = {name : 'FighterVillagerNPC', x : 43, y : 25, NPCName: 'Ariel', PeaceAI: 'scheduled', Schedule: 'ariel', Conversation: 'ariel', Gender: 'female', Merch: 'ariel', NPCBand: '0', skintone: 1, wornlayers: '{"body":"Plate2","head":"RedHeadPale","back":"","offhand":"KiteShield","cloak":"","mainhand":"LongswordPale","realhead":"RedHeadPale"}'};
+mappages["beldskae"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 36, y : 27, NPCName: 'Mia', PeaceAI: 'scheduled', Schedule: 'mia', Conversation: 'mia', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"WhiteTunic","head":"BrownDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"BrownDark"}'};
+mappages["beldskae"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 6, y : 14, NPCName: 'Denise', PeaceAI: 'scheduled', Schedule: 'denise', Conversation: 'denise', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PurpleFancy","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBrownPale"}'};
+mappages["beldskae"].npcs[3] = {name : 'TownsfolkVillagerNPC', x : 35, y : 9, NPCName: 'Lilith', Desc: 'tavernkeeper', PeaceAI: 'scheduled', Schedule: 'lilith', Conversation: 'lilith', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"WhiteTunic2","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBlackPale"}'};
+mappages["beldskae"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 21, y : 17, NPCName: 'Barri', Desc: 'tavernkeeper', PeaceAI: 'scheduled', Schedule: 'barri', Conversation: 'barri', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"WhiteTunic","head":"BrownDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"BrownDark"}'};
+mappages["beldskae"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 39, y : 17, NPCName: 'Bex', Desc: 'dealer', PeaceAI: 'scheduled', Schedule: 'bex', Conversation: 'bex', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"YellowTunic","head":"RedHeadPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"RedHeadPale"}'};
+mappages["beldskae"].npcs[6] = {name : 'TownsfolkVillagerNPC', x : 39, y : 20, NPCName: 'Ace', Desc: 'dealer', PeaceAI: 'scheduled', Schedule: 'ace', Conversation: 'ace', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"YellowTunic","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBrownPale"}'};
+mappages["beldskae"].npcs[7] = {name : 'TownsfolkVillagerNPC', x : 21, y : 23, NPCName: 'Serge', Desc: 'dealer', PeaceAI: 'scheduled', Schedule: 'serge', Conversation: 'serge', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"WhiteTunic","head":"BlondePale","back":"","offhand":"OffhandPale","cloak":"RedCloak","mainhand":"MainHandPale","realhead":"BlondePale"}'};
+mappages["beldskae"].npcs[8] = {name : 'TownsfolkVillagerNPC', x : 37, y : 18, NPCName: 'Allan', Desc: 'gambler', PeaceAI: 'scheduled', Schedule: 'allan', Conversation: 'allan', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"OrangeTunic2","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBlackPale"}'};
+mappages["beldskae"].npcs[9] = {name : 'TownsfolkVillagerNPC', x : 37, y : 19, NPCName: 'Steph', Desc: 'gambler', PeaceAI: 'scheduled', Schedule: 'steph', Conversation: 'steph', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueDress","head":"BrunetteWomanPale","back":"","offhand":"","cloak":"","mainhand":"","realhead":"ShortBrownPale"}'};
+mappages["beldskae"].npcs[10] = {name : 'TownsfolkVillagerNPC', x : 36, y : 21, NPCName: 'Ernest', Desc: 'gambler', PeaceAI: 'scheduled', Schedule: 'ernest', Conversation: 'ernest', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"WhiteTunic2","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"ShortBlackDark"}'};
+mappages["beldskae"].npcs[11] = {name : 'TownsfolkVillagerNPC', x : 34, y : 20, NPCName: 'Kelse', Desc: 'gambler', PeaceAI: 'scheduled', Schedule: 'kelse', Conversation: 'kelse', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"OrangeTunic","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBrownPale"}'};
+mappages["beldskae"].npcs[12] = {name : 'TownsfolkVillagerNPC', x : 53, y : 19, NPCName: 'Graham', PeaceAI: 'scheduled', Schedule: 'graham', Conversation: 'graham', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"GreenTunic","head":"BlondePale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"BlondePale"}'};
+mappages["beldskae"].npcs[13] = {name : 'TinkerVillagerNPC', x : 53, y : 20, NPCName: 'Kathleen', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'kathleen', Conversation: 'kathleen', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"LeatherArmor","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"ShortBlackDark"}'};
+mappages["beldskae"].npcs[14] = {name : 'AdventurerVillagerNPC', x : 35, y : 18, NPCName: 'Conrad', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'conrad', Conversation: 'conrad', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueFancy","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"BlueCloak","mainhand":"MainHandPale","realhead":"ShortBrownPale"}'};
+mappages["beldskae"].npcs[15] = {name : 'TownsfolkVillagerNPC', x : 37, y : 16, NPCName: 'Ursula', PeaceAI: 'scheduled', Schedule: 'ursula', Conversation: 'ursula', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"BlueTunic","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"ShortBlackDark"}'};
+mappages["beldskae"].npcs[16] = {name : 'TownGuardNPC', x : 14, y : 16, NPCName: 'Gabe', PeaceAI: 'scheduled', Schedule: 'gabe', Conversation: 'gabe', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateWhiteTabard","head":"PaleOpenHelm","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"ShortBlackPale"}'};
+mappages["beldskae"].npcs[17] = {name : 'TownGuardNPC', x : 37, y : 21, NPCName: 'Kalli', PeaceAI: 'scheduled', Schedule: 'kalli', Conversation: 'kalli', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateWhiteTabard","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"ShortBlackPale"}'};
+mappages["beldskae"].npcs[18] = {name : 'TownGuardNPC', x : 29, y : 10, NPCName: 'Bennett', PeaceAI: 'scheduled', Schedule: 'bennett', Conversation: 'bennett', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateWhiteTabard","head":"DarkOpenHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BaldBeardedDark"}'};
+mappages["beldskae"].npcs[19] = {name : 'TownGuardNPC', x : 29, y : 29, NPCName: 'Pia', PeaceAI: 'scheduled', Schedule: 'pia', Conversation: 'pia', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateWhiteTabard","head":"DarkOpenHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"ShortBlackDark"}'};
+mappages["beldskae"].npcs[20] = {name : 'TownGuardNPC', x : 40, y : 24, NPCName: 'Sorcha', PeaceAI: 'scheduled', Schedule: 'sorcha', Conversation: 'sorcha', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateWhiteTabard","head":"PaleOpenHelm","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"BlondePale"}'};
+mappages["beldskae"].npcs[21] = {name : 'TownGuardNPC', x : 21, y : 19, NPCName: 'Rocco', PeaceAI: 'scheduled', Schedule: 'rocco', Conversation: 'rocco', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateWhiteTabard","head":"PaleOpenHelm","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"OldManPale"}'};
 
 mappages["beldskae"].desc = "The Towne of Beldskae";
 mappages["beldskae"].longdesc = `They say what happens in Beldskae is not spoken of outside its walls. Famous for its wealth and gambling hall, Beldskae beckons you invitingly. It is a city of light and noise, which never sleeps.`;
@@ -345,8 +346,9 @@ mappages["beldskae"].returny = '74';
 mappages["beldskae"].returninfused = '0';
 mappages["beldskae"].linkedMaps = ["beldskae2","beldskae3"];
 mappages["beldskae"].editorLabels = '{"div_tile23x10":"Ariel shop","div_tile43x23":"Ariel","div_tile22x29":"Megan shop and house","div_tile9x22":"Mia","div_tile53x14":"Allan and Steph","div_tile44x14":"Ace","div_tile22x18":"Barri","div_tile8x18":"Denise"}';
+// MAP ENDS HERE
 
-
+// MAP BEGINS HERE
 mappages["beldskae2"] = {};
 mappages["beldskae2"].terrain = [];
  mappages["beldskae2"].terrain[0] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
@@ -465,14 +467,14 @@ mappages["beldskae2"].features[70] = {name : 'Fireplace', x : 25, y : 33};
 
 
 mappages["beldskae2"].npcs = [];
-mappages["beldskae2"].npcs[0] = {name : 'MageVillagerNPC', x : 23, y : 31, NPCName: 'Megan', PeaceAI: 'scheduled', Schedule: 'megan', Conversation: 'megan', Gender: 'female', Merch: 'megan', NPCBand: '0', OverrideGraphic: 'mage-offcolor.gif', skintone: '1'};
-mappages["beldskae2"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 33, y : 25, NPCName: 'Percy', PeaceAI: 'scheduled', Schedule: 'percy', Conversation: 'percy', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: '2'};
-mappages["beldskae2"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 39, y : 21, NPCName: 'Rich', PeaceAI: 'scheduled', Schedule: 'rich', Conversation: 'rich', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.gif', skintone: '1'};
-mappages["beldskae2"].npcs[3] = {name : 'TownsfolkVillagerNPC', x : 33, y : 17, NPCName: 'Grant', PeaceAI: 'scheduled', Schedule: 'grant', Conversation: 'grant', Gender: 'male', NPCBand: '0', OverrideGraphic: 'civ_green.gif', skintone: '1'};
-mappages["beldskae2"].npcs[4] = {name : 'TownGuardNPC', x : 21, y : 17, NPCName: 'Layla', PeaceAI: 'scheduled', Schedule: 'layla', Conversation: 'layla', Gender: 'female', NPCBand: '0', skintone: '2'};
-mappages["beldskae2"].npcs[5] = {name : 'TownGuardNPC', x : 24, y : 17, NPCName: 'Doris', PeaceAI: 'scheduled', Schedule: 'doris', Conversation: 'doris', Gender: 'female', NPCBand: '0', skintone: '1'};
-mappages["beldskae2"].npcs[6] = {name : 'TownGuardNPC', x : 24, y : 19, NPCName: 'Jordan', PeaceAI: 'scheduled', Schedule: 'jordan', Conversation: 'jordan', Gender: 'male', NPCBand: '0', skintone: '2'};
-mappages["beldskae2"].npcs[7] = {name : 'TownGuardNPC', x : 24, y : 21, NPCName: 'Ferris', PeaceAI: 'scheduled', Schedule: 'ferris', Conversation: 'ferris', Gender: 'male', NPCBand: '0', skintone: '2'};
+mappages["beldskae2"].npcs[0] = {name : 'MageVillagerNPC', x : 23, y : 31, NPCName: 'Megan', PeaceAI: 'scheduled', Schedule: 'megan', Conversation: 'megan', Gender: 'female', Merch: 'megan', NPCBand: '0', skintone: 1, wornlayers: '{"body":"RedRobe","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"QuarterstaffPale","realhead":"ShortBrownPale"}'};
+mappages["beldskae2"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 33, y : 25, NPCName: 'Percy', PeaceAI: 'scheduled', Schedule: 'percy', Conversation: 'percy', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"WhiteTunic","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"ShortBlackDark"}'};
+mappages["beldskae2"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 39, y : 21, NPCName: 'Rich', PeaceAI: 'scheduled', Schedule: 'rich', Conversation: 'rich', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueTunic","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBlackPale"}'};
+mappages["beldskae2"].npcs[3] = {name : 'TownsfolkVillagerNPC', x : 33, y : 17, NPCName: 'Grant', PeaceAI: 'scheduled', Schedule: 'grant', Conversation: 'grant', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"GreenTunic","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBrownPale"}'};
+mappages["beldskae2"].npcs[4] = {name : 'TownGuardNPC', x : 21, y : 17, NPCName: 'Layla', PeaceAI: 'scheduled', Schedule: 'layla', Conversation: 'layla', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateWhiteTabard","head":"DarkOpenHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BrownDark"}'};
+mappages["beldskae2"].npcs[5] = {name : 'TownGuardNPC', x : 24, y : 17, NPCName: 'Doris', PeaceAI: 'scheduled', Schedule: 'doris', Conversation: 'doris', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateWhiteTabard","head":"PaleOpenHelm","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"BlondePale"}'};
+mappages["beldskae2"].npcs[6] = {name : 'TownGuardNPC', x : 24, y : 19, NPCName: 'Jordan', PeaceAI: 'scheduled', Schedule: 'jordan', Conversation: 'jordan', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateWhiteTabard","head":"DarkOpenHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"ShortBlackDark"}'};
+mappages["beldskae2"].npcs[7] = {name : 'TownGuardNPC', x : 24, y : 21, NPCName: 'Ferris', PeaceAI: 'scheduled', Schedule: 'ferris', Conversation: 'ferris', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateWhiteTabard","head":"DarkOpenHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BaldBeardedDark"}'};
 
 mappages["beldskae2"].desc = "The Towne of Beldskae";
 mappages["beldskae2"].longdesc = ``;
@@ -500,7 +502,10 @@ mappages["beldskae2"].returny = '74';
 mappages["beldskae2"].returninfused = '0';
 mappages["beldskae2"].linkedMaps = ["beldskae","beldskae3"];
 mappages["beldskae2"].editorLabels = '{"div_tile39x14":"PC","div_tile33x22":"Ernest","div_tile33x14":"Kelse","div_tile33x26":"Percy","div_tile39x17":"Ursula","div_tile39x21":"Rich","div_tile33x17":"Grant"}';
+// MAP ENDS HERE
 
+
+// MAP BEGINS HERE
 mappages["beldskae3"] = {};
 mappages["beldskae3"].terrain = [];
  mappages["beldskae3"].terrain[0] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
@@ -573,16 +578,16 @@ mappages["beldskae3"].features[24] = {name : 'LeftTable', x : 33, y : 24};
 mappages["beldskae3"].features[25] = {name : 'RightTable', x : 34, y : 24};
 mappages["beldskae3"].features[26] = {name : 'RightChair', x : 35, y : 24};
 mappages["beldskae3"].features[27] = {name : 'TopChair', x : 34, y : 23};
-mappages["beldskae3"].features[28] = {name : 'Brazier', x : 34, y : 20};
-mappages["beldskae3"].features[29] = {name : 'Brazier', x : 37, y : 13};
-mappages["beldskae3"].features[30] = {name : 'Brazier', x : 37, y : 22};
-mappages["beldskae3"].features[31] = {name : 'Brazier', x : 36, y : 27};
-mappages["beldskae3"].features[32] = {name : 'DoubleBedHead', x : 33, y : 26};
-mappages["beldskae3"].features[33] = {name : 'DoubleBedFoot', x : 34, y : 26};
+mappages["beldskae3"].features[28] = {name : 'DoubleBedHead', x : 33, y : 26};
+mappages["beldskae3"].features[29] = {name : 'DoubleBedFoot', x : 34, y : 26};
+mappages["beldskae3"].features[30] = {name : 'Brazier', x : 34, y : 20};
+mappages["beldskae3"].features[31] = {name : 'Brazier', x : 37, y : 13};
+mappages["beldskae3"].features[32] = {name : 'Brazier', x : 37, y : 22};
+mappages["beldskae3"].features[33] = {name : 'Brazier', x : 36, y : 27};
 
 
 mappages["beldskae3"].npcs = [];
-mappages["beldskae3"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 33, y : 13, NPCName: 'Coral', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'coral', Conversation: 'coral', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_red.2.gif', skintone: 2};
+mappages["beldskae3"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 33, y : 13, NPCName: 'Coral', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'coral', Conversation: 'coral', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"WhiteTunic2","head":"BrownDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"BrownDark"}'};
 
 mappages["beldskae3"].desc = "The Towne of Beldskae";
 mappages["beldskae3"].longdesc = ``;
@@ -610,6 +615,8 @@ mappages["beldskae3"].returny = '74';
 mappages["beldskae3"].returninfused = '0';
 mappages["beldskae3"].linkedMaps = ["beldskae","beldskae2"];
 mappages["beldskae3"].editorLabels = '{"div_tile34x14":"Coral","div_tile33x23":"Conrad"}';
+// MAP ENDS HERE
+
 
 mappages["beldskae"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
@@ -640,6 +647,7 @@ mappages["beldskae"].onload = function(mapref) {
   }
 }
 
+// MAP BEGINS HERE
 mappages["beldskae_scour"] = {};
 mappages["beldskae_scour"].terrain = [];
  mappages["beldskae_scour"].terrain[0] = 'nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn ., ., ., nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn';
@@ -979,14 +987,13 @@ mappages["beldskae_scour"].features[291] = {name : 'FireField', x : 33, y : 31};
 
 
 mappages["beldskae_scour"].npcs = [];
-mappages["beldskae_scour"].npcs[0] = {name : 'DaemonNPC', x : 28, y : 24, skintone: '1'};
-mappages["beldskae_scour"].npcs[1] = {name : 'DaemonNPC', x : 30, y : 21, skintone: '1'};
-mappages["beldskae_scour"].npcs[2] = {name : 'DaemonNPC', x : 35, y : 25, skintone: '1'};
-mappages["beldskae_scour"].npcs[3] = {name : 'DaemonNPC', x : 22, y : 25, skintone: '1'};
-mappages["beldskae_scour"].npcs[4] = {name : 'TownGuardNPC', x : 29, y : 23, NPCName: 'Gabe', Conversation: 'gabe_scour', Gender: 'male', NPCBand: '0', OverrideGraphic: '309.gif', skintone: '1'};
-mappages["beldskae_scour"].npcs[5] = {name : 'TownGuardNPC', x : 36, y : 24, NPCName: 'Bennett', Conversation: 'bennett_scour', Gender: 'male', NPCBand: '0', skintone: '2'};
-mappages["beldskae_scour"].npcs[6] = {name : 'TownGuardNPC', x : 24, y : 25, NPCName: 'Pia', Conversation: 'pia_scour', Gender: 'female', NPCBand: '0', skintone: '2'};
-
+mappages["beldskae_scour"].npcs[0] = {name : 'DaemonNPC', x : 28, y : 24, skintone: 1};
+mappages["beldskae_scour"].npcs[1] = {name : 'DaemonNPC', x : 30, y : 21, skintone: 1};
+mappages["beldskae_scour"].npcs[2] = {name : 'DaemonNPC', x : 35, y : 25, skintone: 1};
+mappages["beldskae_scour"].npcs[3] = {name : 'DaemonNPC', x : 22, y : 25, skintone: 1};
+mappages["beldskae_scour"].npcs[4] = {name : 'TownGuardNPC', x : 29, y : 23, NPCName: 'Gabe', Conversation: 'gabe_scour', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateWhiteTabard","head":"PaleOpenHelm","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"ShortBlackPale"}'};
+mappages["beldskae_scour"].npcs[5] = {name : 'TownGuardNPC', x : 36, y : 24, NPCName: 'Bennett', Conversation: 'bennett_scour', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateWhiteTabard","head":"DarkOpenHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BaldBeardedDark"}'};
+mappages["beldskae_scour"].npcs[6] = {name : 'TownGuardNPC', x : 24, y : 25, NPCName: 'Pia', Conversation: 'pia_scour', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateWhiteTabard","head":"DarkOpenHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"ShortBlackDark"}'};
 
 mappages["beldskae_scour"].desc = "The Towne of Beldskae";
 mappages["beldskae_scour"].longdesc = `You arrive to find Beldskae in flames... but still fighting. It is not too late! `;
@@ -1014,6 +1021,7 @@ mappages["beldskae_scour"].returny = '74';
 mappages["beldskae_scour"].returninfused = '0';
 mappages["beldskae_scour"].linkedMaps = ["beldskae2_scour"];
 mappages["beldskae_scour"].editorLabels = '{"div_tile23x10":"Ariel shop","div_tile43x23":"Ariel","div_tile22x29":"Megan shop and house","div_tile9x22":"Mia","div_tile53x14":"Allan and Steph","div_tile44x14":"Ace","div_tile22x18":"Barri","div_tile8x18":"Denise"}';
+// MAP ENDS HERE
 
 mappages["beldskae2_scour"] = {};
 mappages["beldskae2_scour"].terrain = [];
@@ -1866,28 +1874,28 @@ mappages["beldskae_saved"].features[233] = {name : 'Brazier', x : 51, y : 17};
 
 
 mappages["beldskae_saved"].npcs = [];
-mappages["beldskae_saved"].npcs[0] = {name : 'FighterVillagerNPC', x : 43, y : 25, NPCName: 'Ariel', PeaceAI: 'scheduled', Schedule: 'ariel', Conversation: 'ariel', Gender: 'female', Merch: 'ariel', NPCBand: '0', skintone: 1};
-mappages["beldskae_saved"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 36, y : 27, NPCName: 'Mia', PeaceAI: 'scheduled', Schedule: 'mia', Conversation: 'mia', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_blue.2.gif', skintone: 2};
-mappages["beldskae_saved"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 6, y : 14, NPCName: 'Denise', PeaceAI: 'scheduled', Schedule: 'denise', Conversation: 'denise', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: 2};
-mappages["beldskae_saved"].npcs[3] = {name : 'TownsfolkVillagerNPC', x : 35, y : 9, NPCName: 'Lilith', Desc: 'tavernkeeper', PeaceAI: 'scheduled', Schedule: 'lilith', Conversation: 'lilith', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_green.gif', skintone: 1};
-mappages["beldskae_saved"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 21, y : 17, NPCName: 'Barri', Desc: 'tavernkeeper', PeaceAI: 'scheduled', Schedule: 'barri', Conversation: 'barri', Gender: 'male', NPCBand: '0', OverrideGraphic: 'civ_green.2.gif', skintone: 2};
-mappages["beldskae_saved"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 39, y : 17, NPCName: 'Molly', Desc: 'dealer', PeaceAI: 'scheduled', Schedule: 'molly', Conversation: 'molly', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_blue.2.gif', skintone: 2};
-mappages["beldskae_saved"].npcs[6] = {name : 'TownsfolkVillagerNPC', x : 39, y : 20, NPCName: 'Ace', Desc: 'dealer', PeaceAI: 'scheduled', Schedule: 'ace', Conversation: 'ace', Gender: 'male', NPCBand: '0', OverrideGraphic: 'civ_red.gif', skintone: 1};
-mappages["beldskae_saved"].npcs[7] = {name : 'TownsfolkVillagerNPC', x : 21, y : 23, NPCName: 'Serge', Desc: 'dealer', PeaceAI: 'scheduled', Schedule: 'serge', Conversation: 'serge', Gender: 'male', NPCBand: '0', OverrideGraphic: 'civ_blue.gif', skintone: 1};
-mappages["beldskae_saved"].npcs[8] = {name : 'TownsfolkVillagerNPC', x : 37, y : 18, NPCName: 'Allan', Desc: 'gambler', PeaceAI: 'scheduled', Schedule: 'allan', Conversation: 'allan', Gender: 'male', NPCBand: '0', OverrideGraphic: 'civ_red.gif', skintone: 1};
-mappages["beldskae_saved"].npcs[9] = {name : 'TownsfolkVillagerNPC', x : 37, y : 19, NPCName: 'Steph', Desc: 'gambler', PeaceAI: 'scheduled', Schedule: 'steph', Conversation: 'steph', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_green.gif', skintone: 1};
-mappages["beldskae_saved"].npcs[10] = {name : 'TownsfolkVillagerNPC', x : 36, y : 21, NPCName: 'Ernest', Desc: 'gambler', PeaceAI: 'scheduled', Schedule: 'ernest', Conversation: 'ernest', Gender: 'male', NPCBand: '0', OverrideGraphic: 'civ_green.2.gif', skintone: 2};
-mappages["beldskae_saved"].npcs[11] = {name : 'TownsfolkVillagerNPC', x : 34, y : 20, NPCName: 'Kelse', Desc: 'gambler', PeaceAI: 'scheduled', Schedule: 'kelse', Conversation: 'kelse', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.gif', skintone: 1};
-mappages["beldskae_saved"].npcs[12] = {name : 'TownsfolkVillagerNPC', x : 53, y : 19, NPCName: 'Graham', PeaceAI: 'scheduled', Schedule: 'graham', Conversation: 'graham', Gender: 'male', NPCBand: '0', OverrideGraphic: 'civ_red.gif', skintone: 1};
-mappages["beldskae_saved"].npcs[13] = {name : 'TinkerVillagerNPC', x : 53, y : 20, NPCName: 'Kathleen', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'kathleen', Conversation: 'kathleen', Gender: 'female', NPCBand: '0', OverrideGraphic: '304.2.gif', skintone: 2};
-mappages["beldskae_saved"].npcs[14] = {name : 'AdventurerVillagerNPC', x : 35, y : 18, NPCName: 'Conrad', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'conrad', Conversation: 'conrad', Gender: 'male', NPCBand: '0', skintone: 1};
-mappages["beldskae_saved"].npcs[15] = {name : 'TownsfolkVillagerNPC', x : 37, y : 16, NPCName: 'Ursula', PeaceAI: 'scheduled', Schedule: 'ursula', Conversation: 'ursula', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_green.2.gif', skintone: 2};
-mappages["beldskae_saved"].npcs[16] = {name : 'TownGuardNPC', x : 14, y : 16, NPCName: 'Gabe', PeaceAI: 'scheduled', Schedule: 'gabe', Conversation: 'gabe', Gender: 'male', NPCBand: '0', OverrideGraphic: '309.gif', skintone: 1};
-mappages["beldskae_saved"].npcs[17] = {name : 'TownGuardNPC', x : 37, y : 21, NPCName: 'Kalli', PeaceAI: 'scheduled', Schedule: 'kalli', Conversation: 'kalli', Gender: 'female', NPCBand: '0', skintone: 1};
-mappages["beldskae_saved"].npcs[18] = {name : 'TownGuardNPC', x : 29, y : 10, NPCName: 'Bennett', PeaceAI: 'scheduled', Schedule: 'bennett', Conversation: 'bennett', Gender: 'male', NPCBand: '0', skintone: 2};
-mappages["beldskae_saved"].npcs[19] = {name : 'TownGuardNPC', x : 29, y : 29, NPCName: 'Pia', PeaceAI: 'scheduled', Schedule: 'pia', Conversation: 'pia', Gender: 'female', NPCBand: '0', skintone: 2};
-mappages["beldskae_saved"].npcs[20] = {name : 'TownGuardNPC', x : 40, y : 24, NPCName: 'Sorcha', PeaceAI: 'scheduled', Schedule: 'sorcha', Conversation: 'sorcha', Gender: 'female', NPCBand: '0', skintone: 1};
-mappages["beldskae_saved"].npcs[21] = {name : 'TownGuardNPC', x : 21, y : 19, NPCName: 'Rocco', PeaceAI: 'scheduled', Schedule: 'rocco', Conversation: 'rocco', Gender: 'male', NPCBand: '0', skintone: 1};
+mappages["beldskae_saved"].npcs[0] = {name : 'FighterVillagerNPC', x : 43, y : 25, NPCName: 'Ariel', PeaceAI: 'scheduled', Schedule: 'ariel', Conversation: 'ariel', Gender: 'female', Merch: 'ariel', NPCBand: '0', skintone: 1, wornlayers: '{"body":"Plate2","head":"RedHeadPale","back":"","offhand":"KiteShield","cloak":"","mainhand":"LongswordPale","realhead":"RedHeadPale"}'};
+mappages["beldskae_saved"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 36, y : 27, NPCName: 'Mia', PeaceAI: 'scheduled', Schedule: 'mia', Conversation: 'mia', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"WhiteTunic","head":"BrownDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"BrownDark"}'};
+mappages["beldskae_saved"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 6, y : 14, NPCName: 'Denise', PeaceAI: 'scheduled', Schedule: 'denise', Conversation: 'denise', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PurpleFancy","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBrownPale"}'};
+mappages["beldskae_saved"].npcs[3] = {name : 'TownsfolkVillagerNPC', x : 35, y : 9, NPCName: 'Lilith', Desc: 'tavernkeeper', PeaceAI: 'scheduled', Schedule: 'lilith', Conversation: 'lilith', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"WhiteTunic2","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBlackPale"}'};
+mappages["beldskae_saved"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 21, y : 17, NPCName: 'Barri', Desc: 'tavernkeeper', PeaceAI: 'scheduled', Schedule: 'barri', Conversation: 'barri', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"WhiteTunic","head":"BrownDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"BrownDark"}'};
+mappages["beldskae_saved"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 39, y : 17, NPCName: 'Bex', Desc: 'dealer', PeaceAI: 'scheduled', Schedule: 'bex', Conversation: 'bex', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"YellowTunic","head":"RedHeadPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"RedHeadPale"}'};
+mappages["beldskae_saved"].npcs[6] = {name : 'TownsfolkVillagerNPC', x : 39, y : 20, NPCName: 'Ace', Desc: 'dealer', PeaceAI: 'scheduled', Schedule: 'ace', Conversation: 'ace', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"YellowTunic","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBrownPale"}'};
+mappages["beldskae_saved"].npcs[7] = {name : 'TownsfolkVillagerNPC', x : 21, y : 23, NPCName: 'Serge', Desc: 'dealer', PeaceAI: 'scheduled', Schedule: 'serge', Conversation: 'serge', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"WhiteTunic","head":"BlondePale","back":"","offhand":"OffhandPale","cloak":"RedCloak","mainhand":"MainHandPale","realhead":"BlondePale"}'};
+mappages["beldskae_saved"].npcs[8] = {name : 'TownsfolkVillagerNPC', x : 37, y : 18, NPCName: 'Allan', Desc: 'gambler', PeaceAI: 'scheduled', Schedule: 'allan', Conversation: 'allan', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"OrangeTunic2","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBlackPale"}'};
+mappages["beldskae_saved"].npcs[9] = {name : 'TownsfolkVillagerNPC', x : 37, y : 19, NPCName: 'Steph', Desc: 'gambler', PeaceAI: 'scheduled', Schedule: 'steph', Conversation: 'steph', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueDress","head":"BrunetteWomanPale","back":"","offhand":"","cloak":"","mainhand":"","realhead":"ShortBrownPale"}'};
+mappages["beldskae_saved"].npcs[10] = {name : 'TownsfolkVillagerNPC', x : 36, y : 21, NPCName: 'Ernest', Desc: 'gambler', PeaceAI: 'scheduled', Schedule: 'ernest', Conversation: 'ernest', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"WhiteTunic2","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"ShortBlackDark"}'};
+mappages["beldskae_saved"].npcs[11] = {name : 'TownsfolkVillagerNPC', x : 34, y : 20, NPCName: 'Kelse', Desc: 'gambler', PeaceAI: 'scheduled', Schedule: 'kelse', Conversation: 'kelse', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"OrangeTunic","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBrownPale"}'};
+mappages["beldskae_saved"].npcs[12] = {name : 'TownsfolkVillagerNPC', x : 53, y : 19, NPCName: 'Graham', PeaceAI: 'scheduled', Schedule: 'graham', Conversation: 'graham', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"GreenTunic","head":"BlondePale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"BlondePale"}'};
+mappages["beldskae_saved"].npcs[13] = {name : 'TinkerVillagerNPC', x : 53, y : 20, NPCName: 'Kathleen', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'kathleen', Conversation: 'kathleen', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"LeatherArmor","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"ShortBlackDark"}'};
+mappages["beldskae_saved"].npcs[14] = {name : 'AdventurerVillagerNPC', x : 35, y : 18, NPCName: 'Conrad', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'conrad', Conversation: 'conrad', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueFancy","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"BlueCloak","mainhand":"MainHandPale","realhead":"ShortBrownPale"}'};
+mappages["beldskae_saved"].npcs[15] = {name : 'TownsfolkVillagerNPC', x : 37, y : 16, NPCName: 'Ursula', PeaceAI: 'scheduled', Schedule: 'ursula', Conversation: 'ursula', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"BlueTunic","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"ShortBlackDark"}'};
+mappages["beldskae_saved"].npcs[16] = {name : 'TownGuardNPC', x : 14, y : 16, NPCName: 'Gabe', PeaceAI: 'scheduled', Schedule: 'gabe', Conversation: 'gabe', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateWhiteTabard","head":"PaleOpenHelm","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"ShortBlackPale"}'};
+mappages["beldskae_saved"].npcs[17] = {name : 'TownGuardNPC', x : 37, y : 21, NPCName: 'Kalli', PeaceAI: 'scheduled', Schedule: 'kalli', Conversation: 'kalli', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateWhiteTabard","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"ShortBlackPale"}'};
+mappages["beldskae_saved"].npcs[18] = {name : 'TownGuardNPC', x : 29, y : 10, NPCName: 'Bennett', PeaceAI: 'scheduled', Schedule: 'bennett', Conversation: 'bennett', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateWhiteTabard","head":"DarkOpenHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BaldBeardedDark"}'};
+mappages["beldskae_saved"].npcs[19] = {name : 'TownGuardNPC', x : 29, y : 29, NPCName: 'Pia', PeaceAI: 'scheduled', Schedule: 'pia', Conversation: 'pia', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateWhiteTabard","head":"DarkOpenHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"ShortBlackDark"}'};
+mappages["beldskae_saved"].npcs[20] = {name : 'TownGuardNPC', x : 40, y : 24, NPCName: 'Sorcha', PeaceAI: 'scheduled', Schedule: 'sorcha', Conversation: 'sorcha', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateWhiteTabard","head":"PaleOpenHelm","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"BlondePale"}'};
+mappages["beldskae_saved"].npcs[21] = {name : 'TownGuardNPC', x : 21, y : 19, NPCName: 'Rocco', PeaceAI: 'scheduled', Schedule: 'rocco', Conversation: 'rocco', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateWhiteTabard","head":"PaleOpenHelm","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"OldManPale"}'};
 
 mappages["beldskae_saved"].desc = "The Towne of Beldskae";
 mappages["beldskae_saved"].longdesc = `Beldskae is recovering from the attack. You rejoice that you were able to save the city.`;
@@ -2032,14 +2040,15 @@ mappages["beldskae2_saved"].features[68] = {name : 'Fireplace', x : 25, y : 33};
 
 
 mappages["beldskae2_saved"].npcs = [];
-mappages["beldskae2_saved"].npcs[0] = {name : 'MageVillagerNPC', x : 23, y : 31, NPCName: 'Megan', PeaceAI: 'scheduled', Schedule: 'megan', Conversation: 'megan', Gender: 'female', Merch: 'megan', NPCBand: '0', OverrideGraphic: 'mage-offcolor.gif', skintone: 1};
-mappages["beldskae2_saved"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 33, y : 25, NPCName: 'Percy', PeaceAI: 'scheduled', Schedule: 'percy', Conversation: 'percy', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: 2};
-mappages["beldskae2_saved"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 39, y : 21, NPCName: 'Rich', PeaceAI: 'scheduled', Schedule: 'rich', Conversation: 'rich', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.gif', skintone: 1};
-mappages["beldskae2_saved"].npcs[3] = {name : 'TownsfolkVillagerNPC', x : 33, y : 17, NPCName: 'Grant', PeaceAI: 'scheduled', Schedule: 'grant', Conversation: 'grant', Gender: 'male', NPCBand: '0', OverrideGraphic: 'civ_green.gif', skintone: 1};
-mappages["beldskae2_saved"].npcs[4] = {name : 'TownGuardNPC', x : 21, y : 17, NPCName: 'Layla', PeaceAI: 'scheduled', Schedule: 'layla', Conversation: 'layla', Gender: 'female', NPCBand: '0', skintone: 2};
-mappages["beldskae2_saved"].npcs[5] = {name : 'TownGuardNPC', x : 24, y : 17, NPCName: 'Doris', PeaceAI: 'scheduled', Schedule: 'doris', Conversation: 'doris', Gender: 'female', NPCBand: '0', skintone: 1};
-mappages["beldskae2_saved"].npcs[6] = {name : 'TownGuardNPC', x : 24, y : 19, NPCName: 'Jordan', PeaceAI: 'scheduled', Schedule: 'jordan', Conversation: 'jordan', Gender: 'male', NPCBand: '0', skintone: 2};
-mappages["beldskae2_saved"].npcs[7] = {name : 'TownGuardNPC', x : 24, y : 21, NPCName: 'Ferris', PeaceAI: 'scheduled', Schedule: 'ferris', Conversation: 'ferris', Gender: 'male', NPCBand: '0', skintone: 2};
+mappages["beldskae2_saved"].npcs[0] = {name : 'MageVillagerNPC', x : 23, y : 31, NPCName: 'Megan', PeaceAI: 'scheduled', Schedule: 'megan', Conversation: 'megan', Gender: 'female', Merch: 'megan', NPCBand: '0', skintone: 1, wornlayers: '{"body":"RedRobe","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"QuarterstaffPale","realhead":"ShortBrownPale"}'};
+mappages["beldskae2_saved"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 33, y : 25, NPCName: 'Percy', PeaceAI: 'scheduled', Schedule: 'percy', Conversation: 'percy', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"WhiteTunic","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"ShortBlackDark"}'};
+mappages["beldskae2_saved"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 39, y : 21, NPCName: 'Rich', PeaceAI: 'scheduled', Schedule: 'rich', Conversation: 'rich', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueTunic","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBlackPale"}'};
+mappages["beldskae2_saved"].npcs[3] = {name : 'TownsfolkVillagerNPC', x : 33, y : 17, NPCName: 'Grant', PeaceAI: 'scheduled', Schedule: 'grant', Conversation: 'grant', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"GreenTunic","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBrownPale"}'};
+mappages["beldskae2_saved"].npcs[4] = {name : 'TownGuardNPC', x : 21, y : 17, NPCName: 'Layla', PeaceAI: 'scheduled', Schedule: 'layla', Conversation: 'layla', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateWhiteTabard","head":"DarkOpenHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BrownDark"}'};
+mappages["beldskae2_saved"].npcs[5] = {name : 'TownGuardNPC', x : 24, y : 17, NPCName: 'Doris', PeaceAI: 'scheduled', Schedule: 'doris', Conversation: 'doris', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateWhiteTabard","head":"PaleOpenHelm","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"BlondePale"}'};
+mappages["beldskae2_saved"].npcs[6] = {name : 'TownGuardNPC', x : 24, y : 19, NPCName: 'Jordan', PeaceAI: 'scheduled', Schedule: 'jordan', Conversation: 'jordan', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateWhiteTabard","head":"DarkOpenHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"ShortBlackDark"}'};
+mappages["beldskae2_saved"].npcs[7] = {name : 'TownGuardNPC', x : 24, y : 21, NPCName: 'Ferris', PeaceAI: 'scheduled', Schedule: 'ferris', Conversation: 'ferris', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateWhiteTabard","head":"DarkOpenHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BaldBeardedDark"}'};
+
 
 mappages["beldskae2_saved"].desc = "The Towne of Beldskae";
 mappages["beldskae2_saved"].longdesc = ``;

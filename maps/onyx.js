@@ -1,13 +1,14 @@
 "use strict";
 
+// MAP BEGINS HERE
 mappages["onyx"] = {};
 mappages["onyx"].terrain = [];
  mappages["onyx"].terrain[0] = '.| uu uu |. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
  mappages["onyx"].terrain[1] = '.| uu uu |, .. .. .. .. .. .. .. .. .. ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
  mappages["onyx"].terrain[2] = '.| uu uu |. .. .. ,, .. .. .. .. .. .. .. .. .. .. .. .. ,, .. .. .. .. ,, .. .. .. .. .. .. .. .. ,, .. ..';
  mappages["onyx"].terrain[3] = '.| uu uu |. .. .. .. .. .. .. .. .. .. .. .. .. .. ## ## ## ## ## ## ## ## ## ## ## ## ## .. .. .. .. .. ..';
- mappages["onyx"].terrain[4] = '.| uu uu |. .. ## ## ## ## #O ## ## ## ## ## ## #O ## .. .. .. ++ +c +c +c +c +c +c +c ## .. .. .. .. .. ..';
- mappages["onyx"].terrain[5] = '.| uu uu |. .. ## +c +c +c +c +c +c +c ## +c +c +c +c .. ## ## ## ## +c +c +c +c ## +c ## .. .. .. .. .. ..';
+ mappages["onyx"].terrain[4] = '.| uu uu |. .. ## ## ## ## #O ## ## ## ## ## ## #O ## +c +x +c ++ +c +c +c +c +c +c +c ## .. .. .. .. .. ..';
+ mappages["onyx"].terrain[5] = '.| uu uu |. .. ## +c +c +c +c +c +c +c ## +c +c +c +c +c ## ## ## ## +c +c +c +c ## +c ## .. .. .. .. .. ..';
  mappages["onyx"].terrain[6] = '.| uu uu |. .. ## +c +c +c +c +c +c +c ## +c +c +c ## ## ## ,, u, ## +c +c +c +c ## +c ## .. ,, .. .. .. ..';
  mappages["onyx"].terrain[7] = '.| uu uu |. .. ## +c +c +c +c +c +c +c +c +c +c +c ## .. .. .. ,, ## ## ## ## ## ## ## ## .. .. .. .. .. ..';
  mappages["onyx"].terrain[8] = '.| uu uu |. .. #O +c +c +c +c +c +c +c ## ## ## ## ## ,, +r +r .. ## +c +c +c +c +c +c ## .. .. .. .. .. ..';
@@ -224,31 +225,31 @@ mappages["onyx"].features[178] = {name : 'SmallBox', x : 28, y : 26, lootgroup :
 mappages["onyx"].features[179] = {name : 'Evergreen', x : 32, y : 9};
 mappages["onyx"].features[180] = {name : 'Door', x : 28, y : 23, desc : "locked door", locked : 1};
 mappages["onyx"].features[181] = {name : 'StairUp2', x : 29, y : 24, entermap : 'onyx2', enterx : 29, entery : 24};
-mappages["onyx"].features[182] = {name : 'Brazier', x : 6, y : 5};
-mappages["onyx"].features[183] = {name : 'Brazier', x : 12, y : 11};
-mappages["onyx"].features[184] = {name : 'Brazier', x : 12, y : 19};
-mappages["onyx"].features[185] = {name : 'Fireplace', x : 7, y : 33};
-mappages["onyx"].features[186] = {name : 'Fireplace', x : 23, y : 33};
-mappages["onyx"].features[187] = {name : 'TorchEast', x : 29, y : 26};
-mappages["onyx"].features[188] = {name : 'TorchWest', x : 25, y : 26};
-mappages["onyx"].features[189] = {name : 'TorchEast', x : 12, y : 6};
-mappages["onyx"].features[190] = {name : 'Brazier', x : 25, y : 16};
-mappages["onyx"].features[191] = {name : 'Brazier', x : 6, y : 11};
-mappages["onyx"].features[192] = {name : 'Brazier', x : 23, y : 11};
-mappages["onyx"].features[193] = {name : 'Brazier', x : 26, y : 6};
-mappages["onyx"].features[194] = {name : 'SignpostRight', x : 9, y : 27};
-mappages["onyx"].features[195] = {name : 'SignpostRight', x : 20, y : 27};
-mappages["onyx"].features[196] = {name : 'SignpostRight', x : 9, y : 13};
+mappages["onyx"].features[182] = {name : 'SignpostRight', x : 9, y : 27};
+mappages["onyx"].features[183] = {name : 'SignpostRight', x : 20, y : 27};
+mappages["onyx"].features[184] = {name : 'SignpostRight', x : 9, y : 13};
+mappages["onyx"].features[185] = {name : 'Brazier', x : 6, y : 5};
+mappages["onyx"].features[186] = {name : 'Brazier', x : 12, y : 11};
+mappages["onyx"].features[187] = {name : 'Brazier', x : 12, y : 19};
+mappages["onyx"].features[188] = {name : 'Fireplace', x : 7, y : 33};
+mappages["onyx"].features[189] = {name : 'Fireplace', x : 23, y : 33};
+mappages["onyx"].features[190] = {name : 'TorchEast', x : 29, y : 26};
+mappages["onyx"].features[191] = {name : 'TorchWest', x : 25, y : 26};
+mappages["onyx"].features[192] = {name : 'TorchEast', x : 12, y : 6};
+mappages["onyx"].features[193] = {name : 'Brazier', x : 25, y : 16};
+mappages["onyx"].features[194] = {name : 'Brazier', x : 6, y : 11};
+mappages["onyx"].features[195] = {name : 'Brazier', x : 23, y : 11};
+mappages["onyx"].features[196] = {name : 'Brazier', x : 26, y : 6};
 
 
 mappages["onyx"].npcs = [];
-mappages["onyx"].npcs[0] = {name : 'FighterVillagerNPC', x : 26, y : 20, NPCName: 'Aithne', PeaceAI: 'scheduled', Schedule: 'aithne', Conversation: 'aithne', Gender: 'male', NPCBand: '0', OverrideGraphic: 'fighter-offcolor.gif', skintone: '2'};
-mappages["onyx"].npcs[1] = {name : 'TownGuardNPC', x : 25, y : 30, NPCName: 'Helena', PeaceAI: 'scheduled', Schedule: 'helena', Conversation: 'onyx_guard', Gender: 'female', NPCBand: '0', skintone: '1'};
-mappages["onyx"].npcs[2] = {name : 'TownGuardNPC', x : 25, y : 32, NPCName: 'Gunta', PeaceAI: 'scheduled', Schedule: 'gunta', Conversation: 'onyx_guard', Gender: 'male', NPCBand: '0', skintone: '2'};
-mappages["onyx"].npcs[3] = {name : 'TownGuardNPC', x : 5, y : 14, NPCName: 'Wash', PeaceAI: 'scheduled', Schedule: 'wash', Conversation: 'onyx_guard', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["onyx"].npcs[4] = {name : 'TownGuardNPC', x : 5, y : 16, NPCName: 'Ali', PeaceAI: 'scheduled', Schedule: 'ali', Conversation: 'onyx_guard', Gender: 'female', NPCBand: '0', skintone: '2'};
-mappages["onyx"].npcs[5] = {name : 'TownGuardNPC', x : 28, y : 32, NPCName: 'Patty', PeaceAI: 'scheduled', Schedule: 'patty', Conversation: 'onyx_guard', Gender: 'female', NPCBand: '0', skintone: '2'};
-mappages["onyx"].npcs[6] = {name : 'TownGuardNPC', x : 18, y : 15, NPCName: 'Calvin', PeaceAI: 'scheduled', Schedule: 'calvin', Conversation: 'onyx_guard', Gender: 'male', NPCBand: '0', skintone: '1'};
+mappages["onyx"].npcs[0] = {name : 'FighterVillagerNPC', x : 26, y : 20, NPCName: 'Aithne', PeaceAI: 'scheduled', Schedule: 'aithne', Conversation: 'aithne', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"ChainMail","head":"BaldBeardedDark","back":"","offhand":"RoundShield","cloak":"","mainhand":"LongswordDark","realhead":"BaldBeardedDark"}'};
+mappages["onyx"].npcs[1] = {name : 'TownGuardNPC', x : 25, y : 30, NPCName: 'Helena', PeaceAI: 'scheduled', Schedule: 'helena', Conversation: 'onyx_guard', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateSash","head":"BlueClosedHelm","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"BlondePale"}'};
+mappages["onyx"].npcs[2] = {name : 'TownGuardNPC', x : 25, y : 32, NPCName: 'Gunta', PeaceAI: 'scheduled', Schedule: 'gunta', Conversation: 'onyx_guard', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateSash","head":"BlueClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BaldBeardedDark"}'};
+mappages["onyx"].npcs[3] = {name : 'TownGuardNPC', x : 5, y : 14, NPCName: 'Wash', PeaceAI: 'scheduled', Schedule: 'wash', Conversation: 'onyx_guard', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateSash","head":"BlueClosedHelm","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"ShortBlackPale"}'};
+mappages["onyx"].npcs[4] = {name : 'TownGuardNPC', x : 5, y : 16, NPCName: 'Ali', PeaceAI: 'scheduled', Schedule: 'ali', Conversation: 'onyx_guard', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateSash","head":"BlueClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BrownDark"}'};
+mappages["onyx"].npcs[5] = {name : 'TownGuardNPC', x : 28, y : 32, NPCName: 'Patty', PeaceAI: 'scheduled', Schedule: 'patty', Conversation: 'onyx_guard', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateSash","head":"BlueClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BrownDark"}'};
+mappages["onyx"].npcs[6] = {name : 'TownGuardNPC', x : 18, y : 15, NPCName: 'Calvin', PeaceAI: 'scheduled', Schedule: 'calvin', Conversation: 'onyx_guard', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateSash","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"ShortBrownPale"}'};
 
 mappages["onyx"].desc = "The Towne of Onyx";
 mappages["onyx"].longdesc = ``;
@@ -276,8 +277,9 @@ mappages["onyx"].returny = '119';
 mappages["onyx"].returninfused = '0';
 mappages["onyx"].linkedMaps = ["onyx2","onyx3","onyxtunnel","onyxlimbo"];
 mappages["onyx"].editorLabels = '{}';
+// MAP ENDS HERE
 
-
+// MAP BEGINS HERE
 mappages["onyx2"] = {};
 mappages["onyx2"].terrain = [];
  mappages["onyx2"].terrain[0] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
@@ -390,21 +392,21 @@ mappages["onyx2"].features[66] = {name : 'PurpleCarpetNW', x : 7, y : 9};
 mappages["onyx2"].features[67] = {name : 'PurpleCarpetNE', x : 8, y : 9};
 mappages["onyx2"].features[68] = {name : 'PurpleCarpetSW', x : 7, y : 10};
 mappages["onyx2"].features[69] = {name : 'PurpleCarpetSE', x : 8, y : 10};
-mappages["onyx2"].features[70] = {name : 'Brazier', x : 9, y : 8};
-mappages["onyx2"].features[71] = {name : 'TorchEast', x : 23, y : 30};
-mappages["onyx2"].features[72] = {name : 'TorchEast', x : 23, y : 32};
-mappages["onyx2"].features[73] = {name : 'Fireplace', x : 25, y : 30};
-mappages["onyx2"].features[74] = {name : 'DoubleBedHead', x : 6, y : 6};
-mappages["onyx2"].features[75] = {name : 'DoubleBedFoot', x : 7, y : 6};
+mappages["onyx2"].features[70] = {name : 'DoubleBedHead', x : 6, y : 6};
+mappages["onyx2"].features[71] = {name : 'DoubleBedFoot', x : 7, y : 6};
+mappages["onyx2"].features[72] = {name : 'Brazier', x : 9, y : 8};
+mappages["onyx2"].features[73] = {name : 'TorchEast', x : 23, y : 30};
+mappages["onyx2"].features[74] = {name : 'TorchEast', x : 23, y : 32};
+mappages["onyx2"].features[75] = {name : 'Fireplace', x : 25, y : 30};
 
 
 mappages["onyx2"].npcs = [];
-mappages["onyx2"].npcs[0] = {name : 'DruidVillagerNPC', x : 23, y : 11, NPCName: 'William', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'william', Conversation: 'william', Gender: 'male', Merch: 'william', NPCBand: '0', OverrideGraphic: 'druid-offcolor.1.gif', skintone: 1};
-mappages["onyx2"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 8, y : 5, NPCName: 'Rowan', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'rowan', Conversation: 'rowan', Gender: 'male', NPCBand: '0', OverrideGraphic: 'civ_blue.2.gif', skintone: 2};
-mappages["onyx2"].npcs[2] = {name : 'AdventurerVillagerNPC', x : 15, y : 11, NPCName: 'Carol', PeaceAI: 'scheduled', Schedule: 'carol', Conversation: 'carol', Gender: 'female', NPCBand: '0', skintone: 1};
-mappages["onyx2"].npcs[3] = {name : 'RangerVillagerNPC', x : 22, y : 33, NPCName: 'Dawne', PeaceAI: 'scheduled', Schedule: 'dawne', Conversation: 'dawne', Gender: 'female', NPCBand: '0', OverrideGraphic: 'ranger-offcolor.gif', skintone: 1};
-mappages["onyx2"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 10, y : 30, NPCName: 'Gretchen', PeaceAI: 'scheduled', Schedule: 'gretchen', Conversation: 'gretchen', Gender: 'female', Merch: 'gretchen', NPCBand: '0', OverrideGraphic: 'civ_red.gif', skintone: 1};
-mappages["onyx2"].npcs[5] = {name : 'TinkerVillagerNPC', x : 10, y : 33, NPCName: 'Heather', PeaceAI: 'scheduled', Schedule: 'heather', Conversation: 'heather', Gender: 'female', NPCBand: '0', OverrideGraphic: '304.2.gif', skintone: 2};
+mappages["onyx2"].npcs[0] = {name : 'DruidVillagerNPC', x : 23, y : 11, NPCName: 'William', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'william', Conversation: 'william', Gender: 'male', Merch: 'william', NPCBand: '0', skintone: 1, wornlayers: '{"body":"GreenRobe","head":"BlondePale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"SerpentStaffPale","realhead":"BlondePale"}'};
+mappages["onyx2"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 8, y : 5, NPCName: 'Rowan', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'rowan', Conversation: 'rowan', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"WhiteTunic2","head":"OldManPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"OldManPale"}'};
+mappages["onyx2"].npcs[2] = {name : 'AdventurerVillagerNPC', x : 15, y : 11, NPCName: 'Carol', PeaceAI: 'scheduled', Schedule: 'carol', Conversation: 'carol', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"LeatherArmor","head":"BrownDark","back":"","offhand":"OffhandDark","cloak":"BlueCloak","mainhand":"ShortswordDark","realhead":"BrownDark"}'};
+mappages["onyx2"].npcs[3] = {name : 'RangerVillagerNPC', x : 22, y : 33, NPCName: 'Dawne', PeaceAI: 'scheduled', Schedule: 'dawne', Conversation: 'dawne', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"LeatherArmor","head":"ShortBrownPale","back":"Quiver","offhand":"OffhandPale","cloak":"","mainhand":"BowPale","realhead":"ShortBrownPale"}'};
+mappages["onyx2"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 10, y : 30, NPCName: 'Gretchen', PeaceAI: 'scheduled', Schedule: 'gretchen', Conversation: 'gretchen', Gender: 'female', Merch: 'gretchen', NPCBand: '0', skintone: 1, wornlayers: '{"body":"GreenTunic","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBlackPale"}'};
+mappages["onyx2"].npcs[5] = {name : 'TinkerVillagerNPC', x : 10, y : 33, NPCName: 'Heather', Desc: 'blacksmith', PeaceAI: 'scheduled', Schedule: 'heather', Conversation: 'heather', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"LeatherArmor","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HammerDark","realhead":"ShortBlackDark"}'};
 
 mappages["onyx2"].desc = "The Towne of Onyx";
 mappages["onyx2"].longdesc = ``;
@@ -432,7 +434,9 @@ mappages["onyx2"].returny = '119';
 mappages["onyx2"].returninfused = '0';
 mappages["onyx2"].linkedMaps = ["onyx","onyx3","onyxtunnel","onyxlimbo"];
 mappages["onyx2"].editorLabels = '{}';
+// MAP ENDS HERE
 
+// MAP BEGINS HERE
 mappages["onyx3"] = {};
 mappages["onyx3"].terrain = [];
  mappages["onyx3"].terrain[0] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
@@ -485,7 +489,7 @@ mappages["onyx3"].features[6] = {name : 'Brazier', x : 14, y : 19};
 
 
 mappages["onyx3"].npcs = [];
-mappages["onyx3"].npcs[0] = {name : 'MageVillagerNPC', x : 13, y : 20, NPCName: 'Xavier', PeaceAI: 'scheduled', Schedule: 'xavier', Conversation: 'xavier', Gender: 'male', NPCBand: '0', OverrideGraphic: 'mage-offcolor.gif', skintone: '1'};
+mappages["onyx3"].npcs[0] = {name : 'MageVillagerNPC', x : 13, y : 20, NPCName: 'Xavier', PeaceAI: 'scheduled', Schedule: 'xavier', Conversation: 'xavier', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueRobeHood","head":"Hood1","back":"","offhand":"OffhandPale","cloak":"","mainhand":"QuarterstaffPale","realhead":"ShortBrownPale"}'};
 
 mappages["onyx3"].desc = "The Towne of Onyx";
 mappages["onyx3"].longdesc = ``;
@@ -513,6 +517,7 @@ mappages["onyx3"].returny = '119';
 mappages["onyx3"].returninfused = '0';
 mappages["onyx3"].linkedMaps = ["onyx","onyx2","onyxtunnel","onyxlimbo"];
 mappages["onyx3"].editorLabels = '{}';
+// MAP ENDS HERE
 
 
 mappages["onyxtunnel"] = {};

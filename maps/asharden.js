@@ -1,5 +1,6 @@
 "use strict";
 
+// MAP BEGINS HERE
 mappages["asharden1"] = {};
 mappages["asharden1"].terrain = [];
  mappages["asharden1"].terrain[0] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
@@ -68,8 +69,8 @@ mappages["asharden1"].features[26] = {name : 'Brazier', x : 14, y : 18};
 
 
 mappages["asharden1"].npcs = [];
-mappages["asharden1"].npcs[0] = {name : 'MageVillagerNPC', x : 25, y : 17, NPCName: 'Asharden', Desc: 'wizard', Level: 6, int: 24, Conversation: 'asharden', ConversationFlag: 'asharden', Gender: 'male', Leash: 3, Bark: '0', NPCBand: '0', OverrideGraphic: 'mage-offcolor.gif', skintone: '1'};
-mappages["asharden1"].npcs[1] = {name : 'MageVillagerNPC', x : 22, y : 19, NPCName: 'Ivan', Conversation: 'ivan_ash', ConversationFlag: 'ivan', Gender: 'male', Leash: 3, Bark: '0', NPCBand: '0', OverrideGraphic: '303.gif', skintone: '1'};
+mappages["asharden1"].npcs[0] = {name : 'MageVillagerNPC', x : 25, y : 17, NPCName: 'Asharden', Desc: 'wizard', Level: 6, int: 24, Conversation: 'asharden', ConversationFlag: 'asharden', Gender: 'male', Leash: 3, Bark: '0', NPCBand: '0', skintone: 1, wornlayers: '{"body":"RedRobe","head":"OldManPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"QuarterstaffPale","realhead":"OldManPale"}'};
+mappages["asharden1"].npcs[1] = {name : 'MageVillagerNPC', x : 22, y : 19, NPCName: 'Ivan', Conversation: 'ivan_ash', ConversationFlag: 'ivan', Gender: 'male', Leash: 3, Bark: '0', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueRobePlain","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"QuarterstaffPale","realhead":"ShortBrownPale"}'};
 
 mappages["asharden1"].desc = "Asharden's Tower";
 mappages["asharden1"].longdesc = `From the base of the hill, you see a tower. The path spirals to the base of the tower, which looms ominously.`;
@@ -97,6 +98,7 @@ mappages["asharden1"].returny = '74';
 mappages["asharden1"].returninfused = '0';
 mappages["asharden1"].linkedMaps = ["asharden2","asharden3"];
 mappages["asharden1"].editorLabels = '{}';
+// MAP ENDS HERE
 
 mappages["asharden1"].onload = function(mapref) {
 
