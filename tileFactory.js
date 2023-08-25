@@ -2823,6 +2823,11 @@ tileFactory.prototype.makeDoorTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeDaemonDoorTile = function() {
+  let newTile = new DaemonDoorTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeTalkingDoorTile = function() {
   let newTile = new TalkingDoorTile();
   return newTile;
@@ -3135,11 +3140,6 @@ tileFactory.prototype.makeUnfinishedSign2Tile = function() {
 
 tileFactory.prototype.makeTombstoneTile = function() {
   let newTile = new TombstoneTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeTombstoneRIPTile = function() {
-  let newTile = new TombstoneRIPTile();
   return newTile;
 }
 
@@ -4248,11 +4248,6 @@ tileFactory.prototype.makeRoyalPuzzleLaserNSTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeRoyalPuzzleLaserCrossTile = function() {
-  let newTile = new RoyalPuzzleLaserCrossTile();
-  return newTile;
-}
-
 tileFactory.prototype.makeSunBeaconTile = function() {
   let newTile = new SunBeaconTile();
   return newTile;
@@ -4273,18 +4268,8 @@ tileFactory.prototype.makeWallOfWavesTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeRuneOfWavesTile = function() {
-  let newTile = new RuneOfWavesTile();
-  return newTile;
-}
-
 tileFactory.prototype.makeWallOfWindsTile = function() {
   let newTile = new WallOfWindsTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeRuneOfWindsTile = function() {
-  let newTile = new RuneOfWindsTile();
   return newTile;
 }
 
@@ -4293,28 +4278,13 @@ tileFactory.prototype.makeWallOfKingsTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeRuneOfKingsTile = function() {
-  let newTile = new RuneOfKingsTile();
-  return newTile;
-}
-
 tileFactory.prototype.makeWallOfFlamesTile = function() {
   let newTile = new WallOfFlamesTile();
   return newTile;
 }
 
-tileFactory.prototype.makeRuneOfFlamesTile = function() {
-  let newTile = new RuneOfFlamesTile();
-  return newTile;
-}
-
 tileFactory.prototype.makeWallOfVoidTile = function() {
   let newTile = new WallOfVoidTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeRuneOfVoidTile = function() {
-  let newTile = new RuneOfVoidTile();
   return newTile;
 }
 
@@ -4363,6 +4333,11 @@ tileFactory.prototype.makeMarkOfFlamesTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeMarkOfVoidTile = function() {
+  let newTile = new MarkOfVoidTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeFlameEternalTile = function() {
   let newTile = new FlameEternalTile();
   return newTile;
@@ -4380,6 +4355,11 @@ tileFactory.prototype.makeBlueFountainTile = function() {
 
 tileFactory.prototype.makeFountainTile = function() {
   let newTile = new FountainTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWideFountainTile = function() {
+  let newTile = new WideFountainTile();
   return newTile;
 }
 
@@ -5918,6 +5898,11 @@ tileFactory.prototype.makeBullNPCTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeCowNPCTile = function() {
+  let newTile = new CowNPCTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeCorruptPrinceNPCTile = function() {
   let newTile = new CorruptPrinceNPCTile();
   return newTile;
@@ -6343,8 +6328,8 @@ tileFactory.prototype.makeArchdaemonOfBoneNPCTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeTitanNPCTile = function() {
-  let newTile = new TitanNPCTile();
+tileFactory.prototype.makeTitanUNUSEDNPCTile = function() {
+  let newTile = new TitanUNUSEDNPCTile();
   return newTile;
 }
 

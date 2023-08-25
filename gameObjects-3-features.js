@@ -6670,9 +6670,9 @@ ShiftingWallTile.prototype = new FeatureObject();
 
 function DestructableStoneWallTile() {
   this.name = "DestructableStoneWall";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "0";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -13*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 2;
   this.prefix = "a";
