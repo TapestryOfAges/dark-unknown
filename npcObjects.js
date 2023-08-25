@@ -3190,7 +3190,7 @@ function DrakeNPCTile() {
   this.meleeAttackSound = 'sfx_roar_miss';
   this.graphic = 'static.png';
   this.spritexoffset = 0 * 32;
-  this.spriteyoffset = -128 * 32;
+  this.spriteyoffset = -158 * 32;
 
   ManualAnimation.call(this, { 
     animstart: 0*32,
@@ -4301,11 +4301,11 @@ function BlackDragonNPCTile() {
   this.meleeAttackSound = 'sfx_roar_miss';
   this.xpval = 0;
   this.graphic = 'static.png';
-  this.spritexoffset = 0 * 32;
-  this.spriteyoffset = -136 * 32;
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -166 * 32;
 
   ManualAnimation.call(this, { 
-    animstart: 0*32,
+    animstart: -5*32,
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
@@ -4331,8 +4331,6 @@ function DevourerNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '352.gif';
-  this.altgraphic = ['386.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '5d4+15'
   this.meleeStrDamage = 1
@@ -4350,6 +4348,19 @@ function DevourerNPCTile() {
   this.special = 'firebreath, icebreath, multiattack';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -159 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 DevourerNPCTile.prototype = new NPCObject();
 
@@ -4386,7 +4397,7 @@ function DragonNPCTile() {
   this.meleeAttackSound = 'sfx_roar_miss';
   this.graphic = 'static.png';
   this.spritexoffset = 0 * 32;
-  this.spriteyoffset = -135 * 32;
+  this.spriteyoffset = -166 * 32;
 
   ManualAnimation.call(this, { 
     animstart: 0*32,
@@ -4829,7 +4840,7 @@ function JusticeNPCTile() {
   });
 
   this.defwornlayers.body = 'BlueRobe'
-  this.defwornlayers.head = 'LongBrownHairPale'
+  this.defwornlayers.head = 'ShortBlackPale'
   this.defwornlayers.offhand = 'OffhandPale'
   this.defwornlayers.mainhand = 'QuarterstaffPale'
 
