@@ -1,5 +1,6 @@
 "use strict";
 
+// MAP BEGINS HERE
 mappages["lifeshope"] = {};
 mappages["lifeshope"].terrain = [];
  mappages["lifeshope"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
@@ -931,28 +932,28 @@ mappages["lifeshope"].features[881] = {name : 'RuinsWallDoor1', x : 34, y : 11};
 mappages["lifeshope"].features[882] = {name : 'RuinsWallDoor2', x : 12, y : 7};
 mappages["lifeshope"].features[883] = {name : 'RuinsWallDoor2', x : 11, y : 32};
 mappages["lifeshope"].features[884] = {name : 'RuinsWallDoor2', x : 21, y : 32};
-mappages["lifeshope"].features[885] = {name : 'Campfire', x : 20, y : 18};
-mappages["lifeshope"].features[886] = {name : 'Brazier', x : 9, y : 28};
-mappages["lifeshope"].features[887] = {name : 'Brazier', x : 11, y : 35};
-mappages["lifeshope"].features[888] = {name : 'Brazier', x : 21, y : 35};
-mappages["lifeshope"].features[889] = {name : 'Brazier', x : 21, y : 29};
-mappages["lifeshope"].features[890] = {name : 'Brazier', x : 32, y : 30};
-mappages["lifeshope"].features[891] = {name : 'Brazier', x : 32, y : 10};
-mappages["lifeshope"].features[892] = {name : 'Brazier', x : 21, y : 10};
-mappages["lifeshope"].features[893] = {name : 'Brazier', x : 9, y : 11};
-mappages["lifeshope"].features[894] = {name : 'Brazier', x : 13, y : 5};
-mappages["lifeshope"].features[895] = {name : 'DoubleBedHead', x : 7, y : 35};
-mappages["lifeshope"].features[896] = {name : 'DoubleBedFoot', x : 8, y : 35};
+mappages["lifeshope"].features[885] = {name : 'DoubleBedHead', x : 7, y : 35};
+mappages["lifeshope"].features[886] = {name : 'DoubleBedFoot', x : 8, y : 35};
+mappages["lifeshope"].features[887] = {name : 'Campfire', x : 20, y : 18};
+mappages["lifeshope"].features[888] = {name : 'Brazier', x : 9, y : 28};
+mappages["lifeshope"].features[889] = {name : 'Brazier', x : 11, y : 35};
+mappages["lifeshope"].features[890] = {name : 'Brazier', x : 21, y : 35};
+mappages["lifeshope"].features[891] = {name : 'Brazier', x : 21, y : 29};
+mappages["lifeshope"].features[892] = {name : 'Brazier', x : 32, y : 30};
+mappages["lifeshope"].features[893] = {name : 'Brazier', x : 32, y : 10};
+mappages["lifeshope"].features[894] = {name : 'Brazier', x : 21, y : 10};
+mappages["lifeshope"].features[895] = {name : 'Brazier', x : 9, y : 11};
+mappages["lifeshope"].features[896] = {name : 'Brazier', x : 13, y : 5};
 
 
 mappages["lifeshope"].npcs = [];
-mappages["lifeshope"].npcs[0] = {name : 'RangerVillagerNPC', x : 24, y : 8, NPCName: 'Tenderfoot', Schedule: 'tenderfoot', Conversation: 'tenderfoot', Gender: 'male', NPCBand: '0', OverrideGraphic: 'ranger-offcolor.gif', skintone: 1};
-mappages["lifeshope"].npcs[1] = {name : 'TinkerVillagerNPC', x : 32, y : 8, NPCName: 'Palmera', Schedule: 'palmera', Conversation: 'palmera', Gender: 'female', NPCBand: '0', OverrideGraphic: '304.2.gif', skintone: 2};
-mappages["lifeshope"].npcs[2] = {name : 'DruidVillagerNPC', x : 12, y : 9, NPCName: 'Charles', Schedule: 'charles', Conversation: 'charles', Gender: 'male', NPCBand: '0', OverrideGraphic: '302.gif', skintone: 1};
-mappages["lifeshope"].npcs[3] = {name : 'AdventurerVillagerNPC', x : 33, y : 32, NPCName: 'Zahaina', Schedule: 'zahaina', Conversation: 'zahaina', Gender: 'female', NPCBand: '0', skintone: 1};
-mappages["lifeshope"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 22, y : 33, NPCName: 'Boris', Schedule: 'boris', Conversation: 'boris', Gender: 'male', NPCBand: '0', OverrideGraphic: 'civ_blue.2.gif', skintone: 1};
-mappages["lifeshope"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 10, y : 30, NPCName: 'Grace', Schedule: 'grace', Conversation: 'grace', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_green.2.gif', skintone: 2};
-mappages["lifeshope"].npcs[6] = {name : 'ShepherdVillagerNPC', x : 11, y : 30, NPCName: 'Almus', Schedule: 'almus', Conversation: 'almus', Gender: 'male', NPCBand: '0', OverrideGraphic: '301.gif', skintone: 1};
+mappages["lifeshope"].npcs[0] = {name : 'RangerVillagerNPC', x : 24, y : 8, NPCName: 'Tenderfoot', Schedule: 'tenderfoot', Conversation: 'tenderfoot', Gender: 'male', NPCBand: '0', OverrideGraphic: 'ranger-offcolor.gif', skintone: 1, wornlayers: '{"body":"LeatherArmor","head":"ShortBrownPale","back":"Quiver","offhand":"OffhandPale","cloak":null,"mainhand":"BowPale"}'};
+mappages["lifeshope"].npcs[1] = {name : 'TinkerVillagerNPC', x : 32, y : 8, NPCName: 'Palmera', Schedule: 'palmera', Conversation: 'palmera', Gender: 'female', NPCBand: '0', OverrideGraphic: '304.2.gif', skintone: 2, wornlayers: '{"body":"LeatherArmor","head":"ShortBrownPale","back":null,"offhand":"OffhandPale","cloak":null,"mainhand":"HammerPale"}'};
+mappages["lifeshope"].npcs[2] = {name : 'DruidVillagerNPC', x : 12, y : 9, NPCName: 'Charles', Schedule: 'charles', Conversation: 'charles', Gender: 'male', NPCBand: '0', OverrideGraphic: '302.gif', skintone: 1, wornlayers: '{"body":"GreenRobe","head":"ShortBrownPale","back":null,"offhand":"OffhandPale","cloak":null,"mainhand":"SerpentStaffPale"}'};
+mappages["lifeshope"].npcs[3] = {name : 'AdventurerVillagerNPC', x : 33, y : 32, NPCName: 'Zahaina', Schedule: 'zahaina', Conversation: 'zahaina', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"ChainMail","head":"ShortBrownPale","back":null,"offhand":"OffhandPale","cloak":"BlueCloak","mainhand":"LongswordPale"}'};
+mappages["lifeshope"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 22, y : 33, NPCName: 'Boris', Schedule: 'boris', Conversation: 'boris', Gender: 'male', NPCBand: '0', OverrideGraphic: 'civ_blue.2.gif', skintone: 1, wornlayers: '{"body":"WhiteTunic","head":"ShortBrownPale","back":null,"offhand":"OffhandPale","cloak":null,"mainhand":"MainHandPale"}'};
+mappages["lifeshope"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 10, y : 30, NPCName: 'Grace', Schedule: 'grace', Conversation: 'grace', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_green.2.gif', skintone: 2, wornlayers: '{"body":"WhiteTunic","head":"ShortBrownPale","back":null,"offhand":"OffhandPale","cloak":null,"mainhand":"MainHandPale"}'};
+mappages["lifeshope"].npcs[6] = {name : 'ShepherdVillagerNPC', x : 11, y : 30, NPCName: 'Almus', Schedule: 'almus', Conversation: 'almus', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BrownRobeFancy","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"CrookPale","realhead":""}'};
 
 mappages["lifeshope"].desc = "Life's Hope";
 mappages["lifeshope"].longdesc = `Hidden away in the woods is this small village. Just a handful of houses, it appears to contain the survivors of Tharock's uprising who were not able to flee back to Ellusus.`;
@@ -980,3 +981,4 @@ mappages["lifeshope"].returny = '74';
 mappages["lifeshope"].returninfused = '0';
 mappages["lifeshope"].linkedMaps = [""];
 mappages["lifeshope"].editorLabels = '{}';
+// MAP ENDS HERE

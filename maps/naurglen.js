@@ -582,7 +582,7 @@ mappages["naurglen"].npcs[10] = {name : 'TownsfolkVillagerNPC', x : 93, y : 26, 
 mappages["naurglen"].npcs[11] = {name : 'TinkerVillagerNPC', x : 93, y : 34, NPCName: 'Kyvek', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'kyvek', Conversation: 'kyvek', ConversationFlag: 'kyvek', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"LeatherArmor","head":"RedHeadPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HammerPale","realhead":"RedHeadPale"}'};
 mappages["naurglen"].npcs[12] = {name : 'TownsfolkVillagerNPC', x : 21, y : 24, NPCName: 'Derek', PeaceAI: 'scheduled', Schedule: 'derek', Conversation: 'derek', ConversationFlag: 'derek', Gender: 'male', Leash: 4, Bark: '0', NPCBand: '0', OverrideGraphic: 'civ_blue.gif', skintone: 1, wornlayers: '{"body":"WhiteTunic","head":"ShortBrownPale","back":null,"offhand":"OffhandPale","cloak":null,"mainhand":"MainHandPale"}'};
 mappages["naurglen"].npcs[13] = {name : 'FighterVillagerNPC', x : 7, y : 20, NPCName: 'Blanche', Desc: 'soldier', Conversation: 'blanche', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"ChainMail","head":"BlondePale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"LongswordPale","realhead":"BlondePale"}'};
-mappages["naurglen"].npcs[14] = {name : 'ChildVillagerNPC', x : 25, y : 40, NPCName: 'Samantha', Desc: 'excited girl', Prefix: 'an', Schedule: 'samantha2', Conversation: 'samantha2', Gender: 'female', Leash: 3, NPCBand: '0', skintone: 2, wornlayers: 'undefined'};
+mappages["naurglen"].npcs[14] = {name : 'ChildVillagerNPC', x : 25, y : 40, NPCName: 'Samantha', Desc: 'excited girl', Prefix: 'an', Schedule: 'samantha2', Conversation: 'samantha2', Gender: 'female', Leash: 3, NPCBand: '0', skintone: 2, wornlayers: '{"body":"ChildDark","head":"","back":"","offhand":"","cloak":"","mainhand":"","realhead":"ShortBlackDark"}'};
 
 mappages["naurglen"].desc = "Naurglen";
 mappages["naurglen"].longdesc = `A small village that primarily supports the nearby castle, Naurglen is commonly split into its East and West halves. On the East is the town square and anything a visitor might need. The West is primarily farmland.%%On the far western border is one thing of interest: your house.`;
@@ -830,7 +830,7 @@ mappages["naurglen_limbo"].features = [];
 
 
 mappages["naurglen_limbo"].npcs = [];
-mappages["naurglen_limbo"].npcs[0] = {name : 'BardVillagerNPC', x : 2, y : 2, NPCName: 'Olivia', Conversation: 'olivia_naurglen', PeaceAI: 'scheduled', Schedule: 'olivia_naurglen', ConversationFlag: 'olivia', Gender: 'female', OverrideGraphic: '311.gif', skintone: '1'};
+mappages["naurglen_limbo"].npcs[0] = {name : 'BardVillagerNPC', x : 2, y : 2, NPCName: 'Olivia', PeaceAI: 'scheduled', Schedule: 'olivia_naurglen', Conversation: 'olivia_naurglen', ConversationFlag: 'olivia', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"Bard2","head":"","back":"","offhand":"","cloak":"","mainhand":"","realhead":"ShortBlackPale"}'};
 
 mappages["naurglen_limbo"].desc = "Naurglen Limbo";
 mappages["naurglen_limbo"].music = 'Village';

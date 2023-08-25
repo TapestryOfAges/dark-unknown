@@ -1,5 +1,6 @@
 "use strict";
 
+// MAP BEGINS HERE
 mappages["toshin1"] = {};
 mappages["toshin1"].terrain = [];
  mappages["toshin1"].terrain[0] = '^^ ^^ ^^ ^^ ^^ ^^ nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn ^^ ^^ ^^ ^^';
@@ -36,7 +37,7 @@ mappages["toshin1"].terrain[30] = '^^ ^^ nn nn nn nn nn nn nn nn nn nn nn nn nn 
 mappages["toshin1"].terrain[31] = '^^ ^^ ^^ ^^ nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
 
 mappages["toshin1"].features = [];
-mappages["toshin1"].features[0] = {name : 'DoorWindow', x : 25, y : 13, locked : 0, keyname : "ToshinKey", lootedid : 'toshintree'};
+mappages["toshin1"].features[0] = {name : 'DoorWindow', x : 25, y : 13, keyname : "ToshinKey", lootedid : 'toshintree'};
 mappages["toshin1"].features[1] = {name : 'Door', x : 23, y : 11};
 mappages["toshin1"].features[2] = {name : 'Door', x : 19, y : 20};
 mappages["toshin1"].features[3] = {name : 'StairUp', x : 17, y : 7, entermap : 'toshin2', enterx : 17, entery : 7};
@@ -128,12 +129,13 @@ mappages["toshin1"].features[88] = {name : 'Fireplace', x : 9, y : 14};
 mappages["toshin1"].features[89] = {name : 'Brazier', x : 13, y : 12};
 mappages["toshin1"].features[90] = {name : 'Brazier', x : 9, y : 12};
 
+
 mappages["toshin1"].npcs = [];
-mappages["toshin1"].npcs[0] = {name : 'MageVillagerNPC', x : 14, y : 10, NPCName: 'Arlan', PeaceAI: 'scheduled', Schedule: 'arlan', Conversation: 'arlan', Gender: 'male', NPCBand: '1', OverrideGraphic: 'mage-offcolor.gif', skintone: '1'};
-mappages["toshin1"].npcs[1] = {name : 'RangerVillagerNPC', x : 12, y : 9, NPCName: 'Elora', PeaceAI: 'scheduled', Schedule: 'elora', Conversation: 'elora', Gender: 'female', NPCBand: '0', OverrideGraphic: '305.gif', skintone: '1'};
+mappages["toshin1"].npcs[0] = {name : 'MageVillagerNPC', x : 14, y : 10, NPCName: 'Arlan', PeaceAI: 'scheduled', Schedule: 'arlan', Conversation: 'arlan', Gender: 'male', NPCBand: '1', skintone: 1, wornlayers: '{"body":"RedRobe","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"QuarterstaffPale","realhead":"ShortBlackPale"}'};
+mappages["toshin1"].npcs[1] = {name : 'RangerVillagerNPC', x : 12, y : 9, NPCName: 'Elora', PeaceAI: 'scheduled', Schedule: 'elora', Conversation: 'elora', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"LeatherArmor","head":"ShortBrownPale","back":"Quiver","offhand":"OffhandPale","cloak":"","mainhand":"BowPale","realhead":"ShortBrownPale"}'};
 
 mappages["toshin1"].desc = "Toshin's Tower";
-mappages["toshin1"].longdesc = 'Before you, rising perhaps 50 feet in the air, is a square stone tower. Outwardly utilitarian, it once housed one of the greatest wizards in recent memory. She disappeared decades ago, but her tower still stands.';
+mappages["toshin1"].longdesc = `Before you, rising perhaps 50 feet in the air, is a square stone tower. Outwardly utilitarian, it once housed one of the greatest wizards in recent memory. She disappeared decades ago, but her tower still stands.`;
 mappages["toshin1"].music = 'Magic';
 mappages["toshin1"].savename = `Toshin's Tower`;
 mappages["toshin1"].exitmap = 'darkunknown';
@@ -158,6 +160,7 @@ mappages["toshin1"].returny = '126';
 mappages["toshin1"].returninfused = '0';
 mappages["toshin1"].linkedMaps = ["toshin2","toshin3","toshin4"];
 mappages["toshin1"].editorLabels = '{}';
+// MAP ENDS HERE
 
 mappages["toshin1"].toshin_exit = function(mapref) {
   mapref.Exit = function(who,tomap,oldx,oldy,destx,desty) {

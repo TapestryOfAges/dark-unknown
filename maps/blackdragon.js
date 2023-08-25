@@ -1,5 +1,6 @@
 "use strict";
 
+// MAP BEGINS HERE
 mappages["blackdragon"] = {};
 mappages["blackdragon"].terrain = [];
  mappages["blackdragon"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. nn nn nn nn nn nn nn nn nn nn';
@@ -269,25 +270,25 @@ mappages["blackdragon"].features[216] = {name : 'TorchWest', x : 30, y : 20};
 
 
 mappages["blackdragon"].npcs = [];
-mappages["blackdragon"].npcs[0] = {name : 'TownGuardNPC', x : 10, y : 40, NPCName: 'Lumen', PeaceAI: 'scheduled', Schedule: 'lumen', Conversation: 'lumen', Gender: 'female', Bark: '0', NPCBand: '0', skintone: '2'};
-mappages["blackdragon"].npcs[1] = {name : 'TownGuardNPC', x : 20, y : 32, NPCName: 'Bosku', PeaceAI: 'scheduled', Schedule: 'bosku', Conversation: 'bosku', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["blackdragon"].npcs[2] = {name : 'TownGuardNPC', x : 11, y : 35, NPCName: 'Dollin', PeaceAI: 'scheduled', Schedule: 'dollin', Conversation: 'dollin', Gender: 'female', Bark: '0', NPCBand: '0', skintone: '1'};
-mappages["blackdragon"].npcs[3] = {name : 'TownGuardNPC', x : 24, y : 30, NPCName: 'Nessa', PeaceAI: 'scheduled', Schedule: 'nessa', Conversation: 'nessa', Gender: 'female', NPCBand: '0', skintone: '1'};
-mappages["blackdragon"].npcs[4] = {name : 'TownGuardNPC', x : 13, y : 35, NPCName: 'Ronan', PeaceAI: 'scheduled', Schedule: 'ronan', Conversation: 'ronan', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '2'};
-mappages["blackdragon"].npcs[5] = {name : 'TownGuardNPC', x : 24, y : 32, NPCName: 'Lian', PeaceAI: 'scheduled', Schedule: 'lian', Conversation: 'lian', Gender: 'male', NPCBand: '0', skintone: '2'};
-mappages["blackdragon"].npcs[6] = {name : 'TownGuardNPC', x : 8, y : 34, NPCName: 'Carbry', PeaceAI: 'scheduled', Schedule: 'carbry', Conversation: 'carbry', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '2'};
-mappages["blackdragon"].npcs[7] = {name : 'TownGuardNPC', x : 20, y : 34, NPCName: 'Aelid', PeaceAI: 'scheduled', Schedule: 'aelid', Conversation: 'aelid', Gender: 'female', NPCBand: '0', skintone: '2'};
-mappages["blackdragon"].npcs[8] = {name : 'TownGuardNPC', x : 8, y : 27, NPCName: 'Perick', PeaceAI: 'scheduled', Schedule: 'perick', Conversation: 'perick', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '2'};
-mappages["blackdragon"].npcs[9] = {name : 'TownGuardNPC', x : 24, y : 34, NPCName: 'Oshin', PeaceAI: 'scheduled', Schedule: 'oshin', Conversation: 'oshin', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["blackdragon"].npcs[10] = {name : 'PrinceNPC', x : 37, y : 12, NPCName: 'Prince Lance', PeaceAI: 'scheduled', Schedule: 'lance', Conversation: 'lance', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '1'};
-mappages["blackdragon"].npcs[11] = {name : 'BlackDragonNPC', x : 39, y : 15, NPCName: 'Black Dragon', Attitude: 'friendly', PeaceAI: 'scheduled', Schedule: 'blackdragon', Conversation: 'blackdragon', Gender: 'male', Leash: 2, Bark: '0', NPCBand: '0', skintone: '1'};
-mappages["blackdragon"].npcs[12] = {name : 'TownGuardNPC', x : 34, y : 20, NPCName: 'Ranlyn', PeaceAI: 'scheduled', Schedule: 'ranlyn', Conversation: 'ranlyn', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '2'};
-mappages["blackdragon"].npcs[13] = {name : 'TownGuardNPC', x : 33, y : 16, NPCName: 'Sissott', PeaceAI: 'scheduled', Schedule: 'sissott', Conversation: 'sissott', Gender: 'female', Bark: '0', NPCBand: '0', skintone: '2'};
-mappages["blackdragon"].npcs[14] = {name : 'TownGuardNPC', x : 24, y : 36, NPCName: 'Yuan', PeaceAI: 'scheduled', Schedule: 'yuan', Conversation: 'yuan', Gender: 'male', NPCBand: '0', skintone: '2'};
-mappages["blackdragon"].npcs[15] = {name : 'TownGuardNPC', x : 20, y : 36, NPCName: 'Joney', PeaceAI: 'scheduled', Schedule: 'joney', Conversation: 'joney', Gender: 'female', NPCBand: '0', skintone: '1'};
-mappages["blackdragon"].npcs[16] = {name : 'TownsfolkVillagerNPC', x : 16, y : 9, NPCName: 'Taran', PeaceAI: 'scheduled', Schedule: 'taran', Conversation: 'taran', ConversationFlag: 'taran', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: 'civ_red.gif', skintone: '1'};
-mappages["blackdragon"].npcs[17] = {name : 'TownsfolkVillagerNPC', x : 36, y : 27, NPCName: 'Brad', PeaceAI: 'scheduled', Schedule: 'brad', Conversation: 'brad', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.gif', skintone: '1'};
-mappages["blackdragon"].npcs[18] = {name : 'FighterVillagerNPC', x : 33, y : 33, NPCName: 'Nadya', PeaceAI: 'scheduled', Schedule: 'nadya', Conversation: 'nadya', Gender: 'female', NPCBand: '0', OverrideGraphic: 'fighter-offcolor.gif', skintone: '2'};
+mappages["blackdragon"].npcs[0] = {name : 'TownGuardNPC', x : 10, y : 40, NPCName: 'Lumen', PeaceAI: 'scheduled', Schedule: 'lumen', Conversation: 'lumen', Gender: 'female', Bark: '0', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"ShortBlackDark"}'};
+mappages["blackdragon"].npcs[1] = {name : 'TownGuardNPC', x : 20, y : 32, NPCName: 'Bosku', PeaceAI: 'scheduled', Schedule: 'bosku', Conversation: 'bosku', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"RedHeadPale"}'};
+mappages["blackdragon"].npcs[2] = {name : 'TownGuardNPC', x : 11, y : 35, NPCName: 'Dollin', PeaceAI: 'scheduled', Schedule: 'dollin', Conversation: 'dollin', Gender: 'female', Bark: '0', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"ShortBlackPale"}'};
+mappages["blackdragon"].npcs[3] = {name : 'TownGuardNPC', x : 24, y : 30, NPCName: 'Nessa', PeaceAI: 'scheduled', Schedule: 'nessa', Conversation: 'nessa', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"ShortBlackPale"}'};
+mappages["blackdragon"].npcs[4] = {name : 'TownGuardNPC', x : 13, y : 35, NPCName: 'Ronan', PeaceAI: 'scheduled', Schedule: 'ronan', Conversation: 'ronan', Gender: 'male', Bark: '0', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BrownDark"}'};
+mappages["blackdragon"].npcs[5] = {name : 'TownGuardNPC', x : 24, y : 32, NPCName: 'Lian', PeaceAI: 'scheduled', Schedule: 'lian', Conversation: 'lian', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BaldBeardedDark"}'};
+mappages["blackdragon"].npcs[6] = {name : 'TownGuardNPC', x : 8, y : 34, NPCName: 'Carbry', PeaceAI: 'scheduled', Schedule: 'carbry', Conversation: 'carbry', Gender: 'male', Bark: '0', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BrownDark"}'};
+mappages["blackdragon"].npcs[7] = {name : 'TownGuardNPC', x : 20, y : 34, NPCName: 'Aelid', PeaceAI: 'scheduled', Schedule: 'aelid', Conversation: 'aelid', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BrownDark"}'};
+mappages["blackdragon"].npcs[8] = {name : 'TownGuardNPC', x : 8, y : 27, NPCName: 'Perick', PeaceAI: 'scheduled', Schedule: 'perick', Conversation: 'perick', Gender: 'male', Bark: '0', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BaldBeardedDark"}'};
+mappages["blackdragon"].npcs[9] = {name : 'TownGuardNPC', x : 24, y : 34, NPCName: 'Oshin', PeaceAI: 'scheduled', Schedule: 'oshin', Conversation: 'oshin', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"ShortBrownPale"}'};
+mappages["blackdragon"].npcs[10] = {name : 'PrinceNPC', x : 37, y : 12, NPCName: 'Prince Lance', PeaceAI: 'scheduled', Schedule: 'lance', Conversation: 'lance', Bark: '0', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateKnight","head":"PrinceHead","back":"","offhand":"OffhandPale","cloak":"BlueCloak","mainhand":"MainHandPale","realhead":"ShortBlackPale"}'};
+mappages["blackdragon"].npcs[11] = {name : 'BlackDragonNPC', x : 39, y : 15, NPCName: 'Black Dragon', Attitude: 'friendly', PeaceAI: 'scheduled', Schedule: 'blackdragon', Conversation: 'blackdragon', Gender: 'male', Leash: 2, Bark: '0', NPCBand: '0', skintone: 1};
+mappages["blackdragon"].npcs[12] = {name : 'TownGuardNPC', x : 34, y : 20, NPCName: 'Ranlyn', PeaceAI: 'scheduled', Schedule: 'ranlyn', Conversation: 'ranlyn', Gender: 'male', Bark: '0', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"ShortBlackDark"}'};
+mappages["blackdragon"].npcs[13] = {name : 'TownGuardNPC', x : 33, y : 16, NPCName: 'Sissott', PeaceAI: 'scheduled', Schedule: 'sissott', Conversation: 'sissott', Gender: 'female', Bark: '0', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BrownDark"}'};
+mappages["blackdragon"].npcs[14] = {name : 'TownGuardNPC', x : 24, y : 36, NPCName: 'Yuan', PeaceAI: 'scheduled', Schedule: 'yuan', Conversation: 'yuan', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"ShortBlackDark"}'};
+mappages["blackdragon"].npcs[15] = {name : 'TownGuardNPC', x : 20, y : 36, NPCName: 'Joney', PeaceAI: 'scheduled', Schedule: 'joney', Conversation: 'joney', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"BlondePale"}'};
+mappages["blackdragon"].npcs[16] = {name : 'TownsfolkVillagerNPC', x : 16, y : 9, NPCName: 'Taran', PeaceAI: 'scheduled', Schedule: 'taran', Conversation: 'taran', ConversationFlag: 'taran', Gender: 'male', Bark: '0', NPCBand: '0', skintone: 1, wornlayers: '{"body":"GreenTunic","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBrownPale"}'};
+mappages["blackdragon"].npcs[17] = {name : 'TownsfolkVillagerNPC', x : 36, y : 27, NPCName: 'Brad', PeaceAI: 'scheduled', Schedule: 'brad', Conversation: 'brad', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"WhiteTunic2","head":"BlondePale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"BlondePale"}'};
+mappages["blackdragon"].npcs[18] = {name : 'FighterVillagerNPC', x : 33, y : 33, NPCName: 'Nadya', PeaceAI: 'scheduled', Schedule: 'nadya', Conversation: 'nadya', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"Plate2","head":"ShortBlackDark","back":"","offhand":"OffhandDaggerDark","cloak":"","mainhand":"LongswordDark","realhead":"ShortBlackDark"}'};
 
 mappages["blackdragon"].desc = "Black Dragon Castle";
 mappages["blackdragon"].longdesc = `Not long ago, this site was a ruin from wars past. But recently, Prince Lance rebuilt it with shocking speed, and now it is the center of his rebellion. The drawbridge is firmly closed across a deep moat.`;
@@ -315,6 +316,7 @@ mappages["blackdragon"].returny = '74';
 mappages["blackdragon"].returninfused = '0';
 mappages["blackdragon"].linkedMaps = ["blackdragon2","blackdragon3","blackdragon4"];
 mappages["blackdragon"].editorLabels = '{"div_tile13x23":"Taran","div_tile20x18":"Nadya","div_tile13x19":"Brad"}';
+// MAP ENDS HERE
 
 mappages["blackdragon"].onload = function(mapref) {
   // check for act 1 to be over, if so, gate is open
@@ -492,6 +494,7 @@ mappages["blackdragon2"].returninfused = '0';
 mappages["blackdragon2"].linkedMaps = ["blackdragon","blackdragon3","blackdragon4"];
 mappages["blackdragon2"].editorLabels = '{}';
 
+// MAP BEGINS HERE
 mappages["blackdragon3"] = {};
 mappages["blackdragon3"].terrain = [];
  mappages["blackdragon3"].terrain[0] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
@@ -554,7 +557,7 @@ mappages["blackdragon3"].features[9] = {name : 'EnergyField', x : 25, y : 20};
 
 
 mappages["blackdragon3"].npcs = [];
-mappages["blackdragon3"].npcs[0] = {name : 'MageVillagerNPC', x : 26, y : 20, NPCName: 'Justice', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'justice', Conversation: 'justice', ConversationFlag: 'justice', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '303.gif', skintone: '1'};
+mappages["blackdragon3"].npcs[0] = {name : 'MageVillagerNPC', x : 26, y : 20, NPCName: 'Justice', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'justice', Conversation: 'justice', ConversationFlag: 'justice', Gender: 'female', Bark: '0', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueRobe","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"QuarterstaffPale","realhead":"ShortBlackPale"}'};
 
 mappages["blackdragon3"].desc = "Black Dragon Castle";
 mappages["blackdragon3"].longdesc = ``;
@@ -582,6 +585,7 @@ mappages["blackdragon3"].returny = '74';
 mappages["blackdragon3"].returninfused = '0';
 mappages["blackdragon3"].linkedMaps = ["blackdragon2","blackdragon","blackdragon4"];
 mappages["blackdragon3"].editorLabels = '{}';
+// MAP ENDS HERE
 
 mappages["blackdragon3"].OrbPulse = function(mapref) {
   mapref.Enter = function(who,frommap,oldx,oldy,destx,desty) {
@@ -713,6 +717,7 @@ mappages["blackdragon4"].onload = function(mapref) {
 }
 
 
+// MAP BEGINS HERE
 mappages["blackdragon_int"] = {};
 mappages["blackdragon_int"].terrain = [];
  mappages["blackdragon_int"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. nn nn nn nn nn nn nn nn nn nn';
@@ -983,25 +988,25 @@ mappages["blackdragon_int"].features[217] = {name : 'TorchWest', x : 30, y : 20}
 
 
 mappages["blackdragon_int"].npcs = [];
-mappages["blackdragon_int"].npcs[0] = {name : 'TownGuardNPC', x : 10, y : 40, NPCName: 'Lumen', Conversation: 'lumen_int', Gender: 'female', Bark: '0', NPCBand: '0', skintone: '2'};
-mappages["blackdragon_int"].npcs[1] = {name : 'TownGuardNPC', x : 37, y : 17, NPCName: 'Bosku', Conversation: 'bosku_int', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["blackdragon_int"].npcs[2] = {name : 'TownGuardNPC', x : 11, y : 35, NPCName: 'Dollin', Conversation: 'dollin_int', Gender: 'female', Bark: '0', NPCBand: '0', skintone: '1'};
-mappages["blackdragon_int"].npcs[3] = {name : 'TownGuardNPC', x : 41, y : 13, NPCName: 'Nessa', Conversation: 'nessa_int', Gender: 'female', NPCBand: '0', skintone: '1'};
-mappages["blackdragon_int"].npcs[4] = {name : 'TownGuardNPC', x : 13, y : 35, NPCName: 'Ronan', Conversation: 'ronan_int', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '2'};
-mappages["blackdragon_int"].npcs[5] = {name : 'TownGuardNPC', x : 34, y : 12, NPCName: 'Lian', Conversation: 'lian_int', Gender: 'male', NPCBand: '0', skintone: '2'};
-mappages["blackdragon_int"].npcs[6] = {name : 'TownGuardNPC', x : 8, y : 34, NPCName: 'Carbry', Conversation: 'carbry_int', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '2'};
-mappages["blackdragon_int"].npcs[7] = {name : 'TownGuardNPC', x : 24, y : 26, NPCName: 'Aelid', Conversation: 'aelid_int', Gender: 'female', NPCBand: '0', skintone: '2'};
-mappages["blackdragon_int"].npcs[8] = {name : 'TownGuardNPC', x : 8, y : 27, NPCName: 'Perick', Conversation: 'perick_int', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '2'};
-mappages["blackdragon_int"].npcs[9] = {name : 'TownGuardNPC', x : 33, y : 18, NPCName: 'Oshin', Conversation: 'oshin_int', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["blackdragon_int"].npcs[10] = {name : 'PrinceNPC', x : 25, y : 17, NPCName: 'Prince Lance', Conversation: 'lance', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '1'};
-mappages["blackdragon_int"].npcs[11] = {name : 'TownGuardNPC', x : 34, y : 20, NPCName: 'Ranlyn', Conversation: 'ranlyn_int', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '2'};
-mappages["blackdragon_int"].npcs[12] = {name : 'TownGuardNPC', x : 33, y : 16, NPCName: 'Sissott', Conversation: 'sissott_int', Gender: 'female', Bark: '0', NPCBand: '0', skintone: '2'};
-mappages["blackdragon_int"].npcs[13] = {name : 'TownGuardNPC', x : 38, y : 10, NPCName: 'Yuan', Conversation: 'yuan_int', Gender: 'male', NPCBand: '0', skintone: '2'};
-mappages["blackdragon_int"].npcs[14] = {name : 'TownGuardNPC', x : 38, y : 22, NPCName: 'Joney', Conversation: 'joney_int', Gender: 'female', NPCBand: '0', skintone: '1'};
-mappages["blackdragon_int"].npcs[15] = {name : 'TownsfolkVillagerNPC', x : 36, y : 15, NPCName: 'Taran', Conversation: 'taran_int', ConversationFlag: 'taran', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: 'civ_red.gif', skintone: '1'};
-mappages["blackdragon_int"].npcs[16] = {name : 'TownsfolkVillagerNPC', x : 39, y : 16, NPCName: 'Brad', Conversation: 'brad_int', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.gif', skintone: '1'};
-mappages["blackdragon_int"].npcs[17] = {name : 'FighterVillagerNPC', x : 38, y : 13, NPCName: 'Nadya', Conversation: 'nadya_int', Gender: 'female', NPCBand: '0', OverrideGraphic: 'fighter-offcolor.gif', skintone: '2'};
-mappages["blackdragon_int"].npcs[18] = {name : 'MageVillagerNPC', x : 36, y : 12, NPCName: 'Justice', PCThreatAI: 'RunAway', Conversation: 'justice_int', ConversationFlag: 'justice', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '303.gif', skintone: '1'};
+mappages["blackdragon_int"].npcs[0] = {name : 'TownGuardNPC', x : 10, y : 40, NPCName: 'Lumen', Conversation: 'lumen_int', Gender: 'female', Bark: '0', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"ShortBlackDark"}'};
+mappages["blackdragon_int"].npcs[1] = {name : 'TownGuardNPC', x : 37, y : 17, NPCName: 'Bosku', Conversation: 'bosku_int', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"RedHeadPale"}'};
+mappages["blackdragon_int"].npcs[2] = {name : 'TownGuardNPC', x : 11, y : 35, NPCName: 'Dollin', Conversation: 'dollin_int', Gender: 'female', Bark: '0', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"ShortBlackPale"}'};
+mappages["blackdragon_int"].npcs[3] = {name : 'TownGuardNPC', x : 41, y : 13, NPCName: 'Nessa', Conversation: 'nessa_int', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"ShortBlackPale"}'};
+mappages["blackdragon_int"].npcs[4] = {name : 'TownGuardNPC', x : 13, y : 35, NPCName: 'Ronan', Conversation: 'ronan_int', Gender: 'male', Bark: '0', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BrownDark"}'};
+mappages["blackdragon_int"].npcs[5] = {name : 'TownGuardNPC', x : 34, y : 12, NPCName: 'Lian', Conversation: 'lian_int', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BaldBeardedDark"}'};
+mappages["blackdragon_int"].npcs[6] = {name : 'TownGuardNPC', x : 8, y : 34, NPCName: 'Carbry', Conversation: 'carbry_int', Gender: 'male', Bark: '0', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BrownDark"}'};
+mappages["blackdragon_int"].npcs[7] = {name : 'TownGuardNPC', x : 24, y : 26, NPCName: 'Aelid', Conversation: 'aelid_int', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BrownDark"}'};
+mappages["blackdragon_int"].npcs[8] = {name : 'TownGuardNPC', x : 8, y : 27, NPCName: 'Perick', Conversation: 'perick_int', Gender: 'male', Bark: '0', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BaldBeardedDark"}'};
+mappages["blackdragon_int"].npcs[9] = {name : 'TownGuardNPC', x : 33, y : 18, NPCName: 'Oshin', Conversation: 'oshin_int', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"ShortBrownPale"}'};
+mappages["blackdragon_int"].npcs[10] = {name : 'PrinceNPC', x : 25, y : 17, NPCName: 'Prince Lance', Conversation: 'lance', Bark: '0', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateKnight","head":"PrinceHead","back":"","offhand":"OffhandPale","cloak":"BlueCloak","mainhand":"MainHandPale","realhead":"ShortBlackPale"}'};
+mappages["blackdragon_int"].npcs[11] = {name : 'TownGuardNPC', x : 34, y : 20, NPCName: 'Ranlyn', Conversation: 'ranlyn_int', Gender: 'male', Bark: '0', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"ShortBlackDark"}'};
+mappages["blackdragon_int"].npcs[12] = {name : 'TownGuardNPC', x : 33, y : 16, NPCName: 'Sissott', Conversation: 'sissott_int', Gender: 'female', Bark: '0', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BrownDark"}'};
+mappages["blackdragon_int"].npcs[13] = {name : 'TownGuardNPC', x : 38, y : 10, NPCName: 'Yuan', Conversation: 'yuan_int', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"ShortBlackDark"}'};
+mappages["blackdragon_int"].npcs[14] = {name : 'TownGuardNPC', x : 38, y : 22, NPCName: 'Joney', Conversation: 'joney_int', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"BlondePale"}'};
+mappages["blackdragon_int"].npcs[15] = {name : 'TownsfolkVillagerNPC', x : 36, y : 15, NPCName: 'Taran', Conversation: 'taran_int', ConversationFlag: 'taran', Gender: 'male', Bark: '0', NPCBand: '0', skintone: 1, wornlayers: '{"body":"GreenTunic","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBrownPale"}'};
+mappages["blackdragon_int"].npcs[16] = {name : 'TownsfolkVillagerNPC', x : 39, y : 16, NPCName: 'Brad', Conversation: 'brad_int', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"WhiteTunic2","head":"BlondePale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"BlondePale"}'};
+mappages["blackdragon_int"].npcs[17] = {name : 'FighterVillagerNPC', x : 38, y : 13, NPCName: 'Nadya', Conversation: 'nadya_int', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"Plate2","head":"ShortBlackDark","back":"","offhand":"OffhandDaggerDark","cloak":"","mainhand":"LongswordDark","realhead":"ShortBlackDark"}'};
+mappages["blackdragon_int"].npcs[18] = {name : 'MageVillagerNPC', x : 36, y : 12, NPCName: 'Justice', PCThreatAI: 'RunAway', Conversation: 'justice_int', ConversationFlag: 'justice', Gender: 'female', Bark: '0', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueRobe","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"QuarterstaffPale","realhead":"ShortBlackPale"}'};
 
 mappages["blackdragon_int"].desc = "Black Dragon Castle";
 mappages["blackdragon_int"].longdesc = ``;
@@ -1029,6 +1034,7 @@ mappages["blackdragon_int"].returny = '74';
 mappages["blackdragon_int"].returninfused = '0';
 mappages["blackdragon_int"].linkedMaps = ["blackdragon_int2","blackdragon_int3","blackdragon_int4"];
 mappages["blackdragon_int"].editorLabels = '{"div_tile13x23":"Taran","div_tile20x18":"Nadya","div_tile13x19":"Brad"}';
+// MAP ENDS HERE
 
 mappages["blackdragon_int"].onload = function(mapref) {
   mapref.getTile(11,39).getTopFeature().setGraphicArray(["master_spritesheet.png","",-192,-608]);
