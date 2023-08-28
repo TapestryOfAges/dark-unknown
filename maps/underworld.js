@@ -1025,24 +1025,38 @@ mappages["uttermostdark"].onload = function(mapref) {
 // MAP BEGINS HERE
 mappages["endgame"] = {};
 mappages["endgame"].terrain = [];
- mappages["endgame"].terrain[0] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch';
- mappages["endgame"].terrain[1] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch';
- mappages["endgame"].terrain[2] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch';
- mappages["endgame"].terrain[3] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch';
- mappages["endgame"].terrain[4] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch';
- mappages["endgame"].terrain[5] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch';
- mappages["endgame"].terrain[6] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch';
- mappages["endgame"].terrain[7] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch';
- mappages["endgame"].terrain[8] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch';
- mappages["endgame"].terrain[9] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch';
-mappages["endgame"].terrain[10] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch';
-mappages["endgame"].terrain[11] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch';
-mappages["endgame"].terrain[12] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch';
+ mappages["endgame"].terrain[0] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch ch ch';
+ mappages["endgame"].terrain[1] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch ch ch';
+ mappages["endgame"].terrain[2] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch ch ch';
+ mappages["endgame"].terrain[3] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch ch ch';
+ mappages["endgame"].terrain[4] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch ch ch';
+ mappages["endgame"].terrain[5] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch ch ch';
+ mappages["endgame"].terrain[6] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch ch ch';
+ mappages["endgame"].terrain[7] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch ch ch';
+ mappages["endgame"].terrain[8] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch ch ch';
+ mappages["endgame"].terrain[9] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch ch ch';
+mappages["endgame"].terrain[10] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch ch ch';
+mappages["endgame"].terrain[11] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch ch ch';
+mappages["endgame"].terrain[12] = 'ch ch ch ch ch ch ch ch ch ch ch ch ch ch ch';
 
 mappages["endgame"].features = [];
 
 
 mappages["endgame"].npcs = [];
+mappages["endgame"].npcs[0] = {name : 'RangerVillagerNPC', x : 14, y : 0, NPCName: 'Rhys', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"LeatherArmor","head":"ShortBlackDark","back":"Quiver","offhand":"OffhandDark","cloak":"","mainhand":"BowDark","realhead":"ShortBlackDark"}'};
+mappages["endgame"].npcs[1] = {name : 'KingNPC', x : 14, y : 1, skintone: 1, wornlayers: '{"body":"King3","head":null,"back":null,"offhand":null,"cloak":null,"mainhand":null}'};
+mappages["endgame"].npcs[2] = {name : 'QueenNPC', x : 14, y : 2, skintone: 1, wornlayers: '{"body":"Queen","head":null,"back":null,"offhand":null,"cloak":null,"mainhand":null}'};
+mappages["endgame"].npcs[3] = {name : 'ChildVillagerNPC', x : 14, y : 3, NPCName: 'Samantha', Gender: 'monster', NPCBand: '0', skintone: 1, wornlayers: '{"body":"ChildDark","head":"","back":"","offhand":"","cloak":"","mainhand":"","realhead":""}'};
+mappages["endgame"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 14, y : 4, NPCName: 'Kylee', Gender: 'monster', NPCBand: '0', skintone: 1, wornlayers: '{"body":"OrangeTunic2","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"ShortBlackDark"}'};
+mappages["endgame"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 14, y : 5, NPCName: 'Anna', Gender: 'monster', NPCBand: '0', skintone: 2, wornlayers: '{"body":"WhiteTunic2","head":"BrownDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"BrownDark"}'};
+mappages["endgame"].npcs[6] = {name : 'TownsfolkVillagerNPC', x : 14, y : 6, NPCName: 'Damien', Gender: 'monster', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueTunic","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBrownPale"}'};
+mappages["endgame"].npcs[7] = {name : 'TownsfolkVillagerNPC', x : 14, y : 7, NPCName: 'Brooke', Gender: 'monster', NPCBand: '0', skintone: 2, wornlayers: '{"body":"GreenTunic","head":"BrownDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"BrownDark"}'};
+mappages["endgame"].npcs[8] = {name : 'RangerVillagerNPC', x : 14, y : 8, NPCName: 'Garen', Gender: 'monster', NPCBand: '0', skintone: 1, wornlayers: '{"body":"LeatherArmor","head":"ShortBrownPale","back":"Quiver","offhand":"OffhandPale","cloak":"","mainhand":"BowPale","realhead":"ShortBrownPale"}'};
+mappages["endgame"].npcs[9] = {name : 'AdventurerVillagerNPC', x : 14, y : 9, Gender: 'monster', NPCBand: '0', skintone: 1, wornlayers: '{"body":"ChainMail","head":"OldManPale","back":"","offhand":"OffhandPale","cloak":"BlueCloak","mainhand":"LongswordPale","realhead":"OldManPale"}'};
+mappages["endgame"].npcs[10] = {name : 'BardVillagerNPC', x : 14, y : 10, NPCName: 'Franklin', Gender: 'monster', NPCBand: '0', skintone: 1, wornlayers: '{"body":"Bard1","head":"","back":"","offhand":"","cloak":"","mainhand":"","realhead":"ShortBlackPale"}'};
+mappages["endgame"].npcs[11] = {name : 'TownsfolkVillagerNPC', x : 14, y : 11, NPCName: 'Rhiannon', Gender: 'monster', NPCBand: '0', skintone: 1, wornlayers: '{"body":"GreenTunic","head":"RedHeadPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"RedHeadPale"}'};
+mappages["endgame"].npcs[12] = {name : 'FighterVillagerNPC', x : 14, y : 12, Gender: 'monster', NPCBand: '0', skintone: 1, wornlayers: '{"body":"ChainMail","head":"BlondePale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"LongswordPale","realhead":"BlondePale"}'};
+mappages["endgame"].npcs[13] = {name : 'PrinceNPC', x : 13, y : 0, skintone: 1, wornlayers: '{"body":"PlateKnight","head":"PrinceHead","back":null,"offhand":null,"cloak":null,"mainhand":null}'};
 
 mappages["endgame"].desc = "The Uttermost Dark";
 mappages["endgame"].longdesc = ``;
