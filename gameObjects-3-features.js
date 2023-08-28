@@ -1379,11 +1379,11 @@ function KeepTile() {
 }
 KeepTile.prototype = new FeatureObject();
 
-function GrassTowerTile() {
-  this.name = "GrassTower";
-	this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-160";
-  this.spriteyoffset = "-1440";
+function TowerTile() {
+  this.name = "Tower";
+	this.graphic = "static.png";
+	this.spritexoffset = 0;
+  this.spriteyoffset = -174*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -1391,23 +1391,19 @@ function GrassTowerTile() {
   this.peerview = "#e0e0e0";
 
   Enterable.call(this, "null", 0, 0);
-}
-GrassTowerTile.prototype = new FeatureObject();
 
-function HillTowerTile() {
-  this.name = "HillTower";
-	this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-160";
-  this.spriteyoffset = "-1472";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 0;
-  this.prefix = "a";
-  this.desc = "tower";
-  this.peerview = "#e0e0e0";
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: 4,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 200,
+    framedurationmax: 200,
+    startframe: "start"
+  });
 
-  Enterable.call(this, "null", 0, 0);
 }
-HillTowerTile.prototype = new FeatureObject();
+TowerTile.prototype = new FeatureObject();
 
 function LighthouseTile() {
   //Graphics Upgraded
@@ -8951,52 +8947,56 @@ function CrenellationSETile() {
 CrenellationSETile.prototype = new FeatureObject();
 
 function WeaponCounterDaggerTile() {
+  // Graphic made same as weapon
   this.name = "WeaponCounterDagger";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-576";
+  this.graphic = "static.png";
+	this.spritexoffset = 0;
+	this.spriteyoffset = -68*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
   this.prefix = "a";
-  this.desc = "display counter";
+  this.desc = "display dagger";
   this.peerview = "black";
 }
 WeaponCounterDaggerTile.prototype = new FeatureObject();
 
 function WeaponCounterMaceTile() {
+  // Graphic made same as weapon
   this.name = "WeaponCounterMace";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-576";
+  this.graphic = "static.png";
+	this.spritexoffset = -2*32;
+	this.spriteyoffset = -68*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
   this.prefix = "a";
-  this.desc = "display counter";
+  this.desc = "display mace";
   this.peerview = "black";
 }
 WeaponCounterMaceTile.prototype = new FeatureObject();
 
 function WeaponCounterSwordTile() {
+  // Graphic made shortsword
   this.name = "WeaponCounterSword";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-576";
+  this.graphic = "static.png";
+	this.spritexoffset = -32;
+	this.spriteyoffset = -68*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
   this.prefix = "a";
-  this.desc = "display counter";
+  this.desc = "display sword";
   this.peerview = "black";
 }
 WeaponCounterSwordTile.prototype = new FeatureObject();
 
 function ArmorCounterLeatherTile() {
+  // Graphic made just same as armor
   this.name = "ArmorCounterLeather";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-544";
+  this.graphic = "static.png";
+	this.spritexoffset = -8*32;
+	this.spriteyoffset = -70*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
@@ -9007,10 +9007,11 @@ function ArmorCounterLeatherTile() {
 ArmorCounterLeatherTile.prototype = new FeatureObject();
 
 function ArmorCounterChainTile() {
+  // Graphic made same as armor
   this.name = "ArmorCounterChain";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-544";
+  this.graphic = "static.png";
+	this.spritexoffset = -9*32;
+	this.spriteyoffset = -70*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
@@ -9021,10 +9022,11 @@ function ArmorCounterChainTile() {
 ArmorCounterChainTile.prototype = new FeatureObject();
 
 function ArmorCounterPlateTile() {
+  // Graphic made same as armor
   this.name = "ArmorCounterPlate";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-544";
+  this.graphic = "static.png";
+	this.spritexoffset = 0;
+	this.spriteyoffset = -71*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
@@ -9266,7 +9268,7 @@ LeverOffTile.prototype = new FeatureObject();
 
 function BDCLeverTile() {
   this.name = "BDCLever";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "static.png";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -108*32;
   this.blocklos = 0;
