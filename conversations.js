@@ -1241,6 +1241,10 @@ OnConvTriggers["rhys_return"] = function(speaker,keyword) {
     rhys.setNPCName("Rhys");
     let bdcmap = who.getHomeMap();
     bdcmap.placeThing(28,35,rhys);
+    rhys.wornlayers.head = "ShortBlackDark";
+    rhys.wornlayers.realhead = "ShortBlackDark";
+    rhys.wornlayers.mainhand = "BowDark";
+    rhys.wornlayers.offhand = "OffhandDark";
 
     FadeOut();
     gamestate.setMode("null");
