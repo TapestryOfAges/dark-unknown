@@ -929,8 +929,9 @@ function addfeaturetomap(x,y,selection,noFactory) {
   } else {
     newfeature = selection; 
   }
-	amap.data[y][x].features.addTop(newfeature);
-	amap.features.addTop(newfeature);
+//	amap.data[y][x].features.addTop(newfeature);
+//	amap.features.addTop(newfeature);
+  amap.placeThing(x,y,newfeature);
 
   setTimeout(function() { RedrawTile(x,y) }, 1);
   return; 
@@ -974,8 +975,9 @@ function addnpctomap(x,y,selection,noFactory) {
   } else {
     newnpc = selection;
   }
-	amap.data[y][x].npcs.addTop(newnpc);
-	amap.npcs.addTop(newnpc);
+//	amap.data[y][x].npcs.addTop(newnpc);
+//	amap.npcs.addTop(newnpc);
+  amap.placeThing(x,y,newnpc);
   
   setTimeout(function() { RedrawTile(x,y); }, 1);
   return; 
