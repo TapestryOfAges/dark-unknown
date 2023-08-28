@@ -2433,13 +2433,8 @@ tileFactory.prototype.makeKeepTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeGrassTowerTile = function() {
-  let newTile = new GrassTowerTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeHillTowerTile = function() {
-  let newTile = new HillTowerTile();
+tileFactory.prototype.makeTowerTile = function() {
+  let newTile = new TowerTile();
   return newTile;
 }
 
