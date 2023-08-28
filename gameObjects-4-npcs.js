@@ -2268,8 +2268,8 @@ let HumanParts = {
   OpenOffhandDark: { src: "humanparts.png", type: "offhand", spritex: 0, spritey: -68*32, frames: 5 },
   KiteShield: { src: "humanparts.png", type: "offhand", spritex: 0, spritey: -95*32, frames: 5 },
   RoundShield: { src: "humanparts.png", type: "offhand", spritex: 0, spritey: -104*32, frames: 5 },
-  OffhandDaggerPale: { src: "humanparts.png", type: "offhand", spritex: 0, spritey: -97*32, frames: 5 },
-  OffhandDaggerDark: { src: "humanparts.png", type: "offhand", spritex: 0, spritey: -98*32, frames: 5 },
+  OffhandDaggerPale: { src: "humanparts.png", type: "offhand", spritex: 0, spritey: -96*32, frames: 5 },
+  OffhandDaggerDark: { src: "humanparts.png", type: "offhand", spritex: 0, spritey: -97*32, frames: 5 },
 };
 
 let HumanPartsBed = {
