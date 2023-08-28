@@ -3568,8 +3568,6 @@ function TremendousSpiderNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '329.gif';
-  this.altgraphic = ['363.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+9'
   this.meleeStrDamage = .66
@@ -3589,6 +3587,19 @@ function TremendousSpiderNPCTile() {
   this.special = 'spitter';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -156 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 TremendousSpiderNPCTile.prototype = new NPCObject();
 
