@@ -389,7 +389,7 @@ function Open_BDC_Gate(mapref) {
 }
 
 function Close_BDC_Gate(mapref) {
-  mapref.getTile(11,39).getTopFeature().setGraphicArray(["master_spritesheet.png","",-160,-608]);
+  mapref.getTile(11,39).getTopFeature().setGraphicArray(["static.png","",-8*32,-108*32]);
   let planks = localFactory.createTile("Shallows");
   mapref.setTerrain(11,41,planks);
   mapref.setTerrain(12,41,planks);
@@ -1037,7 +1037,7 @@ mappages["blackdragon_int"].editorLabels = '{"div_tile13x23":"Taran","div_tile20
 // MAP ENDS HERE
 
 mappages["blackdragon_int"].onload = function(mapref) {
-  mapref.getTile(11,39).getTopFeature().setGraphicArray(["master_spritesheet.png","",-192,-608]);
+  mapref.getTile(11,39).getTopFeature().setGraphicArray(["static.png","",-9*32,-108*32]);
   let gate = mapref.getTile(12,38).getTopFeature();
   gate.unlockMe();
   gate.use();

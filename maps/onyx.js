@@ -189,9 +189,9 @@ mappages["onyx"].features[142] = {name : 'Tree', x : 5, y : 29};
 mappages["onyx"].features[143] = {name : 'Tree', x : 30, y : 36};
 mappages["onyx"].features[144] = {name : 'Tree', x : 31, y : 16};
 mappages["onyx"].features[145] = {name : 'Tree', x : 35, y : 2};
-mappages["onyx"].features[146] = {name : 'WeaponCounterDagger', x : 11, y : 29};
-mappages["onyx"].features[147] = {name : 'WeaponCounterMace', x : 11, y : 30};
-mappages["onyx"].features[148] = {name : 'WeaponCounterSword', x : 11, y : 31};
+mappages["onyx"].features[146] = {name : 'DisplayCounterN', x : 11, y : 29};
+mappages["onyx"].features[147] = {name : 'DisplayCounterC', x : 11, y : 30};
+mappages["onyx"].features[148] = {name : 'DisplayCounterS', x : 11, y : 31};
 mappages["onyx"].features[149] = {name : 'SmallTable', x : 8, y : 31};
 mappages["onyx"].features[150] = {name : 'LeftChair', x : 7, y : 31};
 mappages["onyx"].features[151] = {name : 'BottomChair', x : 8, y : 32};
@@ -240,7 +240,8 @@ mappages["onyx"].features[193] = {name : 'Brazier', x : 25, y : 16};
 mappages["onyx"].features[194] = {name : 'Brazier', x : 6, y : 11};
 mappages["onyx"].features[195] = {name : 'Brazier', x : 23, y : 11};
 mappages["onyx"].features[196] = {name : 'Brazier', x : 26, y : 6};
-
+mappages["onyx"].features[197] = {name : 'WeaponCounterDagger', x : 11, y : 29};
+mappages["onyx"].features[198] = {name : 'WeaponCounterMace', x : 11, y : 30};
 
 mappages["onyx"].npcs = [];
 mappages["onyx"].npcs[0] = {name : 'FighterVillagerNPC', x : 26, y : 20, NPCName: 'Aithne', PeaceAI: 'scheduled', Schedule: 'aithne', Conversation: 'aithne', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"ChainMail","head":"BaldBeardedDark","back":"","offhand":"RoundShield","cloak":"","mainhand":"LongswordDark","realhead":"BaldBeardedDark"}'};

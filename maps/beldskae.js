@@ -263,7 +263,7 @@ mappages["beldskae"].features[214] = {name : 'DoubleBedHead', x : 53, y : 17};
 mappages["beldskae"].features[215] = {name : 'DoubleBedFoot', x : 54, y : 17};
 mappages["beldskae"].features[216] = {name : 'DisplayCounterN', x : 22, y : 12};
 mappages["beldskae"].features[217] = {name : 'DisplayCounterS', x : 22, y : 13};
-mappages["beldskae"].features[218] = {name : 'Shortsword', x : 22, y : 12};
+mappages["beldskae"].features[218] = {name : 'WeaponCounterSword', x : 22, y : 12};
 mappages["beldskae"].features[219] = {name : 'TorchEast', x : 31, y : 24};
 mappages["beldskae"].features[220] = {name : 'TorchEast', x : 31, y : 16};
 mappages["beldskae"].features[221] = {name : 'TorchEast', x : 31, y : 8};
@@ -446,24 +446,24 @@ mappages["beldskae2"].features[49] = {name : 'BedFoot', x : 40, y : 21};
 mappages["beldskae2"].features[50] = {name : 'BedFoot', x : 34, y : 17};
 mappages["beldskae2"].features[51] = {name : 'BedFoot', x : 34, y : 21};
 mappages["beldskae2"].features[52] = {name : 'BedFoot', x : 34, y : 25};
-mappages["beldskae2"].features[53] = {name : 'SmallTable', x : 33, y : 15};
-mappages["beldskae2"].features[54] = {name : 'SmallTable', x : 33, y : 19};
-mappages["beldskae2"].features[55] = {name : 'SmallTable', x : 33, y : 23};
-mappages["beldskae2"].features[56] = {name : 'SmallTable', x : 33, y : 27};
-mappages["beldskae2"].features[57] = {name : 'SmallTable', x : 40, y : 23};
-mappages["beldskae2"].features[58] = {name : 'SmallTable', x : 40, y : 19};
-mappages["beldskae2"].features[59] = {name : 'SmallTable', x : 40, y : 15};
-mappages["beldskae2"].features[60] = {name : 'TopChair', x : 40, y : 14};
-mappages["beldskae2"].features[61] = {name : 'TopChair', x : 40, y : 18};
-mappages["beldskae2"].features[62] = {name : 'TopChair', x : 40, y : 22};
-mappages["beldskae2"].features[63] = {name : 'TopChair', x : 33, y : 14};
-mappages["beldskae2"].features[64] = {name : 'TopChair', x : 33, y : 18};
-mappages["beldskae2"].features[65] = {name : 'TopChair', x : 33, y : 22};
-mappages["beldskae2"].features[66] = {name : 'TopChair', x : 33, y : 26};
-mappages["beldskae2"].features[67] = {name : 'TorchEast', x : 19, y : 17};
-mappages["beldskae2"].features[68] = {name : 'TorchEast', x : 25, y : 18};
-mappages["beldskae2"].features[69] = {name : 'TorchEast', x : 25, y : 22};
-mappages["beldskae2"].features[70] = {name : 'Fireplace', x : 25, y : 33};
+mappages["beldskae2"].features[53] = {name : 'TopChair', x : 40, y : 14};
+mappages["beldskae2"].features[54] = {name : 'TopChair', x : 40, y : 18};
+mappages["beldskae2"].features[55] = {name : 'TopChair', x : 40, y : 22};
+mappages["beldskae2"].features[56] = {name : 'TopChair', x : 33, y : 14};
+mappages["beldskae2"].features[57] = {name : 'TopChair', x : 33, y : 18};
+mappages["beldskae2"].features[58] = {name : 'TopChair', x : 33, y : 22};
+mappages["beldskae2"].features[59] = {name : 'TopChair', x : 33, y : 26};
+mappages["beldskae2"].features[60] = {name : 'TorchEast', x : 19, y : 17};
+mappages["beldskae2"].features[61] = {name : 'TorchEast', x : 25, y : 18};
+mappages["beldskae2"].features[62] = {name : 'TorchEast', x : 25, y : 22};
+mappages["beldskae2"].features[63] = {name : 'Fireplace', x : 25, y : 33};
+mappages["beldskae2"].features[64] = {name : 'SmallTable2', x : 33, y : 27};
+mappages["beldskae2"].features[65] = {name : 'SmallTable2', x : 33, y : 23};
+mappages["beldskae2"].features[66] = {name : 'SmallTable2', x : 33, y : 19};
+mappages["beldskae2"].features[67] = {name : 'SmallTable2', x : 40, y : 19};
+mappages["beldskae2"].features[68] = {name : 'SmallTable2', x : 40, y : 23};
+mappages["beldskae2"].features[69] = {name : 'SmallTable2', x : 40, y : 15};
+mappages["beldskae2"].features[70] = {name : 'SmallTable2', x : 33, y : 15};
 
 
 mappages["beldskae2"].npcs = [];
@@ -826,8 +826,8 @@ mappages["beldskae_scour"].features[130] = {name : 'BookshelfOne', x : 25, y : 3
 mappages["beldskae_scour"].features[131] = {name : 'GrandfatherClock', x : 21, y : 29};
 mappages["beldskae_scour"].features[132] = {name : 'BottomChair', x : 24, y : 30};
 mappages["beldskae_scour"].features[133] = {name : 'Altar', x : 24, y : 29};
-mappages["beldskae_scour"].features[134] = {name : 'WeaponCounterDagger', x : 22, y : 12};
-mappages["beldskae_scour"].features[135] = {name : 'WeaponCounterSword', x : 22, y : 13};
+mappages["beldskae_scour"].features[134] = {name : 'DisplayCounterN', x : 22, y : 12};
+mappages["beldskae_scour"].features[135] = {name : 'DisplayCounterS', x : 22, y : 13};
 mappages["beldskae_scour"].features[136] = {name : 'TrainingDummy', x : 24, y : 9};
 mappages["beldskae_scour"].features[137] = {name : 'ArcheryTarget', x : 25, y : 9};
 mappages["beldskae_scour"].features[138] = {name : 'LeftTable', x : 43, y : 23};
@@ -984,6 +984,7 @@ mappages["beldskae_scour"].features[288] = {name : 'FireField', x : 39, y : 22};
 mappages["beldskae_scour"].features[289] = {name : 'FireField', x : 37, y : 25};
 mappages["beldskae_scour"].features[290] = {name : 'FireField', x : 41, y : 30};
 mappages["beldskae_scour"].features[291] = {name : 'FireField', x : 33, y : 31};
+mappages["beldskae_scour"].features[292] = {name : 'WeaponCounterSword', x : 22, y : 12};
 
 
 mappages["beldskae_scour"].npcs = [];
@@ -1023,6 +1024,7 @@ mappages["beldskae_scour"].linkedMaps = ["beldskae2_scour"];
 mappages["beldskae_scour"].editorLabels = '{"div_tile23x10":"Ariel shop","div_tile43x23":"Ariel","div_tile22x29":"Megan shop and house","div_tile9x22":"Mia","div_tile53x14":"Allan and Steph","div_tile44x14":"Ace","div_tile22x18":"Barri","div_tile8x18":"Denise"}';
 // MAP ENDS HERE
 
+// MAP BEGINS HERE
 mappages["beldskae2_scour"] = {};
 mappages["beldskae2_scour"].terrain = [];
  mappages["beldskae2_scour"].terrain[0] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
@@ -1111,18 +1113,18 @@ mappages["beldskae2_scour"].features[40] = {name : 'BedFoot', x : 34, y : 13};
 mappages["beldskae2_scour"].features[41] = {name : 'BedFoot', x : 40, y : 13};
 mappages["beldskae2_scour"].features[42] = {name : 'BedFoot', x : 40, y : 17};
 mappages["beldskae2_scour"].features[43] = {name : 'BedFoot', x : 40, y : 21};
-mappages["beldskae2_scour"].features[44] = {name : 'SmallTable', x : 33, y : 15};
-mappages["beldskae2_scour"].features[45] = {name : 'SmallTable', x : 40, y : 23};
-mappages["beldskae2_scour"].features[46] = {name : 'SmallTable', x : 40, y : 19};
-mappages["beldskae2_scour"].features[47] = {name : 'SmallTable', x : 40, y : 15};
-mappages["beldskae2_scour"].features[48] = {name : 'TopChair', x : 40, y : 14};
-mappages["beldskae2_scour"].features[49] = {name : 'TopChair', x : 40, y : 18};
-mappages["beldskae2_scour"].features[50] = {name : 'TopChair', x : 40, y : 22};
-mappages["beldskae2_scour"].features[51] = {name : 'TopChair', x : 33, y : 14};
-mappages["beldskae2_scour"].features[52] = {name : 'TorchEast', x : 19, y : 17};
-mappages["beldskae2_scour"].features[53] = {name : 'TorchEast', x : 25, y : 18};
-mappages["beldskae2_scour"].features[54] = {name : 'TorchEast', x : 25, y : 22};
-mappages["beldskae2_scour"].features[55] = {name : 'Fireplace', x : 25, y : 33};
+mappages["beldskae2_scour"].features[44] = {name : 'TopChair', x : 40, y : 14};
+mappages["beldskae2_scour"].features[45] = {name : 'TopChair', x : 40, y : 18};
+mappages["beldskae2_scour"].features[46] = {name : 'TopChair', x : 40, y : 22};
+mappages["beldskae2_scour"].features[47] = {name : 'TopChair', x : 33, y : 14};
+mappages["beldskae2_scour"].features[48] = {name : 'TorchEast', x : 19, y : 17};
+mappages["beldskae2_scour"].features[49] = {name : 'TorchEast', x : 25, y : 18};
+mappages["beldskae2_scour"].features[50] = {name : 'TorchEast', x : 25, y : 22};
+mappages["beldskae2_scour"].features[51] = {name : 'Fireplace', x : 25, y : 33};
+mappages["beldskae2_scour"].features[52] = {name : 'SmallTable2', x : 33, y : 15};
+mappages["beldskae2_scour"].features[53] = {name : 'SmallTable2', x : 40, y : 15};
+mappages["beldskae2_scour"].features[54] = {name : 'SmallTable2', x : 40, y : 19};
+mappages["beldskae2_scour"].features[55] = {name : 'SmallTable2', x : 40, y : 23};
 
 
 mappages["beldskae2_scour"].npcs = [];
@@ -1153,6 +1155,7 @@ mappages["beldskae2_scour"].returny = '74';
 mappages["beldskae2_scour"].returninfused = '0';
 mappages["beldskae2_scour"].linkedMaps = ["beldskae_scour"];
 mappages["beldskae2_scour"].editorLabels = '{"div_tile39x14":"PC","div_tile33x22":"Ernest","div_tile33x14":"Kelse","div_tile33x26":"Percy","div_tile39x17":"Ursula","div_tile39x21":"Rich","div_tile33x17":"Grant"}';
+// MAP ENDS HERE
 
 mappages["beldskae_scour"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
@@ -1324,8 +1327,8 @@ mappages["beldskae_razed"].features[111] = {name : 'BookshelfRight', x : 24, y :
 mappages["beldskae_razed"].features[112] = {name : 'BookshelfOne', x : 25, y : 31};
 mappages["beldskae_razed"].features[113] = {name : 'BottomChair', x : 24, y : 30};
 mappages["beldskae_razed"].features[114] = {name : 'Altar', x : 24, y : 29};
-mappages["beldskae_razed"].features[115] = {name : 'WeaponCounterDagger', x : 22, y : 12};
-mappages["beldskae_razed"].features[116] = {name : 'WeaponCounterSword', x : 22, y : 13};
+mappages["beldskae_razed"].features[115] = {name : 'DisplayCounterN', x : 22, y : 12};
+mappages["beldskae_razed"].features[116] = {name : 'DisplayCounterS', x : 22, y : 13};
 mappages["beldskae_razed"].features[117] = {name : 'TrainingDummy', x : 24, y : 9};
 mappages["beldskae_razed"].features[118] = {name : 'ArcheryTarget', x : 25, y : 9};
 mappages["beldskae_razed"].features[119] = {name : 'LeftTable', x : 43, y : 23};
@@ -1548,6 +1551,7 @@ mappages["beldskae_razed"].features[335] = {name : 'FireField', x : 24, y : 5};
 mappages["beldskae_razed"].features[336] = {name : 'FireField', x : 22, y : 6};
 mappages["beldskae_razed"].features[337] = {name : 'FireField', x : 36, y : 5};
 mappages["beldskae_razed"].features[338] = {name : 'FireField', x : 34, y : 4};
+mappages["beldskae_razed"].features[339] = {name : 'WeaponCounterSword', x : 22, y : 12};
 
 
 mappages["beldskae_razed"].npcs = [];
@@ -1760,8 +1764,8 @@ mappages["beldskae_saved"].features[119] = {name : 'BookshelfOne', x : 25, y : 3
 mappages["beldskae_saved"].features[120] = {name : 'GrandfatherClock', x : 21, y : 29};
 mappages["beldskae_saved"].features[121] = {name : 'BottomChair', x : 24, y : 30};
 mappages["beldskae_saved"].features[122] = {name : 'Altar', x : 24, y : 29};
-mappages["beldskae_saved"].features[123] = {name : 'WeaponCounterDagger', x : 22, y : 12};
-mappages["beldskae_saved"].features[124] = {name : 'WeaponCounterSword', x : 22, y : 13};
+mappages["beldskae_saved"].features[123] = {name : 'DisplayCounterN', x : 22, y : 12};
+mappages["beldskae_saved"].features[124] = {name : 'DisplayCounterS', x : 22, y : 13};
 mappages["beldskae_saved"].features[125] = {name : 'TrainingDummy', x : 24, y : 9};
 mappages["beldskae_saved"].features[126] = {name : 'ArcheryTarget', x : 25, y : 9};
 mappages["beldskae_saved"].features[127] = {name : 'LeftTable', x : 43, y : 23};
@@ -1871,6 +1875,7 @@ mappages["beldskae_saved"].features[230] = {name : 'Brazier', x : 25, y : 17};
 mappages["beldskae_saved"].features[231] = {name : 'Brazier', x : 25, y : 23};
 mappages["beldskae_saved"].features[232] = {name : 'Brazier', x : 43, y : 16};
 mappages["beldskae_saved"].features[233] = {name : 'Brazier', x : 51, y : 17};
+mappages["beldskae_saved"].features[234] = {name : 'WeaponCounterSword', x : 22, y : 12};
 
 
 mappages["beldskae_saved"].npcs = [];
@@ -1924,6 +1929,7 @@ mappages["beldskae_saved"].returninfused = '0';
 mappages["beldskae_saved"].linkedMaps = ["beldskae2_saved"];
 mappages["beldskae_saved"].editorLabels = '{"div_tile23x10":"Ariel shop","div_tile43x23":"Ariel","div_tile22x29":"Megan shop and house","div_tile9x22":"Mia","div_tile53x14":"Allan and Steph","div_tile44x14":"Ace","div_tile22x18":"Barri","div_tile8x18":"Denise"}';
 
+// MAP BEGINS HERE
 mappages["beldskae2_saved"] = {};
 mappages["beldskae2_saved"].terrain = [];
  mappages["beldskae2_saved"].terrain[0] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
@@ -2019,24 +2025,24 @@ mappages["beldskae2_saved"].features[47] = {name : 'BedFoot', x : 40, y : 21};
 mappages["beldskae2_saved"].features[48] = {name : 'BedFoot', x : 34, y : 17};
 mappages["beldskae2_saved"].features[49] = {name : 'BedFoot', x : 34, y : 21};
 mappages["beldskae2_saved"].features[50] = {name : 'BedFoot', x : 34, y : 25};
-mappages["beldskae2_saved"].features[51] = {name : 'SmallTable', x : 33, y : 15};
-mappages["beldskae2_saved"].features[52] = {name : 'SmallTable', x : 33, y : 19};
-mappages["beldskae2_saved"].features[53] = {name : 'SmallTable', x : 33, y : 23};
-mappages["beldskae2_saved"].features[54] = {name : 'SmallTable', x : 33, y : 27};
-mappages["beldskae2_saved"].features[55] = {name : 'SmallTable', x : 40, y : 23};
-mappages["beldskae2_saved"].features[56] = {name : 'SmallTable', x : 40, y : 19};
-mappages["beldskae2_saved"].features[57] = {name : 'SmallTable', x : 40, y : 15};
-mappages["beldskae2_saved"].features[58] = {name : 'TopChair', x : 40, y : 14};
-mappages["beldskae2_saved"].features[59] = {name : 'TopChair', x : 40, y : 18};
-mappages["beldskae2_saved"].features[60] = {name : 'TopChair', x : 40, y : 22};
-mappages["beldskae2_saved"].features[61] = {name : 'TopChair', x : 33, y : 14};
-mappages["beldskae2_saved"].features[62] = {name : 'TopChair', x : 33, y : 18};
-mappages["beldskae2_saved"].features[63] = {name : 'TopChair', x : 33, y : 22};
-mappages["beldskae2_saved"].features[64] = {name : 'TopChair', x : 33, y : 26};
-mappages["beldskae2_saved"].features[65] = {name : 'TorchEast', x : 19, y : 17};
-mappages["beldskae2_saved"].features[66] = {name : 'TorchEast', x : 25, y : 18};
-mappages["beldskae2_saved"].features[67] = {name : 'TorchEast', x : 25, y : 22};
-mappages["beldskae2_saved"].features[68] = {name : 'Fireplace', x : 25, y : 33};
+mappages["beldskae2_saved"].features[51] = {name : 'TopChair', x : 40, y : 14};
+mappages["beldskae2_saved"].features[52] = {name : 'TopChair', x : 40, y : 18};
+mappages["beldskae2_saved"].features[53] = {name : 'TopChair', x : 40, y : 22};
+mappages["beldskae2_saved"].features[54] = {name : 'TopChair', x : 33, y : 14};
+mappages["beldskae2_saved"].features[55] = {name : 'TopChair', x : 33, y : 18};
+mappages["beldskae2_saved"].features[56] = {name : 'TopChair', x : 33, y : 22};
+mappages["beldskae2_saved"].features[57] = {name : 'TopChair', x : 33, y : 26};
+mappages["beldskae2_saved"].features[58] = {name : 'TorchEast', x : 19, y : 17};
+mappages["beldskae2_saved"].features[59] = {name : 'TorchEast', x : 25, y : 18};
+mappages["beldskae2_saved"].features[60] = {name : 'TorchEast', x : 25, y : 22};
+mappages["beldskae2_saved"].features[61] = {name : 'Fireplace', x : 25, y : 33};
+mappages["beldskae2_saved"].features[62] = {name : 'SmallTable2', x : 33, y : 15};
+mappages["beldskae2_saved"].features[63] = {name : 'SmallTable2', x : 40, y : 15};
+mappages["beldskae2_saved"].features[64] = {name : 'SmallTable2', x : 40, y : 19};
+mappages["beldskae2_saved"].features[65] = {name : 'SmallTable2', x : 33, y : 19};
+mappages["beldskae2_saved"].features[66] = {name : 'SmallTable2', x : 33, y : 23};
+mappages["beldskae2_saved"].features[67] = {name : 'SmallTable2', x : 40, y : 23};
+mappages["beldskae2_saved"].features[68] = {name : 'SmallTable2', x : 33, y : 27};
 
 
 mappages["beldskae2_saved"].npcs = [];
@@ -2048,7 +2054,6 @@ mappages["beldskae2_saved"].npcs[4] = {name : 'TownGuardNPC', x : 21, y : 17, NP
 mappages["beldskae2_saved"].npcs[5] = {name : 'TownGuardNPC', x : 24, y : 17, NPCName: 'Doris', PeaceAI: 'scheduled', Schedule: 'doris', Conversation: 'doris', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateWhiteTabard","head":"PaleOpenHelm","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"BlondePale"}'};
 mappages["beldskae2_saved"].npcs[6] = {name : 'TownGuardNPC', x : 24, y : 19, NPCName: 'Jordan', PeaceAI: 'scheduled', Schedule: 'jordan', Conversation: 'jordan', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateWhiteTabard","head":"DarkOpenHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"ShortBlackDark"}'};
 mappages["beldskae2_saved"].npcs[7] = {name : 'TownGuardNPC', x : 24, y : 21, NPCName: 'Ferris', PeaceAI: 'scheduled', Schedule: 'ferris', Conversation: 'ferris', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateWhiteTabard","head":"DarkOpenHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BaldBeardedDark"}'};
-
 
 mappages["beldskae2_saved"].desc = "The Towne of Beldskae";
 mappages["beldskae2_saved"].longdesc = ``;
@@ -2076,3 +2081,4 @@ mappages["beldskae2_saved"].returny = '74';
 mappages["beldskae2_saved"].returninfused = '0';
 mappages["beldskae2_saved"].linkedMaps = ["beldskae_saved"];
 mappages["beldskae2_saved"].editorLabels = '{"div_tile39x14":"PC","div_tile33x22":"Ernest","div_tile33x14":"Kelse","div_tile33x26":"Percy","div_tile39x17":"Ursula","div_tile39x21":"Rich","div_tile33x17":"Grant"}';
+// MAP ENDS HERE
