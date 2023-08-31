@@ -1085,6 +1085,7 @@ NPCObject.prototype.activate = function(timeoverride) {
     this.equipment.ring2 = "";
     this.equipment.circlet = "";
     this.equipment.amulet = "";
+    this.equipment.cloak = "";
 
 	  this.inventory = new Collection();
 	
@@ -1768,6 +1769,9 @@ NPCObject.prototype.removeFromInventory = function(item, map, x, y) {
     if (item === this.getEquipment("amulet")) {
       this.setEquipment("amulet","");
     }
+    if (item === this.getEquipment("cloak")) {
+      this.setEquipment("cloak","");
+    }
     this.inventory.deleteFrom(item);
   }
   if (map) { // if map,x,y are filled in, will place the item back on
@@ -1816,13 +1820,18 @@ NPCObject.prototype.getEquipment = function(which) {
       return this.equipment.amulet;
     } else { return ""; }
   }
+  else if (which === "cloak") {
+    if (this.equipment.cloak) {
+      return this.equipment.cloak;
+    } else { return ""; }
+  }
   
   else { return ""; }
 }
 
 NPCObject.prototype.setEquipment = function(which,what) {
   which = which.toLowerCase();
-  if ((which === "armor") || (which === "weapon") || (which === "missile") || (which === "amulet") || (which === "circlet") || (which === "ring1") || (which === "ring2")) {
+  if ((which === "armor") || (which === "weapon") || (which === "missile") || (which === "amulet") || (which === "circlet") || (which === "ring1") || (which === "ring2") || (which === "cloak")) {
     if (what) {
       let type = which;
       if ((type === "ring1") || (type === "ring2")) { type = "ring"; }

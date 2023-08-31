@@ -3537,6 +3537,51 @@ function InAFireField(who) {
   return response;
 }
 
+function AbyssFireFieldTile() {
+	this.name = "AbyssFireField";
+	this.graphic = "fields.gif";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.blocklos = 0;
+  this.prefix = "a";
+	this.desc = "fire field";
+	this.spritexoffset = "-64";
+  this.spriteyoffset = "0";
+  this.expires = 0;
+	
+	this.initdelay = 1.5;
+	this.pathweight = 5;
+	
+	HasAmbientNoise.call(this,"sfx_fire_crackle",1.5);
+}
+AbyssFireFieldTile.prototype = new FeatureObject();
+
+AbyssFireFieldTile.prototype.walkon = function(person) {
+  let resp = {msg:"The fire burns you!"};
+  let dmg = person.getMaxHP()/6;  // should wind up an integer because maxhp is a multiple of 30
+  if (person.getHP() === 1) {
+    // teleport to end
+    resp.msg = "Despite the damage you have taken, you grit your teeth and take one more step. The world spins around you...";
+    gamestate.setMode("waiting");
+    resp["override"] = 3;
+    FadeOut();
+    setTimeout(function() { 
+      person.getHomeMap().moveThing(9,8,person);
+      DrawMainFrame("draw",person.getHomeMap(),person.getx(),person.gety());
+      FadeIn();
+      gamestate.setMode("player");
+     }, 1500); 
+    return resp;
+  }
+  else if (dmg > person.getHP()) {
+    dmg = person.getHP()-1; 
+  }
+  person.setHP(person.getHP()-dmg);
+  DrawCharFrame();
+  DamageFlash();
+  DUPlaySound("sfx_fire_hit");
+  return resp;
+}
+
 function PoisonFieldTile() {
 	this.name = "PoisonField";
 	this.graphic = "poisonfield.gif";
@@ -12440,20 +12485,6 @@ function CrystalMortarTile() {
 }
 CrystalMortarTile.prototype = new ItemObject();
 
-function JadeNecklaceTile() {
-  //Graphics Upgraded
-  this.name = "JadeNecklace";
-  this.graphic = "static.png";
-  this.spritexoffset = -8*32;
-  this.spriteyoffset = -35*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;;
-  this.blocklos = 0;
-  this.prefix = "a";
-  this.desc = "jade necklace";
-  this.longdesc = "A pendant bearing a shard of jade, said to bring luck.";
-}
-JadeNecklaceTile.prototype = new ItemObject();
-
 function GoldLocketTile() {
   //Graphics Upgraded
   this.name = "GoldLocket";
@@ -15714,6 +15745,16 @@ EquipableItemObject.prototype.equipMe = function(who) {
     who.setEquipment("circlet",this);
   }
 
+  else if (this.checkType("Cloak")) {
+    let currentcloak = who.getEquipment("cloak");
+    if (currentcloak && (currentcloak !== this)){
+      currentcloak.unEquipMe();
+    }
+    this.setEquippedTo(who);
+    if (typeof this.onEquip === "function") { this.onEquip(who); }
+    who.setEquipment("cloak",this);
+  }
+
   else if (this.checkType("Ring")) {
     let currentring1 = who.getEquipment("ring1");
     let currentring2 = who.getEquipment("ring2"); 
@@ -15777,6 +15818,14 @@ EquipableItemObject.prototype.unEquipMe = function() {
   else if (this.checkType("Circlet")) {
     if (who.getEquipment("circlet") === this) {
       who.setEquipment("circlet","");
+      if (typeof this.onUnequip === "function") { this.onUnequip(who); }
+    } else {
+      return 0;
+    }    
+  }
+  else if (this.checkType("Cloak")) {
+    if (who.getEquipment("cloak") === this) {
+      who.setEquipment("cloak","");
       if (typeof this.onUnequip === "function") { this.onUnequip(who); }
     } else {
       return 0;
@@ -15987,50 +16036,20 @@ AmuletOfReflectionsTile.prototype.use = function(who) {
   return retval;
 }
 
-function AbyssFireFieldTile() {
-	this.name = "AbyssFireField";
-	this.graphic = "fields.gif";
-	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.blocklos = 0;
+function JadeNecklaceTile() {
+  //Graphics Upgraded
+  this.name = "JadeNecklace";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -35*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;;
+  this.blocklos = 0;
   this.prefix = "a";
-	this.desc = "fire field";
-	this.spritexoffset = "-64";
-  this.spriteyoffset = "0";
-  this.expires = 0;
-	
-	this.initdelay = 1.5;
-	this.pathweight = 5;
-	
-	HasAmbientNoise.call(this,"sfx_fire_crackle",1.5);
+  this.desc = "jade necklace";
+  this.longdesc = "A pendant bearing a shard of jade, said to bring luck.";
+  this.addType("Amulet");
 }
-AbyssFireFieldTile.prototype = new FeatureObject();
-
-AbyssFireFieldTile.prototype.walkon = function(person) {
-  let resp = {msg:"The fire burns you!"};
-  let dmg = person.getMaxHP()/6;  // should wind up an integer because maxhp is a multiple of 30
-  if (person.getHP() === 1) {
-    // teleport to end
-    resp.msg = "Despite the damage you have taken, you grit your teeth and take one more step. The world spins around you...";
-    gamestate.setMode("waiting");
-    resp["override"] = 3;
-    FadeOut();
-    setTimeout(function() { 
-      person.getHomeMap().moveThing(9,8,person);
-      DrawMainFrame("draw",person.getHomeMap(),person.getx(),person.gety());
-      FadeIn();
-      gamestate.setMode("player");
-     }, 1500); 
-    return resp;
-  }
-  else if (dmg > person.getHP()) {
-    dmg = person.getHP()-1; 
-  }
-  person.setHP(person.getHP()-dmg);
-  DrawCharFrame();
-  DamageFlash();
-  DUPlaySound("sfx_fire_hit");
-  return resp;
-}
+JadeNecklaceTile.prototype = new EquipableItemObject();
 
 // ARMOR
 
