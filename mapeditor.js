@@ -675,6 +675,8 @@ function submitEditFeature(change) {
 		}
 		if ((document.featureeditpopup.lootgroup.value) && (editable.isContainer) && (document.featureeditpopup.lootgroup.value != editable.getLootgroup())) {
 		  editable.setLootgroup(document.featureeditpopup.lootgroup.value);
+		}
+		if ((document.featureeditpopup.karmapenalty.value) && (editable.isContainer) && (document.featureeditpopup.karmapenalty.value != editable.getKarmaPenalty())) {
 		  editable.setKarmaPenalty(document.featureeditpopup.karmapenalty.value);
 		}
 		if ((document.featureeditpopup.lootedid.value) && (document.featureeditpopup.lootedid.value != editable.getLootedID())) {
