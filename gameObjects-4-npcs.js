@@ -1158,6 +1158,7 @@ NPCObject.prototype.activate = function(timeoverride) {
           mainhand: { x: 0, y: 0 }
         };
       }
+      this.animlength = HumanParts[this.wornlayers.body].frames;
     }
   
     this.setMana(-1);
