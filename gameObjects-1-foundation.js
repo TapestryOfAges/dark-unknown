@@ -1149,6 +1149,7 @@ function ManualAnimation(params) {
         sf++; 
       }
       this.currframenum = sf;
+      if (this.currframenum > this.animlength) { this.currframenum = 1; }
       this.currframe = -1*(sf-1)*32 + this.spritexoffset;
     }
 
