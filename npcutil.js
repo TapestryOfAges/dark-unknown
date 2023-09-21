@@ -614,7 +614,7 @@ function StepOrSidestep(who, path, finaldest, nopush) {
             if (fea && ((fea.getName() === "BedHead") || ((fea.getName() === "DoubleBedHead") && (topentity.checkType("pc"))))) {
               // PC is in your bed. Kick them out. Hopefully this never comes up with an NPC. If it does, though, kick them out too if it's a single bed
               npctile = who.getHomeMap().getTile(who.getx(),who.gety());
-              topentity.getHomeMap().moveThing(who.getx(),who.gety(),PC);
+              topentity.getHomeMap().moveThing(who.getx(),who.gety(),topentity);
               tile.executeWalkoffs(topentity);
               npctile.executeWalkons(topentity);
               who.getHomeMap().moveThing(path[0],path[1],who);
