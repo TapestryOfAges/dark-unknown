@@ -3130,6 +3130,8 @@ function ThroneTile() {
 ThroneTile.prototype = new FeatureObject();
 
 ThroneTile.prototype.walkon = function(who) {
+  return {msg:""};
+
   let response = {msg:""};
   who.realgraphic = who.getGraphicArray();
   who.reallayers = who.layers;
@@ -3153,6 +3155,8 @@ ThroneTile.prototype.walkon = function(who) {
 }
 
 ThroneTile.prototype.walkoff = function(who) {
+  return {msg:""};
+
   if (who.realgraphic) {
     who.setGraphicArray(who.realgraphic);
     delete who.realgraphic;
@@ -3186,6 +3190,8 @@ function BDThroneTile() {
 BDThroneTile.prototype = new FeatureObject();
 
 BDThroneTile.prototype.walkon = function(who) {
+  return {msg:""};
+
   let response = {msg:""};
   who.realgraphic = who.getGraphicArray();
   who.reallayers = who.layers;
@@ -3201,6 +3207,8 @@ BDThroneTile.prototype.walkon = function(who) {
 }
 
 BDThroneTile.prototype.walkoff = function(who) {
+  return {msg:""};
+  
   if (who.realgraphic) {
     who.setGraphicArray(who.realgraphic);
     delete who.realgraphic;
@@ -4740,6 +4748,8 @@ function BridgeEWBrokenTile() {
 BridgeEWBrokenTile.prototype = new FeatureObject();
 
 function SitDown(who,what) {
+  return {msg:""};
+
   let direction;
   who.realgraphic = who.getGraphicArray();
   who.reallayers = who.layers;
@@ -4773,6 +4783,8 @@ function SitDown(who,what) {
 }
 
 function StandUp(who) {
+  return {msg:""};
+
   if (who.realgraphic) {
     who.setGraphicArray(who.realgraphic);
     who.layers = who.reallayers;
