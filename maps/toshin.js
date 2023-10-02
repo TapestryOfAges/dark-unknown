@@ -9,22 +9,22 @@ mappages["toshin1"].terrain = [];
  mappages["toshin1"].terrain[3] = '^^ nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn';
  mappages["toshin1"].terrain[4] = 'nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn';
  mappages["toshin1"].terrain[5] = 'nn nn nn nn nn nn nn ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## nn nn nn nn nn nn';
- mappages["toshin1"].terrain[6] = 'nn nn nn nn nn nn nn ## ++ ++ ++ ++ ++ ++ ++ ++ ## ## ++ ## ## ## ## ## ## ## nn nn nn nn nn nn';
- mappages["toshin1"].terrain[7] = 'nn nn nn nn nn nn nn ## ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ## ++ ++ ++ ++ ++ ## ., nn nn nn nn nn';
- mappages["toshin1"].terrain[8] = 'nn nn nn nn nn nn nn ## ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ## ++ ++ ++ ++ ++ ## ., ., nn nn nn nn';
- mappages["toshin1"].terrain[9] = 'nn nn nn nn nn nn nn ## ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ## ++ ++ ++ ++ ++ ## ., nn nn nn nn nn';
-mappages["toshin1"].terrain[10] = 'nn nn nn nn nn nn ., ## ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ## ++ ++ ++ ++ ++ ## nn nn nn nn nn nn';
-mappages["toshin1"].terrain[11] = 'nn nn nn nn nn ., ., ## ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ## ## ## ## ++ ## ## nn nn nn nn nn nn';
-mappages["toshin1"].terrain[12] = 'nn nn nn nn nn ., ., ## ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++ ## ., ., ., ., nn .,';
-mappages["toshin1"].terrain[13] = 'nn nn nn nn nn ., ., ## ## ## ## ++ ## ## ## ## ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ., nn ., ., ., .,';
-mappages["toshin1"].terrain[14] = 'nn nn nn nn nn nn ., ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ., ., ., ., ., .,';
-mappages["toshin1"].terrain[15] = 'nn nn nn nn nn nn nn ## ## ## ## ++ ## ## ## ## ## ++ ++ ## ## ## ## ## ## ## nn nn nn nn nn nn';
-mappages["toshin1"].terrain[16] = 'nn nn nn nn nn nn nn ## ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ## ++ ++ ++ ++ ++ ## nn nn nn nn nn nn';
-mappages["toshin1"].terrain[17] = 'nn nn nn nn nn nn nn ## ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ## ++ ++ ++ ++ ++ ## nn nn nn nn nn nn';
-mappages["toshin1"].terrain[18] = 'nn nn nn nn nn nn nn ## ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ## ++ ++ ++ ++ ++ ## nn nn nn nn nn nn';
-mappages["toshin1"].terrain[19] = 'nn nn nn nn nn nn nn #+ ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ## ++ ++ ++ ++ ++ #+ nn nn nn nn ., nn';
-mappages["toshin1"].terrain[20] = 'nn nn nn nn nn nn nn ## ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++ ## nn nn nn ., ., nn';
-mappages["toshin1"].terrain[21] = 'nn nn nn nn nn nn nn ## ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ## ++ ++ ++ ++ ++ ## nn nn nn nn ., .,';
+ mappages["toshin1"].terrain[6] = 'nn nn nn nn nn nn nn ## +f +f +f +f +f +f +f +f ## ## f# ## ## ## ## ## ## ## nn nn nn nn nn nn';
+ mappages["toshin1"].terrain[7] = 'nn nn nn nn nn nn nn ## +f +f +f +f +f +f +f +f ## +f +f ## +f +f +f +f +f ## ., nn nn nn nn nn';
+ mappages["toshin1"].terrain[8] = 'nn nn nn nn nn nn nn ## +f +f +f +f +f +f +f +f ## +f +f ## +f +f +f +f +f ## ., ., nn nn nn nn';
+ mappages["toshin1"].terrain[9] = 'nn nn nn nn nn nn nn ## +f +f +f +f +f +f +f +f ## +f +f ## +f +f +f +f +f ## ., nn nn nn nn nn';
+mappages["toshin1"].terrain[10] = 'nn nn nn nn nn nn ., ## +f +f +f +f +f +f +f +f ## +f +f ## +f +f +f +f +f ## nn nn nn nn nn nn';
+mappages["toshin1"].terrain[11] = 'nn nn nn nn nn ., ., ## +f +f +f +f +f +f +f +f ## +f +f ## ## ## ## +f ## ## nn nn nn nn nn nn';
+mappages["toshin1"].terrain[12] = 'nn nn nn nn nn ., ., ## +f +f +f +f +f +f +f +f ## +f +f +f +f +f +f +f +f ## ., ., ., ., nn .,';
+mappages["toshin1"].terrain[13] = 'nn nn nn nn nn ., ., ## ## ## ## +f ## ## ## ## ## +f +f +f +f +f +f +f +f +f ., nn ., ., ., .,';
+mappages["toshin1"].terrain[14] = 'nn nn nn nn nn nn ., ## +f f# +f +f +f +f +f +f +f +f +f +f +f +f +f +f +f ## ., ., ., ., ., .,';
+mappages["toshin1"].terrain[15] = 'nn nn nn nn nn nn nn ## ## ## ## +f ## ## ## ## ## +f +f ## ## ## ## ## ## ## nn nn nn nn nn nn';
+mappages["toshin1"].terrain[16] = 'nn nn nn nn nn nn nn ## +f +f +f +f +f +f +f +f ## +f +f ## +f +f +f +f +f ## nn nn nn nn nn nn';
+mappages["toshin1"].terrain[17] = 'nn nn nn nn nn nn nn ## +f +f +f +f +f +f +f +f ## +f +f ## +f +f +f +f +f ## nn nn nn nn nn nn';
+mappages["toshin1"].terrain[18] = 'nn nn nn nn nn nn nn ## +f +f +f +f +f +f +f +f ## +f +f ## +f +f +f +f +f ## nn nn nn nn nn nn';
+mappages["toshin1"].terrain[19] = 'nn nn nn nn nn nn nn #+ +f +f +f +f +f +f +f +f ## +f +f ## +f +f +f +f +f #+ nn nn nn nn ., nn';
+mappages["toshin1"].terrain[20] = 'nn nn nn nn nn nn nn ## +f +f +f +f +f +f +f +f ## +f +f +f +f +f +f +f +f ## nn nn nn ., ., nn';
+mappages["toshin1"].terrain[21] = 'nn nn nn nn nn nn nn ## +f +f +f +f +f +f +f +f ## +f +f ## +f +f +f +f +f ## nn nn nn nn ., .,';
 mappages["toshin1"].terrain[22] = 'nn nn nn nn nn nn nn ## ## ## ## #+ ## ## ## ## ## ## ## ## ## ## #+ ## ## ## nn nn nn nn ., .,';
 mappages["toshin1"].terrain[23] = 'nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn';
 mappages["toshin1"].terrain[24] = 'nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn';
@@ -127,7 +127,7 @@ mappages["toshin1"].features[86] = {name : 'UnlitBrazier', x : 20, y : 16};
 mappages["toshin1"].features[87] = {name : 'UnlitBrazier', x : 24, y : 21};
 mappages["toshin1"].features[88] = {name : 'Fireplace', x : 9, y : 14};
 mappages["toshin1"].features[89] = {name : 'Brazier', x : 13, y : 12};
-mappages["toshin1"].features[90] = {name : 'Brazier', x : 9, y : 12};
+mappages["toshin1"].features[90] = {name : 'Brazier', x : 8, y : 11};
 
 
 mappages["toshin1"].npcs = [];
@@ -181,14 +181,15 @@ mappages["toshin1"].onload = function(mapref) {
       if (npcs[i].getNPCName() === "Elora") { elora = npcs[i]; } 
     }
     if ((arlan.getCurrentScheduleIndex() >= 14) && (arlan.getCurrentScheduleIndex() <= 15)) {
-      arlan.setGraphicArray(["static.png","",-256,-2464]);
+      ais.SleepOnFloor(arlan);
     }
     if ((elora.getCurrentScheduleIndex() >= 3) && (elora.getCurrentScheduleIndex() <= 4)) {
-      elora.setGraphicArray(["static.png","",-256,-2464]);
+      ais.SleepOnFloor(elora);
     }
   }
 }
 
+// MAP BEGINS HERE
 mappages["toshin2"] = {};
 mappages["toshin2"].terrain = [];
  mappages["toshin2"].terrain[0] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
@@ -197,22 +198,22 @@ mappages["toshin2"].terrain = [];
  mappages["toshin2"].terrain[3] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
  mappages["toshin2"].terrain[4] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
  mappages["toshin2"].terrain[5] = 'sb sb sb sb sb sb sb ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## sb sb sb sb sb sb';
- mappages["toshin2"].terrain[6] = 'sb sb sb sb sb sb sb ## ++ ++ ++ ++ ++ ## ## ## ## ## ## ## +* ## ## ## ## ## sb sb sb sb sb sb';
- mappages["toshin2"].terrain[7] = 'sb sb sb sb sb sb sb ## ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ## +* +* +* +* +* ## sb sb sb sb sb sb';
- mappages["toshin2"].terrain[8] = 'sb sb sb sb sb sb sb #O ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ## +* +* +* +* +* ## sb sb sb sb sb sb';
- mappages["toshin2"].terrain[9] = 'sb sb sb sb sb sb sb ## ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ## +* +* +* +* +* ## sb sb sb sb sb sb';
-mappages["toshin2"].terrain[10] = 'sb sb sb sb sb sb sb ## ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ## +* +* +* +* +* ## sb sb sb sb sb sb';
-mappages["toshin2"].terrain[11] = 'sb sb sb sb sb sb sb ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ +* +* +* +* +* ## sb sb sb sb sb sb';
-mappages["toshin2"].terrain[12] = 'sb sb sb sb sb sb sb ## ++ ++ ++ ++ ++ ## ## ## ++ ## ## ## ## ## ## ## ## ## sb sb sb sb sb sb';
-mappages["toshin2"].terrain[13] = 'sb sb sb sb sb sb sb ## ++ ++ ++ ++ ++ ## ## ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ## sb sb sb sb sb sb';
-mappages["toshin2"].terrain[14] = 'sb sb sb sb sb sb sb ## ++ ++ ++ ++ ++ ## ## ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ## sb sb sb sb sb sb';
-mappages["toshin2"].terrain[15] = 'sb sb sb sb sb sb sb ## ++ ++ ++ ++ ++ ## ## ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ## sb sb sb sb sb sb';
-mappages["toshin2"].terrain[16] = 'sb sb sb sb sb sb sb ## ++ ++ ++ ++ ++ ## ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## sb sb sb sb sb sb';
-mappages["toshin2"].terrain[17] = 'sb sb sb sb sb sb sb ## ++ ++ ++ ++ ++ ## ## ## ## ++ ## ## ## ## ## ## ## ## sb sb sb sb sb sb';
-mappages["toshin2"].terrain[18] = 'sb sb sb sb sb sb sb ## ++ ++ ++ ++ ++ ## ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## sb sb sb sb sb sb';
-mappages["toshin2"].terrain[19] = 'sb sb sb sb sb sb sb #O ++ ++ ++ ++ ++ ## ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ #O sb sb sb sb sb sb';
-mappages["toshin2"].terrain[20] = 'sb sb sb sb sb sb sb ## ++ ++ ++ ++ ++ ## ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## sb sb sb sb sb sb';
-mappages["toshin2"].terrain[21] = 'sb sb sb sb sb sb sb ## ++ ++ ++ ++ ++ ## ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## sb sb sb sb sb sb';
+ mappages["toshin2"].terrain[6] = 'sb sb sb sb sb sb sb ## +f +f +f +f +f ## ## ## ## ## ## ## cd ## ## ## ## ## sb sb sb sb sb sb';
+ mappages["toshin2"].terrain[7] = 'sb sb sb sb sb sb sb ## +f +f +f +f +f ## +f +f +f +f +f ## cd cd cd cd cd ## sb sb sb sb sb sb';
+ mappages["toshin2"].terrain[8] = 'sb sb sb sb sb sb sb #O +f +f +f +f +f ## +f +f +f +f +f ## cd cd cd cd cd ## sb sb sb sb sb sb';
+ mappages["toshin2"].terrain[9] = 'sb sb sb sb sb sb sb ## +f +f +f +f +f ## +f +f +f +f +f ## cd cd cd cd cd ## sb sb sb sb sb sb';
+mappages["toshin2"].terrain[10] = 'sb sb sb sb sb sb sb ## +f +f +f +f +f ## +f +f +f +f +f ## cd cd cd cd cd ## sb sb sb sb sb sb';
+mappages["toshin2"].terrain[11] = 'sb sb sb sb sb sb sb ## +f +f +f +f +f +f +f +f +f +f +f +f cd cd cd cd cd ## sb sb sb sb sb sb';
+mappages["toshin2"].terrain[12] = 'sb sb sb sb sb sb sb ## +f +f +f +f +f ## ## ## +f ## ## ## ## ## ## ## ## ## sb sb sb sb sb sb';
+mappages["toshin2"].terrain[13] = 'sb sb sb sb sb sb sb ## +f +f +f +f +f ## ## +f +f +f +f +f ## +f +f +f +f ## sb sb sb sb sb sb';
+mappages["toshin2"].terrain[14] = 'sb sb sb sb sb sb sb ## +f +f +f +f +f ## ## +f +f +f +f +f ## +f +f +f +f ## sb sb sb sb sb sb';
+mappages["toshin2"].terrain[15] = 'sb sb sb sb sb sb sb ## +f +f +f +f +f ## ## +f +f +f +f +f ## +f +f +f +f ## sb sb sb sb sb sb';
+mappages["toshin2"].terrain[16] = 'sb sb sb sb sb sb sb ## +f +f +f +f +f ## ## +f +f +f +f +f +f +f +f +f +f ## sb sb sb sb sb sb';
+mappages["toshin2"].terrain[17] = 'sb sb sb sb sb sb sb ## +f +f +f +f +f ## ## ## ## +f ## ## ## ## ## ## ## ## sb sb sb sb sb sb';
+mappages["toshin2"].terrain[18] = 'sb sb sb sb sb sb sb ## +f +f +f +f +f ## ## +f +f +f +f +f +f +f +f +f +f ## sb sb sb sb sb sb';
+mappages["toshin2"].terrain[19] = 'sb sb sb sb sb sb sb #O +f +f +f +f +f ## ## +f +f +f +f +f +f +f +f +f +f #O sb sb sb sb sb sb';
+mappages["toshin2"].terrain[20] = 'sb sb sb sb sb sb sb ## +f +f +f +f +f ## ## +f +f +f +f +f +f +f +f +f +f ## sb sb sb sb sb sb';
+mappages["toshin2"].terrain[21] = 'sb sb sb sb sb sb sb ## +f +f +f +f +f ## ## +f +f +f +f +f +f +f +f +f +f ## sb sb sb sb sb sb';
 mappages["toshin2"].terrain[22] = 'sb sb sb sb sb sb sb ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #O ## ## ## sb sb sb sb sb sb';
 mappages["toshin2"].terrain[23] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
 mappages["toshin2"].terrain[24] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
@@ -255,7 +256,7 @@ mappages["toshin2"].features[26] = {name : 'Mirror', x : 15, y : 18};
 mappages["toshin2"].features[27] = {name : 'Dresser', x : 21, y : 18};
 mappages["toshin2"].features[28] = {name : 'BookshelfLeft', x : 23, y : 18, lootedid : 'anmw', searchyield : 'AudachtaNemesosMirrorWard'};
 mappages["toshin2"].features[29] = {name : 'BookshelfRight', x : 24, y : 18};
-mappages["toshin2"].features[30] = {name : 'SmallBox', x : 22, y : 18, locked : 0, lootedid : 'toshin2box', searchyield : 'YellowPotion'};
+mappages["toshin2"].features[30] = {name : 'SmallBox', x : 22, y : 18, lootedid : 'toshin2box', searchyield : 'YellowPotion'};
 mappages["toshin2"].features[31] = {name : 'LeftTable', x : 18, y : 14};
 mappages["toshin2"].features[32] = {name : 'RightTable', x : 19, y : 14};
 mappages["toshin2"].features[33] = {name : 'TopChair', x : 19, y : 13};
@@ -320,7 +321,9 @@ mappages["toshin2"].returny = '74';
 mappages["toshin2"].returninfused = '0';
 mappages["toshin2"].linkedMaps = ["toshin1","toshin3","toshin4"];
 mappages["toshin2"].editorLabels = '{}';
+// MAP ENDS HERE
 
+// MAP BEGINS HERE
 mappages["toshin3"] = {};
 mappages["toshin3"].terrain = [];
  mappages["toshin3"].terrain[0] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
@@ -329,22 +332,22 @@ mappages["toshin3"].terrain = [];
  mappages["toshin3"].terrain[3] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
  mappages["toshin3"].terrain[4] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
  mappages["toshin3"].terrain[5] = 'sb sb sb sb sb sb sb ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## sb sb sb sb sb sb';
- mappages["toshin3"].terrain[6] = 'sb sb sb sb sb sb sb ## +* ## ## ## ## ## ## ## ## ## ## ## +* +* +* +* +* ## sb sb sb sb sb sb';
- mappages["toshin3"].terrain[7] = 'sb sb sb sb sb sb sb ## +* +* +* +* +* +* +* +* +* +* +* ## ## ## ## ## +* ## sb sb sb sb sb sb';
- mappages["toshin3"].terrain[8] = 'sb sb sb sb sb sb sb ## ## ## +* +* +* +* +* +* +* +* +* +* +* +* +* ## ## ## sb sb sb sb sb sb';
- mappages["toshin3"].terrain[9] = 'sb sb sb sb sb sb sb ## ## ## +* +* +* +* +* +* +* +* +* +* +* +* +* ## ## ## sb sb sb sb sb sb';
-mappages["toshin3"].terrain[10] = 'sb sb sb sb sb sb sb ## ## ## +* +* +* +* +* +* +* +* +* +* +* +* +* ## ## ## sb sb sb sb sb sb';
-mappages["toshin3"].terrain[11] = 'sb sb sb sb sb sb sb ## ## ## +* +* +* +* +* +* +* +* +* +* +* +* +* ## ## ## sb sb sb sb sb sb';
-mappages["toshin3"].terrain[12] = 'sb sb sb sb sb sb sb ## ## ## +* +* +* +* +* +* +* +* +* +* +* +* +* ## ## ## sb sb sb sb sb sb';
-mappages["toshin3"].terrain[13] = 'sb sb sb sb sb sb sb ## ## ## +* +* +* +* +* +* +* +* +* +* +* +* +* ## ## ## sb sb sb sb sb sb';
-mappages["toshin3"].terrain[14] = 'sb sb sb sb sb sb sb ## ## ## +* +* +* +* +* +* +* +* +* +* +* +* +* ## ## ## sb sb sb sb sb sb';
-mappages["toshin3"].terrain[15] = 'sb sb sb sb sb sb sb ## +* +* +* +* +* +* +* +* +* +* +* +* +* +* +* ## ## ## sb sb sb sb sb sb';
-mappages["toshin3"].terrain[16] = 'sb sb sb sb sb sb sb ## +* ## +* +* +* +* +* +* +* +* +* +* +* +* +* ## ## ## sb sb sb sb sb sb';
-mappages["toshin3"].terrain[17] = 'sb sb sb sb sb sb sb ## +* ## +* +* +* +* +* +* +* +* +* +* +* +* +* ## ## ## sb sb sb sb sb sb';
-mappages["toshin3"].terrain[18] = 'sb sb sb sb sb sb sb ## ## ## +* +* +* +* +* +* +* +* +* +* +* +* +* ## ## ## sb sb sb sb sb sb';
-mappages["toshin3"].terrain[19] = 'sb sb sb sb sb sb sb ## ## ## +* +* +* +* +* +* +* +* +* +* +* +* +* +* +* ## sb sb sb sb sb sb';
-mappages["toshin3"].terrain[20] = 'sb sb sb sb sb sb sb ## +* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## +* ## sb sb sb sb sb sb';
-mappages["toshin3"].terrain[21] = 'sb sb sb sb sb sb sb ## +* +* +* +* +* ## ## ## ## ## +* +* +* +* +* +* +* ## sb sb sb sb sb sb';
+ mappages["toshin3"].terrain[6] = 'sb sb sb sb sb sb sb ## kd ## ## ## ## ## ## ## ## ## ## ## kd kd kd kd kd ## sb sb sb sb sb sb';
+ mappages["toshin3"].terrain[7] = 'sb sb sb sb sb sb sb ## kd kd kd kd kd kd kd kd kd kd kd ## ## ## ## ## kd ## sb sb sb sb sb sb';
+ mappages["toshin3"].terrain[8] = 'sb sb sb sb sb sb sb ## ## ## kd kd kd kd kd kd kd kd kd kd kd kd kd ## ## ## sb sb sb sb sb sb';
+ mappages["toshin3"].terrain[9] = 'sb sb sb sb sb sb sb ## ## ## kd kd kd kd kd kd kd kd kd kd kd kd kd ## ## ## sb sb sb sb sb sb';
+mappages["toshin3"].terrain[10] = 'sb sb sb sb sb sb sb ## ## ## kd kd kd kd kd kd kd kd kd kd kd kd kd ## ## ## sb sb sb sb sb sb';
+mappages["toshin3"].terrain[11] = 'sb sb sb sb sb sb sb ## ## ## kd kd kd kd kd kd kd kd kd kd kd kd kd ## ## ## sb sb sb sb sb sb';
+mappages["toshin3"].terrain[12] = 'sb sb sb sb sb sb sb ## ## ## kd kd kd kd kd kd kd kd kd kd kd kd kd ## ## ## sb sb sb sb sb sb';
+mappages["toshin3"].terrain[13] = 'sb sb sb sb sb sb sb ## ## ## kd kd kd kd kd kd kd kd kd kd kd kd kd ## ## ## sb sb sb sb sb sb';
+mappages["toshin3"].terrain[14] = 'sb sb sb sb sb sb sb ## ## ## kd kd kd kd kd kd kd kd kd kd kd kd kd ## ## ## sb sb sb sb sb sb';
+mappages["toshin3"].terrain[15] = 'sb sb sb sb sb sb sb ## kd kd kd kd kd kd kd kd kd kd kd kd kd kd kd ## ## ## sb sb sb sb sb sb';
+mappages["toshin3"].terrain[16] = 'sb sb sb sb sb sb sb ## kd ## kd kd kd kd kd kd kd kd kd kd kd kd kd ## ## ## sb sb sb sb sb sb';
+mappages["toshin3"].terrain[17] = 'sb sb sb sb sb sb sb ## kd ## kd kd kd kd kd kd kd kd kd kd kd kd kd ## ## ## sb sb sb sb sb sb';
+mappages["toshin3"].terrain[18] = 'sb sb sb sb sb sb sb ## ## ## kd kd kd kd kd kd kd kd kd kd kd kd kd ## ## ## sb sb sb sb sb sb';
+mappages["toshin3"].terrain[19] = 'sb sb sb sb sb sb sb ## ## ## kd kd kd kd kd kd kd kd kd kd kd kd kd kd kd ## sb sb sb sb sb sb';
+mappages["toshin3"].terrain[20] = 'sb sb sb sb sb sb sb ## kd ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## kd ## sb sb sb sb sb sb';
+mappages["toshin3"].terrain[21] = 'sb sb sb sb sb sb sb ## kd kd kd kd kd ## ## ## ## ## kd kd kd kd kd kd kd ## sb sb sb sb sb sb';
 mappages["toshin3"].terrain[22] = 'sb sb sb sb sb sb sb ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## sb sb sb sb sb sb';
 mappages["toshin3"].terrain[23] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
 mappages["toshin3"].terrain[24] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
@@ -450,13 +453,13 @@ mappages["toshin3"].features[89] = {name : 'FireField', x : 11, y : 7};
 
 
 mappages["toshin3"].npcs = [];
-mappages["toshin3"].npcs[0] = {name : 'ToshinSentinelNPC', x : 15, y : 17, skintone: '1'};
-mappages["toshin3"].npcs[1] = {name : 'ToshinSentinelNPC', x : 16, y : 9, skintone: '1'};
-mappages["toshin3"].npcs[2] = {name : 'ToshinSentinelNPC', x : 22, y : 9, skintone: '1'};
-mappages["toshin3"].npcs[3] = {name : 'ToshinSentinelNPC', x : 10, y : 12, skintone: '1'};
+mappages["toshin3"].npcs[0] = {name : 'ToshinSentinelNPC', x : 15, y : 17, skintone: 1};
+mappages["toshin3"].npcs[1] = {name : 'ToshinSentinelNPC', x : 16, y : 9, skintone: 1};
+mappages["toshin3"].npcs[2] = {name : 'ToshinSentinelNPC', x : 22, y : 9, skintone: 1};
+mappages["toshin3"].npcs[3] = {name : 'ToshinSentinelNPC', x : 10, y : 12, skintone: 1};
 
 mappages["toshin3"].desc = "Toshin's Tower";
-mappages["toshin3"].longdesc = '';
+mappages["toshin3"].longdesc = ``;
 mappages["toshin3"].music = 'Magic';
 mappages["toshin3"].savename = `Toshin's Tower`;
 mappages["toshin3"].exitmap = 'darkunknown';
@@ -481,6 +484,7 @@ mappages["toshin3"].returny = '74';
 mappages["toshin3"].returninfused = '0';
 mappages["toshin3"].linkedMaps = ["toshin1","toshin2","toshin4"];
 mappages["toshin3"].editorLabels = '{}';
+// MAP ENDS HERE
 
 mappages["toshin3"].onload = function(mapref) {
   if (gamestate.getMode() !== "loadgame") {
@@ -557,6 +561,7 @@ mappages["toshin3"].onload = function(mapref) {
 }
 
 
+// MAP BEGINS HERE
 mappages["toshin4"] = {};
 mappages["toshin4"].terrain = [];
  mappages["toshin4"].terrain[0] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
@@ -576,11 +581,11 @@ mappages["toshin4"].terrain[13] = 'sb sb sb sb sb sb sb rf rf rf rf rf rf rf rf 
 mappages["toshin4"].terrain[14] = 'sb sb sb sb sb sb sb rf rf rf rf rf rf rf rf rf rf rf rf rf rf rf rf rf rf rf sb sb sb sb sb sb';
 mappages["toshin4"].terrain[15] = 'sb sb sb sb sb sb sb rf rf rf rf rf rf rf rf rf rf rf rf rf rf rf rf rf rf rf sb sb sb sb sb sb';
 mappages["toshin4"].terrain[16] = 'sb sb sb sb sb sb sb ## ## ## ## ## ## ## rf rf rf rf rf rf rf rf rf rf rf rf sb sb sb sb sb sb';
-mappages["toshin4"].terrain[17] = 'sb sb sb sb sb sb sb ## ++ ++ ++ ++ ++ ## rf rf rf rf rf rf rf rf rf rf rf rf sb sb sb sb sb sb';
-mappages["toshin4"].terrain[18] = 'sb sb sb sb sb sb sb ## ++ ++ ++ ++ ++ ## rf rf rf rf rf rf rf rf rf rf rf rf sb sb sb sb sb sb';
-mappages["toshin4"].terrain[19] = 'sb sb sb sb sb sb sb ## ++ ++ ++ ++ ++ ## rf rf rf rf rf rf rf rf rf rf rf rf sb sb sb sb sb sb';
-mappages["toshin4"].terrain[20] = 'sb sb sb sb sb sb sb ## ++ ++ ++ ++ ++ ## rf rf rf rf rf rf rf rf rf rf rf rf sb sb sb sb sb sb';
-mappages["toshin4"].terrain[21] = 'sb sb sb sb sb sb sb ## ++ ++ ++ ++ ++ ## rf rf rf rf rf rf rf rf rf rf rf rf sb sb sb sb sb sb';
+mappages["toshin4"].terrain[17] = 'sb sb sb sb sb sb sb ## +F +F +F +F +F ## rf rf rf rf rf rf rf rf rf rf rf rf sb sb sb sb sb sb';
+mappages["toshin4"].terrain[18] = 'sb sb sb sb sb sb sb ## +F +F +F +F +F ## rf rf rf rf rf rf rf rf rf rf rf rf sb sb sb sb sb sb';
+mappages["toshin4"].terrain[19] = 'sb sb sb sb sb sb sb ## +F +F +F +F +F ## rf rf rf rf rf rf rf rf rf rf rf rf sb sb sb sb sb sb';
+mappages["toshin4"].terrain[20] = 'sb sb sb sb sb sb sb ## +F +F +F +F +F ## rf rf rf rf rf rf rf rf rf rf rf rf sb sb sb sb sb sb';
+mappages["toshin4"].terrain[21] = 'sb sb sb sb sb sb sb ## +F +F +F +F +F ## rf rf rf rf rf rf rf rf rf rf rf rf sb sb sb sb sb sb';
 mappages["toshin4"].terrain[22] = 'sb sb sb sb sb sb sb ## ## ## ## ## ## ## rf rf rf rf rf rf rf rf rf rf rf rf sb sb sb sb sb sb';
 mappages["toshin4"].terrain[23] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
 mappages["toshin4"].terrain[24] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
@@ -594,28 +599,28 @@ mappages["toshin4"].terrain[31] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb 
 
 mappages["toshin4"].features = [];
 mappages["toshin4"].features[0] = {name : 'LadderDown', x : 12, y : 21, entermap : 'toshin3', enterx : 12, entery : 21};
-mappages["toshin4"].features[1] = {name : 'Chest', x : 12, y : 19, locked : 0, lootgroup : 'Toshin', lootedid : 'toshin4-15'};
-mappages["toshin4"].features[2] = {name : 'Chest', x : 12, y : 18, locked : 0, lootgroup : 'Toshin', lootedid : 'toshin4-14'};
-mappages["toshin4"].features[3] = {name : 'Chest', x : 12, y : 17, locked : 0, lootgroup : 'Toshin', lootedid : 'toshin4-13'};
-mappages["toshin4"].features[4] = {name : 'Chest', x : 11, y : 17, locked : 0, lootgroup : 'Toshin', lootedid : 'toshin4-12'};
-mappages["toshin4"].features[5] = {name : 'Chest', x : 10, y : 17, locked : 0, lootgroup : 'Toshin', lootedid : 'toshin4-11'};
-mappages["toshin4"].features[6] = {name : 'Chest', x : 11, y : 21, locked : 0, lootgroup : 'Toshin', lootedid : 'toshin4-2'};
-mappages["toshin4"].features[7] = {name : 'Chest', x : 10, y : 21, locked : 0, lootgroup : 'Toshin', lootedid : 'toshin4-3'};
-mappages["toshin4"].features[8] = {name : 'Chest', x : 10, y : 20, locked : 0, lootgroup : 'Toshin', lootedid : 'toshin4-1'};
-mappages["toshin4"].features[9] = {name : 'Chest', x : 10, y : 19, locked : 0, lootedid : 'toshin4-ring', searchyield : 'RingOfFireResist'};
-mappages["toshin4"].features[10] = {name : 'Chest', x : 9, y : 17, locked : 0, lootgroup : 'Toshin', lootedid : 'toshin4-10'};
-mappages["toshin4"].features[11] = {name : 'Chest', x : 8, y : 17, locked : 0, lootgroup : 'Toshin', lootedid : 'toshin4-9'};
-mappages["toshin4"].features[12] = {name : 'Chest', x : 8, y : 18, locked : 0, lootgroup : 'Toshin', lootedid : 'toshin4-8'};
-mappages["toshin4"].features[13] = {name : 'Chest', x : 8, y : 19, locked : 0, lootgroup : 'Toshin', lootedid : 'toshin4-7'};
-mappages["toshin4"].features[14] = {name : 'Chest', x : 8, y : 20, locked : 0, lootgroup : 'Toshin', lootedid : 'toshin4-6'};
-mappages["toshin4"].features[15] = {name : 'Chest', x : 8, y : 21, locked : 0, lootgroup : 'Toshin', lootedid : 'toshin4-5'};
-mappages["toshin4"].features[16] = {name : 'Chest', x : 9, y : 21, locked : 0, lootgroup : 'Toshin', lootedid : 'toshin4-4'};
+mappages["toshin4"].features[1] = {name : 'Chest', x : 12, y : 19, lootgroup : 'Toshin', lootedid : 'toshin4-15'};
+mappages["toshin4"].features[2] = {name : 'Chest', x : 12, y : 18, lootgroup : 'Toshin', lootedid : 'toshin4-14'};
+mappages["toshin4"].features[3] = {name : 'Chest', x : 12, y : 17, lootgroup : 'Toshin', lootedid : 'toshin4-13'};
+mappages["toshin4"].features[4] = {name : 'Chest', x : 11, y : 17, lootgroup : 'Toshin', lootedid : 'toshin4-12'};
+mappages["toshin4"].features[5] = {name : 'Chest', x : 10, y : 17, lootgroup : 'Toshin', lootedid : 'toshin4-11'};
+mappages["toshin4"].features[6] = {name : 'Chest', x : 11, y : 21, lootgroup : 'Toshin', lootedid : 'toshin4-2'};
+mappages["toshin4"].features[7] = {name : 'Chest', x : 10, y : 21, lootgroup : 'Toshin', lootedid : 'toshin4-3'};
+mappages["toshin4"].features[8] = {name : 'Chest', x : 10, y : 20, lootgroup : 'Toshin', lootedid : 'toshin4-1'};
+mappages["toshin4"].features[9] = {name : 'Chest', x : 10, y : 19, lootedid : 'toshin4-ring', searchyield : 'RingOfFireResist'};
+mappages["toshin4"].features[10] = {name : 'Chest', x : 9, y : 17, lootgroup : 'Toshin', lootedid : 'toshin4-10'};
+mappages["toshin4"].features[11] = {name : 'Chest', x : 8, y : 17, lootgroup : 'Toshin', lootedid : 'toshin4-9'};
+mappages["toshin4"].features[12] = {name : 'Chest', x : 8, y : 18, lootgroup : 'Toshin', lootedid : 'toshin4-8'};
+mappages["toshin4"].features[13] = {name : 'Chest', x : 8, y : 19, lootgroup : 'Toshin', lootedid : 'toshin4-7'};
+mappages["toshin4"].features[14] = {name : 'Chest', x : 8, y : 20, lootgroup : 'Toshin', lootedid : 'toshin4-6'};
+mappages["toshin4"].features[15] = {name : 'Chest', x : 8, y : 21, lootgroup : 'Toshin', lootedid : 'toshin4-5'};
+mappages["toshin4"].features[16] = {name : 'Chest', x : 9, y : 21, lootgroup : 'Toshin', lootedid : 'toshin4-4'};
 
 
 mappages["toshin4"].npcs = [];
 
 mappages["toshin4"].desc = "Toshin's Tower";
-mappages["toshin4"].longdesc = '';
+mappages["toshin4"].longdesc = ``;
 mappages["toshin4"].music = 'Magic';
 mappages["toshin4"].savename = `Toshin's Tower`;
 mappages["toshin4"].exitmap = 'darkunknown';
@@ -640,3 +645,4 @@ mappages["toshin4"].returny = '74';
 mappages["toshin4"].returninfused = '0';
 mappages["toshin4"].linkedMaps = ["toshin1","toshin2","toshin3"];
 mappages["toshin4"].editorLabels = '{}';
+// MAP ENDS HERE
