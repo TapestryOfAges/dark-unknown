@@ -1158,6 +1158,15 @@ NPCObject.prototype.activate = function(timeoverride) {
           mainhand: { x: 0, y: 0 }
         };
       }
+      if (this.wornlayers.head === "random") {
+        let heads = ["OldManPale","ShortBlackPale","ShortBlackPale","BaldBeardedDark","BaldBeardedDark","ShortBrownPale","ShortBrownPale","RedHeadPale","BlondePale","BlondePale","ShortBlackDark","ShortBlackDark","BrownDark","BrownDark"];
+        let idx = Dice.roll("1d"+heads.length+"-1");
+        this.wornlayers.head = heads[idx];
+        if (this.wornlayers.head.includes("Dark")) {
+          if (this.wornlayers.mainhand.includes("Pale")) { this.wornlayers.mainhand = this.wornlayers.mainhand.replace("Pale","Dark"); }
+          if (this.wornlayers.offhand.includes("Pale")) { this.wornlayers.offhand = this.wornlayers.offhand.replace("Pale","Dark"); }
+        }
+      }
       this.animlength = HumanParts[this.wornlayers.body].frames;
     }
   
@@ -2288,44 +2297,75 @@ let HumanPartsBed = {
                                    dblsingleupper: { x: -7*32, y: -170*32},
                                    dbldbllower: { x: -7*32, y: -171*32},
                                    dbldblupper: { x: -7*32, y: -172*32},
-                                   single: { x: -7*32, y: -173*32} },
+                                   single: { x: -7*32, y: -173*32},
+                                   bedroll: { x:-8*32, y: -174*32} },
   ShortBlackPale: { src: "static.png", dblsinglelower: { x: 0, y: -169*32},
                                        dblsingleupper: { x: 0, y: -170*32},
                                        dbldbllower: { x: 0, y: -171*32},
                                        dbldblupper: { x: 0, y: -172*32},
-                                       single: { x: 0, y: -173*32} },
+                                       single: { x: 0, y: -173*32},
+                                       bedroll: { x: -8*32, y: -170*32 } },
   BaldBeardedDark: { src: "static.png", dblsinglelower: { x: -3*32, y: -169*32},
                                         dblsingleupper: { x: -3*32, y: -170*32},
                                         dbldbllower: { x: -3*32, y: -171*32},
                                         dbldblupper: { x: -3*32, y: -172*32},
-                                        single: { x: -3*32, y: -173*32} },
+                                        single: { x: -3*32, y: -173*32},
+                                        bedroll: { x: -8*32, y: -172*32} },
   ShortBrownPale: { src: "static.png", dblsinglelower: { x: -5*32, y: -169*32},
                                        dblsingleupper: { x: -5*32, y: -170*32},
                                        dbldbllower: { x: -5*32, y: -171*32},
                                        dbldblupper: { x: -5*32, y: -172*32},
-                                       single: { x: -7*32, y: -173*32} },
+                                       single: { x: -5*32, y: -173*32},
+                                       bedroll: { x: -8*32, y: -173*32} },
   RedHeadPale: { src: "static.png", dblsinglelower: { x: -6*32, y: -169*32},
                                     dblsingleupper: { x: -6*32, y: -170*32},
                                     dbldbllower: { x: -6*32, y: -171*32},
                                     dbldblupper: { x: -6*32, y: -172*32},
-                                    single: { x: -6*32, y: -173*32} },
+                                    single: { x: -6*32, y: -173*32},
+                                    bedroll: { x: -9*32, y: -173*32} },
   BlondePale: { src: "static.png", dblsinglelower: { x: -4*32, y: -169*32},
                                    dblsingleupper: { x: -4*32, y: -170*32},
                                    dbldbllower: { x: -4*32, y: -171*32},
                                    dbldblupper: { x: -4*32, y: -172*32},
-                                   single: { x: -4*32, y: -173*32} },
+                                   single: { x: -4*32, y: -173*32},
+                                   bedroll: { x: -9*32, y: -172*32} },
   ShortBlackDark: { src: "static.png", dblsinglelower: { x: -1*32, y: -169*32},
                                        dblsingleupper: { x: -1*32, y: -170*32},
                                        dbldbllower: { x: -1*32, y: -171*32},
                                        dbldblupper: { x: -1*32, y: -172*32},
-                                       single: { x: -1*32, y: -173*32} },
+                                       single: { x: -1*32, y: -173*32},
+                                       bedroll: { x: -8*32, y: -171*32} },
   BrownDark: { src: "static.png", dblsinglelower: { x: -2*32, y: -169*32},
                                   dblsingleupper: { x: -2*32, y: -170*32},
                                   dbldbllower: { x: -2*32, y: -171*32},
                                   dbldblupper: { x: -2*32, y: -172*32},
-                                  single: { x: -2*32, y: -173*32} },
+                                  single: { x: -2*32, y: -173*32},
+                                  bedroll: { x: -9*32, y: -171*32} },
   
 };  
+
+function NPCHumanGroupObject() {
+  this.group = [];
+  this.attackword = "attack";
+  this.attitude = "hostile";
+}
+NPCHumanGroupObject.prototype = new NPCHumanObject();
+
+NPCHumanGroupObject.prototype.populate = function() {
+  let population = [];
+  for (let i=0; i<this.group.length; i++) {
+    let num = Dice.roll(this.group[i].count);
+    for (let j=1; j<=num; j++) {
+      if (population.length < 8) {
+        let monster = localFactory.createTile(this.group[i].npc);
+        population[population.length] = monster;
+      }
+    }
+  }
+  
+  return population;
+}
+
 
 function PCObject() {
 	this.name = "PC";
