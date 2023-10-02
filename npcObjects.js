@@ -30,7 +30,7 @@ function DruidVillagerNPCTile() {
   });
 
   this.defwornlayers.body = 'GreenRobe'
-  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.head = 'random'
   this.defwornlayers.offhand = 'OffhandPale'
   this.defwornlayers.mainhand = 'SerpentStaffPale'
 
@@ -85,7 +85,7 @@ function ShepherdVillagerNPCTile() {
   });
 
   this.defwornlayers.body = 'BrownRobe'
-  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.head = 'random'
   this.defwornlayers.offhand = 'OffhandPale'
   this.defwornlayers.mainhand = 'CrookPale'
 
@@ -139,7 +139,7 @@ function MageVillagerNPCTile() {
   });
 
   this.defwornlayers.body = 'BlueRobePlain'
-  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.head = 'random'
   this.defwornlayers.offhand = 'OffhandPale'
   this.defwornlayers.mainhand = 'QuarterstaffPale'
 
@@ -194,7 +194,7 @@ function TinkerVillagerNPCTile() {
   });
 
   this.defwornlayers.body = 'LeatherArmor'
-  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.head = 'random'
   this.defwornlayers.offhand = 'OffhandPale'
   this.defwornlayers.mainhand = 'HammerPale'
 
@@ -252,7 +252,7 @@ function RangerVillagerNPCTile() {
   });
 
   this.defwornlayers.body = 'LeatherArmor'
-  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.head = 'random'
   this.defwornlayers.back = 'Quiver'
   this.defwornlayers.offhand = 'OffhandPale'
   this.defwornlayers.mainhand = 'BowPale'
@@ -311,7 +311,7 @@ function AdventurerVillagerNPCTile() {
   });
 
   this.defwornlayers.body = 'ChainMail'
-  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.head = 'random'
   this.defwornlayers.cloak = 'BlueCloak'
   this.defwornlayers.offhand = 'OffhandPale'
   this.defwornlayers.mainhand = 'LongswordPale'
@@ -370,7 +370,7 @@ function PaladinVillagerNPCTile() {
   });
 
   this.defwornlayers.body = 'PlatePaladin'
-  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.head = 'random'
   this.defwornlayers.cloak = 'BlueCloak'
   this.defwornlayers.offhand = 'KiteShield'
   this.defwornlayers.mainhand = 'LongswordPale'
@@ -426,7 +426,7 @@ function FighterVillagerNPCTile() {
   });
 
   this.defwornlayers.body = 'Plate2'
-  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.head = 'random'
   this.defwornlayers.offhand = 'RoundShield'
   this.defwornlayers.mainhand = 'LongswordPale'
 
@@ -483,7 +483,7 @@ function TownsfolkVillagerNPCTile() {
   });
 
   this.defwornlayers.body = 'WhiteTunic'
-  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.head = 'random'
   this.defwornlayers.offhand = 'OffhandPale'
   this.defwornlayers.mainhand = 'MainHandPale'
 
@@ -736,7 +736,7 @@ function TownGuardNPCTile() {
   });
 
   this.defwornlayers.body = 'PlateCheckeredTabard'
-  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.head = 'random'
   this.defwornlayers.offhand = 'OffhandPale'
   this.defwornlayers.mainhand = 'HalberdPale'
 
@@ -1259,7 +1259,7 @@ function CorruptGuardsNPCTile() {
   });
 
   this.defwornlayers.body = 'PlateCheckeredTabard'
-  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.head = 'random'
   this.defwornlayers.offhand = 'OffhandPale'
   this.defwornlayers.mainhand = 'HalberdPale'
 
@@ -1312,7 +1312,7 @@ function CourierNPCTile() {
   });
 
   this.defwornlayers.body = 'WhiteTunic'
-  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.head = 'random'
   this.defwornlayers.offhand = 'OffhandPale'
   this.defwornlayers.mainhand = 'MainHandPale'
 
@@ -1371,7 +1371,7 @@ function CourierGuardNPCTile() {
   });
 
   this.defwornlayers.body = 'PlateWhiteTabard'
-  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.head = 'random'
   this.defwornlayers.offhand = 'OffhandPale'
   this.defwornlayers.mainhand = 'HalberdPale'
 
@@ -1615,8 +1615,8 @@ function HoodNPCTile() {
   });
 
   this.defwornlayers.body = 'LeatherArmor'
-  this.defwornlayers.head = 'ShortBrownPale'
-  this.defwornlayers.offhand = 'OffhandDagger'
+  this.defwornlayers.head = 'random'
+  this.defwornlayers.offhand = 'OffhandDaggerPale'
   this.defwornlayers.mainhand = 'DaggerPale'
 
   this.meleeAttackAs = 'none';
@@ -1669,7 +1669,7 @@ function MinstrelNPCTile() {
   });
 
   this.defwornlayers.body = 'Bard1'
-  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.head = 'random'
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d4+1'
   this.meleeStrDamage = .33
@@ -1773,7 +1773,7 @@ function ApprenticeNPCTile() {
   });
 
   this.defwornlayers.body = 'BlueRobePlain'
-  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.head = 'random'
   this.defwornlayers.offhand = 'OffhandPale'
   this.defwornlayers.mainhand = 'DaggerPale'
 
@@ -1827,7 +1827,7 @@ function FighterNPCTile() {
   });
 
   this.defwornlayers.body = 'Plate'
-  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.head = 'random'
   this.defwornlayers.cloak = 'RedCloak'
   this.defwornlayers.offhand = 'RoundShield'
   this.defwornlayers.mainhand = 'AxePale'
@@ -2073,8 +2073,8 @@ function RogueNPCTile() {
   });
 
   this.defwornlayers.body = 'LeatherArmor'
-  this.defwornlayers.head = 'ShortBrownPale'
-  this.defwornlayers.offhand = 'OffhandDagger'
+  this.defwornlayers.head = 'random'
+  this.defwornlayers.offhand = 'OffhandDaggerPale'
   this.defwornlayers.mainhand = 'ShortswordPale'
 
   this.meleeAttackAs = 'none';
@@ -2127,8 +2127,8 @@ function PitRogueNPCTile() {
   });
 
   this.defwornlayers.body = 'LeatherArmor'
-  this.defwornlayers.head = 'ShortBrownPale'
-  this.defwornlayers.offhand = 'OffhandDagger'
+  this.defwornlayers.head = 'random'
+  this.defwornlayers.offhand = 'OffhandDaggerPale'
   this.defwornlayers.mainhand = 'ShortswordPale'
 
   this.meleeAttackAs = 'none';
@@ -2261,7 +2261,7 @@ function ArcherNPCTile() {
   });
 
   this.defwornlayers.body = 'WhiteTunic'
-  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.head = 'random'
   this.defwornlayers.back = 'Quiver'
   this.defwornlayers.offhand = 'OffhandPale'
   this.defwornlayers.mainhand = 'BowPale'
@@ -2319,7 +2319,7 @@ function BardNPCTile() {
   });
 
   this.defwornlayers.body = 'Bard1'
-  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.head = 'random'
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
@@ -2373,7 +2373,7 @@ function DruidNPCTile() {
   });
 
   this.defwornlayers.body = 'GreenRobe'
-  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.head = 'random'
   this.defwornlayers.offhand = 'OffhandPale'
   this.defwornlayers.mainhand = 'SerpentStaffPale'
 
@@ -2666,7 +2666,7 @@ function HandlerNPCTile() {
   });
 
   this.defwornlayers.body = 'BrownRobe'
-  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.head = 'random'
   this.defwornlayers.offhand = 'OffhandPale'
   this.defwornlayers.mainhand = 'CrookPale'
 
@@ -2890,7 +2890,7 @@ function ThiefNPCTile() {
   });
 
   this.defwornlayers.body = 'LeatherArmor'
-  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.head = 'random'
   this.defwornlayers.offhand = 'OffhandPale'
   this.defwornlayers.mainhand = 'ShortswordPale'
 
@@ -3477,7 +3477,7 @@ function PaladinNPCTile() {
   });
 
   this.defwornlayers.body = 'Plate'
-  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.head = 'random'
   this.defwornlayers.offhand = 'KiteShield'
   this.defwornlayers.mainhand = 'LongswordPale'
 
@@ -3669,7 +3669,7 @@ function WizardNPCTile() {
   });
 
   this.defwornlayers.body = 'BlueRobePlain'
-  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.head = 'random'
   this.defwornlayers.offhand = 'OffhandPale'
   this.defwornlayers.mainhand = 'QuarterstaffPale'
 
@@ -3855,7 +3855,8 @@ function CultistNPCTile() {
   });
 
   this.defwornlayers.body = 'BrownRobeHood'
-  this.defwornlayers.offhand = 'OffhandDagger'
+  this.defwornlayers.head = 'random'
+  this.defwornlayers.offhand = 'OffhandDaggerPale'
   this.defwornlayers.mainhand = 'DaggerPale'
 
   this.meleeAttackAs = 'none';
@@ -4095,7 +4096,7 @@ function RangerNPCTile() {
   });
 
   this.defwornlayers.body = 'LeatherArmor'
-  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.head = 'random'
   this.defwornlayers.back = 'Quiver'
   this.defwornlayers.offhand = 'OffhandPale'
   this.defwornlayers.mainhand = 'BowPale'
@@ -4252,7 +4253,7 @@ function ArchmageNPCTile() {
   });
 
   this.defwornlayers.body = 'RedRobe'
-  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.head = 'random'
   this.defwornlayers.offhand = 'OffhandPale'
   this.defwornlayers.mainhand = 'QuarterstaffPale'
 
@@ -4750,7 +4751,7 @@ function DoppelgangerNPCTile() {
   });
 
   this.defwornlayers.body = 'Plate'
-  this.defwornlayers.head = 'ShortBrownPale'
+  this.defwornlayers.head = 'random'
   this.defwornlayers.offhand = 'KiteShield'
   this.defwornlayers.mainhand = 'LongswordPale'
 
@@ -5833,114 +5834,254 @@ function HoodGroupTinyTile() {
   this.name = 'HoodGroupTiny';
   this.desc = 'hoods';
   this.peaceAI = 'Bandit-15';
-  this.graphic = '375.gif';
-  this.altgraphic = ['341.gif',];
   this.group = [];
   this.group[0] = new NPCList('HoodNPC', '1d2+1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['LeatherArmor'].frames,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+
+  this.defwornlayers.body = 'LeatherArmor'
+  this.defwornlayers.head = 'random'
+  this.defwornlayers.offhand = 'OffhandDaggerPale'
+  this.defwornlayers.mainhand = 'DaggerPale'
+
 }
-HoodGroupTinyTile.prototype = new NPCGroupObject();
+HoodGroupTinyTile.prototype = new NPCHumanGroupObject();
 
 function HoodGroupSmallTile() {
   this.name = 'HoodGroupSmall';
   this.desc = 'hoods';
   this.peaceAI = 'Bandit-15';
-  this.graphic = '375.gif';
-  this.altgraphic = ['341.gif',];
   this.group = [];
   this.group[0] = new NPCList('HoodNPC', '1d3+1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['LeatherArmor'].frames,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+
+  this.defwornlayers.body = 'LeatherArmor'
+  this.defwornlayers.head = 'random'
+  this.defwornlayers.offhand = 'OffhandDaggerPale'
+  this.defwornlayers.mainhand = 'DaggerPale'
+
 }
-HoodGroupSmallTile.prototype = new NPCGroupObject();
+HoodGroupSmallTile.prototype = new NPCHumanGroupObject();
 
 function HoodGroupLargeTile() {
   this.name = 'HoodGroupLarge';
   this.desc = 'hoods';
   this.peaceAI = 'Bandit-15';
-  this.graphic = '375.gif';
-  this.altgraphic = ['341.gif',];
   this.group = [];
   this.group[0] = new NPCList('HoodNPC', '1d3+3');
   this.group[1] = new NPCList('MinstrelNPC', '1d1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['LeatherArmor'].frames,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+
+  this.defwornlayers.body = 'LeatherArmor'
+  this.defwornlayers.head = 'random'
+  this.defwornlayers.offhand = 'OffhandDaggerPale'
+  this.defwornlayers.mainhand = 'DaggerPale'
+
 }
-HoodGroupLargeTile.prototype = new NPCGroupObject();
+HoodGroupLargeTile.prototype = new NPCHumanGroupObject();
 
 function RogueGroupSmallTile() {
   this.name = 'RogueGroupSmall';
   this.desc = 'rogues';
   this.peaceAI = 'Bandit-15';
-  this.graphic = '306.gif';
   this.group = [];
   this.group[0] = new NPCList('RogueNPC', '1d3+2');
   this.group[1] = new NPCList('HoodNPC', '1d3+1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['LeatherArmor'].frames,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+
+  this.defwornlayers.body = 'LeatherArmor'
+  this.defwornlayers.head = 'random'
+  this.defwornlayers.offhand = 'OffhandDaggerPale'
+  this.defwornlayers.mainhand = 'ShortswordPale'
+
 }
-RogueGroupSmallTile.prototype = new NPCGroupObject();
+RogueGroupSmallTile.prototype = new NPCHumanGroupObject();
 
 function PitRogueGroupSmallTile() {
   this.name = 'PitRogueGroupSmall';
   this.desc = 'rogues';
   this.peaceAI = 'Bandit-15';
-  this.graphic = '306.gif';
   this.group = [];
   this.group[0] = new NPCList('PitRogueNPC', '1d3+2');
   this.group[1] = new NPCList('HoodNPC', '1d3+1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['LeatherArmor'].frames,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+
+  this.defwornlayers.body = 'LeatherArmor'
+  this.defwornlayers.head = 'random'
+  this.defwornlayers.offhand = 'OffhandDaggerPale'
+  this.defwornlayers.mainhand = 'ShortswordPale'
+
 }
-PitRogueGroupSmallTile.prototype = new NPCGroupObject();
+PitRogueGroupSmallTile.prototype = new NPCHumanGroupObject();
 
 function RogueGroupLargeTile() {
   this.name = 'RogueGroupLarge';
   this.desc = 'rogues';
   this.peaceAI = 'Bandit-15';
-  this.graphic = '306.gif';
   this.group = [];
   this.group[0] = new NPCList('RogueNPC', '1d4+3');
   this.group[1] = new NPCList('HoodNPC', '1d3+2');
   this.group[2] = new NPCList('MinstrelNPC', '1d2');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['LeatherArmor'].frames,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+
+  this.defwornlayers.body = 'LeatherArmor'
+  this.defwornlayers.head = 'random'
+  this.defwornlayers.offhand = 'OffhandDaggerPale'
+  this.defwornlayers.mainhand = 'ShortswordPale'
+
 }
-RogueGroupLargeTile.prototype = new NPCGroupObject();
+RogueGroupLargeTile.prototype = new NPCHumanGroupObject();
 
 function ThiefGroupSmallTile() {
   this.name = 'ThiefGroupSmall';
   this.desc = 'thieves';
   this.peaceAI = 'Bandit-15';
-  this.graphic = '306.gif';
   this.group = [];
   this.group[0] = new NPCList('ThiefNPC', '1d3+2');
   this.group[1] = new NPCList('RogueNPC', '1d3+1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['LeatherArmor'].frames,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+
+  this.defwornlayers.body = 'LeatherArmor'
+  this.defwornlayers.head = 'random'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'ShortswordPale'
+
 }
-ThiefGroupSmallTile.prototype = new NPCGroupObject();
+ThiefGroupSmallTile.prototype = new NPCHumanGroupObject();
 
 function ThiefGroupLargeTile() {
   this.name = 'ThiefGroupLarge';
   this.desc = 'thieves';
   this.peaceAI = 'Bandit-15';
-  this.graphic = '306.gif';
   this.group = [];
   this.group[0] = new NPCList('ThiefNPC', '1d4+3');
   this.group[1] = new NPCList('RogueNPC', '1d3+2');
   this.group[2] = new NPCList('MinstrelNPC', '1d2');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['LeatherArmor'].frames,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+
+  this.defwornlayers.body = 'LeatherArmor'
+  this.defwornlayers.head = 'random'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'ShortswordPale'
+
 }
-ThiefGroupLargeTile.prototype = new NPCGroupObject();
+ThiefGroupLargeTile.prototype = new NPCHumanGroupObject();
 
 function LowbiePartyGroupTile() {
   this.name = 'LowbiePartyGroup';
   this.desc = 'a party of adventurers';
   this.peaceAI = 'Bandit-15';
-  this.graphic = '308.gif';
   this.group = [];
   this.group[0] = new NPCList('FighterNPC', '1d2');
   this.group[1] = new NPCList('RogueNPC', '1d2');
@@ -5948,8 +6089,28 @@ function LowbiePartyGroupTile() {
   this.group[3] = new NPCList('ApprenticeNPC', '1d2-1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attacks';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['Plate'].frames,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+
+  this.defwornlayers.body = 'Plate'
+  this.defwornlayers.head = 'random'
+  this.defwornlayers.cloak = 'RedCloak'
+  this.defwornlayers.offhand = 'RoundShield'
+  this.defwornlayers.mainhand = 'AxePale'
+
 }
-LowbiePartyGroupTile.prototype = new NPCGroupObject();
+LowbiePartyGroupTile.prototype = new NPCHumanGroupObject();
 
 function HeadlessGroupTinyTile() {
   this.name = 'HeadlessGroupTiny';
@@ -6174,7 +6335,6 @@ function MidPartyGroupTile() {
   this.name = 'MidPartyGroup';
   this.desc = 'a party of adventurers';
   this.peaceAI = 'Bandit-15';
-  this.graphic = '308.gif';
   this.group = [];
   this.group[0] = new NPCList('ArcherNPC', '1d2');
   this.group[1] = new NPCList('BardNPC', '1d2-1');
@@ -6182,14 +6342,33 @@ function MidPartyGroupTile() {
   this.group[3] = new NPCList('HandlerNPC', '1d2-1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attacks';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['Plate'].frames,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+
+  this.defwornlayers.body = 'Plate'
+  this.defwornlayers.head = 'random'
+  this.defwornlayers.cloak = 'RedCloak'
+  this.defwornlayers.offhand = 'RoundShield'
+  this.defwornlayers.mainhand = 'AxePale'
+
 }
-MidPartyGroupTile.prototype = new NPCGroupObject();
+MidPartyGroupTile.prototype = new NPCHumanGroupObject();
 
 function MidHighPartyGroupTile() {
   this.name = 'MidHighPartyGroup';
   this.desc = 'a party of adventurers';
   this.peaceAI = 'Bandit-15';
-  this.graphic = '308.gif';
   this.group = [];
   this.group[0] = new NPCList('ThiefNPC', '1d2');
   this.group[1] = new NPCList('PaladinNPC', '1d2');
@@ -6197,14 +6376,33 @@ function MidHighPartyGroupTile() {
   this.group[3] = new NPCList('RangerNPC', '1d2-1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attacks';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['Plate'].frames,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+
+  this.defwornlayers.body = 'Plate'
+  this.defwornlayers.head = 'random'
+  this.defwornlayers.cloak = 'RedCloak'
+  this.defwornlayers.offhand = 'KiteShield'
+  this.defwornlayers.mainhand = 'LongswordPale'
+
 }
-MidHighPartyGroupTile.prototype = new NPCGroupObject();
+MidHighPartyGroupTile.prototype = new NPCHumanGroupObject();
 
 function HighPartyGroupTile() {
   this.name = 'HighPartyGroup';
   this.desc = 'a party of adventurers';
   this.peaceAI = 'Bandit-15';
-  this.graphic = '308.gif';
   this.group = [];
   this.group[0] = new NPCList('RangerNPC', '1d2');
   this.group[1] = new NPCList('PaladinNPC', '1d2');
@@ -6212,8 +6410,28 @@ function HighPartyGroupTile() {
   this.group[3] = new NPCList('HandlerNPC', '1d2-1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attacks';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['Plate'].frames,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+
+  this.defwornlayers.body = 'Plate'
+  this.defwornlayers.head = 'random'
+  this.defwornlayers.cloak = 'RedCloak'
+  this.defwornlayers.offhand = 'KiteShield'
+  this.defwornlayers.mainhand = 'LongswordPale'
+
 }
-HighPartyGroupTile.prototype = new NPCGroupObject();
+HighPartyGroupTile.prototype = new NPCHumanGroupObject();
 
 function MidHeadlessGroupTile() {
   this.name = 'MidHeadlessGroup';
@@ -6339,23 +6557,38 @@ function NecromancerGroupTile() {
   this.name = 'NecromancerGroup';
   this.desc = 'an evil wizard';
   this.peaceAI = 'Monster-15';
-  this.graphic = '347.gif';
-  this.altgraphic = ['381.gif',];
   this.group = [];
   this.group[0] = new NPCList('ArchmageNPC', '1d2');
   this.group[1] = new NPCList('PhantomNPC', '1d3-1');
   this.group[2] = new NPCList('SkeletonNPC', '2d4');
   this.movetype = MOVE_WALK;
   this.attackword = 'attacks';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['BlueRobePlain'].frames,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+
+  this.defwornlayers.body = 'BlueRobePlain'
+  this.defwornlayers.head = 'random'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'QuarterstaffPale'
+
 }
-NecromancerGroupTile.prototype = new NPCGroupObject();
+NecromancerGroupTile.prototype = new NPCHumanGroupObject();
 
 function ElementalistGroupTile() {
   this.name = 'ElementalistGroup';
   this.desc = 'an evil wizard';
   this.peaceAI = 'Monster-15';
-  this.graphic = '347.gif';
-  this.altgraphic = ['381.gif',];
   this.group = [];
   this.group[0] = new NPCList('ArchmageNPC', '1d2');
   this.group[1] = new NPCList('AirElementalNPC', '1d3-1');
@@ -6363,8 +6596,27 @@ function ElementalistGroupTile() {
   this.group[3] = new NPCList('EarthElementalNPC', '1d3-1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attacks';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['RedRobe'].frames,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+
+  this.defwornlayers.body = 'RedRobe'
+  this.defwornlayers.head = 'random'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'QuarterstaffPale'
+
 }
-ElementalistGroupTile.prototype = new NPCGroupObject();
+ElementalistGroupTile.prototype = new NPCHumanGroupObject();
 
 function GazersGroupTile() {
   this.name = 'GazersGroup';
@@ -6585,59 +6837,154 @@ function OnyxToHildendainGuardsGroupTile() {
   this.name = 'OnyxToHildendainGuardsGroup';
   this.desc = 'a guard patrol';
   this.peaceAI = 'PatrolOH';
-  this.graphic = '309.gif';
   this.group = [];
   this.group[0] = new NPCList('GuardNPC', '5d1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attacks';
+  this.special = 'remain, patrol';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['PlateCheckeredTabard'].frames,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+
+  this.defwornlayers.body = 'PlateCheckeredTabard'
+  this.defwornlayers.head = 'random'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'HalberdPale'
+
 }
-OnyxToHildendainGuardsGroupTile.prototype = new NPCGroupObject();
+OnyxToHildendainGuardsGroupTile.prototype = new NPCHumanGroupObject();
 
 function NaurglenToPovertyGuardsGroupTile() {
   this.name = 'NaurglenToPovertyGuardsGroup';
   this.desc = 'a guard patrol';
   this.peaceAI = 'PatrolNP';
-  this.graphic = '309.gif';
   this.group = [];
   this.group[0] = new NPCList('GuardNPC', '5d1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attacks';
+  this.special = 'remain, patrol';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['PlateCheckeredTabard'].frames,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+
+  this.defwornlayers.body = 'PlateCheckeredTabard'
+  this.defwornlayers.head = 'random'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'HalberdPale'
+
 }
-NaurglenToPovertyGuardsGroupTile.prototype = new NPCGroupObject();
+NaurglenToPovertyGuardsGroupTile.prototype = new NPCHumanGroupObject();
 
 function ClearLakeGuardsGroupTile() {
   this.name = 'ClearLakeGuardsGroup';
   this.desc = 'a guard patrol';
   this.peaceAI = 'PatrolCL';
-  this.graphic = '309.gif';
   this.group = [];
   this.group[0] = new NPCList('GuardNPC', '5d1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attacks';
+  this.special = 'remain, patrol';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['PlateCheckeredTabard'].frames,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+
+  this.defwornlayers.body = 'PlateCheckeredTabard'
+  this.defwornlayers.head = 'random'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'HalberdPale'
+
 }
-ClearLakeGuardsGroupTile.prototype = new NPCGroupObject();
+ClearLakeGuardsGroupTile.prototype = new NPCHumanGroupObject();
 
 function BeldskaeGuardsGroupTile() {
   this.name = 'BeldskaeGuardsGroup';
   this.desc = 'a guard patrol';
   this.peaceAI = 'PatrolB';
-  this.graphic = '309.gif';
   this.group = [];
   this.group[0] = new NPCList('GuardNPC', '5d1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attacks';
+  this.special = 'remain, patrol';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['PlateCheckeredTabard'].frames,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+
+  this.defwornlayers.body = 'PlateCheckeredTabard'
+  this.defwornlayers.head = 'random'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'HalberdPale'
+
 }
-BeldskaeGuardsGroupTile.prototype = new NPCGroupObject();
+BeldskaeGuardsGroupTile.prototype = new NPCHumanGroupObject();
 
 function SwainhilGuardsGroupTile() {
   this.name = 'SwainhilGuardsGroup';
   this.desc = 'a guard patrol';
   this.peaceAI = 'PatrolS';
-  this.graphic = '309.gif';
   this.group = [];
   this.group[0] = new NPCList('GuardNPC', '5d1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attacks';
+  this.special = 'remain, patrol';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['PlateCheckeredTabard'].frames,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+
+  this.defwornlayers.body = 'PlateCheckeredTabard'
+  this.defwornlayers.head = 'random'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'HalberdPale'
+
 }
-SwainhilGuardsGroupTile.prototype = new NPCGroupObject();
+SwainhilGuardsGroupTile.prototype = new NPCHumanGroupObject();
 
