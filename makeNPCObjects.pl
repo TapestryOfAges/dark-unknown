@@ -242,7 +242,7 @@ foreach my $line (<$groupdoc>) {
   print $out "  this.name = '$fields[0]';\n";
   print $out "  this.desc = '$fields[1]';\n";
   print $out "  this.peaceAI = '$fields[2]';\n";
-  if (!$fields[17]) {
+  if (!$fields[17] and !$fields[21]) {
     if ($fields[3] =~ /,/) {
       $fields[3] =~ s/ //g;
       my @graphics = split(',', $fields[3]);
@@ -306,8 +306,45 @@ foreach my $line (<$groupdoc>) {
     print $out "    startframe: \"random\"\n";
     print $out "  });\n";
 
+  } elsif ($fields[21]) {  
+    # is human
+    print $out "  this.graphic = 'spacer.gif';\n";
+    print $out "  this.spritexoffset = 0;\n";
+    print $out "  this.spriteyoffset = 0;\n";
+
+    print $out "\n  ManualAnimation.call(this, { \n";
+    print $out "    animstart: 0,\n";
+    print $out "    animlength: HumanParts['$fields[22]'].frames,\n";
+    print $out "    animstyle: \"cycle\",\n";
+    print $out "    allowrepeat: 0,\n";
+    print $out "    framedurationmin: 240,\n";
+    print $out "    framedurationmax: 340,\n";
+    print $out "    startframe: \"random\"\n";
+    print $out "  });\n\n";
+
+     print $out "  this.defwornlayers.body = '$fields[22]'\n";
+    if ($fields[23]) {
+      print $out "  this.defwornlayers.head = '$fields[23]'\n";
+    } 
+    if ($fields[24]) {
+      print $out "  this.defwornlayers.back = '$fields[24]'\n";
+    }
+    if ($fields[25]) {
+      print $out "  this.defwornlayers.cloak = '$fields[25]'\n";
+    }
+    if ($fields[26]) {
+      print $out "  this.defwornlayers.offhand = '$fields[26]'\n";
+    }
+    if ($fields[27]) {
+      print $out "  this.defwornlayers.mainhand = '$fields[27]'\n\n";
+    }
   }
 
   print $out "}\n";
-  print $out "$fields[0]" . "Tile.prototype = new NPCGroupObject();\n\n";
+  if ($fields[21]) {
+    print $out "$fields[0]" . "Tile.prototype = new NPCHumanGroupObject();\n\n";
+  } else {
+    print $out "$fields[0]" . "Tile.prototype = new NPCGroupObject();\n\n";
+  }
 }
+
