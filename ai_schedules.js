@@ -741,6 +741,41 @@ ais.ChangeGraphic = function(who,params) {
   return {fin:1};
 }
 
+ais.changeHuman = function(who,params) {
+
+}
+
+ais.SleepOnFloor = function(who,params) {
+  who.noAnim = 1;
+  who.animating = 0;  
+  who.inBed = "bedroll";
+  who.makeLayers();
+  DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
+
+  let bedroll = localFactory.createTile("BedrollFootFull");
+  who.getHomeMap().placeThing(who.getx()+1,who.gety(),bedroll);
+  DrawMainFrame("one",who.getHomeMap(),who.getx()+1,who.gety());
+
+  return {fin:1};
+}
+
+ais.WakeFromFloor = function(who,params) {
+  delete who.noAnim;
+  delete who.inBed;
+  who.makeLayers();
+  DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
+
+  let bedrolls = who.getHomeMap().getTile(who.getx()+1,who.gety()).features.getAll();
+  let bedroll;
+  for (let i=0;i<bedrolls.length;i++) {
+    if (bedrolls[i].getName() === "BedrollFootFull") { bedroll = bedrolls[i]; }
+  }
+  who.getHomeMap().deleteThing(bedroll);
+  DrawMainFrame("one",who.getHomeMap(),who.getx()+1,who.gety());
+  
+  return {fin:1};
+}
+
 ais.CheckTreasuryLock = function(who,params) {
   let doortile = who.getHomeMap().getTile(9,20);
   let door = doortile.getTopFeature();
@@ -1027,10 +1062,11 @@ ais.ChangeMapCart = function(who,params) {
 }
 
 ais.ToshinGoSleep = function(who,params) {
-  who.setGraphicArray(["static.png","",-8*32,-77*32]);
+  let fin = this.SleepOnFloor(who,params);
+  delete who.flags.awakened;
   who.flags.sleep = 1;
 
-  return {fin:1};
+  return fin;
 }
 
 ais.ToshinSleep = function(who,params) {
