@@ -5185,6 +5185,57 @@ HarpsichordTile.prototype.use = function(who) {
   return retval;
 }
 
+function BedrollHeadEmptyTile() {
+  this.name = "BedrollHeadEmpty";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -169*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "bedroll";
+  this.nowander = 1;
+  this.nopush = 1;
+
+  this.pathweight = 5; 
+  this.civilizedpathweight = 5;
+}
+BedrollHeadEmptyTile.prototype = new FeatureObject();
+
+function BedrollFootEmptyTile() {
+  this.name = "BedrollFootEmpty";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -169*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "bedroll";
+  this.nowander = 1;
+  this.nopush = 1;
+
+  this.pathweight = 5; 
+  this.civilizedpathweight = 5;
+}
+BedrollFootEmptyTile.prototype = new FeatureObject();
+
+function BedrollFootFullTile() {
+  this.name = "BedrollFootFull";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -170*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "bedroll";
+  this.nowander = 1;
+  this.nopush = 1;
+
+  this.pathweight = 5; 
+  this.civilizedpathweight = 5;
+}
+BedrollFootFullTile.prototype = new FeatureObject();
+
 function BedHeadTile() {
   this.name = "BedHead";
   this.graphic = "static.png";
@@ -5241,6 +5292,7 @@ function BedWalkOff(who, bed) {
     if (fea[i].getName() === "BedFoot") { 
       fea[i].setGraphicArray(["static.png","",-9*32,-89*32]);
       fea[i].passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+      DrawMainFrame("one",fea[i].getHomeMap(),fea[i].getx(),fea[i].gety());
     }
   }
 
