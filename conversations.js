@@ -1424,10 +1424,9 @@ ConvTestFlags["in_garden"] = function(speaker,keyword) {
 
 ConvTestFlags["is_arlan_asleep"] = function(speaker,keyword) {
   let arlan = FindNPCByName("Arlan",speaker.getHomeMap());
-  if (arlan.flags.sleep === 1) { 
+  if ((arlan.flags.sleep === 1) && !arlan.flags.awakened) { 
     arlan.flags.awakened = 1;
-    arlan.setGraphicArray(["347.gif","","0","0"]);
-    DrawMainFrame("one",PC.getHomeMap(),arlan.getx(),arlan.gety());
+    ais.WakeFromFloor(arlan);
     return 1; 
   }
 
@@ -1436,10 +1435,9 @@ ConvTestFlags["is_arlan_asleep"] = function(speaker,keyword) {
 
 ConvTestFlags["is_elora_asleep"] = function(speaker,keyword) {
   let elora = FindNPCByName("Elora",speaker.getHomeMap());
-  if (elora.flags.sleep === 1) { 
+  if ((elora.flags.sleep === 1) && !elora.flags.awakened) { 
     elora.flags.awakened = 1;
-    elora.setGraphicArray(["305.gif","","0","0"]);
-    DrawMainFrame("one",PC.getHomeMap(),elora.getx(),elora.gety());
+    ais.WakeFromFloor(elora);
     return 1; 
   }
 
