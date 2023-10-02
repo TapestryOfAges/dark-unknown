@@ -225,8 +225,8 @@ function NoBlockMountainTile() {
   //Graphics Upgraded
   this.name = "NoBlockMountain";
   this.graphic = "static.png";
-  this.spritexoffset = -7*32;
-  this.spriteyoffset = 0;
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -117*32;
   this.desc = "mountains";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -241,8 +241,8 @@ function MountainTile() {
   //Graphics Upgraded
   this.name = "Mountain";
   this.graphic = "static.png";
-  this.spritexoffset = -7*32;
-  this.spriteyoffset = 0;
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -117*32;
   this.desc = "mountains";
   this.blocklos = 1;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -257,8 +257,8 @@ function MountainPassTile() {
   //Graphics Upgraded
   this.name = "MountainPass";
   this.graphic = "static.png";
-  this.spritexoffset = -7*32;
-  this.spriteyoffset = 0;
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -117*32;
   this.desc = "mountains";
   this.blocklos = 1;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_WALK;
@@ -287,8 +287,8 @@ function Mountain1Tile() {
   //Graphics Upgraded
   this.name = "Mountain1";
   this.graphic = "static.png";
-  this.spritexoffset = -7*32;
-  this.spriteyoffset = 0;
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -117*32;
   this.desc = "mountains";
   this.blocklos = 1;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -300,7 +300,37 @@ Mountain1Tile.prototype = new TerrainObject();
 
 function Mountain2Tile() {
   //Graphics Upgraded
-  this.name = "Mountain1";
+  this.name = "Mountain2";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -117*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain2Tile.prototype = new TerrainObject();
+
+function Mountain1skyTile() {
+  //Graphics Upgraded
+  this.name = "Mountain1sky";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = 0;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain1skyTile.prototype = new TerrainObject();
+
+function Mountain2skyTile() {
+  //Graphics Upgraded
+  this.name = "Mountain2sky";
   this.graphic = "static.png";
   this.spritexoffset = -8*32;
   this.spriteyoffset = 0;
@@ -311,7 +341,7 @@ function Mountain2Tile() {
   this.peerview = "#fcfcfc";
   this.walkSound = "hill";
 }
-Mountain2Tile.prototype = new TerrainObject();
+Mountain2skyTile.prototype = new TerrainObject();
 
 function Mountain1MeadowBaseTile() {
   //Graphics Upgraded
@@ -3631,8 +3661,8 @@ function GrassTile() {
   // Graphics Upgraded
   this.name = "Grass";
   this.graphic = "static.png";
-  this.spritexoffset = -64;
-  this.spriteyoffset = 0;
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -116*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "grass";
@@ -3641,6 +3671,21 @@ function GrassTile() {
   this.combatmap = "Grass"; 
 }
 GrassTile.prototype = new TerrainObject();
+
+function Grass2Tile() {
+  // Graphics Upgraded
+  this.name = "Grass2";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "grass";
+  this.peerview = "#00c000";
+  this.walkSound = "grass";
+  this.combatmap = "Grass"; 
+}
+Grass2Tile.prototype = new TerrainObject();
 
 function GrassRoadEndTile() {
   // Graphics Upgraded
@@ -3813,6 +3858,23 @@ function BrushTile() {
   //Graphics Upgraded
   this.name = "Brush";
   this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -116*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "brush";
+  this.initdelay = 1.1;
+  this.pathweight = 1.1;
+  this.combatmap = "Brush";
+  this.peerview = "#008000";
+  this.walkSound = "grass";
+}
+BrushTile.prototype = new TerrainObject();
+
+function Brush2Tile() {
+  //Graphics Upgraded
+  this.name = "Brush2";
+  this.graphic = "static.png";
   this.spritexoffset = -3*32;
   this.spriteyoffset = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3824,7 +3886,7 @@ function BrushTile() {
   this.peerview = "#008000";
   this.walkSound = "grass";
 }
-BrushTile.prototype = new TerrainObject();
+Brush2Tile.prototype = new TerrainObject();
 
 function ShadowBrushTile() {
   this.name = "ShadowBrush";
@@ -4379,6 +4441,23 @@ function HillsTile() {
   // Graphics Upgraded
   this.name = "Hills";
   this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -116*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "hills";
+  this.initdelay = 1.5;
+  this.pathweight = 1.5;
+  this.combatmap = "Hill";
+  this.peerview = "#49473a";
+  this.walkSound = "hill";
+}
+HillsTile.prototype = new TerrainObject();
+
+function Hills0Tile() {
+  // Graphics Upgraded
+  this.name = "Hills0";
+  this.graphic = "static.png";
   this.spritexoffset = -6*32;
   this.spriteyoffset = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -4390,7 +4469,7 @@ function HillsTile() {
   this.peerview = "#49473a";
   this.walkSound = "hill";
 }
-HillsTile.prototype = new TerrainObject();
+Hills0Tile.prototype = new TerrainObject();
 
 function Hills1Tile() {
   // Graphics Upgraded
