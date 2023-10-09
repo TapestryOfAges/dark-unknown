@@ -141,8 +141,8 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
     eventcount2 = 1;
 //    console.log("FinishAnimation called.");
 
-    if (adddmg) {
-      let fbdmg = prepareSpellDamage(atk,def,adddmg,adddmgtype);
+    if (param.adddmg) {
+      let fbdmg = prepareSpellDamage(atk,def,param.adddmg,param.adddmgtype);
       dmg += fbdmg.dmg;
     }
     if ((dmg !== 0) && def) {
