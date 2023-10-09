@@ -16345,16 +16345,6 @@ WeaponObject.prototype.rollDamage = function(wielder) {
     damage += parseInt(strdam);
   }
   
-  let fb = wielder.getSpellEffectsByName("FlameBlade");
-  if (!this.checkType("Missile")) {
-    if (wielder && fb) {
-      if (!DebugWrite("magic", "Flame blade adds " + fb.damage + "damage.<br />")) {
-        DebugWrite("combat", "Flame blade adds " + fb.damage + "damage.<br />");
-      }
-      damage += parseInt(Dice.roll(fb.damage));
-      fb.doEffect();
-    }
-  }
   return damage;
 }
 
