@@ -140,6 +140,11 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
     if (eventcount2) { console.log("FinishAnimation called twice."); return; }
     eventcount2 = 1;
 //    console.log("FinishAnimation called.");
+
+    if (adddmg) {
+      let fbdmg = prepareSpellDamage(atk,def,adddmg,adddmgtype);
+      dmg += fbdmg.dmg;
+    }
     if ((dmg !== 0) && def) {
       let prehp = def.getHP(); 
       // handle onDamaged stuff here
