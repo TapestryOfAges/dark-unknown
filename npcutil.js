@@ -247,6 +247,20 @@ function Attack(atk, def) {
     // Hit!
     
     dmg = weapon.rollDamage(atk);
+    let adddmg;
+    let adddmgtype;
+    let fb = atk.getSpellEffectsByName("FlameBlade");
+    if (type === "melee") {
+      if (fb) {
+        if (!DebugWrite("magic", "Flame blade adds " + fb.damage + "damage.<br />")) {
+          DebugWrite("combat", "Flame blade adds " + fb.damage + "damage.<br />");
+        }
+        adddmg = fb.damage;
+        adddmgtype = "fire";
+        fb.doEffect();
+      }
+    }
+  
     if (type === "melee") {
       snd = atk.getMeleeHitSound();
     } else {
@@ -311,7 +325,7 @@ function Attack(atk, def) {
   
   let sounds = {start: "", end: snd};
 
-  AnimateEffect(atk,def,fromcoords,tocoords,ammographic,hitgraphic,sounds, {type:type, duration:duration,ammoreturn:ammoreturn,dmg:dmg,endturn:endturn,retval:retval,weapon:weapon});
+  AnimateEffect(atk,def,fromcoords,tocoords,ammographic,hitgraphic,sounds, {type:type, duration:duration,ammoreturn:ammoreturn,dmg:dmg,endturn:endturn,retval:retval,weapon:weapon,adddmg:adddmg,adddmgtype:adddmgtype});
   
   let tmpval = {};
   tmpval["fin"] = -1;
@@ -319,11 +333,12 @@ function Attack(atk, def) {
   return tmpval;
 }
 
-function prepareSpellDamage(damsrc, damtar, damval, damtype) {
+function prepareSpellDamage(damsrc, damtar, damval, damtype, ismagic) {
+  // ismagic basically means spell resistance works on it
   let retval = {};
   retval.dmg = Dice.roll(damval);
 
-  if (damtype === "magic") {
+  if (ismagic) {
     let armor = damtar.getEquipment("armor");
     let resist = 0;
     if (resist) {
