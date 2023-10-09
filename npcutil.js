@@ -230,6 +230,8 @@ function Attack(atk, def) {
   let dmg = 0;
   let storymode = DU.gameflags.getFlag("storymode");
   let snd;
+  let adddmg;
+  let adddmgtype;
   if (type === "melee") {
     snd = atk.getMeleeAttackSound();
   } else {
@@ -247,8 +249,6 @@ function Attack(atk, def) {
     // Hit!
     
     dmg = weapon.rollDamage(atk);
-    let adddmg;
-    let adddmgtype;
     let fb = atk.getSpellEffectsByName("FlameBlade");
     if (type === "melee") {
       if (fb) {
