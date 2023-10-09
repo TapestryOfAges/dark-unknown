@@ -348,20 +348,18 @@ function prepareSpellDamage(damsrc, damtar, damval, damtype) {
     if (retval.dmg === 0) { retval.dmg = 1; }  // min dmg 1
   } 
   
-  if (damtype === "fire") {
-    if (damtar.resists.fire) {
-      let fireresist = (damtar.resists.fire - damsrc.getReduceResist)/100;
-      retval.dmg = retval.dmg * (1-fireresist);
+  if ((damtype === "fire") || (damtype === "ice") || (damtype === "poison") || (damtype === "lightning") || (damtype === "force")) {
+    if (damtar.resists[damtype]) {
+      let resist = damtar.resists[damtype];
+      if (resist > 0) {
+        resist = (resist - damsrc.getReduceResist)/100;
+        if (resist < 0) { resist = 0; }
+      }
+      retval.dmg = retval.dmg * (1-resist);
     }
   }
   
-  if (damtype === "ice") {
-    if (damtar.resists.ice) {
-      let iceresist = (damtar.resists.ice - damsrc.getReduceResist)/100;
-      retval.dmg = retval.dmg * (1-iceresist);
-    }
-  }
-  
+  return retval;
 }
 
 function GetCoordsWithOffsets(direction, from, to) {
