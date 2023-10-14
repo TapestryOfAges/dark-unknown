@@ -345,10 +345,10 @@ function Attack(atk, def) {
   return tmpval;
 }
 
-function prepareSpellDamage(damsrc, damtar, damval, damtype, ismagic) {
+function prepareSpellDamage(damsrc, damtar, damval, damtype, ismagic, extradmg) {
   // ismagic basically means spell resistance works on it
   let retval = {};
-  retval.dmg = Dice.roll(damval);
+  retval.dmg = RollDamage(damval,extradmg);
 
   if (ismagic) {
     let armor = damtar.getEquipment("armor");

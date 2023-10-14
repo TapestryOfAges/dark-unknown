@@ -1025,7 +1025,9 @@ function PerformMagicBolt(caster, infused, free, tgt) {
   tgt.setHitBySpell(caster,SPELL_MAGIC_BOLT_LEVEL);
   let power = caster.getIntForPower();
   if (free) { power = Dice.roll("1d5+12"); }
-  let dmg = RollDamage(DMG_NEGLIGABLE, Math.floor(power/5)+1);
+//  let dmg = RollDamage(DMG_NEGLIGABLE, Math.floor(power/5)+1);
+  let predmg = prepareSpellDamage(caster, tgt, DMG_NEGLIGABLE, "force", 0, Math.floor(power/5)+1);
+  let dmg = predmg.dmg;
   if (infused) {
     dmg *= 1.5;
   }
@@ -1148,9 +1150,9 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
           // poisoned!
           
           if (infused) {
-            let dmg = Dice.roll(DMG_LIGHT);
+            let dmg = prepareSpellDamage(caster, val, DMG_LIGHT, "poison", 0);
 //            val.dealDamage(dmg,caster,"poison");
-            DealandDisplayDamage(val,caster,dmg,"poison");
+            DealandDisplayDamage(val,caster,dmg.dmg,"poison");
             // additionally deals some damage
           }
         }
