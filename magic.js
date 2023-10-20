@@ -1387,7 +1387,8 @@ magic[SPELL_DISRUPT_UNDEAD_LEVEL][SPELL_DISRUPT_UNDEAD_ID].executeSpell = functi
     if (val.special.indexOf("undead") > -1) {
       if (GetDistance(val.getx(),val.gety(), caster.getx(), caster.gety()) < 7) {
         val.setHitBySpell(caster,SPELL_DISRUPT_UNDEAD_LEVEL);
-        let dmg = RollDamage(DMG_MEDIUM);
+        let tmpdmg = prepareSpellDamage(caster,val,DMG_MEDIUM,"force");
+        let dmg = tmpdmg.dmg;
         if (infused) {
           dmg *= 1.5;
         }
@@ -1513,7 +1514,8 @@ function PerformFireball(caster, infused, free, tgt) {
     TurnMapHostile(caster.getHomeMap());
   }
 
-  let dmg = RollDamage(DMG_MEDIUM);
+  let tmpdmg = prepareSpellDamage(caster,tgt,DMG_MEDIUM,"fire");
+  let dmg = tmpdmg.dmg;
   if (infused) {
     dmg = dmg * 1.5;
   }
@@ -2282,7 +2284,8 @@ function PerformIceball(caster, infused, free, tgt) {
     TurnMapHostile(caster.getHomeMap());
   }
 
-  let dmg = RollDamage(DMG_MEDIUM);
+  let tmpdmg = prepareSpellDamage(caster,tgt,DMG_MEDIUM,"ice");
+  let dmg = tmpdmg.dmg;
   if (infused) {
     dmg = dmg * 1.5;
   }
@@ -2396,7 +2399,8 @@ function PerformLifeDrain(caster, infused, free, tgt) {
     return resp;
   }
 
-  let dmg = RollDamage(DMG_MEDIUM);
+  let tmpdmg = prepareSpellDamage(caster,tgt,DMG_MEDIUM);
+  let dmg = tmpdmg.dmg;
   if (infused) {
     dmg = dmg * 1.5;
   }
@@ -2467,7 +2471,8 @@ magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID].executeSpell = function(caster, infused
   for (let i=0; i<=2; i++) {
     if (foes[i]) {
       foes[i].setHitBySpell(caster,SPELL_SMITE_LEVEL);
-      let dmg = RollDamage(DMG_MEDIUM);
+      let tmpdmg = prepareSpellDamage(caster,foes[i],DMG_MEDIUM,"force");
+      let dmg = tmpdmg.dmg;
       if (infused) { dmg = dmg * 1.5; }
       if (CheckResist(caster,foes[i],infused,0)) {
         dmg = Math.floor(dmg/2)+1;
@@ -2868,7 +2873,8 @@ magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].executeSpell = function(caster,
       let badguy = tile.getTopNPC();
       if (badguy) {
         badguy.setHitBySpell(caster,SPELL_SHOCKWAVE_LEVEL);
-        let dmg = Dice.roll(DMG_MEDIUM);
+        let tmpdmg = prepareSpellDamage(caster,badguy,DMG_MEDIUM,"force");
+        let dmg = tmpdmg;
         if (infused) { dmg = dmg * 1.5; }
         let resist = 0;
         if (CheckResist(caster,badguy,infused,0)) {
@@ -3050,7 +3056,8 @@ function PerformSwordstrike(caster, infused, free, tgt) {
     hostile = 1;
   }
 
-  let dmg = RollDamage(DMG_HEAVY);
+  let tmpdmg = prepareSpellDamage(caster,tgt,DMG_HEAVY,"physical");
+  let dmg = tmpdmg.dmg;
   if (infused) {
     dmg = dmg * 1.5;
   }
@@ -3067,8 +3074,9 @@ function PerformSwordstrike(caster, infused, free, tgt) {
   for (let diffx = -1; diffx <=1; diffx++) {
     for (let diffy = -1; diffy <=1; diffy++) {
       if ((diffx === 0) && (diffy === 0)) { continue; }
-      dmg = RollDamage(DMG_LIGHT);
       if ((tgt.getx()+diffx === PC.getx()) && (tgt.gety()+diffy === PC.gety())) {
+        let tmpdmg = prepareSpellDamage(caster,PC,DMG_LIGHT,"physical");
+        dmg = tmpdmg.dmg;
         if (CheckResist(caster,PC,infused,0)) { dmg = dmg/2 +1; }
         //PC.dealDamage(dmg,caster,"physical");
         DealandDisplayDamage(PC,caster,dmg,"physical");
@@ -3078,6 +3086,8 @@ function PerformSwordstrike(caster, infused, free, tgt) {
       let tile = castmap.getTile(tgt.getx()+diffx,tgt.gety()+diffy);
       let badguy = tile.getTopNPC();
       if (badguy) {
+        let tmpdmg = prepareSpellDamage(caster,badguy,DMG_LIGHT,"physical");
+        dmg = tmpdmg.dmg;
         if (CheckResist(caster,badguy,infused,0)) { dmg = dmg/2+1; }
         //badguy.dealDamage(dmg,caster,"physical");
         DealandDisplayDamage(badguy,caster,dmg,"physical");
@@ -3563,7 +3573,7 @@ function PerformExplosion(caster, infused, free, tgt) {
 //      if ((diffx === 0) && (diffy === 0)) { continue; }
 //      dmg = RollDamage(DMG_LIGHT);
       if ((tgt.x+diffx === PC.getx()) && (tgt.y+diffy === PC.gety())) {
-        let localdmg = dmg;
+        let localdmg = prepareSpellDamage(caster,PC,dmg,"fire");
         if (CheckResist(caster,PC,infused,0)) { localdmg = localdmg/2 +1; }
         //PC.dealDamage(dmg,caster,"fire");
         DealandDisplayDamage(PC,caster,localdmg,"fire");
@@ -3574,7 +3584,7 @@ function PerformExplosion(caster, infused, free, tgt) {
       let badguy = tile.getTopNPC();
       if (badguy) {
         badguy.setHitBySpell(caster,SPELL_EXPLOSION_LEVEL);
-        let localdmg = dmg;
+        let localdmg = prepareSpellDamage(caster,badguy,dmg,"fire");
         if (CheckResist(caster,badguy,infused,0)) { localdmg = localdmg/2+1; }
         //badguy.dealDamage(dmg,caster,"fire");
         DealandDisplayDamage(badguy,caster,localdmg,"fire");
@@ -3863,7 +3873,8 @@ magic[SPELL_TREMOR_LEVEL][SPELL_TREMOR_ID].executeSpell = function(caster, infus
   for (let i=0; i<foes.length; i++) {
     if (foes[i]) {
       foes[i].setHitBySpell(caster,SPELL_TREMOR_LEVEL);
-      let dmg = RollDamage(DMG_MEDIUM);
+      let tmpdmg = prepareSpellDamage(caster,foes[i],DMG_MEDIUM,"force");
+      let dmg = tmpdmg.dmg;
       if (foes[i].movetype & MOVE_FLY) {
         dmg = Math.floor(dmg/2)+1;
       }
@@ -4089,7 +4100,8 @@ magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].executeSpell = function(c
           let tile = castermap.getTile(i,j);
           let tgt = tile.getTopVisibleNPC();
           if (tgt) {
-            let dmg = Dice.roll(DMG_HEAVY);
+            let tmpdmg = prepareSpellDamage(caster,tgt,DMG_HEAVY,"fire");
+            let dmg = tmpdmg.dmg;
             if (CheckResist(center,tgt,0,0)) {
               dmg = Math.floor(dmg/2);
             }
@@ -4206,14 +4218,14 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(c
   }
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
-    var desc;
     if (CheckAreEnemies(caster,val)) {
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
         npccount--;
         let final = 0;
         if (!npccount) { final = 1; }
         val.setHitBySpell(caster,SPELL_METEOR_SWARM_LEVEL);
-        let dmg = Dice.roll(DMG_MEDIUM, DMG_LIGHT);
+        let tmpdmg = prepareSpellDamage(caster,val,DMG_MEDIUM,"fire",0,DMG_LIGHT);
+        let dmg = tmpdmg.dmg;
         if (CheckResist(caster,val,infused,0)) {
           dmg = dmg/2;
         } 
@@ -4306,7 +4318,8 @@ function PerformMindBlast(caster, infused, free, tgt) {
   }
   let power = caster.getIntForPower();
   if (free) { power = Dice.roll("1d5+12"); }
-  let dmg = RollDamage(DMG_TREMENDOUS) + power;
+  let tmpdmg = prepareSpellDamage(caster,tgt,DMG_TREMENDOUS,"drain",0,power);
+  let dmg = tmpdmg.dmg;
   if (infused) {  // can't be infused, but check anyway
     dmg = dmg * 1.5;
   }
@@ -4545,7 +4558,8 @@ function PerformArrowOfGlass(caster, infused, free, tgt) {
   let power = caster.getIntForPower();
   if (free) { power = Dice.roll("1d5+12"); }
 //  let dmg = RollDamage(DMG_TREMENDOUS) + power;
-  let dmg = parseInt(DMG_AUTOKILL);
+  let tmpdmg = prepareSpellDamage(caster,tgt,DMG_AUTOKILL,"physical");
+  let dmg = tmpdmg.dmg;
   if (infused) {  // can't be infused, but check anyway
     dmg = dmg * 1.5;
   }
@@ -4619,7 +4633,8 @@ magic[SPELL_CONFLAGRATION_LEVEL][SPELL_CONFLAGRATION_ID].executeSpell = function
     let desc;
     if (CheckAreEnemies(caster,val)) {
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
-        let dmg = Dice.roll(DMG_HEAVY);
+        let tmpdmg = prepareSpellDamage(caster,val,DMG_HEAVY,"fire");
+        let dmg = tmpdmg.dmg;
         if (CheckResist(caster,val,infused,0)) {
           dmg = dmg/2+1;
         } 

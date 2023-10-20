@@ -823,7 +823,9 @@ FireArmorTile.prototype.endEffect = function(silent) {
 }
 
 FireArmorTile.prototype.flashback = function(attacker) {
-  let dmg = RollDamage(this.getPower());
+//  let dmg = RollDamage(this.getPower());
+  let tmpdmg = prepareSpellDamage(this,attacker,this.getPower(),"fire");
+  let dmg = tmpdmg.dmg;
   if (attacker === PC) {
     maintext.addText("Flames burn you!");
   }
