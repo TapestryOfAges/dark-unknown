@@ -3466,11 +3466,11 @@ function FireFieldTile() {
 FireFieldTile.prototype = new FeatureObject();
 
 FireFieldTile.prototype.walkon = function(person) {
-  let resp = InAFireField(person);
+  let resp = InAFireField(person, this);
   return resp;
 }
 FireFieldTile.prototype.idle = function(person) {
-  let resp = InAFireField(person);
+  let resp = InAFireField(person, this);
   return resp;
 }
 
@@ -3531,15 +3531,15 @@ FireFieldTile.prototype.myTurn = function() {
   return 1;
 }
 
-function InAFireField(who) {
-  let dmg = Dice.roll("2d6+3");
-  dmg = (1/SCALE_TIME)*(DUTime.getGameClock() - who.getLastTurnTime()) * dmg;
+function InAFireField(who, field) {
+  let tmpdmg = prepareSpellDamage(field,who,"2d6+3","fire");
+  let dmg = (1/SCALE_TIME)*(DUTime.getGameClock() - who.getLastTurnTime()) * tmpdmg.dmg;
   let response = {msg:"The fire field burns you!"};
   let resist = who.getResist("magic");
   resist = 1-(resist/100);
   dmg = dmg*resist;
   //who.dealDamage(dmg, this, "fire");
-  DealandDisplayDamage(who,this, dmg, "fire");
+  DealandDisplayDamage(who,field, dmg, "fire");
   DebugWrite("gameobj", "Firefield deals " + dmg + " damage to " + who.getName() + ".");
   if (who === PC) { DUPlaySound("sfx_fire_hit"); }
   return response;
