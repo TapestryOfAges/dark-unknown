@@ -2001,7 +2001,7 @@ function OrcNPCTile() {
   this.name = 'OrcNPC';
   this.level = 2;
   this.addhp = 0;
-  this.str = 14;
+  this.str = 10;
   this.dex = 10;
   this.int = 6;
   this.alignment = 'Evil';
@@ -5689,7 +5689,7 @@ CrystalBarrierNPCTile.prototype = new NPCObject();
 function GiantRatGroupTinyTile() {
   this.name = 'GiantRatGroupTiny';
   this.desc = 'giant rats';
-  this.peaceAI = 'Animal-15';
+  this.peaceAI = 'Animal-5';
   this.group = [];
   this.group[0] = new NPCList('GiantRatNPC', '1d2+1');
   this.movetype = MOVE_WALK;
@@ -5713,7 +5713,7 @@ GiantRatGroupTinyTile.prototype = new NPCGroupObject();
 function GiantRatGroupSmallTile() {
   this.name = 'GiantRatGroupSmall';
   this.desc = 'giant rats';
-  this.peaceAI = 'Animal-15';
+  this.peaceAI = 'Animal-5';
   this.group = [];
   this.group[0] = new NPCList('GiantRatNPC', '1d3+2');
   this.movetype = MOVE_WALK;
@@ -5737,7 +5737,7 @@ GiantRatGroupSmallTile.prototype = new NPCGroupObject();
 function GiantRatGroupLargeTile() {
   this.name = 'GiantRatGroupLarge';
   this.desc = 'giant rats';
-  this.peaceAI = 'Animal-15';
+  this.peaceAI = 'Animal-5';
   this.group = [];
   this.group[0] = new NPCList('GiantRatNPC', '1d5+4');
   this.movetype = MOVE_WALK;
@@ -6187,7 +6187,7 @@ HeadlessGroupLargeTile.prototype = new NPCGroupObject();
 function SnakesGroupSmallTile() {
   this.name = 'SnakesGroupSmall';
   this.desc = 'giant snakes';
-  this.peaceAI = 'Animal-15';
+  this.peaceAI = 'Animal-5';
   this.group = [];
   this.group[0] = new NPCList('PythonNPC', '1d2+1');
   this.movetype = MOVE_WALK;
@@ -6211,7 +6211,7 @@ SnakesGroupSmallTile.prototype = new NPCGroupObject();
 function SnakesGroupTile() {
   this.name = 'SnakesGroup';
   this.desc = 'giant snakes';
-  this.peaceAI = 'Animal-15';
+  this.peaceAI = 'Animal-5';
   this.group = [];
   this.group[0] = new NPCList('PythonNPC', '1d4+2');
   this.movetype = MOVE_WALK;
@@ -6235,7 +6235,7 @@ SnakesGroupTile.prototype = new NPCGroupObject();
 function MidSnakesGroupTile() {
   this.name = 'MidSnakesGroup';
   this.desc = 'giant snakes';
-  this.peaceAI = 'Animal-15';
+  this.peaceAI = 'Animal-5';
   this.group = [];
   this.group[0] = new NPCList('PythonNPC', '1d4+2');
   this.group[1] = new NPCList('GiantSnakeNPC', '1d2');
@@ -6260,7 +6260,7 @@ MidSnakesGroupTile.prototype = new NPCGroupObject();
 function DrakesSmallGroupTile() {
   this.name = 'DrakesSmallGroup';
   this.desc = 'drakes';
-  this.peaceAI = 'Animal-15';
+  this.peaceAI = 'Animal-5';
   this.group = [];
   this.group[0] = new NPCList('DrakeNPC', '1d4+1');
   this.movetype = MOVE_FLY;
@@ -6284,7 +6284,7 @@ DrakesSmallGroupTile.prototype = new NPCGroupObject();
 function DrakesLargeGroupTile() {
   this.name = 'DrakesLargeGroup';
   this.desc = 'drakes';
-  this.peaceAI = 'Animal-15';
+  this.peaceAI = 'Animal-5';
   this.group = [];
   this.group[0] = new NPCList('DrakeNPC', '1d6+1');
   this.group[1] = new NPCList('DragonNPC', '1d2-1');
@@ -6309,7 +6309,7 @@ DrakesLargeGroupTile.prototype = new NPCGroupObject();
 function DragonsGroupTile() {
   this.name = 'DragonsGroup';
   this.desc = 'dragons';
-  this.peaceAI = 'Animal-15';
+  this.peaceAI = 'Animal-5';
   this.group = [];
   this.group[0] = new NPCList('DrakeNPC', '1d3');
   this.group[1] = new NPCList('DragonNPC', '1d3+1');
@@ -6774,7 +6774,7 @@ MagmaLizardGroupTile.prototype = new NPCGroupObject();
 function InsectsGroupSmallTile() {
   this.name = 'InsectsGroupSmall';
   this.desc = 'giant insects';
-  this.peaceAI = 'Animal-15';
+  this.peaceAI = 'Animal-5';
   this.group = [];
   this.group[0] = new NPCList('GiantInsectsNPC', '1d4');
   this.movetype = MOVE_FLY;
@@ -6798,7 +6798,7 @@ InsectsGroupSmallTile.prototype = new NPCGroupObject();
 function InsectsGroupLargeTile() {
   this.name = 'InsectsGroupLarge';
   this.desc = 'giant insects';
-  this.peaceAI = 'Animal-15';
+  this.peaceAI = 'Animal-5';
   this.group = [];
   this.group[0] = new NPCList('GiantInsectsNPC', '2d4+1');
   this.movetype = MOVE_FLY;
