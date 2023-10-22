@@ -330,7 +330,7 @@ Conversation.prototype.say = function(speaker, saywhat, skipahead, nospeaker, al
 
 function InnRoom(xc,yc,doors,innmap) {
   if (DU.gameflags.getFlag("music")) {
-    StopMusic();
+//    StopMusic();
     DUPlayMusic("Lullaby", {fade:1});
   }
   if (!innmap) { console.log("Replace innmap with PC's map.");  innmap = PC.getHomeMap(); }
