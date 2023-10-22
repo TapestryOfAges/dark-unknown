@@ -1011,6 +1011,7 @@ mappages["gnomeland"].returny = '';
 mappages["gnomeland"].returninfused = '0';
 mappages["gnomeland"].linkedMaps = [""];
 
+// MAP BEGINS HERE
 mappages["landsbeyond"] = {};
 mappages["landsbeyond"].terrain = [];
  mappages["landsbeyond"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -1035,8 +1036,9 @@ mappages["landsbeyond"].features = [];
 mappages["landsbeyond"].npcs = [];
 
 mappages["landsbeyond"].desc = "The Lands Beyond";
+mappages["landsbeyond"].longdesc = ``;
 mappages["landsbeyond"].music = 'Death';
-mappages["landsbeyond"].savename = "Lands Beyond";
+mappages["landsbeyond"].savename = `Lands Beyond`;
 mappages["landsbeyond"].exitmap = '';
 mappages["landsbeyond"].exitx = '65';
 mappages["landsbeyond"].exity = '70';
@@ -1047,13 +1049,16 @@ mappages["landsbeyond"].seeBelow = '';
 mappages["landsbeyond"].lightLevel = 'bright';
 mappages["landsbeyond"].alwaysRemember = '0';
 mappages["landsbeyond"].scale = '1';
+mappages["landsbeyond"].underground = '1';
+mappages["landsbeyond"].undergroundDesc = '';
 mappages["landsbeyond"].enterscript = '';
 mappages["landsbeyond"].entertestscript = '';
 mappages["landsbeyond"].exitscript = '';
 mappages["landsbeyond"].exittestscript = '';
 mappages["landsbeyond"].returnmap = '';
-mappages["landsbeyond"].returnx = '';
-mappages["landsbeyond"].returny = '';
+mappages["landsbeyond"].returnx = 'NaN';
+mappages["landsbeyond"].returny = 'NaN';
 mappages["landsbeyond"].returninfused = '0';
 mappages["landsbeyond"].linkedMaps = [""];
-
+mappages["landsbeyond"].editorLabels = '{}';
+// MAP ENDS HERE
