@@ -403,7 +403,7 @@ NPCObject.prototype.processDeath = function(droploot){
     MoveBetweenMaps(this,this.getHomeMap(),newmap, 7, 7, 1);
     FadeOut(1);
 
-    if (wascityfighting) {
+    if (wascityfighting && DU.gameflags.getFlag("endAct1") && !DU.gameflags.getFlag("act2")) {
       PC.dead = 1;
       PC.deaduntil = GetGameClockByClockTime(ModTime(GetUsableClockTime(),"1:00"));
       PC.bdc = 1;
