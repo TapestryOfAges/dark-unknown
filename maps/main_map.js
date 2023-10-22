@@ -651,7 +651,7 @@ function Placespawns(mapref) {
   // west of the two bridges
   // Zone: SE
   spawn = localFactory.createTile("Spawner");
-  group = ["OrcGroupTiny"];
+  group = ["InsectsGroupSmall"];
 
   spawn.setSpawngroup(group);
   spawn.setSpawnRadius(4);
