@@ -1119,6 +1119,9 @@ function ManualAnimation(params) {
   this.animateMe = function() {
 //    console.log("In animateMe " + this.getName() + " , (" + this.getx() + "," + this.gety() + ")");
     if (this.noAnim) { return; }
+
+    if ((this.getSerial() === 1) && (this !== PC)) { console.log("NUKING OLD PC ANIM"); return; }
+
     let divid = "divid_" + this.getSerial();
     let div = document.getElementById(divid);
     let animated = 0;
