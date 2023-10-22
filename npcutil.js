@@ -379,9 +379,12 @@ function prepareSpellDamage(damsrc, damtar, damval, damtype, ismagic, extradmg) 
     if (damtar.resists[damtype]) {
       let resist = damtar.resists[damtype];
       if (resist > 0) {
-        resist = (resist - damsrc.getReduceResist)/100;
+        if (damsrc.hasOwnProperty("getReduceResist")) {
+          resist = (resist - damsrc.getReduceResist());
+        }
         if (resist < 0) { resist = 0; }
       }
+      resist = resist/100;
       retval.dmg = retval.dmg * (1-resist);
     }
   }
