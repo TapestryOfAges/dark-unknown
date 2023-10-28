@@ -603,7 +603,7 @@ mappages["clearlake2"].features[92] = {name : 'Mirror', x : 22, y : 19};
 
 mappages["clearlake2"].npcs = [];
 mappages["clearlake2"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 40, y : 39, NPCName: 'Suzanne', Desc: 'fisherman', PeaceAI: 'scheduled', Schedule: 'suzanne', Conversation: 'suzanne', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"WhiteTunic2","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"ShortBlackDark"}'};
-mappages["clearlake2"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 36, y : 20, NPCName: 'Kiki', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'kiki', Conversation: 'grace', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"YellowTunic","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBlackPale"}'};
+mappages["clearlake2"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 36, y : 20, NPCName: 'Kiki', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'kiki', Conversation: 'kiki', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"YellowTunic","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBlackPale"}'};
 mappages["clearlake2"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 36, y : 19, NPCName: 'Aubrey', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'aubrey', Conversation: 'aubrey', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"GreenTunic","head":"BlondePale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"BlondePale"}'};
 
 mappages["clearlake2"].desc = "Clear Lake";
