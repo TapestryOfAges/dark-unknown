@@ -2708,6 +2708,11 @@ tileFactory.prototype.makeEnergyFieldTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeStreetLampTile = function() {
+  let newTile = new StreetLampTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeTorchWestTile = function() {
   let newTile = new TorchWestTile();
   return newTile;
