@@ -2379,6 +2379,20 @@ EnergyFieldTile.prototype.bumpinto = function(who) {
   return {msg: ""};
 }
 
+function StreetLampTile() {
+	this.name = "StreetLamp";
+  this.graphic = "LampPost.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL;
+	this.blocklos = 0;
+  this.prefix = "a";
+	this.desc = "burning torch";
+
+	LightEmitting.call(this, 4);
+}
+StreetLampTile.prototype = new FeatureObject();  
+
 function TorchWestTile() {
   //Graphics Upgraded
 	this.name = "TorchWest";
