@@ -673,7 +673,10 @@ mappages["olympus1"].features[599] = {name : 'TorchEast', x : 15, y : 52};
 mappages["olympus1"].features[600] = {name : 'SmallTable2', x : 38, y : 18};
 mappages["olympus1"].features[601] = {name : 'SmallTable2', x : 56, y : 40};
 mappages["olympus1"].features[602] = {name : 'SmallTable2', x : 66, y : 39};
-
+mappages["olympus1"].features[603] = {name : 'StreetLamp', x : 47, y : 53};
+mappages["olympus1"].features[604] = {name : 'StreetLamp', x : 51, y : 53};
+mappages["olympus1"].features[605] = {name : 'StreetLamp', x : 51, y : 44};
+mappages["olympus1"].features[606] = {name : 'StreetLamp', x : 47, y : 44};
 
 mappages["olympus1"].npcs = [];
 mappages["olympus1"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 79, y : 18, NPCName: 'Katrina', Desc: 'librarian', PeaceAI: 'scheduled', Schedule: 'katrina', Conversation: 'katrina', ConversationFlag: 'katrina', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"OrangeTunic2","head":"ShortBrownPale","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"ShortBrownPale"}'};
