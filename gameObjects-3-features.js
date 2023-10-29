@@ -2390,6 +2390,16 @@ function StreetLampTile() {
 	this.desc = "burning torch";
 
 	LightEmitting.call(this, 4);
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: 2,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 StreetLampTile.prototype = new FeatureObject();  
 
