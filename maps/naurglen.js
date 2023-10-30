@@ -565,7 +565,9 @@ mappages["naurglen"].features[509] = {name : 'TorchEast', x : 77, y : 24};
 mappages["naurglen"].features[510] = {name : 'Brazier', x : 74, y : 25};
 mappages["naurglen"].features[511] = {name : 'TorchEast', x : 94, y : 26};
 mappages["naurglen"].features[512] = {name : 'SmallTable3', x : 72, y : 21};
-
+mappages["naurglen"].features[513] = {name : 'StreetLamp', x : 86, y : 39};
+mappages["naurglen"].features[514] = {name : 'StreetLamp', x : 80, y : 18};
+mappages["naurglen"].features[515] = {name : 'StreetLamp', x : 62, y : 27};
 
 mappages["naurglen"].npcs = [];
 mappages["naurglen"].npcs[0] = {name : 'ChickenNPC', x : 36, y : 14, skintone: 1};

@@ -369,7 +369,11 @@ mappages["clearlake"].features[296] = {name : 'Brazier', x : 36, y : 16};
 mappages["clearlake"].features[297] = {name : 'TorchEast', x : 27, y : 14};
 mappages["clearlake"].features[298] = {name : 'TorchEast', x : 27, y : 17};
 mappages["clearlake"].features[299] = {name : 'WoodenStairUp2', x : 27, y : 19, entermap : 'clearlake2', enterx : 27, entery : 19};
-
+mappages["clearlake"].features[300] = {name : 'StreetLamp', x : 21, y : 56};
+mappages["clearlake"].features[301] = {name : 'StreetLamp', x : 6, y : 46};
+mappages["clearlake"].features[302] = {name : 'StreetLamp', x : 34, y : 46};
+mappages["clearlake"].features[303] = {name : 'StreetLamp', x : 34, y : 31};
+mappages["clearlake"].features[304] = {name : 'StreetLamp', x : 15, y : 31};
 
 mappages["clearlake"].npcs = [];
 mappages["clearlake"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 23, y : 32, NPCName: 'Flora', PeaceAI: 'scheduled', Schedule: 'flora', Conversation: 'flora', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PurpleFancy","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"ShortBlackDark"}'};
