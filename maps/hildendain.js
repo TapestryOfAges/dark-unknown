@@ -435,7 +435,14 @@ mappages["hildendain"].features[362] = {name : 'DoubleBedHead', x : 32, y : 24};
 mappages["hildendain"].features[363] = {name : 'DoubleBedFoot', x : 33, y : 24};
 mappages["hildendain"].features[364] = {name : 'WeaponCounterMace', x : 7, y : 33};
 mappages["hildendain"].features[365] = {name : 'WeaponCounterSword', x : 7, y : 32};
-
+mappages["hildendain"].features[366] = {name : 'StreetLamp', x : 21, y : 48};
+mappages["hildendain"].features[367] = {name : 'StreetLamp', x : 31, y : 48};
+mappages["hildendain"].features[368] = {name : 'StreetLamp', x : 31, y : 28};
+mappages["hildendain"].features[369] = {name : 'StreetLamp', x : 21, y : 28};
+mappages["hildendain"].features[370] = {name : 'TorchWest', x : 31, y : 36};
+mappages["hildendain"].features[371] = {name : 'TorchWest', x : 31, y : 40};
+mappages["hildendain"].features[372] = {name : 'TorchEast', x : 21, y : 36};
+mappages["hildendain"].features[373] = {name : 'TorchEast', x : 21, y : 40};
 
 mappages["hildendain"].npcs = [];
 mappages["hildendain"].npcs[0] = {name : 'PaladinNPC', x : 34, y : 6, NPCName: 'Warduke', Desc: 'ex-paladin', Conversation: 'warduke', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"Plate","head":"BlueSolidHelm","back":"","offhand":"KiteShield","cloak":"","mainhand":"LongswordPale","realhead":"ShortBlackPale"}'};

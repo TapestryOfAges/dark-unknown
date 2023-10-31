@@ -501,6 +501,14 @@ mappages["swainhil"].features[432] = {name : 'SmallTable3', x : 26, y : 26};
 mappages["swainhil"].features[433] = {name : 'SmallTable3', x : 23, y : 26};
 mappages["swainhil"].features[434] = {name : 'WeaponCounterDagger', x : 54, y : 13};
 mappages["swainhil"].features[435] = {name : 'WeaponCounterMace', x : 54, y : 14};
+mappages["swainhil"].features[436] = {name : 'StreetLamp', x : 33, y : 20};
+mappages["swainhil"].features[437] = {name : 'StreetLamp', x : 33, y : 2};
+mappages["swainhil"].features[438] = {name : 'StreetLamp', x : 35, y : 32};
+mappages["swainhil"].features[439] = {name : 'StreetLamp', x : 56, y : 32};
+mappages["swainhil"].features[440] = {name : 'StreetLamp', x : 56, y : 18};
+mappages["swainhil"].features[441] = {name : 'StreetLamp', x : 56, y : 5};
+mappages["swainhil"].features[442] = {name : 'StreetLamp', x : 14, y : 5};
+mappages["swainhil"].features[443] = {name : 'StreetLamp', x : 14, y : 18};
 
 mappages["swainhil"].npcs = [];
 mappages["swainhil"].npcs[0] = {name : 'ShepherdVillagerNPC', x : 39, y : 9, NPCName: 'Mandy', Desc: 'healer', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'mandy', Conversation: 'mandy', Gender: 'female', Bark: '0', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BrownRobe","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"CrookPale","realhead":"ShortBlackPale"}'};
