@@ -538,7 +538,7 @@ mappages["clearlake2"].features[24] = {name : 'Door', x : 4, y : 57};
 mappages["clearlake2"].features[25] = {name : 'Door', x : 8, y : 53};
 mappages["clearlake2"].features[26] = {name : 'LeftTable', x : 6, y : 55};
 mappages["clearlake2"].features[27] = {name : 'RightTable', x : 7, y : 55};
-mappages["clearlake2"].features[28] = {name : 'RightChair', x : 8, y : 55};
+mappages["clearlake2"].features[28] = {name : 'BottomChair', x : 7, y : 56};
 mappages["clearlake2"].features[29] = {name : 'GrandfatherClock', x : 4, y : 54};
 mappages["clearlake2"].features[30] = {name : 'BedHead', x : 4, y : 52};
 mappages["clearlake2"].features[31] = {name : 'BedFoot', x : 5, y : 52};
@@ -609,6 +609,8 @@ mappages["clearlake2"].npcs = [];
 mappages["clearlake2"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 40, y : 39, NPCName: 'Suzanne', Desc: 'fisherman', PeaceAI: 'scheduled', Schedule: 'suzanne', Conversation: 'suzanne', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"WhiteTunic2","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"ShortBlackDark"}'};
 mappages["clearlake2"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 36, y : 20, NPCName: 'Kiki', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'kiki', Conversation: 'kiki', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"YellowTunic","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBlackPale"}'};
 mappages["clearlake2"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 36, y : 19, NPCName: 'Aubrey', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'aubrey', Conversation: 'aubrey', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"GreenTunic","head":"BlondePale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"BlondePale"}'};
+mappages["clearlake2"].npcs[3] = {name : 'PaladinVillagerNPC', x : 31, y : 18, NPCName: 'Jonah', Desc: 'soldier', Schedule: 'jonah', Conversation: 'jonah', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BrownRobe","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBrownPale"}'};
+mappages["clearlake2"].npcs[4] = {name : 'PaladinVillagerNPC', x : 4, y : 51, NPCName: 'Lydia', Schedule: 'lydia', Conversation: 'lydia', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BrownRobe","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"ShortBlackDark"}'};
 
 mappages["clearlake2"].desc = "Clear Lake";
 mappages["clearlake2"].longdesc = ``;
