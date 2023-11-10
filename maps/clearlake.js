@@ -647,7 +647,7 @@ mappages["clearlake2"].onload = function(mapref) {
     for (let i=0;i<npcs.length;i++) {
       if (npcs[i].getNPCName() === "Ernest") { ernest = npcs[i]; }
       if (npcs[i].getNPCName() === "Lydia") { lydia = npcs[i]; }
-      if (npcs[i].getNPCName() === "jonah") { jonah = npcs[i]; }
+      if (npcs[i].getNPCName() === "Jonah") { jonah = npcs[i]; }
     }
 
     if (!DU.gameflags.getFlag("act2")) {
@@ -658,8 +658,8 @@ mappages["clearlake2"].onload = function(mapref) {
     }
 
     if (!DU.gameflags.getFlag("beldskae_saved") && !DU.gameflags.getFlag("beldskae_razed")) {
-      mapref.deleteThing(ernest);
-      DUTime.removeEntityFrom(ernest);
+//      mapref.deleteThing(ernest);
+//      DUTime.removeEntityFrom(ernest);
     }
   }
 }
