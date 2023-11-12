@@ -236,6 +236,7 @@ OnDamagedFuncs["split"] = function(atk,who,dmg,weapon) {
         let slime = localFactory.createTile("SlimeNPC");
         slime.setMaxHP(hp);
         slime.setHP(hp);
+        slime.setNPCBand(who.getNPCBand());
         whomap.placeThing(tileopts[tr].x,tileopts[tr].y,slime);
         DrawMainFrame("one", who.getHomeMap(), tileopts[tr].x, tileopts[tr].y);
       }
