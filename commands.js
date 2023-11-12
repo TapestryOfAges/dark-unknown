@@ -1626,7 +1626,7 @@ function PerformTalkTarget() {
   
     return retval;
   }
-  if (top.getAttitude() !== "friendly") {
+  if ((top.getAttitude() !== "friendly") && (top.getAttitude() !== "neutral")) {
     let pronoun = top.getGenderedTerms().pronoun;
     pronoun = pronoun.charAt(0).toUpperCase() + pronoun.slice(1);
     retval["txt"] = pronoun + " does not want to talk to you.";
@@ -1668,9 +1668,9 @@ function PerformTalkTarget() {
   if (EarnedLevel(PC) && ((top.getName() === "KingNPC") || (top.getName() === "QueenNPC")) && DU.gameflags.getFlag("kingspeech")) {
     if ((PC.getLevel() < 4) || (PC.runes.kings)) {
       if (top.getName() === "KingNPC") {
-        maintext.addText('<span class="conv">"Hail, ' + PC.getPCName() + '! I am well pleased with your progress. Seek Nyrani and Jharden for further training."</span>');
+//        maintext.addText('<span class="conv">"Hail, ' + PC.getPCName() + '! I am well pleased with your progress. Seek Nyrani and Jharden for further training."</span>');
       } else { // Queen
-        maintext.addText('<span class="conv">"Well, well, ' + PC.getPCName() + '! I am pleased with your progress. Seek out Nyrani and Jharden for further training."</span>');
+//        maintext.addText('<span class="conv">"Well, well, ' + PC.getPCName() + '! I am pleased with your progress. Seek out Nyrani and Jharden for further training."</span>');
       }
       PC.setLevel(PC.getLevel()+1);
       PC.setMaxHP(PC.getLevel()*30);
@@ -1706,25 +1706,33 @@ function PerformTalkTarget() {
       DU.gameflags.setFlag("can_train", 1);
       if (DU.gameflags.getFlag("spellbook")) {
         if (top.getName() === "KingNPC") {
-          maintext.addText('<span class="conv">"In addition, Jharden may have more to teach you of magic!"</span>');
+//          maintext.addText('<span class="conv">"In addition, Jharden may have more to teach you of magic!"</span>');
         } else { // Queen
-          maintext.addText('<span class="conv">"And please talk to Jharden! He may have more to teach you of magic."</span>');
+//          maintext.addText('<span class="conv">"And please talk to Jharden! He may have more to teach you of magic."</span>');
         }        
       }
       DU.gameflags.setFlag("jharden_newspell",1);
       if ((PC.getLevel() > 2) && (PC.getLevel() < 6)) {
         DU.gameflags.setFlag("ash_newspell",1);
       }
-      maintext.addText("<span class='sysconv'>" + PC.getPCName() + " is now level " + PC.getLevel() + "!</span>");
+//      maintext.addText("<span class='sysconv'>" + PC.getPCName() + " is now level " + PC.getLevel() + "!</span>");
       DU.gameflags.setFlag("lvl"+PC.getLevel(),1);
-      if (PC.getLevel() === 2) {
-        maintext.addText("<span class='conv'>\"Oh, and another thing! We have captured a rebel instigator and are holding her in our <span style='color:cyan'>prison</span>. I charge you with seeing what information you can get from her!\"</span>");
-      }
       DrawCharFrame();
-      retval = PerformTalk(top, convo, "_level");
+      if (PC.getLevel() === 2) {
+//        maintext.addText("<span class='conv'>\"Oh, and another thing! We have captured a rebel instigator and are holding her in our <span style='color:cyan'>prison</span>. I charge you with seeing what information you can get from her!\"</span>");
+        retval = PerformTalk(top, convo, "_level2");
+      } else if (PC.getLevel() === 4) {
+        if (DU.gameflags.getFlag("spellbook")) {
+          retval = PerformTalk(top, convo, "_lvl4s");
+        } else {
+          retval = PerformTalk(top, convo, "_lvl4");
+        }
+      } else {
+        retval = PerformTalk(top, convo, "_level");
+      }
     } else {
-      maintext.addText('<span class="conv">"Hail, ' + PC.getPCName() + '! You have made great progress, but you cannot advance without the <span style=\'color:cyan\'>Rune</span>!"</span>');
-      retval = PerformTalk(top, convo, "_level");
+    //  maintext.addText('<span class="conv">"Hail, ' + PC.getPCName() + '! You have made great progress, but you cannot advance without the <span style=\'color:cyan\'>Rune</span>!"</span>');
+      retval = PerformTalk(top, convo, "_level0");
     }
   } else {
     retval = PerformTalk(top, convo, "_start");
