@@ -557,16 +557,6 @@ NPCObject.prototype.processDeath = function(droploot){
     if ((typeof this.getLight === "function") && (Math.abs(this.getLight()) > 0)) {
       DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
     }
-    if (map.getName() === "shadow1") {
-      let npcs = map.npcs.getAll();
-      let safe = 1;
-      for (let i=0;i<npcs.length;i++) {
-        if (npcs[i].getNPCBand()) {
-          safe = 0;
-        }
-      };
-      if (safe === 1) { DU.gameflags.setFlag("shadow_safe", 1); } 
-    }
     DrawMainFrame("one",map,thisx,thisy);
     DUTime.removeEntityFrom(this);
     CheckPostDeathMusic(map);
