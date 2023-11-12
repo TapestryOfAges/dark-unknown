@@ -123,11 +123,11 @@ mappages["kaltonmine1"].onload = function(mapref) {
     let orc4 = mapref.getTile(17,35).getTopNPC();
     let orc5 = mapref.getTile(21,34).getTopNPC();
 
-    spawn.addSpawn(orc1);
-    spawn.addSpawn(orc2);
-    spawn.addSpawn(orc3);
-    spawn.addSpawn(orc4);
-    spawn.addSpawn(orc5);
+    spawn.addSpawned(orc1);
+    spawn.addSpawned(orc2);
+    spawn.addSpawned(orc3);
+    spawn.addSpawned(orc4);
+    spawn.addSpawned(orc5);
 
     orc1.setSpawnedBy(spawn);
     orc2.setSpawnedBy(spawn);
@@ -318,11 +318,11 @@ mappages["kaltonmine2"].onload = function(mapref) {
     let orc4 = mapref.getTile(37,32).getTopNPC();
     let orc5 = mapref.getTile(38,34).getTopNPC();
 
-    spawn.addSpawn(orc1);
-    spawn.addSpawn(orc2);
-    spawn.addSpawn(orc3);
-    spawn.addSpawn(orc4);
-    spawn.addSpawn(orc5);
+    spawn.addSpawned(orc1);
+    spawn.addSpawned(orc2);
+    spawn.addSpawned(orc3);
+    spawn.addSpawned(orc4);
+    spawn.addSpawned(orc5);
 
     orc1.setSpawnedBy(spawn);
     orc2.setSpawnedBy(spawn);
@@ -349,11 +349,11 @@ mappages["kaltonmine2"].onload = function(mapref) {
     orc4 = mapref.getTile(5,30).getTopNPC();
     orc5 = mapref.getTile(6,30).getTopNPC();
 
-    spawn.addSpawn(orc1);
-    spawn.addSpawn(orc2);
-    spawn.addSpawn(orc3);
-    spawn.addSpawn(orc4);
-    spawn.addSpawn(orc5);
+    spawn.addSpawned(orc1);
+    spawn.addSpawned(orc2);
+    spawn.addSpawned(orc3);
+    spawn.addSpawned(orc4);
+    spawn.addSpawned(orc5);
 
     orc1.setSpawnedBy(spawn);
     orc2.setSpawnedBy(spawn);
@@ -377,8 +377,8 @@ mappages["kaltonmine2"].onload = function(mapref) {
     orc1 = mapref.getTile(14,11).getTopNPC();
     orc2 = mapref.getTile(13,13).getTopNPC();
 
-    spawn.addSpawn(orc1);
-    spawn.addSpawn(orc2);
+    spawn.addSpawned(orc1);
+    spawn.addSpawned(orc2);
 
     orc1.setSpawnedBy(spawn);
     orc2.setSpawnedBy(spawn);
@@ -402,11 +402,11 @@ mappages["kaltonmine2"].onload = function(mapref) {
     orc4 = mapref.getTile(23,13).getTopNPC();
     orc5 = mapref.getTile(24,11).getTopNPC();
 
-    spawn.addSpawn(orc1);
-    spawn.addSpawn(orc2);
-    spawn.addSpawn(orc3);
-    spawn.addSpawn(orc4);
-    spawn.addSpawn(orc5);
+    spawn.addSpawned(orc1);
+    spawn.addSpawned(orc2);
+    spawn.addSpawned(orc3);
+    spawn.addSpawned(orc4);
+    spawn.addSpawned(orc5);
 
     orc1.setSpawnedBy(spawn);
     orc2.setSpawnedBy(spawn);
@@ -535,9 +535,9 @@ mappages["kaltonmine3"].onload = function(mapref) {
     let orc2 = mapref.getTile(38,27).getTopNPC();
     let orc3 = mapref.getTile(37,31).getTopNPC();
 
-    spawn.addSpawn(orc1);
-    spawn.addSpawn(orc2);
-    spawn.addSpawn(orc3);
+    spawn.addSpawned(orc1);
+    spawn.addSpawned(orc2);
+    spawn.addSpawned(orc3);
 
     orc1.setSpawnedBy(spawn);
     orc2.setSpawnedBy(spawn);

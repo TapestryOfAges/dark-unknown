@@ -495,9 +495,9 @@ mappages["mtdrash4"].onload = function(mapref) {
     let orc2 = mapref.getTile(19,8).getTopNPC();
     let orc3 = mapref.getTile(18,7).getTopNPC();
 
-    spawn.addSpawn(orc1);
-    spawn.addSpawn(orc2);
-    spawn.addSpawn(orc3);
+    spawn.addSpawned(orc1);
+    spawn.addSpawned(orc2);
+    spawn.addSpawned(orc3);
 
     orc1.setSpawnedBy(spawn);
     orc2.setSpawnedBy(spawn);
@@ -518,8 +518,8 @@ mappages["mtdrash4"].onload = function(mapref) {
     let cyclops1 = mapref.getTile(10,8).getTopNPC();
     let cyclops2 = mapref.getTile(9,8).getTopNPC();
 
-    spawn.addSpawn(cyclops1);
-    spawn.addSpawn(cyclops2);
+    spawn.addSpawned(cyclops1);
+    spawn.addSpawned(cyclops2);
 
     cyclops1.setSpawnedBy(spawn);
     cyclops2.setSpawnedBy(spawn);
@@ -653,11 +653,11 @@ mappages["mtdrash5"].onload = function(mapref) {
     let orc4 = mapref.getTile(11,20).getTopNPC();
     let orc5 = mapref.getTile(8,20).getTopNPC();
 
-    spawn.addSpawn(orc1);
-    spawn.addSpawn(orc2);
-    spawn.addSpawn(orc3);
-    spawn.addSpawn(orc4);
-    spawn.addSpawn(orc5);
+    spawn.addSpawned(orc1);
+    spawn.addSpawned(orc2);
+    spawn.addSpawned(orc3);
+    spawn.addSpawned(orc4);
+    spawn.addSpawned(orc5);
 
     orc1.setSpawnedBy(spawn);
     orc2.setSpawnedBy(spawn);
@@ -680,8 +680,8 @@ mappages["mtdrash5"].onload = function(mapref) {
     let t1 = mapref.getTile(7,17).getTopNPC();
     let t2 = mapref.getTile(7,19).getTopNPC();
 
-    spawn.addSpawn(t1);
-    spawn.addSpawn(t2);
+    spawn.addSpawned(t1);
+    spawn.addSpawned(t2);
 
     t1.setSpawnedBy(spawn);
     t2.setSpawnedBy(spawn);
@@ -900,11 +900,11 @@ mappages["mtdrash7"].onload = function(mapref) {
     let orc4 = mapref.getTile(12,19).getTopNPC();
     let orc5 = mapref.getTile(9,20).getTopNPC();
 
-    spawn.addSpawn(orc1);
-    spawn.addSpawn(orc2);
-    spawn.addSpawn(orc3);
-    spawn.addSpawn(orc4);
-    spawn.addSpawn(orc5);
+    spawn.addSpawned(orc1);
+    spawn.addSpawned(orc2);
+    spawn.addSpawned(orc3);
+    spawn.addSpawned(orc4);
+    spawn.addSpawned(orc5);
 
     orc1.setSpawnedBy(spawn);
     orc2.setSpawnedBy(spawn);
@@ -927,8 +927,8 @@ mappages["mtdrash7"].onload = function(mapref) {
     orc1 = mapref.getTile(11,7).getTopNPC();
     orc2 = mapref.getTile(13,6).getTopNPC();
 
-    spawn.addSpawn(orc1);
-    spawn.addSpawn(orc2);
+    spawn.addSpawned(orc1);
+    spawn.addSpawned(orc2);
 
     orc1.setSpawnedBy(spawn);
     orc2.setSpawnedBy(spawn);
@@ -949,9 +949,9 @@ mappages["mtdrash7"].onload = function(mapref) {
     orc2 = mapref.getTile(17,17).getTopNPC();
     orc3 = mapref.getTile(15,18).getTopNPC();
 
-    spawn.addSpawn(orc1);
-    spawn.addSpawn(orc2);
-    spawn.addSpawn(orc3);
+    spawn.addSpawned(orc1);
+    spawn.addSpawned(orc2);
+    spawn.addSpawned(orc3);
 
     orc1.setSpawnedBy(spawn);
     orc2.setSpawnedBy(spawn);
@@ -1266,11 +1266,11 @@ mappages["mtdrash8"].onload = function(mapref) {
     let orc4 = mapref.getTile(18,18).getTopNPC();
     let orc5 = mapref.getTile(20,19).getTopNPC();
 
-    spawn.addSpawn(orc1);
-    spawn.addSpawn(orc2);
-    spawn.addSpawn(orc3);
-    spawn.addSpawn(orc4);
-    spawn.addSpawn(orc5);
+    spawn.addSpawned(orc1);
+    spawn.addSpawned(orc2);
+    spawn.addSpawned(orc3);
+    spawn.addSpawned(orc4);
+    spawn.addSpawned(orc5);
 
     orc1.setSpawnedBy(spawn);
     orc2.setSpawnedBy(spawn);

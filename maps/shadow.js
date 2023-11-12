@@ -263,11 +263,11 @@ mappages["shadow2"].onload = function(mapref) {
     let orc4 = mapref.getTile(15,14).getTopNPC();
     let orc5 = mapref.getTile(18,16).getTopNPC();
 
-    spawn.addSpawn(orc1);
-    spawn.addSpawn(orc2);
-    spawn.addSpawn(orc3);
-    spawn.addSpawn(orc4);
-    spawn.addSpawn(orc5);
+    spawn.addSpawned(orc1);
+    spawn.addSpawned(orc2);
+    spawn.addSpawned(orc3);
+    spawn.addSpawned(orc4);
+    spawn.addSpawned(orc5);
 
     orc1.setSpawnedBy(spawn);
     orc2.setSpawnedBy(spawn);
@@ -291,9 +291,9 @@ mappages["shadow2"].onload = function(mapref) {
     orc2 = mapref.getTile(55,8).getTopNPC();
     orc3 = mapref.getTile(49,9).getTopNPC();
     
-    spawn.addSpawn(orc1);
-    spawn.addSpawn(orc2);
-    spawn.addSpawn(orc3);
+    spawn.addSpawned(orc1);
+    spawn.addSpawned(orc2);
+    spawn.addSpawned(orc3);
     
     orc1.setSpawnedBy(spawn);
     orc2.setSpawnedBy(spawn);
@@ -317,11 +317,11 @@ mappages["shadow2"].onload = function(mapref) {
     orc4 = mapref.getTile(41,45).getTopNPC();
     orc5 = mapref.getTile(53,38).getTopNPC();
     
-    spawn.addSpawn(orc1);
-    spawn.addSpawn(orc2);
-    spawn.addSpawn(orc3);
-    spawn.addSpawn(orc4);
-    spawn.addSpawn(orc5);
+    spawn.addSpawned(orc1);
+    spawn.addSpawned(orc2);
+    spawn.addSpawned(orc3);
+    spawn.addSpawned(orc4);
+    spawn.addSpawned(orc5);
     
     orc1.setSpawnedBy(spawn);
     orc2.setSpawnedBy(spawn);
