@@ -272,7 +272,7 @@ function Placespawns(mapref) {
   let onyxgroup = ["HoodGroupTiny","HoodGroupTiny","HoodGroupTiny","HoodGroupSmall"];
 
   onyxspawn.setSpawngroup(onyxgroup);
-  onyxspawn.setMaxSpawns(3);
+  onyxspawn.setMaxSpawns(2);
   onyxspawn.setSpawnRadius(3);
   onyxspawn.setSpawnLeash(20);
   onyxspawn.setSpawnSoftLeash(15);
@@ -375,14 +375,14 @@ function Placespawns(mapref) {
   group = ["GiantRatGroupTiny","GiantRatGroupTiny","SnakesGroupSmall"];
   
   spawn.setSpawngroup(group);
-  spawn.setMaxSpawns(2);
+  spawn.setMaxSpawns(1);
   spawn.setSpawnRadius(3);
   spawn.setSpawnLeash(0);
   spawn.setSpawnSoftLeash(0);
   
   spawn.evolve[2] = [];
   spawn.evolve[2][0] = "spawngroup";
-  spawn.evolve[2][1] = ["GiantRatGroupSmall", "Snakes Group", "MidSnakesGroup", "OrcGroupSmall"];
+  spawn.evolve[2][1] = ["GiantRatGroupSmall", "SnakesGroup", "MidSnakesGroup", "OrcGroupSmall"];
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
   spawn.evolve[3][1] = ["GiantRatGroupLarge", "MidSnakesGroup", "OrcGroupLarge"];
@@ -404,7 +404,7 @@ function Placespawns(mapref) {
   group = ["GiantRatGroupTiny","GiantRatGroupTiny","SnakesGroupSmall"];
   
   spawn.setSpawngroup(group);
-  spawn.setMaxSpawns(2);
+  spawn.setMaxSpawns(1);
   spawn.setSpawnRadius(3);
   spawn.setSpawnLeash(0);
   spawn.setSpawnSoftLeash(0);
@@ -434,7 +434,7 @@ function Placespawns(mapref) {
   group = ["GiantRatGroupTiny","GiantRatGroupTiny","SnakesGroupSmall"];
   
   spawn.setSpawngroup(group);
-  spawn.setMaxSpawns(2);
+  spawn.setMaxSpawns(1);
   spawn.setSpawnRadius(3);
   spawn.setSpawnLeash(0);
   spawn.setSpawnSoftLeash(0);
@@ -457,7 +457,7 @@ function Placespawns(mapref) {
   group = ["GiantRatGroupTiny","SnakesGroupSmall","InsectsGroupSmall"];
   
   spawn.setSpawngroup(group);
-  spawn.setMaxSpawns(2);
+  spawn.setMaxSpawns(1);
   spawn.setSpawnRadius(3);
   spawn.setSpawnLeash(0);
   spawn.setSpawnSoftLeash(0);
@@ -631,7 +631,7 @@ function Placespawns(mapref) {
 
   spawn.setSpawngroup(group);
   spawn.setSpawnRadius(6);
-  spawn.setMaxSpawns(2);
+  spawn.setMaxSpawns(1);
   spawn.setSpawnLeash(0);
   spawn.setSpawnSoftLeash(0);
 
@@ -655,7 +655,7 @@ function Placespawns(mapref) {
 
   spawn.setSpawngroup(group);
   spawn.setSpawnRadius(4);
-  spawn.setMaxSpawns(2);
+  spawn.setMaxSpawns(1);
   spawn.setSpawnLeash(0);
   spawn.setSpawnSoftLeash(0);
 
@@ -666,6 +666,10 @@ function Placespawns(mapref) {
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
   spawn.evolve[3][1] = ["OrcGroupSmall","OrcGroupLarge","OrcGroupLarge"];
+
+  spawn.evolve[4] = [];
+  spawn.evolve[4][0] = "maxSpawns";
+  spawn.evolve[4][1] = 2;
   
   freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
@@ -1050,7 +1054,7 @@ mappages["landsbeyond"].lightLevel = 'bright';
 mappages["landsbeyond"].alwaysRemember = '0';
 mappages["landsbeyond"].scale = '1';
 mappages["landsbeyond"].underground = '1';
-mappages["landsbeyond"].undergroundDesc = '';
+mappages["landsbeyond"].undergroundDesc = '&nbsp;';
 mappages["landsbeyond"].enterscript = '';
 mappages["landsbeyond"].entertestscript = '';
 mappages["landsbeyond"].exitscript = '';
