@@ -2329,13 +2329,30 @@ GreyWallPortcullisTile.prototype.bumpinto = function(who) {
   return BumpIntoDoor(this,who);
 }
 
+function BloodyCorpseTile() {
+  //Graphics Updated
+  // if dark skinned, shift xoffset by -32
+	this.name = "BloodyCorpse";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -78*32;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "a";
+	this.desc = "corpse";
+	this.showSearched = 1;
+	
+	Pushable.call(this);
+}
+BloodyCorpseTile.prototype = new FeatureObject();
+
 function CorpseTile() {
   //Graphics Updated
   // if dark skinned, shift xoffset by -32
 	this.name = "Corpse";
   this.graphic = "static.png";
-  this.spritexoffset = -4*32;
-  this.spriteyoffset = -78*32;
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -77*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.prefix = "a";
@@ -11029,13 +11046,15 @@ OrbStrengthTile.prototype.use = function(who) {
   retval["input"] = "&gt;";
   if (DU.gameflags.getFlag(this.getHomeMap().getName() + "_StrOrb")) {
     retval["txt"] = "The orb shutters, and then crumbles to dust.";
-    DUPlaySound("sfx_ding");
+    DUPlaySound("sfx_break_glass");
     this.getHomeMap().deleteThing(this);
     return retval;
   }
   who.setOrbStr(who.getOrbStr()+1);
   if (who === PC) {
     retval["txt"] = "You feel stronger! The orb crumbles to dust.";
+    DUPlaySound("sfx_break_glass");
+    DUPlaySound("sfx_buff");
   }
   this.getHomeMap().deleteThing(this);
   DU.gameflags.setFlag(this.getHomeMap().getName() + "_StrOrb",1);
@@ -11058,13 +11077,15 @@ OrbDexterityTile.prototype.use = function(who) {
   if (DU.gameflags.getFlag(this.getHomeMap().getName() + "_DexOrb")) {
     retval["txt"] = "The orb shutters, and then crumbles to dust.";
     this.getHomeMap().deleteThing(this);
-    DUPlaySound("sfx_ding");
+    DUPlaySound("sfx_break_glass");
     return retval;
   }
   who.setOrbDex(who.getOrbDex()+1);
   DU.gameflags.setFlag(this.getHomeMap().getName() + "_DexOrb",1);
   if (who === PC) {
     retval["txt"] = "You feel more agile! The orb crumbles to dust.";
+    DUPlaySound("sfx_break_glass");
+    DUPlaySound("sfx_buff");
   }
   this.getHomeMap().deleteThing(this);
 
@@ -11087,13 +11108,15 @@ OrbIntelligenceTile.prototype.use = function(who) {
   if (DU.gameflags.getFlag(this.getHomeMap().getName() + "_IntOrb")) {
     retval["txt"] = "The orb shutters, and then crumbles to dust.";
     this.getHomeMap().deleteThing(this);
-    DUPlaySound("sfx_ding");
+    DUPlaySound("sfx_break_glass");
     return retval;
   }
   who.setOrbInt(who.getOrbInt()+1);
   DU.gameflags.setFlag(this.getHomeMap().getName() + "_IntOrb",1);
   if (who === PC) {
     retval["txt"] = "You feel smarter! The orb crumbles to dust.";
+    DUPlaySound("sfx_break_glass");
+    DUPlaySound("sfx_buff");
   }
   this.getHomeMap().deleteThing(this);
   return retval;
@@ -11115,13 +11138,15 @@ OrbExperienceTile.prototype.use = function(who) {
   if (DU.gameflags.getFlag(this.getHomeMap().getName() + "_ExpOrb")) {
     retval["txt"] = "The orb shutters, and then crumbles to dust.";
     this.getHomeMap().deleteThing(this);
-    DUPlaySound("sfx_ding");
+    DUPlaySound("sfx_break_glass");
     return retval;
   }
   who.addxp(100);
   if (who === PC) {
     DU.gameflags.setFlag(this.getHomeMap().getName() + "_ExpOrb",1);
     retval["txt"] = "You feel more experienced! The orb crumbles to dust.";
+    DUPlaySound("sfx_break_glass");
+    DUPlaySound("sfx_buff");
   }
   this.getHomeMap().deleteThing(this);
   return retval;
@@ -16687,7 +16712,7 @@ SpellWeaponTile.prototype = new MissileWeaponObject();
 function SlingTile() {
   //Graphics Upgraded
 	this.name = "Sling";
-	this.damage = "1d3+0";
+	this.damage = "1d3+1";
   this.graphic = "static.png";
 	this.spritexoffset = 0;
 	this.spriteyoffset = -69*32;
