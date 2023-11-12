@@ -53,6 +53,7 @@ let inputText = {};
 
 let raceWarning = 0;
 let whoseturn;
+let firstload = 1;
 
 let convlog = [];
 
@@ -244,14 +245,17 @@ function StartPostLoad() {
   maintext.setInputLine("&gt;");
   maintext.drawTextFrame(); 
   
-  document.addEventListener("keydown", function(e) {
-    let code = (e.keyCode ? e.keyCode : e.which);
+  if (firstload) {
+    document.addEventListener("keydown", function(e) {
+      let code = (e.keyCode ? e.keyCode : e.which);
 
-    if (IsWantedCode(code)) {
-      e.preventDefault();
-      DoAction(code, e.ctrlKey);
-    }
-  }, false);
+      if (IsWantedCode(code)) {
+        e.preventDefault();
+        DoAction(code, e.ctrlKey);
+      }
+    }, false);
+    firstload = 0;
+  }
 
 //  document.addEventListener("keyup", function(e) { 
 //    if (e.keyCode === 27) {
