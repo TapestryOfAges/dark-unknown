@@ -1501,6 +1501,18 @@ ConvTestFlags["fixed_arrow"] = function(speaker,keyword) {
   return 0;
 }
 
+ConvTestFlags["shadow_safe"] = function(speaker,keyword) {
+  let npcs = speaker.getHomeMap().npcs.getAll();
+  let safe = 1;
+  for (let i=0;i<npcs.length;i++) {
+    if (npcs[i].getAttitude() === "hostile") {
+      safe = 0;
+    }
+  };
+  if (safe === 1) { return 1; } 
+
+}
+
 function SetAct2Convos(mapref) {
   if (DU.gameflags.getFlag("act2")) {
     let npcs = mapref.npcs.getAll();
