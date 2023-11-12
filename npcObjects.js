@@ -1904,7 +1904,7 @@ function PythonNPCTile() {
   this.name = 'PythonNPC';
   this.level = 2;
   this.addhp = -5;
-  this.str = 8;
+  this.str = 6;
   this.dex = 12;
   this.int = 3;
   this.alignment = 'Neutral';
@@ -1913,7 +1913,7 @@ function PythonNPCTile() {
   this.forgetAt = 10;
   this.withdraw = 0;
   this.meleeAttackAs = 'none';
-  this.meleeDamage = '1d4+1'
+  this.meleeDamage = '1d3+1'
   this.meleeStrDamage = .33
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
