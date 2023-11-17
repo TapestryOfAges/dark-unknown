@@ -362,7 +362,8 @@ function PerformAudachtaScribe(caster,infused,free,tgt) {
 
   if (caster.knowsSpell(tgt.spelllevel, tgt.spellnum)) {
     resp["txt"] = "You already know that spell!";
-
+  } else if ((tgt.spelllevel > 3) && (!DU.gameflags.getFlag("spellbook2"))) {
+    resp["txt"] = "Your spellbook is not strong enough to hold that spell.";
   } else {
     if (!free) {
       let mana = magic[SPELL_AUDACHTA_SCRIBE_LEVEL][SPELL_AUDACHTA_SCRIBE_ID].getManaCost(0);
