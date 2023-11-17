@@ -48,6 +48,7 @@ swainhil_report - you've asked for the report
 swainhil_code - you've said the code word
 spellbook - has low level spellbook
 spellbook2 - has full sized spellbook
+spellbook2ack - Jharden has acknowledged that you have the full-sized spellbook
 ivan_lastvisitchecktime - the time of the most recent check to see if Ivan is in Ash's tower
 ivan_lastvisit - whether Ivan was there
 get_shield - you've agreed to get Nyrani's shield
