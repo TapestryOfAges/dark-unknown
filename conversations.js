@@ -774,19 +774,19 @@ OnConvTriggers["learned_ww"] = function(speaker,keyword) {
 
 OnConvTriggers["jharden_teaches"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("jharden_teaches");
-  DU.gameflags.deleteFlag("jharden_newspell");
   let taught = 0;
+  let blocked = 0;
   if ((PC.getLevel() >= 2) && (!PC.knowsSpell(SPELL_CURE_LEVEL,SPELL_CURE_ID))) {
     maintext.addText("Jharden teaches you Cure!");
     PC.addSpell(SPELL_CURE_LEVEL,SPELL_CURE_ID);
     taught = 1;
   }
-  if ((PC.getLevel() >= 3) && (DU.gameflags.getFlag("spellbook2")) && (!PC.knowsSpell(SPELL_RETURN_LEVEL,SPELL_RETURN_ID))) {
+  if ((PC.getLevel() >= 3) && (!PC.knowsSpell(SPELL_RETURN_LEVEL,SPELL_RETURN_ID))) {
     maintext.addText("Jharden teaches you Return!");
     PC.addSpell(SPELL_RETURN_LEVEL,SPELL_RETURN_ID);
     taught = 1;
   }
-  if ((PC.getLevel() >= 4) && (DU.gameflags.getFlag("spellbook2")) && (!PC.knowsSpell(SPELL_FIREBALL_LEVEL,SPELL_FIREBALL_ID))) {
+  if ((PC.getLevel() >= 4) && (!PC.knowsSpell(SPELL_FIREBALL_LEVEL,SPELL_FIREBALL_ID))) {
     maintext.addText("Jharden teaches you Fireball!");
     PC.addSpell(SPELL_FIREBALL_LEVEL,SPELL_FIREBALL_ID);
     taught = 1;
@@ -795,26 +795,30 @@ OnConvTriggers["jharden_teaches"] = function(speaker,keyword) {
     maintext.addText("Jharden teaches you Blessing!");
     PC.addSpell(SPELL_BLESSING_LEVEL,SPELL_BLESSING_ID);
     taught = 1;
-  }
+  } else if (!DU.gameflags.getFlag("spellbook2")) { blocked = 1; }
   if ((PC.getLevel() >= 6) && (DU.gameflags.getFlag("spellbook2")) && (!PC.knowsSpell(SPELL_PEER_LEVEL,SPELL_PEER_ID))) {
     maintext.addText("Jharden teaches you Peer!");
     PC.addSpell(SPELL_PEER_LEVEL,SPELL_PEER_ID);
     taught = 1;
-  }
+  } else if (!DU.gameflags.getFlag("spellbook2")) { blocked = 1; }
   if ((PC.getLevel() >= 7) && (DU.gameflags.getFlag("spellbook2")) && (!PC.knowsSpell(SPELL_MASS_CURSE_LEVEL,SPELL_MASS_CURSE_ID))) {
     maintext.addText('"This is a spell I have only just mastered myself!"');
     maintest.addText("Jharden teaches you Mass Curse!");
     PC.addSpell(SPELL_MASS_CURSE_LEVEL,SPELL_MASS_CURSE_ID);
     taught = 1;
-  }
+  } else if (!DU.gameflags.getFlag("spellbook2")) { blocked = 1; }
   if ((PC.getLevel() >= 8) && (DU.gameflags.getFlag("spellbook2")) && (!PC.knowsSpell(SPELL_STORM_LEVEL,SPELL_STORM_ID))) {
     maintext.addText('"This is a spell I have only just mastered myself!"');
     maintext.addText("Jharden teaches you Storm!");
     PC.addSpell(SPELL_STORM_LEVEL,SPELL_STORM_ID);
     taught = 1;
-  }
-  if (!taught) {
+  } else if (!DU.gameflags.getFlag("spellbook2")) { blocked = 1; }
+  if (blocked) {
+    maintext.addText("I have taught you all that I will while you remain an apprentice.");
+  } else if (!taught) {
     maintext.addText("Jharden has nothing to teach you.");
+  } else {
+    DU.gameflags.deleteFlag("jharden_newspell");
   }
 }
 
