@@ -1256,7 +1256,7 @@ function DoAction(code, ctrl) {
             if (PC.knowsSpell(merinv.stock[idx].lvl, merinv.stock[idx].sid)) {
               maintext.addText(" ");
               maintext.addText("You already know that spell.");
-            } else if ((merinv.stock[idx].lvl > 2) && (!DU.gameflags.getFlag("spellbook2"))) {
+            } else if ((merinv.stock[idx].lvl > 3) && (!DU.gameflags.getFlag("spellbook2"))) {
               maintext.addText(" ");
               maintext.addText("Your spellbook is not strong enough to contain that spell.");
             } else {
