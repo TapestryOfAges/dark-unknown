@@ -1652,6 +1652,9 @@ magic[SPELL_RETURN_LEVEL][SPELL_RETURN_ID].executeSpell = function(caster, infus
   let returndest = {};
   
   let castermap = caster.getHomeMap();
+  maintext.setInputLine("&gt;");
+  maintext.drawTextFrame();
+
   if (castermap.getName().indexOf("combat") > -1) {
     let fighton = castermap.getExitToMap();
     if ((fighton === "darkunknown") || (infused)) {
