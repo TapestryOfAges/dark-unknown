@@ -2381,7 +2381,7 @@ function PCObject() {
   this.equipment.armor = "";
   this.equipment.weapon = "";
   this.equipment.missile = "";
-	this.maxhp = 30 * this.level;
+	this.maxhp = 25 * this.level + 25;
 	this.hp = this.maxhp;
 	this.maxmana = this.int;
 	this.mana = this.maxmana;

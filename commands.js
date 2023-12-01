@@ -1673,7 +1673,7 @@ function PerformTalkTarget() {
 //        maintext.addText('<span class="conv">"Well, well, ' + PC.getPCName() + '! I am pleased with your progress. Seek out Nyrani and Jharden for further training."</span>');
       }
       PC.setLevel(PC.getLevel()+1);
-      PC.setMaxHP(PC.getLevel()*30);
+      PC.setMaxHP(PC.getLevel()*25+25);
       PC.setHP(PC.getMaxHP());
       let effects = PC.getSpellEffects();
       if (effects) {
