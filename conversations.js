@@ -497,6 +497,7 @@ OnConvTriggers["inn_cl"] = function(speaker,keyword) {
     return 1;
   } else {
     PC.addGold(-7);
+    DrawCharFrame();
     let pronoun = "She";
     maintext.addText(pronoun + " takes you to your room.");
     InnRoom(23,17,[25,15,36,21]);
@@ -511,6 +512,7 @@ OnConvTriggers["inn_swain"] = function(speaker,keyword) {
     return 1;
   } else {
     PC.addGold(-6);
+    DrawCharFrame();
     let pronoun = "She";
     maintext.addText(pronoun + " takes you to your room.");
     InnRoom(17,30,[20,30,23,23]);
@@ -526,6 +528,7 @@ OnConvTriggers["inn_20_y"] = function(speaker,keyword) {
     return 1;
   } else {
     PC.addGold(-5);
+    DrawCharFrame();
     let pronoun = "He";
     if (speaker.getNPCName() === "Sand") { pronoun = "She"; }
     maintext.addText(pronoun + " leads you to your room.");
@@ -544,6 +547,7 @@ OnConvTriggers["inn_onyx_y"] = function(speaker,keyword) {
     return 1;
   } else {
     PC.addGold(-8);
+    DrawCharFrame();
     maintext.addText("He leads you to your room.");
 //    targetCursor.inndest = {x: 14, y: 11};
 //    setTimeout(function() { InnRoom(14,11,[13,9,10,12]); }, 50);
@@ -562,6 +566,7 @@ OnConvTriggers["inn_25"] = function(speaker,keyword) {
     return 1;
   } 
   PC.addGold(-10);
+  DrawCharFrame();
 //  targetCursor.inndest = {x: 23, y: 40};
 //  setTimeout(function() { InnRoom(23,40,[27,42], upstairs); }, 50);
   InnRoom(23,40,[27,42], upstairs);
@@ -574,6 +579,7 @@ OnConvTriggers["inn_beldskae"] = function(speaker,keyword) {
 
   let upstairs = maps.getMap("beldskae2");
   PC.addGold(-50);
+  DrawCharFrame();
 //  targetCursor.inndest = {x: 39, y: 13};
 //  setTimeout(function() { InnRoom(39,13,[38,15], upstairs); }, 50);
   InnRoom(39,13,[38,15], upstairs);
@@ -676,7 +682,7 @@ OnConvTriggers["garrick_flipout"] = function(speaker,keyword) {
     DebugWrite("plot", "Aoife's AI changes to AoifeAttack.<br />");
     let mace = localFactory.createTile("Shortsword");
     aoife.addToInventory(mace,1);
-    aoife.setWeapon(mace);  // no longer actually a mace
+    aoife.setEquipment("weapon", mace);  // no longer actually a mace
     aoife.setAttitude("defensive");
     aoife.specials.unkillable = 1;
     // to set her back, just reset to PeaceAI
@@ -777,7 +783,7 @@ OnConvTriggers["jharden_teaches"] = function(speaker,keyword) {
   let taught = 0;
   let blocked = 0;
   if ((PC.getLevel() >= 2) && (!PC.knowsSpell(SPELL_CURE_LEVEL,SPELL_CURE_ID))) {
-    maintext.addText("Jharden teaches you Cure!");
+    maintext.addText("Jharden teaches you Cure Ailment!");
     PC.addSpell(SPELL_CURE_LEVEL,SPELL_CURE_ID);
     taught = 1;
   }
@@ -813,8 +819,8 @@ OnConvTriggers["jharden_teaches"] = function(speaker,keyword) {
     PC.addSpell(SPELL_STORM_LEVEL,SPELL_STORM_ID);
     taught = 1;
   } else if (!DU.gameflags.getFlag("spellbook2")) { blocked = 1; }
-  if (blocked) {
-    maintext.addText("I have taught you all that I will while you remain an apprentice.");
+  if (blocked && !taught) {
+    maintext.addText('"I have taught you all that I will while you remain an apprentice."');
   } else if (!taught) {
     maintext.addText("Jharden has nothing to teach you.");
   } else {
