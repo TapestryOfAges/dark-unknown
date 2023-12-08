@@ -1220,7 +1220,7 @@ mappages["oliviaCart"].features[12] = {name : 'FenceSW', x : 4, y : 7};
 
 
 mappages["oliviaCart"].npcs = [];
-mappages["oliviaCart"].npcs[0] = {name : 'BardVillagerNPC', x : 6, y : 5, NPCName: 'Olivia', Conversation: 'olivia_cart', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"Bard2","head":"","back":"","offhand":"","cloak":"","mainhand":"","realhead":"ShortBlackPale"}'};
+mappages["oliviaCart"].npcs[0] = {name : 'BardVillagerNPC', x : 6, y : 5, NPCName: 'Olivia', Conversation: 'olivia_cart', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"Bard2","head":"BardPale2","back":"","offhand":"","cloak":"","mainhand":"","realhead":"ShortBlackPale"}'};
 mappages["oliviaCart"].npcs[1] = {name : 'HorseNPC', x : 8, y : 4, Gender: 'monster', NPCBand: '0', OverrideGraphic: 'horse.gif', skintone: 1};
 mappages["oliviaCart"].npcs[2] = {name : 'HorseNPC', x : 8, y : 7, Gender: 'monster', NPCBand: '0', OverrideGraphic: 'horse.gif', skintone: 1};
 

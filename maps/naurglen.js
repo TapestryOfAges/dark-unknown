@@ -832,7 +832,7 @@ mappages["naurglen_limbo"].features = [];
 
 
 mappages["naurglen_limbo"].npcs = [];
-mappages["naurglen_limbo"].npcs[0] = {name : 'BardVillagerNPC', x : 2, y : 2, NPCName: 'Olivia', PeaceAI: 'scheduled', Schedule: 'olivia_naurglen', Conversation: 'olivia_naurglen', ConversationFlag: 'olivia', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"Bard2","head":"","back":"","offhand":"","cloak":"","mainhand":"","realhead":"ShortBlackPale"}'};
+mappages["naurglen_limbo"].npcs[0] = {name : 'BardVillagerNPC', x : 2, y : 2, NPCName: 'Olivia', PeaceAI: 'scheduled', Schedule: 'olivia_naurglen', Conversation: 'olivia_naurglen', ConversationFlag: 'olivia', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"Bard2","head":"BardPale2","back":"","offhand":"","cloak":"","mainhand":"","realhead":"ShortBlackPale"}'};
 
 mappages["naurglen_limbo"].desc = "Naurglen Limbo";
 mappages["naurglen_limbo"].music = 'Village';
