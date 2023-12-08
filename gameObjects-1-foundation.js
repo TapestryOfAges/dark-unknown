@@ -1092,8 +1092,8 @@ function ManualAnimation(params) {
       this.currframe = -1*(sf-1)*32 + this.spritexoffset;
       this.currframenum = sf;
     }
-    console.log("currframenum: " + this.currframenum);
-    console.log("currframe: " + this.currframe);
+//    console.log("currframenum: " + this.currframenum);
+//    console.log("currframe: " + this.currframe);
     this.animating = 0; // this.animating gets saved, but we want it to always start at 0
   }
 
