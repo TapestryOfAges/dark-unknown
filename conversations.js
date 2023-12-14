@@ -673,6 +673,7 @@ OnConvTriggers["garrick_flipout"] = function(speaker,keyword) {
   else {
     garrick.setCurrentAI("GarrickAttack");
     DebugWrite("plot", "Garrick's AI changes to GarrickAttack.<br />");
+    garrick.setHP(garrick.getHP()+20);
     garrick.specials.unkillable = 1;
     garrick.setAttitude("enraged");
   }
