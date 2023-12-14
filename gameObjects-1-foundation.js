@@ -291,7 +291,7 @@ GameObject.prototype.setDesc = function(newdesc) {
 }
 
 GameObject.prototype.getDesc = function() {
-	return this.desc;
+  return this.desc;
 }
 
 GameObject.prototype.getFullDesc = function() {
