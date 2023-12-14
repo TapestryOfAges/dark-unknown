@@ -611,12 +611,34 @@ function DoAction(code, ctrl) {
         }
       } 
       else { alert("need to add hook here! (main 412)"); }
-    }
-    else if (code === 27) { // ESC
-      maintext.setInputLine("&gt;");
-      maintext.drawTextFrame();
-      gamestate.setMode("player");
-      gamestate.setTurn(PC);
+    } else if (code === 27) { // ESC
+      if (inputText.cmd === "y") {
+        maintext.setInputLine("&gt;");
+        maintext.drawTextFrame();
+        gamestate.setMode("player");
+        gamestate.setTurn(PC);
+      } else if (inputText.cmd === "t") {
+        let convo = targetCursor.talkingto.getConversation();
+        let retval;
+        if (inputText.subcmd === "yn") {
+          delete inputText.subcmd;
+          inputText.txt = "NO";
+          maintext.addText(" ");
+          maintext.addText("You answer (y/n): " + inputText.txt);
+          retval = PerformTalk(targetCursor.talkingto, convo, "_no");
+        } else {
+          maintext.addText(" ");
+          maintext.addText("<br class='textbreak' />You say: BYE");
+          retval = PerformTalk(targetCursor.talkingto, convo, "BYE");
+        }
+        maintext.addText(retval["txt"]);
+        maintext.setInputLine(retval["input"]);
+        maintext.drawTextFrame();
+        
+        if (retval["fin"] === 1) {
+          PC.endTurn(retval["initdelay"]);
+        }
+      }
     }
     else { // ignore
     	
@@ -1318,6 +1340,7 @@ function DoAction(code, ctrl) {
               PC.addGold(Math.ceil(merinv.stock[idx].price/10));
             }
             DUPlaySound("sfx_coin");
+            PerformTalk(targetCursor.talkingto, targetCursor.talkingto.getConversation(), "sell");
             DrawCharFrame();
           }
         } 
@@ -1332,6 +1355,7 @@ function DoAction(code, ctrl) {
         PC.addSpell(merinv.stock[idx].lvl, merinv.stock[idx].sid);
         maintext.addText(" ");
         maintext.addText("You have learned the spell " + merinv.stock[idx].desc + ".");
+        PerformTalk(targetCursor.talkingto, targetCursor.talkingto.getConversation(), "buy");
         PC.addGold(-(merinv.stock[idx].price));
         DUPlaySound("sfx_coin");
         PC.addSpell(merinv.stock[idx].lvl, merinv.stock[idx].sid);
@@ -1355,7 +1379,8 @@ function DoAction(code, ctrl) {
         }
 
         maintext.addText(" ");
-        maintext.addText(newitem.getDesc().charAt(0).toUpperCase() + newitem.getDesc().slice(1) + ": Purchased. Anything else?");
+        maintext.addText(newitem.getDesc().charAt(0).toUpperCase() + newitem.getDesc().slice(1) + ": Purchased.");
+        PerformTalk(targetCursor.talkingto, targetCursor.talkingto.getConversation(), "buy");
         maintext.setInputLine("Buy what: ");
         maintext.drawTextFrame();
 
@@ -1369,6 +1394,7 @@ function DoAction(code, ctrl) {
       if (isNaN(buyqty)) { buyqty = 0; }
       if (buyqty <= 0) { 
         PerformTalk(targetCursor.talkingto, targetCursor.talkingto.getConversation(), "_nobuy");
+        PerformTalk(targetCursor.talkingto, targetCursor.talkingto.getConversation(), "buy");
         gamestate.setMode("buy");
         maintext.setInputLine("Buy what: ");
         maintext.drawTextFrame();
@@ -1383,9 +1409,10 @@ function DoAction(code, ctrl) {
         DUPlaySound("sfx_coin");
         PC.addToInventory(newitem,buyqty);
         maintext.addText(" ");
-        maintext.addText(newitem.getDesc().charAt(0).toUpperCase() + newitem.getDesc().slice(1) + " x" + buyqty + ": Purchased. Anything else?");
+        maintext.addText(newitem.getDesc().charAt(0).toUpperCase() + newitem.getDesc().slice(1) + " x" + buyqty + ": Purchased.");
         if (HasStock(targetCursor.talkingto.getMerch())) {
           maintext.setInputLine("Buy what: ");
+          PerformTalk(targetCursor.talkingto, targetCursor.talkingto.getConversation(), "buy");
           maintext.drawTextFrame();
           DrawCharFrame();
           gamestate.setMode("buy");        
