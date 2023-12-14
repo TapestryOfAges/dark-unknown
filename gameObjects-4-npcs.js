@@ -84,7 +84,7 @@ function NPCObject() {
 NPCObject.prototype = new AnimateObject();
 
 NPCObject.prototype.getDesc = function() {
-  let knowsflag = "knows_" + this.conversationflag;
+  let knowsflag = "knows_" + this.conversation;
   if (DU.gameflags.getFlag(knowsflag)) {
     return this.npcname;
   } 
@@ -2108,6 +2108,30 @@ NPCHumanObject.prototype.makeLayers = function(frame) {
     this.layers = layer;
     return;
   }
+  if (this.sitting === "chair") {
+    console.log("sitting down");
+    let hand = "HandsDark";
+    if (this.wornlayers.realhead.includes("Pale")) { hand = "HandsPale"; }
+    layer.push([HumanPartsSit[this.wornlayers.body].src, "", HumanPartsSit[this.wornlayers.body][this.facing] - 32*(frame-1), HumanPartsSit[this.wornlayers.body].spritey]);
+    layer.unshift([HumanPartsSit[this.wornlayers.body].src, "", HumanPartsSit[this.wornlayers.body][this.facing] - shadowoffsets[HumanPartsSit[this.wornlayers.body].src]*32 - 32*(frame-1), HumanPartsSit[this.wornlayers.body].spritey]);
+    if (this.wornlayers.head) {
+      let usehead = this.wornlayers.realhead;
+      if (HumanPartsSit[this.wornlayers.head]) { usehead = this.wornlayers.head; }
+      let newlayer = [HumanPartsSit[usehead].src, "", HumanPartsSit[usehead][this.facing] - 32*(frame-1), HumanPartsSit[usehead].spritey];
+      layer.push(newlayer);
+      let shadowlayer = [HumanPartsSit[usehead].src, "", HumanPartsSit[usehead][this.facing] - shadowoffsets[HumanPartsSit[usehead].src]*32 - 32*(frame-1), HumanPartsSit[usehead].spritey];
+      layer.unshift(shadowlayer);  
+    }
+    if (this.wornlayers.mainhand) {
+      let newlayer = [HumanPartsSit[hand].src, "", HumanPartsSit[hand][this.facing] - 32*(frame-1), HumanPartsSit[hand].spritey];
+      layer.push(newlayer);
+      let shadowlayer = [HumanPartsSit[hand].src, "", HumanPartsSit[hand][this.facing] - shadowoffsets[HumanPartsSit[hand].src]*32 - 32*(frame-1), HumanPartsSit[hand].spritey];
+      layer.unshift(shadowlayer);  
+    }
+    this.layers = layer;
+    this.animlength = HumanPartsSit[this.wornlayers.body].frames;  
+    return;
+  }
   if (this.wornlayers.back) { 
     let newlayer = [HumanParts[this.wornlayers.back].src, "", HumanParts[this.wornlayers.back].spritex + this.wornlayernudges.back.x - 32*(frame-1), HumanParts[this.wornlayers.back].spritey + this.wornlayernudges.back.y];
     layer.push(newlayer);
@@ -2292,81 +2316,71 @@ let HumanParts = {
 
 let HumanPartsSit = {
   // Bodies
-  WhiteTunic: { src: "humanseated.png", type: "body", spritex: 0, spritey: -12*32, frames: 5 },
-  BlueDress: { src: "humanseated.png", type: "body", spritex: 0, spritey: -98*32, frames: 3 },
-  YellowDress: { src: "humanseated.png", type: "body", spritex: 0, spritey: -99*32, frames: 3 },
-  BlueDress2: { src: "humanseated.png", type: "body", spritex: 0, spritey: -100*32, frames: 3 },
-  YellowDress2: { src: "humanseated.png", type: "body", spritex: 0, spritey: -101*32, frames: 3 },
-  Bard1: { src: "humanseated.png", type: "body", spritex: 0, spritey: -3*32, frames: 5 },
-  Bard2: { src: "humanseated.png", type: "body", spritex: 0, spritey: -4*32, frames: 5 },
-  ChildPale: { src: "humanseated.png", type: "body", spritex: 0, spritey: 0, frames: 5 },
-  ChildDark: { src: "humanseated.png", type: "body", spritex: 0, spritey: -1*32, frames: 5 },
-  Jester: { src: "humanseated.png", type: "body", spritex: 0, spritey: -5*32, frames: 5 },
-  King1: { src: "humanseated.png", type: "body", spritex: 0, spritey: -6*32, frames: 5 },
-  King2: { src: "humanseated.png", type: "body", spritex: 0, spritey: -7*32, frames: 5 },
-  King3: { src: "humanseated.png", type: "body", spritex: 0, spritey: -8*32, frames: 5 },
-//  King4: { src: "humans.png", type: "body", spritex: 0, spritey: -11*32, frames: 2 },
-  Queen: { src: "humanseated.png", type: "body", spritex: 0, spritey: -9*32, frames: 5 },
-  NoblePurple: { src: "humanseated.png", type: "body", spritex: 0, spritey: -10*32, frames: 5 },
-  NobleGreen: { src: "humanseated.png", type: "body", spritex: 0, spritey: -11*32, frames: 5 },
-  PurpleFancy: { src: "humanseated.png", type: "body", spritex: 0, spritey: -13*32, frames: 5 },
-  BlueFancy: { src: "humanseated.png", type: "body", spritex: 0, spritey: -14*32, frames: 5 },
-  YellowTunic: { src: "humanseated.png", type: "body", spritex: 0, spritey: -15*32, frames: 5 },
-  OrangeTunic: { src: "humanseated.png", type: "body", spritex: 0, spritey: -16*32, frames: 5 },
-  WhiteTunic2: { src: "humanseated.png", type: "body", spritex: 0, spritey: -17*32, frames: 5 },
-  BlueTunic: { src: "humanseated.png", type: "body", spritex: 0, spritey: -18*32, frames: 5 },
-  OrangeTunic2: { src: "humanseated.png", type: "body", spritex: 0, spritey: -19*32, frames: 5 },
-  GreenTunic: { src: "humanseated.png", type: "body", spritex: 0, spritey: -20*32, frames: 5 },
-  Gambison: { src: "humans.png", type: "body", spritex: 0, spritey: -23*32, frames: 2 },
-  PlateWhiteTabard: { src: "humanseated.png", type: "body", spritex: 0, spritey: -29*32, frames: 5 },
-  PlateCheckeredTabard: { src: "humanseated.png", type: "body", spritex: 0, spritey: -30*32, frames: 5 },
-  LeatherArmor: { src: "humanseated.png", type: "body", spritex: 0, spritey: -31*32, frames: 5 },
-  ChainMail: { src: "humanseated.png", type: "body", spritex: 0, spritey: -32*32, frames: 5 },
-  PlatePaladin: { src: "humanseated.png", type: "body", spritex: 0, spritey: -33*32, frames: 5 },
-  PlateSash: { src: "humanseated.png", type: "body", spritex: 0, spritey: -34*32, frames: 5 },
-  PlateKnight: { src: "humanseated.png", type: "body", spritex: 0, spritey: -35*32, frames: 5 },
-  Plate: { src: "humanseated.png", type: "body", spritex: 0, spritey: -36*32, frames: 5 },
-  Plate2: { src: "humanseated.png", type: "body", spritex: 0, spritey: -37*32, frames: 5 },
-  BlueRobeHood: { src: "humanseated.png", type: "body", spritex: 0, spritey: -21*32, frames: 5 },
-  BlueRobe: { src: "humanseated.png", type: "body", spritex: 0, spritey: -22*32, frames: 5 },
-  RedRobe: { src: "humanseated.png", type: "body", spritex: 0, spritey: -23*32, frames: 5 },
-  GreenRobe: { src: "humanseated.png", type: "body", spritex: 0, spritey: -24*32, frames: 5 },
-  BlueRobePlain: { src: "humanseated.png", type: "body", spritex: 0, spritey: -25*32, frames: 5 },
-  BrownRobeHood: { src: "humanseated.png", type: "body", spritex: 0, spritey: -26*32, frames: 5 },
-  BrownRobe: { src: "humanseated.png", type: "body", spritex: 0, spritey: -27*32, frames: 5 },
-  BrownRobeFancy: { src: "humanseated.png", type: "body", spritex: 0, spritey: -28*32, frames: 5 },
+  WhiteTunic: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -36*32, frames:2 },
+  BlueDress: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -49*32, frames:2 },
+  YellowDress: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -50*32, frames:2 },
+  BlueDress2: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -49*32, frames:2 },
+  YellowDress2: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -50*32, frames:2 },
+  Bard1: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -19*32, frames:2 },
+  Bard2: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -20*32, frames:2 },
+  ChildPale: { src: "humanseated.png", type: "body", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: 0, frames: 4 },
+  ChildDark: { src: "humanseated.png", type: "body", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -1*32, frames: 4 },
+  Jester: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -48*32, frames:4 },
+  King1: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -42*32, frames:2 },
+  King2: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -43*32, frames:2 },
+  King3: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -44*32, frames:2 },
+  Queen: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -45*32, frames:2 },
+  NoblePurple: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -47*32, frames:2 },
+  NobleGreen: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -46*32, frames:2 },
+  PurpleFancy: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -41*32, frames:2 },
+  BlueFancy: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -40*32, frames:2 },
+  YellowTunic: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -39*32, frames:2 },
+  OrangeTunic: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -35*32, frames:2 },
+  WhiteTunic2: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -36*32, frames:2 },
+  BlueTunic: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -37*32, frames:2 },
+  OrangeTunic2: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -35*32, frames:2 },
+  GreenTunic: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -38*32, frames:2 },
+  PlateWhiteTabard: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -30*32, frames:2 },
+  PlateCheckeredTabard: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -31*32, frames:2 },
+  LeatherArmor: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -32*32, frames:2 },
+  ChainMail: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -33*32, frames:2 },
+  PlatePaladin: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -29*32, frames:2 },
+  PlateSash: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -34*32, frames:2 },
+  PlateKnight: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -28*32, frames:2 },
+  Plate: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -27*32, frames:2 },
+  Plate2: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -27*32, frames:2 },
+  BlueRobeHood: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -21*32, frames:2 },
+  BlueRobe: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -22*32, frames:2 },
+  RedRobe: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -23*32, frames:2 },
+  GreenRobe: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -24*32, frames:2 },
+  BlueRobePlain: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -21*32, frames:2 },
+  BrownRobeHood: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -25*32, frames:2 },
+  BrownRobe: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -25*32, frames:2 },
+  BrownRobeFancy: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -26*32, frames:2 },
 
   // Heads
-  DarkOpenHelm: { src: "humanseated.png", type: "head", spritex: 0, spritey: -38*32, frames: 5 },
-  GoldClosedHelm: { src: "humanseated.png", type: "head", spritex: 0, spritey: -39*32, frames: 5 },
-  BlueSolidHelm: { src: "humanseated.png", type: "head", spritex: 0, spritey: -40*32, frames: 5 },
-  PaleOpenHelm: { src: "humanseated.png", type: "head", spritex: 0, spritey: -41*32, frames: 5 },
-  BlueClosedHelm: { src: "humanseated.png", type: "head", spritex: 0, spritey: -42*32, frames: 5 },
-//  BeardedPale: { src: "humans.png", type: "head", spritex: 0, spritey: -46*32, frames: 2 },
-  OldManPale: { src: "humanseated.png", type: "head", spritex: 0, spritey: -43*32, frames: 5 },
-//  LongBrownHairPale: { src: "humans.png", type: "head", spritex: 0, spritey: -48*32, frames: 2 },
-  ShortBlackPale: { src: "humanseated.png", type: "head", spritex: 0, spritey: -44*32, frames: 5 },
-  BaldBeardedDark: { src: "humanseated.png", type: "head", spritex: 0, spritey: -45*32, frames: 5 },
-  ShortBrownPale: { src: "humanseated.png", type: "head", spritex: 0, spritey: -46*32, frames: 5 },
-  RedHeadPale: { src: "humanseated.png", type: "head", spritex: 0, spritey: -105*32, frames:5 },
-  KingHead: { src: "humanseated.png", type: "head", spritex: 0, spritey: -47*32, frames: 5 },
-  GoldCircletDark: { src: "humanseated.png", type: "head", spritex: 0, spritey: -48*32, frames: 5 },
-  PrinceHead: { src: "humanseated.png", type: "head", spritex: 0, spritey: -49*32, frames: 5 },
-  SilverCircletPale: { src: "humanseated.png", type: "head", spritex: 0, spritey: -50*32, frames: 5 },
-  BlondePale: { src: "humanseated.png", type: "head", spritex: 0, spritey: -51*32, frames: 5 },
-  Hood1: { src: "humanseated.png", type: "head", spritex: 0, spritey: -52*32, frames: 5 },
-  Hood2: { src: "humanseated.png", type: "head", spritex: 0, spritey: -53*32, frames: 5 },
-  OldManPale2: { src: "humanseated.png", type: "head", spritex: 0, spritey: -54*32, frames: 5 },
-  ShortBlackDark: { src: "humanseated.png", type: "head", spritex: 0, spritey: -55*32, frames: 5 },
-//  VanDykePale: { src: "humans.png", type: "head", spritex: 0, spritey: -60*32, frames: 2 },
-  BrownDark: { src: "humanseated.png", type: "head", spritex: 0, spritey: -56*32, frames: 5 },
-//  LongBlondePale: { src: "humans.png", type: "head", spritex: 0, spritey: -62*32, frames: 2 },
-  RedheadWomanPale: { src: "humanseated.png", type: "head", spritex: 0, spritey: -102*32, frames: 3 },
-  BrunetteWomanPale: { src: "humanseated.png", type: "head", spritex: 0, spritey: -103*32, frames: 3 },
-  WomanDark: { src: "humanseated.png", type: "head", spritex: 0, spritey: -104*32, frames: 3 },
-  BardDark: { src: "humanseated.png", type: "head", spritex: 0, spritey: -2*32, frames: 5 },
-  BardPale1: { src: "humanseated.png", type: "head", spritex: 0, spritey: -110*32, frames: 5 },
-  BardPale2: { src: "humanseated.png", type: "head", spritex: 0, spritey: -111*32, frames: 5 },
+  OldManPale: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -13*32, frames:2 },
+  ShortBlackPale: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -5*32, frames:2 },
+  BaldBeardedDark: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -6*32, frames:2 },
+  ShortBrownPale: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -7*32, frames:2 },
+  RedHeadPale: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -4*32, frames:2 },
+  KingHead: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -8*32, frames:2 },
+  GoldCircletDark: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -9*32, frames:2 },
+  PrinceHead: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -10*32, frames:2 },
+  SilverCircletPale: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -11*32, frames:2 },
+  BlondePale: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -12*32, frames:2 },
+  ShortBlackDark: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -14*32, frames:2 },
+  BrownDark: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -15*32, frames:2 },
+  RedheadWomanPale: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -51*32, frames:2 },
+  BrunetteWomanPale: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -52*32, frames:2 },
+  WomanDark: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -53*32, frames:2 },
+  BardDark: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -17*32, frames:2 },
+  BardPale1: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -16*32, frames:2 },
+  BardPale2: { src: "humanseated.png", type: "head", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -18*32, frames:2 },
+
+  //Hands
+  HandsPale: { src: "humanseated.png", type: "mainhand", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -2*32, frames: 2 },
+  HandsDark: { src: "humanseated.png", type: "mainhand", facing0: -12*32, facing1: -4*32, facing2: 0, facing3: -8*32, spritey: -3*32, frames: 2 },
 }
 
 let HumanPartsBed = {
