@@ -909,7 +909,8 @@ function SaveChar() {
     back: null,
     offhand: nuavatars[avatarselect.x][3],
     cloak: null,
-    mainhand: nuavatars[avatarselect.x][2]
+    mainhand: nuavatars[avatarselect.x][2],
+    realhead: nuavatars[avatarselect.x][1]
   };
   PC.wornlayernudges = {
     body: { x: 0, y: 0 },
