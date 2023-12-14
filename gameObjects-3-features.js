@@ -3411,7 +3411,7 @@ function GreyDoorTile() {
   
   this.pathweight = 2; 
 
-	Openable.call(this, ["static.png", "", -2*32, -16*32], ["static.png","",-7*32,-17*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+	Openable.call(this, ["static.png", "", -2*32, -18*32], ["static.png","",-7*32,-17*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 GreyDoorTile.prototype = new FeatureObject();
 
@@ -4789,53 +4789,18 @@ function BridgeEWBrokenTile() {
 BridgeEWBrokenTile.prototype = new FeatureObject();
 
 function SitDown(who,what) {
-  return {msg:""};
+  who.sitting = "chair";
+  who.facing = "facing" + what.facing;
+  who.currframenum = 1;
+  who.makeLayers(1);
 
-  let direction;
-  who.realgraphic = who.getGraphicArray();
-  who.reallayers = who.layers;
-  delete who.layers;
-  let cc = "";
-  let rf = "";
-  if (parseInt(who.skintone) === 2) {
-    cc = ".1";
-  } else if (parseInt(who.skintone) !== 1) { console.log("Missing skintone on "); console.log(who); }
-  if (Dice.roll("1d2") === 1) {
-    rf = "_2";
-  }
-  switch (what.facing) {
-    case 0:
-      direction = "north";
-      break;
-    case 1:
-      direction = "east";
-      break;
-    case 2:
-      direction = "south";
-      break;
-    case 3: 
-      direction = "west";
-      break;
-  }
-  let filename = `seated_${direction}${rf}${cc}.gif`;
-  let garr = [filename,filename,0,0];
-  who.setGraphicArray(garr);
   return {msg:""};
 }
 
 function StandUp(who) {
-  return {msg:""};
-
-  if (who.realgraphic) {
-    who.setGraphicArray(who.realgraphic);
-    who.layers = who.reallayers;
-    delete who.reallayers;
-    delete who.realgraphic;
-    DebugWrite("gameobj", "Changed the graphic of " + who.getNPCName() + " from sitting.<br />");
-  } else {
-    alert("Entity failed to have a standing graphic. See console.");
-    console.log(who);
-  }
+  who.sitting = "";
+  who.currframenum = 1;
+  who.makeLayers();
   return {msg:""};
 }
 
