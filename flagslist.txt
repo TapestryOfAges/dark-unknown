@@ -56,6 +56,8 @@ shield_gotten - you've gotten the shield
 has_shield - you've given the shield to Nyrani
 rescued_sam - rescued Samantha from Shadow  ** (endgame support)
 shadow_safe - monsters in shadow between Sam and the entrance are dead.
+damien_anna - damien mentioned anna to you
+brooke_anna - brooke mentioned anna to you
 anna_romance - you've mentioned Damien or Brooke to Anna
 anna_return - Anna has moved back to Poverty (or is on her way out of Hildendain)
 anna_left - she's made it out of Hildendain (set in her AI or when player leaves) ** (endgame support)
