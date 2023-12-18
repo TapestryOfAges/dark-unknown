@@ -1077,7 +1077,7 @@ function ManualAnimation(params) {
   this.currframenum;
 
   this.startAnimation = function() {
-    console.log("startAnimation called for " + this.getName());
+//    console.log("startAnimation called for " + this.getName());
     if (this.animstyle === "pingpong") { this.animdir = 1; }
     if (this.startframe === "start") { 
       if (this.animdir === "vertical") {
@@ -1098,15 +1098,15 @@ function ManualAnimation(params) {
   }
 
   this.IWasJustDrawn = function() {
-    console.log("IWasJustDrawn (" + this.getName() + ")");
+//    console.log("IWasJustDrawn (" + this.getName() + ")");
     let who = this;
     if (this.hasOwnProperty("attachedTo")) { who = this.attachedTo; }
     if (who.animating) {
-      console.log("Already animating: " + who.animating);
+//      console.log("Already animating: " + who.animating);
       return; 
     } // animateMe cycle is already going 
     if (who.noAnim) {
-      console.log("noAnim set, not (re)starting animating.");
+//      console.log("noAnim set, not (re)starting animating.");
       return;
     }
     who.animating = 1;
