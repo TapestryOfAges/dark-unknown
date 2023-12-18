@@ -757,6 +757,7 @@ function PerformAttackMap(who) {
       newmap = maps.addMap(combatmapname);
 
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap, newmap.getEnterX(), newmap.getEnterY());
+      retval["txt"] = "Approach: " + atkwho.getDesc() + ".";
     } else {
       let combatmapname = GetCombatMap(who,atkwho);
       let newmap = new GameMap();
@@ -774,12 +775,12 @@ function PerformAttackMap(who) {
 
       let monsters = PlaceMonsters(newmap,atkwho,1);
       let desttile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, newmap.getEnterX(), newmap.getEnterY());
+      retval["txt"] = "Attack: " + atkwho.getDesc() + ".";
     }
     
     PC.lastAttackedx = targetCursor.x;
     PC.lastAttackedy = targetCursor.y;
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
-    retval["txt"] = "Attack: " + atkwho.getDesc() + ".";
     retval["fin"] = 0;
     retval["input"] = "&gt;";
     // as if retval = 1, but set to PC turn
@@ -3781,7 +3782,7 @@ function ShowHelp() {
   statsdiv += "<tr><td colspan='3' style='text-align:center'>GAME COMMANDS</td></tr>";
   statsdiv += "<tr><td colspan='3'>&nbsp;</td></tr>";
   statsdiv += "<tr><td>ARROW KEYS - Move</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>P - Push</td></tr>";
-  statsdiv += "<tr><td>A - Attack</td><td></td><td>Q - Save</td></tr>";
+  statsdiv += "<tr><td>A - Attack/Approach</td><td></td><td>Q - Save</td></tr>";
   let hasspellbook = "";
   if (DU.gameflags.getFlag("spellbook")) {
     hasspellbook = "style='color:gray";
