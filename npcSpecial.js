@@ -125,22 +125,27 @@ function HorseAndCartNPCTile() {
 HorseAndCartNPCTile.prototype = new NPCObject();
 
 HorseAndCartNPCTile.prototype.swapPlace = function(orient) {
+  let mymap = this.getHomeMap();
   if ((orient === "left") || ((this.spritexoffset === '-256') && (orient !== "right"))) {
     this.spritexoffset = '-224';
     this.spriteyoffset = '-1568';
     this.attachedParts[0].spritexoffset = '-256';
     this.attachedParts[0].spriteyoffset = '-1568';
-    this.attachedParts[0].setx(this.getx()+1);
-    this.setx(this.getx()-1);
+    mymap.moveThing(this.getx(),this.gety(),this.attachedParts[0]);
+//    this.attachedParts[0].setx(this.getx());
+    mymap.moveThing(this.getx()-1,this.gety(),this);
+//    this.setx(this.getx()-1);
     this.attachedLocations[0][0] = 1;
   } else {
     this.spritexoffset = '-256';
     this.spriteyoffset = '-1536';
     this.attachedParts[0].spritexoffset = '-224';
     this.attachedParts[0].spriteyoffset = '-1536';
-    this.attachedParts[0].setx(this.getx()-1);
+    mymap.moveThing(this.getx(),this.gety(),this.attachedParts[0]);
+    mymap.moveThing(this.getx()+1,this.gety(),this);
+//    this.attachedParts[0].setx(this.getx());
     this.attachedLocations[0][0] = -1;
-    this.setx(this.getx()+1);
+//    this.setx(this.getx()+1);
   }
 //  console.log("Swap performed:");
 //  console.log(this);
