@@ -2109,7 +2109,7 @@ NPCHumanObject.prototype.makeLayers = function(frame) {
     return;
   }
   if (this.sitting === "chair") {
-    console.log("sitting down");
+//    console.log("sitting down");
     let hand = "HandsDark";
     if (this.wornlayers.realhead.includes("Pale")) { hand = "HandsPale"; }
     layer.push([HumanPartsSit[this.wornlayers.body].src, "", HumanPartsSit[this.wornlayers.body][this.facing] - 32*(frame-1), HumanPartsSit[this.wornlayers.body].spritey]);
