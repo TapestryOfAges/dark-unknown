@@ -109,6 +109,30 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
 
 }
 
+function MoveFeatureBetweenMaps(what,tomap,destx,desty) {
+  let oldx = what.getx();
+  let oldy = what.gety();
+  let oldmap = what.getHomeMap();
+
+  oldmap.deleteThing(what);
+
+  tomap.placeThing(destx,desty,what,0,"noactivate");
+	what.setHomeMap(tomap);
+    
+  if (PC.getHomeMap() === oldmap) {
+    DrawMainFrame("one",oldmap,oldx,oldy);
+    if (what.ambientNoise) {
+      ProcessAmbientNoise(oldmap.getTile(oldx,oldy));
+    }
+  } else if (PC.getHomeMap() === tomap) {
+    DrawMainFrame("one",tomap,destx,desty);
+    if (what.ambientNoise) {
+      ProcessAmbientNoise(tomap.getTile(destx,desty));
+    }
+  }
+
+}
+
 function AdjustStartingLocations(amap) {
   let allnpcs = amap.npcs.getAll();
   let linked = amap.getLinkedMaps();
