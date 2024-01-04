@@ -3171,44 +3171,11 @@ function ThroneTile() {
 ThroneTile.prototype = new FeatureObject();
 
 ThroneTile.prototype.walkon = function(who) {
-  return {msg:""};
-
-  let response = {msg:""};
-  who.realgraphic = who.getGraphicArray();
-  who.reallayers = who.layers;
-  delete who.layers;
-  if (who.getGraphic() === "315.gif") {
-    who.setGraphicArray(["throned_king.gif","throned_king.gif",0,0]);
-    return response;
-  }
-  if (who.getGraphic() === "315.2.gif") {
-    who.setGraphicArray(["throned_queen.gif","throned_queen.gif",0,0]); 
-    return response;
-  }
-  let cc = "";
-  if (parseInt(who.skintone) === 2) {
-    cc = ".1";
-  } else if (parseInt(who.skintone) !== 1) { console.log("Missing skintone on "); console.log(who); }
-  let filename = `throned${cc}.gif`;
-  let garr = [filename,filename,0,0];
-  who.setGraphicArray(garr);
-  return response;
+  return SitDown(who,this);
 }
 
 ThroneTile.prototype.walkoff = function(who) {
-  return {msg:""};
-
-  if (who.realgraphic) {
-    who.setGraphicArray(who.realgraphic);
-    delete who.realgraphic;
-    who.layers = who.reallayers;
-    delete who.reallayers;
-    DebugWrite("gameobj", "Changed the graphic of " + who.getNPCName() + " from sitting.<br />");
-  } else {
-    alert("Entity failed to have a standing graphic. See console.");
-    console.log(who);
-  }
-  return {msg:""};
+  return StandUp(who);
 }
 
 function BDThroneTile() {
@@ -4789,8 +4756,12 @@ function BridgeEWBrokenTile() {
 BridgeEWBrokenTile.prototype = new FeatureObject();
 
 function SitDown(who,what) {
-  who.sitting = "chair";
-  who.facing = "facing" + what.facing;
+  if (what.getName().includes("Chair")) {
+    who.sitting = "chair";
+    who.facing = "facing" + what.facing;
+  } else {
+    who.sitting = "throne";
+  }
   who.currframenum = 1;
   who.makeLayers(1);
 
@@ -11148,11 +11119,32 @@ EtherGateTile.prototype.walkon = function(who) {
   return response;
 }
 
+function TempMoongateTile() {
+  this.name = "TempMoongate";
+  this.graphic = "moongates.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -1*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "gate";
+
+  ManualAnimation.call(this, { animstart: 0,
+    animlength: 8,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 150,
+    startframe: "start"
+  });
+
+}
+TempMoongateTile.prototype = new FeatureObject();
+
 function MoongateTile() {
   this.name = "Moongate";
-  this.graphic = "static.png";
+  this.graphic = "moongates.png";
   this.spritexoffset = 0;
-  this.spriteyoffset = -119*32;
+  this.spriteyoffset = -1*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "gate";
@@ -11193,11 +11185,31 @@ MoongateTile.prototype.walkon = function(who) {
   return response;
 }
 
+function TempDaemonMoongateTile() {
+  this.name = "TempDaemonMoongate";
+  this.graphic = "moongates.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -1*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "gate";
+
+  ManualAnimation.call(this, { animstart: 0,
+    animlength: 8,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 150,
+    startframe: "start"
+  });
+}
+TempDaemonMoongateTile.prototype = new FeatureObject();
+
 function DaemonMoongateTile() {
   this.name = "DaemonMoongate";
-  this.graphic = "static.png";
-  this.spritexoffset = 0;
-  this.spriteyoffset = -146*32;
+  this.graphic = "moongates.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -1*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "gate";
@@ -11526,6 +11538,8 @@ JusticeOrbTile.prototype.onGet = function(who) {
   newcrystal.invisible = 1;
   let cataclysm = localFactory.createTile("JusticeCollapse");
   newcrystal.addSpellEffect(cataclysm);
+
+  return {};
 }
 
 function CrownTile() {
@@ -11601,6 +11615,8 @@ KineticCrystalTile.prototype.onGet = function(who) {
   wemap.placeThing(34,51,gazer);
   gazer = localFactory.createTile("GazerNPC");
   wemap.placeThing(31,50,gazer);
+
+  return {};
 }
 
 KineticCrystalTile.prototype.use = function(who) {
@@ -11768,8 +11784,8 @@ function CourierPouchTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "pouch full of papers";
   this.prefix = "a";
-  this.longdesc = "The pouch of letters and other papers carried by a courier for the rebels. Bring it to Dawne to prove yourself.";
-  this.usedesc = "Read the contents of the pouch.";
+  this.longdesc = "The pouch of papers carried by a rebel courier. Bring it to Dawne to prove yourself.";
+  this.usedesc = "Read the contents.";
   this.addType("Quest");
 }
 CourierPouchTile.prototype = new ItemObject();
@@ -11783,6 +11799,8 @@ CourierPouchTile.prototype.onGet = function(who) {
       DUTime.removeEntityFrom(npcs[i]);
     }
   }
+
+  return {};
 }
 
 CourierPouchTile.prototype.use = function(who) {
@@ -11794,10 +11812,11 @@ CourierPouchTile.prototype.use = function(who) {
 }
 
 function CourierLetterTile() {
+  //Updated graphic
   this.name = "CourierLetter";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-1184";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -100*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Rebel letter";
@@ -12205,6 +12224,8 @@ UncutLargeRubyTile.prototype = new ItemObject();
 
 UncutLargeRubyTile.prototype.onGet = function(who) {
   DU.gameflags.setFlag("rune_gems",1);
+
+  return {};
 }
 
 function RubyTile() {
@@ -12584,6 +12605,8 @@ GoldLocketTile.prototype.onGet = function(who) {
     retval["txt"] = "There is a portrait in the locket, and you believe you recognize the subject. It looks like Severyn, from Swainhil..."
     return retval;
   }
+
+  return {};
 }
 
 function StolenJewelryTile() {
@@ -12601,6 +12624,8 @@ StolenJewelryTile.prototype = new ItemObject();
 
 StolenJewelryTile.prototype.onGet = function(who) {
   DU.gameflags.setFlag("stolenjewelry_taken",1);
+
+  return {};
 }
 
 function AltarOfAshesTile() {
@@ -12951,6 +12976,8 @@ StoneOfShadowTile.prototype.onGet = function() {
   if (DU.gameflags.getFlag("stoneshadow")) { 
     this.usedesc = "If used in the right place, this will allow you entrance to the warded castle."
   }
+
+  return {};
 }
 
 StoneOfShadowTile.prototype.use = function(who) {
@@ -15990,6 +16017,8 @@ RingOfFireResistTile.prototype.onEquip = function(who) {
   if (!who.resists.hasOwnProperty("fire")) { who.resists.fire = 33; }
   else { who.resists.fire += 33; }
   maintext.delayedAddText("You place the ring on your finger, and a chill feeling sweeps through you. You are more resistant to fire.");
+
+  return {};
 }
 
 RingOfFireResistTile.prototype.onUnequip = function(who) {
@@ -16014,6 +16043,8 @@ RingOfEtherealFocusTile.prototype = new EquipableItemObject();
 
 RingOfEtherealFocusTile.prototype.onGet = function(who) {
   this.equipMe(who);
+
+  return {};
 }
 
 RingOfEtherealFocusTile.prototype.onEquip = function(who) {  
@@ -16582,6 +16613,8 @@ UnenchantedSwordTile.prototype.getLongDesc = function() {
 
 UnenchantedSwordTile.prototype.onGet = function(who) {
   DU.gameflags.setFlag("unenchanted_sword",1);
+
+  return {};
 }
 
 UnenchantedSwordTile.prototype.onMend = function() {
