@@ -2693,6 +2693,11 @@ tileFactory.prototype.makeGreyWallPortcullisTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeBloodyCorpseTile = function() {
+  let newTile = new BloodyCorpseTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeCorpseTile = function() {
   let newTile = new CorpseTile();
   return newTile;
@@ -4503,8 +4508,18 @@ tileFactory.prototype.makeEtherGateTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeTempMoongateTile = function() {
+  let newTile = new TempMoongateTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeMoongateTile = function() {
   let newTile = new MoongateTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTempDaemonMoongateTile = function() {
+  let newTile = new TempDaemonMoongateTile();
   return newTile;
 }
 
