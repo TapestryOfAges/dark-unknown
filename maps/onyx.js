@@ -257,7 +257,7 @@ mappages["onyx"].npcs[5] = {name : 'TownGuardNPC', x : 28, y : 32, NPCName: 'Pat
 mappages["onyx"].npcs[6] = {name : 'TownGuardNPC', x : 18, y : 15, NPCName: 'Calvin', PeaceAI: 'scheduled', Schedule: 'calvin', Conversation: 'onyx_guard', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateSash","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"ShortBrownPale"}'};
 
 mappages["onyx"].desc = "The Towne of Onyx";
-mappages["onyx"].longdesc = ``;
+mappages["onyx"].longdesc = `Against the backdrop of the tumultuous sea, the small rebellious city of Onyx stands before you. The view of the city is dominated by its outer walls, and a tall central tower.`;
 mappages["onyx"].music = 'Dark Towne';
 mappages["onyx"].savename = `Onyx`;
 mappages["onyx"].exitmap = 'darkunknown';
@@ -410,7 +410,7 @@ mappages["onyx2"].npcs[0] = {name : 'DruidVillagerNPC', x : 23, y : 11, NPCName:
 mappages["onyx2"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 8, y : 5, NPCName: 'Rowan', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'rowan', Conversation: 'rowan', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"WhiteTunic2","head":"OldManPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"OldManPale"}'};
 mappages["onyx2"].npcs[2] = {name : 'AdventurerVillagerNPC', x : 15, y : 11, NPCName: 'Carol', PeaceAI: 'scheduled', Schedule: 'carol', Conversation: 'carol', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"LeatherArmor","head":"BrownDark","back":"","offhand":"OffhandDark","cloak":"BlueCloak","mainhand":"ShortswordDark","realhead":"BrownDark"}'};
 mappages["onyx2"].npcs[3] = {name : 'RangerVillagerNPC', x : 22, y : 33, NPCName: 'Dawne', PeaceAI: 'scheduled', Schedule: 'dawne', Conversation: 'dawne', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"LeatherArmor","head":"ShortBrownPale","back":"Quiver","offhand":"OffhandPale","cloak":"","mainhand":"BowPale","realhead":"ShortBrownPale"}'};
-mappages["onyx2"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 10, y : 30, NPCName: 'Gretchen', PeaceAI: 'scheduled', Schedule: 'gretchen', Conversation: 'gretchen', Gender: 'female', Merch: 'gretchen', NPCBand: '0', skintone: 1, wornlayers: '{"body":"GreenTunic","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBlackPale"}'};
+mappages["onyx2"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 10, y : 30, NPCName: 'Gretchen', Desc: 'merchant', PeaceAI: 'scheduled', Schedule: 'gretchen', Conversation: 'gretchen', Gender: 'female', Merch: 'gretchen', NPCBand: '0', skintone: 1, wornlayers: '{"body":"GreenTunic","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBlackPale"}'};
 mappages["onyx2"].npcs[5] = {name : 'TinkerVillagerNPC', x : 10, y : 33, NPCName: 'Heather', Desc: 'blacksmith', PeaceAI: 'scheduled', Schedule: 'heather', Conversation: 'heather', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"LeatherArmor","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HammerDark","realhead":"ShortBlackDark"}'};
 
 mappages["onyx2"].desc = "The Towne of Onyx";
