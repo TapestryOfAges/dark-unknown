@@ -1312,7 +1312,7 @@ function CourierNPCTile() {
   });
 
   this.defwornlayers.body = 'WhiteTunic'
-  this.defwornlayers.head = 'random'
+  this.defwornlayers.head = 'BlondePale'
   this.defwornlayers.offhand = 'OffhandPale'
   this.defwornlayers.mainhand = 'MainHandPale'
 
@@ -2212,8 +2212,6 @@ function AnimatedArmorNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '338.gif';
-  this.altgraphic = ['372.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
@@ -2228,6 +2226,19 @@ function AnimatedArmorNPCTile() {
   this.special = 'construct, wander';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -175 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 AnimatedArmorNPCTile.prototype = new NPCObject();
 
@@ -5689,7 +5700,7 @@ CrystalBarrierNPCTile.prototype = new NPCObject();
 function GiantRatGroupTinyTile() {
   this.name = 'GiantRatGroupTiny';
   this.desc = 'giant rats';
-  this.peaceAI = 'Animal-15';
+  this.peaceAI = 'Animal-5';
   this.group = [];
   this.group[0] = new NPCList('GiantRatNPC', '1d2+1');
   this.movetype = MOVE_WALK;
@@ -5713,7 +5724,7 @@ GiantRatGroupTinyTile.prototype = new NPCGroupObject();
 function GiantRatGroupSmallTile() {
   this.name = 'GiantRatGroupSmall';
   this.desc = 'giant rats';
-  this.peaceAI = 'Animal-15';
+  this.peaceAI = 'Animal-5';
   this.group = [];
   this.group[0] = new NPCList('GiantRatNPC', '1d3+2');
   this.movetype = MOVE_WALK;
@@ -5737,7 +5748,7 @@ GiantRatGroupSmallTile.prototype = new NPCGroupObject();
 function GiantRatGroupLargeTile() {
   this.name = 'GiantRatGroupLarge';
   this.desc = 'giant rats';
-  this.peaceAI = 'Animal-15';
+  this.peaceAI = 'Animal-5';
   this.group = [];
   this.group[0] = new NPCList('GiantRatNPC', '1d5+4');
   this.movetype = MOVE_WALK;
@@ -6187,7 +6198,7 @@ HeadlessGroupLargeTile.prototype = new NPCGroupObject();
 function SnakesGroupSmallTile() {
   this.name = 'SnakesGroupSmall';
   this.desc = 'giant snakes';
-  this.peaceAI = 'Animal-15';
+  this.peaceAI = 'Animal-5';
   this.group = [];
   this.group[0] = new NPCList('PythonNPC', '1d2+1');
   this.movetype = MOVE_WALK;
@@ -6211,7 +6222,7 @@ SnakesGroupSmallTile.prototype = new NPCGroupObject();
 function SnakesGroupTile() {
   this.name = 'SnakesGroup';
   this.desc = 'giant snakes';
-  this.peaceAI = 'Animal-15';
+  this.peaceAI = 'Animal-5';
   this.group = [];
   this.group[0] = new NPCList('PythonNPC', '1d4+2');
   this.movetype = MOVE_WALK;
@@ -6235,7 +6246,7 @@ SnakesGroupTile.prototype = new NPCGroupObject();
 function MidSnakesGroupTile() {
   this.name = 'MidSnakesGroup';
   this.desc = 'giant snakes';
-  this.peaceAI = 'Animal-15';
+  this.peaceAI = 'Animal-5';
   this.group = [];
   this.group[0] = new NPCList('PythonNPC', '1d4+2');
   this.group[1] = new NPCList('GiantSnakeNPC', '1d2');
@@ -6260,7 +6271,7 @@ MidSnakesGroupTile.prototype = new NPCGroupObject();
 function DrakesSmallGroupTile() {
   this.name = 'DrakesSmallGroup';
   this.desc = 'drakes';
-  this.peaceAI = 'Animal-15';
+  this.peaceAI = 'Animal-5';
   this.group = [];
   this.group[0] = new NPCList('DrakeNPC', '1d4+1');
   this.movetype = MOVE_FLY;
@@ -6284,7 +6295,7 @@ DrakesSmallGroupTile.prototype = new NPCGroupObject();
 function DrakesLargeGroupTile() {
   this.name = 'DrakesLargeGroup';
   this.desc = 'drakes';
-  this.peaceAI = 'Animal-15';
+  this.peaceAI = 'Animal-5';
   this.group = [];
   this.group[0] = new NPCList('DrakeNPC', '1d6+1');
   this.group[1] = new NPCList('DragonNPC', '1d2-1');
@@ -6309,7 +6320,7 @@ DrakesLargeGroupTile.prototype = new NPCGroupObject();
 function DragonsGroupTile() {
   this.name = 'DragonsGroup';
   this.desc = 'dragons';
-  this.peaceAI = 'Animal-15';
+  this.peaceAI = 'Animal-5';
   this.group = [];
   this.group[0] = new NPCList('DrakeNPC', '1d3');
   this.group[1] = new NPCList('DragonNPC', '1d3+1');
@@ -6774,7 +6785,7 @@ MagmaLizardGroupTile.prototype = new NPCGroupObject();
 function InsectsGroupSmallTile() {
   this.name = 'InsectsGroupSmall';
   this.desc = 'giant insects';
-  this.peaceAI = 'Animal-15';
+  this.peaceAI = 'Animal-5';
   this.group = [];
   this.group[0] = new NPCList('GiantInsectsNPC', '1d4');
   this.movetype = MOVE_FLY;
@@ -6798,7 +6809,7 @@ InsectsGroupSmallTile.prototype = new NPCGroupObject();
 function InsectsGroupLargeTile() {
   this.name = 'InsectsGroupLarge';
   this.desc = 'giant insects';
-  this.peaceAI = 'Animal-15';
+  this.peaceAI = 'Animal-5';
   this.group = [];
   this.group[0] = new NPCList('GiantInsectsNPC', '2d4+1');
   this.movetype = MOVE_FLY;
@@ -6823,15 +6834,33 @@ function CourierGroupTile() {
   this.name = 'CourierGroup';
   this.desc = 'a courier';
   this.peaceAI = 'Courier';
-  this.graphic = '310.2.gif';
   this.group = [];
   this.group[0] = new NPCList('CourierNPC', '1d1');
   this.group[1] = new NPCList('CourierGuardNPC', '1d1+1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attacks';
   this.special = 'remain';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['WhiteTunic'].frames,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+
+  this.defwornlayers.body = 'WhiteTunic'
+  this.defwornlayers.head = 'BlondePale'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'MainHandPale'
+
 }
-CourierGroupTile.prototype = new NPCGroupObject();
+CourierGroupTile.prototype = new NPCHumanGroupObject();
 
 function OnyxToHildendainGuardsGroupTile() {
   this.name = 'OnyxToHildendainGuardsGroup';
