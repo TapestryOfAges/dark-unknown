@@ -744,7 +744,12 @@ function StepOrSidestep(who, path, finaldest, nopush) {
       }
       let retval = {};
       for (let k=0;k<newtile.length;k++) {
-        if (newtile[k].isHostileTo(npc) || newtile[k].noWander()) {
+        if (newtile[k] === "OoB") {
+          retval["nomove"] = 1;
+          retval["canmove"] = 0;
+          retval["diffx"] = diffx;
+          retval["diffy"] = diffy;
+        } else if (newtile[k].isHostileTo(npc) || newtile[k].noWander()) {
           retval["nomove"] = 1;
           retval["canmove"] = 0;
           retval["diffx"] = diffx;
