@@ -629,6 +629,7 @@ function DamageFlash() {
 function AnimateMoongate(obj, repeat, dir, waitdur, destroywhendone) {
   if (timeouts[obj.getSerial()]) { clearTimeout(timeouts[obj.getSerial()]); }
   if (dir === "down") { obj.spriteyoffset = -32; }
+  else { obj.spriteyoffset = 0; }
   if (PC.getHomeMap() === obj.getHomeMap()) {
     DrawMainFrame("one", obj.getHomeMap(), obj.getx(), obj.gety());
     timeouts[obj.getSerial()] = setTimeout(function() { ContinueMoongateAnimation(obj, repeat, dir, waitdur, destroywhendone) }, waitdur);
@@ -660,6 +661,8 @@ function ContinueMoongateAnimation(obj,repeat, dir, waitdur, destroywhendone) {
       DrawMainFrame("one", obj.getHomeMap(), obj.getx(), obj.gety());
       timeouts[obj.getSerial()] = setTimeout(function() { ContinueMoongateAnimation(obj, repeat, dir, waitdur, destroywhendone) }, waitdur);
     }
+  } else if (destroywhendone) {
+    DestroyMoongateAnimation(obj);
   }
 }
 
