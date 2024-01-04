@@ -280,8 +280,9 @@ function TitanNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '345.gif';
-  this.altgraphic = ['379.gif',];
+  this.graphic = 'static.png';
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -158*32;
   this.meleeAttackAs = 'none';
   this.meleeDamage = '5d4+15'
   this.meleeStrDamage = 1
@@ -302,16 +303,36 @@ function TitanNPCTile() {
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
 
-  MultiTileNPC.call(this, ["TitanHeadSegment"], [[0,-1]])
+  MultiTileNPC.call(this, ["TitanHeadSegment"], [[0,-1]]);
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "start"
+  });
 }
 TitanNPCTile.prototype = new NPCObject();
 
 function TitanHeadSegmentTile() {
   this.name = "TitanHeadSegment";
-  this.graphic = 'elderdragon.gif';
+  this.graphic = 'static.png';
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -157*32;
   this.movetype = MOVE_ETHEREAL;
-  this.spritexoffset = 0;
-  this.spriteyoffset = -32;
   this.alwaystop = 1;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "start"
+  });
 }
 TitanHeadSegmentTile.prototype = new MultiSegment();
