@@ -915,12 +915,12 @@ magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell = function(caste
 
 // Lesser Heal
 magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].getLongDesc = function() {
-  return "Heals you for " + Dice.rollmin(PC.getLevel() + "d6+" + PC.getLevel()) + "-" + Dice.rollmax(PC.getLevel() + "d6+" + PC.getLevel()) + "HP.";
+  return "Heals you for " + Dice.rollmin(PC.getLevel() + "d6+" + 2*PC.getLevel()) + "-" + Dice.rollmax(PC.getLevel() + "d6+" + 2*PC.getLevel()) + "HP.";
 }
 magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].getInfusedDesc = function() {
-  let minheal = Dice.rollmin(PC.getLevel() + "d6+" + PC.getLevel());
+  let minheal = Dice.rollmin(PC.getLevel() + "d6+" + 2*PC.getLevel());
   minheal = Math.floor(minheal * 1.5);
-  let maxheal = Dice.rollmax(PC.getLevel() + "d6+" + PC.getLevel());
+  let maxheal = Dice.rollmax(PC.getLevel() + "d6+" + 2*PC.getLevel());
   maxheal = Math.floor(maxheal * 1.5);
   return "Heals for " + minheal + "-" + maxheal + "HP instead.";
 }
@@ -936,7 +936,7 @@ magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell = function(cas
   }
   
   let lvl = caster.getLevel();
-  let plus = caster.getLevel();
+  let plus = 2*caster.getLevel();
   if (free) { 
     lvl = Dice.roll("1d2+2"); 
     plus = Dice.roll("1d3+2");
@@ -1681,32 +1681,6 @@ magic[SPELL_RETURN_LEVEL][SPELL_RETURN_ID].executeSpell = function(caster, infus
     PlayCastSound(caster);
   }
   
-  let frozen = localFactory.createTile("Slow");
-  let dur = caster.getIntForPower()/3;
-  if (free) { dur = Dice.roll("1d2+3"); }
-  let endtime = dur*SCALE_TIME + DU.DUTime.getGameClock();
-  frozen.setExpiresTime(endtime);
-  tgt.addSpellEffect(frozen);
-  
-  let boltgraphic = {};
-  boltgraphic.graphic = "ice.gif";
-  boltgraphic.yoffset = 0;
-  boltgraphic.xoffset = 0;
-  boltgraphic.directionalammo = 1;
-  boltgraphic = GetEffectGraphic(caster,tgt,boltgraphic);
-  let descval = {txt: desc};
-
-  let sounds = {};
-  let fromcoords = getCoords(caster.getHomeMap(),caster.getx(), caster.gety());
-  let tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
-  let duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
-  let destgraphic = {graphic:"static.png", xoffset:BLUE_SPLAT_X, yoffset:BLUE_SPLAT_Y, overlay:"spacer.gif"};
-  PlayCastSound(caster,"sfx_iceball");
-  let weapon = localFactory.createTile("SpellWeapon");
-  weapon.dmgtype = "ice";
-  AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"ice"});
-  
-  resp["fin"] = -1;
   return resp;
 }
 
@@ -3624,6 +3598,7 @@ function PerformExplosion(caster, infused, free, tgt) {
 //      dmg = RollDamage(DMG_LIGHT);
       if ((tgt.x+diffx === PC.getx()) && (tgt.y+diffy === PC.gety())) {
         let localdmg = prepareSpellDamage(caster,PC,dmg,"fire");
+        localdmg = localdmg.dmg;
         if (CheckResist(caster,PC,infused,0)) { localdmg = localdmg/2 +1; }
         //PC.dealDamage(dmg,caster,"fire");
         DealandDisplayDamage(PC,caster,localdmg,"fire");
@@ -3635,6 +3610,7 @@ function PerformExplosion(caster, infused, free, tgt) {
       if (badguy) {
         badguy.setHitBySpell(caster,SPELL_EXPLOSION_LEVEL);
         let localdmg = prepareSpellDamage(caster,badguy,dmg,"fire");
+        localdmg = localdmg.dmg;
         if (CheckResist(caster,badguy,infused,0)) { localdmg = localdmg/2+1; }
         //badguy.dealDamage(dmg,caster,"fire");
         DealandDisplayDamage(badguy,caster,localdmg,"fire");
@@ -4880,7 +4856,59 @@ function CastSpellMana(mage, mana) {
   Listener.sendEvent(ev);
 }
 
-function TravelByMoongate(who, color, destmap, destx, desty) {
+function TravelByMoongate(who,color,destmap,destx,desty) {
+  let tol = 300;
+  let gatename = "TempMoongate";
+  if (color === "red") { gatename = "TempDaemonMoongate"; }
+
+  let gate = localFactory.createTile(gatename);
+  let castermap = who.getHomeMap();
+  let gx = who.getx();
+  let gy = who.gety();
+  castermap.placeThing(gx,gy,gate);
+  gate.spriteyoffset = 0;
+  
+  let oldgraphic = who.getGraphicArray();
+
+  AnimateMoongate(gate,0,"up",tol,0);
+  setTimeout(function() {
+    if (who.checkType("human")) {
+      who.noDraw = 1;
+      who.makeLayers();
+    } else {
+      who.setGraphicArray(["spacer.gif","",0,0]);
+    }
+    DrawMainFrame("one", castermap, gx, gy);
+    setTimeout(function() {
+      if (destmap === castermap) {
+        castermap.moveThing(destx,desty,who);
+        castermap.moveThing(destx,desty,gate);
+      } else {
+        MoveBetweenMaps(who, castermap, destmap, destx, desty);
+        MoveFeatureBetweenMaps(gate, destmap, destx, desty);
+      }
+      DrawMainFrame("draw", destmap, destx, desty);
+      setTimeout(function() {
+        if (who.checkType("human")) {
+          delete who.noDraw;
+          who.makeLayers();
+        } else {
+          who.setGraphicArray(oldgraphic);
+        }
+            
+        DrawMainFrame("one", destmap, destx, desty);
+        AnimateMoongate(gate,0,"down",tol,1);
+        // Moongate descends, but player can immediately walk around
+        DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
+        DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");  
+        who.endTurn();
+
+      }, 400); // duration before emerge from gate at destination
+    },700); // duration of stand in front of gate
+  }, 1500);  // duration of gate coming up
+}
+
+function TravelByMoongateOld(who, color, destmap, destx, desty) {
   let tol = 300;
   let graphicarray = [];
   graphicarray[0] = "moongate.gif";
