@@ -710,6 +710,10 @@ OnConvTriggers["franklin_debt_paid"] = function(speaker,keyword) {
   DU.gameflags.setFlag("franklin_debt_paid",DUTime.getGameClock());
 }
 
+OnConvTriggers["met_prince"] = function(speaker,keyword) {
+  DU.gameflags.setFlag("knows_lance",1);
+}
+
 OnConvTriggers["clear_gem_flags"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("clear_gem_flags");
   if (DU.gameflags.getFlag("cut_ruby")) {
