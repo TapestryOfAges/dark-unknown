@@ -2773,6 +2773,11 @@ tileFactory.prototype.makeUnlitWEBrazierTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makePheranIllusionaryEnergyFieldTile = function() {
+  let newTile = new PheranIllusionaryEnergyFieldTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeIllusionaryEnergyFieldTile = function() {
   let newTile = new IllusionaryEnergyFieldTile();
   return newTile;
@@ -5470,6 +5475,11 @@ tileFactory.prototype.makeAudachtaNemesosDistractTile = function() {
 
 tileFactory.prototype.makeAudachtaNemesosFlameBladeTile = function() {
   let newTile = new AudachtaNemesosFlameBladeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosMagicBoltTile = function() {
+  let newTile = new AudachtaNemesosMagicBoltTile();
   return newTile;
 }
 
