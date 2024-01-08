@@ -295,6 +295,7 @@ GameObject.prototype.getDesc = function() {
 }
 
 GameObject.prototype.getFullDesc = function() {
+  if (this.specials && this.specials.underground) { return ""; }
   let full = "";
   if (this.getPrefix()) {
     full = this.getPrefix() + " ";
@@ -1132,7 +1133,7 @@ function ManualAnimation(params) {
       this.currframe = -1*(this.currframenum-1)*32 + this.spritexoffset;
     } else if (this.animstyle === "pingpong") {
       this.currframenum = this.currframenum + this.animdir;
-      if (this.currframenum === this.animlength) { this.animdir = -1; }
+      if (this.currframenum >= this.animlength) { this.animdir = -1; }
       if (this.currframenum === 1) { this.animdir = 1; }
       this.currframe = -1*(this.currframenum-1)*32 + this.spritexoffset;
     } else if (this.animstyle === "flow") {
