@@ -286,7 +286,7 @@ mappages["kaltonmine2"].returnmap = 'darkunknown';
 mappages["kaltonmine2"].returnx = '39';
 mappages["kaltonmine2"].returny = '48';
 mappages["kaltonmine2"].returninfused = '0';
-mappages["kaltonmine2"].linkedMaps = ["kaltonmine1","kaltonmine2"];
+mappages["kaltonmine2"].linkedMaps = ["kaltonmine1","kaltonmine3"];
 mappages["kaltonmine2"].editorLabels = '{}';
 // MAP ENDS HERE
 
