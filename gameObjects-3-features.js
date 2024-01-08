@@ -1868,7 +1868,7 @@ function ChestTile() {
 ChestTile.prototype = new FeatureObject();
 
 ChestTile.prototype.flamed = function() {
-  ContainerOnFire(what);
+  ContainerOnFire(this);
 }
 
 function ColinChestTile() {
@@ -2814,6 +2814,19 @@ function CheckWEEntrance(themap) {
   return;
 }
 
+function PheranIllusionaryEnergyFieldTile() {
+	this.name = "PheranIllusionaryEnergyField";
+  this.graphic = "electricfield.gif";
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 0;
+	this.blockloe = 2;
+  this.prefix = "a"; 
+	this.desc = "wall";
+	
+  this.invisible = 1;
+}
+PheranIllusionaryEnergyFieldTile.prototype = new FeatureObject();
+
 function IllusionaryEnergyFieldTile() {
 	this.name = "IllusionaryEnergyField";
   this.graphic = "electricfield.gif";
@@ -3463,7 +3476,6 @@ function FireFieldTile() {
 	this.blocklos = 0;
   this.prefix = "a";
 	this.desc = "fire field";
-  this.expires = 0;
 	
 	LightEmitting.call(this, 3);
 	this.initdelay = 1.5;
@@ -3514,11 +3526,15 @@ FireFieldTile.prototype.myTurn = function() {
     return 1;
   }
  
-  if (this.expiresTime && (this.expiresTime > DUTime.getGameClock())) {
+  if (this.expiresTime && (this.expiresTime < DUTime.getGameClock())) {
     if (!DebugWrite("magic", "<span style='font-weight:bold'>Firefield " + this.getSerial() + " expired, removing itself.</span><br />")) {
       DebugWrite("gameobj", "<span style='font-weight:bold'>Firefield " + this.getSerial() + " expired, removing itself.</span><br />");
     }
-    this.getHomeMap().deleteThing(this);
+    let x = this.getx();
+    let y = this.gety();
+    let mymap = this.getHomeMap();
+    mymap.deleteThing(this);
+    DrawMainFrame("one",mymap,x,y);
     
     return 1;
   }
@@ -13182,6 +13198,14 @@ function FallOfTargrionTile() {
 }
 FallOfTargrionTile.prototype = new BookItemObject();
 
+FallOfTargrionTile.prototype.getLongDesc = function() {
+  if (DU.gameflags.getFlag("olivia_asked")) {
+    return this.longdesc;
+  } else {
+    return "The Fall of Targrion. A story of old myth.";
+  }
+}
+
 function BookOfLoreTile() {
   //Graphics Upgraded
   this.name = "BookOfLore";
@@ -13973,7 +13997,7 @@ function GreenPotionTile() {
   this.graphic = "static.png";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -21*32;
-  this.usedesc = "Drink it.";
+  this.usedesc = "Drink it, or throw it at something.";
 }
 GreenPotionTile.prototype = new PotionItemObject();
 
@@ -13981,12 +14005,12 @@ GreenPotionTile.prototype.getUseDesc = function() {
   if (DU.gameflags.getFlag("knowsgreenpotion")) {
     return this.usedesc;
   }
-  return "Drink it, or throw it at something.";
+  return "Drink it.";
 }
 
 GreenPotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowsgreenpotion")) {
-    return "A poison potion.";
+    return "A Poison potion.";
   }
   return "A green potion.";
 }
@@ -14096,7 +14120,7 @@ DarkGreenPotionTile.prototype = new PotionItemObject();
 
 DarkGreenPotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowsdarkgreenpotion")) {
-    return "A quickness potion.";
+    return "A Quickness potion.";
   }
   return "A dark green potion.";
 }  
@@ -14127,7 +14151,7 @@ SilverPotionTile.prototype = new PotionItemObject();
 
 SilverPotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowssilverpotion")) {
-    return "A strength potion.";
+    return "A Strength potion.";
   }
   return "A silver potion.";
 }
@@ -14172,7 +14196,7 @@ PinkPotionTile.prototype = new PotionItemObject();
 
 PinkPotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowspinkpotion")) {
-    return "A dexterity potion.";
+    return "A Dexterity potion.";
   }
   return "A pink potion.";
 }
@@ -14217,7 +14241,7 @@ GreyPotionTile.prototype = new PotionItemObject();
 
 GreyPotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowsgreypotion")) {
-    return "An intelligence potion.";
+    return "An Intelligence potion.";
   }
   return "A grey potion.";
 }
@@ -14263,9 +14287,9 @@ BrownPotionTile.prototype = new PotionItemObject();
 
 BrownPotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowsbrownpotion")) {
-    return "A greater mana potion.";
+    return "A Greater Mana potion.";
   }
-  return "A brown potion.";
+  return "A milky purple potion.";
 }
 
 BrownPotionTile.prototype.use = function(who) {
@@ -14296,7 +14320,7 @@ RedPotionTile.prototype = new PotionItemObject();
 
 RedPotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowsredpotion")) {
-    return "A cure potion.";
+    return "A Cure potion.";
   }
   return "A red potion.";
 }
@@ -14330,7 +14354,7 @@ WhitePotionTile.prototype = new PotionItemObject();
 
 WhitePotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowswhitepotion")) {
-    return "A light potion.";
+    return "A Light potion.";
   }
   return "A white potion.";
 }
@@ -14361,7 +14385,7 @@ YellowPotionTile.prototype = new PotionItemObject();
 
 YellowPotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowsyellowpotion")) {
-    return "A lesser heal potion.";
+    return "A Lesser Heal potion.";
   }
   return "A yellow potion.";
 }
@@ -14392,7 +14416,7 @@ PurplePotionTile.prototype = new PotionItemObject();
 
 PurplePotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowspurplepotion")) {
-    return "A protection potion.";
+    return "A Protection potion.";
   }
   return "A purple potion.";
 }
@@ -14423,7 +14447,7 @@ BlackPotionTile.prototype = new PotionItemObject();
 
 BlackPotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowsblackpotion")) {
-    return "A bless potion.";
+    return "A Bless potion.";
   }
   return "A black potion.";
 }
@@ -14454,7 +14478,7 @@ BluePotionTile.prototype = new PotionItemObject();
 
 BluePotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowsbluepotion")) {
-    return "A heal potion.";
+    return "A Heal potion.";
   }
   return "A blue potion.";
 }
@@ -14485,7 +14509,7 @@ DeepBluePotionTile.prototype = new PotionItemObject();
 
 DeepBluePotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowsdeepbluepotion")) {
-    return "An ethereal vision potion.";
+    return "An Ethereal Vision potion.";
   }
   return "A deep blue potion.";
 }
@@ -14515,9 +14539,9 @@ OrangePotionTile.prototype = new PotionItemObject();
 
 OrangePotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowsorangepotion")) {
-    return "A mana potion.";
+    return "A Mana potion.";
   }
-  return "A orange potion.";
+  return "An orange potion.";
 }
 
 OrangePotionTile.prototype.use = function(who) {
@@ -14551,7 +14575,7 @@ TanPotionTile.prototype = new PotionItemObject();
 
 TanPotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowstanpotion")) {
-    return "An iron flesh potion.";
+    return "An Iron Flesh potion.";
   }
   return "A tan potion.";
 }
@@ -15138,6 +15162,20 @@ function AudachtaNemesosFlameBladeTile() {
   this.spellname = "Flame Blade";
 }
 AudachtaNemesosFlameBladeTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosMagicBoltTile() {
+  //Graphics Upgraded
+  this.name = "AudachtaNemesosMagicBolt";
+  this.desc = "Audachta Nemesos: Magic Bolt";
+  this.prefix = "an";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -38*32;
+  this.spelllevel = SPELL_MAGIC_BOLT_LEVEL;
+  this.spellnum = SPELL_MAGIC_BOLT_ID;
+  this.spellname = "Magic Bolt";
+}
+AudachtaNemesosMagicBoltTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosVulnerabilityTile() {
   //Graphics Upgraded
@@ -16011,6 +16049,8 @@ RingOfFireResistTile.prototype = new EquipableItemObject();
 
 RingOfFireResistTile.prototype.onGet = function(who) {
   this.equipMe(who);
+
+  return {};
 }
 
 RingOfFireResistTile.prototype.onEquip = function(who) {
