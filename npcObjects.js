@@ -2485,7 +2485,7 @@ function FlukeNPCTile() {
   this.meleeChance = 40;
   this.spellsknown = { lowcontrol: 1, };
   this.resists = { ice:33 };
-  this.special = 'whirlpool, hides:spacer.gif';
+  this.special = 'whirlpool, underground';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
   this.graphic = 'static.png';
@@ -2716,8 +2716,6 @@ function MimicNPCTile() {
   this.peaceAI = 'seekPC-3';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '368.gif';
-  this.altgraphic = ['334.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+8'
   this.meleeStrDamage = .66
@@ -2727,12 +2725,25 @@ function MimicNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'Level3';
   this.prefix = 'a';
-  this.desc = "chest";
+  this.desc = "mimic";
   this.meleeChance = 100;
   this.resists = {};
-  this.special = 'hides:008.gif, aggroname:a mimic, spitter, stationary';
+  this.special = 'mimic, spitter, stationary';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
+  this.graphic = 'static.png';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -154 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
 }
 MimicNPCTile.prototype = new NPCObject();
 
@@ -3389,7 +3400,7 @@ function LurkerNPCTile() {
   this.onHit = 'entangle';
   this.meleeChance = 100;
   this.resists = {};
-  this.special = 'hides:spacer.gif,wander';
+  this.special = 'underground,wander';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
   this.graphic = 'static.png';
@@ -3735,7 +3746,7 @@ function CorpserNPCTile() {
   this.onHit = 'entangle';
   this.meleeChance = 50;
   this.resists = {};
-  this.special = 'hides:spacer.gif, reach,wander';
+  this.special = 'underground, reach,wander';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
   this.graphic = 'static.png';
@@ -6277,11 +6288,11 @@ function DrakesSmallGroupTile() {
   this.movetype = MOVE_FLY;
   this.attackword = 'attack';
   this.graphic = 'static.png';
-  this.spritexoffset = -5 * 32;
-  this.spriteyoffset = -133 * 32;
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -158 * 32;
 
   ManualAnimation.call(this, { 
-    animstart: -5*32,
+    animstart: 0*32,
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
@@ -6302,11 +6313,11 @@ function DrakesLargeGroupTile() {
   this.movetype = MOVE_FLY;
   this.attackword = 'attack';
   this.graphic = 'static.png';
-  this.spritexoffset = -5 * 32;
-  this.spriteyoffset = -133 * 32;
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -158 * 32;
 
   ManualAnimation.call(this, { 
-    animstart: -5*32,
+    animstart: 0*32,
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
@@ -6328,7 +6339,7 @@ function DragonsGroupTile() {
   this.attackword = 'attack';
   this.graphic = 'static.png';
   this.spritexoffset = 0 * 32;
-  this.spriteyoffset = -135 * 32;
+  this.spriteyoffset = -166 * 32;
 
   ManualAnimation.call(this, { 
     animstart: 0*32,
