@@ -1152,15 +1152,29 @@ NPCObject.prototype.activate = function(timeoverride) {
         };
       }
       if (this.wornlayers.head === "random") {
-        let heads = ["OldManPale","ShortBlackPale","ShortBlackPale","BaldBeardedDark","BaldBeardedDark","ShortBrownPale","ShortBrownPale","RedHeadPale","BlondePale","BlondePale","ShortBlackDark","ShortBlackDark","BrownDark","BrownDark"];
-        let idx = Dice.roll("1d"+heads.length+"-1");
-        this.wornlayers.head = heads[idx];
-        if (this.wornlayers.head.includes("Dark")) {
-          if (this.wornlayers.hasOwnProperty("mainhand")) {
-            if (this.wornlayers.mainhand.includes("Pale")) { this.wornlayers.mainhand = this.wornlayers.mainhand.replace("Pale","Dark"); }
+        if (this.wornlayers.body.includes("Bard")) {
+          if (Dice.roll("1d2") === 1) {
+            this.wornlayers.body = "Bard1";
+          } else { this.wornlayers.body = "Bard2"; }
+          let coin = Dice.roll("1d3");
+          if (coin === 1) {
+            this.wornlayers.head = "BardDark";
+          } else if (coin === 2) {
+            this.wornlayers.head = "BardPale1";
+          } else {
+            this.wornlayers.head = "BardPale2";
           }
-          if (this.wornlayers.hasOwnProperty("offhand")) {
-            if (this.wornlayers.offhand.includes("Pale")) { this.wornlayers.offhand = this.wornlayers.offhand.replace("Pale","Dark"); }
+        } else {
+          let heads = ["OldManPale","ShortBlackPale","ShortBlackPale","BaldBeardedDark","BaldBeardedDark","ShortBrownPale","ShortBrownPale","RedHeadPale","BlondePale","BlondePale","ShortBlackDark","ShortBlackDark","BrownDark","BrownDark"];
+          let idx = Dice.roll("1d"+heads.length+"-1");
+          this.wornlayers.head = heads[idx];
+          if (this.wornlayers.head.includes("Dark")) {
+            if (this.wornlayers.hasOwnProperty("mainhand") && this.wornlayers.mainhand) {
+              if (this.wornlayers.mainhand.includes("Pale")) { this.wornlayers.mainhand = this.wornlayers.mainhand.replace("Pale","Dark"); }
+            }
+            if (this.wornlayers.hasOwnProperty("offhand") && this.wornlayers.offhand) {
+              if (this.wornlayers.offhand.includes("Pale")) { this.wornlayers.offhand = this.wornlayers.offhand.replace("Pale","Dark"); }
+            }
           }
         }
       }
@@ -1518,8 +1532,10 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
       // uncommented version checks from current display center, not from PC position.
       if (!overridedraw) {
         if ((typeof this.getLight === "function") && (this.getLight() !== 0)) {
-          DebugWrite("ai", "A light source, need to redraw the whole screen...<br />");
-          DrawMainFrame("draw", map, PC.getx(), PC.gety());
+          if (map === PC.getHomeMap()) {
+            DebugWrite("ai", "A light source, need to redraw the whole screen...<br />");
+            DrawMainFrame("draw", map, PC.getx(), PC.gety());
+          }
   			} else {
           // only redraw these two spaces
           DebugWrite("ai", "Redraw both tiles.<br />");
@@ -2126,12 +2142,12 @@ NPCHumanObject.prototype.makeLayers = function(frame) {
       let shadowlayer = [HumanPartsSit[usehead].src, "", HumanPartsSit[usehead][this.facing] - shadowoffsets[HumanPartsSit[usehead].src]*32 - 32*(frame-1), HumanPartsSit[usehead].spritey];
       layer.unshift(shadowlayer);  
     }
-    if (this.wornlayers.mainhand) {
+    if ((this.wornlayers.mainhand) || (this.wornlayers.head.includes("Bard"))) {
       let newlayer = [HumanPartsSit[hand].src, "", HumanPartsSit[hand][this.facing] - 32*(frame-1), HumanPartsSit[hand].spritey];
       layer.push(newlayer);
       let shadowlayer = [HumanPartsSit[hand].src, "", HumanPartsSit[hand][this.facing] - shadowoffsets[HumanPartsSit[hand].src]*32 - 32*(frame-1), HumanPartsSit[hand].spritey];
       layer.unshift(shadowlayer);  
-    }
+    } 
     this.layers = layer;
     this.animlength = HumanPartsSit[this.wornlayers.body].frames;  
     return;
@@ -2139,20 +2155,20 @@ NPCHumanObject.prototype.makeLayers = function(frame) {
   if (this.sitting === "throne") {
     let hand = "HandsDark";
     if (this.wornlayers.realhead.includes("Pale")) { hand = "HandsPale"; }
-    layer.push([HumanPartsThrone[this.wornlayers.body].src, "", HumanPartsThrone[this.wornlayers.body] - 32*(frame-1), HumanPartsThrone[this.wornlayers.body].spritey]);
-    layer.unshift([HumanPartsThrone[this.wornlayers.body].src, "", HumanPartsThrone[this.wornlayers.body] - shadowoffsets[HumanPartsThrone[this.wornlayers.body].src]*32 - 32*(frame-1), HumanPartsThrone[this.wornlayers.body].spritey]);
+    layer.push([HumanPartsThrone[this.wornlayers.body].src, "", HumanPartsThrone[this.wornlayers.body].spritex - 32*(frame-1), HumanPartsThrone[this.wornlayers.body].spritey]);
+    layer.unshift([HumanPartsThrone[this.wornlayers.body].src, "", HumanPartsThrone[this.wornlayers.body].spritex - shadowoffsets[HumanPartsThrone[this.wornlayers.body].src]*32 - 32*(frame-1), HumanPartsThrone[this.wornlayers.body].spritey]);
     if (this.wornlayers.head) {
       let usehead = this.wornlayers.realhead;
       if (HumanPartsThrone[this.wornlayers.head]) { usehead = this.wornlayers.head; }
-      let newlayer = [HumanPartsThrone[usehead].src, "", HumanPartsThrone[usehead] - 32*(frame-1), HumanPartsThrone[usehead].spritey];
+      let newlayer = [HumanPartsThrone[usehead].src, "", HumanPartsThrone[usehead].spritex - 32*(frame-1), HumanPartsThrone[usehead].spritey];
       layer.push(newlayer);
-      let shadowlayer = [HumanPartsThrone[usehead].src, "", HumanPartsSit[usehead] - shadowoffsets[HumanPartsThrone[usehead].src]*32 - 32*(frame-1), HumanPartsThrone[usehead].spritey];
+      let shadowlayer = [HumanPartsThrone[usehead].src, "", HumanPartsSit[usehead].spritex - shadowoffsets[HumanPartsThrone[usehead].src]*32 - 32*(frame-1), HumanPartsThrone[usehead].spritey];
       layer.unshift(shadowlayer);  
     }
-    if (this.wornlayers.mainhand) {
-      let newlayer = [HumanPartsThrone[hand].src, "", HumanPartsThrone[hand] - 32*(frame-1), HumanPartsThrone[hand].spritey];
+    if ((this.wornlayers.mainhand) || (this.wornlayers.head.includes("Bard"))) {
+      let newlayer = [HumanPartsThrone[hand].src, "", HumanPartsThrone[hand].spritex - 32*(frame-1), HumanPartsThrone[hand].spritey];
       layer.push(newlayer);
-      let shadowlayer = [HumanPartsThrone[hand].src, "", HumanPartsThrone[hand] - shadowoffsets[HumanPartsThrone[hand].src]*32 - 32*(frame-1), HumanPartsThrone[hand].spritey];
+      let shadowlayer = [HumanPartsThrone[hand].src, "", HumanPartsThrone[hand].spritex - shadowoffsets[HumanPartsThrone[hand].src]*32 - 32*(frame-1), HumanPartsThrone[hand].spritey];
       layer.unshift(shadowlayer);  
     }
     this.layers = layer;
