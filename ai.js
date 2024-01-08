@@ -1173,7 +1173,7 @@ ais.HuntPC = function(who, radius) {
 	let destination = { x: locx, y: locy };
 		
 	let path = themap.getPath(who.getx(), who.gety(), destination.x, destination.y, who.getMovetype());
-	if (path.length) {
+	if (path.length > 1) {
    	path.shift();  // because the first step is where it is already standing.
     DebugWrite("ai", "<span style='font-weight:bold'>From: " + who.getx() + ", " + who.gety() + " to " + destination.x + ", " + destination.y+ "<br />First step is: " + path[0][0] + ", " + path[0][1] + "<br />Next step is: " + path[1][0] + ", " + path[1][1] + "</span><br />");
     who.setCurrentPath(path);
@@ -2806,7 +2806,9 @@ ais.ai_sing = function(who) {
         moralelist[i].addSpellEffect(levobj, 1 );
       }
       if (IsVisibleOnScreen(who.getx(),who.gety())) {
-        mybark += `${desc}'s allies are cheered!`;
+        let tmpbark = `${desc}'s allies are cheered!`;
+        tmpbark = tmpbark.charAt(0).toUpperCase() + tmpbark.slice(1);
+        mybark += `<br />${tmpbark}`;
         maintext.addText(mybark);
         DUPlaySound("sfx_lute");
       }
@@ -3193,10 +3195,15 @@ ais.ai_spit = function(who) {
   let atkhit = 1;
   if (Dice.roll("1d45") < PC.getDex()) { atkhit = 0; }
   let destgraphic = {};
-  if (who.specials.hides) {
-    who.setGraphic(who.specials.hides);  
-    delete who.specials.hides;
+  if (who.specials.mimic) {
+    who.spritexoffset = who.oldx;
+    delete who.oldx;
+    who.spriteyoffset = who.oldy;
+    delete who.oldy;
+    delete who.noAnim;
+    delete who.specials.mimic;
     if (who.getHomeMap() === PC.getHomeMap()) {
+      who.startAnimation();
       DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
     }
   }
