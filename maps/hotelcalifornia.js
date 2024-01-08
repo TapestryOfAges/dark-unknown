@@ -1,5 +1,6 @@
 "use strict";
 
+// MAP BEGINS HERE
 mappages["hotelcalifornia0"] = {};
 mappages["hotelcalifornia0"].terrain = [];
  mappages["hotelcalifornia0"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. .. u, .. .. .. .. .. ..';
@@ -15,7 +16,7 @@ mappages["hotelcalifornia0"].terrain = [];
 mappages["hotelcalifornia0"].terrain[10] = '.. .. .. ## -= -= -= -= -= -= -= ## ## ## -= ## ## .. .. u,';
 mappages["hotelcalifornia0"].terrain[11] = '.. .. .. #O -= -= -= -= -= -= -= ## -= -= -= -= #O .. .. ..';
 mappages["hotelcalifornia0"].terrain[12] = '.. u, .. ## ## ## -= -= -= ## ## ## -= -= -= -= ## .. .. ..';
-mappages["hotelcalifornia0"].terrain[13] = '.. .. .. ## ## ## -= -= -= ## ## ## -= -= -= -= ## .. .. ..';
+mappages["hotelcalifornia0"].terrain[13] = '.. .. .. ## ## ## -= -= -= ## ## f# -= -= -= -= ## .. .. ..';
 mappages["hotelcalifornia0"].terrain[14] = '.. .. .. ## ## ## -= -= -= ## ## ## -= -= -= -= ## u, .. ..';
 mappages["hotelcalifornia0"].terrain[15] = '.. .. .. ## ## ## ## -= ## ## ## ## ## #O ## ## ## .. .. ..';
 mappages["hotelcalifornia0"].terrain[16] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
@@ -38,45 +39,43 @@ mappages["hotelcalifornia0"].features[10] = {name : 'Tree', x : 18, y : 1};
 mappages["hotelcalifornia0"].features[11] = {name : 'Tree', x : 17, y : 6};
 mappages["hotelcalifornia0"].features[12] = {name : 'Tree', x : 18, y : 9};
 mappages["hotelcalifornia0"].features[13] = {name : 'Tree', x : 18, y : 12};
-mappages["hotelcalifornia0"].features[14] = {name : 'LeftTable', x : 5, y : 8};
-mappages["hotelcalifornia0"].features[15] = {name : 'MiddleTable', x : 6, y : 8};
-mappages["hotelcalifornia0"].features[16] = {name : 'MiddleTable', x : 7, y : 8};
-mappages["hotelcalifornia0"].features[17] = {name : 'MiddleTable', x : 8, y : 8};
-mappages["hotelcalifornia0"].features[18] = {name : 'MiddleTable', x : 9, y : 8};
-mappages["hotelcalifornia0"].features[19] = {name : 'RightTable', x : 10, y : 8};
-mappages["hotelcalifornia0"].features[20] = {name : 'SmallBox', x : 9, y : 3};
-mappages["hotelcalifornia0"].features[21] = {name : 'SmallBox', x : 10, y : 3};
-mappages["hotelcalifornia0"].features[22] = {name : 'SmallBox', x : 10, y : 4};
-mappages["hotelcalifornia0"].features[23] = {name : 'StairUp2', x : 10, y : 11, entermap : 'null', enterx : 0, entery : 0};
-mappages["hotelcalifornia0"].features[24] = {name : 'Door', x : 14, y : 8};
-mappages["hotelcalifornia0"].features[25] = {name : 'Door', x : 14, y : 10};
-mappages["hotelcalifornia0"].features[26] = {name : 'DoorWindow', x : 11, y : 9};
-mappages["hotelcalifornia0"].features[27] = {name : 'Doorway', x : 7, y : 5};
-mappages["hotelcalifornia0"].features[28] = {name : 'DoubleBedTopHead', x : 14, y : 13};
-mappages["hotelcalifornia0"].features[29] = {name : 'DoubleBedTopFoot', x : 15, y : 13};
-mappages["hotelcalifornia0"].features[30] = {name : 'DoubleBedBottomHead', x : 14, y : 14};
-mappages["hotelcalifornia0"].features[31] = {name : 'DoubleBedBottomFoot', x : 15, y : 14};
-mappages["hotelcalifornia0"].features[32] = {name : 'DoubleBedBottomFoot', x : 15, y : 4};
-mappages["hotelcalifornia0"].features[33] = {name : 'DoubleBedTopFoot', x : 15, y : 3};
-mappages["hotelcalifornia0"].features[34] = {name : 'DoubleBedTopHead', x : 14, y : 3};
-mappages["hotelcalifornia0"].features[35] = {name : 'DoubleBedBottomHead', x : 14, y : 4};
-mappages["hotelcalifornia0"].features[36] = {name : 'GrandfatherClock', x : 12, y : 11};
-mappages["hotelcalifornia0"].features[37] = {name : 'GrandfatherClock', x : 12, y : 7};
-mappages["hotelcalifornia0"].features[38] = {name : 'Dresser', x : 12, y : 3};
-mappages["hotelcalifornia0"].features[39] = {name : 'Dresser', x : 12, y : 14};
-mappages["hotelcalifornia0"].features[40] = {name : 'WalkOnHC1', x : 7, y : 14};
-mappages["hotelcalifornia0"].features[41] = {name : 'SignpostLeft', x : 4, y : 16};
-mappages["hotelcalifornia0"].features[42] = {name : 'InnSign', x : 5, y : 16, desc : "sign: The Hotel Pheran", prefix : "a"};
-mappages["hotelcalifornia0"].features[43] = {name : 'IllusionaryEnergyField', x : 8, y : 14};
-mappages["hotelcalifornia0"].features[44] = {name : 'IllusionaryEnergyField', x : 8, y : 13};
-mappages["hotelcalifornia0"].features[45] = {name : 'IllusionaryEnergyField', x : 7, y : 13};
-mappages["hotelcalifornia0"].features[46] = {name : 'IllusionaryEnergyField', x : 6, y : 13};
-mappages["hotelcalifornia0"].features[47] = {name : 'IllusionaryEnergyField', x : 6, y : 14};
+mappages["hotelcalifornia0"].features[14] = {name : 'SmallBox', x : 9, y : 3};
+mappages["hotelcalifornia0"].features[15] = {name : 'SmallBox', x : 10, y : 3};
+mappages["hotelcalifornia0"].features[16] = {name : 'SmallBox', x : 10, y : 4};
+mappages["hotelcalifornia0"].features[17] = {name : 'StairUp2', x : 10, y : 11, entermap : 'null', enterx : 0, entery : 0};
+mappages["hotelcalifornia0"].features[18] = {name : 'Door', x : 14, y : 8};
+mappages["hotelcalifornia0"].features[19] = {name : 'Door', x : 14, y : 10};
+mappages["hotelcalifornia0"].features[20] = {name : 'DoorWindow', x : 11, y : 9};
+mappages["hotelcalifornia0"].features[21] = {name : 'Doorway', x : 7, y : 5};
+mappages["hotelcalifornia0"].features[22] = {name : 'GrandfatherClock', x : 12, y : 11};
+mappages["hotelcalifornia0"].features[23] = {name : 'GrandfatherClock', x : 12, y : 7};
+mappages["hotelcalifornia0"].features[24] = {name : 'Dresser', x : 12, y : 3};
+mappages["hotelcalifornia0"].features[25] = {name : 'Dresser', x : 12, y : 14};
+mappages["hotelcalifornia0"].features[26] = {name : 'WalkOnHC1', x : 7, y : 14};
+mappages["hotelcalifornia0"].features[27] = {name : 'SignpostLeft', x : 4, y : 16};
+mappages["hotelcalifornia0"].features[28] = {name : 'InnSign', x : 5, y : 16, desc : "sign: The Hotel Pheran", prefix : "a"};
+mappages["hotelcalifornia0"].features[29] = {name : 'PheranIllusionaryEnergyField', x : 8, y : 14};
+mappages["hotelcalifornia0"].features[30] = {name : 'PheranIllusionaryEnergyField', x : 8, y : 13};
+mappages["hotelcalifornia0"].features[31] = {name : 'PheranIllusionaryEnergyField', x : 7, y : 13};
+mappages["hotelcalifornia0"].features[32] = {name : 'PheranIllusionaryEnergyField', x : 6, y : 13};
+mappages["hotelcalifornia0"].features[33] = {name : 'PheranIllusionaryEnergyField', x : 6, y : 14};
+mappages["hotelcalifornia0"].features[34] = {name : 'DoubleBedHead', x : 14, y : 3};
+mappages["hotelcalifornia0"].features[35] = {name : 'DoubleBedHead', x : 14, y : 14};
+mappages["hotelcalifornia0"].features[36] = {name : 'BedFoot', x : 15, y : 3};
+mappages["hotelcalifornia0"].features[37] = {name : 'BedFoot', x : 15, y : 14};
+mappages["hotelcalifornia0"].features[38] = {name : 'SmallFireplace', x : 11, y : 13};
+mappages["hotelcalifornia0"].features[39] = {name : 'MerchantCounter', x : 10, y : 8};
+mappages["hotelcalifornia0"].features[40] = {name : 'MerchantCounter', x : 9, y : 8};
+mappages["hotelcalifornia0"].features[41] = {name : 'MerchantCounter', x : 8, y : 8};
+mappages["hotelcalifornia0"].features[42] = {name : 'MerchantCounterBill', x : 7, y : 8};
+mappages["hotelcalifornia0"].features[43] = {name : 'MerchantCounter', x : 6, y : 8};
+mappages["hotelcalifornia0"].features[44] = {name : 'MerchantCounterCloth', x : 5, y : 8};
+
 
 mappages["hotelcalifornia0"].npcs = [];
 
 mappages["hotelcalifornia0"].desc = "Mysterious Building";
-mappages["hotelcalifornia0"].longdesc = 'An inviting looking inn stands beside the road here. You don\'t remember having seen it before.';
+mappages["hotelcalifornia0"].longdesc = `An inviting looking inn stands beside the road here. You don't remember having seen it before.`;
 mappages["hotelcalifornia0"].music = 'Village';
 mappages["hotelcalifornia0"].savename = `Mystery`;
 mappages["hotelcalifornia0"].exitmap = 'darkunknown';
@@ -101,7 +100,9 @@ mappages["hotelcalifornia0"].returny = 'NaN';
 mappages["hotelcalifornia0"].returninfused = '0';
 mappages["hotelcalifornia0"].linkedMaps = ["hotelcalifornia","hotelcalifornia2","hotelcalifornia3","hotelcalifornia4","hotelcalifornia5","hotelcalifornia6","hotelcalifornia7","hotelcalifornia8"];
 mappages["hotelcalifornia0"].editorLabels = '{}';
+// MAP ENDS HERE
 
+// MAP BEGINS HERE
 mappages["hotelcalifornia"] = {};
 mappages["hotelcalifornia"].terrain = [];
  mappages["hotelcalifornia"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. .. u, .. .. .. .. .. ..';
@@ -140,23 +141,20 @@ mappages["hotelcalifornia"].features[10] = {name : 'Tree', x : 18, y : 1};
 mappages["hotelcalifornia"].features[11] = {name : 'Tree', x : 17, y : 6};
 mappages["hotelcalifornia"].features[12] = {name : 'Tree', x : 18, y : 9};
 mappages["hotelcalifornia"].features[13] = {name : 'Tree', x : 18, y : 12};
-mappages["hotelcalifornia"].features[14] = {name : 'LeftTable', x : 5, y : 8};
-mappages["hotelcalifornia"].features[15] = {name : 'MiddleTable', x : 6, y : 8};
-mappages["hotelcalifornia"].features[16] = {name : 'MiddleTable', x : 7, y : 8};
-mappages["hotelcalifornia"].features[17] = {name : 'MiddleTable', x : 7, y : 8};
-mappages["hotelcalifornia"].features[18] = {name : 'MiddleTable', x : 8, y : 8};
-mappages["hotelcalifornia"].features[19] = {name : 'MiddleTable', x : 8, y : 8};
-mappages["hotelcalifornia"].features[20] = {name : 'MiddleTable', x : 9, y : 8};
-mappages["hotelcalifornia"].features[21] = {name : 'MiddleTable', x : 9, y : 8};
-mappages["hotelcalifornia"].features[22] = {name : 'RightTable', x : 10, y : 8};
-mappages["hotelcalifornia"].features[23] = {name : 'StairUp2', x : 10, y : 11, entermap : 'hotelcalifornia2', enterx : 10, entery : 11};
+mappages["hotelcalifornia"].features[14] = {name : 'StairUp2', x : 10, y : 11, entermap : 'hotelcalifornia2', enterx : 10, entery : 11};
+mappages["hotelcalifornia"].features[15] = {name : 'MerchantCounter', x : 10, y : 8};
+mappages["hotelcalifornia"].features[16] = {name : 'MerchantCounter', x : 9, y : 8};
+mappages["hotelcalifornia"].features[17] = {name : 'MerchantCounter', x : 8, y : 8};
+mappages["hotelcalifornia"].features[18] = {name : 'MerchantCounter', x : 6, y : 8};
+mappages["hotelcalifornia"].features[19] = {name : 'MerchantCounterBill', x : 7, y : 8};
+mappages["hotelcalifornia"].features[20] = {name : 'MerchantCounterCloth', x : 5, y : 8};
 
 
 mappages["hotelcalifornia"].npcs = [];
-mappages["hotelcalifornia"].npcs[0] = {name : 'GhostNPC', x : 8, y : 7, NPCName: 'Don', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'don', Gender: 'male', NPCBand: '0', OverrideGraphic: '364.gif', skintone: '1'};
+mappages["hotelcalifornia"].npcs[0] = {name : 'GhostNPC', x : 8, y : 7, NPCName: 'Don', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'don', Gender: 'male', NPCBand: '0', skintone: 1};
 
 mappages["hotelcalifornia"].desc = "Mysterious Building";
-mappages["hotelcalifornia"].longdesc = '';
+mappages["hotelcalifornia"].longdesc = ``;
 mappages["hotelcalifornia"].music = 'Village';
 mappages["hotelcalifornia"].savename = `Mystery`;
 mappages["hotelcalifornia"].exitmap = 'darkunknown';
@@ -181,6 +179,7 @@ mappages["hotelcalifornia"].returny = 'NaN';
 mappages["hotelcalifornia"].returninfused = '0';
 mappages["hotelcalifornia"].linkedMaps = ["hotelcalifornia0","hotelcalifornia2","hotelcalifornia3","hotelcalifornia4","hotelcalifornia5","hotelcalifornia6","hotelcalifornia7","hotelcalifornia8"];
 mappages["hotelcalifornia"].editorLabels = '{}';
+// MAP ENDS HERE
 
 mappages["hotelcalifornia"].onload = function(mapref) {
   // magic is negated in here
@@ -192,6 +191,7 @@ mappages["hotelcalifornia"].onload = function(mapref) {
 }
 
 
+// MAP BEGINS HERE
 mappages["hotelcalifornia2"] = {};
 mappages["hotelcalifornia2"].terrain = [];
  mappages["hotelcalifornia2"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. .. u, .. .. .. .. .. ..';
@@ -233,20 +233,18 @@ mappages["hotelcalifornia2"].features[13] = {name : 'Tree', x : 18, y : 12};
 mappages["hotelcalifornia2"].features[14] = {name : 'Door', x : 10, y : 9};
 mappages["hotelcalifornia2"].features[15] = {name : 'Door', x : 9, y : 5};
 mappages["hotelcalifornia2"].features[16] = {name : 'Door', x : 4, y : 9};
-mappages["hotelcalifornia2"].features[17] = {name : 'DoubleBedTopHead', x : 12, y : 5};
-mappages["hotelcalifornia2"].features[18] = {name : 'DoubleBedTopFoot', x : 13, y : 5};
-mappages["hotelcalifornia2"].features[19] = {name : 'DoubleBedBottomHead', x : 12, y : 6};
-mappages["hotelcalifornia2"].features[20] = {name : 'DoubleBedBottomFoot', x : 13, y : 6};
-mappages["hotelcalifornia2"].features[21] = {name : 'Brazier', x : 13, y : 8};
-mappages["hotelcalifornia2"].features[22] = {name : 'GrandfatherClock', x : 8, y : 6};
-mappages["hotelcalifornia2"].features[23] = {name : 'WalkOnHC2', x : 7, y : 5};
+mappages["hotelcalifornia2"].features[17] = {name : 'GrandfatherClock', x : 8, y : 6};
+mappages["hotelcalifornia2"].features[18] = {name : 'WalkOnHC2', x : 7, y : 5};
+mappages["hotelcalifornia2"].features[19] = {name : 'Brazier', x : 13, y : 8};
+mappages["hotelcalifornia2"].features[20] = {name : 'DoubleBedHead', x : 12, y : 5};
+mappages["hotelcalifornia2"].features[21] = {name : 'DoubleBedFoot', x : 13, y : 5};
 
 
 mappages["hotelcalifornia2"].npcs = [];
-mappages["hotelcalifornia2"].npcs[0] = {name : 'GhostNPC', x : 11, y : 7, NPCName: 'Chera', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'chera', Gender: 'female', NPCBand: '0', OverrideGraphic: '330.gif', skintone: '1'};
+mappages["hotelcalifornia2"].npcs[0] = {name : 'GhostNPC', x : 11, y : 7, NPCName: 'Chera', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'chera', Gender: 'female', NPCBand: '0', skintone: 1};
 
 mappages["hotelcalifornia2"].desc = "Mysterious Building";
-mappages["hotelcalifornia2"].longdesc = '';
+mappages["hotelcalifornia2"].longdesc = ``;
 mappages["hotelcalifornia2"].music = 'Tension';
 mappages["hotelcalifornia2"].savename = `Mystery`;
 mappages["hotelcalifornia2"].exitmap = 'darkunknown';
@@ -271,6 +269,7 @@ mappages["hotelcalifornia2"].returny = 'NaN';
 mappages["hotelcalifornia2"].returninfused = '0';
 mappages["hotelcalifornia2"].linkedMaps = ["hotelcalifornia0","hotelcalifornia","hotelcalifornia3","hotelcalifornia4","hotelcalifornia5","hotelcalifornia6","hotelcalifornia7","hotelcalifornia8"];
 mappages["hotelcalifornia2"].editorLabels = '{}';
+// MAP ENDS HERE
 
 mappages["hotelcalifornia2"].onload = function(mapref) {
   // magic is negated in here
@@ -354,10 +353,10 @@ mappages["hotelcalifornia3"].features[44] = {name : 'PurpleCarpetSW', x : 6, y :
 
 
 mappages["hotelcalifornia3"].npcs = [];
-mappages["hotelcalifornia3"].npcs[0] = {name : 'GhostNPC', x : 11, y : 7, NPCName: 'Hylga', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'hylga', Gender: 'female', NPCBand: '0', OverrideGraphic: '330.gif', skintone: '1'};
-mappages["hotelcalifornia3"].npcs[1] = {name : 'GhostNPC', x : 13, y : 6, NPCName: 'Olin', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'olin', Gender: 'male', NPCBand: '0', OverrideGraphic: '364.gif', skintone: '1'};
-mappages["hotelcalifornia3"].npcs[2] = {name : 'GhostNPC', x : 5, y : 12, NPCName: 'Hylga', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'hylga', Gender: 'female', NPCBand: '0', OverrideGraphic: '330.gif', skintone: '1'};
-mappages["hotelcalifornia3"].npcs[3] = {name : 'GhostNPC', x : 7, y : 11, NPCName: 'Olin', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'olin', Gender: 'male', NPCBand: '0', OverrideGraphic: '364.gif', skintone: '1'};
+mappages["hotelcalifornia3"].npcs[0] = {name : 'GhostNPC', x : 11, y : 7, NPCName: 'Hylga', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'hylga', Gender: 'female', NPCBand: '0', skintone: '1'};
+mappages["hotelcalifornia3"].npcs[1] = {name : 'GhostNPC', x : 13, y : 6, NPCName: 'Olin', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'olin', Gender: 'male', NPCBand: '0', skintone: '1'};
+mappages["hotelcalifornia3"].npcs[2] = {name : 'GhostNPC', x : 5, y : 12, NPCName: 'Hylga', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'hylga', Gender: 'female', NPCBand: '0', skintone: '1'};
+mappages["hotelcalifornia3"].npcs[3] = {name : 'GhostNPC', x : 7, y : 11, NPCName: 'Olin', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'olin', Gender: 'male', NPCBand: '0', skintone: '1'};
 
 mappages["hotelcalifornia3"].desc = "Mysterious Building";
 mappages["hotelcalifornia3"].longdesc = ``;
@@ -417,6 +416,7 @@ mappages["hotelcalifornia3"].onload = function(mapref) {
   }
 }
 
+// MAP BEGINS HERE
 mappages["hotelcalifornia4"] = {};
 mappages["hotelcalifornia4"].terrain = [];
  mappages["hotelcalifornia4"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. .. u, .. .. .. .. .. ..';
@@ -426,9 +426,9 @@ mappages["hotelcalifornia4"].terrain = [];
  mappages["hotelcalifornia4"].terrain[4] = '.. .. u, ## ## ## ## ## ## ## -= ## ## ## ## -= ## .. u, ..';
  mappages["hotelcalifornia4"].terrain[5] = '.. .. .. ## -= -= -= -= -= -= -= ## ## ## -= -= ## .. .. ..';
  mappages["hotelcalifornia4"].terrain[6] = '.. .. .. ## -= -= -= -= -= -= -= -= ## ## -= -= #O .. .. ..';
- mappages["hotelcalifornia4"].terrain[7] = '.. .. .. ## -= -= -= -= -= -= -= -= -= ## -= -= ## .. .. ..';
+ mappages["hotelcalifornia4"].terrain[7] = '.. .. .. ## -= -= -= -= -= -= -= -= f# ## -= -= ## .. .. ..';
  mappages["hotelcalifornia4"].terrain[8] = '.. .. .. ## -= -= -= -= -= -= -= -= ## ## -= -= ## .. .. ..';
- mappages["hotelcalifornia4"].terrain[9] = '.. .. .. ## -= -= -= -= -= -= -= -= -= ## -= -= ## .. .. ..';
+ mappages["hotelcalifornia4"].terrain[9] = '.. .. .. ## -= -= -= -= -= -= -= -= f# ## -= -= ## .. .. ..';
 mappages["hotelcalifornia4"].terrain[10] = '.. .. .. ## -= -= -= -= -= -= -= -= ## ## -= -= ## .. .. u,';
 mappages["hotelcalifornia4"].terrain[11] = '.. .. .. ## -= -= -= -= -= -= -= ## ## ## -= -= #O .. .. ..';
 mappages["hotelcalifornia4"].terrain[12] = '.. u, .. ## ## ## ## ## ## ## -= ## ## ## -= -= ## .. .. ..';
@@ -456,40 +456,34 @@ mappages["hotelcalifornia4"].features[11] = {name : 'Tree', x : 17, y : 6};
 mappages["hotelcalifornia4"].features[12] = {name : 'Tree', x : 18, y : 9};
 mappages["hotelcalifornia4"].features[13] = {name : 'LeftTable', x : 5, y : 7};
 mappages["hotelcalifornia4"].features[14] = {name : 'LeftTable', x : 5, y : 8};
-mappages["hotelcalifornia4"].features[15] = {name : 'LeftTable', x : 5, y : 8};
-mappages["hotelcalifornia4"].features[16] = {name : 'LeftTable', x : 5, y : 9};
-mappages["hotelcalifornia4"].features[17] = {name : 'LeftTable', x : 5, y : 9};
-mappages["hotelcalifornia4"].features[18] = {name : 'StairUp', x : 10, y : 3, entermap : 'hotelcalifornia5', enterx : 10, entery : 13};
-mappages["hotelcalifornia4"].features[19] = {name : 'MiddleTable', x : 6, y : 7};
-mappages["hotelcalifornia4"].features[20] = {name : 'MiddleTable', x : 6, y : 8};
-mappages["hotelcalifornia4"].features[21] = {name : 'MiddleTable', x : 6, y : 8};
-mappages["hotelcalifornia4"].features[22] = {name : 'MiddleTable', x : 6, y : 9};
-mappages["hotelcalifornia4"].features[23] = {name : 'MiddleTable', x : 6, y : 9};
-mappages["hotelcalifornia4"].features[24] = {name : 'RightTable', x : 7, y : 7};
-mappages["hotelcalifornia4"].features[25] = {name : 'RightTable', x : 7, y : 8};
-mappages["hotelcalifornia4"].features[26] = {name : 'RightTable', x : 7, y : 8};
-mappages["hotelcalifornia4"].features[27] = {name : 'RightTable', x : 7, y : 9};
-mappages["hotelcalifornia4"].features[28] = {name : 'RightTable', x : 7, y : 9};
-mappages["hotelcalifornia4"].features[29] = {name : 'Door', x : 10, y : 4};
-mappages["hotelcalifornia4"].features[30] = {name : 'Door', x : 10, y : 12};
-mappages["hotelcalifornia4"].features[31] = {name : 'Fireplace', x : 12, y : 7};
-mappages["hotelcalifornia4"].features[32] = {name : 'Fireplace', x : 12, y : 9};
-mappages["hotelcalifornia4"].features[33] = {name : 'Brazier', x : 4, y : 5};
-mappages["hotelcalifornia4"].features[34] = {name : 'Brazier', x : 4, y : 11};
-mappages["hotelcalifornia4"].features[35] = {name : 'Spit', x : 9, y : 5};
-mappages["hotelcalifornia4"].features[36] = {name : 'Spit', x : 9, y : 11};
+mappages["hotelcalifornia4"].features[15] = {name : 'LeftTable', x : 5, y : 9};
+mappages["hotelcalifornia4"].features[16] = {name : 'StairUp', x : 10, y : 3, entermap : 'hotelcalifornia5', enterx : 10, entery : 13};
+mappages["hotelcalifornia4"].features[17] = {name : 'MiddleTable', x : 6, y : 7};
+mappages["hotelcalifornia4"].features[18] = {name : 'MiddleTable', x : 6, y : 9};
+mappages["hotelcalifornia4"].features[19] = {name : 'RightTable', x : 7, y : 7};
+mappages["hotelcalifornia4"].features[20] = {name : 'RightTable', x : 7, y : 8};
+mappages["hotelcalifornia4"].features[21] = {name : 'RightTable', x : 7, y : 9};
+mappages["hotelcalifornia4"].features[22] = {name : 'Door', x : 10, y : 4};
+mappages["hotelcalifornia4"].features[23] = {name : 'Door', x : 10, y : 12};
+mappages["hotelcalifornia4"].features[24] = {name : 'Fireplace', x : 12, y : 7};
+mappages["hotelcalifornia4"].features[25] = {name : 'Fireplace', x : 12, y : 9};
+mappages["hotelcalifornia4"].features[26] = {name : 'Brazier', x : 4, y : 5};
+mappages["hotelcalifornia4"].features[27] = {name : 'Brazier', x : 4, y : 11};
+mappages["hotelcalifornia4"].features[28] = {name : 'Spit', x : 9, y : 5};
+mappages["hotelcalifornia4"].features[29] = {name : 'Spit', x : 9, y : 11};
+
 
 mappages["hotelcalifornia4"].npcs = [];
-mappages["hotelcalifornia4"].npcs[0] = {name : 'BullNPC', x : 6, y : 8, NPCName: 'Bull', Desc: 'spectral bull', Conversation: 'bull', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["hotelcalifornia4"].npcs[1] = {name : 'GhostNPC', x : 5, y : 6, NPCName: 'Hylga', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'ghost1', Gender: 'male', NPCBand: '0', OverrideGraphic: '330.gif', skintone: '1'};
-mappages["hotelcalifornia4"].npcs[2] = {name : 'GhostNPC', x : 7, y : 6, NPCName: 'Olin', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'ghost2', Gender: 'male', NPCBand: '0', OverrideGraphic: '364.gif', skintone: '1'};
-mappages["hotelcalifornia4"].npcs[3] = {name : 'GhostNPC', x : 8, y : 8, NPCName: 'Don', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'ghost3', Gender: 'male', NPCBand: '0', OverrideGraphic: '364.gif', skintone: '1'};
-mappages["hotelcalifornia4"].npcs[4] = {name : 'GhostNPC', x : 7, y : 10, NPCName: 'Chera', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'ghost4', Gender: 'female', NPCBand: '0', OverrideGraphic: '330.gif', skintone: '1'};
-mappages["hotelcalifornia4"].npcs[5] = {name : 'GhostNPC', x : 5, y : 10, NPCName: 'Sincret', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'ghost5', Gender: 'female', NPCBand: '0', OverrideGraphic: '364.gif', skintone: '1'};
-mappages["hotelcalifornia4"].npcs[6] = {name : 'GhostNPC', x : 4, y : 8, NPCName: 'Tialeth', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'ghost6', Gender: 'male', NPCBand: '0', OverrideGraphic: '330.gif', skintone: '1'};
+mappages["hotelcalifornia4"].npcs[0] = {name : 'BullNPC', x : 6, y : 8, NPCName: 'Bull', Desc: 'spectral bull', Conversation: 'bull', Gender: 'male', NPCBand: '0', skintone: 1};
+mappages["hotelcalifornia4"].npcs[1] = {name : 'GhostNPC', x : 5, y : 6, NPCName: 'Hylga', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'ghost1', Gender: 'male', NPCBand: '0', skintone: 1};
+mappages["hotelcalifornia4"].npcs[2] = {name : 'GhostNPC', x : 7, y : 6, NPCName: 'Olin', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'ghost2', Gender: 'male', NPCBand: '0', skintone: 1};
+mappages["hotelcalifornia4"].npcs[3] = {name : 'GhostNPC', x : 8, y : 8, NPCName: 'Don', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'ghost3', Gender: 'male', NPCBand: '0', skintone: 1};
+mappages["hotelcalifornia4"].npcs[4] = {name : 'GhostNPC', x : 7, y : 10, NPCName: 'Chera', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'ghost4', Gender: 'female', NPCBand: '0', skintone: 1};
+mappages["hotelcalifornia4"].npcs[5] = {name : 'GhostNPC', x : 5, y : 10, NPCName: 'Sincret', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'ghost5', Gender: 'female', NPCBand: '0', skintone: 1};
+mappages["hotelcalifornia4"].npcs[6] = {name : 'GhostNPC', x : 4, y : 8, NPCName: 'Tialeth', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'ghost6', Gender: 'male', NPCBand: '0', skintone: 1};
 
 mappages["hotelcalifornia4"].desc = "Mysterious Building";
-mappages["hotelcalifornia4"].longdesc = '';
+mappages["hotelcalifornia4"].longdesc = ``;
 mappages["hotelcalifornia4"].music = 'Tension';
 mappages["hotelcalifornia4"].savename = `Mystery`;
 mappages["hotelcalifornia4"].exitmap = 'darkunknown';
@@ -514,6 +508,7 @@ mappages["hotelcalifornia4"].returny = 'NaN';
 mappages["hotelcalifornia4"].returninfused = '0';
 mappages["hotelcalifornia4"].linkedMaps = ["hotelcalifornia0","hotelcalifornia","hotelcalifornia2","hotelcalifornia3","hotelcalifornia5","hotelcalifornia6","hotelcalifornia7","hotelcalifornia8"];
 mappages["hotelcalifornia4"].editorLabels = '{}';
+// MAP ENDS HERE
 
 mappages["hotelcalifornia4"].onload = function(mapref) {
   // magic is negated in here
@@ -525,6 +520,7 @@ mappages["hotelcalifornia4"].onload = function(mapref) {
   }
 }
 
+// MAP BEGINS HERE
 mappages["hotelcalifornia5"] = {};
 mappages["hotelcalifornia5"].terrain = [];
  mappages["hotelcalifornia5"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. .. u, .. .. .. .. .. ..';
@@ -536,7 +532,7 @@ mappages["hotelcalifornia5"].terrain = [];
  mappages["hotelcalifornia5"].terrain[6] = '.. .. .. ## -= -= ## ## ## ## -= ## ## ## -= -= #O .. .. ..';
  mappages["hotelcalifornia5"].terrain[7] = '.. .. .. ## -= -= ## -= -= -= -= -= -= ## -= -= ## .. .. ..';
  mappages["hotelcalifornia5"].terrain[8] = '.. .. .. ## -= ## ## -= -= -= -= -= -= ## -= -= ## .. .. ..';
- mappages["hotelcalifornia5"].terrain[9] = '.. .. .. ## -= ## -= -= -= -= -= -= -= ## -= -= ## .. .. ..';
+ mappages["hotelcalifornia5"].terrain[9] = '.. .. .. ## -= ## f# -= -= -= -= -= -= ## -= -= ## .. .. ..';
 mappages["hotelcalifornia5"].terrain[10] = '.. .. .. ## -= ## ## -= -= -= -= -= -= ## -= -= ## .. .. u,';
 mappages["hotelcalifornia5"].terrain[11] = '.. .. .. ## -= -= ## ## ## ## -= ## ## ## -= -= #O .. .. ..';
 mappages["hotelcalifornia5"].terrain[12] = '.. u, .. ## ## ## ## ## ## ## -= ## ## ## -= -= ## .. .. ..';
@@ -570,18 +566,18 @@ mappages["hotelcalifornia5"].features[17] = {name : 'RightTable', x : 8, y : 9};
 mappages["hotelcalifornia5"].features[18] = {name : 'BottomChair', x : 7, y : 10};
 mappages["hotelcalifornia5"].features[19] = {name : 'BookshelfRight', x : 8, y : 7};
 mappages["hotelcalifornia5"].features[20] = {name : 'BookshelfLeft', x : 7, y : 7};
-mappages["hotelcalifornia5"].features[21] = {name : 'Brazier', x : 12, y : 7};
-mappages["hotelcalifornia5"].features[22] = {name : 'Brazier', x : 12, y : 10};
-mappages["hotelcalifornia5"].features[23] = {name : 'Fireplace', x : 6, y : 9};
-mappages["hotelcalifornia5"].features[24] = {name : 'DeadTree', x : 10, y : 8};
-mappages["hotelcalifornia5"].features[25] = {name : 'WalkOnHC5', x : 10, y : 4};
+mappages["hotelcalifornia5"].features[21] = {name : 'DeadTree', x : 10, y : 8};
+mappages["hotelcalifornia5"].features[22] = {name : 'WalkOnHC5', x : 10, y : 4};
+mappages["hotelcalifornia5"].features[23] = {name : 'Brazier', x : 12, y : 7};
+mappages["hotelcalifornia5"].features[24] = {name : 'Brazier', x : 12, y : 10};
+mappages["hotelcalifornia5"].features[25] = {name : 'Fireplace', x : 6, y : 9};
 
 
 mappages["hotelcalifornia5"].npcs = [];
-mappages["hotelcalifornia5"].npcs[0] = {name : 'GhostNPC', x : 8, y : 8, NPCName: 'Chera', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'chera2', Gender: 'female', NPCBand: '0', OverrideGraphic: '330.gif', skintone: '1'};
+mappages["hotelcalifornia5"].npcs[0] = {name : 'GhostNPC', x : 8, y : 8, NPCName: 'Chera', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'chera2', Gender: 'female', NPCBand: '0', skintone: 1};
 
 mappages["hotelcalifornia5"].desc = "Mysterious Building";
-mappages["hotelcalifornia5"].longdesc = '';
+mappages["hotelcalifornia5"].longdesc = ``;
 mappages["hotelcalifornia5"].music = 'Tension';
 mappages["hotelcalifornia5"].savename = `Mystery`;
 mappages["hotelcalifornia5"].exitmap = 'darkunknown';
@@ -606,6 +602,7 @@ mappages["hotelcalifornia5"].returny = 'NaN';
 mappages["hotelcalifornia5"].returninfused = '0';
 mappages["hotelcalifornia5"].linkedMaps = ["hotelcalifornia0","hotelcalifornia","hotelcalifornia2","hotelcalifornia3","hotelcalifornia4","hotelcalifornia6","hotelcalifornia7","hotelcalifornia8"];
 mappages["hotelcalifornia5"].editorLabels = '{}';
+// MAP ENDS HERE
 
 mappages["hotelcalifornia5"].onload = function(mapref) {
   // magic is negated in here
@@ -617,6 +614,7 @@ mappages["hotelcalifornia5"].onload = function(mapref) {
   }
 }
 
+// MAP BEGINS HERE
 mappages["hotelcalifornia6"] = {};
 mappages["hotelcalifornia6"].terrain = [];
  mappages["hotelcalifornia6"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. .. u, .. .. .. .. .. ..';
@@ -625,10 +623,10 @@ mappages["hotelcalifornia6"].terrain = [];
  mappages["hotelcalifornia6"].terrain[3] = '.. .. .. ## -= -= -= -= -= ## -= ## -= -= -= -= ## .. .. ..';
  mappages["hotelcalifornia6"].terrain[4] = '.. .. u, ## ## ## ## ## ## ## ## ## ## ## ## ## ## .. u, ..';
  mappages["hotelcalifornia6"].terrain[5] = '.. .. .. ## -= ## ## -= -= -= -= -= -= -= ## ## ## .. .. ..';
- mappages["hotelcalifornia6"].terrain[6] = '.. .. .. ## -= ## ## -= -= -= -= -= -= -= -= ## #O .. .. ..';
- mappages["hotelcalifornia6"].terrain[7] = '.. .. .. ## -= ## -= -= -= -= -= -= -= -= ## ## ## .. .. ..';
- mappages["hotelcalifornia6"].terrain[8] = '.. .. .. ## -= ## ## -= -= -= -= -= -= -= -= ## ## .. .. ..';
- mappages["hotelcalifornia6"].terrain[9] = '.. .. .. ## -= ## -= -= -= -= -= -= -= -= ## ## ## .. .. ..';
+ mappages["hotelcalifornia6"].terrain[6] = '.. .. .. ## -= ## ## -= -= -= -= -= -= -= f# ## #O .. .. ..';
+ mappages["hotelcalifornia6"].terrain[7] = '.. .. .. ## -= ## f# -= -= -= -= -= -= -= ## ## ## .. .. ..';
+ mappages["hotelcalifornia6"].terrain[8] = '.. .. .. ## -= ## ## -= -= -= -= -= -= -= f# ## ## .. .. ..';
+ mappages["hotelcalifornia6"].terrain[9] = '.. .. .. ## -= ## f# -= -= -= -= -= -= -= ## ## ## .. .. ..';
 mappages["hotelcalifornia6"].terrain[10] = '.. .. .. ## -= ## ## -= -= -= -= -= -= -= ## ## ## .. .. u,';
 mappages["hotelcalifornia6"].terrain[11] = '.. .. .. ## -= ## ## ## ## ## -= ## ## ## ## ## #O .. .. ..';
 mappages["hotelcalifornia6"].terrain[12] = '.. u, .. ## ## ## ## ## ## ## -= ## ## ## -= -= ## .. .. ..';
@@ -657,24 +655,24 @@ mappages["hotelcalifornia6"].features[12] = {name : 'Tree', x : 18, y : 9};
 mappages["hotelcalifornia6"].features[13] = {name : 'Door', x : 10, y : 11};
 mappages["hotelcalifornia6"].features[14] = {name : 'WalkOnHC6', x : 10, y : 13};
 mappages["hotelcalifornia6"].features[15] = {name : 'Door', x : 10, y : 14};
-mappages["hotelcalifornia6"].features[16] = {name : 'Fireplace', x : 14, y : 8};
-mappages["hotelcalifornia6"].features[17] = {name : 'Fireplace', x : 14, y : 6};
-mappages["hotelcalifornia6"].features[18] = {name : 'Fireplace', x : 6, y : 7};
-mappages["hotelcalifornia6"].features[19] = {name : 'Fireplace', x : 6, y : 9};
-mappages["hotelcalifornia6"].features[20] = {name : 'SleepField', x : 10, y : 10};
-mappages["hotelcalifornia6"].features[21] = {name : 'EnergyField', x : 9, y : 7};
-mappages["hotelcalifornia6"].features[22] = {name : 'EnergyField', x : 11, y : 7};
-mappages["hotelcalifornia6"].features[23] = {name : 'SleepField', x : 13, y : 10};
-mappages["hotelcalifornia6"].features[24] = {name : 'SleepField', x : 13, y : 5};
-mappages["hotelcalifornia6"].features[25] = {name : 'SleepField', x : 7, y : 5};
-mappages["hotelcalifornia6"].features[26] = {name : 'SleepField', x : 7, y : 10};
-mappages["hotelcalifornia6"].features[27] = {name : 'CursedMirror', x : 10, y : 6};
+mappages["hotelcalifornia6"].features[16] = {name : 'CursedMirror', x : 10, y : 6};
+mappages["hotelcalifornia6"].features[17] = {name : 'Fireplace', x : 14, y : 8};
+mappages["hotelcalifornia6"].features[18] = {name : 'Fireplace', x : 14, y : 6};
+mappages["hotelcalifornia6"].features[19] = {name : 'Fireplace', x : 6, y : 7};
+mappages["hotelcalifornia6"].features[20] = {name : 'Fireplace', x : 6, y : 9};
+mappages["hotelcalifornia6"].features[21] = {name : 'SleepField', x : 10, y : 10};
+mappages["hotelcalifornia6"].features[22] = {name : 'EnergyField', x : 9, y : 7};
+mappages["hotelcalifornia6"].features[23] = {name : 'EnergyField', x : 11, y : 7};
+mappages["hotelcalifornia6"].features[24] = {name : 'SleepField', x : 13, y : 10};
+mappages["hotelcalifornia6"].features[25] = {name : 'SleepField', x : 13, y : 5};
+mappages["hotelcalifornia6"].features[26] = {name : 'SleepField', x : 7, y : 5};
+mappages["hotelcalifornia6"].features[27] = {name : 'SleepField', x : 7, y : 10};
 
 
 mappages["hotelcalifornia6"].npcs = [];
 
 mappages["hotelcalifornia6"].desc = "Mysterious Building";
-mappages["hotelcalifornia6"].longdesc = '';
+mappages["hotelcalifornia6"].longdesc = ``;
 mappages["hotelcalifornia6"].music = 'Tension';
 mappages["hotelcalifornia6"].savename = `Mystery`;
 mappages["hotelcalifornia6"].exitmap = 'darkunknown';
@@ -699,6 +697,7 @@ mappages["hotelcalifornia6"].returny = 'NaN';
 mappages["hotelcalifornia6"].returninfused = '0';
 mappages["hotelcalifornia6"].linkedMaps = ["hotelcalifornia0","hotelcalifornia","hotelcalifornia2","hotelcalifornia3","hotelcalifornia4","hotelcalifornia5","hotelcalifornia7","hotelcalifornia8"];
 mappages["hotelcalifornia6"].editorLabels = '{}';
+// MAP ENDS HERE
 
 mappages["hotelcalifornia6"].onload = function(mapref) {
   // magic is negated in here
@@ -782,10 +781,10 @@ mappages["hotelcalifornia7"].features[44] = {name : 'FireField', x : 14, y : 13}
 
 
 mappages["hotelcalifornia7"].npcs = [];
-mappages["hotelcalifornia7"].npcs[0] = {name : 'GhostNPC', x : 10, y : 10, NPCName: 'Olin', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'trio_uncursed', Gender: 'male', NPCBand: '0', OverrideGraphic: '364.gif', skintone: '1'};
-mappages["hotelcalifornia7"].npcs[1] = {name : 'GhostNPC', x : 9, y : 9, NPCName: 'Hylga', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'trio_uncursed', Gender: 'female', NPCBand: '0', OverrideGraphic: '330.gif', skintone: '1'};
-mappages["hotelcalifornia7"].npcs[2] = {name : 'GhostNPC', x : 10, y : 8, NPCName: 'Chera', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'trio_uncursed', Gender: 'female', NPCBand: '0', OverrideGraphic: '364.gif', skintone: '1'};
-mappages["hotelcalifornia7"].npcs[3] = {name : 'GhostNPC', x : 7, y : 12, NPCName: 'Don', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'don_uncursed', Gender: 'male', NPCBand: '0', OverrideGraphic: '330.gif', skintone: '1'};
+mappages["hotelcalifornia7"].npcs[0] = {name : 'GhostNPC', x : 10, y : 10, NPCName: 'Olin', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'trio_uncursed', Gender: 'male', NPCBand: '0', skintone: '1'};
+mappages["hotelcalifornia7"].npcs[1] = {name : 'GhostNPC', x : 9, y : 9, NPCName: 'Hylga', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'trio_uncursed', Gender: 'female', NPCBand: '0', skintone: '1'};
+mappages["hotelcalifornia7"].npcs[2] = {name : 'GhostNPC', x : 10, y : 8, NPCName: 'Chera', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'trio_uncursed', Gender: 'female', NPCBand: '0', skintone: '1'};
+mappages["hotelcalifornia7"].npcs[3] = {name : 'GhostNPC', x : 7, y : 12, NPCName: 'Don', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'don_uncursed', Gender: 'male', NPCBand: '0', skintone: '1'};
 
 mappages["hotelcalifornia7"].desc = "Mysterious Building";
 mappages["hotelcalifornia7"].longdesc = '';
