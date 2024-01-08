@@ -55,6 +55,20 @@ NPCSpecialFuncs["hides"] = function(who,how) {
   return oldgraph;
 }
 
+NPCSpecialFuncs["mimic"] = function(who,how) {
+  who.noAnim = 1;
+  who.animating = 0;
+  who.oldx = who.spritexoffset;
+  who.oldy = who.spriteyoffset;
+
+  who.spritexoffset = -2*32;
+  who.spriteyoffset = -78*32;
+}
+
+NPCSpecialFuncs["underground"] = function(who,how) {
+  who.invisible = 1;
+}
+
 NPCSpecialFuncs["courierSurrender"] = function(who,how) {
   let eobj = localFactory.createTile("CourierSurrender");
   who.addSpellEffect(eobj);
@@ -192,11 +206,23 @@ function Attack(atk, def) {
   } 
   
   // probably should make an onAttack but for now this can do
-  if (atk.specials.hides) {
-    atk.setGraphic(atk.specials.hides);  
-    delete atk.specials.hides;
-    if (atk.getHomeMap() === PC.getHomeMap()) {
-      DrawMainFrame("one",atk.getHomeMap(),atk.getx(),atk.gety());
+  if (atk.specials.mimic) {
+    who.spritexoffset = who.oldx;
+    delete who.oldx;
+    who.spriteyoffset = who.oldy;
+    delete who.oldy;
+    delete who.noAnim;
+    delete who.specials.mimic;
+    if (who.getHomeMap() === PC.getHomeMap()) {
+      who.startAnimation();
+      DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
+    }
+  }
+  if (atk.specials.underground) {
+    delete who.invisible;
+    delete who.specials.underground;
+    if (who.getHomeMap() === PC.getHomeMap()) {
+      DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
     }
   }
 
