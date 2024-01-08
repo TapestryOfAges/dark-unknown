@@ -770,7 +770,9 @@ ais.WakeFromFloor = function(who,params) {
   for (let i=0;i<bedrolls.length;i++) {
     if (bedrolls[i].getName() === "BedrollFootFull") { bedroll = bedrolls[i]; }
   }
-  who.getHomeMap().deleteThing(bedroll);
+  if (bedroll) {
+    who.getHomeMap().deleteThing(bedroll);
+  }
   DrawMainFrame("one",who.getHomeMap(),who.getx()+1,who.gety());
   
   return {fin:1};
