@@ -166,7 +166,9 @@ mappages["toshin1"].toshin_exit = function(mapref) {
   mapref.Exit = function(who,tomap,oldx,oldy,destx,desty) {
     if ((tomap.getName() === "darkunknown") || (tomap.getName() === "landsbeyond")) {
       let key=PC.checkInventory("ToshinKey");
-      PC.removeFromInventory(key);
+      if (key) {
+        PC.removeFromInventory(key);
+      }
     }
   }
   return 1;
@@ -186,6 +188,8 @@ mappages["toshin1"].onload = function(mapref) {
     if ((elora.getCurrentScheduleIndex() >= 3) && (elora.getCurrentScheduleIndex() <= 4)) {
       ais.SleepOnFloor(elora);
     }
+    arlan.setLight(3);
+    elora.setLight(3);
   }
 }
 
@@ -345,9 +349,9 @@ mappages["toshin3"].terrain[15] = 'sb sb sb sb sb sb sb ## kd kd kd kd kd kd kd 
 mappages["toshin3"].terrain[16] = 'sb sb sb sb sb sb sb ## kd ## kd kd kd kd kd kd kd kd kd kd kd kd kd ## ## ## sb sb sb sb sb sb';
 mappages["toshin3"].terrain[17] = 'sb sb sb sb sb sb sb ## kd ## kd kd kd kd kd kd kd kd kd kd kd kd kd ## ## ## sb sb sb sb sb sb';
 mappages["toshin3"].terrain[18] = 'sb sb sb sb sb sb sb ## ## ## kd kd kd kd kd kd kd kd kd kd kd kd kd ## ## ## sb sb sb sb sb sb';
-mappages["toshin3"].terrain[19] = 'sb sb sb sb sb sb sb ## ## ## kd kd kd kd kd kd kd kd kd kd kd kd kd kd kd ## sb sb sb sb sb sb';
-mappages["toshin3"].terrain[20] = 'sb sb sb sb sb sb sb ## kd ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## kd ## sb sb sb sb sb sb';
-mappages["toshin3"].terrain[21] = 'sb sb sb sb sb sb sb ## kd kd kd kd kd ## ## ## ## ## kd kd kd kd kd kd kd ## sb sb sb sb sb sb';
+mappages["toshin3"].terrain[19] = 'sb sb sb sb sb sb sb ## ## ## kd kd kd kd kd kd kd kd kd ## ## ## ## ## ## ## sb sb sb sb sb sb';
+mappages["toshin3"].terrain[20] = 'sb sb sb sb sb sb sb ## kd ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## sb sb sb sb sb sb';
+mappages["toshin3"].terrain[21] = 'sb sb sb sb sb sb sb ## kd kd kd kd kd ## ## ## ## ## ## ## ## ## ## ## ## ## sb sb sb sb sb sb';
 mappages["toshin3"].terrain[22] = 'sb sb sb sb sb sb sb ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## sb sb sb sb sb sb';
 mappages["toshin3"].terrain[23] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
 mappages["toshin3"].terrain[24] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
@@ -368,7 +372,7 @@ mappages["toshin3"].features[4] = {name : 'TeleporterPlatform', x : 24, y : 7};
 mappages["toshin3"].features[5] = {name : 'TeleporterPlatform', x : 8, y : 20};
 mappages["toshin3"].features[6] = {name : 'ToshinPanel', x : 17, y : 13};
 mappages["toshin3"].features[7] = {name : 'Chest', x : 8, y : 17, lootgroup : 'Level4', lootedid : 'toshin3-2'};
-mappages["toshin3"].features[8] = {name : 'TeleporterPlatform', x : 18, y : 21};
+mappages["toshin3"].features[8] = {name : 'TeleporterPlatform', x : 18, y : 19};
 mappages["toshin3"].features[9] = {name : 'EnergyField', x : 15, y : 12};
 mappages["toshin3"].features[10] = {name : 'EnergyField', x : 17, y : 12};
 mappages["toshin3"].features[11] = {name : 'EnergyField', x : 18, y : 12};
@@ -512,10 +516,10 @@ mappages["toshin3"].onload = function(mapref) {
       let destobj = {};
       destobj.map = mapref.getName();
       destobj.x = 18;
-      destobj.y = 21;
+      destobj.y = 19;
       tp.setDestination(destobj);
     }
-    tile = mapref.getTile(18,21);
+    tile = mapref.getTile(18,19);
     tp = tile.getTopFeature();
     if (tp.getName() === "TeleporterPlatform") {
       let destobj = {};
