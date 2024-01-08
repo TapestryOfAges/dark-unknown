@@ -1727,7 +1727,7 @@ function SetLootGroups() {
   [
     'ScrollShockwave', 1,
     'ScrollSwordstrike', 1,
-    'ScrollCrystalBarrier', 1,
+    'ScrollCrystalTrap', 1,
     'ScrollPeer', 1,
     'ScrollSummonAlly', 1,
     'ScrollMirrorWard', 1,
