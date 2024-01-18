@@ -1062,13 +1062,13 @@ function CreateGameSpace() {
   document.getElementById('gamebody').innerHTML = `<div id="worldlayer" style="position:absolute;left:20px;top:20px;width:416px;height:416px;z-index:10"><img src="graphics/spacer.gif" width='416' height='416' /></div>
 	
   <div id="gamecontainer" style="position:abolute;left:0px;top:0px;z-index:-10; background-color:black;">
-    <div style="position:absolute;left:0px;top:0px;z-index:99;width:776px"><img src="graphics/frame/frame.gif" /></div>
+    <div style="position:absolute;left:0px;top:0px;z-index:99;width:776px"><img src="graphics/frame/frame6a.gif" /></div>
     <div style="position:absolute;left:128px;top:1px;width:16px;height:16px;" id="sky12"></div><div style="position:absolute;left:144px;top:1px;width:16px;height:16px;" id="sky11"></div><div style="position:absolute;left:160px;top:1px;width:16px;height:16px;" id="sky10"></div><div style="position:absolute;left:176px;top:1px;width:16px;height:16px;" id="sky9"></div><div style="position:absolute;left:192px;top:1px;width:16px;height:16px;" id="sky8"></div><div style="position:absolute;left:208px;top:1px;width:16px;height:16px;" id="sky7"></div><div style="position:absolute;left:224px;top:1px;width:16px;height:16px;" id="sky6"></div><div style="position:absolute;left:240px;top:1px;width:16px;height:16px;" id="sky5"></div><div style="position:absolute;left:256px;top:1px;width:16px;height:16px;" id="sky4"></div><div style="position:absolute;left:272px;top:1px;width:16px;height:16px;" id="sky3"></div><div style="position:absolute;left:288px;top:1px;width:16px;height:16px;" id="sky2"></div><div style="position:absolute;left:306px;top:1px;width:16px;height:16px;" id="sky1"></div>
     <div style="position:absolute;left:128px;top:1px;width:196px;height:16px;z-index:100;text-align:center;color:white" class="oversky" id="oversky"></div>
     <div style="position:absolute;left:100px;top:437px;width:256px;z-index:100;background-color:black" class="topbar" id="topbarframe">Loading...</div>
     <div style="position:absolute;left:20px;top:20px;width:416px;height:416px;z-index:20;" class="mainframe" id="displayframe">&nbsp;</div>
-    <div style="position:absolute;left:456px;top:20px;width:300px;height:40px;background-color:black;z-index:99;" id="charstats" class="charstats" onClick="DoAction(90)">&nbsp;</div>
-    <div style="position:absolute;left:456px;top:80px;width:300px;height:356px;background-color:black;z-index:99;" id="textframe" class="textframe">
+    <div style="position:absolute;left:458px;top:18px;width:300px;height:40px;background-color:black;z-index:99;" id="charstats" class="charstats" onClick="DoAction(90)">&nbsp;</div>
+    <div style="position:absolute;left:458px;top:80px;width:300px;height:356px;background-color:black;z-index:99;" id="textframe" class="textframe">
       <div id="maintextframe" class="maintextframe"><div id="innertextframe" class="innertextframe">&nbsp;</div></div>
       <div id="inputtext" class="inputtext">&nbsp;</div>
     </div>
