@@ -546,7 +546,7 @@ mappages["naurglen"].features[490] = {name : 'SignpostLeft', x : 85, y : 35};
 mappages["naurglen"].features[491] = {name : 'MerchantCounter', x : 94, y : 27};
 mappages["naurglen"].features[492] = {name : 'MerchantCounterBill', x : 93, y : 27};
 mappages["naurglen"].features[493] = {name : 'MerchantCounterEdge', x : 92, y : 27};
-mappages["naurglen"].features[494] = {name : 'LooseFloorboardEW', x : 8, y : 4, lootedid : 'naurglenloosefloor', searchyield : 'GildedBridle'};
+mappages["naurglen"].features[494] = {name : 'LooseFloorboardEW', x : 8, y : 4, lootedid : 'naurglenloosefloor', searchyield : 'SilverBridle'};
 mappages["naurglen"].features[495] = {name : 'SmallTable3', x : 72, y : 21};
 mappages["naurglen"].features[496] = {name : 'Brazier', x : 30, y : 38};
 mappages["naurglen"].features[497] = {name : 'Brazier', x : 56, y : 39};
@@ -650,6 +650,10 @@ mappages["naurglen"].onload = function(mapref) {
     } else {
       let door = mapref.getTile(7,25).getTopFeature();
       door.unlockMe();
+    }
+
+    if (DU.gameflags.getFlag("lid_naurglenloosefloor") && !DU.gameflag.getFlag("bridle_returned") && !PC.checkInventory("SilverBridle")) {
+      DU.gameflags.deleteFlag("lid_naurglenloosefloor");
     }
   }
 }
