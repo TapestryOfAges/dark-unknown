@@ -21,7 +21,7 @@ const BASE_HIT_CHANCE = 70;
 const HIT_PER_LEVEL = 4;
 const DEF_PER_LEVEL = 0;
 const DEF_PER_DEX = 1;
-const XP_MULTIPLIER = 1.5;
+const XP_MULTIPLIER = 1;
 
 const DMG_NEGLIGABLE = "2d4";
 const DMG_LIGHT = "3d4+3";
