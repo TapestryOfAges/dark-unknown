@@ -1475,12 +1475,13 @@ HotelPheranTile.prototype.activate = function() {
 HotelPheranTile.prototype.myTurn = function() {
   if (DU.gameflags.getFlag("started_pheran")) {
     this.getHomeMap().deleteThing(this);
+    DUTime.removeEntityFrom(this);
   } else {
     if ((this.getHomeMap() === PC.getHomeMap()) && (GetDistance(this.getx(),this.gety(),PC.getx(),PC.gety(),"square") <= 6)){
       this.onscreen = 1;
       // marks that the player has seen the hotel. Now it can start moving
     } else {
-      if (this.onscreen) {
+      if (this.onscreen && !IsVisibleOnScreen(this.getx(),this.gety())) {
         let choice = Dice.roll("1d7");
         if (choice === 1) { this.getHomeMap().moveThing(115,84,this); }
         else if (choice === 2) { this.getHomeMap().moveThing(114,43,this); }
@@ -1494,7 +1495,7 @@ HotelPheranTile.prototype.myTurn = function() {
       }
     }
     let NPCevent = new GameEvent(this);
-    DUTime.addAtTimeInterval(NPCevent,20);  
+    DUTime.addAtTimeInterval(NPCevent,50);  
   }
   return 1;
 }
@@ -6277,7 +6278,7 @@ function MirrorTile() {
   this.desc = "mirror";
   this.karmamod = -1;
   
-  Breakable.call(this,["static.png", "", -7*32, -77*32],0,"sfx_break_glass");
+  Breakable.call(this,["static.png", "", -7*32, -76*32],0,"sfx_break_glass");
   this.brokendesc = "broken mirror";
 }
 MirrorTile.prototype = new FeatureObject();
@@ -6324,13 +6325,13 @@ function CursedMirrorTile() {
   this.name = "CursedMirror";
   this.graphic = "static.png";
   this.spritexoffset = -9*32;
-  this.spriteyoffset = -77*32;
+  this.spriteyoffset = -76*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "mirror";
   
-  Breakable.call(this,["master_spritesheet_d.gif", "", "-224", "-384"],0,"sfx_break_glass");
+  Breakable.call(this,["static.png", "", -7*32, -76*32],0,"sfx_break_glass");
   this.brokendesc = "broken mirror";
 }
 CursedMirrorTile.prototype = new FeatureObject();
@@ -6369,7 +6370,7 @@ function CursedReflectionTile() {
   this.passable = MOVE_WALK + MOVE_LEVITATE + MOVE_ETHEREAL + MOVE_FLY;
   this.blocklos = 0;
   this.prefix = "a";
-  this.desc = "reflection walkon";
+  this.desc = "daemonic image";
   this.nosave = 1;
   this.conversation = "cursed_mirror";
 }
@@ -6397,13 +6398,19 @@ CursedReflectionTile.prototype.getNPCName = function() {
 CursedReflectionTile.prototype.walkon = function(who) {
   // add reflection to attached mirror
   if (!this.mirror.getBroken()) {
-    this.mirror.setGraphicArray(["351.gif", "mirror-reflection_d.gif", "0", "7"]);
+//    this.mirror.setGraphicArray(["351.gif", "mirror-reflection_d.gif", "0", "7"]);
+    let cursedmap = this.getHomeMap();
+    let cx = this.mirror.getx();
+    let cy = this.mirror.gety();
+    cursedmap.deleteThing(this.mirror);
+    let newmirror = localFactory.createTile("CursedMirrorWithImp");
+    cursedmap.placeThing(cx,cy,newmirror);
     // Actually use Imp graphic rather than Daemon
 
-    let field = this.getHomeMap().getTile(10,10).getTopFeature();
-    this.getHomeMap().deleteThing(field);
+    let field = cursedmap.getTile(10,10).getTopFeature();
+    cursedmap.deleteThing(field);
     let tree = localFactory.createTile("DeadTree");
-    this.getHomeMap().placeThing(10,10,tree);
+    cursedmap.placeThing(10,10,tree);
 
     let retval = {};
     retval.msg = "";
@@ -6414,12 +6421,84 @@ CursedReflectionTile.prototype.walkon = function(who) {
       maintext.drawTextFrame();
       return retval;
     } 
+    this.getHomeMap().deleteThing(this);
 
     //	this.graphic = "master_spritesheet.png";    // spritesheet version of reflection. Can't work yet because of need to be overlay
     // this.spritexoffset = "-288"; 
     // this.spriteyoffset = "-1344";
   }
   return {msg:""};
+}
+
+function CursedMirrorWithImpTile() {
+  this.name = "CursedMirrorWithImp";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -145*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "mirror";
+  
+  Breakable.call(this,["static.png", "", -7*32, -76*32],0,"sfx_break_glass");
+  this.brokendesc = "broken mirror";
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 320,
+    startframe: "random"
+  });
+
+  this.conversation = "cursed_mirror";
+}
+CursedMirrorWithImpTile.prototype = new FeatureObject();
+
+CursedMirrorWithImpTile.prototype.getConversation = function() {
+  return this.conversation;
+}
+
+CursedMirrorWithImpTile.prototype.getGenderedTerms = function() {
+  let gt = {};
+  gt.pronoun = "it";
+  gt.possessive = "its";
+  gt.objective = "it";
+  gt.titled = "Lord";
+  gt.sibling = "sibling";
+  gt.kiddie = "child";    
+  return gt;  
+}
+
+CursedMirrorWithImpTile.prototype.getNPCName = function() {
+	return "The cursed mirror";
+}
+
+CursedMirrorWithImpTile.prototype.onBreak = function(who) {
+  // generate Imp and place on broken mirror
+
+  Earthquake();
+  let imp = localFactory.createTile("ImpNPC");
+  imp.lootTable = "cursed";
+  let impmap = this.getHomeMap();
+  impmap.deleteThing(this);
+  let ix=this.getx();
+  let iy=this.gety();
+  let brokenmirror = localFactory.createTile("Mirror");
+  brokenmirror.break(imp,1,1);
+  impmap.placeThing(ix,iy,brokenmirror);
+  impmap.placeThing(ix,iy,imp);
+  DrawMainFrame("one",impmap,ix,iy);
+  let energy = localFactory.createTile("EnergyField");
+  impmap.placeThing(10,10,energy);
+  DrawMainFrame("one",impmap,10,10);
+  let negated = DU.gameflags.getFlag("negate");
+  delete negated[impmap.getName()];
+  DU.gameflags.setFlag("negate", negated);
+  maintext.delayedAddText("You feel the flow of ether surround you once more!");
+  this.noAnim = 1;
 }
 
 function DaemonicMirrorTile() {
@@ -12644,6 +12723,19 @@ StolenJewelryTile.prototype.onGet = function(who) {
   return {};
 }
 
+function SilverBridleTile() {
+  this.name = "SilverBridle";
+  this.graphic = "master_spritesheet.png";
+  this.spriteyoffset = -9*32;
+  this.spritexoffset = -98*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a"
+  this.desc = "silver bridle";
+  this.longdesc = "A horse's bridle, with highlights of beautiful silver.";
+}
+SilverBridleTile.prototype = new ItemObject();
+
 function AltarOfAshesTile() {
 	this.name = "AltarOfAshes";
   this.graphic = "static.png";
@@ -13352,7 +13444,7 @@ function NatassaResearch2Tile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
   this.prefix = "a";
-  this.contents = "You flip through the notes.%%<span class='conv'>7-4-107: I continue to research the Pool alongside my other research. While recreating Xoricco's Wind Change spell was satisfying, there are other goals. Perhaps I should consult the oracle.</span>%%<span class='conv'>11-21-107: The underworld is even more dangerous than I had considered. I reached the Oracle- blessings upon Xoricco's research that revealed it to me! But was unable to obtain a full answer before I was forced to flee to the surface. I will work on the riddles.</span>%%<span class='conv'>4-15-109: Wind Change is not enough. King Erik has called upon me to try to recreate Xoricco's magics that made sea travel possible. The storms are too great to be uncreated just by temporarily stilling their winds. The Pool can wait.</span>%%<span class='conv'>10-19-113: Toshin is seeking the Pool. I must find it first- she cannot be permitted to draw upon its powers. She could be a second Tharock.</span>%%<span class='conv'>1-9-114: I have narrowed it down- the Pool has strong magic but it hides itself. But the Oracle taught me how to find the secondary resonances, and it is either underneath the city of Onyx, in the ruins under old Hildendain, or in the dungeon of Mt Drash.</span>%%<span class='conv'>3-21-114: I fear she has found it. I must confront her.</span>";
+  this.contents = "You flip through the notes.%%<span class='conv'>7-4-107: I continue to research the Pool alongside my other research. While recreating Xoricco's Wind Change spell was satisfying, there are other goals. Perhaps I should consult the oracle.</span>%%<span class='conv'>11-21-107: The underworld is even more dangerous than I had considered. I reached the Oracle- blessings upon Xoricco's research that revealed it to me! But was unable to obtain a full answer before I was forced to flee to the surface. I will work on the riddles.</span>%%<span class='conv'>4-15-109: Wind Change is not enough. King Erik has called upon me to try to recreate Xoricco's magics that made sea travel possible. The storms are too great to be uncreated just by temporarily stilling their winds. The Pool can wait.</span>%%<span class='conv'>10-19-113: Toshin is seeking the Pool. I must find it first- she cannot be permitted to draw upon its powers. She could be a second Tharock.</span>%%<span class='conv'>1-9-114: I have narrowed it down- the Pool has strong magic but it hides itself. But the Oracle taught me how to find the secondary resonances, and it is either underneath the city of Onyx, in the ruins under old Hildendain, or in the dungeon of Mt Drash.</span>%%<span class='conv'>3-21-114: I fear she has found it. I must confront her. I do not yet know what you need to do, or utilize, to use the Pool, but I can't assume she doesn't know either...</span>";
   this.longdesc = "Natassa's Research Notes, Vol 2.";
 }
 NatassaResearch2Tile.prototype = new BookItemObject();
@@ -13376,7 +13468,7 @@ function ToshinJournalTile() {
   //Graphics Upgraded
   this.name = "ToshinJournal";
   this.graphic = "static.png";
-  this.spritexoffset = -6*32;
+  this.spritexoffset = -9*32;
   this.spriteyoffset = -37*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -13699,6 +13791,7 @@ function TorchTile() {
   this.desc = "torch";
   this.prefix = "a";
   this.longdesc = "An unlit torch.";
+  this.flammable = 30;
 }
 TorchTile.prototype = new ConsumableItemObject();
 
@@ -13725,6 +13818,19 @@ TorchTile.prototype.use = function(who) {
 
   return retval;
 }
+
+TorchTile.prototype.flamed = function() {
+  maintext.addText("The " + this.getDesc() + " burns away!");
+  let thisx = this.getx();
+  let thisy = this.gety();
+  
+  let itsmap = this.getHomeMap();
+  itsmap.deleteThing(this);
+  DrawMainFrame("one",itsmap,thisx,thisy);
+  
+  return 1; 
+}
+
 
 function KyvekBoxTile() {
   this.name = "KyvekBox";
