@@ -3588,6 +3588,11 @@ tileFactory.prototype.makeCursedReflectionTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeCursedMirrorWithImpTile = function() {
+  let newTile = new CursedMirrorWithImpTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeDaemonicMirrorTile = function() {
   let newTile = new DaemonicMirrorTile();
   return newTile;
@@ -4880,6 +4885,11 @@ tileFactory.prototype.makeGoldLocketTile = function() {
 
 tileFactory.prototype.makeStolenJewelryTile = function() {
   let newTile = new StolenJewelryTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSilverBridleTile = function() {
+  let newTile = new SilverBridleTile();
   return newTile;
 }
 
