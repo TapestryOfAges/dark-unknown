@@ -552,7 +552,7 @@ mappages["clearlake2"].features[37] = {name : 'RightTable', x : 34, y : 52};
 mappages["clearlake2"].features[38] = {name : 'TopChair', x : 34, y : 51};
 mappages["clearlake2"].features[39] = {name : 'BookshelfOne', x : 31, y : 51};
 mappages["clearlake2"].features[40] = {name : 'GrandfatherClock', x : 35, y : 51};
-mappages["clearlake2"].features[41] = {name : 'StairDown2', x : 40, y : 42, entermap : 'null', enterx : 0, entery : 0};
+mappages["clearlake2"].features[41] = {name : 'StairDown2', x : 40, y : 42, entermap : 'clearlake', enterx : 40, entery : 42};
 mappages["clearlake2"].features[42] = {name : 'DoorWindow', x : 38, y : 40};
 mappages["clearlake2"].features[43] = {name : 'Door', x : 39, y : 37};
 mappages["clearlake2"].features[44] = {name : 'Door', x : 39, y : 31};
@@ -572,7 +572,7 @@ mappages["clearlake2"].features[57] = {name : 'SmallBox', x : 42, y : 34};
 mappages["clearlake2"].features[58] = {name : 'DoubleBedHead', x : 36, y : 20};
 mappages["clearlake2"].features[59] = {name : 'DoubleBedFoot', x : 37, y : 20};
 mappages["clearlake2"].features[60] = {name : 'SmallTable2', x : 40, y : 17};
-mappages["clearlake2"].features[61] = {name : 'WoodenStairDown2', x : 27, y : 19, entermap : 'null', enterx : 0, entery : 0};
+mappages["clearlake2"].features[61] = {name : 'WoodenStairDown2', x : 27, y : 19, entermap : 'clearlake', enterx : 27, entery : 19};
 mappages["clearlake2"].features[62] = {name : 'Door', x : 25, y : 12};
 mappages["clearlake2"].features[63] = {name : 'Door', x : 25, y : 15};
 mappages["clearlake2"].features[64] = {name : 'Door', x : 25, y : 19};
@@ -746,7 +746,7 @@ mappages["tunnels"].terrain[24] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK 
 
 mappages["tunnels"].features = [];
 mappages["tunnels"].features[0] = {name : 'LadderUp', x : 7, y : 6, entermap : 'clearlake0', enterx : 7, entery : 6};
-mappages["tunnels"].features[1] = {name : 'LadderDown', x : 57, y : 19, entermap : 'shadow3', enterx : 8, entery : 16};
+mappages["tunnels"].features[1] = {name : 'LadderDown', x : 57, y : 19, entermap : 'shadow3', enterx : 7, entery : 5};
 
 
 mappages["tunnels"].npcs = [];
