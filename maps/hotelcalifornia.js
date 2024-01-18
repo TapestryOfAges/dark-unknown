@@ -102,6 +102,21 @@ mappages["hotelcalifornia0"].linkedMaps = ["hotelcalifornia","hotelcalifornia2",
 mappages["hotelcalifornia0"].editorLabels = '{}';
 // MAP ENDS HERE
 
+mappages["hotelcalifornia0"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    mapref.setExitToX(PC.getx());
+    mapref.setExitToY(PC.gety());
+
+    let h8 = maps.getMap("hotelcalifornia8");
+    h8.setExitToX(PC.getx());
+    h8.setExitToY(PC.gety());
+
+    let h7 = maps.getMap("hotelcalifornia7");
+    h7.setExitToX(PC.getx());
+    h7.setExitToY(PC.gety());
+  }
+}
+
 // MAP BEGINS HERE
 mappages["hotelcalifornia"] = {};
 mappages["hotelcalifornia"].terrain = [];
@@ -322,34 +337,34 @@ mappages["hotelcalifornia3"].features[13] = {name : 'Tree', x : 18, y : 12};
 mappages["hotelcalifornia3"].features[14] = {name : 'Door', x : 10, y : 9};
 mappages["hotelcalifornia3"].features[15] = {name : 'Door', x : 9, y : 5};
 mappages["hotelcalifornia3"].features[16] = {name : 'Door', x : 4, y : 9};
-mappages["hotelcalifornia3"].features[17] = {name : 'GrandfatherClock', x : 8, y : 6};
-mappages["hotelcalifornia3"].features[18] = {name : 'GrandfatherClock', x : 6, y : 5};
-mappages["hotelcalifornia3"].features[19] = {name : 'Door', x : 9, y : 13};
-mappages["hotelcalifornia3"].features[20] = {name : 'WalkOnHC2Clock', x : 7, y : 6};
-mappages["hotelcalifornia3"].features[21] = {name : 'WalkOnHC2Clock', x : 6, y : 6};
-mappages["hotelcalifornia3"].features[22] = {name : 'WalkOnHC2Clock', x : 5, y : 6};
-mappages["hotelcalifornia3"].features[23] = {name : 'WalkOnHC2Clock', x : 5, y : 7};
-mappages["hotelcalifornia3"].features[24] = {name : 'BookshelfLeft', x : 12, y : 5};
-mappages["hotelcalifornia3"].features[25] = {name : 'BookshelfLeft', x : 7, y : 10};
-mappages["hotelcalifornia3"].features[26] = {name : 'BookshelfRight', x : 13, y : 5};
-mappages["hotelcalifornia3"].features[27] = {name : 'BookshelfRight', x : 8, y : 10};
-mappages["hotelcalifornia3"].features[28] = {name : 'WalkOnHC3Tree', x : 10, y : 8};
-mappages["hotelcalifornia3"].features[29] = {name : 'WalkOnHC3Tree', x : 8, y : 13};
-mappages["hotelcalifornia3"].features[30] = {name : 'WalkOnHC2Clock', x : 4, y : 8};
-mappages["hotelcalifornia3"].features[31] = {name : 'Brazier', x : 13, y : 8};
-mappages["hotelcalifornia3"].features[32] = {name : 'Brazier', x : 4, y : 13};
-mappages["hotelcalifornia3"].features[33] = {name : 'PurpleCarpetNW', x : 10, y : 6};
-mappages["hotelcalifornia3"].features[34] = {name : 'PurpleCarpetNE', x : 11, y : 6};
-mappages["hotelcalifornia3"].features[35] = {name : 'PurpleCarpetW', x : 10, y : 7};
-mappages["hotelcalifornia3"].features[36] = {name : 'PurpleCarpetE', x : 11, y : 7};
-mappages["hotelcalifornia3"].features[37] = {name : 'PurpleCarpetSE', x : 11, y : 8};
-mappages["hotelcalifornia3"].features[38] = {name : 'PurpleCarpetSW', x : 10, y : 8};
-mappages["hotelcalifornia3"].features[39] = {name : 'PurpleCarpetNW', x : 6, y : 12};
-mappages["hotelcalifornia3"].features[40] = {name : 'PurpleCarpetN', x : 7, y : 12};
-mappages["hotelcalifornia3"].features[41] = {name : 'PurpleCarpetNE', x : 8, y : 12};
-mappages["hotelcalifornia3"].features[42] = {name : 'PurpleCarpetSE', x : 8, y : 13};
-mappages["hotelcalifornia3"].features[43] = {name : 'PurpleCarpetS', x : 7, y : 13};
-mappages["hotelcalifornia3"].features[44] = {name : 'PurpleCarpetSW', x : 6, y : 13};
+mappages["hotelcalifornia3"].features[17] = {name : 'PurpleCarpetNW', x : 10, y : 6};
+mappages["hotelcalifornia3"].features[18] = {name : 'PurpleCarpetNE', x : 11, y : 6};
+mappages["hotelcalifornia3"].features[19] = {name : 'PurpleCarpetW', x : 10, y : 7};
+mappages["hotelcalifornia3"].features[20] = {name : 'PurpleCarpetE', x : 11, y : 7};
+mappages["hotelcalifornia3"].features[21] = {name : 'PurpleCarpetSE', x : 11, y : 8};
+mappages["hotelcalifornia3"].features[22] = {name : 'PurpleCarpetSW', x : 10, y : 8};
+mappages["hotelcalifornia3"].features[23] = {name : 'PurpleCarpetNW', x : 6, y : 12};
+mappages["hotelcalifornia3"].features[24] = {name : 'PurpleCarpetN', x : 7, y : 12};
+mappages["hotelcalifornia3"].features[25] = {name : 'PurpleCarpetNE', x : 8, y : 12};
+mappages["hotelcalifornia3"].features[26] = {name : 'PurpleCarpetSE', x : 8, y : 13};
+mappages["hotelcalifornia3"].features[27] = {name : 'PurpleCarpetS', x : 7, y : 13};
+mappages["hotelcalifornia3"].features[28] = {name : 'PurpleCarpetSW', x : 6, y : 13};
+mappages["hotelcalifornia3"].features[29] = {name : 'GrandfatherClock', x : 8, y : 6};
+mappages["hotelcalifornia3"].features[30] = {name : 'GrandfatherClock', x : 6, y : 5};
+mappages["hotelcalifornia3"].features[31] = {name : 'Door', x : 9, y : 13};
+mappages["hotelcalifornia3"].features[32] = {name : 'WalkOnHC2Clock', x : 7, y : 6};
+mappages["hotelcalifornia3"].features[33] = {name : 'WalkOnHC2Clock', x : 6, y : 6};
+mappages["hotelcalifornia3"].features[34] = {name : 'WalkOnHC2Clock', x : 5, y : 6};
+mappages["hotelcalifornia3"].features[35] = {name : 'WalkOnHC2Clock', x : 5, y : 7};
+mappages["hotelcalifornia3"].features[36] = {name : 'BookshelfLeft', x : 12, y : 5};
+mappages["hotelcalifornia3"].features[37] = {name : 'BookshelfLeft', x : 7, y : 10};
+mappages["hotelcalifornia3"].features[38] = {name : 'BookshelfRight', x : 13, y : 5};
+mappages["hotelcalifornia3"].features[39] = {name : 'BookshelfRight', x : 8, y : 10};
+mappages["hotelcalifornia3"].features[40] = {name : 'WalkOnHC3Tree', x : 10, y : 8};
+mappages["hotelcalifornia3"].features[41] = {name : 'WalkOnHC3Tree', x : 8, y : 13};
+mappages["hotelcalifornia3"].features[42] = {name : 'WalkOnHC2Clock', x : 4, y : 8};
+mappages["hotelcalifornia3"].features[43] = {name : 'Brazier', x : 13, y : 8};
+mappages["hotelcalifornia3"].features[44] = {name : 'Brazier', x : 4, y : 13};
 
 
 mappages["hotelcalifornia3"].npcs = [];
