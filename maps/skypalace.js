@@ -302,38 +302,6 @@ mappages["skypalace"].entersky = function(mapref) {
   }
 }
 
-mappages["skypalace"].useorb = function(feature) {
-  feature.use = function(user) {
-    this.spritexoffset = this.spritexoffset - 32;
-    if (this.spritexoffset < -128) { this.spritexoffset = 0; }
-
-    let sp = maps.getMap("skypalace");
-    let orb1tile = sp.getTile(33,27);
-    let orb1 = orb1tile.getTopFeature();
-    let orb2tile = sp.getTile(29,32);
-    let orb2 = orb2tile.getTopFeature();
-    let orb3tile = sp.getTile(37,32);
-    let orb3 = orb3tile.getTopFeature();
-    if ((orb1.spritexoffset == '-32') && (orb2.spritexoffset == '-96') && (orb3.spritexoffset == '-64')) {
-      let moongate = localFactory.createTile("Moongate");
-      moongate.destmap = "skypalace2";
-      moongate.destx = 11;
-      moongate.desty = 12;
-      sp.placeThing(33,31,moongate);
-      AnimateMoongate(moongate,0,"up",300,0,1);
-    } else {
-      let mgtile = sp.getTile(33,31);
-      let moongate = mgtile.getTopFeature();
-      if (moongate) {
-        AnimateMoongate(moongate,0,"down",300,1,0);
-        delete moongate.destmap;
-      }
-    }
-  
-    return {txt: "Done!"};
-  }
-}
-
 function wind_blow() {
   if (PC.getHomeMap().getName() === "skypalace") {
     wind.xoff -= 1;
