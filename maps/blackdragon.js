@@ -359,7 +359,12 @@ mappages["blackdragon"].onload = function(mapref) {
 
 mappages["blackdragon"].maps_exit = function(mapref) {
   mapref.Exit = function(who,tomap,fromx,fromy,tox,toy) {
-    DU.gameflags.deleteFlag("bdc_gate_open");
+    if ((tomap.getName() === "darkunknown") || (tomap.getName() === "landsbeyond")) {
+      DU.gameflags.deleteFlag("bdc_gate_open");
+      if (DU.gameflags.getFlag("lid_lancenotes") && !PC.checkInventory("LanceRuneNotes")) {
+        DU.gameflags.deleteFlag("lid_lancenotes");
+      }
+    }
   }
 }
 
@@ -1038,6 +1043,16 @@ mappages["blackdragon_int"].onload = function(mapref) {
   gate.unlockMe();
   gate.use();
   mapref.getTile(25,17).getTopNPC().sleep = 1;  // Lance is asleep
+}
+
+mappages["blackdragon_int"].maps_exit = function(mapref) {
+  mapref.Exit = function(who,tomap,fromx,fromy,tox,toy) {
+    if ((tomap.getName() === "darkunknown") || (tomap.getName() === "landsbeyond")) {
+      if (DU.gameflags.getFlag("lid_lancenotes") && !PC.checkInventory("LanceRuneNotes")) {
+        DU.gameflags.deleteFlag("lid_lancenotes");
+      }
+    }
+  }
 }
 
 mappages["blackdragon_int2"] = {};
