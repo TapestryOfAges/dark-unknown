@@ -788,46 +788,46 @@ OnConvTriggers["jharden_teaches"] = function(speaker,keyword) {
   let taught = 0;
   let blocked = 0;
   if ((PC.getLevel() >= 2) && (!PC.knowsSpell(SPELL_CURE_LEVEL,SPELL_CURE_ID))) {
-    maintext.addText("Jharden teaches you Cure Ailment!");
+    maintext.addText("<span style='sysconv'>Jharden teaches you Cure Ailment!</span>");
     PC.addSpell(SPELL_CURE_LEVEL,SPELL_CURE_ID);
     taught = 1;
   }
   if ((PC.getLevel() >= 3) && (!PC.knowsSpell(SPELL_RETURN_LEVEL,SPELL_RETURN_ID))) {
-    maintext.addText("Jharden teaches you Return!");
+    maintext.addText("<span style='sysconv'>Jharden teaches you Return!</span>");
     PC.addSpell(SPELL_RETURN_LEVEL,SPELL_RETURN_ID);
     taught = 1;
   }
   if ((PC.getLevel() >= 4) && (!PC.knowsSpell(SPELL_FIREBALL_LEVEL,SPELL_FIREBALL_ID))) {
-    maintext.addText("Jharden teaches you Fireball!");
+    maintext.addText("<span style='sysconv'>Jharden teaches you Fireball!</span>");
     PC.addSpell(SPELL_FIREBALL_LEVEL,SPELL_FIREBALL_ID);
     taught = 1;
   }
   if ((PC.getLevel() >= 5) && (DU.gameflags.getFlag("spellbook2")) && (!PC.knowsSpell(SPELL_BLESSING_LEVEL,SPELL_BLESSING_ID))) {
-    maintext.addText("Jharden teaches you Blessing!");
+    maintext.addText("<span style='sysconv'>Jharden teaches you Blessing!</span>");
     PC.addSpell(SPELL_BLESSING_LEVEL,SPELL_BLESSING_ID);
     taught = 1;
   } else if (!DU.gameflags.getFlag("spellbook2")) { blocked = 1; }
   if ((PC.getLevel() >= 6) && (DU.gameflags.getFlag("spellbook2")) && (!PC.knowsSpell(SPELL_PEER_LEVEL,SPELL_PEER_ID))) {
-    maintext.addText("Jharden teaches you Peer!");
+    maintext.addText("<span style='sysconv'>Jharden teaches you Peer!</span>");
     PC.addSpell(SPELL_PEER_LEVEL,SPELL_PEER_ID);
     taught = 1;
   } else if (!DU.gameflags.getFlag("spellbook2")) { blocked = 1; }
   if ((PC.getLevel() >= 7) && (DU.gameflags.getFlag("spellbook2")) && (!PC.knowsSpell(SPELL_MASS_CURSE_LEVEL,SPELL_MASS_CURSE_ID))) {
     maintext.addText('"This is a spell I have only just mastered myself!"');
-    maintest.addText("Jharden teaches you Mass Curse!");
+    maintest.addText("<span style='sysconv'>Jharden teaches you Mass Curse!</span>");
     PC.addSpell(SPELL_MASS_CURSE_LEVEL,SPELL_MASS_CURSE_ID);
     taught = 1;
   } else if (!DU.gameflags.getFlag("spellbook2")) { blocked = 1; }
   if ((PC.getLevel() >= 8) && (DU.gameflags.getFlag("spellbook2")) && (!PC.knowsSpell(SPELL_STORM_LEVEL,SPELL_STORM_ID))) {
     maintext.addText('"This is a spell I have only just mastered myself!"');
-    maintext.addText("Jharden teaches you Storm!");
+    maintext.addText("<span style='sysconv'>Jharden teaches you Storm!</span>");
     PC.addSpell(SPELL_STORM_LEVEL,SPELL_STORM_ID);
     taught = 1;
   } else if (!DU.gameflags.getFlag("spellbook2")) { blocked = 1; }
   if (blocked && !taught) {
     maintext.addText('"I have taught you all that I will while you remain an apprentice."');
   } else if (!taught) {
-    maintext.addText("Jharden has nothing to teach you.");
+    maintext.addText("<span style='sysconv'>Jharden has nothing to teach you.</span>");
   } else {
     DU.gameflags.deleteFlag("jharden_newspell");
   }
@@ -838,22 +838,22 @@ OnConvTriggers["ash_teaches"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("ash_newspell");
   let taught = 0;
   if ((PC.getLevel() >= 3) && (!PC.knowsSpell(SPELL_DISPEL_LEVEL,SPELL_DISPEL_ID))) {
-    maintext.addText("Asharden teaches you Dispel!");
+    maintext.addText("<span style='sysconv'>Asharden teaches you Dispel!</span>");
     PC.addSpell(SPELL_DISPEL_LEVEL,SPELL_DISPEL_ID);
     taught = 1;
   }
   if ((PC.getLevel() >= 4) && (!PC.knowsSpell(SPELL_BLINK_LEVEL,SPELL_BLINK_ID))) {
-    maintext.addText("Asharden teaches you Blink!");
+    maintext.addText("<span style='sysconv'>Asharden teaches you Blink!</span>");
     PC.addSpell(SPELL_BLINK_LEVEL,SPELL_BLINK_ID);
     taught = 1;
   }
   if ((PC.getLevel() >= 5) && (!PC.knowsSpell(SPELL_SUMMON_ALLY_LEVEL,SPELL_SUMMON_ALLY_ID))) {
-    maintext.addText("Asharden teaches you Summon Ally!");
+    maintext.addText("<span style='sysconv'>Asharden teaches you Summon Ally!</span>");
     PC.addSpell(SPELL_SUMMON_ALLY_LEVEL,SPELL_SUMMON_ALLY_ID);
     taught = 1;
   }
   if (!taught) {
-    maintext.addText("Asharden has nothing to teach you.");
+    maintext.addText("<span style='sysconv'>Asharden has nothing to teach you.</span>");
   }  
 }
 
