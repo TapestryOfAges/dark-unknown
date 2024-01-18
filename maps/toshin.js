@@ -169,6 +169,9 @@ mappages["toshin1"].toshin_exit = function(mapref) {
       if (key) {
         PC.removeFromInventory(key);
       }
+      if (DU.gameflags.getFlag("lid_ToshinJournal") && !PC.checkInventory("ToshinJournal")) {
+        DU.gameflags.deleteFlag("lid_ToshinJournal");
+      }
     }
   }
   return 1;
