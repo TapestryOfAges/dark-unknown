@@ -163,7 +163,7 @@ mappages["shadow2"].terrain[59] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK 
 
 mappages["shadow2"].features = [];
 mappages["shadow2"].features[0] = {name : 'LadderUp', x : 7, y : 30, entermap : 'shadow1', enterx : 7, entery : 30};
-mappages["shadow2"].features[1] = {name : 'LadderDown', x : 43, y : 30, entermap : 'shadow3', enterx : 43, entery : 30};
+mappages["shadow2"].features[1] = {name : 'LadderDown', x : 43, y : 30, entermap : 'shadow3', enterx : 37, entery : 8};
 mappages["shadow2"].features[2] = {name : 'SiriCloak', x : 40, y : 49};
 mappages["shadow2"].features[3] = {name : 'SkeletonDecoration', x : 39, y : 49};
 mappages["shadow2"].features[4] = {name : 'Chest', x : 11, y : 11, lootgroup : 'headlesscave', lootedid : 'shadow2_1'};
@@ -368,7 +368,7 @@ mappages["shadow3"].terrain[30] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK 
 mappages["shadow3"].terrain[31] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 
 mappages["shadow3"].features = [];
-mappages["shadow3"].features[0] = {name : 'LadderUp', x : 7, y : 5, entermap : 'null', enterx : 0, entery : 0};
+mappages["shadow3"].features[0] = {name : 'LadderUp', x : 7, y : 5, entermap : 'tunnel', enterx : 57, entery : 19};
 mappages["shadow3"].features[1] = {name : 'Altar', x : 6, y : 13};
 mappages["shadow3"].features[2] = {name : 'BookshelfLeft', x : 4, y : 16, lootedid : 'shadowbook1', searchyield : 'ScrollWallOfFlame'};
 mappages["shadow3"].features[3] = {name : 'BookshelfLeft', x : 7, y : 16};
@@ -382,7 +382,7 @@ mappages["shadow3"].features[10] = {name : 'BookshelfRight', x : 11, y : 13};
 mappages["shadow3"].features[11] = {name : 'SmallBox', x : 12, y : 13};
 mappages["shadow3"].features[12] = {name : 'SmallBox', x : 11, y : 19};
 mappages["shadow3"].features[13] = {name : 'SmallBox', x : 10, y : 19};
-mappages["shadow3"].features[14] = {name : 'LadderUp', x : 37, y : 8, entermap : 'null', enterx : 0, entery : 0};
+mappages["shadow3"].features[14] = {name : 'LadderUp', x : 37, y : 8, entermap : 'shadow2', enterx : 43, entery : 30};
 mappages["shadow3"].features[15] = {name : 'DestructableStoneWall', x : 14, y : 15};
 mappages["shadow3"].features[16] = {name : 'DestructableStoneWall', x : 14, y : 16};
 mappages["shadow3"].features[17] = {name : 'UnlitBrazier', x : 8, y : 12};
