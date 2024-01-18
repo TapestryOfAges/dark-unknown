@@ -1488,6 +1488,10 @@ mappages["olympus1"].onload = function(mapref) {
       let box = mapref.getTile(83,38).getTopFeature();
       mapref.deleteThing(box);
     }
+
+    if (DU.gameflags.getFlag("lid_RhysLetterBox") && !PC.checkInventory("RhysLetter") && !DU.gameflags.getFlag("returned_rhys")) {
+      DU.gameflags.deleteFlag("lid_RhysLetterBox");
+    }
   }
 }
 
