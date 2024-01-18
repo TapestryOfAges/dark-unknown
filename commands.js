@@ -1722,7 +1722,7 @@ function PerformTalkTarget() {
       if (PC.getLevel() === 2) {
 //        maintext.addText("<span class='conv'>\"Oh, and another thing! We have captured a rebel instigator and are holding her in our <span style='color:cyan'>prison</span>. I charge you with seeing what information you can get from her!\"</span>");
         retval = PerformTalk(top, convo, "_level2");
-      } else if (PC.getLevel() === 4) {
+      } else if ((PC.getLevel() === 4) && (!DU.gameflags.getFlag("lvl4_rune"))) {
         if (DU.gameflags.getFlag("spellbook")) {
           retval = PerformTalk(top, convo, "_lvl4s");
         } else {
@@ -2455,7 +2455,7 @@ function DrawStats(page) {
     statsdiv = "<div class='outerstats'><div id='zstat' class='zstats'>";
     statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black; margin-top: 8px'><tr>";
 
-    statsdiv += "<td>" + PC.getPCName() + "</td><td width='30'>&nbsp;</td><td>LEVEL: " + PC.getLevel() + "</td></tr>";
+    statsdiv += "<td style='padding-top:5px'>" + PC.getPCName() + "</td><td width='30'>&nbsp;</td><td>LEVEL: " + PC.getLevel() + "</td></tr>";
     statsdiv += "<tr><td style='width:50%'>HP: " + PC.getDisplayHP() + "/" + PC.getMaxHP() + "</td><td></td>";
     statsdiv += "<td style='width:50%'>MP: " + PC.getMana() + "/" + PC.getMaxMana() + "</td></tr>";
     statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";
@@ -3364,8 +3364,8 @@ function DisplayInventory(restrictTo) {
       let topedge = 10+55*j;
       let qleftedge = leftedge + 18;
       let qtopedge = topedge + 36;
-      document.getElementById('uiinterface').innerHTML += "<div id='invquant_"+i+"x"+j+"' style='position:absolute; left: " + qleftedge + "; top: " + qtopedge + "; width:12px; height: 10px; border:2px; border-style: solid; border-color:#999; visibility:hidden'></div>";
-      document.getElementById('uiinterface').innerHTML += "<div id='inv_"+i+"x"+j+"' style='position:absolute; left: " + leftedge + "; top: " + topedge + "; width:32px; height: 32px; border:3px; border-style: solid; border-color:#999;'></div>";
+      document.getElementById('uiinterface').innerHTML += "<div id='invquant_"+i+"x"+j+"' style='position:absolute; left: " + qleftedge + "; top: " + qtopedge + "; width:12px; height: 10px; border:2px; border-style: solid; border-color:#666; visibility:hidden'></div>";
+      document.getElementById('uiinterface').innerHTML += "<div id='inv_"+i+"x"+j+"' style='position:absolute; left: " + leftedge + "; top: " + topedge + "; width:32px; height: 32px; border:3px; border-style: solid; border-color:#666;'></div>";
     }
   }
 
@@ -3458,22 +3458,50 @@ function PerformInventoryScreen(code, restrict) {
     if (targetCursor.invx > 0) {
       targetCursor.invx--;
     } else if (targetCursor.command === "z") { return 1; } // off the left edge
+    else if (targetCursor.command === "u") {
+      if (targetCursor.invy > 1) {
+        targetCursor.invy--;
+        targetCursor.invx = 7;
+      } else if (targetCursor.invskiprow) {
+        targetCursor.invskiprow--;
+        targetCursor.invx = 7;
+      } else if (targetCursor.invy === 1) {
+        targetCursor.invy--;
+        targetCursor.invx = 7;
+      }
+    }
   } else if ((code ===39) || (code === 222)) {
     if (targetCursor.invx < 7) {
       targetCursor.invx++;
     } else if (targetCursor.command === "z") { return 1; } // off the right edge
+    else if (targetCursor.command === "u") {
+      if (targetCursor.invy < 3) {
+        targetCursor.invy++;
+        targetCursor.invx = 0;
+      } else if (targetCursor.invy === 3) {
+        if (targetCursor.invlength > (targetCursor.invskiprow*8 +40)) {
+          targetCursor.invskiprow++;
+          targetCursor.invx = 0;
+        } else {
+          targetCursor.invy++;
+          targetCursor.invx = 0;
+        }
+      }
+    }
   } else if ((code === 38) || (code === 219)) {
-    if (targetCursor.invy > 0) { targetCursor.invy--; }
+    if (targetCursor.invy > 1) { targetCursor.invy--; }
     else if (targetCursor.invskiprow) {
       targetCursor.invskiprow--;
-    }
+    } else if (targetCursor.invy === 1) { targetCursor.invy--; }
   } else if ((code === 40) || (code === 191)) {
-    if (targetCursor.invy === 4) {
+    if (targetCursor.invy === 3) {
       if (targetCursor.invlength > (targetCursor.invskiprow*8 +40 )) {
         targetCursor.invskiprow++;
-      }
+      } else { targetCursor.invy++; }
     } else {
-      targetCursor.invy++;
+      if (targetCursor.invy < 3) {
+        targetCursor.invy++;
+      }
     }
   } else if ((code === 13) || (code === 32)) {
     // use selected item
