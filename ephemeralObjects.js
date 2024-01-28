@@ -831,7 +831,7 @@ FireArmorTile.prototype.flashback = function(attacker) {
   }
   //let dead = attacker.dealDamage(dmg, this.getAttachedTo(), "fire");
   let dead = DealandDisplayDamage(attacker, this.getAttachedTo(), dmg, "fire");
-  ShowEffect(attacker, 700, "static.png", RED_SPLAT_X, RED_SPLAT_Y);
+  ShowEffect(attacker, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
   return dead;
 }
 
@@ -1495,7 +1495,7 @@ StormTile.prototype.doEffect = function() {
           let fromcoords = getCoords(castermap,display.centerx, display.topy);
           let tocoords = getCoords(castermap,targetlist[chosenidx].getx(), targetlist[chosenidx].gety());
           let duration = (Math.pow( Math.pow(targetlist[chosenidx].getx() - display.centerx, 2) + Math.pow (targetlist[chosenidx].gety() - display.topy, 2)  , .5)) * 50;
-          let destgraphic = {graphic:"static.png", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
+          let destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
           AnimateEffect(cloud, targetlist[chosenidx], fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:0, retval:descval, dmgtype:"lightning"});
           
           targetlist.splice(chosenidx,1);
@@ -1899,7 +1899,7 @@ ScouringBeldskaeTile.prototype.endEffect = function(silent) {
         fea[i].setEnterMap("beldskae_razed", fea[i].getEnterMap().enterx, fea[i].getEnterMap().entery);
         fea[i].setDesc("ruins of Beldskae");
         let gra = fea[i].getGraphicArray();
-        gra[0] = "static.png";
+        gra[0] = "static.gif";
         gra[2] = -9*32;
         gra[3] = -3*32;
         fea[i].setGraphicArray(gra);
