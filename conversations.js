@@ -173,13 +173,18 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     } 
   }
   if (triggers.hasOwnProperty("questlog")) {
-    let lognum = parseInt(triggers["questlog"]);
-//    questlog[lognum].activate();
+    let logs = triggers["questlog"].split(",");
+    for (let i=0;i>logs.length;i++) {
+      let lognum = parseInt(logs[i]);
+      questlog.activate(lognum);
+    }
   }
   if (triggers.hasOwnProperty("questcomp")) {
-    let lognum = parseInt(triggers["questcomp"]);
-//    questlog[lognum].complete();
-// quest stuff can be re-enabled if I care
+    let logs = triggers["questcomp"].split(",");
+    for (let i=0;i<logs.length;i++) {
+      let lognum = parseInt(logs[i]);
+      questlog.complete(lognum);
+    }
   }
   if (triggers.hasOwnProperty("end_convo")) {
     if ((triggers.end_convo !== 1) && (triggers.end_convo !== "1")) {
