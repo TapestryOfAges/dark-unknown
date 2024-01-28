@@ -869,7 +869,7 @@ function ChooseGraphic() {
   chartxt += "<tr>";
   for (let i=0; i<nuavatars.length; i++) {
         chartxt += "<td id='0x" + i + "' style='position:relative; width:36px; height:36px'>";
-        chartxt += `<div style='position:absolute;left:2;top:2;background-image:url("graphics/static.png");background-position: -96px -2784px; width:32px; height: 32px'></div>`;
+        chartxt += `<div style='position:absolute;left:2;top:2;background-image:url("graphics/static.gif");background-position: -96px -2784px; width:32px; height: 32px'></div>`;
         let xpos = HumanParts[nuavatars[i][0]].spritex;
         let ypos = HumanParts[nuavatars[i][0]].spritey;
         let source = HumanParts[nuavatars[i][0]].src;
@@ -945,6 +945,7 @@ function SaveChar() {
 
   DU.gameflags.setFlag("knows_avery", 1);
   DU.gameflags.setFlag("coward", 0); 
+  questlog.activate(0);
   
   let PCEvent = new GameEvent(PC);
 	DUTime.addAtTimeInterval(PCEvent,.0001);
