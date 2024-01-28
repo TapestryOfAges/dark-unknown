@@ -183,7 +183,7 @@ GameStateData.prototype.saveGame = function(flag) {
     ms = Math.floor(ms/1000);
     savedata.timeplayed = DU.gamelength + (ms - DU.starttime);
   }
-  savedata.quests = JSON.stringify(questlog);
+  savedata.quests = JSON.stringify(questlog.log);
   if (beta) {
     savedata.convlog = JSON.stringify(convlog);
   }
@@ -332,7 +332,7 @@ OutOfContext.onLoadData((event,serialized) => {
   let d = new Date();
   let ms = d.getTime();
   DU.starttime = Math.floor(ms/1000); 
-  questlog = JSON.parse(savedata.quests);
+  questlog.log = JSON.parse(savedata.quests);
   DUTime.setGameClock(savedata.time);
   DU.gameflags = new Gameflags();
   ExtendObject(true,DU.gameflags,savedata.gameflags);
