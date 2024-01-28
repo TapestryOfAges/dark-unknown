@@ -320,6 +320,8 @@ function PerformCommand(code, ctrl) {
   }
 	else if (code === 74) { // j
 		// jimmy lock ?
+    // Journal, Quest
+    retval = PerformJournal();
 		
 	}
 	else if (code === 75) { // k
@@ -1394,58 +1396,77 @@ function PerformGet(who, getitem) {
   }
 }
 
-function PerformEquip(code) {   //  Deprecated
-  alert("In deprecated PerformEquip- maybe not so deprecated?");
-  var retval = {};
-  if (code === 27) { // ESC
-    retval["fin"] = 0;
-    delete targetCursor.itemlist;
-    document.getElementById('uiinterface').innerHTML = "";
-    document.getElementById('uiinterface').style.backgroundColor = "";
+function PerformJournal() {
+  gamestate.setMode("journal");
+  let retval = {};
+  retval["txt"] = "";
+  retval["input"] = "&gt; Journal- ";
+  retval["fin"] = 2;	
+  targetCursor.command = "j";			
+  targetCursor.page = 1;
+  targetCursor.scrolllocation = 0;
+
+  let journaltitles = "<div class='journalpage' style='top:10px; left:5px;'><table cellpadding='2' cellspacing='0' border='0' style='width:100%'>";
+  journaltitles += "<tr><td style='text-align:center;color:yellow' id='questtitletype'>Main Quests</td></tr>";
+  for (let i=0; i<8; i++) {
+    journaltitles += "<tr><td id='questtitle" + i + "'></td></tr>"
   }
-	else if ((code === 38) || (code === 219)) {   // UP ARROW  or  [
-    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
-    targetCursor.scrolllocation--;
-    if (targetCursor.scrolllocation < 0) { targetCursor.scrolllocation = targetCursor.itemlist.length-1; }
-    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
-    targetCursor.scrollapi.scrollToElement('#inv' + targetCursor.scrolllocation);
-    retval["fin"] = 2;
-	}
-  else if ((code === 40) || (code === 191)) { // DOWN ARROW or /
-      $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
-	    targetCursor.scrolllocation++;
-	    if (targetCursor.scrolllocation > targetCursor.itemlist.length-1) { targetCursor.scrolllocation = 0; }
-	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
-	    targetCursor.scrollapi.scrollToElement('#inv' + targetCursor.scrolllocation);
-	    retval["fin"] = 2;
-  }
-	else if ((code === 32) || (code === 13)) { // SPACE or ENTER
-    // equip selected item
-    var newequip = targetCursor.itemlist[targetCursor.scrolllocation];
-    if (newequip.breakable && newequip.getBroken()) {
-      retval["fin"] = 1;
-      retval["txt"] = "That is broken and cannot be equipped.";
-      return retval;
-    }
-    var success = newequip.equipMe(PC);
-    retval["fin"] = 1;
-    retval["txt"] = "";
-    if (newequip.checkType("Armor")) { 
-      if (success) { retval["txt"] = "Wear: "; }
-      else { retval["txt"] = "You are not strong enough to wear that."; return retval; }
-    }
-    else { 
-      if (success) { retval["txt"] = "Wield: "; }
-      else { retval["txt"] = "You are not agile enough to equip that."; return retval; }
-    }
-    if (newequip.getPrefix()) { retval["txt"] = retval["txt"] + newequip.getPrefix(); }
-    retval["txt"] = retval["txt"] + " " + newequip.getDesc() + ".";
-  }
-  $('#uiinterface').html("");
-  $("#uiinterface").css("background-color", "");
+  journaltitles += "</table></div>";
+  let journaldetails = "<div class='journalpage' style='top:10px; left:210px;'><table cellpadding='2' cellspacing='0' border='0' style='width:100%'>";
+  journaldetails += "<tr><td style='text-align:center;color:yellow' id='questdesctype'>Quest Description</td></tr>";
+  journaldetails += "<tr><td id='questdesc'></td></tr>";
+  journaldetails += "</table></div>";
+
+  document.getElementById('worldlayer').innerHTML = "<img src='graphics/spacer.gif' width='416' height='416' />";
+  document.getElementById('worldlayer').style.backgroundImage = "";
+  document.getElementById('worldlayer').style.backgroundColor = "black";
+  document.getElementById('uiinterface').innerHTML = journaltitles + journaldetails;
+  document.getElementById('uiinterface').style.backgroundColor = "black";
+
+  FillInJournal();
 
   return retval;
- 
+}
+
+function FillInJournal() {
+  let journallist = [];
+  for (let i=0;i<8;i++) {
+    document.getElementById("questtitle"+i).innerHTML = "";
+  }
+  document.getElementById("questdesc").innerHTML = "";
+  if (targetCursor.page === 1) { document.getElementById("questtitletype").innerHTML = "Main Quests"; }
+  if (targetCursor.page === 2) { document.getElementById("questtitletype").innerHTML = "Side Quests"; }
+  if (targetCursor.page === 3) { document.getElementById("questtitletype").innerHTML = "Completed Main Quests"; }
+  if (targetCursor.page === 4) { document.getElementById("questtitletype").innerHTML = "Completed Side Quests"; }
+  for (let i=0;i<questlog.log.length;i++) {
+    if ((targetCursor.page === 1) && (questlog.log[i].active) && (questlist[questlog.log[i].questnum].category === "main")) {
+      journallist.push(questlist[questlog.log[i].questnum]);
+    } else if ((targetCursor.page === 2) && (questlog.log[i].active) && (questlist[questlog.log[i].questnum].category === "side")) {
+      journallist.push(questlist[questlog.log[i].questnum]);
+    } else if ((targetCursor.page === 3) && (questlog.log[i].completed) && (!questlog.log[i].replaced) && (questlist[questlog.log[i].questnum].category === "main")) {
+      journallist.push(questlist[questlog.log[i].questnum]);
+    } else if ((targetCursor.page === 4) && (questlog.log[i].completed) && (!questlog.log[i].replaced) && (questlist[questlog.log[i].questnum].category === "side")) {
+      journallist.push(questlist[questlog.log[i].questnum]);
+    }
+  }
+  
+  if (journallist.length === 0) { return; }
+  if (targetCursor.scrolllocation >= journallist.length) { targetCursor.scrolllocation = journallist.length-1; }
+  let firstentry = Math.max(targetCursor.scrolllocation - 6, 0);
+  let lastentry = Math.min(firstentry+7,journallist.length-1);
+  let idx = 0;
+  for (let i=firstentry; i<=lastentry; i++) {
+    let highlight = "";
+    if (i===targetCursor.scrolllocation) {
+      highlight = "<span style='color:black;background-color:white'>";
+      document.getElementById("questdesc").innerHTML = "<span style='color:yellow'>SOURCE:</span><br />" + journallist[i].source + "<br />";
+      document.getElementById("questdesc").innerHTML += "<span style='color:yellow'>LOCATION RECEIVED:</span><br />" + journallist[i].location + "<br /><br />";
+      document.getElementById("questdesc").innerHTML += `${journallist[i].getText()}`;
+    }
+    document.getElementById("questtitle"+idx).innerHTML = highlight + journallist[i].name;
+    if (highlight) { document.getElementById("questtitle"+idx).innerHTML += "</span>"; }
+    idx++;
+  }
 }
 
 function PerformPush(who) {
