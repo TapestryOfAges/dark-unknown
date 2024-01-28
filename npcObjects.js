@@ -980,7 +980,7 @@ function ChickenNPCTile() {
   this.resists = {};
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -138 * 32;
 
@@ -1028,7 +1028,7 @@ function RoosterNPCTile() {
   this.resists = {};
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -126 * 32;
 
@@ -1073,7 +1073,7 @@ function HorseNPCTile() {
   this.resists = {};
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -149 * 32;
 
@@ -1118,7 +1118,7 @@ function BullNPCTile() {
   this.resists = {};
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -148 * 32;
 
@@ -1163,7 +1163,7 @@ function CowNPCTile() {
   this.resists = {};
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -147 * 32;
 
@@ -1426,7 +1426,7 @@ function GiantBatNPCTile() {
   this.resists = {};
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -131 * 32;
 
@@ -1475,7 +1475,7 @@ function GiantInsectsNPCTile() {
   this.special = 'mindless';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -127 * 32;
 
@@ -1524,7 +1524,7 @@ function GiantRatNPCTile() {
   this.resists = {};
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -139 * 32;
 
@@ -1569,7 +1569,7 @@ function HeadlessNPCTile() {
   this.resists = {};
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -141 * 32;
 
@@ -1727,7 +1727,7 @@ function SlimeNPCTile() {
   this.special = 'mindless';
   this.meleeHitSound = 'sfx_slime_hit';
   this.meleeAttackSound = 'sfx_slime_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -131 * 32;
 
@@ -1881,7 +1881,7 @@ function ImpNPCTile() {
   this.resists = { fire:35 };
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -129 * 32;
 
@@ -1930,7 +1930,7 @@ function PythonNPCTile() {
   this.resists = {};
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -133 * 32;
 
@@ -1978,7 +1978,7 @@ function NixieNPCTile() {
   this.resists = {};
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -128 * 32;
 
@@ -2027,7 +2027,7 @@ function OrcNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -134 * 32;
 
@@ -2181,7 +2181,7 @@ function SkeletonNPCTile() {
   this.special = 'undead';
   this.meleeHitSound = 'sfx_skeleton_hit';
   this.meleeAttackSound = 'sfx_skeleton_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -132 * 32;
 
@@ -2226,7 +2226,7 @@ function AnimatedArmorNPCTile() {
   this.special = 'construct, wander';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -175 * 32;
 
@@ -2438,7 +2438,7 @@ function FireLizardNPCTile() {
   this.special = 'firebreath';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -151 * 32;
 
@@ -2488,7 +2488,7 @@ function FlukeNPCTile() {
   this.special = 'whirlpool, underground';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -127 * 32;
 
@@ -2535,7 +2535,7 @@ function GhostNPCTile() {
   this.special = 'undead';
   this.meleeHitSound = 'sfx_ghost_hit';
   this.meleeAttackSound = 'sfx_ghost_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -142 * 32;
 
@@ -2584,7 +2584,7 @@ function GiantSpiderNPCTile() {
   this.resists = {};
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -156 * 32;
 
@@ -2631,7 +2631,7 @@ function GremlinNPCTile() {
   this.special = 'breedsexplosively';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -145 * 32;
 
@@ -2731,7 +2731,7 @@ function MimicNPCTile() {
   this.special = 'mimic, spitter, stationary';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -154 * 32;
 
@@ -2778,7 +2778,7 @@ function OrcShamanNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -144 * 32;
 
@@ -2828,7 +2828,7 @@ function GiantSnakeNPCTile() {
   this.special = 'spitter';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -125 * 32;
 
@@ -2972,7 +2972,7 @@ function TrollNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -143 * 32;
 
@@ -3018,7 +3018,7 @@ function TwisterNPCTile() {
   this.special = 'mindless, wander';
   this.meleeHitSound = 'sfx_air_hit';
   this.meleeAttackSound = 'sfx_air_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -129 * 32;
 
@@ -3064,7 +3064,7 @@ function AirElementalNPCTile() {
   this.special = 'lbolt, mindless, wander';
   this.meleeHitSound = 'sfx_air_hit';
   this.meleeAttackSound = 'sfx_air_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -125 * 32;
 
@@ -3114,7 +3114,7 @@ function CyclopsNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -140 * 32;
 
@@ -3160,7 +3160,7 @@ function DeepNixieNPCTile() {
   this.resists = {};
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -121 * 32;
 
@@ -3210,7 +3210,7 @@ function DrakeNPCTile() {
   this.special = 'firebreath, wander';
   this.meleeHitSound = 'sfx_roar_hit';
   this.meleeAttackSound = 'sfx_roar_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -158 * 32;
 
@@ -3260,7 +3260,7 @@ function EarthElementalNPCTile() {
   this.special = 'mindless, wander';
   this.meleeHitSound = 'sfx_boulder_hit';
   this.meleeAttackSound = 'sfx_boulder_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -130 * 32;
 
@@ -3307,7 +3307,7 @@ function FireElementalNPCTile() {
   this.special = 'flamearmor, mindless,wander,light:1';
   this.meleeHitSound = 'sfx_fire_hit';
   this.meleeAttackSound = 'sfx_fire_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -151 * 32;
 
@@ -3353,7 +3353,7 @@ function FireSnakeNPCTile() {
   this.special = 'firebreath,wander';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -122 * 32;
 
@@ -3403,7 +3403,7 @@ function LurkerNPCTile() {
   this.special = 'underground,wander';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -130 * 32;
 
@@ -3453,7 +3453,7 @@ function OrcCaptainNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -133 * 32;
 
@@ -3559,7 +3559,7 @@ function SeaSerpentNPCTile() {
   this.special = 'firebreath,wander';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -134 * 32;
 
@@ -3609,7 +3609,7 @@ function TremendousSpiderNPCTile() {
   this.special = 'spitter';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -156 * 32;
 
@@ -3749,7 +3749,7 @@ function CorpserNPCTile() {
   this.special = 'underground, reach,wander';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -137 * 32;
 
@@ -3798,7 +3798,7 @@ function EttinNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -142 * 32;
 
@@ -3931,7 +3931,7 @@ function GazerNPCTile() {
   this.special = 'sleep, ondeathInsects, ruthless';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -135 * 32;
 
@@ -3979,7 +3979,7 @@ function HydraNPCTile() {
   this.special = 'firebreath, multiattack';
   this.meleeHitSound = 'sfx_roar_hit';
   this.meleeAttackSound = 'sfx_roar_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -143 * 32;
 
@@ -4025,7 +4025,7 @@ function MagmaSpawnNPCTile() {
   this.special = 'magmaspit, magmaheal';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -154 * 32;
 
@@ -4072,7 +4072,7 @@ function PhantomNPCTile() {
   this.special = 'undead';
   this.meleeHitSound = 'sfx_ghost_hit';
   this.meleeAttackSound = 'sfx_ghost_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -155 * 32;
 
@@ -4181,7 +4181,7 @@ function WillotheWispNPCTile() {
   this.special = 'teleport, energy bolt,wander';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -120 * 32;
 
@@ -4229,7 +4229,7 @@ function DelverNPCTile() {
   this.resists = {};
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -147 * 32;
 
@@ -4334,7 +4334,7 @@ function BlackDragonNPCTile() {
   this.meleeHitSound = 'sfx_roar_hit';
   this.meleeAttackSound = 'sfx_roar_miss';
   this.xpval = 0;
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -166 * 32;
 
@@ -4382,7 +4382,7 @@ function DevourerNPCTile() {
   this.special = 'firebreath, icebreath, multiattack';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -159 * 32;
 
@@ -4429,7 +4429,7 @@ function DragonNPCTile() {
   this.special = 'firebreath';
   this.meleeHitSound = 'sfx_roar_hit';
   this.meleeAttackSound = 'sfx_roar_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -166 * 32;
 
@@ -4479,7 +4479,7 @@ function EttinSorcererNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -149 * 32;
 
@@ -4529,7 +4529,7 @@ function GiantNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -152 * 32;
 
@@ -4579,7 +4579,7 @@ function KrakenNPCTile() {
   this.special = 'lbolt';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -138 * 32;
 
@@ -4629,7 +4629,7 @@ function ReaperNPCTile() {
   this.special = 'ruthless,stationary';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -132 * 32;
 
@@ -4677,7 +4677,7 @@ function SpecterNPCTile() {
   this.special = 'phase, undead';
   this.meleeHitSound = 'sfx_ghost_hit';
   this.meleeAttackSound = 'sfx_ghost_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -144 * 32;
 
@@ -4727,7 +4727,7 @@ function DaemonNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -127 * 32;
 
@@ -4828,7 +4828,7 @@ function EarthenTyrantNPCTile() {
   this.special = 'summonearthelemental';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -148 * 32;
 
@@ -4935,7 +4935,7 @@ function LicheNPCTile() {
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.gender = 'male';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -153 * 32;
 
@@ -4983,7 +4983,7 @@ function EyesofSpiteNPCTile() {
   this.special = 'sleep, ondeathInsects';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -136 * 32;
 
@@ -5070,7 +5070,7 @@ function ShadowNPCTile() {
   this.special = 'phase,undead,ondeathShadow';
   this.meleeHitSound = 'sfx_ghost_hit';
   this.meleeAttackSound = 'sfx_ghost_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -153 * 32;
 
@@ -5152,7 +5152,7 @@ function BalronNPCTile() {
   this.special = 'phase, open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -126 * 32;
 
@@ -5199,7 +5199,7 @@ function ArchdaemonOfAshesNPCTile() {
   this.special = 'archdaemon_ashes, noflee';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -126 * 32;
 
@@ -5246,7 +5246,7 @@ function ArchdaemonOfDustNPCTile() {
   this.special = 'archdaemon_dust, noflee';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -126 * 32;
 
@@ -5293,7 +5293,7 @@ function ArchdaemonOfIceNPCTile() {
   this.special = 'archdaemon_ice, noflee';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -126 * 32;
 
@@ -5340,7 +5340,7 @@ function ArchdaemonOfBoneNPCTile() {
   this.special = 'archdaemon_bone, noflee';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -126 * 32;
 
@@ -5426,7 +5426,7 @@ function AbyssalKrakenNPCTile() {
   this.special = 'lbolt';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -137 * 32;
 
@@ -5507,7 +5507,7 @@ function IllusionNPCTile() {
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.xpval = 0;
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -152 * 32;
 
@@ -5589,7 +5589,7 @@ function ToshinSentinelNPCTile() {
   this.special = 'unkillable';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -150 * 32;
 
@@ -5716,7 +5716,7 @@ function GiantRatGroupTinyTile() {
   this.group[0] = new NPCList('GiantRatNPC', '1d2+1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -139 * 32;
 
@@ -5740,7 +5740,7 @@ function GiantRatGroupSmallTile() {
   this.group[0] = new NPCList('GiantRatNPC', '1d3+2');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -139 * 32;
 
@@ -5764,7 +5764,7 @@ function GiantRatGroupLargeTile() {
   this.group[0] = new NPCList('GiantRatNPC', '1d5+4');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -139 * 32;
 
@@ -5788,7 +5788,7 @@ function OrcGroupTinyTile() {
   this.group[0] = new NPCList('OrcNPC', '1d2+1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -134 * 32;
 
@@ -5812,7 +5812,7 @@ function OrcGroupSmallTile() {
   this.group[0] = new NPCList('OrcNPC', '1d3+2');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -134 * 32;
 
@@ -5836,7 +5836,7 @@ function OrcGroupLargeTile() {
   this.group[0] = new NPCList('OrcNPC', '1d5+4');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -134 * 32;
 
@@ -6142,7 +6142,7 @@ function HeadlessGroupTinyTile() {
   this.group[0] = new NPCList('HeadlessNPC', '1d2+1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -141 * 32;
 
@@ -6166,7 +6166,7 @@ function HeadlessGroupSmallTile() {
   this.group[0] = new NPCList('HeadlessNPC', '1d4+1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -141 * 32;
 
@@ -6190,7 +6190,7 @@ function HeadlessGroupLargeTile() {
   this.group[0] = new NPCList('HeadlessNPC', '1d5+2');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -141 * 32;
 
@@ -6214,7 +6214,7 @@ function SnakesGroupSmallTile() {
   this.group[0] = new NPCList('PythonNPC', '1d2+1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -133 * 32;
 
@@ -6238,7 +6238,7 @@ function SnakesGroupTile() {
   this.group[0] = new NPCList('PythonNPC', '1d4+2');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -133 * 32;
 
@@ -6263,7 +6263,7 @@ function MidSnakesGroupTile() {
   this.group[1] = new NPCList('GiantSnakeNPC', '1d2');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -133 * 32;
 
@@ -6287,7 +6287,7 @@ function DrakesSmallGroupTile() {
   this.group[0] = new NPCList('DrakeNPC', '1d4+1');
   this.movetype = MOVE_FLY;
   this.attackword = 'attack';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -158 * 32;
 
@@ -6312,7 +6312,7 @@ function DrakesLargeGroupTile() {
   this.group[1] = new NPCList('DragonNPC', '1d2-1');
   this.movetype = MOVE_FLY;
   this.attackword = 'attack';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -158 * 32;
 
@@ -6337,7 +6337,7 @@ function DragonsGroupTile() {
   this.group[1] = new NPCList('DragonNPC', '1d3+1');
   this.movetype = MOVE_FLY;
   this.attackword = 'attack';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -166 * 32;
 
@@ -6464,7 +6464,7 @@ function MidHeadlessGroupTile() {
   this.group[1] = new NPCList('EttinNPC', '1d2-1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -141 * 32;
 
@@ -6490,7 +6490,7 @@ function HighHeadlessGroupTile() {
   this.group[2] = new NPCList('CyclopsNPC', '1d2-1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -141 * 32;
 
@@ -6532,7 +6532,7 @@ function OrcPartyLowGroupTile() {
   this.group[2] = new NPCList('TrollNPC', '1d3-1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -134 * 32;
 
@@ -6559,7 +6559,7 @@ function OrcPartyHighGroupTile() {
   this.group[3] = new NPCList('OrcCaptainNPC', '1d3');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -134 * 32;
 
@@ -6649,7 +6649,7 @@ function GazersGroupTile() {
   this.group[1] = new NPCList('GiantInsectsNPC', '1d5');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -135 * 32;
 
@@ -6673,7 +6673,7 @@ function TrollGroupTile() {
   this.group[0] = new NPCList('TrollNPC', '2d4');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -143 * 32;
 
@@ -6698,7 +6698,7 @@ function DaemonGroupTile() {
   this.group[1] = new NPCList('FireElementalNPC', '1d2-1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -127 * 32;
 
@@ -6723,7 +6723,7 @@ function SkeletonGroupTile() {
   this.group[1] = new NPCList('GhostNPC', '1d2-1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -132 * 32;
 
@@ -6749,7 +6749,7 @@ function UndeadGroupTile() {
   this.group[2] = new NPCList('PhantomNPC', '1d2-1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -142 * 32;
 
@@ -6801,7 +6801,7 @@ function InsectsGroupSmallTile() {
   this.group[0] = new NPCList('GiantInsectsNPC', '1d4');
   this.movetype = MOVE_FLY;
   this.attackword = 'attack';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -127 * 32;
 
@@ -6825,7 +6825,7 @@ function InsectsGroupLargeTile() {
   this.group[0] = new NPCList('GiantInsectsNPC', '2d4+1');
   this.movetype = MOVE_FLY;
   this.attackword = 'attack';
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -127 * 32;
 
