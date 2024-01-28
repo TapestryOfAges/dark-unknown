@@ -175,7 +175,7 @@ function ElderDragonNPCTile() {
   this.peaceAI = 'elderdragon';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0;
   this.spriteyoffset = -167*32;
   this.level = 7;
@@ -213,7 +213,7 @@ ElderDragonNPCTile.prototype = new NPCObject();
 
 function ElderDragonForelimbSegmentTile() {
   this.name = "ElderDragonForelimbSegment";
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = 0;
   this.spriteyoffset = -168*32;
   this.alwaystop = 1;
@@ -232,7 +232,7 @@ ElderDragonForelimbSegmentTile.prototype = new MultiSegment();
 
 function ElderDragonHindlimbSegmentTile() {
   this.name = "ElderDragonHindlimbSegment";
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5*32;
   this.spriteyoffset = -168*32;
   this.alwaystop = 1;
@@ -251,7 +251,7 @@ ElderDragonHindlimbSegmentTile.prototype = new MultiSegment();
 
 function ElderDragonTailSegmentTile() {
   this.name = "ElderDragonTailSegment";
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5*32;
   this.spriteyoffset = -167*32;
   this.alwaystop = 1;
@@ -280,7 +280,7 @@ function TitanNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5*32;
   this.spriteyoffset = -158*32;
   this.meleeAttackAs = 'none';
@@ -319,7 +319,7 @@ TitanNPCTile.prototype = new NPCObject();
 
 function TitanHeadSegmentTile() {
   this.name = "TitanHeadSegment";
-  this.graphic = 'static.png';
+  this.graphic = 'static.gif';
   this.spritexoffset = -5*32;
   this.spriteyoffset = -157*32;
   this.movetype = MOVE_ETHEREAL;
