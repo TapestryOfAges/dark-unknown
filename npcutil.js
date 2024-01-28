@@ -351,12 +351,12 @@ function Attack(atk, def) {
   }
 
   let hitgraphic = {};
-  hitgraphic.graphic = "static.png";
+  hitgraphic.graphic = "static.gif";
   hitgraphic.xoffset = RED_SPLAT_X;
   hitgraphic.yoffset = RED_SPLAT_Y;
   hitgraphic.overlay = "spacer.gif";
   if (dmg === 0) { 
-    hitgraphic.graphic = "static.png"; 
+    hitgraphic.graphic = "static.gif"; 
     hitgraphic.xoffset = RED_BALL_X;
     hitgraphic.yoffset = RED_BALL_Y;
   }
