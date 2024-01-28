@@ -107,6 +107,22 @@ div.outerstats {
              margin-top: -10px
                   }
 
+div.journalpage { width: 45%; 
+	                height: 390px; 
+									overflow: hidden; 
+									border-style:solid;
+									border-width:3px;
+									border-color:666666;
+									position: absolute;
+								}
+
+div.journalpage table { color:white;
+	font-family:"Commodore64";
+	 font-size:16pt;
+	 line-height:20px;
+	margin-top:0px;
+}
+
 div.zstats { width:100%;
              height: 410px;
              overflow:hidden;
