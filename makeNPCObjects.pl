@@ -191,7 +191,7 @@ foreach my $line (<$npcdoc>) {
   }
   if ($fields[45]) {
     # there is an animation override
-    print $out "  this.graphic = 'static.png';\n";
+    print $out "  this.graphic = 'static.gif';\n";
     print $out "  this.spritexoffset = $fields[43] * 32;\n";
     print $out "  this.spriteyoffset = $fields[44] * 32;\n";
 
@@ -282,7 +282,7 @@ foreach my $line (<$groupdoc>) {
 
   if ($fields[17]) {
     # there is an animation override
-    print $out "  this.graphic = 'static.png';\n";
+    print $out "  this.graphic = 'static.gif';\n";
     print $out "  this.spritexoffset = $fields[15] * 32;\n";
     print $out "  this.spriteyoffset = $fields[16] * 32;\n";
 
