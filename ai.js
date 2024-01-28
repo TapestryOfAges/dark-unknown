@@ -2999,7 +2999,7 @@ ais.ai_firebreath = function(who) {
       tgtdesc = tgtdesc.charAt(0).toUpperCase() + tgtdesc.slice(1);
       maintext.addText("The " + who.getDesc() + " breathes fire. " + tgtdesc + " is bathed in flames!");
     }
-    destgraphic = {graphic:"static.png", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
+    destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
   } else {
     if (tgt === PC) {
       maintext.addText("The " + who.getDesc() + " breathes fire. You dodge some of the blast!");
@@ -3051,7 +3051,7 @@ ais.ai_icebreath = function(who) {
       tgtdesc = tgtdesc.charAt(0).toUpperCase() + tgtdesc.slice(1);
       maintext.addText("The " + who.getDesc() + " breathes ice. " + tgtdesc + " is skewered by shards!");
     }
-    destgraphic = {graphic:"static.png", xoffset:BLUE_SPLAT_X, yoffset:BLUE_SPLAT_Y, overlay:"spacer.gif"};
+    destgraphic = {graphic:"static.gif", xoffset:BLUE_SPLAT_X, yoffset:BLUE_SPLAT_Y, overlay:"spacer.gif"};
   } else {
     if (tgt === PC) {
       maintext.addText("The " + who.getDesc() + " breathes ice. You dodge some of the shards!");
@@ -3102,7 +3102,7 @@ ais.ai_lbolt = function(who) {
       tgtdesc = tgtdesc.charAt(0).toUpperCase() + tgtdesc.slice(1);
       maintext.addText("The " + who.getDesc() + " calls forth a lightning bolt. " + tgtdesc + " is struck!");
     }
-    destgraphic = {graphic:"static.png", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
+    destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
   } else {
     if (tgt === PC) {
       maintext.addText("The " + who.getDesc() + " calls forth a lightning bolt. You are grazed by the power!");
@@ -3154,7 +3154,7 @@ ais.ai_energybolt = function(who) {
       tgtdesc = tgtdesc.charAt(0).toUpperCase() + tgtdesc.slice(1);
       maintext.addText("The " + who.getDesc() + " launches a bolt of energy. " + tgtdesc + " is struck!");
     }
-    destgraphic = {graphic:"static.png", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
+    destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
   } else {
     if (tgt === PC) {
       maintext.addText("The " + who.getDesc() + " launches a bolt of energy. You resist!");
@@ -3186,7 +3186,7 @@ ais.ai_spit = function(who) {
   if (!tgt) { return; }
 
   let bolt = {};
-  bolt.graphic = "static.png";
+  bolt.graphic = "static.gif";
   bolt.xoffset = GREEN_BALL_X;
   bolt.yoffset = GREEN_BALL_Y;
   bolt.directionalammo = 0;
@@ -3215,7 +3215,7 @@ ais.ai_spit = function(who) {
       tgtdesc = tgtdesc.charAt(0).toUpperCase() + tgtdesc.slice(1);
       maintext.addText("The " + who.getDesc() + " spits venom! " + tgtdesc + " is struck!");
     }
-    destgraphic = {graphic:"static.png", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
+    destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
     let poison = localFactory.createTile("Poison");
     let duration = Dice.roll("1d11+9") * SCALE_TIME;
     poison.setExpiresTime(DUTime.getGameClock() + duration);
@@ -3270,7 +3270,7 @@ ais.ai_magmaspit = function(who) {
       tgtdesc = tgtdesc.charAt(0).toUpperCase() + tgtdesc.slice(1);
       maintext.addText("The " + who.getDesc() + " spits lava! " + tgtdesc + " is struck!");
     }
-    destgraphic = {graphic:"static.png", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
+    destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
     DrawCharFrame();
   } else {
     if (tgt === PC) {
@@ -3447,7 +3447,7 @@ ais.elderdragon = function(who) {
       boltgraphic.directionalammo = 1;
       boltgraphic = GetEffectGraphic(who,{x:who.breathx,y:who.breathy},boltgraphic);
 
-      let destgraphic = {graphic:"static.png", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
+      let destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
 
       let weapon = localFactory.createTile("SpellWeapon");
       weapon.dmgtype = "fire";

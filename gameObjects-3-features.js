@@ -143,7 +143,7 @@ CastleGrassTile.prototype.bumpinto = function(who) {
 function LavaTile() {
   //Graphic Upgraded
   this.name = "Lava";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK + MOVE_SWIM;
   this.blocklos = 0;
   this.desc = "lava";
@@ -195,7 +195,7 @@ function InLava(who, lava) {
 
 function PurpleCarpetNWTile() {
   this.name = "PurpleCarpetNW";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = 0;
 	this.spriteyoffset = -8*32;
   this.blocklos = 0;
@@ -207,7 +207,7 @@ PurpleCarpetNWTile.prototype = new FeatureObject();
 
 function PurpleCarpetNTile() {
   this.name = "PurpleCarpetN";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -32;
 	this.spriteyoffset = -8*32;
   this.blocklos = 0;
@@ -219,7 +219,7 @@ PurpleCarpetNTile.prototype = new FeatureObject();
 
 function PurpleCarpetNETile() {
   this.name = "PurpleCarpetNE";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -2*32;
 	this.spriteyoffset = -8*32;
   this.blocklos = 0;
@@ -231,7 +231,7 @@ PurpleCarpetNETile.prototype = new FeatureObject();
 
 function PurpleCarpetWTile() {
   this.name = "PurpleCarpetW";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = 0;
 	this.spriteyoffset = -9*32;
   this.blocklos = 0;
@@ -243,7 +243,7 @@ PurpleCarpetWTile.prototype = new FeatureObject();
 
 function PurpleCarpetCTile() {
   this.name = "PurpleCarpetC";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -32;
 	this.spriteyoffset = -9*32;
   this.blocklos = 0;
@@ -255,7 +255,7 @@ PurpleCarpetCTile.prototype = new FeatureObject();
 
 function PurpleCarpetETile() {
   this.name = "PurpleCarpetE";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -2*32;
 	this.spriteyoffset = -9*32;
   this.blocklos = 0;
@@ -267,7 +267,7 @@ PurpleCarpetETile.prototype = new FeatureObject();
 
 function PurpleCarpetSWTile() {
   this.name = "PurpleCarpetSW";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = 0;
 	this.spriteyoffset = -10*32;
   this.blocklos = 0;
@@ -279,7 +279,7 @@ PurpleCarpetSWTile.prototype = new FeatureObject();
 
 function PurpleCarpetSTile() {
   this.name = "PurpleCarpetS";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -32;
 	this.spriteyoffset = -10*32;
   this.blocklos = 0;
@@ -291,7 +291,7 @@ PurpleCarpetSTile.prototype = new FeatureObject();
 
 function PurpleCarpetSETile() {
   this.name = "PurpleCarpetSE";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -2*32;
 	this.spriteyoffset = -10*32;
   this.blocklos = 0;
@@ -303,7 +303,7 @@ PurpleCarpetSETile.prototype = new FeatureObject();
 
 function FringeCarpetNWTile() {
   this.name = "FringeCarpetNW";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -3*32;
 	this.spriteyoffset = -8*32;
   this.blocklos = 0;
@@ -315,7 +315,7 @@ FringeCarpetNWTile.prototype = new FeatureObject();
 
 function FringeCarpetNTile() {
   this.name = "FringeCarpetN";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -4*32;
 	this.spriteyoffset = -8*32;
   this.blocklos = 0;
@@ -327,7 +327,7 @@ FringeCarpetNTile.prototype = new FeatureObject();
 
 function FringeCarpetNETile() {
   this.name = "FringeCarpetNE";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -5*32;
 	this.spriteyoffset = -8*32;
   this.blocklos = 0;
@@ -339,7 +339,7 @@ FringeCarpetNETile.prototype = new FeatureObject();
 
 function FringeCarpetWTile() {
   this.name = "FringeCarpetW";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -3*32;
 	this.spriteyoffset = -9*32;
   this.blocklos = 0;
@@ -351,7 +351,7 @@ FringeCarpetWTile.prototype = new FeatureObject();
 
 function FringeCarpetCTile() {
   this.name = "FringeCarpetC";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -4*32;
 	this.spriteyoffset = -9*32;
   this.blocklos = 0;
@@ -363,7 +363,7 @@ FringeCarpetCTile.prototype = new FeatureObject();
 
 function FringeCarpetETile() {
   this.name = "FringeCarpetE";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -5*32;
 	this.spriteyoffset = -9*32;
   this.blocklos = 0;
@@ -375,7 +375,7 @@ FringeCarpetETile.prototype = new FeatureObject();
 
 function FringeCarpetSWTile() {
   this.name = "FringeCarpetSW";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -3*32;
 	this.spriteyoffset = -10*32;
   this.blocklos = 0;
@@ -387,7 +387,7 @@ FringeCarpetSWTile.prototype = new FeatureObject();
 
 function FringeCarpetSTile() {
   this.name = "FringeCarpetS";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -4*32;
 	this.spriteyoffset = -10*32;
   this.blocklos = 0;
@@ -399,7 +399,7 @@ FringeCarpetSTile.prototype = new FeatureObject();
 
 function FringeCarpetSETile() {
   this.name = "FringeCarpetSE";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -5*32;
 	this.spriteyoffset = -10*32;
   this.blocklos = 0;
@@ -411,7 +411,7 @@ FringeCarpetSETile.prototype = new FeatureObject();
 
 function WoodenPillarTile() {
   this.name = "WoodenPillar";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -19*32;
   this.passable = MOVE_ETHEREAL;
@@ -425,7 +425,7 @@ WoodenPillarTile.prototype = new FeatureObject();
 function MarblePillarTile() {
   //Graphics Upgraded
   this.name = "MarblePillar";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -20*32;
   this.passable = MOVE_ETHEREAL;
@@ -438,7 +438,7 @@ MarblePillarTile.prototype = new FeatureObject();
 function CrackedMarblePillarTile() {
   //Graphics Upgraded
   this.name = "CrackedMarblePillar";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -20*32;
   this.passable = MOVE_ETHEREAL;
@@ -451,7 +451,7 @@ CrackedMarblePillarTile.prototype = new FeatureObject();
 function BrokenMarblePillarTile() {
   //Graphics Upgraded
   this.name = "BrokenMarblePillar";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -20*32;
   this.passable = MOVE_ETHEREAL;
@@ -465,7 +465,7 @@ function FenceNSWTile() {
   //Graphics Upgraded
   //new fence
   this.name = "FenceNSW";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -10*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -479,7 +479,7 @@ function FenceWTile() {
   //Graphics Upgraded
   //new fence
   this.name = "FenceW";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -11*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -493,7 +493,7 @@ function FenceWBrokenTile() {
   //Graphics Upgraded
   //new fence
   this.name = "FenceWBroken";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -12*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -507,7 +507,7 @@ function FenceEBrokenTile() {
   //Graphics Upgraded
   //new fence
   this.name = "FenceEBroken";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -12*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -521,7 +521,7 @@ function FenceETile() {
   //Graphics Upgraded
   //new fence
   this.name = "FenceE";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -12*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -535,7 +535,7 @@ function FencePostTile() {
   //Graphics Upgraded
   //new fence
   this.name = "FencePost";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -11*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -549,7 +549,7 @@ function FenceBrokenPostTile() {
   //Graphics Upgraded
   //new fence
   this.name = "FenceBrokenPost";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -12*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -563,7 +563,7 @@ function FenceNSEWTile() {
   //Graphics Upgraded
   //new fence
   this.name = "FenceNSEW";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -1*32;
   this.spriteyoffset = -11*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -576,7 +576,7 @@ FenceNSEWTile.prototype = new FeatureObject();
 function FenceNWTile() {
   //Graphics Upgraded
   this.name = "FenceNW";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -11*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -589,7 +589,7 @@ FenceNWTile.prototype = new FeatureObject();
 function FenceNETile() {
   //Graphics Upgraded
   this.name = "FenceNE";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -11*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -602,7 +602,7 @@ FenceNETile.prototype = new FeatureObject();
 function FenceEWTile() {
   //Graphics Upgraded
   this.name = "FenceEW";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -11*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -615,7 +615,7 @@ FenceEWTile.prototype = new FeatureObject();
 function FenceSETile() {
   //Graphics Upgraded
   this.name = "FenceSE";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -11*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -628,7 +628,7 @@ FenceSETile.prototype = new FeatureObject();
 function FenceSWTile() {
   //Graphics Upgraded
   this.name = "FenceSW";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -12*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -641,7 +641,7 @@ FenceSWTile.prototype = new FeatureObject();
 function FenceNSTile() {
   //Graphics Upgraded
   this.name = "FenceNS";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -11*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -654,7 +654,7 @@ FenceNSTile.prototype = new FeatureObject();
 function FenceEWSTile() {
   //Graphics Upgraded
   this.name = "FenceEWS";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -11*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -667,7 +667,7 @@ FenceEWSTile.prototype = new FeatureObject();
 function FenceEWNTile() {
   //Graphics Upgraded
   this.name = "FenceEWN";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -12*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -680,7 +680,7 @@ FenceEWNTile.prototype = new FeatureObject();
 function FenceENSTile() {
   //Graphics Upgraded
   this.name = "FenceENS";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -12*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -693,7 +693,7 @@ FenceENSTile.prototype = new FeatureObject();
 function FenceEWGateTile() {
   //Graphics Upgraded
 	this.name = "FenceEWGate";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -12*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -703,7 +703,7 @@ function FenceEWGateTile() {
 
   this.pathweight = 2; 
 
-  Openable.call(this, ["static.png", "", -7*32, -12*32], ["static.png", "", 0, -11*32], 0, "sfx_fence_open", "sfx_fence_close", "sfx_locked_door");
+  Openable.call(this, ["static.gif", "", -7*32, -12*32], ["static.gif", "", 0, -11*32], 0, "sfx_fence_open", "sfx_fence_close", "sfx_locked_door");
 }
 FenceEWGateTile.prototype = new FeatureObject();
 
@@ -714,7 +714,7 @@ FenceEWGateTile.prototype.bumpinto = function(who) {
 function StatueBaseTile() {
   // Graphics Upgraded
   this.name = "StatueBase";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -93*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -727,7 +727,7 @@ StatueBaseTile.prototype = new FeatureObject();
 function StatueTopTile() {
   //Graphics Upgraded
   this.name = "StatueTop";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -92*32;
   this.passable = MOVE_ETHEREAL + MOVE_FLY + MOVE_WALK + MOVE_SWIM + MOVE_LEVITATE;
@@ -741,7 +741,7 @@ StatueTopTile.prototype = new FeatureObject();
 function Statue1Tile() {
   //Graphics Upgraded
   this.name = "Statue1";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -94*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -754,7 +754,7 @@ Statue1Tile.prototype = new FeatureObject();
 function Statue2Tile() {
   //Graphics Upgraded
   this.name = "Statue2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -94*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -767,7 +767,7 @@ Statue2Tile.prototype = new FeatureObject();
 function Statue3Tile() {
   //Graphics Upgraded
   this.name = "Statue3";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -94*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -780,7 +780,7 @@ Statue3Tile.prototype = new FeatureObject();
 function Statue4Tile() {
   //Graphics Upgraded
   this.name = "Statue4";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -94*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -793,7 +793,7 @@ Statue4Tile.prototype = new FeatureObject();
 function Statue5Tile() {
   //Graphics Upgraded
   this.name = "Statue5";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -95*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -806,7 +806,7 @@ Statue5Tile.prototype = new FeatureObject();
 function Statue6Tile() {
   //Graphics Upgraded
   this.name = "Statue6";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -95*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -819,7 +819,7 @@ Statue6Tile.prototype = new FeatureObject();
 function PaintingCrossTile() {
   //Graphics Upgraded
   this.name = "PaintingCross";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -20*32;
   this.passable = MOVE_ETHEREAL;
@@ -832,7 +832,7 @@ PaintingCrossTile.prototype = new FeatureObject();
 function PaintingGreenTile() {
   //Graphics Upgraded
   this.name = "PaintingGreen";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -20*32;
   this.passable = MOVE_ETHEREAL;
@@ -845,7 +845,7 @@ PaintingGreenTile.prototype = new FeatureObject();
 function PaintingPurpleTile() {
   //Graphics Upgraded
   this.name = "PaintingPurple";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -20*32;
   this.passable = MOVE_ETHEREAL;
@@ -858,7 +858,7 @@ PaintingPurpleTile.prototype = new FeatureObject();
 function PaintingTreeTile() {
   //Graphics Upgraded
   this.name = "PaintingTree";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -20*32;
   this.passable = MOVE_ETHEREAL;
@@ -882,7 +882,7 @@ PedestalTile.prototype = new FeatureObject();
 
 function WoodSignTile() {
   this.name = "WoodSign";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -1*32;
   this.spriteyoffset = -106*32;
   this.passable = MOVE_ETHEREAL;
@@ -949,14 +949,14 @@ function CoralTile() {
   this.desc = "coral reef";
   this.peerview = "white";
   
-  LightEmitting.call(this, 1);
+  LightEmitting.call(this, 2);
 }
 CoralTile.prototype = new FeatureObject();
 
 function WorldsEndingRaftTile() {
   //Graphics Upgraded
   this.name = "WorldsEndingRaft";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -7*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -972,7 +972,7 @@ WorldsEndingRaftTile.prototype = new FeatureObject();
 function WorldsEndingCenterRaftTile() {
   //Graphics Upgraded
   this.name = "WorldsEndingCenterRaft";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -7*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -1094,7 +1094,7 @@ WorldsEndingCenterRaftTile.prototype.myTurn = function() {
 
 function PotentialReceptacleTile() {
   this.name = "PotentialReceptacle";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0*32;
   this.spriteyoffset = -97*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -1107,7 +1107,7 @@ PotentialReceptacleTile.prototype = new FeatureObject();
 function WorldsEndingRaftSwitchTile() {
   //Graphic Upgraded
   this.name = "WorldsEndingRaftSwitch";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -107*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -1136,7 +1136,7 @@ WorldsEndingRaftSwitchTile.prototype.use = function(who) {
 function DungeonTile() {
   //Graphics Upgraded
   this.name = "Dungeon";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -3*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -1151,7 +1151,7 @@ DungeonTile.prototype = new FeatureObject();
 function Dungeon2Tile() {
   //Graphics Upgraded
   this.name = "Dungeon2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -40*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -1166,7 +1166,7 @@ Dungeon2Tile.prototype = new FeatureObject();
 function Dungeon3Tile() {
   //Graphics Upgraded
   this.name = "Dungeon3";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -40*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -1181,7 +1181,7 @@ Dungeon3Tile.prototype = new FeatureObject();
 function Dungeon4Tile() {
   //Graphics Upgraded
   this.name = "Dungeon4";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -40*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -1196,7 +1196,7 @@ Dungeon4Tile.prototype = new FeatureObject();
 function Dungeon5Tile() {
   //Graphics Upgraded
   this.name = "Dungeon5";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -40*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -1211,7 +1211,7 @@ Dungeon5Tile.prototype = new FeatureObject();
 function Dungeon6Tile() {
   //Graphics Upgraded
   this.name = "Dungeon6";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -40*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -1226,7 +1226,7 @@ Dungeon6Tile.prototype = new FeatureObject();
 function Dungeon7Tile() {
   //Graphics Upgraded
   this.name = "Dungeon7";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -40*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -1241,7 +1241,7 @@ Dungeon7Tile.prototype = new FeatureObject();
 function CaveTile() {
   //Graphics Upgraded
   this.name = "Cave";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -3*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -1255,7 +1255,7 @@ CaveTile.prototype = new FeatureObject();
 
 function SecretCaveTile() {
   this.name = "SecretCave";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -1285,7 +1285,7 @@ SecretCaveTile.prototype.onSearched = function(who) {
 function TowneTile() {
   //Graphics Upgraded
   this.name = "Towne";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -109*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -1312,7 +1312,7 @@ TowneTile.prototype = new FeatureObject();
 function Towne2Tile() {
   //Graphics Upgraded
   this.name = "Towne2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -110*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -1339,7 +1339,7 @@ Towne2Tile.prototype = new FeatureObject();
 function Towne3Tile() {
   //Graphics Upgraded
   this.name = "Towne3";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -4*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -1356,7 +1356,7 @@ Towne3Tile.prototype = new FeatureObject();
 function KeepTile() {
   //Graphics Upgraded
   this.name = "Keep";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -103*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -1381,7 +1381,7 @@ KeepTile.prototype = new FeatureObject();
 
 function TowerTile() {
   this.name = "Tower";
-	this.graphic = "static.png";
+	this.graphic = "static.gif";
 	this.spritexoffset = 0;
   this.spriteyoffset = -174*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -1408,7 +1408,7 @@ TowerTile.prototype = new FeatureObject();
 function LighthouseTile() {
   //Graphics Upgraded
   this.name = "Lighthouse";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -108*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -1434,7 +1434,7 @@ LighthouseTile.prototype = new FeatureObject();
 function VillageTile() {
   //Graphics Upgraded
   this.name = "Village";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;  
   this.spriteyoffset = -3*32;  
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -1451,7 +1451,7 @@ VillageTile.prototype = new FeatureObject();
 function HotelPheranTile() {
   //Graphics Upgraded
   this.name = "HotelPheran";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -4*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -1503,7 +1503,7 @@ HotelPheranTile.prototype.myTurn = function() {
 function CastleTile() {
   //Graphics Upgraded
   this.name = "Castle";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -5*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -1532,7 +1532,7 @@ CastleTile.prototype.bumpinto = function(who) {
 function LeftCastleTile() {
   //Graphics Upgraded
   this.name = "LeftCastle";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -5*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -1546,7 +1546,7 @@ LeftCastleTile.prototype = new FeatureObject();
 function RightCastleTile() {
   //Graphics Upgraded
   this.name = "RightCastle";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -5*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -1560,7 +1560,7 @@ RightCastleTile.prototype = new FeatureObject();
 function FarLeftCastleTile() {
   //Graphics Upgraded
   this.name = "FarLeftCastle";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -5*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -1574,7 +1574,7 @@ FarLeftCastleTile.prototype = new FeatureObject();
 function FarRightCastleTile() {
   //Graphics Upgraded
   this.name = "FarRightCastle";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -5*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -1588,7 +1588,7 @@ FarRightCastleTile.prototype = new FeatureObject();
 function UpperFarLeftCastleTile() {
   //Graphics Upgraded
   this.name = "UpperFarLeftCastle";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -4*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -1602,7 +1602,7 @@ UpperFarLeftCastleTile.prototype = new FeatureObject();
 function UpperFarRightCastleTile() {
   //Graphics Upgraded
   this.name = "UpperFarRightCastle";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -4*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -1616,7 +1616,7 @@ UpperFarRightCastleTile.prototype = new FeatureObject();
 function UpperLeftCastleTile() {
   //Graphics Upgraded
   this.name = "UpperLeftCastle";
-	this.graphic = "static.png";
+	this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -99*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -1639,7 +1639,7 @@ UpperLeftCastleTile.prototype = new FeatureObject();
 function UpperRightCastleTile() {
   //Graphics Upgraded
   this.name = "UpperRightCastle";
-	this.graphic = "static.png";
+	this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -99*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -1663,7 +1663,7 @@ UpperRightCastleTile.prototype = new FeatureObject();
 function UpperCenterCastleTile() {
   //Graphics Upgraded
   this.name = "UpperCenterCastle";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -4*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -1676,7 +1676,7 @@ UpperCenterCastleTile.prototype = new FeatureObject();
 
 function PileOfRocksTile() {
   this.name = "PileOfRocks";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -75*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -1704,7 +1704,7 @@ PushablePileOfRocksTile.prototype = new FeatureObject();
 function DoorwayTile() {
   //Graphics Upgraded
   this.name = "Doorway";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -16*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -1717,7 +1717,7 @@ DoorwayTile.prototype = new FeatureObject();
 function DoorwayDarkenedTile() {
   //Graphics Upgraded
   this.name = "DoorwayDarkened";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -96*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -1730,7 +1730,7 @@ DoorwayDarkenedTile.prototype = new FeatureObject();
 function GreyDoorwayTile() {
   //Graphics Upgraded
   this.name = "GreyDoorway";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -17*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -1743,7 +1743,7 @@ GreyDoorwayTile.prototype = new FeatureObject();
 function GreyDoorwayDarkenedTile() {
   //Graphics Upgraded
   this.name = "GreyDoorwayDarkened";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -96*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -1791,7 +1791,7 @@ StoneDoorwayDarkenedTile.prototype = new FeatureObject();
 
 function WallDoorwayTile() {
   this.name = "WallDoorway";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -17*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -1804,7 +1804,7 @@ WallDoorwayTile.prototype = new FeatureObject();
 function ShrineTile() {
   //Graphics Upgraded
   this.name = "Shrine";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -3*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -1818,7 +1818,7 @@ ShrineTile.prototype = new FeatureObject();
 function BrokenShrineTile() {
   //Graphics Upgraded
   this.name = "BrokenShrine";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -3*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -1832,7 +1832,7 @@ BrokenShrineTile.prototype = new FeatureObject();
 function RuinsTile() {
   //Graphics Upgraded
   this.name = "Ruins";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -3*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -1847,9 +1847,9 @@ RuinsTile.prototype = new FeatureObject();
 
 function ChestTile() {
   //Graphics Upgraded
-  Lockable.call(this, ["static.png","",-2*32,-78*32], ["static.png","",-2*32,-78*32], ["static.png","",-2*32,-78*32], 	"a",  "chest", "a", "locked chest", "a", "magically locked chest");
+  Lockable.call(this, ["static.gif","",-2*32,-78*32], ["static.gif","",-2*32,-78*32], ["static.gif","",-2*32,-78*32], 	"a",  "chest", "a", "locked chest", "a", "magically locked chest");
 	this.name = "Chest";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -78*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_WALK + MOVE_LEVITATE;
@@ -1897,10 +1897,10 @@ ColinChestTile.prototype.usecheck = function(who) {
 
 function WallDoor1Tile() {
   //Graphics Upgraded
-  Lockable.call(this, ["static.png","",-6*32,-16*32], ["static.png","",-6*32,-16*32], ["static.png","",-6*32,-16*32], "a", "door", "a", "locked door", "a", "magically locked door");
+  Lockable.call(this, ["static.gif","",-6*32,-16*32], ["static.gif","",-6*32,-16*32], ["static.gif","",-6*32,-16*32], "a", "door", "a", "locked door", "a", "magically locked door");
 	
 	this.name = "WallDoor1";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -16*32;
 	this.passable = MOVE_ETHEREAL;
@@ -1912,7 +1912,7 @@ function WallDoor1Tile() {
   
   this.pathweight = 2; 
 
-  Openable.call(this, ["static.png","",-6*32,-16*32], ["static.png","",-8*32,-16*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+  Openable.call(this, ["static.gif","",-6*32,-16*32], ["static.gif","",-8*32,-16*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 WallDoor1Tile.prototype = new FeatureObject();
 
@@ -1922,10 +1922,10 @@ WallDoor1Tile.prototype.bumpinto = function(who) {
 
 function WallDoorWindow1Tile() {
   //Graphics Upgraded
-  Lockable.call(this, ["static.png","",-9*32,-15*32], ["static.png","",-9*32,-15*32], ["static.png","",-9*32,-15*32], "a", "door", "a", "locked door", "a", "magically locked door");
+  Lockable.call(this, ["static.gif","",-9*32,-15*32], ["static.gif","",-9*32,-15*32], ["static.gif","",-9*32,-15*32], "a", "door", "a", "locked door", "a", "magically locked door");
 	
 	this.name = "WallDoorWindow1";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -15*32;
 	this.passable = MOVE_ETHEREAL;
@@ -1937,7 +1937,7 @@ function WallDoorWindow1Tile() {
   
   this.pathweight = 2; 
 
-  Openable.call(this, ["static.png","",-9*32,-15*32], ["static.png","",-8*32,-16*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+  Openable.call(this, ["static.gif","",-9*32,-15*32], ["static.gif","",-8*32,-16*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 WallDoorWindow1Tile.prototype = new FeatureObject();
 
@@ -1947,10 +1947,10 @@ WallDoorWindow1Tile.prototype.bumpinto = function(who) {
 
 function WallDoorWindow1LitTile() {
   //Graphics Upgraded
-  Lockable.call(this, ["static.png","",-9*32,-15*32], ["static.png","",-9*32,-15*32], ["static.png","",-9*32,-15*32], "a", "door", "a", "locked door", "a", "magically locked door");
+  Lockable.call(this, ["static.gif","",-9*32,-15*32], ["static.gif","",-9*32,-15*32], ["static.gif","",-9*32,-15*32], "a", "door", "a", "locked door", "a", "magically locked door");
 	
 	this.name = "WallDoorWindow1Lit";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -15*32;
 	this.passable = MOVE_ETHEREAL;
@@ -1962,7 +1962,7 @@ function WallDoorWindow1LitTile() {
   
   this.pathweight = 2; 
 
-  Openable.call(this, ["static.png","",-9*32,-15*32], ["static.png","",-8*32,-16*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+  Openable.call(this, ["static.gif","",-9*32,-15*32], ["static.gif","",-8*32,-16*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 WallDoorWindow1LitTile.prototype = new FeatureObject();
 
@@ -1972,10 +1972,10 @@ WallDoorWindow1LitTile.prototype.bumpinto = function(who) {
 
 function GreyDoor1Tile() {
   //Graphics Upgraded
-  Lockable.call(this, ["static.png","",-7*32,-18*32], ["static.png","",-7*32,-18*32], ["static.png","",-7*32,-18*32], "a", "door", "a", "locked door", "a", "magically locked door");
+  Lockable.call(this, ["static.gif","",-7*32,-18*32], ["static.gif","",-7*32,-18*32], ["static.gif","",-7*32,-18*32], "a", "door", "a", "locked door", "a", "magically locked door");
 	
 	this.name = "GreyDoor1";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -18*32;
 	this.passable = MOVE_ETHEREAL;
@@ -1987,7 +1987,7 @@ function GreyDoor1Tile() {
   
   this.pathweight = 2; 
 
-  Openable.call(this, ["static.png","",-7*32,-18*32], ["static.png","",-7*32,-17*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+  Openable.call(this, ["static.gif","",-7*32,-18*32], ["static.gif","",-7*32,-17*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 GreyDoor1Tile.prototype = new FeatureObject();
 
@@ -1997,10 +1997,10 @@ GreyDoor1Tile.prototype.bumpinto = function(who) {
 
 function GreyDoorWindow1Tile() {
   //Graphics Upgraded
-  Lockable.call(this, ["static.png","",0,-18*32], ["static.png","",0,-18*32], ["static.png","",0,-18*32], "a", "door", "a", "locked door", "a", "magically locked door");
+  Lockable.call(this, ["static.gif","",0,-18*32], ["static.gif","",0,-18*32], ["static.gif","",0,-18*32], "a", "door", "a", "locked door", "a", "magically locked door");
 	
 	this.name = "GreyDoorWindow1";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -18*32;
 	this.passable = MOVE_ETHEREAL;
@@ -2012,7 +2012,7 @@ function GreyDoorWindow1Tile() {
   
   this.pathweight = 2; 
 
-  Openable.call(this, ["static.png","",0,-18*32], ["static.png","",-7*32,-17*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+  Openable.call(this, ["static.gif","",0,-18*32], ["static.gif","",-7*32,-17*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 GreyDoorWindow1Tile.prototype = new FeatureObject();
 
@@ -2022,10 +2022,10 @@ GreyDoorWindow1Tile.prototype.bumpinto = function(who) {
 
 function GreyDoorWindow1LitTile() {
   //Graphics Upgraded
-  Lockable.call(this, ["static.png","",-32,-18*32], ["static.png","",-32,-18*32], ["static.png","",-32,-18*32], "a", "door", "a", "locked door", "a", "magically locked door");
+  Lockable.call(this, ["static.gif","",-32,-18*32], ["static.gif","",-32,-18*32], ["static.gif","",-32,-18*32], "a", "door", "a", "locked door", "a", "magically locked door");
 	
 	this.name = "GreyDoorWindow1Lit";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -18*32;
 	this.passable = MOVE_ETHEREAL;
@@ -2037,7 +2037,7 @@ function GreyDoorWindow1LitTile() {
   
   this.pathweight = 2; 
 
-  Openable.call(this, ["static.png","",-32,-18*32], ["static.png","",-7*32,-17*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+  Openable.call(this, ["static.gif","",-32,-18*32], ["static.gif","",-7*32,-17*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 GreyDoorWindow1LitTile.prototype = new FeatureObject();
 
@@ -2047,10 +2047,10 @@ GreyDoorWindow1LitTile.prototype.bumpinto = function(who) {
 
 function RuinsWallDoorWindow1Tile() {
   //Graphics Upgraded
-  Lockable.call(this, ["static.png","",-9*32,-13*32], ["static.png","",-9*32,-13*32], ["static.png","",-9*32,-13*32], "a", "door", "a", "locked door", "a", "magically locked door");
+  Lockable.call(this, ["static.gif","",-9*32,-13*32], ["static.gif","",-9*32,-13*32], ["static.gif","",-9*32,-13*32], "a", "door", "a", "locked door", "a", "magically locked door");
 	
 	this.name = "RuinsWallDoorWindow1";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -13*32;
 	this.passable = MOVE_ETHEREAL;
@@ -2062,7 +2062,7 @@ function RuinsWallDoorWindow1Tile() {
   
   this.pathweight = 2; 
 
-  Openable.call(this, ["static.png","",-9*32,-13*32], ["static.png","",-9*32,-14*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+  Openable.call(this, ["static.gif","",-9*32,-13*32], ["static.gif","",-9*32,-14*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 RuinsWallDoorWindow1Tile.prototype = new FeatureObject();
 
@@ -2072,10 +2072,10 @@ RuinsWallDoorWindow1Tile.prototype.bumpinto = function(who) {
 
 function RuinsWallDoorWindow1LitTile() {
   //Graphics Upgraded
-  Lockable.call(this, ["static.png","",0,-14*32], ["static.png","",0,-14*32], ["static.png","",0,-14*32], "a", "door", "a", "locked door", "a", "magically locked door");
+  Lockable.call(this, ["static.gif","",0,-14*32], ["static.gif","",0,-14*32], ["static.gif","",0,-14*32], "a", "door", "a", "locked door", "a", "magically locked door");
 	
 	this.name = "RuinsWallDoorWindow1";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -14*32;
 	this.passable = MOVE_ETHEREAL;
@@ -2087,7 +2087,7 @@ function RuinsWallDoorWindow1LitTile() {
   
   this.pathweight = 2; 
 
-  Openable.call(this, ["static.png","",0,-14*32], ["static.png","",-9*32,-14*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+  Openable.call(this, ["static.gif","",0,-14*32], ["static.gif","",-9*32,-14*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 RuinsWallDoorWindow1LitTile.prototype = new FeatureObject();
 
@@ -2097,10 +2097,10 @@ RuinsWallDoorWindow1LitTile.prototype.bumpinto = function(who) {
 
 function RuinsWallDoorWindow2Tile() {
   //Graphics Upgraded
-  Lockable.call(this, ["static.png","",-3*32,-14*32], ["static.png","",-4*32,-15*32], ["static.png","",-5*32,-14*32], "a", "door", "a", "locked door", "a", "magically locked door");
+  Lockable.call(this, ["static.gif","",-3*32,-14*32], ["static.gif","",-4*32,-15*32], ["static.gif","",-5*32,-14*32], "a", "door", "a", "locked door", "a", "magically locked door");
 	
 	this.name = "RuinsWallDoorWindow2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -14*32;
 	this.passable = MOVE_ETHEREAL;
@@ -2112,7 +2112,7 @@ function RuinsWallDoorWindow2Tile() {
   
   this.pathweight = 2; 
 
-  Openable.call(this, ["static.png","",-3*32,-14*32], ["static.png","",-9*32,-14*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+  Openable.call(this, ["static.gif","",-3*32,-14*32], ["static.gif","",-9*32,-14*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 RuinsWallDoorWindow2Tile.prototype = new FeatureObject();
 
@@ -2122,10 +2122,10 @@ RuinsWallDoorWindow2Tile.prototype.bumpinto = function(who) {
 
 function RuinsWallDoorWindow2LitTile() {
   //Graphics Upgraded
-  Lockable.call(this, ["static.png","",-4*32,-14*32], ["static.png","",-5*32,-15*32], ["static.png","",-5*32,-14*32], "a", "door", "a", "locked door", "a", "magically locked door");
+  Lockable.call(this, ["static.gif","",-4*32,-14*32], ["static.gif","",-5*32,-15*32], ["static.gif","",-5*32,-14*32], "a", "door", "a", "locked door", "a", "magically locked door");
 	
 	this.name = "RuinsWallDoorWindow2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -14*32;
 	this.passable = MOVE_ETHEREAL;
@@ -2137,7 +2137,7 @@ function RuinsWallDoorWindow2LitTile() {
   
   this.pathweight = 2; 
 
-  Openable.call(this, ["static.png","",-4*32,-14*32], ["static.png","",-9*32,-14*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+  Openable.call(this, ["static.gif","",-4*32,-14*32], ["static.gif","",-9*32,-14*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 RuinsWallDoorWindow2LitTile.prototype = new FeatureObject();
 
@@ -2147,10 +2147,10 @@ RuinsWallDoorWindow2LitTile.prototype.bumpinto = function(who) {
 
 function DoorWindowTile() {
   //Graphics Upgraded
-  Lockable.call(this, ["static.png","",-3*32,-16*32], ["static.png","",-2*32,-17*32], ["static.png","",-5*32,-16*32], "a", "door", "a", "locked door", "a", "magically locked door");
+  Lockable.call(this, ["static.gif","",-3*32,-16*32], ["static.gif","",-2*32,-17*32], ["static.gif","",-5*32,-16*32], "a", "door", "a", "locked door", "a", "magically locked door");
 	
 	this.name = "DoorWindow";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -16*32;
 	this.passable = MOVE_ETHEREAL;
@@ -2162,7 +2162,7 @@ function DoorWindowTile() {
   
   this.pathweight = 2; 
 
-  Openable.call(this, ["static.png","",-3*32,-16*32], ["static.png","",-8*32,-16*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+  Openable.call(this, ["static.gif","",-3*32,-16*32], ["static.gif","",-8*32,-16*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 DoorWindowTile.prototype = new FeatureObject();
 
@@ -2172,10 +2172,10 @@ DoorWindowTile.prototype.bumpinto = function(who) {
 
 function DoorWindowLitTile() {
   //Graphics Upgraded
-  Lockable.call(this, ["static.png","",-4*32,-16*32], ["static.png","",-3*32,-17*32], ["static.png","",-5*32,-16*32], "a", "door", "a", "locked door", "a", "magically locked door");
+  Lockable.call(this, ["static.gif","",-4*32,-16*32], ["static.gif","",-3*32,-17*32], ["static.gif","",-5*32,-16*32], "a", "door", "a", "locked door", "a", "magically locked door");
 	
 	this.name = "DoorWindowLit";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -16*32;
 	this.passable = MOVE_ETHEREAL;
@@ -2187,7 +2187,7 @@ function DoorWindowLitTile() {
   
   this.pathweight = 2; 
 
-  Openable.call(this, ["static.png","",-4*32,-16*32], ["static.png","",-8*32,-16*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+  Openable.call(this, ["static.gif","",-4*32,-16*32], ["static.gif","",-8*32,-16*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 DoorWindowLitTile.prototype = new FeatureObject();
 
@@ -2197,10 +2197,10 @@ DoorWindowLitTile.prototype.bumpinto = function(who) {
 
 function GreyDoorWindowTile() {
   //Graphics Upgraded
-  Lockable.call(this, ["static.png","",-4*32,-18*32], ["static.png","",-9*32,-42*32], ["static.png","",-6*32,-18*32], "a", "door", "a", "locked door", "a", "magically locked door");
+  Lockable.call(this, ["static.gif","",-4*32,-18*32], ["static.gif","",-9*32,-42*32], ["static.gif","",-6*32,-18*32], "a", "door", "a", "locked door", "a", "magically locked door");
 	
 	this.name = "GreyDoorWindow";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -18*32;
 	this.passable = MOVE_ETHEREAL;
@@ -2212,7 +2212,7 @@ function GreyDoorWindowTile() {
   
   this.pathweight = 2; 
 
-  Openable.call(this, ["static.png","",-4*32,-18*32], ["static.png","",-7*32,-17*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+  Openable.call(this, ["static.gif","",-4*32,-18*32], ["static.gif","",-7*32,-17*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 GreyDoorWindowTile.prototype = new FeatureObject();
 
@@ -2222,10 +2222,10 @@ GreyDoorWindowTile.prototype.bumpinto = function(who) {
 
 function GreyDoorWindowLitTile() {
   //Graphics Upgraded
-  Lockable.call(this, ["static.png","",-5*32,-18*32], ["static.png","",-9*32,-47*32], ["static.png","",-6*32,-18*32], "a", "door", "a", "locked door", "a", "magically locked door");
+  Lockable.call(this, ["static.gif","",-5*32,-18*32], ["static.gif","",-9*32,-47*32], ["static.gif","",-6*32,-18*32], "a", "door", "a", "locked door", "a", "magically locked door");
 	
 	this.name = "GreyDoorWindowLit";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -18*32;
 	this.passable = MOVE_ETHEREAL;
@@ -2237,7 +2237,7 @@ function GreyDoorWindowLitTile() {
   
   this.pathweight = 2; 
 
-  Openable.call(this, ["static.png","",-5*32,-18*32], ["static.png","",-7*32,-17*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+  Openable.call(this, ["static.gif","",-5*32,-18*32], ["static.gif","",-7*32,-17*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 GreyDoorWindowLitTile.prototype = new FeatureObject();
 
@@ -2247,10 +2247,10 @@ GreyDoorWindowLitTile.prototype.bumpinto = function(who) {
 
 function StonePortcullisTile() {
   //Graphics Upgraded
-  Lockable.call(this, ["static.png", "", -2*32, -15*32], ["static.png", "", -2*32, -15*32], ["static.png", "", -2*32, -15*32], "a", "portcullis", "a", "portcullis", "a", "portcullis");
+  Lockable.call(this, ["static.gif", "", -2*32, -15*32], ["static.gif", "", -2*32, -15*32], ["static.gif", "", -2*32, -15*32], "a", "portcullis", "a", "portcullis", "a", "portcullis");
 	
 	this.name = "StonePortcullis";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -15*32;
 	this.passable = MOVE_ETHEREAL;
@@ -2261,7 +2261,7 @@ function StonePortcullisTile() {
 
   this.pathweight = 2; 
 
-  Openable.call(this, ["static.png", "", -2*32, -15*32], ["static.png", "", 0, -15*32], 0, "sfx_portcullis_open", "sfx_portcullis_close", "sfx_locked_door");  
+  Openable.call(this, ["static.gif", "", -2*32, -15*32], ["static.gif", "", 0, -15*32], 0, "sfx_portcullis_open", "sfx_portcullis_close", "sfx_locked_door");  
 }
 StonePortcullisTile.prototype = new FeatureObject();
 
@@ -2271,7 +2271,7 @@ StonePortcullisTile.prototype.bumpinto = function(who) {
 
 function StonePortcullisAlwaysClosedTile() {
 	this.name = "StonePortcullisAlwaysClosed";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -15*32;
 	this.passable = MOVE_ETHEREAL;
@@ -2285,10 +2285,10 @@ function StonePortcullisAlwaysClosedTile() {
 StonePortcullisAlwaysClosedTile.prototype = new FeatureObject();
 
 function WallPortcullisTile() {
-  Lockable.call(this, ["static.png", "", -9*32, -16*32], ["static.png", "", -9*32, -16*32], ["static.png", "", -9*32, -16*32], "a", "portcullis", "a", "portcullis", "a", "portcullis");
+  Lockable.call(this, ["static.gif", "", -9*32, -16*32], ["static.gif", "", -9*32, -16*32], ["static.gif", "", -9*32, -16*32], "a", "portcullis", "a", "portcullis", "a", "portcullis");
 	
 	this.name = "WallPortcullis";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -16*32;
 	this.passable = MOVE_ETHEREAL;
@@ -2299,7 +2299,7 @@ function WallPortcullisTile() {
 
   this.pathweight = 2; 
 
-  Openable.call(this, ["static.png", "", -9*32, -16*32], ["static.png", "", 0, -17*32], 0, "sfx_portcullis_open", "sfx_portcullis_close", "sfx_locked_door");  
+  Openable.call(this, ["static.gif", "", -9*32, -16*32], ["static.gif", "", 0, -17*32], 0, "sfx_portcullis_open", "sfx_portcullis_close", "sfx_locked_door");  
 }
 WallPortcullisTile.prototype = new FeatureObject();
 
@@ -2308,10 +2308,10 @@ WallPortcullisTile.prototype.bumpinto = function(who) {
 }
 
 function GreyWallPortcullisTile() {
-  Lockable.call(this, ["static.png", "", -4*32, -17*32], ["static.png", "", -4*32, -17*32], ["static.png", "", -4*32, -17*32], "a", "portcullis", "a", "portcullis", "a", "portcullis");
+  Lockable.call(this, ["static.gif", "", -4*32, -17*32], ["static.gif", "", -4*32, -17*32], ["static.gif", "", -4*32, -17*32], "a", "portcullis", "a", "portcullis", "a", "portcullis");
 	
 	this.name = "GreyWallPortcullis";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -17*32;
 	this.passable = MOVE_ETHEREAL;
@@ -2322,7 +2322,7 @@ function GreyWallPortcullisTile() {
 
   this.pathweight = 2; 
 
-  Openable.call(this, ["static.png", "", -4*32, -17*32], ["static.png", "", -5*32, -17*32], 0, "sfx_portcullis_open", "sfx_portcullis_close", "sfx_locked_door");  
+  Openable.call(this, ["static.gif", "", -4*32, -17*32], ["static.gif", "", -5*32, -17*32], 0, "sfx_portcullis_open", "sfx_portcullis_close", "sfx_locked_door");  
 }
 GreyWallPortcullisTile.prototype = new FeatureObject();
 
@@ -2334,7 +2334,7 @@ function BloodyCorpseTile() {
   //Graphics Updated
   // if dark skinned, shift xoffset by -32
 	this.name = "BloodyCorpse";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -78*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2351,7 +2351,7 @@ function CorpseTile() {
   //Graphics Updated
   // if dark skinned, shift xoffset by -32
 	this.name = "Corpse";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -77*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2366,7 +2366,7 @@ CorpseTile.prototype = new FeatureObject();
 
 function BloodTile() {
 	this.name = "Blood";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -75*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2407,7 +2407,7 @@ function StreetLampTile() {
   this.prefix = "a";
 	this.desc = "burning torch";
 
-	LightEmitting.call(this, 4);
+	LightEmitting.call(this, 5);
 
   ManualAnimation.call(this, { 
     animstart: 0,
@@ -2424,7 +2424,7 @@ StreetLampTile.prototype = new FeatureObject();
 function TorchWestTile() {
   //Graphics Upgraded
 	this.name = "TorchWest";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -113*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -2432,7 +2432,7 @@ function TorchWestTile() {
   this.prefix = "a";
 	this.desc = "burning torch";
 
-	LightEmitting.call(this, 2);
+	LightEmitting.call(this, 3);
 
   ManualAnimation.call(this, { 
     animstart: -5*32,
@@ -2453,7 +2453,7 @@ TorchWestTile.prototype.use = function(who) {
 function TorchEastTile() {
   //Graphics Upgraded
 	this.name = "TorchEast";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -114*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -2461,7 +2461,7 @@ function TorchEastTile() {
   this.prefix = "a";
 	this.desc = "burning torch";
 
-	LightEmitting.call(this, 2);
+	LightEmitting.call(this, 3);
 
   ManualAnimation.call(this, { 
     animstart: -5*32,
@@ -2482,7 +2482,7 @@ TorchEastTile.prototype.use = function(who) {
 function TorchWestOutTile() {
   //Graphics Upgraded
 	this.name = "TorchWestOut";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -83*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -2499,7 +2499,7 @@ TorchWestOutTile.prototype.use = function(who) {
 function TorchEastOutTile() {
   //Graphics Upgraded
 	this.name = "TorchEastOut";
-	this.graphic = "static.png";
+	this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -83*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -2548,7 +2548,7 @@ function UseTorch(who,torch) {
 
 function WoodpileTile() {
 	this.name = "Woodpile";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -76*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2560,7 +2560,7 @@ WoodpileTile.prototype = new FeatureObject();
 
 function CampfireTile() {
 	this.name = "Campfire";
-	this.graphic = "static.png";
+	this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -98*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2570,7 +2570,7 @@ function CampfireTile() {
 	this.pathweight = 5;
 	this.firedamage = "2d4";
 	
-	LightEmitting.call(this, 2);
+	LightEmitting.call(this, 3);
 	HasAmbientNoise.call(this,"sfx_fire_crackle",1.5);
 
   ManualAnimation.call(this, { animstart: -128,
@@ -2649,7 +2649,7 @@ CampfireExtinguishedTile.prototype = new FeatureObject();
 
 function BrazierTile() {
 	this.name = "Brazier";
-	this.graphic = "static.png";
+	this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -97*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -2657,7 +2657,7 @@ function BrazierTile() {
   this.prefix = "a";
 	this.desc = "brazier";
 	
-	LightEmitting.call(this, 3);  
+	LightEmitting.call(this, 4);  
   ManualAnimation.call(this, { animstart: -128,
     animlength: 4,
     animstyle: "random",
@@ -2693,7 +2693,7 @@ BrazierTile.prototype.use = function(who) {
 function UnlitBrazierTile() {
   //Graphics Upgraded
 	this.name = "UnlitBrazier";
-	this.graphic = "static.png";
+	this.graphic = "static.gif";
 	this.spritexoffset = -9*32;
 	this.spriteyoffset = -80*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -2734,7 +2734,7 @@ function WEBrazierTile() {
   this.prefix = "a";
 	this.desc = "brazier";
 	
-	LightEmitting.call(this, 2);  
+	LightEmitting.call(this, 3);  
 }
 WEBrazierTile.prototype = new FeatureObject();
 
@@ -2760,7 +2760,7 @@ WEBrazierTile.prototype.use = function(who) {
 
 function UnlitWEBrazierTile() {
 	this.name = "UnlitWEBrazier";
-	this.graphic = "static.png";
+	this.graphic = "static.gif";
 	this.spritexoffset = -9*32;
 	this.spriteyoffset = -80*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -2877,7 +2877,7 @@ WEBrazier2Tile.prototype.use = function(who) {
 
 function WEUnlitBrazier2Tile() {
 	this.name = "WEUnlitBrazier2";
-	this.graphic = "static.png";
+	this.graphic = "static.gif";
 	this.spritexoffset = -9*32;
 	this.spriteyoffset = -80*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -2912,7 +2912,7 @@ WEUnlitBrazier2Tile.prototype.use = function(who) {
 
 function CrystalTrapSpaceTile() {
 	this.name = "CrystalTrapSpace";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -111*32;
 	this.passable = MOVE_WALK + MOVE_LEVITATE + MOVE_FLY + MOVE_ETHEREAL;
@@ -3008,7 +3008,7 @@ CrystalTrapSpaceTile.prototype.myTurn = function() {
 
 function SpitTile() {
 	this.name = "Spit";
-	this.graphic = "static.png";
+	this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -162*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -3034,7 +3034,7 @@ SpitTile.prototype = new FeatureObject();
 function FireplaceTile() {
   //Graphics Upgraded
 	this.name = "Fireplace";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -111*32;
 	this.passable = MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3046,7 +3046,7 @@ function FireplaceTile() {
   this.firedamage = "3d4";
 //  this.nowander = 1;
 	
-	LightEmitting.call(this, 2);
+	LightEmitting.call(this, 3);
 	HasAmbientNoise.call(this,"sfx_fire_crackle",1.5);
 
   ManualAnimation.call(this, { 
@@ -3104,7 +3104,7 @@ FireplaceTile.prototype.myTurn = function() {
 function SmallFireplaceTile() {
   //Graphics Upgraded
 	this.name = "SmallFireplace";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -112*32;
 
@@ -3113,7 +3113,7 @@ SmallFireplaceTile.prototype = new FireplaceTile();
 
 function DustyFireplaceTile() {
 	this.name = "DustyFireplace";
-	this.graphic = "static.png";
+	this.graphic = "static.gif";
 	this.spritexoffset = -8*32;
 	this.spriteyoffset = -20*32;
 	this.passable = MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3126,7 +3126,7 @@ DustyFireplaceTile.prototype = new FeatureObject();
 
 function SmallDustyFireplaceTile() {
 	this.name = "SmallDustyFireplace";
-	this.graphic = "static.png";
+	this.graphic = "static.gif";
 	this.spritexoffset = -9*32;
 	this.spriteyoffset = -20*32;
 	this.passable = MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3140,7 +3140,7 @@ SmallDustyFireplaceTile.prototype = new FeatureObject();
 function AltarTile() {
   //Graphics Upgraded
 	this.name = "Altar";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -78*32;
 	this.passable = MOVE_ETHEREAL + MOVE_FLY;
@@ -3154,7 +3154,7 @@ AltarTile.prototype = new FeatureObject();
 function ThinAltarTile() {
   //Graphics Upgraded
 	this.name = "ThinAltar";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -77*32;
 	this.passable = MOVE_ETHEREAL + MOVE_FLY;
@@ -3168,7 +3168,7 @@ ThinAltarTile.prototype = new FeatureObject();
 function ThroneTile() {
   //Graphics Upgraded
 	this.name = "Throne";
-	this.graphic = "static.png";
+	this.graphic = "static.gif";
 	this.spritexoffset = -5*32;
 	this.spriteyoffset = -85*32;
 	this.passable = MOVE_ETHEREAL + MOVE_FLY + MOVE_LEVITATE + MOVE_WALK;
@@ -3195,7 +3195,7 @@ ThroneTile.prototype.walkoff = function(who) {
 function BDThroneTile() {
   //Graphics Upgraded
 	this.name = "BDThrone";
-	this.graphic = "static.png";
+	this.graphic = "static.gif";
 	this.spritexoffset = -4*32;
 	this.spriteyoffset = -85*32;
 	this.passable = MOVE_ETHEREAL + MOVE_FLY + MOVE_LEVITATE + MOVE_WALK;
@@ -3245,10 +3245,10 @@ BDThroneTile.prototype.walkoff = function(who) {
 }
 
 function RuinsWallDoor1Tile() {
-  Lockable.call(this, ["static.png","",-8*32,-13*32], ["static.png","",-8*32,-13*32], ["static.png","",-8*32,-13*32], "a", "door", "a", "locked door", "a", "magically locked door");
+  Lockable.call(this, ["static.gif","",-8*32,-13*32], ["static.gif","",-8*32,-13*32], ["static.gif","",-8*32,-13*32], "a", "door", "a", "locked door", "a", "magically locked door");
   	
 	this.name = "RuinsWallDoor1";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -13*32;
 	this.passable = MOVE_ETHEREAL;
@@ -3258,7 +3258,7 @@ function RuinsWallDoor1Tile() {
   
   this.pathweight = 2; 
 
-	Openable.call(this, ["static.png","",-8*32,-13*32], ["static.png","",-9*32,-14*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+	Openable.call(this, ["static.gif","",-8*32,-13*32], ["static.gif","",-9*32,-14*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 RuinsWallDoor1Tile.prototype = new FeatureObject();
 
@@ -3267,10 +3267,10 @@ RuinsWallDoor1Tile.prototype.bumpinto = function(who) {
 }
 
 function RuinsWallDoor2Tile() {
-  Lockable.call(this, ["static.png","",-1*32,-14*32], ["static.png","",-3*32,-15*32], ["static.png","",-2*32,-14*32], "a", "door", "a", "locked door", "a", "magically locked door");
+  Lockable.call(this, ["static.gif","",-1*32,-14*32], ["static.gif","",-3*32,-15*32], ["static.gif","",-2*32,-14*32], "a", "door", "a", "locked door", "a", "magically locked door");
   	
 	this.name = "RuinsWallDoor2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -1*32;
   this.spriteyoffset = -14*32;
 	this.passable = MOVE_ETHEREAL;
@@ -3280,7 +3280,7 @@ function RuinsWallDoor2Tile() {
   
   this.pathweight = 2; 
 
-	Openable.call(this, ["static.png","",-1*32,-14*32], ["static.png","",-9*32,-14*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+	Openable.call(this, ["static.gif","",-1*32,-14*32], ["static.gif","",-9*32,-14*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 RuinsWallDoor2Tile.prototype = new FeatureObject();
 
@@ -3290,10 +3290,10 @@ RuinsWallDoor2Tile.prototype.bumpinto = function(who) {
 
 function DoorTile() {
   //Graphics Upgraded
-  Lockable.call(this, ["static.png","",-32,-16*32], ["static.png","",-32,-17*32], ["static.png","",-2*32,-16*32], "a", "door", "a", "locked door", "a", "magically locked door");
+  Lockable.call(this, ["static.gif","",-32,-16*32], ["static.gif","",-32,-17*32], ["static.gif","",-2*32,-16*32], "a", "door", "a", "locked door", "a", "magically locked door");
   	
 	this.name = "Door";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -16*32;
 	this.passable = MOVE_ETHEREAL;
@@ -3303,7 +3303,7 @@ function DoorTile() {
   
   this.pathweight = 2; 
 
-	Openable.call(this, ["static.png", "", -32, -16*32], ["static.png","",-8*32,-16*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+	Openable.call(this, ["static.gif", "", -32, -16*32], ["static.gif","",-8*32,-16*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 DoorTile.prototype = new FeatureObject();
 
@@ -3313,10 +3313,10 @@ DoorTile.prototype.bumpinto = function(who) {
 
 function DaemonDoorTile() {
   //Graphics Upgraded
-  Lockable.call(this, ["static.png","",-32,-16*32], ["static.png","",-32,-17*32], ["static.png","",-2*32,-16*32], "a", "door", "a", "locked door", "a", "magically locked door");
+  Lockable.call(this, ["static.gif","",-32,-16*32], ["static.gif","",-32,-17*32], ["static.gif","",-2*32,-16*32], "a", "door", "a", "locked door", "a", "magically locked door");
   	
 	this.name = "DaemonDoor";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -16*32;
 	this.passable = MOVE_ETHEREAL;
@@ -3326,7 +3326,7 @@ function DaemonDoorTile() {
   
   this.pathweight = 2; 
 
-	Openable.call(this, ["static.png", "", -32, -16*32], ["static.png","",-8*32,-16*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+	Openable.call(this, ["static.gif", "", -32, -16*32], ["static.gif","",-8*32,-16*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 DaemonDoorTile.prototype = new FeatureObject();
 
@@ -3379,10 +3379,10 @@ TalkingDoorTile.prototype.activate = function(timeoverride) {
 
 function GreyDoorTile() {
   //Graphics Upgraded
-  Lockable.call(this, ["static.png","",-2*32,-18*32], ["static.png","",-9*32,-41*32], ["static.png","",-3*32,-18*32], "a", "door", "a", "locked door", "a", "magically locked door");
+  Lockable.call(this, ["static.gif","",-2*32,-18*32], ["static.gif","",-9*32,-41*32], ["static.gif","",-3*32,-18*32], "a", "door", "a", "locked door", "a", "magically locked door");
   	
 	this.name = "GreyDoor";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -18*32;
 	this.passable = MOVE_ETHEREAL;
@@ -3392,7 +3392,7 @@ function GreyDoorTile() {
   
   this.pathweight = 2; 
 
-	Openable.call(this, ["static.png", "", -2*32, -18*32], ["static.png","",-7*32,-17*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+	Openable.call(this, ["static.gif", "", -2*32, -18*32], ["static.gif","",-7*32,-17*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 GreyDoorTile.prototype = new FeatureObject();
 
@@ -3669,7 +3669,7 @@ function InAPoisonField(who){
 function LadderDownTile() {
   //Graphics Upgraded
   this.name = "LadderDown";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -80*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3690,7 +3690,7 @@ LadderDownTile.prototype = new FeatureObject();
 function LadderUpTile() {
   //Graphics Upgraded
   this.name = "LadderUp";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -80*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3711,7 +3711,7 @@ LadderUpTile.prototype = new FeatureObject();
 function StairDownTile() {
   //Graphics Upgraded
   this.name = "StairDown";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -81*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3731,7 +3731,7 @@ StairDownTile.prototype = new FeatureObject();
 function StairUpTile() {
   // Graphics Upgraded
   this.name = "StairUp";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -81*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3751,7 +3751,7 @@ StairUpTile.prototype = new FeatureObject();
 function StairDown2Tile() {
   // Graphics Upgraded
   this.name = "StairDown2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -80*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3771,7 +3771,7 @@ StairDown2Tile.prototype = new FeatureObject();
 function StairUp2Tile() {
   //Graphics Upgraded
   this.name = "StairUp2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -80*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3791,7 +3791,7 @@ StairUp2Tile.prototype = new FeatureObject();
 function FancyStairDownTile() {
   //Graphics Upgraded
   this.name = "FancyStairDown";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -81*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3811,7 +3811,7 @@ FancyStairDownTile.prototype = new FeatureObject();
 function FancyStairUpTile() {
   // Graphics Upgraded
   this.name = "FancyStairUp";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -81*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3831,7 +3831,7 @@ FancyStairUpTile.prototype = new FeatureObject();
 function FancyStairDown2Tile() {
   // Graphics Upgraded
   this.name = "FancyStairDown2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -81*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3851,7 +3851,7 @@ FancyStairDown2Tile.prototype = new FeatureObject();
 function FancyStairUp2Tile() {
   //Graphics Upgraded
   this.name = "FancyStairUp2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -81*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3871,7 +3871,7 @@ FancyStairUp2Tile.prototype = new FeatureObject();
 function WoodenStairDownTile() {
   //Graphics Upgraded
   this.name = "WoodenStairDown";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -81*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3891,7 +3891,7 @@ WoodenStairDownTile.prototype = new FeatureObject();
 function WoodenStairUpTile() {
   //Graphics Upgraded
   this.name = "WoodenStairUp";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -81*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3911,7 +3911,7 @@ WoodenStairUpTile.prototype = new FeatureObject();
 function WoodenStairDown2Tile() {
   //Graphics Upgraded
   this.name = "WoodenStairDown2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -82*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3931,7 +3931,7 @@ WoodenStairDown2Tile.prototype = new FeatureObject();
 function WoodenStairUp2Tile() {
   //Graphics Upgraded
   this.name = "WoodenStairUp2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -82*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3951,7 +3951,7 @@ WoodenStairUp2Tile.prototype = new FeatureObject();
 function SingleSignpostTile() {
   //Graphics Upgraded
   this.name = "SingleSignpost";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -75*32;
   this.passable = MOVE_ETHEREAL;
@@ -3965,7 +3965,7 @@ SingleSignpostTile.prototype = new FeatureObject();
 function SignpostLeftTile() {
   //Graphics Upgraded
   this.name = "SignpostLeft";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -88*32;
   this.passable = MOVE_ETHEREAL;
@@ -3979,7 +3979,7 @@ SignpostLeftTile.prototype = new FeatureObject();
 function SignpostRightTile() {
   //Graphics Upgraded
   this.name = "SignpostRight";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -88*32;
   this.passable = MOVE_ETHEREAL;
@@ -3993,7 +3993,7 @@ SignpostRightTile.prototype = new FeatureObject();
 function CarpenterSignTile() {
   //Graphics Upgraded
   this.name = "CarpenterSign";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -72*32;
   this.passable = MOVE_ETHEREAL;
@@ -4007,7 +4007,7 @@ CarpenterSignTile.prototype = new FeatureObject();
 function CarpenterSign2Tile() {
   //Graphics Upgraded
   this.name = "CarpenterSign2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -89*32;
   this.passable = MOVE_ETHEREAL;
@@ -4021,7 +4021,7 @@ CarpenterSign2Tile.prototype = new FeatureObject();
 function InnSignTile() {
   //Graphics Upgraded
   this.name = "InnSign";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -72*32;
   this.passable = MOVE_ETHEREAL;
@@ -4035,7 +4035,7 @@ InnSignTile.prototype = new FeatureObject();
 function InnSign2Tile() {
   //Graphics Upgraded
   this.name = "InnSign2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -89*32;
   this.passable = MOVE_ETHEREAL;
@@ -4049,7 +4049,7 @@ InnSign2Tile.prototype = new FeatureObject();
 function TavernSignTile() {
   //Graphics Upgraded
   this.name = "TavernSign";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -71*32;
   this.passable = MOVE_ETHEREAL;
@@ -4063,7 +4063,7 @@ TavernSignTile.prototype = new FeatureObject();
 function TavernSign2Tile() {
   //Graphics Upgraded
   this.name = "TavernSign2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -88*32;
   this.passable = MOVE_ETHEREAL;
@@ -4077,7 +4077,7 @@ TavernSign2Tile.prototype = new FeatureObject();
 function ArmourySignTile() {
   //Graphics Upgraded
   this.name = "ArmourySign";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -71*32;
   this.passable = MOVE_ETHEREAL;
@@ -4091,7 +4091,7 @@ ArmourySignTile.prototype = new FeatureObject();
 function ArmourySign2Tile() {
   //Graphics Upgraded
   this.name = "ArmourySign2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -88*32;
   this.passable = MOVE_ETHEREAL;
@@ -4105,7 +4105,7 @@ ArmourySign2Tile.prototype = new FeatureObject();
 function GrocerSignTile() {
   //Graphics Upgraded
   this.name = "GrocerSign";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -74*32;
   this.passable = MOVE_ETHEREAL;
@@ -4119,7 +4119,7 @@ GrocerSignTile.prototype = new FeatureObject();
 function GrocerSign2Tile() {
   //Graphics Upgraded
   this.name = "GrocerSign2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -90*32;
   this.passable = MOVE_ETHEREAL;
@@ -4146,7 +4146,7 @@ GrocerSign_2Tile.prototype = new FeatureObject();
 function WeaponSignTile() {
   //Graphics Upgraded
   this.name = "WeaponSign";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -71*32;
   this.passable = MOVE_ETHEREAL;
@@ -4160,7 +4160,7 @@ WeaponSignTile.prototype = new FeatureObject();
 function WeaponSign2Tile() {
   //Graphics Upgraded
   this.name = "WeaponSign2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -88*32;
   this.passable = MOVE_ETHEREAL;
@@ -4174,7 +4174,7 @@ WeaponSign2Tile.prototype = new FeatureObject();
 function BowyerSignTile() {
   //Grahics Upgraded
   this.name = "BowyerSign";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -72*32;
   this.passable = MOVE_ETHEREAL;
@@ -4188,7 +4188,7 @@ BowyerSignTile.prototype = new FeatureObject();
 function BowyerSign2Tile() {
   //Grahics Upgraded
   this.name = "BowyerSign2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -89*32;
   this.passable = MOVE_ETHEREAL;
@@ -4202,7 +4202,7 @@ BowyerSign2Tile.prototype = new FeatureObject();
 function AlchemistSignTile() {
   //Graphics Upgraded
   this.name = "AlchemistSign";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -71*32;
   this.passable = MOVE_ETHEREAL;
@@ -4216,7 +4216,7 @@ AlchemistSignTile.prototype = new FeatureObject();
 function AlchemistSign2Tile() {
   //Graphics Upgraded
   this.name = "AlchemistSign2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -88*32;
   this.passable = MOVE_ETHEREAL;
@@ -4230,7 +4230,7 @@ AlchemistSign2Tile.prototype = new FeatureObject();
 function MagicShoppeSignTile() {
   //Graphics Upgraded
   this.name = "MagicShoppeSign";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -72*32;
   this.passable = MOVE_ETHEREAL;
@@ -4244,7 +4244,7 @@ MagicShoppeSignTile.prototype = new FeatureObject();
 function MagicShoppeSign2Tile() {
   //Graphics Upgraded
   this.name = "MagicShoppeSign2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -89*32;
   this.passable = MOVE_ETHEREAL;
@@ -4258,7 +4258,7 @@ MagicShoppeSign2Tile.prototype = new FeatureObject();
 function HealerSignTile() {
   //Graphics Upgraded
   this.name = "HealerSign";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -71*32;
   this.passable = MOVE_ETHEREAL;
@@ -4272,7 +4272,7 @@ HealerSignTile.prototype = new FeatureObject();
 function HealerSign2Tile() {
   //Graphics Upgraded
   this.name = "HealerSign2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -88*32;
   this.passable = MOVE_ETHEREAL;
@@ -4286,7 +4286,7 @@ HealerSign2Tile.prototype = new FeatureObject();
 function CasinoSignTile() {
   //Graphics Upgraded
   this.name = "CasinoSign";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -72*32;
   this.passable = MOVE_ETHEREAL;
@@ -4300,7 +4300,7 @@ CasinoSignTile.prototype = new FeatureObject();
 function CasinoSign2Tile() {
   //Graphics Upgraded
   this.name = "CasinoSign2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -89*32;
   this.passable = MOVE_ETHEREAL;
@@ -4314,7 +4314,7 @@ CasinoSign2Tile.prototype = new FeatureObject();
 function PaladinSignTile() {
   //Graphics Upgraded
   this.name = "PaladinSign";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -72*32;
   this.passable = MOVE_ETHEREAL;
@@ -4328,7 +4328,7 @@ PaladinSignTile.prototype = new FeatureObject();
 function PaladinSign2Tile() {
   //Graphics Upgraded
   this.name = "PaladinSign2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -90*32;
   this.passable = MOVE_ETHEREAL;
@@ -4342,7 +4342,7 @@ PaladinSign2Tile.prototype = new FeatureObject();
 function HerbalistSignTile() {
   //Graphics Upgraded
   this.name = "HerbalistSign";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -72*32;
   this.passable = MOVE_ETHEREAL;
@@ -4356,7 +4356,7 @@ HerbalistSignTile.prototype = new FeatureObject();
 function HerbalistSign2Tile() {
   //Graphics Upgraded
   this.name = "HerbalistSign2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -89*32;
   this.passable = MOVE_ETHEREAL;
@@ -4370,7 +4370,7 @@ HerbalistSign2Tile.prototype = new FeatureObject();
 function CartographerSignTile() {
   //Graphics Upgraded
   this.name = "CartographerSign";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -73*32;
   this.passable = MOVE_ETHEREAL;
@@ -4384,7 +4384,7 @@ CartographerSignTile.prototype = new FeatureObject();
 function CartographerSign2Tile() {
   //Graphics Upgraded
   this.name = "CartographerSign2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -89*32;
   this.passable = MOVE_ETHEREAL;
@@ -4398,7 +4398,7 @@ CartographerSign2Tile.prototype = new FeatureObject();
 function WhitesmithSignTile() {
   //Graphics Upgraded
   this.name = "WhitesmithSign";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -73*32;
   this.passable = MOVE_ETHEREAL;
@@ -4412,7 +4412,7 @@ WhitesmithSignTile.prototype = new FeatureObject();
 function WhitesmithSign2Tile() {
   //Graphics Upgraded
   this.name = "WhitesmithSign2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -89*32;
   this.passable = MOVE_ETHEREAL;
@@ -4426,7 +4426,7 @@ WhitesmithSign2Tile.prototype = new FeatureObject();
 function CourthouseSignTile() {
   //Graphics Upgraded
   this.name = "CourthouseSign";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -74*32;
   this.passable = MOVE_ETHEREAL;
@@ -4440,7 +4440,7 @@ CourthouseSignTile.prototype = new FeatureObject();
 function CourthouseSign2Tile() {
   //Graphics Upgraded
   this.name = "CourthouseSign2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -90*32;
   this.passable = MOVE_ETHEREAL;
@@ -4454,7 +4454,7 @@ CourthouseSign2Tile.prototype = new FeatureObject();
 function BardSignTile() {
   //Graphics Upgraded
   this.name = "BardSign";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -71*32;
   this.passable = MOVE_ETHEREAL;
@@ -4468,7 +4468,7 @@ BardSignTile.prototype = new FeatureObject();
 function BardSign2Tile() {
   //Graphics Upgraded
   this.name = "BardSign2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -88*32;
   this.passable = MOVE_ETHEREAL;
@@ -4482,7 +4482,7 @@ BardSign2Tile.prototype = new FeatureObject();
 function BrokenSignTile() {
   //Graphics Upgraded
   this.name = "BrokenSign";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -72*32;
   this.passable = MOVE_ETHEREAL;
@@ -4496,7 +4496,7 @@ BrokenSignTile.prototype = new FeatureObject();
 function BrokenSign2Tile() {
   //Graphics Upgraded
   this.name = "BrokenSign2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -90*32;
   this.passable = MOVE_ETHEREAL;
@@ -4510,7 +4510,7 @@ BrokenSign2Tile.prototype = new FeatureObject();
 function UnfinishedSignTile() {
   //Graphics Upgraded
   this.name = "UnfinishedSign";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -75*32;
   this.passable = MOVE_ETHEREAL;
@@ -4524,7 +4524,7 @@ UnfinishedSignTile.prototype = new FeatureObject();
 function UnfinishedSign2Tile() {
   //Graphics Upgraded
   this.name = "UnfinishedSign2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -90*32;
   this.passable = MOVE_ETHEREAL;
@@ -4537,7 +4537,7 @@ UnfinishedSign2Tile.prototype = new FeatureObject();
 
 function TombstoneTile() {
   this.name = "Tombstone";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -109*32;
   this.passable = MOVE_ETHEREAL;
@@ -4551,7 +4551,7 @@ TombstoneTile.prototype = new FeatureObject();
 function TrainingDummyTile() {
   //Graphics Upgraded
   this.name = "TrainingDummy";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -76*32;
   this.passable = MOVE_ETHEREAL;
@@ -4569,7 +4569,7 @@ TrainingDummyTile.prototype = new FeatureObject();
 function ArcheryTargetTile() {
   //Graphics Upgraded
   this.name = "ArcheryTarget";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -76*32;
   this.passable = MOVE_ETHEREAL;
@@ -4587,7 +4587,7 @@ ArcheryTargetTile.prototype = new FeatureObject();
 function PottedPlantTile() {
   //Graphics Upgraded
   this.name = "PottedPlant";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -75*32;
   this.passable = MOVE_ETHEREAL;
@@ -4604,7 +4604,7 @@ PottedPlantTile.prototype = new FeatureObject();
 function PottedPlant2Tile() {
   //Graphics Upgraded
   this.name = "PottedPlant2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -75*32;
   this.passable = MOVE_ETHEREAL;
@@ -4621,7 +4621,7 @@ PottedPlant2Tile.prototype = new FeatureObject();
 function WallPlaqueTile() {
   //Graphics Upgraded
   this.name = "WallPlaque";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -20*32;
   this.passable = MOVE_ETHEREAL;
@@ -4634,7 +4634,7 @@ WallPlaqueTile.prototype = new FeatureObject();
 function AnvilTile() {
   //Graphics Upgraded
   this.name = "Anvil";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -76*32;
   this.passable = MOVE_ETHEREAL;
@@ -4647,7 +4647,7 @@ AnvilTile.prototype = new FeatureObject();
 function WBridgeNSTile() {
   //Graphics Upgraded
   this.name = "WBridgeNS";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -2*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -4663,7 +4663,7 @@ WBridgeNSTile.prototype = new FeatureObject();
 function EBridgeNSTile() {
   //Graphics Upgraded
   this.name = "EBridgeNS";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -2*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -4679,7 +4679,7 @@ EBridgeNSTile.prototype = new FeatureObject();
 function BridgeNSTile() {
   //Graphics Upgraded
   this.name = "BridgeNS";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -2*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -4695,7 +4695,7 @@ BridgeNSTile.prototype = new FeatureObject();
 function BridgeNSBrokenTile() {
   //Graphics Upgraded
   this.name = "BridgeNSBroken";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -2*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -4711,7 +4711,7 @@ BridgeNSBrokenTile.prototype = new FeatureObject();
 function NBridgeEWTile() {
   //Graphics Upgraded
   this.name = "NBridgeEW";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -2*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -4727,7 +4727,7 @@ NBridgeEWTile.prototype = new FeatureObject();
 function SBridgeEWTile() {
   //Graphics Upgraded
   this.name = "SBridgeEW";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -2*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -4743,7 +4743,7 @@ SBridgeEWTile.prototype = new FeatureObject();
 function BridgeEWTile() {
   //Graphics Upgraded
   this.name = "BridgeEW";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -2*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -4759,7 +4759,7 @@ BridgeEWTile.prototype = new FeatureObject();
 function BridgeEWBrokenTile() {
   //Graphics Upgraded
   this.name = "BridgeEWBroken";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -2*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -4826,7 +4826,7 @@ function GetChairGraphicFromFacing(thing, facing) {
 function LeftChairTile() {
   // Graphics Upgraded
   this.name = "LeftChair";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -85*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -4864,7 +4864,7 @@ LeftChairTile.prototype.getGraphicFromFacing = function(face) {
 function RightChairTile() {
   // Graphics Upgraded
   this.name = "RightChair";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -85*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -4900,7 +4900,7 @@ RightChairTile.prototype.getGraphicFromFacing = function(face) {
 function TopChairTile() {
   // Graphics Upgraded
   this.name = "TopChair";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -85*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -4936,7 +4936,7 @@ TopChairTile.prototype.getGraphicFromFacing = function(face) {
 function BottomChairTile() {
   // Graphics Upgraded
   this.name = "BottomChair";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -85*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -5003,7 +5003,7 @@ function TurnFacing(what) {
 function SmallTableTile() {
   //Graphics Upgraded
   this.name = "SmallTable";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -80*32;
   this.passable = MOVE_ETHEREAL;
@@ -5017,7 +5017,7 @@ SmallTableTile.prototype = new FeatureObject();
 function SmallTable2Tile() {
   //Graphics Upgraded
   this.name = "SmallTable2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -80*32;
   this.passable = MOVE_ETHEREAL;
@@ -5031,7 +5031,7 @@ SmallTable2Tile.prototype = new FeatureObject();
 function SmallTable3Tile() {
   //Graphics Upgraded
   this.name = "SmallTable3";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -80*32;
   this.passable = MOVE_ETHEREAL;
@@ -5045,7 +5045,7 @@ SmallTable3Tile.prototype = new FeatureObject();
 function LeftTableTile() {
   // Graphics Upgraded
   this.name = "LeftTable";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -85*32;
   this.passable = MOVE_ETHEREAL;
@@ -5059,7 +5059,7 @@ LeftTableTile.prototype = new FeatureObject();
 function MiddleTableTile() {
   // Graphics Upgraded
   this.name = "MiddleTable";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -85*32;
   this.passable = MOVE_ETHEREAL;
@@ -5073,7 +5073,7 @@ MiddleTableTile.prototype = new FeatureObject();
 function RightTableTile() {
   // Graphics Upgraded
   this.name = "RightTable";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -85*32;
   this.passable = MOVE_ETHEREAL;
@@ -5087,7 +5087,7 @@ RightTableTile.prototype = new FeatureObject();
 function FoodSouthTile() {
   //Graphic Upgraded
   this.name = "FoodSouth";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -113*32;
   this.passable = MOVE_ETHEREAL;
@@ -5100,7 +5100,7 @@ FoodSouthTile.prototype = new FeatureObject();
 function FoodNorthTile() {
   //Graphic Upgraded
   this.name = "FoodNorth";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -114*32;
   this.passable = MOVE_ETHEREAL;
@@ -5149,7 +5149,7 @@ FoodNorthEdgeTile.prototype = new FeatureObject();
 function HarpsichordTile() {
   //Graphics Upgraded
   this.name = "Harpsichord";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -79*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -5181,7 +5181,7 @@ HarpsichordTile.prototype.use = function(who) {
 
 function BedrollHeadEmptyTile() {
   this.name = "BedrollHeadEmpty";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -169*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -5198,7 +5198,7 @@ BedrollHeadEmptyTile.prototype = new FeatureObject();
 
 function BedrollFootEmptyTile() {
   this.name = "BedrollFootEmpty";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -169*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -5215,7 +5215,7 @@ BedrollFootEmptyTile.prototype = new FeatureObject();
 
 function BedrollFootFullTile() {
   this.name = "BedrollFootFull";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -170*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
@@ -5232,7 +5232,7 @@ BedrollFootFullTile.prototype = new FeatureObject();
 
 function BedHeadTile() {
   this.name = "BedHead";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -89*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -5262,7 +5262,7 @@ function BedWalkOn(bedwho,bedarr) {
   let fea = bedwho.getHomeMap().getTile(bedwho.getx()+1,bedwho.gety()).features.getAll();
   for (let i=0;i<fea.length;i++) {
     if (fea[i].getName() === "BedFoot") { 
-      fea[i].setGraphicArray(["static.png","",-6*32,-90*32]); 
+      fea[i].setGraphicArray(["static.gif","",-6*32,-90*32]); 
       fea[i].passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
       DrawMainFrame("one",fea[i].getHomeMap(),fea[i].getx(),fea[i].gety());
     }
@@ -5284,7 +5284,7 @@ function BedWalkOff(who, bed) {
   let fea = who.getHomeMap().getTile(who.getx()+1,who.gety()).features.getAll();
   for (let i=0;i<fea.length;i++) {
     if (fea[i].getName() === "BedFoot") { 
-      fea[i].setGraphicArray(["static.png","",-9*32,-89*32]);
+      fea[i].setGraphicArray(["static.gif","",-9*32,-89*32]);
       fea[i].passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
       DrawMainFrame("one",fea[i].getHomeMap(),fea[i].getx(),fea[i].gety());
     }
@@ -5307,7 +5307,7 @@ function BedBumpInto(who) {
 }
 
 BedHeadTile.prototype.walkon = function(who) {
-  let garr = ["static.png","",-5*32,-90*32];
+  let garr = ["static.gif","",-5*32,-90*32];
   return BedWalkOn(who,garr);
 }
 
@@ -5321,7 +5321,7 @@ BedHeadTile.prototype.bumpinto = function(who) {
 
 function DoubleBedHeadTile() {
   this.name = "DoubleBedHead";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -91*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -5394,7 +5394,7 @@ DoubleBedHeadTile.prototype.setLook = function() {
   let foot;
   for (let i=0;i<fea.length;i++) { if (fea[i].getName() === "DoubleBedFoot") { foot = fea[i]; } }
   if (!this.occupants[0] && !this.occupants[1]) {
-    foot.setGraphicArray(["static.png","",-5*32,-91*32]);
+    foot.setGraphicArray(["static.gif","",-5*32,-91*32]);
     foot.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
     DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
     DrawMainFrame("one",this.getHomeMap(),this.getx()+1,this.gety());
@@ -5403,7 +5403,7 @@ DoubleBedHeadTile.prototype.setLook = function() {
     this.occupants[0].noAnim = 1;
     this.occupants[0].animating = 0;  
     this.occupants[0].makeLayers();
-    foot.setGraphicArray(["static.png","",-7*32,-91*32]);
+    foot.setGraphicArray(["static.gif","",-7*32,-91*32]);
     foot.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
     DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
     DrawMainFrame("one",this.getHomeMap(),this.getx()+1,this.gety());
@@ -5412,7 +5412,7 @@ DoubleBedHeadTile.prototype.setLook = function() {
     this.occupants[1].noAnim = 1;
     this.occupants[1].animating = 0; 
     this.occupants[1].makeLayers(); 
-    foot.setGraphicArray(["static.png","",-7*32,-91*32]);
+    foot.setGraphicArray(["static.gif","",-7*32,-91*32]);
     foot.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
     DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
     DrawMainFrame("one",this.getHomeMap(),this.getx()+1,this.gety());
@@ -5425,7 +5425,7 @@ DoubleBedHeadTile.prototype.setLook = function() {
     this.occupants[1].animating = 0;  
     this.occupants[0].makeLayers();
     this.occupants[1].makeLayers();
-    foot.setGraphicArray(["static.png","",-7*32,-91*32]);
+    foot.setGraphicArray(["static.gif","",-7*32,-91*32]);
     foot.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
     DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
     DrawMainFrame("one",this.getHomeMap(),this.getx()+1,this.gety());
@@ -5436,7 +5436,7 @@ DoubleBedHeadTile.prototype.setLook = function() {
 
 function BedFootTile() {
   this.name = "BedFoot";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -89*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -5453,7 +5453,7 @@ BedFootTile.prototype = new FeatureObject();
 
 function DoubleBedFootTile() {
   this.name = "DoubleBedFoot";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -91*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -5565,7 +5565,7 @@ DoubleBedBottomFootTile.prototype = new FeatureObject();
 function EmptyBookshelfLeftTile() {
   //Graphics Upgraded
   this.name = "EmptyBookshelfLeft";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -84*32;
   this.passable = MOVE_ETHEREAL;
@@ -5573,7 +5573,7 @@ function EmptyBookshelfLeftTile() {
   this.prefix = "a";
   this.desc = "bookshelf";
   this.showsearched = 1;
-  this.searchedgraphic = ["static.png", "", -2*32, -84*32];
+  this.searchedgraphic = ["static.gif", "", -2*32, -84*32];
   this.lootonce = 1;
 	this.lootgroup = "";
 	this.lootedid = "";
@@ -5583,7 +5583,7 @@ EmptyBookshelfLeftTile.prototype = new FeatureObject();
 function EmptyBookshelfRightTile() {
   //Graphics Upgraded
   this.name = "EmptyBookshelfRight";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -84*32;
   this.passable = MOVE_ETHEREAL;
@@ -5591,7 +5591,7 @@ function EmptyBookshelfRightTile() {
   this.prefix = "a";
   this.desc = "bookshelf";
   this.showsearched = 1;
-  this.searchedgraphic = ["static.png", "", -3*32, -84*32];
+  this.searchedgraphic = ["static.gif", "", -3*32, -84*32];
   this.lootonce = 1;
 	this.lootgroup = "";
 	this.lootedid = "";
@@ -5600,7 +5600,7 @@ EmptyBookshelfRightTile.prototype = new FeatureObject();
 
 function LooseFloorboardEWTile() {
   this.name = "LooseFloorboardEW";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -7*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -5626,7 +5626,7 @@ LooseFloorboardEWTile.prototype.walkon = function(who) {
 function BookshelfLeftTile() {
   //Graphics Upgraded
   this.name = "BookshelfLeft";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -84*32;
   this.passable = MOVE_ETHEREAL;
@@ -5634,7 +5634,7 @@ function BookshelfLeftTile() {
   this.prefix = "a";
   this.desc = "bookshelf";
   this.showsearched = 1;
-  this.searchedgraphic = ["static.png", "", -6*32, -84*32];
+  this.searchedgraphic = ["static.gif", "", -6*32, -84*32];
   this.lootonce = 1;
 	this.lootgroup = "";
 	this.lootedid = "";
@@ -5644,7 +5644,7 @@ BookshelfLeftTile.prototype = new FeatureObject();
 function BookshelfLeft2Tile() {
   //Graphics Upgraded
   this.name = "BookshelfLeft2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -92*32;
   this.passable = MOVE_ETHEREAL;
@@ -5652,7 +5652,7 @@ function BookshelfLeft2Tile() {
   this.prefix = "a";
   this.desc = "bookshelf";
   this.showsearched = 1;
-  this.searchedgraphic = ["static.png", "", -6*32, -84*32];
+  this.searchedgraphic = ["static.gif", "", -6*32, -84*32];
   this.lootonce = 1;
 	this.lootgroup = "";
 	this.lootedid = "";
@@ -5662,7 +5662,7 @@ BookshelfLeft2Tile.prototype = new FeatureObject();
 function BookshelfRightTile() {
   //Graphics Upgraded
   this.name = "BookshelfRight";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -84*32;
   this.passable = MOVE_ETHEREAL;
@@ -5670,7 +5670,7 @@ function BookshelfRightTile() {
   this.prefix = "a";
   this.desc = "bookshelf";
   this.showsearched = 1;
-  this.searchedgraphic = ["static.png", "", -7*32, -84*32];
+  this.searchedgraphic = ["static.gif", "", -7*32, -84*32];
   this.lootonce = 1;
 	this.lootgroup = "";
 	this.lootedid = "";
@@ -5680,7 +5680,7 @@ BookshelfRightTile.prototype = new FeatureObject();
 function BookshelfOneTile() {
   //Graphics Upgraded
   this.name = "BookshelfOne";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -83*32;
   this.passable = MOVE_ETHEREAL;
@@ -5688,7 +5688,7 @@ function BookshelfOneTile() {
   this.prefix = "a";
   this.desc = "bookshelf";
   this.showsearched = 1;
-  this.searchedgraphic = ["static.png", "", -5*32, -83*32];
+  this.searchedgraphic = ["static.gif", "", -5*32, -83*32];
   this.lootonce = 1;
 	this.lootgroup = "";
 	this.lootedid = "";
@@ -5698,7 +5698,7 @@ BookshelfOneTile.prototype = new FeatureObject();
 function RuinedBookshelfOneTile() {
   //Graphics Upgraded
   this.name = "RuinedBookshelfOne";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -87*32;
   this.passable = MOVE_ETHEREAL;
@@ -5714,7 +5714,7 @@ RuinedBookshelfOneTile.prototype = new FeatureObject();
 function RuinedBookshelfLeftTile() {
   //Graphics Upgraded
   this.name = "RuinedBookshelfLeft";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -88*32;
   this.passable = MOVE_ETHEREAL;
@@ -5730,7 +5730,7 @@ RuinedBookshelfLeftTile.prototype = new FeatureObject();
 function RuinedBookshelfRightTile() {
   //Graphics Upgraded
   this.name = "RuinedBookshelfRight";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -88*32;
   this.passable = MOVE_ETHEREAL;
@@ -5745,7 +5745,7 @@ RuinedBookshelfRightTile.prototype = new FeatureObject();
 
 function SmallBoxTile() {
   this.name = "SmallBox";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -79*32;
   this.passable = MOVE_ETHEREAL;
@@ -5753,19 +5753,19 @@ function SmallBoxTile() {
   this.prefix = "a";
   this.desc = "small box";
   this.showsearched = 1;
-  this.searchedgraphic = ["static.png", "", -2*32, -79*32];
+  this.searchedgraphic = ["static.gif", "", -2*32, -79*32];
 	this.lootgroup = "";
 	this.lootedid = "";
 	
 	this.container = [];
   OpenContainer.call(this,"sfx_chest_open","sfx_locked_door");
-  Lockable.call(this, ["static.png","",0,-79*32], ["static.png","",0,-79*32], ["static.png","",0,-79*32], 	"a",  "small box", "a", "locked small box", "a", "magically locked small box");
+  Lockable.call(this, ["static.gif","",0,-79*32], ["static.gif","",0,-79*32], ["static.gif","",0,-79*32], 	"a",  "small box", "a", "locked small box", "a", "magically locked small box");
 }
 SmallBoxTile.prototype = new FeatureObject();
 
 function CrateTile() {
   this.name = "Crate";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -79*32;
   this.passable = MOVE_ETHEREAL;
@@ -5773,20 +5773,20 @@ function CrateTile() {
   this.prefix = "a";
   this.desc = "small box";
   this.showsearched = 1;
-  this.searchedgraphic = ["static.png", "", -32, -79*32];
+  this.searchedgraphic = ["static.gif", "", -32, -79*32];
 	this.lootgroup = "";
 	this.lootedid = "";
 	
 	this.container = [];
   OpenContainer.call(this,"sfx_chest_open","sfx_locked_door");
-  Lockable.call(this, ["static.png","",0,-79*32], ["static.png","",0,-79*32], ["static.png","",0,-79*32], 	"a",  "small box", "a", "locked small box", "a", "magically locked small box");
+  Lockable.call(this, ["static.gif","",0,-79*32], ["static.gif","",0,-79*32], ["static.gif","",0,-79*32], 	"a",  "small box", "a", "locked small box", "a", "magically locked small box");
 }
 CrateTile.prototype = new FeatureObject();
 
 function DresserTile() {
   //Graphics Upgraded
   this.name = "Dresser";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -82*32;
   this.passable = MOVE_ETHEREAL;
@@ -5796,7 +5796,7 @@ function DresserTile() {
 	this.lootgroup = "";
 	this.lootedid = "";
   this.showsearched = 1;
-  this.searchedgraphic = ["static.png","",-7*32,-82*32];
+  this.searchedgraphic = ["static.gif","",-7*32,-82*32];
 	
 	this.container = [];
 	OpenContainer.call(this,"","");
@@ -5806,7 +5806,7 @@ DresserTile.prototype = new FeatureObject();
 function Dresser2Tile() {
   //Graphics Upgraded
   this.name = "Dresser2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -82*32;
   this.passable = MOVE_ETHEREAL;
@@ -5816,7 +5816,7 @@ function Dresser2Tile() {
 	this.lootgroup = "";
 	this.lootedid = "";
   this.showsearched = 1;
-  this.searchedgraphic = ["static.png","",-8*32,-82*32];
+  this.searchedgraphic = ["static.gif","",-8*32,-82*32];
 	
 	this.container = [];
 	OpenContainer.call(this,"","");
@@ -5826,7 +5826,7 @@ Dresser2Tile.prototype = new FeatureObject();
 function Dresser3Tile() {
   //Graphics Upgraded
   this.name = "Dresser3";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -82*32;
   this.passable = MOVE_ETHEREAL;
@@ -5836,7 +5836,7 @@ function Dresser3Tile() {
 	this.lootgroup = "";
 	this.lootedid = "";
   this.showsearched = 1;
-  this.searchedgraphic = ["static.png","",0,-83*32];
+  this.searchedgraphic = ["static.gif","",0,-83*32];
 	
 	this.container = [];
 	OpenContainer.call(this,"","");
@@ -5846,7 +5846,7 @@ Dresser3Tile.prototype = new FeatureObject();
 function VanityTile() {
   //Graphics Upgraded
   this.name = "Vanity";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -82*32;
   this.passable = MOVE_ETHEREAL;
@@ -5856,7 +5856,7 @@ function VanityTile() {
 	this.lootgroup = "";
 	this.lootedid = "";
   this.showsearched = 1;
-  this.searchedgraphic = ["static.png","",-4*32,-82*32];
+  this.searchedgraphic = ["static.gif","",-4*32,-82*32];
 	
 	this.container = [];
 	OpenContainer.call(this,"","");
@@ -5866,7 +5866,7 @@ VanityTile.prototype = new FeatureObject();
 function Vanity2Tile() {
   //Graphics Upgraded
   this.name = "Vanity2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -82*32;
   this.passable = MOVE_ETHEREAL;
@@ -5876,7 +5876,7 @@ function Vanity2Tile() {
 	this.lootgroup = "";
 	this.lootedid = "";
   this.showsearched = 1;
-  this.searchedgraphic = ["static.png","",-5*32,-82*32];
+  this.searchedgraphic = ["static.gif","",-5*32,-82*32];
 	
 	this.container = [];
 	OpenContainer.call(this,"","");
@@ -5886,7 +5886,7 @@ Vanity2Tile.prototype = new FeatureObject();
 function Vanity3Tile() {
   //Graphics Upgraded
   this.name = "Vanity3";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -82*32;
   this.passable = MOVE_ETHEREAL;
@@ -5896,7 +5896,7 @@ function Vanity3Tile() {
 	this.lootgroup = "";
 	this.lootedid = "";
   this.showsearched = 1;
-  this.searchedgraphic = ["static.png","",-6*32,-82*32];
+  this.searchedgraphic = ["static.gif","",-6*32,-82*32];
 	
 	this.container = [];
 	OpenContainer.call(this,"","");
@@ -5906,7 +5906,7 @@ Vanity3Tile.prototype = new FeatureObject();
 function CaskTile() {
   //Graphics Upgraded
   this.name = "Cask";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -95*32;
   this.passable = MOVE_ETHEREAL;
@@ -5920,7 +5920,7 @@ CaskTile.prototype = new FeatureObject();
 function TreeTile() {
   //Graphics Upgraded
   this.name = "Tree";
-	this.graphic = "static.png";
+	this.graphic = "static.gif";
 	this.spritexoffset = -2*32;
   this.spriteyoffset = -19*32;
   this.passable = MOVE_ETHEREAL;
@@ -5933,7 +5933,7 @@ TreeTile.prototype = new FeatureObject();
 function AutumnTreeTile() {
   //Graphics Upgraded
   this.name = "AutumnTree";
-	this.graphic = "static.png";
+	this.graphic = "static.gif";
 	this.spritexoffset = -3*32;
   this.spriteyoffset = -19*32;
   this.passable = MOVE_ETHEREAL;
@@ -5946,7 +5946,7 @@ AutumnTreeTile.prototype = new FeatureObject();
 function EvergreenTile() {
   //Graphics Upgraded
   this.name = "Evergreen";
-	this.graphic = "static.png";
+	this.graphic = "static.gif";
 	this.spritexoffset = -5*32;
   this.spriteyoffset = -19*32;
   this.passable = MOVE_ETHEREAL;
@@ -5959,7 +5959,7 @@ EvergreenTile.prototype = new FeatureObject();
 function WillowTreeTile() {
   //Graphics Upgraded
   this.name = "WillowTree";
-	this.graphic = "static.png";
+	this.graphic = "static.gif";
 	this.spritexoffset = -32;
   this.spriteyoffset = -19*32;
   this.passable = MOVE_ETHEREAL;
@@ -5972,7 +5972,7 @@ WillowTreeTile.prototype = new FeatureObject();
 function DeadTreeTile() {
   //Graphics Upgraded
   this.name = "DeadTree";
-	this.graphic = "static.png";
+	this.graphic = "static.gif";
 	this.spritexoffset = 0;
   this.spriteyoffset = -19*32;
   this.passable = MOVE_ETHEREAL;
@@ -5982,14 +5982,14 @@ function DeadTreeTile() {
 	this.lootgroup = "";
 	this.lootedid = "";
   this.showsearched = 0;
-  this.searchedgraphic = ["static.png","",0,-19*32];
+  this.searchedgraphic = ["static.gif","",0,-19*32];
 	}
 DeadTreeTile.prototype = new FeatureObject();
 
 function AppleTreeTile() {
   //Graphics Upgraded
   this.name = "AppleTree";
-	this.graphic = "static.png";
+	this.graphic = "static.gif";
 	this.spritexoffset = -4*32;
   this.spriteyoffset = -19*32;
   this.passable = MOVE_ETHEREAL;
@@ -6001,7 +6001,7 @@ AppleTreeTile.prototype = new FeatureObject();
 
 function OlympusTapestryTile() {
   this.name = "OlympusTapestry";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -19*32;
   this.passable = MOVE_ETHEREAL;
@@ -6013,7 +6013,7 @@ OlympusTapestryTile.prototype = new FeatureObject();
 
 function PaladinTapestryTile() {
   this.name = "PaladinTapestry";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -19*32;
   this.passable = MOVE_ETHEREAL;
@@ -6025,7 +6025,7 @@ PaladinTapestryTile.prototype = new FeatureObject();
 
 function HildendainTapestryTile() {
   this.name = "HildendainTapestry";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -19*32;
   this.passable = MOVE_ETHEREAL;
@@ -6038,7 +6038,7 @@ HildendainTapestryTile.prototype = new FeatureObject();
 function GrandfatherClockTile() {
   //Graphics Upgraded
   this.name = "GrandfatherClock";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -107*32;
   this.passable = MOVE_ETHEREAL;
@@ -6115,7 +6115,7 @@ function TollChime(hoursleft, clock) {
 function BarrelTile() {
   //Graphics Upgraded
   this.name = "Barrel";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -79*32;
   this.passable = MOVE_ETHEREAL;
@@ -6123,7 +6123,7 @@ function BarrelTile() {
   this.prefix = "a";
   this.desc = "barrel";
   this.showsearched = 1;
-  this.searchedgraphic = ["static.png", "", -7*32, -79*32];
+  this.searchedgraphic = ["static.gif", "", -7*32, -79*32];
 	this.lootgroup = "";
 	this.lootedid = "";
   this.flammable = 20; // 20% chance it burns if in a fire
@@ -6191,7 +6191,7 @@ KitchenBarrel3Tile.prototype.use = function(who) {
 function Barrel2Tile() {
   //Graphics Upgraded
   this.name = "Barrel2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -79*32;
   this.passable = MOVE_ETHEREAL;
@@ -6199,7 +6199,7 @@ function Barrel2Tile() {
   this.prefix = "a";
   this.desc = "barrel";
   this.showsearched = 1;
-  this.searchedgraphic = ["static.png", "", -8*32, -79*32];
+  this.searchedgraphic = ["static.gif", "", -8*32, -79*32];
 	this.lootgroup = "";
 	this.lootedid = "";
   this.flammable = 20; // 20% chance it burns if in a fire
@@ -6219,7 +6219,7 @@ Barrel2Tile.prototype.flamed = function() {
 function CrackedMirrorTile() {
   //Graphics Upgraded
   this.name = "CrackedMirror";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -76*32;
   this.passable = MOVE_ETHEREAL;
@@ -6228,7 +6228,7 @@ function CrackedMirrorTile() {
   this.desc = "mirror";
   this.karmamod = -1;
   
-  Breakable.call(this,["static.png", "", -7*32, -77*32],0,"sfx_break_glass");
+  Breakable.call(this,["static.gif", "", -7*32, -77*32],0,"sfx_break_glass");
   this.brokendesc = "broken mirror";
 }
 CrackedMirrorTile.prototype = new FeatureObject();
@@ -6236,7 +6236,7 @@ CrackedMirrorTile.prototype = new FeatureObject();
 function SunLensTile() {
   //Graphics Upgraded
   this.name = "SunLens";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -109*32;
   this.passable = MOVE_ETHEREAL;
@@ -6269,7 +6269,7 @@ SunLensTile.prototype.use = function(who) {
 function MirrorTile() {
   //Graphics Upgraded
   this.name = "Mirror";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -76*32;
   this.passable = MOVE_ETHEREAL;
@@ -6278,7 +6278,7 @@ function MirrorTile() {
   this.desc = "mirror";
   this.karmamod = -1;
   
-  Breakable.call(this,["static.png", "", -7*32, -76*32],0,"sfx_break_glass");
+  Breakable.call(this,["static.gif", "", -7*32, -76*32],0,"sfx_break_glass");
   this.brokendesc = "broken mirror";
 }
 MirrorTile.prototype = new FeatureObject();
@@ -6323,7 +6323,7 @@ ReflectionTile.prototype.walkoff = function(who) {
 
 function CursedMirrorTile() {
   this.name = "CursedMirror";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -76*32;
   this.passable = MOVE_ETHEREAL;
@@ -6331,7 +6331,7 @@ function CursedMirrorTile() {
   this.prefix = "a";
   this.desc = "mirror";
   
-  Breakable.call(this,["static.png", "", -7*32, -76*32],0,"sfx_break_glass");
+  Breakable.call(this,["static.gif", "", -7*32, -76*32],0,"sfx_break_glass");
   this.brokendesc = "broken mirror";
 }
 CursedMirrorTile.prototype = new FeatureObject();
@@ -6432,7 +6432,7 @@ CursedReflectionTile.prototype.walkon = function(who) {
 
 function CursedMirrorWithImpTile() {
   this.name = "CursedMirrorWithImp";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -145*32;
   this.passable = MOVE_ETHEREAL;
@@ -6440,7 +6440,7 @@ function CursedMirrorWithImpTile() {
   this.prefix = "a";
   this.desc = "mirror";
   
-  Breakable.call(this,["static.png", "", -7*32, -76*32],0,"sfx_break_glass");
+  Breakable.call(this,["static.gif", "", -7*32, -76*32],0,"sfx_break_glass");
   this.brokendesc = "broken mirror";
 
   ManualAnimation.call(this, { 
@@ -6636,7 +6636,7 @@ AlchemyLab2Tile.prototype = new FeatureObject();
 function WaterfallTile() {
   //Graphics Upgraded
   this.name = "Waterfall";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -118*32;
   this.passable = MOVE_ETHEREAL;
@@ -6711,25 +6711,25 @@ function DescendWaterfall(who, waterfall) {
 
 function GrassWaterfallTile() {
   this.name = "GrassWaterfall";
-//  this.layers = [["static.png","",-3*32,-60*32]];
+//  this.layers = [["static.gif","",-3*32,-60*32]];
 }
 GrassWaterfallTile.prototype = new WaterfallTile();
 
 function DirtWaterfallTile() {
   this.name = "DirtWaterfall";
-  this.layers = [["static.png","",-3*32,-67*32]];
+  this.layers = [["static.gif","",-3*32,-67*32]];
 }
 DirtWaterfallTile.prototype = new WaterfallTile();
 
 function CaveWaterfallTile() {
   this.name = "CaveWaterfall";
-  this.layers = [["static.png","",-2*32,-67*32]];
+  this.layers = [["static.gif","",-2*32,-67*32]];
 }
 CaveWaterfallTile.prototype = new WaterfallTile();
 
 function BrilliantPoolTile() {
   this.name = "BrilliantPool";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -104*32;
   this.passable = MOVE_ETHEREAL;
@@ -6794,7 +6794,7 @@ BrilliantPoolTile.prototype.bookFinish = function() {
 
 function SecretDoorTile() {
 	this.name = "SecretDoor";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -15*32;
 	this.passable = MOVE_ETHEREAL;
@@ -6814,7 +6814,7 @@ SecretDoorTile.prototype = new FeatureObject();
 
 function GreySecretDoorTile() {
 	this.name = "GreySecretDoor";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -18*32;
   this.passable = MOVE_ETHEREAL;
@@ -6847,7 +6847,7 @@ ShiftingWallTile.prototype = new FeatureObject();
 
 function DestructableStoneWallTile() {
   this.name = "DestructableStoneWall";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -13*32;
   this.passable = MOVE_ETHEREAL;
@@ -6861,7 +6861,7 @@ DestructableStoneWallTile.prototype = new FeatureObject();
 function RuinsWallTallLeftMidRightTile() {
   //Graphics Upgraded
   this.name = "RuinsWallTallLeftMidRight";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -13*32;
   this.passable = MOVE_ETHEREAL;
@@ -6875,7 +6875,7 @@ RuinsWallTallLeftMidRightTile.prototype = new FeatureObject();
 function RuinsWallTallLeftMidRight2Tile() {
   //Graphics Upgraded
   this.name = "RuinsWallTallLeftMidRight2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -13*32;
   this.passable = MOVE_ETHEREAL;
@@ -6889,7 +6889,7 @@ RuinsWallTallLeftMidRight2Tile.prototype = new FeatureObject();
 function RuinsWallMidLeftMidRightTile() {
   //Graphics Upgraded
   this.name = "RuinsWallMidLeftMidRight";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -13*32;
   this.passable = MOVE_ETHEREAL;
@@ -6903,7 +6903,7 @@ RuinsWallMidLeftMidRightTile.prototype = new FeatureObject();
 function RuinsWallMidLeftTallRightTile() {
   //Graphics Upgraded
   this.name = "RuinsWallMidLeftTallRight";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -13*32;
   this.passable = MOVE_ETHEREAL;
@@ -6917,7 +6917,7 @@ RuinsWallMidLeftTallRightTile.prototype = new FeatureObject();
 function RuinsWallMidLeftBottomRightTile() {
   //Graphics Upgraded
   this.name = "RuinsWallMidLeftBottomRight";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -13*32;
   this.passable = MOVE_ETHEREAL;
@@ -6931,7 +6931,7 @@ RuinsWallMidLeftBottomRightTile.prototype = new FeatureObject();
 function RuinsWallBottomLeftBottomRightTile() {
   //Graphics Upgraded
   this.name = "RuinsWallBottomLeftBottomRight";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -13*32;
   this.passable = MOVE_ETHEREAL;
@@ -6945,7 +6945,7 @@ RuinsWallBottomLeftBottomRightTile.prototype = new FeatureObject();
 function RuinsWallBottomLeftMidRightTile() {
   //Graphics Upgraded
   this.name = "RuinsWallBottomLeftMidRight";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -13*32;
   this.passable = MOVE_ETHEREAL;
@@ -6959,7 +6959,7 @@ RuinsWallBottomLeftMidRightTile.prototype = new FeatureObject();
 function WellTile() {
   //Graphics Upgraded
 	this.name = "Well";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -76*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -6978,7 +6978,7 @@ WellTile.prototype.use = function(who) {
 function BareWellTile() {
   //Graphics Upgraded
 	this.name = "BareWell";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -76*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -8597,7 +8597,7 @@ WalkOnAbyssGauntletTile.prototype.walkon = function(walker) {
     let fromcoords = getCoords(caster.getHomeMap(),caster.getx(), caster.gety());
     let tocoords = getCoords(walker.getHomeMap(),walker.getx(), walker.gety());
     let duration = (Math.pow( Math.pow(walker.getx() - caster.getx(), 2) + Math.pow (walker.gety() - caster.gety(), 2)  , .5)) * 100;
-    let destgraphic = {graphic:"static.png", xoffset:-3*32, yoffset:-96*32, overlay:"spacer.gif"};
+    let destgraphic = {graphic:"static.gif", xoffset:-3*32, yoffset:-96*32, overlay:"spacer.gif"};
     DUPlaySound(sndsfx);
     let weapon = localFactory.createTile("SpellWeapon");
     weapon.dmgtype = "fire";
@@ -9130,7 +9130,7 @@ CrenellationSETile.prototype = new FeatureObject();
 function WeaponCounterDaggerTile() {
   // Graphic made same as weapon
   this.name = "WeaponCounterDagger";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = 0;
 	this.spriteyoffset = -68*32;
   this.passable = MOVE_ETHEREAL;
@@ -9145,7 +9145,7 @@ WeaponCounterDaggerTile.prototype = new FeatureObject();
 function WeaponCounterMaceTile() {
   // Graphic made same as weapon
   this.name = "WeaponCounterMace";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -2*32;
 	this.spriteyoffset = -68*32;
   this.passable = MOVE_ETHEREAL;
@@ -9160,7 +9160,7 @@ WeaponCounterMaceTile.prototype = new FeatureObject();
 function WeaponCounterSwordTile() {
   // Graphic made shortsword
   this.name = "WeaponCounterSword";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -32;
 	this.spriteyoffset = -68*32;
   this.passable = MOVE_ETHEREAL;
@@ -9175,7 +9175,7 @@ WeaponCounterSwordTile.prototype = new FeatureObject();
 function ArmorCounterLeatherTile() {
   // Graphic made just same as armor
   this.name = "ArmorCounterLeather";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -8*32;
 	this.spriteyoffset = -70*32;
   this.passable = MOVE_ETHEREAL;
@@ -9190,7 +9190,7 @@ ArmorCounterLeatherTile.prototype = new FeatureObject();
 function ArmorCounterChainTile() {
   // Graphic made same as armor
   this.name = "ArmorCounterChain";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -9*32;
 	this.spriteyoffset = -70*32;
   this.passable = MOVE_ETHEREAL;
@@ -9205,7 +9205,7 @@ ArmorCounterChainTile.prototype = new FeatureObject();
 function ArmorCounterPlateTile() {
   // Graphic made same as armor
   this.name = "ArmorCounterPlate";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = 0;
 	this.spriteyoffset = -71*32;
   this.passable = MOVE_ETHEREAL;
@@ -9220,7 +9220,7 @@ ArmorCounterPlateTile.prototype = new FeatureObject();
 function DisplayCounterNTile() {
   //Graphics Upgraded
   this.name = "DisplayCounterN";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -93*32;
   this.passable = MOVE_ETHEREAL;
@@ -9235,7 +9235,7 @@ DisplayCounterNTile.prototype = new FeatureObject();
 function DisplayCounterSTile() {
   //Graphics Upgraded
   this.name = "DisplayCounterS";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -94*32;
   this.passable = MOVE_ETHEREAL;
@@ -9250,7 +9250,7 @@ DisplayCounterSTile.prototype = new FeatureObject();
 function DisplayCounterCTile() {
   //Graphics Upgraded
   this.name = "DisplayCounterC";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -93*32;
   this.passable = MOVE_ETHEREAL;
@@ -9265,7 +9265,7 @@ DisplayCounterCTile.prototype = new FeatureObject();
 function MerchantCounterClothTile() {
   //Graphics Upgraded
   this.name = "MerchantCounterCloth";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -95*32;
   this.passable = MOVE_ETHEREAL;
@@ -9280,7 +9280,7 @@ MerchantCounterClothTile.prototype = new FeatureObject();
 function MerchantCounterScaleTile() {
   //Graphics Upgraded
   this.name = "MerchantCounterScale";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -95*32;
   this.passable = MOVE_ETHEREAL;
@@ -9295,7 +9295,7 @@ MerchantCounterScaleTile.prototype = new FeatureObject();
 function MerchantCounterBillTile() {
   //Graphics Upgraded
   this.name = "MerchantCounterBill";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -95*32;
   this.passable = MOVE_ETHEREAL;
@@ -9310,7 +9310,7 @@ MerchantCounterBillTile.prototype = new FeatureObject();
 function MerchantCounterBookTile() {
   //Graphics Upgraded
   this.name = "MerchantCounterBook";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -95*32;
   this.passable = MOVE_ETHEREAL;
@@ -9325,7 +9325,7 @@ MerchantCounterBookTile.prototype = new FeatureObject();
 function MerchantCounterEdgeTile() {
   //Graphics Upgraded
   this.name = "MerchantCounterEdge";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -93*32;
   this.passable = MOVE_ETHEREAL;
@@ -9340,7 +9340,7 @@ MerchantCounterEdgeTile.prototype = new FeatureObject();
 function MerchantCounterTile() {
   //Graphics Upgraded
   this.name = "MerchantCounter";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -93*32;
   this.passable = MOVE_ETHEREAL;
@@ -9355,7 +9355,7 @@ MerchantCounterTile.prototype = new FeatureObject();
 function ArmorRackLeatherTile() {
   //Graphics Upgraded
   this.name = "ArmorRackLeather";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -95*32;
   this.passable = MOVE_ETHEREAL;
@@ -9370,7 +9370,7 @@ ArmorRackLeatherTile.prototype = new FeatureObject();
 function ArmorRackChainTile() {
   //Graphics Upgraded
   this.name = "ArmorRackChain";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -95*32;
   this.passable = MOVE_ETHEREAL;
@@ -9385,7 +9385,7 @@ ArmorRackChainTile.prototype = new FeatureObject();
 function ArmorRackPlateTile() {
   //Graphics Upgraded
   this.name = "ArmorRackPlate";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -95*32;
   this.passable = MOVE_ETHEREAL;
@@ -9399,7 +9399,7 @@ ArmorRackPlateTile.prototype = new FeatureObject();
 
 function ShieldDisplayTile() {
   this.name = "ShieldDisplay";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -37*32;
   this.passable = MOVE_ETHEREAL;
@@ -9414,7 +9414,7 @@ ShieldDisplayTile.prototype = new FeatureObject();
 function SkeletonDecorationTile() {
   //Graphic Upgraded
   this.name = "SkeletonDecoration";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -90*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -9426,7 +9426,7 @@ SkeletonDecorationTile.prototype = new FeatureObject();
 
 function MoatLeverOffTile() {
   this.name = "MoatLeverOff";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -108*32;
   this.blocklos = 0;
@@ -9438,7 +9438,7 @@ MoatLeverOffTile.prototype = new FeatureObject();
 function LeverOffTile() {  // is this even used?
   //Graphic Upgraded
   this.name = "LeverOff";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -108*32;
   this.blocklos = 0;
@@ -9449,7 +9449,7 @@ LeverOffTile.prototype = new FeatureObject();
 
 function BDCLeverTile() {
   this.name = "BDCLever";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -108*32;
   this.blocklos = 0;
@@ -9467,7 +9467,7 @@ BDCLeverTile.prototype.use = function(who) {
 
 function GrottoLeverOffTile() {
   this.name = "GrottoLeverOff";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -109*32;
   this.blocklos = 0;
@@ -9503,7 +9503,7 @@ GrottoLeverOffTile.prototype.use = function(who) {
 function GrottoBridgeLever1Tile() {
   //Graphic Upgraded
   this.name = "GrottoBridgeLever1";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -107*32;
   this.blocklos = 0;
@@ -9527,7 +9527,7 @@ GrottoBridgeLever1Tile.prototype.use = function(who) {
 function GrottoBridgeLever2Tile() {
   //Graphic Upgradedf
   this.name = "GrottoBridgeLever2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -107*32;
   this.blocklos = 0;
@@ -9551,7 +9551,7 @@ GrottoBridgeLever2Tile.prototype.use = function(who) {
 function GrottoBridgeLever3Tile() {
   //Graphic Upgraded
   this.name = "GrottoBridgeLever3";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -107*32;
   this.blocklos = 0;
@@ -9605,7 +9605,7 @@ function GrottoBridgePuzzle(mymap,locx,locy) {
 function MetalTwisterLeverTile() {
   //Graphic Upgraded
   this.name = "MetalTwisterLever";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -110*32;
   this.blocklos = 0;
@@ -9664,7 +9664,7 @@ MetalTwisterLeverTile.prototype.use = function(user) {
 function PitDespairLeverTile() {
   //Graphic Upgraded
   this.name = "PitDespairLever";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -109*32;
   this.blocklos = 0;
@@ -9688,7 +9688,7 @@ PitDespairLeverTile.prototype.use = function(user) {
     };
     if (this.spritexoffset === -8*32) {
       door.locked = 0;
-      door.setGraphicArray(["static.png", "", 0, -17*32]);
+      door.setGraphicArray(["static.gif", "", 0, -17*32]);
 			
 			door.closedLOS = door.getBlocksLOSArray();
 			let seethru = [];
@@ -9715,7 +9715,7 @@ PitDespairLeverTile.prototype.use = function(user) {
         mobs[i].dealDamage(1000, door);
       };
       door.locked = 1;
-      door.setGraphicArray(["static.png", "", -9*32, -16*32]);
+      door.setGraphicArray(["static.gif", "", -9*32, -16*32]);
       
       door.setBlocksLOSArray(door.closedLOS);
       door.closedLOS = [];
@@ -9785,7 +9785,7 @@ ToshinLeverOffTile.prototype.use = function(who) {
 function RoyalPuzzleLaserEWTile() {
   //Graphic Upgraded
   this.name = "RoyalPuzzleLaserEW";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -160*32;
   this.blocklos = 0;
@@ -9814,7 +9814,7 @@ RoyalPuzzleLaserEWTile.prototype.walkon = function(who) {
 function RoyalPuzzleLaserNSTile() {
   //Graphic Upgraded
   this.name = "RoyalPuzzleLaserNS";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -160*32;
   this.blocklos = 0;
@@ -9880,7 +9880,7 @@ SunBeaconTile.prototype = new FeatureObject();
 
 function SandstoneWallTile() {
   this.name = "SandstoneWall";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -97*32;
   this.blocklos = 0;
@@ -9928,7 +9928,7 @@ SandstoneWallTile.prototype.pushMe = function(who) {
 function BlackDragonLadderWallTile() {
   //Graphics Upgraded
   this.name = "BlackDragonLadderWall";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -15*32;
   this.passable = MOVE_ETHEREAL;
@@ -9973,10 +9973,10 @@ BlackDragonLadderWallTile.prototype.use = function(who) {
 function WallOfWavesTile() {
   //Graphic Upgraded
   this.name = "WallOfWaves";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -15*32;
-  this.layers = [["static.png","",-6*32,-161*32]];
+  this.layers = [["static.gif","",-6*32,-161*32]];
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Waves";
@@ -10003,10 +10003,10 @@ WallOfWavesTile.prototype.bumpInto = function(who) {
 function WallOfWindsTile() {
   //Graphic Upgraded
   this.name = "WallOfWinds";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -15*32;
-  this.layers = [["static.png","",-7*32,-161*32]];
+  this.layers = [["static.gif","",-7*32,-161*32]];
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Winds";
@@ -10033,10 +10033,10 @@ WallOfWindsTile.prototype.bumpInto = function(who) {
 function WallOfKingsTile() {
   //Graphics Upgraded
   this.name = "WallOfKings";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -15*32;
-  this.layers = [["static.png","",-5*32,-161*32]];
+  this.layers = [["static.gif","",-5*32,-161*32]];
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Kings";
@@ -10051,22 +10051,24 @@ WallOfKingsTile.prototype.use = function(user) {
     return retval;
   }
   ApplyRune(user, "kings", this);
+  questlog.complete(2);
   return retval;
 }
 
 WallOfKingsTile.prototype.bumpInto = function(who) {
   let retval = {fin:1};
   ApplyRune(user, "kings", this);
+  questlog.complete(2);
   return retval;
 }
 
 function WallOfFlamesTile() {
   //Graphics Upgraded
   this.name = "WallOfFlames";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -15*32;
-  this.layers = [["static.png","",-8*32,-161*32]];
+  this.layers = [["static.gif","",-8*32,-161*32]];
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Flames";
@@ -10093,10 +10095,10 @@ WallOfFlamesTile.prototype.bumpInto = function(who) {
 function WallOfVoidTile() {
   //Graphics Upgraded
   this.name = "WallOfVoid";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -15*32;
-  this.layers = [["static.png","",-9*32,-161*32]];
+  this.layers = [["static.gif","",-9*32,-161*32]];
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Void";
@@ -10123,10 +10125,10 @@ WallOfVoidTile.prototype.bumpInto = function(who) {
 function PlatformOfWavesTile() {
   //Graphics Upgraded
   this.name = "PlatformOfWaves";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -110*32;
-  this.layers = [["static.png","",-6*32,-161*32]];
+  this.layers = [["static.gif","",-6*32,-161*32]];
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
@@ -10136,10 +10138,10 @@ PlatformOfWavesTile.prototype = new FeatureObject();
 function PlatformOfWindsTile() {
   //Graphics Upgraded
   this.name = "PlatformOfWinds";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -110*32;
-  this.layers = [["static.png","",-7*32,-161*32]];
+  this.layers = [["static.gif","",-7*32,-161*32]];
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
@@ -10186,10 +10188,10 @@ function whoosh(whozat, windlist, spawnwhere, spawnthing) {
 function PlatformOfKingsTile() {
   //Graphics Upgraded
   this.name = "PlatformOfKings";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -110*32;
-  this.layers = [["static.png","",-5*32,-161*32]];
+  this.layers = [["static.gif","",-5*32,-161*32]];
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
@@ -10199,10 +10201,10 @@ PlatformOfKingsTile.prototype = new FeatureObject();
 function PlatformOfFlamesTile() {
   //Graphics Upgraded
   this.name = "PlatformOfFlames";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -110*32;
-  this.layers = [["static.png","",-8*32,-161*32]];
+  this.layers = [["static.gif","",-8*32,-161*32]];
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
@@ -10212,10 +10214,10 @@ PlatformOfFlamesTile.prototype = new FeatureObject();
 function PlatformOfVoidTile() {
   //Graphics Upgraded
   this.name = "PlatformOfVoid";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -110*32;
-  this.layers = [["static.png","",-9*32,-161*32]];
+  this.layers = [["static.gif","",-9*32,-161*32]];
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
@@ -10225,7 +10227,7 @@ PlatformOfVoidTile.prototype = new FeatureObject();
 function MarkOfKingsTile() {
   //Graphics Upgraded
   this.name = "MarkOfKings";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -161*32;
   this.blocklos = 2;
@@ -10305,7 +10307,7 @@ MarkOfKingsTile.prototype.use = function(user) {
 function MarkOfWavesTile() {
   //Graphics Upgraded
   this.name = "MarkOfWaves";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -161*32;
   this.blocklos = 2;
@@ -10322,7 +10324,7 @@ MarkOfWavesTile.prototype.use = function(user) {
 function MarkOfWindsTile() {
   //Graphics Upgraded
   this.name = "MarkOfWinds";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -161*32;
   this.blocklos = 2;
@@ -10338,7 +10340,7 @@ MarkOfWindsTile.prototype.use = function(user) {
 function MarkOfFlamesTile() {
   //Graphics Upgraded
   this.name = "MarkOfFlames";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -161*32;
   this.blocklos = 2;
@@ -10354,7 +10356,7 @@ MarkOfFlamesTile.prototype.use = function(user) {
 function MarkOfVoidTile() {
   //Graphics Upgraded
   this.name = "MarkOfVoid";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -161*32;
   this.blocklos = 2;
@@ -10381,7 +10383,7 @@ FlameEternalTile.prototype = new FeatureObject();
 function BrightFountainTile() {
   //Graphics Upgraded
   this.name = "BrightFountain";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -101*32;
   this.prefix = "a";
@@ -10406,7 +10408,7 @@ BrightFountainTile.prototype = new FeatureObject();
 function BlueFountainTile() {
   //Graphics Upgraded
   this.name = "BlueFountain";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -102*32;
   this.prefix = "a";
@@ -10431,7 +10433,7 @@ BlueFountainTile.prototype = new FeatureObject();
 function FountainTile() {
   //Graphics Upgraded
   this.name = "Fountain";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -101*32;
   this.prefix = "a";
@@ -10456,7 +10458,7 @@ FountainTile.prototype = new FeatureObject();
 function WideFountainTile() {
   //Graphics Upgraded
   this.name = "WideFountain";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -123*32;
   this.prefix = "a";
@@ -10493,7 +10495,7 @@ BrokenFountainTile.prototype = new FeatureObject();
 function BlueCrystalTile() {
   //Graphics Upgraded
   this.name = "BlueCrystal";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -111*32;
   this.prefix = "a";
@@ -10518,7 +10520,7 @@ BlueCrystalTile.prototype = new FeatureObject();
 function PurpleCrystalTile() {
   //Graphics Upgraded
   this.name = "PurpleCrystal";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -112*32;
   this.prefix = "a";
@@ -10542,7 +10544,7 @@ PurpleCrystalTile.prototype = new FeatureObject();
 function YellowCrystalTile() {
   //Graphics Upgraded
   this.name = "YellowCrystal";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -113*32;
   this.prefix = "a";
@@ -10566,7 +10568,7 @@ YellowCrystalTile.prototype = new FeatureObject();
 function GreenCrystalTile() {
   //Graphics Upgraded
   this.name = "GreenCrystal";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -114*32;
   this.prefix = "a";
@@ -10590,7 +10592,7 @@ GreenCrystalTile.prototype = new FeatureObject();
 function RedCrystalTile() {
   //Graphics Upgraded
   this.name = "RedCrystal";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -115*32;
   this.prefix = "a";
@@ -10614,7 +10616,7 @@ RedCrystalTile.prototype = new FeatureObject();
 function WhiteCrystalTile() {
   //Graphics Upgraded
   this.name = "WhiteCrystal";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -116*32;
   this.prefix = "a";
@@ -10637,7 +10639,7 @@ WhiteCrystalTile.prototype = new FeatureObject();
 function TeleporterPlatformTile() {
   //Graphic Upgraded
   this.name = "TeleporterPlatform";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -110*32;
   this.prefix = "a";
@@ -10680,7 +10682,7 @@ TeleporterPlatformTile.prototype.walkon = function(who) {
 function UDTeleporterPlatformTile() {
   //Graphic Upgraded
   this.name = "UDTeleporterPlatform";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -110*32;
   this.prefix = "a";
@@ -10708,7 +10710,7 @@ UDTeleporterPlatformTile.prototype.walkon = function(who) {
 function PitTeleporterPlatformTile() {
   //Graphic Upgraded
   this.name = "PitTeleporterPlatform";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -110*32;
   this.prefix = "a";
@@ -10755,7 +10757,7 @@ PitTeleporterPlatformTile.prototype.walkon = function(who) {
 function ToshinPanelTile() {
   //Graphics Upgraded
   this.name = "ToshinPanel";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -106*32;
   this.prefix = "a";
@@ -10979,7 +10981,7 @@ ToshinMoatLeverOffTile.prototype.use = function(who) {
 // For skypalace
 function OrbToggleTile() {
   this.name = "OrbToggle";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -77*32;
   this.prefix = "an";
@@ -11022,7 +11024,7 @@ OrbToggleTile.prototype.use = function(who) {
 // Mt Drash
 function DrashOrbToggleTile() {
   this.name = "DrashOrbToggle";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -77*32;
   this.prefix = "an";
@@ -11064,7 +11066,7 @@ DrashOrbToggleTile.prototype.use = function(who) {
 
 function OrbStrengthTile() {
   this.name = "OrbStrength";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -69*32;
   this.prefix = "an";
@@ -11094,7 +11096,7 @@ OrbStrengthTile.prototype.use = function(who) {
 
 function OrbDexterityTile() {
   this.name = "OrbDexterity";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -69*32;
   this.prefix = "an";
@@ -11125,7 +11127,7 @@ OrbDexterityTile.prototype.use = function(who) {
 
 function OrbIntelligenceTile() {
   this.name = "OrbIntelligence";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -69*32;
   this.prefix = "an";
@@ -11155,7 +11157,7 @@ OrbIntelligenceTile.prototype.use = function(who) {
 
 function OrbExperienceTile() {
   this.name = "OrbExperience";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -69*32;
   this.prefix = "an";
@@ -11376,7 +11378,7 @@ function DissolveDoor(door, which) {
 
 function PetrifiedReaperTile() {
   this.name = "PetrifiedReaper";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -98*32;
   this.passable = MOVE_ETHEREAL;
@@ -11456,7 +11458,7 @@ OracleTopRightTile.prototype = new OracleObject();
 function SwordInStoneTile() {
   //Graphics Upgraded
   this.name = "SwordInStone";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 //  this.spritexoffset = -4*32;
 //  this.spriteyoffset = -75*32;
   this.spritexoffset = -9*32;
@@ -11485,7 +11487,7 @@ SwordInStoneTile.prototype.use = function(who) {
 function StoneWithoutSwordTile() {
   //Graphics Upgraded
   this.name = "StoneWithoutSword";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -75*32;
   this.passable = MOVE_ETHEREAL;
@@ -11527,7 +11529,7 @@ ItemObject.prototype.getUseDesc = function() {
 
 function AmbroseShieldTile() {
   this.name = "AmbroseShield";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -36*32;
   this.blocklos = 0;
@@ -11542,7 +11544,7 @@ AmbroseShieldTile.prototype = new ItemObject();
 function RobertMapTile() {
   //Graphics Upgraded
   this.name = "RobertMap";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -35*32;
   this.blocklos = 0;
@@ -11557,7 +11559,7 @@ RobertMapTile.prototype = new ItemObject();
 function SmallRockTile() {
   //Graphics Upgraded
   this.name = "SmallRock";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -24*32;
   this.blocklos = 0;
@@ -11572,7 +11574,7 @@ SmallRockTile.prototype = new ItemObject();
 function SiriCloakTile() {
   //Graphics Upgraded
   this.name = "SiriCloak";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -39*32;
   this.blocklos = 0;
@@ -11588,7 +11590,7 @@ SiriCloakTile.prototype = new ItemObject();
 function JusticeOrbTile() {
   //Graphics Upgraded
   this.name = "JusticeOrb";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -70*32;
   this.blocklos = 0;
@@ -11640,7 +11642,7 @@ JusticeOrbTile.prototype.onGet = function(who) {
 function CrownTile() {
   //Graphics Upgraded
   this.name = "Crown";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -21*32;
   this.blocklos = 0;
@@ -11655,7 +11657,7 @@ CrownTile.prototype = new ItemObject();
 
 function CrownJewelTile() {
   this.name = "CrownJewel";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -98*32;
   this.blocklos = 0;
@@ -11671,7 +11673,7 @@ CrownJewelTile.prototype = new ItemObject();
 function SceptreTile() {
   //Graphics Upgraded
   this.name = "Sceptre";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -36*32;
   this.blocklos = 0;
@@ -11687,7 +11689,7 @@ SceptreTile.prototype = new ItemObject();
 function KineticCrystalTile() {
   //Graphics upgraded
   this.name = "KineticCrystal";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -1*32;
   this.spriteyoffset = -97*32;
   this.blocklos = 0;
@@ -11735,7 +11737,7 @@ KineticCrystalTile.prototype.use = function(who) {
 function ChaliceTile() {
   //Graphics Upgraded
   this.name = "Chalice";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -26*32;
   this.blocklos = 0;
@@ -11751,7 +11753,7 @@ ChaliceTile.prototype = new ItemObject();
 function FrozenSunlightTile() {
   //Graphic Upgraded
   this.name = "FrozenSunlight";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -162*32;
   this.blocklos = 0;
@@ -11793,7 +11795,7 @@ FrozenSunlightTile.prototype.myTurn = function() {
 
 function RippedAudachtaNemesosTile() {
   this.name = "RippedAudachtaNemesos";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -38*32;
   this.blocklos = 0;
@@ -11826,7 +11828,7 @@ RippedAudachtaNemesosTile.prototype.onMend = function(who) {
 
 function AudachtaNemesosPage1Tile() {
   this.name = "AudachtaNemesosPage1";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -100*32;
   this.blocklos = 0;
@@ -11841,7 +11843,7 @@ AudachtaNemesosPage1Tile.prototype = new ItemObject();
 
 function AudachtaNemesosPage2Tile() {
   this.name = "AudachtaNemesosPage2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -100*32;
   this.blocklos = 0;
@@ -11856,7 +11858,7 @@ AudachtaNemesosPage2Tile.prototype = new ItemObject();
 
 function AudachtaNemesosPage3Tile() {
   this.name = "AudachtaNemesosPage3";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -100*32;
   this.blocklos = 0;
@@ -11872,7 +11874,7 @@ AudachtaNemesosPage3Tile.prototype = new ItemObject();
 function CourierPouchTile() {
   //Graphics Upgraded
   this.name = "CourierPouch";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -35*32;
   this.blocklos = 0;
@@ -11909,7 +11911,7 @@ CourierPouchTile.prototype.use = function(who) {
 function CourierLetterTile() {
   //Updated graphic
   this.name = "CourierLetter";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -100*32;
   this.blocklos = 0;
@@ -11933,7 +11935,7 @@ CourierLetterTile.prototype.use = function(who) {
 function TrustedPlansTile() {
   //Graphics Upgraded
   this.name = "TrustedPlans";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -35*32;
   this.blocklos = 0;
@@ -11948,7 +11950,7 @@ TrustedPlansTile.prototype = new ItemObject();
 function TrustedPinTile() {
   //Graphics Upgraded
   this.name = "TrustedPin";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -26*32;
   this.blocklos = 0;
@@ -11963,7 +11965,7 @@ TrustedPinTile.prototype = new ItemObject();
 function ReaperBarkTile() {
   //Graphics Upgraded
   this.name = "ReaperBark";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -24*32;
   this.blocklos = 0;
@@ -11978,7 +11980,7 @@ ReaperBarkTile.prototype = new ItemObject();
 function BlackDragonScaleTile() {
   //Graphics Upgraded
   this.name = "BlackDragonScale";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -24*32;
   this.blocklos = 0;
@@ -11993,7 +11995,7 @@ BlackDragonScaleTile.prototype = new ItemObject();
 function DragonBoneTile() {
   //Graphics Upgraded
   this.name = "DragonBone";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -39*32;
   this.blocklos = 0;
@@ -12008,7 +12010,7 @@ DragonBoneTile.prototype = new ItemObject();
 function VoidstoneSculptureTile() {
   //Graphics Upgraded
   this.name = "VoidstoneSculpture";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -35*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -12022,7 +12024,7 @@ VoidstoneSculptureTile.prototype = new ItemObject();
 
 function StoneOfConflagrationsTile() {
   this.name = "StoneOfConflagrations";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -26*32;
   this.blocklos = 0;
@@ -12047,7 +12049,7 @@ StoneOfConflagrationsTile.prototype = new ItemObject();
 function BrokenArrowTile() {
   // Graphic Upgraded
   this.name = "BrokenArrow";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -73*32;
   this.blocklos = 0;
@@ -12056,7 +12058,7 @@ function BrokenArrowTile() {
   this.prefix = "a";
   this.longdesc = "A broken arrow with green fletching. Return to Ladonna when Mended.";
   this.addType("Quest");
-  Breakable.call(this,["static.png", "", -32, -98*32],0,"");
+  Breakable.call(this,["static.gif", "", -32, -98*32],0,"");
   this.brokendesc = "broken green-fletched arrow";
   this.repairNeedsInfusion = 1;
 }
@@ -12098,7 +12100,7 @@ FavorChitTile.prototype = new ItemObject();
 function VoidstoneTile() {
   //Graphics Upgraded
   this.name = "Voidstone";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -25*32;
   this.blocklos = 0;
@@ -12113,7 +12115,7 @@ VoidstoneTile.prototype = new ItemObject();
 function SpiderSilkTile() {
   //Graphics Upgraded
   this.name = "SpiderSilk";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -26*32;
   this.blocklos = 0;
@@ -12128,7 +12130,7 @@ SpiderSilkTile.prototype = new ItemObject();
 function BlackPearlTile() {
   //Graphics Upgraded
   this.name = "BlackPearl";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -26*32;
   this.blocklos = 0;
@@ -12143,7 +12145,7 @@ BlackPearlTile.prototype = new ItemObject();
 function ExecutionersHoodTile() {
   //Graphics Upgraded
   this.name = "ExecutionersHood";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -27*32;
   this.blocklos = 0;
@@ -12158,7 +12160,7 @@ ExecutionersHoodTile.prototype = new ItemObject();
 function QuestExecutionersHoodTile() {
   //Graphics Upgraded
   this.name = "QuestExecutionersHood";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -27*32;
   this.blocklos = 0;
@@ -12173,7 +12175,7 @@ QuestExecutionersHoodTile.prototype = new ItemObject();
 function NightshadeTile() {
   //Graphics Upgraded
   this.name = "Nightshade";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -27*32;
   this.blocklos = 0;
@@ -12188,7 +12190,7 @@ NightshadeTile.prototype = new ItemObject();
 function SulfurousAshTile() {
   //Graphics Upgraded
   this.name = "SulfurousAsh";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -28*32;
   this.blocklos = 0;
@@ -12203,7 +12205,7 @@ SulfurousAshTile.prototype = new ItemObject();
 function MassOfHerbsTile() {
   //Graphics Upgraded
   this.name = "MassOfHerbs";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -28*32;
   this.blocklos = 0;
@@ -12218,7 +12220,7 @@ MassOfHerbsTile.prototype = new ItemObject();
 function MandrakeRootTile() {
   //Graphics Upgraded
   this.name = "MandrakeRoot";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -26*32;
   this.blocklos = 0;
@@ -12232,7 +12234,7 @@ MandrakeRootTile.prototype = new ItemObject();
 function LightningWoodTile() {
   //GraphicsUpgraded 
   this.name = "LightningWood";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -26*32;
   this.blocklos = 0;
@@ -12247,7 +12249,7 @@ LightningWoodTile.prototype = new ItemObject();
 function MistletoeTile() {
   //Graphics Upgraded
   this.name = "Mistletoe";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -26*32;
   this.blocklos = 0;
@@ -12261,7 +12263,7 @@ MistletoeTile.prototype = new ItemObject();
 function BloodMossTile() {
   //Graphics Upgraded
   this.name = "BloodMoss";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -26*32;
   this.blocklos = 0;
@@ -12275,7 +12277,7 @@ BloodMossTile.prototype = new ItemObject();
 function BottledEtherTile() {
   //Graphics Upgraded
   this.name = "BottledEther";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -23*32;
   this.blocklos = 0;
@@ -12289,7 +12291,7 @@ BottledEtherTile.prototype = new ItemObject();
 function PerfectRubyTile() {
   //Graphics Upgraded
 	this.name = "PerfectRuby";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0*32;
   this.spriteyoffset = -106*32;
 	this.blocklos = 0;
@@ -12305,7 +12307,7 @@ PerfectRubyTile.prototype = new ItemObject();
 function UncutLargeRubyTile() {
   //Graphics Upgraded
 	this.name = "UncutLargeRuby";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -23*32;
 	this.blocklos = 0;
@@ -12326,7 +12328,7 @@ UncutLargeRubyTile.prototype.onGet = function(who) {
 function RubyTile() {
   //Graphics Upgraded
 	this.name = "Ruby";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -23*32;
 	this.blocklos = 0;
@@ -12341,7 +12343,7 @@ RubyTile.prototype = new ItemObject();
 function UncutRubyTile() {
   //Graphics Upgraded
 	this.name = "UncutRuby";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -23*32;
 	this.blocklos = 0;
@@ -12356,7 +12358,7 @@ UncutRubyTile.prototype = new ItemObject();
 function SmallSapphireTile() {
   //Graphics Upgraded
 	this.name = "SmallSapphire";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -23*32;
 	this.blocklos = 0;
@@ -12371,7 +12373,7 @@ SmallSapphireTile.prototype = new ItemObject();
 function UncutSapphireTile() {
   //Graphics Upgraded
 	this.name = "UncutSapphire";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -24*32;
 	this.blocklos = 0;
@@ -12386,7 +12388,7 @@ UncutSapphireTile.prototype = new ItemObject();
 function GemsTile() {
   //Graphics Upgraded
 	this.name = "Gems";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -23*32;
 	this.blocklos = 0;
@@ -12401,7 +12403,7 @@ GemsTile.prototype = new ItemObject();
 function UncutGemsTile() {
   //Graphics Upgraded
 	this.name = "UncutGems";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -23*32;
 	this.blocklos = 0;
@@ -12416,7 +12418,7 @@ UncutGemsTile.prototype = new ItemObject();
 function RubyGemoftheSunTile() {
   //Graphics Upgraded
 	this.name = "RubyGemoftheSun";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0*32;
   this.spriteyoffset = -161*32;
 	this.blocklos = 0;
@@ -12529,7 +12531,7 @@ function GetNumberBeacons() {
 
 function DecorativeArmorTile() {
 	this.name = "DecorativeArmor";
-	this.graphic = "static.png";
+	this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -71*32;
 	this.desc = "suit of armor";
@@ -12544,7 +12546,7 @@ DecorativeArmorTile.prototype = new ItemObject();
 function AlchemyCrateTile() {
   // Graphics Upgraded
   this.name = "AlchemyCrate";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -79*32;
 	this.desc = "crate full of flasks, tools, and notes";
@@ -12559,7 +12561,7 @@ AlchemyCrateTile.prototype = new ItemObject();
 function FluteTile() {
   //Graphics Upgraded
   this.name = "Flute";
-	this.graphic = "static.png";
+	this.graphic = "static.gif";
 	this.spritexoffset = -6*32;
   this.spriteyoffset = -36*32;
 	this.desc = "flute";
@@ -12573,7 +12575,7 @@ FluteTile.prototype = new ItemObject();
 function DrumTile() {
   //Graphics Upgraded
   this.name = "Drum";
-	this.graphic = "static.png";
+	this.graphic = "static.gif";
 	this.spritexoffset = -4*32;
   this.spriteyoffset = -36*32;
 	this.desc = "drum";
@@ -12587,7 +12589,7 @@ DrumTile.prototype = new ItemObject();
 function LyreTile() {
   //Graphics Upgraded
   this.name = "Lyre";
-	this.graphic = "static.png";
+	this.graphic = "static.gif";
 	this.spritexoffset = -5*32;
   this.spriteyoffset = -36*32;
 	this.desc = "lyre";
@@ -12601,7 +12603,7 @@ LyreTile.prototype = new ItemObject();
 function LuteTile() {
   //Graphics Upgraded
   this.name = "Lute";
-	this.graphic = "static.png";
+	this.graphic = "static.gif";
 	this.spritexoffset = -7*32;
   this.spriteyoffset = -36*32;
 	this.desc = "lute";
@@ -12615,7 +12617,7 @@ LuteTile.prototype = new ItemObject();
 function HornTile() {
   //Graphics Upgraded
   this.name = "Horn";
-	this.graphic = "static.png";
+	this.graphic = "static.gif";
 	this.spritexoffset = -8*32;
   this.spriteyoffset = -36*32;
 	this.desc = "horn";
@@ -12629,7 +12631,7 @@ HornTile.prototype = new ItemObject();
 function MortarTile() {
   //Graphics Upgraded
   this.name = "Mortar";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = 0;
   this.spriteyoffset = -36*32;
 	this.desc = "mortar and pestle";
@@ -12642,7 +12644,7 @@ MortarTile.prototype = new ItemObject();
 
 function AppleTile() {
   this.name = "Apple";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = 0;
   this.spriteyoffset = -26*32;
 	this.desc = "apple";
@@ -12668,7 +12670,7 @@ AppleTile.prototype.use = function(who) {
 function CrystalMortarTile() {
   //Graphics Upgraded
   this.name = "CrystalMortar";
-	this.graphic = "static.png";
+	this.graphic = "static.gif";
 	this.spritexoffset = -2*32;
   this.spriteyoffset = -36*32;
 	this.desc = "crystal mortar";
@@ -12682,7 +12684,7 @@ CrystalMortarTile.prototype = new ItemObject();
 function GoldLocketTile() {
   //Graphics Upgraded
   this.name = "GoldLocket";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -35*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -12707,7 +12709,7 @@ GoldLocketTile.prototype.onGet = function(who) {
 function StolenJewelryTile() {
   //Graphic Upgraded
   this.name = "StolenJewelry";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spriteyoffset = -9*32;
   this.spritexoffset = -98*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -12738,7 +12740,7 @@ SilverBridleTile.prototype = new ItemObject();
 
 function AltarOfAshesTile() {
 	this.name = "AltarOfAshes";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -77*32;
 	this.passable = MOVE_ETHEREAL + MOVE_FLY;
@@ -12758,7 +12760,7 @@ AltarOfAshesTile.prototype.use = function(who) {
 
 function AltarOfIceTile() {
 	this.name = "AltarOfIce";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -77*32;
 	this.passable = MOVE_ETHEREAL + MOVE_FLY;
@@ -12778,7 +12780,7 @@ AltarOfIceTile.prototype.use = function(who) {
 
 function AltarOfBoneTile() {
 	this.name = "AltarOfBone";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -77*32;
 	this.passable = MOVE_ETHEREAL + MOVE_FLY;
@@ -12798,7 +12800,7 @@ AltarOfBoneTile.prototype.use = function(who) {
 
 function AltarOfDustTile() {
 	this.name = "AltarOfDust";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -77*32;
 	this.passable = MOVE_ETHEREAL + MOVE_FLY;
@@ -12819,7 +12821,7 @@ AltarOfDustTile.prototype.use = function(who) {
 function GoldTile() {
   //Graphics Upgraded
   this.name = "Gold";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -35*32;
   this.desc = "1 gold coin";
@@ -12841,16 +12843,16 @@ GoldTile.prototype.setQuantity = function(quant) {
     return 0;
   }
   if ((this.quantity > 0) && (this.quantity < 7)) {
-    this.graphic = "static.png";
+    this.graphic = "static.gif";
     this.spritexoffset = -5*32;
     this.spriteyoffset = -35*32;
   }
   else if ((this.quantity > 6) && (this.quantity < 16)) {
-    this.graphic = "static.png";
+    this.graphic = "static.gif";
     this.spritexoffset = -6*32;
     this.spriteyoffset = -35*32;
   } else if (this.quantity > 15) {
-    this.graphic = "static.png";
+    this.graphic = "static.gif";
     this.spritexoffset = -7*32;
     this.spriteyoffset = -35*32;
   }
@@ -12934,7 +12936,7 @@ function KeyUse(who,what,tgt) {
 function HomeKeyTile() {
   //Graphics Upgraded
   this.name = "HomeKey";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -24*32;
   this.blocklos = 0;
@@ -12963,7 +12965,7 @@ PaladinKeyTile.prototype = new KeyItemObject();
 function ToshinKeyTile() {
   //Graphics Upgraded
   this.name = "ToshinKey";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -24*32;
   this.blocklos = 0;
@@ -12978,7 +12980,7 @@ ToshinKeyTile.prototype = new KeyItemObject();
 function PitOfDespairKeyTile() {
   //Graphics Upgraded
   this.name = "PitOfDespairKey";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -24*32;
   this.blocklos = 0;
@@ -12993,7 +12995,7 @@ PitOfDespairKeyTile.prototype = new KeyItemObject();
 function InnerPitOfDespairKeyTile() {
   //Graphics Upgraded
   this.name = "InnerPitOfDespairKey";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -24*32;
   this.blocklos = 0;
@@ -13008,7 +13010,7 @@ InnerPitOfDespairKeyTile.prototype = new KeyItemObject();
 function KeyOfSpiritsTile() {   // Not currently used?
   //Graphics Upgraded
   this.name = "KeyOfSpirits";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -25*32;
   this.blocklos = 0;
@@ -13023,7 +13025,7 @@ KeyOfSpiritsTile.prototype = new KeyItemObject();
 function RoyalKeyTile() {
   //Graphics Upgraded
   this.name = "RoyalKey";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -24*32;
   this.blocklos = 0;
@@ -13038,7 +13040,7 @@ RoyalKeyTile.prototype = new KeyItemObject();
 function BlackDragonKeyTile() {
   //Graphics Upgraded
   this.name = "BlackDragonKey";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -24*32;
   this.blocklos = 0;
@@ -13053,7 +13055,7 @@ BlackDragonKeyTile.prototype = new KeyItemObject();
 function KeyOfSunTile() {
   //Graphics Upgraded
   this.name = "KeyOfSun";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -25*32;
   this.blocklos = 0;
@@ -13068,7 +13070,7 @@ KeyOfSunTile.prototype = new KeyItemObject();
 function StoneOfShadowTile() {
   //Graphics Upgraded
   this.name = "StoneOfShadow";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -25*32;
   this.blocklos = 0;
@@ -13203,7 +13205,7 @@ function PerformRead() {
 function SheafOfNotesTile() {
   //Graphics Upgraded 
   this.name = "SheafOfNotes";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -100*32;
   this.blocklos = 0;
@@ -13218,7 +13220,7 @@ SheafOfNotesTile.prototype = new BookItemObject();
 function XoriccoRecipeTile() {
   //Graphics Upgraded 
   this.name = "XoriccoRecipe";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -100*32;
   this.blocklos = 0;
@@ -13233,7 +13235,7 @@ XoriccoRecipeTile.prototype = new BookItemObject();
 function ClearLakeReportTile() {
   //Graphics Upgraded 
   this.name = "ClearLakeReport";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -100*32;
   this.blocklos = 0;
@@ -13248,7 +13250,7 @@ ClearLakeReportTile.prototype = new BookItemObject();
 function BeldskaeReportTile() {
   //Graphics Upgraded 
   this.name = "BeldskaeReport";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -100*32;
   this.blocklos = 0;
@@ -13263,7 +13265,7 @@ BeldskaeReportTile.prototype = new BookItemObject();
 function SwainhilReportTile() {
   //Graphics Upgraded 
   this.name = "SwainhilReport";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -100*32;
   this.blocklos = 0;
@@ -13278,7 +13280,7 @@ SwainhilReportTile.prototype = new BookItemObject();
 function FallOfTargrionTile() {
   //Graphics Upgraded
   this.name = "FallOfTargrion";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -37*32;
   this.blocklos = 0;
@@ -13301,7 +13303,7 @@ FallOfTargrionTile.prototype.getLongDesc = function() {
 function BookOfLoreTile() {
   //Graphics Upgraded
   this.name = "BookOfLore";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -37*32;
   this.blocklos = 0;
@@ -13316,7 +13318,7 @@ BookOfLoreTile.prototype = new BookItemObject();
 function EshkazBookTile() {
   //Graphics Upgraded
   this.name = "EshkazBook";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -38*32;
   this.blocklos = 0;
@@ -13331,7 +13333,7 @@ EshkazBookTile.prototype = new BookItemObject();
 function TomeOfSightTile() {
   //Graphics Upgraded
   this.name = "TomeOfSight";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -37*32;
   this.blocklos = 0;
@@ -13346,7 +13348,7 @@ TomeOfSightTile.prototype = new BookItemObject();
 function MapsAndLegendsTile() {
   //Graphics Upgraded
   this.name = "MapsAndLegends";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -37*32;
   this.blocklos = 0;
@@ -13361,7 +13363,7 @@ MapsAndLegendsTile.prototype = new BookItemObject();
 function ATreatiseOnDragonsTile() {
   //Graphics Upgraded
   this.name = "ATreatiseOnDragons";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -38*32;
   this.blocklos = 0;
@@ -13376,7 +13378,7 @@ ATreatiseOnDragonsTile.prototype = new BookItemObject();
 function AWarningOnDaemonsTile() {
   //Graphics Upgraded
   this.name = "AWarningOnDaemons";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -37*32;
   this.blocklos = 0;
@@ -13391,7 +13393,7 @@ AWarningOnDaemonsTile.prototype = new BookItemObject();
 function WhatIsMagicTile() {
   //Graphics Upgraded
   this.name = "WhatIsMagic";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -37*32;
   this.blocklos = 0;
@@ -13407,7 +13409,7 @@ WhatIsMagicTile.prototype = new BookItemObject();
 function NatassaJournalTile() {
   //Graphics Upgraded
   this.name = "NatassaJournal";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -37*32;
   this.blocklos = 0;
@@ -13422,7 +13424,7 @@ NatassaJournalTile.prototype = new BookItemObject();
 function NatassaResearchTile() {
   //Graphics Upgraded
   this.name = "NatassaResearch";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -37*32;
   this.blocklos = 0;
@@ -13437,7 +13439,7 @@ NatassaResearchTile.prototype = new BookItemObject();
 function NatassaResearch2Tile() {
   //Graphics Upgraded
   this.name = "NatassaResearch2";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -37*32;
   this.blocklos = 0;
@@ -13452,7 +13454,7 @@ NatassaResearch2Tile.prototype = new BookItemObject();
 function NatassaResearch3Tile() {
   //Graphics Upgraded
   this.name = "NatassaResearch3";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -37*32;
   this.blocklos = 0;
@@ -13467,7 +13469,7 @@ NatassaResearch3Tile.prototype = new BookItemObject();
 function ToshinJournalTile() {
   //Graphics Upgraded
   this.name = "ToshinJournal";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -37*32;
   this.blocklos = 0;
@@ -13482,7 +13484,7 @@ ToshinJournalTile.prototype = new BookItemObject();
 function ArcheoJournalTile() {
   //Graphics Upgraded
   this.name = "ArcheoJournal";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -38*32;
   this.blocklos = 0;
@@ -13497,7 +13499,7 @@ ArcheoJournalTile.prototype = new BookItemObject();
 function RuinsJournalTile() {
   //Graphics Upgraded
   this.name = "RuinsJournal";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -97*32;
   this.blocklos = 0;
@@ -13512,7 +13514,7 @@ RuinsJournalTile.prototype = new BookItemObject();
 function AdelusLetterTile() {
   //Graphics Upgraded 
   this.name = "AdelusLetter";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -35*32;
   this.blocklos = 0;
@@ -13526,7 +13528,7 @@ AdelusLetterTile.prototype = new BookItemObject();
 
 function StephaneNoteTile() {
   this.name = "StephaneNote";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -35*32;
   this.blocklos = 0;
@@ -13540,7 +13542,7 @@ StephaneNoteTile.prototype = new BookItemObject();
 
 function RhysLetterTile() {
   this.name = "RhysLetter";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -35*32;
   this.blocklos = 0;
@@ -13555,7 +13557,7 @@ RhysLetterTile.prototype = new BookItemObject();
 function SpireScrapTile() {
   //Graphics Upgraded 
   this.name = "SpireScrap";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -35*32;
   this.blocklos = 0;
@@ -13570,7 +13572,7 @@ SpireScrapTile.prototype = new BookItemObject();
 function LayneJournalTile() {
   //Graphics Upgraded
   this.name = "LayneJournal";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -35*32;
   this.blocklos = 0;
@@ -13585,7 +13587,7 @@ LayneJournalTile.prototype = new BookItemObject();
 function LanceRuneNotesTile() {
   //Graphics Upgraded
   this.name = "LanceRuneNotes";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -1*32;
   this.spriteyoffset = -38*32;
   this.blocklos = 0;
@@ -13599,7 +13601,7 @@ LanceRuneNotesTile.prototype = new BookItemObject();
 
 function XApprenticeJournalTile() {
   this.name = "XApprenticeJournal";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -37*32;
   this.blocklos = 0;
@@ -13619,7 +13621,7 @@ ConsumableItemObject.prototype = new ItemObject();
 function KeyOfAshesTile() {
   //Graphics Upgraded
   this.name = "KeyOfAshes";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -25*32;  this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -13651,7 +13653,7 @@ KeyOfAshesTile.prototype.use = function(who) {
 function KeyOfIceTile() {
   //Graphics Upgraded
   this.name = "KeyOfIce";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -25*32;
   this.blocklos = 0;
@@ -13684,7 +13686,7 @@ KeyOfIceTile.prototype.use = function(who) {
 function KeyOfBoneTile() {
   //Graphics Upgraded
   this.name = "KeyOfBone";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -25*32;
   this.blocklos = 0;
@@ -13717,7 +13719,7 @@ KeyOfBoneTile.prototype.use = function(who) {
 function KeyOfDustTile() {
   //Graphics Upgraded
   this.name = "KeyOfDust";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -25*32;
   this.blocklos = 0;
@@ -13749,7 +13751,7 @@ KeyOfDustTile.prototype.use = function(who) {
 
 function StoneOfCursesTile() {
   this.name = "StoneOfCurses";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -159*32;
   this.blocklos = 0;
@@ -13783,7 +13785,7 @@ StoneOfCursesTile.prototype.use = function(who) {
 function TorchTile() {
   //Graphic Upgraded
   this.name = "Torch";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -163*32;
   this.blocklos = 0;
@@ -13834,7 +13836,7 @@ TorchTile.prototype.flamed = function() {
 
 function KyvekBoxTile() {
   this.name = "KyvekBox";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -79*32;
   this.blocklos = 0;
@@ -13880,7 +13882,7 @@ KyvekBoxTile.prototype.usePrompt = function(code) {
 function InfiniteScrollTile() {
   //Graphics Upgraded
   this.name = "InfiniteScroll";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -39*32;
   this.blocklos = 0;
@@ -13984,7 +13986,7 @@ SupplyBoxTile.prototype.use = function(who) {
 function BluePalmCrystalTile() {
   //Graphics Upgraded
   this.name = "BluePalmCrystal";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -37*32;
   this.passable = MOVE_ETHEREAL;
@@ -14011,7 +14013,7 @@ BluePalmCrystalTile.prototype.use = function(who) {
 function GreenPalmCrystalTile() {
   //Graphics Upgraded
   this.name = "GreenPalmCrystal";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -37*32;
   this.passable = MOVE_ETHEREAL;
@@ -14039,7 +14041,7 @@ GreenPalmCrystalTile.prototype.use = function(who) {
 function PurplePalmCrystalTile() {
   //Graphics Upgraded
   this.name = "PurplePalmCrystal";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -37*32;
   this.passable = MOVE_ETHEREAL;
@@ -14100,7 +14102,7 @@ function GreenPotionTile() {
   this.desc = "green potion";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -21*32;
   this.usedesc = "Drink it, or throw it at something.";
@@ -14216,7 +14218,7 @@ function DarkGreenPotionTile() {
   this.name = "DarkGreenPotion";
   this.desc = "dark green potion";
   this.prefix = "a";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -21*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14247,7 +14249,7 @@ function SilverPotionTile() {
   this.name = "SilverPotion";
   this.desc = "silver potion";
   this.prefix = "a";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -22*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14292,7 +14294,7 @@ function PinkPotionTile() {
   this.name = "PinkPotion";
   this.desc = "pink potion";
   this.prefix = "a";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -22*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14337,7 +14339,7 @@ function GreyPotionTile() {
   this.name = "GreyPotion";
   this.desc = "grey potion";
   this.prefix = "a";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -23*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14383,7 +14385,7 @@ function BrownPotionTile() {
   this.name = "BrownPotion";
   this.desc = "milky purple potion";
   this.prefix = "a";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -22*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14416,7 +14418,7 @@ function RedPotionTile() {
   this.name = "RedPotion";
   this.desc = "red potion";
   this.prefix = "a";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -22*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14450,7 +14452,7 @@ function WhitePotionTile() {
   this.name = "WhitePotion";
   this.desc = "white potion";
   this.prefix = "a";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -21*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14481,7 +14483,7 @@ function YellowPotionTile() {
   this.name = "YellowPotion";
   this.desc = "yellow potion";
   this.prefix = "a";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -22*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14512,7 +14514,7 @@ function PurplePotionTile() {
   this.name = "PurplePotion";
   this.desc = "purple potion";
   this.prefix = "a";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -22*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14543,7 +14545,7 @@ function BlackPotionTile() {
   this.name = "BlackPotion";
   this.desc = "black potion";
   this.prefix = "a";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -21*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14574,7 +14576,7 @@ function BluePotionTile() {
   this.name = "BluePotion";
   this.desc = "blue potion";
   this.prefix = "a";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -22*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14605,7 +14607,7 @@ function DeepBluePotionTile() {
   this.name = "DeepBluePotion";
   this.desc = "deep blue potion";
   this.prefix = "a";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -21*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14635,7 +14637,7 @@ function OrangePotionTile() {
   this.name = "OrangePotion";
   this.desc = "orange potion";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -22*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14671,7 +14673,7 @@ function TanPotionTile() {
   this.name = "TanPotion";
   this.desc = "tan potion";
   this.prefix = "a";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -22*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14701,7 +14703,7 @@ TanPotionTile.prototype.use = function(who) {
 function ScrollItemObject() {
   //Graphics Upgraded
   this.addType("Scroll"); 
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -39*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14771,7 +14773,7 @@ function ScrollWildcardTile() {
   this.name = "ScrollWildcard";
   this.desc = "scroll of ???";
   this.prefix = "a";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -39*32;
   this.spelllevel = 0;
@@ -15232,7 +15234,7 @@ function AudachtaNemesosDisarmTrapTile() {
   this.name = "AudachtaNemesosDisarmTrap";
   this.desc = "Audachta Nemesos: Disarm Trap";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_DISARM_TRAP_LEVEL;
@@ -15246,7 +15248,7 @@ function AudachtaNemesosDistractTile() {
   this.name = "AudachtaNemesosDistract";
   this.desc = "Audachta Nemesos: Distract";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_DISTRACT_LEVEL;
@@ -15260,7 +15262,7 @@ function AudachtaNemesosFlameBladeTile() {
   this.name = "AudachtaNemesosFlameBlade";
   this.desc = "Audachta Nemesos: Flame Blade";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_FLAME_BLADE_LEVEL;
@@ -15274,7 +15276,7 @@ function AudachtaNemesosMagicBoltTile() {
   this.name = "AudachtaNemesosMagicBolt";
   this.desc = "Audachta Nemesos: Magic Bolt";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_MAGIC_BOLT_LEVEL;
@@ -15288,7 +15290,7 @@ function AudachtaNemesosVulnerabilityTile() {
   this.name = "AudachtaNemesosVulnerability";
   this.desc = "Audachta Nemesos: Vulnerability";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_VULNERABILITY_LEVEL;
@@ -15302,7 +15304,7 @@ function AudachtaNemesosIronFleshTile() {
   this.name = "AudachtaNemesosIronFlesh";
   this.desc = "Audachta Nemesos: Iron Flesh";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_IRON_FLESH_LEVEL;
@@ -15316,7 +15318,7 @@ function AudachtaNemesosLesserHealTile() {
   this.name = "AudachtaNemesosLesserHeal";
   this.desc = "Audachta Nemesos: Lesser Heal";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_LESSER_HEAL_LEVEL;
@@ -15330,7 +15332,7 @@ function AudachtaNemesosPoisonCloudTile() {
   this.name = "AudachtaNemesosPoisonCloud";
   this.desc = "Audachta Nemesos: Poison Cloud";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_POISON_CLOUD_LEVEL;
@@ -15344,7 +15346,7 @@ function AudachtaNemesosProtectionTile() {
   this.name = "AudachtaNemesosProtection";
   this.desc = "Audachta Nemesos: Protection";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_PROTECTION_LEVEL;
@@ -15358,7 +15360,7 @@ function AudachtaNemesosUnlockTile() {
   this.name = "AudachtaNemesosUnlock";
   this.desc = "Audachta Nemesos: Unlock";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_UNLOCK_LEVEL;
@@ -15372,7 +15374,7 @@ function AudachtaNemesosWindChangeTile() {
   this.name = "AudachtaNemesosWindChange";
   this.desc = "Audachta Nemesos: Wind Change";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_WIND_CHANGE_LEVEL;
@@ -15386,7 +15388,7 @@ function AudachtaNemesosDisruptUndeadTile() {
   this.name = "AudachtaNemesosDisruptUndead";
   this.desc = "Audachta Nemesos: Disrupt Undead";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_DISRUPT_UNDEAD_LEVEL;
@@ -15400,7 +15402,7 @@ function AudachtaNemesosFireArmorTile() {
   this.name = "AudachtaNemesosFireArmor";
   this.desc = "Audachta Nemesos: Fire Armor";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_FIRE_ARMOR_LEVEL;
@@ -15414,7 +15416,7 @@ function AudachtaNemesosIceballTile() {
   this.name = "AudachtaNemesosIceball";
   this.desc = "Audachta Nemesos: Iceball";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_ICEBALL_LEVEL;
@@ -15428,7 +15430,7 @@ function AudachtaNemesosTelekinesisTile() {
   this.name = "AudachtaNemesosTelekinesis";
   this.desc = "Audachta Nemesos: Telekinesis";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_TELEKINESIS_LEVEL;
@@ -15442,7 +15444,7 @@ function AudachtaNemesosTelepathyTile() {
   this.name = "AudachtaNemesosTelepathy";
   this.desc = "Audachta Nemesos: Telepathy";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_TELEPATHY_LEVEL;
@@ -15456,7 +15458,7 @@ function AudachtaNemesosWallOfFlameTile() {
   this.name = "AudachtaNemesosWallOfFlame";
   this.desc = "Audachta Nemesos: Wall of Flame";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_WALL_OF_FLAME_LEVEL;
@@ -15470,7 +15472,7 @@ function AudachtaNemesosBlessingTile() {
   this.name = "AudachtaNemesosBlessing";
   this.desc = "Audachta Nemesos: Blessing";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_BLESSING_LEVEL;
@@ -15484,7 +15486,7 @@ function AudachtaNemesosHealTile() {
   this.name = "AudachtaNemesosHeal";
   this.desc = "Audachta Nemesos: Heal";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_HEAL_LEVEL;
@@ -15498,7 +15500,7 @@ function AudachtaNemesosLifeDrainTile() {
   this.name = "AudachtaNemesosLifeDrain";
   this.desc = "Audachta Nemesos: Life Drain";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_LIFE_DRAIN_LEVEL;
@@ -15512,7 +15514,7 @@ function AudachtaNemesosSmiteTile() {
   this.name = "AudachtaNemesosSmite";
   this.desc = "Audachta Nemesos: Smite";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_SMITE_LEVEL;
@@ -15526,7 +15528,7 @@ function AudachtaNemesosOpenGateTile() {
   this.name = "AudachtaNemesosOpenGate";
   this.desc = "Audachta Nemesos: Open Gate";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_OPEN_GATE_LEVEL;
@@ -15540,7 +15542,7 @@ function AudachtaNemesosCrystalTrapTile() {
   this.name = "AudachtaNemesosCrystalTrap";
   this.desc = "Audachta Nemesos: Crystal Trap";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_CRYSTAL_TRAP_LEVEL;
@@ -15554,7 +15556,7 @@ function AudachtaNemesosMirrorWardTile() {
   this.name = "AudachtaNemesosMirrorWard";
   this.desc = "Audachta Nemesos: Mirror Ward";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_MIRROR_WARD_LEVEL;
@@ -15568,7 +15570,7 @@ function AudachtaNemesosParalyzeTile() {
   this.name = "AudachtaNemesosParalyze";
   this.desc = "Audachta Nemesos: Paralyze";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_PARALYZE_LEVEL;
@@ -15582,7 +15584,7 @@ function AudachtaNemesosReturnTile() {
   this.name = "AudachtaNemesosReturn";
   this.desc = "Audachta Nemesos: Return";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_RETURN_LEVEL;
@@ -15596,7 +15598,7 @@ function AudachtaNemesosShockwaveTile() {
   this.name = "AudachtaNemesosShockwave";
   this.desc = "Audachta Nemesos: Shockwave";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_SHOCKWAVE_LEVEL;
@@ -15610,7 +15612,7 @@ function AudachtaNemesosSummonAllyTile() {
   this.name = "AudachtaNemesosSummonAlly";
   this.desc = "Audachta Nemesos: Summon Ally";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_SUMMON_ALLY_LEVEL;
@@ -15624,7 +15626,7 @@ function AudachtaNemesosSwordstrikeTile() {
   this.name = "AudachtaNemesosSwordstrike";
   this.desc = "Audachta Nemesos: Swordstrike";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_SWORDSTRIKE_LEVEL;
@@ -15638,7 +15640,7 @@ function AudachtaNemesosEmpowerTile() {
   this.name = "AudachtaNemesosEmpower";
   this.desc = "Audachta Nemesos: Empower";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_EMPOWER_LEVEL;
@@ -15652,7 +15654,7 @@ function AudachtaNemesosExplosionTile() {
   this.name = "AudachtaNemesosExplosion";
   this.desc = "Audachta Nemesos: Explosion";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_EXPLOSION_LEVEL;
@@ -15666,7 +15668,7 @@ function AudachtaNemesosJinxTile() {
   this.name = "AudachtaNemesosJinx";
   this.desc = "Audachta Nemesos: Jinx";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_JINX_LEVEL;
@@ -15680,7 +15682,7 @@ function AudachtaNemesosNegateMagicTile() {
   this.name = "AudachtaNemesosNegateMagic";
   this.desc = "Audachta Nemesos: Negate Magic";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_NEGATE_MAGIC_LEVEL;
@@ -15694,7 +15696,7 @@ function AudachtaNemesosTremorTile() {
   this.name = "AudachtaNemesosTremor";
   this.desc = "Audachta Nemesos: Tremor";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_TREMOR_LEVEL;
@@ -15708,7 +15710,7 @@ function AudachtaNemesosWeatherControlTile() {
   this.name = "AudachtaNemesosWeatherControl";
   this.desc = "Audachta Nemesos: Weather Control";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_WEATHER_CONTROL_LEVEL;
@@ -15722,7 +15724,7 @@ function AudachtaNemesosCharmTile() {
   this.name = "AudachtaNemesosCharm";
   this.desc = "Audachta Nemesos: Charm";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_CHARM_LEVEL;
@@ -15736,7 +15738,7 @@ function AudachtaNemesosFearTile() {
   this.name = "AudachtaNemesosFear";
   this.desc = "Audachta Nemesos: Fear";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_FEAR_LEVEL;
@@ -15750,7 +15752,7 @@ function AudachtaNemesosFireAndIceTile() {
   this.name = "AudachtaNemesosFireAndIce";
   this.desc = "Audachta Nemesos: Fire and Ice";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_FIRE_AND_ICE_LEVEL;
@@ -15764,7 +15766,7 @@ function AudachtaNemesosInvulnerabilityTile() {
   this.name = "AudachtaNemesosInvulnerability";
   this.desc = "Audachta Nemesos: Invulnerability";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_INVULNERABILITY_LEVEL;
@@ -15778,7 +15780,7 @@ function AudachtaNemesosMeteorSwarmTile() {
   this.name = "AudachtaNemesosMeteorSwarm";
   this.desc = "Audachta Nemesos: Meteor Swarm";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_METEOR_SWARM_LEVEL;
@@ -15792,7 +15794,7 @@ function AudachtaNemesosMindBlastTile() {
   this.name = "AudachtaNemesosMindBlast";
   this.desc = "Audachta Nemesos: Mind Blast";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_MIND_BLAST_LEVEL;
@@ -15806,7 +15808,7 @@ function AudachtaNemesosPermanenceTile() {
   this.name = "AudachtaNemesosPermanence";
   this.desc = "Audachta Nemesos: Permanence";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_PERMANENCE_LEVEL;
@@ -15820,7 +15822,7 @@ function AudachtaNemesosArrowOfGlassTile() {
   this.name = "AudachtaNemesosArrowOfGlass";
   this.desc = "Audachta Nemesos: Arrow of Glass";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_ARROW_OF_GLASS_LEVEL;
@@ -15834,7 +15836,7 @@ function AudachtaNemesosBuildGateTile() {
   this.name = "AudachtaNemesosBuildGate";
   this.desc = "Audachta Nemesos: Build Gate";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_BUILD_GATE_LEVEL;
@@ -15848,7 +15850,7 @@ function AudachtaNemesosConflagrationTile() {
   this.name = "AudachtaNemesosConflagration";
   this.desc = "Audachta Nemesos: Conflagration";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_CONFLAGRATION_LEVEL;
@@ -15862,7 +15864,7 @@ function AudachtaNemesosConjureDaemonTile() {
   this.name = "AudachtaNemesosConjureDaemon";
   this.desc = "Audachta Nemesos: Conjure Daemon";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_CONJURE_DAEMON_LEVEL;
@@ -15876,7 +15878,7 @@ function AudachtaNemesosQuicknessTile() {
   this.name = "AudachtaNemesosQuickness";
   this.desc = "Audachta Nemesos: Quickness";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_QUICKNESS_LEVEL;
@@ -15890,7 +15892,7 @@ function AudachtaNemesosReincarnateTile() {
   this.name = "AudachtaNemesosReincarnate";
   this.desc = "Audachta Nemesos: Reincarnate";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_REINCARNATE_LEVEL;
@@ -15904,7 +15906,7 @@ function AudachtaNemesosTimeStopTile() {
   this.name = "AudachtaNemesosTimeStop";
   this.desc = "Audachta Nemesos: Time Stop";
   this.prefix = "an";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_TIME_STOP_LEVEL;
@@ -16141,7 +16143,7 @@ EquipableItemObject.prototype.setToHitBonus = function(newbonus) {
 function RingOfFireResistTile() {
   //Graphics Upgraded
   this.name = "RingOfFireResist";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -21*32;
   this.blocklos = 0;
@@ -16175,7 +16177,7 @@ RingOfFireResistTile.prototype.onUnequip = function(who) {
 function RingOfEtherealFocusTile() {
   //Graphics Upgraded
   this.name = "RingOfEtherealFocus";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -21*32;
   this.blocklos = 0;
@@ -16222,7 +16224,7 @@ RingOfEtherealFocusTile.prototype.killed = function(who) {
 function AmuletOfReflectionsTile() {
   //Graphics Upgraded
   this.name = "AmuletOfReflections";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -35*32;
   this.blocklos = 0;
@@ -16294,7 +16296,7 @@ AmuletOfReflectionsTile.prototype.use = function(who) {
 function JadeNecklaceTile() {
   //Graphics Upgraded
   this.name = "JadeNecklace";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -35*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;;
@@ -16370,7 +16372,7 @@ function ClothArmorTile() {
 	this.name = "ClothArmor";
 	this.defense = 5;
 	this.absorb = 10;
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -7*32;
 	this.spriteyoffset = -70*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -16389,7 +16391,7 @@ function LeatherArmorTile() {
 	this.defense = 10;
 	this.absorb = 20;
 	this.resist = 10;
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -8*32;
 	this.spriteyoffset = -70*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -16409,7 +16411,7 @@ function ChainArmorTile() {
 	this.absorb = 33;
 	this.resist = 10;
 	this.strReq = 14;
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -9*32;
 	this.spriteyoffset = -70*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -16429,7 +16431,7 @@ function PlateArmorTile() {
 	this.absorb = 50;
 	this.resist = 15;
 	this.strReq = 18;
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = 0;
 	this.spriteyoffset = -71*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -16448,7 +16450,7 @@ function ExoticArmorTile() {
 	this.absorb = 60;
   this.resist = 40;
   this.strReq = 16;
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -100*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -16579,7 +16581,7 @@ function FistsTile() {
 	this.name = "Fists";
 	this.damage = "1d2+0";
 	this.strdamage = 1/3;
-	this.graphic = "static.png";  // pic of an alternate mace, but never shown to the player anyway
+	this.graphic = "static.gif";  // pic of an alternate mace, but never shown to the player anyway
 	this.spritexoffset = -8*32;
 	this.spriteyoffset = -68*32;
 	this.prefix = "your";
@@ -16592,7 +16594,7 @@ function DaggerTile() {
 	this.name = "Dagger";
 	this.damage = "1d4+1";
 	this.strdamage = 1/3;
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = 0;
 	this.spriteyoffset = -68*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -16610,7 +16612,7 @@ function ShortswordTile() {
 	this.name = "Shortsword";
 	this.damage = "2d4+1";
 	this.strdamage = 1/2;
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -32;
 	this.spriteyoffset = -68*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -16628,7 +16630,7 @@ function MaceTile() {
 	this.name = "Mace";
 	this.damage = "2d4+3";
 	this.strdamage = 1;
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -2*32;
 	this.spriteyoffset = -68*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -16646,7 +16648,7 @@ function AxeTile() {
 	this.name = "Axe";
 	this.damage = "2d4+8";
 	this.strdamage = 2/3;
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -3*32;
 	this.spriteyoffset = -68*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -16664,7 +16666,7 @@ function LongswordTile() {
 	this.name = "Longsword";
 	this.damage = "4d4+9";
 	this.strdamage = 2/3;
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -4*32;
 	this.spriteyoffset = -68*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -16682,7 +16684,7 @@ function HalberdTile() {
 	this.name = "Halberd";
 	this.damage = "5d4+15";
 	this.strdamage = 1;
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -5*32;
 	this.spriteyoffset = -68*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -16701,7 +16703,7 @@ function MagicSwordTile() {
 	this.damage = "5d10+22";
 	this.strdamage = 1;
   //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 //	this.spritexoffset = -6*32;
 //	this.spriteyoffset = -124*32;
 	this.spritexoffset = -2*32;
@@ -16731,7 +16733,7 @@ function UnenchantedSwordTile() {
   this.name = "UnenchantedSword";
   this.damage = "2d4";  // when fixed, 4d6+10
   this.strdamage = .5;
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -68*32;
   this.desc = "once-enchanted sword";
@@ -16743,7 +16745,7 @@ function UnenchantedSwordTile() {
   this.brokendesc = "broken, once-enchanted sword";
   this.repairNeedsInfusion = 1;
   this.enchantable = 1;
-  Breakable.call(this,["static.png", "", -7*32, -68*32],1);
+  Breakable.call(this,["static.gif", "", -7*32, -68*32],1);
 
   this.wornlayer = "mainhand";
   this.wornlayername = "Longsword";   // isn't a separate graphic for this from other longsword
@@ -16777,7 +16779,7 @@ function NaturalWeaponTile() {
 	this.name = "NaturalWeapon";
 	this.damage = "1d5+0";
 	this.strdamage = 1;
-	this.graphic = "static.png";
+	this.graphic = "static.gif";
 	this.spritexoffset = -8*32;
 	this.spriteyoffset = -68*32;
 	this.desc = "natural weapon";
@@ -16857,13 +16859,13 @@ function SlingTile() {
   //Graphics Upgraded
 	this.name = "Sling";
 	this.damage = "1d3+1";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = 0;
 	this.spriteyoffset = -69*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "sling";
   this.prefix = "a";
-  this.ammographic = "static.png";
+  this.ammographic = "static.gif";
 	this.ammoxoffset = -3*32;
   this.ammoyoffset = -69*32;
   this.attackSound = "sfx_sling";
@@ -16875,14 +16877,14 @@ function BowTile() {
   //Graphics Upgraded
 	this.name = "Bow";
 	this.damage = "1d12+1";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -32;
 	this.spriteyoffset = -69*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.dexReq = 14;
 	this.desc = "bow";
   this.prefix = "a";
-  this.ammographic = "static.png";
+  this.ammographic = "static.gif";
   this.ammoxoffset = 0;
   this.ammoyoffset = -73*32;
   this.directionalammo = 1;
@@ -16898,14 +16900,14 @@ function CrossbowTile() {
   //Graphics Upgraded
 	this.name = "Crossbow";
 	this.damage = "4d8+-1";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
 	this.spritexoffset = -2*32;
 	this.spriteyoffset = -69*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.dexReq = 17;
 	this.desc = "crossbow";
 	this.prefix = "a";
-  this.ammographic = "static.png";
+  this.ammographic = "static.gif";
   this.ammoxoffset = 0;
   this.ammoyoffset = -74*32;
   this.directionalammo = 1;
@@ -16921,7 +16923,7 @@ function YewWandTile() {
 	this.name = "YewWand";
 	this.damage = "4d12+0";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -104*32;
 	this.desc = "magic wand";
@@ -16951,7 +16953,7 @@ function WandTile() {
   //Graphics Upgraded
 	this.name = "Wand";
 	this.damage = "4d12+0";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -103*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -16981,7 +16983,7 @@ function MagicAxeTile() {
   //Graphics Upgraded
 	this.name = "MagicAxe";
 	this.damage = "4d12+12";
-  this.graphic = "static.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -105*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;

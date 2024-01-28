@@ -1429,7 +1429,7 @@ function SetBySurroundRoad() {
 	  if ((suffix === "e") || (suffix === "w")) { suffix = "ew"; }
     if ((suffix === "n") || (suffix === "s")) { suffix = "ns"; }
     
-    graphics[0] = "static.png";
+    graphics[0] = "static.gif";
     switch (suffix) {
       case "en": 
       graphics[2] = -9*32; graphics[3] = -8*32;
