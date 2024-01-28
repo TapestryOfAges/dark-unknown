@@ -150,7 +150,7 @@ function MainViewDrawTile(themap, centerx, centery, j, i, tp, ev, displayspecs) 
     if ((opac > 0) && (opac < 1)) {
       mview.innerHTML += "<div style='background-image: url(\"graphics/shadow.gif\"); position:absolute;left:0px;top:0px;width:32px;height:32px' ></div>";
     } else if (opac === 0) {
-      mview.innerHTML += "<div style='background-image: url(\"graphics/static.png\"); background-position:0px -3104px; position:absolute;left:0px;top:0px;width:32px;height:32px' ></div>";
+      mview.innerHTML += "<div style='background-image: url(\"graphics/static.gif\"); background-position:0px -3104px; position:absolute;left:0px;top:0px;width:32px;height:32px' ></div>";
     }  
   }
 
@@ -182,7 +182,7 @@ function OldMainViewDrawTile(themap, centerx, centery, j, i, tp, ev, displayspec
   if ((opac > 0) && (opac < 1)) {
     mview.innerHTML += "<img src='graphics/shadow.gif' style='position:absolute;left:0px;top:0px' />";
   } else if (opac === 0) {
-    mview.innerHTML += "<div style='background-image: url(\"graphics/static.png\"); background-position:0px -3104px; position:absolute;left:0px;top:0px;width:32px;height:32px' /></div>";
+    mview.innerHTML += "<div style='background-image: url(\"graphics/static.gif\"); background-position:0px -3104px; position:absolute;left:0px;top:0px;width:32px;height:32px' /></div>";
   }
 
   if (thiscell.hasOwnProperty("topview")) {
@@ -194,7 +194,7 @@ function OldMainViewDrawTile(themap, centerx, centery, j, i, tp, ev, displayspec
     if ((opac > 0) && (opac < 1)) {
       topview.innerHTML += "<img src='graphics/shadow.gif' style='position:absolute;left:0px;top:0px' />";
     } else if (opac === 0) {
-      topview.innerHTML += "<div style='background-image: url(\"graphics/static.png\"); background-position:0px -3104px; position:absolute;left:0px;top:0px;width:32px;height:32px' /></div>";
+      topview.innerHTML += "<div style='background-image: url(\"graphics/static.gif\"); background-position:0px -3104px; position:absolute;left:0px;top:0px;width:32px;height:32px' /></div>";
     }  
   } else {
     topview.innerHTML = "<img id='tile"+j+"x"+i+"' src='graphics/spacer.gif' border='0' alt='tile"+j+"x"+i+" los: " + thiscell.losresult + " light:" + thiscell.lighthere + "' width='32' height='32' title='" + thiscell.desc + "'/>";
@@ -366,7 +366,7 @@ function DoAction(code, ctrl) {
         let prince = targetCursor.prince;
         delete targetCursor.prince;
         prince.realgraphic = prince.getGraphicArray();
-        prince.setGraphicArray(["static.png","","-256","-2464"]);
+        prince.setGraphicArray(["static.gif","","-256","-2464"]);
         prince.setAttitude("neutral"); // so dragon doesn't attack him
 
         let fieldeffect = localFactory.createTile("Sleep");
@@ -950,6 +950,35 @@ function DoAction(code, ctrl) {
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     gamestate.setMode("player");
     gamestate.setTurn(PC);
+  }
+  else if (gamestate.getMode() === "journal") {
+    if (code === 27) { // ESC
+      delete targetCursor.scrolllocation;
+      delete targetCursor.page;
+      document.getElementById('uiinterface').innerHTML = "";
+      document.getElementById('uiinterface').style.backgroundColor = "";
+      document.getElementById('worldlayer').innerHTML = "";
+      document.getElementById('worldlayer').style.backgroundColor = "";
+      maintext.setInputLine("&gt;");
+      maintext.drawTextFrame();
+      gamestate.setMode("player");
+      gamestate.setTurn(PC);  
+    } else if (code === 38) { // Up arrow
+      targetCursor.scrolllocation--;
+      if (targetCursor.scrolllocation < 0) { targetCursor.scrolllocation = 0; }
+      FillInJournal();
+    } else if (code === 40) { // Down arrow
+      targetCursor.scrolllocation++;
+      FillInJournal();
+    } else if (code === 37) { // Left arrow
+      targetCursor.page--;
+      if (targetCursor.page < 1) { targetCursor.page = 1; }
+      FillInJournal();
+    } else if (code === 39) { // Right arrow
+      targetCursor.page++;
+      if (targetCursor.page > 4) { targetCursor.page = 4; }
+      FillInJournal();
+    }
   }
   else if (gamestate.getMode() === "zstats") {
     let response = performZstats(code);
