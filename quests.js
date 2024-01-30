@@ -104,6 +104,18 @@ class Quest {
       matches = txt.match(ifno);
     }
 
+    const ifitem = /\<IFITEM:(.*?)\>/;
+    matches = txt.match(ifitem);
+    while (matches !== null) {
+      if (PublicKeyCredential.checkInventory(matches[1])) {
+        txt = txt.replace(ifitem, "");
+        txt = txt.replace(/\<\/IFITEM\>/, "");
+      } else {
+        txt = txt.replace(/\<IFITEM.*?\<\/IFITEM\>/, "");
+      }
+      matches = txt.match(ifno);
+    }
+
     return txt;
   }
 
@@ -124,7 +136,7 @@ questlist[3] = new Quest([], "To Earn a Spellbook", "Jharden", "Castle dea Olymp
 questlist[4] = new Quest([], "Nyrani's Shield", "Nyrani", "Castle dea Olympus", "Fetch Nyrani's shield from the armorsmith in Hildendain.", "You've brought Nyrani her shield.", "main");
 questlist[5] = new Quest([], "A Cave Near the Coast", "Erin", "Hildendain", "Trade is being threatened by monsters in a cave. Erin has asked you to ask Nyrani to do something about it.", "The monsters in the cave are slain.", "side");
 questlist[6] = new Quest([], "Fall of Targion", "Olivia", "Castle dea Olympus", "Olivia in Castle dea Olympus is looking for the book Fall of Targion, which is probably in the Tower of Toshin.", "You found the book for Olivia.", "side");
-questlist[7] = new Quest([], "Reports for the Chancellor", "Tyler", "Castle dea Olympus", "Chancellor Tyler asked that you get reports from the leaders of Swainhil, Clear Lake, and Beldskae.", "You have brought the reports to the Chancellor.", "side");
+questlist[7] = new Quest([], "Reports for the Chancellor", "Tyler", "Castle dea Olympus", "Chancellor Tyler asked that you get reports from the leaders of Swainhil, Clear Lake, and Beldskae.<IFITEM:ClearLakeReport><br />You acquired the report from Clear Lake.</IFITEM><IFITEM:SwainhilReport><br />You have acquired the report from Swainhil.</IFITEM><IFITEM:BeldskaeReport><br />You have acquired the report from Beldskae.</IFITEM>", "You have brought the reports to the Chancellor.", "side");
 questlist[8] = new Quest([], "Interrogate a Prisoner", "King Daragen", "Castle dea Olympus", "Speak to a recently captured prisoner, in the prison beneath the castle. The prison is behind a secret door in the north wall of the basement hallway.", "main");
 questlist[9] = new Quest([5], "A Cave Near the Coast", "Erin and Nyrani", "Hildendain", "Trade is being threatened by monsters in a cave southwest of the castle. Nyrani has charged you with eliminating them.", "The monsters in the cave are slain.", "side");
 questlist[10] = new Quest([], "Talk to a Friend", "Sarah", "Hildendain", "Find Arthur, in Poverty, and ask him of his time as a guard in Onyx.", "You've talked to Arthur", "main");
