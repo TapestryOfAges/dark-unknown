@@ -109,6 +109,7 @@ cave_cleared - you've cleared out the cave west of the castle
 cave_cleared_paid - Nyrani has paid you for clearing the cave
 nyrani_supplied - Nyrani has given you some supplies to hit the cave with
 franklin_debt - you have discharged Franklin's debt
+chit_tip - you've heard the bar tip that Kalli has Denise's chit
 franklin_debt_mayor - you have cleared Franklin's name with the mayor
 franklin_debt_paid - Franklin has acknowledged that you have paid his debt
 franklin_offered - you offered money to Franklin (and could actually afford to)
