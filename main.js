@@ -495,6 +495,7 @@ function DoAction(code, ctrl) {
         let newkey = localFactory.createTile("PaladinKey");
         PC.addToInventory(newkey,1);
         DU.gameflags.setFlag("paladin_joined",1);
+        questlog.complete(52);
         maintext.addText(`<span class='mainspeaker'>Isaac</span>: "The first thing I need to do now, is give you access to this tower. Here now is a key. What is in this tower is yours as well as ours, now- take anything you need."<br /><span class='sysconv'>You have obtained: ${newkey.getFullDesc()}.</span>`);
         targetCursor.step++;
       } else if (targetCursor.step === 15) {
