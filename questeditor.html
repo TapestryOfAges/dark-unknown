@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <title>Quest Editor</title>
+    <script language="JavaScript" src="quests.js"></script>
+    <script language="JavaScript" src="questeditor.js"></script>
+  </head>
+  <body onLoad="FillTitles()">
+    <p onclick='SaveQuests()'>[SAVE QUESTS]</p>
+    <table cellpadding="0" cellspacing="0" border="1">
+      <tr><td colspan=2 style='text-align:center; font-weight:bold'>Quest Editor</td></tr>
+      <tr>
+        <td><div id="qtitles" style="width:350px; height:500px;">x</div></td>
+        <td id="qbody" style="vertical-align:top">
+          <table cellpadding="0" cellspacing="2" border="0">
+            <tr><td></td><td>Quest Title:</td></tr>
+            <tr><td style="text-align:right">(<span id="qnum"></span>) : </td><td><input type='text' id='qtitle' size='30' onBlur="changeField('name', 'qtitle')" /></td></tr>
+            <tr><td style="text-align:right">Replaces:</td><td><input type='text' id='qreplace' size='10' onBlur="changeField('replaces', 'qreplace')" /></td></tr>
+            <tr><td style="text-align:right">Source:</td><td><input type='text' id='qsource' size='30' onBlur="changeField('source', 'qsource')" /></td></tr>
+            <tr><td style="text-align:right">Location:</td><td><input type='text' id='qlocation' size='30' onBlur="changeField('location', 'qlocation')" /></td></tr>
+            <tr><td style="text-align:right">Quest Text:</td><td><textarea id='qtext' cols='60' rows="8" onBlur="changeField('text', 'qtext')"></textarea></td></tr>
+            <tr><td style="text-align:right">Completed Text:</td><td><textarea id='qcomplete' cols='60' rows="8" onBlur="changeField('completetext', 'qcomplete')"></textarea></td></tr>
+            <tr><td style="text-align:right">Type:</td><td><select id='qtype' onBlur="changeField('category', 'qtype')"><option value='main'>Main</option><option value='side'>Side</option></select></td></tr>
+          </table>
+        </td>
+      </tr>
+      <tr><td><input type="button" id="newquest" value="New Quest" onClick="NewQuest()" /></td><td></td></tr>
+    </table>
+  </body>
+</html>
