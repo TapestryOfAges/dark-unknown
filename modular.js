@@ -327,6 +327,7 @@ OnDeathFuncs["Warduke"] = function() {
   DU.gameflags.setFlag("warduke_defeated",1);
   PC.diffKarma(2);
   questlog.complete(13);
+  questlog.activate(49);
 }
 
 OnDeathFuncs["Borogard"] = function() {
