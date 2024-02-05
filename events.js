@@ -142,6 +142,7 @@ EventFunctions["BDragon"] = function(ev) {
       targetCursor.dragon = dragon;
       targetCursor.endact = 1;
       DU.gameflags.setFlag("endAct1",1);
+      questlog.complete(60);
       let uii = document.getElementById('uiinterface');
       if (uii) {
         uii.innerHTML = `<img src="graphics/spacer.gif" width="416" height="416" />`;
