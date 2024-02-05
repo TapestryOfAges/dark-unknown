@@ -5783,7 +5783,7 @@ GiantRatGroupLargeTile.prototype = new NPCGroupObject();
 function OrcGroupTinyTile() {
   this.name = 'OrcGroupTiny';
   this.desc = 'orcs';
-  this.peaceAI = 'Monster-15';
+  this.peaceAI = 'Monster-10';
   this.group = [];
   this.group[0] = new NPCList('OrcNPC', '1d2+1');
   this.movetype = MOVE_WALK;
@@ -5807,7 +5807,7 @@ OrcGroupTinyTile.prototype = new NPCGroupObject();
 function OrcGroupSmallTile() {
   this.name = 'OrcGroupSmall';
   this.desc = 'orcs';
-  this.peaceAI = 'Monster-15';
+  this.peaceAI = 'Monster-10';
   this.group = [];
   this.group[0] = new NPCList('OrcNPC', '1d3+2');
   this.movetype = MOVE_WALK;
@@ -5831,7 +5831,7 @@ OrcGroupSmallTile.prototype = new NPCGroupObject();
 function OrcGroupLargeTile() {
   this.name = 'OrcGroupLarge';
   this.desc = 'orcs';
-  this.peaceAI = 'Monster-15';
+  this.peaceAI = 'Monster-10';
   this.group = [];
   this.group[0] = new NPCList('OrcNPC', '1d5+4');
   this.movetype = MOVE_WALK;
@@ -5855,7 +5855,7 @@ OrcGroupLargeTile.prototype = new NPCGroupObject();
 function HoodGroupTinyTile() {
   this.name = 'HoodGroupTiny';
   this.desc = 'hoods';
-  this.peaceAI = 'Bandit-15';
+  this.peaceAI = 'Bandit-10';
   this.group = [];
   this.group[0] = new NPCList('HoodNPC', '1d2+1');
   this.movetype = MOVE_WALK;
@@ -5885,7 +5885,7 @@ HoodGroupTinyTile.prototype = new NPCHumanGroupObject();
 function HoodGroupSmallTile() {
   this.name = 'HoodGroupSmall';
   this.desc = 'hoods';
-  this.peaceAI = 'Bandit-15';
+  this.peaceAI = 'Bandit-10';
   this.group = [];
   this.group[0] = new NPCList('HoodNPC', '1d3+1');
   this.movetype = MOVE_WALK;
@@ -5915,7 +5915,7 @@ HoodGroupSmallTile.prototype = new NPCHumanGroupObject();
 function HoodGroupLargeTile() {
   this.name = 'HoodGroupLarge';
   this.desc = 'hoods';
-  this.peaceAI = 'Bandit-15';
+  this.peaceAI = 'Bandit-10';
   this.group = [];
   this.group[0] = new NPCList('HoodNPC', '1d3+3');
   this.group[1] = new NPCList('MinstrelNPC', '1d1');
@@ -5946,7 +5946,7 @@ HoodGroupLargeTile.prototype = new NPCHumanGroupObject();
 function RogueGroupSmallTile() {
   this.name = 'RogueGroupSmall';
   this.desc = 'rogues';
-  this.peaceAI = 'Bandit-15';
+  this.peaceAI = 'Bandit-10';
   this.group = [];
   this.group[0] = new NPCList('RogueNPC', '1d3+2');
   this.group[1] = new NPCList('HoodNPC', '1d3+1');
@@ -5977,7 +5977,7 @@ RogueGroupSmallTile.prototype = new NPCHumanGroupObject();
 function PitRogueGroupSmallTile() {
   this.name = 'PitRogueGroupSmall';
   this.desc = 'rogues';
-  this.peaceAI = 'Bandit-15';
+  this.peaceAI = 'Bandit-10';
   this.group = [];
   this.group[0] = new NPCList('PitRogueNPC', '1d3+2');
   this.group[1] = new NPCList('HoodNPC', '1d3+1');
@@ -6008,7 +6008,7 @@ PitRogueGroupSmallTile.prototype = new NPCHumanGroupObject();
 function RogueGroupLargeTile() {
   this.name = 'RogueGroupLarge';
   this.desc = 'rogues';
-  this.peaceAI = 'Bandit-15';
+  this.peaceAI = 'Bandit-10';
   this.group = [];
   this.group[0] = new NPCList('RogueNPC', '1d4+3');
   this.group[1] = new NPCList('HoodNPC', '1d3+2');
@@ -6040,7 +6040,7 @@ RogueGroupLargeTile.prototype = new NPCHumanGroupObject();
 function ThiefGroupSmallTile() {
   this.name = 'ThiefGroupSmall';
   this.desc = 'thieves';
-  this.peaceAI = 'Bandit-15';
+  this.peaceAI = 'Bandit-10';
   this.group = [];
   this.group[0] = new NPCList('ThiefNPC', '1d3+2');
   this.group[1] = new NPCList('RogueNPC', '1d3+1');
@@ -6071,7 +6071,7 @@ ThiefGroupSmallTile.prototype = new NPCHumanGroupObject();
 function ThiefGroupLargeTile() {
   this.name = 'ThiefGroupLarge';
   this.desc = 'thieves';
-  this.peaceAI = 'Bandit-15';
+  this.peaceAI = 'Bandit-10';
   this.group = [];
   this.group[0] = new NPCList('ThiefNPC', '1d4+3');
   this.group[1] = new NPCList('RogueNPC', '1d3+2');
@@ -6103,7 +6103,7 @@ ThiefGroupLargeTile.prototype = new NPCHumanGroupObject();
 function LowbiePartyGroupTile() {
   this.name = 'LowbiePartyGroup';
   this.desc = 'a party of adventurers';
-  this.peaceAI = 'Bandit-15';
+  this.peaceAI = 'Bandit-10';
   this.group = [];
   this.group[0] = new NPCList('FighterNPC', '1d2');
   this.group[1] = new NPCList('RogueNPC', '1d2');
@@ -6137,7 +6137,7 @@ LowbiePartyGroupTile.prototype = new NPCHumanGroupObject();
 function HeadlessGroupTinyTile() {
   this.name = 'HeadlessGroupTiny';
   this.desc = 'headlesses';
-  this.peaceAI = 'Monster-15';
+  this.peaceAI = 'Monster-10';
   this.group = [];
   this.group[0] = new NPCList('HeadlessNPC', '1d2+1');
   this.movetype = MOVE_WALK;
@@ -6161,7 +6161,7 @@ HeadlessGroupTinyTile.prototype = new NPCGroupObject();
 function HeadlessGroupSmallTile() {
   this.name = 'HeadlessGroupSmall';
   this.desc = 'headlesses';
-  this.peaceAI = 'Monster-15';
+  this.peaceAI = 'Monster-10';
   this.group = [];
   this.group[0] = new NPCList('HeadlessNPC', '1d4+1');
   this.movetype = MOVE_WALK;
@@ -6185,7 +6185,7 @@ HeadlessGroupSmallTile.prototype = new NPCGroupObject();
 function HeadlessGroupLargeTile() {
   this.name = 'HeadlessGroupLarge';
   this.desc = 'headlesses';
-  this.peaceAI = 'Monster-15';
+  this.peaceAI = 'Monster-10';
   this.group = [];
   this.group[0] = new NPCList('HeadlessNPC', '1d5+2');
   this.movetype = MOVE_WALK;
@@ -6356,7 +6356,7 @@ DragonsGroupTile.prototype = new NPCGroupObject();
 function MidPartyGroupTile() {
   this.name = 'MidPartyGroup';
   this.desc = 'a party of adventurers';
-  this.peaceAI = 'Bandit-15';
+  this.peaceAI = 'Bandit-10';
   this.group = [];
   this.group[0] = new NPCList('ArcherNPC', '1d2');
   this.group[1] = new NPCList('BardNPC', '1d2-1');
@@ -6390,7 +6390,7 @@ MidPartyGroupTile.prototype = new NPCHumanGroupObject();
 function MidHighPartyGroupTile() {
   this.name = 'MidHighPartyGroup';
   this.desc = 'a party of adventurers';
-  this.peaceAI = 'Bandit-15';
+  this.peaceAI = 'Bandit-10';
   this.group = [];
   this.group[0] = new NPCList('ThiefNPC', '1d2');
   this.group[1] = new NPCList('PaladinNPC', '1d2');
@@ -6424,7 +6424,7 @@ MidHighPartyGroupTile.prototype = new NPCHumanGroupObject();
 function HighPartyGroupTile() {
   this.name = 'HighPartyGroup';
   this.desc = 'a party of adventurers';
-  this.peaceAI = 'Bandit-15';
+  this.peaceAI = 'Bandit-10';
   this.group = [];
   this.group[0] = new NPCList('RangerNPC', '1d2');
   this.group[1] = new NPCList('PaladinNPC', '1d2');
@@ -6458,7 +6458,7 @@ HighPartyGroupTile.prototype = new NPCHumanGroupObject();
 function MidHeadlessGroupTile() {
   this.name = 'MidHeadlessGroup';
   this.desc = 'headlesses';
-  this.peaceAI = 'Monster-15';
+  this.peaceAI = 'Monster-10';
   this.group = [];
   this.group[0] = new NPCList('HeadlessNPC', '1d4+2');
   this.group[1] = new NPCList('EttinNPC', '1d2-1');
@@ -6483,7 +6483,7 @@ MidHeadlessGroupTile.prototype = new NPCGroupObject();
 function HighHeadlessGroupTile() {
   this.name = 'HighHeadlessGroup';
   this.desc = 'headlesses';
-  this.peaceAI = 'Monster-15';
+  this.peaceAI = 'Monster-10';
   this.group = [];
   this.group[0] = new NPCList('HeadlessNPC', '1d4+2');
   this.group[1] = new NPCList('EttinNPC', '1d3-1');
@@ -6509,7 +6509,7 @@ HighHeadlessGroupTile.prototype = new NPCGroupObject();
 function GiantsGroupTile() {
   this.name = 'GiantsGroup';
   this.desc = 'giants';
-  this.peaceAI = 'Monster-15';
+  this.peaceAI = 'Monster-10';
   this.graphic = '345.gif';
   this.altgraphic = ['379.gif',];
   this.group = [];
@@ -6525,7 +6525,7 @@ GiantsGroupTile.prototype = new NPCGroupObject();
 function OrcPartyLowGroupTile() {
   this.name = 'OrcPartyLowGroup';
   this.desc = 'orcs';
-  this.peaceAI = 'Monster-15';
+  this.peaceAI = 'Monster-10';
   this.group = [];
   this.group[0] = new NPCList('OrcNPC', '1d4+1');
   this.group[1] = new NPCList('OrcShamanNPC', '1d3-1');
@@ -6551,7 +6551,7 @@ OrcPartyLowGroupTile.prototype = new NPCGroupObject();
 function OrcPartyHighGroupTile() {
   this.name = 'OrcPartyHighGroup';
   this.desc = 'orcs';
-  this.peaceAI = 'Monster-15';
+  this.peaceAI = 'Monster-10';
   this.group = [];
   this.group[0] = new NPCList('OrcNPC', '1d4+1');
   this.group[1] = new NPCList('OrcShamanNPC', '1d3-1');
@@ -6578,7 +6578,7 @@ OrcPartyHighGroupTile.prototype = new NPCGroupObject();
 function NecromancerGroupTile() {
   this.name = 'NecromancerGroup';
   this.desc = 'an evil wizard';
-  this.peaceAI = 'Monster-15';
+  this.peaceAI = 'Monster-10';
   this.group = [];
   this.group[0] = new NPCList('ArchmageNPC', '1d2');
   this.group[1] = new NPCList('PhantomNPC', '1d3-1');
@@ -6610,7 +6610,7 @@ NecromancerGroupTile.prototype = new NPCHumanGroupObject();
 function ElementalistGroupTile() {
   this.name = 'ElementalistGroup';
   this.desc = 'an evil wizard';
-  this.peaceAI = 'Monster-15';
+  this.peaceAI = 'Monster-10';
   this.group = [];
   this.group[0] = new NPCList('ArchmageNPC', '1d2');
   this.group[1] = new NPCList('AirElementalNPC', '1d3-1');
@@ -6643,7 +6643,7 @@ ElementalistGroupTile.prototype = new NPCHumanGroupObject();
 function GazersGroupTile() {
   this.name = 'GazersGroup';
   this.desc = 'gazers';
-  this.peaceAI = 'Monster-15';
+  this.peaceAI = 'Monster-10';
   this.group = [];
   this.group[0] = new NPCList('GazerNPC', '1d4');
   this.group[1] = new NPCList('GiantInsectsNPC', '1d5');
@@ -6668,7 +6668,7 @@ GazersGroupTile.prototype = new NPCGroupObject();
 function TrollGroupTile() {
   this.name = 'TrollGroup';
   this.desc = 'trolls';
-  this.peaceAI = 'Monster-15';
+  this.peaceAI = 'Monster-10';
   this.group = [];
   this.group[0] = new NPCList('TrollNPC', '2d4');
   this.movetype = MOVE_WALK;
@@ -6692,7 +6692,7 @@ TrollGroupTile.prototype = new NPCGroupObject();
 function DaemonGroupTile() {
   this.name = 'DaemonGroup';
   this.desc = 'daemons';
-  this.peaceAI = 'Monster-15';
+  this.peaceAI = 'Monster-10';
   this.group = [];
   this.group[0] = new NPCList('DaemonNPC', '1d3');
   this.group[1] = new NPCList('FireElementalNPC', '1d2-1');
@@ -6717,7 +6717,7 @@ DaemonGroupTile.prototype = new NPCGroupObject();
 function SkeletonGroupTile() {
   this.name = 'SkeletonGroup';
   this.desc = 'skeletons';
-  this.peaceAI = 'Monster-15';
+  this.peaceAI = 'Monster-10';
   this.group = [];
   this.group[0] = new NPCList('SkeletonNPC', '2d4');
   this.group[1] = new NPCList('GhostNPC', '1d2-1');
@@ -6742,7 +6742,7 @@ SkeletonGroupTile.prototype = new NPCGroupObject();
 function UndeadGroupTile() {
   this.name = 'UndeadGroup';
   this.desc = 'undead';
-  this.peaceAI = 'Monster-15';
+  this.peaceAI = 'Monster-10';
   this.group = [];
   this.group[0] = new NPCList('GhostNPC', '2d3');
   this.group[1] = new NPCList('SkeletonNPC', '1d2');
@@ -6768,7 +6768,7 @@ UndeadGroupTile.prototype = new NPCGroupObject();
 function FireLizardGroupTile() {
   this.name = 'FireLizardGroup';
   this.desc = 'fire lizards';
-  this.peaceAI = 'Monster-15';
+  this.peaceAI = 'Monster-10';
   this.graphic = '349.gif';
   this.altgraphic = ['383.gif',];
   this.group = [];
@@ -6781,7 +6781,7 @@ FireLizardGroupTile.prototype = new NPCGroupObject();
 function MagmaLizardGroupTile() {
   this.name = 'MagmaLizardGroup';
   this.desc = 'fire lizards';
-  this.peaceAI = 'Monster-15';
+  this.peaceAI = 'Monster-10';
   this.graphic = '349.gif';
   this.altgraphic = ['383.gif',];
   this.group = [];
