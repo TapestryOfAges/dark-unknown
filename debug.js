@@ -118,21 +118,24 @@ function DebugWrite(category, html) {
 function SetDebugToBottom() {
   if (debug) {
     //document.getElementById('debugdiv').scrollTop = document.getElementById('debugdiv').scrollHeight;
-    ipcRenderer.send('debug_button');
+    //ipcRenderer.send('debug_button');
+    OutOfContext.debug_bottom();
   }
 }
 
 function ClearDebug() {
   if (debug) {
     //document.getElementById('debugdiv').innerHTML = "";
-    ipcRenderer.send('debug_clear');
+    //ipcRenderer.send('debug_clear');
+    OutOfContext.debug_clear();
   }
 }
 
 function DebugNewTurn() {
   if (debug) {
     let serialid = whoseturn.getSerial() + "-" + DUTime.getGameClock();
-    ipcRenderer.send('debug_new_turn', serialid);
+    //ipcRenderer.send('debug_new_turn', serialid);
+    OutOfContext.debug_new_turn(serialid);
   }
 }
 

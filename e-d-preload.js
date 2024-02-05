@@ -1,9 +1,37 @@
 'use strict';
 
-const { contextBridge, ipcRenderer } = require('electron')
+const { ipcRenderer } = require('electron')
 
-contextBridge.exposeInMainWorld('OutOfContext', {
-  sendDebug: (txt) => {
+let debugstyle = {};
+debugstyle.header = "font-weight:bold";
+debugstyle.map = "color:grey";
+debugstyle.sound = "color:orange";
+debugstyle.light = "color:brown";
+debugstyle.saveload = "color:grey";
+debugstyle.ai = "color:blue";
+debugstyle.combat = "color:red";
+debugstyle.magic = "color:green";
+debugstyle.time = "color:cyan";
+debugstyle.plot = "color:pink";
+debugstyle.events = "color:magenta";
+debugstyle.gameobj = "color:black";
+debugstyle.schedules = "color:purple";
+debugstyle.all = "color:black";
+debugstyle.new = "color:black";
+
+
+window.addEventListener('DOMContentLoaded', () => {
+  ipcRenderer.on("debug_buttom", (_event) => {
+    document.getElementById('debugdiv').scrollTop = document.getElementById('debugdiv').scrollHeight;
+  });
+  ipcRenderer.on("debug_clear", (_event) => {
+    document.getElementById('debugdiv').innerHTML = "";
+  });
+  ipcRenderer.on("debug_new_turn", (_event) => {
+    let tmpchild = document.createElement('div');
+    tmpchild.innerHTML = "<span id='DB"+sid+"'></span>";
+  });
+  ipcRenderer.on("sendDebug", (_event, txt) => {
     if (txt.cat === "new") {
       let newtmp = document.createElement('div');
       newtmp.innerHTML = "<span id='DB"+txt.sid+"'></span>";
@@ -20,12 +48,6 @@ contextBridge.exposeInMainWorld('OutOfContext', {
     } else {
       console.log(txt.html);
     }
-    document.getElementById('debugdiv').scrollTop = document.getElementById('debugdiv').scrollHeight;
-  },
-  debug_bottom: () => { document.getElementById('debugdiv').scrollTop = document.getElementById('debugdiv').scrollHeight; },
-  debug_clear: () => { document.getElementById('debugdiv').innerHTML = "";  },
-  debug_new_turn: () => { 
-    let tmpchild = document.createElement('div');
-    tmpchild.innerHTML = "<span id='DB"+sid+"'></span>";
-  }
-})
+  });
+});
+

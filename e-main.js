@@ -44,6 +44,10 @@ app.whenReady().then(() => {
       width: 500,
       useContentSize: true,
       resizeable: true,
+      webPreferences: {
+        preload: path.join(__dirname, 'e-d-preload.js'),
+      },
+  
     });
     
     debugWindow.loadFile('debugwindow.html');

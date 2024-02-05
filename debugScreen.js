@@ -51,3 +51,4 @@ debugstyle.new = "color:black";
 //  let tmpchild = document.createElement('div');
 //  tmpchild.innerHTML = "<span id='DB"+sid+"'></span>";
 //});
+
