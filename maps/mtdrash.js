@@ -52,6 +52,7 @@ mappages["mtdrash1"].features[17] = {name : 'Chest', x : 8, y : 20, locked : 0, 
 mappages["mtdrash1"].features[18] = {name : 'Chest', x : 16, y : 20, locked : 0, lootgroup : 'Level2', lootedid : 'drash1_7'};
 mappages["mtdrash1"].features[19] = {name : 'Chest', x : 16, y : 18, locked : 0, lootgroup : 'Level3', lootedid : 'drash1_6'};
 mappages["mtdrash1"].features[20] = {name : 'Chest', x : 14, y : 8, locked : 0, lootgroup : 'Level2', lootedid : 'drash1_1'};
+mappages["mtdrash1"].features[21] = {name : 'WalkOnDrashQuest', x : 18, y : 9};
 
 
 mappages["mtdrash1"].npcs = [];
