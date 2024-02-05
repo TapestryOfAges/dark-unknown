@@ -180,7 +180,7 @@ mappages["island"].onload = function(mapref) {
     spawner.setMaxSpawns(1);
     spawner.setSpawnRadius(3);
     spawner.setSpawnLeash(10);
-    spawner.setSpawnSoftLeash(10);
+    spawner.setSpawnSoftLeash(15);
 
     spawner.evolve[5] = [];
     spawner.evolve[5][0] = "spawngroup";
@@ -201,7 +201,7 @@ mappages["island"].onload = function(mapref) {
     spawner.setMaxSpawns(1);
     spawner.setSpawnRadius(3);
     spawner.setSpawnLeash(10);
-    spawner.setSpawnSoftLeash(10);
+    spawner.setSpawnSoftLeash(15);
 
     spawner.evolve[5] = [];
     spawner.evolve[5][0] = "spawngroup";
@@ -222,7 +222,7 @@ mappages["island"].onload = function(mapref) {
     spawner.setMaxSpawns(1);
     spawner.setSpawnRadius(3);
     spawner.setSpawnLeash(10);
-    spawner.setSpawnSoftLeash(10);
+    spawner.setSpawnSoftLeash(15);
 
     spawner.evolve[5] = [];
     spawner.evolve[5][0] = "spawngroup";
@@ -246,7 +246,7 @@ mappages["island"].onload = function(mapref) {
     spawner.setMaxSpawns(1);
     spawner.setSpawnRadius(3);
     spawner.setSpawnLeash(10);
-    spawner.setSpawnSoftLeash(10);
+    spawner.setSpawnSoftLeash(15);
 
     spawner.evolve[6] = [];
     spawner.evolve[6][0] = "spawngroup";
@@ -266,7 +266,7 @@ mappages["island"].onload = function(mapref) {
     spawner.setMaxSpawns(1);
     spawner.setSpawnRadius(3);
     spawner.setSpawnLeash(10);
-    spawner.setSpawnSoftLeash(10);
+    spawner.setSpawnSoftLeash(15);
 
     spawner.evolve[5] = [];
     spawner.evolve[5][0] = "spawngroup";
