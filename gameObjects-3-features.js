@@ -8245,6 +8245,25 @@ WalkOnDarknessTile.prototype.walkon = function(walker) {
   return response;
 }
 
+function WalkOnDrashQuestTile() {
+	this.name = "WalkOnDrashQuest";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnDrashQuestTile.prototype = new FeatureObject();
+
+WalkOnDrashQuestTile.prototype.walkon = function(walker) {
+  let response = {msg:""};
+  if (walker === PC) {
+    questlog.complete(44);
+  }
+  return response;
+}
+
 function WalkOnAbyssTile() {
   this.name = "WalkOnAbyss";
 	this.graphic = "walkon.gif";
@@ -13451,6 +13470,14 @@ function NatassaResearch2Tile() {
 }
 NatassaResearch2Tile.prototype = new BookItemObject();
 
+NatassaResearch2Tile.prototype.onGet = function(who) {
+  questlog.complete(43);
+  questlog.activate(44);
+
+  return {};
+}
+
+//Unused
 function NatassaResearch3Tile() {
   //Graphics Upgraded
   this.name = "NatassaResearch3";
@@ -13476,10 +13503,16 @@ function ToshinJournalTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
   this.prefix = "a";
-  this.contents = "You search through the journal for something useful.%%<span class='conv'>It is somewhere... I can taste it. It is close. The bones of Ellusus sing with it, the unblinking eye of a star.</span>%%<span class='conv'>But there is something I need before I can use the Pool safely, even once I find it. Old scrolls call it an Infinite Scroll. I do not know how to make one... yet. But some are said to still exist. I will inquire of the black market.</span>%%<span class='conv'>There is a guild of thieves in Onyx, and they often have knowledge of such things, but almost certainly they will tell me that there is only one place to find things of such value: Beldskae.</span>";
+  this.contents = "You search through the journal for something useful.%%<span class='conv'>It is somewhere... I can taste it. It is close. The bones of Ellusus sing with it, the unblinking eye of a star.</span>%%<span class='conv'>But there is something I need before I can use the Pool safely, even once I find it. Old texts call it an Infinite Scroll. With it, one can imprint even the most powerful of spells, using the power of the Pool.</span>%%<span class='conv'>I do not know how to make one... yet. But some are said to still exist. I will inquire of the black market.</span>%%<span class='conv'>There is a guild of thieves in Onyx, and they often have knowledge of such things, but almost certainly they will tell me that there is only one place to find things of such value: Beldskae.</span>";
   this.longdesc = "The Journals of Toshin.";
 }
 ToshinJournalTile.prototype = new BookItemObject();
+
+ToshinJournalTile.prototype.onGet = function(who) {
+  questlog.activate(53);
+
+  return {};
+}
 
 function ArcheoJournalTile() {
   //Graphics Upgraded
@@ -13948,6 +13981,13 @@ InfiniteScrollTile.prototype.secondResponse = function(code) {
   scroll.spellnum = GetSpellID(sid);
   PC.addToInventory(scroll,1);
   PC.removeFromInventory(this);
+
+  if ((this.circle === 6) && (sid === 5)) {
+    questlog.complete(59);
+    questlog.activate(60);
+  } else {
+    questlog.activate(61);
+  }
 
   let retval = {};
   retval["fin"] = 1;
