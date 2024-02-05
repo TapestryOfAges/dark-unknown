@@ -3928,6 +3928,11 @@ tileFactory.prototype.makeWalkOnDarknessTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWalkOnDrashQuestTile = function() {
+  let newTile = new WalkOnDrashQuestTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWalkOnAbyssTile = function() {
   let newTile = new WalkOnAbyssTile();
   return newTile;
