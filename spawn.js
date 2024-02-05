@@ -1,7 +1,0 @@
-
-let spawngroups = {};
-
-function SpawnGroup() {
-  
-}
-
