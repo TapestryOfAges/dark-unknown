@@ -201,7 +201,7 @@ function PerformCommand(code, ctrl) {
   		if (!mapscale) { // on a world map, attack is adjacent only
         gamestate.setMode("choosedir");
         retval["txt"] = "";
-        retval["input"] = "&gt; Attack: ";
+        retval["input"] = "&gt; Approach: ";
         retval["fin"] = 2;
         targetCursor.command = "a";
         targetCursor.x = PC.getx();
@@ -777,7 +777,7 @@ function PerformAttackMap(who) {
 
       let monsters = PlaceMonsters(newmap,atkwho,1);
       let desttile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, newmap.getEnterX(), newmap.getEnterY());
-      retval["txt"] = "Attack: " + atkwho.getDesc() + ".";
+      retval["txt"] = "Approach: " + atkwho.getDesc() + ". Attack!";
     }
     
     PC.lastAttackedx = targetCursor.x;
@@ -788,7 +788,7 @@ function PerformAttackMap(who) {
     // as if retval = 1, but set to PC turn
 
   } else {
-    retval["txt"] = "There is nothing to attack there.";
+    retval["txt"] = "There is nothing to approach there.";
     retval["fin"] = 0;
     retval["input"] = "&gt;";
   }  
