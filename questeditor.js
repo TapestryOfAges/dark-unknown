@@ -37,7 +37,7 @@ function NewQuest() {
 }
 
 function changeField(fieldname, htmlname) {
-  if (fieldname = "replaces") {
+  if (fieldname === "replaces") {
     let repv = document.getElementById(htmlname).value;
     if (repv) {
       let repl = document.getElementById(htmlname).value.split(",");
