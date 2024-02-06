@@ -1563,6 +1563,9 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 
 NPCObject.prototype.myTurn = function() {
   maintext.flushDelayedText();
+
+  if (PC.dead) { return 1; }  // New, 2024-02-04: if PC is dead, everyone skips turns until the clock swings around.
+
   raceWarning = 0;
   if (this.fled) { return 1; }
   DebugWrite("new", "<div style='border-style:inset; border-color:#999999'><span style='" + debugstyle.header + "'>" + this.getName() + " (" + this.getNPCName() + "), serial " + this.getSerial() + " is starting its turn at " + this.getx() + "," + this.gety() + ", timestamp " + DUTime.getGameClock().toFixed(5) + ".</span><br />");
