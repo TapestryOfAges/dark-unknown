@@ -1073,9 +1073,12 @@ ais.OutdoorHostile = function(who, radius, pname) {
     } else {
       locx = 300;
       locy = 300;
-      // because these values can never be 1 away via GetDistance
+      // because these values can never be 1 away via GetDistance, nor within 20
     }
   }
+  let distancetopc = GetDistance(who.getx(), who.gety(), locx, locy);
+  if (distancetopc > 20) { return retval; } // if PC is far away, just skip turn to speed things up
+
   // not using IsAdjacent because don't want to check for same map
   if (((Math.abs(who.getx() - locx) === 1) && (Math.abs(who.gety() - locy) === 0)) || ((Math.abs(who.getx() - locx) === 0) && (Math.abs(who.gety() - locy) === 1))) {
     if (pcmap === who.getHomeMap()) {
@@ -1093,8 +1096,8 @@ ais.OutdoorHostile = function(who, radius, pname) {
   // Next, check and see if there is already a path that has not expired
   // but only if the PC is not within close range- in that case, always wait to hunt
   // reminder: locx and locy are the PC's coords
-  DebugWrite("ai", "Comparing distance: Radius=" + radius + "; PC is " + GetDistance(who.getx(), who.gety(), locx, locy) + " away .<br />");
-  if ((GetDistance(who.getx(), who.gety(), locx, locy) > radius/3) || (who.getDestinationType("spawn"))) {
+  DebugWrite("ai", "Comparing distance: Radius=" + radius + "; PC is " + distancetopc + " away .<br />");
+  if ((distancetopc > radius/3) || (who.getDestinationType("spawn"))) {
     if (who.getDestinationType("spawn")) { DebugWrite("ai", "Current destination: returning to spawn anchor (" + who.getSpawnedBy().getx() + "," + who.getSpawnedBy().gety() + ")<br />"); }
     else { DebugWrite("ai", "PC on another map or not Close. Trying to follow a path.<br />"); }
     retval = ais.SurfaceFollowPath(who,40,1);   
