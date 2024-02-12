@@ -4,8 +4,10 @@
   "description": "Retro CRPG",
   "main": "e-main.js",
   "scripts": {
-    "start": "electron .",
-    "test": "test"
+    "start": "electron-forge start",
+    "test": "test",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "repository": {
     "type": "git",
@@ -22,12 +24,18 @@
   },
   "homepage": "https://www.tapestryofages.com",
   "devDependencies": {
+    "@electron-forge/cli": "^7.2.0",
+    "@electron-forge/maker-deb": "^7.2.0",
+    "@electron-forge/maker-rpm": "^7.2.0",
+    "@electron-forge/maker-squirrel": "^7.2.0",
+    "@electron-forge/maker-zip": "^7.2.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.2.0",
     "electron": "^20.1.4",
-    "electron-builder": "^23.3.3",
     "electron-packager": "^16.0.0"
   },
   "dependencies": {
     "electron-is-dev": "^2.0.0",
+    "electron-squirrel-startup": "^1.0.0",
     "yarn": "^1.22.19"
   }
 }
