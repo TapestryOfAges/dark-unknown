@@ -174,7 +174,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   }
   if (triggers.hasOwnProperty("questlog")) {
     let logs = triggers["questlog"].split(",");
-    for (let i=0;i>logs.length;i++) {
+    for (let i=0;i<logs.length;i++) {
       let lognum = parseInt(logs[i]);
       questlog.activate(lognum);
     }
