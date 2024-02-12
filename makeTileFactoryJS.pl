@@ -105,3 +105,4 @@ print $output "tileFactory.prototype.makeMagicLockedGreyDoorTile = function() {\
 print $output "tileFactory.prototype.makeLockedGreyDoorWindowLitTile = function() {\n  let newTile = this.createTile('GreyDoorWindowLit');\n  newTile.lockMe(1);\n  return newTile;\n}\n\n";
 print $output "tileFactory.prototype.makeMagicLockedGreyDoorWindowLitTile = function() {\n  let newTile = this.createTile('GreyDoorWindowLit');\n  newTile.lockMe(2);    // Magic Lock\n  return newTile;\n}\n\n";
 print $output "tileFactory.prototype.makePCTile = function() {\n  let newTile = new PCObject();\n  return newTile;\n}\n\n";
+print $output "tileFactory.prototype.makeCrackedMirrorTile = function() {\n  let newTile = newMirrorTile();\n newTile.break();\n return newTile;\n}\n\n";
