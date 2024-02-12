@@ -366,7 +366,7 @@ function DoAction(code, ctrl) {
         let prince = targetCursor.prince;
         delete targetCursor.prince;
         prince.realgraphic = prince.getGraphicArray();
-        prince.setGraphicArray(["static.gif","","-256","-2464"]);
+        prince.setGraphicArray(["static.gif","",-256,-2464]);
         prince.setAttitude("neutral"); // so dragon doesn't attack him
 
         let fieldeffect = localFactory.createTile("Sleep");
@@ -1070,7 +1070,7 @@ function DoAction(code, ctrl) {
   }
   else if (gamestate.getMode() === "singleletter") {
     if (((code >= 65) && (code <= 90)) || (code === 32)) {  // letter
-      if (inputText.thing = "toshin") {
+      if (inputText.thing === "toshin") {
         let retval = PerformToshinAltar(code);
         if (retval["fin"] === 2) {
           gamestate.setMode("player");
@@ -1081,9 +1081,29 @@ function DoAction(code, ctrl) {
         maintext.setInputLine("&gt;");
         maintext.addText(retval["txt"]);
         maintext.drawTextFrame();
+      } else if (targetCursor.command === "a") {
+        if (code === 89) { // Y
+          let newresponse = Attack(PC, targetCursor.lastTarget);
+          if (newresponse["txt"]) {
+            maintext.addText(newresponse["txt"]);
+          }
+          if (newresponse["input"]) {
+            maintext.setInputLine(newresponse["input"]);
+          }
+          maintext.drawTextFrame();  
+        } else {
+          maintext.addText("Attack cancelled.");
+          maintext.setInputLine("&gt;");
+          maintext.drawTextFrame();
+          gamestate.setMode("player");
+          gamestate.setTurn(PC);    
+        }
       }
     }
     else if (code === 27) { // ESC
+      if (targetCursor.command === "a") {
+        maintext.addText("Attack cancelled.");
+      }
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
       gamestate.setMode("player");

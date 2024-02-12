@@ -744,7 +744,14 @@ function PerformAttack(who) {
   } else {
     targetCursor.lastTarget = atkwho;
   }
-  retval = Attack(who, atkwho);
+  if (atkwho.getAttitude() === "hostile") {
+    retval = Attack(who, atkwho);
+  } else {
+    retval["txt"] = "Your target is not hostile to you. Are you sure?";
+    retval["input"] = "(Y/N) &gt;";
+    retval["fin"] = 3;
+    gamestate.setMode("singleletter");
+  }
   return retval;
 }
 
