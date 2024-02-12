@@ -708,7 +708,11 @@ function Breakable(brokengraphicarray, startsbroken, breaksound) {
   this.setBroken = function(broke) { this.broken = broke; return this.broken; }  // note, set broken doesn't change graphics, etc
   this.break = function(who, notext, silent) { 
     this.broken = 1; 
-    this.setGraphicArray(brokengraphicarray);
+    if (this.overrideBroken) {
+      this.setGraphicArray(this.overrideBroken);
+    } else {
+      this.setGraphicArray(brokengraphicarray);
+    }
     if (!this.fixeddesc) {
       this.fixeddesc = this.getDesc();
     }
@@ -748,7 +752,7 @@ function Breakable(brokengraphicarray, startsbroken, breaksound) {
         who = south.getTopNPC();
       }
       if (who) {
-        this.setGraphicArray([who.getGraphic(), "mirror-reflection.gif", "0", "7"]);
+        this.setGraphicArray(["static.gif", "", -8*32, -118*32]);
       }
     }
     this.setDesc(this.fixeddesc);

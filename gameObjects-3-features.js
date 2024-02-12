@@ -6216,22 +6216,18 @@ Barrel2Tile.prototype.flamed = function() {
   ContainerOnFire(this);
 }
 
-function CrackedMirrorTile() {
+function BrokenMirrorTile() {
   //Graphics Upgraded
-  this.name = "CrackedMirror";
+  this.name = "BrokenMirror";
   this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -76*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
-  this.desc = "mirror";
-  this.karmamod = -1;
-  
-  Breakable.call(this,["static.gif", "", -7*32, -77*32],0,"sfx_break_glass");
-  this.brokendesc = "broken mirror";
+  this.desc = "broken mirror";
 }
-CrackedMirrorTile.prototype = new FeatureObject();
+BrokenMirrorTile.prototype = new FeatureObject();
 
 function SunLensTile() {
   //Graphics Upgraded
@@ -6278,7 +6274,7 @@ function MirrorTile() {
   this.desc = "mirror";
   this.karmamod = -1;
   
-  Breakable.call(this,["static.gif", "", -7*32, -76*32],0,"sfx_break_glass");
+  Breakable.call(this,["static.gif", "", -8*32, -76*32],0,"sfx_break_glass");
   this.brokendesc = "broken mirror";
 }
 MirrorTile.prototype = new FeatureObject();
@@ -6308,7 +6304,10 @@ ReflectionTile.prototype = new FeatureObject();
 ReflectionTile.prototype.walkon = function(who) {
   // add reflection to attached mirror
   if (!this.mirror.getBroken()) {
-    this.mirror.setGraphicArray([who.getGraphic(), "mirror-reflection_d.gif", "0", "7"]);
+    this.mirror.setGraphicArray(["static.gif", "", -8*32, -118*32]);
+    this.mirror.overrideBroken = ["static.gif", "", -9*32, -118*32];
+  } else {
+    this.mirror.setGraphicArray(["static.gif", "", -9*32, -118*32]);
   }
   return {msg:""};
 }
@@ -6316,7 +6315,10 @@ ReflectionTile.prototype.walkon = function(who) {
 ReflectionTile.prototype.walkoff = function(who) {
   // remove reflection from attached mirror
   if (!this.mirror.getBroken()) {
-    this.mirror.setGraphicArray(["master_spritesheet_d.gif", "", "-192", "-384"]);
+    this.mirror.setGraphicArray(["static.gif", "", -9*32 , -76*32]);
+    delete this.morror.overrideBroken;
+  } else {
+    this.mirror.setGraphicArray(["static.gif", "", -8*32, -76*32]);
   }
   return {msg:""};
 }
@@ -6583,37 +6585,12 @@ DaemonicReflectionTile.prototype.walkoff = function(who) {
   return {msg:""};
 }
 
-function AlchemyLabTopTile() {
-  this.name = "AlchemyLabTop";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1632";
-  this.passable = MOVE_ETHEREAL + MOVE_FLY + MOVE_WALK + MOVE_SWIM + MOVE_LEVITATE;
-  this.blocklos = 0;
-  this.prefix = "an";
-  this.desc = "alchemy lab";
-  this.alwaystop = 1;
-}
-AlchemyLabTopTile.prototype = new FeatureObject();
-
-function AlchemyLabTop2Tile() {
-  this.name = "AlchemyLabTop2";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-1632";
-  this.passable = MOVE_ETHEREAL + MOVE_FLY + MOVE_WALK + MOVE_SWIM + MOVE_LEVITATE;
-  this.blocklos = 0;
-  this.prefix = "an";
-  this.desc = "alchemy lab";
-  this.alwaystop = 1;
-}
-AlchemyLabTop2Tile.prototype = new FeatureObject();
-
 function AlchemyLabTile() {
+  // Graphics Upgraded
   this.name = "AlchemyLab";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1664";
+  this.graphic = "static.gif";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -146*32;
   this.passable = MOVE_ETHEREAL + MOVE_FLY;
   this.blocklos = 0;
   this.prefix = "an";
@@ -6622,16 +6599,69 @@ function AlchemyLabTile() {
 AlchemyLabTile.prototype = new FeatureObject();
 
 function AlchemyLab2Tile() {
+  // Graphics Upgraded
   this.name = "AlchemyLab2";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-1664";
+  this.graphic = "static.gif";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -146*32;
   this.passable = MOVE_ETHEREAL + MOVE_FLY;
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "alchemy lab";
 }
 AlchemyLab2Tile.prototype = new FeatureObject();
+
+function FullAlchemyLabTile() {
+  // Graphics Upgraded
+  this.name = "FullAlchemyLab";
+  this.graphic = "static.gif";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -174*32;
+  this.passable = MOVE_ETHEREAL + MOVE_FLY;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "alchemy lab";
+}
+FullAlchemyLabTile.prototype = new FeatureObject();
+
+function FullAlchemyLab2Tile() {
+  // Graphics Upgraded
+  this.name = "FullAlchemyLab2";
+  this.graphic = "static.gif";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -174*32;
+  this.passable = MOVE_ETHEREAL + MOVE_FLY;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "alchemy lab";
+}
+FullAlchemyLab2Tile.prototype = new FeatureObject();
+
+function FullAlchemyLab3Tile() {
+  // Graphics Upgraded
+  this.name = "FullAlchemyLab3";
+  this.graphic = "static.gif";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -174*32;
+  this.passable = MOVE_ETHEREAL + MOVE_FLY;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "alchemy lab";
+}
+FullAlchemyLab3Tile.prototype = new FeatureObject();
+
+function FullAlchemyLab4Tile() {
+  // Graphics Upgraded
+  this.name = "FullAlchemyLab4";
+  this.graphic = "static.gif";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -174*32;
+  this.passable = MOVE_ETHEREAL + MOVE_FLY;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "alchemy lab";
+}
+FullAlchemyLab4Tile.prototype = new FeatureObject();
 
 function WaterfallTile() {
   //Graphics Upgraded
@@ -12746,9 +12776,9 @@ StolenJewelryTile.prototype.onGet = function(who) {
 
 function SilverBridleTile() {
   this.name = "SilverBridle";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "static.gif";
   this.spriteyoffset = -9*32;
-  this.spritexoffset = -98*32;
+  this.spritexoffset = -127*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a"
