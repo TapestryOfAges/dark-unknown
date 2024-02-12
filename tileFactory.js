@@ -3558,8 +3558,8 @@ tileFactory.prototype.makeBarrel2Tile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeCrackedMirrorTile = function() {
-  let newTile = new CrackedMirrorTile();
+tileFactory.prototype.makeBrokenMirrorTile = function() {
+  let newTile = new BrokenMirrorTile();
   return newTile;
 }
 
@@ -3603,16 +3603,6 @@ tileFactory.prototype.makeDaemonicReflectionTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeAlchemyLabTopTile = function() {
-  let newTile = new AlchemyLabTopTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeAlchemyLabTop2Tile = function() {
-  let newTile = new AlchemyLabTop2Tile();
-  return newTile;
-}
-
 tileFactory.prototype.makeAlchemyLabTile = function() {
   let newTile = new AlchemyLabTile();
   return newTile;
@@ -3620,6 +3610,26 @@ tileFactory.prototype.makeAlchemyLabTile = function() {
 
 tileFactory.prototype.makeAlchemyLab2Tile = function() {
   let newTile = new AlchemyLab2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFullAlchemyLabTile = function() {
+  let newTile = new FullAlchemyLabTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFullAlchemyLab2Tile = function() {
+  let newTile = new FullAlchemyLab2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFullAlchemyLab3Tile = function() {
+  let newTile = new FullAlchemyLab3Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFullAlchemyLab4Tile = function() {
+  let newTile = new FullAlchemyLab4Tile();
   return newTile;
 }
 
@@ -7169,5 +7179,11 @@ tileFactory.prototype.makeMagicLockedGreyDoorWindowLitTile = function() {
 tileFactory.prototype.makePCTile = function() {
   let newTile = new PCObject();
   return newTile;
+}
+
+tileFactory.prototype.makeCrackedMirrorTile = function() {
+  let newTile = newMirrorTile();
+ newTile.break();
+ return newTile;
 }
 
