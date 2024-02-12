@@ -62,10 +62,10 @@ mappages["consolation"].features[22] = {name : 'BookshelfLeft', x : 17, y : 6};
 mappages["consolation"].features[23] = {name : 'BookshelfLeft', x : 15, y : 6};
 mappages["consolation"].features[24] = {name : 'LeftTable', x : 15, y : 8};
 mappages["consolation"].features[25] = {name : 'RightTable', x : 18, y : 8};
-mappages["consolation"].features[26] = {name : 'AlchemyLab', x : 16, y : 8};
-mappages["consolation"].features[27] = {name : 'AlchemyLab2', x : 17, y : 8};
-mappages["consolation"].features[28] = {name : 'AlchemyLabTop2', x : 17, y : 7};
-mappages["consolation"].features[29] = {name : 'AlchemyLabTop', x : 16, y : 7};
+mappages["consolation"].features[26] = {name : 'MiddleTable', x : 16, y : 8};
+mappages["consolation"].features[27] = {name : 'MiddleTable', x : 17, y : 8};
+mappages["consolation"].features[28] = {name : 'AlchemyLab', x : 16, y : 8};
+mappages["consolation"].features[29] = {name : 'AlchemyLab2', x : 17, y : 8};
 mappages["consolation"].features[30] = {name : 'Mirror', x : 8, y : 13};
 mappages["consolation"].features[31] = {name : 'Altar', x : 10, y : 15};
 mappages["consolation"].features[32] = {name : 'Tree', x : 25, y : 20};
@@ -96,8 +96,6 @@ mappages["consolation"].features[56] = {name : 'Brazier', x : 22, y : 11};
 mappages["consolation"].features[57] = {name : 'Brazier', x : 22, y : 18};
 mappages["consolation"].features[58] = {name : 'BlueCrystal', x : 25, y : 13};
 mappages["consolation"].features[59] = {name : 'PurpleCrystal', x : 25, y : 16};
-mappages["consolation"].features[60] = {name : 'EnergyField', x : 9, y : 17};
-mappages["consolation"].features[61] = {name : 'EnergyField', x : 8, y : 16};
 
 
 mappages["consolation"].npcs = [];
