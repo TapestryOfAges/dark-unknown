@@ -5,6 +5,7 @@ const isDev = require('electron-is-dev');
 const {ipcMain} = require('electron')
 const path = require('path')
 const fs = require("fs");
+if (require('electron-squirrel-startup')) app.quit();    // electron forge docs suggest this, but don't explain why
 
 const savePath = path.join(`${__dirname}`,'..','..','saves');
 
@@ -103,7 +104,13 @@ app.whenReady().then(() => {
         fs.readFileSync(`${savePath}/save3`,'utf8');
       } catch(err) {
         if (err.message.indexOf("no such file") !== -1) {
-          gamestate.initializeSaveGames();
+          let saves = [];
+          for (let i=0;i<=9;i++) {
+            saves[i] = {datestamp: 0, charname:"",loc:"",graphic:""};
+            let saveslot = "save" + i;
+            fs.writeFileSync(`${savePath}/${saveslot}`, JSON.stringify(saves[i]));
+          }
+
           console.log("Initialized saved games.");    
         } else {
           console.log("Unknown error with saved games:");
