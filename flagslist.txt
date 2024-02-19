@@ -162,6 +162,7 @@ rebuild_decide - the king has brought to you the decision
 rebuild_poverty - king agreed to rebuild Poverty
 rebuild_no - king is instead funding highway patrols
 yelena_warduke - Yelena told you where Warduke is
+megan_mentioned_tower - Megan mentioned the tower in the corner
 
 jharden_act2 - you've spoken to Jharden in act 2
 nyrani_act2
