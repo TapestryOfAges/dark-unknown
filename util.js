@@ -1408,6 +1408,17 @@ function SetSky() {
   }
 }
 
+function IsNight(usethistime) {
+  if (!usethistime) { usethistime = DUTime.getGameClock(); }
+  usethistime = usethistime*5;   // Without this, a step is 1 min on world map and .2 in town
+  usethistime = usethistime + 9*60;  // Game starts at 9am on day 1
+  let hours = Math.floor((usethistime/60)%24);
+
+  if ((hours < 6) || (hours >= 18)) { return 1; }
+  
+  return 0;
+}
+
 function CheckTimeBetween(time1,time2, clocktime) {
   let time1arr = time1.split(":");
   let time2arr = time2.split(":");
