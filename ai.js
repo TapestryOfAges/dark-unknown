@@ -1077,7 +1077,7 @@ ais.OutdoorHostile = function(who, radius, pname) {
     }
   }
   let distancetopc = GetDistance(who.getx(), who.gety(), locx, locy);
-  if (distancetopc > 20) { return retval; } // if PC is far away, just skip turn to speed things up
+//  if (distancetopc > 20) { return retval; } // if PC is far away, just skip turn to speed things up
 
   // not using IsAdjacent because don't want to check for same map
   if (((Math.abs(who.getx() - locx) === 1) && (Math.abs(who.gety() - locy) === 0)) || ((Math.abs(who.getx() - locx) === 0) && (Math.abs(who.gety() - locy) === 1))) {
@@ -1306,8 +1306,26 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
   let retval = { fin: 0 };
   let spawnedby = who.getSpawnedBy();
   let leashpresent = 0;
-  if (spawnedby && (spawnedby.getSpawnLeash() || spawnedby.getSpawnSoftLeash())) { leashpresent = 1; }
-  
+  if (spawnedby && (spawnedby.getSpawnLeash() || spawnedby.getSpawnSoftLeash())) { 
+    leashpresent = 1; 
+
+    // is the sun has just risen, change leash point
+    let isnight = IsNight();
+    if (who.lastTurnTimeOfDay && (who.lastTurnTimeOfDay === "night") && (!isnight)) {
+      let mypoi = who.getPoI();
+      if (mypoi.hasOwnProperty("x")) {
+        who.homex = mypoi.x;
+        who.homey = mypoi.y;
+      }
+    }
+    if (isnight) {
+      who.lastTurnTimeOfDay = "night";
+    } else {
+      who.lastTurnTimeOfDay = "day";
+    }
+
+  }
+
   if ((who.getCurrentPath().length > 0) && (who.getTurnsToRecalcDest() > 0)) {
     let coords = who.getNextStep();
     DebugWrite("ai", "Check path distance? My location: " + who.getx() + ", " + who.gety() + ", next step is: " + coords[0] + ", " + coords[1] + ".<br />");
@@ -1331,15 +1349,17 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
       DebugWrite("ai", "There are now " + turnscheck + " turns left on the existing path.<br />");
       let leashed = 0;
       if (leashpresent) {
-        let spawndist = GetDistance(coords[0], coords[1], spawnedby.getx(), spawnedby.gety());  // distance from spawner to target location
-        if ((spawndist > spawnedby.getSpawnLeash()) && (who.getDestinationType() !== "spawn")) { // Presumably got here by chasing the PC, but trying to move beyond leash
-          retval["canmove"] = 0;
-          DebugWrite("ai", "AI " + who.getName() + " restricted from moving: hard leash at " + spawnedby.getx() + "," + spawnedby.gety() + ".<br />");
-          leashed = 1;
-        } else if ((who.getDestinationType() !== "spawn") && (who.getDestinationType() !== "PC") && spawnedby.getSpawnSoftLeash() && (spawndist > spawnedby.getSpawnSoftLeash())) { // moving past soft leash without going after the PC
-          retval["canmove"] = 0;
-          DebugWrite("ai", "AI " + who.getName() + " restricted from moving: trying to go past soft leash at " + spawnedby.getx() + "," + spawnedby.gety() + " w/o targetting PC.<br />");
-          leashed = 1;
+        if (!spawnedby.unleashedAtNight || (!IsNight())) {  // if always leashed, or if it's daytime so leashed anyway
+          let spawndist = GetDistance(coords[0], coords[1], who.homex, who.homey);  // distance from spawner to target location
+          if ((spawndist > spawnedby.getSpawnLeash()) && (who.getDestinationType() !== "spawn")) { // Presumably got here by chasing the PC, but trying to move beyond leash
+            retval["canmove"] = 0;
+            DebugWrite("ai", "AI " + who.getName() + " restricted from moving: hard leash at " + who.homex + "," + who.homey + ".<br />");
+            leashed = 1;
+          } else if ((who.getDestinationType() !== "spawn") && (who.getDestinationType() !== "PC") && spawnedby.getSpawnSoftLeash() && (spawndist > spawnedby.getSpawnSoftLeash())) { // moving past soft leash without going after the PC
+            retval["canmove"] = 0;
+            DebugWrite("ai", "AI " + who.getName() + " restricted from moving: trying to go past soft leash at " + who.homex + "," + who.homey + " w/o targetting PC.<br />");
+            leashed = 1;
+          }
         }
       }
       if (!leashed && !civilized) {  
@@ -1361,7 +1381,7 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
       DebugWrite("ai", "unsuccessfully.<br />");
 
       if (leashed) {
-        let path = who.getHomeMap().getPath(who.getx(), who.gety(), spawnedby.getx(), spawnedby.gety(), who.getMovetype());
+        let path = who.getHomeMap().getPath(who.getx(), who.gety(), who.homex, who.homey, who.getMovetype());
         if (path.length) {
           path.shift();
           if (path.length) {
@@ -1369,7 +1389,7 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
             if (dur > path.length) { dur = path.length; }
             if (dur < 0) { dur = 0; }
             who.setCurrentPath(path);
-            who.setDestination({x: spawnedby.getx(), y: spawnedby.gety()}, dur);
+            who.setDestination({x: who.homex, y: who.homey}, dur);
             who.setDestinationType("spawn");
             DebugWrite("ai", "Set path to: " + spawnedby.getx() + ", " + spawnedby.gety() + "<br />");
             retval["fin"] = 1;
