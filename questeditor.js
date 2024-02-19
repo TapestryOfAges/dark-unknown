@@ -46,6 +46,7 @@ function changeField(fieldname, htmlname) {
   } else {
     questlist[selectedquest][fieldname] = document.getElementById(htmlname).value;
   }
+  if (fieldname === "name") { FillTitles(); }
 }
 
 function SaveQuests() {
