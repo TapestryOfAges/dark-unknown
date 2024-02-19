@@ -568,6 +568,7 @@ mappages["naurglen"].features[512] = {name : 'TorchEast', x : 94, y : 26};
 mappages["naurglen"].features[513] = {name : 'StreetLamp', x : 86, y : 39};
 mappages["naurglen"].features[514] = {name : 'StreetLamp', x : 80, y : 18};
 mappages["naurglen"].features[515] = {name : 'StreetLamp', x : 62, y : 27};
+mappages["naurglen"].features[516] = {name : 'TorchEast', x : 87, y : 28};
 
 
 mappages["naurglen"].npcs = [];
