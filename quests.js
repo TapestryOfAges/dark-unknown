@@ -59,9 +59,11 @@ class Questlog {
     let logentry = this.findQuest(questnum);
     if (logentry === -1) {
       console.log("Trying to complete quest " + questnum + " without having begun it.");
+      this.activate(questnum);
+      logentry = this.findQuest(questnum);
     }
     this.log[logentry].active = 0;
-    this.log[logentry].complete = 1;
+    this.log[logentry].completed = 1;
   }
 
 }
@@ -122,13 +124,13 @@ class Quest {
     const ifitem = /\<IFITEM:(.*?)\>/;
     matches = txt.match(ifitem);
     while (matches !== null) {
-      if (PublicKeyCredential.checkInventory(matches[1])) {
+      if (PC.checkInventory(matches[1])) {
         txt = txt.replace(ifitem, "");
         txt = txt.replace(/\<\/IFITEM\>/, "");
       } else {
         txt = txt.replace(/\<IFITEM.*?\<\/IFITEM\>/, "");
       }
-      matches = txt.match(ifno);
+      matches = txt.match(ifitem);
     }
 
     return txt;
@@ -212,6 +214,8 @@ questlist[64] = new Quest([], "Find the Time of Sight", "Ashlin", "Consolation",
 questlist[65] = new Quest([], "Learn Infusion", "Ladonna", "Consolation", `Ladonna has instructed you in what you will need to do to demonstrate the technique known as infusion.<br />She has given you a broken arrow, and instructed you to stand within the 4 fields of energy. While there, infusion is more accessible, so infuse the Mend spell to fix the arrow, and return it to her.<br />(As a reminder, you can try to infuse by pressing (I) rather than (C) when casting a spell.)`, `You have mastered the technique of infusion!`, "main");
 questlist[66] = new Quest([], "Entry to Consolation", "Ashlin", "Consolation", `Ashlin has put forth a challenge- cast a spell, any spell, while she watches, to prove that you are a magician. If you are, she will admit you to the Tower of Consolation.`, `You have gained admittance to the Tower of Consolation.`, "main");
 questlist[67] = new Quest([], "Lance's Collapse", "Taran", "Black Dragon Castle", `Prince Lance has collapsed, after the dragon's defeat, and cannot be roused. Go to your parents and ask them if they can apply their powers of healing.`, ``, "main");
+questlist[68] = new Quest([], "Derek's Pony", "Derek", "Naurglen", `Derek's pony, Faithful, is foundering. He could use the name of a good farrier- return to him if you know of one.`, `You've given Derek the name of a reputable farrier who can help Faithful.`, "side");
+questlist[69] = new Quest([], "War Wizard's Tower", "Dave", "Hildendain", `Dave's uncle stole a magic ring from the family, and fled east with it. He was said to be intrigued by stories of an ancestor, a war wizard who had built a tower somewhere near Beldskae. <IFFLAG:megan_mentioned_tower>Megan, in Beldskae, mentioned a tower to the northeast of that city, through a cave, that had been taken over by trolls.</IFFLAG>`, `You have found the magic ring stolen by Dave's uncle.`, "side");
 
 
 // verbage for reference guide:
