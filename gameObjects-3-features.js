@@ -6316,7 +6316,7 @@ ReflectionTile.prototype.walkoff = function(who) {
   // remove reflection from attached mirror
   if (!this.mirror.getBroken()) {
     this.mirror.setGraphicArray(["static.gif", "", -9*32 , -76*32]);
-    delete this.morror.overrideBroken;
+    delete this.mirror.overrideBroken;
   } else {
     this.mirror.setGraphicArray(["static.gif", "", -8*32, -76*32]);
   }
@@ -7000,9 +7000,15 @@ function WellTile() {
 WellTile.prototype = new FeatureObject();
 
 WellTile.prototype.use = function(who) {
-  if (this.spritexoffset === -3*32) { this.spritexoffset = -4*32; }
-  else { this.spritexoffset = -3*32; }
+  let retval = {};
+  retval["fin"] = 1;
+
+  if (this.spritexoffset === -3*32) { this.spritexoffset = -4*32; retval["txt"] = "You raise a bucket of water."; }
+  else { this.spritexoffset = -3*32; retval["txt"] = "You lower the bucket."; }
   DrawMainFrame("one",this.getHomeMap(), this.getx(), this.gety());
+
+  return retval;
+
 }
 
 function BareWellTile() {
@@ -8792,6 +8798,7 @@ function SpawnerTile() {
   this.spawnSoftLeash = 15;
   this.spawnFreq = 100;
   this.lastSpawned = 0;
+  this.unleashedAtNight = 0;
   
   this.level = 1;
   this.evolve = [];  
@@ -8951,6 +8958,10 @@ SpawnerTile.prototype.myTurn = function() {
         mymap.placeThing(this.getx() + diffx, this.gety() + diffy, newspawn);
         this.addSpawned(newspawn);
         newspawn.setSpawnedBy(this);
+        if (this.spawnLeash || this.spawnSoftLeash) {
+          newspawn.homex = this.getx();
+          newspawn.homey = this.gety();
+        }
         DebugWrite("gameobj", "Spawner #" + this.getSerial() + " at " + this.x + ", " + this.y + " has spawned a " + newspawn.getName() + " #" + newspawn.getSerial() + "<br />");
       } else {
         timetonext = 5;
@@ -14027,10 +14038,11 @@ InfiniteScrollTile.prototype.secondResponse = function(code) {
 }
 
 function SupplyBoxTile() {
+  // Graphic Upgraded
   this.name = "SupplyBox";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-384";
+  this.graphic = "static.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -79*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -16261,6 +16273,8 @@ RingOfEtherealFocusTile.prototype = new EquipableItemObject();
 
 RingOfEtherealFocusTile.prototype.onGet = function(who) {
   this.equipMe(who);
+  questlog.complete(69);  // consider writing special case for completing quests not started, since
+                          // this one is particularly easy to complete without seeing the start
 
   return {};
 }
