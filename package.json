@@ -7,7 +7,8 @@
     "start": "electron-forge start",
     "test": "test",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "electron-forge make",
+    "publish": "electron-forge publish"
   },
   "repository": {
     "type": "git",
