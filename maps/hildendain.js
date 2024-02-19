@@ -70,9 +70,9 @@ mappages["hildendain"].terrain[63] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. 
 
 mappages["hildendain"].features = [];
 mappages["hildendain"].features[0] = {name : 'StairUp2', x : 29, y : 34, entermap : 'hildendain2', enterx : 29, entery : 34};
-mappages["hildendain"].features[1] = {name : 'SignpostLeft', x : 25, y : 44};
-mappages["hildendain"].features[2] = {name : 'SignpostRight', x : 27, y : 44};
-mappages["hildendain"].features[3] = {name : 'InnSign2', x : 26, y : 44, desc : "sign: Bronze Gauntlet Inn"};
+mappages["hildendain"].features[1] = {name : 'SignpostLeft', x : 25, y : 45};
+mappages["hildendain"].features[2] = {name : 'SignpostRight', x : 27, y : 45};
+mappages["hildendain"].features[3] = {name : 'InnSign2', x : 26, y : 45, desc : "sign: Bronze Gauntlet Inn"};
 mappages["hildendain"].features[4] = {name : 'GreyDoorWindow', x : 30, y : 41};
 mappages["hildendain"].features[5] = {name : 'GreyDoorWindow', x : 22, y : 41};
 mappages["hildendain"].features[6] = {name : 'LeftTable', x : 25, y : 41};
