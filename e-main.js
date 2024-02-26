@@ -14,10 +14,11 @@ let debugWindow = null;
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
-    height: 480,  // 469
+    height: 456,  // 469
     width: 776,
     useContentSize: true,
     resizable: false,
+    autoHideMenuBar: true, 
     webPreferences: {
       preload: path.join(__dirname, 'e-preload.js'),
     },
@@ -29,13 +30,13 @@ const createWindow = () => {
 app.whenReady().then(() => {
   ipcMain.on('resize', function(event, zoom) {
     if (zoom === 1) {
-      mainWindow.setMinimumSize(776,480);
-      mainWindow.setSize(776,469);
+//      mainWindow.setMinimumSize(776,480);
+      mainWindow.setContentSize(776,456);
     } else if (zoom === 1.5) {
-      mainWindow.setMinimumSize(1164,720);
-      mainWindow.setSize(1164,704);
+//      mainWindow.setMinimumSize(1164,720);
+      mainWindow.setContentSize(1164,684);
     } else if (zoom === 2) {
-      mainWindow.setSize(1552,960);
+      mainWindow.setContentSize(1552,912);
     }
   });
 
