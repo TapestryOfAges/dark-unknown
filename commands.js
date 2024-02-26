@@ -1,4 +1,3 @@
-
 "use strict";
 
 function PerformCommand(code, ctrl) {
@@ -537,7 +536,7 @@ function PerformCommand(code, ctrl) {
     if (waithere) {
       gamestate.setMode("anykey");
       targetCursor.command = 'w';
-      retval['input'] = "Wait - how many hours (1-9)? ";
+      retval['input'] = "Wait - how many hours (1-9, S=sunrise)? ";
       retval["fin"] = 2;
     }
 	}
@@ -745,6 +744,8 @@ function PerformAttack(who) {
     targetCursor.lastTarget = atkwho;
   }
   if (atkwho.getAttitude() === "hostile") {
+    retval = Attack(who, atkwho);
+  } else if ((atkwho.getNPCName() === "Garrick") && DU.gameflags.getFlag("garrick_flipout") && !DU.gameflags.getFlag("garrick_surrender")) {
     retval = Attack(who, atkwho);
   } else {
     retval["txt"] = "Your target is not hostile to you. Are you sure?";
@@ -1464,11 +1465,13 @@ function FillInJournal() {
   let idx = 0;
   for (let i=firstentry; i<=lastentry; i++) {
     let highlight = "";
+    let qtype = "";
+    if (targetCursor.page >= 3) { qtype = "completed"; }
     if (i===targetCursor.scrolllocation) {
       highlight = "<span style='color:black;background-color:white'>";
       document.getElementById("questdesc").innerHTML = "<span style='color:yellow'>SOURCE:</span><br />" + journallist[i].source + "<br />";
       document.getElementById("questdesc").innerHTML += "<span style='color:yellow'>LOCATION RECEIVED:</span><br />" + journallist[i].location + "<br /><br />";
-      document.getElementById("questdesc").innerHTML += `${journallist[i].getText()}`;
+      document.getElementById("questdesc").innerHTML += `${journallist[i].getText(qtype)}`;
     }
     document.getElementById("questtitle"+idx).innerHTML = highlight + journallist[i].name;
     if (highlight) { document.getElementById("questtitle"+idx).innerHTML += "</span>"; }
@@ -2172,18 +2175,24 @@ function PerformWait(code) {
     return retval;
   }
 
-//  if (anyhostiles === -1) {
-    gamestate.setMode("null");
-    let duration = parseInt(code) - 48;
-    retval["txt"] = "Waiting for " + duration + " hours.";
-    if (duration === 1) { retval["txt"] = "Waiting for 1 hour."; }
-    duration = duration * 12;
+  gamestate.setMode("null");
+  if (code === 83) { // S
+    let endtime = GetGameClockByClockTime("7:00");
+    retval["txt"] = "Waiting until sunrise.";
     FadeOut();
+    PC.setWaiting(endtime);
 
-//    PC.moveAfterWaiting = {x : PC.getx(), y: PC.gety()};
-    PC.setWaiting(DUTime.getGameClock() + duration);
-//    PC.getHomeMap().moveThing(0,0,PC);
-//  }
+    retval["fin"] = 1;
+    retval["input"] = "&gt;";
+    return retval;
+  }
+  let duration = parseInt(code) - 48;
+  retval["txt"] = "Waiting for " + duration + " hours.";
+  if (duration === 1) { retval["txt"] = "Waiting for 1 hour."; }
+  duration = duration * 12;
+  FadeOut();
+
+  PC.setWaiting(DUTime.getGameClock() + duration);
 
   retval["fin"] = 1;
   retval["input"] = "&gt;";
@@ -3090,12 +3099,12 @@ function performOptions(code) {
       } else if (targetCursor.page === 9) { // zoom
         if (DU.gameflags.getFlag("zoom") === 1.5) {
           DU.gameflags.setFlag("zoom",1);
-          webFrame.setZoomFactor(1);
+//          webFrame.setZoomFactor(1);
 //          ipcRenderer.send('resize', 1);
           OutOfContext.resize(1);
         } else if (DU.gameflags.getFlag("zoom") === 2) {
           DU.gameflags.setFlag("zoom",1.5);
-          webFrame.setZoomFactor(1.5);
+//          webFrame.setZoomFactor(1.5);
 //          ipcRenderer.send('resize', 1.5);
           OutOfContext.resize(1.5);
         }
@@ -3122,15 +3131,15 @@ function performOptions(code) {
         newvol = parseInt(newvol+.001);
         newvol = newvol/10;
         DU.gameflags.setFlag("sound", newvol);
-      } else if (targetCursor.page === 10) { // zoom
+      } else if (targetCursor.page === 9) { // zoom
         if (DU.gameflags.getFlag("zoom") === 1) {
           DU.gameflags.setFlag("zoom",1.5);
-          webFrame.setZoomFactor(1.5);
+//          webFrame.setZoomFactor(1.5);
 //          ipcRenderer.send('resize', 1.5);
           OutOfContext.resize(1.5);
         } else if (DU.gameflags.getFlag("zoom") === 1.5) {
           DU.gameflags.setFlag("zoom",2);
-          webFrame.setZoomFactor(2);
+//          webFrame.setZoomFactor(2);
 //          ipcRenderer.send('resize', 2);
           OutOfContext.resize(2);
         }
@@ -3840,8 +3849,8 @@ function ShowHelp() {
   statsdiv += "<tr><td>ARROW KEYS - Move</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>P - Push</td></tr>";
   statsdiv += "<tr><td>A - Attack/Approach</td><td></td><td>Q - Save</td></tr>";
   let hasspellbook = "";
-  if (DU.gameflags.getFlag("spellbook")) {
-    hasspellbook = "style='color:gray";
+  if (!DU.gameflags.getFlag("spellbook")) {
+    hasspellbook = "style='color:gray'";
   }
   statsdiv += `<tr><td ${hasspellbook}>C - Cast</td><td></td><td>R - Ready Equipment</td></tr>`;
   statsdiv += "<tr><td>D - Descend</td><td></td><td>S - Search</td></tr>";
