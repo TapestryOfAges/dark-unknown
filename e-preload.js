@@ -1,10 +1,10 @@
 'use strict';
 
-const { contextBridge, ipcRenderer } = require('electron')
+const { contextBridge, ipcRenderer, webFrame } = require('electron')
 
 contextBridge.exposeInMainWorld('OutOfContext', {
   toggle_dev: () => { ipcRenderer.send('toggle_dev') },
-  resize: (zoom) => { ipcRenderer.send('resize', zoom)  },
+  resize: (zoom) => { webFrame.setZoomFactor(zoom); ipcRenderer.send('resize', zoom)  },
   open_debug: () => { ipcRenderer.send('open_debug'); },
   sendDebug: (txt) => { ipcRenderer.send('sendDebug', txt); },
   debug_bottom: () => { ipcRenderer.send('debug_bottom'); },
