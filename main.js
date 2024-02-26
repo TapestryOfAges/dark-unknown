@@ -438,7 +438,7 @@ function DoAction(code, ctrl) {
         maintext.drawTextFrame();
       }
     } else if (targetCursor.command === "w") {
-      if ((code === 27) || ((code <= 57) && (code >= 48))) {
+      if ((code === 27) || (code === 83) || ((code <= 57) && (code >= 48))) {
         let retval = PerformWait(code);
         if (retval["fin"] === 2) {
           maintext.setInputLine("&gt;");
