@@ -216,6 +216,8 @@ questlist[66] = new Quest([], "Entry to Consolation", "Ashlin", "Consolation", `
 questlist[67] = new Quest([], "Lance's Collapse", "Taran", "Black Dragon Castle", `Prince Lance has collapsed, after the dragon's defeat, and cannot be roused. Go to your parents and ask them if they can apply their powers of healing.`, ``, "main");
 questlist[68] = new Quest([], "Derek's Pony", "Derek", "Naurglen", `Derek's pony, Faithful, is foundering. He could use the name of a good farrier- return to him if you know of one.`, `You've given Derek the name of a reputable farrier who can help Faithful.`, "side");
 questlist[69] = new Quest([], "War Wizard's Tower", "Dave", "Hildendain", `Dave's uncle stole a magic ring from the family, and fled east with it. He was said to be intrigued by stories of an ancestor, a war wizard who had built a tower somewhere near Beldskae. <IFFLAG:megan_mentioned_tower>Megan, in Beldskae, mentioned a tower to the northeast of that city, through a cave, that had been taken over by trolls.</IFFLAG>`, `You have found the magic ring stolen by Dave's uncle.`, "side");
+questlist[70] = new Quest([], "Naurglen's Health", "Hazel", "Naurglen", `Hazel asks that you check on the health of: Warren and Garen, often in the tavern; Dora, who lives in the NE corner of town; and Kylee, whose farm is along the south edge.<IFFLAG:health_garen><br />You have asked Garen.</IFFLAG><IFFLAG:health_warren><br />You have asked Warren.</IFFLAG><IFFLAG:health_dora><br />You have asked Dora.</IFFLAG><IFFLAG:health_kylee>You have asked Kylee.</IFFLAG>`, `You checked up on everyone in Naurglen, and got some executioner's hood for Jharden.`, "main");
+
 
 
 // verbage for reference guide:
