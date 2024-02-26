@@ -62,11 +62,11 @@ brooke_anna - brooke mentioned anna to you
 anna_romance - you've mentioned Damien or Brooke to Anna
 anna_return - Anna has moved back to Poverty (or is on her way out of Hildendain)
 anna_left - she's made it out of Hildendain (set in her AI or when player leaves) ** (endgame support)
-garrick_flipout - garrick has been tossed in jail. Set once he surrenders to Aiofe.
+garrick_flipout - garrick has attacked you
 kiba_question - Kiba has asked who garrick is engaged to
 kiba_rumor - she's responded about garrick marrying anna
 garrick_better - he's said something awful about Anna.
-garrick_attack - garrick has attacked you
+garrick_surrender - he's surrendered after attacking you
 garrick_jailed - he's in jail
 anna_damien_response - Damien has thanked you for Anna's return.
 anna_brooke_response - Brooke has thanked you for Anna's return.

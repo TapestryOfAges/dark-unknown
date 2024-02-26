@@ -513,6 +513,7 @@ ais.GarrickAttack = function(who) {
     delete aoife.specials.unkillable;
     aoife.setAttitude("friendly");
     aoife.setAggro(0);
+    DU.gameflags.setFlag("garrick_surrender",1);
     return retval;
   } else {
     if (IsAdjacent(who,PC)) {
