@@ -117,7 +117,7 @@ mappages["asharden1"].onload = function(mapref) {
     }
     
     let place_ivan = 0;
-    if ((DU.gameflags.getFlag("ivan_lastvisitchecktime") && ((DUTime.getGameClock() - DU.gameflags.getFlag("ivan_lastvisitchecktime")) > 20)) || (!DU.gameflags.getFlag("ivan_lastvisitchecktime"))) {
+    if ((DU.gameflags.getFlag("ivan_lastvisitchecktime") && !IsNight() && ((DUTime.getGameClock() - DU.gameflags.getFlag("ivan_lastvisitchecktime")) > 20)) || (!DU.gameflags.getFlag("ivan_lastvisitchecktime"))) {
       // decide if placing Ivan
       if (Dice.roll("1d4") === 1) {
         place_ivan=1;
