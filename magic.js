@@ -873,11 +873,11 @@ function PerformIllusion(caster, infused, free, tgt) {
 
 // Iron Flesh
 magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].getLongDesc = function() {
-  let absorb = PC.getIntForPower() * 5;
+  let absorb = PC.getIntForPower() * 3.5;
   return `Absorbs 5 points from hits on you until it has absorbed ${absorb}.`;
 }
 magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].getInfusedDesc = function() {
-  let absorb = PC.getIntForPower() * 10;
+  let absorb = PC.getIntForPower() * 7;
   return `Until it has absorbed ${absorb} points of damage.`;
 }
 
@@ -901,8 +901,8 @@ magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell = function(caste
   let endtime = dur + DU.DUTime.getGameClock();
   DebugWrite("magic", "Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />");
   liobj.setExpiresTime(endtime);
-  let power = PC.getIntForPower()*5;
-  if (infused) { power = PC.getIntForPower()*10;}   
+  let power = PC.getIntForPower()*3.5;
+  if (infused) { power = PC.getIntForPower()*7;}   
   liobj.setPower(power);
   
   tgt.addSpellEffect(liobj, Math.max(0, free-1) );
@@ -915,12 +915,12 @@ magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell = function(caste
 
 // Lesser Heal
 magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].getLongDesc = function() {
-  return "Heals you for " + Dice.rollmin(PC.getLevel() + "d6+" + 2*PC.getLevel()) + "-" + Dice.rollmax(PC.getLevel() + "d6+" + 2*PC.getLevel()) + "HP.";
+  return "Heals you for " + Dice.rollmin(PC.getLevel() + "d6+" + PC.getIntForPower()) + "-" + Dice.rollmax(PC.getLevel() + "d6+" + PC.getIntForPower()) + "HP.";
 }
 magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].getInfusedDesc = function() {
-  let minheal = Dice.rollmin(PC.getLevel() + "d6+" + 2*PC.getLevel());
+  let minheal = Dice.rollmin(PC.getLevel() + "d6+" + PC.getIntForPower());
   minheal = Math.floor(minheal * 1.5);
-  let maxheal = Dice.rollmax(PC.getLevel() + "d6+" + 2*PC.getLevel());
+  let maxheal = Dice.rollmax(PC.getLevel() + "d6+" + PC.getIntForPower());
   maxheal = Math.floor(maxheal * 1.5);
   return "Heals for " + minheal + "-" + maxheal + "HP instead.";
 }
@@ -936,10 +936,10 @@ magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell = function(cas
   }
   
   let lvl = caster.getLevel();
-  let plus = 2*caster.getLevel();
+  let plus = PC.getIntForPower();
   if (free) { 
     lvl = Dice.roll("1d2+2"); 
-    plus = Dice.roll("1d3+2");
+    plus = Dice.roll("1d3+7");
   }
   
   let healamt = Dice.roll(lvl + "d6+" + plus);
@@ -2185,12 +2185,12 @@ function PerformBlink(caster,destx, desty) {
 
 // Heal
 magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].getLongDesc = function() {
-  return "Heals you for " + Dice.rollmin(PC.getLevel() + "d8+" + (PC.getLevel()*2)) + "-" + Dice.rollmax(PC.getLevel() + "d8+" + (PC.getLevel()*2)) + ".";
+  return "Heals you for " + Dice.rollmin(PC.getLevel() + "d8+" + PC.getIntForPower()) + "-" + Dice.rollmax(PC.getLevel() + "d8+" + PC.getIntForPower()) + ".";
 }
 magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].getInfusedDesc = function() {
-  let minheal = Dice.rollmin(PC.getLevel() + "d8+" + (PC.getLevel()*2));
+  let minheal = Dice.rollmin(PC.getLevel() + "d8+" + PC.getIntForPower());
   minheal = Math.floor(1.5 * minheal);
-  let maxheal = Dice.rollmax(PC.getLevel() + "d8+" + (PC.getLevel()*2));
+  let maxheal = Dice.rollmax(PC.getLevel() + "d8+" + PC.getIntForPower());
   maxheal = Math.floor(1.5 * maxheal);
   return "Heals " + minheal + "-" + maxheal + "HP instead.";
 }
@@ -2204,7 +2204,7 @@ magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].executeSpell = function(caster, infused, 
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
-  let plus = caster.getLevel()*2;
+  let plus = PC.getIntForPower();
   let healamt = Dice.roll(caster.getLevel() + "d8+" + plus);
   if (free) { healamt = Dice.roll("4d8+10"); }
   DebugWrite("magic", "Healing " + healamt + " hp.<br />");
