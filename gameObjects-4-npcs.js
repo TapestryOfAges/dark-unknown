@@ -402,7 +402,8 @@ NPCObject.prototype.processDeath = function(droploot){
     if (!this.getHomeMap().getName().includes("blackdragon")) { wascityfighting = 0; }
     MoveBetweenMaps(this,this.getHomeMap(),newmap, 7, 7, 1);
     FadeOut(1);
-
+    HideTurnFrame();
+    
     if (wascityfighting && DU.gameflags.getFlag("endAct1") && !DU.gameflags.getFlag("act2")) {
       PC.dead = 1;
       PC.deaduntil = GetGameClockByClockTime(ModTime(GetUsableClockTime(),"1:00"));
@@ -1564,7 +1565,12 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 NPCObject.prototype.myTurn = function() {
   maintext.flushDelayedText();
 
-  if (PC.dead) { return 1; }  // New, 2024-02-04: if PC is dead, everyone skips turns until the clock swings around.
+  if (PC.dead) { 
+    let NPCevent = new GameEvent(this);
+    DUTime.addAtTimeInterval(NPCevent,this.nextActionTime(1));  // if this still isn't fast enough, make the next action time be not until the PC wakes up anyway
+
+    return 1; 
+  }  // New, 2024-02-04: if PC is dead, everyone skips turns until the clock swings around.
 
   raceWarning = 0;
   if (this.fled) { return 1; }
