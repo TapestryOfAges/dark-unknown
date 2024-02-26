@@ -2398,20 +2398,21 @@ EnergyFieldTile.prototype.bumpinto = function(who) {
 }
 
 function StreetLampTile() {
+  // Graphics Upgraded
 	this.name = "StreetLamp";
-  this.graphic = "LampPost.png";
+  this.graphic = "static.gif";
   this.spritexoffset = 0;
-  this.spriteyoffset = 0;
+  this.spriteyoffset = -176*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0;
   this.prefix = "a";
-	this.desc = "burning torch";
+	this.desc = "street lamp";
 
 	LightEmitting.call(this, 5);
 
   ManualAnimation.call(this, { 
     animstart: 0,
-    animlength: 2,
+    animlength: 4,
     animstyle: "random",
     allowrepeat: 0,
     framedurationmin: 150,
@@ -3366,12 +3367,16 @@ TalkingDoorTile.prototype.getNPCName = function() {
 TalkingDoorTile.prototype.activate = function(timeoverride) {
 //  this.use_old = this.use;
   this.use = function(who) {
+    console.log("Something tried the door.");
     let retval;
-    maintext.addText("Use " + this.getDesc() + ":");
-    retval = PerformTalk(this,"ash_door","_start");
-    retval["override"] = 1;
-    maintext.setInputLine("&gt; You say: ");
-    maintext.drawTextFrame();
+    retval["fin"] = 1;
+    if (who === PC) {
+      maintext.addText("Use " + this.getDesc() + ":");
+      retval = PerformTalk(this,"ash_door","_start");
+      retval["override"] = 1;
+      maintext.setInputLine("&gt; You say: ");
+      maintext.drawTextFrame();
+    }
     return retval;
   };
   return 1;
@@ -4534,6 +4539,62 @@ function UnfinishedSign2Tile() {
   this.peerview = "#541909";
 }
 UnfinishedSign2Tile.prototype = new FeatureObject();
+
+function NSPierWTile() {
+  this.name = "NSPierW";
+  this.graphic = "static.gif";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -175*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "wooden pier";
+  this.peerview = "#602000";
+  this.walkSound = "stone";
+}
+NSPierWTile.prototype = new FeatureObject();
+
+function NSPierETile() {
+  this.name = "NSPierE";
+  this.graphic = "static.gif";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -175*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "wooden pier";
+  this.peerview = "#602000";
+  this.walkSound = "stone";
+}
+NSPierETile.prototype = new FeatureObject();
+
+function EWPierNTile() {
+  this.name = "EWPierN";
+  this.graphic = "static.gif";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -175*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "wooden pier";
+  this.peerview = "#602000";
+  this.walkSound = "stone";
+}
+EWPierNTile.prototype = new FeatureObject();
+
+function EWPierSTile() {
+  this.name = "EWPierS";
+  this.graphic = "static.gif";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -175*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "wooden pier";
+  this.peerview = "#602000";
+  this.walkSound = "stone";
+}
+EWPierSTile.prototype = new FeatureObject();
 
 function TombstoneTile() {
   this.name = "Tombstone";

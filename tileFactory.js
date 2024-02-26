@@ -3178,6 +3178,26 @@ tileFactory.prototype.makeUnfinishedSign2Tile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeNSPierWTile = function() {
+  let newTile = new NSPierWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeNSPierETile = function() {
+  let newTile = new NSPierETile();
+  return newTile;
+}
+
+tileFactory.prototype.makeEWPierNTile = function() {
+  let newTile = new EWPierNTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeEWPierSTile = function() {
+  let newTile = new EWPierSTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeTombstoneTile = function() {
   let newTile = new TombstoneTile();
   return newTile;
