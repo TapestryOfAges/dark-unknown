@@ -494,7 +494,7 @@ mappages["onyx3"].features[6] = {name : 'Brazier', x : 14, y : 19};
 
 
 mappages["onyx3"].npcs = [];
-mappages["onyx3"].npcs[0] = {name : 'MageVillagerNPC', x : 13, y : 20, NPCName: 'Xavier', PeaceAI: 'scheduled', Schedule: 'xavier', Conversation: 'xavier', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueRobeHood","head":"Hood1","back":"","offhand":"OffhandPale","cloak":"","mainhand":"QuarterstaffPale","realhead":"ShortBrownPale"}'};
+mappages["onyx3"].npcs[0] = {name : 'MageVillagerNPC', x : 13, y : 20, NPCName: 'Xavier', PeaceAI: 'scheduled', Schedule: 'xavier', Conversation: 'xavier', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueRobeHood","head":"","back":"","offhand":"OffhandPale","cloak":"","mainhand":"QuarterstaffPale","realhead":"ShortBrownPale"}'};
 
 mappages["onyx3"].desc = "The Towne of Onyx";
 mappages["onyx3"].longdesc = ``;
