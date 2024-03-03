@@ -536,7 +536,7 @@ function PerformCommand(code, ctrl) {
     if (waithere) {
       gamestate.setMode("anykey");
       targetCursor.command = 'w';
-      retval['input'] = "Wait - how many hours (1-9, S=sunrise)? ";
+      retval['input'] = "Wait - how many hours (1-9, S=sunup)? ";
       retval["fin"] = 2;
     }
 	}
