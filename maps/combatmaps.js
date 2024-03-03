@@ -1156,6 +1156,7 @@ function maps_check_escape(mapref) {
       chance = 100 - (20 + 7*numenemies);
       if (chance < 10) { chance = 10; }
     }
+    if (gamestate.getMode() === "spellbook") { chance = 100; }  // if you're here because you're casting Return, they can't stop you
     if (Dice.roll("1d100") > chance) {
       if (who === PC) {
         maintext.delayedAddText("You failed to escape!");
@@ -1171,7 +1172,7 @@ function maps_check_escape(mapref) {
       }
     }
     
-    if (who === PC) {
+    if ((who === PC) && numenemies) {
       // possibly check for bribery if I decide to go that route
       if ((PC.getHP() > (PC.getMaxHP() * (1/5))) && (PC.getLevel() !== 1)) {
         DebugWrite("combat","PC has more than 1/5 its hp, gains coward point for fleeing.<br />");
