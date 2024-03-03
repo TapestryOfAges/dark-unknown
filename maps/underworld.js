@@ -127,7 +127,7 @@ mappages["underworld"].terrain[119] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^
 mappages["underworld"].features = [];
 mappages["underworld"].features[0] = {name : 'Whirlpool', x : 70, y : 106, entermap : 'darkunknown', enterx : 66, entery : 122};
 mappages["underworld"].features[1] = {name : 'Dungeon', x : 28, y : 100, entermap : 'kaltonmine3', enterx : 26, entery : 26};
-mappages["underworld"].features[2] = {name : 'Dungeon', x : 36, y : 54, entermap : 'null', enterx : 0, entery : 0};
+mappages["underworld"].features[2] = {name : 'Dungeon', x : 36, y : 54, entermap : 'worldsending3', enterx : 31, entery : 13};
 mappages["underworld"].features[3] = {name : 'SecretCave', x : 63, y : 27, entermap : 'hidden_cave', enterx : 14, entery : 1};
 mappages["underworld"].features[4] = {name : 'Cave', x : 36, y : 91, entermap : 'eldercave', enterx : 15, entery : 30};
 mappages["underworld"].features[5] = {name : 'PileOfRocks', x : 104, y : 74};
@@ -1154,7 +1154,7 @@ mappages["endgame2"].npcs[5] = {name : 'RangerVillagerNPC', x : 9, y : 5, NPCNam
 mappages["endgame2"].npcs[6] = {name : 'FighterVillagerNPC', x : 3, y : 5, NPCName: 'Nyrani', Desc: 'guard captain', Gender: 'monster', NPCBand: '0', skintone: 1, wornlayers: '{"body":"Plate2","head":"ShortBrownPale","back":"","offhand":"RoundShield","cloak":"","mainhand":"LongswordPale","realhead":"ShortBrownPale"}'};
 mappages["endgame2"].npcs[7] = {name : 'MageVillagerNPC', x : 4, y : 7, NPCName: 'Jharden', Desc: 'royal advisor', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueRobePlain","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"QuarterstaffPale","realhead":"ShortBrownPale"}'};
 
-mappages["endgame2"].desc = "Castle dea'Olympus";
+mappages["endgame2"].desc = "Castle dea Olympus";
 mappages["endgame2"].longdesc = ``;
 mappages["endgame2"].music = '';
 mappages["endgame2"].savename = ``;
