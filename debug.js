@@ -92,6 +92,23 @@ function SetDebugWatch(watchname) {
   return; 
 }
 
+function SetDebugWatchBySerial(watchserial) {
+  watchon = "";
+  if (!watchserial) { return; }
+  let stuff = maps.getAllMaps();
+  for (let i in stuff) {
+    let val = stuff[i];
+    let npclist = val.npcs.getAll();
+    for (let j=0;j<npclist.length;j++) {
+      if (npclist[j].getSerial() === watchserial) {
+        watchon = npclist[j];
+      }
+    }
+  };
+  if (!watchon) { return ("Failed to find serial #" + watchserial); }
+  return; 
+}
+
 function DebugWait(mins) {
   PC.setWaiting(DUTime.getGameClock() + mins/5);
 }
