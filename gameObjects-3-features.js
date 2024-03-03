@@ -148,7 +148,7 @@ function LavaTile() {
   this.blocklos = 0;
   this.desc = "lava";
   this.initdelay = 1.2;
-  this.pathweight = 5;
+  this.pathweight = 50;
   this.spritexoffset = 0;
   this.spriteyoffset = -165*32;
   
@@ -3368,8 +3368,7 @@ TalkingDoorTile.prototype.activate = function(timeoverride) {
 //  this.use_old = this.use;
   this.use = function(who) {
     console.log("Something tried the door.");
-    let retval;
-    retval["fin"] = 1;
+    let retval = {fin:1};
     if (who === PC) {
       maintext.addText("Use " + this.getDesc() + ":");
       retval = PerformTalk(this,"ash_door","_start");
@@ -3485,7 +3484,8 @@ function FireFieldTile() {
 	
 	LightEmitting.call(this, 3);
 	this.initdelay = 1.5;
-	this.pathweight = 5;
+	this.pathweight = 7;
+  this.civilizedpathweight = 100; // always go around
 	
 	HasAmbientNoise.call(this,"sfx_fire_crackle",1.5);
 }
@@ -11521,6 +11521,19 @@ PetrifiedReaperTile.prototype.use = function(who) {
 
   return retval;
 }  
+
+PetrifiedReaperTile.prototype.onSearched = function(who) {
+  let retval = {};
+  if (IsAdjacent(who,this)) {
+    let loot = localFactory.createTile("ReaperBark");
+    PC.addToInventory(loot,1);
+    retval["txt"] = "You take some petrified reaper bark.";
+  } else {
+    retval["txt"] = "Nothing happens.";
+  }
+  return retval;
+}
+
 
 function OracleObject() {
   this.name = "OracleObject";
