@@ -93,7 +93,8 @@ ash_newspell - At this new level, Asharden has a spell to teach you
 heather_serene - you've given Heather the password
 been_in_bdc - you've been in Black Dragon Castle by the front door
 bdc_gate_open - the gate is currently open
-rebel_prisoner - you've talked to the prince and he's asked you to look in on the prisoner
+rebel_prisoner - you've talked to the prince and given him the letter
+asked_aara - he's asked you to look in on Aara
 taran_serene - you've given Taran the password
 rebel_talked - you've talked to the rebel prisoner
 bard_neophyte - you've talked to markus about joining the bards
