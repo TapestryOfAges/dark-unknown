@@ -162,8 +162,8 @@ ais.combat = function(who) {
       let trymove = StepOrSidestep(who,pathdest,rundest);
     }
     
-    if (who.specials.canbebrave && (Dice.roll("1d5") === 1)) {
-      // 20% chance each turn that a coward who didn't start cowardly will return to the fight
+    if (who.specials.canbebrave && (Dice.roll("1d8") === 1)) {
+      // 12.5% chance each turn that a coward who didn't start cowardly will return to the fight
       DebugWrite("ai", "Has become brave again!");
       delete who.specials.coward;
       delete who.specials.canbebrave;
@@ -1307,17 +1307,19 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
   let retval = { fin: 0 };
   let spawnedby = who.getSpawnedBy();
   let leashpresent = 0;
+  let isnight = IsNight();
   if (spawnedby && (spawnedby.getSpawnLeash() || spawnedby.getSpawnSoftLeash())) { 
     leashpresent = 1; 
+    DebugWrite("ai", "Spawned by a spawner with a leash.");
 
     // is the sun has just risen, change leash point
-    let isnight = IsNight();
     if (who.lastTurnTimeOfDay && (who.lastTurnTimeOfDay === "night") && (!isnight)) {
       let mypoi = who.getPoI();
       if (mypoi.hasOwnProperty("x")) {
         who.homex = mypoi.x;
         who.homey = mypoi.y;
       }
+      DebugWrite("ai", `Adjusting home coordinates due to sunrise: now returning to ${who.homex},${who.homey}`);
     }
     if (isnight) {
       who.lastTurnTimeOfDay = "night";
@@ -1350,7 +1352,7 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
       DebugWrite("ai", "There are now " + turnscheck + " turns left on the existing path.<br />");
       let leashed = 0;
       if (leashpresent) {
-        if (!spawnedby.unleashedAtNight || (!IsNight())) {  // if always leashed, or if it's daytime so leashed anyway
+        if (!spawnedby.unleashedAtNight || (!isnight)) {  // if always leashed, or if it's daytime so leashed anyway
           let spawndist = GetDistance(coords[0], coords[1], who.homex, who.homey);  // distance from spawner to target location
           if ((spawndist > spawnedby.getSpawnLeash()) && (who.getDestinationType() !== "spawn")) { // Presumably got here by chasing the PC, but trying to move beyond leash
             retval["canmove"] = 0;
@@ -1393,6 +1395,14 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
             who.setDestination({x: who.homex, y: who.homey}, dur);
             who.setDestinationType("spawn");
             DebugWrite("ai", "Set path to: " + spawnedby.getx() + ", " + spawnedby.gety() + "<br />");
+            coords = who.getNextStep();
+            let diffx = coords[0] - who.getx();
+            let diffy = coords[1] - who.gety();
+            retval = who.moveMe(diffx, diffy, 0);
+
+            if (retval["canmove"] === 1) {
+              DebugWrite("ai", "Leashed, moved successfully. New location: " + who.getx() + ", " + who.gety() + "<br />");
+            }
             retval["fin"] = 1;
             return retval;
           }
@@ -1422,6 +1432,37 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
     } 
     // if next step is more than one step away, a previous move failed, recalculate now
     DebugWrite("ai", "Path distant? My location: " + who.getx() + ", " + who.gety() + ", next step is: " + coords[0] + ", " + coords[1] + ".<br />");
+  } else if (leashpresent) {
+    let leashed = 0;
+    if (!spawnedby.unleashedAtNight || (!isnight)) {  // if always leashed, or if it's daytime so leashed anyway
+      let spawndist = GetDistance(who.getx(), who.gety(), who.homex, who.homey);  // distance from spawner to current location
+      if ((spawndist > spawnedby.getSpawnLeash()) && (who.getDestinationType() !== "spawn")) { // Presumably got here by chasing the PC, but trying to move beyond leash
+        retval["canmove"] = 0;
+        DebugWrite("ai", "AI " + who.getName() + " restricted from moving: hard leash at " + who.homex + "," + who.homey + ".<br />");
+        leashed = 1;
+      } else if ((who.getDestinationType() !== "spawn") && (who.getDestinationType() !== "PC") && spawnedby.getSpawnSoftLeash() && (spawndist > spawnedby.getSpawnSoftLeash())) { // moving past soft leash without going after the PC
+        retval["canmove"] = 0;
+        DebugWrite("ai", "AI " + who.getName() + " restricted from moving: trying to go past soft leash at " + who.homex + "," + who.homey + " w/o targetting PC.<br />");
+        leashed = 1;
+      }
+    }
+    if (leashed) {
+      let path = who.getHomeMap().getPath(who.getx(), who.gety(), who.homex, who.homey, who.getMovetype());
+      if (path.length) {
+        path.shift();
+        if (path.length) {
+          let dur = Math.floor(path.length / 3) + Dice.roll("1d5-3");
+          if (dur > path.length) { dur = path.length; }
+          if (dur < 0) { dur = 0; }
+          who.setCurrentPath(path);
+          who.setDestination({x: who.homex, y: who.homey}, dur);
+          who.setDestinationType("spawn");
+          DebugWrite("ai", "Set path to: " + spawnedby.getx() + ", " + spawnedby.gety() + "<br />");
+          retval["fin"] = 1;
+          return retval;
+        }
+      }
+    }
   }
   DebugWrite("ai", "No path to follow. Path length: " + who.getCurrentPath().length + ". Turns: " + who.getTurnsToRecalcDest() + ".<br />");
   return retval;
@@ -2351,7 +2392,7 @@ ais.ai_cast = function(who) {
     DebugWrite("ai","Adding HIGHATTACK to the list.");
     choices.push("highattack");
   }
-  console.log(choices);
+//  console.log(choices);
   if (choices.length) {
     let dr = Dice.roll("1d"+choices.length+"-1");
     if (choices[dr] === "heal") {
