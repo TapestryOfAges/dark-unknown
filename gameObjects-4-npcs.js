@@ -1572,6 +1572,14 @@ NPCObject.prototype.myTurn = function() {
     return 1; 
   }  // New, 2024-02-04: if PC is dead, everyone skips turns until the clock swings around.
 
+  let pchome = PC.getHomeMap().getName();
+  if ((this.getHomeMap().getName() === "underworld") && (pchome !== "underworld") && (pchome !== "hidden_cave") && (pchome !== "eldercave") && (pchome !== "kaltonmine3") && (pchome !== "worldsending3")) {
+    let NPCevent = new GameEvent(this);
+    DUTime.addAtTimeInterval(NPCevent,this.nextActionTime(10));  // underworld is on small time, but stays in memory, so creatures would go 5 times to 1 on the 
+                                                              // surface. So now if you're not in or near the underworld they don't go and they wait 10 ticks between attempts.
+
+    return 1; 
+  }
   raceWarning = 0;
   if (this.fled) { return 1; }
   DebugWrite("new", "<div style='border-style:inset; border-color:#999999'><span style='" + debugstyle.header + "'>" + this.getName() + " (" + this.getNPCName() + "), serial " + this.getSerial() + " is starting its turn at " + this.getx() + "," + this.gety() + ", timestamp " + DUTime.getGameClock().toFixed(5) + ".</span><br />");
@@ -1593,9 +1601,11 @@ NPCObject.prototype.myTurn = function() {
 	gamestate.setMode("NPC");
 	gamestate.setTurn(this);
 
-  if (this.specials.noact) { return 1; } // noact NPCs skip their turns. Effects do not run!
-  
-  let tileid;
+  if (this.specials.noact) { 
+    let NPCevent = new GameEvent(this);
+    DUTime.addAtTimeInterval(NPCevent,this.nextActionTime(1));
+    return 1; 
+  } // noact NPCs skip their turns. Effects do not run!
 
   this.hasFrame = 0;
   if (PC.showFrames && IsObjectVisibleOnScreen(this)) {
@@ -1735,7 +1745,7 @@ NPCObject.prototype.endTurn = function(init) {
 
       DebugWrite("gameobj", "<span style='font-weight:bold'>Creature " + this.getName() + " : " + this.getSerial() + " removed from game- map gone. Not re-adding to timeline.</span><br />");
   
-    } else {
+    } else if ((this.getHP() > 0) || (this === PC)) {
       let myevent = new GameEvent(this);
       DUTime.addAtTimeInterval(myevent,this.nextActionTime(init));
     }
