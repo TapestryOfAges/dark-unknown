@@ -1361,10 +1361,11 @@ function CounterBoxTile() {
 CounterBoxTile.prototype = new TerrainObject();
 
 function BlankBlackTile() {
+  //Graphics upgraded
   this.name = "BlankBlack";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-128";
+  this.graphic = "static.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -97*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 2;
   this.desc = "darkness";
@@ -1373,10 +1374,11 @@ function BlankBlackTile() {
 BlankBlackTile.prototype = new TerrainObject();
 
 function ChasmTile() {
+  // Graphics upgraded
   this.name = "Chasm";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-128";
+  this.graphic = "static.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -97*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -1386,10 +1388,11 @@ function ChasmTile() {
 ChasmTile.prototype = new TerrainObject();
 
 function DarknessTile() {
+  // Graphics upgraded
   this.name = "Darkness";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-128";
+  this.graphic = "static.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -97*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.desc = "darkness";
