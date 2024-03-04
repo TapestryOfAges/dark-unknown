@@ -9154,9 +9154,9 @@ PentagramSETile.prototype = new FeatureObject();
 
 function CrenellationNWTile() {
   this.name = "CrenellationNW";
-  this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-192";
-	this.spriteyoffset = "-1760";
+  this.graphic = "static.gif";
+	this.spritexoffset = -6*32;
+	this.spriteyoffset = -176*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
@@ -9164,23 +9164,23 @@ function CrenellationNWTile() {
 }
 CrenellationNWTile.prototype = new FeatureObject();
 
-function CrenellationNTile() {
-  this.name = "CrenellationN";
-  this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-224";
-	this.spriteyoffset = "-1760";
+function CrenellationNSTile() {
+  this.name = "CrenellationNS";
+  this.graphic = "static.gif";
+	this.spritexoffset = -4*32;
+	this.spriteyoffset = -176*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "crenellation";
 }
-CrenellationNTile.prototype = new FeatureObject();
+CrenellationNSTile.prototype = new FeatureObject();
 
 function CrenellationNETile() {
   this.name = "CrenellationNE";
-  this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-256";
-	this.spriteyoffset = "-1760";
+  this.graphic = "static.gif";
+	this.spritexoffset = -7*32;
+	this.spriteyoffset = -176*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
@@ -9188,35 +9188,23 @@ function CrenellationNETile() {
 }
 CrenellationNETile.prototype = new FeatureObject();
 
-function CrenellationWTile() {
-  this.name = "CrenellationW";
-  this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-192";
-	this.spriteyoffset = "-1792";
+function CrenellationEWTile() {
+  this.name = "CrenellationEW";
+  this.graphic = "static.gif";
+	this.spritexoffset = -5*32;
+	this.spriteyoffset = -176*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "crenellation";
 }
-CrenellationWTile.prototype = new FeatureObject();
-
-function CrenellationETile() {
-  this.name = "CrenellationE";
-  this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-256";
-	this.spriteyoffset = "-1792";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL;
-  this.prefix = "a";
-  this.desc = "crenellation";
-}
-CrenellationETile.prototype = new FeatureObject();
+CrenellationEWTile.prototype = new FeatureObject();
 
 function CrenellationSWTile() {
   this.name = "CrenellationSW";
-  this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-192";
-	this.spriteyoffset = "-1824";
+  this.graphic = "static.gif";
+	this.spritexoffset = -8*32;
+	this.spriteyoffset = -176*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
@@ -9224,23 +9212,11 @@ function CrenellationSWTile() {
 }
 CrenellationSWTile.prototype = new FeatureObject();
 
-function CrenellationSTile() {
-  this.name = "CrenellationS";
-  this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-224";
-	this.spriteyoffset = "-1824";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL;
-  this.prefix = "a";
-  this.desc = "crenellation";
-}
-CrenellationSTile.prototype = new FeatureObject();
-
 function CrenellationSETile() {
   this.name = "CrenellationSE";
-  this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-256";
-	this.spriteyoffset = "-1824";
+  this.graphic = "static.gif";
+	this.spritexoffset = -9*32;
+	this.spriteyoffset = -176*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";

@@ -4148,8 +4148,8 @@ tileFactory.prototype.makeCrenellationNWTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeCrenellationNTile = function() {
-  let newTile = new CrenellationNTile();
+tileFactory.prototype.makeCrenellationNSTile = function() {
+  let newTile = new CrenellationNSTile();
   return newTile;
 }
 
@@ -4158,23 +4158,13 @@ tileFactory.prototype.makeCrenellationNETile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeCrenellationWTile = function() {
-  let newTile = new CrenellationWTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeCrenellationETile = function() {
-  let newTile = new CrenellationETile();
+tileFactory.prototype.makeCrenellationEWTile = function() {
+  let newTile = new CrenellationEWTile();
   return newTile;
 }
 
 tileFactory.prototype.makeCrenellationSWTile = function() {
   let newTile = new CrenellationSWTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeCrenellationSTile = function() {
-  let newTile = new CrenellationSTile();
   return newTile;
 }
 
