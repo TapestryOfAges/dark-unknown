@@ -1098,7 +1098,7 @@ ais.OutdoorHostile = function(who, radius, pname) {
   // but only if the PC is not within close range- in that case, always wait to hunt
   // reminder: locx and locy are the PC's coords
   DebugWrite("ai", "Comparing distance: Radius=" + radius + "; PC is " + distancetopc + " away .<br />");
-  if ((distancetopc > radius/3) || (who.getDestinationType("spawn"))) {
+  if ((distancetopc > radius/3) || (who.getDestinationType() === "spawn")) {
     if (who.getDestinationType("spawn")) { DebugWrite("ai", "Current destination: returning to spawn anchor (" + who.getSpawnedBy().getx() + "," + who.getSpawnedBy().gety() + ")<br />"); }
     else { DebugWrite("ai", "PC on another map or not Close. Trying to follow a path.<br />"); }
     retval = ais.SurfaceFollowPath(who,40,1);   
