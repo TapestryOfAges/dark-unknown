@@ -1200,6 +1200,7 @@ GameMap.prototype.createPathGrid = function() {
         if (!response["canmove"]) { this.setWalkableAt(i,j,false,k); }
         let pathweight;
         if (k===MOVE_WALK_DOOR) { pathweight = thisspot.getPathWeight("civilized"); }
+        else if ((k===MOVE_FLY) || (k===MOVE_ETHEREAL)) { pathweight = 1; }
         else { pathweight = thisspot.getPathWeight(); }
         if (!pathweight) { pathweight = 1; }
         this.setWeightAt(i,j,pathweight,k);
