@@ -4148,8 +4148,8 @@ tileFactory.prototype.makeCrenellationNWTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeCrenellationNSTile = function() {
-  let newTile = new CrenellationNSTile();
+tileFactory.prototype.makeCrenellationETile = function() {
+  let newTile = new CrenellationETile();
   return newTile;
 }
 
@@ -4158,8 +4158,18 @@ tileFactory.prototype.makeCrenellationNETile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeCrenellationEWTile = function() {
-  let newTile = new CrenellationEWTile();
+tileFactory.prototype.makeCrenellationSTile = function() {
+  let newTile = new CrenellationSTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCrenellationWTile = function() {
+  let newTile = new CrenellationWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCrenellationNTile = function() {
+  let newTile = new CrenellationNTile();
   return newTile;
 }
 
@@ -4170,6 +4180,26 @@ tileFactory.prototype.makeCrenellationSWTile = function() {
 
 tileFactory.prototype.makeCrenellationSETile = function() {
   let newTile = new CrenellationSETile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCrenellationNWInnerTile = function() {
+  let newTile = new CrenellationNWInnerTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCrenellationNEInnerTile = function() {
+  let newTile = new CrenellationNEInnerTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCrenellationSWInnerTile = function() {
+  let newTile = new CrenellationSWInnerTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCrenellationSEInnerTile = function() {
+  let newTile = new CrenellationSEInnerTile();
   return newTile;
 }
 

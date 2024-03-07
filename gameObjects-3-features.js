@@ -9164,8 +9164,8 @@ function CrenellationNWTile() {
 }
 CrenellationNWTile.prototype = new FeatureObject();
 
-function CrenellationNSTile() {
-  this.name = "CrenellationNS";
+function CrenellationETile() {
+  this.name = "CrenellationE";
   this.graphic = "static.gif";
 	this.spritexoffset = -4*32;
 	this.spriteyoffset = -176*32;
@@ -9174,7 +9174,7 @@ function CrenellationNSTile() {
   this.prefix = "a";
   this.desc = "crenellation";
 }
-CrenellationNSTile.prototype = new FeatureObject();
+CrenellationETile.prototype = new FeatureObject();
 
 function CrenellationNETile() {
   this.name = "CrenellationNE";
@@ -9188,8 +9188,8 @@ function CrenellationNETile() {
 }
 CrenellationNETile.prototype = new FeatureObject();
 
-function CrenellationEWTile() {
-  this.name = "CrenellationEW";
+function CrenellationSTile() {
+  this.name = "CrenellationS";
   this.graphic = "static.gif";
 	this.spritexoffset = -5*32;
 	this.spriteyoffset = -176*32;
@@ -9198,7 +9198,31 @@ function CrenellationEWTile() {
   this.prefix = "a";
   this.desc = "crenellation";
 }
-CrenellationEWTile.prototype = new FeatureObject();
+CrenellationSTile.prototype = new FeatureObject();
+
+function CrenellationWTile() {
+  this.name = "CrenellationW";
+  this.graphic = "static.gif";
+	this.spritexoffset = -8*32;
+	this.spriteyoffset = -164*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.prefix = "a";
+  this.desc = "crenellation";
+}
+CrenellationWTile.prototype = new FeatureObject();
+
+function CrenellationNTile() {
+  this.name = "CrenellationN";
+  this.graphic = "static.gif";
+	this.spritexoffset = -9*32;
+	this.spriteyoffset = -164*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.prefix = "a";
+  this.desc = "crenellation";
+}
+CrenellationNTile.prototype = new FeatureObject();
 
 function CrenellationSWTile() {
   this.name = "CrenellationSW";
@@ -9223,6 +9247,54 @@ function CrenellationSETile() {
   this.desc = "crenellation";
 }
 CrenellationSETile.prototype = new FeatureObject();
+
+function CrenellationNWInnerTile() {
+  this.name = "CrenellationNWInner";
+  this.graphic = "static.gif";
+	this.spritexoffset = -6*32;
+	this.spriteyoffset = -177*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.prefix = "a";
+  this.desc = "crenellation";
+}
+CrenellationNWInnerTile.prototype = new FeatureObject();
+
+function CrenellationNEInnerTile() {
+  this.name = "CrenellationNEInner";
+  this.graphic = "static.gif";
+	this.spritexoffset = -7*32;
+	this.spriteyoffset = -177*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.prefix = "a";
+  this.desc = "crenellation";
+}
+CrenellationNEInnerTile.prototype = new FeatureObject();
+
+function CrenellationSWInnerTile() {
+  this.name = "CrenellationSWInner";
+  this.graphic = "static.gif";
+	this.spritexoffset = -8*32;
+	this.spriteyoffset = -177*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.prefix = "a";
+  this.desc = "crenellation";
+}
+CrenellationSWInnerTile.prototype = new FeatureObject();
+
+function CrenellationSEInnerTile() {
+  this.name = "CrenellationSEInner";
+  this.graphic = "static.gif";
+	this.spritexoffset = -9*32;
+	this.spriteyoffset = -177*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.prefix = "a";
+  this.desc = "crenellation";
+}
+CrenellationSEInnerTile.prototype = new FeatureObject();
 
 function WeaponCounterDaggerTile() {
   // Graphic made same as weapon
