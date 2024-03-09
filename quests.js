@@ -118,7 +118,7 @@ class Quest {
       } else {
         txt = txt.replace(/\<IFNOT.*?\<\/IFNOT\>/, "");
       }
-      matches = txt.match(ifno);
+      matches = txt.match(ifnot);
     }
 
     const ifitem = /\<IFITEM:(.*?)\>/;
