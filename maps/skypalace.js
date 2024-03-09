@@ -382,9 +382,9 @@ mappages["skypalace2"].entertestscript = '';
 mappages["skypalace2"].exitscript = '';
 mappages["skypalace2"].exittestscript = '';
 mappages["skypalace2"].returnmap = 'darkunknown';
-mappages["skypalace2"].returnx = '65';
-mappages["skypalace2"].returny = '70';
-mappages["skypalace2"].returninfused = '1';
+mappages["skypalace2"].returnx = '69';
+mappages["skypalace2"].returny = '74';
+mappages["skypalace2"].returninfused = '0';
 mappages["skypalace2"].linkedMaps = ["skypalace"];
 mappages["skypalace2"].editorLabels = '{}';
 

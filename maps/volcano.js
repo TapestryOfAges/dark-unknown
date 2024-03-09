@@ -668,10 +668,10 @@ mappages["skarabrae"].enterscript = '';
 mappages["skarabrae"].entertestscript = '';
 mappages["skarabrae"].exitscript = '';
 mappages["skarabrae"].exittestscript = '';
-mappages["skarabrae"].returnmap = 'volcano';
-mappages["skarabrae"].returnx = '14';
-mappages["skarabrae"].returny = '37';
-mappages["skarabrae"].returninfused = '0';
+mappages["skarabrae"].returnmap = 'darkunknown';
+mappages["skarabrae"].returnx = '69';
+mappages["skarabrae"].returny = '74';
+mappages["skarabrae"].returninfused = '1';
 mappages["skarabrae"].linkedMaps = [""];
 mappages["skarabrae"].editorLabels = '{}';
 // MAP ENDS HERE

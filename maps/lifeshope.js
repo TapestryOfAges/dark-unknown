@@ -975,10 +975,10 @@ mappages["lifeshope"].enterscript = '';
 mappages["lifeshope"].entertestscript = '';
 mappages["lifeshope"].exitscript = '';
 mappages["lifeshope"].exittestscript = '';
-mappages["lifeshope"].returnmap = 'island';
-mappages["lifeshope"].returnx = '54';
+mappages["lifeshope"].returnmap = 'darkunknown';
+mappages["lifeshope"].returnx = '69';
 mappages["lifeshope"].returny = '74';
-mappages["lifeshope"].returninfused = '0';
+mappages["lifeshope"].returninfused = '1';
 mappages["lifeshope"].linkedMaps = [""];
 mappages["lifeshope"].editorLabels = '{}';
 // MAP ENDS HERE
