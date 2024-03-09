@@ -1473,10 +1473,7 @@ HotelPheranTile.prototype.activate = function() {
 }
 
 HotelPheranTile.prototype.myTurn = function() {
-  if (DU.gameflags.getFlag("started_pheran")) {
-    this.getHomeMap().deleteThing(this);
-    DUTime.removeEntityFrom(this);
-  } else {
+  if (!PC.getHomeMap().getName().includes("hotelcalifornia")) {
     if ((this.getHomeMap() === PC.getHomeMap()) && (GetDistance(this.getx(),this.gety(),PC.getx(),PC.gety(),"square") <= 6)){
       this.onscreen = 1;
       // marks that the player has seen the hotel. Now it can start moving
@@ -6412,6 +6409,22 @@ CursedMirrorTile.prototype.activate = function() {
 CursedMirrorTile.prototype.onBreak = function(who) {
   // generate Imp and place on broken mirror
 
+  let world = maps.getMap("darkunknown");
+  let feas = world.features.getAll();
+  for (let i=0;i<feas.length;i++) {
+    if (feas[i].getName() === "HotelPheran") {
+      world.deleteThing(feas[i]);
+      DUTime.removeEntityFrom(feas[i]);
+    }
+  }
+
+  feas = this.getHomeMap().features.getAll();
+  for (let i=0;i<feas.length;i++) {
+    if (feas[i].getName() === "CursedReflection") {
+      this.getHomeMap().deleteThing(feas[i]);
+    }
+  }
+
   Earthquake();
   let imp = localFactory.createTile("ImpNPC");
   imp.lootTable = "cursed";
@@ -6541,6 +6554,22 @@ CursedMirrorWithImpTile.prototype.getNPCName = function() {
 
 CursedMirrorWithImpTile.prototype.onBreak = function(who) {
   // generate Imp and place on broken mirror
+
+  let world = maps.getMap("darkunknown");
+  let feas = world.features.getAll();
+  for (let i=0;i<feas.length;i++) {
+    if (feas[i].getName() === "HotelPheran") {
+      world.deleteThing(feas[i]);
+      DUTime.removeEntityFrom(feas[i]);
+    }
+  }
+
+  feas = this.getHomeMap().features.getAll();
+  for (let i=0;i<feas.length;i++) {
+    if (feas[i].getName() === "CursedReflection") {
+      this.getHomeMap().deleteThing(feas[i]);
+    }
+  }
 
   Earthquake();
   let imp = localFactory.createTile("ImpNPC");
@@ -13963,11 +13992,11 @@ StoneOfCursesTile.prototype = new ConsumableItemObject();
 StoneOfCursesTile.prototype.use = function(who) {
   let retval = { fin:1 };
 
-  let ladder = localFactory.createTile("LadderDown");
-  ladder.entermap = "hotelcalifornia7";
-  ladder.enterx = 10;
-  ladder.entery = 5;
   if (PC.getHomeMap().getName() === "hotelcalifornia6") {
+    let ladder = localFactory.createTile("LadderDown");
+    ladder.entermap = "hotelcalifornia7";
+    ladder.enterx = 10;
+    ladder.entery = 5;
     PC.getHomeMap().placeThing(10,9,ladder);
     retval["txt"] = "The curse is broken! The inn shakes around you.";
     Earthquake();
