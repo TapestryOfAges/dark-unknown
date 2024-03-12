@@ -886,7 +886,7 @@ magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell = function(caste
   let resp = {fin:1};
   if (!free) {
     free = 0;
-    var mana = this.getManaCost(infused);
+    let mana = this.getManaCost(infused);
     CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
@@ -901,11 +901,14 @@ magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell = function(caste
   let endtime = dur + DU.DUTime.getGameClock();
   DebugWrite("magic", "Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />");
   liobj.setExpiresTime(endtime);
-  let power = PC.getIntForPower()*3.5;
-  if (infused) { power = PC.getIntForPower()*7;}   
+  let power = 35;
+  if (!free) {
+    if (infused) { power = caster.getIntForPower()*7; } 
+    else { power = caster.getIntForPower()*3.5; }
+  }
   liobj.setPower(power);
   
-  tgt.addSpellEffect(liobj, Math.max(0, free-1) );
+  tgt.addSpellEffect(liobj);
   
   PlayCastSound(caster, "sfx_buff");
   ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_ORANGE);
@@ -1173,12 +1176,14 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
 magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].getLongDesc = function() {
   let power = (PC.getIntForPower()*2/3)+1;
   power = power.toFixed(2);
-  return "Decreases your chance of being hit by " + power + "%.";
+  let dur = PC.getIntForPower() * 5;
+  return "Decreases your chance of being hit by " + power + "% for " + dur + " minutes.";
 }
 magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].getInfusedDesc = function() {
   let power = ((PC.getIntForPower()*2/3)+1)*1.5;
   power = power.toFixed(2);
-  return "Decreases your chance of being hit by " + power + "% instead.";
+  let dur = PC.getIntForPower() * 10;
+  return "Decreases your chance of being hit by " + power + "% for " + dur + " minutes instead.";
 }
 
 magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].executeSpell = function(caster, infused, free, tgt) {
@@ -1193,7 +1198,7 @@ magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].executeSpell = function(caste
   if (!tgt || (caster === PC)) { tgt = caster; }
 
   let prot = localFactory.createTile("Protection");
-  let duration = caster.getIntForPower() * 3 * SCALE_TIME;
+  let duration = caster.getIntForPower() * 5;
   let power = Math.floor(caster.getIntForPower()*2/3)+1;
   if (infused) { 
     duration = duration * 2; 
@@ -2137,7 +2142,7 @@ magic[SPELL_BLINK_LEVEL][SPELL_BLINK_ID].executeSpell = function(caster, infused
     ShuffleArray(possdest);
     while (!success && possdest[0]) {
       let tile = castermap.getTile(possdest[0].x,possdest[0].y);
-      if (tile.canMoveHere(castermove, 1).canmove) {
+      if ((tile !== "OoB") && (tile.canMoveHere(castermove, 1).canmove)) {
         let path = castermap.getPath(casterx,castery,possdest[0].x,possdest[0].y,MOVE_WALK);
         if (path.length) {
           success = PerformBlink(caster,possdest[0].x,possdest[0].y);
@@ -2152,6 +2157,7 @@ magic[SPELL_BLINK_LEVEL][SPELL_BLINK_ID].executeSpell = function(caster, infused
     PlayCastSound(caster, "sfx_spell_fail");
   } else {
     PlayCastSound(caster, "sfx_teleport");
+    ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
   }
   // be sure to test this in a location with no valid destinations
   return resp;  
