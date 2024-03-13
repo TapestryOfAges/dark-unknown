@@ -878,7 +878,7 @@ magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].getLongDesc = function() {
 }
 magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].getInfusedDesc = function() {
   let absorb = PC.getIntForPower() * 7;
-  return `Until it has absorbed ${absorb} points of damage.`;
+  return `Until it has absorbed ${absorb} points of damage instead.`;
 }
 
 magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell = function(caster, infused, free, tgt) {
@@ -1115,7 +1115,7 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
   
   let power = caster.getIntForPower();
   if (free) { power = Dice.roll("1d5+12"); }  
-  let radius = Math.floor(power/10) +1; 
+  let radius = Math.floor(power/10) +1.5; 
 
   DebugWrite("magic", "Calculating poison cloud. Radius: " + radius + "<br />");
   
@@ -2157,7 +2157,7 @@ magic[SPELL_BLINK_LEVEL][SPELL_BLINK_ID].executeSpell = function(caster, infused
     PlayCastSound(caster, "sfx_spell_fail");
   } else {
     PlayCastSound(caster, "sfx_teleport");
-    ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+    ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
   }
   // be sure to test this in a location with no valid destinations
   return resp;  
