@@ -830,6 +830,10 @@ function DoAction(code, ctrl) {
       let tileid = targetCursor.tileid;
       document.getElementById(tileid).innerHTML = targetCursor.basetile; 
       maintext.addText(response["txt"]);
+      if ((targetCursor.command === "c") && (targetCursor.castFrom)) {
+        maintext.addText("Cancelled!");
+        delete targetCursor.castFrom;
+      }
       maintext.setInputLine(response["input"]);
   			//DrawTextFrame(maintext.getTextFrame(), response["input"]);
       maintext.drawTextFrame();

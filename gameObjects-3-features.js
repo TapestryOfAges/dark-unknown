@@ -14967,6 +14967,8 @@ ScrollItemObject.prototype.use = function(who) {
     retval["txt"] = "Magic has been negated, you cannot cast spells here.";
     retval["fin"] = 2;
     retval["input"] = "&gt;";
+    maintext.setInputLine("&gt;");
+    maintext.drawTextFrame();
     gamestate.setMode("player");
     
     return retval;
@@ -14976,14 +14978,22 @@ ScrollItemObject.prototype.use = function(who) {
   if (retval["fin"] === 4) { 
     retval["override"] = 1; 
     targetCursor.castFrom = this;
+  } else if (retval["fin"] === 2) {
+    retval["override"] = 1;
+    retval["input"] = "&gt;";
+    maintext.setInputLine("&gt;");
+    maintext.drawTextFrame();
+    gamestate.setMode("player");
+    return retval;
   }
+
   if (gamestate.getMode() === "anykey") {
     // Peer, at the least
     retval["override"] = 1;
     retval["fin"] = 4;
   }
   else {
-    if (!retval["txt"]) { retval["txt"] = "Spell cast!"; }
+    if ((!retval["txt"]) && !retval["override"]) { retval["txt"] = "Spell cast!"; }
     DrawCharFrame();
   }
   return retval;
@@ -14997,6 +15007,8 @@ ScrollItemObject.prototype.spellcast = function(who) {
   } else {
     who.removeFromInventory(this);
   }
+  maintext.addText("Use " + this.getDesc() + ": Spell cast!");
+  maintext.drawTextFrame();
 }
 
 ScrollItemObject.prototype.flamed = function() {
