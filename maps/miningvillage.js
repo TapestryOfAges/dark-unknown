@@ -147,3 +147,12 @@ mappages["miningvillage"].returny = '74';
 mappages["miningvillage"].returninfused = '1';
 mappages["miningvillage"].linkedMaps = [""];
 mappages["miningvillage"].editorLabels = '{}';
+
+mappages["miningvillage"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    if (PC.checkInventory("VoidstoneSculpture") || DU.gameflags.getFlag("infinite_scroll")) {
+      let art = mapref.getTile(8,23).getTopFeature();
+      mapref.deleteThing(art);
+    }
+  }
+}
