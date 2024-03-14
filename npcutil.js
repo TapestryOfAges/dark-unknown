@@ -56,13 +56,31 @@ NPCSpecialFuncs["hides"] = function(who,how) {
 }
 
 NPCSpecialFuncs["mimic"] = function(who,how) {
-  who.noAnim = 1;
-  who.animating = 0;
-  who.oldx = who.spritexoffset;
-  who.oldy = who.spriteyoffset;
-
   who.spritexoffset = -2*32;
   who.spriteyoffset = -78*32;
+}
+
+function RevealMimic(mimic) {
+  mimic.spritexoffset = 0 * 32;
+  mimic.spriteyoffset = -154 * 32;
+  mimic.setDesc("mimic");
+
+  ManualAnimation.call(mimic, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 120,
+    framedurationmax: 170,
+    startframe: "random"
+  });
+
+  delete mimic.specials.mimic;
+  if (mimic.getHomeMap() === PC.getHomeMap()) {
+    mimic.startAnimation();
+    DrawMainFrame("one",mimic.getHomeMap(),mimic.getx(),mimic.gety());
+  }
+
 }
 
 NPCSpecialFuncs["underground"] = function(who,how) {
@@ -207,16 +225,7 @@ function Attack(atk, def) {
   
   // probably should make an onAttack but for now this can do
   if (atk.specials.mimic) {
-    who.spritexoffset = who.oldx;
-    delete who.oldx;
-    who.spriteyoffset = who.oldy;
-    delete who.oldy;
-    delete who.noAnim;
-    delete who.specials.mimic;
-    if (who.getHomeMap() === PC.getHomeMap()) {
-      who.startAnimation();
-      DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
-    }
+    RevealMimic(atk);
   }
   if (atk.specials.underground) {
     delete who.invisible;
