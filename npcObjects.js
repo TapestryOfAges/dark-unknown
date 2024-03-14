@@ -1127,8 +1127,8 @@ function BullNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 300,
     startframe: "random"
   });
 }
@@ -2716,6 +2716,7 @@ function MimicNPCTile() {
   this.peaceAI = 'seekPC-3';
   this.forgetAt = 10;
   this.withdraw = 0;
+  this.graphic = 'static.gif';
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+8'
   this.meleeStrDamage = .66
@@ -2725,25 +2726,12 @@ function MimicNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'Level3';
   this.prefix = 'a';
-  this.desc = "mimic";
-  this.meleeChance = 100;
+  this.desc = "chest";
+  this.meleeChance = 80;
   this.resists = {};
   this.special = 'mimic, spitter, stationary';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
-  this.graphic = 'static.gif';
-  this.spritexoffset = 0 * 32;
-  this.spriteyoffset = -154 * 32;
-
-  ManualAnimation.call(this, { 
-    animstart: 0*32,
-    animlength: 5,
-    animstyle: "random",
-    allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: "random"
-  });
 }
 MimicNPCTile.prototype = new NPCObject();
 
