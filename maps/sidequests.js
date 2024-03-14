@@ -36,9 +36,7 @@ mappages["beldskaecave"].features[4] = {name : 'WalkOnChangeExit', x : 18, y : 0
 mappages["beldskaecave"].features[5] = {name : 'WalkOnChangeExit', x : 19, y : 0};
 mappages["beldskaecave"].features[6] = {name : 'WalkOnChangeExit', x : 7, y : 23};
 mappages["beldskaecave"].features[7] = {name : 'WalkOnChangeExit', x : 8, y : 23};
-mappages["beldskaecave"].features[8] = {name : 'WalkOnChangeExit', x : 8, y : 23};
-mappages["beldskaecave"].features[9] = {name : 'WalkOnChangeExit', x : 9, y : 23};
-mappages["beldskaecave"].features[10] = {name : 'WalkOnChangeExit', x : 9, y : 23};
+mappages["beldskaecave"].features[8] = {name : 'WalkOnChangeExit', x : 9, y : 23};
 
 
 mappages["beldskaecave"].npcs = [];
@@ -81,6 +79,16 @@ mappages["beldskaecave"].ClearEmOut = function(mapref) {
       for (let i=0;i<npcs.length;i++) {
         mapref.deleteThing(npcs[i]);
         DUTime.removeEntityFrom(npcs[i]);
+      }
+    }
+    let feas = mapref.features.getAll();
+    for (let i=0;i<feas.length;i++) {
+      if (feas[i].gety() === 0) {
+        feas[i].setxto = 129;
+        feas[i].setyto = 11;
+      } else if (feas[i].gety() === 23) {
+        feas[i].setxto = 128;
+        feas[i].setyto = 13;
       }
     }
   }
@@ -580,7 +588,8 @@ mappages["shrinecave"].wraps = '';
 mappages["shrinecave"].enterx = '16';
 mappages["shrinecave"].entery = '30';
 mappages["shrinecave"].seeBelow = '';
-mappages["shrinecave"].lightLevel = 'dark';
+//mappages["shrinecave"].lightLevel = 'dark';
+mappages["shrinecave"].lightLevel = 'bright';
 mappages["shrinecave"].alwaysRemember = '0';
 mappages["shrinecave"].scale = '1';
 mappages["shrinecave"].underground = '1';
