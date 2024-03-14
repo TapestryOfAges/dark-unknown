@@ -117,7 +117,7 @@ ais.combat = function(who) {
     who.specials.canbebrave = 1; // things that start out as cowards can't decide to stop being cowards
   }
   
-  if (who.specials.coward || ((Dice.roll("1d100") < who.withdraw) && IsAdjacent(who,nearest))) {
+  if (!who.specials.stationary && (who.specials.coward || ((Dice.roll("1d100") < who.withdraw) && IsAdjacent(who,nearest)))) {
     if (who.specials.coward) {
       // run away! run away!
       DebugWrite("ai", "Running away!<br />");
@@ -239,6 +239,11 @@ ais.combat = function(who) {
       return retval; 
     }
     // didn't melee anything, time to try to find something to approach
+
+    if (who.specials.stationary) {
+      // no need for the rest of this function: can't approach anyway
+      return retval;
+    }
 
     if (!nearest) {
       DebugWrite("ai", "How do I (" + who.getName() + " (" + who.getx() + "," + who.gety() + ")) not have a nearest enemy while still aggro?");
@@ -3261,16 +3266,7 @@ ais.ai_spit = function(who) {
   if (Dice.roll("1d45") < PC.getDex()) { atkhit = 0; }
   let destgraphic = {};
   if (who.specials.mimic) {
-    who.spritexoffset = who.oldx;
-    delete who.oldx;
-    who.spriteyoffset = who.oldy;
-    delete who.oldy;
-    delete who.noAnim;
-    delete who.specials.mimic;
-    if (who.getHomeMap() === PC.getHomeMap()) {
-      who.startAnimation();
-      DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
-    }
+    RevealMimic(who);
   }
   if (atkhit) {
     if (tgt === PC) {
