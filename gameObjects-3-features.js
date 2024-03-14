@@ -4841,22 +4841,26 @@ function BridgeEWBrokenTile() {
 BridgeEWBrokenTile.prototype = new FeatureObject();
 
 function SitDown(who,what) {
-  if (what.getName().includes("Chair")) {
-    who.sitting = "chair";
-    who.facing = "facing" + what.facing;
-  } else {
-    who.sitting = "throne";
+  if (who.checkType("human")) {
+    if (what.getName().includes("Chair")) {
+      who.sitting = "chair";
+      who.facing = "facing" + what.facing;
+    } else {
+      who.sitting = "throne";
+    }
+    who.currframenum = 1;
+    who.makeLayers(1);
   }
-  who.currframenum = 1;
-  who.makeLayers(1);
 
   return {msg:""};
 }
 
 function StandUp(who) {
-  who.sitting = "";
-  who.currframenum = 1;
-  who.makeLayers();
+  if (who.checkType("human")) {
+    who.sitting = "";
+    who.currframenum = 1;
+    who.makeLayers();
+  }
   return {msg:""};
 }
 
@@ -5370,6 +5374,7 @@ function BedBumpInto(who) {
   
   // Prevent NPCs from randomwalking into the sleeping position
   if (who.aiWandering) { retval["canmove"] = 0; } 
+  if (!who.checkType("human")) { retval["canmove"] = 0; } 
 
   return(retval);
 }
