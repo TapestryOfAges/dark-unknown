@@ -345,6 +345,9 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
   }
 
   dmg = CheckAbsorb(dmg,this,src,type);
+  if ((dmg > 0) && this.specials.mimic) {
+    RevealMimic(this);
+  }
   if (this.specials.unkillable && (dmg > this.getHP())) {
     dmg = this.getHP()-1;
   }
