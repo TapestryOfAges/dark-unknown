@@ -869,8 +869,8 @@ mappages["wingcave"].features[51] = {name : 'PileOfRocks', x : 22, y : 24};
 
 mappages["wingcave"].npcs = [];
 
-mappages["wingcave"].desc = "";
-mappages["wingcave"].longdesc = `Small Cave`;
+mappages["wingcave"].desc = "Small Cave";
+mappages["wingcave"].longdesc = ``;
 mappages["wingcave"].music = 'Cave';
 mappages["wingcave"].savename = `Small Cave`;
 mappages["wingcave"].exitmap = 'darkunknown';
