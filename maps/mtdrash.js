@@ -1,5 +1,6 @@
 "use strict";
 
+// MAP BEGINS HERE
 mappages["mtdrash1"] = {};
 mappages["mtdrash1"].terrain = [];
  mappages["mtdrash1"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -8,9 +9,9 @@ mappages["mtdrash1"].terrain = [];
  mappages["mtdrash1"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["mtdrash1"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["mtdrash1"].terrain[5] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
- mappages["mtdrash1"].terrain[6] = 'BK BK BK BK BK !# df df df hf hf !# hf hf hf hf hf !# bd bd bd !# BK BK BK BK BK';
- mappages["mtdrash1"].terrain[7] = 'BK BK BK BK BK !# df df df !# hf !# hf !# !# !# hf !# bd bd bd !# BK BK BK BK BK';
- mappages["mtdrash1"].terrain[8] = 'BK BK BK BK BK !# df df df !# hf !# hf !# hf !# hf !# bd bd bd !# BK BK BK BK BK';
+ mappages["mtdrash1"].terrain[6] = 'BK BK BK BK BK !# +X +X +X hf hf !# hf hf hf hf hf !# bd bd bd !# BK BK BK BK BK';
+ mappages["mtdrash1"].terrain[7] = 'BK BK BK BK BK !# +X +X +X !# hf !# hf !# !# !# hf !# bd bd bd !# BK BK BK BK BK';
+ mappages["mtdrash1"].terrain[8] = 'BK BK BK BK BK !# +X +X +X !# hf !# hf !# hf !# hf !# bd bd bd !# BK BK BK BK BK';
  mappages["mtdrash1"].terrain[9] = 'BK BK BK BK BK !# !# !# !# !# hf !# hf !# hf !# hf !# hf !# !# !# BK BK BK BK BK';
 mappages["mtdrash1"].terrain[10] = 'BK BK BK BK BK !# hf hf hf hf hf !# hf !# hf !# hf !# hf hf hf !# BK BK BK BK BK';
 mappages["mtdrash1"].terrain[11] = 'BK BK BK BK BK !# hf !# !# !# !# !# hf !# hf !# hf !# hf hf hf !# BK BK BK BK BK';
@@ -20,9 +21,9 @@ mappages["mtdrash1"].terrain[14] = 'BK BK BK BK BK !# hf hf hf !# hf hf hf !# hf
 mappages["mtdrash1"].terrain[15] = 'BK BK BK BK BK !# !# !# !# !# hf !# hf !# !# !# hf !# !# !# hf !# BK BK BK BK BK';
 mappages["mtdrash1"].terrain[16] = 'BK BK BK BK BK !# hf hf hf hf hf !# hf !# hf hf hf hf hf !# hf !# BK BK BK BK BK';
 mappages["mtdrash1"].terrain[17] = 'BK BK BK BK BK !# hf !# !# !# hf !# hf !# hf !# !# !# hf !# hf !# BK BK BK BK BK';
-mappages["mtdrash1"].terrain[18] = 'BK BK BK BK BK !# df df df !# hf !# hf !# hf !# df df df !# hf !# BK BK BK BK BK';
-mappages["mtdrash1"].terrain[19] = 'BK BK BK BK BK !# df df df !# hf !# !# !# hf !# df df df !# hf !# BK BK BK BK BK';
-mappages["mtdrash1"].terrain[20] = 'BK BK BK BK BK !# df df df !# hf hf hf hf hf !# df df df !# hf !# BK BK BK BK BK';
+mappages["mtdrash1"].terrain[18] = 'BK BK BK BK BK !# +X +X +X !# hf !# hf !# hf !# +X +X +X !# hf !# BK BK BK BK BK';
+mappages["mtdrash1"].terrain[19] = 'BK BK BK BK BK !# +X +X +X !# hf !# !# !# hf !# +X +X +X !# hf !# BK BK BK BK BK';
+mappages["mtdrash1"].terrain[20] = 'BK BK BK BK BK !# +X +X +X !# hf hf hf hf hf !# +X +X +X !# hf !# BK BK BK BK BK';
 mappages["mtdrash1"].terrain[21] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
 mappages["mtdrash1"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["mtdrash1"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -45,35 +46,35 @@ mappages["mtdrash1"].features[10] = {name : 'WalkOnMessage', x : 14, y : 8};
 mappages["mtdrash1"].features[11] = {name : 'WalkOnMessage', x : 9, y : 10};
 mappages["mtdrash1"].features[12] = {name : 'WalkOnWind', x : 16, y : 12};
 mappages["mtdrash1"].features[13] = {name : 'WalkOnWind', x : 10, y : 7};
-mappages["mtdrash1"].features[14] = {name : 'Chest', x : 6, y : 6, locked : 0, lootgroup : 'Level3', lootedid : 'drash1_2'};
-mappages["mtdrash1"].features[15] = {name : 'Chest', x : 6, y : 8, locked : 0, lootgroup : 'Level3', lootedid : 'drash1_3'};
-mappages["mtdrash1"].features[16] = {name : 'Chest', x : 7, y : 20, locked : 0, lootgroup : 'Level3', lootedid : 'drash1_4'};
-mappages["mtdrash1"].features[17] = {name : 'Chest', x : 8, y : 20, locked : 0, lootgroup : 'Level3', lootedid : 'drash1_5'};
-mappages["mtdrash1"].features[18] = {name : 'Chest', x : 16, y : 20, locked : 0, lootgroup : 'Level2', lootedid : 'drash1_7'};
-mappages["mtdrash1"].features[19] = {name : 'Chest', x : 16, y : 18, locked : 0, lootgroup : 'Level3', lootedid : 'drash1_6'};
-mappages["mtdrash1"].features[20] = {name : 'Chest', x : 14, y : 8, locked : 0, lootgroup : 'Level2', lootedid : 'drash1_1'};
+mappages["mtdrash1"].features[14] = {name : 'Chest', x : 6, y : 6, lootgroup : 'Level3', lootedid : 'drash1_2'};
+mappages["mtdrash1"].features[15] = {name : 'Chest', x : 6, y : 8, lootgroup : 'Level3', lootedid : 'drash1_3'};
+mappages["mtdrash1"].features[16] = {name : 'Chest', x : 7, y : 20, lootgroup : 'Level3', lootedid : 'drash1_4'};
+mappages["mtdrash1"].features[17] = {name : 'Chest', x : 8, y : 20, lootgroup : 'Level3', lootedid : 'drash1_5'};
+mappages["mtdrash1"].features[18] = {name : 'Chest', x : 16, y : 20, lootgroup : 'Level2', lootedid : 'drash1_7'};
+mappages["mtdrash1"].features[19] = {name : 'Chest', x : 16, y : 18, lootgroup : 'Level3', lootedid : 'drash1_6'};
+mappages["mtdrash1"].features[20] = {name : 'Chest', x : 14, y : 8, lootgroup : 'Level2', lootedid : 'drash1_1'};
 mappages["mtdrash1"].features[21] = {name : 'WalkOnDrashQuest', x : 18, y : 9};
 
 
 mappages["mtdrash1"].npcs = [];
-mappages["mtdrash1"].npcs[0] = {name : 'SlimeNPC', x : 14, y : 11, skintone: '1'};
-mappages["mtdrash1"].npcs[1] = {name : 'SlimeNPC', x : 9, y : 12, skintone: '1'};
-mappages["mtdrash1"].npcs[2] = {name : 'SlimeNPC', x : 16, y : 9, skintone: '1'};
-mappages["mtdrash1"].npcs[3] = {name : 'SlimeNPC', x : 16, y : 14, skintone: '1'};
-mappages["mtdrash1"].npcs[4] = {name : 'SlimeNPC', x : 12, y : 20, skintone: '1'};
-mappages["mtdrash1"].npcs[5] = {name : 'SlimeNPC', x : 8, y : 16, skintone: '1'};
-mappages["mtdrash1"].npcs[6] = {name : 'OrcNPC', x : 7, y : 8, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash1"].npcs[7] = {name : 'OrcNPC', x : 8, y : 7, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash1"].npcs[8] = {name : 'OrcNPC', x : 7, y : 6, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash1"].npcs[9] = {name : 'OrcNPC', x : 16, y : 19, Gender: 'monster', NPCBand: '3', skintone: '1'};
-mappages["mtdrash1"].npcs[10] = {name : 'OrcNPC', x : 18, y : 20, Gender: 'monster', NPCBand: '3', skintone: '1'};
-mappages["mtdrash1"].npcs[11] = {name : 'OrcNPC', x : 17, y : 18, Gender: 'monster', NPCBand: '3', skintone: '1'};
-mappages["mtdrash1"].npcs[12] = {name : 'OrcNPC', x : 7, y : 18, Gender: 'monster', NPCBand: '2', skintone: '1'};
-mappages["mtdrash1"].npcs[13] = {name : 'OrcNPC', x : 8, y : 19, Gender: 'monster', NPCBand: '2', skintone: '1'};
-mappages["mtdrash1"].npcs[14] = {name : 'OrcNPC', x : 6, y : 19, Gender: 'monster', NPCBand: '2', skintone: '1'};
+mappages["mtdrash1"].npcs[0] = {name : 'SlimeNPC', x : 14, y : 11, skintone: 1};
+mappages["mtdrash1"].npcs[1] = {name : 'SlimeNPC', x : 9, y : 12, skintone: 1};
+mappages["mtdrash1"].npcs[2] = {name : 'SlimeNPC', x : 16, y : 9, skintone: 1};
+mappages["mtdrash1"].npcs[3] = {name : 'SlimeNPC', x : 16, y : 14, skintone: 1};
+mappages["mtdrash1"].npcs[4] = {name : 'SlimeNPC', x : 12, y : 20, skintone: 1};
+mappages["mtdrash1"].npcs[5] = {name : 'SlimeNPC', x : 8, y : 16, skintone: 1};
+mappages["mtdrash1"].npcs[6] = {name : 'OrcNPC', x : 7, y : 8, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash1"].npcs[7] = {name : 'OrcNPC', x : 8, y : 7, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash1"].npcs[8] = {name : 'OrcNPC', x : 7, y : 6, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash1"].npcs[9] = {name : 'OrcNPC', x : 16, y : 19, Gender: 'monster', NPCBand: '3', skintone: 1};
+mappages["mtdrash1"].npcs[10] = {name : 'OrcNPC', x : 18, y : 20, Gender: 'monster', NPCBand: '3', skintone: 1};
+mappages["mtdrash1"].npcs[11] = {name : 'OrcNPC', x : 17, y : 18, Gender: 'monster', NPCBand: '3', skintone: 1};
+mappages["mtdrash1"].npcs[12] = {name : 'OrcNPC', x : 7, y : 18, Gender: 'monster', NPCBand: '2', skintone: 1};
+mappages["mtdrash1"].npcs[13] = {name : 'OrcNPC', x : 8, y : 19, Gender: 'monster', NPCBand: '2', skintone: 1};
+mappages["mtdrash1"].npcs[14] = {name : 'OrcNPC', x : 6, y : 19, Gender: 'monster', NPCBand: '2', skintone: 1};
 
 mappages["mtdrash1"].desc = "Mt Drash";
-mappages["mtdrash1"].longdesc = 'The entrance to this dungeon is a small archway, and once inside the tight corridors create a feeling of claustrophobia. Unsettling sounds can be heard from deeper within.';
+mappages["mtdrash1"].longdesc = `The entrance to this dungeon is a small archway, and once inside the tight corridors create a feeling of claustrophobia. Unsettling sounds can be heard from deeper within.`;
 mappages["mtdrash1"].music = 'Dungeon';
 mappages["mtdrash1"].savename = `Mt Drash`;
 mappages["mtdrash1"].exitmap = 'darkunknown';
@@ -98,6 +99,7 @@ mappages["mtdrash1"].returny = '79';
 mappages["mtdrash1"].returninfused = '0';
 mappages["mtdrash1"].linkedMaps = ["mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash6","mtdrash7","mtdrash7a","mtdrash7b","mtdrash7c","mtdrash8"];
 mappages["mtdrash1"].editorLabels = '{}';
+// MAP ENDS HERE
 
 mappages["mtdrash1"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
@@ -148,11 +150,11 @@ mappages["mtdrash2"].terrain = [];
  mappages["mtdrash2"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["mtdrash2"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["mtdrash2"].terrain[5] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
- mappages["mtdrash2"].terrain[6] = 'BK BK BK BK BK !# df df df df df !# hf hf df df df !# df df df !# BK BK BK BK BK';
- mappages["mtdrash2"].terrain[7] = 'BK BK BK BK BK !# df df df df df !# hf !# df df df !# df df df !# BK BK BK BK BK';
- mappages["mtdrash2"].terrain[8] = 'BK BK BK BK BK !# df df df df df !# hf !# df df df !# df df df !# BK BK BK BK BK';
- mappages["mtdrash2"].terrain[9] = 'BK BK BK BK BK !# !# !# !# !# hf !# hf !# !# !# !# !# df df df !# BK BK BK BK BK';
-mappages["mtdrash2"].terrain[10] = 'BK BK BK BK BK !# hf hf hf hf hf !# hf hf hf hf hf !# df df df !# BK BK BK BK BK';
+ mappages["mtdrash2"].terrain[6] = 'BK BK BK BK BK !# +X +X +X +X +X !# hf hf +X +X +X !# +X +X +X !# BK BK BK BK BK';
+ mappages["mtdrash2"].terrain[7] = 'BK BK BK BK BK !# +X +X +X +X +X !# hf !# +X +X +X !# +X +X +X !# BK BK BK BK BK';
+ mappages["mtdrash2"].terrain[8] = 'BK BK BK BK BK !# +X +X +X +X +X !# hf !# +X +X +X !# +X +X +X !# BK BK BK BK BK';
+ mappages["mtdrash2"].terrain[9] = 'BK BK BK BK BK !# !# !# !# !# hf !# hf !# !# !# !# !# +X +X +X !# BK BK BK BK BK';
+mappages["mtdrash2"].terrain[10] = 'BK BK BK BK BK !# hf hf hf hf hf !# hf hf hf hf hf !# +X +X +X !# BK BK BK BK BK';
 mappages["mtdrash2"].terrain[11] = 'BK BK BK BK BK !# hf !# !# !# !# !# !# !# !# !# hf !# !# !# hf !# BK BK BK BK BK';
 mappages["mtdrash2"].terrain[12] = 'BK BK BK BK BK !# hf hf hf hf hf !# hf hf hf hf hf hf hf !# hf !# BK BK BK BK BK';
 mappages["mtdrash2"].terrain[13] = 'BK BK BK BK BK !# !# !# !# !# hf !# hf !# !# !# !# !# hf !# hf !# BK BK BK BK BK';
@@ -160,9 +162,9 @@ mappages["mtdrash2"].terrain[14] = 'BK BK BK BK BK !# hf hf hf hf hf !# hf !# hf
 mappages["mtdrash2"].terrain[15] = 'BK BK BK BK BK !# hf !# !# !# !# !# hf !# !# !# !# !# !# !# hf !# BK BK BK BK BK';
 mappages["mtdrash2"].terrain[16] = 'BK BK BK BK BK !# hf hf hf hf hf hf hf hf hf hf hf !# hf hf hf !# BK BK BK BK BK';
 mappages["mtdrash2"].terrain[17] = 'BK BK BK BK BK !# !# !# !# !# !# !# hf !# !# !# hf !# hf hf hf !# BK BK BK BK BK';
-mappages["mtdrash2"].terrain[18] = 'BK BK BK BK BK !# df df df df df !# hf !# hf !# hf !# !# !# hf !# BK BK BK BK BK';
-mappages["mtdrash2"].terrain[19] = 'BK BK BK BK BK !# df df df df df !# hf !# hf !# hf !# hf hf hf !# BK BK BK BK BK';
-mappages["mtdrash2"].terrain[20] = 'BK BK BK BK BK !# df df df df df hf hf !# hf hf hf !# hf hf hf !# BK BK BK BK BK';
+mappages["mtdrash2"].terrain[18] = 'BK BK BK BK BK !# +X +X +X +X +X !# hf !# hf !# hf !# !# !# hf !# BK BK BK BK BK';
+mappages["mtdrash2"].terrain[19] = 'BK BK BK BK BK !# +X +X +X +X +X !# hf !# hf !# hf !# hf hf hf !# BK BK BK BK BK';
+mappages["mtdrash2"].terrain[20] = 'BK BK BK BK BK !# +X +X +X +X +X hf hf !# hf hf hf !# hf hf hf !# BK BK BK BK BK';
 mappages["mtdrash2"].terrain[21] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
 mappages["mtdrash2"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["mtdrash2"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -193,25 +195,25 @@ mappages["mtdrash2"].features[18] = {name : 'Chest', x : 18, y : 17, lootgroup :
 
 
 mappages["mtdrash2"].npcs = [];
-mappages["mtdrash2"].npcs[0] = {name : 'DrakeNPC', x : 18, y : 9, Gender: 'monster', NPCBand: '4', skintone: '1'};
-mappages["mtdrash2"].npcs[1] = {name : 'DrakeNPC', x : 20, y : 7, Gender: 'monster', NPCBand: '4', skintone: '1'};
-mappages["mtdrash2"].npcs[2] = {name : 'GazerNPC', x : 18, y : 16, skintone: '1'};
-mappages["mtdrash2"].npcs[3] = {name : 'OrcNPC', x : 13, y : 6, Gender: 'monster', NPCBand: '2', skintone: '1'};
-mappages["mtdrash2"].npcs[4] = {name : 'OrcNPC', x : 15, y : 6, Gender: 'monster', NPCBand: '2', skintone: '1'};
-mappages["mtdrash2"].npcs[5] = {name : 'OrcNPC', x : 14, y : 8, Gender: 'monster', NPCBand: '2', skintone: '1'};
-mappages["mtdrash2"].npcs[6] = {name : 'OrcShamanNPC', x : 16, y : 8, Gender: 'monster', NPCBand: '2', skintone: '1'};
-mappages["mtdrash2"].npcs[7] = {name : 'CyclopsNPC', x : 12, y : 16, skintone: '1'};
-mappages["mtdrash2"].npcs[8] = {name : 'OrcNPC', x : 7, y : 7, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash2"].npcs[9] = {name : 'OrcNPC', x : 8, y : 6, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash2"].npcs[10] = {name : 'OrcNPC', x : 10, y : 7, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash2"].npcs[11] = {name : 'OrcNPC', x : 9, y : 18, Gender: 'monster', NPCBand: '3', skintone: '1'};
-mappages["mtdrash2"].npcs[12] = {name : 'OrcNPC', x : 10, y : 20, Gender: 'monster', NPCBand: '3', skintone: '1'};
-mappages["mtdrash2"].npcs[13] = {name : 'OrcNPC', x : 8, y : 20, Gender: 'monster', NPCBand: '3', skintone: '1'};
-mappages["mtdrash2"].npcs[14] = {name : 'OrcShamanNPC', x : 6, y : 8, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash2"].npcs[15] = {name : 'CyclopsNPC', x : 8, y : 19, Gender: 'monster', NPCBand: '3', skintone: '1'};
-mappages["mtdrash2"].npcs[16] = {name : 'EttinNPC', x : 6, y : 20, Gender: 'monster', NPCBand: '3', skintone: '1'};
-mappages["mtdrash2"].npcs[17] = {name : 'GiantInsectsNPC', x : 6, y : 11, skintone: '1'};
-mappages["mtdrash2"].npcs[18] = {name : 'GiantInsectsNPC', x : 6, y : 15, skintone: '1'};
+mappages["mtdrash2"].npcs[0] = {name : 'DrakeNPC', x : 18, y : 9, Gender: 'monster', NPCBand: '4', skintone: 1};
+mappages["mtdrash2"].npcs[1] = {name : 'DrakeNPC', x : 20, y : 7, Gender: 'monster', NPCBand: '4', skintone: 1};
+mappages["mtdrash2"].npcs[2] = {name : 'GazerNPC', x : 18, y : 16, skintone: 1};
+mappages["mtdrash2"].npcs[3] = {name : 'OrcNPC', x : 13, y : 6, Gender: 'monster', NPCBand: '2', skintone: 1};
+mappages["mtdrash2"].npcs[4] = {name : 'OrcNPC', x : 15, y : 6, Gender: 'monster', NPCBand: '2', skintone: 1};
+mappages["mtdrash2"].npcs[5] = {name : 'OrcNPC', x : 14, y : 8, Gender: 'monster', NPCBand: '2', skintone: 1};
+mappages["mtdrash2"].npcs[6] = {name : 'OrcShamanNPC', x : 16, y : 8, Gender: 'monster', NPCBand: '2', skintone: 1};
+mappages["mtdrash2"].npcs[7] = {name : 'CyclopsNPC', x : 12, y : 16, skintone: 1};
+mappages["mtdrash2"].npcs[8] = {name : 'OrcNPC', x : 7, y : 7, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash2"].npcs[9] = {name : 'OrcNPC', x : 8, y : 6, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash2"].npcs[10] = {name : 'OrcNPC', x : 10, y : 7, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash2"].npcs[11] = {name : 'OrcNPC', x : 9, y : 18, Gender: 'monster', NPCBand: '3', skintone: 1};
+mappages["mtdrash2"].npcs[12] = {name : 'OrcNPC', x : 10, y : 20, Gender: 'monster', NPCBand: '3', skintone: 1};
+mappages["mtdrash2"].npcs[13] = {name : 'OrcNPC', x : 8, y : 20, Gender: 'monster', NPCBand: '3', skintone: 1};
+mappages["mtdrash2"].npcs[14] = {name : 'OrcShamanNPC', x : 6, y : 8, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash2"].npcs[15] = {name : 'CyclopsNPC', x : 8, y : 19, Gender: 'monster', NPCBand: '3', skintone: 1};
+mappages["mtdrash2"].npcs[16] = {name : 'EttinNPC', x : 6, y : 20, Gender: 'monster', NPCBand: '3', skintone: 1};
+mappages["mtdrash2"].npcs[17] = {name : 'GiantInsectsNPC', x : 6, y : 11, skintone: 1};
+mappages["mtdrash2"].npcs[18] = {name : 'GiantInsectsNPC', x : 6, y : 15, skintone: 1};
 
 mappages["mtdrash2"].desc = "Mt Drash (L2)";
 mappages["mtdrash2"].longdesc = ``;
@@ -292,21 +294,21 @@ mappages["mtdrash3"].terrain = [];
  mappages["mtdrash3"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["mtdrash3"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["mtdrash3"].terrain[5] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
- mappages["mtdrash3"].terrain[6] = 'BK BK BK BK BK !# hf hf hf !# df df df df df df df df df df df !# BK BK BK BK BK';
- mappages["mtdrash3"].terrain[7] = 'BK BK BK BK BK !# hf !# hf !# df df df df df !# df df df df df !# BK BK BK BK BK';
- mappages["mtdrash3"].terrain[8] = 'BK BK BK BK BK !# hf !# hf !# df df df df df !# df df df df df !# BK BK BK BK BK';
+ mappages["mtdrash3"].terrain[6] = 'BK BK BK BK BK !# hf hf hf !# +X +X +X +X +X +X +X +X +X +X +X !# BK BK BK BK BK';
+ mappages["mtdrash3"].terrain[7] = 'BK BK BK BK BK !# hf !# hf !# +X +X +X +X +X !# +X +X +X +X +X !# BK BK BK BK BK';
+ mappages["mtdrash3"].terrain[8] = 'BK BK BK BK BK !# hf !# hf !# +X +X +X +X +X !# +X +X +X +X +X !# BK BK BK BK BK';
  mappages["mtdrash3"].terrain[9] = 'BK BK BK BK BK !# hf !# hf !# !# !# !# !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
 mappages["mtdrash3"].terrain[10] = 'BK BK BK BK BK !# hf !# hf hf hf hf hf hf hf hf hf !# hf hf hf !# BK BK BK BK BK';
-mappages["mtdrash3"].terrain[11] = 'BK BK BK BK BK !# !# !# hf !# !# !# !# !# !# df df !# df !# hf !# BK BK BK BK BK';
-mappages["mtdrash3"].terrain[12] = 'BK BK BK BK BK !# hf hf hf !# df df df df !# df df !# df !# hf !# BK BK BK BK BK';
-mappages["mtdrash3"].terrain[13] = 'BK BK BK BK BK !# hf !# !# !# df df df df !# !# !# !# df !# hf !# BK BK BK BK BK';
-mappages["mtdrash3"].terrain[14] = 'BK BK BK BK BK !# hf hf hf !# df df df df df df df df df !# hf !# BK BK BK BK BK';
+mappages["mtdrash3"].terrain[11] = 'BK BK BK BK BK !# !# !# hf !# !# !# !# !# !# +X +X !# +X !# hf !# BK BK BK BK BK';
+mappages["mtdrash3"].terrain[12] = 'BK BK BK BK BK !# hf hf hf !# +X +X +X +X !# +X +X !# +X !# hf !# BK BK BK BK BK';
+mappages["mtdrash3"].terrain[13] = 'BK BK BK BK BK !# hf !# !# !# +X +X +X +X !# !# !# !# +X !# hf !# BK BK BK BK BK';
+mappages["mtdrash3"].terrain[14] = 'BK BK BK BK BK !# hf hf hf !# +X +X +X +X +X +X +X +X +X !# hf !# BK BK BK BK BK';
 mappages["mtdrash3"].terrain[15] = 'BK BK BK BK BK !# !# !# hf !# !# !# !# !# !# !# !# !# !# !# hf !# BK BK BK BK BK';
 mappages["mtdrash3"].terrain[16] = 'BK BK BK BK BK !# hf hf hf hf hf hf hf hf hf hf hf hf hf !# hf !# BK BK BK BK BK';
 mappages["mtdrash3"].terrain[17] = 'BK BK BK BK BK !# hf !# !# !# !# !# !# !# !# !# hf !# hf !# hf !# BK BK BK BK BK';
-mappages["mtdrash3"].terrain[18] = 'BK BK BK BK BK !# df df df !# hf hf hf hf hf !# hf !# hf !# hf !# BK BK BK BK BK';
-mappages["mtdrash3"].terrain[19] = 'BK BK BK BK BK !# df df df !# hf !# !# !# !# !# hf !# hf !# hf !# BK BK BK BK BK';
-mappages["mtdrash3"].terrain[20] = 'BK BK BK BK BK !# df df df !# hf hf hf hf hf hf hf !# hf hf hf !# BK BK BK BK BK';
+mappages["mtdrash3"].terrain[18] = 'BK BK BK BK BK !# +X +X +X !# hf hf hf hf hf !# hf !# hf !# hf !# BK BK BK BK BK';
+mappages["mtdrash3"].terrain[19] = 'BK BK BK BK BK !# +X +X +X !# hf !# !# !# !# !# hf !# hf !# hf !# BK BK BK BK BK';
+mappages["mtdrash3"].terrain[20] = 'BK BK BK BK BK !# +X +X +X !# hf hf hf hf hf hf hf !# hf hf hf !# BK BK BK BK BK';
 mappages["mtdrash3"].terrain[21] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
 mappages["mtdrash3"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["mtdrash3"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -332,12 +334,12 @@ mappages["mtdrash3"].features[13] = {name : 'FireField', x : 15, y : 6};
 
 
 mappages["mtdrash3"].npcs = [];
-mappages["mtdrash3"].npcs[0] = {name : 'HydraNPC', x : 13, y : 12, skintone: '1'};
-mappages["mtdrash3"].npcs[1] = {name : 'EarthElementalNPC', x : 7, y : 12, skintone: '1'};
-mappages["mtdrash3"].npcs[2] = {name : 'OrcNPC', x : 6, y : 20, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash3"].npcs[3] = {name : 'OrcNPC', x : 8, y : 18, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash3"].npcs[4] = {name : 'TrollNPC', x : 8, y : 20, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash3"].npcs[5] = {name : 'GazerNPC', x : 10, y : 6, skintone: '1'};
+mappages["mtdrash3"].npcs[0] = {name : 'HydraNPC', x : 13, y : 12, skintone: 1};
+mappages["mtdrash3"].npcs[1] = {name : 'EarthElementalNPC', x : 7, y : 12, skintone: 1};
+mappages["mtdrash3"].npcs[2] = {name : 'OrcNPC', x : 6, y : 20, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash3"].npcs[3] = {name : 'OrcNPC', x : 8, y : 18, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash3"].npcs[4] = {name : 'TrollNPC', x : 8, y : 20, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash3"].npcs[5] = {name : 'GazerNPC', x : 10, y : 6, skintone: 1};
 
 mappages["mtdrash3"].desc = "Mt Drash (L3)";
 mappages["mtdrash3"].longdesc = ``;
@@ -392,9 +394,9 @@ mappages["mtdrash4"].terrain = [];
  mappages["mtdrash4"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["mtdrash4"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["mtdrash4"].terrain[5] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
- mappages["mtdrash4"].terrain[6] = 'BK BK BK BK BK !# hf hf hf hf hf hf hf hf hf hf hf df df df df !# BK BK BK BK BK';
- mappages["mtdrash4"].terrain[7] = 'BK BK BK BK BK !# hf !# !# !# !# !# !# !# !# !# !# df df df df !# BK BK BK BK BK';
- mappages["mtdrash4"].terrain[8] = 'BK BK BK BK BK !# !# !# hf hf hf hf hf hf hf hf !# df df df df !# BK BK BK BK BK';
+ mappages["mtdrash4"].terrain[6] = 'BK BK BK BK BK !# hf hf hf hf hf hf hf hf hf hf hf +X +X +X +X !# BK BK BK BK BK';
+ mappages["mtdrash4"].terrain[7] = 'BK BK BK BK BK !# hf !# !# !# !# !# !# !# !# !# !# +X +X +X +X !# BK BK BK BK BK';
+ mappages["mtdrash4"].terrain[8] = 'BK BK BK BK BK !# !# !# hf hf hf hf hf hf hf hf !# +X +X +X +X !# BK BK BK BK BK';
  mappages["mtdrash4"].terrain[9] = 'BK BK BK BK BK !# hf !# !# !# !# !# !# !# !# !# !# !# !# !# hf !# BK BK BK BK BK';
 mappages["mtdrash4"].terrain[10] = 'BK BK BK BK BK !# hf hf hf hf hf hf hf hf hf hf hf hf hf !# hf !# BK BK BK BK BK';
 mappages["mtdrash4"].terrain[11] = 'BK BK BK BK BK !# hf !# !# !# !# !# !# !# hf !# hf !# hf !# hf !# BK BK BK BK BK';
@@ -430,13 +432,13 @@ mappages["mtdrash4"].features[11] = {name : 'Chest', x : 8, y : 18, lootgroup : 
 
 
 mappages["mtdrash4"].npcs = [];
-mappages["mtdrash4"].npcs[0] = {name : 'CyclopsNPC', x : 9, y : 8, Gender: 'monster', NPCBand: '2', skintone: '1'};
-mappages["mtdrash4"].npcs[1] = {name : 'CyclopsNPC', x : 10, y : 8, Gender: 'monster', NPCBand: '2', skintone: '1'};
-mappages["mtdrash4"].npcs[2] = {name : 'OrcCaptainNPC', x : 19, y : 6, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash4"].npcs[3] = {name : 'OrcShamanNPC', x : 17, y : 8, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash4"].npcs[4] = {name : 'OrcNPC', x : 20, y : 7, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash4"].npcs[5] = {name : 'OrcNPC', x : 19, y : 8, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash4"].npcs[6] = {name : 'OrcNPC', x : 18, y : 7, Gender: 'monster', NPCBand: '1', skintone: '1'};
+mappages["mtdrash4"].npcs[0] = {name : 'CyclopsNPC', x : 9, y : 8, Gender: 'monster', NPCBand: '2', skintone: 1};
+mappages["mtdrash4"].npcs[1] = {name : 'CyclopsNPC', x : 10, y : 8, Gender: 'monster', NPCBand: '2', skintone: 1};
+mappages["mtdrash4"].npcs[2] = {name : 'OrcCaptainNPC', x : 19, y : 6, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash4"].npcs[3] = {name : 'OrcShamanNPC', x : 17, y : 8, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash4"].npcs[4] = {name : 'OrcNPC', x : 20, y : 7, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash4"].npcs[5] = {name : 'OrcNPC', x : 19, y : 8, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash4"].npcs[6] = {name : 'OrcNPC', x : 18, y : 7, Gender: 'monster', NPCBand: '1', skintone: 1};
 
 mappages["mtdrash4"].desc = "Mt Drash (L4)";
 mappages["mtdrash4"].longdesc = ``;
@@ -546,11 +548,11 @@ mappages["mtdrash5"].terrain[12] = 'BK BK BK BK BK !# hf hf hf hf hf hf hf hf hf
 mappages["mtdrash5"].terrain[13] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# hf !# hf !# !# !# hf !# BK BK BK BK BK';
 mappages["mtdrash5"].terrain[14] = 'BK BK BK BK BK !# hf hf hf hf hf hf hf hf hf !# hf hf hf !# hf !# BK BK BK BK BK';
 mappages["mtdrash5"].terrain[15] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# hf !# !# !# hf !# hf !# BK BK BK BK BK';
-mappages["mtdrash5"].terrain[16] = 'BK BK BK BK BK !# df df df df df df df !# hf !# hf hf hf !# hf !# BK BK BK BK BK';
-mappages["mtdrash5"].terrain[17] = 'BK BK BK BK BK !# df df df df df df df !# hf !# hf !# !# !# hf !# BK BK BK BK BK';
-mappages["mtdrash5"].terrain[18] = 'BK BK BK BK BK !# df df df df df df df !# hf !# hf !# hf !# hf !# BK BK BK BK BK';
-mappages["mtdrash5"].terrain[19] = 'BK BK BK BK BK !# df df df df df df df !# hf !# hf !# hf !# hf !# BK BK BK BK BK';
-mappages["mtdrash5"].terrain[20] = 'BK BK BK BK BK !# df df df df df df df hf hf !# hf hf hf !# hf !# BK BK BK BK BK';
+mappages["mtdrash5"].terrain[16] = 'BK BK BK BK BK !# +X +X +X +X +X +X +X !# hf !# hf hf hf !# hf !# BK BK BK BK BK';
+mappages["mtdrash5"].terrain[17] = 'BK BK BK BK BK !# +X +X +X +X +X +X +X !# hf !# hf !# !# !# hf !# BK BK BK BK BK';
+mappages["mtdrash5"].terrain[18] = 'BK BK BK BK BK !# +X +X +X +X +X +X +X !# hf !# hf !# hf !# hf !# BK BK BK BK BK';
+mappages["mtdrash5"].terrain[19] = 'BK BK BK BK BK !# +X +X +X +X +X +X +X !# hf !# hf !# hf !# hf !# BK BK BK BK BK';
+mappages["mtdrash5"].terrain[20] = 'BK BK BK BK BK !# +X +X +X +X +X +X +X hf hf !# hf hf hf !# hf !# BK BK BK BK BK';
 mappages["mtdrash5"].terrain[21] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
 mappages["mtdrash5"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["mtdrash5"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -576,15 +578,15 @@ mappages["mtdrash5"].features[13] = {name : 'Chest', x : 7, y : 20, lootgroup : 
 
 
 mappages["mtdrash5"].npcs = [];
-mappages["mtdrash5"].npcs[0] = {name : 'OrcCaptainNPC', x : 11, y : 20, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash5"].npcs[1] = {name : 'OrcCaptainNPC', x : 11, y : 18, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash5"].npcs[2] = {name : 'OrcNPC', x : 9, y : 17, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash5"].npcs[3] = {name : 'OrcNPC', x : 10, y : 19, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash5"].npcs[4] = {name : 'OrcNPC', x : 8, y : 20, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash5"].npcs[5] = {name : 'OrcNPC', x : 12, y : 16, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash5"].npcs[6] = {name : 'OrcShamanNPC', x : 6, y : 18, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash5"].npcs[7] = {name : 'TwisterNPC', x : 7, y : 17, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash5"].npcs[8] = {name : 'TwisterNPC', x : 7, y : 19, Gender: 'monster', NPCBand: '1', skintone: '1'};
+mappages["mtdrash5"].npcs[0] = {name : 'OrcCaptainNPC', x : 11, y : 20, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash5"].npcs[1] = {name : 'OrcCaptainNPC', x : 11, y : 18, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash5"].npcs[2] = {name : 'OrcNPC', x : 9, y : 17, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash5"].npcs[3] = {name : 'OrcNPC', x : 10, y : 19, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash5"].npcs[4] = {name : 'OrcNPC', x : 8, y : 20, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash5"].npcs[5] = {name : 'OrcNPC', x : 12, y : 16, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash5"].npcs[6] = {name : 'OrcShamanNPC', x : 6, y : 18, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash5"].npcs[7] = {name : 'TwisterNPC', x : 7, y : 17, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash5"].npcs[8] = {name : 'TwisterNPC', x : 7, y : 19, Gender: 'monster', NPCBand: '1', skintone: 1};
 
 mappages["mtdrash5"].desc = "Mt Drash (L5)";
 mappages["mtdrash5"].longdesc = ``;
@@ -797,8 +799,8 @@ mappages["mtdrash7"].terrain = [];
  mappages["mtdrash7"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["mtdrash7"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["mtdrash7"].terrain[5] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
- mappages["mtdrash7"].terrain[6] = 'BK BK BK BK BK !# hf hf hf hf !# df df df df !# hf hf hf hf hf !# BK BK BK BK BK';
- mappages["mtdrash7"].terrain[7] = 'BK BK BK BK BK !# !# !# !# hf !# df df df df !# !# !# !# !# !# !# BK BK BK BK BK';
+ mappages["mtdrash7"].terrain[6] = 'BK BK BK BK BK !# hf hf hf hf !# +X +X +X +X !# hf hf hf hf hf !# BK BK BK BK BK';
+ mappages["mtdrash7"].terrain[7] = 'BK BK BK BK BK !# !# !# !# hf !# +X +X +X +X !# !# !# !# !# !# !# BK BK BK BK BK';
  mappages["mtdrash7"].terrain[8] = 'BK BK BK BK BK !# !# hf hf hf !# hf !# !# !# !# hf hf hf hf hf !# BK BK BK BK BK';
  mappages["mtdrash7"].terrain[9] = 'BK BK BK BK BK !# !# hf !# !# !# hf !# hf hf hf hf !# hf !# hf !# BK BK BK BK BK';
 mappages["mtdrash7"].terrain[10] = 'BK BK BK BK BK !# hf hf hf hf hf hf !# hf !# !# !# !# hf !# !# !# BK BK BK BK BK';
@@ -806,12 +808,12 @@ mappages["mtdrash7"].terrain[11] = 'BK BK BK BK BK !# !# !# !# hf !# hf !# hf !#
 mappages["mtdrash7"].terrain[12] = 'BK BK BK BK BK !# hf hf !# hf !# !# !# hf !# !# !# !# !# !# hf !# BK BK BK BK BK';
 mappages["mtdrash7"].terrain[13] = 'BK BK BK BK BK !# !# hf !# hf hf hf hf hf hf hf hf hf !# hf hf !# BK BK BK BK BK';
 mappages["mtdrash7"].terrain[14] = 'BK BK BK BK BK !# !# hf !# !# !# !# !# hf !# !# !# hf !# hf !# !# BK BK BK BK BK';
-mappages["mtdrash7"].terrain[15] = 'BK BK BK BK BK !# hf hf hf hf hf hf !# hf !# df !# hf !# hf hf !# BK BK BK BK BK';
-mappages["mtdrash7"].terrain[16] = 'BK BK BK BK BK !# hf !# !# !# !# !# !# hf !# df df df !# !# hf !# BK BK BK BK BK';
-mappages["mtdrash7"].terrain[17] = 'BK BK BK BK BK !# hf hf hf hf hf hf hf hf !# df df df df !# hf !# BK BK BK BK BK';
-mappages["mtdrash7"].terrain[18] = 'BK BK BK BK BK !# hf !# !# hf !# !# !# !# !# df df df df !# hf !# BK BK BK BK BK';
-mappages["mtdrash7"].terrain[19] = 'BK BK BK BK BK !# hf !# df df df df df !# !# !# !# !# !# !# hf !# BK BK BK BK BK';
-mappages["mtdrash7"].terrain[20] = 'BK BK BK BK BK !# hf !# df df df df df !# hf hf hf hf hf hf hf !# BK BK BK BK BK';
+mappages["mtdrash7"].terrain[15] = 'BK BK BK BK BK !# hf hf hf hf hf hf !# hf !# +X !# hf !# hf hf !# BK BK BK BK BK';
+mappages["mtdrash7"].terrain[16] = 'BK BK BK BK BK !# hf !# !# !# !# !# !# hf !# +X +X +X !# !# hf !# BK BK BK BK BK';
+mappages["mtdrash7"].terrain[17] = 'BK BK BK BK BK !# hf hf hf hf hf hf hf hf !# +X +X +X +X !# hf !# BK BK BK BK BK';
+mappages["mtdrash7"].terrain[18] = 'BK BK BK BK BK !# hf !# !# hf !# !# !# !# !# +X +X +X +X !# hf !# BK BK BK BK BK';
+mappages["mtdrash7"].terrain[19] = 'BK BK BK BK BK !# hf !# +X +X +X +X +X !# !# !# !# !# !# !# hf !# BK BK BK BK BK';
+mappages["mtdrash7"].terrain[20] = 'BK BK BK BK BK !# hf !# +X +X +X +X +X !# hf hf hf hf hf hf hf !# BK BK BK BK BK';
 mappages["mtdrash7"].terrain[21] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
 mappages["mtdrash7"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["mtdrash7"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -837,17 +839,17 @@ mappages["mtdrash7"].features[13] = {name : 'Chest', x : 14, y : 7, lootgroup : 
 
 
 mappages["mtdrash7"].npcs = [];
-mappages["mtdrash7"].npcs[0] = {name : 'EttinNPC', x : 11, y : 7, Gender: 'monster', NPCBand: '3', skintone: '1'};
-mappages["mtdrash7"].npcs[1] = {name : 'CyclopsNPC', x : 13, y : 6, Gender: 'monster', NPCBand: '3', skintone: '1'};
-mappages["mtdrash7"].npcs[2] = {name : 'HydraNPC', x : 11, y : 19, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash7"].npcs[3] = {name : 'HeadlessNPC', x : 10, y : 19, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash7"].npcs[4] = {name : 'HeadlessNPC', x : 9, y : 19, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash7"].npcs[5] = {name : 'HeadlessNPC', x : 8, y : 19, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash7"].npcs[6] = {name : 'HeadlessNPC', x : 9, y : 20, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash7"].npcs[7] = {name : 'OrcNPC', x : 16, y : 16, Gender: 'monster', NPCBand: '2', skintone: '1'};
-mappages["mtdrash7"].npcs[8] = {name : 'OrcNPC', x : 17, y : 17, Gender: 'monster', NPCBand: '2', skintone: '1'};
-mappages["mtdrash7"].npcs[9] = {name : 'OrcShamanNPC', x : 15, y : 18, Gender: 'monster', NPCBand: '2', skintone: '1'};
-mappages["mtdrash7"].npcs[10] = {name : 'TwisterNPC', x : 15, y : 15, Gender: 'monster', NPCBand: '2', skintone: '1'};
+mappages["mtdrash7"].npcs[0] = {name : 'EttinNPC', x : 11, y : 7, Gender: 'monster', NPCBand: '3', skintone: 1};
+mappages["mtdrash7"].npcs[1] = {name : 'CyclopsNPC', x : 13, y : 6, Gender: 'monster', NPCBand: '3', skintone: 1};
+mappages["mtdrash7"].npcs[2] = {name : 'HydraNPC', x : 11, y : 19, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash7"].npcs[3] = {name : 'HeadlessNPC', x : 10, y : 19, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash7"].npcs[4] = {name : 'HeadlessNPC', x : 9, y : 19, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash7"].npcs[5] = {name : 'HeadlessNPC', x : 8, y : 19, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash7"].npcs[6] = {name : 'HeadlessNPC', x : 9, y : 20, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash7"].npcs[7] = {name : 'OrcNPC', x : 16, y : 16, Gender: 'monster', NPCBand: '2', skintone: 1};
+mappages["mtdrash7"].npcs[8] = {name : 'OrcNPC', x : 17, y : 17, Gender: 'monster', NPCBand: '2', skintone: 1};
+mappages["mtdrash7"].npcs[9] = {name : 'OrcShamanNPC', x : 15, y : 18, Gender: 'monster', NPCBand: '2', skintone: 1};
+mappages["mtdrash7"].npcs[10] = {name : 'TwisterNPC', x : 15, y : 15, Gender: 'monster', NPCBand: '2', skintone: 1};
 
 mappages["mtdrash7"].desc = "Mt Drash (L7)";
 mappages["mtdrash7"].longdesc = ``;
@@ -898,20 +900,17 @@ mappages["mtdrash7"].onload = function(mapref) {
     let orc1 = mapref.getTile(8,19).getTopNPC();
     let orc2 = mapref.getTile(9,19).getTopNPC();
     let orc3 = mapref.getTile(10,19).getTopNPC();
-    let orc4 = mapref.getTile(12,19).getTopNPC();
-    let orc5 = mapref.getTile(9,20).getTopNPC();
+    let orc4 = mapref.getTile(9,20).getTopNPC();
 
     spawn.addSpawned(orc1);
     spawn.addSpawned(orc2);
     spawn.addSpawned(orc3);
     spawn.addSpawned(orc4);
-    spawn.addSpawned(orc5);
 
     orc1.setSpawnedBy(spawn);
     orc2.setSpawnedBy(spawn);
     orc3.setSpawnedBy(spawn);
     orc4.setSpawnedBy(spawn);
-    orc5.setSpawnedBy(spawn);
 
     spawn = localFactory.createTile("Spawner");
     spawngroup = ["EttinNPC","CyclopsNPC"];
@@ -961,6 +960,7 @@ mappages["mtdrash7"].onload = function(mapref) {
   }
 }
 
+// MAP BEGINS HERE
 mappages["mtdrash7a"] = {};
 mappages["mtdrash7a"].terrain = [];
  mappages["mtdrash7a"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -971,17 +971,17 @@ mappages["mtdrash7a"].terrain = [];
  mappages["mtdrash7a"].terrain[5] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
  mappages["mtdrash7a"].terrain[6] = 'BK BK BK BK BK !# hf hf hf hf hf hf !# !# hf !# hf !# !# !# hf !# BK BK BK BK BK';
  mappages["mtdrash7a"].terrain[7] = 'BK BK BK BK BK !# !# !# !# hf !# hf hf hf hf !# hf hf hf !# hf !# BK BK BK BK BK';
- mappages["mtdrash7a"].terrain[8] = 'BK BK BK BK BK !# df df !# hf !# hf !# !# !# !# hf !# hf !# hf !# BK BK BK BK BK';
- mappages["mtdrash7a"].terrain[9] = 'BK BK BK BK BK !# df df hf hf !# hf !# hf hf hf hf !# hf hf hf !# BK BK BK BK BK';
-mappages["mtdrash7a"].terrain[10] = 'BK BK BK BK BK !# df df !# hf !# hf !# hf !# !# hf !# !# !# !# !# BK BK BK BK BK';
-mappages["mtdrash7a"].terrain[11] = 'BK BK BK BK BK !# df df !# hf !# hf !# hf !# hf hf hf hf df df !# BK BK BK BK BK';
-mappages["mtdrash7a"].terrain[12] = 'BK BK BK BK BK !# df df !# hf !# !# !# hf !# !# !# !# !# df df !# BK BK BK BK BK';
-mappages["mtdrash7a"].terrain[13] = 'BK BK BK BK BK !# !# !# !# hf hf hf hf hf hf hf hf hf !# df df !# BK BK BK BK BK';
-mappages["mtdrash7a"].terrain[14] = 'BK BK BK BK BK !# hf !# !# !# !# !# !# hf !# !# !# hf !# df df !# BK BK BK BK BK';
-mappages["mtdrash7a"].terrain[15] = 'BK BK BK BK BK !# hf !# df df df df !# hf !# hf !# hf !# !# !# !# BK BK BK BK BK';
-mappages["mtdrash7a"].terrain[16] = 'BK BK BK BK BK !# hf !# df df df !# !# hf !# hf !# hf hf !# hf !# BK BK BK BK BK';
-mappages["mtdrash7a"].terrain[17] = 'BK BK BK BK BK !# hf !# df df df hf hf hf !# hf !# !# hf !# hf !# BK BK BK BK BK';
-mappages["mtdrash7a"].terrain[18] = 'BK BK BK BK BK !# hf !# df df !# !# !# !# !# hf hf hf hf !# hf !# BK BK BK BK BK';
+ mappages["mtdrash7a"].terrain[8] = 'BK BK BK BK BK !# +X +X !# hf !# hf !# !# !# !# hf !# hf !# hf !# BK BK BK BK BK';
+ mappages["mtdrash7a"].terrain[9] = 'BK BK BK BK BK !# +X +X hf hf !# hf !# hf hf hf hf !# hf hf hf !# BK BK BK BK BK';
+mappages["mtdrash7a"].terrain[10] = 'BK BK BK BK BK !# +X +X !# hf !# hf !# hf !# !# hf !# !# !# !# !# BK BK BK BK BK';
+mappages["mtdrash7a"].terrain[11] = 'BK BK BK BK BK !# +X +X !# hf !# hf !# hf !# hf hf hf hf +X +X !# BK BK BK BK BK';
+mappages["mtdrash7a"].terrain[12] = 'BK BK BK BK BK !# +X +X !# hf !# !# !# hf !# !# !# !# !# +X +X !# BK BK BK BK BK';
+mappages["mtdrash7a"].terrain[13] = 'BK BK BK BK BK !# !# !# !# hf hf hf hf hf hf hf hf hf !# +X +X !# BK BK BK BK BK';
+mappages["mtdrash7a"].terrain[14] = 'BK BK BK BK BK !# hf !# !# !# !# !# !# hf !# !# !# hf !# +X +X !# BK BK BK BK BK';
+mappages["mtdrash7a"].terrain[15] = 'BK BK BK BK BK !# hf !# +X +X +X +X !# hf !# hf !# hf !# !# !# !# BK BK BK BK BK';
+mappages["mtdrash7a"].terrain[16] = 'BK BK BK BK BK !# hf !# +X +X +X !# !# hf !# hf !# hf hf !# hf !# BK BK BK BK BK';
+mappages["mtdrash7a"].terrain[17] = 'BK BK BK BK BK !# hf !# +X +X +X hf hf hf !# hf !# !# hf !# hf !# BK BK BK BK BK';
+mappages["mtdrash7a"].terrain[18] = 'BK BK BK BK BK !# hf !# +X +X !# !# !# !# !# hf hf hf hf !# hf !# BK BK BK BK BK';
 mappages["mtdrash7a"].terrain[19] = 'BK BK BK BK BK !# hf !# !# !# !# hf hf hf !# hf !# !# hf !# hf !# BK BK BK BK BK';
 mappages["mtdrash7a"].terrain[20] = 'BK BK BK BK BK !# hf hf hf hf hf hf !# hf hf hf !# hf hf !# hf !# BK BK BK BK BK';
 mappages["mtdrash7a"].terrain[21] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
@@ -993,12 +993,13 @@ mappages["mtdrash7a"].terrain[26] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK B
 
 mappages["mtdrash7a"].features = [];
 
+
 mappages["mtdrash7a"].npcs = [];
 
 mappages["mtdrash7a"].desc = "Mt Drash (L7)";
-mappages["mtdrash7a"].longdesc = '';
+mappages["mtdrash7a"].longdesc = ``;
 mappages["mtdrash7a"].music = 'Dungeon';
-mappages["mtdrash7a"].savename = 'Mt Drash';
+mappages["mtdrash7a"].savename = `Mt Drash`;
 mappages["mtdrash7a"].exitmap = 'darkunknown';
 mappages["mtdrash7a"].exitx = '133';
 mappages["mtdrash7a"].exity = '79';
@@ -1021,11 +1022,13 @@ mappages["mtdrash7a"].returny = '79';
 mappages["mtdrash7a"].returninfused = '0';
 mappages["mtdrash7a"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash6","mtdrash7","mtdrash7b","mtdrash7c","mtdrash8"];
 mappages["mtdrash7a"].editorLabels = '{}';
+// MAP ENDS HERE
 
 mappages["mtdrash7a"].exit7 = function() {
   maps_mt_drash_exit7(this);
 }
 
+// MAP BEGINS HERE
 mappages["mtdrash7b"] = {};
 mappages["mtdrash7b"].terrain = [];
  mappages["mtdrash7b"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -1034,12 +1037,12 @@ mappages["mtdrash7b"].terrain = [];
  mappages["mtdrash7b"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["mtdrash7b"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["mtdrash7b"].terrain[5] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
- mappages["mtdrash7b"].terrain[6] = 'BK BK BK BK BK !# hf hf hf hf hf hf hf !# df df df df df !# hf !# BK BK BK BK BK';
- mappages["mtdrash7b"].terrain[7] = 'BK BK BK BK BK !# hf !# !# !# !# !# !# !# df df df df df !# hf !# BK BK BK BK BK';
- mappages["mtdrash7b"].terrain[8] = 'BK BK BK BK BK !# hf !# df df df df !# !# !# !# !# hf !# !# hf !# BK BK BK BK BK';
- mappages["mtdrash7b"].terrain[9] = 'BK BK BK BK BK !# hf !# df df df df !# hf hf hf hf hf hf hf hf !# BK BK BK BK BK';
-mappages["mtdrash7b"].terrain[10] = 'BK BK BK BK BK !# hf !# !# df df df !# hf !# !# !# !# !# !# hf !# BK BK BK BK BK';
-mappages["mtdrash7b"].terrain[11] = 'BK BK BK BK BK !# hf hf !# hf !# df !# hf !# hf hf hf hf hf hf !# BK BK BK BK BK';
+ mappages["mtdrash7b"].terrain[6] = 'BK BK BK BK BK !# hf hf hf hf hf hf hf !# +X +X +X +X +X !# hf !# BK BK BK BK BK';
+ mappages["mtdrash7b"].terrain[7] = 'BK BK BK BK BK !# hf !# !# !# !# !# !# !# +X +X +X +X +X !# hf !# BK BK BK BK BK';
+ mappages["mtdrash7b"].terrain[8] = 'BK BK BK BK BK !# hf !# +X +X +X +X !# !# !# !# !# hf !# !# hf !# BK BK BK BK BK';
+ mappages["mtdrash7b"].terrain[9] = 'BK BK BK BK BK !# hf !# +X +X +X +X !# hf hf hf hf hf hf hf hf !# BK BK BK BK BK';
+mappages["mtdrash7b"].terrain[10] = 'BK BK BK BK BK !# hf !# !# +X +X +X !# hf !# !# !# !# !# !# hf !# BK BK BK BK BK';
+mappages["mtdrash7b"].terrain[11] = 'BK BK BK BK BK !# hf hf !# hf !# +X !# hf !# hf hf hf hf hf hf !# BK BK BK BK BK';
 mappages["mtdrash7b"].terrain[12] = 'BK BK BK BK BK !# !# hf !# hf !# !# !# hf !# !# !# !# !# hf !# !# BK BK BK BK BK';
 mappages["mtdrash7b"].terrain[13] = 'BK BK BK BK BK !# hf hf !# hf hf hf hf hf hf hf hf hf !# hf !# !# BK BK BK BK BK';
 mappages["mtdrash7b"].terrain[14] = 'BK BK BK BK BK !# hf !# !# !# !# !# !# hf !# !# !# hf !# hf hf !# BK BK BK BK BK';
@@ -1047,8 +1050,8 @@ mappages["mtdrash7b"].terrain[15] = 'BK BK BK BK BK !# hf hf hf hf hf hf !# hf !
 mappages["mtdrash7b"].terrain[16] = 'BK BK BK BK BK !# !# !# hf !# !# !# !# hf !# hf hf hf hf hf hf !# BK BK BK BK BK';
 mappages["mtdrash7b"].terrain[17] = 'BK BK BK BK BK !# hf !# hf !# hf hf hf hf !# hf !# !# !# hf !# !# BK BK BK BK BK';
 mappages["mtdrash7b"].terrain[18] = 'BK BK BK BK BK !# hf hf hf hf hf !# !# !# !# hf !# hf hf hf !# !# BK BK BK BK BK';
-mappages["mtdrash7b"].terrain[19] = 'BK BK BK BK BK !# !# !# !# !# !# !# df df df df !# hf !# !# !# !# BK BK BK BK BK';
-mappages["mtdrash7b"].terrain[20] = 'BK BK BK BK BK !# hf hf hf hf hf !# df df df df !# hf hf hf hf !# BK BK BK BK BK';
+mappages["mtdrash7b"].terrain[19] = 'BK BK BK BK BK !# !# !# !# !# !# !# +X +X +X +X !# hf !# !# !# !# BK BK BK BK BK';
+mappages["mtdrash7b"].terrain[20] = 'BK BK BK BK BK !# hf hf hf hf hf !# +X +X +X +X !# hf hf hf hf !# BK BK BK BK BK';
 mappages["mtdrash7b"].terrain[21] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
 mappages["mtdrash7b"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["mtdrash7b"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -1062,9 +1065,9 @@ mappages["mtdrash7b"].features = [];
 mappages["mtdrash7b"].npcs = [];
 
 mappages["mtdrash7b"].desc = "Mt Drash (L7)";
-mappages["mtdrash7b"].longdesc = '';
+mappages["mtdrash7b"].longdesc = ``;
 mappages["mtdrash7b"].music = 'Dungeon';
-mappages["mtdrash7b"].savename = 'Mt Drash';
+mappages["mtdrash7b"].savename = `Mt Drash`;
 mappages["mtdrash7b"].exitmap = 'darkunknown';
 mappages["mtdrash7b"].exitx = '133';
 mappages["mtdrash7b"].exity = '79';
@@ -1087,11 +1090,13 @@ mappages["mtdrash7b"].returny = '79';
 mappages["mtdrash7b"].returninfused = '0';
 mappages["mtdrash7b"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash6","mtdrash7","mtdrash7a","mtdrash7c","mtdrash8"];
 mappages["mtdrash7b"].editorLabels = '{}';
+// MAP ENDS HERE
 
 mappages["mtdrash7b"].exit7 = function() {
   maps_mt_drash_exit7(this);
 }
 
+// MAP BEGINS HERE
 mappages["mtdrash7c"] = {};
 mappages["mtdrash7c"].terrain = [];
  mappages["mtdrash7c"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -1102,17 +1107,17 @@ mappages["mtdrash7c"].terrain = [];
  mappages["mtdrash7c"].terrain[5] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
  mappages["mtdrash7c"].terrain[6] = 'BK BK BK BK BK !# hf !# hf hf !# hf hf hf !# hf hf hf hf hf hf !# BK BK BK BK BK';
  mappages["mtdrash7c"].terrain[7] = 'BK BK BK BK BK !# hf !# hf !# !# hf !# hf hf hf !# !# !# !# hf !# BK BK BK BK BK';
- mappages["mtdrash7c"].terrain[8] = 'BK BK BK BK BK !# hf !# hf hf hf hf !# !# !# !# !# df df !# hf !# BK BK BK BK BK';
- mappages["mtdrash7c"].terrain[9] = 'BK BK BK BK BK !# hf !# hf !# !# hf !# hf hf hf df df df !# hf !# BK BK BK BK BK';
-mappages["mtdrash7c"].terrain[10] = 'BK BK BK BK BK !# hf !# hf hf !# hf !# hf !# !# df df df !# hf !# BK BK BK BK BK';
-mappages["mtdrash7c"].terrain[11] = 'BK BK BK BK BK !# !# !# !# hf !# hf !# hf !# df df df df !# hf !# BK BK BK BK BK';
-mappages["mtdrash7c"].terrain[12] = 'BK BK BK BK BK !# df df !# hf !# !# !# hf !# !# !# !# !# !# hf !# BK BK BK BK BK';
-mappages["mtdrash7c"].terrain[13] = 'BK BK BK BK BK !# df df !# hf hf hf hf hf hf hf hf hf !# !# !# !# BK BK BK BK BK';
-mappages["mtdrash7c"].terrain[14] = 'BK BK BK BK BK !# df df !# !# !# !# !# hf !# !# !# hf !# df df !# BK BK BK BK BK';
-mappages["mtdrash7c"].terrain[15] = 'BK BK BK BK BK !# df df hf hf hf hf !# hf !# hf !# hf !# df df !# BK BK BK BK BK';
-mappages["mtdrash7c"].terrain[16] = 'BK BK BK BK BK !# !# !# !# !# hf !# !# hf !# hf !# hf !# df df !# BK BK BK BK BK';
-mappages["mtdrash7c"].terrain[17] = 'BK BK BK BK BK !# hf hf hf !# hf hf hf hf !# hf !# hf hf df df !# BK BK BK BK BK';
-mappages["mtdrash7c"].terrain[18] = 'BK BK BK BK BK !# hf !# hf !# hf !# !# !# !# hf !# hf !# df df !# BK BK BK BK BK';
+ mappages["mtdrash7c"].terrain[8] = 'BK BK BK BK BK !# hf !# hf hf hf hf !# !# !# !# !# +X +X !# hf !# BK BK BK BK BK';
+ mappages["mtdrash7c"].terrain[9] = 'BK BK BK BK BK !# hf !# hf !# !# hf !# hf hf hf +X +X +X !# hf !# BK BK BK BK BK';
+mappages["mtdrash7c"].terrain[10] = 'BK BK BK BK BK !# hf !# hf hf !# hf !# hf !# !# +X +X +X !# hf !# BK BK BK BK BK';
+mappages["mtdrash7c"].terrain[11] = 'BK BK BK BK BK !# !# !# !# hf !# hf !# hf !# +X +X +X +X !# hf !# BK BK BK BK BK';
+mappages["mtdrash7c"].terrain[12] = 'BK BK BK BK BK !# +X +X !# hf !# !# !# hf !# !# !# !# !# !# hf !# BK BK BK BK BK';
+mappages["mtdrash7c"].terrain[13] = 'BK BK BK BK BK !# +X +X !# hf hf hf hf hf hf hf hf hf !# !# !# !# BK BK BK BK BK';
+mappages["mtdrash7c"].terrain[14] = 'BK BK BK BK BK !# +X +X !# !# !# !# !# hf !# !# !# hf !# +X +X !# BK BK BK BK BK';
+mappages["mtdrash7c"].terrain[15] = 'BK BK BK BK BK !# +X +X hf hf hf hf !# hf !# hf !# hf !# +X +X !# BK BK BK BK BK';
+mappages["mtdrash7c"].terrain[16] = 'BK BK BK BK BK !# !# !# !# !# hf !# !# hf !# hf !# hf !# +X +X !# BK BK BK BK BK';
+mappages["mtdrash7c"].terrain[17] = 'BK BK BK BK BK !# hf hf hf !# hf hf hf hf !# hf !# hf hf +X +X !# BK BK BK BK BK';
+mappages["mtdrash7c"].terrain[18] = 'BK BK BK BK BK !# hf !# hf !# hf !# !# !# !# hf !# hf !# +X +X !# BK BK BK BK BK';
 mappages["mtdrash7c"].terrain[19] = 'BK BK BK BK BK !# hf !# hf hf hf !# hf hf hf hf !# hf !# !# !# !# BK BK BK BK BK';
 mappages["mtdrash7c"].terrain[20] = 'BK BK BK BK BK !# hf !# !# !# hf !# hf !# !# hf hf hf hf hf hf !# BK BK BK BK BK';
 mappages["mtdrash7c"].terrain[21] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
@@ -1128,9 +1133,9 @@ mappages["mtdrash7c"].features = [];
 mappages["mtdrash7c"].npcs = [];
 
 mappages["mtdrash7c"].desc = "Mt Drash (L7)";
-mappages["mtdrash7c"].longdesc = '';
+mappages["mtdrash7c"].longdesc = ``;
 mappages["mtdrash7c"].music = 'Dungeon';
-mappages["mtdrash7c"].savename = 'Mt Drash';
+mappages["mtdrash7c"].savename = `Mt Drash`;
 mappages["mtdrash7c"].exitmap = 'darkunknown';
 mappages["mtdrash7c"].exitx = '133';
 mappages["mtdrash7c"].exity = '79';
@@ -1153,6 +1158,7 @@ mappages["mtdrash7c"].returny = '79';
 mappages["mtdrash7c"].returninfused = '0';
 mappages["mtdrash7c"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash6","mtdrash7","mtdrash7a","mtdrash7b","mtdrash8"];
 mappages["mtdrash7c"].editorLabels = '{}';
+// MAP ENDS HERE
 
 mappages["mtdrash7c"].exit7 = function() {
   maps_mt_drash_exit7(this);
@@ -1169,19 +1175,19 @@ mappages["mtdrash8"].terrain = [];
  mappages["mtdrash8"].terrain[5] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
  mappages["mtdrash8"].terrain[6] = 'BK BK BK BK BK !# hf hf hf hf hf hf hf !# hf hf hf !# hf hf hf !# BK BK BK BK BK';
  mappages["mtdrash8"].terrain[7] = 'BK BK BK BK BK !# !# !# !# !# !# !# hf !# hf !# !# !# hf !# hf !# BK BK BK BK BK';
- mappages["mtdrash8"].terrain[8] = 'BK BK BK BK BK !# df df df df df !# hf !# hf !# hf hf hf !# hf !# BK BK BK BK BK';
- mappages["mtdrash8"].terrain[9] = 'BK BK BK BK BK !# df df df df df !# hf !# hf !# hf !# hf !# hf !# BK BK BK BK BK';
-mappages["mtdrash8"].terrain[10] = 'BK BK BK BK BK !# df df df df df !# hf !# hf !# hf !# hf !# hf !# BK BK BK BK BK';
+ mappages["mtdrash8"].terrain[8] = 'BK BK BK BK BK !# +X +X +X +X +X !# hf !# hf !# hf hf hf !# hf !# BK BK BK BK BK';
+ mappages["mtdrash8"].terrain[9] = 'BK BK BK BK BK !# +X +X +X +X +X !# hf !# hf !# hf !# hf !# hf !# BK BK BK BK BK';
+mappages["mtdrash8"].terrain[10] = 'BK BK BK BK BK !# +X +X +X +X +X !# hf !# hf !# hf !# hf !# hf !# BK BK BK BK BK';
 mappages["mtdrash8"].terrain[11] = 'BK BK BK BK BK !# hf !# !# !# !# !# hf !# hf !# !# !# hf !# hf !# BK BK BK BK BK';
 mappages["mtdrash8"].terrain[12] = 'BK BK BK BK BK !# hf hf hf hf hf !# hf hf hf hf hf hf hf !# hf !# BK BK BK BK BK';
 mappages["mtdrash8"].terrain[13] = 'BK BK BK BK BK !# !# !# !# !# hf !# !# !# hf !# !# !# !# !# hf !# BK BK BK BK BK';
 mappages["mtdrash8"].terrain[14] = 'BK BK BK BK BK !# hf hf hf hf hf !# hf hf hf !# hf !# hf hf hf !# BK BK BK BK BK';
 mappages["mtdrash8"].terrain[15] = 'BK BK BK BK BK !# hf !# !# !# !# !# hf !# hf !# hf !# hf !# !# !# BK BK BK BK BK';
-mappages["mtdrash8"].terrain[16] = 'BK BK BK BK BK !# hf !# hf hf hf hf hf !# hf !# hf !# df df df !# BK BK BK BK BK';
-mappages["mtdrash8"].terrain[17] = 'BK BK BK BK BK !# hf !# hf !# !# !# !# !# hf !# hf !# df df df !# BK BK BK BK BK';
-mappages["mtdrash8"].terrain[18] = 'BK BK BK BK BK !# hf !# hf hf hf !# hf hf hf !# hf hf df df df !# BK BK BK BK BK';
-mappages["mtdrash8"].terrain[19] = 'BK BK BK BK BK !# hf !# !# !# !# !# hf !# !# !# hf !# df df df !# BK BK BK BK BK';
-mappages["mtdrash8"].terrain[20] = 'BK BK BK BK BK !# hf hf hf hf hf hf hf !# hf hf hf !# df df df !# BK BK BK BK BK';
+mappages["mtdrash8"].terrain[16] = 'BK BK BK BK BK !# hf !# hf hf hf hf hf !# hf !# hf !# +X +X +X !# BK BK BK BK BK';
+mappages["mtdrash8"].terrain[17] = 'BK BK BK BK BK !# hf !# hf !# !# !# !# !# hf !# hf !# +X +X +X !# BK BK BK BK BK';
+mappages["mtdrash8"].terrain[18] = 'BK BK BK BK BK !# hf !# hf hf hf !# hf hf hf !# hf hf +X +X +X !# BK BK BK BK BK';
+mappages["mtdrash8"].terrain[19] = 'BK BK BK BK BK !# hf !# !# !# !# !# hf !# !# !# hf !# +X +X +X !# BK BK BK BK BK';
+mappages["mtdrash8"].terrain[20] = 'BK BK BK BK BK !# hf hf hf hf hf hf hf !# hf hf hf !# +X +X +X !# BK BK BK BK BK';
 mappages["mtdrash8"].terrain[21] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
 mappages["mtdrash8"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["mtdrash8"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -1207,14 +1213,14 @@ mappages["mtdrash8"].features[13] = {name : 'FireField', x : 17, y : 18};
 
 
 mappages["mtdrash8"].npcs = [];
-mappages["mtdrash8"].npcs[0] = {name : 'EttinNPC', x : 19, y : 20, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash8"].npcs[1] = {name : 'OrcCaptainNPC', x : 18, y : 16, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash8"].npcs[2] = {name : 'OrcNPC', x : 19, y : 17, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash8"].npcs[3] = {name : 'OrcNPC', x : 18, y : 18, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash8"].npcs[4] = {name : 'OrcNPC', x : 20, y : 19, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash8"].npcs[5] = {name : 'OrcShamanNPC', x : 20, y : 16, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["mtdrash8"].npcs[6] = {name : 'TremendousSpiderNPC', x : 16, y : 10, skintone: '1'};
-mappages["mtdrash8"].npcs[7] = {name : 'DrakeNPC', x : 9, y : 18, skintone: '1'};
+mappages["mtdrash8"].npcs[0] = {name : 'EttinNPC', x : 19, y : 20, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash8"].npcs[1] = {name : 'OrcCaptainNPC', x : 18, y : 16, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash8"].npcs[2] = {name : 'OrcNPC', x : 19, y : 17, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash8"].npcs[3] = {name : 'OrcNPC', x : 18, y : 18, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash8"].npcs[4] = {name : 'OrcNPC', x : 20, y : 19, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash8"].npcs[5] = {name : 'OrcShamanNPC', x : 20, y : 16, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash8"].npcs[6] = {name : 'TremendousSpiderNPC', x : 16, y : 10, skintone: 1};
+mappages["mtdrash8"].npcs[7] = {name : 'DrakeNPC', x : 9, y : 18, skintone: 1};
 
 mappages["mtdrash8"].desc = "Mt Drash (L8)";
 mappages["mtdrash8"].longdesc = ``;
