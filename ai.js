@@ -14,7 +14,9 @@ ais.seekPC = function(who,radius) {
   let foe;
   let whomap = who.getHomeMap();
   let npcs = whomap.npcs.getAll();
-  npcs.unshift(PC);
+  if (whomap === PC.getHomeMap()) {
+    npcs.unshift(PC);
+  }
   for (let i=0;i<npcs.length;i++) {
     foe = npcs[i];
     if (CheckAreEnemies(who,foe)) {
