@@ -5017,7 +5017,7 @@ function ShowEffect(onwhat, duration, graphic, xoff, yoff, extraparams) {
   where.y = 0;
   let animurl = "";
   spellcount["anim" + onwhat.getSerial()] = onwhat;
-  if ((onwhat.getx() >= displayspecs.leftedge) && (onwhat.getx() <= displayspecs.rightedge) && (onwhat.gety() >= displayspecs.topedge) && (onwhat.gety() <= displayspecs.bottomedge)) {
+  if (IsObjectVisibleOnScreen(onwhat)) {
     where = getCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
     animurl = "graphics/" + graphic ;
     DebugWrite("magic", "Putting a " + animurl + " on " + onwhat.getName() + ".<br />");
