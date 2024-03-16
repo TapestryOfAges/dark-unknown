@@ -470,14 +470,22 @@ mappages["mtdrash4"].editorLabels = '{}';
 
 mappages["mtdrash4"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
-    let walkon = mapref.getTile(6,9).getTopFeature();
-    walkon.message = `As you pass, writing appears upon the wall. In black letters, it reads: "must listen well, and the poet you"`;
+    let walkon = mapref.getTile(6,9).getFeatures();
+    for (let i=0;i<walkon.length;i++) {
+      if (walkon[i].getName() === "WalkOnMessage") {
+        walkon[i].message = `As you pass, writing appears upon the wall. In black letters, it reads: "must listen well, and the poet you"`;
+      }
+    }
   
     walkon = mapref.getTile(8,16).getTopFeature();
     walkon.message = `As you pass, writing appears upon the wall. In red letters, it reads: "sear vision to white with fate's undertow"`;
 
-    walkon = mapref.getTile(6,7).getTopFeature();
-    walkon.message = `As you pass, writing appears upon the wall. In silver letters, it reads: "topped with white, is a place"`;
+    walkon = mapref.getTile(6,7).getFeatures();
+    for (let i=0;i<walkon.length;i++) {
+      if (walkon[i].getName() === "WalkOnMessage") {
+        walkon[i].message = `As you pass, writing appears upon the wall. In silver letters, it reads: "topped with white, is a place"`;
+      }
+    }
 
     walkon = mapref.getTile(10,14).getTopFeature();
     walkon.message = `As you pass, writing appears upon the wall. In blue letters, it reads: "Flanked with emeralds that shine-"`;
@@ -735,7 +743,7 @@ mappages["mtdrash6"].features[8] = {name : 'WalkOnDarkness', x : 11, y : 18};
 mappages["mtdrash6"].features[9] = {name : 'LadderDown', x : 14, y : 20, entermap : 'mtdrash7', enterx : 14, entery : 20};
 mappages["mtdrash6"].features[10] = {name : 'WalkOnMessage', x : 9, y : 20};
 mappages["mtdrash6"].features[11] = {name : 'WalkOnMessage', x : 16, y : 20};
-mappages["mtdrash6"].features[12] = {name : 'WalkOnMessage', x : 9, y : 6};
+mappages["mtdrash6"].features[12] = {name : 'WalkOnMessage', x : 10, y : 6};
 
 
 mappages["mtdrash6"].npcs = [];
@@ -785,7 +793,7 @@ mappages["mtdrash6"].onload = function(mapref) {
     walkon = mapref.getTile(16,20).getTopFeature();
     walkon.message = `As you pass, writing appears upon the wall. In red letters, it reads: "From what I do not say, a challenge to grab sense!"`;
 
-    walkon = mapref.getTile(9,6).getTopFeature();
+    walkon = mapref.getTile(10,6).getTopFeature();
     walkon.message = `As you pass, writing appears upon the wall. In silver letters, it reads: "Eye of the dragon.'"`;
   }
 }
