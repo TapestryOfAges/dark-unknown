@@ -1438,8 +1438,8 @@ magic[SPELL_FIRE_ARMOR_LEVEL][SPELL_FIRE_ARMOR_ID].executeSpell = function(caste
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   let prot = localFactory.createTile("FireArmor");
-  let duration = caster.getIntForPower() * 3 * SCALE_TIME;
-  if (free) { duration = Dice.roll("1d6 + 12") * 3 * SCALE_TIME; }
+  let duration = caster.getIntForPower() * 5 * SCALE_TIME;
+  if (free) { duration = Dice.roll("1d6 + 12") * 5 * SCALE_TIME; }
   let power = DMG_NEGLIGABLE;
   if (infused) { 
     duration = duration * 2; 
@@ -1449,7 +1449,7 @@ magic[SPELL_FIRE_ARMOR_LEVEL][SPELL_FIRE_ARMOR_ID].executeSpell = function(caste
   DebugWrite("magic", "End time is " + endtime + ".<br />");
   prot.setExpiresTime(endtime);
   prot.setPower(power);
-  caster.addSpellEffect(prot, Math.max(0, free-1) );
+  caster.addSpellEffect(prot, Math.max(0, free) );
   ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
   PlayCastSound(caster,"sfx_flame_armor");
   return resp;
