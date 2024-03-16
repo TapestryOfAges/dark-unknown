@@ -827,7 +827,7 @@ FireArmorTile.prototype.flashback = function(attacker) {
   let tmpdmg = prepareSpellDamage(this,attacker,this.getPower(),"fire");
   let dmg = tmpdmg.dmg;
   if (attacker === PC) {
-    maintext.addText("Flames burn you!");
+    maintext.delayedAddText("Flames burn you!");
   }
   //let dead = attacker.dealDamage(dmg, this.getAttachedTo(), "fire");
   let dead = DealandDisplayDamage(attacker, this.getAttachedTo(), dmg, "fire");
