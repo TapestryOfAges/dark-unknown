@@ -55,7 +55,7 @@ ais.seekPC = function(who,radius) {
     }
   } else if (!who.specials.stationary && (whomap === PC.getHomeMap())) {
     if ((who.getx() !== who.startx) || (who.gety() !== who.starty)) {
-      DebugWrite(ai, "Seek PC: Can't see PC, heading home.<br />");
+      DebugWrite("ai", "Seek PC: Can't see PC, heading home.<br />");
       // isn't at home, doesn't see PC, heads home
       let path = whomap.getPath(who.getx(),who.gety(),who.startx,who.starty,who.getMovetype());
       path.shift();
@@ -2312,7 +2312,9 @@ ais.ai_cast = function(who) {
   let enemylevel = 0;
   let alliedlevel = who.getLevel()/2 * ((who.getHP()/who.getMaxHP())+1);
   let npcs = themap.npcs.getAll();
-  npcs.push(PC);
+  if (who.getHomeMap() === PC.getHomeMap()) {
+    npcs.push(PC);
+  }
   for (let i=0;i<npcs.length;i++) {
     if (GetDistance(who.getx(),who.gety(),npcs[i].getx(),npcs[i].gety()) < 5.5) {
       if (CheckAreEnemies(npcs[i],who)) {
@@ -2481,10 +2483,10 @@ ais.ai_cast = function(who) {
         magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].executeSpell(who,0,0,who);
       } else if (spelloptions[dr] === "FireArmor") {
         AnnounceSpellcast("Fire Armor",who);
-        magic[SPELL_FIRE_ARMOR_ID][SPELL_FIRE_ARMOR_ID].executeSpell(who,0,0);
+        magic[SPELL_FIRE_ARMOR_LEVEL][SPELL_FIRE_ARMOR_ID].executeSpell(who,0,0);
       } else if (spelloptions[dr] === "MirrorWard") {
         AnnounceSpellcast("Mirror Ward",who);
-        magic[SPELL_MIRROR_WARD_ID][SPELL_MIRROR_WARD_ID].executeSpell(who,0,0);
+        magic[SPELL_MIRROR_WARD_LEVEL][SPELL_MIRROR_WARD_ID].executeSpell(who,0,0);
       }
     } else if (choices[dr] === "highbuffself") {
       if (!who.getSpellEffectsByName("Invulnerability") && (who.getMana() >= 7) && (who.getLevel() >= 7)) {
@@ -2496,10 +2498,10 @@ ais.ai_cast = function(who) {
       dr = Dice.roll("1d"+spelloptions.length+"-1");
       if (spelloptions[dr] === "Invulnerability") {
         AnnounceSpellcast("Invulnerability",who);
-        magic[SPELL_INVULNERABILITY_ID][SPELL_INVULNERABILITY_ID].executeSpell(who,0,0);
+        magic[SPELL_INVULNERABILITY_LEVEL][SPELL_INVULNERABILITY_ID].executeSpell(who,0,0);
       } else if (spelloptions[dr] === "Quickness") {
         AnnounceSpellcast("Quickness",who);
-        magic[SPELL_QUICKNESS_ID][SPELL_QUICKNESS_ID].executeSpell(who,0,0);
+        magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID].executeSpell(who,0,0);
       }
     } else if (choices[dr] === "summon") {
       let spelloptions = [];
@@ -2911,11 +2913,11 @@ ais.ai_sleep = function(who) {
   let themap = who.getHomeMap();
   let npcs = themap.npcs.getAll();
   let sleeptargets = [];
-  if ((GetDistance(PC.getx(),PC.gety(),who.getx(),who.gety()) <5) && (PC.getHomeMap() === themap)) {
+  if ((GetDistance(PC.getx(),PC.gety(),who.getx(),who.gety()) <5) && (PC.getHomeMap() === themap) && (themap.getLOS(who.getx(),who.gety(),PC.getx(),PC.gety()) < LOS_THRESHOLD)) {
     sleeptargets.push(PC);
   }
   for (let i=0;i<npcs.length;i++) {
-    if (CheckAreEnemies(npcs[i],who) && (GetDistance(who.getx(),who.gety(),npcs[i].getx(),npcs[i].gety()) < 5)) { sleeptargets.push(npcs[i]); }
+    if (CheckAreEnemies(npcs[i],who) && (GetDistance(who.getx(),who.gety(),npcs[i].getx(),npcs[i].gety()) < 5) && (themap.getLOS(who.getx(),who.gety(),npcs[i].getx(),npcs[i].gety()) < LOS_THRESHOLD)) { sleeptargets.push(npcs[i]); }
   }
   if (sleeptargets.length) {
     let result = Dice.roll(`1d${sleeptargets.length}-1`);
@@ -3035,7 +3037,7 @@ function GetBreathTarget(who) {
   let foes = [];
   for (let i=0;i<npcs.length;i++) {
     if (CheckAreEnemies(npcs[i],who)) { 
-      if (GetDistance(npcs[i].getx(),npcs[i].gety(),who.getx(),who.gety()) <= 5) {  
+      if ((GetDistance(npcs[i].getx(),npcs[i].gety(),who.getx(),who.gety()) <= 5) && (who.getHomeMap().getLOS(who.getx(),who.gety(),npcs[i].getx(),npcs[i].gety()) < LOS_THRESHOLD)) {  
         foes.push(npcs[i]); 
       }
     }
@@ -3434,7 +3436,9 @@ function FindMissileTarget(who,radius) {
     if (!closest) { closest = nearby[i]; }
     else {
       if (GetDistance(who.getx(),who.gety(),nearby[i].getx(),nearby[i].gety()) < GetDistance(who.getx(),who.gety(),closest.getx(),closest.gety())) {
-        closest = nearby[i];
+        if (thismap.getLOS(who.getx(),who.gety(),nearby[i].getx(),nearby[i].gety()) < LOS_THRESHOLD) {
+          closest = nearby[i];
+        }
       }
     }
     
