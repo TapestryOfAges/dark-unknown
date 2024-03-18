@@ -849,7 +849,7 @@ mappages["mtdrash7"].features[13] = {name : 'Chest', x : 14, y : 7, lootgroup : 
 mappages["mtdrash7"].npcs = [];
 mappages["mtdrash7"].npcs[0] = {name : 'EttinNPC', x : 11, y : 7, Gender: 'monster', NPCBand: '3', skintone: 1};
 mappages["mtdrash7"].npcs[1] = {name : 'CyclopsNPC', x : 13, y : 6, Gender: 'monster', NPCBand: '3', skintone: 1};
-mappages["mtdrash7"].npcs[2] = {name : 'HydraNPC', x : 11, y : 19, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["mtdrash7"].npcs[2] = {name : 'TwisterNPC', x : 15, y : 15, Gender: 'monster', NPCBand: '2', skintone: 1};
 mappages["mtdrash7"].npcs[3] = {name : 'HeadlessNPC', x : 10, y : 19, Gender: 'monster', NPCBand: '1', skintone: 1};
 mappages["mtdrash7"].npcs[4] = {name : 'HeadlessNPC', x : 9, y : 19, Gender: 'monster', NPCBand: '1', skintone: 1};
 mappages["mtdrash7"].npcs[5] = {name : 'HeadlessNPC', x : 8, y : 19, Gender: 'monster', NPCBand: '1', skintone: 1};
@@ -857,7 +857,7 @@ mappages["mtdrash7"].npcs[6] = {name : 'HeadlessNPC', x : 9, y : 20, Gender: 'mo
 mappages["mtdrash7"].npcs[7] = {name : 'OrcNPC', x : 16, y : 16, Gender: 'monster', NPCBand: '2', skintone: 1};
 mappages["mtdrash7"].npcs[8] = {name : 'OrcNPC', x : 17, y : 17, Gender: 'monster', NPCBand: '2', skintone: 1};
 mappages["mtdrash7"].npcs[9] = {name : 'OrcShamanNPC', x : 15, y : 18, Gender: 'monster', NPCBand: '2', skintone: 1};
-mappages["mtdrash7"].npcs[10] = {name : 'TwisterNPC', x : 15, y : 15, Gender: 'monster', NPCBand: '2', skintone: 1};
+
 
 mappages["mtdrash7"].desc = "Mt Drash (L7)";
 mappages["mtdrash7"].longdesc = ``;
@@ -887,8 +887,8 @@ mappages["mtdrash7"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","
 mappages["mtdrash7"].editorLabels = '{}';
 // MAP ENDS HERE
 
-mappages["mtdrash7"].exit7 = function() {
-  maps_mt_drash_exit7(this);
+mappages["mtdrash7"].exit7 = function(mapref) {
+  maps_mt_drash_exit7(mapref);
 }
 
 mappages["mtdrash7"].onload = function(mapref) {
@@ -1032,8 +1032,8 @@ mappages["mtdrash7a"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4",
 mappages["mtdrash7a"].editorLabels = '{}';
 // MAP ENDS HERE
 
-mappages["mtdrash7a"].exit7 = function() {
-  maps_mt_drash_exit7(this);
+mappages["mtdrash7a"].exit7 = function(mapref) {
+  maps_mt_drash_exit7(mapref);
 }
 
 // MAP BEGINS HERE
@@ -1100,8 +1100,8 @@ mappages["mtdrash7b"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4",
 mappages["mtdrash7b"].editorLabels = '{}';
 // MAP ENDS HERE
 
-mappages["mtdrash7b"].exit7 = function() {
-  maps_mt_drash_exit7(this);
+mappages["mtdrash7b"].exit7 = function(mapref) {
+  maps_mt_drash_exit7(mapref);
 }
 
 // MAP BEGINS HERE
@@ -1168,8 +1168,8 @@ mappages["mtdrash7c"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4",
 mappages["mtdrash7c"].editorLabels = '{}';
 // MAP ENDS HERE
 
-mappages["mtdrash7c"].exit7 = function() {
-  maps_mt_drash_exit7(this);
+mappages["mtdrash7c"].exit7 = function(mapref) {
+  maps_mt_drash_exit7(mapref);
 }
 
 // MAP BEGINS HERE
@@ -1297,14 +1297,15 @@ mappages["mtdrash8"].onload = function(mapref) {
 
 function maps_mt_drash_exit7(mapref) {
   mapref.Exit = function(ewho,etomap,efromx,efromy,etox,etoy) {
+    console.log("entering Exit");
     if (ewho !== PC) { return; }
     let toname = etomap.getName();
     if (((toname !== "mtdrash7") && (toname !== "mtdrash7a") && (toname !== "mtdrash7b") && (toname !== "mtdrash7c")) && (this.getName() !== "mtdrash7")) {
       // not leaving mtdrash7 (in which case, nothing would need to be done), not going to any mtdrash7* (in which case, don't reset)
       let destmap = maps.getMap("mtdrash7");
       let turns = 1;
-      if (toname === "mtdrashb") { turns = 2; }
-      else if (toname === "mtdrasha") { turns = 3; }
+      if (this.getName() === "mtdrash7b") { turns = 2; }
+      else if (this.getName() === "mtdrash7a") { turns = 3; }
       let feas = this.features.getAll();
       for (let i=0;i<feas.length;i++) {
         let dest = {destx: feas[i].getx(), desty: feas[i].gety()};
@@ -1324,6 +1325,7 @@ function maps_mt_drash_exit7(mapref) {
       }
       
     } 
+    console.log("rotated MtD7 back to baseline.");
     return 1;
   }
 }
