@@ -13410,6 +13410,12 @@ BookItemObject.prototype.use = function(who) {
       DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
     }
   }
+  if (this.startquest) {
+    questlog.activate(this.startquest);
+  }
+  if (this.completequest) {
+    questlog.activate(this.completequest);
+  }
   return retval;
 }
 
@@ -13674,15 +13680,10 @@ function NatassaResearch2Tile() {
   this.prefix = "a";
   this.contents = "You flip through the notes.%%<span class='conv'>7-4-107: I continue to research the Pool alongside my other research. While recreating Xoricco's Wind Change spell was satisfying, there are other goals. Perhaps I should consult the oracle.</span>%%<span class='conv'>11-21-107: The underworld is even more dangerous than I had considered. I reached the Oracle- blessings upon Xoricco's research that revealed it to me! But was unable to obtain a full answer before I was forced to flee to the surface. I will work on the riddles.</span>%%<span class='conv'>4-15-109: Wind Change is not enough. King Erik has called upon me to try to recreate Xoricco's magics that made sea travel possible. The storms are too great to be uncreated just by temporarily stilling their winds. The Pool can wait.</span>%%<span class='conv'>10-19-113: Toshin is seeking the Pool. I must find it first- she cannot be permitted to draw upon its powers. She could be a second Tharock.</span>%%<span class='conv'>1-9-114: I have narrowed it down- the Pool has strong magic but it hides itself. But the Oracle taught me how to find the secondary resonances, and it is either underneath the city of Onyx, in the ruins under old Hildendain, or in the dungeon of Mt Drash on the tip of the dragon's wing.</span>%%<span class='conv'>3-21-114: I fear she has found it. I must confront her. I do not yet know what you need to do, or utilize, to use the Pool, but I can't assume she doesn't know either...</span>";
   this.longdesc = "Natassa's Research Notes, Vol 2.";
+  this.startquest = 44;
+  this.completequest = 43;
 }
 NatassaResearch2Tile.prototype = new BookItemObject();
-
-NatassaResearch2Tile.prototype.onGet = function(who) {
-  questlog.complete(43);
-  questlog.activate(44);
-
-  return {};
-}
 
 //Unused
 function NatassaResearch3Tile() {
@@ -13712,14 +13713,9 @@ function ToshinJournalTile() {
   this.prefix = "a";
   this.contents = "You search through the journal for something useful.%%<span class='conv'>It is somewhere... I can taste it. It is close. The bones of Ellusus sing with it, the unblinking eye of a star.</span>%%<span class='conv'>But there is something I need before I can use the Pool safely, even once I find it. Old texts call it an Infinite Scroll. With it, one can imprint even the most powerful of spells, using the power of the Pool.</span>%%<span class='conv'>I do not know how to make one... yet. But some are said to still exist. I will inquire of the black market.</span>%%<span class='conv'>There is a guild of thieves in Onyx, and they often have knowledge of such things, but almost certainly they will tell me that there is only one place to find things of such value: Beldskae.</span>";
   this.longdesc = "The Journals of Toshin.";
+  this.startquest = 53;
 }
 ToshinJournalTile.prototype = new BookItemObject();
-
-ToshinJournalTile.prototype.onGet = function(who) {
-  questlog.activate(53);
-
-  return {};
-}
 
 function ArcheoJournalTile() {
   //Graphics Upgraded
@@ -13836,6 +13832,7 @@ function LanceRuneNotesTile() {
   this.prefix = "a";
   this.contents = "<span class='conv'>Some time ago, Mother and Father shared a family Secret: the Rune of Kings. Deep under the site of another dynasty, it allows our bloodline to connect with... well, the heart of the Kingdom. The world. The earth.</span>%%<span class='conv'>Unknown to most, there are MORE. I directed Justice to help research them, and we discovered full elemental correspondences. The Rune of Kings is also the Rune of Earth- a bond to the land. It is also the key to unlock the other Runes.</span>%%<span class='conv'>Justice discovered the location of the Rune of Waves. There is a small island, naught but hills, north of the Crown Mountains and west of Poverty. The Rune of Kings is required to reveal the cave, she thinks, but I have not found a way to the island yet to try.</span>%%<span class='conv'>The Rune of Winds is, unsurprisingly perhaps, connected to Xoricco. The Rune of Flames appears to be near the Land of Lost Hope- it will be some time before I can try and discover it.</span>%%<span class='conv'>Strangely, there are hints and echoes of a fifth Rune, but I know not what it could be...</span>";
   this.longdesc = "A journal containing Lance's research on Runes.";
+  this.completequest = 74;
 }
 LanceRuneNotesTile.prototype = new BookItemObject();
 
