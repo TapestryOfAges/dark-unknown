@@ -2029,6 +2029,7 @@ ais.Justice = function(who) {
     retval.wait = 1; // animation will occur, we'll handle restarting the scheduler
     maintext.addText('Justice gasps, then says, "You are more formidable than I anticipated. But it will not avail you. What has been put into motion cannot be stopped! Good-bye!"');
     DU.gameflags.setFlag("justice_flees",1);
+    questlog.complete(75);
     maintext.setInputLine("&gt;[MORE]");
     maintext.drawTextFrame();
     gamestate.setMode("anykey");
