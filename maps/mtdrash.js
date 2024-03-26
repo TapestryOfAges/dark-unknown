@@ -331,6 +331,7 @@ mappages["mtdrash3"].features[10] = {name : 'Chest', x : 16, y : 12, lootgroup :
 mappages["mtdrash3"].features[11] = {name : 'Chest', x : 8, y : 19, lootgroup : 'Level4', lootedid : 'drash3_2'};
 mappages["mtdrash3"].features[12] = {name : 'Chest', x : 7, y : 20, lootgroup : 'Level4', lootedid : 'drash3_1'};
 mappages["mtdrash3"].features[13] = {name : 'FireField', x : 15, y : 6};
+mappages["mtdrash3"].features[14] = {name : 'BookOfLore', x : 16, y : 11};
 
 
 mappages["mtdrash3"].npcs = [];
@@ -382,6 +383,11 @@ mappages["mtdrash3"].onload = function(mapref) {
 
     walkon = mapref.getTile(13,10).getTopFeature();
     walkon.message = `As you pass, writing appears upon the wall. In blue letters, it reads: "The rich fire reflected in the mirror"`;
+
+    if (PC.checkInventory('EmpowermentNotes') || PC.checkInventory('BookOfLore')) {
+      let BoL = mapref.getTile(16,11).getTopFeature();
+      mapref.deleteThing(BoL);
+    }
   }
 }
 
