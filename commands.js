@@ -1300,9 +1300,9 @@ function PerformRuneChoice() {
       // needs to add flag "prince_awake" and wake prince up; if he is awake and it's act 2 he can switch to a new schedule once the 
       // player re-enters the keep, but in the meantime this will wake but he'll stay in the bed.  
       if (IsAdjacent(PC,lance)) {
+        lance.setConversation("lance_awaken");
         retval["txt"] = "You reach for the earth... and it reaches back. But you then, carefully, redirect the earth's energies to your brother, lying wan and sickly beside you. As the warm power reaches him, you see color return to his face. He takes a sudden breath and his eyes open.";
         PC.forcedTalk = lance;
-        
       }
     } else if (themap.getName() === "kaltonmine3") {
       if ((PC.getx() <=16) && (PC.gety() >= 22)) {
