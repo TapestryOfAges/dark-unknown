@@ -1760,6 +1760,34 @@ CourierSurrenderTile.prototype.endEffect = function(silent) {
   return 1;
 }
 
+function DelayTurnStartTile() {
+  this.addType("debuff");
+  this.name = "DelayTurnStart";
+  this.display = "<span style='color:#0000ee'></span>";
+  this.zstatdesc = "";
+  this.desc = "Delay turn start";
+  this.level = 1;
+  this.dispellable = 0;
+}
+DelayTurnStartTile.prototype = new EphemeralObject();
+
+DelayTurnStartTile.prototype.applyEffect = function(silent) {
+  return 1;
+}
+
+DelayTurnStartTile.prototype.doEffect = function() {
+  
+}
+
+DelayTurnStartTile.prototype.eachTurn = function() {
+  return this.doEffect();
+}
+
+DelayTurnStartTile.prototype.endEffect = function(silent) {
+  let who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+}
+
 function JusticeCollapseTile() {
   this.addType("debuff");
   this.name = "JusticeCollapse";
@@ -1823,32 +1851,38 @@ JusticeCollapseTile.prototype.endEffect = function(silent) {
   return 1;
 }
 
-function DelayTurnStartTile() {
+function RemovePeterTile() {
   this.addType("debuff");
-  this.name = "DelayTurnStart";
+  this.name = "RemovePeter";
   this.display = "<span style='color:#0000ee'></span>";
   this.zstatdesc = "";
-  this.desc = "Delay turn start";
+  this.desc = "Remove Peter when player's back is turned";
   this.level = 1;
   this.dispellable = 0;
 }
-DelayTurnStartTile.prototype = new EphemeralObject();
+RemovePeterTile.prototype = new EphemeralObject();
 
-DelayTurnStartTile.prototype.applyEffect = function(silent) {
+RemovePeterTile.prototype.applyEffect = function(silent) {
   return 1;
 }
 
-DelayTurnStartTile.prototype.doEffect = function() {
-  
+RemovePeterTile.prototype.doEffect = function() {
+  let who = this.getAttachedTo();
+  let distant = 0;
+  if (who.getHomeMap() !== PC.getHomeMap()) { distant = 1; }
+  if (GetDistance(PC.getx(),PC.gety(),who.getx(),who.gety()) > 8) { distant = 1; }
+  if (distant) {
+    who.getHomeMap().deleteThing(who);
+    DUTime.removeEntityFrom(who);
+  }
 }
 
-DelayTurnStartTile.prototype.eachTurn = function() {
+RemovePeterTile.prototype.eachTurn = function() {
   return this.doEffect();
 }
 
-DelayTurnStartTile.prototype.endEffect = function(silent) {
-  let who = this.getAttachedTo();
-  who.deleteSpellEffect(this);
+RemovePeterTile.prototype.endEffect = function(silent) {
+
 }
 
 function ScouringBeldskaeTile() {
@@ -1913,36 +1947,70 @@ ScouringBeldskaeTile.prototype.endEffect = function(silent) {
 
 }
 
-function RemovePeterTile() {
-  this.addType("debuff");
-  this.name = "RemovePeter";
+function WandBreakTile() {
+  this.addType("buff");
+  this.name = "WandBreak";
   this.display = "<span style='color:#0000ee'></span>";
   this.zstatdesc = "";
-  this.desc = "Remove Peter when player's back is turned";
+  this.desc = "Wand supercharged";
   this.level = 1;
   this.dispellable = 0;
 }
-RemovePeterTile.prototype = new EphemeralObject();
 
-RemovePeterTile.prototype.applyEffect = function(silent) {
+WandBreakTile.prototype.applyEffect = function(silent) {
+  if (!silent && (this.getAttachedTo() === PC)) {
+    maintext.delayedAddText("The glow from your wand blazes in your hand!");
+    PC.getMissile().damage = "6d10+12";
+  }
   return 1;
 }
 
-RemovePeterTile.prototype.doEffect = function() {
-  let who = this.getAttachedTo();
-  let distant = 0;
-  if (who.getHomeMap() !== PC.getHomeMap()) { distant = 1; }
-  if (GetDistance(PC.getx(),PC.gety(),who.getx(),who.gety()) > 8) { distant = 1; }
-  if (distant) {
-    who.getHomeMap().deleteThing(who);
-    DUTime.removeEntityFrom(who);
-  }
+WandBreakTile.prototype.doEffect = function() {
+  
 }
 
-RemovePeterTile.prototype.eachTurn = function() {
+WandBreakTile.prototype.eachTurn = function() {
   return this.doEffect();
 }
 
-RemovePeterTile.prototype.endEffect = function(silent) {
+WandBreakTile.prototype.endEffect = function(silent) {
+  let who = this.getAttachedTo();
+  who.getMissile().damage = "4d10+0";
+  maintext.delayedAddText("Your wand's glow returns to normal.");
 
+  return 1;
+}
+
+function YewWandBreakTile() {
+  this.addType("debuff");
+  this.name = "YewWandBreak";
+  this.display = "<span style='color:#0000ee'></span>";
+  this.zstatdesc = "";
+  this.desc = "Yew Wand on the fritz";
+  this.level = 1;
+  this.dispellable = 0;
+}
+
+YewWandBreakTile.prototype.applyEffect = function(silent) {
+  if (!silent && (this.getAttachedTo() === PC)) {
+    maintext.delayedAddText("The glow from your wand grows wan and dim.");
+    PC.getMissile().damage = "2d10+0";
+  }
+  return 1;
+}
+
+YewWandBreakTile.prototype.doEffect = function() {
+  
+}
+
+YewWandBreakTile.prototype.eachTurn = function() {
+  return this.doEffect();
+}
+
+YewWandBreakTile.prototype.endEffect = function(silent) {
+  let who = this.getAttachedTo();
+  who.getMissile().damage = "4d10+0";
+  maintext.delayedAddText("Your wand's glow returns to normal.");
+
+  return 1;
 }
