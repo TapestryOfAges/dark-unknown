@@ -983,6 +983,10 @@ console.log(spawn);
   // WORKING HERE - create guards on map, their AI, and their zoomed-in map
 }
 
+OnConvTriggers["wisp_grant"] = function(speaker, keyword) {
+  PC.addSpell(SPELL_ARMAGEDDON_LEVEL,SPELL_ARMAGEDDON_ID);
+}
+
 function HasLibraryBooks() {
   let hasbook = 0;
   if (PC.checkInventory("MapsAndLegends")) {
@@ -1531,6 +1535,13 @@ ConvTestFlags["shadow_safe"] = function(speaker,keyword) {
   };
   if (safe === 1) { return 1; } 
 
+}
+
+ConvTestFlags["is_still_broken"] = function(speaker,keyword) {
+  let sword = PC.checkInventory("UnenchantedSword");
+  if (sword.broken) { return 1; }
+
+  return 0;
 }
 
 function SetAct2Convos(mapref) {
