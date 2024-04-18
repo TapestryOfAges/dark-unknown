@@ -1240,12 +1240,12 @@ function PerformRuneChoice() {
 
   document.getElementById('uiinterface').innerHTML = "";
   document.getElementById('uiinterface').style.backgroundColor = "";
+  let themap = PC.getHomeMap();
 
   if (targetCursor.runeChoice === 1) { 
     // The Rune of Kings
     // Always heals you some. In certain locations, may also reveal things.
     // If near the Prince and he is in a coma, heals and wakes him
-    let themap = PC.getHomeMap();
     Earthquake();
     DUPlaySound("sfx_earthquake");
 
@@ -1301,6 +1301,7 @@ function PerformRuneChoice() {
       // player re-enters the keep, but in the meantime this will wake but he'll stay in the bed.  
       if (IsAdjacent(PC,lance)) {
         lance.setConversation("lance_awaken");
+        delete lance.flags.sleep;  // He'll go back to sleep at the end of the conversation
         retval["txt"] = "You reach for the earth... and it reaches back. But you then, carefully, redirect the earth's energies to your brother, lying wan and sickly beside you. As the warm power reaches him, you see color return to his face. He takes a sudden breath and his eyes open.";
         PC.forcedTalk = lance;
       }
@@ -1332,7 +1333,11 @@ function PerformRuneChoice() {
       }
     }
     if (PC.getHP() < PC.getMaxHP()) {
-      PC.healMe(PC.getMaxHP()*.2, PC);
+      if (PC.runes.void) {
+        PC.healMe(PC.getMaxHP(), PC);
+      } else {
+        PC.healMe(PC.getMaxHP()*.5, PC);
+      }
       if (retval["txt"]) { retval["txt"] += "<br />"; }
       retval["txt"] += "You reach for the earth... and it reaches back. You feel better!<br />It will be some time before you can do that again.";
       PC.setRuneCooldown("kings",144);  // 12 hours
@@ -1341,8 +1346,66 @@ function PerformRuneChoice() {
       retval["txt"] += "You feel the warm touch of the earth below your feet, but do not currently need its help with healing.";
     }
 
-  } else if (targetCursoe.runeChoice === 2) {
+  } else if (targetCursor.runeChoice === 2) {
+    // first whirlpool goes away
+    
+    if (!themap.getUnderground()) {  // can't summon a whirlpool while underground, that would be silly
+      let nearbywater = 0;
+      let nearwaterlist = {};
+      let IsRightWater = function(terr) {
+        if ((terr.getName() === "Water") || (terr.getName() === "Shallows")) { return 1; }
+      }
+      
+      for (let i=-1;i<=1;i++) {
+        for (let j=-1;j<=1;j++) {
+          let px = PC.getx()+i;
+          let py = PC.gety()+j;
+          let tile = themap.getTile(px,py);
+          if ((tile !== "OoB") && (IsRightWater(tile.getTerrain()))) { 
+            nearbywater = 1; 
+            nearwaterlist[px][py] = 1;
+          }
+        }
+      }
 
+      let farawaywater = 0;
+      if (nearbywater) {
+        let farwaterlist = [];
+        Object.keys(nearwaterlist).forEach(key => {
+          Object.keys(nearwaterlist[key]).forEach(innerkey => {
+            for (let i=-1;i<=1;i++) {
+              for (let j=-1;j<=1;j++) {
+                let tile = themap.getTile(key+i,innerkey+j);
+                if ((tile !== "OoB") && (IsRightWater(tile.getTerrain()))) {
+                  if (GetDistance(PC.getx(),PC.gety(),key+i,innerkey+j,"square") === 2) {
+                    let tx = key+i;
+                    let ty = innerkey+j;
+                    farwaterlist.push(`${tx},${ty}`);
+                    farawaywater = 1;
+                  }
+                }
+              }
+            }
+          });
+        });
+      }
+      if (farawaywater) {
+        let opts = farwaterlist.length;
+        let opt = Dice.roll(`1d${opts}-1`);
+
+        let whirlpool = localFactory.createTile("Whirlpool");
+        whirlpool.destmap = "Underworld";
+        whirlpool.destx = 83;
+        whirlpool.desty = 107;
+
+        let coords = split(",", farwaterlist[opt]);
+        themap.placeThing(coords[0],coords[1],whirlpool);
+
+        PC.whirlx = coords[0];
+        PC.whirly = coords[1];
+      } 
+
+    }
   } else if (targetCursor.runeChoice === 3) {
 
   } else if (targetCursor.runeChoice === 4) {
