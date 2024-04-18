@@ -222,6 +222,9 @@ questlist[72] = new Quest([], "Letter from Rhys", "Lance", "Black Dragon Castle"
 questlist[73] = new Quest([], "Search Rhys's house", "Lance", "Black Dragon Castle", `Go to Clear Lake and search Rhys's house, thoroughly. See if you can find a clue to his whereabouts.`, `You found a secret passage, and Rhys.`, "main");
 questlist[74] = new Quest([], "Notes on Other Runes", "Lance", "Black Dragon Castle", `Lance has notes on Runes besides the Rune of Kings. They are in his sanctum, off his bedroom; the key he gave you will give you access.`, `You found the book of notes.`, "main");
 questlist[75] = new Quest([], "Confront Justice", "Rhys", "Dungeon Shadow", `Return to Black Dragon Castle and confront Justice. Tell her you know of the cult and the dark. And be ready for anything.`, `You have defeated Justice and drove her to flee.`, "main");
+questlist[76] = new Quest([], "Stone of Conflagrations", "Rhys", "Black Dragon Castle", `Go to the dungeon to the southwest, in the Wilding Mountains, and seek the Stone of Conflagrations, then return to Rhys and Lance.`, `You have brought them the Stone they need for the ritual.`, "main");
+questlist[77] = new Quest([], "Riddled With Vice?", "A Daemon", "Black Dragon Castle", `The summoned daemon claimed that the Shepherd of Dark would bring forth daemons in "the place most riddled with vice", and that it was "already almost too late to save." What did it mean?`, `You have discovered the fate of Beldskae.`, "main");
+questlist[78] = new Quest([], "Learn More", "Rhys", "Black Dragon Castle", `You must learn more about the daemons and how to stop them. You must find a source of information.`, `You've found a lead...`, "main");
 
 
 // verbage for reference guide:
