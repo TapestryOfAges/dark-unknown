@@ -183,7 +183,7 @@ OnDamagedFuncs["die"] = function(atk,who,dmg,weapon) {
 OnDamagedFuncs["incorporeal"] = function(atk,who,dmg,weapon) {
   DebugWrite("combat", "OnDamaged - incorporeal");
   let chance = 40;
-  if ((weapon.getName() === "MagicAxe") || (weapon.getName() === "Wand") || (weapon.getName() === "MagicSword") || (weapon.getName() === "LightningSword") || (weapon.getName() === "FlamingSword") || (weapon.getName() === "SwordOfDefense") || (weapon.getName() === "VenomSword")) {
+  if ((weapon.getName() === "MagicAxe") || (weapon.getName() === "Wand") || (weapon.getName() === "MagicSword") || (weapon.getName() === "LightningSword") || (weapon.getName() === "FlamingSword") || (weapon.getName() === "SwordOfDefense") || (weapon.getName() === "VenomSword") || (weapon.getName() === "YewWand")) {
     chance = 20;
   } else if (weapon.getName() === "SpellWeapon") {
     if ((weapon.dmgtype === "force") || (weapon.dmgtype === "drain")) {
