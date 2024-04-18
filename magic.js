@@ -3420,6 +3420,31 @@ function EmpowerReagentCommands(cmd) {
 
           return retval;
         }
+      } else if (tgt.getName() === "YewWand") {
+        if (targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["LightningWood"]) {
+          successtext.push(`You place the wand in the center of the pentagram, and then begin the incantation.`);
+          successtext.push(`You crush the lightning wood and spider silk together, and feel the magic build.`);
+          successtext.push(`The energy flows into the wand, which shudders and then glows with a new fierceness.`);
+          successtext.unshift(starttext);
+          CastSpellMana(PC,targetCursor.manacost);
+          ShowEffect(PC, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+          PlayCastSound(PC,"sfx_enchant");
+          PC.removeFromInventory(PC.checkInventory("SpiderSilk"));
+          PC.removeFromInventory(PC.checkInventory("LightningWood"));
+          let wasequipped = 0;
+          if (PC.getMissile() === tgt) {
+            wasequipped = 1;
+          }
+          PC.removeFromInventory(PC.checkInventory("YewWand"));
+          let newwand = localFactory.createTile("Wand");
+          PC.addToInventory(newwand,1);
+          if (wasequipped) {
+            PC.setEquipment("missile",newwand);
+          }
+          retval["fin"] = 2;
+          retval["outcome"] = successtext;
+          return retval;
+        } 
       } else if (tgt.getName() === "DecorativeArmor") {
         if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["BloodMoss"]) {
           successtext.push(`You pile the suit of armor in front of you, on the pentagram, and then begin the incantation.`);
