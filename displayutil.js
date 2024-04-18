@@ -59,6 +59,7 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
   // param.retval - retval from calling function
   // param.finishcallback - function to run when animation finishes, just before turn ends
   // param.callbackparam - object with parameters to feed to callback
+  // param.weapon - the attacker's weapon, if appropriate
   let type = param.type;
   let duration = param.duration;
   let ammoreturn = param.ammoreturn;
@@ -150,6 +151,9 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
       // handle onDamaged stuff here
       if (def.onDamaged) {
         dmg = OnDamagedFuncs[def.onDamaged](atk,def,dmg,weapon);
+      }
+      if (param.weapon && param.weapon.hasOwnProperty("onMadeAttack")) {
+        param.weapon.onMadeAttack(atk,def,dmg);
       }
       let effects = def.getSpellEffects();
       for (let i=0;i<effects.length;i++) {
