@@ -56,6 +56,7 @@ DUSound["sfx_sling"] = "sfx/sfx_sling.mp3"; // Medieval Fantasy 2 SFX Pack/Weapo
 DUSound["sfx_bow"] = "sfx/sfx_bow.mp3"; // Medieval Fantasy 2 SFX Pack/Weapons/BowShot2
 DUSound["sfx_magic_axe"] = "sfx/Electric 1.mp3"; // Magic Spells SFX Bundle 1/Stereo/Electric/Electric 1
 DUSound["sfx_wand"] = "sfx/Generic Spell (summon) 3.ogg"; // Magic Spells SFX Bundle 1/Stereo/Generic/Generic Spell (Summon) 3
+DUSound["sfx_wand2"] = "sfx/Electric 6.mp3"; // Magic Spells SFX Bundle 1/Stereo/Electric/Electric 6
 DUSound["sfx_coin"] = "sfx/Coin 2.mp3"; // Medieval Fantasy Pack/Coins and Inventory/Coin 2
 DUSound["sfx_click"] = "sfx/Button04.mp3"; // Medieval Fantasy 2 SFX Pack/Misc/Button04
 DUSound["sfx_small_lever"] = "sfx/Lever 2.mp3"; // Dungeon SFX Pack/Misc/Lever 2
