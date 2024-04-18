@@ -663,15 +663,14 @@ mappages["blackdragon4"].terrain[44] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb s
 
 mappages["blackdragon4"].features = [];
 mappages["blackdragon4"].features[0] = {name : 'LadderDown', x : 25, y : 20, entermap : 'blackdragon3', enterx : 25, entery : 20};
-mappages["blackdragon4"].features[1] = {name : 'Chest', x : 25, y : 23};
-mappages["blackdragon4"].features[2] = {name : 'Chest', x : 25, y : 24};
-mappages["blackdragon4"].features[3] = {name : 'Chest', x : 26, y : 24};
-mappages["blackdragon4"].features[4] = {name : 'BookshelfLeft', x : 27, y : 20};
-mappages["blackdragon4"].features[5] = {name : 'BookshelfRight', x : 28, y : 20};
+mappages["blackdragon4"].features[1] = {name : 'Chest', x : 25, y : 23, locked : 0, lootgroup : 'Archmage', lootedid : 'justice4_2'};
+mappages["blackdragon4"].features[2] = {name : 'Chest', x : 25, y : 24, locked : 0, lootgroup : 'Archmage', lootedid : 'justice4_3'};
+mappages["blackdragon4"].features[3] = {name : 'Chest', x : 26, y : 24, locked : 0, lootgroup : 'Archmage', lootedid : 'justice4_4'};
+mappages["blackdragon4"].features[4] = {name : 'BookshelfLeft', x : 27, y : 20, lootedid : 'negate', searchyield : 'AudachtaNemesosNegateMagic'};
+mappages["blackdragon4"].features[5] = {name : 'BookshelfRight', x : 28, y : 20, lootedid : 'justice4_1', searchyield : 'ScrollConjureDaemon'};
 mappages["blackdragon4"].features[6] = {name : 'BookshelfRight', x : 28, y : 22};
-mappages["blackdragon4"].features[7] = {name : 'BookshelfLeft', x : 27, y : 22};
+mappages["blackdragon4"].features[7] = {name : 'BookshelfLeft', x : 27, y : 22, lootedid : 'tomeofsight', searchyield : 'TomeOfSight'};
 mappages["blackdragon4"].features[8] = {name : 'UnlitBrazier', x : 28, y : 24};
-
 
 mappages["blackdragon4"].npcs = [];
 
@@ -715,6 +714,10 @@ mappages["blackdragon4"].onload = function(mapref) {
       mapref.placeThing(26,21,field3);
 
       Listener.createListener("BDragon", "Negate Magic", [], "blackdragon");
+    }
+
+    if (DU.gameflags.getFlag("lid_tomeofsight") && !DU.gameflags.getFlag("oracle_tome") && !PC.checkInventory("TomeOfSight")) {
+      DU.gameflags.deleteFlag("lid_tomeofsight");
     }
   }
 }
@@ -1301,13 +1304,13 @@ mappages["blackdragon_int4"].terrain[44] = 'sb sb sb sb sb sb sb sb sb sb sb sb 
 
 mappages["blackdragon_int4"].features = [];
 mappages["blackdragon_int4"].features[0] = {name : 'LadderDown', x : 25, y : 20, entermap : 'blackdragon_int3', enterx : 25, entery : 20};
-mappages["blackdragon_int4"].features[1] = {name : 'Chest', x : 25, y : 23};
-mappages["blackdragon_int4"].features[2] = {name : 'Chest', x : 25, y : 24};
-mappages["blackdragon_int4"].features[3] = {name : 'Chest', x : 26, y : 24};
-mappages["blackdragon_int4"].features[4] = {name : 'BookshelfLeft', x : 27, y : 20};
-mappages["blackdragon_int4"].features[5] = {name : 'BookshelfRight', x : 28, y : 20};
+mappages["blackdragon_int4"].features[1] = {name : 'Chest', x : 25, y : 23, locked : 0, lootgroup : 'Archmage', lootedid : 'justice4_2'};
+mappages["blackdragon_int4"].features[2] = {name : 'Chest', x : 25, y : 24, locked : 0, lootgroup : 'Archmage', lootedid : 'justice4_3'};
+mappages["blackdragon_int4"].features[3] = {name : 'Chest', x : 26, y : 24, locked : 0, lootgroup : 'Archmage', lootedid : 'justice4_4'};
+mappages["blackdragon_int4"].features[4] = {name : 'BookshelfLeft', x : 27, y : 20, lootedid : 'negate', searchyield : 'AudachtaNemesosNegateMagic'};
+mappages["blackdragon_int4"].features[5] = {name : 'BookshelfRight', x : 28, y : 20, lootedid : 'justice4_1', searchyield : 'ScrollConjureDaemon'};
 mappages["blackdragon_int4"].features[6] = {name : 'BookshelfRight', x : 28, y : 22};
-mappages["blackdragon_int4"].features[7] = {name : 'BookshelfLeft', x : 27, y : 22};
+mappages["blackdragon_int4"].features[7] = {name : 'BookshelfLeft', x : 27, y : 22, lootedid : 'tomeofsight', searchyield : 'TomeOfSight'};
 mappages["blackdragon_int4"].features[8] = {name : 'UnlitBrazier', x : 28, y : 24};
 
 
@@ -1339,6 +1342,16 @@ mappages["blackdragon_int4"].returny = '74';
 mappages["blackdragon_int4"].returninfused = '0';
 mappages["blackdragon_int4"].linkedMaps = ["blackdragon_int2","blackdragon_int3","blackdragon_int"];
 mappages["blackdragon_int4"].editorLabels = '{}';
+
+mappages["blackdragon_int4"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+
+    if (DU.gameflags.getFlag("lid_tomeofsight") && !DU.gameflags.getFlag("oracle_tome") && !PC.checkInventory("TomeOfSight")) {
+      DU.gameflags.deleteFlag("lid_tomeofsight");
+    }
+  }
+}
+
 
 mappages["bdcave"] = {};
 mappages["bdcave"].terrain = [];
