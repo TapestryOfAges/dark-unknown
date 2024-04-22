@@ -10465,9 +10465,9 @@ WideFountainTile.prototype = new FeatureObject();
 
 function BrokenFountainTile() {
   this.name = "BrokenFountain";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-832";
+  this.graphic = "static.gif";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -53*32;
   this.prefix = "a";
   this.desc = "broken fountain";
   this.peerview = "#a0a0a0";
@@ -16253,7 +16253,6 @@ RingOfEtherealFocusTile.prototype.killed = function(who) {
       maintext.delayedAddText("The Ring of Ethereal Focus restores " + restoredmana + " mana to you!");
       let wearer = this.getEquippedTo();
       wearer.modMana(restoredmana);
-      if (wearer.getMana() > wearer.getMaxMana()) { wearer.setMana(wearer.getMaxMana()); }
     }
   }
 }
@@ -17096,9 +17095,9 @@ NaturalMissileWeaponTile.prototype = new MissileWeaponObject();
 function BoulderWeaponTile() {
   this.name = "BoulderWeapon";
   this.damage = "2d12+3";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-672";
+  this.graphic = "static.gif";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -53*32;
   this.desc = "boulder";
   this.prefix = "a";
   this.ammoxoffset = "0";
