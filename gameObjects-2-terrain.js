@@ -209,15 +209,16 @@ MountainPassTile.prototype = new TerrainObject();
 
 function FlameMountainTile() {
   this.name = "FlameMountain";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-288";
+  this.graphic = "static.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -54*32;
   this.desc = "fiery mountains";
   this.blocklos = 1;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.combatmap = "Hill";
   this.peerview = "#e42217";
   this.walkSound = "hill";
+  TilingSpritesheet.call(this, 2, 1);
 }
 FlameMountainTile.prototype = new TerrainObject();
 
