@@ -1339,16 +1339,41 @@ function PerformRuneChoice() {
         PC.healMe(PC.getMaxHP()*.5, PC);
       }
       if (retval["txt"]) { retval["txt"] += "<br />"; }
-      retval["txt"] += "You reach for the earth... and it reaches back. You feel better!<br />It will be some time before you can do that again.";
+      retval["txt"] += "You reach for the earth below... and it reaches back. You feel better!<br />It will be some time before you can do that again.";
       PC.setRuneCooldown("kings",144);  // 12 hours
     } else {
       if (retval["txt"]) { retval["txt"] += "<br />"; }
       retval["txt"] += "You feel the warm touch of the earth below your feet, but do not currently need its help with healing.";
     }
 
-  } else if (targetCursor.runeChoice === 2) {
+  } else if (targetCursor.runeChoice === 2) { 
+    // The Rune of Waves
+
     // first whirlpool goes away
-    
+    let feas = themap.features.getAll();
+    let wp;
+    let formed = 0;
+    for (let i=0;i<feas.length;i++) {
+      if (feas[i].getName() === "Whirlpool") {
+        let wpx = feas[i].getx();
+        let wpy = feas[i].gety();
+        themap.deleteThing(feas[i]);
+        DrawMainFrame("one",themap,wpx,wpy);
+        wp = 1;
+      }
+    }
+    if (!wp && (themap.getName() !== "darkunknown")) {
+      let worldmap = maps.getMap("darkunknown");
+      feas = worldmap.features.getAll();
+      for (let i=0;i<feas.length;i++) {
+        if (feas[i].getName() === "Whirlpool") {
+          let wpx = feas[i].getx();
+          let wpy = feas[i].gety();
+          worldmap.deleteThing(feas[i]);
+        }
+      }
+    }
+
     if (!themap.getUnderground()) {  // can't summon a whirlpool while underground, that would be silly
       let nearbywater = 0;
       let nearwaterlist = {};
@@ -1403,16 +1428,88 @@ function PerformRuneChoice() {
 
         PC.whirlx = coords[0];
         PC.whirly = coords[1];
+
+        retval["txt"] = "You call upon the waves to provide what you need... and slowly, a whirlpool forms!";
+        formed = 1;
       } 
 
     }
+
+    // Regardless of whether it summoned a whirlpool, also restore some mana
+    if (PC.getMana() < PC.getMaxMana()) {
+      let rettxt = "You call upon the water that flows without. You feel a surge of power!<br />It will be some time before you can do that again.";
+      if (formed) { rettxt = "You feel a surge of power!<br />It will be some time before you can do that again."; }  
+      if (retval["txt"]) {
+        retval["txt"] += "<br />" + rettxt;
+      } else {
+        retval["txt"] = rettxt;
+      }
+      if (PC.runes.void) {
+        PC.modMana(PC.getLevel());
+      } else {
+        PC.modMana(2*PC.getLevel());
+      }
+      PC.setRuneCooldown("waves",144);  // 12 hours
+    }
+
   } else if (targetCursor.runeChoice === 3) {
+    // The Rune of Winds
+    let distance = PC.rune.void ? 3 : 2; 
+
+    let PushBack = function(where, dir) {
+      let tile = themap.getTile(where[0],where[1]);
+      if (tile !== "OoB") {
+        let who = tile.getTopNPC();
+        let desttile = who.getHomeMap().getTile(who.getx()+dir[0], who.gety()+dir[1]);
+        if (desttile !== "OoB") {
+          who.moveMe(dir[0],dir[1]);
+        }
+      }
+    }
+
+    PushBack([PC.getx()-1,PC.gety()-2],[0,-1]);
+    PushBack([PC.getx(),PC.gety()-2],[0,-1]);
+    PushBack([PC.getx()+1,PC.gety()-2],[0,-1]);
+    PushBack([PC.getx()+2,PC.gety()-1],[1,0]);
+    PushBack([PC.getx()+2,PC.gety()],[1,0]);
+    PushBack([PC.getx()+2,PC.gety()+1],[1,0]);
+    PushBack([PC.getx()-1,PC.gety()+2],[0,1]);
+    PushBack([PC.getx(),PC.gety()+2],[0,1]);
+    PushBack([PC.getx()+1,PC.gety()+2],[0,1]);
+    PushBack([PC.getx()-2,PC.gety()-1],[-1,0]);
+    PushBack([PC.getx()-2,PC.gety()],[-1,0]);
+    PushBack([PC.getx()-2,PC.gety()+1],[-1,0]);
+
+    retval["txt"] = "You call upon the air above, and the winds swirl powerfully around you.<br />It will be some time before you can do that again.";
+
+    PC.setRuneCooldown("winds",144);  // 12 hours
 
   } else if (targetCursor.runeChoice === 4) {
     let fs = PC.checkInventory("FrozenSunlight");
     if (fs && !fs.stabilized) {
       fs.stabilized = 1;
       retval["txt"] += "You hold the frozen sunlight in the palm of your hand, and reach out with the power of your mastery over fire. The sunlight, which had been fading and dissolving as you watched, solidifies into a stable form.";
+    } else {
+      let flip = Dice.roll("1d2");
+      if (flip === 1) {
+        // cast Fire Armor with more power than is possible by spell
+        retval["txt"] = "You call upon the fire that burns within. It manifests around you, encapsulating you within a protective shell.";
+        let prot = localFactory.createTile("FireArmor");
+        let duration = 80 * SCALE_TIME;
+        let power = DMG_MEDIUM;
+        let endtime = duration + DUTime.getGameClock();
+        DebugWrite("magic", "End time is " + endtime + ".<br />");
+        prot.setExpiresTime(endtime);
+        prot.setPower(power);
+        PC.addSpellEffect(prot, Math.max(0, free) );
+        ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
+        PlayCastSound(caster,"sfx_flame_armor");
+      } else if (flip === 2) {  // not putting else here to remind me to add more options if I think of them
+        retval["txt"] = "You call upon the fire that burns within. You feel it stir, and lash out at your enemies.<br />It will be some time before you can do that again.";
+        // cast Conflagration
+        magic[SPELL_CONFLAGRATION_LEVEL][SPELL_CONFLAGRATION_ID].executeSpell(PC, 0, 1);
+      }
+      PC.setRuneCooldown("flames",144);  // 12 hours
     }
   }
   delete targetCursor.runeChoice;
