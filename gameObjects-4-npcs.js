@@ -110,9 +110,10 @@ NPCObject.prototype.getMana = function() {
 	return mana;
 }
 
-NPCObject.prototype.modMana = function(diffMana) {
+NPCObject.prototype.modMana = function(diffMana, pastcap) {
 	this.mana = this.mana + diffMana;
 	if (this.mana < 0) { this.mana = 0; }
+  if (!pastcap && (this.mana > this.maxmana)) { this.mana = this.maxmana; }
 	if (this.checkType("pc")) {
 	  DrawCharFrame();
 	}
