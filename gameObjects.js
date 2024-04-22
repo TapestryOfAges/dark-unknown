@@ -22620,7 +22620,6 @@ RingOfEtherealFocusTile.prototype.killed = function(who) {
       maintext.delayedAddText("The Ring of Ethereal Focus restores " + restoredmana + " mana to you!");
       let wearer = this.getEquippedTo();
       wearer.modMana(restoredmana);
-      if (wearer.getMana() > wearer.getMaxMana()) { wearer.setMana(wearer.getMaxMana()); }
     }
   }
 }
