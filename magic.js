@@ -3403,6 +3403,10 @@ function EmpowerReagentCommands(cmd) {
           let ruby = localFactory.createTile("RubyGemoftheSun");
           PC.addToInventory(ruby,1);
 
+          questlog.complete(83);
+          questlog.complete(91);
+          questlog.activate(92);
+
           let oldlight = PC.getSpellEffectsByName("Light");
           oldlight.endEffect(1);
 
