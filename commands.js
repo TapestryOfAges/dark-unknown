@@ -1431,6 +1431,9 @@ function PerformRuneChoice() {
 
         retval["txt"] = "You call upon the waves to provide what you need... and slowly, a whirlpool forms!";
         formed = 1;
+
+        questlog.complete(79);
+        CheckOracleQuest();
       } 
 
     }
