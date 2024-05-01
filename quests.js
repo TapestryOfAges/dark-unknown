@@ -225,6 +225,21 @@ questlist[75] = new Quest([], "Confront Justice", "Rhys", "Dungeon Shadow", `Ret
 questlist[76] = new Quest([], "Stone of Conflagrations", "Rhys", "Black Dragon Castle", `Go to the dungeon to the southwest, in the Wilding Mountains, and seek the Stone of Conflagrations, then return to Rhys and Lance.`, `You have brought them the Stone they need for the ritual.`, "main");
 questlist[77] = new Quest([], "Riddled With Vice?", "A Daemon", "Black Dragon Castle", `The summoned daemon claimed that the Shepherd of Dark would bring forth daemons in "the place most riddled with vice", and that it was "already almost too late to save." What did it mean?`, `You have discovered the fate of Beldskae.`, "main");
 questlist[78] = new Quest([], "Learn More", "Rhys", "Black Dragon Castle", `You must learn more about the daemons and how to stop them. You must find a source of information.`, `You've found a lead...`, "main");
+questlist[79] = new Quest([], "Harness a whirlpool", "Ashlin", "Consolation", `You must find a way to gain power over the waters, and summon forth a whirlpool.`, `You have obtained the Mark of Waves and used it to create a whirlpool.`, "main");
+questlist[80] = new Quest([], "Find a valuable offering", "Ashlin", "Consolation", `Ashlin tells you that to get answers from the Oracle, you will need to bring it a valuable offering. She suggests you ask your parents...`, `You have acquired a suitable offering.`, "main");
+questlist[81] = new Quest([], "Seek the Oracle", "-", "-", `You have power over the waters, and a suitable offering. It is time to seek the Oracle. Use the Rune of Waves by the shore, step into the whirlpool, and find the Oracle.`, `You have spoken to the Oracle.`, "main");
+questlist[82] = new Quest([], "Defeat the Darkness", "The Oracle", "The Underworld", `The Oracle has shown you what you will need to do to defeat the Darkness. You must:<br />* Bind sunlight to a gemstone<br />* Bring the sun into the underworld<br />* Take the gem into the Uttermost Dark`, `You have defeated the Shepherd of Darkness. Congratulations!`, "main");
+questlist[83] = new Quest([], "Bind Sunlight to a Gemstone", "The Oracle", "The Underworld", `To bind sunlight to a gemstone, you will need to do three things.<br />* Find a flawless ruby<br />* Acquire frozen sunlight<br />* Cast Empower on the ruby`, `You have created the Ruby of the Sun.`, "main");
+questlist[84] = new Quest([], "Find a flawless ruby", "The Oracle", "The Underworld", `The Oracle has said that the first step in acquiring a flawless ruby is to speak to Colin, the jeweler in Clear Lake, and tell him you seek one. He will know what to do.`, `You have spoken to Colin about finding a flawless ruby.`, "main");
+questlist[85] = new Quest([84], "Find a flawless ruby", "Colin", "Clear Lake", `There is a monster-filled mine which might still have an excellent ruby as-yet unmined. He thinks that to try to get it, you will need miners and permission from the Crown. Fortunately, that will be easier than he realizes. Go talk to your parents. `, `Your father has given you a better way.`, "main");
+questlist[86] = new Quest([85], "Find a flawless ruby", "King Daragen", "Castle dea Olympus", `Travel to Kalton Mine, descend past the first two levels which are already mined out, and then use the Rune of Kings to call a ruby to you.`, `You have acquired an exceptional uncut ruby.`, "main");
+questlist[87] = new Quest([], "Prepare the ruby", "The Oracle", "The Underworld", `Bring the ruby to Colin in Clear Lake, and ask him to cut it.`, `You now have a perfect ruby.`, "main");
+questlist[88] = new Quest([], "Frozen Sunlight", "The Oracle", "The Underworld", `Return to Natassa's spire and seek her secrets for how to create frozen sunlight.`, `You have found the secret how to make frozen sunlight.`, "main");
+questlist[89] = new Quest([], "Frozen Sunlight", "Natassa's notes", "Natassa's Spire", `You have found Natassa's notes on creating frozen sunlight. To make it last, however, you will need the Rune of Flames, which is reached through a gate in the northeast corner of the Isle of Lost Hope. Get the Rune of Flames.`, `You have the Rune of Flames!`, "main");
+questlist[90] = new Quest([89], "Frozen Sunlight", "Natassa's Notes", "Natassa's Spire", `On the roof of Natassa's spire, pull the Lens out into the sun. Use it to make Frozen Sunlight, and use the Rune of Flames to stabilize the mote of light so it does not dissolve.`, `You have created frozen sunlight!`, "main");
+questlist[91] = new Quest([], "Ruby of the Sun", "The Oracle", "The Underworld", `Create the Ruby of the Sun. Take a perfect, cut ruby, and cast Empower on it, using as reagents mandrake root, sulfurous ash, spider silk, mistletoe, and frozen sunlight.`, `You have the Ruby of the Sun.`, "main");
+questlist[92] = new Quest([], "Light in the Underworld", "The Oracle", "The Underworld", `Return through a whirlpool to the underworld, and find the four high points of that region. At each, use the Ruby Gem of the Sun to bring sunlight into the underworld.`, `You have brightened the underworld.`, "main");
+questlist[93] = new Quest([], "Into the Uttermost Dark", "The Oracle", "The Underworld", `In the far north of this region of the underworld is a pit. Take the Ruby Gem of the Sun there and use it to defeat the Shepherd of the Dark.`, `You have won the game!!`, "main");
 
 
 // verbage for reference guide:
@@ -236,3 +251,12 @@ questlist[78] = new Quest([], "Learn More", "Rhys", "Black Dragon Castle", `You 
 // In another game, the initial log entry might say "Talk to Sir Galahad about the troll under the bridge," and then when you do, the
 // description might change to say "Take care of the troll yourself." Here, though, the quest log is just to remind you what you're
 // doing, and the details are up to you to keep track of.
+
+function CheckOracleQuest() {
+  let q79 = questlog.findQuest(79);
+  let q80 = questlog.findQuest(80);
+  if (q79 && q80 && q81 && q79.completed && q80.completed) {
+    questlog.activate(81);
+  }
+}
+
