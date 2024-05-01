@@ -327,7 +327,7 @@ mappages["spire2"].features[36] = {name : 'PentagramSW', x : 25, y : 18};
 mappages["spire2"].features[37] = {name : 'DustyFireplace', x : 28, y : 14};
 mappages["spire2"].features[38] = {name : 'SmallBox', x : 27, y : 13, lootgroup : 'potslow', lootedid : 'spire7'};
 mappages["spire2"].features[39] = {name : 'BookshelfRight', x : 26, y : 13, lootedid : 'spireshelf4', searchyield : 'ScrollHeal'};
-mappages["spire2"].features[40] = {name : 'BookshelfLeft', x : 25, y : 13, lootedid : 'natassaresearch', searchyield : 'NatassaResearch,NatassaResearch2'};
+mappages["spire2"].features[40] = {name : 'BookshelfLeft', x : 25, y : 13, searchyield : 'NatassaResearch,NatassaResearch2'};
 mappages["spire2"].features[41] = {name : 'Vanity', x : 12, y : 7};
 mappages["spire2"].features[42] = {name : 'BookshelfOne', x : 13, y : 7, lootedid : 'spireshelf1', searchyield : 'NatassaJournal'};
 mappages["spire2"].features[43] = {name : 'Chest', x : 20, y : 15, lootgroup : 'spireloot', lootedid : 'spire4'};
@@ -454,9 +454,9 @@ mappages["spire3"].terrain[31] = '_^ _^ _^ _^ _^ _^ _^ _^ _^ _^ _^ _^ _^ _^ _^ _
 mappages["spire3"].features = [];
 mappages["spire3"].features[0] = {name : 'StairDown', x : 13, y : 12, entermap : 'spire2', enterx : 16, entery : 16};
 mappages["spire3"].features[1] = {name : 'Door', x : 11, y : 13};
-mappages["spire3"].features[2] = {name : 'Door', x : 17, y : 13};
+mappages["spire3"].features[2] = {name : 'SecretDoor', x : 17, y : 13};
 mappages["spire3"].features[3] = {name : 'SunLens', x : 15, y : 12};
-mappages["spire3"].features[4] = {name : 'BookshelfOne', x : 16, y : 12};
+mappages["spire3"].features[4] = {name : 'BookshelfOne', x : 16, y : 12, searchyield : 'NatassaProjects'};
 mappages["spire3"].features[5] = {name : 'CrenellationNW', x : 9, y : 6};
 mappages["spire3"].features[6] = {name : 'CrenellationNW', x : 7, y : 8};
 mappages["spire3"].features[7] = {name : 'CrenellationN', x : 8, y : 8};
@@ -544,6 +544,16 @@ mappages["spire3"].returninfused = '0';
 mappages["spire3"].linkedMaps = ["spire2","worldsending1","worldsending2","worldsending3"];
 mappages["spire3"].editorLabels = '{}';
 // MAP ENDS HERE
+
+mappages["spire3"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    if (PC.checkInventory("NatassaProjects")) { 
+      let tile = mapref.getTile(16,12);
+      let shelf = tile.getTopFeature();
+      shelf.searchyield = '';
+    }
+  }
+}
 
 // MAP BEGINS HERE
 mappages["worldsending2"] = {};
