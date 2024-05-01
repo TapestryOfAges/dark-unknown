@@ -1128,7 +1128,7 @@ NegateMagicTile.prototype.applyEffect = function(silent) {
 
 NegateMagicTile.prototype.eachTurn = function() {
   let negated = DU.gameflags.getFlag("negate");
-  if (!negated[this.negatedmap.getName()]) {
+  if (!negated[this.negatedmap]) {
     this.endEffect();
   }
 }
@@ -1137,12 +1137,12 @@ NegateMagicTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
   let negmap = this.negatedmap;
   let negated = DU.gameflags.getFlag("negate");
-  delete negated[negmap.getName()];
+  delete negated[negmap];
   DU.gameflags.setFlag("negate", negated);
-  negmap.deleteThing(who);
+  who.getHomeMap().deleteThing(who);
   DUTime.removeEntityFrom(who);
   
-  if (PC.getHomeMap() === negmap) {
+  if (PC.getHomeMap().getName() === negmap) {
     maintext.addText("The ether is accessible again.");
   }
 
