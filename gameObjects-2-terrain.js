@@ -3333,7 +3333,7 @@ YellowCheckeredFloorTile.prototype = new TerrainObject();
 function LavaTubeTile() {
 	this.name = "LavaTube";
   this.graphic = "static.gif";
-  this.spritexoffset = -3*32;
+  this.spritexoffset = -2*32;
   this.spriteyoffset = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
@@ -3341,8 +3341,6 @@ function LavaTubeTile() {
 	this.desc = "lava tube";
 	this.peerview = "#853e3e";
 	this.walkSound = "stone";
-	
-	HasAmbientNoise.call(this,"sfx_lava_bubble",1.5);
 }
 LavaTubeTile.prototype = new TerrainObject();
 
