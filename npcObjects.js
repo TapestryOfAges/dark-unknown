@@ -4298,7 +4298,7 @@ function BlackDragonNPCTile() {
   this.level = 6;
   this.addhp = 10;
   this.str = 24;
-  this.dex = 24;
+  this.dex = 18;
   this.int = 24;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
@@ -4309,16 +4309,15 @@ function BlackDragonNPCTile() {
   this.meleeDamage = '5d4+15'
   this.meleeStrDamage = 1
   this.missileAttackAs = 'none';
-  this.armorAs = 'PlateArmor';
+  this.armorAs = 'ChainArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
   this.lootTable = 'Blackdragon';
   this.prefix = 'a';
   this.desc = "black dragon";
-  this.meleeChance = 70;
-  this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, };
+  this.meleeChance = 80;
   this.resists = {};
-  this.special = 'firebreath, ruthless,stationary, ondeathEndact';
+  this.special = 'firebreath, ruthless,ondeathEndact';
   this.meleeHitSound = 'sfx_roar_hit';
   this.meleeAttackSound = 'sfx_roar_miss';
   this.xpval = 0;
@@ -4405,7 +4404,7 @@ function DragonNPCTile() {
   this.meleeDamage = '5d4+15'
   this.meleeStrDamage = 1
   this.missileAttackAs = 'none';
-  this.armorAs = 'PlateArmor';
+  this.armorAs = 'ChainArmor';
   this.movetype = MOVE_FLY;
   this.leavesCorpse = 'none';
   this.lootTable = 'dragon';
