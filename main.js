@@ -365,14 +365,18 @@ function DoAction(code, ctrl) {
 
         let prince = targetCursor.prince;
         delete targetCursor.prince;
-        prince.realgraphic = prince.getGraphicArray();
-        prince.setGraphicArray(["static.gif","",-256,-2464]);
-        prince.setAttitude("neutral"); // so dragon doesn't attack him
+        let body = localFactory.createTile("PrinceBody");
+        let pmap = prince.getHomeMap();
+        pmap.placeThing(prince.getx(),prince.gety(),body);
+        pmap.deleteThing(prince);
+//        prince.realgraphic = prince.getGraphicArray();
+//        prince.setGraphicArray(["static.gif","",-256,-2464]);
+//        prince.setAttitude("neutral"); // so dragon doesn't attack him
 
-        let fieldeffect = localFactory.createTile("Sleep");
+//        let fieldeffect = localFactory.createTile("Sleep");
     
-        fieldeffect.setExpiresTime(-1);
-        prince.addSpellEffect(fieldeffect);
+//        fieldeffect.setExpiresTime(-1);
+//        prince.addSpellEffect(fieldeffect);
    
         Close_BDC_Gate(PC.getHomeMap());
 
@@ -389,7 +393,7 @@ function DoAction(code, ctrl) {
           if (bdnpcs[i].getName() === "TownGuardNPC") {
             bdnpcs[i].setAggro(1); // make the guards help against the dragon
             let wpn = bdnpcs[i].getEquipment("weapon");
-            wpn.setDamage("2d4+1");
+            wpn.setDamage("2d6+1");
             wpn.setStrDamage(.5);
           }
         }
