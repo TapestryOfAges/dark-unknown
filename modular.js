@@ -516,7 +516,6 @@ function PerformActEnd() {
     returnmap.moveThing(36,15,taran);
     MoveBetweenMaps(PC,PC.getHomeMap(),returnmap,37,15);
     DrawMainFrame("draw",returnmap,37,15);
-    FadeIn();
 
     endact.setPower(4);
   } else if (endact.getPower() === 4) {
@@ -527,6 +526,7 @@ function PerformActEnd() {
     endact.setPower(6);
   } else if (endact.getPower() === 6) {
     maintext.addText("<span class='sysconv'>You have gained: 100 XP.</span>");
+    FadeIn();
     PC.addxp(100);
     DU.gameflags.setFlag("act2",DUTime.getGameClock());
     BeginAct2();
@@ -535,6 +535,7 @@ function PerformActEnd() {
     PC.deleteSpellEffect(endact);
     DrawCharFrame();
     PC.endTurn(0);
+    maintext.drawTextFrame();
   }
 
 }
