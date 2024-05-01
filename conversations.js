@@ -64,8 +64,15 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
       else { addtolog.flagsmet += " " + flags.has_condition; }
     }
     if (flags.hasOwnProperty("function_call")) {
-      if (typeof ConvTestFlags[flags.function_call] === "function") {
-        if (!ConvTestFlags[flags.function_call](speaker, keyword)) {
+      let funcval;
+      let funcname = flags.function_call;
+      if (flags.function_call.includes("-")) {
+        let tmparray = flags.function_call.split("-");
+        funcname = tmparray[0];
+        funcval = tmparray[1];
+      }
+      if (typeof ConvTestFlags[funcname] === "function") {
+        if (!ConvTestFlags[funcname](speaker, keyword, funcval)) {
           flags_met = 0;
         } else { addtolog.flagsmet += " " + flags.function_call; }
       } else { flags_met = 0; }
@@ -1112,6 +1119,20 @@ OnConvTriggers["solved_pheran"] = function(speaker,keyword) {
   DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
 }
 
+OnConvTriggers["oracle_tome"] = function(speaker,keyword) {
+  questlog.activate(80);
+}
+
+OnConvTriggers["given_regalia"] = function(speaker,keyword) {
+  CheckOracleQuest();
+}
+
+OnConvTriggers["oracle_firstquests"] = function(speaker,keyword) {
+  questlog.activate(83);
+  questlog.activate(84);
+  questlog.activate(91);
+}
+
 OnConvTriggers["where_king"] = function(speaker,keyword) {
   let speakertext = speaker.getFullDesc();
   speakertext = speakertext.charAt(0).toUpperCase() + speakertext.slice(1);
@@ -1412,6 +1433,14 @@ OnConvTriggers["given_crystal"] = function(speaker,keyword) {
 }
 
 function ConvTestFlags() {};
+
+ConvTestFlags["on_quest"] = function(speaker,keyword,questnum) {
+  let dq = questlog.findQuest(questnum);
+  if (dq && dq.active) {
+    return 1;
+  }
+  return 0;
+}
 
 ConvTestFlags["warren_close"] = function(speaker,keyword) {
   let warren;
