@@ -10077,6 +10077,10 @@ WallOfFlamesTile.prototype.use = function(user) {
     return retval;
   }
   ApplyRune(user, "flames", this);
+  let q = questlog.findQuest(89);
+  if (q) { 
+    questlog.activate(90);
+  }
   return retval;
 }
 
@@ -11420,6 +11424,16 @@ PetrifiedReaperTile.prototype.onSearched = function(who) {
   return retval;
 }
 
+function PrinceBodyTile() {
+  this.name = "PrinceBody";
+  this.graphic = "static.gif";
+  this.spritexoffset = -256;
+  this.spriteyoffset = -2464;
+  this.passable = 0;
+  this.desc = "Lance, unconscious";
+  this.peerview = "white";
+}
+PrinceBodyTile.prototype = new FeatureObject();
 
 function OracleObject() {
   this.name = "OracleObject";
@@ -11668,7 +11682,7 @@ function CrownTile() {
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "crown";
-  this.longdesc = "Not one of the crowns your parents wear, but one of the crown jewels nonetheless.";
+  this.longdesc = "The antique crown from the Hilden dynasty.";
   this.prefix = "a";
 
   this.addType("Quest");  
@@ -11683,7 +11697,7 @@ function CrownJewelTile() {
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "royal necklace";
-  this.longdesc = "This necklace, with heavy gold and a large set stone, is one of the crown jewels.";
+  this.longdesc = "This necklace, with heavy gold and a large set stone, was one of the crown jewels of the Hilden dynasty.";
   this.prefix = "a";
 
   this.addType("Quest");  
@@ -11699,12 +11713,28 @@ function SceptreTile() {
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "sceptre";
-  this.longdesc = "This sceptre, with a blue stone at the tip, is one of the crown jewels.";
+  this.longdesc = "This sceptre, with a blue stone at the tip, was one of the crown jewels of the Hilden dynasty.";
   this.prefix = "a";
 
   this.addType("Quest");  
 }
 SceptreTile.prototype = new ItemObject();
+
+function RoyalRegaliaTile() {
+  // Graphic needed
+  this.name = "RoyalRegalia";
+  this.graphic = "static.gif";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -98*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "royal regalia";
+  this.longdesc = "The crown, amulet, and scepter that your mother wore, handed to you to offer to the Oracle.";
+  this.prefix = "a";
+
+  this.addType("Quest");  
+}
+RoyalRegaliaTile.prototype = new ItemObject();
 
 function KineticCrystalTile() {
   //Graphics upgraded
@@ -12341,6 +12371,8 @@ UncutLargeRubyTile.prototype = new ItemObject();
 
 UncutLargeRubyTile.prototype.onGet = function(who) {
   DU.gameflags.setFlag("rune_gems",1);
+  questlog.complete(86);
+  questlog.activate(87);
 
   return {};
 }
@@ -12536,6 +12568,12 @@ RubyGemoftheSunTile.prototype.use = function(who) {
     let light = localFactory.createTile("RubyLight");
     who.addSpellEffect(light);
   }
+
+  if (DU.gameflags.getFlag("ashesbeacon") && DU.gameflags.getFlag("dustbeacon") && DU.gameflags.getFlag("icebeacon") && DU.gameflags.getFlag("bonebeacon")) {
+    questlog.complete(92);
+    questlog.activate(93);
+  }
+
   return retval;
 }
 
@@ -13206,6 +13244,12 @@ BookItemObject.prototype.use = function(who) {
   }
   if (this.startquest) {
     questlog.activate(this.startquest);
+
+    // DU Specific check
+    if ((this.startquest === 89) && (PC.runes.flames)) {
+      questlog.complete(89);
+      questlog.activate(90);
+    }
   }
   if (this.completequest) {
     questlog.activate(this.completequest);
@@ -13478,6 +13522,23 @@ function NatassaResearch2Tile() {
   this.completequest = 43;
 }
 NatassaResearch2Tile.prototype = new BookItemObject();
+
+function NatassaProjectsTile() {
+  //Graphics Upgraded
+  this.name = "NatassaProjects";
+  this.graphic = "static.gif";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -37*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "journal";
+  this.prefix = "a";
+  this.contents = "You read the notes carefully.%%<span class='conv'>Experiments in Alchemical Reification</span>%%<span class='conv'>Seeking to create solid objects out of immaterial things. Concepts. Feelings. Imagine: a sword, made from Justice. A shield of raw Courage.</span>%%<span class='conv'>Experiments so far a failure. Tried love. Took a step to the side and tried moonlight, came closest, but it's just too ephemeral.</span>%%<span class='conv'>Partial success! I have created a lens through which I was able to freeze sunlight into a crystal. It is simple to use- just bring it out into the sun, angle the lens, and wait. Unfortunately, the crystal sublimated seconds later. But briefly I had solid sunlight!</span>%%<span class='conv'>I have a theory- sunlight is enough akin to fire that I believe the Rune of Flames would work to stabilize the mote of sunlight. The trouble is, it is no longer possible to get to the gate off the northeast corner of the Isle of Lost Hope. I wonder if there is another option...</span>";
+  this.longdesc = "Notes on Natassa's projects.";
+  this.startquest = 89;
+  this.completequest = 88;
+}
+NatassaProjectsTile.prototype = new BookItemObject();
 
 function ToshinJournalTile() {
   //Graphics Upgraded
