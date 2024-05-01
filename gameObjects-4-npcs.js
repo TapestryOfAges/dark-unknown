@@ -415,6 +415,7 @@ NPCObject.prototype.processDeath = function(droploot){
       DU.gameflags.setFlag("intermission",1);
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame(); 
+      let returnmap;
       setTimeout(function() {
         maintext.addText("You cease to feel as consciousness flees from you.");
         setTimeout(function() {
@@ -431,13 +432,13 @@ NPCObject.prototype.processDeath = function(droploot){
             returnmap.moveThing(36,15,taran);
             MoveBetweenMaps(PC,PC.getHomeMap(),returnmap,37,15);
             DrawMainFrame("draw",returnmap,37,15);
-            FadeIn();
             setTimeout(function() {
               maintext.addText(`<br style='textbreak' />Taran kneels beside you. "${PC.getPCName()}, I'm glad you're ok. The dragon was struck down, and its body just... disappeared. But your brother hasn't woken up. Gather your strength, and get up when you feel ready."`);
               setTimeout(function() {
                 maintext.addText("<br style='textbreak' />You close your eyes for a moment, and an unknown amount of time passes before you are again able to stand.");
                 setTimeout(function() {
                   maintext.addText("<span class='sysconv'>You have gained: 100 XP.</span>");
+                  FadeIn();
                   maintext.setInputLine("&gt;");
                   PC.addxp(100);
                   DU.gameflags.setFlag("act2",DUTime.getGameClock());
