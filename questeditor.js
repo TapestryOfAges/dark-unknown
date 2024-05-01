@@ -5,7 +5,7 @@ let selectedquest;
 function FillTitles() {
   let questtext = "<table cellpadding='0' cellspacing='0' border='1'>";
   for (let i=0;i<questlist.length;i++) {
-    questtext += `<tr><td onclick='ClickQuest(${i})'>${questlist[i].name}</td></tr>`;
+    questtext += `<tr><td onclick='ClickQuest(${i})'>${i}: ${questlist[i].name}</td></tr>`;
   }
   questtext += "</table>";
 
