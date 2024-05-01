@@ -3060,9 +3060,9 @@ ais.ai_firebreath = function(who) {
   bolt.directionalammo = 1;
   bolt = GetEffectGraphic(who,tgt,bolt);
   let dmg;
-  if (who.getLevel() <= 3) { dmg = Dice.roll("2d8+8"); }
-  else if (who.getLevel() <= 5) { dmg = Dice.roll("4d8+14"); }
-  else { dmg = Dice.roll("4d8+26"); }
+  if (who.getLevel() <= 3) { dmg = Dice.roll("2d8+6"); }
+  else if (who.getLevel() <= 5) { dmg = Dice.roll("4d8+8"); }
+  else { dmg = Dice.roll("4d8+14"); }
   let atkhit = 1;
   if (Dice.roll("1d45") < PC.getDex()) { atkhit = 0; }
   let destgraphic = {};
