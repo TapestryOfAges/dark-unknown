@@ -55,6 +55,7 @@ ivan_lastvisit - whether Ivan was there
 get_shield - you've agreed to get Nyrani's shield
 shield_gotten - you've gotten the shield
 has_shield - you've given the shield to Nyrani
+sarah_arthur - Sarah has mentioned Arthur (used for Paulon)
 rescued_sam - rescued Samantha from Shadow  ** (endgame support)
 shadow_safe - monsters in shadow between Sam and the entrance are dead.
 damien_anna - damien mentioned anna to you
@@ -199,8 +200,10 @@ beldskae_king - Daragen has talked to you about Beldskae (whether it was saved o
 beldskae_jharden - Jharden has talked to you about the Abyss (which happens after Beldskae is attacked)
 jharden_abyss - you've talked to Jharden after crossing the Abyss
 rune_gems - used the Rune of Kings in the appropriate place in Kalton Mine to uncover the perfect ruby
+gave_ruby - colin gave you the PerfectRuby
 unenchanted_sword - broken Ezwilden has been picked up
 given_regalia - Shelaria gave you her crown and scepter
+oracle_sacrifice - you've sacrifice the crown jewels to the oracle
 oracle_spoke - the Oracle has told you what to do
 elder_killed - Elder Dragon is dead
 stoneshadow - You have been told about the use for the Stone of Shadow
