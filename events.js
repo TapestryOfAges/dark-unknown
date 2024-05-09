@@ -209,3 +209,7 @@ EventFunctions["BanditYell"] = function(ev) {
   }
   Listener.clearListener("BanditYell");
 }
+
+EventFunctions["Vault"] = function(ev) {
+
+}
