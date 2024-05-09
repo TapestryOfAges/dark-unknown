@@ -101,7 +101,7 @@ function SetMerchants() {
 
   bill.dale = {};
   bill.dale.stock = [ { item: "YellowPotion", quantity: 4, price: 50, desc: "Lesser Heal Potion", sale: '"Would you like anything else?"', sellqty: 1},
-                        { item: "PurplePotion", quantity: 4, price: 80, desc: "Purple Potion", sale: '"Would you like anything else?"', sellqty: 1},
+                        { item: "PurplePotion", quantity: 4, price: 80, desc: "Protection Potion", sale: '"Would you like anything else?"', sellqty: 1},
                         { item: "ScrollFireArmor", quantity: 2, price: 100, desc: "Scroll of Fire Armor", sale: '"Excellent choice."', sellqty: 1},
                         { item: "ScrollSmite", quantity: 1, price: 130, desc: "Scroll of Smite", sale: '"Something will be sure to regret meeting you."', sellqty: 1},
                         { item: "AudachtaNemesosIronFlesh", quantity: 1, price: 250, desc: "Audachta Nemesos: Iron Flesh", sale: '"Ah, an eye for the rare and valuable."', sellqty: 1},
@@ -120,6 +120,15 @@ function SetMerchants() {
                         { item: "OrangePotion", quantity: 0, price: 80, desc: "Mana Potion", sale: '"Would you like anything else?"', sellqty: 1},
                                 ];
   bill.dale.type = "stuff";
+
+// Consolation
+  bill.connor = {};
+  bill.connor.stock = [ { item: "BrownPotion", quantity: 1, price: 160, desc: "Greater Mana Potion", sale: '"May it serve you well."', sellqty: 0},
+                        { item: "BlackPotion", quantity: 1, price: 140, desc: "Bless Potion", sale: '"May it serve you well."', sellqty: 0},
+                        { item: "PurplePotion", quantity: 1, price: 100, desc: "Protection Potion", sale: '"May it serve you well."', sellqty: 0},
+                        { item: "Blood Moss", quantity: 2, price: 40, desc: "Blood Moss", sale: '"Use it well."', sellqty: 0},
+                        { item: "Mandrake Root", quantity: 1, price: 90, desc: "Mandrake Root", sale: '"Use it well."', sellqty: 0},
+                      ];
 
   // MAGIC
 
