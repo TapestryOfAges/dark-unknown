@@ -1127,8 +1127,8 @@ function BullNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 240,
-    framedurationmax: 300,
+    framedurationmin: 120,
+    framedurationmax: 170,
     startframe: "random"
   });
 }
@@ -1312,7 +1312,7 @@ function CourierNPCTile() {
   });
 
   this.defwornlayers.body = 'WhiteTunic'
-  this.defwornlayers.head = 'BlondePale'
+  this.defwornlayers.head = 'random'
   this.defwornlayers.offhand = 'OffhandPale'
   this.defwornlayers.mainhand = 'MainHandPale'
 
@@ -1448,7 +1448,7 @@ GiantBatNPCTile.prototype = new NPCObject();
 function GiantInsectsNPCTile() {
   this.name = 'GiantInsectsNPC';
   this.level = 1;
-  this.addhp = -2;
+  this.addhp = 2;
   this.str = 3;
   this.dex = 8;
   this.int = 2;
@@ -1904,7 +1904,7 @@ function PythonNPCTile() {
   this.name = 'PythonNPC';
   this.level = 2;
   this.addhp = -5;
-  this.str = 6;
+  this.str = 8;
   this.dex = 12;
   this.int = 3;
   this.alignment = 'Neutral';
@@ -1913,7 +1913,7 @@ function PythonNPCTile() {
   this.forgetAt = 10;
   this.withdraw = 0;
   this.meleeAttackAs = 'none';
-  this.meleeDamage = '1d3+1'
+  this.meleeDamage = '1d4+1'
   this.meleeStrDamage = .33
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -2212,6 +2212,8 @@ function AnimatedArmorNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
+  this.graphic = '338.gif';
+  this.altgraphic = ['372.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
@@ -2226,19 +2228,6 @@ function AnimatedArmorNPCTile() {
   this.special = 'construct, wander';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.graphic = 'static.gif';
-  this.spritexoffset = 0 * 32;
-  this.spriteyoffset = -175 * 32;
-
-  ManualAnimation.call(this, { 
-    animstart: 0*32,
-    animlength: 5,
-    animstyle: "random",
-    allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
-    startframe: "random"
-  });
 }
 AnimatedArmorNPCTile.prototype = new NPCObject();
 
@@ -2485,7 +2474,7 @@ function FlukeNPCTile() {
   this.meleeChance = 40;
   this.spellsknown = { lowcontrol: 1, };
   this.resists = { ice:33 };
-  this.special = 'whirlpool, underground';
+  this.special = 'whirlpool, hides:spacer.gif';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
   this.graphic = 'static.gif';
@@ -2716,7 +2705,8 @@ function MimicNPCTile() {
   this.peaceAI = 'seekPC-3';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = 'static.gif';
+  this.graphic = '368.gif';
+  this.altgraphic = ['334.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+8'
   this.meleeStrDamage = .66
@@ -2727,9 +2717,9 @@ function MimicNPCTile() {
   this.lootTable = 'Level3';
   this.prefix = 'a';
   this.desc = "chest";
-  this.meleeChance = 80;
+  this.meleeChance = 100;
   this.resists = {};
-  this.special = 'mimic, spitter, stationary';
+  this.special = 'hides:008.gif, aggroname:a mimic, spitter, stationary';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
 }
@@ -3388,7 +3378,7 @@ function LurkerNPCTile() {
   this.onHit = 'entangle';
   this.meleeChance = 100;
   this.resists = {};
-  this.special = 'underground,wander';
+  this.special = 'hides:spacer.gif,wander';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
   this.graphic = 'static.gif';
@@ -3734,7 +3724,7 @@ function CorpserNPCTile() {
   this.onHit = 'entangle';
   this.meleeChance = 50;
   this.resists = {};
-  this.special = 'underground, reach,wander';
+  this.special = 'hides:spacer.gif, reach,wander';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
   this.graphic = 'static.gif';
@@ -4298,7 +4288,7 @@ function BlackDragonNPCTile() {
   this.level = 6;
   this.addhp = 10;
   this.str = 24;
-  this.dex = 18;
+  this.dex = 24;
   this.int = 24;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
@@ -4309,15 +4299,16 @@ function BlackDragonNPCTile() {
   this.meleeDamage = '5d4+15'
   this.meleeStrDamage = 1
   this.missileAttackAs = 'none';
-  this.armorAs = 'ChainArmor';
+  this.armorAs = 'PlateArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
   this.lootTable = 'Blackdragon';
   this.prefix = 'a';
   this.desc = "black dragon";
-  this.meleeChance = 80;
+  this.meleeChance = 70;
+  this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, };
   this.resists = {};
-  this.special = 'firebreath, ruthless,ondeathEndact';
+  this.special = 'firebreath, ruthless,stationary, ondeathEndact';
   this.meleeHitSound = 'sfx_roar_hit';
   this.meleeAttackSound = 'sfx_roar_miss';
   this.xpval = 0;
@@ -4404,7 +4395,7 @@ function DragonNPCTile() {
   this.meleeDamage = '5d4+15'
   this.meleeStrDamage = 1
   this.missileAttackAs = 'none';
-  this.armorAs = 'ChainArmor';
+  this.armorAs = 'PlateArmor';
   this.movetype = MOVE_FLY;
   this.leavesCorpse = 'none';
   this.lootTable = 'dragon';
@@ -6756,12 +6747,23 @@ function FireLizardGroupTile() {
   this.name = 'FireLizardGroup';
   this.desc = 'fire lizards';
   this.peaceAI = 'Monster-10';
-  this.graphic = '349.gif';
-  this.altgraphic = ['383.gif',];
   this.group = [];
   this.group[0] = new NPCList('FireLizardNPC', '1d5+1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'static.gif';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -151 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 FireLizardGroupTile.prototype = new NPCGroupObject();
 
@@ -6769,14 +6771,25 @@ function MagmaLizardGroupTile() {
   this.name = 'MagmaLizardGroup';
   this.desc = 'fire lizards';
   this.peaceAI = 'Monster-10';
-  this.graphic = '349.gif';
-  this.altgraphic = ['383.gif',];
   this.group = [];
   this.group[0] = new NPCList('MagmaLizardNPC', '1d4');
   this.group[1] = new NPCList('FireLizardNPC', '1d4+1');
   this.group[2] = new NPCList('FireElementalNPC', '1d2-1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'static.gif';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -154 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 MagmaLizardGroupTile.prototype = new NPCGroupObject();
 
