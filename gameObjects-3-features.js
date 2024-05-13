@@ -2534,7 +2534,7 @@ function OnFire(who, what) {
 
 function CampfireExtinguishedTile() {
 	this.name = "CampfireExtinguished";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -99*32;  
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
