@@ -113,6 +113,28 @@ function PlaceholderTile() {
 }
 PlaceholderTile.prototype = new FeatureObject();
 
+function SafeLavaTile() {
+  //Graphic Upgraded
+  this.name = "SafeLava";
+  this.graphic = "static.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK + MOVE_SWIM;
+  this.blocklos = 0;
+  this.desc = "lava";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -165*32;
+  
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: 10,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 200,
+    framedurationmax: 200,
+    startframe: "start"
+  });
+}
+SafeLavaTile.prototype = new FeatureObject();
+
 function LavaTile() {
   //Graphic Upgraded
   this.name = "Lava";

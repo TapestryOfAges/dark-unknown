@@ -1263,6 +1263,310 @@ function SoutheastCoastCaveTile() {
 }
 SoutheastCoastCaveTile.prototype = new TerrainObject();
 
+// Lava versions
+
+function SouthLavaCoastMeadowTile() {
+  //Graphics Upgraded
+  this.name = "SouthLavaCoastMeadow";
+  this.graphic = "static.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -48*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#00c000";
+  this.walkSound = "grass";
+}
+SouthLavaCoastMeadowTile.prototype = new TerrainObject();
+
+function SouthLavaCoastTile() {
+  //Graphics Upgraded
+  this.name = "SouthLavaCoast";
+  this.graphic = "static.gif";
+  this.spritexoffset = -1*32;
+  this.spriteyoffset = -48*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#00c000";
+  this.walkSound = "grass";
+}
+SouthLavaCoastTile.prototype = new TerrainObject();
+
+function SouthLavaCoastSandTile() {
+  //Graphics Upgraded
+  this.name = "SouthLavaCoastSand";
+  this.graphic = "static.gif";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -48*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+}
+SouthLavaCoastSandTile.prototype = new TerrainObject();
+
+function SouthLavaCoastDirtTile() {
+  //Graphics Upgraded
+  this.name = "SouthLavaCoastDirt";
+  this.graphic = "static.gif";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -48*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+}
+SouthLavaCoastDirtTile.prototype = new TerrainObject();
+
+function SouthLavaCoastCaveTile() {
+  //Graphics Upgraded
+  this.name = "SouthLavaCoastCave";
+  this.graphic = "static.gif";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -48*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+}
+SouthLavaCoastCaveTile.prototype = new TerrainObject();
+
+function NorthLavaCoastMeadowTile() {
+  //Graphics Upgraded
+  this.name = "NorthLavaCoastMeadow";
+  this.graphic = "static.gif";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -48*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#00c000";
+  this.walkSound = "grass";
+}
+NorthLavaCoastMeadowTile.prototype = new TerrainObject();
+
+function NorthLavaCoastTile() {
+  //Graphics Upgraded
+  this.name = "NorthLavaCoast";
+  this.graphic = "static.gif";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -48*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#00c000";
+  this.walkSound = "grass";
+}
+NorthLavaCoastTile.prototype = new TerrainObject();
+
+function NorthLavaCoastSandTile() {
+  //Graphics Upgraded
+  this.name = "NorthLavaCoastSand";
+  this.graphic = "static.gif";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -48*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+}
+NorthLavaCoastSandTile.prototype = new TerrainObject();
+
+function NorthLavaCoastDirtTile() {
+  //Graphics Upgraded
+  this.name = "NorthLavaCoastDirt";
+  this.graphic = "static.gif";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -48*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+}
+NorthLavaCoastDirtTile.prototype = new TerrainObject();
+
+function NorthLavaCoastCaveTile() {
+  //Graphics Upgraded
+  this.name = "NorthLavaCoastCave";
+  this.graphic = "static.gif";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -48*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+}
+NorthLavaCoastCaveTile.prototype = new TerrainObject();
+
+function EastLavaCoastMeadowTile() {
+  //Graphics Upgraded
+  this.name = "EastLavaCoastMeadow";
+  this.graphic = "static.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -49*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#00c000";
+  this.walkSound = "grass";
+}
+EastLavaCoastMeadowTile.prototype = new TerrainObject();
+
+function EastLavaCoastTile() {
+  //Graphics Upgraded
+  this.name = "EastLavaCoast";
+  this.graphic = "static.gif";
+  this.spritexoffset = -1*32;
+  this.spriteyoffset = -49*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#00c000";
+  this.walkSound = "grass";
+}
+EastLavaCoastTile.prototype = new TerrainObject();
+
+function EastLavaCoastSandTile() {
+  //Graphics Upgraded
+  this.name = "EastLavaCoastSand";
+  this.graphic = "static.gif";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -49*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+}
+EastLavaCoastSandTile.prototype = new TerrainObject();
+
+function EastLavaCoastDirtTile() {
+  //Graphics Upgraded
+  this.name = "EastLavaCoastDirt";
+  this.graphic = "static.gif";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -49*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+}
+EastLavaCoastDirtTile.prototype = new TerrainObject();
+
+function EastLavaCoastCaveTile() {
+  //Graphics Upgraded
+  this.name = "EastLavaCoastCave";
+  this.graphic = "static.gif";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -49*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+}
+EastLavaCoastCaveTile.prototype = new TerrainObject();
+
+function WestLavaCoastMeadowTile() {
+  //Graphics Upgraded
+  this.name = "WestLavaCoastMeadow";
+  this.graphic = "static.gif";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -49*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#00c000";
+  this.walkSound = "grass";
+}
+WestLavaCoastMeadowTile.prototype = new TerrainObject();
+
+function WestLavaCoastTile() {
+  //Graphics Upgraded
+  this.name = "WestLavaCoast";
+  this.graphic = "static.gif";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -49*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#00c000";
+  this.walkSound = "grass";
+}
+WestLavaCoastTile.prototype = new TerrainObject();
+
+function WestLavaCoastSandTile() {
+  //Graphics Upgraded
+  this.name = "WestLavaCoastSand";
+  this.graphic = "static.gif";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -49*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+}
+WestLavaCoastSandTile.prototype = new TerrainObject();
+
+function WestLavaCoastDirtTile() {
+  //Graphics Upgraded
+  this.name = "WestLavaCoastDirt";
+  this.graphic = "static.gif";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -49*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+}
+WestLavaCoastDirtTile.prototype = new TerrainObject();
+
+function WestLavaCoastCaveTile() {
+  //Graphics Upgraded
+  this.name = "WestLavaCoastCave";
+  this.graphic = "static.gif";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -49*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+}
+WestLavaCoastCaveTile.prototype = new TerrainObject();
+
+// End lava versions
+
 function RiverTile() {
   this.name = "River";
   this.overlay = "riverns.gif";
