@@ -276,9 +276,15 @@ function StartAttract() {
   let forest = localFactory.createTile("Forest").getGraphicArray();
   let tree = localFactory.createTile("Tree").getGraphicArray();
   let campfire = localFactory.createTile("Campfire").getGraphicArray();
+  campfire[4] = campfire[2];
+  campfire[5] = campfire[3];
+  campfire[6] = 4;
   let cave = localFactory.createTile("Cave").getGraphicArray();
   let dungeon = localFactory.createTile("Dungeon").getGraphicArray();
   let keep = localFactory.createTile("Keep").getGraphicArray();
+  keep[4] = keep[2];
+  keep[5] = keep[3];
+  keep[6] = 4;
   let shrine = localFactory.createTile("Shrine").getGraphicArray();
   let hill = localFactory.createTile("Hills").getGraphicArray();
   let mountain = localFactory.createTile("Mountain").getGraphicArray();
@@ -288,7 +294,7 @@ function StartAttract() {
   let cobble = localFactory.createTile("Cobblestone").getGraphicArray();
   let wall = localFactory.createTile("Wall").getGraphicArray();
   let door = localFactory.createTile("DoorWindow").getGraphicArray();
-  let opendoor = ["master_spritesheet.png",0,-192,-704];
+//  let opendoor = ["master_spritesheet.png",0,-192,-704];
   let chair = localFactory.createTile("LeftChair").getGraphicArray();
   let tableedge = localFactory.createTile("LeftTable").getGraphicArray();
   let table = localFactory.createTile("MiddleTable").getGraphicArray();
@@ -301,6 +307,9 @@ function StartAttract() {
   let rightpost = localFactory.createTile("SignpostRight").getGraphicArray();
   let wpnsign = localFactory.createTile("WeaponSign").getGraphicArray();
   let brazier = localFactory.createTile("Brazier").getGraphicArray();
+  brazier[4] = brazier[2];
+  brazier[5] = brazier[3];
+  brazier[6] = 4;
 
   let attractmap = "<table cellpadding='0' cellspacing='0' border='0'>";
   attractmap += `<tr><td id='am1x1' style='opacity:0;background-image:url("graphics/${hill[0]}"); background-position: ${hill[2]}px ${hill[3]}px;width:32px;height:32px'></td>`;
@@ -1088,7 +1097,7 @@ function ExecuteAttract(frame) {
   let door = localFactory.createTile("DoorWindow").getGraphicArray();
   let opendoor = ["master_spritesheet.png",0,-192,-704];
   let chair = localFactory.createTile("LeftChair").getGraphicArray();
-  let food = localFactory.createTile("FoodSouthEdge").getGraphicArray();
+  let food = localFactory.createTile("FoodSouth").getGraphicArray();
   let tableedge = localFactory.createTile("LeftTable").getGraphicArray();
   let fireball;
 
@@ -2080,4 +2089,8 @@ function ShowTiles(board,x1,y1,x2,y2,fadein) {
       }
     }
   }
+}
+
+function AnimateTiles(board,tile,tiledef) {
+
 }

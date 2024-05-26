@@ -77,6 +77,28 @@ function PopulateAtlas(atlasref) {
   atlasref.insertkey("WestCoastSand",'|b');
   atlasref.insertkey("WestCoastDirt",'|d');
   atlasref.insertkey("WestCoastCave",'|c');
+
+  atlasref.insertkey("SouthLavaCoastMeadow",'_M');
+  atlasref.insertkey("SouthLavaCoast",'_l');
+  atlasref.insertkey("SouthLavaCoastSand",'_H');
+  atlasref.insertkey("SouthLavaCoastDirt",'_D');
+  atlasref.insertkey("SouthLavaCoastCave",'_C');
+  atlasref.insertkey("NorthLavaCoastMeadow",'-M');
+  atlasref.insertkey("NorthLavaCoast",'-l');
+  atlasref.insertkey("NorthLavaCoastSand",'-H');
+  atlasref.insertkey("NorthLavaCoastDirt",'-D');
+  atlasref.insertkey("NorthLavaCoastCave",'-C');
+  atlasref.insertkey("EastLavaCoastMeadow",'M|');
+  atlasref.insertkey("EastLavaCoast",'l|');
+  atlasref.insertkey("EastLavaCoastSand",'H|');
+  atlasref.insertkey("EastLavaCoastDirt",'D|');
+  atlasref.insertkey("EastLavaCoastCave",'C|');
+  atlasref.insertkey("WestLavaCoastMeadow",'|M');
+  atlasref.insertkey("WestLavaCoast",'|l');
+  atlasref.insertkey("WestLavaCoastSand",'|H');
+  atlasref.insertkey("WestLavaCoastDirt",'|D');
+  atlasref.insertkey("WestLavaCoastCave",'|C');
+
   atlasref.insertkey("NortheastCoastMeadow",'m`');
   atlasref.insertkey("NortheastCoast",'.`');
   atlasref.insertkey("NortheastCoastSand",'b`');
