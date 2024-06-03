@@ -510,6 +510,21 @@ function DoAction(code, ctrl) {
         gamestate.setMode("player");
         maintext.setInputLine("&gt; ");
       }
+    } else if (targetCursor.frozenintime) {
+      if (targetCursor.step === 1) {
+        let future = maps.addMap("VaultFuture");
+        MoveBetweenMaps(PC, PC.getHomeMap(),future,PC.getx(),PC.gety());
+        maintext.addText(`The walls have crumbled to the foundations, and there are strangers about. They come to you, all concerned.'`);
+        targetCursor.step++;
+      } else if (targetCursor.step === 2) {
+        maintext.addText(`After some confusing conversation, you realize the truth: you had teleported yourself into the heart of a Time Stop spell, and the spell has just, finally, broken.`);
+        targetCursor.step++;
+      } else if (targetCursor.step === 3) {
+        maintext.addText(`With shock you learn that several hundred years have passed while you were trapped. Your quest has no meaning now. It is over.`);
+        gamestate.setMode("null");
+        maintext.setInputLine("&gt;");
+        maintext.drawTextFrame();
+      }
     } else {
       if (((code >= 65) && (code <= 90)) || (code === 32) || (code === 13)) {  // letter, space, or enter
         if (targetCursor.command === "c") {
