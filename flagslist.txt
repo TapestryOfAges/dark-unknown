@@ -203,6 +203,7 @@ rune_gems - used the Rune of Kings in the appropriate place in Kalton Mine to un
 gave_ruby - colin gave you the PerfectRuby
 unenchanted_sword - broken Ezwilden has been picked up
 given_regalia - Shelaria gave you her crown and scepter
+time_started - you've cast Negate in the Vault
 oracle_sacrifice - you've sacrifice the crown jewels to the oracle
 oracle_spoke - the Oracle has told you what to do
 elder_killed - Elder Dragon is dead
