@@ -7020,7 +7020,9 @@ function WalkOnVault3Tile() {
 WalkOnVault3Tile.prototype = new FeatureObject();
 
 WalkOnVault3Tile.prototype.bumpinto = function(walker) {
-  let retval = { msg: "You prepare to take a step, but then you realize. The magic you feel is that time has ceased, inside this chamber. To take another step would be to be lost, frozen in time. Wisely, you decide not to move closer.", canmove: 0 };
+  let msg = "You prepare to take a step, but then you realize. The magic you feel is that time has ceased, inside this chamber. To take another step would be to be lost, frozen in time. Wisely, you decide not to move closer."
+  if (walker !== PC) { msg = ""; }
+  let retval = { msg: msg , canmove: 0 };
 
   return retval;
 }
@@ -7034,6 +7036,10 @@ WalkOnVault3Tile.prototype.walkon = function(walker) {
     targetCursor.step = 1;
 
     return {msg:"You Blink, and reappear... and immediately all around you has changed.", override : 4};
+  } else if (!DU.gameflags.getFlag("time_started")) {
+    let para = localFactory.createTile("Paralyze");
+    walker.addSpellEffect(para);
+    walker.frozenintime = 1;
   }
   return {msg:""};
 }
