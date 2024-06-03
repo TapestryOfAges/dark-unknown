@@ -104,6 +104,7 @@ mappages["vault"].features[59] = {name : 'PileOfRocks', x : 23, y : 21};
 mappages["vault"].features[60] = {name : 'PileOfRocks', x : 19, y : 25};
 mappages["vault"].features[61] = {name : 'EmptyBookshelfLeft', x : 22, y : 19};
 mappages["vault"].features[62] = {name : 'EmptyBookshelfRight', x : 23, y : 19};
+mappages["vault"].features[63] = {name : 'PileOfRocks', x : 13, y : 10};
 
 
 mappages["vault"].npcs = [];
@@ -148,6 +149,114 @@ mappages["vault"].editorLabels = '{}';
 
 mappages["vault"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
-    Listener.createListener("Vault", "Negate Magic", [], "vault");
+    if (!DU.gameflags.getFlag("time_started")) {
+      Listener.createListener("Vault", "Negate Magic", [], "vault");
+
+      let frozen = mapref.getTile(10,9).getTopNPC();
+      frozen.noAnim = 1;
+      let para = localFactory.createTile("Paralyze");
+      frozen.addSpellEffect(para);
+      frozen.frozenintime = 1;
+      frozen = mapref.getTile(10,11).getTopNPC();
+      frozen.noAnim = 1;
+      para = localFactory.createTile("Paralyze");
+      frozen.addSpellEffect(para);
+      frozen.frozenintime = 1;
+      let braz = mapref.getTile(7,8).getTopFeature();
+      braz.noAnim = 1;
+    }
   }
+
 }
+
+
+
+// MAP BEGINS HERE
+mappages["vaultfuture"] = {};
+mappages["vaultfuture"].terrain = [];
+ mappages["vaultfuture"].terrain[0] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+ mappages["vaultfuture"].terrain[1] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+ mappages["vaultfuture"].terrain[2] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+ mappages["vaultfuture"].terrain[3] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+ mappages["vaultfuture"].terrain[4] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+ mappages["vaultfuture"].terrain[5] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+ mappages["vaultfuture"].terrain[6] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+ mappages["vaultfuture"].terrain[7] = '^^ ^^ ^^ ^^ ^^ ^^ ## ## ## ## ## ## ## ## ## ## ., ., ., ., ., ., ., ., ., ., ^^ ^^ ^^ ^^ ^^ ^^';
+ mappages["vaultfuture"].terrain[8] = '^^ ^^ ^^ ^^ ^^ ^^ ## +c +c +c +c +c +c +c +x ., ., ., ., ., ., ., ., ., ., ., ^^ ^^ ^^ ^^ ^^ ^^';
+ mappages["vaultfuture"].terrain[9] = '^^ ^^ ^^ ^^ ^^ ^^ ## +c +c +c +c +c +c +c +c +c ., ., ., ., ., ., ., ., ., ., ^^ ^^ ^^ ^^ ^^ ^^';
+mappages["vaultfuture"].terrain[10] = '^^ ^^ ^^ ^^ ^^ ^^ ## +c +c +c +c +c +c +c ., ., ., ., ., ., ., ., ., ., ., ., ^^ ^^ ^^ ^^ ^^ ^^';
+mappages["vaultfuture"].terrain[11] = '^^ ^^ ^^ ^^ ^^ ^^ ## +c +c +c +c +c +c +c ., ., ., ., ., ., ., ., ., ., ., ., ^^ ^^ ^^ ^^ ^^ ^^';
+mappages["vaultfuture"].terrain[12] = '^^ ^^ ^^ ^^ ^^ ^^ ## ## ## ## ## +x +c ., ., ., ., ., ., ., !# !# !# !# ., ., ^^ ^^ ^^ ^^ ^^ ^^';
+mappages["vaultfuture"].terrain[13] = '^^ ^^ ^^ ^^ ^^ ^^ ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ^^ ^^ ^^ ^^ ^^ ^^';
+mappages["vaultfuture"].terrain[14] = '^^ ^^ ^^ ^^ ^^ ^^ ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ^^ ^^ ^^ ^^ ^^ ^^';
+mappages["vaultfuture"].terrain[15] = '^^ ^^ ^^ ^^ ^^ ^^ ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ^^ ^^ ^^ ^^ ^^ ^^';
+mappages["vaultfuture"].terrain[16] = '^^ ^^ ^^ ^^ ^^ ^^ ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ^^ ^^ ^^ ^^ ^^ ^^';
+mappages["vaultfuture"].terrain[17] = '^^ ^^ ^^ ^^ ^^ ^^ ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ^^ ^^ ^^ ^^ ^^ ^^';
+mappages["vaultfuture"].terrain[18] = '^^ ^^ ^^ ^^ ^^ ^^ ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ^^ ^^ ^^ ^^ ^^ ^^';
+mappages["vaultfuture"].terrain[19] = '^^ ^^ ^^ ^^ ^^ ^^ ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ^^ ^^ ^^ ^^ ^^ ^^';
+mappages["vaultfuture"].terrain[20] = '^^ ^^ ^^ ^^ ^^ ^^ ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ^^ ^^ ^^ ^^ ^^ ^^';
+mappages["vaultfuture"].terrain[21] = '^^ ^^ ^^ ^^ ^^ ^^ ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ^^ ^^ ^^ ^^ ^^ ^^';
+mappages["vaultfuture"].terrain[22] = '^^ ^^ ^^ ^^ ^^ ^^ ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ^^ ^^ ^^ ^^ ^^ ^^';
+mappages["vaultfuture"].terrain[23] = '^^ ^^ ^^ ^^ ^^ ^^ ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ^^ ^^ ^^ ^^ ^^ ^^';
+mappages["vaultfuture"].terrain[24] = '^^ ^^ ^^ ^^ ^^ ^^ ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ^^ ^^ ^^ ^^ ^^ ^^';
+mappages["vaultfuture"].terrain[25] = '^^ ^^ ^^ ^^ ^^ ^^ ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ^^ ^^ ^^ ^^ ^^ ^^';
+mappages["vaultfuture"].terrain[26] = '^^ ^^ ^^ ^^ ^^ ^^ ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ^^ ^^ ^^ ^^ ^^ ^^';
+mappages["vaultfuture"].terrain[27] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+mappages["vaultfuture"].terrain[28] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+mappages["vaultfuture"].terrain[29] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ nn nn nn nn nn nn nn nn nn nn nn nn ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+mappages["vaultfuture"].terrain[30] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ nn nn nn nn nn nn nn nn nn ^^ nn ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+mappages["vaultfuture"].terrain[31] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ nn nn nn nn nn nn nn nn ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+mappages["vaultfuture"].terrain[32] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ nn nn nn nn nn nn nn nn nn nn nn ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+mappages["vaultfuture"].terrain[33] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ nn nn nn nn nn nn nn nn nn nn nn ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+mappages["vaultfuture"].terrain[34] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ nn nn nn nn nn nn nn nn nn nn nn ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+mappages["vaultfuture"].terrain[35] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ nn nn nn nn nn nn nn nn nn nn nn nn nn nn ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+
+mappages["vaultfuture"].features = [];
+mappages["vaultfuture"].features[0] = {name : 'Brazier', x : 7, y : 8};
+mappages["vaultfuture"].features[1] = {name : 'RuinsWallBottomLeftMidRight', x : 19, y : 12};
+mappages["vaultfuture"].features[2] = {name : 'RuinsWallTallLeftMidRight', x : 24, y : 12};
+mappages["vaultfuture"].features[3] = {name : 'RuinsWallMidLeftBottomRight', x : 25, y : 12};
+mappages["vaultfuture"].features[4] = {name : 'Evergreen', x : 20, y : 15};
+mappages["vaultfuture"].features[5] = {name : 'Evergreen', x : 16, y : 17};
+mappages["vaultfuture"].features[6] = {name : 'Evergreen', x : 12, y : 15};
+mappages["vaultfuture"].features[7] = {name : 'Evergreen', x : 9, y : 16};
+mappages["vaultfuture"].features[8] = {name : 'Evergreen', x : 10, y : 21};
+mappages["vaultfuture"].features[9] = {name : 'Evergreen', x : 17, y : 23};
+mappages["vaultfuture"].features[10] = {name : 'Evergreen', x : 20, y : 19};
+mappages["vaultfuture"].features[11] = {name : 'Evergreen', x : 23, y : 24};
+mappages["vaultfuture"].features[12] = {name : 'Evergreen', x : 8, y : 24};
+mappages["vaultfuture"].features[13] = {name : 'Evergreen', x : 20, y : 9};
+mappages["vaultfuture"].features[14] = {name : 'Evergreen', x : 24, y : 10};
+
+
+mappages["vaultfuture"].npcs = [];
+mappages["vaultfuture"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 12, y : 11, Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"WhiteTunic","head":"BrownDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"BrownDark"}'};
+mappages["vaultfuture"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 13, y : 9, Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"GreenTunic","head":"RedHeadPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"RedHeadPale"}'};
+
+mappages["vaultfuture"].desc = "The Vault";
+mappages["vaultfuture"].longdesc = ``;
+mappages["vaultfuture"].music = 'Cave';
+mappages["vaultfuture"].savename = `The Vault`;
+mappages["vaultfuture"].exitmap = 'darkunknown';
+mappages["vaultfuture"].exitx = '81';
+mappages["vaultfuture"].exity = '128';
+mappages["vaultfuture"].wraps = '';
+mappages["vaultfuture"].enterx = '16';
+mappages["vaultfuture"].entery = '34';
+mappages["vaultfuture"].seeBelow = '';
+mappages["vaultfuture"].lightLevel = 'cycle';
+mappages["vaultfuture"].alwaysRemember = '0';
+mappages["vaultfuture"].scale = '1';
+mappages["vaultfuture"].underground = '1';
+mappages["vaultfuture"].undergroundDesc = '';
+mappages["vaultfuture"].enterscript = 'entervault';
+mappages["vaultfuture"].entertestscript = '';
+mappages["vaultfuture"].exitscript = '';
+mappages["vaultfuture"].exittestscript = '';
+mappages["vaultfuture"].returnmap = 'darkunknown';
+mappages["vaultfuture"].returnx = '69';
+mappages["vaultfuture"].returny = '74';
+mappages["vaultfuture"].returninfused = '0';
+mappages["vaultfuture"].linkedMaps = [""];
+mappages["vaultfuture"].editorLabels = '{}';
+// MAP ENDS HERE
