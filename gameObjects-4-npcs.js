@@ -948,10 +948,10 @@ NPCObject.prototype.nextActionTime = function(initdelay) {
 
   let init = ((-1/60) * effectiveDex + (7/6)) * this.initmult;
   
-  if ((initdelay) && (initdelay != 0)) {
+  if ((initdelay) && (initdelay !== 0)) {
   	init = init * initdelay;
   }
-  if (scale != "0") { init = init * SCALE_TIME; }
+  if (scale !== "0") { init = init * SCALE_TIME; }
 	return init;
 }
 
