@@ -6959,6 +6959,85 @@ function WalkOnTile() {
 }
 WalkOnTile.prototype = new FeatureObject();
 
+function WalkOnVault1Tile() {
+	this.name = "WalkOnVault1";
+  this.graphic = "static.gif";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -50*32;
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnVault1Tile.prototype = new FeatureObject();
+
+WalkOnVault1Tile.prototype.walkon = function(walker) {
+  if ((walker === PC) && !DU.gameflags.getFlag("time_started")) {
+    DUPlaySound("sfx_deep_resonant");
+
+    this.getHomeMap().deleteThing(this);
+    return {msg:"As you step through the hole in the wall into this chamber, you feel the world slow. The hair on your arms lifts, and you feel a powerful magic within... along with a troll and an ettin, unmoving and frozen."};
+  }
+  return {msg:""};
+}
+
+function WalkOnVault2Tile() {
+	this.name = "WalkOnVault2";
+  this.graphic = "static.gif";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -50*32;
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+  this.initdelay = 10;
+}
+WalkOnVault2Tile.prototype = new FeatureObject();
+
+WalkOnVault2Tile.prototype.walkon = function(walker) {
+  if ((walker === PC) && !DU.gameflags.getFlag("time_started")) {
+    DUPlaySound("sfx_deep_resonant");
+
+    this.getHomeMap().deleteThing(this);
+    return {msg:"You feel yourself slow and warp. In the hallway, an insect's dance becomes too fast to follow. You sense a powerful, fraying enchantment upon this room."};
+  }
+  return {msg:""};
+}
+
+function WalkOnVault3Tile() {
+	this.name = "WalkOnVault3";
+  this.graphic = "static.gif";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -50*32;
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnVault3Tile.prototype = new FeatureObject();
+
+WalkOnVault3Tile.prototype.bumpinto = function(walker) {
+  let retval = { msg: "You prepare to take a step, but then you realize. The magic you feel is that time has ceased, inside this chamber. To take another step would be to be lost, frozen in time. Wisely, you decide not to move closer.", canmove: 0 };
+
+  return retval;
+}
+
+WalkOnVault3Tile.prototype.walkon = function(walker) {
+  if ((walker === PC) && !DU.gameflags.getFlag("time_started")) {
+    DUPlaySound("sfx_deep_resonant");
+
+    gamestate.setMode("anykey");
+    targetCursor.frozenintime = 1;
+    targetCursor.step = 1;
+
+    return {msg:"You Blink, and reappear... and immediately all around you has changed.", override : 4};
+  }
+  return {msg:""};
+}
+
 function WalkOnWingTile() {
 	this.name = "WalkOnWing";
   this.graphic = "static.gif";
@@ -6982,6 +7061,7 @@ WalkOnWingTile.prototype.walkon = function(walker) {
       blessing.setPower(3);
       blessing.setExpiresTime(DU.DUTime.getGameClock() + 12*24);
       PC.addSpellEffect(blessing);
+      DUPlaySound("sfx_buff");
       DrawCharFrame();
     }
     return {msg: "The sound of water rushing over the edge and plummeting below fills you with a sense of great peace and tranquility. You feel refreshed." };
