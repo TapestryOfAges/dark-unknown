@@ -536,7 +536,7 @@ magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell = function(caster, i
   let distracted = 0;
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
-    if (CheckAreEnemies(val,caster)) {
+    if (CheckAreEnemies(val,caster) && !val.frozenintime) {   // only affect enemies who are not Vault frozen in time
       val.setHitBySpell(caster,SPELL_DISTRACT_LEVEL);
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
         let desc = "";
@@ -757,8 +757,12 @@ function PerformVulnerability(caster, infused, free, tgt) {
     
   tgt = newtgt;
   
-  tgt.setHitBySpell(caster,SPELL_VULNERABILITY_LEVEL);
-  if (!CheckResist(caster,tgt,infused,0)) {
+  if (!tgt.frozenintime) {
+    tgt.setHitBySpell(caster,SPELL_VULNERABILITY_LEVEL);
+  }
+  if (tgt.frozenintime) {
+    desc = "Nothing happens yet...";
+  } else if (!CheckResist(caster,tgt,infused,0)) {
     let vulobj = localFactory.createTile("Vulnerability");
     
     let dur = caster.getIntForPower()/2;
