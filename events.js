@@ -211,5 +211,10 @@ EventFunctions["BanditYell"] = function(ev) {
 }
 
 EventFunctions["Vault"] = function(ev) {
+  // Negate Magic has been cast
+  DU.gameflags.setFlag("time_started",1);
 
+  // Go through the spells, figure out what happens if they try to engage with time frozen entities
+  // Create timestopped fireball/etc
+  // Finish this- deleting all timestopped spells, all the walkons, and generating an earthquake
 }
