@@ -1017,14 +1017,17 @@ function Tiling(tileval) {
 }
 
 // Abstract class Tiling-spritesheet
-function TilingSpritesheet(tileval, horizonly) {
+function TilingSpritesheet(tileval, horizonly, knightsjump) {
   this.doTile = function(tilingx,tilingy,tilegraphic) {
-    if (!horizonly) {
-  		tilingx = (tilingx % tileval)*32; 
-      tilingy = (tilingy % tileval)*32;
-    } else {
+    if (knightsjump) {
+      tilingx = ((tilingy*2 + tilingx) % tileval) * 32;
+      tilingy = 0;
+    } else if (horizonly) {
       tilingx = (((tilingy % 2) + tilingx) % tileval) * 32;
       tilingy = 0;
+    } else {
+  		tilingx = (tilingx % tileval)*32; 
+      tilingy = (tilingy % tileval)*32;      
     }
     let tileme = {};
     if (!tilegraphic) {tilegraphic = this.getGraphicArray(); }
