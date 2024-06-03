@@ -45,20 +45,24 @@ function OceanTile() {
   this.combatmap = "Water";
   this.peerview = "#0000e0";
   this.walkSound = "water";
+
+  TilingSpritesheet.call(this, 8,0,1);
 }
 OceanTile.prototype = new TerrainObject();
 
 function WaterTile() {
   this.name = "Water";
   this.graphic = "water.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -32;
   this.desc = "water";
   this.blocklos = 0;
   this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
-  this.spritexoffset = -32;
-  this.spriteyoffset = 0;
   this.combatmap = "Water";
   this.peerview = "#4040fc";
   this.walkSound = "water";
+
+  TilingSpritesheet.call(this, 8,0,1);
 }
 WaterTile.prototype = new TerrainObject();
 
@@ -75,14 +79,16 @@ WaterTile.prototype.idle = function(walker) {
 function ShallowsTile() {
   this.name = "Shallows";
   this.graphic = "water.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -2*32;
   this.desc = "shallow water";
   this.blocklos = 0;
   this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
-  this.spritexoffset = -3*32;
-  this.spriteyoffset = 0;
   this.combatmap = "Water";
   this.peerview = "#8080fc";
   this.walkSound = "water";
+
+  TilingSpritesheet.call(this, 8,0,1);
 }
 ShallowsTile.prototype = new TerrainObject();
 
@@ -1590,8 +1596,8 @@ function RiverBaseTile() {
 //  this.overlay = "riverns.gif";
   this.layers = [["static.gif", "", 0,-42*32]];
   this.graphic = "water.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "0";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -32;
   this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
   this.blocklos = 0;
   this.prefix = "a";
@@ -1600,6 +1606,7 @@ function RiverBaseTile() {
   this.peerview = "#8080fc";
   this.walkSound = "water";
 
+  TilingSpritesheet.call(this, 8,0,1);
 }
 RiverBaseTile.prototype = new TerrainObject();
 
