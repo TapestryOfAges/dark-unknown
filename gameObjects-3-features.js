@@ -11639,6 +11639,16 @@ function StoneWithoutSwordTile() {
 }
 StoneWithoutSwordTile.prototype = new FeatureObject();
 
+function FrozenSpellTile() {
+  this.name = "FrozenSpell";
+  this.graphic = "static.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+  this.passable = MOVE_ETHEREAL;
+  this.prefix = "a";
+  this.desc = "spell, frozen in time";
+}
+FrozenSpellTile.prototype = new FeatureObject();
 
 // Items
 
