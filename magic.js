@@ -1061,9 +1061,14 @@ function PerformMagicBolt(caster, infused, free, tgt) {
   let duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
   let destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
   PlayCastSound(caster,"sfx_magic_bolt");
-  let weapon = localFactory.createTile("SpellWeapon");
-  weapon.dmgtype = "force";
-  AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force", weapon:weapon},0);
+  if (tgt.frozenintime) {
+    descval = {txt: "You cast Magic Bolt. It streaks forth from your hand, but before it reaches its target, it slows, and stops, and hangs in the air."};
+    AnimateToFrozen(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force", weapon:weapon, frdesc:"Magic Bolt"},0);
+  } else {
+    let weapon = localFactory.createTile("SpellWeapon");
+    weapon.dmgtype = "force";
+    AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force", weapon:weapon},0);
+  }
   resp["fin"] = -1;
   return resp;
 }
@@ -1128,7 +1133,7 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
   
   for (let i=0;i<potential_targets.length;i++) {
     let val=potential_targets[i];
-    if ((GetDistance(val.getx(),val.gety(),tgt.x,tgt.y) < radius) && (val !== caster)) {
+    if ((GetDistance(val.getx(),val.gety(),tgt.x,tgt.y) < radius) && (val !== caster) && (!val.frozenintime)) {
       if (tgtmap.getLOS(val.getx(),val.gety(),tgt.x,tgt.y,1) < LOS_THRESHOLD) {
         anyonepoisoned = 1;
         if (!IsNonLiving(val)) { val.setHitBySpell(caster,SPELL_POISON_CLOUD_LEVEL); }
@@ -1394,7 +1399,7 @@ magic[SPELL_DISRUPT_UNDEAD_LEVEL][SPELL_DISRUPT_UNDEAD_ID].executeSpell = functi
   let hitany = 0;
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
-    if (val.special.indexOf("undead") > -1) {
+    if ((val.special.indexOf("undead") > -1) && !val.frozenintime) {
       if (GetDistance(val.getx(),val.gety(), caster.getx(), caster.gety()) < 7) {
         val.setHitBySpell(caster,SPELL_DISRUPT_UNDEAD_LEVEL);
         let tmpdmg = prepareSpellDamage(caster,val,DMG_MEDIUM,"force");
@@ -1550,10 +1555,14 @@ function PerformFireball(caster, infused, free, tgt) {
   let duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
   let destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
   PlayCastSound(caster,"sfx_fireball");
-  let weapon = localFactory.createTile("SpellWeapon");
-  weapon.dmgtype = "fire";
-  AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"fire", weapon:weapon});
-
+  if (tgt.frozenintime) {
+    descval = {txt: "You cast Fireball. It streaks forth from your hand, but before it reaches its target, it slows, and stops, and hangs in the air."};
+    AnimateToFrozen(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force", weapon:weapon, frdesc: "Fireball"},0);
+  } else {
+    let weapon = localFactory.createTile("SpellWeapon");
+    weapon.dmgtype = "fire";
+    AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"fire", weapon:weapon});
+  }
   resp["fin"] = -1;
   return resp;
 }
@@ -1739,6 +1748,10 @@ function PerformTelekinesis(caster, infused, free, tgt) {
     retval["fin"] = 1;
     retval["txt"] = "That object is too heavy.";
     retval["override"] = 1;
+  } else if (tgt.frozenintime) {
+    retval["fin"] = 1;
+    retval["txt"] = "You cast the spell, but nothing seems to happen.";
+    retval["override"] = 1;
   }
   else {
     retval = tgt.use(caster);
@@ -1865,6 +1878,11 @@ function PerformWallOfFlame(caster, infused, free, tgt) {
     let mana = magic[SPELL_WALL_OF_FLAME_LEVEL][SPELL_WALL_OF_FLAME_ID].getManaCost(infused);
     CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+
+  if ((caster.getHomeMap().getName() === "vault") && (tgt.y < 12) && (tgt.x < 12)) {
+    resp.txt = "You cast the spell, but nothing seems to happen.";
+    return resp;
   }
 
   let duration = caster.getIntForPower() * SCALE_TIME;
@@ -2331,9 +2349,14 @@ function PerformIceball(caster, infused, free, tgt) {
   let duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
   let destgraphic = {graphic:"static.gif", xoffset:BLUE_SPLAT_X, yoffset:BLUE_SPLAT_Y, overlay:"spacer.gif"};
   PlayCastSound(caster,"sfx_iceball");
-  let weapon = localFactory.createTile("SpellWeapon");
-  weapon.dmgtype = "ice";
-  AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"ice"});
+  if (tgt.frozenintime) {
+    descval = {txt: "You cast Iceball. It streaks forth from your hand, but before it reaches its target, it slows, and stops, and hangs in the air."};
+    AnimateToFrozen(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force", weapon:weapon, frdesc: "Iceball"},0);
+  } else {
+    let weapon = localFactory.createTile("SpellWeapon");
+    weapon.dmgtype = "ice";
+    AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"ice"});
+  }
   
   resp["fin"] = -1;
   return resp;
@@ -2396,6 +2419,11 @@ function PerformLifeDrain(caster, infused, free, tgt) {
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
+  if (tgt.frozenintime) {
+    resp["txt"] = "You cast the spell, but nothing seems to happen.";
+    return resp;
+  }
+
   let newtgt = CheckMirrorWard(tgt, caster);
   while (newtgt !== tgt) {
     tgt = newtgt;
@@ -2483,7 +2511,7 @@ magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID].executeSpell = function(caster, infused
   }
   PlayCastSound(caster,"sfx_default_hit");
   for (let i=0; i<=2; i++) {
-    if (foes[i]) {
+    if (foes[i] && !foes[i].frozenintime) {
       foes[i].setHitBySpell(caster,SPELL_SMITE_LEVEL);
       let tmpdmg = prepareSpellDamage(caster,foes[i],DMG_MEDIUM,"force");
       let dmg = tmpdmg.dmg;
@@ -2723,6 +2751,11 @@ function PerformParalyze(caster, infused, free, tgt) {
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
+  if (tgt.frozenintime) {
+    resp["txt"] = "You cast the spell, but nothing seems to happen.";
+    return resp;
+  }
+
   let newtgt = CheckMirrorWard(tgt, caster);
   while (newtgt !== tgt) {
     tgt = newtgt;
@@ -2885,7 +2918,7 @@ magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].executeSpell = function(caster,
       if ((xdiff === 0) && (ydiff === 0)) { continue; }
       let tile = spellmap.getTile(caster.getx()+xdiff, caster.gety()+ydiff);
       let badguy = tile.getTopNPC();
-      if (badguy) {
+      if (badguy && !badguy.frozenintime) {
         badguy.setHitBySpell(caster,SPELL_SHOCKWAVE_LEVEL);
         let tmpdmg = prepareSpellDamage(caster,badguy,DMG_MEDIUM,"force");
         let dmg = tmpdmg;
@@ -3057,6 +3090,11 @@ function PerformSwordstrike(caster, infused, free, tgt) {
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
+  if (tgt.frozenintime) {
+    resp["txt"] = "You cast the spell, but nothing seems to happen.";
+    return resp;
+  }
+
   let newtgt = CheckMirrorWard(tgt, caster);
   while (newtgt !== tgt) {
     tgt = newtgt;
@@ -3612,6 +3650,11 @@ function PerformExplosion(caster, infused, free, tgt) {
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
+  if ((caster.getHomeMap().getName() === "vault") && (tgt.y < 12) && (tgt.x < 12)) {
+    resp.txt = "You cast the spell, but nothing seems to happen.";
+    return resp;
+  }
+
   let hostile = 0;
 //  if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
 //    TurnMapHostile(castmap);
@@ -3697,7 +3740,7 @@ magic[SPELL_JINX_LEVEL][SPELL_JINX_ID].executeSpell = function(caster, infused, 
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     let desc;
-    if (CheckAreEnemies(caster,val)) {
+    if (!val.frozenintime && CheckAreEnemies(caster,val)) {
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
         val.setHitBySpell(caster,SPELL_JINX_LEVEL);
 
@@ -3769,7 +3812,7 @@ magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].executeSpell = function(caste
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     let desc;
-    if (CheckAreEnemies(caster,val)) {
+    if (!val.frozenintime && CheckAreEnemies(caster,val)) {
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
         val.setHitBySpell(caster,SPELL_MASS_CURSE_LEVEL);
         let resist = CheckResist(caster,val,infused,0);
@@ -3936,7 +3979,7 @@ magic[SPELL_TREMOR_LEVEL][SPELL_TREMOR_ID].executeSpell = function(caster, infus
   Earthquake();
   PlayCastSound(caster,"sfx_default_hit");
   for (let i=0; i<foes.length; i++) {
-    if (foes[i]) {
+    if (foes[i] && !foes[i].frozenintime) {
       foes[i].setHitBySpell(caster,SPELL_TREMOR_LEVEL);
       let tmpdmg = prepareSpellDamage(caster,foes[i],DMG_MEDIUM,"force");
       let dmg = tmpdmg.dmg;
@@ -4016,6 +4059,11 @@ function PerformCharm(caster, infused, free, tgt) {
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
+  if (tgt.frozenintime) {
+    resp["txt"] = "You cast the spell, but nothing seems to happen.";
+    return resp;
+  }
+
   let newtgt = CheckMirrorWard(tgt, caster);
   while (newtgt !== tgt) {
     tgt = newtgt;
@@ -4094,7 +4142,7 @@ magic[SPELL_FEAR_LEVEL][SPELL_FEAR_ID].executeSpell = function(caster, infused, 
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     let desc;
-    if (CheckAreEnemies(caster,val)) {
+    if (!val.frozenintime && CheckAreEnemies(caster,val)) {
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
         val.setHitBySpell(caster,SPELL_FEAR_LEVEL);
         if (CheckResist(caster,val,infused,0)) {
@@ -4164,7 +4212,7 @@ magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].executeSpell = function(c
         if ((i!==centerx)||(j!==centery)) {
           let tile = castermap.getTile(i,j);
           let tgt = tile.getTopVisibleNPC();
-          if (tgt) {
+          if (tgt && !tgt.frozenintime) {
             let tmpdmg = prepareSpellDamage(caster,tgt,DMG_HEAVY,"fire");
             let dmg = tmpdmg.dmg;
             if (CheckResist(center,tgt,0,0)) {
@@ -4275,7 +4323,7 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(c
 
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
-    if (CheckAreEnemies(caster,val)) {
+    if (!val.frozenintime && CheckAreEnemies(caster,val)) {
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
         npccount++;
       }
@@ -4368,6 +4416,11 @@ function PerformMindBlast(caster, infused, free, tgt) {
     let mana = magic[SPELL_MIND_BLAST_LEVEL][SPELL_MIND_BLAST_ID].getManaCost(infused);
     CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+
+  if (tgt.frozenintime) {
+    resp["txt"] = "You cast the spell, but nothing seems to happen.";
+    return resp;
   }
   
   let newtgt = CheckMirrorWard(tgt, caster);
@@ -4650,9 +4703,15 @@ function PerformArrowOfGlass(caster, infused, free, tgt) {
   let tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
   let duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
   let destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
-  let weapon = localFactory.createTile("SpellWeapon");
-  weapon.dmgtype = "physical";
-  AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"physical"});
+
+  if (tgt.frozenintime) {
+    descval = {txt: "You cast Arrow of Glass. It streaks forth from your hand, but before it reaches its target, it slows, and stops, and hangs in the air."};
+    AnimateToFrozen(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force", weapon:weapon, frdesc:"Arrow of Glass"},0);
+  } else {
+    let weapon = localFactory.createTile("SpellWeapon");
+    weapon.dmgtype = "physical";
+    AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"physical"});
+  }
 
   resp["fin"] = -1;
   return resp;
@@ -4696,7 +4755,7 @@ magic[SPELL_CONFLAGRATION_LEVEL][SPELL_CONFLAGRATION_ID].executeSpell = function
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     let desc;
-    if (CheckAreEnemies(caster,val)) {
+    if (!val.frozenintime && CheckAreEnemies(caster,val)) {
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
         let tmpdmg = prepareSpellDamage(caster,val,DMG_HEAVY,"fire");
         let dmg = tmpdmg.dmg;
