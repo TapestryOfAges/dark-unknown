@@ -1017,10 +1017,11 @@ function Tiling(tileval) {
 }
 
 // Abstract class Tiling-spritesheet
-function TilingSpritesheet(tileval, horizonly, knightsjump) {
+function TilingSpritesheet(tileval, horizonly, knightsjump, kjfactor) {
   this.doTile = function(tilingx,tilingy,tilegraphic) {
     if (knightsjump) {
-      tilingx = ((tilingy*2 + tilingx) % tileval) * 32;
+      if (!kjfactor) { kjfactor = 1; }
+      tilingx = ((tilingy*2 + tilingx)*kjfactor % tileval) * 32;
       tilingy = 0;
     } else if (horizonly) {
       tilingx = (((tilingy % 2) + tilingx) % tileval) * 32;
