@@ -164,12 +164,34 @@ mappages["vault"].onload = function(mapref) {
       frozen.frozenintime = 1;
       let braz = mapref.getTile(7,8).getTopFeature();
       braz.noAnim = 1;
+      braz.frozenintime = 1;
+      frozen = mapref.getTile(8,9).getTopFeature();
+      frozen.frozenintime = 1;
     }
   }
 
 }
 
-
+function AnimateToFrozen(caster, tgt, fromcoords, boltgraphic, destgraphic, sounds, params) {
+  if (tgt.gety() === 9) { // the troll
+    params.newx = 10;
+    params.newy = 10;
+  } else if (tgt.gety() === 11) { // the ettin
+    params.newx = 10;
+    params.newy = 11;
+  } else {
+    alert("WTF? No one else is frozen.");
+  }
+  let tocoords = getCoords(tgt.getHomeMap(),params.newx, params.newy);
+  params.caster = caster;
+  params.tgt = tgt;
+  params.fromcoords = fromcoords;
+  params.tocoords = tocoords;
+  params.boltgraphic = boltgraphic;
+  params.destgraphic = destgraphic;
+  params.sounds = sounds;
+  AnimateAndFreeze(params);
+}
 
 // MAP BEGINS HERE
 mappages["vaultfuture"] = {};
