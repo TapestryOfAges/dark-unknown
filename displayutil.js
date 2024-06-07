@@ -739,3 +739,86 @@ function FadeIn(death) {
 function GetSpritesheetLocation(x,y) {
   return parseInt(x) * -1 / 32 + (parseInt(y) * -1 / 32) * 10;
 }
+
+function AnimateAndFreeze(params) {
+  //console.log("Animation begins!");
+  // atk - source/attacker
+  // def - target/defender, if any
+  // fromcoords, tocoords - object with .x and .y
+  // ammographic - object with .graphic, .xoffset, .yoffset, .fired (-1 if not a missile attack, directionalammo otherwise)
+  // destgraphic - hit/miss/whatever graphic, object with graphic, xoffset, yoffset, overlay
+  // sounds - object with sound effect for start and end of animation
+  // param.type - "missile", "melee"
+  // param.duration - time for animation 
+  // param.ammoreturn - whether the animation doubles back
+  // param.dmg - damage dealt by whatever generates this effect
+  // param.dmgtype - type of damage: force, fire, ice, physical, etc
+  // param.endturn - 1 if this ends atk's turn
+  // param.retval - retval from calling function
+  // param.finishcallback - function to run when animation finishes, just before turn ends
+  // param.callbackparam - object with parameters to feed to callback
+  // param.weapon - the attacker's weapon, if appropriate
+  let duration = param.duration;
+  let endturn = param.endturn;
+  let retval = param.retval;
+  let ammocoords = GetCoordsWithOffsets(param.ammographic.fired, param.fromcoords, param.tocoords);
+  let eventcount = 0;
+  let eventcount2 = 0;
+  let animid = "anim_" + Dice.roll("1d100000");  // so more than one can be going at a time
+
+//  console.log("From: " + fromcoords.x + "," + fromcoords.y);
+//  console.log("To: " + tocoords.x + "," + tocoords.y);
+//  console.log(type);
+
+      let tablehtml = '<div id="'+animid+'" style="position: absolute; left: ' + ammocoords.fromx + 'px; top: ' + ammocoords.fromy + 'px; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px; transition: left '+duration+'ms linear 0s, top '+duration+'ms linear 0s;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
+  
+  document.getElementById('combateffects').innerHTML += tablehtml;
+  let animdiv = document.getElementById(animid);
+  animdiv.addEventListener("transitionend", function(event) { 
+    FinishFirstAnimation();
+  }, false);
+
+  animdiv.offsetTop;
+  Object.assign(animdiv.style, {left: ammocoords.tox+"px", top: ammocoords.toy+"px" });
+  
+
+  function FinishFirstAnimation(skipped) {
+    eventcount = 1;
+    let animdiv = document.getElementById(animid);
+    if (animdiv) {
+      animdiv.parentNode.removeChild(animdiv);
+    }
+    let hitanimhtml = '<div id="'+animid+'" style="position: absolute; left: ' + tocoords.x + 'px; top: ' + tocoords.y + 'px; background-image:url(\'graphics/' + destgraphic.graphic + '\');background-repeat:no-repeat; background-position: '+destgraphic.xoffset+'px '+destgraphic.yoffset+'px;"><img src="graphics/' + destgraphic.overlay + '" width="32" height="32" /></div>';
+  
+    document.getElementById('combateffects').innerHTML += hitanimhtml;
+    setTimeout(function() {
+      animdiv = document.getElementById(animid);
+      let frspell = localFactory.createTile("FrozenSpell");
+      frspell.setGraphic("blast.gif");
+      frspell.spritexoffset = params.boltgraphic.spritexoffset;
+      frspell.spriteyoffset = params.boltgraphic.spriteyoffset;
+      frspell.setDesc(param.frdesc);
+      param.tgt.getHomeMap().placeThing(param.tocoords.x,param.tocoords.y,frspell);  
+      if (animdiv && (animdiv.parentNode)) {
+        animdiv.parentNode.removeChild(animdiv);
+      }
+      FinishAnimation();
+    }, 400);
+  }
+
+  function FinishAnimation() {
+    if (eventcount2) { console.log("FinishAnimation called twice."); return; }
+    eventcount2 = 1;
+//    console.log("FinishAnimation called.");
+
+    maintext.addText(retval["txt"]);
+    maintext.setInputLine("&gt;");
+    maintext.drawInputLine();
+    
+    if (endturn) {
+//      console.log("Ending turn.");
+      atk.endTurn(retval["initdelay"]);
+    } 
+  }
+
+}
