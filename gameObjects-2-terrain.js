@@ -104,8 +104,8 @@ ShallowsTile.prototype.idle = function(walker) {
 
 function StillWaterTile() {
   this.name = "StillWater";
-  this.graphic = "water.gif";
-  this.desc = "shallow water";
+  this.graphic = "WaterCaveSheet.gif";
+  this.desc = "stagnant water";
   this.blocklos = 0;
   this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
   this.spritexoffset = -2*32;
@@ -113,6 +113,8 @@ function StillWaterTile() {
   this.combatmap = "Water";
   this.peerview = "#8080fc";
   this.walkSound = "water";
+
+  TilingSpritesheet.call(this, 8,0,1,3);
 }
 StillWaterTile.prototype = new TerrainObject();
 
