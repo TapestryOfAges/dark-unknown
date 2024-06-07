@@ -214,7 +214,31 @@ EventFunctions["Vault"] = function(ev) {
   // Negate Magic has been cast
   DU.gameflags.setFlag("time_started",1);
 
-  // Go through the spells, figure out what happens if they try to engage with time frozen entities
-  // Create timestopped fireball/etc
   // Finish this- deleting all timestopped spells, all the walkons, and generating an earthquake
+  let pcmap = PC.getHomeMap();
+  let fea = pcmap.features.getAll();
+  let deletedspells = 0;
+  for (let i=0;i<fea.length;i++) {
+    if (fea[i].getName().includes("WalkOnVault")) {
+      pcmap.deleteThing(fea[i]);
+    } else if (fea[i].getName().includes("FrozenSpell")) {
+      pcmap.deleteThing(fea[i]);
+      deletedspells = 1;
+    }
+  }
+  // Wake up the troll and ettin
+  let npc = pcmap.npcs.getAll();
+  for (let i=0;i<npc.length;i++) {
+    if (((npc[i].getx() === 10) && (npc[i].gety() === 9)) || ((npc[i].getx() === 10) && (npc[i].gety() === 11))) {
+      delete npc[i].noAnim;
+      delete npc[i].frozenintime;
+      npc[i].getSpellEffectsByName("Paralyze").endEffect();
+    }
+  }
+
+  if (deletedspells) {
+    maintext.delayedAddText("As you negate the magic in the area, you feel an old, fraying enchantment break and shatter. Time restarts in one corner of the Vault where it has not been known for decades.<br />In addition, the spells that you cast into the timeless area are now negated as well.");
+  } else {
+    maintext.delayedAddText("As you negate the magic in the area, you feel an old, fraying enchantment break and shatter. Time restarts in one corner of the Vault where it has not been known for decades.");
+  }
 }
