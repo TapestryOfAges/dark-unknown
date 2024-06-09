@@ -3143,6 +3143,21 @@ tileFactory.prototype.makeWalkOnTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWalkOnVault1Tile = function() {
+  let newTile = new WalkOnVault1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnVault2Tile = function() {
+  let newTile = new WalkOnVault2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnVault3Tile = function() {
+  let newTile = new WalkOnVault3Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWalkOnWingTile = function() {
   let newTile = new WalkOnWingTile();
   return newTile;
@@ -4010,6 +4025,11 @@ tileFactory.prototype.makeSwordInStoneTile = function() {
 
 tileFactory.prototype.makeStoneWithoutSwordTile = function() {
   let newTile = new StoneWithoutSwordTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFrozenSpellTile = function() {
+  let newTile = new FrozenSpellTile();
   return newTile;
 }
 
