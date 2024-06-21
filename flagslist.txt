@@ -203,6 +203,12 @@ rune_gems - used the Rune of Kings in the appropriate place in Kalton Mine to un
 gave_ruby - colin gave you the PerfectRuby
 unenchanted_sword - broken Ezwilden has been picked up
 given_regalia - Shelaria gave you her crown and scepter
+returned_crown - you brought the Hilden crown to Shelaria
+returned_amulet
+returned_scepter
+gave_one - you've returned one of the three pieces of Hilden regalia
+gave_two - you've returned two of the three pieces of Hilden regalia
+gave_three - guess?
 time_started - you've cast Negate in the Vault
 oracle_sacrifice - you've sacrifice the crown jewels to the oracle
 oracle_spoke - the Oracle has told you what to do
