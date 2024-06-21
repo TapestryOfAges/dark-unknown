@@ -1125,6 +1125,28 @@ OnConvTriggers["oracle_tome"] = function(speaker,keyword) {
 
 OnConvTriggers["given_regalia"] = function(speaker,keyword) {
   CheckOracleQuest();
+  speaker.wornlayers.body = "QueenNoCrown";
+  speaker.makeLayers();
+}
+
+OnConvTriggers["returned_crown"] = function(speaker,keyword) {
+  if (DU.gameflags.getFlag("gave_two")) { DU.gameflags.setFlag("gave_three",1); }
+  else if (DU.gameflags.getFlag("gave_one")) { DU.gameflags.setFlag("gave_two",1); }
+  else { DU.gameflags.setFlag("gave_one",1); }
+  speaker.wornlayers.body = "Queen";
+  speaker.makeLayers();
+}
+
+OnConvTriggers["returned_amulet"] = function(speaker,keyword) {
+  if (DU.gameflags.getFlag("gave_two")) { DU.gameflags.setFlag("gave_three",1); }
+  else if (DU.gameflags.getFlag("gave_one")) { DU.gameflags.setFlag("gave_two",1); }
+  else { DU.gameflags.setFlag("gave_one",1); }
+}
+
+OnConvTriggers["returned_scepter"] = function(speaker,keyword) {
+  if (DU.gameflags.getFlag("gave_two")) { DU.gameflags.setFlag("gave_three",1); }
+  else if (DU.gameflags.getFlag("gave_one")) { DU.gameflags.setFlag("gave_two",1); }
+  else { DU.gameflags.setFlag("gave_one",1); }
 }
 
 OnConvTriggers["oracle_firstquests"] = function(speaker,keyword) {
