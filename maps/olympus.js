@@ -1393,7 +1393,7 @@ mappages["olympus1"].onload = function(mapref) {
     CheckForCourier(mapref, 51, 49, 49, 61);
     SetAct2Convos(mapref);
 
-    let tyler, sean, katrina, manny, pieran, alban, martha, una, martin, donn, davin, coll;
+    let tyler, sean, katrina, manny, pieran, alban, martha, una, martin, donn, davin, coll, shelaria;
 
     let npcs = mapref.npcs.getAll();
 
@@ -1410,6 +1410,7 @@ mappages["olympus1"].onload = function(mapref) {
       if (npcs[i].getNPCName() === "Donn") { donn = npcs[i]; }
       if (npcs[i].getNPCName() === "Davin") { davin = npcs[i]; }
       if (npcs[i].getNPCName() === "Coll") { coll = npcs[i]; }
+      if (npcs[i].getNPCName() === "Shelaria") { shelaria = npcs[i]; }
     }
 
     let o2 = maps.getMap("olympus2");
@@ -1450,6 +1451,13 @@ mappages["olympus1"].onload = function(mapref) {
         mapref.getTile(58,23).getTopFeature().use(manny);
       }    
     }
+
+    if (shelaria) {
+      if (DU.gameflags.getFlag("given_regalia") && !DU.gameflags.getFlag("returned_crown")) {
+        shelaria.wornlayers.body = "QueenNoCrown";
+        shelaria.makeLayers();
+      }
+    } 
 
     if (pieran.getCurrentScheduleIndex() === 11) {
       pieran.realgraphic = ["310.gif","","0","0"];
