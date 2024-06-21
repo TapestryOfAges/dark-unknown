@@ -971,7 +971,11 @@ mappages["uttermostdark"].features[15] = {name : 'Brazier', x : 17, y : 30};
 mappages["uttermostdark"].features[16] = {name : 'Brazier', x : 9, y : 34};
 mappages["uttermostdark"].features[17] = {name : 'Brazier', x : 13, y : 34};
 mappages["uttermostdark"].features[18] = {name : 'Brazier', x : 17, y : 34};
-
+mappages["uttermostdark"].features[19] = {name : 'WalkOnShadow', x : 10, y : 10};
+mappages["uttermostdark"].features[20] = {name : 'WalkOnShadow', x : 10, y : 11};
+mappages["uttermostdark"].features[21] = {name : 'WalkOnShadow', x : 10, y : 12};
+mappages["uttermostdark"].features[22] = {name : 'WalkOnShadow', x : 10, y : 9};
+mappages["uttermostdark"].features[23] = {name : 'WalkOnShadow', x : 10, y : 8};
 
 mappages["uttermostdark"].npcs = [];
 mappages["uttermostdark"].npcs[0] = {name : 'ShepherdOfDarkNPC', x : 18, y : 32, skintone: 1};
@@ -1011,6 +1015,13 @@ mappages["uttermostdark"].onload = function(mapref) {
     let daemon = mapref.getTile(18,32).getTopNPC();
     daemon.setPeaceAI("Darkness");
     daemon.setCurrentAI("Darkness");
+
+    daemon = mepref.getTile(22,11).getTopNPC();
+    daemon.onDeath = "utterDaemon";
+
+    daemon = mepref.getTile(22,13).getTopNPC();
+    daemon.onDeath = "utterDaemon";
+
     let teleporter = mapref.getTile(20,12).getTopFeature();
     teleporter.setDestination({map: "uttermostdark", x: 7, y: 32});
 
