@@ -740,7 +740,7 @@ function GetSpritesheetLocation(x,y) {
   return parseInt(x) * -1 / 32 + (parseInt(y) * -1 / 32) * 10;
 }
 
-function AnimateAndFreeze(params) {
+function AnimateAndFreeze(param) {
   //console.log("Animation begins!");
   // atk - source/attacker
   // def - target/defender, if any
@@ -761,9 +761,14 @@ function AnimateAndFreeze(params) {
   let duration = param.duration;
   let endturn = param.endturn;
   let retval = param.retval;
-  let ammocoords = GetCoordsWithOffsets(param.ammographic.fired, param.fromcoords, param.tocoords);
+  let ammographic = param.ammographic;
+  let tocoords = param.tocoords;
+  let fromcoords = param.fromcoords;
+  let ammocoords = GetCoordsWithOffsets(ammographic.fired, fromcoords, tocoords);
+  let destgraphic = param.destgraphic;
   let eventcount = 0;
   let eventcount2 = 0;
+  let atk = param.caster;
   let animid = "anim_" + Dice.roll("1d100000");  // so more than one can be going at a time
 
 //  console.log("From: " + fromcoords.x + "," + fromcoords.y);
@@ -783,27 +788,30 @@ function AnimateAndFreeze(params) {
   
 
   function FinishFirstAnimation(skipped) {
+    if (!eventcount) {
     eventcount = 1;
     let animdiv = document.getElementById(animid);
     if (animdiv) {
       animdiv.parentNode.removeChild(animdiv);
     }
-    let hitanimhtml = '<div id="'+animid+'" style="position: absolute; left: ' + tocoords.x + 'px; top: ' + tocoords.y + 'px; background-image:url(\'graphics/' + destgraphic.graphic + '\');background-repeat:no-repeat; background-position: '+destgraphic.xoffset+'px '+destgraphic.yoffset+'px;"><img src="graphics/' + destgraphic.overlay + '" width="32" height="32" /></div>';
+//    let hitanimhtml = '<div id="'+animid+'" style="position: absolute; left: ' + tocoords.x + 'px; top: ' + tocoords.y + 'px; background-image:url(\'graphics/' + destgraphic.graphic + '\');background-repeat:no-repeat; background-position: '+destgraphic.xoffset+'px '+destgraphic.yoffset+'px;"><img src="graphics/' + destgraphic.overlay + '" width="32" height="32" /></div>';
   
-    document.getElementById('combateffects').innerHTML += hitanimhtml;
-    setTimeout(function() {
+//    document.getElementById('combateffects').innerHTML += hitanimhtml;
+//    setTimeout(function() {
       animdiv = document.getElementById(animid);
       let frspell = localFactory.createTile("FrozenSpell");
-      frspell.setGraphic("blast.gif");
-      frspell.spritexoffset = params.boltgraphic.spritexoffset;
-      frspell.spriteyoffset = params.boltgraphic.spriteyoffset;
+      frspell.setGraphic("blasts.gif");
+      frspell.spritexoffset = ammographic.xoffset;
+      frspell.spriteyoffset = ammographic.yoffset;
       frspell.setDesc(param.frdesc);
-      param.tgt.getHomeMap().placeThing(param.tocoords.x,param.tocoords.y,frspell);  
+      param.tgt.getHomeMap().placeThing(param.newx,param.newy,frspell);  
+      DrawMainFrame("one",param.tgt.getHomeMap(),param.newx,param.newy);
       if (animdiv && (animdiv.parentNode)) {
         animdiv.parentNode.removeChild(animdiv);
       }
       FinishAnimation();
-    }, 400);
+//    }, 400);
+    }
   }
 
   function FinishAnimation() {
