@@ -18195,21 +18195,21 @@ function CrownJewelTile() {
 }
 CrownJewelTile.prototype = new ItemObject();
 
-function SceptreTile() {
+function ScepterTile() {
   //Graphics Upgraded
-  this.name = "Sceptre";
+  this.name = "Scepter";
   this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -36*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "sceptre";
-  this.longdesc = "This sceptre, with a blue stone at the tip, is one of the crown jewels.";
+  this.desc = "scepter";
+  this.longdesc = "This scepter, with a blue stone at the tip, is one of the crown jewels.";
   this.prefix = "a";
 
   this.addType("Quest");  
 }
-SceptreTile.prototype = new ItemObject();
+ScepterTile.prototype = new ItemObject();
 
 function KineticCrystalTile() {
   //Graphics upgraded
