@@ -989,8 +989,8 @@ function ChickenNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -1037,8 +1037,8 @@ function RoosterNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -1082,8 +1082,8 @@ function HorseNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -1127,8 +1127,8 @@ function BullNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 300,
     startframe: "random"
   });
 }
@@ -1172,8 +1172,8 @@ function CowNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -1312,7 +1312,7 @@ function CourierNPCTile() {
   });
 
   this.defwornlayers.body = 'WhiteTunic'
-  this.defwornlayers.head = 'random'
+  this.defwornlayers.head = 'BlondePale'
   this.defwornlayers.offhand = 'OffhandPale'
   this.defwornlayers.mainhand = 'MainHandPale'
 
@@ -1435,8 +1435,8 @@ function GiantBatNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -1448,7 +1448,7 @@ GiantBatNPCTile.prototype = new NPCObject();
 function GiantInsectsNPCTile() {
   this.name = 'GiantInsectsNPC';
   this.level = 1;
-  this.addhp = 2;
+  this.addhp = -2;
   this.str = 3;
   this.dex = 8;
   this.int = 2;
@@ -1484,8 +1484,8 @@ function GiantInsectsNPCTile() {
     animlength: 4,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -1533,8 +1533,8 @@ function GiantRatNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -1578,8 +1578,8 @@ function HeadlessNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -1736,8 +1736,8 @@ function SlimeNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -1890,8 +1890,8 @@ function ImpNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -1904,7 +1904,7 @@ function PythonNPCTile() {
   this.name = 'PythonNPC';
   this.level = 2;
   this.addhp = -5;
-  this.str = 8;
+  this.str = 6;
   this.dex = 12;
   this.int = 3;
   this.alignment = 'Neutral';
@@ -1913,7 +1913,7 @@ function PythonNPCTile() {
   this.forgetAt = 10;
   this.withdraw = 0;
   this.meleeAttackAs = 'none';
-  this.meleeDamage = '1d4+1'
+  this.meleeDamage = '1d3+1'
   this.meleeStrDamage = .33
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -1939,8 +1939,8 @@ function PythonNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -1987,8 +1987,8 @@ function NixieNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -2036,8 +2036,8 @@ function OrcNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -2190,8 +2190,8 @@ function SkeletonNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -2212,8 +2212,6 @@ function AnimatedArmorNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '338.gif';
-  this.altgraphic = ['372.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+1'
   this.meleeStrDamage = .5
@@ -2228,6 +2226,19 @@ function AnimatedArmorNPCTile() {
   this.special = 'construct, wander';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.gif';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -175 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
 }
 AnimatedArmorNPCTile.prototype = new NPCObject();
 
@@ -2436,8 +2447,8 @@ function FireLizardNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -2474,7 +2485,7 @@ function FlukeNPCTile() {
   this.meleeChance = 40;
   this.spellsknown = { lowcontrol: 1, };
   this.resists = { ice:33 };
-  this.special = 'whirlpool, hides:spacer.gif';
+  this.special = 'whirlpool, underground';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
   this.graphic = 'static.gif';
@@ -2486,8 +2497,8 @@ function FlukeNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -2533,8 +2544,8 @@ function GhostNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -2582,8 +2593,8 @@ function GiantSpiderNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -2629,8 +2640,8 @@ function GremlinNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -2705,8 +2716,7 @@ function MimicNPCTile() {
   this.peaceAI = 'seekPC-3';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '368.gif';
-  this.altgraphic = ['334.gif',];
+  this.graphic = 'static.gif';
   this.meleeAttackAs = 'none';
   this.meleeDamage = '2d4+8'
   this.meleeStrDamage = .66
@@ -2717,9 +2727,9 @@ function MimicNPCTile() {
   this.lootTable = 'Level3';
   this.prefix = 'a';
   this.desc = "chest";
-  this.meleeChance = 100;
+  this.meleeChance = 80;
   this.resists = {};
-  this.special = 'hides:008.gif, aggroname:a mimic, spitter, stationary';
+  this.special = 'mimic, spitter, stationary';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
 }
@@ -2765,8 +2775,8 @@ function OrcShamanNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -2815,8 +2825,8 @@ function GiantSnakeNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -2959,8 +2969,8 @@ function TrollNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -3005,8 +3015,8 @@ function TwisterNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -3051,8 +3061,8 @@ function AirElementalNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -3101,8 +3111,8 @@ function CyclopsNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -3147,8 +3157,8 @@ function DeepNixieNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -3197,8 +3207,8 @@ function DrakeNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -3247,8 +3257,8 @@ function EarthElementalNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -3294,8 +3304,8 @@ function FireElementalNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -3340,8 +3350,8 @@ function FireSnakeNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -3378,7 +3388,7 @@ function LurkerNPCTile() {
   this.onHit = 'entangle';
   this.meleeChance = 100;
   this.resists = {};
-  this.special = 'hides:spacer.gif,wander';
+  this.special = 'underground,wander';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
   this.graphic = 'static.gif';
@@ -3390,8 +3400,8 @@ function LurkerNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -3440,8 +3450,8 @@ function OrcCaptainNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -3546,8 +3556,8 @@ function SeaSerpentNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -3596,8 +3606,8 @@ function TremendousSpiderNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -3724,7 +3734,7 @@ function CorpserNPCTile() {
   this.onHit = 'entangle';
   this.meleeChance = 50;
   this.resists = {};
-  this.special = 'hides:spacer.gif, reach,wander';
+  this.special = 'underground, reach,wander';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
   this.graphic = 'static.gif';
@@ -3736,8 +3746,8 @@ function CorpserNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -3785,8 +3795,8 @@ function EttinNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -3918,8 +3928,8 @@ function GazerNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -3966,8 +3976,8 @@ function HydraNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -4012,8 +4022,8 @@ function MagmaSpawnNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -4059,8 +4069,8 @@ function PhantomNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -4216,8 +4226,8 @@ function DelverNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -4288,7 +4298,7 @@ function BlackDragonNPCTile() {
   this.level = 6;
   this.addhp = 10;
   this.str = 24;
-  this.dex = 24;
+  this.dex = 18;
   this.int = 24;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
@@ -4299,16 +4309,15 @@ function BlackDragonNPCTile() {
   this.meleeDamage = '5d4+15'
   this.meleeStrDamage = 1
   this.missileAttackAs = 'none';
-  this.armorAs = 'PlateArmor';
+  this.armorAs = 'ChainArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
   this.lootTable = 'Blackdragon';
   this.prefix = 'a';
   this.desc = "black dragon";
-  this.meleeChance = 70;
-  this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, };
+  this.meleeChance = 80;
   this.resists = {};
-  this.special = 'firebreath, ruthless,stationary, ondeathEndact';
+  this.special = 'firebreath, ruthless,ondeathEndact';
   this.meleeHitSound = 'sfx_roar_hit';
   this.meleeAttackSound = 'sfx_roar_miss';
   this.xpval = 0;
@@ -4321,8 +4330,8 @@ function BlackDragonNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -4369,8 +4378,8 @@ function DevourerNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -4395,7 +4404,7 @@ function DragonNPCTile() {
   this.meleeDamage = '5d4+15'
   this.meleeStrDamage = 1
   this.missileAttackAs = 'none';
-  this.armorAs = 'PlateArmor';
+  this.armorAs = 'ChainArmor';
   this.movetype = MOVE_FLY;
   this.leavesCorpse = 'none';
   this.lootTable = 'dragon';
@@ -4416,8 +4425,8 @@ function DragonNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -4466,8 +4475,8 @@ function EttinSorcererNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -4516,8 +4525,8 @@ function GiantNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -4566,8 +4575,8 @@ function KrakenNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -4616,8 +4625,8 @@ function ReaperNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -4664,8 +4673,8 @@ function SpecterNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -4714,8 +4723,8 @@ function DaemonNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -4815,8 +4824,8 @@ function EarthenTyrantNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -4922,8 +4931,8 @@ function LicheNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -4970,8 +4979,8 @@ function EyesofSpiteNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -5057,8 +5066,8 @@ function ShadowNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -5139,8 +5148,8 @@ function BalronNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -5186,8 +5195,8 @@ function ArchdaemonOfAshesNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -5233,8 +5242,8 @@ function ArchdaemonOfDustNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -5280,8 +5289,8 @@ function ArchdaemonOfIceNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -5327,8 +5336,8 @@ function ArchdaemonOfBoneNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -5413,8 +5422,8 @@ function AbyssalKrakenNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -5435,8 +5444,6 @@ function ShepherdOfDarkNPCTile() {
   this.peaceAI = 'Darkness';
   this.forgetAt = 0;
   this.withdraw = 0;
-  this.graphic = '354.gif';
-  this.altgraphic = ['388.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '5d10+22'
   this.meleeStrDamage = 1
@@ -5450,6 +5457,19 @@ function ShepherdOfDarkNPCTile() {
   this.meleeChance = 0;
   this.resists = {};
   this.special = 'light: .5';
+  this.graphic = 'static.gif';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -126 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
 }
 ShepherdOfDarkNPCTile.prototype = new NPCObject();
 
@@ -5494,8 +5514,8 @@ function IllusionNPCTile() {
     animlength: 5,
     animstyle: "random",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -5576,8 +5596,8 @@ function ToshinSentinelNPCTile() {
     animlength: 10,
     animstyle: "pingpong",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "random"
   });
 }
@@ -6747,23 +6767,12 @@ function FireLizardGroupTile() {
   this.name = 'FireLizardGroup';
   this.desc = 'fire lizards';
   this.peaceAI = 'Monster-10';
+  this.graphic = '349.gif';
+  this.altgraphic = ['383.gif',];
   this.group = [];
   this.group[0] = new NPCList('FireLizardNPC', '1d5+1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
-  this.graphic = 'static.gif';
-  this.spritexoffset = -5 * 32;
-  this.spriteyoffset = -151 * 32;
-
-  ManualAnimation.call(this, { 
-    animstart: -5*32,
-    animlength: 5,
-    animstyle: "random",
-    allowrepeat: 0,
-    framedurationmin: 150,
-    framedurationmax: 300,
-    startframe: "random"
-  });
 }
 FireLizardGroupTile.prototype = new NPCGroupObject();
 
@@ -6771,25 +6780,14 @@ function MagmaLizardGroupTile() {
   this.name = 'MagmaLizardGroup';
   this.desc = 'fire lizards';
   this.peaceAI = 'Monster-10';
+  this.graphic = '349.gif';
+  this.altgraphic = ['383.gif',];
   this.group = [];
   this.group[0] = new NPCList('MagmaLizardNPC', '1d4');
   this.group[1] = new NPCList('FireLizardNPC', '1d4+1');
   this.group[2] = new NPCList('FireElementalNPC', '1d2-1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
-  this.graphic = 'static.gif';
-  this.spritexoffset = -5 * 32;
-  this.spriteyoffset = -154 * 32;
-
-  ManualAnimation.call(this, { 
-    animstart: -5*32,
-    animlength: 5,
-    animstyle: "random",
-    allowrepeat: 0,
-    framedurationmin: 150,
-    framedurationmax: 300,
-    startframe: "random"
-  });
 }
 MagmaLizardGroupTile.prototype = new NPCGroupObject();
 
