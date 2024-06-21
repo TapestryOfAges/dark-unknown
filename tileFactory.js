@@ -4068,8 +4068,8 @@ tileFactory.prototype.makeCrownJewelTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeSceptreTile = function() {
-  let newTile = new SceptreTile();
+tileFactory.prototype.makeScepterTile = function() {
+  let newTile = new ScepterTile();
   return newTile;
 }
 
