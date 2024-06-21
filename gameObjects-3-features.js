@@ -6998,8 +6998,6 @@ WalkOnVault2Tile.prototype = new FeatureObject();
 
 WalkOnVault2Tile.prototype.walkon = function(walker) {
   if ((walker === PC) && !DU.gameflags.getFlag("time_started")) {
-    DUPlaySound("sfx_deep_resonant");
-
     this.getHomeMap().deleteThing(this);
     return {msg:"You feel yourself slow and warp. In the hallway, an insect's dance becomes too fast to follow. You sense a powerful, fraying enchantment upon this room."};
   }
@@ -8042,6 +8040,11 @@ WalkOnShadowTile.prototype.walkon = function(walker) {
   themap.placeThing(6,12,shadow);
   shadow = localFactory.createTile("ShadowNPC");
   themap.placeThing(12,12,shadow);
+
+  let fea = themap.features.getAll();
+  for (let i=0;i<fea.length;i++) {
+    if (fea[i].getName() === "WalkOnShadow") { themap.deleteThing(fea[i]); }
+  }
 
   return {msg: "<span class='daemontext'>Did you ever wonder where shadows go to hide? It is here, little one. In the absence of light, how can you tell... if you are surrounded by shadows?</span>"};
 }
@@ -11451,7 +11454,7 @@ DaemonMoongateTile.prototype.walkon = function(who) {
     DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
 
     if (this.first) {
-      let door = this.getHomeMap().getTile(21,24).getTopFeature();
+      let door = this.getHomeMap().getTile(21,14).getTopFeature();
       setTimeout(function() { DissolveDoor(door,1);}, 250);
     } else if (this.second) {
 //other door dissolve, daemon speech?
@@ -11822,21 +11825,21 @@ function CrownJewelTile() {
 }
 CrownJewelTile.prototype = new ItemObject();
 
-function SceptreTile() {
+function ScepterTile() {
   //Graphics Upgraded
-  this.name = "Sceptre";
+  this.name = "Scepter";
   this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -36*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "sceptre";
-  this.longdesc = "This sceptre, with a blue stone at the tip, was one of the crown jewels of the Hilden dynasty.";
+  this.desc = "scepter";
+  this.longdesc = "This scepter, with a blue stone at the tip, was one of the crown jewels of the Hilden dynasty.";
   this.prefix = "a";
 
   this.addType("Quest");  
 }
-SceptreTile.prototype = new ItemObject();
+ScepterTile.prototype = new ItemObject();
 
 function RoyalRegaliaTile() {
   // Graphic needed
