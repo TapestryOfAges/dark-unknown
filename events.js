@@ -232,7 +232,10 @@ EventFunctions["Vault"] = function(ev) {
     if (((npc[i].getx() === 10) && (npc[i].gety() === 9)) || ((npc[i].getx() === 10) && (npc[i].gety() === 11))) {
       delete npc[i].noAnim;
       delete npc[i].frozenintime;
-      npc[i].getSpellEffectsByName("Paralyze").endEffect();
+      let para = npc[i].getSpellEffectsByName("Paralyze");
+      if (para) {
+        para.endEffect();
+      }
     }
   }
 
