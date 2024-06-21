@@ -209,8 +209,8 @@ foreach my $line (<$npcdoc>) {
       print $out "    framedurationmin: $animminmax[0],\n";
       print $out "    framedurationmax: $animminmax[1],\n";
     } else {
-      print $out "    framedurationmin: 120,\n";
-      print $out "    framedurationmax: 170,\n";
+      print $out "    framedurationmin: 240,\n";
+      print $out "    framedurationmax: 340,\n";
     }
     print $out "    startframe: \"random\"\n";
     print $out "  });\n";
