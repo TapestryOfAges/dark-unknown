@@ -53,9 +53,9 @@ mappages["vault"].features[8] = {name : 'Door', x : 17, y : 10, desc : "locked d
 mappages["vault"].features[9] = {name : 'Door', x : 14, y : 15, desc : "locked door", locked : 1};
 mappages["vault"].features[10] = {name : 'Mirror', x : 20, y : 13};
 mappages["vault"].features[11] = {name : 'Mirror', x : 22, y : 13};
-mappages["vault"].features[12] = {name : 'Chest', x : 20, y : 14};
-mappages["vault"].features[13] = {name : 'Chest', x : 22, y : 14};
-mappages["vault"].features[14] = {name : 'Chest', x : 18, y : 13};
+mappages["vault"].features[12] = {name : 'Chest', x : 20, y : 14, locked : 0, lootgroup : 'level7', lootedid : 'vault_13'};
+mappages["vault"].features[13] = {name : 'Chest', x : 22, y : 14, locked : 0, lootgroup : 'level7', lootedid : 'vault_14'};
+mappages["vault"].features[14] = {name : 'Chest', x : 18, y : 13, locked : 0, lootgroup : 'level7', lootedid : 'vault_12'};
 mappages["vault"].features[15] = {name : 'Chest', x : 24, y : 13};
 mappages["vault"].features[16] = {name : 'PileOfRocks', x : 13, y : 20};
 mappages["vault"].features[17] = {name : 'PileOfRocks', x : 12, y : 19};
@@ -73,63 +73,66 @@ mappages["vault"].features[28] = {name : 'HildendainTapestry', x : 25, y : 19};
 mappages["vault"].features[29] = {name : 'HildendainTapestry', x : 6, y : 19};
 mappages["vault"].features[30] = {name : 'HildendainTapestry', x : 25, y : 14};
 mappages["vault"].features[31] = {name : 'HildendainTapestry', x : 6, y : 14};
-mappages["vault"].features[32] = {name : 'Chest', x : 7, y : 16};
-mappages["vault"].features[33] = {name : 'Chest', x : 7, y : 15};
-mappages["vault"].features[34] = {name : 'Chest', x : 8, y : 14};
-mappages["vault"].features[35] = {name : 'Chest', x : 9, y : 13};
-mappages["vault"].features[36] = {name : 'Chest', x : 10, y : 13};
-mappages["vault"].features[37] = {name : 'Chest', x : 9, y : 17};
-mappages["vault"].features[38] = {name : 'Chest', x : 10, y : 17};
-mappages["vault"].features[39] = {name : 'Chest', x : 9, y : 15};
-mappages["vault"].features[40] = {name : 'Chest', x : 20, y : 17};
-mappages["vault"].features[41] = {name : 'Chest', x : 22, y : 17};
-mappages["vault"].features[42] = {name : 'Chest', x : 8, y : 9};
-mappages["vault"].features[43] = {name : 'Chest', x : 20, y : 8};
-mappages["vault"].features[44] = {name : 'Chest', x : 22, y : 8};
-mappages["vault"].features[45] = {name : 'Chest', x : 22, y : 11};
-mappages["vault"].features[46] = {name : 'Chest', x : 24, y : 9};
-mappages["vault"].features[47] = {name : 'Chest', x : 24, y : 10};
-mappages["vault"].features[48] = {name : 'Chest', x : 20, y : 11};
+mappages["vault"].features[32] = {name : 'Chest', x : 7, y : 16, locked : 0, lootedid : 'vault_amulet', searchyield : 'CrownJewel'};
+mappages["vault"].features[33] = {name : 'Chest', x : 7, y : 15, locked : 0, lootgroup : 'level6', lootedid : 'vault_3'};
+mappages["vault"].features[34] = {name : 'Chest', x : 8, y : 14, locked : 0, lootedid : 'vault_scepter', searchyield : 'Scepter'};
+mappages["vault"].features[35] = {name : 'Chest', x : 9, y : 13, locked : 0, lootgroup : 'level6', lootedid : 'vault_2'};
+mappages["vault"].features[36] = {name : 'Chest', x : 10, y : 13, locked : 0, lootgroup : 'level6', lootedid : 'vault_1'};
+mappages["vault"].features[37] = {name : 'Chest', x : 9, y : 17, locked : 0, lootgroup : 'level6', lootedid : 'vault_4'};
+mappages["vault"].features[38] = {name : 'Chest', x : 10, y : 17, locked : 0, lootgroup : 'level6', lootedid : 'vault_5'};
+mappages["vault"].features[39] = {name : 'Chest', x : 9, y : 15, locked : 0, lootedid : 'vault_crown', searchyield : 'Crown'};
+mappages["vault"].features[40] = {name : 'Chest', x : 20, y : 17, locked : 0, lootgroup : 'level7', lootedid : 'vault_15'};
+mappages["vault"].features[41] = {name : 'Chest', x : 22, y : 17, locked : 0, lootgroup : 'level7', lootedid : 'vault_16'};
+mappages["vault"].features[42] = {name : 'Chest', x : 8, y : 9, lootedid : 'vault_timestop', searchyield : 'AudachtaNemesosTimeStop'};
+mappages["vault"].features[43] = {name : 'Chest', x : 20, y : 8, locked : 0, lootgroup : 'level6', lootedid : 'vault_6'};
+mappages["vault"].features[44] = {name : 'Chest', x : 22, y : 8, locked : 0, lootgroup : 'level6', lootedid : 'vault_7'};
+mappages["vault"].features[45] = {name : 'Chest', x : 22, y : 11, locked : 0, lootgroup : 'level6', lootedid : 'vault_10'};
+mappages["vault"].features[46] = {name : 'Chest', x : 24, y : 9, locked : 0, lootgroup : 'level1', lootedid : 'vault_8'};
+mappages["vault"].features[47] = {name : 'Chest', x : 24, y : 10, locked : 0, lootgroup : 'level6', lootedid : 'vault_9'};
+mappages["vault"].features[48] = {name : 'Chest', x : 20, y : 11, locked : 0, lootgroup : 'level6', lootedid : 'vault_11'};
 mappages["vault"].features[49] = {name : 'CampfireExtinguished', x : 22, y : 23};
-mappages["vault"].features[50] = {name : 'Campfire', x : 12, y : 20};
-mappages["vault"].features[51] = {name : 'UnlitBrazier', x : 24, y : 17};
-mappages["vault"].features[52] = {name : 'UnlitBrazier', x : 18, y : 17};
-mappages["vault"].features[53] = {name : 'UnlitBrazier', x : 18, y : 8};
-mappages["vault"].features[54] = {name : 'UnlitBrazier', x : 24, y : 8};
-mappages["vault"].features[55] = {name : 'UnlitBrazier', x : 13, y : 8};
-mappages["vault"].features[56] = {name : 'UnlitBrazier', x : 13, y : 17};
-mappages["vault"].features[57] = {name : 'UnlitBrazier', x : 7, y : 17};
-mappages["vault"].features[58] = {name : 'Brazier', x : 7, y : 8};
-mappages["vault"].features[59] = {name : 'PileOfRocks', x : 23, y : 21};
-mappages["vault"].features[60] = {name : 'PileOfRocks', x : 19, y : 25};
-mappages["vault"].features[61] = {name : 'EmptyBookshelfLeft', x : 22, y : 19};
-mappages["vault"].features[62] = {name : 'EmptyBookshelfRight', x : 23, y : 19};
-mappages["vault"].features[63] = {name : 'PileOfRocks', x : 13, y : 10};
-mappages["vault"].features[64] = {name : 'WalkOnVault1', x : 13, y : 11};
-mappages["vault"].features[65] = {name : 'WalkOnVault2', x : 12, y : 11};
-mappages["vault"].features[66] = {name : 'WalkOnVault3', x : 8, y : 8};
-mappages["vault"].features[67] = {name : 'WalkOnVault3', x : 9, y : 8};
-mappages["vault"].features[68] = {name : 'WalkOnVault3', x : 10, y : 8};
-mappages["vault"].features[69] = {name : 'WalkOnVault3', x : 11, y : 8};
-mappages["vault"].features[70] = {name : 'WalkOnVault3', x : 12, y : 8};
-mappages["vault"].features[71] = {name : 'WalkOnVault3', x : 7, y : 9};
-mappages["vault"].features[72] = {name : 'WalkOnVault3', x : 8, y : 9};
-mappages["vault"].features[73] = {name : 'WalkOnVault3', x : 9, y : 9};
-mappages["vault"].features[74] = {name : 'WalkOnVault3', x : 10, y : 9};
-mappages["vault"].features[75] = {name : 'WalkOnVault3', x : 11, y : 9};
-mappages["vault"].features[76] = {name : 'WalkOnVault3', x : 12, y : 9};
-mappages["vault"].features[77] = {name : 'WalkOnVault3', x : 13, y : 9};
-mappages["vault"].features[78] = {name : 'WalkOnVault3', x : 12, y : 10};
-mappages["vault"].features[79] = {name : 'WalkOnVault3', x : 11, y : 10};
-mappages["vault"].features[80] = {name : 'WalkOnVault3', x : 10, y : 10};
-mappages["vault"].features[81] = {name : 'WalkOnVault3', x : 9, y : 10};
-mappages["vault"].features[82] = {name : 'WalkOnVault3', x : 8, y : 10};
-mappages["vault"].features[83] = {name : 'WalkOnVault3', x : 7, y : 10};
-mappages["vault"].features[84] = {name : 'WalkOnVault3', x : 7, y : 11};
-mappages["vault"].features[85] = {name : 'WalkOnVault3', x : 8, y : 11};
-mappages["vault"].features[86] = {name : 'WalkOnVault3', x : 9, y : 11};
-mappages["vault"].features[87] = {name : 'WalkOnVault3', x : 10, y : 11};
-mappages["vault"].features[88] = {name : 'WalkOnVault3', x : 11, y : 11};
+mappages["vault"].features[50] = {name : 'PileOfRocks', x : 23, y : 21};
+mappages["vault"].features[51] = {name : 'PileOfRocks', x : 19, y : 25};
+mappages["vault"].features[52] = {name : 'EmptyBookshelfLeft', x : 22, y : 19};
+mappages["vault"].features[53] = {name : 'EmptyBookshelfRight', x : 23, y : 19};
+mappages["vault"].features[54] = {name : 'PileOfRocks', x : 13, y : 10};
+mappages["vault"].features[55] = {name : 'WalkOnVault1', x : 13, y : 11};
+mappages["vault"].features[56] = {name : 'WalkOnVault2', x : 12, y : 11};
+mappages["vault"].features[57] = {name : 'WalkOnVault3', x : 8, y : 8};
+mappages["vault"].features[58] = {name : 'WalkOnVault3', x : 9, y : 8};
+mappages["vault"].features[59] = {name : 'WalkOnVault3', x : 10, y : 8};
+mappages["vault"].features[60] = {name : 'WalkOnVault3', x : 11, y : 8};
+mappages["vault"].features[61] = {name : 'WalkOnVault3', x : 12, y : 8};
+mappages["vault"].features[62] = {name : 'WalkOnVault3', x : 7, y : 9};
+mappages["vault"].features[63] = {name : 'WalkOnVault3', x : 8, y : 9};
+mappages["vault"].features[64] = {name : 'WalkOnVault3', x : 9, y : 9};
+mappages["vault"].features[65] = {name : 'WalkOnVault3', x : 10, y : 9};
+mappages["vault"].features[66] = {name : 'WalkOnVault3', x : 11, y : 9};
+mappages["vault"].features[67] = {name : 'WalkOnVault3', x : 12, y : 9};
+mappages["vault"].features[68] = {name : 'WalkOnVault3', x : 13, y : 9};
+mappages["vault"].features[69] = {name : 'WalkOnVault3', x : 12, y : 10};
+mappages["vault"].features[70] = {name : 'WalkOnVault3', x : 11, y : 10};
+mappages["vault"].features[71] = {name : 'WalkOnVault3', x : 10, y : 10};
+mappages["vault"].features[72] = {name : 'WalkOnVault3', x : 9, y : 10};
+mappages["vault"].features[73] = {name : 'WalkOnVault3', x : 8, y : 10};
+mappages["vault"].features[74] = {name : 'WalkOnVault3', x : 7, y : 10};
+mappages["vault"].features[75] = {name : 'WalkOnVault3', x : 7, y : 11};
+mappages["vault"].features[76] = {name : 'WalkOnVault3', x : 8, y : 11};
+mappages["vault"].features[77] = {name : 'WalkOnVault3', x : 9, y : 11};
+mappages["vault"].features[78] = {name : 'WalkOnVault3', x : 10, y : 11};
+mappages["vault"].features[79] = {name : 'WalkOnVault3', x : 11, y : 11};
+mappages["vault"].features[80] = {name : 'Campfire', x : 12, y : 20};
+mappages["vault"].features[81] = {name : 'UnlitBrazier', x : 24, y : 17};
+mappages["vault"].features[82] = {name : 'UnlitBrazier', x : 18, y : 17};
+mappages["vault"].features[83] = {name : 'UnlitBrazier', x : 18, y : 8};
+mappages["vault"].features[84] = {name : 'UnlitBrazier', x : 24, y : 8};
+mappages["vault"].features[85] = {name : 'UnlitBrazier', x : 13, y : 8};
+mappages["vault"].features[86] = {name : 'UnlitBrazier', x : 13, y : 17};
+mappages["vault"].features[87] = {name : 'UnlitBrazier', x : 7, y : 17};
+mappages["vault"].features[88] = {name : 'Brazier', x : 7, y : 8};
+mappages["vault"].features[89] = {name : 'OrbIntelligence', x : 7, y : 13};
+mappages["vault"].features[90] = {name : 'Chest', x : 12, y : 17, locked : 0, lootedid : 'vault_page', searchyield : 'AudachtaNemesosPage1'};
+
 
 mappages["vault"].npcs = [];
 mappages["vault"].npcs[0] = {name : 'TrollNPC', x : 9, y : 24, Gender: 'monster', Bark: '0', NPCBand: '1', skintone: 1};
@@ -191,27 +194,37 @@ mappages["vault"].onload = function(mapref) {
       braz.frozenintime = 1;
       frozen = mapref.getTile(8,9).getTopFeature();
       frozen.frozenintime = 1;
+    } else {
+      let fea = mapref.features.getAll();
+      for (let i=0;i<fea.length;i++) {
+        if (fea[i].getName().includes("WalkOn")) { mapref.deleteThing(fea[i]); }
+      }
+      let npc = mapref.npcs.getAll();
+      for (let i=0;i<npc.length;i++) {
+        if (npc[i].gety() < 12) { mapref.deleteThing(npc[i]); }
+      }
     }
   }
 
 }
 
-function AnimateToFrozen(caster, tgt, fromcoords, boltgraphic, destgraphic, sounds, params) {
+function AnimateToFrozen(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, params) {
   if (tgt.gety() === 9) { // the troll
-    params.newx = 10;
+    params.newx = 11;
     params.newy = 10;
+    tocoords = getCoords(tgt.getHomeMap(),params.newx, params.newy);
   } else if (tgt.gety() === 11) { // the ettin
-    params.newx = 10;
+    params.newx = 11;
     params.newy = 11;
+    tocoords = getCoords(tgt.getHomeMap(),params.newx, params.newy);
   } else {
     alert("WTF? No one else is frozen.");
   }
-  let tocoords = getCoords(tgt.getHomeMap(),params.newx, params.newy);
   params.caster = caster;
   params.tgt = tgt;
   params.fromcoords = fromcoords;
   params.tocoords = tocoords;
-  params.boltgraphic = boltgraphic;
+  params.ammographic = boltgraphic;
   params.destgraphic = destgraphic;
   params.sounds = sounds;
   AnimateAndFreeze(params);
