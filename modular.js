@@ -436,6 +436,18 @@ OnDeathFuncs["archdaemon_dust"] = function() {
   maintext.addText('As the daemon collapses, it cries out: "Great Shepherd of the Dark, I have failed you!"');
 }
 
+OnDeathFuncs["utterDaemon"] = function(who) {
+  let npcs = who.getHomeMap().npcs.getAll();
+  let count = 0;
+  for (let i=0;i<npcs.length;i++) {
+    if ((npcs[i].getName() === "DaemonNPC") && (npcs[i] !== who)) { count++; }
+  }
+  if (!count) {
+    let door = this.getHomeMap().getTile(21,10).getTopFeature();
+    DissolveDoor(door,1);
+  }
+}
+
 OnDeathFuncs["shadow"] = function(who) {
   let npcs = who.getHomeMap().npcs.getAll();
   let shadowcount = 0;
