@@ -83,6 +83,9 @@ DUSound["sfx_harp"] = "sfx/sfx_harp.wav"; // MFSFXP Stings/Event 9
 DUSound["sfx_horn"] = "sfx/sfx_horn.wav"; // MFSFXP Stings/Event 5
 DUSound["sfx_drum"] = "sfx/sfx_drum.wav"; // MFSFXP Stings/Event 1
 DUSound["sfx_dark_transition"] = "sfx/Dark Transition.wav"; // RPGSEB Dark Transition
+DUSound["sfx_create_whirlpool"] = "sfx/whirlpool_create.mp3"; // MS SFX B Stereo/Water/Water Wall (summon)
+DUSound["sfx_whirlpool"] = "sfx/whirlpool.mp3"; // MS SFX B Stereo/Water/Water Wall (loop)
+DUSound["sfx_whirlpool_travel"] = "sfx/whirlpool_travel.mp3"; // MS SFX B Stereo/Water/Water Wall (collapse)
 
 // Magic spell sounds
 DUSound["sfx_spellcast"] = "sfx/Enchantment 2.wav"; // RPGSEB Enchantment 2
