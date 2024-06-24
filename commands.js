@@ -1419,16 +1419,15 @@ function PerformRuneChoice() {
         let opt = Dice.roll(`1d${opts}-1`);
 
         let whirlpool = localFactory.createTile("Whirlpool");
-        whirlpool.destmap = "Underworld";
-        whirlpool.destx = 83;
-        whirlpool.desty = 107;
 
         let coords = split(",", farwaterlist[opt]);
         themap.placeThing(coords[0],coords[1],whirlpool);
 
         PC.whirlx = coords[0];
         PC.whirly = coords[1];
+        PC.whirlmap = themap.getName();
 
+        DUPlaySound("sfx_create_whirlpool");
         retval["txt"] = "You call upon the waves to provide what you need... and slowly, a whirlpool forms!";
         formed = 1;
 
