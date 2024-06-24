@@ -6899,24 +6899,69 @@ BareWellTile.prototype = new FeatureObject();
 
 function WhirlpoolTile() {
 	this.name = "Whirlpool";
-	this.graphic = "325.gif";
+	this.graphic = "static.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -177*32;
   this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "whirlpool";
+
+  HasAmbientNoise.call(this,"sfx_whirlpool",1.5);
   
-  Enterable.call(this, "null", 0, 0);
+  ManualAnimation.call(this, { animstart: 0,
+    animlength: 4,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
+
 }
 WhirlpoolTile.prototype = new FeatureObject();
 
+WhirlpoolTile.prototype.walkon = function(walker) {
+  let themap = this.getHomeMap();
+  DUPlaySound("sfx_whirlpool_travel");
+  if (themap.getName() === "darkunknown") {
+    let newmap = maps.addMap("underworld");
+    MoveBetweenMaps(walker,themap,newmap,83,107);
+  } else if (PC.hasOwnProperty("whirlx")) {
+    let newmap = maps.getMap(PC.whirlmap);
+    if (!newmap) { newmap = maps.addMap(PC.whirlmap); }
+    MoveBetweenMaps(walker,themap,newmap,PC.whirlx,PC.whirly);
+    delete PC.whirlx;
+    delete PC.whirly;
+    delete PC.whirlmap;
+  } else {
+    let newmap = maps.addMap("darkunknown");
+    MoveBetweenMaps(walker,themap,newmap,69,80);
+  }
+  DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+
+  return {msg:"You are gripped by the whirlpool's current, and quickly swept under. You briefly black out, and come to elsewhere..."};
+}
+
 function WhirlpoolFlukeTile() {
 	this.name = "WhirlpoolFluke";
-	this.graphic = "325.gif";
+	this.graphic = "static.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -177*32;
   this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "whirlpool";
   
+  ManualAnimation.call(this, { animstart: 0,
+    animlength: 4,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
+
 }
 WhirlpoolFlukeTile.prototype = new FeatureObject();
 
