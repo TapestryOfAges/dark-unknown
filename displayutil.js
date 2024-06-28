@@ -172,6 +172,7 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
       }
       else {  
         if (def.specials.crumbles) { retval["txt"] += ": It crumbles to dust!"; }
+        else if (atk.getName() === "BlackDragonNPC") { retval["txt"] += ": Unconscious!"; }
         else {retval["txt"] += ": Killed!"; }
         
         if (def.getXPVal() && (atk === PC)) {
@@ -225,6 +226,7 @@ function DealandDisplayDamage(def,atk,dmg, dmgtype) {
     }
     else {  
       if (def.specials.crumbles) { maintext.delayedAddText(desc +  ": It crumbles to dust!"); }
+      else if (atk.getName() === "BlackDragonNPC") { retval["txt"] += ": Unconscious!"; }
       else { maintext.delayedAddText(desc + ": Killed!"); }
       
       if (def.getXPVal() && (atk === PC)) {
