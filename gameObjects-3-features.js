@@ -8094,6 +8094,141 @@ WalkOnShadowTile.prototype.walkon = function(walker) {
   return {msg: "<span class='daemontext'>Did you ever wonder where shadows go to hide? It is here, little one. In the absence of light, how can you tell... if you are surrounded by shadows?</span>"};
 }
 
+function UtterDarkTile() {
+  //Graphics upgraded
+  this.name = "UtterDark";
+  this.graphic = "static.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -97*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.desc = "darkness";
+  this.peerview = "black";
+}
+UtterDarkTile.prototype = new FeatureObject();
+
+UtterDarkTile.prototype.dissolve = function() {
+  this.passable = MOVE_ETHEREAL + MOVE_FLY + MOVE_LEVITATE + MOVE_WALK;
+  this.spriteyoffset = -54*32;
+  this.spritexoffset = -4*32;
+
+  setTimeout(function() { this.getHomeMap().deleteThing(this); }, 200);
+}
+
+function WalkOnUtter1Tile() {
+	this.name = "WalkOnUtter1";
+  this.graphic = "static.gif";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -50*32;
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnUtter1Tile.prototype = new FeatureObject();
+
+WalkOnUtter1Tile.prototype.walkon = function(walker) {
+  this.getHomeMap().deleteThing(this);
+  return {msg: "There is darkness before you, seemingly impenetrable." }
+}
+
+function WalkOnUtter2Tile() {
+	this.name = "WalkOnUtter2";
+  this.graphic = "static.gif";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -50*32;
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnUtter2Tile.prototype = new FeatureObject();
+
+WalkOnUtter2Tile.prototype.walkon = function(walker) {
+  this.getHomeMap().deleteThing(this);
+  let fea = this.getHomeMap().getAcre(this.getx()-1,this.gety()).features.getAll();
+  for (let i=0;i<fea.length;i++) {
+    if (fea[i].getName() === "UtterDark") { fea[i].dissolve(); }
+  }
+  return {msg: "And yet, for some reason, as you approach the darkness falls back. As though it were inviting you in deeper." }
+}
+
+function WalkOnUtter3Tile() {
+	this.name = "WalkOnUtter3";
+  this.graphic = "static.gif";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -50*32;
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnUtter3Tile.prototype = new FeatureObject();
+
+WalkOnUtter3Tile.prototype.walkon = function(walker) {
+  this.getHomeMap().deleteThing(this);
+  let fea = this.getHomeMap().getAcre(this.getx()-1,this.gety()).features.getAll();
+  for (let i=0;i<fea.length;i++) {
+    if (fea[i].getName() === "UtterDark") { fea[i].dissolve(); }
+  }
+  return {msg: "Somehow, you get the feeling that you are recognized. The veils of darkness continue to part." }
+}
+
+function WalkOnUtter4Tile() {
+	this.name = "WalkOnUtter4";
+  this.graphic = "static.gif";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -50*32;
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnUtter4Tile.prototype = new FeatureObject();
+
+WalkOnUtter4Tile.prototype.walkon = function(walker) {
+  this.getHomeMap().deleteThing(this);
+  let fea = this.getHomeMap().getAcre(this.getx()-1,this.gety()).features.getAll();
+  for (let i=0;i<fea.length;i++) {
+    if (fea[i].getName() === "UtterDark") { fea[i].dissolve(); }
+  }
+  let msg = "Each step is more difficult to take than the last. But you manage.";
+  if (PC.checkInventory("BlackDragonScale")) {
+    msg = "Each step is more difficult to take than the last. As you struggle, you feel something twitch in your pack.";
+  } 
+  return {msg: msg }
+}
+
+function WalkOnUtter5Tile() {
+	this.name = "WalkOnUtter5";
+  this.graphic = "static.gif";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -50*32;
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnUtter5Tile.prototype = new FeatureObject();
+
+WalkOnUtter5Tile.prototype.walkon = function(walker) {
+  this.getHomeMap().deleteThing(this);
+  let fea = this.getHomeMap().getAcre(this.getx()-1,this.gety()).features.getAll();
+  for (let i=0;i<fea.length;i++) {
+    if (fea[i].getName() === "UtterDark") { fea[i].dissolve(); }
+  }
+  let msg = "Finally, the final curtain falls away, and you are able to make your way within.";
+  if (PC.checkInventory("BlackDragonScale")) {
+    msg = "Suddenly, it comes to you: the scale from the black dragon. The black dragon had been an agent of the Darkness, and now a piece of it is the key that makes the final curtain fall away.";
+  } 
+  return {msg: msg }
+}
+
 function WalkOnPaladinInitTile() {
 	this.name = "WalkOnPaladinInit";
   this.graphic = "static.gif";
@@ -11445,7 +11580,7 @@ MoongateTile.prototype.walkon = function(who) {
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
   }
-  // needs SOUND
+  DUPlaySound(who,"sfx_teleport");
   return response;
 }
 
@@ -11502,10 +11637,12 @@ DaemonMoongateTile.prototype.walkon = function(who) {
       let door = this.getHomeMap().getTile(21,14).getTopFeature();
       setTimeout(function() { DissolveDoor(door,1);}, 250);
     } else if (this.second) {
-//other door dissolve, daemon speech?
+      let door = this.getHomeMap().getTile(21,12).getTopFeature();
+      setTimeout(function() { DissolveDoor(door,1);}, 250);
+      maintext.addText(`<span class='daemontext'>"Good, good! Come now, take your final steps." The daemon's laughter echoes through the chamber.</span>`);
     }
   }
-  // needs SOUND
+  DUPlaySound(who,"sfx_teleport");
   return response;
 }
 
