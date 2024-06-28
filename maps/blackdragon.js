@@ -331,15 +331,24 @@ mappages["blackdragon"].onload = function(mapref) {
       mapref.deleteThing(dragon);
       DUTime.removeEntityFrom(dragon);
 
-      // Adjust Lance to Act 2 schedule
-      lance.setSchedule("lance_act2");
-      let loc = DU.schedules[lance.getSchedule()].getNPCLocationByTime(GetClockTime(), 1, 1, mapref);
-      let prevacre = mapref.getTile(lance.getx(),lance.gety());
-      prevacre.executeWalkoffs(lance);
-      mapref.moveThing(loc.x,loc.y,lance);
-      let placedacre = mapref.getTile(loc.x,loc.y);
-      placedacre.executeWalkons(lance);  
-
+      if (DU.gameflags.getFlag("prince_awake")) {
+        // Adjust Lance to Act 2 schedule
+        lance.setSchedule("lance_act2");
+        let loc = DU.schedules[lance.getSchedule()].getNPCLocationByTime(GetClockTime(), 1, 1, mapref);
+        let prevacre = mapref.getTile(lance.getx(),lance.gety());
+        prevacre.executeWalkoffs(lance);
+        mapref.moveThing(loc.x,loc.y,lance);
+        let placedacre = mapref.getTile(loc.x,loc.y);
+        placedacre.executeWalkons(lance);  
+      } else {
+        lance.setSchedule("lance_unconscious");
+        let prevacre = mapref.getTile(lance.getx(),lance.gety());
+        prevacre.executeWalkoffs(lance);
+        mapref.moveThing(25,17,lance);
+        let placedacre = mapref.getTile(25,17);
+        placedacre.executeWalkons(lance);  
+        lance.sleep = 1;
+      }
       //Unlock his door
       let door = mapref.getTile(32,17).getTopFeature();
       door.unlockMe();
