@@ -3951,7 +3951,7 @@ ais.Darkness = function(who) {
             thismap.deleteThing(reflection);
           }
           let doppel = localFactory.createTile("DoppelgangerNPC");
-          doppel.setGraphic(PC.getGraphic());  // in other branch, set to look like human layers WORKING HERE
+          doppel.layers = PC.layers;
           doppel.onDeath = "doppelganger";
           thismap.placething(i,21,doppel);
         }
