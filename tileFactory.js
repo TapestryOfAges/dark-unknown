@@ -3318,6 +3318,36 @@ tileFactory.prototype.makeWalkOnShadowTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeUtterDarkTile = function() {
+  let newTile = new UtterDarkTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnUtter1Tile = function() {
+  let newTile = new WalkOnUtter1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnUtter2Tile = function() {
+  let newTile = new WalkOnUtter2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnUtter3Tile = function() {
+  let newTile = new WalkOnUtter3Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnUtter4Tile = function() {
+  let newTile = new WalkOnUtter4Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnUtter5Tile = function() {
+  let newTile = new WalkOnUtter5Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWalkOnPaladinInitTile = function() {
   let newTile = new WalkOnPaladinInitTile();
   return newTile;
