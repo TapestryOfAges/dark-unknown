@@ -129,7 +129,7 @@ EventFunctions["BDragon"] = function(ev) {
       else if (npcs[i].getNPCName() === "Justice") { justice = npcs[i]; justice.setAttitude("neutral")}
       else if (npcs[i].getNPCName() === "Black Dragon") { dragon = npcs[i]; }
       else if (npcs[i].getNPCName() === "Nadya") { 
-        if (npcs[i].gety() > 19) { npcs[i].setAttitude("neutral"); }  // Nadya joins the fight if in the throne room
+        if (npcs[i].gety() > 19) { npcs[i].setAttitude("friendly"); }  // Nadya joins the fight if in the throne room
       }
       else {
         npcs[i].setAttitude("neutral"); // randos shouldn't be killed by the dragon
