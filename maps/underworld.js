@@ -976,7 +976,16 @@ mappages["uttermostdark"].features[20] = {name : 'Brazier', x : 17, y : 30};
 mappages["uttermostdark"].features[21] = {name : 'Brazier', x : 9, y : 34};
 mappages["uttermostdark"].features[22] = {name : 'Brazier', x : 13, y : 34};
 mappages["uttermostdark"].features[23] = {name : 'Brazier', x : 17, y : 34};
-
+mappages["uttermostdark"].features[24] = {name : 'WalkOnUtter1', x : 33, y : 12};
+mappages["uttermostdark"].features[25] = {name : 'WalkOnUtter2', x : 32, y : 12};
+mappages["uttermostdark"].features[26] = {name : 'WalkOnUtter3', x : 31, y : 12};
+mappages["uttermostdark"].features[27] = {name : 'WalkOnUtter4', x : 30, y : 12};
+mappages["uttermostdark"].features[28] = {name : 'WalkOnUtter5', x : 29, y : 12};
+mappages["uttermostdark"].features[29] = {name : 'UtterDark', x : 32, y : 12};
+mappages["uttermostdark"].features[30] = {name : 'UtterDark', x : 31, y : 12};
+mappages["uttermostdark"].features[31] = {name : 'UtterDark', x : 30, y : 12};
+mappages["uttermostdark"].features[32] = {name : 'UtterDark', x : 29, y : 12};
+mappages["uttermostdark"].features[33] = {name : 'UtterDark', x : 28, y : 12};
 
 mappages["uttermostdark"].npcs = [];
 mappages["uttermostdark"].npcs[0] = {name : 'ShepherdOfDarkNPC', x : 18, y : 32, skintone: 1};
