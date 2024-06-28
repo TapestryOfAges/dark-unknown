@@ -458,6 +458,8 @@ OnDeathFuncs["shadow"] = function(who) {
     let moongate = localFactory.createTile("DaemonMoongate");
     who.getHomeMap().placeThing(who.getx(),who.gety(),moongate);
     moongate.first = 1;
+    moongate.destx = 25;
+    moongate.desty = 12;
   }
 }
 
@@ -481,6 +483,8 @@ OnDeathFuncs["doppelganger"] = function(who) {
     let moongate = localFactory.createTile("DaemonMoongate");
     who.getHomeMap().placeThing(gatex,gatey,moongate);
     moongate.second = 1;
+    moongate.destx = 25;
+    moongate.desty = 12;
   }
 }
 
