@@ -1130,6 +1130,8 @@ NegateMagicTile.prototype.eachTurn = function() {
   let negated = DU.gameflags.getFlag("negate");
   if (!negated[this.negatedmap]) {
     this.endEffect();
+  } else if (DUTime.getGameClock() > negated[this.negatedmap]) {
+    this.endEffect();
   }
 }
 
@@ -1139,8 +1141,8 @@ NegateMagicTile.prototype.endEffect = function(silent) {
   let negated = DU.gameflags.getFlag("negate");
   delete negated[negmap];
   DU.gameflags.setFlag("negate", negated);
-  who.getHomeMap().deleteThing(who);
-  DUTime.removeEntityFrom(who);
+  who.deleteSpellEffect(this);
+  who.expiresTime = DUTime.getGameClock();  // on gnome's next turn, it will be removed
   
   if (PC.getHomeMap().getName() === negmap) {
     maintext.addText("The ether is accessible again.");

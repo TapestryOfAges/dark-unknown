@@ -3867,9 +3867,9 @@ magic[SPELL_NEGATE_MAGIC_LEVEL][SPELL_NEGATE_MAGIC_ID].executeSpell = function(c
   PlayCastSound(caster,"sfx_dangerous_buff");
 
   let castermap = caster.getHomeMap();
-  let duration = caster.getIntForPower() + DU.DUTime.getGameClock();
+  let duration = (caster.getIntForPower() * SCALE_TIME * 2);
   let negated = DU.gameflags.getFlag("negate");
-  negated[castermap.getName()] = duration * SCALE_TIME;
+  negated[castermap.getName()] = duration + DU.DUTime.getGameClock();
   DU.gameflags.setFlag("negate", negated);
   
   let gnome = localFactory.createTile("NegatorGnomeNPC");
