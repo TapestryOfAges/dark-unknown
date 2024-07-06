@@ -108,6 +108,7 @@ DUSound["sfx_long_thunder"] = "sfx/Thunder 7.mp3"; // Magic Spells SFX B Stereo/
 DUSound["sfx_fire_ice"] = "sfx/Fire (elemental).mp3"; // Magic Spells SFX B Stereo/Fire/Fire (elemental)
 DUSound["sfx_enchant"] = "sfx/Shield 1.mp3";  // Magic Spells SFX B Stereo/Shield
 DUSound["sfx_deep_resonant"] = "sfx/Sleep-Silence 7.mp3"; // Magic Spells SFX B Stereo/Sleep-Silence
+DUSound["sfx_mirror_ward"] = "sfx/mirror.wav"; // Magic Sounds v1/chords/MS chord_triple_shigh Cemetery Bells.wav
 
 // Monster sounds
 DUSound["sfx_fire_hit"] = "sfx/Fire 4.mp3"; // NS SFX B Stereo/Fire/Fire 4
