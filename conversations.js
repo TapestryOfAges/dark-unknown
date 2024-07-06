@@ -1457,8 +1457,11 @@ OnConvTriggers["given_crystal"] = function(speaker,keyword) {
 function ConvTestFlags() {};
 
 ConvTestFlags["on_quest"] = function(speaker,keyword,questnum) {
+  questnum = parseInt(questnum);
+  console.log(questnum);
   let dq = questlog.findQuest(questnum);
-  if (dq && dq.active) {
+  console.log(dq);
+  if ((dq > 0) && questlog.log[dq].active) {
     return 1;
   }
   return 0;
