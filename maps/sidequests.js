@@ -644,7 +644,7 @@ mappages["coastalcave"].features = [];
 
 
 mappages["coastalcave"].npcs = [];
-mappages["coastalcave"].npcs[0] = {name : 'EttinSorcererNPC', x : 10, y : 20, NPCName: 'Borogard', Desc: 'ettin', PeaceAI: 'Borogard', Conversation: 'borogard', Gender: 'male', NPCBand: '0', OverrideGraphic: '343.gif', skintone: '1'};
+mappages["coastalcave"].npcs[0] = {name : 'EttinSorcererNPC', x : 10, y : 20, NPCName: 'Borogard', Desc: 'ettin', PeaceAI: 'Borogard', Conversation: 'borogard', Gender: 'male', NPCBand: '0', skintone: '1'};
 
 mappages["coastalcave"].desc = "Small Cave";
 mappages["coastalcave"].longdesc = ``;
