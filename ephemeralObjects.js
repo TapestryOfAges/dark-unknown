@@ -1071,8 +1071,10 @@ MirrorWardTile.prototype.findNewTarget = function(caster) {
   let localnpcs = curtarget.getHomeMap().npcs.getAll();
   let newtgt = [];
   let displayspecs = getDisplayCenter(curtarget.getHomeMap(),caster.getx(),caster.gety());
-  let pcdisplay = getDisplayCenter(curtarget.getHomeMap(),PC.getx(),PC.gety()); // just in case
+//  let pcdisplay = getDisplayCenter(curtarget.getHomeMap(),PC.getx(),PC.gety()); // just in case
   
+  if (curtarget !== PC) { newtgt.push(PC); }
+
   DebugWrite("magic", "MIRROR WARD is reflecting the spell...<br />");
   for (let i=0;i<localnpcs.length;i++){ 
     let val=localnpcs[i];
