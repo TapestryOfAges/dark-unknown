@@ -1006,7 +1006,6 @@ magic[SPELL_MAGIC_BOLT_LEVEL][SPELL_MAGIC_BOLT_ID].executeSpell = function(caste
 function PerformMagicBolt(caster, infused, free, tgt) {
   gamestate.setMode("null");
   let resp = {fin:1};
-  let desc = tgt.getDesc();
 
   if (caster.getHomeMap().getLOS(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), 1) >= LOS_THRESHOLD) { 
     resp["fin"] = 2;
@@ -1020,6 +1019,12 @@ function PerformMagicBolt(caster, infused, free, tgt) {
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
+  let power = caster.getIntForPower();
+  if (free) { power = Dice.roll("1d5+12"); }
+
+  let dmg = 0;  // real damage rolled after real target determined
+  let desc = "";
+
   let newtgt = CheckMirrorWard(tgt, caster);
   while (newtgt !== tgt) {
     tgt = newtgt;
@@ -1031,20 +1036,19 @@ function PerformMagicBolt(caster, infused, free, tgt) {
     TurnMapHostile(caster.getHomeMap());
   }
   tgt.setHitBySpell(caster,SPELL_MAGIC_BOLT_LEVEL);
-  let power = caster.getIntForPower();
-  if (free) { power = Dice.roll("1d5+12"); }
+
 //  let dmg = RollDamage(DMG_NEGLIGABLE, Math.floor(power/5)+1);
   let predmg = prepareSpellDamage(caster, tgt, DMG_NEGLIGABLE, "force", 0, Math.floor(power/5)+1);
-  let dmg = predmg.dmg;
+  dmg = predmg.dmg;
   if (infused) {
     dmg *= 1.5;
   }
-  
   if (CheckResist(caster,tgt,infused,0)) {
     dmg = Math.floor(dmg/2)+1;
   }
-
   DebugWrite("magic", "Dealing " + dmg + " damage.<br />");
+
+  desc = tgt.getDesc();
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
   
   let boltgraphic = {};
