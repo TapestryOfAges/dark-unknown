@@ -108,7 +108,7 @@ function StillWaterTile() {
   this.desc = "stagnant water";
   this.blocklos = 0;
   this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
-  this.spritexoffset = -2*32;
+  this.spritexoffset = 0;
   this.spriteyoffset = 0;
   this.combatmap = "Water";
   this.peerview = "#8080fc";
