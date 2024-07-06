@@ -2523,13 +2523,15 @@ ais.ai_cast = function(who) {
       for (let i=who.getx()-3;i<=who.getx()+3;i++) {
         for (let j=who.gety()-3;j<=who.gety()+3;j++) {
           let tl = themap.getTile(i,j);
-          if (tl !== "OoB") {
+          if ((tl !== "OoB") && (tl.canMoveHere(MOVE_WALK).canmove)) {
             if (!tl.getTopFeature() && !tl.getTopNPC() && !tl.getTopPC()) {
-              let foedist = GetDistance(i,j,putnear.getx(),putnear.gety());
-              let mydist = GetDistance(who.getx(),who.gety(),putnear.getx(),putnear.gety());
-              if (foedist < mydist) { placementoptions.push([i,j]); }
-              else if (foedist === mydist) { okoptions.push([i,j]); }
-              else { badoptions.push([i,j]); }
+              if (themap.getLOS(who.getx(),who.gety(),i,j) < LOS_THRESHOLD) {
+                let foedist = GetDistance(i,j,putnear.getx(),putnear.gety());
+                let mydist = GetDistance(who.getx(),who.gety(),putnear.getx(),putnear.gety());
+                if (foedist < mydist) { placementoptions.push([i,j]); }
+                else if (foedist === mydist) { okoptions.push([i,j]); }
+                else { badoptions.push([i,j]); }
+              }
             }
           }
         }
