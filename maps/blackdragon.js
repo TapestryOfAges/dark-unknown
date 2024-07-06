@@ -1011,7 +1011,7 @@ mappages["blackdragon_int"].npcs[6] = {name : 'TownGuardNPC', x : 8, y : 34, NPC
 mappages["blackdragon_int"].npcs[7] = {name : 'TownGuardNPC', x : 24, y : 26, NPCName: 'Aelid', Conversation: 'aelid_int', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BrownDark"}'};
 mappages["blackdragon_int"].npcs[8] = {name : 'TownGuardNPC', x : 8, y : 27, NPCName: 'Perick', Conversation: 'perick_int', Gender: 'male', Bark: '0', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BaldBeardedDark"}'};
 mappages["blackdragon_int"].npcs[9] = {name : 'TownGuardNPC', x : 33, y : 18, NPCName: 'Oshin', Conversation: 'oshin_int', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"ShortBrownPale"}'};
-mappages["blackdragon_int"].npcs[10] = {name : 'PrinceNPC', x : 25, y : 17, NPCName: 'Prince Lance', Conversation: 'lance', Bark: '0', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateKnight","head":"PrinceHead","back":"","offhand":"OffhandPale","cloak":"BlueCloak","mainhand":"MainHandPale","realhead":"ShortBlackPale"}'};
+mappages["blackdragon_int"].npcs[10] = {name : 'PrinceNPC', x : 25, y : 17, NPCName: 'Prince Lance', Conversation: 'lance', PeaceAI: 'scheduled', Schedule: 'lance_unconscious', Bark: '0', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateKnight","head":"PrinceHead","back":"","offhand":"OffhandPale","cloak":"BlueCloak","mainhand":"MainHandPale","realhead":"ShortBlackPale"}'};
 mappages["blackdragon_int"].npcs[11] = {name : 'TownGuardNPC', x : 34, y : 20, NPCName: 'Ranlyn', Conversation: 'ranlyn_int', Gender: 'male', Bark: '0', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"ShortBlackDark"}'};
 mappages["blackdragon_int"].npcs[12] = {name : 'TownGuardNPC', x : 33, y : 16, NPCName: 'Sissott', Conversation: 'sissott_int', Gender: 'female', Bark: '0', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BrownDark"}'};
 mappages["blackdragon_int"].npcs[13] = {name : 'TownGuardNPC', x : 38, y : 10, NPCName: 'Yuan', Conversation: 'yuan_int', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"ShortBlackDark"}'};
@@ -1050,11 +1050,12 @@ mappages["blackdragon_int"].editorLabels = '{"div_tile13x23":"Taran","div_tile20
 // MAP ENDS HERE
 
 mappages["blackdragon_int"].onload = function(mapref) {
-  mapref.getTile(11,39).getTopFeature().setGraphicArray(["static.gif","",-9*32,-108*32]);
-  let gate = mapref.getTile(12,38).getTopFeature();
-  gate.unlockMe();
-  gate.use();
-  mapref.getTile(25,17).getTopNPC().sleep = 1;  // Lance is asleep
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    mapref.getTile(11,39).getTopFeature().setGraphicArray(["static.gif","",-9*32,-108*32]);
+    let gate = mapref.getTile(12,38).getTopFeature();
+    gate.unlockMe();
+    gate.use();
+  }
 }
 
 mappages["blackdragon_int"].maps_exit = function(mapref) {
