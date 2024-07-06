@@ -12375,6 +12375,12 @@ function VoidstoneSculptureTile() {
 }
 VoidstoneSculptureTile.prototype = new ItemObject();
 
+VoidstoneSculptureTile.prototype.onGet = function(who) {
+  questlog.complete(58);
+
+  return {};
+}
+
 function StoneOfConflagrationsTile() {
   this.name = "StoneOfConflagrations";
   this.graphic = "static.gif";
