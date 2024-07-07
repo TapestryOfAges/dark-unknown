@@ -3098,7 +3098,7 @@ ais.ai_firebreath = function(who) {
   let desc = tgt.getDesc();
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
   let descval = { txt: desc };
-  AnimateEffect(who, tgt, fromcoords, tocoords, bolt, destgraphic, {}, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"fire"},0);
+  AnimateEffect({atk:who, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:bolt, destgraphic:destgraphic, sounds:{}, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"fire",doagain:[]});
 
   return "special_wait";
 }
@@ -3149,7 +3149,7 @@ ais.ai_icebreath = function(who) {
   let desc = tgt.getDesc();
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
   let descval = { txt: desc };
-  AnimateEffect(who, tgt, fromcoords, tocoords, bolt, destgraphic, {}, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"ice"},0);
+  AnimateEffect({atk:who, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:bolt, destgraphic:destgraphic, sounds:{}, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"ice",doagain:[]});
 
   return "special_wait";
 }
@@ -3201,7 +3201,7 @@ ais.ai_lbolt = function(who) {
   let desc = tgt.getDesc();
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
   let descval = { txt: desc };
-  AnimateEffect(who, tgt, fromcoords, tocoords, bolt, destgraphic, {}, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"lightning"},0);
+  AnimateEffect({atk:who, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:bolt, destgraphic:destgraphic, sounds:{}, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"lightning",doagain:[]});
 
   return "special_wait";
 }
@@ -3253,7 +3253,7 @@ ais.ai_energybolt = function(who) {
   let desc = tgt.getDesc();
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
   let descval = { txt: desc };
-  AnimateEffect(who, tgt, fromcoords, tocoords, bolt, destgraphic, {}, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"lightning"},0);
+  AnimateEffect({atk:who, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:bolt, destgraphic:destgraphic, sounds:{}, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"lightning",doagain:[]});
 
   return "special_wait";
 }
@@ -3310,7 +3310,7 @@ ais.ai_spit = function(who) {
   let desc = tgt.getDesc();
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
   let descval = { txt: desc };
-  AnimateEffect(who, tgt, fromcoords, tocoords, bolt, destgraphic, {}, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"poison"},0);
+  AnimateEffect({atk:who, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:bolt, destgraphic:destgraphic, sounds:{}, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"poison",doagain:[]});
 
   return "special_wait";
 
@@ -3363,7 +3363,7 @@ ais.ai_magmaspit = function(who) {
   let descval = { txt: desc };
   let lava = localFactory.createTile("Lava");
   who.getHomeMap().placeThing(tgt.getx(),tgt.gety(),lava);
-  AnimateEffect(who, tgt, fromcoords, tocoords, bolt, destgraphic, {}, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"poison"},0);
+  AnimateEffect({atk:who, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:bolt, destgraphic:destgraphic, sounds:{}, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"poison",doagain:[]});
   setTimeout(function() { DrawMainFrame("one",who.getHomeMap(),tgt.getx(),tgt.gety()); }, duration);
 
   return "special_wait";
@@ -3546,7 +3546,7 @@ ais.elderdragon = function(who) {
       let dmg = Dice.roll(DMG_TREMENDOUS);
       let fromcoords = getCoords(who.getHomeMap(),who.getx(),who.gety());
       let tocoords = getCoords(who.getHomeMap(),who.breathx,who.breathy);
-      AnimateEffect(who,tgt,fromcoords,tocoords,boltgraphic,destgraphic,{},{type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"fire", weapon:weapon, finishcallback:cb, callbackparam: {x:who.breathx, y:who.breathy}});
+      AnimateEffect({atk:who,def:tgt,fromcoords:fromcoords,tocoords:tocoords,ammographic:boltgraphic,destgraphic:destgraphic,sounds:{},type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"fire", weapon:weapon, finishcallback:cb, callbackparam: {x:who.breathx, y:who.breathy}, doagain:[]});
 
       delete who.breathing;
       delete who.breathx;

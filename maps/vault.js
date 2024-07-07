@@ -208,25 +208,18 @@ mappages["vault"].onload = function(mapref) {
 
 }
 
-function AnimateToFrozen(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, params) {
-  if (tgt.gety() === 9) { // the troll
+function AnimateToFrozen(params) {
+  if (params.tgt.gety() === 9) { // the troll
     params.newx = 11;
     params.newy = 10;
-    tocoords = getCoords(tgt.getHomeMap(),params.newx, params.newy);
-  } else if (tgt.gety() === 11) { // the ettin
+    params.tocoords = getCoords(params.tgt.getHomeMap(),params.newx, params.newy);
+  } else if (params.tgt.gety() === 11) { // the ettin
     params.newx = 11;
     params.newy = 11;
-    tocoords = getCoords(tgt.getHomeMap(),params.newx, params.newy);
+    params.tocoords = getCoords(params.tgt.getHomeMap(),params.newx, params.newy);
   } else {
     alert("WTF? No one else is frozen.");
   }
-  params.caster = caster;
-  params.tgt = tgt;
-  params.fromcoords = fromcoords;
-  params.tocoords = tocoords;
-  params.ammographic = boltgraphic;
-  params.destgraphic = destgraphic;
-  params.sounds = sounds;
   AnimateAndFreeze(params);
 }
 

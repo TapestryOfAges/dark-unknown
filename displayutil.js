@@ -42,7 +42,8 @@ function getDisplayCenter(themap,fromx,fromy) {
 	return edge;
 }
 
-function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic, sounds, param, doagain) {
+//function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic, sounds, param, doagain) {
+function AnimateEffect(param) {
   //console.log("Animation begins!");
   // atk - source/attacker
   // def - target/defender, if any
@@ -60,6 +61,14 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
   // param.finishcallback - function to run when animation finishes, just before turn ends
   // param.callbackparam - object with parameters to feed to callback
   // param.weapon - the attacker's weapon, if appropriate
+  let atk = param.atk;
+  let def = param.def;
+  let fromcoords = param.fromcoords;
+  let tocoords = param.tocoords;
+  let ammographic = param.ammographic;
+  let destgraphic = param.destgraphic;
+  let sounds = param.sounds;
+  let doagain = param.doagain;
   let type = param.type;
   let duration = param.duration;
   let ammoreturn = param.ammoreturn;
@@ -193,11 +202,12 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
 
     if (param.finishcallback) { param.finishcallback(atk,def,param.callbackparam); }
     
-    if ((!doagain) && (endturn)) {
+    if ((!doagain.length) && (endturn)) {
 //      console.log("Ending turn.");
       atk.endTurn(retval["initdelay"]);
-    } else if (doagain) {
+    } else if (doagain.length) {
       let doit = doagain.shift();
+      doit.doagain = doagain;
       AnimateEffect(doit.atk, doit.def, doit.fromcoords, doit.tocoords, doit.ammocoords, doit.destgraphic, doit.type, doit.duration, doit.ammoreturn, doit.dmg, endturn, doit.retval, doagain);
     }
   }
@@ -766,11 +776,11 @@ function AnimateAndFreeze(param) {
   let ammographic = param.ammographic;
   let tocoords = param.tocoords;
   let fromcoords = param.fromcoords;
-  let ammocoords = GetCoordsWithOffsets(ammographic.fired, fromcoords, tocoords);
+  let ammocoords = GetCoordsWithOffsets(param.ammographic.fired, param.fromcoords, param.tocoords);
   let destgraphic = param.destgraphic;
   let eventcount = 0;
   let eventcount2 = 0;
-  let atk = param.caster;
+  let atk = param.atk;
   let animid = "anim_" + Dice.roll("1d100000");  // so more than one can be going at a time
 
 //  console.log("From: " + fromcoords.x + "," + fromcoords.y);
@@ -806,8 +816,8 @@ function AnimateAndFreeze(param) {
       frspell.spritexoffset = ammographic.xoffset;
       frspell.spriteyoffset = ammographic.yoffset;
       frspell.setDesc(param.frdesc);
-      param.tgt.getHomeMap().placeThing(param.newx,param.newy,frspell);  
-      DrawMainFrame("one",param.tgt.getHomeMap(),param.newx,param.newy);
+      param.def.getHomeMap().placeThing(param.newx,param.newy,frspell);  
+      DrawMainFrame("one",param.def.getHomeMap(),param.newx,param.newy);
       if (animdiv && (animdiv.parentNode)) {
         animdiv.parentNode.removeChild(animdiv);
       }

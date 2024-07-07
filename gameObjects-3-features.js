@@ -8868,7 +8868,7 @@ WalkOnAbyssGauntletTile.prototype.walkon = function(walker) {
     DUPlaySound(sndsfx);
     let weapon = localFactory.createTile("SpellWeapon");
     weapon.dmgtype = "fire";
-    AnimateEffect(caster, walker, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:0, retval:descval, dmgtype:dmgtype, weapon:weapon});
+    AnimateEffect({atk:caster, def:walker, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:0, retval:descval, dmgtype:dmgtype, weapon:weapon, doagain:[]});
     thismap.moveThing(9,4,caster);
     setTimeout(function() { PC.endTurn(); }, duration);
   }

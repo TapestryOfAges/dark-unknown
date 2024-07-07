@@ -372,7 +372,7 @@ function Attack(atk, def) {
   
   let sounds = {start: "", end: snd};
 
-  AnimateEffect(atk,def,fromcoords,tocoords,ammographic,hitgraphic,sounds, {type:type, duration:duration,ammoreturn:ammoreturn,dmg:dmg,endturn:endturn,retval:retval,weapon:weapon,adddmg:adddmg,adddmgtype:adddmgtype});
+  AnimateEffect({atk:atk,def:def,fromcoords:fromcoords,tocoords:tocoords,ammographic:ammographic,destgraphic:hitgraphic,sounds:sounds, type:type, duration:duration,ammoreturn:ammoreturn,dmg:dmg,endturn:endturn,retval:retval,weapon:weapon,adddmg:adddmg,adddmgtype:adddmgtype, doagain:[]});
   
   let tmpval = {};
   tmpval["fin"] = -1;
