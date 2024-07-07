@@ -1024,6 +1024,33 @@ function PerformMagicBolt(caster, infused, free, tgt) {
 
   let dmg = 0;  // real damage rolled after real target determined
   let desc = "";
+  let multitargets = [];
+  multitargets[0] = {};
+  multitargets[0].atk = caster;
+  multitargets[0].def = tgt;
+  multitargets[0].fromcoords = getCoords(caster.getHomeMap(),caster.getx(), caster.gety());
+  multitargets[0].tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
+  multitargets[0].destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
+
+  let boltgraphic = {};
+  boltgraphic.graphic = "blasts.gif";
+  boltgraphic.xoffset = 0;
+  boltgraphic.yoffset = -32;
+  boltgraphic.directionalammo = 1;
+  boltgraphic = GetEffectGraphic(caster,tgt,boltgraphic);
+
+  multitargets[0].ammographic = boltgraphic;
+
+  multitargets[0].sounds = {end: "sfx_default_hit"};
+  let duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
+  multitargets[0].duration = duration;
+  let weapon = localFactory.createTile("SpellWeapon");
+  weapon.dmgtype = "force";
+  multitargets[0].weapon = weapon;
+  multitargets[0].type = "missile";
+  multitargets[0].ammoreturn = 0;
+  multitargets[0].endturn = 1;
+  multitargets[0].dmgtype = "force";
 
   let newtgt = CheckMirrorWard(tgt, caster);
   while (newtgt !== tgt) {
@@ -1051,27 +1078,14 @@ function PerformMagicBolt(caster, infused, free, tgt) {
   desc = tgt.getDesc();
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
   
-  let boltgraphic = {};
-  boltgraphic.graphic = "blasts.gif";
-  boltgraphic.xoffset = 0;
-  boltgraphic.yoffset = -32;
-  boltgraphic.directionalammo = 1;
-  boltgraphic = GetEffectGraphic(caster,tgt,boltgraphic);
   let descval = {txt: desc};
 
-  let sounds = {end: "sfx_default_hit"};
-  let fromcoords = getCoords(caster.getHomeMap(),caster.getx(), caster.gety());
-  let tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
-  let duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
-  let destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
-  let weapon = localFactory.createTile("SpellWeapon");
-  weapon.dmgtype = "force";
   PlayCastSound(caster,"sfx_magic_bolt");
   if (tgt.frozenintime) {
     descval = {txt: "You cast Magic Bolt. It streaks forth from your hand, but before it reaches its target, it slows, and stops, and hangs in the air."};
-    AnimateToFrozen(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force", weapon:weapon, frdesc:"Magic Bolt"},0);
+    AnimateToFrozen({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force", weapon:weapon, frdesc:"Magic Bolt",doagain:[]});
   } else {
-    AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force", weapon:weapon},0);
+    AnimateEffect({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force", weapon:weapon,doagain:[]});
   }
   resp["fin"] = -1;
   return resp;
@@ -1563,9 +1577,9 @@ function PerformFireball(caster, infused, free, tgt) {
   PlayCastSound(caster,"sfx_fireball");
   if (tgt.frozenintime) {
     descval = {txt: "You cast Fireball. It streaks forth from your hand, but before it reaches its target, it slows, and stops, and hangs in the air."};
-    AnimateToFrozen(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force", weapon:weapon, frdesc: "Fireball"},0);
+    AnimateToFrozen({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force", weapon:weapon, frdesc: "Fireball", doagain:[]});
   } else {
-    AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"fire", weapon:weapon});
+    AnimateEffect({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"fire", weapon:weapon, doagain:[]});
   }
   resp["fin"] = -1;
   return resp;
@@ -2355,9 +2369,9 @@ function PerformIceball(caster, infused, free, tgt) {
   PlayCastSound(caster,"sfx_iceball");
   if (tgt.frozenintime) {
     descval = {txt: "You cast Iceball. It streaks forth from your hand, but before it reaches its target, it slows, and stops, and hangs in the air."};
-    AnimateToFrozen(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force", weapon:weapon, frdesc: "Iceball"},0);
+    AnimateToFrozen({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force", weapon:weapon, frdesc: "Iceball",doagain:[]});
   } else {
-    AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"ice", weapon:weapon});
+    AnimateEffect({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"ice", weapon:weapon, doagain:[]});
   }
   
   resp["fin"] = -1;
@@ -4365,7 +4379,7 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(c
         let destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
         let weapon = localFactory.createTile("SpellWeapon");
         weapon.dmgtype = "fire";      
-        AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:final, retval:descval, dmgtype:"fire"});
+        AnimateEffect({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:final, retval:descval, dmgtype:"fire", doagain:[]});
 
       }
     }
@@ -4710,9 +4724,9 @@ function PerformArrowOfGlass(caster, infused, free, tgt) {
 
   if (tgt.frozenintime) {
     descval = {txt: "You cast Arrow of Glass. It streaks forth from your hand, but before it reaches its target, it slows, and stops, and hangs in the air."};
-    AnimateToFrozen(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force", weapon:weapon, frdesc:"Arrow of Glass"},0);
+    AnimateToFrozen({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force", weapon:weapon, frdesc:"Arrow of Glass",doagain:[]});
   } else {
-    AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"physical", weapon:weapon});
+    AnimateEffect({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"physical", weapon:weapon, doagain:[]});
   }
 
   resp["fin"] = -1;
