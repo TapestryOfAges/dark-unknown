@@ -341,8 +341,8 @@ function Attack(atk, def) {
   }
   
   // animate attack
-  let fromcoords = getCoords(atk.getHomeMap(),atk.getx(), atk.gety());
-  let tocoords = getCoords(def.getHomeMap(),def.getx(), def.gety());
+  let fromcoords = GetCoords(atk.getHomeMap(),atk.getx(), atk.gety());
+  let tocoords = GetCoords(def.getHomeMap(),def.getx(), def.gety());
 
   let ammographic = {};
   let duration = 50;
@@ -847,7 +847,7 @@ function ShowTurnFrame(who) {
   let framegraph = "turn-frame-friendly.gif";
   if (who.getAttitude() === "hostile") { framegraph = "turn-frame-enemy.gif"; }
 
-  let coords = getCoords(who.getHomeMap(),who.getx(),who.gety());
+  let coords = GetCoords(who.getHomeMap(),who.getx(),who.gety());
   let turnframe = document.getElementById('turnframe');
   turnframe.style.left = coords.x+16;
   turnframe.style.top = coords.y+16;
@@ -858,7 +858,7 @@ function ShowTurnFrame(who) {
 }
 
 function MoveTurnFrame(who) {
-  let coords = getCoords(who.getHomeMap(),who.getx(),who.gety());
+  let coords = GetCoords(who.getHomeMap(),who.getx(),who.gety());
   document.getElementById('turnframe').style.left = coords.x+16;
   document.getElementById('turnframe').style.top = coords.y+16;
 }

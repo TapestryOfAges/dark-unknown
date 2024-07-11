@@ -212,11 +212,11 @@ function AnimateToFrozen(params) {
   if (params.tgt.gety() === 9) { // the troll
     params.newx = 11;
     params.newy = 10;
-    params.tocoords = getCoords(params.tgt.getHomeMap(),params.newx, params.newy);
+    params.tocoords = GetCoords(params.tgt.getHomeMap(),params.newx, params.newy);
   } else if (params.tgt.gety() === 11) { // the ettin
     params.newx = 11;
     params.newy = 11;
-    params.tocoords = getCoords(params.tgt.getHomeMap(),params.newx, params.newy);
+    params.tocoords = GetCoords(params.tgt.getHomeMap(),params.newx, params.newy);
   } else {
     alert("WTF? No one else is frozen.");
   }

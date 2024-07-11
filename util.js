@@ -1,6 +1,6 @@
 "use strict";
 
-function getCoords(mapref, newx, newy, centerfromx, centerfromy) {
+function GetCoords(mapref, newx, newy, centerfromx, centerfromy) {
   if (!centerfromx) { 
     centerfromx = PC.getx();
     centerfromy = PC.gety();

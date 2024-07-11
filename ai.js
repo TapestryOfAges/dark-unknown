@@ -3092,8 +3092,8 @@ ais.ai_firebreath = function(who) {
   if ((who.getHomeMap() === PC.getHomeMap()) && (IsVisibleOnScreen(who.getx(),who.gety()))) {
     DUPlaySound("sfx_fire_breath");
   }
-  let fromcoords = getCoords(who.getHomeMap(),who.getx(), who.gety());
-  let tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
+  let fromcoords = GetCoords(who.getHomeMap(),who.getx(), who.gety());
+  let tocoords = GetCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
   let duration = (Math.pow( Math.pow(tgt.getx() - who.getx(), 2) + Math.pow (tgt.gety() - who.gety(), 2)  , .5)) * 100;
   let desc = tgt.getDesc();
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
@@ -3143,8 +3143,8 @@ ais.ai_icebreath = function(who) {
   if ((who.getHomeMap() === PC.getHomeMap()) && (IsVisibleOnScreen(who.getx(),who.gety()))) {
     DUPlaySound("sfx_iceball");
   }
-  let fromcoords = getCoords(who.getHomeMap(),who.getx(), who.gety());
-  let tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
+  let fromcoords = GetCoords(who.getHomeMap(),who.getx(), who.gety());
+  let tocoords = GetCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
   let duration = (Math.pow( Math.pow(tgt.getx() - who.getx(), 2) + Math.pow (tgt.gety() - who.gety(), 2)  , .5)) * 100;
   let desc = tgt.getDesc();
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
@@ -3195,8 +3195,8 @@ ais.ai_lbolt = function(who) {
   if ((who.getHomeMap() === PC.getHomeMap()) && (IsVisibleOnScreen(who.getx(),who.gety()))) {
     DUPlaySound("sfx_small_zap");
   }
-  let fromcoords = getCoords(who.getHomeMap(),who.getx(), who.gety());
-  let tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
+  let fromcoords = GetCoords(who.getHomeMap(),who.getx(), who.gety());
+  let tocoords = GetCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
   let duration = (Math.pow( Math.pow(tgt.getx() - who.getx(), 2) + Math.pow (tgt.gety() - who.gety(), 2)  , .5)) * 100;
   let desc = tgt.getDesc();
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
@@ -3247,8 +3247,8 @@ ais.ai_energybolt = function(who) {
   if ((who.getHomeMap() === PC.getHomeMap()) && (IsVisibleOnScreen(who.getx(),who.gety()))) {
     DUPlaySound("sfx_magic_bolt");
   }
-  let fromcoords = getCoords(who.getHomeMap(),who.getx(), who.gety());
-  let tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
+  let fromcoords = GetCoords(who.getHomeMap(),who.getx(), who.gety());
+  let tocoords = GetCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
   let duration = (Math.pow( Math.pow(tgt.getx() - who.getx(), 2) + Math.pow (tgt.gety() - who.gety(), 2)  , .5)) * 100;
   let desc = tgt.getDesc();
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
@@ -3304,8 +3304,8 @@ ais.ai_spit = function(who) {
   if ((who.getHomeMap() === PC.getHomeMap()) && (IsVisibleOnScreen(who.getx(),who.gety()))) {
     DUPlaySound("sfx_acid");
   }
-  let fromcoords = getCoords(who.getHomeMap(),who.getx(), who.gety());
-  let tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
+  let fromcoords = GetCoords(who.getHomeMap(),who.getx(), who.gety());
+  let tocoords = GetCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
   let duration = (Math.pow( Math.pow(tgt.getx() - who.getx(), 2) + Math.pow (tgt.gety() - who.gety(), 2)  , .5)) * 100;
   let desc = tgt.getDesc();
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
@@ -3355,8 +3355,8 @@ ais.ai_magmaspit = function(who) {
   if ((who.getHomeMap() === PC.getHomeMap()) && (IsVisibleOnScreen(who.getx(),who.gety()))) {
     DUPlaySound("sfx_acid");
   }
-  let fromcoords = getCoords(who.getHomeMap(),who.getx(), who.gety());
-  let tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
+  let fromcoords = GetCoords(who.getHomeMap(),who.getx(), who.gety());
+  let tocoords = GetCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
   let duration = (Math.pow( Math.pow(tgt.getx() - who.getx(), 2) + Math.pow (tgt.gety() - who.gety(), 2)  , .5)) * 100;
   let desc = tgt.getDesc();
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
@@ -3544,8 +3544,8 @@ ais.elderdragon = function(who) {
         DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
       }
       let dmg = Dice.roll(DMG_TREMENDOUS);
-      let fromcoords = getCoords(who.getHomeMap(),who.getx(),who.gety());
-      let tocoords = getCoords(who.getHomeMap(),who.breathx,who.breathy);
+      let fromcoords = GetCoords(who.getHomeMap(),who.getx(),who.gety());
+      let tocoords = GetCoords(who.getHomeMap(),who.breathx,who.breathy);
       AnimateEffect({atk:who,def:tgt,fromcoords:fromcoords,tocoords:tocoords,ammographic:boltgraphic,destgraphic:destgraphic,sounds:{},type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"fire", weapon:weapon, finishcallback:cb, callbackparam: {x:who.breathx, y:who.breathy}, doagain:[]});
 
       delete who.breathing;

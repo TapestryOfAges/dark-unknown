@@ -15114,8 +15114,8 @@ WalkOnAbyssGauntletTile.prototype.walkon = function(walker) {
     }
 
     let sounds = {};
-    let fromcoords = getCoords(caster.getHomeMap(),caster.getx(), caster.gety());
-    let tocoords = getCoords(walker.getHomeMap(),walker.getx(), walker.gety());
+    let fromcoords = GetCoords(caster.getHomeMap(),caster.getx(), caster.gety());
+    let tocoords = GetCoords(walker.getHomeMap(),walker.getx(), walker.gety());
     let duration = (Math.pow( Math.pow(walker.getx() - caster.getx(), 2) + Math.pow (walker.gety() - caster.gety(), 2)  , .5)) * 100;
     let destgraphic = {graphic:"static.gif", xoffset:-3*32, yoffset:-96*32, overlay:"spacer.gif"};
     DUPlaySound(sndsfx);

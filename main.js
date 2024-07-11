@@ -101,7 +101,7 @@ function DrawMainFrame(how, themap, centerx, centery) {
     for (let idx in spellcount) {
       let val=spellcount[idx];
       if ((val.getx() >= displayspecs.leftedge) && (val.getx() <= displayspecs.rightedge) && (val.gety() >= displayspecs.topedge) && (val.gety() <= displayspecs.bottomedge)) {
-        let where = getCoords(val.getHomeMap(),val.getx(), val.gety());
+        let where = GetCoords(val.getHomeMap(),val.getx(), val.gety());
         let sparkles = document.getElementById(idx);
         if (sparkles) {
           sparkles.style.left = where.x;
@@ -116,7 +116,7 @@ function DrawMainFrame(how, themap, centerx, centery) {
     for (let idx in spellcount) {
       let val=spellcount[idx];
       if ((val.getx() >= displayspecs.leftedge) && (val.getx() <= displayspecs.rightedge) && (val.gety() >= displayspecs.topedge) && (val.gety() <= displayspecs.bottomedge)) {
-        let where = getCoords(val.getHomeMap(),val.getx(), val.gety());
+        let where = GetCoords(val.getHomeMap(),val.getx(), val.gety());
         let sparkles = document.getElementById(idx);
         if (sparkles) {
           sparkles.style.left = where.x;
