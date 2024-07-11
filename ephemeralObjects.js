@@ -1073,17 +1073,17 @@ MirrorWardTile.prototype.findNewTarget = function(caster) {
   let displayspecs = getDisplayCenter(curtarget.getHomeMap(),caster.getx(),caster.gety());
 //  let pcdisplay = getDisplayCenter(curtarget.getHomeMap(),PC.getx(),PC.gety()); // just in case
   
-  if (curtarget !== PC) { newtgt.push(PC); }
+  if ((curtarget !== PC) && (GetDistance(curtarget.getx(),curtarget.gety(),PC.getx(),PC.gety()) < 8.5 )) { newtgt.push(PC); }
 
   DebugWrite("magic", "MIRROR WARD is reflecting the spell...<br />");
   for (let i=0;i<localnpcs.length;i++){ 
     let val=localnpcs[i];
     if (val !== curtarget) {
-      if (GetDistance(val.getx(), val.gety(), tgt.getx(), tgt.gety()) < 8.5) {
+      if (GetDistance(val.getx(), val.gety(), curtarget.getx(), curtarget.gety()) < 8.5) {
         // check for on screen from caster
         if ((displayspecs.leftedge <= val.getx()) && (val.getx() <= displayspecs.rightedge) && (displayspecs.topedge <= val.gety()) && (val.gety() <= displayspecs.bottomedge)) {
           // check for LoE from curtarget 
-          if (curtarget.getHomeMap().getLOS(curtarget.getx(), curtarget.gety(), val.getx(), val.gety(), 1) >= LOS_THRESHOLD) { 
+          if (curtarget.getHomeMap().getLOS(curtarget.getx(), curtarget.gety(), val.getx(), val.gety(), 1) <= LOS_THRESHOLD) { 
             newtgt.push(val);
           }
         }
@@ -1496,8 +1496,8 @@ StormTile.prototype.doEffect = function() {
           desc = desc.charAt(0).toUpperCase() + desc.slice(1);
           let descval = {txt: desc};
           let sounds = {};
-          let fromcoords = getCoords(castermap,display.centerx, display.topy);
-          let tocoords = getCoords(castermap,targetlist[chosenidx].getx(), targetlist[chosenidx].gety());
+          let fromcoords = GetCoords(castermap,display.centerx, display.topy);
+          let tocoords = GetCoords(castermap,targetlist[chosenidx].getx(), targetlist[chosenidx].gety());
           let duration = (Math.pow( Math.pow(targetlist[chosenidx].getx() - display.centerx, 2) + Math.pow (targetlist[chosenidx].gety() - display.topy, 2)  , .5)) * 50;
           let destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
           AnimateEffect({atk:cloud, def:targetlist[chosenidx], fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:0, retval:descval, dmgtype:"lightning", doagain:[]});

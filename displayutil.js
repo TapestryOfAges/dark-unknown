@@ -204,11 +204,16 @@ function AnimateEffect(param) {
     
     if ((!doagain.length) && (endturn)) {
 //      console.log("Ending turn.");
-      atk.endTurn(retval["initdelay"]);
+      if (param.myturn) {
+        param.myturn.endTurn(retval["initdelay"]);
+      } else {
+        atk.endTurn(retval["initdelay"]);
+      }
     } else if (doagain.length) {
       let doit = doagain.shift();
       doit.doagain = doagain;
-      AnimateEffect(doit.atk, doit.def, doit.fromcoords, doit.tocoords, doit.ammocoords, doit.destgraphic, doit.type, doit.duration, doit.ammoreturn, doit.dmg, endturn, doit.retval, doagain);
+//      AnimateEffect(doit.atk, doit.def, doit.fromcoords, doit.tocoords, doit.ammocoords, doit.destgraphic, doit.type, doit.duration, doit.ammoreturn, doit.dmg, endturn, doit.retval, doagain);
+      AnimateEffect(doit);
     }
   }
 }

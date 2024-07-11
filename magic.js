@@ -476,11 +476,11 @@ magic[SPELL_DISARM_TRAP_LEVEL][SPELL_DISARM_TRAP_ID].executeSpell = function(cas
             val.disarmTrap(); 
             maintext.addText("Trap disarmed!"); 
             playsound = 1;
-            ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_ORANGE);
+            ShowEffect(val, 1700, "spellsparkles-anim.gif", 0, COLOR_ORANGE);
           }
           else { 
             maintext.addText("Trap resists."); 
-            ShowEffect(val, 500, "X.gif");
+            ShowEffect(val, 700, "X.gif");
           }
         } else if (val.name === "CrystalTrapSpace") {
           let chance = (50 + (power*mult));
@@ -491,7 +491,7 @@ magic[SPELL_DISARM_TRAP_LEVEL][SPELL_DISARM_TRAP_ID].executeSpell = function(cas
             val.disarmTrap(); 
             maintext.addText("Trap disarmed!"); 
             playsound = 1;
-            ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_ORANGE);
+            ShowEffect(val, 1700, "spellsparkles-anim.gif", 0, COLOR_ORANGE);
           }
         }
       }
@@ -542,7 +542,7 @@ magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell = function(caster, i
         let desc = "";
         if (!CheckResist(caster,val,infused,0)) {
           let distract = localFactory.createTile("Distract");
-          ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
+          ShowEffect(val, 1700, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
           if (val !== PC) {
             desc = val.getDesc() + " is distracted!";            
           }
@@ -751,6 +751,9 @@ function PerformVulnerability(caster, infused, free, tgt) {
   
   let newtgt = CheckMirrorWard(tgt, caster);
   while (newtgt !== tgt) {
+    ShowEffect(tgt, 1000, "static.gif", MIRROR_SPLAT_X,MIRROR_SPLAT_Y);
+    PlayCastSound(tgt, "sfx_mirror_ward");
+    
     tgt = newtgt;
     newtgt = CheckMirrorWard(tgt, caster);
   }
@@ -768,7 +771,7 @@ function PerformVulnerability(caster, infused, free, tgt) {
     let dur = caster.getIntForPower()/2;
     if (infused) { dur = dur * 1.5;}
     if (free) { dur = Dice.roll("1d4+5"); }
-    ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
+    ShowEffect(tgt, 1700, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
     if (tgt !== PC) {
       desc = tgt.getDesc() + " is vulnerable!";
     } else {
@@ -1028,8 +1031,10 @@ function PerformMagicBolt(caster, infused, free, tgt) {
   multitargets[0] = {};
   multitargets[0].atk = caster;
   multitargets[0].def = tgt;
-  multitargets[0].fromcoords = getCoords(caster.getHomeMap(),caster.getx(), caster.gety());
-  multitargets[0].tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
+  multitargets[0].dmg = dmg;
+  multitargets[0].retval = { txt:"" };
+  multitargets[0].fromcoords = GetCoords(caster.getHomeMap(),caster.getx(), caster.gety());
+  multitargets[0].tocoords = GetCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
   multitargets[0].destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
 
   let boltgraphic = {};
@@ -1054,6 +1059,39 @@ function PerformMagicBolt(caster, infused, free, tgt) {
 
   let newtgt = CheckMirrorWard(tgt, caster);
   while (newtgt !== tgt) {
+    // new target!
+    let newobj = {};
+    newobj.atk = tgt;
+    newobj.def = newtgt;
+    newobj.dmg = dmg;
+    newobj.retval = { txt: ""};
+    newobj.fromcoords = GetCoords(newobj.atk.getHomeMap(),newobj.atk.getx(),newobj.atk.gety());
+    newobj.tocoords = GetCoords(newobj.def.getHomeMap(),newobj.def.getx(),newobj.def.gety());
+    newobj.destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
+
+    multitargets[multitargets.length-1].destgraphic = {graphic:"static.gif", xoffset:MIRROR_SPLAT_X, yoffset:MIRROR_SPLAT_Y, overlay:"spacer.gif"};
+
+    let bg = {};
+    bg.graphic = "blasts.gif";
+    bg.xoffset = 0;
+    bg.yoffset = -32;
+    bg.directionalammo = 1;
+    bg = GetEffectGraphic(tgt, newtgt, bg);
+    newobj.ammographic = bg;
+
+    multitargets[multitargets.length-1].sounds = {end: "sfx_mirror_ward"}
+    newobj.sounds = {end: "sfx_default_hit"};
+    newobj.duration = (Math.pow( Math.pow(newtgt.getx() - tgt.getx(), 2) + Math.pow (newtgt.gety() - tgt.gety(), 2)  , .5)) * 100;
+    let wpn = localFactory.createTile("SpellWeapon");
+    wpn.dmgtype = "force";
+    newobj.weapon = wpn;
+    newobj.type = "missile";
+    newobj.ammoreturn = 0;
+    newobj.endturn = 1;
+    newobj.dmgtype = "force";
+    newobj.myturn = caster;
+
+    multitargets.push(newobj);
     tgt = newtgt;
     newtgt = CheckMirrorWard(tgt, caster);
   }
@@ -1080,12 +1118,22 @@ function PerformMagicBolt(caster, infused, free, tgt) {
   
   let descval = {txt: desc};
 
+  multitargets[multitargets.length-1].dmg = dmg;
+  multitargets[multitargets.length-1].retval = descval;
+
   PlayCastSound(caster,"sfx_magic_bolt");
+
+  let nowtarget = multitargets.shift();
+  nowtarget.doagain = multitargets;
   if (tgt.frozenintime) {
     descval = {txt: "You cast Magic Bolt. It streaks forth from your hand, but before it reaches its target, it slows, and stops, and hangs in the air."};
-    AnimateToFrozen({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force", weapon:weapon, frdesc:"Magic Bolt",doagain:[]});
+    nowtarget.retval = descval;
+    nowtarget.frdesc = "Magic Bolt";
+//    AnimateToFrozen({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force", weapon:weapon, frdesc:"Magic Bolt",doagain:[]});
+    AnimateToFrozen(nowtarget);
   } else {
-    AnimateEffect({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force", weapon:weapon,doagain:[]});
+//    AnimateEffect({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force", weapon:weapon,doagain:[]});
+    AnimateEffect(nowtarget);
   }
   resp["fin"] = -1;
   return resp;
@@ -1165,7 +1213,7 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
           desc = desc.charAt(0).toUpperCase() + desc.slice(1);        
           maintext.addText(desc);
         } else {
-          ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_GREEN);
+          ShowEffect(val, 1700, "spellsparkles-anim.gif", 0, COLOR_GREEN);
           let desc = val.getDesc() + " is poisoned!";
           if (val === PC) {
             desc = "You are poisoned!";
@@ -1521,7 +1569,6 @@ magic[SPELL_FIREBALL_LEVEL][SPELL_FIREBALL_ID].executeSpell = function(caster, i
 function PerformFireball(caster, infused, free, tgt) {
   gamestate.setMode("null");
   let resp = {fin:1};
-  let desc = tgt.getDesc();
 
   if (caster.getHomeMap().getLOS(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), 1) >= LOS_THRESHOLD) { 
     resp["fin"] = 2;
@@ -1535,8 +1582,74 @@ function PerformFireball(caster, infused, free, tgt) {
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
+  let dmg = 0;  // real damage rolled after real target determined
+  let desc = "";
+  let multitargets = [];
+  multitargets[0] = {};
+  multitargets[0].atk = caster;
+  multitargets[0].def = tgt;
+  multitargets[0].dmg = dmg;
+  multitargets[0].retval = { txt:"" };
+  multitargets[0].fromcoords = GetCoords(caster.getHomeMap(),caster.getx(), caster.gety());
+  multitargets[0].tocoords = GetCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
+  multitargets[0].destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
+
+  let boltgraphic = {};
+  boltgraphic.graphic = "blasts.gif";
+  boltgraphic.xoffset = 0;
+  boltgraphic.yoffset = 0;
+  boltgraphic.directionalammo = 1;
+  boltgraphic = GetEffectGraphic(caster,tgt,boltgraphic);
+
+  multitargets[0].ammographic = boltgraphic;
+
+  multitargets[0].sounds = {end: "sfx_default_hit"};
+  let duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
+  multitargets[0].duration = duration;
+  let weapon = localFactory.createTile("SpellWeapon");
+  weapon.dmgtype = "fire";
+  multitargets[0].weapon = weapon;
+  multitargets[0].type = "missile";
+  multitargets[0].ammoreturn = 0;
+  multitargets[0].endturn = 1;
+  multitargets[0].dmgtype = "fire";
+
   let newtgt = CheckMirrorWard(tgt, caster);
   while (newtgt !== tgt) {
+    // new target!
+    let newobj = {};
+    newobj.atk = tgt;
+    newobj.def = newtgt;
+    newobj.dmg = dmg;
+    newobj.retval = { txt: ""};
+    newobj.fromcoords = GetCoords(newobj.atk.getHomeMap(),newobj.atk.getx(),newobj.atk.gety());
+    newobj.tocoords = GetCoords(newobj.def.getHomeMap(),newobj.def.getx(),newobj.def.gety());
+    newobj.destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
+
+    multitargets[multitargets.length-1].destgraphic = {graphic:"static.gif", xoffset:MIRROR_SPLAT_X, yoffset:MIRROR_SPLAT_Y, overlay:"spacer.gif"};
+
+    let bg = {};
+    bg.graphic = "blasts.gif";
+    bg.xoffset = 0;
+    bg.yoffset = 0;
+    bg.directionalammo = 1;
+    bg = GetEffectGraphic(tgt, newtgt, bg);
+    newobj.ammographic = bg;
+
+    multitargets[multitargets.length-1].sounds = {end: "sfx_mirror_ward"}
+    newobj.sounds = {end: "sfx_default_hit"};
+    newobj.duration = (Math.pow( Math.pow(newtgt.getx() - tgt.getx(), 2) + Math.pow (newtgt.gety() - tgt.gety(), 2)  , .5)) * 100;
+    let wpn = localFactory.createTile("SpellWeapon");
+    wpn.dmgtype = "fire";
+    newobj.weapon = wpn;
+    newobj.type = "missile";
+    newobj.ammoreturn = 0;
+    newobj.endturn = 1;
+    newobj.dmgtype = "fire";
+    newobj.myturn = caster;
+
+    multitargets.push(newobj);
+
     tgt = newtgt;
     newtgt = CheckMirrorWard(tgt, caster);
   }
@@ -1548,7 +1661,7 @@ function PerformFireball(caster, infused, free, tgt) {
   }
 
   let tmpdmg = prepareSpellDamage(caster,tgt,DMG_MEDIUM,"fire");
-  let dmg = tmpdmg.dmg;
+  dmg = tmpdmg.dmg;
   if (infused) {
     dmg = dmg * 1.5;
   }
@@ -1557,29 +1670,28 @@ function PerformFireball(caster, infused, free, tgt) {
     dmg = Math.floor(dmg/2)+1;
   }
   DebugWrite("magic", "Dealing " + dmg + " damage.<br />");
+  desc = tgt.getDesc();
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
   
-  let boltgraphic = {};
-  boltgraphic.graphic = "blasts.gif";
-  boltgraphic.yoffset = 0;
-  boltgraphic.xoffset = 0;
-  boltgraphic.directionalammo = 1;
-  boltgraphic = GetEffectGraphic(caster,tgt,boltgraphic);
   let descval = {txt: desc};
 
-  let sounds = {};
-  let fromcoords = getCoords(caster.getHomeMap(),caster.getx(), caster.gety());
-  let tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
-  let duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
-  let destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
-  let weapon = localFactory.createTile("SpellWeapon");
-  weapon.dmgtype = "fire";
+  multitargets[multitargets.length-1].dmg = dmg;
+  multitargets[multitargets.length-1].retval = descval;
+
   PlayCastSound(caster,"sfx_fireball");
+
+  let nowtarget = multitargets.shift();
+  nowtarget.doagain = multitargets;
+
   if (tgt.frozenintime) {
     descval = {txt: "You cast Fireball. It streaks forth from your hand, but before it reaches its target, it slows, and stops, and hangs in the air."};
-    AnimateToFrozen({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force", weapon:weapon, frdesc: "Fireball", doagain:[]});
+    nowtarget.retval = descval;
+    nowtarget.frdesc = "Fireball";
+//    AnimateToFrozen({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force", weapon:weapon, frdesc: "Fireball", doagain:[]});
+    AnimateToFrozen(nowtarget);
   } else {
-    AnimateEffect({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"fire", weapon:weapon, doagain:[]});
+//    AnimateEffect({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"fire", weapon:weapon, doagain:[]});
+    AnimateEffect(nowtarget);
   }
   resp["fin"] = -1;
   return resp;
@@ -2306,7 +2418,6 @@ magic[SPELL_ICEBALL_LEVEL][SPELL_ICEBALL_ID].executeSpell = function(caster, inf
 function PerformIceball(caster, infused, free, tgt) {
   gamestate.setMode("null");
   let resp = {fin:1};
-  let desc = tgt.getDesc();
 
   if (caster.getHomeMap().getLOS(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), 1) >= LOS_THRESHOLD) { 
     resp["fin"] = 2;
@@ -2320,8 +2431,73 @@ function PerformIceball(caster, infused, free, tgt) {
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
+  let dmg = 0;  // real damage rolled after real target determined
+  let desc = "";
+  let multitargets = [];
+  multitargets[0] = {};
+  multitargets[0].atk = caster;
+  multitargets[0].def = tgt;
+  multitargets[0].dmg = dmg;
+  multitargets[0].retval = { txt:"" };
+  multitargets[0].fromcoords = GetCoords(caster.getHomeMap(),caster.getx(), caster.gety());
+  multitargets[0].tocoords = GetCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
+  multitargets[0].destgraphic = {graphic:"static.gif", xoffset:BLUE_SPLAT_X, yoffset:BLUE_SPLAT_Y, overlay:"spacer.gif"};
+
+  let boltgraphic = {};
+  boltgraphic.graphic = "ice.gif";
+  boltgraphic.xoffset = 0;
+  boltgraphic.yoffset = 0;
+  boltgraphic.directionalammo = 1;
+  boltgraphic = GetEffectGraphic(caster,tgt,boltgraphic);
+
+  multitargets[0].ammographic = boltgraphic;
+
+  multitargets[0].sounds = {end: "sfx_default_hit"};
+  let duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
+  multitargets[0].duration = duration;
+  let weapon = localFactory.createTile("SpellWeapon");
+  weapon.dmgtype = "ice";
+  multitargets[0].weapon = weapon;
+  multitargets[0].type = "missile";
+  multitargets[0].ammoreturn = 0;
+  multitargets[0].endturn = 1;
+  multitargets[0].dmgtype = "ice";
+
   let newtgt = CheckMirrorWard(tgt, caster);
   while (newtgt !== tgt) {
+    // new target!
+    let newobj = {};
+    newobj.atk = tgt;
+    newobj.def = newtgt;
+    newobj.dmg = dmg;
+    newobj.retval = { txt: ""};
+    newobj.fromcoords = GetCoords(newobj.atk.getHomeMap(),newobj.atk.getx(),newobj.atk.gety());
+    newobj.tocoords = GetCoords(newobj.def.getHomeMap(),newobj.def.getx(),newobj.def.gety());
+    newobj.destgraphic = {graphic:"static.gif", xoffset:BLUE_SPLAT_X, yoffset:BLUE_SPLAT_Y, overlay:"spacer.gif"};
+
+    multitargets[multitargets.length-1].destgraphic = {graphic:"static.gif", xoffset:MIRROR_SPLAT_X, yoffset:MIRROR_SPLAT_Y, overlay:"spacer.gif"};
+
+    let bg = {};
+    bg.graphic = "ice.gif";
+    bg.xoffset = 0;
+    bg.yoffset = 0;
+    bg.directionalammo = 1;
+    bg = GetEffectGraphic(tgt, newtgt, bg);
+    newobj.ammographic = bg;
+
+    multitargets[multitargets.length-1].sounds = {end: "sfx_mirror_ward"}
+    newobj.sounds = {end: "sfx_default_hit"};
+    newobj.duration = (Math.pow( Math.pow(newtgt.getx() - tgt.getx(), 2) + Math.pow (newtgt.gety() - tgt.gety(), 2)  , .5)) * 100;
+    let wpn = localFactory.createTile("SpellWeapon");
+    wpn.dmgtype = "ice";
+    newobj.weapon = wpn;
+    newobj.type = "missile";
+    newobj.ammoreturn = 0;
+    newobj.endturn = 1;
+    newobj.dmgtype = "ice";
+    newobj.myturn = caster;
+
+    multitargets.push(newobj);
     tgt = newtgt;
     newtgt = CheckMirrorWard(tgt, caster);
   }
@@ -2333,7 +2509,7 @@ function PerformIceball(caster, infused, free, tgt) {
   }
 
   let tmpdmg = prepareSpellDamage(caster,tgt,DMG_MEDIUM,"ice");
-  let dmg = tmpdmg.dmg;
+  dmg = tmpdmg.dmg;
   if (infused) {
     dmg = dmg * 1.5;
   }
@@ -2342,6 +2518,7 @@ function PerformIceball(caster, infused, free, tgt) {
     dmg = Math.floor(dmg/2)+1;
   }
   DebugWrite("magic", "Dealing " + dmg + " damage.<br />");
+  desc = tgt.getDesc();
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
   
   let frozen = localFactory.createTile("Slow");
@@ -2351,27 +2528,25 @@ function PerformIceball(caster, infused, free, tgt) {
   frozen.setExpiresTime(endtime);
   tgt.addSpellEffect(frozen);
   
-  let boltgraphic = {};
-  boltgraphic.graphic = "ice.gif";
-  boltgraphic.yoffset = 0;
-  boltgraphic.xoffset = 0;
-  boltgraphic.directionalammo = 1;
-  boltgraphic = GetEffectGraphic(caster,tgt,boltgraphic);
   let descval = {txt: desc};
 
-  let sounds = {};
-  let fromcoords = getCoords(caster.getHomeMap(),caster.getx(), caster.gety());
-  let tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
-  let duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
-  let destgraphic = {graphic:"static.gif", xoffset:BLUE_SPLAT_X, yoffset:BLUE_SPLAT_Y, overlay:"spacer.gif"};
-  let weapon = localFactory.createTile("SpellWeapon");
-  weapon.dmgtype = "ice";
+  multitargets[multitargets.length-1].dmg = dmg;
+  multitargets[multitargets.length-1].retval = descval;
+
   PlayCastSound(caster,"sfx_iceball");
+
+  let nowtarget = multitargets.shift();
+  nowtarget.doagain = multitargets;
+
   if (tgt.frozenintime) {
     descval = {txt: "You cast Iceball. It streaks forth from your hand, but before it reaches its target, it slows, and stops, and hangs in the air."};
-    AnimateToFrozen({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force", weapon:weapon, frdesc: "Iceball",doagain:[]});
+    nowtarget.retval = descval;
+    nowtarget.frdesc = "Iceball";
+//    AnimateToFrozen({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force", weapon:weapon, frdesc: "Iceball",doagain:[]});
+    AnimateToFrozen(nowtarget);
   } else {
-    AnimateEffect({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"ice", weapon:weapon, doagain:[]});
+//    AnimateEffect({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"ice", weapon:weapon, doagain:[]});
+    AnimateEffect(nowtarget);
   }
   
   resp["fin"] = -1;
@@ -2442,10 +2617,13 @@ function PerformLifeDrain(caster, infused, free, tgt) {
 
   let newtgt = CheckMirrorWard(tgt, caster);
   while (newtgt !== tgt) {
+    ShowEffect(tgt, 1000, "static.gif", MIRROR_SPLAT_X,MIRROR_SPLAT_Y);
+    PlayCastSound(tgt, "sfx_mirror_ward");
+    
     tgt = newtgt;
     newtgt = CheckMirrorWard(tgt, caster);
   }
-    
+
   tgt = newtgt;
   tgt.setHitBySpell(caster,SPELL_LIFE_DRAIN_LEVEL);
   if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
@@ -2474,7 +2652,7 @@ function PerformLifeDrain(caster, infused, free, tgt) {
   DealandDisplayDamage(tgt, caster, dmg, "drain");
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
     
-  ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
+  ShowEffect(tgt, 1700, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
   PlayCastSound(caster, "sfx_mind");
 
   DebugWrite("magic", "Healing " + healamt + " hp.<br />");
@@ -2774,6 +2952,9 @@ function PerformParalyze(caster, infused, free, tgt) {
 
   let newtgt = CheckMirrorWard(tgt, caster);
   while (newtgt !== tgt) {
+    ShowEffect(tgt, 1000, "static.gif", MIRROR_SPLAT_X,MIRROR_SPLAT_Y);
+    PlayCastSound(tgt, "sfx_mirror_ward");
+    
     tgt = newtgt;
     newtgt = CheckMirrorWard(tgt, caster);
   }
@@ -2786,7 +2967,7 @@ function PerformParalyze(caster, infused, free, tgt) {
     let dur = caster.getIntForPower()/2;
     if (infused) { dur = dur * 1.5;}
     if (free) { dur = Dice.roll("1d4+5"); }
-    ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
+    ShowEffect(tgt, 1700, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
     if (tgt !== PC) {
       desc = tgt.getDesc() + " is paralyzed!";
     } else {
@@ -3113,6 +3294,9 @@ function PerformSwordstrike(caster, infused, free, tgt) {
 
   let newtgt = CheckMirrorWard(tgt, caster);
   while (newtgt !== tgt) {
+    ShowEffect(tgt, 1000, "static.gif", MIRROR_SPLAT_X,MIRROR_SPLAT_Y);
+    PlayCastSound(tgt, "sfx_mirror_ward");
+    
     tgt = newtgt;
     newtgt = CheckMirrorWard(tgt, caster);
   }
@@ -3778,7 +3962,7 @@ magic[SPELL_JINX_LEVEL][SPELL_JINX_ID].executeSpell = function(caster, infused, 
           jinx.setExpiresTime(duration*SCALE_TIME + DUTime.getGameClock());
           val.addSpellEffect(jinx);          
           desc = val.getDesc() + " is confused!";
-          ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
+          ShowEffect(val, 1700, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
           if (val === PC) {
             desc = "You have become confused.";
           }
@@ -3852,7 +4036,7 @@ magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].executeSpell = function(caste
         curse.setExpiresTime(duration*SCALE_TIME + DUTime.getGameClock());
         val.addSpellEffect(curse);          
         desc = val.getDesc() + " is cursed!";
-        ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
+        ShowEffect(val, 1700, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
         
         desc = desc.charAt(0).toUpperCase() + desc.slice(1);
         maintext.addText(desc);
@@ -4082,6 +4266,9 @@ function PerformCharm(caster, infused, free, tgt) {
 
   let newtgt = CheckMirrorWard(tgt, caster);
   while (newtgt !== tgt) {
+    ShowEffect(tgt, 1000, "static.gif", MIRROR_SPLAT_X,MIRROR_SPLAT_Y);
+    PlayCastSound(tgt, "sfx_mirror_ward");
+    
     tgt = newtgt;
     newtgt = CheckMirrorWard(tgt, caster);
   }
@@ -4095,7 +4282,7 @@ function PerformCharm(caster, infused, free, tgt) {
     let dur = caster.getIntForPower()/2 * SCALE_TIME;
     if (infused) { dur = dur * 1.5;}  // can't be infused, but just in case
     if (free) { dur = Dice.roll("1d4+5"); }
-    ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
+    ShowEffect(tgt, 1700, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
     if (tgt !== PC) {
       desc = tgt.getDesc() + " is charmed!";
     } else {
@@ -4178,7 +4365,7 @@ magic[SPELL_FEAR_LEVEL][SPELL_FEAR_ID].executeSpell = function(caster, infused, 
             fear.setExpiresTime(duration*SCALE_TIME + DUTime.getGameClock());
             val.addSpellEffect(fear);          
             desc = val.getDesc() + " is afraid!";
-            ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
+            ShowEffect(val, 1700, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
           }
           afeared = 1;
         }
@@ -4373,8 +4560,8 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(c
         let descval = {txt: desc};
 
         let sounds = {};
-        let fromcoords = getCoords(caster.getHomeMap(),caster.getx(), caster.gety());
-        let tocoords = getCoords(val.getHomeMap(),val.getx(), val.gety());
+        let fromcoords = GetCoords(caster.getHomeMap(),caster.getx(), caster.gety());
+        let tocoords = GetCoords(val.getHomeMap(),val.getx(), val.gety());
         let duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
         let destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
         let weapon = localFactory.createTile("SpellWeapon");
@@ -4441,6 +4628,9 @@ function PerformMindBlast(caster, infused, free, tgt) {
   
   let newtgt = CheckMirrorWard(tgt, caster);
   while (newtgt !== tgt) {
+    ShowEffect(tgt, 1000, "static.gif", MIRROR_SPLAT_X,MIRROR_SPLAT_Y);
+    PlayCastSound(tgt, "sfx_mirror_ward");
+    
     tgt = newtgt;
     newtgt = CheckMirrorWard(tgt, caster);
   }
@@ -4467,7 +4657,7 @@ function PerformMindBlast(caster, infused, free, tgt) {
   DealandDisplayDamage(tgt, caster, dmg, "drain");
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
     
-  ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
+  ShowEffect(tgt, 1700, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
   PlayCastSound(caster, "sfx_mind");
 
   return resp;
@@ -4664,7 +4854,6 @@ magic[SPELL_ARROW_OF_GLASS_LEVEL][SPELL_ARROW_OF_GLASS_ID].executeSpell = functi
 function PerformArrowOfGlass(caster, infused, free, tgt) {
   gamestate.setMode("null");
   let resp = {fin:1};
-  let desc = tgt.getDesc();
 
   if (caster.getHomeMap().getLOS(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), 1) >= LOS_THRESHOLD) { 
     resp["fin"] = 2;
@@ -4678,8 +4867,73 @@ function PerformArrowOfGlass(caster, infused, free, tgt) {
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
+  let dmg = 0;  // real damage rolled after real target determined
+  let desc = "";
+  let multitargets = [];
+  multitargets[0] = {};
+  multitargets[0].atk = caster;
+  multitargets[0].def = tgt;
+  multitargets[0].dmg = dmg;
+  multitargets[0].retval = { txt:"" };
+  multitargets[0].fromcoords = GetCoords(caster.getHomeMap(),caster.getx(), caster.gety());
+  multitargets[0].tocoords = GetCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
+  multitargets[0].destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
+
+  let boltgraphic = {};
+  boltgraphic.graphic = "static.gif";
+  boltgraphic.xoffset = 0;
+  boltgraphic.yoffset = -164*32;  // Arrow of Glass
+  boltgraphic.directionalammo = 1;
+  boltgraphic = GetEffectGraphic(caster,tgt,boltgraphic);
+
+  multitargets[0].ammographic = boltgraphic;
+
+  multitargets[0].sounds = {end: "sfx_default_hit"};
+  let duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
+  multitargets[0].duration = duration;
+  let weapon = localFactory.createTile("SpellWeapon");
+  weapon.dmgtype = "physical";
+  multitargets[0].weapon = weapon;
+  multitargets[0].type = "missile";
+  multitargets[0].ammoreturn = 0;
+  multitargets[0].endturn = 1;
+  multitargets[0].dmgtype = "physical";
+
   let newtgt = CheckMirrorWard(tgt, caster);
   while (newtgt !== tgt) {
+    // new target!
+    let newobj = {};
+    newobj.atk = tgt;
+    newobj.def = newtgt;
+    newobj.dmg = dmg;
+    newobj.retval = { txt: ""};
+    newobj.fromcoords = GetCoords(newobj.atk.getHomeMap(),newobj.atk.getx(),newobj.atk.gety());
+    newobj.tocoords = GetCoords(newobj.def.getHomeMap(),newobj.def.getx(),newobj.def.gety());
+    newobj.destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
+
+    multitargets[multitargets.length-1].destgraphic = {graphic:"static.gif", xoffset:MIRROR_SPLAT_X, yoffset:MIRROR_SPLAT_Y, overlay:"spacer.gif"};
+
+    let bg = {};
+    bg.graphic = "static.gif";
+    bg.xoffset = 0;
+    bg.yoffset = -164*32;
+    bg.directionalammo = 1;
+    bg = GetEffectGraphic(tgt, newtgt, bg);
+    newobj.ammographic = bg;
+
+    multitargets[multitargets.length-1].sounds = {end: "sfx_mirror_ward"}
+    newobj.sounds = {end: "sfx_default_hit"};
+    newobj.duration = (Math.pow( Math.pow(newtgt.getx() - tgt.getx(), 2) + Math.pow (newtgt.gety() - tgt.gety(), 2)  , .5)) * 100;
+    let wpn = localFactory.createTile("SpellWeapon");
+    wpn.dmgtype = "physical";
+    newobj.weapon = wpn;
+    newobj.type = "missile";
+    newobj.ammoreturn = 0;
+    newobj.endturn = 1;
+    newobj.dmgtype = "physical";
+    newobj.myturn = caster;
+
+    multitargets.push(newobj);
     tgt = newtgt;
     newtgt = CheckMirrorWard(tgt, caster);
   }
@@ -4693,7 +4947,8 @@ function PerformArrowOfGlass(caster, infused, free, tgt) {
   if (free) { power = Dice.roll("1d5+12"); }
 //  let dmg = RollDamage(DMG_TREMENDOUS) + power;
   let tmpdmg = prepareSpellDamage(caster,tgt,DMG_AUTOKILL,"physical");
-  let dmg = tmpdmg.dmg;
+  
+  dmg = tmpdmg.dmg;
   if (infused) {  // can't be infused, but check anyway
     dmg = dmg * 1.5;
   }
@@ -4703,30 +4958,26 @@ function PerformArrowOfGlass(caster, infused, free, tgt) {
   }
 
   DebugWrite("magic", "Dealing " + dmg + " damage.<br />");
+  desc = tgt.getDesc();
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
 
   PlayCastSound(caster,"sfx_break_glass");
-  let boltgraphic = {};
-  boltgraphic.graphic = "static.gif";  // Arrow of Glass
-  boltgraphic.xoffset = 0;
-  boltgraphic.yoffset = -164*32;
-  boltgraphic.directionalammo = 1;
-  boltgraphic = GetEffectGraphic(caster,tgt,boltgraphic);
   let descval = {txt: desc};
 
-  let sounds = {};
-  let fromcoords = getCoords(caster.getHomeMap(),caster.getx(), caster.gety());
-  let tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
-  let duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
-  let destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
-  let weapon = localFactory.createTile("SpellWeapon");
-  weapon.dmgtype = "physical";
+  multitargets[multitargets.length-1].dmg = dmg;
+  multitargets[multitargets.length-1].retval = descval;
 
+  let nowtarget = multitargets.shift();
+  nowtarget.doagain = multitargets;
   if (tgt.frozenintime) {
     descval = {txt: "You cast Arrow of Glass. It streaks forth from your hand, but before it reaches its target, it slows, and stops, and hangs in the air."};
-    AnimateToFrozen({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force", weapon:weapon, frdesc:"Arrow of Glass",doagain:[]});
+    nowtarget.retval = descval;
+    nowtarget.frdesc = "Arrow of Glass";
+//    AnimateToFrozen({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force", weapon:weapon, frdesc:"Arrow of Glass",doagain:[]});
+    AnimateToFrozen(nowtarget);
   } else {
-    AnimateEffect({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"physical", weapon:weapon, doagain:[]});
+//    AnimateEffect({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"physical", weapon:weapon, doagain:[]});
+    AnimateEffect(nowtarget);
   }
 
   resp["fin"] = -1;
@@ -4782,7 +5033,7 @@ magic[SPELL_CONFLAGRATION_LEVEL][SPELL_CONFLAGRATION_ID].executeSpell = function
         val.setHitBySpell(caster,SPELL_CONFLAGRATION_LEVEL);
         let desc = val.getDesc();
         desc = desc.charAt(0).toUpperCase() + desc.slice(1);
-        ShowEffect(val, 1000, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
+        ShowEffect(val, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
         val.dealDamge(dmg);
       }
     }
@@ -5126,7 +5377,7 @@ function ShowEffect(onwhat, duration, graphic, xoff, yoff, extraparams) {
   let animurl = "";
   spellcount["anim" + onwhat.getSerial()] = onwhat;
   if (IsObjectVisibleOnScreen(onwhat)) {
-    where = getCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
+    where = GetCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
     animurl = "graphics/" + graphic ;
     DebugWrite("magic", "Putting a " + animurl + " on " + onwhat.getName() + ".<br />");
   }
@@ -5188,7 +5439,7 @@ function PlaySparkles(onwhat, color) {
   DebugWrite("magic", "Incrementing spell effects count to " + spellcount['anim' + onwhat.getSerial()] + ".<br />");
   let displayspecs = getDisplayCenter(PC.getHomeMap(),PC.getx(),PC.gety());
   if ((onwhat.getx() >= displayspecs.leftedge) && (onwhat.getx() <= displayspecs.rightedge) && (onwhat.gety() >= displayspecs.topedge) && (onewhat.gety() <= displayspecs.bottomedge)) {
-    where = getCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
+    where = GetCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
     animhtml = '<div id="anim' + onwhat.getSerial() + '" style="position: absolute; left: ' + where.x + 'px; top: ' + where.y + 'px; background-image:url(\'graphics/spellsparkles.gif\');background-repeat:no-repeat; background-position: 0px ' + colory[color] + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';  
   } else {
     DebugWrite("magic", "Target is offscreen.<br />");
@@ -5219,7 +5470,7 @@ function AnimateSparkles(onwhat, color, animframe) {
   where.y = 0;
   let animurl = "";
   if ((onwhat.getx() >= displayspecs.leftedge) && (onwhat.getx() <= displayspecs.rightedge) && (onwhat.gety() >= displayspecs.topedge) && (onewhat.gety() <= displayspecs.bottomedge)) {
-    where = getCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
+    where = GetCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
     animurl = "url('graphics/spellsparkles.gif')";
   }
   
@@ -5526,7 +5777,7 @@ function PlayRing(onwhat, ringfile, retval, endturn, secondring, firstringcallba
   let centery = onwhat.gety();
   for (let i=centerx-1; i<=centerx+1; i++) {
     for (let j=centery-1; i<=centery+1; i++) {
-      where = getCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
+      where = GetCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
       if ((i >= displayspecs.leftedge) && (i <= displayspecs.rightedge) && (j >= displayspecs.topedge) && (j <= displayspecs.bottomedge)) {
         animhtml = '<div id="animring' + onwhat.getSerial() + i + 'x' + j + '" style="position: absolute; left: ' + where.x + 'px; top: ' + where.y + 'px; background-image:url(\'graphics/' + ringfile + '\');background-repeat:no-repeat; background-position: 0px 0px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';    
       } else {
@@ -5580,7 +5831,7 @@ function AnimateRing(onwhat, ringfile, retval, endturn, secondring, firstringcal
   for (let i=centerx-1;i<=centerx+1;i++) {
     for (let j=centery-1; i<=centery+1; i++) {
       if ((onwhat.getx() >= displayspecs.leftedge) && (onwhat.getx() <= displayspecs.rightedge) && (onwhat.gety() >= displayspecs.topedge) && (onewhat.gety() <= displayspecs.bottomedge)) {
-        where = getCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
+        where = GetCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
         animurl = "url('graphics/" + ringfile + "')";
       } else {
         animurl = "url('graphics/spacer.gif')";
@@ -5610,7 +5861,7 @@ function AnimateRing(onwhat, ringfile, retval, endturn, secondring, firstringcal
 
 function TestRing() {
   let displayspecs = getDisplayCenter(PC.getHomeMap(),PC.getx(),PC.gety());
-  let testspot = getCoords(PC.getHomeMap(),displayspecs.leftedge, PC.gety());
+  let testspot = GetCoords(PC.getHomeMap(),displayspecs.leftedge, PC.gety());
   testspot.x -= 32;
   let animhtml = '<div id="animringtest" style="position: absolute; left: ' + testspot.x + 'px; top: ' + testspot.y + 'px; background-image:url(\'graphics/red-carpet.gif\');background-repeat:no-repeat; background-position: 0px 0px;"><img src="graphics/spacer.gif" width="96" height="96" /></div>';  
   document.getElementById('spelleffects').innerHTML = document.getElementById('spelleffects').innerHTML + animhtml;
