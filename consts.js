@@ -62,3 +62,5 @@ const PURPLE_BALL_X = -256;
 const PURPLE_BALL_Y = -3072;
 const GREEN_BALL_X = -288;
 const GREEN_BALL_Y = -3072;
+const MIRROR_SPLAT_X = -160;
+const MIRROR_SPLAT_Y = -1728;
