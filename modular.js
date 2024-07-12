@@ -118,7 +118,7 @@ OnHitFuncs["entangle"] = function(atk,def,dmg) {
   let chance = ((def.getDex() - 15) * 1.5) + 50;
   if (Dice.roll("1d100") > chance) {
     let ent = localFactory.createTile("Entangle");
-    ent.source = atk.getSerial();
+    ent.tentacleSerial = atk.getSerial();
     ent.setExpiresTime(-1);
     def.addSpellEffect(ent);
   }
