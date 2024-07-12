@@ -228,10 +228,10 @@ function Attack(atk, def) {
     RevealMimic(atk);
   }
   if (atk.specials.underground) {
-    delete who.invisible;
-    delete who.specials.underground;
-    if (who.getHomeMap() === PC.getHomeMap()) {
-      DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
+    delete atk.invisible;
+    delete atk.specials.underground;
+    if (atk.getHomeMap() === PC.getHomeMap()) {
+      DrawMainFrame("one",atk.getHomeMap(),atk.getx(),atk.gety());
     }
   }
 
