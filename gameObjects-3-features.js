@@ -10019,42 +10019,30 @@ PitDespairLeverTile.prototype.use = function(user) {
       if (ftrs[i].getName() === "WallPortcullis") { door = ftrs[i]; }
     };
     if (this.spritexoffset === -8*32) {
-      door.locked = 0;
-      door.setGraphicArray(["static.gif", "", 0, -17*32]);
-			
-			door.closedLOS = door.getBlocksLOSArray();
-			let seethru = [];
-			seethru[0] = 0;
-			door.setBlocksLOSArray(seethru);
-			
-			door.addPassable(MOVE_WALK);
-			door.open = 1;
-			
+      if (!door.open) {
+        door.locked = 0;
+        door.use();			
+      }
 			this.spritexoffset = -9*32;
     } else {
-      let mobs = doortile.getNPCs();
-      let diffx = 0;
-      let diffy = 0;
-      if (this.gety() === 36) {
-        diffy = -1;
-      } else if ((this.getx() === 11) || (this.getx() === 25)) {
-        diffx = 1;
-      } else {
-        diffx = -1;
+      if (door.open) {
+        let mobs = doortile.getNPCs();
+        let diffx = 0;
+        let diffy = 0;
+        if (this.gety() === 36) {
+          diffy = -1;
+        } else if ((this.getx() === 11) || (this.getx() === 25)) {
+          diffx = 1;
+        } else {
+          diffx = -1;
+        }
+        for (let i=0;i<mobs.length;i++) {
+          thismap.moveThing(mobs[i].getx() + diffx , mobs[i].gety() + diffy, mobs[i]);
+          mobs[i].dealDamage(1000, door);
+        };
+        door.locked = 1;
+        door.use();      
       }
-      for (let i=0;i<mobs.length;i++) {
-        thismap.moveThing(mobs[i].getx() + diffx , mobs[i].gety() + diffy, mobs[i]);
-        mobs[i].dealDamage(1000, door);
-      };
-      door.locked = 1;
-      door.setGraphicArray(["static.gif", "", -9*32, -16*32]);
-      
-      door.setBlocksLOSArray(door.closedLOS);
-      door.closedLOS = [];
-			
-      door.removePassable(MOVE_WALK);
-      door.open = 0;
-      
       this.spritexoffset = -8*32;
     }
     retval["fin"] = 1;
