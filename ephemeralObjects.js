@@ -675,14 +675,16 @@ EntangleTile.prototype = new EphemeralObject();
 EntangleTile.prototype.applyEffect = function(silent) {
   let who = this.getAttachedTo();
   if ((who === PC) && !silent) {
-    maintext.delayedAddText("Tentacles from the ground grip your legs!");
+//    maintext.delayedAddText("Tentacles from the ground grip your legs!");
+    targetCursor.sayAfterAttack = "Tentacles from the ground grip your legs!";
   }
   return 1;
 }
 
 EntangleTile.prototype.onTurn = function() {
   let resp = 0;
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
+  if ((this.getExpiresTime() > 0) && (DUTime.getGameClock() > this.getExpiresTime())) {
+    console.log(this.getExpiresTime());
     resp = this.endEffect();
   } else {
     let who = this.getAttachedTo();
