@@ -1242,6 +1242,15 @@ function PerformRuneChoice() {
   document.getElementById('uiinterface').style.backgroundColor = "";
   let themap = PC.getHomeMap();
 
+  if (((targetCursor.runeChoice === 1) && (PC.getRuneCooldown("kings") > DUTime.getGameClock())) ||
+      ((targetCursor.runeChoice === 2) && (PC.getRuneCooldown("waves") > DUTime.getGameClock())) ||
+      ((targetCursor.runeChoice === 3) && (PC.getRuneCooldown("winds") > DUTime.getGameClock())) ||
+      ((targetCursor.runeChoice === 4) && (PC.getRuneCooldown("flames") > DUTime.getGameClock()))) {
+    retval["txt"] = "You have invoked that rune too recently, and need more time to recover.";
+    retval["fin"] = 0;
+    return retval;
+  }
+
   if (targetCursor.runeChoice === 1) { 
     // The Rune of Kings
     // Always heals you some. In certain locations, may also reveal things.
@@ -1341,6 +1350,7 @@ function PerformRuneChoice() {
       if (retval["txt"]) { retval["txt"] += "<br />"; }
       retval["txt"] += "You reach for the earth below... and it reaches back. You feel better!<br />It will be some time before you can do that again.";
       PC.setRuneCooldown("kings",144);  // 12 hours
+      DrawCharFrame();
     } else {
       if (retval["txt"]) { retval["txt"] += "<br />"; }
       retval["txt"] += "You feel the warm touch of the earth below your feet, but do not currently need its help with healing.";
@@ -2848,7 +2858,7 @@ function CreateRunesPage(selected) {
     }
     let opac = "";
     if (PC.getRuneCooldown("kings") > DUTime.getGameClock()) {
-      opac = "; opacity: .5";
+      opac = "; opacity: .4";
     }
    statsdiv += `<div style='width:110;height:110;background-image:url("graphics/runes.png");background-position:0px ${hasvoid}px${opac}'></div><p style='text-align:center${sel}'>The Rune<br />of Kings</p>`;
   }
@@ -2858,7 +2868,7 @@ function CreateRunesPage(selected) {
     if (selected === 2) { sel = "; color: yellow"; }
     let opac = "";
     if (PC.getRuneCooldown("waves") > DUTime.getGameClock()) {
-      opac = "; opacity: .5";
+      opac = "; opacity: .4";
     }
    statsdiv += `<div style='width:110;height:110;background-image:url("graphics/runes.png");background-position:-110px ${hasvoid}px${opac}'></div><p style='text-align:center${sel}'>The Rune<br />of Waves</p>`;
   }
@@ -2869,7 +2879,7 @@ function CreateRunesPage(selected) {
     if (selected === 3) { sel = "; color: yellow"; }
     let opac = "";
     if (PC.getRuneCooldown("winds") > DUTime.getGameClock()) {
-      opac = "; opacity: .5";
+      opac = "; opacity: .4";
     }
     statsdiv += `<div style='width:110;height:110;background-image:url("graphics/runes.png");background-position:-220px ${hasvoid}px${opac}'></div><p style='text-align:center${sel}'>The Rune<br />of Winds</p>`;
   }
@@ -2879,7 +2889,7 @@ function CreateRunesPage(selected) {
     if (selected === 4) { sel = "; color: yellow"; }
     let opac = "";
     if (PC.getRuneCooldown("flames") > DUTime.getGameClock()) {
-      opac = "; opacity: .5";
+      opac = "; opacity: .4";
     }
    statsdiv += `<div style='width:110;height:110;background-image:url("graphics/runes.png");background-position:-330px ${hasvoid}px${opac}'></div><p style='text-align:center${sel}'>The Rune<br />of Flames</p>`;
   }
