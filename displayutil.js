@@ -197,6 +197,10 @@ function AnimateEffect(param) {
       if ((atk === PC) && atk.dead) { endturn = 0; }
     } 
     maintext.addText(retval["txt"]);
+    if (targetCursor.sayAfterAttack) {
+      maintext.addText(targetCursor.sayAfterAttack);
+      delete targetCursor.sayAfterAttack;
+    }
     maintext.setInputLine("&gt;");
     maintext.drawInputLine();
 
