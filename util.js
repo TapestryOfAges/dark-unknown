@@ -820,7 +820,7 @@ function ApplyRune(who, rune, runeref) {
       DU.gameflags.setFlag("rune_kings",1);
       DU.gameflags.setFlag("lvl4_rune",1);  // pretend you've heard the spiel that introduces the rune
                                             // set here in case you get the rune first, so the king doesn't stop to tell you about it
-      questlog[1].complete();
+      questlog.complete(2);
     }
     who.runes[rune] = 1;
   }
