@@ -1257,6 +1257,7 @@ function PerformRuneChoice() {
     // If near the Prince and he is in a coma, heals and wakes him
     Earthquake();
     DUPlaySound("sfx_earthquake");
+    let used = 0;
 
     if (themap.getName() === "darkunknown") {
       if (((PC.getx() === 27) && (PC.gety() === 28)) || ((PC.getx() === 26) && (PC.gety() === 29)) || ((PC.getx() === 28) && (PC.gety() === 29)) || ((PC.getx() >= 25) && (PC.getx() <= 28) && (PC.gety() === 30)) || ((PC.getx() >=25) && (PC.getx() <= 27) && (PC.gety() === 31))) {
@@ -1313,6 +1314,7 @@ function PerformRuneChoice() {
         delete lance.flags.sleep;  // He'll go back to sleep at the end of the conversation
         retval["txt"] = "You reach for the earth... and it reaches back. But you then, carefully, redirect the earth's energies to your brother, lying wan and sickly beside you. As the warm power reaches him, you see color return to his face. He takes a sudden breath and his eyes open.";
         PC.forcedTalk = lance;
+        used = 1;
       }
     } else if (themap.getName() === "kaltonmine3") {
       if ((PC.getx() <=16) && (PC.gety() >= 22)) {
@@ -1347,8 +1349,10 @@ function PerformRuneChoice() {
       } else {
         PC.healMe(PC.getMaxHP()*.5, PC);
       }
-      if (retval["txt"]) { retval["txt"] += "<br />"; }
-      retval["txt"] += "You reach for the earth below... and it reaches back. You feel better!<br />It will be some time before you can do that again.";
+      if (!used) {
+        if (retval["txt"]) { retval["txt"] += "<br />"; }
+        retval["txt"] += "You reach for the earth below... and it reaches back. You feel better!<br />It will be some time before you can do that again.";
+      }
       PC.setRuneCooldown("kings",144);  // 12 hours
       DrawCharFrame();
     } else {
