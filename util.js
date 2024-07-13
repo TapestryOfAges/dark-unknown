@@ -807,13 +807,12 @@ function PerformTrap(who, trap, traplvl, trapped) {
 }
 
 function ApplyRune(who, rune, runeref) {
-  maintext.delayedAddText("You touch the glowing sigil.");
   maintext.delayedAddText("It burns you!");
   who.dealDamage((who.getHP()/3), runeref);
   let runecap = rune.charAt(0).toUpperCase() + rune.slice(1)
-  maintext.delayedAddText("You have been marked with the Rune of " + runecap + "!");
-  if (who.runes[rune] ===1) { maintext.delayedAddText("No effect!"); }
-  else {
+  let rettxt = "You touch the glowing sigil.";
+  if (who.runes[rune] !==1) { 
+    maintext.delayedAddText("You have been marked with the Rune of " + runecap + "!"); 
     DUPlaySound("sfx_dangerous_buff");
     if (rune === "kings") { 
       DU.gameflags.setFlag("rune_kings_1",1); 
@@ -825,7 +824,7 @@ function ApplyRune(who, rune, runeref) {
     who.runes[rune] = 1;
   }
   
-  return 1;
+  return {msg:rettxt};
 }
 
 function DoPCDeath() {
