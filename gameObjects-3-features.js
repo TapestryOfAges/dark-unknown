@@ -10263,13 +10263,17 @@ WallOfWavesTile.prototype.use = function(user) {
     retval["txt"] = "The rune glows for a moment, and then fades.";
     return retval;
   }
-  ApplyRune(user, "waves", this);
+  retval = ApplyRune(user, "waves", this);
+  retval["txt"] = retval["msg"];
+  delete retval['msg'];
+
   return retval;
 }
 
-WallOfWavesTile.prototype.bumpInto = function(who) {
+WallOfWavesTile.prototype.bumpinto = function(who) {
   let retval = {fin:1};
-  ApplyRune(user, "waves", this);
+  retval = ApplyRune(who, "waves", this);
+
   return retval;
 }
 
@@ -10293,13 +10297,17 @@ WallOfWindsTile.prototype.use = function(user) {
     retval["txt"] = "The rune glows for a moment, and then fades.";
     return retval;
   }
-  ApplyRune(user, "winds", this);
+  retval = ApplyRune(user, "winds", this);
+  retval["txt"] = retval["msg"];
+  delete retval['msg'];
+
   return retval;
 }
 
-WallOfWindsTile.prototype.bumpInto = function(who) {
+WallOfWindsTile.prototype.bumpinto = function(who) {
   let retval = {fin:1};
-  ApplyRune(user, "winds", this);
+  retval = ApplyRune(who, "winds", this);
+
   return retval;
 }
 
@@ -10323,15 +10331,15 @@ WallOfKingsTile.prototype.use = function(user) {
     retval["txt"] = "The rune glows for a moment, and then fades.";
     return retval;
   }
-  ApplyRune(user, "kings", this);
-  questlog.complete(2);
+  retval = ApplyRune(user, "kings", this);
+  retval["txt"] = retval["msg"];
+  delete retval['msg'];
   return retval;
 }
 
-WallOfKingsTile.prototype.bumpInto = function(who) {
+WallOfKingsTile.prototype.bumpinto = function(who) {
   let retval = {fin:1};
-  ApplyRune(user, "kings", this);
-  questlog.complete(2);
+  retval = ApplyRune(who, "kings", this);
   return retval;
 }
 
@@ -10355,7 +10363,9 @@ WallOfFlamesTile.prototype.use = function(user) {
     retval["txt"] = "The rune glows for a moment, and then fades.";
     return retval;
   }
-  ApplyRune(user, "flames", this);
+  retval = ApplyRune(user, "flames", this);
+  retval["txt"] = retval["msg"];
+  delete retval['msg'];
   let q = questlog.findQuest(89);
   if (q) { 
     questlog.activate(90);
@@ -10363,9 +10373,9 @@ WallOfFlamesTile.prototype.use = function(user) {
   return retval;
 }
 
-WallOfFlamesTile.prototype.bumpInto = function(who) {
+WallOfFlamesTile.prototype.bumpinto = function(who) {
   let retval = {fin:1};
-  ApplyRune(user, "flames", this);
+  retval = ApplyRune(who, "flames", this);
   return retval;
 }
 
@@ -10389,13 +10399,17 @@ WallOfVoidTile.prototype.use = function(user) {
     retval["txt"] = "The rune glows for a moment, and then fades.";
     return retval;
   }
-  ApplyRune(user, "void", this);
+  retval = ApplyRune(user, "void", this);
+  retval["txt"] = retval["msg"];
+  delete retval['msg'];
+
   return retval;
 }
 
-WallOfVoidTile.prototype.bumpInto = function(who) {
+WallOfVoidTile.prototype.bumpinto = function(who) {
   let retval = {fin:1};
-  ApplyRune(user, "void", this);
+  retval = ApplyRune(who, "void", this);
+
   return retval;
 }
 
