@@ -165,9 +165,10 @@ DamageOverTimeObject.prototype.onTurn = function() {
   
   let damagetype = "";
   if (this.damagetype) { damagetype = this.damagetype; }
-  who.dealDamage(dmg, this, damagetype);
-  
-  if ((this.getExpiresTime()) && (now >= this.getExpiresTime())) {
+  let thedmg = prepareSpellDamage(this,who,dmg,damagetype);
+  who.dealDamage(thedmg.dmg, this, damagetype);
+
+  if ((this.getExpiresTime() > 0) && (now >= this.getExpiresTime())) {
     return this.endEffect();
   } else {
     this.setLastTime(DUTime.getGameClock());    
