@@ -1258,25 +1258,25 @@ OnConvTriggers["prince_awake"] = function(speaker,keyword) {
 OnConvTriggers["cult_attack"] = function(speaker,keyword) {
   // add 2 imps, 2 cultists, and sfx destroy the walls
   let themap = speaker.getHomeMap();
-  if (themap.getName() !== "Shadow3") { alert("Somehow on the wrong map- cult_attack"); }
-  let imp1 = localFactory.createTile("ImpNPCTile");
+  if (themap.getName() !== "shadow3") { alert("Somehow on the wrong map- cult_attack"); }
+  let imp1 = localFactory.createTile("ImpNPC");
   imp1.onDeath = "cult";
   themap.placeThing(15,16,imp1);
-  let imp2 = localFactory.createTile("ImpNPCTile");
+  let imp2 = localFactory.createTile("ImpNPC");
   imp2.onDeath = "cult";
   themap.placeThing(15,17,imp2);
-  let cultist1 = localFactory.createTile("CultistNPCTile");
+  let cultist1 = localFactory.createTile("CultistNPC");
   cultist1.onDeath = "cult";
   themap.placeThing(16,16,cultist1);
-  let cultist2 = localFactory.createTile("CultistNPCTile");
+  let cultist2 = localFactory.createTile("CultistNPC");
   cultist2.onDeath = "cult";
   themap.placeThing(16,17,cultist2);
-  let rhys = FindNPCByname("Rhys",themap);
+  let rhys = FindNPCByName("Rhys",themap);
   rhys.setMaxHP(10000);
   rhys.setHP(10000); 
   Earthquake();
-  let wall1 = themap.getTile(14,16).getTopFeature();
-  let wall2 = themap.getTile(14,17).getTopFeature();
+  let wall1 = themap.getTile(14,15).getTopFeature();
+  let wall2 = themap.getTile(14,16).getTopFeature();
   themap.deleteThing(wall1);
   themap.deleteThing(wall2);
   DrawMainFrame("draw",themap,PC.getx(),PC.gety());
@@ -1606,7 +1606,6 @@ function SetAct2Convos(mapref) {
       convo = convo + "_act2";
       if (conversations[convo]) {
         npcs[i].conversation = convo;
-        console.log(convo);
       }
     }
   }
