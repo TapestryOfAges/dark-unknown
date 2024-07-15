@@ -184,8 +184,14 @@ function DiceObject() {
 	
   this.parse = function(die) {
     let dieobj = {};
-    if (parseInt(die) == die) {
+    if (parseInt(die) === die) {
       dieobj.plus = parseInt(die);
+      dieobj.quantity = 0;
+      dieobj.dice = 0;
+      return dieobj;
+    }
+    if (!isNaN(die)) {
+      dieobj.plus = die;
       dieobj.quantity = 0;
       dieobj.dice = 0;
       return dieobj;
