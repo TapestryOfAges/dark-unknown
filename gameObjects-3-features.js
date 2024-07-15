@@ -13986,6 +13986,11 @@ function LanceRuneNotesTile() {
 }
 LanceRuneNotesTile.prototype = new BookItemObject();
 
+LanceRuneNotesTile.prototype.onGet = function(who) {
+  questlog.complete(74);
+  return {};
+}
+
 function XApprenticeJournalTile() {
   this.name = "XApprenticeJournal";
   this.graphic = "static.gif";
