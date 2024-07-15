@@ -44,7 +44,7 @@ mappages["clearlake"].terrain[37] = 'ww ww ## +T +T +T +T +T +T .| ww f! f! f! f
 mappages["clearlake"].terrain[38] = 'ww ww #O +T +T +T +T +T ## .| ww |. .. f! f! .. .. ## +T +T +T ## +T +T +T +T ## .. .| ww ww ww ww |. .. f! f! .. ## +T +T +T +T ## ## ## .` ww';
 mappages["clearlake"].terrain[39] = 'ww /. ## +T +T +T +T +T ## .| ww |. .. f! f! .. .. ## ## ## ## ## ## ## ## ## ## .. .| ww ww ww ww |. .. f! f! .. +T +T +T +T +T f# +T ## .| ww';
 mappages["clearlake"].terrain[40] = 'ww |. ## +T +T +T +T +T ## .| ww `. .. f! f! .. .. .. .. .. .. .. .. .. .. .. .. .. .| ww ww ww ww |. .. f! f! .. ## +T +T +T +T ## ## ## .| ww';
-mappages["clearlake"].terrain[41] = 'ww |. ## ## ## #O ## ## ## .| ww ww `. f! f! .. .. .. .. .. .. .. .. .. .. .. __ __ ./ ww ww ww ww |. .. f! f! .. ## ## #O ## ## ## .. .. ./ ww';
+mappages["clearlake"].terrain[41] = 'ww |. ## ## ## #O ## ## ## .| ww ww `. f! f! .. .. .. .. .. .. .. .. .. .. .. __ __ ./ ww ww ww ww |. .. f! f! .. ## ## ## ## ## ## .. .. ./ ww';
 mappages["clearlake"].terrain[42] = 'ww `. .. .. .. .. __ __ __ ./ ww ww ww `. f! __ ./ `. __ __ __ __ __ __ __ ./ ww ww ww ww ww ww ww |. .. f! f! .. +T +T +T ## .. .. .. ./ ww ww';
 mappages["clearlake"].terrain[43] = 'ww ww `. __ __ ./ ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww `. __ f! f! .. ## ## ## ## .. __ ./ ww ww ww';
 mappages["clearlake"].terrain[44] = 'ww ww ww ww ww ww /. -- -- -- -- -- -- .` ww ww ww ww ww ww /. -- -- -- -- -- -- -- -- -- .` ww ww ww ww ww `. __ __ __ __ __ ./ ww ww ww ww ww';
@@ -690,7 +690,7 @@ mappages["clearlake0"].terrain[12] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK';
 
 mappages["clearlake0"].features = [];
 mappages["clearlake0"].features[0] = {name : 'LadderUp', x : 5, y : 5, entermap : 'clearlake', enterx : 44, entery : 39};
-mappages["clearlake0"].features[1] = {name : 'LadderDown', x : 7, y : 6, entermap : 'clearlaketunnel', enterx : 7, entery : 6};
+mappages["clearlake0"].features[1] = {name : 'LadderDown', x : 7, y : 6, entermap : 'tunnels', enterx : 7, entery : 6};
 
 
 mappages["clearlake0"].npcs = [];
