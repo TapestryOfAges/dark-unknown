@@ -491,6 +491,7 @@ NPCObject.prototype.processDeath = function(droploot){
     }, 2300);
     return;
   } else {
+    this.dead = 1;
     let corpse = {};
     let chest;
     let map = this.getHomeMap();
@@ -1621,6 +1622,7 @@ NPCObject.prototype.myTurn = function() {
   }
 
 	RunEffects(this);
+  if (this.getHP() <= 0) { return 1; }
 	
 	Regen(this);
   let awake = 1;
