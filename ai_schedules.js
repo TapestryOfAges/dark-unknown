@@ -868,6 +868,7 @@ ais.PassBDCGuardDoor = function(who,params) {
 }
 
 ais.PassBDCPortDoor = function(who,params) {
+  if (DU.gameflags.getFlag("act2")) { return {fin:1}; }
   let door = who.getHomeMap().getTile(12,38).getTopFeature();
   if (who.gety() === 37) {
     if (!door.open) {
