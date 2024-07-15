@@ -1227,6 +1227,7 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
           poisontile.setExpiresTime(duration + DUTime.getGameClock());
           val.addSpellEffect(poisontile);
           // poisoned!
+          if (val === PC) { DrawCharFrame(); }
           
           if (infused) {
             let dmg = prepareSpellDamage(caster, val, DMG_LIGHT, "poison", 0);
@@ -2055,7 +2056,7 @@ function PerformWallOfFlame(caster, infused, free, tgt) {
         else { newy = tgt.y+1; }
         TryToPlaceField(castermap,tgt.x+1,newy,"FireField");
       } else {
-        placed = placed.expiresTime = expires;
+        placed.expiresTime = expires;
         if (placed) { placed.expiresTime = expires; }
       }
     } else {
@@ -3825,7 +3826,7 @@ magic[SPELL_EXPLOSION_LEVEL][SPELL_EXPLOSION_ID].executeSpell = function(caster,
     return resp;
   }
 
-  CreateTargetCursor({sticky: 0, command:'c',spellName:'Explosion',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "open"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});      
+  CreateTargetCursor({sticky: 0, command:'c',spellName:'Explosion',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "fullopen"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});      
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 4;
@@ -5566,8 +5567,8 @@ function PerformSpellcast() {
     }
     
   } else if ((targetCursor.spelldetails.targettype === "open") || (targetCursor.spelldetails.targettype === "fullopen")) {
-    let nonpcs = 1;
-    if (targetCursor.spelldetails.targettype === "fullopen") { nonpcs = 0; }
+    let nonpcs = 0;
+    if (targetCursor.spelldetails.targettype === "fullopen") { nonpcs = 1; }
     let canmove = targettile.canMoveHere(MOVE_WALK,nonpcs);
     if (!canmove["canmove"]) {
       resp["fin"] = 0;
