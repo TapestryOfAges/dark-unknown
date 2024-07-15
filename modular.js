@@ -366,7 +366,7 @@ OnDeathFuncs["endact"] = function() {
 
 OnDeathFuncs["cult"] = function(who) {
   let themap = who.getHomeMap();
-  if (themap.getName() !== "Shadow3") { alert("Somehow on the wrong map"); }
+  if (themap.getName() !== "shadow3") { alert("Somehow on the wrong map"); }
   // check to see if both imps and cultists are dead, if so Rhys says something.
   let impcount = 0;
   let cultistcount = 0;
