@@ -141,6 +141,8 @@ EventFunctions["BDragon"] = function(ev) {
       maintext.setInputLine("&gt;[MORE]");
       maintext.drawTextFrame(); 
       targetCursor.command = "endact";
+      let wildcard = PC.checkInventory("ScrollWildcard");
+      PC.removeFromInventory(wildcard);
       targetCursor.prince = prince;
       targetCursor.dragon = dragon;
       targetCursor.endact = 1;
