@@ -1134,6 +1134,7 @@ function PerformMagicBolt(caster, infused, free, tgt) {
   } else {
 //    AnimateEffect({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force", weapon:weapon,doagain:[]});
     AnimateEffect(nowtarget);
+    if (tgt !== PC) { tgt.setAggro(1); }
   }
   resp["fin"] = -1;
   return resp;
@@ -1228,7 +1229,7 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
           val.addSpellEffect(poisontile);
           // poisoned!
           if (val === PC) { DrawCharFrame(); }
-          
+          if (tgt !== PC) { tgt.setAggro(1); }
           if (infused) {
             let dmg = prepareSpellDamage(caster, val, DMG_LIGHT, "poison", 0);
 //            val.dealDamage(dmg,caster,"poison");
@@ -1478,6 +1479,7 @@ magic[SPELL_DISRUPT_UNDEAD_LEVEL][SPELL_DISRUPT_UNDEAD_ID].executeSpell = functi
         DebugWrite("magic", "Found " + val.getName() + " , dealing it " + dmg + " damage.<br />");
         //val.dealDamage(dmg);
         DealandDisplayDamage(val,caster,dmg,"force");
+        if (tgt !== PC) { tgt.setAggro(1); }
         ShowEffect(val, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
         let desc = val.getDesc() + " disrupted!";
         desc = desc.charAt(0).toUpperCase() + desc.slice(1);      
@@ -1693,6 +1695,7 @@ function PerformFireball(caster, infused, free, tgt) {
   } else {
 //    AnimateEffect({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"fire", weapon:weapon, doagain:[]});
     AnimateEffect(nowtarget);
+    if (tgt !== PC) { tgt.setAggro(1); }
   }
   resp["fin"] = -1;
   return resp;
@@ -2548,6 +2551,7 @@ function PerformIceball(caster, infused, free, tgt) {
   } else {
 //    AnimateEffect({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"ice", weapon:weapon, doagain:[]});
     AnimateEffect(nowtarget);
+    if (tgt !== PC) { tgt.setAggro(1); }
   }
   
   resp["fin"] = -1;
@@ -2651,6 +2655,7 @@ function PerformLifeDrain(caster, infused, free, tgt) {
   DebugWrite("magic", "Dealing " + dmg + " damage.<br />");
   //tgt.dealDamage(dmg, caster, "drain");
   DealandDisplayDamage(tgt, caster, dmg, "drain");
+  if (tgt !== PC) { tgt.setAggro(1); }
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
     
   ShowEffect(tgt, 1700, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
@@ -2716,6 +2721,7 @@ magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID].executeSpell = function(caster, infused
       }
       //foes[i].dealDamage(dmg,caster,"force");
       DealandDisplayDamage(foes[i],caster,dmg,"force");
+      if (tgt !== PC) { tgt.setAggro(1); }
       DebugWrite("magic", "Dealing " + dmg + " damage to target " + foes[i].getName() + " " + foes[i].getSerial() + ".<br />");
       
       setTimeout(function() { ShowEffect(foes[i], 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y); }, 1000);
@@ -3132,6 +3138,7 @@ magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].executeSpell = function(caster,
         }
         //badguy.dealDamage(dmg,caster,"force");
         DealandDisplayDamage(badguy,caster,dmg,"force");
+        if (tgt !== PC) { tgt.setAggro(1); }
         ShowEffect(badguy, 700, "static.gif", -RED_SPLAT_X, RED_SPLAT_Y);
       }
     }
@@ -3323,6 +3330,7 @@ function PerformSwordstrike(caster, infused, free, tgt) {
   PlayCastSound(caster,"sfx_default_hit");
   //tgt.dealDamage(dmg,caster,"physical");
   DealandDisplayDamage(tgt,caster,dmg,"physical");
+  if (tgt !== PC) { tgt.setAggro(1); }
   
   for (let diffx = -1; diffx <=1; diffx++) {
     for (let diffy = -1; diffy <=1; diffy++) {
@@ -3333,6 +3341,7 @@ function PerformSwordstrike(caster, infused, free, tgt) {
         if (CheckResist(caster,PC,infused,0)) { dmg = dmg/2 +1; }
         //PC.dealDamage(dmg,caster,"physical");
         DealandDisplayDamage(PC,caster,dmg,"physical");
+        if (tgt !== PC) { tgt.setAggro(1); }
         ShowEffect(PC, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
         continue;
       }
@@ -3344,6 +3353,7 @@ function PerformSwordstrike(caster, infused, free, tgt) {
         if (CheckResist(caster,badguy,infused,0)) { dmg = dmg/2+1; }
         //badguy.dealDamage(dmg,caster,"physical");
         DealandDisplayDamage(badguy,caster,dmg,"physical");
+        if (tgt !== PC) { tgt.setAggro(1); }
         badguy.setHitBySpell(caster,SPELL_SWORDSTRIKE_LEVEL);
         ShowEffect(badguy, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
         if (!hostile && (caster === PC) && (tgt.getAttitude() === "friendly")) {
@@ -3885,6 +3895,7 @@ function PerformExplosion(caster, infused, free, tgt) {
         if (CheckResist(caster,PC,infused,0)) { localdmg = localdmg/2 +1; }
         //PC.dealDamage(dmg,caster,"fire");
         DealandDisplayDamage(PC,caster,localdmg,"fire");
+        if (tgt !== PC) { tgt.setAggro(1); }
         ShowEffect(PC, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
         continue;
       }
@@ -3897,6 +3908,7 @@ function PerformExplosion(caster, infused, free, tgt) {
         if (CheckResist(caster,badguy,infused,0)) { localdmg = localdmg/2+1; }
         //badguy.dealDamage(dmg,caster,"fire");
         DealandDisplayDamage(badguy,caster,localdmg,"fire");
+        if (tgt !== PC) { tgt.setAggro(1); }
         ShowEffect(badguy, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
         if (!hostile && (caster === PC) && (badguy.getAttitude() === "friendly")) {
           TurnMapHostile(castmap);
@@ -4189,6 +4201,7 @@ magic[SPELL_TREMOR_LEVEL][SPELL_TREMOR_ID].executeSpell = function(caster, infus
       }
       //foes[i].dealDamage(dmg,caster,"force");
       DealandDisplayDamage(foes[i],caster,dmg,"force");
+      if (tgt !== PC) { tgt.setAggro(1); }
       DebugWrite("magic", "Dealing " + dmg + " damage to target " + foes[i].getName() + " " + foes[i].getSerial() + ".<br />");
       
       setTimeout(function() { ShowEffect(foes[i], 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y); }, 1000);
@@ -4424,6 +4437,7 @@ magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].executeSpell = function(c
             }
             //tgt.dealDamage(dmg,center,"fire");
             DealandDisplayDamage(tgt,caster,dmg,"fire");
+            if (tgt !== PC) { tgt.setAggro(1); }
             tgt.setHitBySpell(caster,SPELL_FIRE_AND_ICE_LEVEL);
           }
         }
@@ -4568,7 +4582,7 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(c
         let weapon = localFactory.createTile("SpellWeapon");
         weapon.dmgtype = "fire";      
         AnimateEffect({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:final, retval:descval, dmgtype:"fire", doagain:[]});
-
+        if (tgt !== PC) { tgt.setAggro(1); }
       }
     }
   }
@@ -4656,6 +4670,7 @@ function PerformMindBlast(caster, infused, free, tgt) {
   DebugWrite("magic", "Dealing " + dmg + " damage.<br />");
 
   DealandDisplayDamage(tgt, caster, dmg, "drain");
+  if (tgt !== PC) { tgt.setAggro(1); }
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
     
   ShowEffect(tgt, 1700, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
@@ -4979,6 +4994,7 @@ function PerformArrowOfGlass(caster, infused, free, tgt) {
   } else {
 //    AnimateEffect({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"physical", weapon:weapon, doagain:[]});
     AnimateEffect(nowtarget);
+    if (tgt !== PC) { tgt.setAggro(1); }
   }
 
   resp["fin"] = -1;
@@ -5035,7 +5051,8 @@ magic[SPELL_CONFLAGRATION_LEVEL][SPELL_CONFLAGRATION_ID].executeSpell = function
         let desc = val.getDesc();
         desc = desc.charAt(0).toUpperCase() + desc.slice(1);
         ShowEffect(val, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
-        val.dealDamge(dmg);
+        if (tgt !== PC) { tgt.setAggro(1); }
+        DealandDisplayDamage(val,caster,dmg,"fire");
       }
     }
   }
