@@ -483,7 +483,7 @@ function CanMissileAttack(who) {
         let npcs = tile.getNPCs();
         if (npcs) {
           for (let k=0; k<npcs.length; k++) {
-            if (CheckAreEnemies(npcs[k],who)) { return 0; }
+            if (!npcs[k].specials.noact && CheckAreEnemies(npcs[k],who)) { return 0; }
           }
         }
       }
