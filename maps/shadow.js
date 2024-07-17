@@ -387,7 +387,7 @@ mappages["shadow3"].features[15] = {name : 'DestructableStoneWall', x : 14, y : 
 mappages["shadow3"].features[16] = {name : 'DestructableStoneWall', x : 14, y : 16};
 mappages["shadow3"].features[17] = {name : 'UnlitBrazier', x : 8, y : 12};
 mappages["shadow3"].features[18] = {name : 'UnlitBrazier', x : 5, y : 19};
-mappages["shadow3"].features[19] = {name : 'UnlitBrazier', x : 13, y : 14};
+mappages["shadow3"].features[19] = {name : 'Brazier', x : 13, y : 14};
 mappages["shadow3"].features[20] = {name : 'UnlitBrazier', x : 13, y : 17};
 
 
