@@ -1284,6 +1284,10 @@ OnConvTriggers["cult_attack"] = function(speaker,keyword) {
   maintext.addText("With a strangely muted roar, the eastern wall collapses!");
 }
 
+OnConvTriggers["cult_atk_convo"] = function(speaker,keyword) {
+  speaker.setAggro(0);
+}
+
 OnConvTriggers["justice_teleport"] = function(speaker,keyword) {
   DUPlaySound("sfx_teleport");
   PC.returntox = PC.getx();
