@@ -911,7 +911,7 @@ function WorldsEndingRaftTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "raft";
-  this.peerview = "#602000";
+  this.peerview = "#9d5a20";
   this.walkSound = "stone";
   this.bridge = 1;
 }
@@ -927,7 +927,7 @@ function WorldsEndingCenterRaftTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "raft";
-  this.peerview = "#602000";
+  this.peerview = "#9d5a20";
   this.walkSound = "stone";
   this.bridge = 1;
 }
@@ -1240,7 +1240,7 @@ function TowneTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "towne";
-  this.peerview = "#e0e0e0";
+  this.peerview = "#c1c1c1";
   this.civilized = 1;
 
   Enterable.call(this, "null", 0, 0);
@@ -1267,7 +1267,7 @@ function Towne2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "towne";
-  this.peerview = "#e0e0e0";
+  this.peerview = "#c1c1c1";
   this.civilized = 1;
 
   Enterable.call(this, "null", 0, 0);
@@ -1294,7 +1294,7 @@ function Towne3Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "towne";
-  this.peerview = "#e0e0e0";
+  this.peerview = "#c1c1c1";
   this.civilized = 1;
 
   Enterable.call(this, "null", 0, 0);
@@ -1311,7 +1311,7 @@ function KeepTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "keep";
-  this.peerview = "#e0e0e0";
+  this.peerview = "#c1c1c1";
   this.civilized = 1;
 
   Enterable.call(this, "null", 0, 0);
@@ -1336,7 +1336,7 @@ function TowerTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "tower";
-  this.peerview = "#e0e0e0";
+  this.peerview = "#c1c1c1";
 
   Enterable.call(this, "null", 0, 0);
 
@@ -1363,7 +1363,7 @@ function LighthouseTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "lighthouse";
-  this.peerview = "#e0e0e0";
+  this.peerview = "#c1c1c1";
 
   Enterable.call(this, "null", 0, 0);
 
@@ -1389,7 +1389,7 @@ function VillageTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "village";
-  this.peerview = "#e0e0e0";
+  this.peerview = "#c1c1c1";
   this.civilized = 1;
 
   Enterable.call(this, "null", 0, 0);
@@ -1406,7 +1406,7 @@ function HotelPheranTile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "inn";
-  this.peerview = "#00c000";
+  this.peerview = "#c1c1c1";
   this.civilized = 1;
 
   Enterable.call(this, "hotelcalifornia0", 7, 18);
@@ -1453,8 +1453,8 @@ function CastleTile() {
   this.spriteyoffset = -5*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "Castle Dea Olympus";
-  this.peerview = "#e0e0e0";
+  this.desc = "Castle dea Olympus";
+  this.peerview = "#c1c1c1";
   this.civilized = 1;
 
   Enterable.call(this, "null", 0, 0);
@@ -1482,8 +1482,8 @@ function LeftCastleTile() {
   this.spriteyoffset = -5*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle Dea Olympus";
-  this.peerview = "#e0e0e0";
+  this.desc = "Castle deaOlympus";
+  this.peerview = "#c1c1c1";
   this.civilized = 1;
 }
 LeftCastleTile.prototype = new FeatureObject();
@@ -1496,8 +1496,8 @@ function RightCastleTile() {
   this.spriteyoffset = -5*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle Dea Olympus";
-  this.peerview = "#e0e0e0";
+  this.desc = "Castle deaOlympus";
+  this.peerview = "#c1c1c1";
   this.civilized = 1;
 }
 RightCastleTile.prototype = new FeatureObject();
@@ -1510,8 +1510,8 @@ function FarLeftCastleTile() {
   this.spriteyoffset = -5*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle Dea Olympus";
-  this.peerview = "#e0e0e0";
+  this.desc = "Castle deaOlympus";
+  this.peerview = "#c1c1c1";
   this.civilized = 1;
 }
 FarLeftCastleTile.prototype = new FeatureObject();
@@ -1524,8 +1524,8 @@ function FarRightCastleTile() {
   this.spriteyoffset = -5*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle Dea Olympus";
-  this.peerview = "#e0e0e0";
+  this.desc = "Castle deaOlympus";
+  this.peerview = "#c1c1c1";
   this.civilized = 1;
 }
 FarRightCastleTile.prototype = new FeatureObject();
@@ -1538,8 +1538,8 @@ function UpperFarLeftCastleTile() {
   this.spriteyoffset = -4*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle Dea Olympus";
-  this.peerview = "#e0e0e0";
+  this.desc = "Castle deaOlympus";
+  this.peerview = "#c1c1c1";
   this.civilized = 1;
 }
 UpperFarLeftCastleTile.prototype = new FeatureObject();
@@ -1552,8 +1552,8 @@ function UpperFarRightCastleTile() {
   this.spriteyoffset = -4*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle Dea Olympus";
-  this.peerview = "#e0e0e0";
+  this.desc = "Castle deaOlympus";
+  this.peerview = "#c1c1c1";
   this.civilized = 1;
 }
 UpperFarRightCastleTile.prototype = new FeatureObject();
@@ -1566,8 +1566,8 @@ function UpperLeftCastleTile() {
   this.spriteyoffset = -99*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle Dea Olympus";
-  this.peerview = "#e0e0e0";
+  this.desc = "Castle deaOlympus";
+  this.peerview = "#c1c1c1";
   this.civilized = 1;
 
   ManualAnimation.call(this, { animstart: -4*32,
@@ -1589,8 +1589,8 @@ function UpperRightCastleTile() {
   this.spriteyoffset = -99*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle Dea Olympus";
-  this.peerview = "#e0e0e0";
+  this.desc = "Castle deaOlympus";
+  this.peerview = "#c1c1c1";
   this.civilized = 1;
 
   ManualAnimation.call(this, { animstart: 0,
@@ -1613,8 +1613,8 @@ function UpperCenterCastleTile() {
   this.spriteyoffset = -4*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle Dea Olympus";
-  this.peerview = "#e0e0e0";
+  this.desc = "Castle deaOlympus";
+  this.peerview = "#c1c1c1";
   this.civilized = 1;
 }
 UpperCenterCastleTile.prototype = new FeatureObject();
@@ -1628,7 +1628,7 @@ function PileOfRocksTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "pile of rocks";
-  this.peerview = "#606060";
+  this.peerview = "#959595";
 }
 PileOfRocksTile.prototype = new FeatureObject();
 
@@ -1641,7 +1641,7 @@ function PushablePileOfRocksTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "pile of rocks";
-  this.peerview = "#606060";
+  this.peerview = "#959595";
   Pushable.call(this);
 }
 PushablePileOfRocksTile.prototype = new FeatureObject();
@@ -1744,7 +1744,7 @@ function ShrineTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "gate";
-  this.peerview = "#9d9d9d";
+  this.peerview = "#626262";
 }
 ShrineTile.prototype = new FeatureObject();
 
@@ -1758,7 +1758,7 @@ function BrokenShrineTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "broken gate";
-  this.peerview = "#9d9d9d";
+  this.peerview = "#626262";
 }
 BrokenShrineTile.prototype = new FeatureObject();
 
@@ -1772,7 +1772,7 @@ function RuinsTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "ruin";
-  this.peerview = "#e0e0e0";
+  this.peerview = "#c1c1c1";
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -2995,7 +2995,6 @@ function FireplaceTile() {
 	this.blocklos = 2;
   this.prefix = "a";
 	this.desc = "fireplace";
-	this.peerview = "white";
 	this.pathweight = 5;
   this.firedamage = "3d4";
 //  this.nowander = 1;
@@ -3074,7 +3073,6 @@ function DustyFireplaceTile() {
 	this.blocklos = 2;
   this.prefix = "a";
 	this.desc = "dusty fireplace";
-	this.peerview = "white";
 }
 DustyFireplaceTile.prototype = new FeatureObject();
 
@@ -3087,7 +3085,6 @@ function SmallDustyFireplaceTile() {
 	this.blocklos = 2;
   this.prefix = "a";
 	this.desc = "dusty fireplace";
-	this.peerview = "white";
 }
 SmallDustyFireplaceTile.prototype = new FeatureObject();
 
@@ -3101,7 +3098,7 @@ function AltarTile() {
 	this.blocklos = 0;
 	this.prefix = "an";
 	this.desc = "altar";
-	this.peerview = "white";
+	this.peerview = "#c1c1c1";
 }
 AltarTile.prototype = new FeatureObject();
 
@@ -3115,7 +3112,7 @@ function ThinAltarTile() {
 	this.blocklos = 0;
 	this.prefix = "an";
 	this.desc = "altar";
-	this.peerview = "white";
+	this.peerview = "#c1c1c1";
 }
 ThinAltarTile.prototype = new FeatureObject();
 
@@ -3585,7 +3582,7 @@ function LadderDownTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "ladder";
-  this.peerview = "#808080";
+  this.peerview = "#eaa35f";
 
   Enterable.call(this, "null", 0, 0);
   this.descend = "Climb down!";
@@ -3606,7 +3603,7 @@ function LadderUpTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "ladder";
-  this.peerview = "#808080";
+  this.peerview = "#eaa35f";
 
   Enterable.call(this, "null", 0, 0);
   this.klimb = "Climb up!";
@@ -3626,7 +3623,7 @@ function StairDownTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs down";
-  this.peerview = "#808080";
+  this.peerview = "#626262";
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -3646,7 +3643,7 @@ function StairUpTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs up";
-  this.peerview = "#808080";
+  this.peerview = "#626262";
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -3666,7 +3663,7 @@ function StairDown2Tile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs down";
-  this.peerview = "#808080";
+  this.peerview = "#626262";
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -3686,7 +3683,7 @@ function StairUp2Tile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs up";
-  this.peerview = "#808080";
+  this.peerview = "#626262";
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -3706,7 +3703,7 @@ function FancyStairDownTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs down";
-  this.peerview = "#808080";
+  this.peerview = "#626262";
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -3726,7 +3723,7 @@ function FancyStairUpTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs up";
-  this.peerview = "#808080";
+  this.peerview = "#626262";
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -3746,7 +3743,7 @@ function FancyStairDown2Tile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs down";
-  this.peerview = "#808080";
+  this.peerview = "#626262";
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -3766,7 +3763,7 @@ function FancyStairUp2Tile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs up";
-  this.peerview = "#808080";
+  this.peerview = "#626262";
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -3786,7 +3783,7 @@ function WoodenStairDownTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs down";
-  this.peerview = "#808080";
+  this.peerview = "#eaa35f";
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -3806,7 +3803,7 @@ function WoodenStairUpTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs up";
-  this.peerview = "#808080";
+  this.peerview = "#eaa35f";
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -3826,7 +3823,7 @@ function WoodenStairDown2Tile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs down";
-  this.peerview = "#808080";
+  this.peerview = "#eaa35f";
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -3846,7 +3843,7 @@ function WoodenStairUp2Tile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs up";
-  this.peerview = "#808080";
+  this.peerview = "#eaa35f";
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -3867,7 +3864,7 @@ function SingleSignpostTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "signpost";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 SingleSignpostTile.prototype = new FeatureObject();
 
@@ -3881,7 +3878,7 @@ function SignpostLeftTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "signpost";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 SignpostLeftTile.prototype = new FeatureObject();
 
@@ -3895,7 +3892,7 @@ function SignpostRightTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "signpost";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 SignpostRightTile.prototype = new FeatureObject();
 
@@ -3909,7 +3906,7 @@ function CarpenterSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "carpenter";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 CarpenterSignTile.prototype = new FeatureObject();
 
@@ -3923,7 +3920,7 @@ function CarpenterSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "carpenter";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 CarpenterSign2Tile.prototype = new FeatureObject();
 
@@ -3937,7 +3934,7 @@ function InnSignTile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "inn";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 InnSignTile.prototype = new FeatureObject();
 
@@ -3951,7 +3948,7 @@ function InnSign2Tile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "inn";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 InnSign2Tile.prototype = new FeatureObject();
 
@@ -3965,7 +3962,7 @@ function TavernSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "tavern";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 TavernSignTile.prototype = new FeatureObject();
 
@@ -3979,7 +3976,7 @@ function TavernSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "tavern";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 TavernSign2Tile.prototype = new FeatureObject();
 
@@ -3993,7 +3990,7 @@ function ArmourySignTile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "armoury";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 ArmourySignTile.prototype = new FeatureObject();
 
@@ -4007,7 +4004,7 @@ function ArmourySign2Tile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "armoury";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 ArmourySign2Tile.prototype = new FeatureObject();
 
@@ -4021,7 +4018,7 @@ function GrocerSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "grocer";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 GrocerSignTile.prototype = new FeatureObject();
 
@@ -4035,7 +4032,7 @@ function GrocerSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "grocer";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 GrocerSign2Tile.prototype = new FeatureObject();
 
@@ -4049,7 +4046,7 @@ function WeaponSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "weaponsmith";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 WeaponSignTile.prototype = new FeatureObject();
 
@@ -4063,7 +4060,7 @@ function WeaponSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "weaponsmith";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 WeaponSign2Tile.prototype = new FeatureObject();
 
@@ -4077,7 +4074,7 @@ function BowyerSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bowyer";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 BowyerSignTile.prototype = new FeatureObject();
 
@@ -4091,7 +4088,7 @@ function BowyerSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bowyer";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 BowyerSign2Tile.prototype = new FeatureObject();
 
@@ -4105,7 +4102,7 @@ function AlchemistSignTile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "alchemist";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 AlchemistSignTile.prototype = new FeatureObject();
 
@@ -4119,7 +4116,7 @@ function AlchemistSign2Tile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "alchemist";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 AlchemistSign2Tile.prototype = new FeatureObject();
 
@@ -4133,7 +4130,7 @@ function MagicShoppeSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "magic shoppe";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 MagicShoppeSignTile.prototype = new FeatureObject();
 
@@ -4147,7 +4144,7 @@ function MagicShoppeSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "magic shoppe";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 MagicShoppeSign2Tile.prototype = new FeatureObject();
 
@@ -4161,7 +4158,7 @@ function HealerSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "healer";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 HealerSignTile.prototype = new FeatureObject();
 
@@ -4175,7 +4172,7 @@ function HealerSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "healer";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 HealerSign2Tile.prototype = new FeatureObject();
 
@@ -4189,7 +4186,7 @@ function CasinoSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "casino";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 CasinoSignTile.prototype = new FeatureObject();
 
@@ -4203,7 +4200,7 @@ function CasinoSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "casino";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 CasinoSign2Tile.prototype = new FeatureObject();
 
@@ -4217,7 +4214,7 @@ function PaladinSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "sign showing a chalice";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 PaladinSignTile.prototype = new FeatureObject();
 
@@ -4231,7 +4228,7 @@ function PaladinSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "sign showing a chalice";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 PaladinSign2Tile.prototype = new FeatureObject();
 
@@ -4245,7 +4242,7 @@ function HerbalistSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "herbalist";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 HerbalistSignTile.prototype = new FeatureObject();
 
@@ -4259,7 +4256,7 @@ function HerbalistSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "herbalist";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 HerbalistSign2Tile.prototype = new FeatureObject();
 
@@ -4273,7 +4270,7 @@ function CartographerSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "cartographer";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 CartographerSignTile.prototype = new FeatureObject();
 
@@ -4287,7 +4284,7 @@ function CartographerSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "cartographer";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 CartographerSign2Tile.prototype = new FeatureObject();
 
@@ -4301,7 +4298,7 @@ function WhitesmithSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "whitesmith";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 WhitesmithSignTile.prototype = new FeatureObject();
 
@@ -4315,7 +4312,7 @@ function WhitesmithSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "whitesmith";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 WhitesmithSign2Tile.prototype = new FeatureObject();
 
@@ -4329,7 +4326,7 @@ function CourthouseSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "courthouse";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 CourthouseSignTile.prototype = new FeatureObject();
 
@@ -4343,7 +4340,7 @@ function CourthouseSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "courthouse";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 CourthouseSign2Tile.prototype = new FeatureObject();
 
@@ -4357,7 +4354,7 @@ function BardSignTile() {
   this.blocklos = 0;
   this.prefix = "the";
   this.desc = "Bardic College";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 BardSignTile.prototype = new FeatureObject();
 
@@ -4371,7 +4368,7 @@ function BardSign2Tile() {
   this.blocklos = 0;
   this.prefix = "the";
   this.desc = "Bardic College";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 BardSign2Tile.prototype = new FeatureObject();
 
@@ -4385,7 +4382,7 @@ function BrokenSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "broken sign";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 BrokenSignTile.prototype = new FeatureObject();
 
@@ -4399,7 +4396,7 @@ function BrokenSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "broken sign";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 BrokenSign2Tile.prototype = new FeatureObject();
 
@@ -4413,7 +4410,7 @@ function UnfinishedSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "broken sign";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 UnfinishedSignTile.prototype = new FeatureObject();
 
@@ -4427,7 +4424,7 @@ function UnfinishedSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "broken sign";
-  this.peerview = "#541909";
+  this.peerview = "#9d5a20";
 }
 UnfinishedSign2Tile.prototype = new FeatureObject();
 
@@ -4440,7 +4437,7 @@ function NSPierWTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "wooden pier";
-  this.peerview = "#602000";
+  this.peerview = "#9d5a20";
   this.walkSound = "stone";
 }
 NSPierWTile.prototype = new FeatureObject();
@@ -4454,7 +4451,7 @@ function NSPierETile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "wooden pier";
-  this.peerview = "#602000";
+  this.peerview = "#9d5a20";
   this.walkSound = "stone";
 }
 NSPierETile.prototype = new FeatureObject();
@@ -4468,7 +4465,7 @@ function EWPierNTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "wooden pier";
-  this.peerview = "#602000";
+  this.peerview = "#9d5a20";
   this.walkSound = "stone";
 }
 EWPierNTile.prototype = new FeatureObject();
@@ -4482,7 +4479,7 @@ function EWPierSTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "wooden pier";
-  this.peerview = "#602000";
+  this.peerview = "#9d5a20";
   this.walkSound = "stone";
 }
 EWPierSTile.prototype = new FeatureObject();
@@ -4496,7 +4493,7 @@ function TombstoneTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "tombstone";
-  this.peerview = "#541909";
+  this.peerview = "#c1c1c1";
 }
 TombstoneTile.prototype = new FeatureObject();
 
@@ -4606,7 +4603,7 @@ function WBridgeNSTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bridge";
-  this.peerview = "#602000";
+  this.peerview = "#9d5a20";
   this.walkSound = "stone";
   this.bridge = 1;
 }
@@ -4622,7 +4619,7 @@ function EBridgeNSTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bridge";
-  this.peerview = "#602000";
+  this.peerview = "#9d5a20";
   this.walkSound = "stone";
   this.bridge = 1;
 }
@@ -4638,7 +4635,7 @@ function BridgeNSTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bridge";
-  this.peerview = "#602000";
+  this.peerview = "#9d5a20";
   this.walkSound = "stone";
   this.bridge = 1;
 }
@@ -4654,7 +4651,7 @@ function BridgeNSBrokenTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bridge";
-  this.peerview = "#602000";
+  this.peerview = "#9d5a20";
   this.walkSound = "stone";
   this.bridge = 1;
 }
@@ -4670,7 +4667,7 @@ function NBridgeEWTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bridge";
-  this.peerview = "#602000";
+  this.peerview = "#9d5a20";
   this.walkSound = "stone";
   this.bridge = 1;
 }
@@ -4686,7 +4683,7 @@ function SBridgeEWTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bridge";
-  this.peerview = "#602000";
+  this.peerview = "#9d5a20";
   this.walkSound = "stone";
   this.bridge = 1;
 }
@@ -4702,7 +4699,7 @@ function BridgeEWTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bridge";
-  this.peerview = "#602000";
+  this.peerview = "#9d5a20";
   this.walkSound = "stone";
   this.bridge = 1;
 }
@@ -4718,7 +4715,7 @@ function BridgeEWBrokenTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bridge";
-  this.peerview = "#602000";
+  this.peerview = "#9d5a20";
   this.walkSound = "stone";
   this.bridge = 1;
 }
@@ -5463,7 +5460,7 @@ function LooseFloorboardEWTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "wooden planks";
-  this.peerview = "#602000";
+  this.peerview = "#9d5a20";
   this.walkSound = "stone";
   this.prefix = "a";
   this.lootonce = 1;
@@ -6720,7 +6717,7 @@ function SecretDoorTile() {
 	
 	this.searchDesc = "secret door";
 	this.searchPrefix = "a";
-  this.peerview = "white";
+  this.peerview = "#ffffff";
   
   this.pathweight = 2; 
 	
@@ -6740,7 +6737,7 @@ function GreySecretDoorTile() {
 	
 	this.searchDesc = "secret door";
 	this.searchPrefix = "a";
-  this.peerview = "white";
+  this.peerview = "#c1c1c1";
   
   this.pathweight = 2; 
 	
@@ -6757,7 +6754,7 @@ function ShiftingWallTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "white";
+  this.peerview = "#c1c1c1";
 }
 ShiftingWallTile.prototype = new FeatureObject();
 
@@ -6770,7 +6767,7 @@ function DestructableStoneWallTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "white";
+  this.peerview = "#c1c1c1";
 }
 DestructableStoneWallTile.prototype = new FeatureObject();
 
@@ -6784,7 +6781,7 @@ function RuinsWallTallLeftMidRightTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "white";
+  this.peerview = "#c1c1c1";
 }
 RuinsWallTallLeftMidRightTile.prototype = new FeatureObject();
 
@@ -6798,7 +6795,7 @@ function RuinsWallTallLeftMidRight2Tile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "white";
+  this.peerview = "#c1c1c1";
 }
 RuinsWallTallLeftMidRight2Tile.prototype = new FeatureObject();
 
@@ -6812,7 +6809,7 @@ function RuinsWallMidLeftMidRightTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "white";
+  this.peerview = "#c1c1c1";
 }
 RuinsWallMidLeftMidRightTile.prototype = new FeatureObject();
 
@@ -6826,7 +6823,7 @@ function RuinsWallMidLeftTallRightTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "white";
+  this.peerview = "#c1c1c1";
 }
 RuinsWallMidLeftTallRightTile.prototype = new FeatureObject();
 
@@ -6840,7 +6837,7 @@ function RuinsWallMidLeftBottomRightTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "white";
+  this.peerview = "#c1c1c1";
 }
 RuinsWallMidLeftBottomRightTile.prototype = new FeatureObject();
 
@@ -6854,7 +6851,7 @@ function RuinsWallBottomLeftBottomRightTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "white";
+  this.peerview = "#c1c1c1";
 }
 RuinsWallBottomLeftBottomRightTile.prototype = new FeatureObject();
 
@@ -6868,7 +6865,7 @@ function RuinsWallBottomLeftMidRightTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "white";
+  this.peerview = "#c1c1c1";
 }
 RuinsWallBottomLeftMidRightTile.prototype = new FeatureObject();
 
@@ -8116,7 +8113,7 @@ function UtterDarkTile() {
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 2;
   this.desc = "darkness";
-  this.peerview = "black";
+  this.peerview = "#000000";
 }
 UtterDarkTile.prototype = new FeatureObject();
 
@@ -9337,6 +9334,7 @@ function CrenellationNWTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "crenellation";
+  this.peerview = "#c1c1c1";
 }
 CrenellationNWTile.prototype = new FeatureObject();
 
@@ -9349,6 +9347,7 @@ function CrenellationETile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "crenellation";
+  this.peerview = "#c1c1c1";
 }
 CrenellationETile.prototype = new FeatureObject();
 
@@ -9361,6 +9360,7 @@ function CrenellationNETile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "crenellation";
+  this.peerview = "#c1c1c1";
 }
 CrenellationNETile.prototype = new FeatureObject();
 
@@ -9373,6 +9373,7 @@ function CrenellationSTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "crenellation";
+  this.peerview = "#c1c1c1";
 }
 CrenellationSTile.prototype = new FeatureObject();
 
@@ -9385,6 +9386,7 @@ function CrenellationWTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "crenellation";
+  this.peerview = "#c1c1c1";
 }
 CrenellationWTile.prototype = new FeatureObject();
 
@@ -9397,6 +9399,7 @@ function CrenellationNTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "crenellation";
+  this.peerview = "#c1c1c1";
 }
 CrenellationNTile.prototype = new FeatureObject();
 
@@ -9409,6 +9412,7 @@ function CrenellationSWTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "crenellation";
+  this.peerview = "#c1c1c1";
 }
 CrenellationSWTile.prototype = new FeatureObject();
 
@@ -9421,6 +9425,7 @@ function CrenellationSETile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "crenellation";
+  this.peerview = "#c1c1c1";
 }
 CrenellationSETile.prototype = new FeatureObject();
 
@@ -9433,6 +9438,7 @@ function CrenellationNWInnerTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "crenellation";
+  this.peerview = "#c1c1c1";
 }
 CrenellationNWInnerTile.prototype = new FeatureObject();
 
@@ -9445,6 +9451,7 @@ function CrenellationNEInnerTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "crenellation";
+  this.peerview = "#c1c1c1";
 }
 CrenellationNEInnerTile.prototype = new FeatureObject();
 
@@ -9457,6 +9464,7 @@ function CrenellationSWInnerTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "crenellation";
+  this.peerview = "#c1c1c1";
 }
 CrenellationSWInnerTile.prototype = new FeatureObject();
 
@@ -9469,6 +9477,7 @@ function CrenellationSEInnerTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "crenellation";
+  this.peerview = "#c1c1c1";
 }
 CrenellationSEInnerTile.prototype = new FeatureObject();
 
@@ -9483,7 +9492,6 @@ function WeaponCounterDaggerTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "display dagger";
-  this.peerview = "black";
 }
 WeaponCounterDaggerTile.prototype = new FeatureObject();
 
@@ -9498,7 +9506,6 @@ function WeaponCounterMaceTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "display mace";
-  this.peerview = "black";
 }
 WeaponCounterMaceTile.prototype = new FeatureObject();
 
@@ -9513,7 +9520,6 @@ function WeaponCounterSwordTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "display sword";
-  this.peerview = "black";
 }
 WeaponCounterSwordTile.prototype = new FeatureObject();
 
@@ -9528,7 +9534,6 @@ function ArmorCounterLeatherTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "display counter";
-  this.peerview = "black";
 }
 ArmorCounterLeatherTile.prototype = new FeatureObject();
 
@@ -9543,7 +9548,6 @@ function ArmorCounterChainTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "display counter";
-  this.peerview = "black";
 }
 ArmorCounterChainTile.prototype = new FeatureObject();
 
@@ -9558,7 +9562,6 @@ function ArmorCounterPlateTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "display counter";
-  this.peerview = "black";
 }
 ArmorCounterPlateTile.prototype = new FeatureObject();
 
@@ -9573,7 +9576,7 @@ function DisplayCounterNTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "display counter";
-  this.peerview = "black";
+  this.peerview = "#452318";
 }
 DisplayCounterNTile.prototype = new FeatureObject();
 
@@ -9588,7 +9591,7 @@ function DisplayCounterSTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "display counter";
-  this.peerview = "black";
+  this.peerview = "#452318";
 }
 DisplayCounterSTile.prototype = new FeatureObject();
 
@@ -9603,7 +9606,7 @@ function DisplayCounterCTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "display counter";
-  this.peerview = "black";
+  this.peerview = "#452318";
 }
 DisplayCounterCTile.prototype = new FeatureObject();
 
@@ -9618,7 +9621,7 @@ function MerchantCounterClothTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "display counter";
-  this.peerview = "black";
+  this.peerview = "#452318";
 }
 MerchantCounterClothTile.prototype = new FeatureObject();
 
@@ -9633,7 +9636,7 @@ function MerchantCounterScaleTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "display counter";
-  this.peerview = "black";
+  this.peerview = "#452318";
 }
 MerchantCounterScaleTile.prototype = new FeatureObject();
 
@@ -9648,7 +9651,7 @@ function MerchantCounterBillTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "display counter";
-  this.peerview = "black";
+  this.peerview = "#452318";
 }
 MerchantCounterBillTile.prototype = new FeatureObject();
 
@@ -9663,7 +9666,7 @@ function MerchantCounterBookTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "display counter";
-  this.peerview = "black";
+  this.peerview = "#452318";
 }
 MerchantCounterBookTile.prototype = new FeatureObject();
 
@@ -9678,7 +9681,7 @@ function MerchantCounterEdgeTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "display counter";
-  this.peerview = "black";
+  this.peerview = "#452318";
 }
 MerchantCounterEdgeTile.prototype = new FeatureObject();
 
@@ -9693,7 +9696,7 @@ function MerchantCounterTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "display counter";
-  this.peerview = "black";
+  this.peerview = "#452318";
 }
 MerchantCounterTile.prototype = new FeatureObject();
 
@@ -9708,7 +9711,7 @@ function ArmorRackLeatherTile() {
   this.blockloe = 0;
   this.prefix = "a";
   this.desc = "display suit of leather armor";
-  this.peerview = "black";
+  this.peerview = "#452318";
 }
 ArmorRackLeatherTile.prototype = new FeatureObject();
 
@@ -9723,7 +9726,7 @@ function ArmorRackChainTile() {
   this.blockloe = 0;
   this.prefix = "a";
   this.desc = "display suit of chain mail";
-  this.peerview = "black";
+  this.peerview = "#452318";
 }
 ArmorRackChainTile.prototype = new FeatureObject();
 
@@ -9738,7 +9741,7 @@ function ArmorRackPlateTile() {
   this.blockloe = 0;
   this.prefix = "a";
   this.desc = "display suit of plate armor";
-  this.peerview = "black";
+  this.peerview = "#452318";
 }
 ArmorRackPlateTile.prototype = new FeatureObject();
 
@@ -9752,7 +9755,7 @@ function ShieldDisplayTile() {
   this.blockloe = 0;
   this.prefix = "a";
   this.desc = "shield on a rack";
-  this.peerview = "black";
+  this.peerview = "#452318";
 }
 ShieldDisplayTile.prototype = new FeatureObject();
 
@@ -10173,7 +10176,7 @@ function SandstoneWallTile() {
   this.passable = MOVE_ETHEREAL;
   this.prefix = "a"
   this.desc = "sandstone wall";
-  this.peerview = "#b0b0b0";
+  this.peerview = "#eee557";
 
   this.pushable = 1;
   
@@ -10221,7 +10224,7 @@ function BlackDragonLadderWallTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "white";
+  this.peerview = "white";  // update if used
 }
 BlackDragonLadderWallTile.prototype = new FeatureObject();
 
@@ -10266,7 +10269,7 @@ function WallOfWavesTile() {
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Waves";
-  this.peerview = "white";
+  this.peerview = "#ffffff";
 }
 WallOfWavesTile.prototype = new FeatureObject();
 
@@ -10300,7 +10303,7 @@ function WallOfWindsTile() {
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Winds";
-  this.peerview = "white";
+  this.peerview = "#ffffff";
 }
 WallOfWindsTile.prototype = new FeatureObject();
 
@@ -10334,7 +10337,7 @@ function WallOfKingsTile() {
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Kings";
-  this.peerview = "white";
+  this.peerview = "#ffffff";
 }
 WallOfKingsTile.prototype = new FeatureObject();
 
@@ -10366,7 +10369,7 @@ function WallOfFlamesTile() {
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Flames";
-  this.peerview = "white";
+  this.peerview = "#ffffff";
 }
 WallOfFlamesTile.prototype = new FeatureObject();
 
@@ -10402,7 +10405,7 @@ function WallOfVoidTile() {
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Void";
-  this.peerview = "white";
+  this.peerview = "#ffffff";
 }
 WallOfVoidTile.prototype = new FeatureObject();
 
@@ -10681,7 +10684,7 @@ function BrightFountainTile() {
   this.spriteyoffset = -101*32;
   this.prefix = "a";
   this.desc = "fountain";
-  this.peerview = "#a0a0a0";
+  this.peerview = "#12bbff";
   this.passable = MOVE_ETHEREAL + MOVE_FLY;
   
   HasAmbientNoise.call(this,"sfx_fountain_splash",1.5);
@@ -10706,7 +10709,7 @@ function BlueFountainTile() {
   this.spriteyoffset = -102*32;
   this.prefix = "a";
   this.desc = "fountain";
-  this.peerview = "#a0a0a0";
+  this.peerview = "#12bbff";
   this.passable = MOVE_ETHEREAL + MOVE_FLY;
   
   HasAmbientNoise.call(this,"sfx_fountain_splash",1.5);
@@ -10731,7 +10734,7 @@ function FountainTile() {
   this.spriteyoffset = -101*32;
   this.prefix = "a";
   this.desc = "fountain";
-  this.peerview = "#a0a0a0";
+  this.peerview = "#12bbff";
   this.passable = MOVE_ETHEREAL + MOVE_FLY;
   
   HasAmbientNoise.call(this,"sfx_fountain_splash",2);
@@ -10756,7 +10759,7 @@ function WideFountainTile() {
   this.spriteyoffset = -123*32;
   this.prefix = "a";
   this.desc = "fountain";
-  this.peerview = "#a0a0a0";
+  this.peerview = "#12bbff";
   this.passable = MOVE_ETHEREAL + MOVE_FLY;
   
   HasAmbientNoise.call(this,"sfx_fountain_splash",2);
@@ -10780,7 +10783,7 @@ function BrokenFountainTile() {
   this.spriteyoffset = -53*32;
   this.prefix = "a";
   this.desc = "broken fountain";
-  this.peerview = "#a0a0a0";
+  this.peerview = "#12bbff";
   this.passable = MOVE_ETHEREAL + MOVE_FLY;
 }
 BrokenFountainTile.prototype = new FeatureObject();
@@ -10794,7 +10797,7 @@ function BlueCrystalTile() {
   this.prefix = "a";
   this.desc = "crystal";
   LightEmitting.call(this, 2);
-  this.peerview = "#65ceff";
+  this.peerview = "#12bbff";
   this.passable = MOVE_ETHEREAL;
 
   ManualAnimation.call(this, { 
@@ -10819,7 +10822,7 @@ function PurpleCrystalTile() {
   this.prefix = "a";
   this.desc = "crystal";
   LightEmitting.call(this, 2);
-  this.peerview = "#9b65ff";
+  this.peerview = "#d52bff";
   this.passable = MOVE_ETHEREAL;
 
   ManualAnimation.call(this, { 
@@ -10843,7 +10846,7 @@ function YellowCrystalTile() {
   this.prefix = "a";
   this.desc = "crystal";
   LightEmitting.call(this, 2);
-  this.peerview = "#ffc465";
+  this.peerview = "#ffdf17";
   this.passable = MOVE_ETHEREAL;
 
   ManualAnimation.call(this, { 
@@ -10867,7 +10870,7 @@ function GreenCrystalTile() {
   this.prefix = "a";
   this.desc = "crystal";
   LightEmitting.call(this, 2);
-  this.peerview = "#9bff65";
+  this.peerview = "#b9fc48";
   this.passable = MOVE_ETHEREAL;
 
   ManualAnimation.call(this, { 
@@ -10891,7 +10894,7 @@ function RedCrystalTile() {
   this.prefix = "a";
   this.desc = "crystal";
   LightEmitting.call(this, 2);
-  this.peerview = "#ff658b";
+  this.peerview = "#e42015";
   this.passable = MOVE_ETHEREAL;
 
   ManualAnimation.call(this, { 
@@ -10914,7 +10917,7 @@ function WhiteCrystalTile() {
   this.spriteyoffset = -116*32;
   this.prefix = "a";
   this.desc = "crystal";
-  this.peerview = "#b0cbc4";
+  this.peerview = "#ffffff";
   this.passable = MOVE_ETHEREAL;
 
   ManualAnimation.call(this, { 
@@ -11061,7 +11064,7 @@ function ToshinPanelTile() {
   this.val[67] = 0;
   this.val[68] = 0;
   this.val[69] = 0;
-  this.peerview = "white";
+  this.peerview = "#c1c1c1";
 }
 ToshinPanelTile.prototype = new FeatureObject();
 
@@ -11739,7 +11742,6 @@ function PrinceBodyTile() {
   this.spriteyoffset = -2464;
   this.passable = 0;
   this.desc = "Lance, unconscious";
-  this.peerview = "white";
 }
 PrinceBodyTile.prototype = new FeatureObject();
 
@@ -11751,7 +11753,7 @@ function OracleObject() {
   this.passable = MOVE_ETHEREAL;
   this.prefix = "the";
   this.desc = "Oracle";
-  this.peerview = "white";
+  this.peerview = "#959595";
 }
 OracleObject.prototype = new FeatureObject();
 
@@ -11808,7 +11810,7 @@ function SwordInStoneTile() {
   this.passable = MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "sword driven into a stone";
-  this.peerview = "white";
+  this.peerview = "#959595";
 }
 SwordInStoneTile.prototype = new FeatureObject();
 
@@ -11835,7 +11837,7 @@ function StoneWithoutSwordTile() {
   this.passable = MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "stone that once cradled a sword";
-  this.peerview = "white";
+  this.peerview = "#959595";
 }
 StoneWithoutSwordTile.prototype = new FeatureObject();
 
@@ -13129,7 +13131,7 @@ function AltarOfAshesTile() {
 	this.blocklos = 0;
 	this.prefix = "a";
 	this.desc = "mottled white and dark altar";
-	this.peerview = "white";
+	this.peerview = "#c1c1c1";
 }
 AltarOfAshesTile.prototype = new FeatureObject();
 
@@ -13149,7 +13151,7 @@ function AltarOfIceTile() {
 	this.blocklos = 0;
 	this.prefix = "an";
 	this.desc = "iridescent altar";
-	this.peerview = "white";
+	this.peerview = "#c1c1c1";
 }
 AltarOfIceTile.prototype = new FeatureObject();
 
@@ -13169,7 +13171,7 @@ function AltarOfBoneTile() {
 	this.blocklos = 0;
 	this.prefix = "an";
 	this.desc = "altar of pure white, made of many small angular pieces";
-	this.peerview = "white";
+	this.peerview = "#c1c1c1";
 }
 AltarOfBoneTile.prototype = new FeatureObject();
 
@@ -13189,7 +13191,7 @@ function AltarOfDustTile() {
 	this.blocklos = 0;
 	this.prefix = "a";
 	this.desc = "grey altar, covered with a coating of dust";
-	this.peerview = "white";
+	this.peerview = "#c1c1c1";
 }
 AltarOfDustTile.prototype = new FeatureObject();
 

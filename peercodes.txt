@@ -1,10 +1,13 @@
 Ocean - 103cff
 Water, Fancy Floor - 128dfe
-Shallows, Still, River - 12bbff
+Shallows, Still, River, fountains, Blue Crystal - 12bbff
+Purple Crystal - d52bff
+Yellow Crystal - ffdf17
+Green Crystal - b9fc48
 Mountain, white walls - ffffff
-Lava - e42015
-grey walls, ruins - c1c1c1
-wooden floors, farms - 9d5a20
+Lava, Red Crystal - e42015
+grey walls, ruins, towns/castles/towers, altar, tombstone, crenellations, Toshin Panel - c1c1c1
+wooden floors, farms, signs, pier, bridge - 9d5a20
 Meadow - 61a01e
 Grass - 618928
 Sand, Dirt - 5f6114
@@ -17,7 +20,7 @@ Faded Cobblestone - 64443f
 Faded Wood - c08e5e
 Blue Tile - 476478
 Green Tile - 477865
-Stone Pavers, Grey Tile, Light Rough Stone Floor - 959595
+Stone Pavers, Grey Tile, Light Rough Stone Floor, rocks, Oracle, sword in stone - 959595
 Red Tile - a95e56
 Dark Blue Tile - 636899
 faded fancy floors - 8d7058
@@ -36,3 +39,7 @@ Green Checkered Floor - a8ecb6
 Yellow Checkered Floor - f4e5a0
 Flame Mountain - 4a110c
 Coral - f2a9e0
+Shrine, stone stairs - 626262
+ladders, wooden stairs - eaa35f
+display counters, armor racks - 452318
+Sandstone Wall - eee557

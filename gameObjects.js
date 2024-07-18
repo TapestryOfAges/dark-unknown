@@ -8290,7 +8290,7 @@ function CastleTile() {
   this.spriteyoffset = -5*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "Castle Dea Olympus";
+  this.desc = "Castle deaOlympus";
   this.peerview = "#e0e0e0";
   this.civilized = 1;
 
@@ -8319,7 +8319,7 @@ function LeftCastleTile() {
   this.spriteyoffset = -5*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle Dea Olympus";
+  this.desc = "Castle deaOlympus";
   this.peerview = "#e0e0e0";
   this.civilized = 1;
 }
@@ -8333,7 +8333,7 @@ function RightCastleTile() {
   this.spriteyoffset = -5*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle Dea Olympus";
+  this.desc = "Castle deaOlympus";
   this.peerview = "#e0e0e0";
   this.civilized = 1;
 }
@@ -8347,7 +8347,7 @@ function FarLeftCastleTile() {
   this.spriteyoffset = -5*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle Dea Olympus";
+  this.desc = "Castle deaOlympus";
   this.peerview = "#e0e0e0";
   this.civilized = 1;
 }
@@ -8361,7 +8361,7 @@ function FarRightCastleTile() {
   this.spriteyoffset = -5*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle Dea Olympus";
+  this.desc = "Castle deaOlympus";
   this.peerview = "#e0e0e0";
   this.civilized = 1;
 }
@@ -8375,7 +8375,7 @@ function UpperFarLeftCastleTile() {
   this.spriteyoffset = -4*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle Dea Olympus";
+  this.desc = "Castle deaOlympus";
   this.peerview = "#e0e0e0";
   this.civilized = 1;
 }
@@ -8389,7 +8389,7 @@ function UpperFarRightCastleTile() {
   this.spriteyoffset = -4*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle Dea Olympus";
+  this.desc = "Castle deaOlympus";
   this.peerview = "#e0e0e0";
   this.civilized = 1;
 }
@@ -8403,7 +8403,7 @@ function UpperLeftCastleTile() {
   this.spriteyoffset = -99*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle Dea Olympus";
+  this.desc = "Castle deaOlympus";
   this.peerview = "#e0e0e0";
   this.civilized = 1;
 
@@ -8426,7 +8426,7 @@ function UpperRightCastleTile() {
   this.spriteyoffset = -99*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle Dea Olympus";
+  this.desc = "Castle deaOlympus";
   this.peerview = "#e0e0e0";
   this.civilized = 1;
 
@@ -8450,7 +8450,7 @@ function UpperCenterCastleTile() {
   this.spriteyoffset = -4*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle Dea Olympus";
+  this.desc = "Castle deaOlympus";
   this.peerview = "#e0e0e0";
   this.civilized = 1;
 }
