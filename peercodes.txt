@@ -1,0 +1,36 @@
+Ocean - 103cff
+Water, Fancy Floor - 128dfe
+Shallows, Still, River - 12bbff
+Mountain, white walls - ffffff
+Flame Mountain - e42015
+grey walls, ruins - c1c1c1
+wooden floors, farms - 9d5a20
+Meadow - 61a01e
+Grass - 618928
+Sand, Dirt - 5f6114
+Cave, Lava Tube - 626262
+Red Cobblestone - a51a14
+Blue Cobblestone - 0d2185
+Black Cobblestone, Hex Floor - 1d1d1d
+Cobblestone - 772e24
+Faded Cobblestone - 64443f
+Faded Wood - c08e5e
+Blue Tile - 476478
+Green Tile - 477865
+Stone Pavers, Grey Tile, Light Rough Stone Floor - 959595
+Red Tile - a95e56
+Dark Blue Tile - 636899
+faded fancy floors - 8d7058
+Cracked Stone - 66756d
+Faded Dark Wood - 9e8c74
+Purple Cobblestone Road - 553668
+Road, Rough Stone Floor - 4d462c
+Forest - 326a25
+Hills - 618928
+Swamp - 122112
+Shingles - 08d66d
+Icy Floor - 3f89b2
+Cyan Cobblestone - 235373
+Green Cobblestone - 009267
+Green Checkered Floor - a8ecb6
+Yellow Checkered Floor - f4e5a0
