@@ -1549,3 +1549,7 @@ function ChangeHumanDisplay(which) {
   }
   changeme.style.backgroundPosition = xpos + "px " + ypos + "px";
 }
+
+function MakePeerView() {
+
+}
