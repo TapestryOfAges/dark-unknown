@@ -3216,12 +3216,9 @@ function PerformSummonAlly(caster, infused, free, tgt) {
   let duration = caster.getIntForPower() * SCALE_TIME;
   if (free) { duration = Dice.roll("1d6+12"); }
   if (infused) {
-    ally.setStr(ally.getStr()+5);
-    ally.setStr(ally.getDex()+5);
-    ally.setStr(ally.getInt()+5);
-    ally.setMaxHP(ally.getMaxHP()+15);
-    ally.setLevel(ally.getLevel()+1);
     duration = duration* 1.5; 
+  } else {
+    eletype = "Minor" + eletype;
   }
   ally.spawnedBy = caster;
   ally.summoned = 1;
@@ -3230,7 +3227,7 @@ function PerformSummonAlly(caster, infused, free, tgt) {
   }
   ally.expiresTime = DUTime.getGameClock() + duration;  // AI needs to check expiresTime and go poof if it is reached
   caster.getHomeMap().placeThing(tgt.x,tgt.y,ally);
-  if (eletype !== "FireElemental") {
+  if ((eletype !== "FireElemental") && (eletype !== "MinorFireElemental")) {
     DrawMainFrame("one",caster.getHomeMap(),ally.getx(),ally.gety());
   } else {
     if (caster.getHomeMap() === PC.getHomeMap()) {

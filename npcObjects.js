@@ -2738,6 +2738,186 @@ MimicNPCTile.prototype = new NPCObject();
 
 // Monster
 
+function MinorAirElementalNPCTile() {
+  this.name = 'MinorAirElementalNPC';
+  this.level = 3;
+  this.addhp = 0;
+  this.str = 12;
+  this.dex = 16;
+  this.int = 6;
+  this.alignment = 'Neutral';
+  this.attitude = 'hostile';
+  this.peaceAI = 'seekPC-10';
+  this.forgetAt = 10;
+  this.withdraw = 0;
+  this.meleeAttackAs = 'none';
+  this.meleeDamage = '2d4+3'
+  this.meleeStrDamage = 1
+  this.missileAttackAs = 'none';
+  this.armorAs = 'ChainArmor';
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.prefix = 'an';
+  this.desc = "air elemental";
+  this.meleeChance = 70;
+  this.resists = {};
+  this.special = 'lbolt, mindless, wander';
+  this.meleeHitSound = 'sfx_air_hit';
+  this.meleeAttackSound = 'sfx_air_miss';
+  this.graphic = 'static.gif';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -125 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+}
+MinorAirElementalNPCTile.prototype = new NPCObject();
+
+
+// Monster
+
+function MinorEarthElementalNPCTile() {
+  this.name = 'MinorEarthElementalNPC';
+  this.level = 3;
+  this.addhp = 10;
+  this.str = 16;
+  this.dex = 8;
+  this.int = 6;
+  this.alignment = 'Neutral';
+  this.attitude = 'hostile';
+  this.peaceAI = 'seekPC-10';
+  this.forgetAt = 10;
+  this.withdraw = 0;
+  this.meleeAttackAs = 'none';
+  this.meleeDamage = '5d4+7'
+  this.meleeStrDamage = 1
+  this.missileAttackAs = 'none';
+  this.armorAs = 'none';
+  this.armorDefense = 0;
+  this.armorAbsorb = 50;
+  this.armorResist = 0;
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.prefix = 'an';
+  this.desc = "earth elemental";
+  this.initmult = 1.2;
+  this.meleeChance = 100;
+  this.resists = {};
+  this.special = 'mindless, wander';
+  this.meleeHitSound = 'sfx_boulder_hit';
+  this.meleeAttackSound = 'sfx_boulder_miss';
+  this.graphic = 'static.gif';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -130 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+}
+MinorEarthElementalNPCTile.prototype = new NPCObject();
+
+
+// Monster
+
+function MinorFireElementalNPCTile() {
+  this.name = 'MinorFireElementalNPC';
+  this.level = 3;
+  this.addhp = 0;
+  this.str = 14;
+  this.dex = 11;
+  this.int = 6;
+  this.alignment = 'Neutral';
+  this.attitude = 'hostile';
+  this.peaceAI = 'seekPC-10';
+  this.forgetAt = 10;
+  this.withdraw = 0;
+  this.meleeAttackAs = 'none';
+  this.meleeDamage = '2d4+4'
+  this.meleeStrDamage = .66
+  this.missileAttackAs = 'none';
+  this.armorAs = 'ChainArmor';
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.prefix = 'a';
+  this.desc = "fire elemental";
+  this.meleeChance = 60;
+  this.spellsknown = { attack: 1, banned: 'Ice', };
+  this.resists = { fire:100, ice:-50 };
+  this.special = 'flamearmor, mindless,wander,light:1';
+  this.meleeHitSound = 'sfx_fire_hit';
+  this.meleeAttackSound = 'sfx_fire_miss';
+  this.graphic = 'static.gif';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -151 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+}
+MinorFireElementalNPCTile.prototype = new NPCObject();
+
+
+// Monster
+
+function MinorWaterElementalNPCTile() {
+  this.name = 'MinorWaterElementalNPC';
+  this.level = 3;
+  this.addhp = 0;
+  this.str = 13;
+  this.dex = 13;
+  this.int = 10;
+  this.alignment = 'Neutral';
+  this.attitude = 'hostile';
+  this.peaceAI = 'seekPC-10';
+  this.forgetAt = 10;
+  this.withdraw = 0;
+  this.graphic = '326.gif';
+  this.altgraphic = ['360.gif',];
+  this.meleeAttackAs = 'none';
+  this.meleeDamage = '4d4+4'
+  this.meleeStrDamage = .66
+  this.missileAttackAs = 'none';
+  this.armorAs = 'ChainArmor';
+  this.movetype = MOVE_SWIM + MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.prefix = 'a';
+  this.desc = "water elemental";
+  this.onHit = 'slow';
+  this.meleeChance = 75;
+  this.spellsknown = { attack: 1, banned: 'Fire', };
+  this.resists = { ice:50, fire:-25 };
+  this.special = 'mindless,wander';
+  this.meleeHitSound = 'sfx_water_hit';
+  this.meleeAttackSound = 'sfx_water_miss';
+}
+MinorWaterElementalNPCTile.prototype = new NPCObject();
+
+
+// Monster
+
 function OrcShamanNPCTile() {
   this.name = 'OrcShamanNPC';
   this.level = 3;
@@ -3642,6 +3822,7 @@ function WaterElementalNPCTile() {
   this.desc = "water elemental";
   this.onHit = 'slow';
   this.meleeChance = 75;
+  this.spellsknown = { attack: 1, banned: 'Fire', };
   this.resists = { ice:50, fire:-25 };
   this.special = 'mindless,wander';
   this.meleeHitSound = 'sfx_water_hit';
@@ -3841,7 +4022,7 @@ FloorNPCTile.prototype = new NPCObject();
 function CultistNPCTile() {
   this.name = 'CultistNPC';
   this.level = 5;
-  this.addhp = 0;
+  this.addhp = -10;
   this.str = 12;
   this.dex = 12;
   this.int = 12;
