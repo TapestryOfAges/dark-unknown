@@ -2,7 +2,7 @@ Ocean - 103cff
 Water, Fancy Floor - 128dfe
 Shallows, Still, River - 12bbff
 Mountain, white walls - ffffff
-Flame Mountain - e42015
+Lava - e42015
 grey walls, ruins - c1c1c1
 wooden floors, farms - 9d5a20
 Meadow - 61a01e
@@ -34,3 +34,5 @@ Cyan Cobblestone - 235373
 Green Cobblestone - 009267
 Green Checkered Floor - a8ecb6
 Yellow Checkered Floor - f4e5a0
+Flame Mountain - 4a110c
+Coral - f2a9e0

@@ -224,7 +224,7 @@ function FlameMountainTile() {
   this.blocklos = 1;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.combatmap = "Hill";
-  this.peerview = "#e42015";
+  this.peerview = "#4a110c";
   this.walkSound = "hill";
   TilingSpritesheet.call(this, 2, 1);
 }

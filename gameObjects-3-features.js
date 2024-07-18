@@ -149,7 +149,7 @@ function LavaTile() {
   
   HasAmbientNoise.call(this,"sfx_bubbling_lava",1.5);
   LightEmitting.call(this, 1);
-  this.peerview = "#fc2000";
+  this.peerview = "#e42015";
 
   ManualAnimation.call(this, { 
     animstart: 0,
@@ -877,14 +877,27 @@ WoodSignTile.prototype = new FeatureObject();
 
 function CoralTile() {
   this.name = "Coral";
-  this.graphic = "coral.gif";
+  this.graphic = "static.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -58*32;
   this.passable = MOVE_ETHEREAL + MOVE_FLY;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "coral reef";
-  this.peerview = "white";
+  this.peerview = "#f2a9e0";  
   
   LightEmitting.call(this, 2);
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: 6,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 200,
+    startframe: "random"
+  });
+
 }
 CoralTile.prototype = new FeatureObject();
 
