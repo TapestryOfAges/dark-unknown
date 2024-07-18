@@ -3042,7 +3042,7 @@ magic[SPELL_PEER_LEVEL][SPELL_PEER_ID].executeSpell = function(caster, infused, 
           if (caster.getHomeMap().getScale()) {
             peerhtml += "<td style='background-color:black; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>"; 
           } else {
-            peerhtml += "<td style='background-color:#0000e0; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>"; 
+            peerhtml += "<td style='background-color:#103cff; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>"; 
           }
         }
         else {
