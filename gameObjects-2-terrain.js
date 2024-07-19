@@ -3267,7 +3267,7 @@ function HillsTile() {
   this.initdelay = 1.5;
   this.pathweight = 1.5;
   this.combatmap = "Hill";
-  this.peerview = "#618928";
+  this.peerview = "#b6d123";
   this.walkSound = "hill";
 }
 HillsTile.prototype = new TerrainObject();
@@ -3284,7 +3284,7 @@ function Hills1Tile() {
   this.initdelay = 1.5;
   this.pathweight = 1.5;
   this.combatmap = "Hill";
-  this.peerview = "#618928";
+  this.peerview = "#b6d123";
   this.walkSound = "hill";
 }
 Hills1Tile.prototype = new TerrainObject();
@@ -3301,7 +3301,7 @@ function Hills2Tile() {
   this.initdelay = 1.5;
   this.pathweight = 1.5;
   this.combatmap = "Hill";
-  this.peerview = "#618928";
+  this.peerview = "#b6d123";
   this.walkSound = "hill";
 }
 Hills2Tile.prototype = new TerrainObject();
