@@ -1551,5 +1551,25 @@ function ChangeHumanDisplay(which) {
 }
 
 function MakePeerView() {
+  let pview = "<table cellpadding='0' cellspacing='0' border='0'>";
+  for (let i=0;i<amap.getHeight();i++) {
+    pview += "<tr>";
+    for (let j=0;j<amap.getWidth();j++) {
+      let tile = amap.getTile(j,i);
+      let fea = tile.getTopFeature();
+      let col;
+      if (fea && fea.peerview) { col = fea.peerview; }
+      else {
+        let terrain = tile.getTerrain();
+        col = terrain.peerview;
+      }
+      pview += "<td style='background-color:" + col + "'><img src='spacer.gif' width='3' height='3' /></td>";
+    }
+    pview += "</tr>";
+  }
+  pview += "</table>";
+
+  let pwin = window.open('','printarray');
+  pwin.document.writeln("<html><head></head><body>" + pview + "</body></html>");
 
 }
