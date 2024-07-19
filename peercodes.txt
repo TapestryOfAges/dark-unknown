@@ -29,7 +29,7 @@ Faded Dark Wood - 9e8c74
 Purple Cobblestone Road - 553668
 Road, Rough Stone Floor - 4d462c
 Forest - 326a25
-Hills - 618928
+Hills - b6d123
 Swamp - 122112
 Shingles - 08d66d
 Icy Floor - 3f89b2
