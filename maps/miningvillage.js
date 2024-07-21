@@ -1,5 +1,6 @@
 "use strict";
 
+// MAP BEGINS HERE
 mappages["miningvillage"] = {};
 mappages["miningvillage"].terrain = [];
  mappages["miningvillage"].terrain[0] = 'nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn';
@@ -105,7 +106,7 @@ mappages["miningvillage"].features[65] = {name : 'Chest', x : 9, y : 23, lootgro
 mappages["miningvillage"].features[66] = {name : 'Chest', x : 8, y : 7, lootgroup : 'potslow', lootedid : 'abanvil2'};
 mappages["miningvillage"].features[67] = {name : 'Chest', x : 4, y : 7, lootgroup : 'potslow', lootedid : 'abanvil1'};
 mappages["miningvillage"].features[68] = {name : 'TopChair', x : 6, y : 19};
-mappages["miningvillage"].features[69] = {name : 'BookshelfOne', x : 5, y : 19};
+mappages["miningvillage"].features[69] = {name : 'BookshelfOne', x : 5, y : 19, searchyield : 'MapOfLostHope'};
 mappages["miningvillage"].features[70] = {name : 'SmallTable', x : 26, y : 21};
 mappages["miningvillage"].features[71] = {name : 'TopChair', x : 26, y : 18};
 mappages["miningvillage"].features[72] = {name : 'SmallTable', x : 15, y : 20};
@@ -147,6 +148,7 @@ mappages["miningvillage"].returny = '74';
 mappages["miningvillage"].returninfused = '1';
 mappages["miningvillage"].linkedMaps = [""];
 mappages["miningvillage"].editorLabels = '{}';
+// MAP ENDS HERE
 
 mappages["miningvillage"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
