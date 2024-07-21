@@ -1767,7 +1767,7 @@ function RuinsTile() {
   this.name = "Ruins";
   this.graphic = "static.gif";
   this.spritexoffset = -9*32;
-  this.spriteyoffset = -3*32;
+  this.spriteyoffset = -54*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -12041,11 +12041,11 @@ function ScepterTile() {
 ScepterTile.prototype = new ItemObject();
 
 function RoyalRegaliaTile() {
-  // Graphic needed
+  // Graphics Upgraded
   this.name = "RoyalRegalia";
   this.graphic = "static.gif";
   this.spritexoffset = -8*32;
-  this.spriteyoffset = -98*32;
+  this.spriteyoffset = -54*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "royal regalia";
@@ -12175,7 +12175,7 @@ function RippedAudachtaNemesosTile() {
   this.longdesc = "An Audachta Nemesos that has had three pages torn out, rendering it unreadable.";
 
   this.addType("Quest");  
-  Breakable.call(this,["master_spritesheet.png", "", "-160", "-1216"],1);
+  Breakable.call(this,["static.gif", "", -7*32, -38*32],1);
   this.cannotrepair = 1; 
 }
 RippedAudachtaNemesosTile.prototype = new ItemObject();
@@ -12445,11 +12445,11 @@ BrokenArrowTile.prototype.onRepair = function(who) {
 }
 
 function TreasuryTokenTile() {
+// Graphics Upgraded
   this.name = "TreasuryToken";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-1248";
+  this.graphic = "static.gif";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -59*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "treasury token";
@@ -12460,10 +12460,11 @@ function TreasuryTokenTile() {
 TreasuryTokenTile.prototype = new ItemObject();
 
 function FavorChitTile() {
+// Graphics Upgraded
   this.name = "FavorChit";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-1344";
+  this.graphic = "static.gif";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -59*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "favor chit";
@@ -13541,6 +13542,70 @@ StoneOfShadowTile.prototype.swap = function(who) {
   
   return retval;
 }
+
+// Maps
+function MapOfEllususTile() {
+  //Graphics Upgraded
+  this.name = "MapOfEllusus";
+  this.graphic = "static.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -57*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "map of Ellusus";
+  this.prefix = "a";
+  this.longdesc = "A map of Ellusus.";
+  this.usedesc = "Inspect the map.";
+}
+MapOfEllususTile.prototype = new ItemObject();  
+
+MapOfEllususTile.prototype.use = function(who) {
+  let retval = {};
+  retval["txt"] = "Use: Map of Ellusus.<br /> You examine the map of Ellusus...";
+  retval["override"] = 1;
+  retval["fin"] = 3;
+  targetCursor.viewing = "map";
+  let uii = document.getElementById('uiinterface');
+  if (uii) {
+    uii.innerHTML = `<img src="graphics/spacer.gif" width="416" height="416" />`;
+    uii.style.backgroundColor = "";
+    uii.style.backgroundImage = `url('graphics/ellususmap.gif')`;  
+  }
+  return retval;
+}
+
+// Maps
+function MapOfLostHopeTile() {
+  //Graphics Upgraded
+  this.name = "MapOfLostHope";
+  this.graphic = "static.gif";
+  this.spritexoffset = -1*32;
+  this.spriteyoffset = -57*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "map of the Land of Lost Hope";
+  this.prefix = "a";
+  this.longdesc = "A map of the Land of Lost Hope.";
+  this.usedesc = "Inspect the map.";
+}
+MapOfLostHopeTile.prototype = new ItemObject();  
+
+MapOfLostHopeTile.prototype.use = function(who) {
+  let retval = {};
+  retval["txt"] = "Use: Map of the Land of Lost Hope.<br /> You examine the map of the Land of Lost Hope...";
+  retval["override"] = 1;
+  retval["fin"] = 3;
+  targetCursor.viewing = "map";
+  let uii = document.getElementById('uiinterface');
+  if (uii) {
+    uii.innerHTML = `<img src="graphics/spacer.gif" width="416" height="416" />`;
+    uii.style.backgroundColor = "";
+    uii.style.opacity = 0;
+    uii.style.backgroundImage = `url('graphics/losthopemap.gif')`;  
+  }
+  return retval;
+}
+
 
 // Books/Journals
 function BookItemObject() {

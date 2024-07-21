@@ -4453,6 +4453,16 @@ tileFactory.prototype.makeStoneOfShadowTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeMapOfEllususTile = function() {
+  let newTile = new MapOfEllususTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMapOfLostHopeTile = function() {
+  let newTile = new MapOfLostHopeTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSheafOfNotesTile = function() {
   let newTile = new SheafOfNotesTile();
   return newTile;
@@ -5615,6 +5625,26 @@ tileFactory.prototype.makeHandlerNPCTile = function() {
 
 tileFactory.prototype.makeMimicNPCTile = function() {
   let newTile = new MimicNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMinorAirElementalNPCTile = function() {
+  let newTile = new MinorAirElementalNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMinorEarthElementalNPCTile = function() {
+  let newTile = new MinorEarthElementalNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMinorFireElementalNPCTile = function() {
+  let newTile = new MinorFireElementalNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMinorWaterElementalNPCTile = function() {
+  let newTile = new MinorWaterElementalNPCTile();
   return newTile;
 }
 

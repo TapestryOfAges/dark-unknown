@@ -327,6 +327,15 @@ function DoAction(code, ctrl) {
       maintext.drawTextFrame();
       if (aredone) { PC.endTurn(); }
       else { targetCursor.phase++; }
+    } else if (targetCursor.viewing && (targetCursor.viewing === "map")) {
+      gamestate.setMode("player");
+      document.getElementById('uiinterface').innerHTML = ``;
+      document.getElementById('uiinterface').style.backgroundColor = "";    
+      document.getElementById('uiinterface').style.backgroundImage = "";    
+      maintext.setInputLine("&gt;");
+      maintext.drawTextFrame();   
+      DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+      PC.endTurn();
     } else if (targetCursor.command === "justice") { 
       if (!targetCursor.frame) {
         maintext.addText("Justice draws an eldritch symbol in the air and speaks one syllable in a harsh tone...");
