@@ -1,5 +1,6 @@
 "use strict";
 
+// MAP BEGINS HERE
 mappages["island"] = {};
 mappages["island"].terrain = [];
  mappages["island"].terrain[0] = 'WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW';
@@ -101,21 +102,19 @@ mappages["island"].features[3] = {name : 'Tower', x : 58, y : 33, entermap : 'nu
 mappages["island"].features[4] = {name : 'Cave', x : 13, y : 13, entermap : 'null', enterx : 0, entery : 0};
 mappages["island"].features[5] = {name : 'Shrine', x : 56, y : 15};
 mappages["island"].features[6] = {name : 'Shrine', x : 14, y : 76};
-mappages["island"].features[7] = {name : 'LeftCastle', x : 41, y : 65};
-mappages["island"].features[8] = {name : 'Castle', x : 42, y : 65, entermap : 'tharock_castle', enterx : 33, entery : 62};
-mappages["island"].features[9] = {name : 'RightCastle', x : 43, y : 65};
-mappages["island"].features[10] = {name : 'BrokenShrine', x : 60, y : 63};
-mappages["island"].features[11] = {name : 'Village', x : 54, y : 74, entermap : 'lifeshope', enterx : 1, entery : 21};
-mappages["island"].features[12] = {name : 'GrassWaterfall', x : 54, y : 52};
-mappages["island"].features[13] = {name : 'GrassWaterfall', x : 53, y : 23};
-mappages["island"].features[14] = {name : 'Cave', x : 54, y : 48, entermap : 'waterfallcave', enterx : 18, entery : 24};
-mappages["island"].features[15] = {name : 'Cave', x : 30, y : 77, entermap : 'abandoned_mine', enterx : 14, entery : 29};
-mappages["island"].features[16] = {name : 'Ruins', x : 31, y : 78, desc : "ruins of a village", prefix : "the", entermap : 'miningvillage', enterx : 1, entery : 15};
-mappages["island"].features[17] = {name : 'Lava', x : 20, y : 42};
-mappages["island"].features[18] = {name : 'Lava', x : 20, y : 43};
-mappages["island"].features[19] = {name : 'Lava', x : 20, y : 44};
-mappages["island"].features[20] = {name : 'Lava', x : 19, y : 43};
-mappages["island"].features[21] = {name : 'Lava', x : 21, y : 43};
+mappages["island"].features[7] = {name : 'Keep', x : 42, y : 65, entermap : 'tharock_castle', enterx : 33, entery : 62};
+mappages["island"].features[8] = {name : 'BrokenShrine', x : 60, y : 63};
+mappages["island"].features[9] = {name : 'Village', x : 54, y : 74, entermap : 'lifeshope', enterx : 1, entery : 21};
+mappages["island"].features[10] = {name : 'GrassWaterfall', x : 54, y : 52};
+mappages["island"].features[11] = {name : 'GrassWaterfall', x : 53, y : 23};
+mappages["island"].features[12] = {name : 'Cave', x : 54, y : 48, entermap : 'waterfallcave', enterx : 18, entery : 24};
+mappages["island"].features[13] = {name : 'Cave', x : 30, y : 77, entermap : 'abandoned_mine', enterx : 14, entery : 29};
+mappages["island"].features[14] = {name : 'Ruins', x : 31, y : 78, desc : "ruins of a village", prefix : "the", entermap : 'miningvillage', enterx : 1, entery : 15};
+mappages["island"].features[15] = {name : 'Lava', x : 20, y : 42};
+mappages["island"].features[16] = {name : 'Lava', x : 20, y : 43};
+mappages["island"].features[17] = {name : 'Lava', x : 20, y : 44};
+mappages["island"].features[18] = {name : 'Lava', x : 19, y : 43};
+mappages["island"].features[19] = {name : 'Lava', x : 21, y : 43};
 
 
 mappages["island"].npcs = [];
@@ -146,6 +145,7 @@ mappages["island"].returny = '74';
 mappages["island"].returninfused = '1';
 mappages["island"].linkedMaps = [""];
 mappages["island"].editorLabels = '{}';
+// MAP ENDS HERE
 
 mappages["island"].onload = function(mapref) {
   
