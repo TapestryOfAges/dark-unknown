@@ -1081,7 +1081,7 @@ MirrorWardTile.prototype.findNewTarget = function(caster) {
   DebugWrite("magic", "MIRROR WARD is reflecting the spell...<br />");
   for (let i=0;i<localnpcs.length;i++){ 
     let val=localnpcs[i];
-    if (val !== curtarget) {
+    if ((val !== curtarget) && (!val.specials.noact)) {
       if (GetDistance(val.getx(), val.gety(), curtarget.getx(), curtarget.gety()) < 8.5) {
         // check for on screen from caster
         if ((displayspecs.leftedge <= val.getx()) && (val.getx() <= displayspecs.rightedge) && (displayspecs.topedge <= val.gety()) && (val.gety() <= displayspecs.bottomedge)) {

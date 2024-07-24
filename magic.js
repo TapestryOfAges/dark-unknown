@@ -1401,7 +1401,7 @@ magic[SPELL_DISPEL_LEVEL][SPELL_DISPEL_ID].getLongDesc = function() {
   return "Has a chance to dispel each hostile spell effect upon you.";
 }
 magic[SPELL_DISPEL_LEVEL][SPELL_DISPEL_ID].getInfusedDesc = function() {
-  return "The chance of successfully dispelling a spell is 30% higher.";
+  return "Will automatically dispel each hostile spell effect upon you.";
 }
 
 magic[SPELL_DISPEL_LEVEL][SPELL_DISPEL_ID].executeSpell = function(caster, infused, free) {
@@ -1423,8 +1423,8 @@ magic[SPELL_DISPEL_LEVEL][SPELL_DISPEL_ID].executeSpell = function(caster, infus
     let idx = Math.floor(Math.random()*dispellables.length);
     let lvl = dispellables[idx].getLevel();
     DebugWrite("magic", "Attempting to dispel " + dispellables[idx] + ", which is level " + lvl + ".");
-    let chance = 80 - 10*lvl;
-    if (infused) { chance += 30; }
+    let chance = 100 - 5*lvl;
+    if (infused) { chance += 200; }
     if (Dice.roll("1d100") <= chance) {
       maintext.addText("You dispel " + dispellables[idx].getDesc() + "!");
       dispellables[idx].endEffect();
@@ -2518,19 +2518,26 @@ function PerformIceball(caster, infused, free, tgt) {
     dmg = dmg * 1.5;
   }
   
+  let resisted = 0;
   if (CheckResist(caster,tgt,infused,0)) {
     dmg = Math.floor(dmg/2)+1;
+    resisted = 1;
   }
   DebugWrite("magic", "Dealing " + dmg + " damage.<br />");
   desc = tgt.getDesc();
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
   
-  let frozen = localFactory.createTile("Slow");
-  let dur = caster.getIntForPower()/3;
-  if (free) { dur = Dice.roll("1d2+3"); }
-  let endtime = dur*SCALE_TIME + DU.DUTime.getGameClock();
-  frozen.setExpiresTime(endtime);
-  tgt.addSpellEffect(frozen);
+  if (!resisted) {
+    let frozen = localFactory.createTile("Slow");
+    let dur = caster.getIntForPower()/3;
+    if (free) { dur = Dice.roll("1d2+3"); }
+    let endtime = dur*SCALE_TIME + DU.DUTime.getGameClock();
+    frozen.setExpiresTime(endtime);
+    tgt.addSpellEffect(frozen,1);
+
+    if (tgt === PC) { targetCursor.sayAfterAttack = "You are moving more slowly." }
+    else { targetCursor.sayAfterAttack = desc + " is moving more slowly." }
+  }
   
   let descval = {txt: desc};
 
@@ -4564,7 +4571,7 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(c
         boltgraphic.yoffset = 0;
         boltgraphic.xoffset = 0;
         boltgraphic.directionalammo = 1;
-        boltgraphic = GetEffectGraphic(caster,tgt,boltgraphic);
+        boltgraphic = GetEffectGraphic(caster,val,boltgraphic);
         let desc = val.getDesc();
         desc = desc.charAt(0).toUpperCase() + desc.slice(1);
         let descval = {txt: desc};
@@ -4572,12 +4579,12 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(c
         let sounds = {};
         let fromcoords = GetCoords(caster.getHomeMap(),caster.getx(), caster.gety());
         let tocoords = GetCoords(val.getHomeMap(),val.getx(), val.gety());
-        let duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
+        let duration = (Math.pow( Math.pow(val.getx() - caster.getx(), 2) + Math.pow (val.gety() - caster.gety(), 2)  , .5)) * 100;
         let destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
         let weapon = localFactory.createTile("SpellWeapon");
         weapon.dmgtype = "fire";      
-        AnimateEffect({atk:caster, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:final, retval:descval, dmgtype:"fire", doagain:[]});
-        if (tgt !== PC) { tgt.setAggro(1); }
+        AnimateEffect({atk:caster, def:val, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:final, retval:descval, dmgtype:"fire", doagain:[]});
+        if (val !== PC) { val.setAggro(1); }
       }
     }
   }
