@@ -12928,6 +12928,19 @@ function DecorativeArmorTile() {
 }
 DecorativeArmorTile.prototype = new ItemObject();
 
+function SextantTile() {
+	this.name = "Sextant";
+	this.graphic = "static.gif";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -55*32;
+	this.desc = "sextant";
+	this.blocklos = 0;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.longdesc = "a sextant, to aid in navigation.";
+}
+SextantTile.prototype = new ItemObject();
+
 function AlchemyCrateTile() {
   // Graphics Upgraded
   this.name = "AlchemyCrate";

@@ -4318,6 +4318,11 @@ tileFactory.prototype.makeDecorativeArmorTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeSextantTile = function() {
+  let newTile = new SextantTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeAlchemyCrateTile = function() {
   let newTile = new AlchemyCrateTile();
   return newTile;
