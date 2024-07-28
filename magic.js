@@ -4518,6 +4518,7 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].getLongDesc = function() 
 
 magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Meteor Swarm.<br />");
+  console.log("Meteor swarm.");
   let resp = {fin:-1};
   if (!free) {
     let mana = this.getManaCost(infused);
@@ -4546,6 +4547,7 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(c
     if (!val.frozenintime && CheckAreEnemies(caster,val)) {
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
         npccount++;
+//        console.log("Added " + val.getName() + " to npccount.");
       }
     }
   }
@@ -4553,6 +4555,7 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(c
     let val=npcs[i];
     if (!val.frozenintime && CheckAreEnemies(caster,val)) {
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
+//        console.log("Processing " + val.getName() + " in meteor swarm.");
         npccount--;
         let final = 0;
         if (!npccount) { final = 1; }
