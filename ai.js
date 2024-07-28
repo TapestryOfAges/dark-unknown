@@ -69,7 +69,7 @@ ais.seekPC = function(who,radius) {
 }
 
 ais.combat = function(who) {
-  if (who.special.miniboss) {
+  if (who.specials.miniboss) {
     return ais[who.getCurrentAI()](who);
   }
   let retval = {fin:1};
