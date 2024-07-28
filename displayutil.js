@@ -83,6 +83,8 @@ function AnimateEffect(param) {
   let eventcount2 = 0;
   let animid = "anim_" + Dice.roll("1d100000");  // so more than one can be going at a time
 
+  console.log(animid);
+
 //  console.log("From: " + fromcoords.x + "," + fromcoords.y);
 //  console.log("To: " + tocoords.x + "," + tocoords.y);
 //  console.log(type);
@@ -95,8 +97,9 @@ function AnimateEffect(param) {
 //    console.log("Setting up animation:");
 //    console.log(tablehtml);
     let animdiv = document.getElementById(animid);
-//    console.log(animdiv);
-    animdiv.addEventListener("transitionend", function(event) { 
+    console.log(animdiv);
+    animdiv.addEventListener("transitionend", (event) => { 
+      console.log(animid + " going into Finish");
       FinishFirstAnimation();
     }, false);
 
@@ -112,7 +115,7 @@ function AnimateEffect(param) {
 //    if (skipped) { console.log("Animation skipped."); }
 //    if (eventcount) { console.log("callback called twice"); return; }
     eventcount = 1;
-//    console.log("callback called");
+    console.log("callback called for " + animid);
     let animdiv = document.getElementById(animid);
     if (animdiv) {
       animdiv.parentNode.removeChild(animdiv);
