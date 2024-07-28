@@ -2893,8 +2893,6 @@ function MinorWaterElementalNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '326.gif';
-  this.altgraphic = ['360.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+4'
   this.meleeStrDamage = .66
@@ -2912,6 +2910,19 @@ function MinorWaterElementalNPCTile() {
   this.special = 'mindless,wander';
   this.meleeHitSound = 'sfx_water_hit';
   this.meleeAttackSound = 'sfx_water_miss';
+  this.graphic = 'static.gif';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -157 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
 }
 MinorWaterElementalNPCTile.prototype = new NPCObject();
 
@@ -3808,8 +3819,6 @@ function WaterElementalNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '326.gif';
-  this.altgraphic = ['360.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '4d4+9'
   this.meleeStrDamage = .66
@@ -3827,6 +3836,19 @@ function WaterElementalNPCTile() {
   this.special = 'mindless,wander';
   this.meleeHitSound = 'sfx_water_hit';
   this.meleeAttackSound = 'sfx_water_miss';
+  this.graphic = 'static.gif';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -157 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
 }
 WaterElementalNPCTile.prototype = new NPCObject();
 
