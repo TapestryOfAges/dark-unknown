@@ -2501,15 +2501,18 @@ function PerformYell() {
       }
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap, 20,20);
       let tmpdude = localFactory.createTile("PaladinVillagerNPC");
-      newmap.placeThing(20,25,tmpdude);
-      let tmpdude2 = localFactory.createTile("PaladinVillagerNPC");
-      newmap.placeThing(20,30,tmpdude2);
+      newmap.placeThing(21,17,tmpdude);
+      let tmpdude2 = localFactory.createTile("MageVillagerNPC");
+      newmap.placeThing(18,18,tmpdude2);
+      let tmpdude3 = localFactory.createTile("PaladinVillagerNPC");
+//      newmap.placeThing(16,20,tmpdude3);
       DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
     } else if (inputText.txt === "TESTANIMA") {
       let tmpmap = maps.getMap("greenacres");
-      let castermob = tmpmap.getTile(20,25).getTopNPC();
-      let tgtmob = tmpmap.getTile(20,30).getTopNPC();
-      PerformMagicBolt(castermob,0,0,tgtmob);
+      let castermob = tmpmap.getTile(18,18).getTopNPC();
+      castermob.setAttitude("hostile");
+      castermob.setPeaceAI("TestAnimations");
+      castermob.setCurrentAI("TestAnimations");
 // REAL YELLS START HERE
 		} else if (inputText.txt === "KARIS") {
 		  if (PC.getHomeMap().getName() === "asharden1") {

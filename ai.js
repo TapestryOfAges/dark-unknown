@@ -4059,3 +4059,13 @@ ais.GuardPatrol = function(who,dests) {
 
   return {fin:1};
 }
+
+
+ais.TestAnimations = function(who) {
+  magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell(who,0,1);
+  let retval = { fin: 1};
+  retval["wait"] = 1;
+
+  return retval;
+
+}
