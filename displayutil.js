@@ -61,80 +61,57 @@ function AnimateEffect(param) {
   // param.finishcallback - function to run when animation finishes, just before turn ends
   // param.callbackparam - object with parameters to feed to callback
   // param.weapon - the attacker's weapon, if appropriate
-  let atk = param.atk;
-  let def = param.def;
-  let fromcoords = param.fromcoords;
-  let tocoords = param.tocoords;
-  let ammographic = param.ammographic;
-  let destgraphic = param.destgraphic;
-  let sounds = param.sounds;
-  let doagain = param.doagain;
-  let type = param.type;
-  let duration = param.duration;
-  let ammoreturn = param.ammoreturn;
-  let dmg = param.dmg;
-  let dmgtype = param.dmgtype;
-  let endturn = param.endturn;
   let retval = param.retval;
-  let weapon = param.weapon;
-  let ammocoords = GetCoordsWithOffsets(ammographic.fired, fromcoords, tocoords);
+
+  let ammocoords = GetCoordsWithOffsets(param.ammographic.fired, param.fromcoords, param.tocoords);
   let returnhtml;
   let eventcount = 0;
   let eventcount2 = 0;
   let animid = "anim_" + Dice.roll("1d100000");  // so more than one can be going at a time
 
-  console.log(animid);
-
-//  console.log("From: " + fromcoords.x + "," + fromcoords.y);
-//  console.log("To: " + tocoords.x + "," + tocoords.y);
-//  console.log(type);
-
-  if (type === "melee") { FinishFirstAnimation(1); }
+  if (param.type === "melee") { FinishFirstAnimation(); }
   else {
-    let tablehtml = '<div id="'+animid+'" style="position: absolute; left: ' + ammocoords.fromx + 'px; top: ' + ammocoords.fromy + 'px; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px; transition: left '+duration+'ms linear 0s, top '+duration+'ms linear 0s;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
+//    let tablehtml = '<div id="'+animid+'" style="position: absolute; left: ' + ammocoords.fromx + 'px; top: ' + ammocoords.fromy + 'px; background-image:url(\'graphics/' + param.ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + param.ammographic.xoffset + 'px ' + param.ammographic.yoffset + 'px; transition: left '+param.duration+'ms linear 0s, top '+param.duration+'ms linear 0s;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
+    let tablehtml = '<div id="'+animid+'" style="position: absolute; left: ' + ammocoords.fromx + 'px; top: ' + ammocoords.fromy + 'px; background-image:url(\'graphics/' + param.ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + param.ammographic.xoffset + 'px ' + param.ammographic.yoffset + 'px; transition: transform '+param.duration+'ms linear 0s;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
   
     document.getElementById('combateffects').innerHTML += tablehtml;
-//    console.log("Setting up animation:");
-//    console.log(tablehtml);
+
     let animdiv = document.getElementById(animid);
-    console.log(animdiv);
     animdiv.addEventListener("transitionend", (event) => { 
-      console.log(animid + " going into Finish");
       FinishFirstAnimation();
     }, false);
 
     animdiv.offsetTop;
-    Object.assign(animdiv.style, {left: ammocoords.tox+"px", top: ammocoords.toy+"px" });
-//    setTimeout(function() { Object.assign(animdiv.style, {left: ammocoords.tox+"px", top: ammocoords.toy+"px" }); }, 1); // THIS IS A TOTAL KLUDGE
-    // For some reason, the transition would not run if the 1ms pause was not there. It would skip to the end, and not
-    // fire the transitionend event. This should not be necessary.
+    console.log(document.getElementById('combateffects').innerHTML);
+    let diffx = ammocoords.tox - ammocoords.fromx;
+    let diffy = ammocoords.toy - ammocoords.fromy;
+//    Object.assign(animdiv.style, {left: ammocoords.tox+"px", top: ammocoords.toy+"px" });
+    Object.assign(animdiv.style, {transform: "translate("+diffx+"px,"+diffy+"px)" });
 
   }
 
-  function FinishFirstAnimation(skipped) {
-//    if (skipped) { console.log("Animation skipped."); }
-//    if (eventcount) { console.log("callback called twice"); return; }
+  function FinishFirstAnimation() {
+    if (eventcount) { return; }
     eventcount = 1;
-    console.log("callback called for " + animid);
     let animdiv = document.getElementById(animid);
     if (animdiv) {
       animdiv.parentNode.removeChild(animdiv);
     }
-    let hitanimhtml = '<div id="'+animid+'" style="position: absolute; left: ' + tocoords.x + 'px; top: ' + tocoords.y + 'px; background-image:url(\'graphics/' + destgraphic.graphic + '\');background-repeat:no-repeat; background-position: '+destgraphic.xoffset+'px '+destgraphic.yoffset+'px;"><img src="graphics/' + destgraphic.overlay + '" width="32" height="32" /></div>';
+    let hitanimhtml = '<div id="'+animid+'" style="position: absolute; left: ' + param.tocoords.x + 'px; top: ' + param.tocoords.y + 'px; background-image:url(\'graphics/' + param.destgraphic.graphic + '\');background-repeat:no-repeat; background-position: '+param.destgraphic.xoffset+'px '+param.destgraphic.yoffset+'px;"><img src="graphics/' + param.destgraphic.overlay + '" width="32" height="32" /></div>';
   
     document.getElementById('combateffects').innerHTML += hitanimhtml;
-    if (sounds["end"]) {
-      DUPlaySound(sounds["end"]);
+    if (param.sounds["end"]) {
+      DUPlaySound(param.sounds["end"]);
     }
     setTimeout(function() {
       animdiv = document.getElementById(animid);
       if (animdiv && (animdiv.parentNode)) {
         animdiv.parentNode.removeChild(animdiv);
       }
-      if ((type !== "missile") || (!ammoreturn)) {
+      if ((param.type !== "missile") || (!param.ammoreturn)) {
         FinishAnimation();
       } else {
-        returnhtml = '<div id="'+animid+'" style="position: absolute; left: ' + ammocoords.tox + 'px; top: ' + ammocoords.toy + 'px; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px; transition: left '+duration+'ms linear 0s, top '+duration+'ms linear 0s;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';      
+        returnhtml = '<div id="'+animid+'" style="position: absolute; left: ' + ammocoords.tox + 'px; top: ' + ammocoords.toy + 'px; background-image:url(\'graphics/' + param.ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + param.ammographic.xoffset + 'px ' + param.ammographic.yoffset + 'px; transition: left '+param.duration+'ms linear 0s, top '+param.duration+'ms linear 0s;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';      
        
         document.getElementById('combateffects').innerHTML += returnhtml;
         animdiv = document.getElementById(animid);
@@ -154,50 +131,51 @@ function AnimateEffect(param) {
     eventcount2 = 1;
 //    console.log("FinishAnimation called.");
 
+    let dmg = param.dmg;
     if (param.adddmg) {
-      let fbdmg = prepareSpellDamage(atk,def,param.adddmg,param.adddmgtype);
+      let fbdmg = prepareSpellDamage(param.atk,param.def,param.adddmg,param.adddmgtype);
       dmg += fbdmg.dmg;
     }
-    if ((dmg !== 0) && def) {
-      let prehp = def.getHP(); 
+    if ((dmg !== 0) && param.def) {
+      let prehp = param.def.getHP(); 
       // handle onDamaged stuff here
-      if (def.onDamaged) {
-        dmg = OnDamagedFuncs[def.onDamaged](atk,def,dmg,weapon);
+      if (param.def.onDamaged) {
+        dmg = OnDamagedFuncs[param.def.onDamaged](param.atk,param.def,dmg,param.weapon);
       }
       if (param.weapon && param.weapon.hasOwnProperty("onMadeAttack")) {
-        param.weapon.onMadeAttack(atk,def,dmg);
+        param.weapon.onMadeAttack(param.atk,param.def,dmg);
       }
-      let effects = def.getSpellEffects();
+      let effects = param.def.getSpellEffects();
       for (let i=0;i<effects.length;i++) {
-        if (effects.onDamaged) { effects.onDamaged(atk,dmg); }
+        if (effects.onDamaged) { effects.onDamaged(param.atk,dmg); }
       }
 
-      let stillalive = def.dealDamage(dmg, atk, dmgtype);   
+      let stillalive = param.def.dealDamage(dmg, param.atk, param.dmgtype);   
 
       if (stillalive > -1) {
-        if (Math.floor(prehp) === Math.floor(def.getHP())) {
+        if (Math.floor(prehp) === Math.floor(param.def.getHP())) {
           retval["txt"] += ": Scratched!"; 
         } else {
-          let damagedesc = GetDamageDescriptor(def); 
+          let damagedesc = GetDamageDescriptor(param.def); 
           retval["txt"] += ": " + damagedesc + "!"; 
         }
       }
       else {  
-        if (def.specials.crumbles) { retval["txt"] += ": It crumbles to dust!"; }
-        else if (atk.getName() === "BlackDragonNPC") { retval["txt"] += ": Unconscious!"; }
+        if (param.def.specials.crumbles) { retval["txt"] += ": It crumbles to dust!"; }
+        else if (param.atk.getName() === "BlackDragonNPC") { retval["txt"] += ": Unconscious!"; }
         else {retval["txt"] += ": Killed!"; }
         
-        if (def.getXPVal() && (atk === PC)) {
-          retval["txt"] += " (XP gained: " + def.getXPVal() + ")";
+        if (param.def.getXPVal() && (param.atk === PC)) {
+          retval["txt"] += " (XP gained: " + param.def.getXPVal() + ")";
         }
       }
-      let firearmor = def.getSpellEffectsByName("FireArmor");
+      let firearmor = param.def.getSpellEffectsByName("FireArmor");
       if (firearmor) {
-        if (IsAdjacent(atk,def)) {
-          firearmor.flashback(atk);
+        if (IsAdjacent(param.atk,param.def)) {
+          firearmor.flashback(param.atk);
         }
       }
-      if ((atk === PC) && atk.dead) { endturn = 0; }
+      if ((param.atk === PC) && param.atk.dead) { endturn = 0; }
     } 
     maintext.addText(retval["txt"]);
     if (targetCursor.sayAfterAttack) {
@@ -207,18 +185,18 @@ function AnimateEffect(param) {
     maintext.setInputLine("&gt;");
     maintext.drawInputLine();
 
-    if (param.finishcallback) { param.finishcallback(atk,def,param.callbackparam); }
+    if (param.finishcallback) { param.finishcallback(param.atk,param.def,param.callbackparam); }
     
-    if ((!doagain.length) && (endturn)) {
+    if ((!param.doagain.length) && (param.endturn)) {
 //      console.log("Ending turn.");
       if (param.myturn) {
         param.myturn.endTurn(retval["initdelay"]);
       } else {
-        atk.endTurn(retval["initdelay"]);
+        param.atk.endTurn(retval["initdelay"]);
       }
-    } else if (doagain.length) {
-      let doit = doagain.shift();
-      doit.doagain = doagain;
+    } else if (param.doagain.length) {
+      let doit = param.doagain.shift();
+      doit.doagain = param.doagain;
 //      AnimateEffect(doit.atk, doit.def, doit.fromcoords, doit.tocoords, doit.ammocoords, doit.destgraphic, doit.type, doit.duration, doit.ammoreturn, doit.dmg, endturn, doit.retval, doagain);
       AnimateEffect(doit);
     }
