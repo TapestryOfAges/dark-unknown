@@ -4518,7 +4518,6 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].getLongDesc = function() 
 
 magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Meteor Swarm.<br />");
-  console.log("Meteor swarm.");
   let resp = {fin:-1};
   if (!free) {
     let mana = this.getManaCost(infused);
