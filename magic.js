@@ -4550,14 +4550,16 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(c
       }
     }
   }
+  if (!npccount) { resp['fin'] = 1; return resp; }
+  let tottgt = npccount;
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     if (!val.frozenintime && CheckAreEnemies(caster,val)) {
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
 //        console.log("Processing " + val.getName() + " in meteor swarm.");
         npccount--;
-        let final = 0;
-        if (!npccount) { final = 1; }
+//        let final = 0;
+//        if (!npccount) { final = 1; }
         val.setHitBySpell(caster,SPELL_METEOR_SWARM_LEVEL);
         let tmpdmg = prepareSpellDamage(caster,val,DMG_MEDIUM,"fire",0,DMG_LIGHT);
         let dmg = tmpdmg.dmg;
@@ -4585,7 +4587,7 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(c
         let destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
         let weapon = localFactory.createTile("SpellWeapon");
         weapon.dmgtype = "fire";      
-        AnimateEffect({atk:caster, def:val, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:final, retval:descval, dmgtype:"fire", doagain:[]});
+        AnimateEffect({atk:caster, def:val, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:tottgt, retval:descval, dmgtype:"fire", doagain:[]});
         if (val !== PC) { val.setAggro(1); }
       }
     }
