@@ -2084,7 +2084,7 @@ ais.Justice = function(who) {
     console.log("Justice downs a potion.")
     maintext.addText('Justice takes a potion from a pouch by her side, and drinks.');
     maintext.drawTextFrame();
-    who.setMana(20);
+    who.setMana(25);
     ShowEffect(who, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
     who.drankpotion = 1;
     return retval;
@@ -2104,14 +2104,16 @@ ais.Justice = function(who) {
     DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
     ShowEffect(imp, 3000, "spellsparkles-anim.gif", 0, COLOR_RED);
     ShowEffect(imp2, 3000, "spellsparkles-anim.gif", 0, COLOR_RED);
+    DUPlaySound("sfx_summon");
     who.phase = 2;
     return retval;
   } else if (who.phase === 2) {
     AnnounceSpellcast("Iron Flesh",who,who);
     magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell(who,0,0,who);
-    who.phase = 3;
+    who.phase = 4;
     return retval;
   } else if (who.phase === 3) {
+    // buffing Justice by skipping this phase and starting her with Protection and Mirror Ward
     AnnounceSpellcast("Protection",who,who);
     magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].executeSpell(who,0,0,who);
     who.phase = 4;
@@ -2277,10 +2279,11 @@ ais.Justice = function(who) {
         combatmap.placeThing(tgtcoords[1][0],tgtcoords[1][1],imp2);
       }
       DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
-      ShowEffect(imp, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
+      ShowEffect(imp, 1500, "spellsparkles-anim.gif", 0, COLOR_RED);
       if (imp2) {
-        ShowEffect(imp2, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
+        ShowEffect(imp2, 1500, "spellsparkles-anim.gif", 0, COLOR_RED);
       }
+      DUPlaySound("sfx_summon");
       return retval;
     } else {
       console.log("Justice failed to act. What's up?");
