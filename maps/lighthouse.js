@@ -1,5 +1,6 @@
 "use strict";
 
+// MAP BEGINS HERE
 mappages["lighthouse1"] = {};
 mappages["lighthouse1"].terrain = [];
  mappages["lighthouse1"].terrain[0] = 'WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW';
@@ -10,11 +11,11 @@ mappages["lighthouse1"].terrain = [];
  mappages["lighthouse1"].terrain[5] = 'WW WW WW WW WW ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww WW WW WW WW';
  mappages["lighthouse1"].terrain[6] = 'WW WW WW ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww uu uu ww uu uu uu ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww';
  mappages["lighthouse1"].terrain[7] = 'WW ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww uu uu uu ww ww ww ww ww ww uu uu uu ww uu ww ww uu uu uu ww ww ww ww ww ww ww ww ww ww';
- mappages["lighthouse1"].terrain[8] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww ww uu uu uu uu ww ww ww ww f! f! f! f! ww ww ww ww ww ww ww ww ww ww ww uu uu uu ww ww ww ww ww ww';
- mappages["lighthouse1"].terrain[9] = 'ww ww ww ww ww ww ww ww ww ww ww uu uu ww uu ww ww ww ww ww ww ww f! f! f! f! ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww uu ww uu ww ww';
-mappages["lighthouse1"].terrain[10] = 'ww ww ww ww ww ww ww ww uu uu uu ww ww ww ww ww ww ww ww ww uu uu f! f! f! f! ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww uu ww';
-mappages["lighthouse1"].terrain[11] = 'ww ww ww ww ww uu uu uu uu ww ww ww ww ww ww ww ww ww uu uu ww ww f! f! f! f! uu uu ww uu ww uu ww uu ww uu uu uu ww ww ww ww ww ww ww ww';
-mappages["lighthouse1"].terrain[12] = 'ww ww ww uu uu ww ww ww ww ww ww ww ww ww ww ww uu uu uu ww /b -b f! f! f! f! -b b` ww ww ww ww uu ww ww ww ww ww uu uu ww ww ww ww ww ww';
+ mappages["lighthouse1"].terrain[8] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww ww uu uu uu uu ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww uu uu uu ww ww ww ww ww ww';
+ mappages["lighthouse1"].terrain[9] = 'ww ww ww ww ww ww ww ww ww ww ww uu uu ww uu ww ww ww ww ww ww ww ww -= -= ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww uu ww uu ww ww';
+mappages["lighthouse1"].terrain[10] = 'ww ww ww ww ww ww ww ww uu uu uu ww ww ww ww ww ww ww ww ww uu uu ww -= -= ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww uu ww';
+mappages["lighthouse1"].terrain[11] = 'ww ww ww ww ww uu uu uu uu ww ww ww ww ww ww ww ww ww uu uu ww ww ww -= -= ww uu uu ww uu ww uu ww uu ww uu uu uu ww ww ww ww ww ww ww ww';
+mappages["lighthouse1"].terrain[12] = 'ww ww ww uu uu ww ww ww ww ww ww ww ww ww ww ww uu uu uu ww /b -b -b -b -b -b -b b` ww ww ww ww uu ww ww ww ww ww uu uu ww ww ww ww ww ww';
 mappages["lighthouse1"].terrain[13] = 'ww ww uu uu ww ww ww ww ww ww ww ww uu uu uu uu ww ww /b -b ., ., ., ., ., ., ., ., -b b` ww ww ww ww uu ww uu uu ww ww uu uu ww ww ww ww';
 mappages["lighthouse1"].terrain[14] = 'uu uu ww ww ww ww ww ww uu uu ww uu ww ww /b -b -b -b ., ., ., ., ., ., ., ., ., ., ., ., -b -b b` ww ww ww ww ww uu uu ww uu uu uu ww ww';
 mappages["lighthouse1"].terrain[15] = 'uu ww ww ww ww ww uu uu ww ww ww ww ww /b ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., -b -b -b -b -b b` ww ww ww ww ww uu ww';
@@ -59,6 +60,12 @@ mappages["lighthouse1"].features[9] = {name : 'PileOfRocks', x : 35, y : 18};
 mappages["lighthouse1"].features[10] = {name : 'PileOfRocks', x : 37, y : 17};
 mappages["lighthouse1"].features[11] = {name : 'PileOfRocks', x : 42, y : 20};
 mappages["lighthouse1"].features[12] = {name : 'PileOfRocks', x : 45, y : 21};
+mappages["lighthouse1"].features[13] = {name : 'NSPierW', x : 22, y : 11};
+mappages["lighthouse1"].features[14] = {name : 'NSPierW', x : 22, y : 10};
+mappages["lighthouse1"].features[15] = {name : 'NSPierW', x : 22, y : 9};
+mappages["lighthouse1"].features[16] = {name : 'NSPierE', x : 25, y : 11};
+mappages["lighthouse1"].features[17] = {name : 'NSPierE', x : 25, y : 10};
+mappages["lighthouse1"].features[18] = {name : 'NSPierE', x : 25, y : 9};
 
 
 mappages["lighthouse1"].npcs = [];
@@ -89,3 +96,4 @@ mappages["lighthouse1"].returny = '74';
 mappages["lighthouse1"].returninfused = '0';
 mappages["lighthouse1"].linkedMaps = [""];
 mappages["lighthouse1"].editorLabels = '{}';
+// MAP ENDS HERE
