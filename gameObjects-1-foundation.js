@@ -398,6 +398,10 @@ GameObject.prototype.getOverlay = function() {
   if (returnOverlay) { return(returnOverlay); }
 }
 
+GameObject.prototype.getLayers = function() {
+  return this.layers;
+}
+
 GameObject.prototype.getBlocksLOS = function(distance) {
   if (this.losatdistance) {
     if (distance > this.losatdistance["distance"]) { return(this.losatdistance["blocklos"]) }
@@ -1328,7 +1332,9 @@ function SetBySurroundCave() {
       graphics[2] = xoff;
       graphics[3] = yoff-ADD_Y;
     }
-    graphics[4] = cornerobj;
+    if (cornerobj.corner) {
+      graphics[4] = cornerobj;
+    }
 	  return (graphics);
   }
 }
@@ -1479,7 +1485,7 @@ function SetBySurroundRoad() {
 }
 
 // General func
-function SetBySurroundRiver(terraintype) {
+function SetBySurroundRiver() {
 	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
 		if (losresult >= LOS_THRESHOLD) {
 			let displaytile = eidos.getForm('BlankBlack');
@@ -1487,6 +1493,20 @@ function SetBySurroundRiver(terraintype) {
 			return displaygraphic;
 		}
 
+    let rname = this.getName();
+    let rtype;
+    let alt;
+
+    let fx = x%2;
+    if (fx) { graphics[2] = -32; }
+    let flow = themap.getTile(x,y).getFlow();
+    if (!flow) { console.log(`No flow on river at ${x},${y}.`); }
+
+    if (rname.includes("Grass")) { rtype = "grass"; }
+    else if (rname.includes("Dirt")) { rtype = "dirt"; }
+    else if (rname.includes("Cave")) { rtype = "cave"; }
+    else { alert("No river type."); }
+    if (rname.includes("Alt")) { alt = 1; }
 		let north;
 		let south;
 		let east;
@@ -1495,61 +1515,250 @@ function SetBySurroundRiver(terraintype) {
 		let northtile = northacre.terrain;
 		if (northacre !== "OoB") {
 			if (IsWet(northtile)) {
+        // is mouth of the river
+        if (rtype === "grass") { graphics[4] = ["static.gif", "", -7*32, -59*32]; }
+        else if (rtype === "dirt") { graphics[4] = ["static.gif", "", -8*32, -59*32]; }
+        else if (rtype === "cave") { graphics[4] = ["static.gif", "", -9*32, -59*32]; }
+        if (flow === "n") { graphics[3] = -3*32; }
+        else if (flow === "s") { graphics[3] = -2*32; }
+        else if (flow === "e") { graphics[3] = 0; }
+        else if (flow === "w") { graphics[3] = -32; }
+        return graphics;
+      } else if (northtile.getName().includes("River")) {
 				north = 1;
 			}
 		} else { north = 1; }
+
 		let southacre = themap.getTile(x,y+1);
 		let southtile = southacre.terrain;
 		if (southacre !== "OoB") {
 			if (IsWet(southtile)) {
+        // is mouth of the river
+        if (rtype === "grass") { graphics[4] = ["static.gif", "", -0, -67*32]; }
+        else if (rtype === "dirt") { graphics[4] = ["static.gif", "", -1*32, -67*32]; }
+        else if (rtype === "cave") { graphics[4] = ["static.gif", "", -9*32, -67*32]; }
+        if (flow === "n") { graphics[3] = -3*32; }
+        else if (flow === "s") { graphics[3] = -2*32; }
+        else if (flow === "e") { graphics[3] = 0; }
+        else if (flow === "w") { graphics[3] = -32; }
+        return graphics;
+      } else if (southtile.getName().includes("River")) {
 				south = 1;
 			}
 		} else { south = 1; }
+
 		let eastacre = themap.getTile(x+1,y);
 		let easttile = eastacre.terrain;
 		if (eastacre !== "OoB") {
 			if (IsWet(easttile)) {
+        // is mouth of the river
+        if (rtype === "grass") { graphics[4] = ["static.gif", "", -9*32, -65*32]; }
+        else if (rtype === "dirt") { graphics[4] = ["static.gif", "", -1*32, -65*32]; }
+        else if (rtype === "cave") { graphics[4] = ["static.gif", "", 0, -65*32]; }
+        if (flow === "n") { graphics[3] = -3*32; }
+        else if (flow === "s") { graphics[3] = -2*32; }
+        else if (flow === "e") { graphics[3] = 0; }
+        else if (flow === "w") { graphics[3] = -32; }
+        return graphics;
+      } else if (easttile.getName().includes("River")) {
 				east = 1;
 			}
 		} else { east = 1; }
+
 		let westacre = themap.getTile(x-1,y);
 		let westtile = westacre.terrain;
 		if (westacre !== "OoB") {
 			if (IsWet(westtile)) {
+        // is mouth of the river
+        if (alt) {  // southern edge
+          if (rtype === "grass") { graphics[4] = ["static.gif", "", -9*32, -66*32]; }
+          else if (rtype === "dirt") { graphics[4] = ["static.gif", "", 0, -66*32]; }
+          else if (rtype === "cave") { graphics[4] = ["static.gif", "", -1*32, -66*32]; }
+        } else {
+          if (rtype === "grass") { graphics[4] = ["static.gif", "", -6*32, -65*32]; }
+          else if (rtype === "dirt") { graphics[4] = ["static.gif", "", -7*32, -65*32]; }
+          else if (rtype === "cave") { graphics[4] = ["static.gif", "", -8*32, -65*32]; }
+        }
+        if (flow === "n") { graphics[3] = -3*32; }
+        else if (flow === "s") { graphics[3] = -2*32; }
+        else if (flow === "e") { graphics[3] = 0; }
+        else if (flow === "w") { graphics[3] = -32; }
+        return graphics;
+      } else if ( westtile.getName().includes("River")) {
 				west = 1;
 			}
 		} else { west = 1; }
-		if ((north === 1) && (south === 1) && (east === 1) && (west === 1)) {
+    
+    
+    if (rname === "RiverGrassOverrideS_NS") { 
+      graphics[4] = ["static.gif", "", -5*32,-42*32]; 
+      if (flow === "e") { graphics[3] = 0; }
+      else if (flow === "w") { graphics[3] = -32; }
+    }
+    else if (rname === "RiverGrassOverrideS_SN") { 
+      graphics[4] = ["static.gif", "", -4*32,-42*32]; 
+      if (flow === "e") { graphics[3] = 0; }
+      else if (flow === "w") { graphics[3] = -32; }
+    }
+    else if (rname === "RiverGrassOverride_NE") { 
+      graphics[4] = ["static.gif", "", -4*32,-45*32]; 
+      if (flow === "e") { graphics[3] = 0; }
+      else if (flow === "n") { graphics[3] = -3*32; }
+    }
+    else if (rname === "RiverGrassOverride_EW") { 
+      graphics[4] = ["static.gif", "", -7*32,-42*32]; 
+      if (flow === "e") { graphics[3] = 0; }
+      else if (flow === "w") { graphics[3] = -32; }
+    }
+    else if (rname === "RiverGrassOverrideAlt_EW") { 
+      graphics[4] = ["static.gif", "", -8*32,-42*32]; 
+      if (flow === "e") { graphics[3] = 0; }
+      else if (flow === "w") { graphics[3] = -32; }
+    }
+    else if (rname === "RiverGrassOverride_NS") { 
+      graphics[4] = ["static.gif", "", 0, -42*32]; 
+      if (flow === "n") { graphics[3] = -3*32; }
+      else if (flow === "s") { graphics[3] = -2*32; }
+    }
+    else if ((north === 1) && (south === 1) && (east === 1) && (west === 1)) {
 			// this shouldn't happen, if it does I need to draw a + river piece
       graphics[1] = "spacer.gif";
 		} else if ((north === 1) && (east === 1) && (south === 1)) {
-      graphics[1] = "riverTright.gif";
+      if (alt) { // southern edge
+        if (rtype === "grass") { graphics[4] = ["static.gif", "", -6*32, -66*32]; }
+        else if (rtype === "dirt") { graphics[4] = ["static.gif", "", -7*32, -66*32]; }
+        else if (rtype === "cave") { graphics[4] = ["static.gif", "", -8*32, -66*32]; }
+      } else {
+        if (rtype === "grass") { graphics[4] = ["static.gif", "", -4*32, -63*32]; }
+        else if (rtype === "dirt") { graphics[4] = ["static.gif", "", -5*32, -63*32]; }
+        else if (rtype === "cave") { graphics[4] = ["static.gif", "", -6*32, -63*32]; }
+      }
+      if (flow === "n") { graphics[3] = -6*32; }
+      else if (flow === "e") { graphics[3] = -5*32; }
+      else if (flow === "s") { graphics[3] = -7*32; }
 		} else if ((north === 1) && (west === 1) && (south === 1)) {
-			graphics[1] = "riverTleft.gif";
+			if (alt) { // southern edge
+        if (rtype === "grass") { graphics[4] = ["static.gif", "", -7*32, -62*32]; }
+        else if (rtype === "dirt") { graphics[4] = ["static.gif", "", -4*32, -65*32]; }
+        else if (rtype === "cave") { graphics[4] = ["static.gif", "", -5*32, -65*32]; }
+      } else {
+        if (rtype === "grass") { graphics[4] = ["static.gif", "", -7*32, -63*32]; }
+        else if (rtype === "dirt") { graphics[4] = ["static.gif", "", -4*32, -66*32]; }
+        else if (rtype === "cave") { graphics[4] = ["static.gif", "", -5*32, -66*32]; }
+      }
+      if (flow === "n") { graphics[3] = -6*32; }
+      else if (flow === "w") { graphics[3] = -4*32; }
+      else if (flow === "s") { graphics[3] = -7*32; }
 		} else if ((north === 1) && (east === 1) && (west === 1)) {
-			graphics[1] = "riverTtop.gif";
+			if (alt) { // southern edge
+        if (rtype === "grass") { graphics[4] = ["static.gif", "", -4*32, -64*32]; }
+        else if (rtype === "dirt") { graphics[4] = ["static.gif", "", -5*32, -64*32]; }
+        else if (rtype === "cave") { graphics[4] = ["static.gif", "", -6*32, -64*32]; }
+      } else {
+        if (rtype === "grass") { graphics[4] = ["static.gif", "", -6*32, -67*32]; }
+        else if (rtype === "dirt") { graphics[4] = ["static.gif", "", -7*32, -67*32]; }
+        else if (rtype === "cave") { graphics[4] = ["static.gif", "", -8*32, -67*32]; }
+      }
+      if (flow === "n") { graphics[3] = -6*32; }
+      else if (flow === "e") { graphics[3] = -5*32; }
+      else if (flow === "w") { graphics[3] = -4*32; }
 		} else if ((south === 1) && (east === 1) && (west === 1)) {
-			graphics[1] = "riverTbottom.gif";
+			if (alt) { // southern edge
+        if (rtype === "grass") { graphics[4] = ["static.gif", "", -4*32, -62*32]; }
+        else if (rtype === "dirt") { graphics[4] = ["static.gif", "", -5*32, -62*32]; }
+        else if (rtype === "cave") { graphics[4] = ["static.gif", "", -6*32, -62*32]; }
+      } else {
+        if (rtype === "grass") { graphics[4] = ["static.gif", "", -7*32, -64*32]; }
+        else if (rtype === "dirt") { graphics[4] = ["static.gif", "", -4*32, -67*32]; }
+        else if (rtype === "cave") { graphics[4] = ["static.gif", "", -5*32, -67*32]; }
+      }
+      if (flow === "w") { graphics[3] = -4*32; }
+      else if (flow === "e") { graphics[3] = -5*32; }
+      else if (flow === "s") { graphics[3] = -7*32; }
 		} else if ((east === 1) && (west === 1)) {
-			graphics[1] = "riverew.gif";
+      if (!alt && ((eastacre !== "OoB") && easttile.getName().includes("Alt")) && ((westacre !== "OoB") && !westtile.getName().includes("Alt"))) { // S tile
+        if (rtype === "grass") { graphics[4] = ["static.gif", "", -5*32, -42*32]; }
+        if (rtype === "dirt") { graphics[4] = ["static.gif", "", -5*32, -41*32]; }
+        if (rtype === "cave") { graphics[4] = ["static.gif", "", -5*32, -47*32]; }
+      } else if (!alt && ((eastacre !== "OoB") && !easttile.getName().includes("Alt")) && ((westacre !== "OoB") && westtile.getName().includes("Alt"))) { // the other S tile
+        if (rtype === "grass") { graphics[4] = ["static.gif", "", -4*32, -42*32]; }
+        if (rtype === "dirt") { graphics[4] = ["static.gif", "", -4*32, -41*32]; }
+        if (rtype === "cave") { graphics[4] = ["static.gif", "", -4*32, -47*32]; }
+      } else {
+  			if (alt) { // southern edge
+          if (rtype === "grass") { graphics[4] = ["static.gif", "", -8*32, -42*32]; }
+          else if (rtype === "dirt") { graphics[4] = ["static.gif", "", -8*32, -41*32]; }
+          else if (rtype === "cave") { graphics[4] = ["static.gif", "", -8*32, -47*32]; }
+        } else {
+          if (rtype === "grass") { graphics[4] = ["static.gif", "", -7*32, -42*32]; }
+          else if (rtype === "dirt") { graphics[4] = ["static.gif", "", -7*32, -41*32]; }
+          else if (rtype === "cave") { graphics[4] = ["static.gif", "", -7*32, -47*32]; }
+        }
+      }
+      if (flow === "e") { graphics[3] = 0; }
+      else if (flow === "w") { graphics[3] = -32; }
 		} else if ((north === 1) && (south === 1)) {
-			graphics[1] = "riverns.gif";
-		} else if ((north === 1) && (east === 1)) {
-			graphics[1] = "riverne.gif";
+			if (rtype === "grass") { graphics[4] = ["static.gif", "", 0, -42*32]; }
+      else if (rtype === "dirt") { graphics[4] = ["static.gif", "", 0, -41*32]; }
+      else if (rtype === "cave") { graphics[4] = ["static.gif", "", 0, -47*32]; }
+      if (flow === "n") { graphics[3] = -3*32; }
+      else if (flow === "s") { graphics[3] = -2*32; }
+		} else if ((north === 1) && (east === 1)) { 
+			if (alt) { // southern edge
+        if (rtype === "grass") { graphics[4] = ["static.gif", "", -3*32, -42*32]; }
+        else if (rtype === "dirt") { graphics[4] = ["static.gif", "", -3*32, -41*32]; }
+        else if (rtype === "cave") { graphics[4] = ["static.gif", "", -3*32, -47*32]; }
+      } else {
+        if (rtype === "grass") { graphics[4] = ["static.gif", "", -4*32, -45*32]; }
+        else if (rtype === "dirt") { graphics[4] = ["static.gif", "", 0, -46*32]; }
+        else if (rtype === "cave") { graphics[4] = ["static.gif", "", -2*32, -46*32]; }
+      }
+      if (flow === "e") { graphics[3] = 0; }
+      else if (flow === "n") { graphics[3] = -3*32; }
 		} else if ((north === 1) && (west === 1)) {
-			graphics[1] = "rivernw.gif";
-		} else if ((south === 1) && (east === 1)) {
-			graphics[1] = "riverse.gif";
+      if (alt) { // southern edge
+        if (rtype === "grass") { graphics[4] = ["static.gif", "", -6*32, -42*32]; }
+        else if (rtype === "dirt") { graphics[4] = ["static.gif", "", -6*32, -41*32]; }
+        else if (rtype === "cave") { graphics[4] = ["static.gif", "", -6*32, -47*32]; }
+      } else {
+        if (rtype === "grass") { graphics[4] = ["static.gif", "", -5*32, -45*32]; }
+        else if (rtype === "dirt") { graphics[4] = ["static.gif", "", -1*32, -46*32]; }
+        else if (rtype === "cave") { graphics[4] = ["static.gif", "", -3*32, -46*32]; }
+      }
+      if (flow === "w") { graphics[3] = -32; }
+      if (flow === "n") { graphics[3] = -3*32; }
+    } else if ((south === 1) && (east === 1)) {
+		  if (rtype === "grass") { graphics[4] = ["static.gif", "", -32, -42*32]; }
+      else if (rtype === "dirt") { graphics[4] = ["static.gif", "", -32, -41*32]; }
+      else if (rtype === "cave") { graphics[4] = ["static.gif", "", -32, -47*32]; }
+      if (flow === "e") { graphics[3] = 0; }
+      else if (flow === "s") { graphics[3] = -2*32; }
 		} else if ((south === 1) && (west === 1)) {
-			graphics[1] = "riversw.gif";
+			if (rtype === "grass") { graphics[4] = ["static.gif", "", -2*32, -42*32]; }
+      else if (rtype === "dirt") { graphics[4] = ["static.gif", "", -2*32, -41*32]; }
+      else if (rtype === "cave") { graphics[4] = ["static.gif", "", -2*32, -47*32]; }
+      if (flow === "w") { graphics[3] = -32; }
+      else if (flow === "s") { graphics[3] = -2*32; }
 		} else if (north === 1) {
-			graphics[1] = "riversources.gif";
+			if (rtype === "grass") { graphics[4] = ["static.gif", "", -4*32, -44*32]; }
+      else if (rtype === "dirt") { graphics[4] = ["static.gif", "", -5*32, -44*32]; }
+      else if (rtype === "cave") { graphics[4] = ["static.gif", "", -6*32, -44*32]; }
+      if (flow === "n") { graphics[3] = -3*32; }
 		} else if (east === 1) {
-			graphics[1] = "riversourcew.gif";
+			if (rtype === "grass") { graphics[4] = ["static.gif", "", -7*32, -43*32]; }
+      else if (rtype === "dirt") { graphics[4] = ["static.gif", "", -8*32, -43*32]; }
+      else if (rtype === "cave") { graphics[4] = ["static.gif", "", -9*32, -43*32]; }
+      if (flow === "e") { graphics[3] = 0; }
 		} else if (west === 1) {
-			graphics[1] = "riversourcee.gif";
+			if (rtype === "grass") { graphics[4] = ["static.gif", "", -7*32, -44*32]; }
+      else if (rtype === "dirt") { graphics[4] = ["static.gif", "", -8*32, -44*32]; }
+      else if (rtype === "cave") { graphics[4] = ["static.gif", "", -9*32, -44*32]; }
+      if (flow === "w") { graphics[3] = -32; }
 		} else if (south === 1) {
-			graphics[1] = "riversourcen.gif";
+			if (rtype === "grass") { graphics[4] = ["static.gif", "", -4*32, -43*32]; }
+      else if (rtype === "dirt") { graphics[4] = ["static.gif", "", -5*32, -43*32]; }
+      else if (rtype === "cave") { graphics[4] = ["static.gif", "", -6*32, -43*32]; }
+      if (flow === "s") { graphics[3] = -2*32; }
 		}
 		return graphics;
 	}
@@ -1560,7 +1769,8 @@ function IsWet(tile) {
 	if (tile.getName() === "Ocean") { return 1; }
 	if (tile.getName() === "Water") { return 1; }
 	if (tile.getName() === "Shallows") { return 1; }
-	if (tile.getName() === "River") { return 1; }
+  if (tile.getName() === "StillWater") { return 1; }
+//	if (tile.getName() === "River") { return 1; }
 	return 0;
 }
 
