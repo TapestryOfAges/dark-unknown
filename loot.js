@@ -19,7 +19,7 @@ LootTable.prototype.getLoot = function() {
   lootobj.lootlist = [];  // array of objnames
   let hasgold = 0;
   
-  if ((this.goldDice) && (Math.random() <= (this.goldChance/100))) {
+  if ((this.goldDice !== "0") && (Math.random() <= (this.goldChance/100))) {
     lootobj.gold = Dice.roll(this.goldDice);
     hasgold = 1;
   }
