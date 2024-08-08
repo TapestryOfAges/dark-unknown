@@ -1857,7 +1857,7 @@ FighterNPCTile.prototype = new NPCHumanObject();
 function ImpNPCTile() {
   this.name = 'ImpNPC';
   this.level = 2;
-  this.addhp = 0;
+  this.addhp = 5;
   this.str = 12;
   this.dex = 12;
   this.int = 12;
