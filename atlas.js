@@ -210,93 +210,18 @@ function PopulateAtlas(atlasref) {
   atlasref.insertkey("WSWall","Ww");
   atlasref.insertkey("WSWallVine",'WV');
   atlasref.insertkey("WSWallMold",'WM');
-  atlasref.insertkey("RiverGrassSourceN","Ra");
-  atlasref.insertkey("RiverGrassSourceS","Rd");
-  atlasref.insertkey("RiverGrassSourceE","Rg");
-  atlasref.insertkey("RiverGrassSourceW","Rj");
-  atlasref.insertkey("RiverDirtSourceN","Rb");
-  atlasref.insertkey("RiverDirtSourceS","Re");
-  atlasref.insertkey("RiverDirtSourceE","Rh");
-  atlasref.insertkey("RiverDirtSourceW","Rk");
-  atlasref.insertkey("RiverCaveSourceN","Rc");
-  atlasref.insertkey("RiverCaveSourceS","Rf");
-  atlasref.insertkey("RiverCaveSourceE","Ri");
-  atlasref.insertkey("RiverCaveSourceW","Rl");
-  atlasref.insertkey("RiverGrassNS","Rm");
-  atlasref.insertkey("RiverDirtNS","Rn");
-  atlasref.insertkey("RiverCaveNS","Ro");
-  atlasref.insertkey("RiverGrassEW_N","Rp");
-  atlasref.insertkey("RiverDirtEW_N","Rq");
-  atlasref.insertkey("RiverCaveEW_N","Rr");
-  atlasref.insertkey("RiverGrassEW_S","Rs");
-  atlasref.insertkey("RiverDirtEW_S","Rt");
-  atlasref.insertkey("RiverCaveEW_S","Ru");
-  atlasref.insertkey("RiverGrassSE","Rv");
-  atlasref.insertkey("RiverDirtSE","Rw");
-  atlasref.insertkey("RiverCaveSE","Rx");
-  atlasref.insertkey("RiverGrassSW","Ry");
-  atlasref.insertkey("RiverDirtSW","Rz");
-  atlasref.insertkey("RiverCaveSW","R1");
-  atlasref.insertkey("RiverGrassNE_S","R2");
-  atlasref.insertkey("RiverDirtNE_S","R3");
-  atlasref.insertkey("RiverCaveNE_S","R4");
-  atlasref.insertkey("RiverGrassEW_SN","R5");
-  atlasref.insertkey("RiverDirtEW_SN","R6");
-  atlasref.insertkey("RiverCaveEW_SN","R7");
-  atlasref.insertkey("RiverGrassEW_NS","R8");
-  atlasref.insertkey("RiverDirtEW_NS","R9");
-  atlasref.insertkey("RiverCaveEW_NS","R0");
-  atlasref.insertkey("RiverGrassNW_S","RA");
-  atlasref.insertkey("RiverDirtNW_S","RB");
-  atlasref.insertkey("RiverCaveNW_S","RC");
-  atlasref.insertkey("RiverGrassNE_N","RD");
-  atlasref.insertkey("RiverDirtNE_N","RE");
-  atlasref.insertkey("RiverCaveNE_N","RF");
-  atlasref.insertkey("RiverGrassNW_N","RG");
-  atlasref.insertkey("RiverDirtNW_N","RH");
-  atlasref.insertkey("RiverCaveNW_N","RI");
-  atlasref.insertkey("RiverGrassMouthN","RJ");
-  atlasref.insertkey("RiverDirtMouthN","RK");
-  atlasref.insertkey("RiverCaveMouthN","RL");
-  atlasref.insertkey("RiverGrassMouthS","RM");
-  atlasref.insertkey("RiverDirtMouthS","RN");
-  atlasref.insertkey("RiverCaveMouthS","RO");
-  atlasref.insertkey("RiverGrassMouthE_N","RP");
-  atlasref.insertkey("RiverDirtMouthE_N","RQ");
-  atlasref.insertkey("RiverCaveMouthE_N","R/");
-  atlasref.insertkey("RiverGrassMouthW_N","RS");
-  atlasref.insertkey("RiverDirtMouthW_N","RT");
-  atlasref.insertkey("RiverCaveMouthW_N","RU");
-  atlasref.insertkey("RiverGrassSEW_S","RV");
-  atlasref.insertkey("RiverDirtSEW_S","RW");
-  atlasref.insertkey("RiverCaveSEW_S","RX");
-  atlasref.insertkey("RiverGrassNSE_N","RY");
-  atlasref.insertkey("RiverDirtNSE_N","RZ");
-  atlasref.insertkey("RiverCaveNSE_N","R!");
-  atlasref.insertkey("RiverGrassNSW_S","R@");
-  atlasref.insertkey("RiverDirtNSW_S","R#");
-  atlasref.insertkey("RiverCaveNSW_S","R$");
-  atlasref.insertkey("RiverGrassMouthW_S","R%");
-  atlasref.insertkey("RiverDirtMouthW_S","R^");
-  atlasref.insertkey("RiverCaveMouthW_S","R&");
-  atlasref.insertkey("RiverGrassMouthE_S","R?");
-  atlasref.insertkey("RiverDirtMouthE_S","R>");
-  atlasref.insertkey("RiverCaveMouthE_S","R<");
-  atlasref.insertkey("RiverGrassNSW_N","R*");
-  atlasref.insertkey("RiverDirtNSW_N","R-");
-  atlasref.insertkey("RiverCaveNSW_N","R+");
-  atlasref.insertkey("RiverGrassNEW_S","R=");
-  atlasref.insertkey("RiverDirtNEW_S","R~");
-  atlasref.insertkey("RiverCaveNEW_S","R`");
-  atlasref.insertkey("RiverGrassSEW_N","R:");
-  atlasref.insertkey("RiverDirtSEW_N",'R"');
-  atlasref.insertkey("RiverCaveSEW_N","R|");
-  atlasref.insertkey("RiverGrassNSE_S","R[");
-  atlasref.insertkey("RiverDirtNSE_S","R]");
-  atlasref.insertkey("RiverCaveNSE_S","R{");
-  atlasref.insertkey("RiverGrassNEW_N","R}");
-  atlasref.insertkey("RiverDirtNEW_N","R(");
-  atlasref.insertkey("RiverCaveNEW_N","R)");
+  atlasref.insertkey("RiverGrass","rg");
+  atlasref.insertkey("RiverGrassAlt","rG");
+  atlasref.insertkey("RiverGrassOverrideS_SN","r/");
+  atlasref.insertkey("RiverGrassOverrideS_NS","r|");
+  atlasref.insertkey("RiverGrassOverride_NE","r=");
+  atlasref.insertkey("RiverGrassOverride_EW","r-");
+  atlasref.insertkey("RiverGrassOverrideAlt_EW","r_");
+  atlasref.insertkey("RiverGrassOverride_NS","r!");
+  atlasref.insertkey("RiverDirt","rt");
+  atlasref.insertkey("RiverDirtAlt","rT");
+  atlasref.insertkey("RiverCave","re");
+  atlasref.insertkey("RiverCaveAlt","rE");
   atlasref.insertkey("FadedCobblestone","+f");
   atlasref.insertkey("FadedCobblestone2","+F");
   atlasref.insertkey("ClayPavers","+c");
@@ -327,6 +252,7 @@ function Acre() {
   this.features = new Collection();
   this.npcs = new Collection();
   this.pcs = new Collection();
+  this.flow = "";
   
   this.localLight = {};
   this.localSound = {};
@@ -338,6 +264,15 @@ function Acre() {
 
 Acre.prototype.getx = function() { return this.x; }
 Acre.prototype.gety = function() { return this.y; }
+
+Acre.prototype.getFlow = function() { return this.flow; }
+Acre.prototype.setFlow = function(newflow) {
+  if ((newflow === "n") || (newflow === "ne") || (newflow === "e") || (newflow === "se") ||
+      (newflow === "s") || (newflow === "sw") || (newflow === "w") || (newflow === "nw")) {
+    this.flow = newflow;
+  } else { this.flow = ""; }
+  return this.flow;
+}
 
 Acre.prototype.addLocalSound = function(snd, sndsrc) {
   this.localSound[sndsrc.getSerial()] = snd;
@@ -1470,6 +1405,8 @@ GameMap.prototype.saveMap = function (name) {
   printerwin.document.writeln('// MAP BEGINS HERE<br />');
   printerwin.document.writeln('mappages["' + name + '"] = {};<br />');
   let oldname=name;
+  let flow = {};
+  let anyflow = 0;
   name = 'mappages["' + name + '"].terrain';
   printerwin.document.writeln(name + " = [];<br />");
   let maxindex = this.data.length-1;
@@ -1488,6 +1425,12 @@ GameMap.prototype.saveMap = function (name) {
         printerwin.document.write(" ");
       }
       printerwin.document.write(""+savethis);
+
+      let fl = this.data[i][j].flow;
+      if (fl) {
+        anyflow = 1;
+        flow[`${j}x${i}`] = fl;
+      }
     }
     printerwin.document.write("';<br />");
   }
@@ -1639,8 +1582,12 @@ GameMap.prototype.saveMap = function (name) {
     }
  	  printerwin.document.write("};<br />\n");
   }
- 
+
   name = 'mappages["' + oldname + '"]';
+  if (anyflow) {
+    let jsflow = JSON.stringify(flow);
+    printerwin.document.write(`<br />\n${name}.flow = '${jsflow}';<br />\n`);
+  }
   printerwin.document.write("<br />\n" + name + ".desc = \"" + this.getDesc() + "\";<br />\n");
   printerwin.document.write(name + ".longdesc = `" + this.getLongDesc() + "`;<br />\n");
   printerwin.document.write(name + ".music = '" + this.getMusic() + "';<br />\n");
@@ -1689,6 +1636,9 @@ GameMap.prototype.loadMap = function (name) {
   this.features.deleteAll();
   this.npcs.deleteAll();
   let loadfrom = mappages.readPage(name, "terrain");
+  let fl = mappages.readPage(name, "flow");
+  let flow;
+  if (fl) { flow = JSON.parse(fl); }
   let localatlas = new Atlas();
   PopulateAtlas(localatlas);
   for (let i=0;i<=loadfrom.length-1;i++) {
@@ -1702,6 +1652,12 @@ GameMap.prototype.loadMap = function (name) {
 
       let newterrain = eidos.getForm(loadedtile);
       this.setTerrain(j,i,newterrain);
+      if (fl) {
+        let thisflow = flow[`${j}x${i}`];
+        if (thisflow) {
+          this.data[i][j].flow = thisflow;
+        }
+      }
     }
   }
   
