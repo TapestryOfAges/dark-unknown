@@ -399,14 +399,16 @@ function Open_BDC_Gate(mapref) {
 }
 
 function Close_BDC_Gate(mapref) {
-  mapref.getTile(11,39).getTopFeature().setGraphicArray(["static.gif","",-8*32,-108*32]);
-  let planks = localFactory.createTile("Shallows");
-  mapref.setTerrain(11,41,planks);
-  mapref.setTerrain(12,41,planks);
-  mapref.setTerrain(13,41,planks);
-  mapref.setTerrain(11,42,planks);
-  mapref.setTerrain(12,42,planks);
-  mapref.setTerrain(13,42,planks);
+  if (!DU.gameflags.getFlag("act2")) {
+    mapref.getTile(11,39).getTopFeature().setGraphicArray(["static.gif","",-8*32,-108*32]);
+    let planks = localFactory.createTile("Shallows");
+    mapref.setTerrain(11,41,planks);
+    mapref.setTerrain(12,41,planks);
+    mapref.setTerrain(13,41,planks);
+    mapref.setTerrain(11,42,planks);
+    mapref.setTerrain(12,42,planks);
+    mapref.setTerrain(13,42,planks);
+  }
 }
 
 mappages["blackdragon2"] = {};
@@ -1606,5 +1608,11 @@ mappages["justice_battle"].onload = function(mapref) {
     crystal.lootTable = "justicecrystal";
     let justice = mapref.getTile(7,5).getTopNPC();
     justice.setMana(35);
+    let ward = localFactory.createTile("MirrorWard");
+    justice.addSpellEffect(ward);
+    let prot = localFactory.createTile("Protection");
+    let power = Math.floor(justice.getIntForPower()*2/3)+1;
+    prot.setPower(power);
+    justice.addSpellEffect(prot);
   }
 }
