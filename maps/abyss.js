@@ -193,13 +193,14 @@ mappages["abyss2"].returninfused = '0';
 mappages["abyss2"].linkedMaps = ["abyss1","abyss0","abyss3","abyss4","abyss5"];
 mappages["abyss2"].editorLabels = '{}';
 
+// MAP BEGINS HERE
 mappages["abyss3"] = {};
 mappages["abyss3"].terrain = [];
- mappages["abyss3"].terrain[0] = '.. .. .. .. .. Rm .. ,, .. .` ww ww ww';
- mappages["abyss3"].terrain[1] = '^^ ,, ,, .. .. Rm .. .. .. .. RJ .` ww';
- mappages["abyss3"].terrain[2] = '^^ ^^ nn .. Rv R} Rp R8 R5 Rp RG .| ww';
- mappages["abyss3"].terrain[3] = '^^ nn nn ,, Rm nn ,, ,, .. ,, u, .. .`';
- mappages["abyss3"].terrain[4] = 'Rp Rp R8 Rs RA nn nn .. .. .. .. .. ,,';
+ mappages["abyss3"].terrain[0] = '.. .. .. .. .. rg .. ,, .. .` ww ww ww';
+ mappages["abyss3"].terrain[1] = '^^ ,, ,, .. .. rg .. .. .. .. rg .` ww';
+ mappages["abyss3"].terrain[2] = '^^ ^^ nn .. rg rg rg r| r/ rg rg .| ww';
+ mappages["abyss3"].terrain[3] = '^^ nn nn ,, rg nn ,, ,, .. ,, u, .. .`';
+ mappages["abyss3"].terrain[4] = 'rg rg rg rG rG nn nn .. .. .. .. .. ,,';
  mappages["abyss3"].terrain[5] = '^^ u, .. .. nn nn .. .. .. .. .. ,, ,,';
  mappages["abyss3"].terrain[6] = '^^ ^^ ,, ^^ nn ,, .. .. .. .. .. .. ..';
  mappages["abyss3"].terrain[7] = '.. .. ^^ ^^ nn .. .. .. u, .. .. ,, ..';
@@ -262,6 +263,8 @@ mappages["abyss3"].features[47] = {name : 'WalkOnAbyss3', x : 8, y : 12};
 
 mappages["abyss3"].npcs = [];
 
+mappages["abyss3"].flow = '{"5x0":"s","5x1":"s","10x1":"n","4x2":"e","5x2":"e","6x2":"e","7x2":"e","8x2":"e","9x2":"e","10x2":"n","4x3":"n","0x4":"e","1x4":"e","2x4":"e","3x4":"e","4x4":"n"}';
+
 mappages["abyss3"].desc = "The Stygian Abyss";
 mappages["abyss3"].longdesc = ``;
 mappages["abyss3"].music = 'The Great Abyss';
@@ -288,14 +291,16 @@ mappages["abyss3"].returny = 'NaN';
 mappages["abyss3"].returninfused = '0';
 mappages["abyss3"].linkedMaps = ["abyss1","abyss2","abyss0","abyss4","abyss5"];
 mappages["abyss3"].editorLabels = '{}';
+// MAP ENDS HERE
 
+// MAP BEGINS HERE
 mappages["abyss4"] = {};
 mappages["abyss4"].terrain = [];
- mappages["abyss4"].terrain[0] = '^^ ^^ .. .. .. Rm .. ,, .. .` ww ww ww';
- mappages["abyss4"].terrain[1] = '^^ ,, ,, .. .. Rm .. .. .. .. RJ .` ww';
- mappages["abyss4"].terrain[2] = '^^ ^^ nn .. Rv R} Rp R8 R5 Rp RG .| ww';
- mappages["abyss4"].terrain[3] = '^^ nn nn ,, Rm nn ,, ,, .. ,, u, .. .`';
- mappages["abyss4"].terrain[4] = 'Rp Rp R8 Rs RA nn nn .. .. .. .. .. ,,';
+ mappages["abyss4"].terrain[0] = '^^ ^^ .. .. .. rg .. ,, .. .` ww ww ww';
+ mappages["abyss4"].terrain[1] = '^^ ,, ,, .. .. rg .. .. .. .. rg .` ww';
+ mappages["abyss4"].terrain[2] = '^^ ^^ nn .. rg rg rg r| r/ rg rg .| ww';
+ mappages["abyss4"].terrain[3] = '^^ nn nn ,, rg nn ,, ,, .. ,, u, .. .`';
+ mappages["abyss4"].terrain[4] = 'rg rg rg rG rG nn nn .. .. .. .. .. ,,';
  mappages["abyss4"].terrain[5] = '^^ u, .. .. nn nn .. .. .. .. .. ,, ,,';
  mappages["abyss4"].terrain[6] = '^^ ^^ ,, ^^ nn ,, .. .. .. .. .. .. ..';
  mappages["abyss4"].terrain[7] = '.. ^^ ^^ ^^ nn .. .. .. u, .. .. ,, ..';
@@ -319,7 +324,9 @@ mappages["abyss4"].features[9] = {name : 'WalkOnAbyss4', x : 7, y : 3};
 
 
 mappages["abyss4"].npcs = [];
-mappages["abyss4"].npcs[0] = {name : 'AbyssYouNPC', x : 6, y : 3, NPCName: 'Subject Name Here', Conversation: 'abyssyou', Gender: 'male', NPCBand: '0', skintone: '1'};
+mappages["abyss4"].npcs[0] = {name : 'AbyssYouNPC', x : 6, y : 3, NPCName: 'Subject Name Here', Conversation: 'abyssyou', Gender: 'other', NPCBand: '0', skintone: 1};
+
+mappages["abyss4"].flow = '{"5x0":"s","5x1":"s","10x1":"n","4x2":"e","5x2":"e","6x2":"e","7x2":"e","8x2":"e","9x2":"e","10x2":"n","4x3":"n","0x4":"e","1x4":"e","2x4":"e","3x4":"e","4x4":"n"}';
 
 mappages["abyss4"].desc = "The Stygian Abyss";
 mappages["abyss4"].longdesc = ``;
@@ -347,6 +354,7 @@ mappages["abyss4"].returny = 'NaN';
 mappages["abyss4"].returninfused = '0';
 mappages["abyss4"].linkedMaps = ["abyss1","abyss2","abyss3","abyss0","abyss5"];
 mappages["abyss4"].editorLabels = '{}';
+// MAP ENDS HERE
 
 mappages["abyss4"].block_escape = function(mapref) {
   map_block_escape(mapref);
@@ -355,11 +363,11 @@ mappages["abyss4"].block_escape = function(mapref) {
 // MAP BEGINS HERE
 mappages["abyss5"] = {};
 mappages["abyss5"].terrain = [];
- mappages["abyss5"].terrain[0] = '^^ ^^ .. .. .. Rm .. ,, .. .` ww ww ww';
- mappages["abyss5"].terrain[1] = '^^ ,, ,, .. .. Rm .. .. .. .. RJ .` ww';
- mappages["abyss5"].terrain[2] = '^^ ^^ nn .. Rv R} Rp R8 R5 Rp RG .| ww';
- mappages["abyss5"].terrain[3] = '^^ nn nn ,, Rm nn ,, ,, .. ,, u, .. .`';
- mappages["abyss5"].terrain[4] = 'Rp Rp R8 Rs RA nn nn .. .. .. .. .. ,,';
+ mappages["abyss5"].terrain[0] = '^^ ^^ .. .. .. rg .. ,, .. .` ww ww ww';
+ mappages["abyss5"].terrain[1] = '^^ ,, ,, .. .. rg .. .. .. .. rg .` ww';
+ mappages["abyss5"].terrain[2] = '^^ ^^ nn .. rg rg rg r| r/ rg rg .| ww';
+ mappages["abyss5"].terrain[3] = '^^ nn nn ,, rg nn ,, ,, .. ,, u, .. .`';
+ mappages["abyss5"].terrain[4] = 'rg rg rg rG rG nn nn .. .. .. .. .. ,,';
  mappages["abyss5"].terrain[5] = '^^ u, .. .. nn nn .. .. .. .. .. ,, ,,';
  mappages["abyss5"].terrain[6] = '^^ ^^ ,, ^^ nn ,, .. .. .. .. .. .. ..';
  mappages["abyss5"].terrain[7] = '.. ^^ ^^ ^^ nn .. .. .. u, .. .. ,, ..';
@@ -393,6 +401,8 @@ mappages["abyss5"].features[19] = {name : 'Moongate', x : 6, y : 1};
 
 
 mappages["abyss5"].npcs = [];
+
+mappages["abyss5"].flow = '{"5x0":"s","5x1":"s","10x1":"n","4x2":"e","5x2":"e","6x2":"e","7x2":"e","8x2":"e","9x2":"e","10x2":"n","4x3":"n","0x4":"e","1x4":"e","2x4":"e","3x4":"e","4x4":"n"}';
 
 mappages["abyss5"].desc = "The Stygian Abyss";
 mappages["abyss5"].longdesc = ``;

@@ -9,16 +9,16 @@ mappages["underworld"].terrain = [];
   mappages["underworld"].terrain[3] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
   mappages["underworld"].terrain[4] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
   mappages["underworld"].terrain[5] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-  mappages["underworld"].terrain[6] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ Rc ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-  mappages["underworld"].terrain[7] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. ^^ ^^ .. .. ^^ .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf ^^ ^^ ^^ cf cf cf Ro ^^ ^^ ^^ ^^ ^^ ^^ ^^ Rc ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-  mappages["underworld"].terrain[8] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. ^^ ^^ ^^ ^^ ^^ .. .. ^^ .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf ^^ ^^ RF R1 ^^ ^^ ^^ ^^ ^^ Rx RI ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-  mappages["underworld"].terrain[9] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ Ro ^^ ^^ ^^ ^^ ^^ Ro ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["underworld"].terrain[10] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ RF R1 ^^ ^^ ^^ ^^ Ro ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["underworld"].terrain[11] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ .. .. .. .. .. .. ^^ .. ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ Ro ^^ ^^ ^^ Rx RI ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["underworld"].terrain[12] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. ^^ ^^ ^^ ^^ .. .. .. ^^ ^^ ^^ .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ RF R| Rr Rr RI ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["underworld"].terrain[13] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ .. .. .. ^^ ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ Ro ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["underworld"].terrain[14] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. ^^ ^^ .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ .. .. .. .. .. ^^ ^^ .. .. ^^ ^^ ^^ .. .. ^^ ^^ ^^ .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ RF R1 ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["underworld"].terrain[15] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ uu ^^ ^^ RO ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+  mappages["underworld"].terrain[6] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ re ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+  mappages["underworld"].terrain[7] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. ^^ ^^ .. .. ^^ .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf ^^ ^^ ^^ cf cf cf re ^^ ^^ ^^ ^^ ^^ ^^ ^^ re ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+  mappages["underworld"].terrain[8] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. ^^ ^^ ^^ ^^ ^^ .. .. ^^ .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf ^^ ^^ re re ^^ ^^ ^^ ^^ ^^ re re ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+  mappages["underworld"].terrain[9] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ re ^^ ^^ ^^ ^^ ^^ re ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+ mappages["underworld"].terrain[10] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ re re ^^ ^^ ^^ ^^ re ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+ mappages["underworld"].terrain[11] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ .. .. .. .. .. .. ^^ .. ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ re ^^ ^^ ^^ re re ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+ mappages["underworld"].terrain[12] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. ^^ ^^ ^^ ^^ .. .. .. ^^ ^^ ^^ .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ re re re re re ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+ mappages["underworld"].terrain[13] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ .. .. .. ^^ ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ re ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+ mappages["underworld"].terrain[14] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. ^^ ^^ .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ .. .. .. .. .. ^^ ^^ .. .. ^^ ^^ ^^ .. .. ^^ ^^ ^^ .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ re re ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+ mappages["underworld"].terrain[15] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ uu ^^ ^^ re ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
  mappages["underworld"].terrain[16] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. ^^ ^^ ^^ .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ uu uu uu uu uu uu ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
  mappages["underworld"].terrain[17] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. ^^ ^^ ^^ ^^ uu uu ww ww uu uu uu ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
  mappages["underworld"].terrain[18] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. ^^ ^^ ^^ ^^ ^^ .. .. ff ff ff ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. ^^ ^^ ^^ ^^ uu ww ww ww uu uu ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
@@ -125,7 +125,7 @@ mappages["underworld"].terrain[118] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^
 mappages["underworld"].terrain[119] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
 
 mappages["underworld"].features = [];
-mappages["underworld"].features[0] = {name : 'Whirlpool', x : 70, y : 106, entermap : 'darkunknown', enterx : 66, entery : 122};
+mappages["underworld"].features[0] = {name : 'Whirlpool', x : 70, y : 106};
 mappages["underworld"].features[1] = {name : 'Dungeon', x : 28, y : 100, entermap : 'kaltonmine3', enterx : 26, entery : 26};
 mappages["underworld"].features[2] = {name : 'Dungeon', x : 36, y : 54, entermap : 'worldsending3', enterx : 31, entery : 13};
 mappages["underworld"].features[3] = {name : 'SecretCave', x : 63, y : 27, entermap : 'hidden_cave', enterx : 14, entery : 1};
@@ -201,6 +201,8 @@ mappages["underworld"].features[72] = {name : 'EnergyField', x : 88, y : 54};
 
 
 mappages["underworld"].npcs = [];
+
+mappages["underworld"].flow = '{"103x6":"s","103x7":"s","111x7":"s","103x8":"e","104x8":"s","110x8":"s","111x8":"w","104x9":"s","110x9":"s","104x10":"e","105x10":"s","110x10":"s","105x11":"s","109x11":"s","110x11":"w","105x12":"e","106x12":"s","107x12":"w","108x12":"w","109x12":"w","106x13":"s","106x14":"e","107x14":"s","107x15":"s"}';
 
 mappages["underworld"].desc = "The Underworld";
 mappages["underworld"].longdesc = ``;
@@ -787,9 +789,9 @@ mappages["eldercave"].terrain = [];
  mappages["eldercave"].terrain[6] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["eldercave"].terrain[7] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cf cf cf cw cw cw cw BK BK BK BK BK BK BK BK BK';
  mappages["eldercave"].terrain[8] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK';
- mappages["eldercave"].terrain[9] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf ww ww cf cf cw BK BK BK BK BK BK BK BK';
-mappages["eldercave"].terrain[10] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf ww ww ww cf cw cw BK BK BK BK BK BK BK';
-mappages["eldercave"].terrain[11] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf ww ww cf cf cw BK BK BK BK BK BK BK';
+ mappages["eldercave"].terrain[9] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf us us cf cf cw BK BK BK BK BK BK BK BK';
+mappages["eldercave"].terrain[10] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf us us us cf cw cw BK BK BK BK BK BK BK';
+mappages["eldercave"].terrain[11] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf us us cf cf cw BK BK BK BK BK BK BK';
 mappages["eldercave"].terrain[12] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK';
 mappages["eldercave"].terrain[13] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK';
 mappages["eldercave"].terrain[14] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK';
@@ -814,14 +816,14 @@ mappages["eldercave"].terrain[31] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cf c
 mappages["eldercave"].features = [];
 mappages["eldercave"].features[0] = {name : 'PileOfRocks', x : 21, y : 18};
 mappages["eldercave"].features[1] = {name : 'PileOfRocks', x : 13, y : 18};
-mappages["eldercave"].features[2] = {name : 'Chest', x : 17, y : 7, locked : 0, lootgroup : 'castlechest', lootedid : 'elderlair2'};
-mappages["eldercave"].features[3] = {name : 'Chest', x : 16, y : 7, locked : 0, lootgroup : 'castlechest', lootedid : 'elderlair1'};
-mappages["eldercave"].features[4] = {name : 'Chest', x : 12, y : 10, locked : 0, lootgroup : 'castlechest', lootedid : 'elderlair3'};
-mappages["eldercave"].features[5] = {name : 'Chest', x : 12, y : 11, locked : 0, lootgroup : 'castlechest', lootedid : 'elderlair4'};
+mappages["eldercave"].features[2] = {name : 'Chest', x : 17, y : 7, lootgroup : 'castlechest', lootedid : 'elderlair2'};
+mappages["eldercave"].features[3] = {name : 'Chest', x : 16, y : 7, lootgroup : 'castlechest', lootedid : 'elderlair1'};
+mappages["eldercave"].features[4] = {name : 'Chest', x : 12, y : 10, lootgroup : 'castlechest', lootedid : 'elderlair3'};
+mappages["eldercave"].features[5] = {name : 'Chest', x : 12, y : 11, lootgroup : 'castlechest', lootedid : 'elderlair4'};
 mappages["eldercave"].features[6] = {name : 'FireField', x : 15, y : 10};
 mappages["eldercave"].features[7] = {name : 'FireField', x : 21, y : 15};
-mappages["eldercave"].features[8] = {name : 'FireField', x : 14, y : 15};
 mappages["eldercave"].features[8] = {name : 'FireField', x : 21, y : 9};
+
 
 mappages["eldercave"].npcs = [];
 

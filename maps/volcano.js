@@ -31,19 +31,19 @@ mappages["volcano"].terrain[24] = 'WW WW WW WW WW WW WW WW WW WW WW WW ww ww ww 
 mappages["volcano"].terrain[25] = 'WW WW WW WW WW WW WW WW WW WW WW WW ww ww ww ww ww ^^ ^^ ^^ nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn ^^ ^^ ww ww ww ww WW WW WW WW WW';
 mappages["volcano"].terrain[26] = 'WW WW WW WW WW WW WW WW WW WW WW ww ww ww ww ^^ ^^ ^^ ^^ ^^ nn nn nn nn nn nn nn nn nn nn nn nn nn nn ^^ ^^ ww ww ww ww WW WW WW WW WW WW';
 mappages["volcano"].terrain[27] = 'WW WW WW WW WW WW WW WW WW WW ww ww ww ww ^^ ^^ ^^ ^^ ^^ ^^ ^^ nn nn nn nn nn nn nn nn nn nn nn nn ^^ ^^ ^^ ww ww ww ww WW WW WW WW WW WW';
-mappages["volcano"].terrain[28] = 'WW WW WW WW WW WW WW WW WW ww ww ww ww ww ^^ ^^ ^_ ^^ Rb ^^ ^^ ^^ ^^ nn nn nn nn nn nn nn ^^ ^^ ^^ ^^ ^^ ww ww ww ww WW WW WW WW WW WW WW';
-mappages["volcano"].terrain[29] = 'WW WW WW WW WW WW WW WW WW ww ww ww ww ^^ ^^ nn nn ^^ Rn ^^ ^^ ^^ ^^ nn nn nn nn nn ^^ ^^ ^^ ^^ ^^ ww ww ww ww ww WW WW WW WW WW WW WW WW';
-mappages["volcano"].terrain[30] = 'WW WW WW WW WW WW WW WW ww ww ww /. -- nn nn nn nn nn Rm nn ^^ ^^ nn nn ^^ nn ^^ ^^ ^^ ^^ ^^ ^^ ww ww ww ww ww WW WW WW WW WW WW WW WW WW';
-mappages["volcano"].terrain[31] = 'WW WW WW WW WW WW WW ww ww ww ww |. .. nn nn nn nn nn Rn nn nn ^^ nn ^^ ^^ ^^ ^^ ^^ ^^ ww ww ww ww ww ww ww WW WW WW WW WW WW WW WW WW WW';
-mappages["volcano"].terrain[32] = 'WW WW WW WW WW WW ww ww ww ww /. .. .. .. nn nn nn Rw RH nn nn nn nn ^^ ^^ ^^ ^^ ww ww ww ww ww ww ww ww WW WW WW WW WW WW WW WW WW WW WW';
-mappages["volcano"].terrain[33] = 'WW WW WW WW WW WW ww ww ww /. .. .. .. .. .. nn nn Rm nn nn nn nn nn ^^ ^^ ww ww ww ww ww ww ww WW WW WW WW WW WW WW WW WW WW WW WW WW WW';
-mappages["volcano"].terrain[34] = 'WW WW WW WW WW WW ww ww ww |. .. .. .. .. .. .. nn Rm nn nn nn .. nn nn ^^ ww ww ww ww ww WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW';
-mappages["volcano"].terrain[35] = 'WW WW WW WW WW WW WW ww ww |. .. .. .. .. .. Rv Rp RG .. .. .. .. .. nn ^^ ww ww ww WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW';
-mappages["volcano"].terrain[36] = 'WW WW WW WW WW WW WW ww ww `. __ .. .. Rv Rp R* .. .. .. .. .. .. .. ./ ww ww ww WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW';
-mappages["volcano"].terrain[37] = 'WW WW WW WW WW WW WW ww ww ww ww `. .. Rm .. RD Ry .. .. .. .. .. ./ ww ww uu uu WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW';
-mappages["volcano"].terrain[38] = 'WW WW WW WW WW WW WW WW ww ww ww ww |. Rm .. .. Rm .. .. .. .. ./ ww ww ww uu WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW';
-mappages["volcano"].terrain[39] = 'WW WW WW WW WW WW WW WW WW ww ww ww `. RM .. .. Rm .. .. __ ./ ww ww ww WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW';
-mappages["volcano"].terrain[40] = 'WW WW WW WW WW WW WW WW WW WW ww ww ww ww `. __ RM __ ./ ww ww ww WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW';
+mappages["volcano"].terrain[28] = 'WW WW WW WW WW WW WW WW WW ww ww ww ww ww ^^ ^^ ^_ ^^ rt ^^ ^^ ^^ ^^ nn nn nn nn nn nn nn ^^ ^^ ^^ ^^ ^^ ww ww ww ww WW WW WW WW WW WW WW';
+mappages["volcano"].terrain[29] = 'WW WW WW WW WW WW WW WW WW ww ww ww ww ^^ ^^ nn nn ^^ rt ^^ ^^ ^^ ^^ nn nn nn nn nn ^^ ^^ ^^ ^^ ^^ ww ww ww ww ww WW WW WW WW WW WW WW WW';
+mappages["volcano"].terrain[30] = 'WW WW WW WW WW WW WW WW ww ww ww /. -- nn nn nn nn nn rt nn ^^ ^^ nn nn ^^ nn ^^ ^^ ^^ ^^ ^^ ^^ ww ww ww ww ww WW WW WW WW WW WW WW WW WW';
+mappages["volcano"].terrain[31] = 'WW WW WW WW WW WW WW ww ww ww ww |. .. nn nn nn nn nn rt nn nn ^^ nn ^^ ^^ ^^ ^^ ^^ ^^ ww ww ww ww ww ww ww WW WW WW WW WW WW WW WW WW WW';
+mappages["volcano"].terrain[32] = 'WW WW WW WW WW WW ww ww ww ww /. .. .. .. nn nn nn rt rt nn nn nn nn ^^ ^^ ^^ ^^ ww ww ww ww ww ww ww ww WW WW WW WW WW WW WW WW WW WW WW';
+mappages["volcano"].terrain[33] = 'WW WW WW WW WW WW ww ww ww /. .. .. .. .. .. nn nn rg nn nn nn nn nn ^^ ^^ ww ww ww ww ww ww ww WW WW WW WW WW WW WW WW WW WW WW WW WW WW';
+mappages["volcano"].terrain[34] = 'WW WW WW WW WW WW ww ww ww |. .. .. .. .. .. .. nn rg nn nn nn .. nn nn ^^ ww ww ww ww ww WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW';
+mappages["volcano"].terrain[35] = 'WW WW WW WW WW WW WW ww ww |. .. .. .. .. .. rg rg rg .. .. .. .. .. nn ^^ ww ww ww WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW';
+mappages["volcano"].terrain[36] = 'WW WW WW WW WW WW WW ww ww `. __ .. .. rg rg rg .. .. .. .. .. .. .. ./ ww ww ww WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW';
+mappages["volcano"].terrain[37] = 'WW WW WW WW WW WW WW ww ww ww ww `. .. rg .. rg rg .. .. .. .. .. ./ ww ww uu uu WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW';
+mappages["volcano"].terrain[38] = 'WW WW WW WW WW WW WW WW ww ww ww ww |. rg .. .. rg .. .. .. .. ./ ww ww ww uu WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW';
+mappages["volcano"].terrain[39] = 'WW WW WW WW WW WW WW WW WW ww ww ww `. rg .. .. rg .. .. __ ./ ww ww ww WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW';
+mappages["volcano"].terrain[40] = 'WW WW WW WW WW WW WW WW WW WW ww ww ww ww `. __ rg __ ./ ww ww ww WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW';
 mappages["volcano"].terrain[41] = 'WW WW WW WW WW WW WW WW WW WW WW ww ww ww ww ww ww ww ww ww ww WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW';
 mappages["volcano"].terrain[42] = 'WW WW WW WW WW WW WW WW WW WW WW WW WW ww ww ww ww ww ww ww WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW';
 mappages["volcano"].terrain[43] = 'WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW';
@@ -132,9 +132,10 @@ mappages["volcano"].features[73] = {name : 'Lava', x : 34, y : 22};
 mappages["volcano"].features[74] = {name : 'Lava', x : 34, y : 25};
 
 
-
 mappages["volcano"].npcs = [];
-mappages["volcano"].npcs[0] = {name : 'FireLizardGroup', x : 28, y : 19, skintone: '1'};
+mappages["volcano"].npcs[0] = {name : 'FireLizardGroup', x : 28, y : 19, skintone: 1};
+
+mappages["volcano"].flow = '{"18x28":"s","18x29":"s","18x30":"s","18x31":"s","17x32":"s","18x32":"w","17x33":"s","17x34":"s","15x35":"s","16x35":"w","17x35":"w","13x36":"s","14x36":"w","15x36":"s","13x37":"s","15x37":"e","16x37":"s","13x38":"s","16x38":"s","13x39":"s","16x39":"s","16x40":"s"}';
 
 mappages["volcano"].desc = "Volcanic Island";
 mappages["volcano"].longdesc = `This island is dominated by rugged mountains and active volcanoes, visible even from here. In this corner, a flat crescent of land was once settled, but now looks to be empty.`;
