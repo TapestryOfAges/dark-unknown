@@ -343,14 +343,14 @@ function DoAction(code, ctrl) {
         targetCursor.frame = 1;
       } else {
         gamestate.setMode("null");
-        let moongate = localFactory.createTile("Moongate");
+        let moongate = localFactory.createTile("TempDaemonMoongate");
         let justice = targetCursor.justice;
         justice.getHomeMap().placeThing(justice.getx(),justice.gety(),moongate);
         moongate.destmap = moongate.getHomeMap().getName();
         moongate.destx = moongate.getx();
         moongate.desty = moongate.gety();
         DrawMainFrame("one",PC.getHomeMap(),justice.getx(),justice.gety());
-        animateImage(0,-128,moongate,0,"right",300,0,1);
+        AnimateMoongate(moongate,0,"up",300,0);
         setTimeout(function() { 
           whoseturn.endTurn();  // could be Justice, could be PC
           targetCursor.justice.getHomeMap().deleteThing(targetCursor.justice);
@@ -358,7 +358,7 @@ function DoAction(code, ctrl) {
           maintext.addText("...and she vanishes.");
           maintext.setInputLine("&gt;");
           maintext.drawTextFrame();
-          animateImage(-128,0,moongate,0,"left",300,1,0);
+          AnimateMoongate(moongate,0,"down",300,1);
           delete targetCursor.justice;
           delete targetCursor.frame;
           delete targetCursor.command;
