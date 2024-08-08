@@ -95,7 +95,7 @@
       <img onClick="amap.saveMap(''); changes=0;" src="editor/savemapbutton.gif" />
       <img onClick="editorEditMapDetails();" src="editor/editdetailsbutton.gif" />
       <img onClick="drawMap();" src="editor/refresh.gif" />
-	  <a href="javascript:ToggleLabels()">[Labels]</a> <a href="javascript:Verify()">[Verify]</a> <a href="javascript:MakePeerView()">[Peer]</a>
+	  <a href="javascript:ToggleLabels()">[Labels]</a> <a href="javascript:Verify()">[Verify]</a> <a href="javascript:MakePeerView()">[Peer]</a> <a href="javascript:CreateFlow()">[Flow]</a>
       &#9200; <span id='clockface'></span> <input type='button' value='Set Clock' onClick='SetClock()' />
     </span>
     </form>
@@ -242,6 +242,7 @@
 <td><input type="checkbox" name="showfeatures" id="showfeatures" checked="checked" onclick="drawFeatures()" /> Features</td>
 <td><input type="checkbox" name="shownpcs" id="shownpcs" checked="checked" onclick="drawFeatures()" /> NPCs</td>
 <td><input type="checkbox" name="showinvis" id="showinvis" onclick="drawFeatures()" /> Invis</td>
+<td><input type="checkbox" name="showflow" id="showflow" onclick="drawFlow()" /> Flow</td>
 </tr>
 </table>
 </form>
@@ -398,7 +399,7 @@
 <tr>
 	<script language="Javascript">writeTileOption('BrushWCoast');</script>
   <script language="Javascript">writeTileOption('BrushSCoast');</script>
-	
+	<script language="Javascript">writeTileOption('Lava');</script>
 </tr>
 <tr>
 	<script language="Javascript">writeTileOption('Forest');</script>
@@ -466,19 +467,24 @@
  <script language="Javascript">writeTileOption('Farm');</script> 
 </tr>
 <tr>
+	<script language="Javascript">writeTileOption('RiverGrass');</script>
+	<script language="Javascript">writeTileOption('RiverDirt');</script>
+	<script language="Javascript">writeTileOption('RiverCave');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('RiverGrassAlt');</script>
+	<script language="Javascript">writeTileOption('RiverDirtAlt');</script>
+	<script language="Javascript">writeTileOption('RiverCaveAlt');</script>
+</tr>
+<tr>
   <script language="Javascript">writeTileOption('FallowFarm2');</script>
   <script language="Javascript">writeTileOption('Farm2');</script>
 	<script language="Javascript">writeTileOption('Road');</script>
 </tr>
 <tr>
-	<script language="Javascript">writeTileOption('River');</script>
-	<script language="Javascript">writeTileOption('Coral');</script>
-	<script language="Javascript">writeTileOption('Lava');</script>
-</tr>
-<tr>
 	<script language="Javascript">writeTileOption('CobblestoneRoad');</script>	
 	<script language="Javascript">writeTileOption('PurpleCobblestoneRoad');</script>
-	<td></td>
+	<script language="Javascript">writeTileOption('Coral');</script>
 </tr>
 <tr>
 	<script language="Javascript">writeTileOption('FenceNW');</script>
@@ -539,151 +545,6 @@
  <script language="Javascript">writeTileOption('Village');</script>
  <script language="Javascript">writeTileOption('Shrine');</script>
  <script language="Javascript">writeTileOption('Ruins');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassSourceN');</script>
-	<script language="Javascript">writeTileOption('RiverDirtSourceN');</script>
-	<script language="Javascript">writeTileOption('RiverCaveSourceN');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassSourceS');</script>
-	<script language="Javascript">writeTileOption('RiverDirtSourceS');</script>
-	<script language="Javascript">writeTileOption('RiverCaveSourceS');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassSourceE');</script>
-	<script language="Javascript">writeTileOption('RiverDirtSourceE');</script>
-	<script language="Javascript">writeTileOption('RiverCaveSourceE');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassSourceW');</script>
-	<script language="Javascript">writeTileOption('RiverDirtSourceW');</script>
-	<script language="Javascript">writeTileOption('RiverCaveSourceW');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassNS');</script>
-	<script language="Javascript">writeTileOption('RiverDirtNS');</script>
-	<script language="Javascript">writeTileOption('RiverCaveNS');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassEW_N');</script>
-	<script language="Javascript">writeTileOption('RiverDirtEW_N');</script>
-	<script language="Javascript">writeTileOption('RiverCaveEW_N');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassEW_S');</script>
-	<script language="Javascript">writeTileOption('RiverDirtEW_S');</script>
-	<script language="Javascript">writeTileOption('RiverCaveEW_S');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassSE');</script>
-	<script language="Javascript">writeTileOption('RiverDirtSE');</script>
-	<script language="Javascript">writeTileOption('RiverCaveSE');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassSW');</script>
-	<script language="Javascript">writeTileOption('RiverDirtSW');</script>
-	<script language="Javascript">writeTileOption('RiverCaveSW');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassNE_S');</script>
-	<script language="Javascript">writeTileOption('RiverDirtNE_S');</script>
-	<script language="Javascript">writeTileOption('RiverCaveNE_S');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassEW_SN');</script>
-	<script language="Javascript">writeTileOption('RiverDirtEW_SN');</script>
-	<script language="Javascript">writeTileOption('RiverCaveEW_SN');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassEW_NS');</script>
-	<script language="Javascript">writeTileOption('RiverDirtEW_NS');</script>
-	<script language="Javascript">writeTileOption('RiverCaveEW_NS');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassNW_S');</script>
-	<script language="Javascript">writeTileOption('RiverDirtNW_S');</script>
-	<script language="Javascript">writeTileOption('RiverCaveNW_S');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassNE_N');</script>
-	<script language="Javascript">writeTileOption('RiverDirtNE_N');</script>
-	<script language="Javascript">writeTileOption('RiverCaveNE_N');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassNW_N');</script>
-	<script language="Javascript">writeTileOption('RiverDirtNW_N');</script>
-	<script language="Javascript">writeTileOption('RiverCaveNW_N');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassMouthN');</script>
-	<script language="Javascript">writeTileOption('RiverDirtMouthN');</script>
-	<script language="Javascript">writeTileOption('RiverCaveMouthN');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassMouthS');</script>
-	<script language="Javascript">writeTileOption('RiverDirtMouthS');</script>
-	<script language="Javascript">writeTileOption('RiverCaveMouthS');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassMouthE_N');</script>
-	<script language="Javascript">writeTileOption('RiverDirtMouthE_N');</script>
-	<script language="Javascript">writeTileOption('RiverCaveMouthE_N');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassMouthW_N');</script>
-	<script language="Javascript">writeTileOption('RiverDirtMouthW_N');</script>
-	<script language="Javascript">writeTileOption('RiverCaveMouthW_N');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassMouthW_S');</script>
-	<script language="Javascript">writeTileOption('RiverDirtMouthW_S');</script>
-	<script language="Javascript">writeTileOption('RiverCaveMouthW_S');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassMouthE_S');</script>
-	<script language="Javascript">writeTileOption('RiverDirtMouthE_S');</script>
-	<script language="Javascript">writeTileOption('RiverCaveMouthE_S');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassSEW_S');</script>
-	<script language="Javascript">writeTileOption('RiverDirtSEW_S');</script>
-	<script language="Javascript">writeTileOption('RiverCaveSEW_S');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassNSE_N');</script>
-	<script language="Javascript">writeTileOption('RiverDirtNSE_N');</script>
-	<script language="Javascript">writeTileOption('RiverCaveNSE_N');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassNSW_S');</script>
-	<script language="Javascript">writeTileOption('RiverDirtNSW_S');</script>
-	<script language="Javascript">writeTileOption('RiverCaveNSW_S');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassNSW_N');</script>
-	<script language="Javascript">writeTileOption('RiverDirtNSW_N');</script>
-	<script language="Javascript">writeTileOption('RiverCaveNSW_N');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassNEW_S');</script>
-	<script language="Javascript">writeTileOption('RiverDirtNEW_S');</script>
-	<script language="Javascript">writeTileOption('RiverCaveNEW_S');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassSEW_N');</script>
-	<script language="Javascript">writeTileOption('RiverDirtSEW_N');</script>
-	<script language="Javascript">writeTileOption('RiverCaveSEW_N');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassNSE_S');</script>
-	<script language="Javascript">writeTileOption('RiverDirtNSE_S');</script>
-	<script language="Javascript">writeTileOption('RiverCaveNSE_S');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('RiverGrassNEW_N');</script>
-	<script language="Javascript">writeTileOption('RiverDirtNEW_N');</script>
-	<script language="Javascript">writeTileOption('RiverCaveNEW_N');</script>
 </tr>
 
 </table>

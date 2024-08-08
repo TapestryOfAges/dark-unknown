@@ -18,6 +18,7 @@ var maps = new MapMemory();
 var brushdown = 0;
 var brushdownx = -1;
 var brushdowny = -1;
+let flowing = 0;
 var editable;
 var editnpcs;
 
@@ -320,6 +321,30 @@ function clickmap(xval,yval) {
       var divtileid = "div_tile"+xval+"x"+yval;
       $("div.mapscreen").append('<div id="'+divtileid+'" style="position:absolute;left:'+rect.left+';top:'+rect.top+'" class="labelsLayer" onClick="DeleteLabel(\''+divtileid+'\')">&nbsp;'+mytext+'&nbsp;</div>');
       amap.allLabels[divtileid] = mytext;
+    }
+  } else if (flowing) {
+    let acre = amap.getTile(xval,yval);
+    let fl = acre.getFlow();
+    let fdiv = document.getElementById(`flowview_${xval}x${yval}`);
+    if (fdiv) { fdiv.parentNode.removeChild(fdiv); }
+    if (fl === "n") { fl = "e"; }
+    else if (fl === "e") { fl = "s"; }
+    else if (fl === "s") { fl = "w"; }
+    else if (fl === "w") { fl = ""; }
+    else { fl = "n"; }
+    acre.setFlow(fl);
+
+    if (fl) {
+      let box = document.getElementById(`mainview_${xval}x${yval}`);
+      let sx = 0;
+      let sy = 0;
+      if (fl === "n") { sx = -16; }
+      if (fl === "e") { sx = -32; sy = -16; }
+      if (fl === "w") { sy = -16; }
+      if (fl === "s") { sx = -16; sy = -32; }
+
+      let div = `<div id='flowview_${xval}x${yval}' style="position:absolute; left: 8px; top: 8px; background-image:url('graphics/frame/arrows.gif'); background-repeat:no-repeat; background-position: ${sx}px ${sy}px"><img src="graphics/spacer.gif" width="16" height="16" /></div>`;
+      box.innerHTML += div;
     }
   }
   else if (document.brushes.elements[0].checked) {   // point
@@ -1572,4 +1597,168 @@ function MakePeerView() {
   let pwin = window.open('','printarray');
   pwin.document.writeln("<html><head></head><body>" + pview + "</body></html>");
 
+}
+
+function CreateFlow() {
+  for (let y=0;y<amap.getHeight();y++) {
+    for (let x=0;x<amap.getWidth();x++) {
+      let tile = amap.getTile(x,y);
+      let terrain = tile.getTerrain();
+      if (terrain.getName().includes("River")) {
+        let num = 0;
+        let northacre = amap.getTile(x,y-1);
+        let northtile;
+        let north = 0;
+        if (northacre !== "OoB") { 
+          northtile = northacre.getTerrain(); 
+          if (northtile.getName().includes("River") || IsWet(northtile)) { num++; north=1; }
+        } else { north = 1; num++; }
+
+        let southacre = amap.getTile(x,y+1);
+        let southtile;
+        let south = 0;
+        if (southacre !== "OoB") {
+          southtile = southacre.getTerrain();
+          if (southtile.getName().includes("River") || IsWet(southtile)) { num++; south=1; }
+        } else { south = 1; num++; }
+
+        let eastacre = amap.getTile(x+1,y);
+        let easttile;
+        let east = 0;
+        if (eastacre !== "OoB") { 
+          easttile = eastacre.getTerrain(); 
+          if (easttile.getName().includes("River") || IsWet(easttile)) { num++; east=1; }
+        } else { east = 1; num++; }
+
+        let westacre = amap.getTile(x-1,y);
+        let westtile;
+        let west = 0;
+        if (westacre !== "OoB") {
+          westtile = westacre.getTerrain();
+          if (westtile.getName().includes("River") || IsWet(westtile)) { num++; west=1; }
+        } else { west = 1; num++; }
+
+        if (num === 1) {
+          if (north) { tile.setFlow("n"); ExtendFlow(x,y-1);}
+          else if (south) { tile.setFlow("s"); ExtendFlow(x,y+1);}
+          else if (east) { tile.setFlow("e"); ExtendFlow(x+1,y);}
+          else if (west) { tile.setFlow("w"); ExtendFlow(x-1,y);}
+        }
+      }
+    }
+  }
+
+}
+
+function ExtendFlow(x,y) {
+  let tile = amap.getTile(x,y);
+  if (tile === "OoB") { return; }
+  if (tile.getFlow()) { return; }
+  let terrain = tile.getTerrain();
+  if (!terrain.getName().includes("River")) { return; }
+  let northacre = amap.getTile(x,y-1);
+  let northtile;
+  let north = 0;
+  let northflow = "";
+  if (northacre !== "OoB") { 
+    northflow = northacre.getFlow();
+    northtile = northacre.getTerrain(); 
+    if (northtile.getName().includes("River") || IsWet(northtile)) { north=1; }
+  } else { north = 1; }
+
+  let southacre = amap.getTile(x,y+1);
+  let southtile;
+  let south = 0;
+  let southflow = "";
+  if (southacre !== "OoB") {
+    southflow = southacre.getFlow();
+    southtile = southacre.getTerrain();
+    if (southtile.getName().includes("River") || IsWet(southtile)) { south=1; }
+  } else { south = 1; }
+
+  let eastacre = amap.getTile(x+1,y);
+  let easttile;
+  let east = 0;
+  let eastflow = "";
+  if (eastacre !== "OoB") { 
+    eastflow = eastacre.getFlow();
+    easttile = eastacre.getTerrain(); 
+    if (easttile.getName().includes("River") || IsWet(easttile)) { east=1; }
+  } else { east = 1; }
+
+  let westacre = amap.getTile(x-1,y);
+  let westtile;
+  let west = 0;
+  let westflow = "";
+  if (westacre !== "OoB") {
+    westflow = westacre.getFlow();
+    westtile = westacre.getTerrain();
+    if (westtile.getName().includes("River") || IsWet(westtile)) { west=1; }
+  } else { west = 1; }
+
+  if (north && west && east) {
+    if ((northflow === "s") && (eastflow === "w") && ((westflow === "w") || !westflow)) { tile.setFlow("w"); ExtendFlow(x-1,y); }
+    else if ((northflow === "s") && (westflow === "e") && ((eastflow === "e") || !eastflow)) { tile.setFlow("e"); ExtendFlow(x+1,y); }
+    else if ((westflow === "e") && (eastflow === "w") && ((northflow === "n") || !northflow)) { tile.setFlow("n"); ExtendFlow(x,y-1); }
+  } else if (south && west && east) {
+    if ((southflow === "n") && (eastflow === "w") && ((westflow === "w") || !westflow)) { tile.setFlow("w"); ExtendFlow(x-1,y); }
+    else if ((southflow === "n") && (westflow === "e") && ((eastflow === "e") || !eastflow)) { tile.setFlow("e"); ExtendFlow(x+1,y); }
+    else if ((westflow === "e") && (eastflow === "w") && ((southflow === "s") || !southflow)) { tile.setFlow("s"); ExtendFlow(x,y+1); }
+  } else if (north && south && east) {
+    if ((northflow === "s") && (southflow === "n") && ((eastflow === "e") || !eastflow)) { tile.setFlow("e"); ExtendFlow(x+1,y); }
+    if ((northflow === "s") && (eastflow === "w") && ((southflow === "s") || !southflow)) { tile.setFlow("s"); ExtendFlow(x,y+1); }
+    if ((southflow === "n") && (eastflow === "w") && ((northflow === "n") || !northflow)) { tile.setFlow("n"); ExtendFlow(x,y-1); }
+  } else if (north && south && west) {
+    if ((northflow === "s") && (southflow === "n") && ((westflow === "w") || !westflow)) { tile.setFlow("w"); ExtendFlow(x-1,y); }
+    if ((northflow === "s") && (westflow === "e") && ((southflow === "s") || !southflow)) { tile.setFlow("s"); ExtendFlow(x,y+1); }
+    if ((southflow === "n") && (westflow === "e") && ((northflow === "n") || !northflow)) { tile.setFlow("n"); ExtendFlow(x,y-1); }
+  } else if (north && south) {
+    if ((northflow === "s") && ((southflow === "s") || !southflow)) { tile.setFlow("s"); ExtendFlow(x,y+1); }
+    else if ((southflow === "n") && ((northflow === "n") || !northflow)) { tile.setFlow("n"); ExtendFlow(x,y-1); }
+  } else if (north && east) {
+    if ((northflow === "s") && ((eastflow === "e") || !eastflow)) { tile.setFlow("e"); ExtendFlow(x+1,y); }
+    if ((eastflow === "w") && ((northflow === "n") || !northflow)) { tile.setFlow("n"); ExtendFlow(x,y-1); }
+  } else if (north && west) {
+    if ((northflow === "s") && ((westflow === "w") || !westflow)) { tile.setFlow("w"); ExtendFlow(x-1,y); }
+    else if ((westflow === "e") && ((northflow === "n") || !northflow)) { tile.setFlow("n"); ExtendFlow(x,y-1); }
+  } else if (west && east) {
+    if ((westflow === "e") && ((eastflow === "e") || !eastflow)) { tile.setFlow("e"); ExtendFlow(x+1,y); }
+    else if ((eastflow === "w") && ((westflow === "w") || !westflow)) { tile.setFlow("w"); ExtendFlow(x-1,y); }
+  } else if (west && south) {
+    if ((westflow === "e") && (( southflow === "s") || !southflow)) { tile.setFlow("s"); ExtendFlow(x,y+1); }
+    else if ((southflow === "n") && ((westflow === "w") || !westflow)) { tile.setFlow("w"); ExtendFlow(x-1,y); }
+  } else if (east && south) {
+    if ((eastflow === "w") && ((southflow === "s") || !southflow)) { tile.setFlow("s"); ExtendFlow(x,y+1); }
+    else if ((southflow === "n") && ((eastflow === "e") || !eastflow)) { tile.setFlow("e"); ExtendFlow(x+1,y); }
+  }
+}
+
+function drawFlow() {
+  if (flowing) { flowing = 0; } 
+  else { flowing = 1; }
+  for (let y=0;y<amap.getHeight();y++) {
+    for (let x=0;x<amap.getWidth();x++) {
+      if (flowing) {
+        let acre = amap.getTile(x,y);
+        let flow = acre.getFlow();
+        if (flow) {
+          let box = document.getElementById(`mainview_${x}x${y}`);
+          let sx = 0;
+          let sy = 0;
+          if (flow === "n") { sx = -16; }
+          if (flow === "e") { sx = -32; sy = -16; }
+          if (flow === "w") { sy = -16; }
+          if (flow === "s") { sx = -16; sy = -32; }
+
+          let div = `<div id='flowview_${x}x${y}' style="position:absolute; left: 8px; top: 8px; background-image:url('graphics/frame/arrows.gif'); background-repeat:no-repeat; background-position: ${sx}px ${sy}px"><img src="graphics/spacer.gif" width="16" height="16" /></div>`;
+          box.innerHTML += div;
+        }
+      } else {
+        let fdiv = document.getElementById(`flowview_${x}x${y}`);
+        if (fdiv) {
+          fdiv.parentNode.removeChild(fdiv);
+        }
+      }
+    }
+  }
 }
