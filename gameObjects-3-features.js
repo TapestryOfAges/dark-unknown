@@ -2330,6 +2330,22 @@ EnergyFieldTile.prototype.bumpinto = function(who) {
   return {msg: ""};
 }
 
+function DrawbridgeTile() {
+  //Graphics Upgraded
+  this.name = "Drawbridge";
+  this.graphic = "static.gif";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -86*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "wooden drawbridge";
+  this.peerview = "#c08e5e";
+  this.walkSound = "stone";
+  this.bridge = 1;
+}
+DrawbridgeTile.prototype = new FeatureObject();
+
 function StreetLampTile() {
   // Graphics Upgraded
 	this.name = "StreetLamp";
@@ -13613,7 +13629,6 @@ MapOfLostHopeTile.prototype.use = function(who) {
   if (uii) {
     uii.innerHTML = `<img src="graphics/spacer.gif" width="416" height="416" />`;
     uii.style.backgroundColor = "";
-    uii.style.opacity = 0;
     uii.style.backgroundImage = `url('graphics/losthopemap.gif')`;  
   }
   return retval;

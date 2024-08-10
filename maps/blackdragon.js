@@ -42,18 +42,18 @@ mappages["blackdragon"].terrain[35] = '.. .. .| uu uu |. .. ## #+ ## us +t +t +t
 mappages["blackdragon"].terrain[36] = '.. .. .| uu uu |. .. .. .. ## us +t +t +t us ## +t +t +t ## +t +t +t +t +t +t ## ## ## ## ## ## ## ## ## ## ## ## ## .. ,, .. .| uu uu';
 mappages["blackdragon"].terrain[37] = '.. .. .| uu uu |. .. .. .. ## us +t +t +t us ## +t +t +t ## +t +t +t +t +t +t ## ,, ,, .. .. .. .. .. .. .. .. .. .. .. .. .. ./ uu uu';
 mappages["blackdragon"].terrain[38] = '.. .. .| uu uu |. .. .. .. ## ## ## +t ## ## ## ## #+ ## ## ## ## #+ ## ## ## ## .. .. .. .. .. ,, .. .. ,, .. .. .. .. .. .| uu uu uu';
-mappages["blackdragon"].terrain[39] = '.. .. .| uu uu |. .. .. .. .. .. f! f! f! .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .| uu uu uu';
-mappages["blackdragon"].terrain[40] = '.. .. .| uu uu `. __ __ __ __ __ f! f! f! __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ .. .. .. .. .. ./ uu uu uu';
+mappages["blackdragon"].terrain[39] = '.. .. .| uu uu |. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .| uu uu uu';
+mappages["blackdragon"].terrain[40] = '.. .. .| uu uu `. __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ .. .. .. .. .. ./ uu uu uu';
 mappages["blackdragon"].terrain[41] = '.. .. .| uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu `. __ .. .. .. uu uu uu uu';
 mappages["blackdragon"].terrain[42] = '.. .. .. .` uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu uu `. __ ./ uu uu uu uu';
-mappages["blackdragon"].terrain[43] = '.. .. .. .. -- -- -- -- -- -- -- f! f! f! -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- .` uu uu uu uu uu uu uu uu uu';
+mappages["blackdragon"].terrain[43] = '.. .. .. .. -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- .` uu uu uu uu uu uu uu uu uu';
 mappages["blackdragon"].terrain[44] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. -- .` uu uu uu uu uu uu uu';
 
 mappages["blackdragon"].features = [];
 mappages["blackdragon"].features[0] = {name : 'Doorway', x : 12, y : 29};
 mappages["blackdragon"].features[1] = {name : 'Door', x : 22, y : 29, desc : "locked door", locked : 1, keyname : "BlackDragonKey"};
 mappages["blackdragon"].features[2] = {name : 'Door', x : 19, y : 31, desc : "locked door", locked : 1};
-mappages["blackdragon"].features[3] = {name : 'BDCLever', x : 11, y : 39};
+mappages["blackdragon"].features[3] = {name : 'PileOfRocks', x : 40, y : 20};
 mappages["blackdragon"].features[4] = {name : 'BedHead', x : 20, y : 32};
 mappages["blackdragon"].features[5] = {name : 'BedHead', x : 20, y : 34};
 mappages["blackdragon"].features[6] = {name : 'BedHead', x : 20, y : 36};
@@ -263,7 +263,22 @@ mappages["blackdragon"].features[209] = {name : 'TorchWest', x : 12, y : 26};
 mappages["blackdragon"].features[210] = {name : 'Brazier', x : 40, y : 10};
 mappages["blackdragon"].features[211] = {name : 'Brazier', x : 34, y : 10};
 mappages["blackdragon"].features[212] = {name : 'TorchWest', x : 30, y : 20};
-
+mappages["blackdragon"].features[213] = {name : 'Drawbridge', x : 11, y : 40};
+mappages["blackdragon"].features[214] = {name : 'Drawbridge', x : 12, y : 40};
+mappages["blackdragon"].features[215] = {name : 'Drawbridge', x : 13, y : 40};
+mappages["blackdragon"].features[216] = {name : 'Drawbridge', x : 11, y : 43};
+mappages["blackdragon"].features[217] = {name : 'Drawbridge', x : 12, y : 43};
+mappages["blackdragon"].features[218] = {name : 'Drawbridge', x : 13, y : 43};
+mappages["blackdragon"].features[219] = {name : 'Drawbridge', x : 12, y : 39};
+mappages["blackdragon"].features[220] = {name : 'Drawbridge', x : 13, y : 39};
+mappages["blackdragon"].features[221] = {name : 'Drawbridge', x : 11, y : 39};
+mappages["blackdragon"].features[222] = {name : 'BDCLever', x : 11, y : 39};
+mappages["blackdragon"].features[223] = {name : 'Drawbridge', x : 11, y : 40};
+mappages["blackdragon"].features[224] = {name : 'Drawbridge', x : 12, y : 40};
+mappages["blackdragon"].features[225] = {name : 'Drawbridge', x : 13, y : 40};
+mappages["blackdragon"].features[226] = {name : 'Drawbridge', x : 11, y : 43};
+mappages["blackdragon"].features[227] = {name : 'Drawbridge', x : 12, y : 43};
+mappages["blackdragon"].features[228] = {name : 'Drawbridge', x : 13, y : 43};
 
 mappages["blackdragon"].npcs = [];
 mappages["blackdragon"].npcs[0] = {name : 'TownGuardNPC', x : 10, y : 40, NPCName: 'Lumen', PeaceAI: 'scheduled', Schedule: 'lumen', Conversation: 'lumen', Gender: 'female', Bark: '0', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateCheckeredTabard","head":"GoldClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"ShortBlackDark"}'};
@@ -376,13 +391,19 @@ mappages["blackdragon"].maps_exit = function(mapref) {
 }
 
 function LowerDrawbridge(mapref) {
-  let planks = localFactory.createTile("FadedWoodNS");
-  mapref.setTerrain(11,41,planks);
-  mapref.setTerrain(12,41,planks);
-  mapref.setTerrain(13,41,planks);
-  mapref.setTerrain(11,42,planks);
-  mapref.setTerrain(12,42,planks);
-  mapref.setTerrain(13,42,planks);
+  let planks = mapref.getTile(11,40).getTopFeature();
+  mapref.moveThing(11,41,planks);
+  planks = mapref.getTile(12,40).getTopFeature();
+  mapref.moveThing(12,41,planks);
+  planks = mapref.getTile(13,40).getTopFeature();
+  mapref.moveThing(13,41,planks);
+
+  planks = mapref.getTile(11,43).getTopFeature();
+  mapref.moveThing(11,42,planks);
+  planks = mapref.getTile(12,43).getTopFeature();
+  mapref.moveThing(12,42,planks);
+  planks = mapref.getTile(13,43).getTopFeature();
+  mapref.moveThing(13,42,planks);
 }
 
 function Open_BDC_Gate(mapref) {
@@ -401,13 +422,19 @@ function Open_BDC_Gate(mapref) {
 function Close_BDC_Gate(mapref) {
   if (!DU.gameflags.getFlag("act2")) {
     mapref.getTile(11,39).getTopFeature().setGraphicArray(["static.gif","",-8*32,-108*32]);
-    let planks = localFactory.createTile("Shallows");
-    mapref.setTerrain(11,41,planks);
-    mapref.setTerrain(12,41,planks);
-    mapref.setTerrain(13,41,planks);
-    mapref.setTerrain(11,42,planks);
-    mapref.setTerrain(12,42,planks);
-    mapref.setTerrain(13,42,planks);
+    let planks = mapref.getTile(11,41).getTopFeature();
+    mapref.moveThing(11,40,planks);
+    planks = mapref.getTile(12,41).getTopFeature();
+    mapref.moveThing(12,40,planks);
+    planks = mapref.getTile(13,41).getTopFeature();
+    mapref.moveThing(13,40,planks);
+  
+    planks = mapref.getTile(11,42).getTopFeature();
+    mapref.moveThing(11,43,planks);
+    planks = mapref.getTile(12,42).getTopFeature();
+    mapref.moveThing(12,43,planks);
+    planks = mapref.getTile(13,42).getTopFeature();
+    mapref.moveThing(13,43,planks);
   }
 }
 
