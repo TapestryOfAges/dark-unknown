@@ -1753,6 +1753,11 @@ tileFactory.prototype.makeEnergyFieldTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeDrawbridgeTile = function() {
+  let newTile = new DrawbridgeTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeStreetLampTile = function() {
   let newTile = new StreetLampTile();
   return newTile;
