@@ -379,8 +379,7 @@ mappages["island_cave"].npcs[2] = {name : 'TrollNPC', x : 52, y : 52, Gender: 'm
 mappages["island_cave"].npcs[3] = {name : 'LurkerNPC', x : 35, y : 32, skintone: '1'};
 mappages["island_cave"].npcs[4] = {name : 'GiantSnakeNPC', x : 22, y : 45, skintone: '1'};
 mappages["island_cave"].npcs[5] = {name : 'GiantSnakeNPC', x : 19, y : 43, skintone: '1'};
-mappages["island_cave"].npcs[6] = {name : 'DrakeNPC', x : 10, y : 35, skintone: '1'};
-mappages["island_cave"].npcs[7] = {name : 'CyclopsNPC', x : 29, y : 7, skintone: '1'};
+mappages["island_cave"].npcs[6] = {name : 'CyclopsNPC', x : 29, y : 7, skintone: '1'};
 
 mappages["island_cave"].desc = "Narrow Cave";
 mappages["island_cave"].longdesc = ``;
