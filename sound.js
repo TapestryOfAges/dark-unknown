@@ -129,6 +129,8 @@ DUSound["sfx_slime_split"] = "sfx/slime_split.wav"; // Soniss 2015/Mattia Cellot
 DUSound["sfx_water_hit"] = "sfx/Water 2.mp3"; // Magic Spells SFX B Stereo/Water/Water 2 
 DUSound["sfx_water_miss"] = "sfx/Water 8.mp3"; // Magic Spells SFX B Stereo/Water/Water 8
 DUSound["sfx_fire_breath"] = "sfx/MM1_Spell18.wav"; // RPG SFX B MM1_Spell18
+DUSound["sfx_skeleton_miss"] = "sfx/BowAim1.mp3"; // MF2SFXP/Weapons/BowAim1.mp3
+DUSound["sfx_skeleton_hit"] = "sfx/Stick 2.mp3"; // MFSFXP/Weapons and Impacts
 
 let musicpath = "music/";
 let DUMusic = {};
