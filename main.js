@@ -349,6 +349,7 @@ function DoAction(code, ctrl) {
         moongate.destmap = moongate.getHomeMap().getName();
         moongate.destx = moongate.getx();
         moongate.desty = moongate.gety();
+
         DrawMainFrame("one",PC.getHomeMap(),justice.getx(),justice.gety());
         AnimateMoongate(moongate,0,"up",300,0);
         setTimeout(function() { 
@@ -358,6 +359,7 @@ function DoAction(code, ctrl) {
           maintext.addText("...and she vanishes.");
           maintext.setInputLine("&gt;");
           maintext.drawTextFrame();
+          questlog.complete(75);
           AnimateMoongate(moongate,0,"down",300,1);
           delete targetCursor.justice;
           delete targetCursor.frame;
