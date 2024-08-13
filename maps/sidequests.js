@@ -382,11 +382,11 @@ mappages["consolationcave"].features[6] = {name : 'SkeletonDecoration', x : 8, y
 mappages["consolationcave"].features[7] = {name : 'Chest', x : 6, y : 11, locked : 0, lootgroup : 'archeochest', lootedid : 'consarcheochest'};
 
 mappages["consolationcave"].npcs = [];
-mappages["consolationcave"].npcs[0] = {name : 'FlukeNPC', x : 14, y : 9, skintone: '1'};
-mappages["consolationcave"].npcs[1] = {name : 'FlukeNPC', x : 20, y : 12, skintone: '1'};
-mappages["consolationcave"].npcs[2] = {name : 'FlukeNPC', x : 13, y : 16, skintone: '1'};
-mappages["consolationcave"].npcs[3] = {name : 'SeaSerpentNPC', x : 16, y : 16, skintone: '1'};
-mappages["consolationcave"].npcs[4] = {name : 'SeaSerpentNPC', x : 17, y : 10, skintone: '1'};
+mappages["consolationcave"].npcs[0] = {name : 'SeaSerpentNPC', x : 16, y : 16, skintone: '1'};
+mappages["consolationcave"].npcs[1] = {name : 'SeaSerpentNPC', x : 17, y : 10, skintone: '1'};
+mappages["consolationcave"].npcs[2] = {name : 'FlukeNPC', x : 14, y : 9, skintone: '1'};
+mappages["consolationcave"].npcs[3] = {name : 'FlukeNPC', x : 20, y : 12, skintone: '1'};
+mappages["consolationcave"].npcs[4] = {name : 'FlukeNPC', x : 13, y : 16, skintone: '1'};
 
 mappages["consolationcave"].desc = "Island Valley Cave";
 mappages["consolationcave"].longdesc = '';
