@@ -2923,7 +2923,7 @@ CrystalTrapSpaceTile.prototype.walkon = function(who) {
     trap.setExpiresTime(this.duration + DUTime.getGameClock());
     DebugWrite("magic", "Crystal Prison sprung. Expires at " + trap.getExpiresTime() + ".<br />");
     who.addSpellEffect(trap);
-    ShowEffect(who,1000,"crystals.gif",0,0);
+    ShowEffect(who,1000,"static.gif",-4*32,-111*32);
     if (GetDistance(PC.getx(),PC.gety(),who.getx(),who.gety())) { DUPlaySound("sfx_crystal_trap"); }
 
     let trapmap = this.getHomeMap();
@@ -6923,6 +6923,30 @@ function BareWellTile() {
 }
 BareWellTile.prototype = new FeatureObject();
 
+function GrottoWhirlpoolTile() {
+	this.name = "GrottoWhirlpool";
+	this.graphic = "static.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -177*32;
+  this.passable = MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "whirlpool";
+
+  HasAmbientNoise.call(this,"sfx_whirlpool",1.5);
+  
+  ManualAnimation.call(this, { animstart: 0,
+    animlength: 4,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
+
+}
+GrottoWhirlpoolTile.prototype = new FeatureObject();
+
 function WhirlpoolTile() {
 	this.name = "Whirlpool";
 	this.graphic = "static.gif";
@@ -6948,23 +6972,25 @@ function WhirlpoolTile() {
 WhirlpoolTile.prototype = new FeatureObject();
 
 WhirlpoolTile.prototype.walkon = function(walker) {
-  let themap = this.getHomeMap();
-  DUPlaySound("sfx_whirlpool_travel");
-  if (themap.getName() === "darkunknown") {
-    let newmap = maps.addMap("underworld");
-    MoveBetweenMaps(walker,themap,newmap,83,107);
-  } else if (PC.hasOwnProperty("whirlx")) {
-    let newmap = maps.getMap(PC.whirlmap);
-    if (!newmap) { newmap = maps.addMap(PC.whirlmap); }
-    MoveBetweenMaps(walker,themap,newmap,PC.whirlx,PC.whirly);
-    delete PC.whirlx;
-    delete PC.whirly;
-    delete PC.whirlmap;
-  } else {
-    let newmap = maps.addMap("darkunknown");
-    MoveBetweenMaps(walker,themap,newmap,69,80);
+  if (walker === PC) {
+    let themap = this.getHomeMap();
+    DUPlaySound("sfx_whirlpool_travel");
+    if (themap.getName() === "darkunknown") {
+      let newmap = maps.addMap("underworld");
+      MoveBetweenMaps(walker,themap,newmap,83,107);
+    } else if (PC.hasOwnProperty("whirlx")) {
+      let newmap = maps.getMap(PC.whirlmap);
+      if (!newmap) { newmap = maps.addMap(PC.whirlmap); }
+      MoveBetweenMaps(walker,themap,newmap,PC.whirlx,PC.whirly);
+      delete PC.whirlx;
+      delete PC.whirly;
+      delete PC.whirlmap;
+    } else {
+      let newmap = maps.addMap("darkunknown");
+      MoveBetweenMaps(walker,themap,newmap,69,80);
+    }
+    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
   }
-  DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
 
   return {msg:"You are gripped by the whirlpool's current, and quickly swept under. You briefly black out, and come to elsewhere..."};
 }
@@ -10457,6 +10483,36 @@ function PlatformOfWavesTile() {
   this.desc = "platform";
 }
 PlatformOfWavesTile.prototype = new FeatureObject();
+
+PlatformOfWavesTile.prototype.setDestination = function(destobj) {
+  if (destobj.map && destobj.x && destobj.y) {
+    this.destination = {};
+    this.destination = destobj;
+  }
+}
+
+PlatformOfWavesTile.prototype.getDestination = function() {
+  return this.destination;
+}
+
+PlatformOfWavesTile.prototype.walkon = function(who) {
+  let response = {msg:""};
+  if (this.getDestination()) {
+    let themap = who.getHomeMap();
+    let dest = this.getDestination();
+    if (themap.getName() === dest.map) {
+      themap.moveThing(dest.x, dest.y, who);
+    } else {
+      DU.maps.addMap(dest.map);
+      let destmap = DU.maps.getMap(dest.map);
+      MoveBetweenMaps(who,themap,destmap,dest.x,dest.y);
+    }
+    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+    ShowEffect(who, 500, "spellsparkles-anim.gif", 0, -64);
+    if (who === PC) { DUPlaySound("sfx_teleport"); response.overridedraw = 1; }
+  }
+  return response;
+}
 
 function PlatformOfWindsTile() {
   //Graphics Upgraded

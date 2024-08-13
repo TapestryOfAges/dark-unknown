@@ -2753,6 +2753,11 @@ tileFactory.prototype.makeBareWellTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeGrottoWhirlpoolTile = function() {
+  let newTile = new GrottoWhirlpoolTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWhirlpoolTile = function() {
   let newTile = new WhirlpoolTile();
   return newTile;
