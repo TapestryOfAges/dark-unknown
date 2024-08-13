@@ -80,6 +80,9 @@ ais.combat = function(who) {
   DebugWrite("ai", "<span style='font-weight:bold'>In Combat AI...</span><br />");
  
   let nearest = FindNearestNPC(who, "enemy");
+  if ((!nearest && (who.getMovetype() === MOVE_SWIM)) || (!nearest && (who.getMovetype() === MOVE_WALK))) {
+    nearest = FindNearestNPC(who, "enemy", null, 0, MOVE_LEVITATE);
+  }
   if (whomap !== PC.getHomeMap()) {
     if (!nearest) {
     // what happens if the PC is on another map?
@@ -91,6 +94,11 @@ ais.combat = function(who) {
       }
       return retval; 
     } 
+  }
+  if (!nearest) {
+    // really can't find a target
+    who.setAggro(0);
+    return retval;
   }
   
   // check to see if we should cease to aggro
@@ -3000,7 +3008,7 @@ ais.ai_whirlpool = function(who) {
     let terrain = themap.getTile(who.getx(),who.gety()).getTerrain().getName();
     let countflukes = 0;
     let flukelist = [];
-    if ((terrain === "Water") || (terrain === "Shallows") || (terrain === "Ocean") || (terrain === "ShadowWater") || (terrain === "ShadowShallows") || (terrain === "ShadowOcean")) {
+    if ((terrain === "Water") || (terrain === "Shallows") || (terrain === "Ocean") || (terrain === "StillWater")) {
       for (let i=-1;i<=1;i++) {
         for (let j=-1;j<=1;j++) {
           let fluke = themap.getTile(foe.getx()+i,foe.gety()+j);

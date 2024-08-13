@@ -813,6 +813,7 @@ function PerformTrap(who, trap, traplvl, trapped) {
 }
 
 function ApplyRune(who, rune, runeref) {
+  if (who !== PC) { return {msg:""}; }
   maintext.delayedAddText("It burns you!");
   who.dealDamage((who.getHP()/3), runeref);
   let runecap = rune.charAt(0).toUpperCase() + rune.slice(1)
@@ -1051,7 +1052,7 @@ function FindNearby(what,map,radius,shape,tox,toy) {
 
 // "except" is there so you can "find nearest except this dude"
 // align is "enemy" or "ally" (or blank for either)
-function FindNearestNPC(from, align, except, findinvis) {
+function FindNearestNPC(from, align, except, findinvis, overridemove) {
   if (!except) { except = []; }
   let found = from.getHomeMap().npcs.getAll();
   if ((PC.getHomeMap() === from.getHomeMap()) && (!except.includes(PC))) { 
@@ -1070,6 +1071,7 @@ function FindNearestNPC(from, align, except, findinvis) {
           if (mandist < distance) {
             let movetype = from.getMovetype();
             if (from.specials.open_door) { movetype = MOVE_WALK_DOOR; }
+            if (overridemove) { movetype = overridemove; }
             let dist = GetDistanceByPath(from,val,movetype);
             if (dist && (dist < distance)) {
               nearest = val;
