@@ -2462,7 +2462,7 @@ function FlukeNPCTile() {
   this.level = 3;
   this.addhp = 3;
   this.str = 17;
-  this.dex = 121;
+  this.dex = 21;
   this.int = 10;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
@@ -2898,7 +2898,7 @@ function MinorWaterElementalNPCTile() {
   this.meleeStrDamage = .66
   this.missileAttackAs = 'none';
   this.armorAs = 'ChainArmor';
-  this.movetype = MOVE_SWIM + MOVE_WALK;
+  this.movetype = MOVE_LEVITATE;
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'a';
@@ -3318,7 +3318,7 @@ function DeepNixieNPCTile() {
   this.addhp = 0;
   this.str = 17;
   this.dex = 17;
-  this.int = 15;
+  this.int = 18;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
@@ -3824,7 +3824,7 @@ function WaterElementalNPCTile() {
   this.meleeStrDamage = .66
   this.missileAttackAs = 'none';
   this.armorAs = 'ChainArmor';
-  this.movetype = MOVE_SWIM + MOVE_WALK;
+  this.movetype = MOVE_LEVITATE;
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'a';
