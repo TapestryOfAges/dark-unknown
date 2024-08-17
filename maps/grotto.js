@@ -236,7 +236,7 @@ mappages["grotto2"].terrain[63] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK 
 
 mappages["grotto2"].features = [];
 mappages["grotto2"].features[0] = {name : 'GrottoWhirlpool', x : 70, y : 23};
-mappages["grotto2"].features[1] = {name : 'Chest', x : 102, y : 20};
+mappages["grotto2"].features[1] = {name : 'OrbDexterity', x : 102, y : 20};
 mappages["grotto2"].features[2] = {name : 'WallOfWaves', x : 103, y : 47};
 mappages["grotto2"].features[3] = {name : 'PlatformOfWaves', x : 118, y : 46};
 mappages["grotto2"].features[4] = {name : 'BridgeNS', x : 102, y : 31};
@@ -316,31 +316,33 @@ mappages["grotto2"].features[77] = {name : 'Coral', x : 80, y : 17};
 mappages["grotto2"].features[78] = {name : 'Coral', x : 80, y : 18};
 mappages["grotto2"].features[79] = {name : 'Coral', x : 84, y : 25};
 mappages["grotto2"].features[80] = {name : 'Coral', x : 85, y : 25};
-mappages["grotto2"].features[81] = {name : 'Coral', x : 85, y : 25};
-mappages["grotto2"].features[82] = {name : 'Coral', x : 85, y : 25};
-mappages["grotto2"].features[83] = {name : 'Coral', x : 85, y : 24};
-mappages["grotto2"].features[84] = {name : 'Coral', x : 97, y : 14};
-mappages["grotto2"].features[85] = {name : 'Coral', x : 96, y : 14};
-mappages["grotto2"].features[86] = {name : 'Coral', x : 96, y : 13};
-mappages["grotto2"].features[87] = {name : 'Coral', x : 101, y : 25};
-mappages["grotto2"].features[88] = {name : 'Coral', x : 102, y : 25};
-mappages["grotto2"].features[89] = {name : 'Coral', x : 102, y : 26};
-mappages["grotto2"].features[90] = {name : 'Coral', x : 103, y : 25};
-mappages["grotto2"].features[91] = {name : 'Coral', x : 107, y : 42};
-mappages["grotto2"].features[92] = {name : 'Coral', x : 108, y : 43};
-mappages["grotto2"].features[93] = {name : 'Coral', x : 109, y : 44};
-mappages["grotto2"].features[94] = {name : 'Coral', x : 100, y : 43};
-mappages["grotto2"].features[95] = {name : 'Coral', x : 100, y : 44};
-mappages["grotto2"].features[96] = {name : 'Coral', x : 99, y : 45};
-mappages["grotto2"].features[97] = {name : 'Coral', x : 104, y : 50};
-mappages["grotto2"].features[98] = {name : 'Coral', x : 104, y : 51};
-mappages["grotto2"].features[99] = {name : 'Coral', x : 105, y : 51};
-mappages["grotto2"].features[100] = {name : 'Coral', x : 103, y : 51};
-mappages["grotto2"].features[101] = {name : 'Brazier', x : 101, y : 35};
-mappages["grotto2"].features[102] = {name : 'Brazier', x : 103, y : 35};
-mappages["grotto2"].features[103] = {name : 'Coral', x : 104, y : 28};
-mappages["grotto2"].features[104] = {name : 'Coral', x : 105, y : 28};
-
+mappages["grotto2"].features[81] = {name : 'Coral', x : 85, y : 24};
+mappages["grotto2"].features[82] = {name : 'Coral', x : 97, y : 14};
+mappages["grotto2"].features[83] = {name : 'Coral', x : 96, y : 14};
+mappages["grotto2"].features[84] = {name : 'Coral', x : 96, y : 13};
+mappages["grotto2"].features[85] = {name : 'Coral', x : 101, y : 25};
+mappages["grotto2"].features[86] = {name : 'Coral', x : 102, y : 25};
+mappages["grotto2"].features[87] = {name : 'Coral', x : 102, y : 26};
+mappages["grotto2"].features[88] = {name : 'Coral', x : 103, y : 25};
+mappages["grotto2"].features[89] = {name : 'Coral', x : 107, y : 42};
+mappages["grotto2"].features[90] = {name : 'Coral', x : 108, y : 43};
+mappages["grotto2"].features[91] = {name : 'Coral', x : 109, y : 44};
+mappages["grotto2"].features[92] = {name : 'Coral', x : 100, y : 43};
+mappages["grotto2"].features[93] = {name : 'Coral', x : 100, y : 44};
+mappages["grotto2"].features[94] = {name : 'Coral', x : 99, y : 45};
+mappages["grotto2"].features[95] = {name : 'Coral', x : 104, y : 50};
+mappages["grotto2"].features[96] = {name : 'Coral', x : 104, y : 51};
+mappages["grotto2"].features[97] = {name : 'Coral', x : 105, y : 51};
+mappages["grotto2"].features[98] = {name : 'Coral', x : 103, y : 51};
+mappages["grotto2"].features[99] = {name : 'Brazier', x : 101, y : 35};
+mappages["grotto2"].features[100] = {name : 'Brazier', x : 103, y : 35};
+mappages["grotto2"].features[101] = {name : 'Coral', x : 104, y : 28};
+mappages["grotto2"].features[102] = {name : 'Coral', x : 105, y : 28};
+mappages["grotto2"].features[103] = {name : 'Chest', x : 57, y : 15, locked : 0, lootgroup : 'grotto', lootedid : 'grotto2_1'};
+mappages["grotto2"].features[104] = {name : 'Chest', x : 57, y : 16, locked : 0, lootgroup : 'grotto', lootedid : 'grotto2_2'};
+mappages["grotto2"].features[105] = {name : 'Chest', x : 50, y : 39, locked : 0, lootgroup : 'grotto', lootedid : 'grotto2_3'};
+mappages["grotto2"].features[106] = {name : 'Chest', x : 81, y : 27, locked : 0, lootgroup : 'grotto', lootedid : 'grotto2_4'};
+mappages["grotto2"].features[107] = {name : 'Chest', x : 78, y : 17, locked : 0, lootgroup : 'grotto', lootedid : 'grotto2_5'};
 
 mappages["grotto2"].npcs = [];
 mappages["grotto2"].npcs[0] = {name : 'NixieNPC', x : 43, y : 9, Gender: 'monster', NPCBand: '2', skintone: 1};
@@ -438,6 +440,22 @@ mappages["grotto2"].onload = function(mapref) {
   
     mapref.placeThing(75,23,spawn);
 
+    let monster = mapref.getTile(91,18).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    monster = mapref.getTile(107,25).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    monster = mapref.getTile(96,23).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    monster = mapref.getTile(94,16).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
     spawn = localFactory.createTile("Spawner");
     spawngroup = ["DeepNixieNPC","KrakenNPC","SeaSerpentNPC"];
 
@@ -449,6 +467,14 @@ mappages["grotto2"].onload = function(mapref) {
     spawn.setSpawnFreq(freq);
   
     mapref.placeThing(96,19,spawn);
+
+    monster = mapref.getTile(90,24).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    monster = mapref.getTile(66,34).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
 
     let tele = mapref.getTile(118,46).getTopFeature();
     tele.setDestination({map: "darkunknown", x: 27, y: 30}) ;
