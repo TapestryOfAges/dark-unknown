@@ -944,6 +944,7 @@ NPCObject.prototype.nextActionTime = function(initdelay) {
   let effectiveDex = 10;
   if (scale) {
     effectiveDex = this.getDex();
+    if (effectiveDex > 30) { effectiveDex = 30; }
   }
   if (this.getInitOverride() && (this.getAttitude() === "friendly")) { effectiveDex = this.getInitOverride(); }
 
@@ -1222,7 +1223,7 @@ NPCObject.prototype.activate = function(timeoverride) {
       missileweapon = localFactory.createTile(this.getMissileAttackAs());
       this.setEquipment("missile",missileweapon);
     } 
-    else if (this.getMissileAttackAs() !== "none") {
+    else if ((this.getMissileAttackAs() === "none") && (this.missileDamage !== -1)) {
       missileweapon = localFactory.createTile("NaturalMissileWeapon");
       if (this.missileDamage !== -1) {
         missileweapon.setDamage(this.missileDamage);
@@ -1230,7 +1231,31 @@ NPCObject.prototype.activate = function(timeoverride) {
       if (this.missileRange !== -1) {
         missileweapon.setRange(this.missileRange);
       }
+      missileweapon.attackSound = this.missileSound;
+      missileweapon.ammographic = "static.gif";
 
+      if (this.missileAnim === "sling") {
+        missileweapon.ammoxoffset = -3*32;
+        missileweapon.ammoyoffset = -69*32;
+      } else if (this.missileAnim === "arrow") {
+        missileweapon.ammoxoffset = 0;
+        missileweapon.ammoyoffset = -73*32;
+      } else if (this.missileAnim === "bolt") {
+        missileweapon.ammoxoffset = 0;
+        missileweapon.ammoyoffset = -74*32;
+      } else if (this.missileAnim === "boulder") {
+        missileweapon.ammoxoffset = -8*32;
+        missileweapon.ammoyoffset = -53*32;
+      } else if (this.missileAnim === "yewwand") {
+        missileweapon.ammographic = "wandzaps.gif";
+        missileweapon.ammoxgraphic = 0;
+        missileweapon.ammoygraphic = 0;
+      } else if (this.missileAnim === "wand") {
+        missileweapon.ammographic = "wandzaps.gif";
+        missileweapon.ammoxgraphic = -32;
+        missileweapon.ammoygraphic = 0;
+      }
+ 
       this.setEquipment("missile",missileweapon);
     } 
     if ((this.getArmorAs()) && (this.getArmorAs() !== "none")) {
