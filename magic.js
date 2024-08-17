@@ -2364,9 +2364,9 @@ magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].executeSpell = function(caster, infused, 
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
-  let plus = PC.getIntForPower();
-  let healamt = Dice.roll(caster.getLevel() + "d8+" + plus);
-  if (free) { healamt = Dice.roll("4d8+10"); }
+  let plus = PC.getIntForPower()*2;
+  let healamt = Dice.roll((caster.getLevel()+1) + "d8+" + plus);
+  if (free) { healamt = Dice.roll("5d8+20"); }
   DebugWrite("magic", "Healing " + healamt + " hp.<br />");
   if (infused) { healamt = healamt * 1.5; }
   
@@ -2789,8 +2789,8 @@ magic[SPELL_WATER_WALK_LEVEL][SPELL_WATER_WALK_ID].executeSpell = function(caste
 
   let levobj = localFactory.createTile("Levitate");
   
-  let dur = caster.getIntForPower()+5;
-  if (free) { dur = Dice.roll("1d10+35"); }
+  let dur = caster.getIntForPower()+15;
+  if (free) { dur = Dice.roll("1d10+45"); }
   if (infused) { dur = dur * 3; }
   let endtime = dur + DU.DUTime.getGameClock();
   DebugWrite("magic", "Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />");
