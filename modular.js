@@ -201,7 +201,7 @@ OnDamagedFuncs["incorporeal"] = function(atk,who,dmg,weapon) {
 
 OnDamagedFuncs["shock"] = function(atk,who,dmg,weapon) {
   DebugWrite("combat", "OnDamaged - shock");
-  if (!weapon.checkType("MissileWeapon")) {
+  if (!weapon.checkType("Missile")) {
     let shock = Dice.roll(DMG_LIGHT);
     atk.dealDamage(shock,who,"lightning");
     if (atk === PC) { maintext.delayedAddText("You are struck by electricity when you hit the " + who.getDesc() + "!"); }
