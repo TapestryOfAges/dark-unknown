@@ -886,7 +886,7 @@ function CoralTile() {
   this.desc = "coral reef";
   this.peerview = "#f2a9e0";  
   
-  LightEmitting.call(this, 2);
+  LightEmitting.call(this, 3);
 
   ManualAnimation.call(this, { 
     animstart: 0,
@@ -14570,6 +14570,7 @@ BluePalmCrystalTile.prototype.use = function(who) {
   who.setMana(newmana);
   if (who === PC) {
     DrawCharFrame();
+    DUPlaySound("sfx_crystal_use");
   }
   return retval;
 }
@@ -14598,6 +14599,7 @@ GreenPalmCrystalTile.prototype.use = function(who) {
   }
   if (who === PC) {
     DrawCharFrame();
+    DUPlaySound("sfx_crystal_use");
   }
   return retval;
 }
@@ -14630,6 +14632,7 @@ PurplePalmCrystalTile.prototype.use = function(who) {
   retval["txt"] = "You grasp the crystal. Gazing into it, you see yourself from above."  
   if (who === PC) {
     DrawCharFrame();
+    DUPlaySound("sfx_crystal_use");
   }
   return retval;
 }
@@ -17505,8 +17508,9 @@ function YewWandTile() {
   this.spriteyoffset = -104*32;
 	this.desc = "magic wand";
 	this.prefix = "a";
-  this.ammoxoffset = "-64";
-  this.ammoyoffset = "-128";
+  this.ammographic = "wandzaps.gif";
+  this.ammoxoffset = 0;
+  this.ammoyoffset = 0;
   this.attackSound = "sfx_wand";
   this.longdesc = "A wand made of yew, which fires bolts of magical energy.";
   this.enchantable = 1;
@@ -17552,8 +17556,9 @@ function WandTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "magic wand";
 	this.prefix = "a";
-  this.ammoxoffset = "-64";
-  this.ammoyoffset = "-128";
+  this.ammographic = "wandzaps.gif";
+  this.ammoxoffset = -32;
+  this.ammoyoffset = 0;
   this.attackSound = "sfx_wand2";
   this.longdesc = "A wand that channels thunder. In your hands, it does %ave% damage on average.";
  
