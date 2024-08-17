@@ -217,6 +217,8 @@ function TinkerVillagerNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.missileSound = 'sfx_sling';
+  this.missileAnim = 'sling';
   this.initOverride = 10;
   this.gender = 'random';
 }
@@ -276,6 +278,8 @@ function RangerVillagerNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.missileSound = 'sfx_bow';
+  this.missileAnim = 'arrow';
   this.initOverride = 10;
   this.gender = 'random';
 }
@@ -335,6 +339,8 @@ function AdventurerVillagerNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.missileSound = 'sfx_bow';
+  this.missileAnim = 'bolt';
   this.initOverride = 10;
   this.gender = 'random';
 }
@@ -448,6 +454,8 @@ function FighterVillagerNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.missileSound = 'sfx_sling';
+  this.missileAnim = 'sling';
   this.initOverride = 10;
   this.gender = 'random';
 }
@@ -556,6 +564,8 @@ function BardVillagerNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.missileSound = 'sfx_bow';
+  this.missileAnim = 'bolt';
   this.initOverride = 10;
   this.gender = 'random';
 }
@@ -1337,6 +1347,8 @@ function CourierNPCTile() {
   this.special = 'open_door, courierSurrender';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.missileSound = 'sfx_sling';
+  this.missileAnim = 'sling';
   this.gender = 'random';
 }
 CourierNPCTile.prototype = new NPCHumanObject();
@@ -1690,6 +1702,8 @@ function MinstrelNPCTile() {
   this.special = 'sing, open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.missileSound = 'sfx_sling';
+  this.missileAnim = 'sling';
   this.gender = 'random';
 }
 MinstrelNPCTile.prototype = new NPCHumanObject();
@@ -1974,10 +1988,12 @@ function NixieNPCTile() {
   this.lootTable = 'none';
   this.prefix = 'a';
   this.desc = "nixie";
-  this.meleeChance = 50;
+  this.meleeChance = 60;
   this.resists = {};
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.missileSound = 'sfx_sling';
+  this.missileAnim = 'sling';
   this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -128 * 32;
@@ -2296,6 +2312,8 @@ function ArcherNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_missile_hit';
   this.meleeAttackSound = 'sfx_missile_miss';
+  this.missileSound = 'sfx_bow';
+  this.missileAnim = 'arrow';
   this.gender = 'random';
 }
 ArcherNPCTile.prototype = new NPCHumanObject();
@@ -2350,6 +2368,8 @@ function BardNPCTile() {
   this.special = 'sing, open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.missileSound = 'sfx_bow';
+  this.missileAnim = 'bolt';
   this.gender = 'random';
 }
 BardNPCTile.prototype = new NPCHumanObject();
@@ -3151,6 +3171,8 @@ function TrollNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.missileSound = 'sfx_sling';
+  this.missileAnim = 'sling';
   this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -143 * 32;
@@ -3293,6 +3315,8 @@ function CyclopsNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.missileSound = 'sfx_sling';
+  this.missileAnim = 'boulder';
   this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
   this.spriteyoffset = -140 * 32;
@@ -3632,6 +3656,8 @@ function OrcCaptainNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.missileSound = 'sfx_bow';
+  this.missileAnim = 'arrow';
   this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -133 * 32;
@@ -4333,6 +4359,8 @@ function RangerNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.missileSound = 'sfx_bow';
+  this.missileAnim = 'arrow';
   this.gender = 'random';
 }
 RangerNPCTile.prototype = new NPCHumanObject();
@@ -4719,6 +4747,8 @@ function GiantNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.missileSound = 'sfx_sling';
+  this.missileAnim = 'boulder';
   this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -152 * 32;
@@ -5582,6 +5612,8 @@ function TitanUNUSEDNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
+  this.missileSound = 'sfx_sling';
+  this.missileAnim = 'boulder';
 }
 TitanUNUSEDNPCTile.prototype = new NPCObject();
 
