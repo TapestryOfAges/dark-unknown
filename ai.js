@@ -3416,13 +3416,17 @@ ais.ai_missile = function(who) {
   }
   
   // find a target
-  let shoot_at = FindMissileTarget(who,10);
+  let range = who.getMissile().range;
+  if (!range) { range = 10; }
+  let shoot_at = FindMissileTarget(who,range);
   if (shoot_at) {
     DebugWrite("ai", "Firing a missile attack!<br />");
     let result = Attack(who,shoot_at);
-    maintext.addText(result["txt"]);
+    if (result["fin"]) {
+      maintext.addText(result["txt"]);
   
-    return "missile";
+      return "missile";
+    } else { return 0; }
   }
   
   return 0;
