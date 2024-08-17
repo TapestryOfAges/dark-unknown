@@ -164,10 +164,10 @@ foreach my $line (<$npcdoc>) {
     print $out "  this.meleeAttackSound = '$fields[36]';\n";
   }
   if ($fields[37]) {
-    print $out "  this.missileHitSound = '$fields[37]';\n";
+    print $out "  this.missileSound = '$fields[37]';\n";
   }
   if ($fields[38]) {
-    print $out "  this.missileAttackSound = '$fields[38]';\n";
+    print $out "  this.missileAnim = '$fields[38]';\n";
   }
   if ((defined $fields[39]) and ($fields[39] ne "")) {
     print $out "  this.xpval = $fields[39];\n";
