@@ -2510,7 +2510,7 @@ function FlukeNPCTile() {
   this.meleeAttackSound = 'sfx_animal_miss';
   this.graphic = 'static.gif';
   this.spritexoffset = -5 * 32;
-  this.spriteyoffset = -127 * 32;
+  this.spriteyoffset = -137 * 32;
 
   ManualAnimation.call(this, { 
     animstart: -5*32,
