@@ -60,7 +60,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
 	frommap.deleteThing(who);
 	// also delete any NPCs following PC (summoned demons) FIXTHIS
   tomap.placeThing(destx,desty,who,0,"noactivate");
-	who.setHomeMap(tomap);
+//	who.setHomeMap(tomap);
 	let tile = tomap.getTile(destx,desty);
   let oldtile = frommap.getTile(oldx,oldy);
     
@@ -1109,9 +1109,9 @@ function DisplayTestMap() {
 function GetAllWithin(type,rad,map,center,requires) {
   let everything;
   if (type === "features") {
-    everything = map.getAllFeatures();
+    everything = map.features.getAll();
   } else if (type === "npcs") {
-    everything = map.getAllNPCs();
+    everything = map.npcs.getAll();
   } else {
     alert("GetAllWithin called inappropriately.");
     return [];
