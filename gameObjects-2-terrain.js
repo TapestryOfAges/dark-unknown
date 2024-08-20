@@ -148,6 +148,10 @@ function InWater(who) {
     // entity is flying and can't drown
     return response;
   }
+  if (MOVE_SWIM & whomov) {
+    // entity is SWIMMING and can't drown, dammit
+    return response;
+  }
   let localmap = who.getHomeMap();
   let tile = localmap.getTile(who.getx(),who.gety());
   let feats = tile.getFeatures();
