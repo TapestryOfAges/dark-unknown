@@ -338,11 +338,11 @@ mappages["grotto2"].features[99] = {name : 'Brazier', x : 101, y : 35};
 mappages["grotto2"].features[100] = {name : 'Brazier', x : 103, y : 35};
 mappages["grotto2"].features[101] = {name : 'Coral', x : 104, y : 28};
 mappages["grotto2"].features[102] = {name : 'Coral', x : 105, y : 28};
-mappages["grotto2"].features[103] = {name : 'Chest', x : 57, y : 15, locked : 0, lootgroup : 'grotto', lootedid : 'grotto2_1'};
-mappages["grotto2"].features[104] = {name : 'Chest', x : 57, y : 16, locked : 0, lootgroup : 'grotto', lootedid : 'grotto2_2'};
-mappages["grotto2"].features[105] = {name : 'Chest', x : 50, y : 39, locked : 0, lootgroup : 'grotto', lootedid : 'grotto2_3'};
-mappages["grotto2"].features[106] = {name : 'Chest', x : 81, y : 27, locked : 0, lootgroup : 'grotto', lootedid : 'grotto2_4'};
-mappages["grotto2"].features[107] = {name : 'Chest', x : 78, y : 17, locked : 0, lootgroup : 'grotto', lootedid : 'grotto2_5'};
+mappages["grotto2"].features[103] = {name : 'Chest', x : 57, y : 15, locked : 0, lootgroup : 'grotto'};
+mappages["grotto2"].features[104] = {name : 'Chest', x : 57, y : 16, locked : 0, lootgroup : 'grotto'};
+mappages["grotto2"].features[105] = {name : 'Chest', x : 50, y : 39, locked : 0, lootgroup : 'grotto'};
+mappages["grotto2"].features[106] = {name : 'Chest', x : 81, y : 27, locked : 0, lootgroup : 'grotto'};
+mappages["grotto2"].features[107] = {name : 'Chest', x : 78, y : 17, locked : 0, lootgroup : 'grotto'};
 
 mappages["grotto2"].npcs = [];
 mappages["grotto2"].npcs[0] = {name : 'NixieNPC', x : 43, y : 9, Gender: 'monster', NPCBand: '2', skintone: 1};
