@@ -6939,8 +6939,8 @@ function GrottoWhirlpoolTile() {
     animlength: 4,
     animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 150,
-    framedurationmax: 300,
+    framedurationmin: 225,
+    framedurationmax: 225,
     startframe: "random"
   });
 
@@ -6963,8 +6963,8 @@ function WhirlpoolTile() {
     animlength: 4,
     animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 150,
-    framedurationmax: 300,
+    framedurationmin: 225,
+    framedurationmax: 225,
     startframe: "random"
   });
 
