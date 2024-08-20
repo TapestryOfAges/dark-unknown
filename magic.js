@@ -5417,7 +5417,8 @@ function ShowEffect(onwhat, duration, graphic, xoff, yoff, extraparams) {
       docdiv.style.left = where.x;
       docdiv.style.top = where.y;
       docdiv.style.backgroundImage = 'url("graphics/' + graphic + '")';
-      docdiv.style.backgroundPosition = 'background-position', xoff + 'px ' + yoff + 'px';
+//      docdiv.style.backgroundPosition = 'background-position', xoff + 'px ' + yoff + 'px';
+      docdiv.style.backgroundPosition = xoff + 'px ' + yoff + 'px';
     } else {
       console.log(`${onwhat.name} already had a spell effect playing.`);
     }
