@@ -1195,9 +1195,12 @@ OnConvTriggers["where_queen"] = function(speaker,keyword) {
 }
 
 OnConvTriggers["tyler_task"] = function(speaker,keyword) {
-  PC.removeFromInventory("BeldskaeReport");
-  PC.removeFromInventory("SwainhilReport");
-  PC.removeFromInventory("ClearLakeReport");
+  let br = PC.checkInventory("BeldskaeReport");
+  PC.removeFromInventory(br);
+  let sr = PC.checkInventory("SwainhilReport");
+  PC.removeFromInventory(sr);
+  let clr = PC.checkInventory("ClearLakeReport");
+  PC.removeFromInventory(clr);
   maintext.addText("<span class='sysconv'>You no longer have one: report from Clear Lake.</span>");
   maintext.addText("<span class='sysconv'>You no longer have one: report from Beldskae.</span>");
   maintext.addText("<span class='sysconv'>You no longer have one: report from Swainhil.</span>");
