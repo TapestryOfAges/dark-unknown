@@ -2297,7 +2297,13 @@ magic[SPELL_BLINK_LEVEL][SPELL_BLINK_ID].executeSpell = function(caster, infused
     while (!success && possdest[0]) {
       let tile = castermap.getTile(possdest[0].x,possdest[0].y);
       if ((tile !== "OoB") && (tile.canMoveHere(castermove, 1).canmove)) {
-        let path = castermap.getPath(casterx,castery,possdest[0].x,possdest[0].y,MOVE_WALK);
+        let movetype = MOVE_WALK;
+        if (castermove & MOVE_ETHEREAL) { movetype = MOVE_ETHEREAL; }
+        else if (castermove & MOVE_FLY) { movetype = MOVE_FLY; }
+        else if (castermove & MOVE_LEVITATE) { movetype = MOVE_LEVITATE; }
+        else if (castermove & MOVE_SWIM) { movetype = MOVE_SWIM; }
+        
+        let path = castermap.getPath(casterx,castery,possdest[0].x,possdest[0].y,movetype);
         if (path.length) {
           success = PerformBlink(caster,possdest[0].x,possdest[0].y);
         }
