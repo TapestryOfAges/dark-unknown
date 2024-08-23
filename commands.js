@@ -1362,91 +1362,91 @@ function PerformRuneChoice() {
 
   } else if (targetCursor.runeChoice === 2) { 
     // The Rune of Waves
-
-    // first whirlpool goes away
-    let feas = themap.features.getAll();
-    let wp;
     let formed = 0;
-    for (let i=0;i<feas.length;i++) {
-      if (feas[i].getName() === "Whirlpool") {
-        let wpx = feas[i].getx();
-        let wpy = feas[i].gety();
-        themap.deleteThing(feas[i]);
-        DrawMainFrame("one",themap,wpx,wpy);
-        wp = 1;
-      }
-    }
-    if (!wp && (themap.getName() !== "darkunknown")) {
-      let worldmap = maps.getMap("darkunknown");
-      feas = worldmap.features.getAll();
+
+    if (DU.gameflags.getFlag("oracle_tome")) {
+      // first whirlpool goes away
+      let feas = themap.features.getAll();
+      let wp;
       for (let i=0;i<feas.length;i++) {
         if (feas[i].getName() === "Whirlpool") {
           let wpx = feas[i].getx();
           let wpy = feas[i].gety();
-          worldmap.deleteThing(feas[i]);
+          themap.deleteThing(feas[i]);
+          DrawMainFrame("one",themap,wpx,wpy);
+          wp = 1;
         }
       }
-    }
-
-    if (!themap.getUnderground()) {  // can't summon a whirlpool while underground, that would be silly
-      let nearbywater = 0;
-      let nearwaterlist = {};
-      let IsRightWater = function(terr) {
-        if ((terr.getName() === "Water") || (terr.getName() === "Shallows")) { return 1; }
-      }
-      
-      for (let i=-1;i<=1;i++) {
-        for (let j=-1;j<=1;j++) {
-          let px = PC.getx()+i;
-          let py = PC.gety()+j;
-          let tile = themap.getTile(px,py);
-          if ((tile !== "OoB") && (IsRightWater(tile.getTerrain()))) { 
-            nearbywater = 1; 
-            nearwaterlist[px][py] = 1;
+      if (!wp && (themap.getName() !== "darkunknown")) {
+        let worldmap = maps.getMap("darkunknown");
+        feas = worldmap.features.getAll();
+        for (let i=0;i<feas.length;i++) {
+          if (feas[i].getName() === "Whirlpool") {
+            worldmap.deleteThing(feas[i]);
           }
         }
       }
 
-      let farawaywater = 0;
-      if (nearbywater) {
-        let farwaterlist = [];
-        Object.keys(nearwaterlist).forEach(key => {
-          Object.keys(nearwaterlist[key]).forEach(innerkey => {
-            for (let i=-1;i<=1;i++) {
-              for (let j=-1;j<=1;j++) {
-                let tile = themap.getTile(key+i,innerkey+j);
-                if ((tile !== "OoB") && (IsRightWater(tile.getTerrain()))) {
-                  if (GetDistance(PC.getx(),PC.gety(),key+i,innerkey+j,"square") === 2) {
-                    let tx = key+i;
-                    let ty = innerkey+j;
-                    farwaterlist.push(`${tx},${ty}`);
-                    farawaywater = 1;
+      if (!themap.getUnderground()) {  // can't summon a whirlpool while underground, that would be silly
+        let nearbywater = 0;
+        let nearwaterlist = {};
+        let IsRightWater = function(terr) {
+          if ((terr.getName() === "Water") || (terr.getName() === "Shallows")) { return 1; }
+        }
+      
+        for (let i=-1;i<=1;i++) {
+          for (let j=-1;j<=1;j++) {
+            let px = PC.getx()+i;
+            let py = PC.gety()+j;
+            let tile = themap.getTile(px,py);
+            if ((tile !== "OoB") && (IsRightWater(tile.getTerrain()))) { 
+              nearbywater = 1; 
+              nearwaterlist[px][py] = 1;
+            }
+          }
+        }
+
+        let farawaywater = 0;
+        if (nearbywater) {
+          let farwaterlist = [];
+          Object.keys(nearwaterlist).forEach(key => {
+            Object.keys(nearwaterlist[key]).forEach(innerkey => {
+              for (let i=-1;i<=1;i++) {
+                for (let j=-1;j<=1;j++) {
+                  let tile = themap.getTile(key+i,innerkey+j);
+                  if ((tile !== "OoB") && (IsRightWater(tile.getTerrain()))) {
+                    if (GetDistance(PC.getx(),PC.gety(),key+i,innerkey+j,"square") === 2) {
+                      let tx = key+i;
+                      let ty = innerkey+j;
+                      farwaterlist.push(`${tx},${ty}`);
+                      farawaywater = 1;
+                    }
                   }
                 }
               }
-            }
+            });
           });
-        });
-      }
-      if (farawaywater) {
-        let opts = farwaterlist.length;
-        let opt = Dice.roll(`1d${opts}-1`);
+        }
+        if (farawaywater) {
+          let opts = farwaterlist.length;
+          let opt = Dice.roll(`1d${opts}-1`);
 
-        let whirlpool = localFactory.createTile("Whirlpool");
+          let whirlpool = localFactory.createTile("Whirlpool");
 
-        let coords = split(",", farwaterlist[opt]);
-        themap.placeThing(coords[0],coords[1],whirlpool);
+          let coords = split(",", farwaterlist[opt]);
+          themap.placeThing(coords[0],coords[1],whirlpool);
 
-        PC.whirlx = coords[0];
-        PC.whirly = coords[1];
-        PC.whirlmap = themap.getName();
+          PC.whirlx = coords[0];
+          PC.whirly = coords[1];
+          PC.whirlmap = themap.getName();
 
-        DUPlaySound("sfx_create_whirlpool");
-        retval["txt"] = "You call upon the waves to provide what you need... and slowly, a whirlpool forms!";
-        formed = 1;
+          DUPlaySound("sfx_create_whirlpool");
+          retval["txt"] = "You call upon the waves to provide what you need... and slowly, a whirlpool forms!";
+          formed = 1;
 
-        questlog.complete(79);
-        CheckOracleQuest();
+          questlog.complete(79);
+          CheckOracleQuest();
+        }
       } 
 
     }
@@ -1461,9 +1461,12 @@ function PerformRuneChoice() {
         retval["txt"] = rettxt;
       }
       if (PC.runes.void) {
-        PC.modMana(PC.getLevel());
+        PC.modMana(4*PC.getLevel());
       } else {
         PC.modMana(2*PC.getLevel());
+      }
+      if (!formed) {
+        DUPlaySound("sfx_dangerous_buff");
       }
       PC.setRuneCooldown("waves",144);  // 12 hours
     }
