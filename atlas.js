@@ -1279,9 +1279,9 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride,noactivate) {
     if (newthing.checkType("NPC") && (typeof this.Enter === "function")) {
       this.Enter(newthing,"",0,0,x,y);
     }
-    if (newthing.checkType("NPC")) {
-      this.createSinglePathGrid(newthing.getMovetype());
-    }
+//    if (newthing.checkType("NPC")) {
+//      this.createSinglePathGrid(newthing.getMovetype());
+//    }
 
     let type = newthing.getTypeForMap() + "s";
     if (!this.data[type]) { this.data[type] = new Collection(); }
@@ -1718,8 +1718,8 @@ GameMap.prototype.loadMap = function (name) {
   }
   
   this.setName(name);
-  //this.createPathGrid();
-  this.createSinglePathGrid(MOVE_WALK_DOOR);
+  this.createPathGrid();
+  //this.createSinglePathGrid(MOVE_WALK_DOOR);
 
   let litfeatures = [];
 
