@@ -8062,7 +8062,7 @@ WardukeWalkOnTile.prototype.walkon = function(walker) {
   if (walker === PC) {
     let themap = this.getHomeMap();
     let warduke = FindNPCByName("Warduke", themap);
-    PC.forcedTalk(warduke);
+    PC.forcedTalk = warduke;
     let field = themap.getTile(30,6).getTopFeature();
     themap.deleteThing(field);
     field = themap.getTile(31,6).getTopFeature();
@@ -14620,7 +14620,7 @@ function PurplePalmCrystalTile() {
 PurplePalmCrystalTile.prototype = new ConsumableItemObject();
 
 PurplePalmCrystalTile.prototype.use = function(who) {
-  if (DU.gameflags.getFlag("negate")[castermap.getName()]) {
+  if (DU.gameflags.getFlag("negate")[who.getHomeMap().getName()]) {
     retval["txt"] = "Something is preventing this from functioning.";
     retval["fin"] = 2;
     retval["input"] = "&gt;";
@@ -14628,12 +14628,14 @@ PurplePalmCrystalTile.prototype.use = function(who) {
     
     return retval;
   }
-  let retval = magic[SPELL_ETHEREAL_VISION_LEVEL][SPELL_ETHEREAL_VISION_ID].executeSpell(PC, 0, 2);
+  let retval = magic[SPELL_PEER_LEVEL][SPELL_PEER_ID].executeSpell(PC, 0, 2);
   retval["txt"] = "You grasp the crystal. Gazing into it, you see yourself from above."  
   if (who === PC) {
     DrawCharFrame();
     DUPlaySound("sfx_crystal_use");
   }
+  retval["override"] = 1;
+  retval["fin"] = 4;
   return retval;
 }
 
