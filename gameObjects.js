@@ -14534,7 +14534,7 @@ WardukeWalkOnTile.prototype.walkon = function(walker) {
   if (walker === PC) {
     let themap = this.getHomeMap();
     let warduke = FindNPCByName("Warduke", themap);
-    PC.forcedTalk(warduke);
+    PC.forcedTalk = warduke;
     let field = themap.getTile(30,6).getTopFeature();
     themap.deleteThing(field);
     field = themap.getTile(31,6).getTopFeature();
