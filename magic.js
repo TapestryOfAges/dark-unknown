@@ -3107,7 +3107,7 @@ magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].getLongDesc = function() {
 magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].getInfusedDesc = function() {
   let mindmg = Dice.rollmin(DMG_MEDIUM);
   mindmg = Math.floor(1.5 * mindmg);
-  let maxdmg = Dice.rollmin(DMG_MEDIUM);
+  let maxdmg = Dice.rollmax(DMG_MEDIUM);
   maxdmg = Math.floor(1.5 * maxdmg);
   return "Deals " + mindmg + "-" + maxdmg + " damage instead, and the damage is more difficult to resist.";
 }
@@ -3134,25 +3134,27 @@ magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].executeSpell = function(caster,
     for (let ydiff=-1;ydiff<=1; ydiff++) {
       if ((xdiff === 0) && (ydiff === 0)) { continue; }
       let tile = spellmap.getTile(caster.getx()+xdiff, caster.gety()+ydiff);
-      let badguy = tile.getTopNPC();
-      if (badguy && !badguy.frozenintime) {
-        badguy.setHitBySpell(caster,SPELL_SHOCKWAVE_LEVEL);
-        let tmpdmg = prepareSpellDamage(caster,badguy,DMG_MEDIUM,"force");
-        let dmg = tmpdmg;
-        if (infused) { dmg = dmg * 1.5; }
-        let resist = 0;
-        if (CheckResist(caster,badguy,infused,0)) {
-          resist = 1;
-          dmg = dmg*.5;
-        }
+      if (tile !== "OoB") {
+        let badguy = tile.getTopNPC();
+        if (badguy && !badguy.frozenintime) {
+          badguy.setHitBySpell(caster,1);
+          let tmpdmg = prepareSpellDamage(caster,badguy,DMG_MEDIUM,"force");
+          let dmg = tmpdmg.dmg;
+          if (infused) { dmg = dmg * 1.5; }
+          let resist = 0;
+          if (CheckResist(caster,badguy,infused,0)) {
+            resist = 1;
+            dmg = dmg*.5;
+          }
 
-        if (!resist) {
-          badguy.moveMe(xdiff,ydiff,1);
+          if (!resist) {
+            badguy.moveMe(xdiff,ydiff,1);
+          }
+          //badguy.dealDamage(dmg,caster,"force");
+          if (badguy !== PC) { badguy.setAggro(1); }
+          DealandDisplayDamage(badguy,caster,dmg,"force");
+          ShowEffect(badguy, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
         }
-        //badguy.dealDamage(dmg,caster,"force");
-        DealandDisplayDamage(badguy,caster,dmg,"force");
-        if (badguy !== PC) { badguy.setAggro(1); }
-        ShowEffect(badguy, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
       }
     }
   }
