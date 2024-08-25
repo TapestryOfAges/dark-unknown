@@ -443,7 +443,7 @@ mappages["hildendain"].features[370] = {name : 'TorchEast', x : 21, y : 36};
 mappages["hildendain"].features[371] = {name : 'TorchEast', x : 21, y : 40};
 
 mappages["hildendain"].npcs = [];
-mappages["hildendain"].npcs[0] = {name : 'PaladinNPC', x : 37, y : 6, NPCName: 'Warduke', Desc: 'ex-paladin', Prefix: 'an', Conversation: 'warduke', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"Plate","head":"BlueSolidHelm","back":"","offhand":"KiteShield","cloak":"","mainhand":"LongswordPale","realhead":"ShortBlackPale"}'};
+mappages["hildendain"].npcs[0] = {name : 'PaladinNPC', x : 36, y : 6, NPCName: 'Warduke', Desc: 'ex-paladin', Prefix: 'an', PeaceAI: 'doNothing', Conversation: 'warduke', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"Plate","head":"BlueSolidHelm","back":"","offhand":"KiteShield","cloak":"","mainhand":"LongswordPale","realhead":"ShortBlackPale"}'};
 mappages["hildendain"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 9, y : 33, NPCName: 'Aaron', Desc: 'merchant', PeaceAI: 'scheduled', Schedule: 'aaron', Conversation: 'aaron', Gender: 'male', Merch: 'aaron', NPCBand: '0', skintone: 1, wornlayers: '{"body":"WhiteTunic2","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBlackPale"}'};
 mappages["hildendain"].npcs[2] = {name : 'AdventurerVillagerNPC', x : 13, y : 33, NPCName: 'Erin', Desc: 'merchant', Prefix: 'a', PeaceAI: 'scheduled', Schedule: 'erin', Conversation: 'erin', Gender: 'female', Merch: 'erin', NPCBand: '0', skintone: 1, wornlayers: '{"body":"ChainMail","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HammerPale","realhead":"ShortBrownPale"}'};
 mappages["hildendain"].npcs[3] = {name : 'TownsfolkVillagerNPC', x : 34, y : 50, NPCName: 'Anna', Desc: 'young woman', PeaceAI: 'scheduled', Schedule: 'anna', Conversation: 'anna', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"WhiteTunic2","head":"BrownDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"BrownDark"}'};
@@ -461,8 +461,8 @@ mappages["hildendain"].npcs[14] = {name : 'PaladinVillagerNPC', x : 34, y : 28, 
 mappages["hildendain"].npcs[15] = {name : 'TownsfolkVillagerNPC', x : 20, y : 54, NPCName: 'Evan', PeaceAI: 'scheduled', Schedule: 'evan', Conversation: 'evan', Gender: 'male', Merch: 'evan', NPCBand: '0', skintone: 2, wornlayers: '{"body":"GreenTunic","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"ShortBlackDark"}'};
 mappages["hildendain"].npcs[16] = {name : 'BardVillagerNPC', x : 23, y : 36, NPCName: 'Franklin', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'franklin', Conversation: 'franklin', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"Bard1","head":"BardPale2","back":"","offhand":"","cloak":"","mainhand":"","realhead":"ShortBlackPale"}'};
 mappages["hildendain"].npcs[17] = {name : 'PaladinVillagerNPC', x : 18, y : 48, NPCName: 'Yelena', Desc: 'warrior', PeaceAI: 'scheduled', Schedule: 'yelena', Conversation: 'yelena', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateSash","head":"BrownDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"LongswordDark","realhead":"BrownDark"}'};
-mappages["hildendain"].npcs[18] = {name : 'FighterNPC', x : 37, y : 3, skintone: 1, wornlayers: '{"body":"Plate","head":"ShortBrownPale","back":null,"offhand":"RoundShield","cloak":"RedCloak","mainhand":"AxePale"}'};
-mappages["hildendain"].npcs[19] = {name : 'ThiefNPC', x : 37, y : 9, Gender: 'monster', NPCBand: '0', skintone: 1, wornlayers: '{"body":"LeatherArmor","head":"BlondePale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"ShortswordPale","realhead":"BlondePale"}'};
+mappages["hildendain"].npcs[18] = {name : 'FighterNPC', x : 36, y : 3, PeaceAI: 'doNothing', Gender: 'male', skintone: 1, wornlayers: '{"body":"Plate","head":"ShortBrownPale","back":null,"offhand":"RoundShield","cloak":"RedCloak","mainhand":"AxePale"}'};
+mappages["hildendain"].npcs[19] = {name : 'ThiefNPC', x : 36, y : 9, PeaceAI: 'doNothing', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"LeatherArmor","head":"BlondePale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"ShortswordPale","realhead":"BlondePale"}'};
 
 mappages["hildendain"].desc = "The Towne of Hildendain";
 mappages["hildendain"].longdesc = `Hildendain was once the seat of the kingdom, and is now a center of commerce. Now, down streets past the shops and taverns, the ruins of Castle dea Hilden overlook the town.`;
@@ -713,15 +713,15 @@ mappages["hildendain"].onload = function(mapref) {
       mapref.deleteThing(field);
 
       if (DU.gameflags.getFlag("warduke_defeated")) {
-        let warduke = mapref.getTile(37,6).getTopNPC();
+        let warduke = mapref.getTile(36,6).getTopNPC();
         mapref.deleteThing(warduke);
         DUTime.removeEntityFrom(warduke);
 
-        warduke = mapref.getTile(37,3).getTopNPC();
+        warduke = mapref.getTile(36,3).getTopNPC();
         mapref.deleteThing(warduke);
         DUTime.removeEntityFrom(warduke);
 
-        warduke = mapref.getTile(37,9).getTopNPC();
+        warduke = mapref.getTile(36,9).getTopNPC();
         mapref.deleteThing(warduke);
         DUTime.removeEntityFrom(warduke);
 
