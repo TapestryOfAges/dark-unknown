@@ -1540,7 +1540,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 //        moved to atlas moveThing, so it runs after teleports
 		  }
 
-      let distfrom = getDisplayCenter(map, PC.getx(), PC.gety());
+//      let distfrom = getDisplayCenter(map, PC.getx(), PC.gety());
       let overridedraw = 0;
       let override;
 
