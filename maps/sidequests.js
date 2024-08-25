@@ -184,6 +184,12 @@ mappages["warwizardtower"].editorLabels = '{}';
 mappages["warwizardtower"].onload = function(mapref) {
   let mirror = mapref.getTile(15,4).getTopFeature();
   mirror.break();
+
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    if (!PC.checkInventory("RingOfEtherealFocus") && DU.gameflags.getFlag("lid_warwizard")) {
+      DU.gameflags.deleteFlag("lid_warwizard");
+    }
+  }
 }
 
 mappages["wildingcave"] = {};
