@@ -902,6 +902,16 @@ OnConvTriggers["place_wod"] = function(speaker,keyword) {
   }
 }
 
+OnConvTriggers["warduke_engaged"] = function(speaker,keyword) {
+  let smap = speaker.getHomeMap();
+  let enemy = smap.getTile(36,6).getTopNPC();
+  enemy.setAggro(1);
+  enemy = smap.getTile(36,3).getTopNPC();
+  enemy.setAggro(1);
+  enemy = smap.getTile(36,9).getTopNPC();
+  enemy.setAggro(1);
+}
+
 OnConvTriggers["rebuild_poverty"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("rebuild_decide");
   let dumap = maps.getMap("darkunknown");
