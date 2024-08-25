@@ -16790,15 +16790,18 @@ RingOfEtherealFocusTile.prototype.killed = function(who) {
   let hps = who.getHitBySpell();
   let restoredmana = 0;
   if (hps) {
-    let chance = parseInt((hps/4) * 100);
-    while (chance >= 100) { restoredmana++; chance -= 100; }
-    if (chance > 0) { 
-      if (Dice.roll("1d100") <= chance) { restoredmana++; }
-    }
+//    let chance = parseInt((hps/4) * 100);
+//    while (chance >= 100) { restoredmana++; chance -= 100; }
+//    if (chance > 0) { 
+//      if (Dice.roll("1d100") <= chance) { restoredmana++; }
+//    }
+    // The above would restore an imperceptable amount of mana
+    restoredmana = Math.floor(hps/2);
     if (restoredmana) {
       maintext.delayedAddText("The Ring of Ethereal Focus restores " + restoredmana + " mana to you!");
       let wearer = this.getEquippedTo();
       wearer.modMana(restoredmana);
+      DrawCharFrame();
     }
   }
 }
