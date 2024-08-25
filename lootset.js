@@ -11,7 +11,7 @@ function SetLoots() {
   loots['warwizard'].loot[0].quantity = '1';
   loots['warwizard'].loot[0].chance = 100;
   loots['warwizard'].loot[1] = {};
-  loots['warwizard'].loot[1].objname = 'ScrollOfPeer';
+  loots['warwizard'].loot[1].objname = 'ScrollPeer';
   loots['warwizard'].loot[1].quantity = '1';
   loots['warwizard'].loot[1].chance = 100;
 
