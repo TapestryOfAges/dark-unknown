@@ -13,6 +13,7 @@ const MOVE_ETHEREAL = 4;
 const MOVE_LEVITATE = 8;
 const MOVE_WALK = 16;
 const MOVE_WALK_DOOR = 32;
+const MOVE_WALK_LOE = 64; // not for real paths, but to allow for Metal Twister to work
 
 const SCALE_TIME = .2;
 

@@ -95,12 +95,16 @@ ais.combat = function(who) {
       return retval; 
     } 
   }
+  if (!nearest && whomap.pathGrid[MOVE_WALK_LOE]) {
+    nearest = FindNearestNPC(who, "enemy", null, 0, MOVE_WALK_LOE);
+  }
   if (!nearest) {
     // really can't find a target
     who.setAggro(0);
     return retval;
   }
   
+  DebugWrite("ai", "Nearest enemy is: " + nearest.getName() + "<br />");
   // check to see if we should cease to aggro
   // need no one in your Band be within "forgetAt" radius
   if (who.getForgetAt() && (nearest > who.getForgetAt())) {
@@ -2527,43 +2531,49 @@ ais.ai_cast = function(who) {
       }
       dr = Dice.roll("1d"+spelloptions.length+"-1");
       let putnear = FindNearestNPC(who,"enemy");
-      let placementoptions = [];
-      let badoptions = [];
-      let okoptions = [];
-      for (let i=who.getx()-3;i<=who.getx()+3;i++) {
-        for (let j=who.gety()-3;j<=who.gety()+3;j++) {
-          let tl = themap.getTile(i,j);
-          if ((tl !== "OoB") && (tl.canMoveHere(MOVE_WALK).canmove)) {
-            if (!tl.getTopFeature() && !tl.getTopNPC() && !tl.getTopPC()) {
-              if (themap.getLOS(who.getx(),who.gety(),i,j) < LOS_THRESHOLD) {
-                let foedist = GetDistance(i,j,putnear.getx(),putnear.gety());
-                let mydist = GetDistance(who.getx(),who.gety(),putnear.getx(),putnear.gety());
-                if (foedist < mydist) { placementoptions.push([i,j]); }
-                else if (foedist === mydist) { okoptions.push([i,j]); }
-                else { badoptions.push([i,j]); }
+      if (!putnear && who.getHomeMap().pathGrid[MOVE_WALK_LOE]) {
+        putnear = FindNearestNPC(who, "enemy", null, 0, MOVE_WALK_LOE);
+      }
+      if (putnear) {
+        let placementoptions = [];
+        let badoptions = [];
+        let okoptions = [];
+        for (let i=who.getx()-3;i<=who.getx()+3;i++) {
+          for (let j=who.gety()-3;j<=who.gety()+3;j++) {
+            let tl = themap.getTile(i,j);
+            if ((tl !== "OoB") && (tl.canMoveHere(MOVE_WALK).canmove)) {
+              if (!tl.getTopFeature() && !tl.getTopNPC() && !tl.getTopPC()) {
+                if (themap.getLOS(who.getx(),who.gety(),i,j) < LOS_THRESHOLD) {
+                  let foedist = GetDistance(i,j,putnear.getx(),putnear.gety());
+                  let mydist = GetDistance(who.getx(),who.gety(),putnear.getx(),putnear.gety());
+                  if (foedist < mydist) { placementoptions.push([i,j]); }
+                  else if (foedist === mydist) { okoptions.push([i,j]); }
+                  else { badoptions.push([i,j]); }
+                }
               }
             }
           }
         }
-      }
-      let opts = [];
-      if (placementoptions.length) { opts = placementoptions; }
-      else if (okoptions.length) { opts = okoptions; }
-      else if (badoptions.length) { opts = badoptions; }
-      let tgt = {};
-      if (opts.length) {
-        let optdr = Dice.roll("1d"+opts.length+"-1");
-        tgt.x = opts[optdr][0];
-        tgt.y = opts[optdr][1];
-        if (spelloptions[dr] === "Illusion") {
-          AnnounceSpellcast("Illusion",who);
-          magic[SPELL_ILLUSION_LEVEL][SPELL_ILLUSION_ID].executeSpell(who,0,0,tgt);
-        } else if (spelloptions[dr] === "SummonAlly") {
-          AnnounceSpellcast("Summon Ally",who);
-          magic[SPELL_SUMMON_ALLY_LEVEL][SPELL_SUMMON_ALLY_ID].executeSpell(who,0,0,tgt);
-        } else if (spelloptions[dr] === "SummonDaemon") {
-          AnnounceSpellcast("Summon Daemon",who);
-          magic[SPELL_CONJURE_DAEMON_LEVEL][SPELL_CONJURE_DAEMON_ID].executeSpell(who,0,0,tgt);
+        let opts = [];
+        if (placementoptions.length) { opts = placementoptions; }
+        else if (okoptions.length) { opts = okoptions; }
+        else if (badoptions.length) { opts = badoptions; }
+        let tgt = {};
+        if (opts.length) {
+          let optdr = Dice.roll("1d"+opts.length+"-1");
+          tgt.x = opts[optdr][0];
+          tgt.y = opts[optdr][1];
+          if (spelloptions[dr] === "Illusion") {
+            AnnounceSpellcast("Illusion",who);
+            magic[SPELL_ILLUSION_LEVEL][SPELL_ILLUSION_ID].executeSpell(who,0,0,tgt);
+          } else if (spelloptions[dr] === "SummonAlly") {
+            AnnounceSpellcast("Summon Ally",who);
+            magic[SPELL_SUMMON_ALLY_LEVEL][SPELL_SUMMON_ALLY_ID].executeSpell(who,0,0,tgt);
+          } else if (spelloptions[dr] === "SummonDaemon") {
+            AnnounceSpellcast("Summon Daemon",who);
+            magic[SPELL_CONJURE_DAEMON_LEVEL][SPELL_CONJURE_DAEMON_ID].executeSpell(who,0,0,tgt);
+          }
+          who.summoned = 1;
         }
       }
     } else if (choices[dr] === "controlenemies") {
@@ -2605,15 +2615,20 @@ ais.ai_cast = function(who) {
         }
       } else if (spelloptions[dr] === "CrystalPrison") {
         let putnear = FindNearestNPC(who,"enemy");
+        if (!putnear && who.getHomeMap().pathGrid[MOVE_WALK_LOE]) {
+          putnear = FindNearestNPC(who, "enemy", null, 0, MOVE_WALK_LOE);
+        }
         let placementoptions = [];
-        for (let i=who.getx()-3;i<=who.getx()+3;i++) {
-          for (let j=who.gety()-3;j<=who.gety()+3;j++) {
-            let tl = themap.getTile(i,j);
-            if (tl !== "OoB") {
-              if (!tl.getTopFeature() && !tl.getTopNPC() && !tl.getTopPC()) {
-                let foedist = GetDistance(i,j,putnear.getx(),putnear.gety());
-                let mydist = GetDistance(who.getx(),who.gety(),putnear.getx(),putnear.gety());
-                if ((foedist < mydist) && (GetDistance(who.getx(),who.gety(),i,j) < mydist)) { placementoptions.push([i,j]); }
+        if (putnear) {
+          for (let i=who.getx()-3;i<=who.getx()+3;i++) {
+            for (let j=who.gety()-3;j<=who.gety()+3;j++) {
+              let tl = themap.getTile(i,j);
+              if (tl !== "OoB") {
+                if (!tl.getTopFeature() && !tl.getTopNPC() && !tl.getTopPC()) {
+                  let foedist = GetDistance(i,j,putnear.getx(),putnear.gety());
+                  let mydist = GetDistance(who.getx(),who.gety(),putnear.getx(),putnear.gety());
+                  if ((foedist < mydist) && (GetDistance(who.getx(),who.gety(),i,j) < mydist)) { placementoptions.push([i,j]); }
+                }
               }
             }
           }
@@ -2797,6 +2812,9 @@ ais.ai_cast = function(who) {
 ais.ai_teleport = function(who) {
   if (Dice.roll("1d6") === 1) {
     let tgt = FindNearestNPC(who,"enemy");
+    if (!tgt && who.getHomeMap().pathGrid[MOVE_WALK_LOE]) {
+      tgt = FindNearestNPC(who, "enemy", null, 0, MOVE_WALK_LOE);
+    }
     let opts = [];
     let themap = who.getHomeMap();
     for (let i=-4;i<=4;i++) {
@@ -3003,6 +3021,9 @@ ais.ai_necromancer = function(who) {
 ais.ai_whirlpool = function(who) {
   // if three flukes surround, one can suicide to generate damaging whirlpool
   let foe = FindNearestNPC(who,"enemy");
+  if (!foe && who.getHomeMap().pathGrid[MOVE_WALK_LOE]) {
+    foe = FindNearestNPC(who, "enemy", null, 0, MOVE_WALK_LOE);
+  }
   let themap = who.getHomeMap();
   if (IsAdjacent(who,foe)) {
     let terrain = themap.getTile(who.getx(),who.gety()).getTerrain().getName();
@@ -3443,6 +3464,7 @@ function FindMissileTarget(who,radius) {
   let closest;
   for (let i=0;i<nearby.length;i++) {
     if (nearby[i].getAttitude() === who.getAttitude()) { continue; }
+    if (thismap.getLOS(who.getx(),who.gety(),nearby[i].getx(),nearby[i].gety()) >= LOS_THRESHOLD) { continue; }
     if (!weakest) { weakest=nearby[i]; }
     else { 
       if ((weakest.getHP()/weakest.getMaxHP()) > (nearby[i].getHP()/nearby[i].getMaxHP())) { 
