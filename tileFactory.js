@@ -3148,6 +3148,11 @@ tileFactory.prototype.makeNightshadeSpawnerTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeTwistOfFateLOEFixerTile = function() {
+  let newTile = new TwistOfFateLOEFixerTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSpawnerTile = function() {
   let newTile = new SpawnerTile();
   return newTile;
