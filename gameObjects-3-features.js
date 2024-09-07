@@ -9058,6 +9058,57 @@ NightshadeSpawnerTile.prototype.myTurn = function() {
   return 1;
 }
 
+function TwistOfFateLOEFixerTile() {
+  this.name = "TwistOfFateLOEFixer";
+  this.graphic = "target-cursor.gif";
+  this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+  this.blockslos = 0;
+  this.prefix = "an";
+  this.desc = "invisible game modifier";
+  this.invisible = 1;
+}
+TwistOfFateLOEFixerTile.prototype = new FeatureObject();
+
+TwistOfFateLOEFixerTile.prototype.activate = function() {
+  console.log("Setting LOE in ToF2.");
+  let mapref = this.getHomeMap();
+  mapref.setWalkableAt(21,44,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(30,41,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(36,39,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(40,37,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(44,33,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(46,29,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(45,26,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(40,21,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(35,19,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(31,19,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(26,21,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(23,22,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(19,22,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(22,18,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(27,16,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(33,16,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(38,16,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(28,34,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(23,33,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(18,32,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(14,31,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(16,28,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(21,29,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(25,30,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(30,28,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(13,26,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(10,21,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(13,16,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(19,10,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(23,8,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(27,7,true,MOVE_WALK_LOE);
+  mapref.setWalkableAt(30,6,true,MOVE_WALK_LOE);
+
+}
+
+
+
 function SpawnerTile() {
   this.name = "Spawner";
   this.graphic = "target-cursor.gif";
