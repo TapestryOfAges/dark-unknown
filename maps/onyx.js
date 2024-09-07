@@ -681,7 +681,7 @@ mappages["onyx"].onload = function(mapref) {
     SetAct2Convos(mapref);
   }
   if (DU.gameflags.getFlag("act2")) {
-    let aithne = FindNPCByName("aithne", mapref);
+    let aithne = FindNPCByName("Aithne", mapref);
     mapref.deleteThing(aithne);
     DUTime.removeEntityFrom(aithne);
   }
