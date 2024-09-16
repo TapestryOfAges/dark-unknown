@@ -75,16 +75,14 @@ mappages["twistoffate1"].npcs[9] = {name : 'GremlinNPC', x : 33, y : 20, NPCBand
 mappages["twistoffate1"].npcs[10] = {name : 'GremlinNPC', x : 34, y : 19, NPCBand: '1', skintone: 1};
 mappages["twistoffate1"].npcs[11] = {name : 'GremlinNPC', x : 33, y : 18, NPCBand: '1', skintone: 1};
 mappages["twistoffate1"].npcs[12] = {name : 'GremlinNPC', x : 32, y : 21, NPCBand: '1', skintone: 1};
-mappages["twistoffate1"].npcs[13] = {name : 'CyclopsNPC', x : 34, y : 20, skintone: 1};
-mappages["twistoffate1"].npcs[14] = {name : 'CyclopsNPC', x : 33, y : 21, skintone: 1};
-mappages["twistoffate1"].npcs[15] = {name : 'ReaperNPC', x : 21, y : 41, skintone: 1};
-mappages["twistoffate1"].npcs[16] = {name : 'ReaperNPC', x : 24, y : 43, skintone: 1};
-mappages["twistoffate1"].npcs[17] = {name : 'GiantBatNPC', x : 32, y : 33, skintone: 1};
-mappages["twistoffate1"].npcs[18] = {name : 'GiantBatNPC', x : 35, y : 30, skintone: 1};
-mappages["twistoffate1"].npcs[19] = {name : 'EttinNPC', x : 19, y : 35, skintone: 1};
-mappages["twistoffate1"].npcs[20] = {name : 'EttinNPC', x : 12, y : 32, skintone: 1};
-mappages["twistoffate1"].npcs[21] = {name : 'EttinNPC', x : 9, y : 25, skintone: 1};
-mappages["twistoffate1"].npcs[22] = {name : 'EttinNPC', x : 13, y : 16, skintone: 1};
+mappages["twistoffate1"].npcs[13] = {name : 'CyclopsNPC', x : 33, y : 21, skintone: 1};
+mappages["twistoffate1"].npcs[14] = {name : 'ReaperNPC', x : 21, y : 41, skintone: 1};
+mappages["twistoffate1"].npcs[15] = {name : 'GiantBatNPC', x : 32, y : 33, skintone: 1};
+mappages["twistoffate1"].npcs[16] = {name : 'GiantBatNPC', x : 35, y : 30, skintone: 1};
+mappages["twistoffate1"].npcs[17] = {name : 'EttinNPC', x : 19, y : 35, skintone: 1};
+mappages["twistoffate1"].npcs[18] = {name : 'EttinNPC', x : 12, y : 32, skintone: 1};
+mappages["twistoffate1"].npcs[19] = {name : 'EttinNPC', x : 9, y : 25, skintone: 1};
+mappages["twistoffate1"].npcs[20] = {name : 'EttinNPC', x : 13, y : 16, skintone: 1};
 
 mappages["twistoffate1"].desc = "Twist of Fate (L1)";
 mappages["twistoffate1"].longdesc = ``;
@@ -126,6 +124,18 @@ mappages["twistoffate1"].onload = function(mapref) {
     let freq = 30 + Dice.roll("1d20");
     spawn.setSpawnFreq(freq);
   
+    let npc = mapref.npcs.getAll();
+    let scount = 0;
+    for (let i=0;i<npc.length;i++) {
+      if (scount < 10) {
+        if (npc[i].getName() === "GremlinNPC") {
+          spawn.addSpawned(npc[i]);
+          npc[i].setSpawnedBy(spawn);
+          scount++;
+        }
+      }
+    }
+
     mapref.placeThing(31,18,spawn);
 
     spawn = localFactory.createTile("Spawner");
@@ -137,6 +147,18 @@ mappages["twistoffate1"].onload = function(mapref) {
 
     freq = 90 + Dice.roll("1d20");
     spawn.setSpawnFreq(freq);
+
+    let monster = mapref.getTile(19,35).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    monster = mapref.getTile(12,32).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    monster = mapref.getTile(9,25).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
   
     mapref.placeThing(19,10,spawn);
 
