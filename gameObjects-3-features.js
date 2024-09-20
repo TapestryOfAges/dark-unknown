@@ -9148,8 +9148,11 @@ SpawnerTile.prototype.setSpawngroup = function(newgroup) {
 }
 
 SpawnerTile.prototype.pickSpawn = function() {
-  let spindex = Math.floor(Math.random() * this.getSpawngroup().length);
+//  let spindex = Math.floor(Math.random() * this.getSpawngroup().length);
   let spawns= this.getSpawngroup();
+  let spindex = Dice.roll("1d"+spawns.length+"-1");
+  console.log(spawns);
+  console.log(spawns[spindex]);
   return spawns[spindex];
 }
 
@@ -10056,13 +10059,13 @@ function MetalTwisterLeverTile() {
 MetalTwisterLeverTile.prototype = new FeatureObject();
   
 MetalTwisterLeverTile.prototype.use = function(user) {
-  let level3 = maps.getMap("metaltwister3");
-  let level2 = maps.getMap("metaltwister2");
+  let level3 = maps.getMap("twistoffate3");
+  let level2 = maps.getMap("twistoffate2");
   let retval = {};
   DUPlaySound("sfx_small_lever");
   if (!level2) {  // somehow level 2 is not in memory. Load it.
     let otherlevel = new GameMap();
-    otherlevel = maps.addMap("metaltwister2");
+    otherlevel = maps.addMap("twistoffate2");
     level2 = otherlevel;
   }
   if (this.spritexoffset === -8*32) {  // This switch hasn't been thrown
@@ -10073,12 +10076,12 @@ MetalTwisterLeverTile.prototype.use = function(user) {
     let floor3features = level3.features.getAll();
     let ports = [];
     for (let i=0; i<floor3features.length; i++) {
-      if (floor3features[i].getName() == "LeverOff") {
+      if (floor3features[i].getName() === "MetalTwisterLever") {
         if (floor3features[i].spritexoffset === -8*32) {
           checkboth = 0;
         }
       }
-      if (floor3features[i].getName() == "StonePortcullis") {
+      if (floor3features[i].getName() === "StonePortcullis") {
         ports[ports.length] = floor3features[i];
       }
     }
@@ -15153,7 +15156,7 @@ PurplePotionTile.prototype.use = function(who) {
   DU.gameflags.setFlag("knowspurplepotion",1)
   DUPlaySound("sfx_potion");
   let retval = {fin:1};
-  retval = magic[SPELL_PROTECT_LEVEL][SPELL_PROTECT_ID].executeSpell(PC, 0, 2);
+  retval = magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].executeSpell(PC, 0, 2);
   retval["txt"] = "Gulp!<br />You feel an aura of protection around you.";
   DrawCharFrame();
   return retval;
