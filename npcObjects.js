@@ -1866,6 +1866,53 @@ function FighterNPCTile() {
 FighterNPCTile.prototype = new NPCHumanObject();
 
 
+// Animal
+
+function GremlinNPCTile() {
+  this.name = 'GremlinNPC';
+  this.level = 2;
+  this.addhp = -5;
+  this.str = 10;
+  this.dex = 15;
+  this.int = 6;
+  this.alignment = 'Neutral';
+  this.attitude = 'hostile';
+  this.peaceAI = 'seekPC-10';
+  this.forgetAt = 10;
+  this.withdraw = 0;
+  this.meleeAttackAs = 'none';
+  this.meleeDamage = '2d4+1'
+  this.meleeStrDamage = .5
+  this.missileAttackAs = 'none';
+  this.armorAs = 'LeatherArmor';
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'Blood';
+  this.lootTable = 'Gremlin';
+  this.prefix = 'a';
+  this.desc = "gremlin";
+  this.onHit = 'stealfood';
+  this.meleeChance = 100;
+  this.resists = {};
+  this.special = 'breedsexplosively';
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeAttackSound = 'sfx_animal_miss';
+  this.graphic = 'static.gif';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -145 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+}
+GremlinNPCTile.prototype = new NPCObject();
+
+
 // Monster
 
 function ImpNPCTile() {
@@ -2619,53 +2666,6 @@ function GiantSpiderNPCTile() {
   });
 }
 GiantSpiderNPCTile.prototype = new NPCObject();
-
-
-// Animal
-
-function GremlinNPCTile() {
-  this.name = 'GremlinNPC';
-  this.level = 3;
-  this.addhp = -5;
-  this.str = 10;
-  this.dex = 15;
-  this.int = 6;
-  this.alignment = 'Neutral';
-  this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-10';
-  this.forgetAt = 10;
-  this.withdraw = 0;
-  this.meleeAttackAs = 'none';
-  this.meleeDamage = '2d4+1'
-  this.meleeStrDamage = .5
-  this.missileAttackAs = 'none';
-  this.armorAs = 'LeatherArmor';
-  this.movetype = MOVE_WALK;
-  this.leavesCorpse = 'Blood';
-  this.lootTable = 'Gremlin';
-  this.prefix = 'a';
-  this.desc = "gremlin";
-  this.onHit = 'stealfood';
-  this.meleeChance = 100;
-  this.resists = {};
-  this.special = 'breedsexplosively';
-  this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeAttackSound = 'sfx_animal_miss';
-  this.graphic = 'static.gif';
-  this.spritexoffset = 0 * 32;
-  this.spriteyoffset = -145 * 32;
-
-  ManualAnimation.call(this, { 
-    animstart: 0*32,
-    animlength: 5,
-    animstyle: "random",
-    allowrepeat: 0,
-    framedurationmin: 240,
-    framedurationmax: 340,
-    startframe: "random"
-  });
-}
-GremlinNPCTile.prototype = new NPCObject();
 
 
 // CorruptTownsfolk
@@ -3628,7 +3628,7 @@ LurkerNPCTile.prototype = new NPCObject();
 function OrcCaptainNPCTile() {
   this.name = 'OrcCaptainNPC';
   this.level = 4;
-  this.addhp = 10;
+  this.addhp = 0;
   this.str = 17;
   this.dex = 13;
   this.int = 9;
@@ -3638,7 +3638,7 @@ function OrcCaptainNPCTile() {
   this.forgetAt = 10;
   this.withdraw = 0;
   this.meleeAttackAs = 'none';
-  this.meleeDamage = '4d4+9'
+  this.meleeDamage = '4d4+7'
   this.meleeStrDamage = .66
   this.missileAttackAs = 'none';
   this.missileDamage = '1d12+1'
@@ -4123,7 +4123,7 @@ CultistNPCTile.prototype = new NPCHumanObject();
 function GazerNPCTile() {
   this.name = 'GazerNPC';
   this.level = 5;
-  this.addhp = -5;
+  this.addhp = -10;
   this.str = 8;
   this.dex = 15;
   this.int = 16;
@@ -4145,7 +4145,7 @@ function GazerNPCTile() {
   this.meleeChance = 20;
   this.spellsknown = { attack: 1, };
   this.resists = {};
-  this.special = 'sleep, ondeathInsects, ruthless';
+  this.special = 'sleep, ruthless';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
   this.graphic = 'static.gif';
