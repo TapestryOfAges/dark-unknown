@@ -2844,15 +2844,44 @@ ais.ai_teleport = function(who) {
 }
 
 function AnnounceSpellcast(spellname,caster,target) {
+  if ((GetDistanceFromPerson(PC,caster.getx(),caster.gety(),"square") > 9) && (!target || (GetDistanceFromPerson(PC,target.getx(),target.gety(),"square") > 9))) {
+//    console.log("Caster (and target) too far from player.");
+    return ""; 
+  }
+
   let txt;
+
+  let casterdesc = caster.getFullDesc();
+  let canseecaster = IsVisibleOnScreen(caster.getx(),caster.gety());
+  if (!canseecaster) { casterdesc = "something"; }
+  let targetdesc;
+  let canseetarget;
+  if (target) { 
+    targetdesc = target.getFullDesc(); 
+    canseetarget = IsVisibleOnScreen(target.getx(),target.gety());
+    if (!canseetarget) { targetdesc = "something"; }
+  }
+
   if (target) {
     if (target === caster) {
-      txt = `${caster.getFullDesc()} casts ${spellname} on ${caster.getGenderedTerms().reflexive}.`;
+      if (canseecaster) {
+        txt = `${casterdesc} casts ${spellname} on ${caster.getGenderedTerms().reflexive}.`;
+      } else {
+        txt = `Something casts a spell.`;
+      }
     } else {
-      txt = `${caster.getFullDesc()} casts ${spellname} on ${target.getFullDesc()}.`;
+      if (canseecaster || canseetarget) {
+        txt = `${caster.getFullDesc()} casts ${spellname} on ${target.getFullDesc()}.`;
+      } else {
+        txt = `Something casts a spell.`;
+      }
     }
   } else {
-    txt = `${caster.getFullDesc()} casts ${spellname}.`;
+    if (canseecaster) {
+      txt = `${caster.getFullDesc()} casts ${spellname}.`;
+    } else {
+      txt = `Something casts a spell.`;
+    }
   }
   txt = txt.charAt(0).toUpperCase() + txt.slice(1);
   maintext.addText(txt);
@@ -2940,7 +2969,7 @@ ais.ai_breed = function(who) {
 }
 
 ais.ai_sleep = function(who) {
-  console.log("In ai_sleep");
+//  console.log("In ai_sleep");
   let themap = who.getHomeMap();
   let npcs = themap.npcs.getAll();
   let sleeptargets = [];
