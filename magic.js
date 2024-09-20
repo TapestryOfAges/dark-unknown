@@ -866,7 +866,7 @@ function PerformIllusion(caster, infused, free, tgt) {
   if (free) { duration = Dice.roll("1d6+12"); }
   duration = duration*2*SCALE_TIME;
   illusion.expiresTime = DUTime.getGameClock() + duration;  // illusion AI needs to check expiresTime and go poof if it is reached
-  illusion.spawnedBy = caster; 
+  illusion.summonedby = caster; 
   illusion.summoned = 1;
   caster.getHomeMap().placeThing(tgt.x,tgt.y,illusion);
   DrawMainFrame("one",caster.getHomeMap(),illusion.getx(),illusion.gety());
@@ -1097,7 +1097,7 @@ function PerformMagicBolt(caster, infused, free, tgt) {
   }
     
   tgt = newtgt;
-  if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
+  if ((caster === PC) && (multitargets[0].def.getAttitude() === "friendly")) {
     TurnMapHostile(caster.getHomeMap());
   }
   tgt.setHitBySpell(caster,SPELL_MAGIC_BOLT_LEVEL);
@@ -1426,14 +1426,18 @@ magic[SPELL_DISPEL_LEVEL][SPELL_DISPEL_ID].executeSpell = function(caster, infus
     let chance = 100 - 5*lvl;
     if (infused) { chance += 200; }
     if (Dice.roll("1d100") <= chance) {
-      maintext.addText("You dispel " + dispellables[idx].getDesc() + "!");
+      if (caster === PC) {
+        maintext.addText("You dispel " + dispellables[idx].getDesc() + "!");
+      }
       dispellables[idx].endEffect();
       dispelled = 1;
-    } else {
+    } else if (caster === PC) {
       maintext.addText("You attempt to dispel " + dispellables[idx].getDesc() + ", but it fails.");
     }
   } else {
-    maintext.addText("There are no effects upon you that can be dispelled.");
+    if (caster === PC) {
+      maintext.addText("There are no effects upon you that can be dispelled.");
+    }
   }
   if (dispelled) { PlayCastSound(caster,"sfx_buff"); }
   else { PlayCastSound(caster); }
@@ -1659,7 +1663,7 @@ function PerformFireball(caster, infused, free, tgt) {
     
   tgt = newtgt;
   tgt.setHitBySpell(caster,SPELL_FIREBALL_LEVEL);
-  if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
+  if ((caster === PC) && (multitargets[0].def.getAttitude() === "friendly")) {
     TurnMapHostile(caster.getHomeMap());
   }
 
@@ -2514,7 +2518,7 @@ function PerformIceball(caster, infused, free, tgt) {
     
   tgt = newtgt;
   tgt.setHitBySpell(caster,SPELL_ICEBALL_LEVEL);
-  if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
+  if ((caster === PC) && (multitargets[0].def.getAttitude() === "friendly")) {
     TurnMapHostile(caster.getHomeMap());
   }
 
@@ -2633,6 +2637,7 @@ function PerformLifeDrain(caster, infused, free, tgt) {
     return resp;
   }
 
+  let origtgt = tgt;
   let newtgt = CheckMirrorWard(tgt, caster);
   while (newtgt !== tgt) {
     ShowEffect(tgt, 1000, "static.gif", MIRROR_SPLAT_X,MIRROR_SPLAT_Y);
@@ -2644,7 +2649,7 @@ function PerformLifeDrain(caster, infused, free, tgt) {
 
   tgt = newtgt;
   tgt.setHitBySpell(caster,SPELL_LIFE_DRAIN_LEVEL);
-  if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
+  if ((caster === PC) && (origtgt.getAttitude() === "friendly")) {
     TurnMapHostile(caster.getHomeMap());
   }
 
@@ -3235,7 +3240,7 @@ function PerformSummonAlly(caster, infused, free, tgt) {
   } else {
     eletype = "Minor" + eletype;
   }
-  ally.spawnedBy = caster;
+  ally.summonedby = caster;
   ally.summoned = 1;
   if ((caster === PC) || (caster.getAttitude() === "friendly")) {
     ally.setAttitude("friendly");
@@ -3312,6 +3317,7 @@ function PerformSwordstrike(caster, infused, free, tgt) {
     return resp;
   }
 
+  let origtgt = tgt;
   let newtgt = CheckMirrorWard(tgt, caster);
   while (newtgt !== tgt) {
     ShowEffect(tgt, 1000, "static.gif", MIRROR_SPLAT_X,MIRROR_SPLAT_Y);
@@ -3323,7 +3329,7 @@ function PerformSwordstrike(caster, infused, free, tgt) {
     
   tgt = newtgt;
   let hostile = 0;
-  if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
+  if ((caster === PC) && (origtgt.getAttitude() === "friendly")) {
     TurnMapHostile(castmap);
     hostile = 1;
   }
@@ -4654,7 +4660,8 @@ function PerformMindBlast(caster, infused, free, tgt) {
     resp["txt"] = "You cast the spell, but nothing seems to happen.";
     return resp;
   }
-  
+
+  let origtgt = tgt;
   let newtgt = CheckMirrorWard(tgt, caster);
   while (newtgt !== tgt) {
     ShowEffect(tgt, 1000, "static.gif", MIRROR_SPLAT_X,MIRROR_SPLAT_Y);
@@ -4666,7 +4673,7 @@ function PerformMindBlast(caster, infused, free, tgt) {
     
   tgt = newtgt;
   tgt.setHitBySpell(caster,SPELL_MIND_BLAST_LEVEL);
-  if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
+  if ((caster === PC) && (origtgt.getAttitude() === "friendly")) {
     TurnMapHostile(caster.getHomeMap());
   }
   let power = caster.getIntForPower();
@@ -4970,7 +4977,7 @@ function PerformArrowOfGlass(caster, infused, free, tgt) {
     
   tgt = newtgt;
   tgt.setHitBySpell(caster,SPELL_ARROW_OF_GLASS_LEVEL);
-  if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
+  if ((caster === PC) && (multitargets[0].def.getAttitude() === "friendly")) {
     TurnMapHostile(caster.getHomeMap());
   }
   let power = caster.getIntForPower();
@@ -5136,7 +5143,7 @@ function PerformConjureDaemon(caster, infused, free, tgt) {
     ally.setLevel(ally.getLevel()+1);
     duration = duration* 1.5; 
   }
-  ally.spawnedBy = caster;
+  ally.summonedby = caster;
   ally.summoned = 1;
   ally.expiresTime = DUTime.getGameClock() + duration;  // AI needs to check expiresTime and go poof if it is reached
   caster.getHomeMap().placeThing(tgt.x,tgt.y,ally);
