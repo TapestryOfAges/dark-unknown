@@ -213,8 +213,12 @@ function FinishAnimation(param) {
       }
     }
     if ((param.atk === PC) && param.atk.dead) { endturn = 0; }
-  } 
-  maintext.addText(retval["txt"]);
+  } else {
+    if (retval["txt"] === "You") { retval["txt"] = ""; } 
+  }
+  if (retval["txt"]) {
+    maintext.addText(retval["txt"]);
+  }
   if (targetCursor.sayAfterAttack) {
     maintext.addText(targetCursor.sayAfterAttack);
     delete targetCursor.sayAfterAttack;
