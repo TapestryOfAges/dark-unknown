@@ -9151,8 +9151,8 @@ SpawnerTile.prototype.pickSpawn = function() {
 //  let spindex = Math.floor(Math.random() * this.getSpawngroup().length);
   let spawns= this.getSpawngroup();
   let spindex = Dice.roll("1d"+spawns.length+"-1");
-  console.log(spawns);
-  console.log(spawns[spindex]);
+//  console.log(spawns);
+//  console.log(spawns[spindex]);
   return spawns[spindex];
 }
 
@@ -10089,6 +10089,9 @@ MetalTwisterLeverTile.prototype.use = function(user) {
       for (let i=0; i<ports.length; i++) {
         ports[i].unlockMe();
         ports[i].use(user);
+        if (ports[i].getHomeMap() === PC.getHomeMap()) {
+          DrawMainFrame("one",PC.getHomeMap(),ports[i].getx(),ports[i].gety());
+        }
       }
       let floor2features = level2.features.getAll();
       for (let i=0; i<floor2features.length; i++) {
@@ -12535,15 +12538,6 @@ function StoneOfConflagrationsTile() {
   this.prefix = "the";
   this.longdesc = "The Stone of Conflagrations. It has an aura of fiery power.";
   this.addType("Quest");
-
-  ManualAnimation.call(this, { animstart: 0,
-    animlength: 5,
-    animstyle: "random",
-    allowrepeat: 0,
-    framedurationmin: 150,
-    framedurationmax: 300,
-    startframe: "random"
-  });
 
 }
 StoneOfConflagrationsTile.prototype = new ItemObject();
