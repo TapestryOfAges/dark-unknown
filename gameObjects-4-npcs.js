@@ -556,6 +556,7 @@ NPCObject.prototype.processDeath = function(droploot){
     if (this.summonedby) {
       delete this.summonedby.summoned;
       delete this.summonedby;
+      delete this.spawnedBy;
     }
     if (this.summoned) {
       delete this.summoned.summonedby;
