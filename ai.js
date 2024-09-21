@@ -95,6 +95,9 @@ ais.combat = function(who) {
       return retval; 
     } 
   }
+  let nomeleeenemy = 0;
+  if (!nearest) { nomeleeenemy = 1; }
+
   if (!nearest && whomap.pathGrid[MOVE_WALK_LOE]) {
     nearest = FindNearestNPC(who, "enemy", null, 0, MOVE_WALK_LOE);
   }
@@ -131,7 +134,7 @@ ais.combat = function(who) {
     who.specials.canbebrave = 1; // things that start out as cowards can't decide to stop being cowards
   }
   
-  if (!who.specials.stationary && (who.specials.coward || ((Dice.roll("1d100") < who.withdraw) && IsAdjacent(who,nearest)))) {
+  if (!who.specials.stationary && (who.specials.coward || (nomeleeenemy && (who.getHP() < who.getMaxHP()) && (who.meleeChance === 100)) ||  ((Dice.roll("1d100") < who.withdraw) && IsAdjacent(who,nearest)))) {
     if (who.specials.coward) {
       // run away! run away!
       DebugWrite("ai", "Running away!<br />");
@@ -173,7 +176,7 @@ ais.combat = function(who) {
         return retval;
       }
     } else {
-      let trymove = StepOrSidestep(who,pathdest,rundest);
+      let trymove = StepOrSidestep(who,pathdest,rundest,0,"nodanger");
     }
     
     if (who.specials.canbebrave && (Dice.roll("1d8") === 1)) {
@@ -201,12 +204,12 @@ ais.combat = function(who) {
     DebugWrite("ai", "In special/missile<br />");
     let nonmeleeoptions = [];
     if (who.getMissile()) { nonmeleeoptions.push("ai_missile"); }   
-    if (who.spellsknown) { nonmeleeoptions.push("ai_cast"); }  // needs work
+    if (who.spellsknown) { nonmeleeoptions.push("ai_cast"); }  
     if (who.specials.sing) { nonmeleeoptions.push("ai_sing"); }
     if (who.specials.firebreath) { nonmeleeoptions.push("ai_firebreath"); }  
     if (who.specials.icebreath) { nonmeleeoptions.push("ai_icebreath"); }  
     if (who.specials.whirlpool) { nonmeleeoptions.push("ai_whirlpool"); }  
-    if (who.specials.breedsexplosively) { nonmeleeoptions.push("ai_breed"); }
+    if (who.specials.breedsexplosively && who.fed) { nonmeleeoptions.push("ai_breed"); }
     if (who.specials.animalhandler) { nonmeleeoptions.push("ai_handle"); }  
     if (who.specials.spitter) { nonmeleeoptions.push("ai_spit"); }  
     if (who.specials.lbolt) { nonmeleeoptions.push("ai_lbolt"); }  
@@ -2403,7 +2406,7 @@ ais.ai_cast = function(who) {
     }
   }
   if (who.spellsknown.summon) {
-    if (((enemylevel > .5*alliedlevel) || !who.summoned) && (who.getMana() >= 2) && (who.getLevel() >= 2)  && (enemies.length > 0)) { 
+    if (((enemylevel > .5*alliedlevel) || !who.eversummoned) && (who.getMana() >= 2) && (who.getLevel() >= 2)  && (enemies.length > 0)) { 
       DebugWrite("Either enemy level is over half of allied level, or I just haven't summoned anything yet; adding SUMMON to the list."); 
       choices.push("summon"); 
     }
@@ -2573,7 +2576,7 @@ ais.ai_cast = function(who) {
             AnnounceSpellcast("Summon Daemon",who);
             magic[SPELL_CONJURE_DAEMON_LEVEL][SPELL_CONJURE_DAEMON_ID].executeSpell(who,0,0,tgt);
           }
-          who.summoned = 1;
+          who.eversummoned = 1;
         }
       }
     } else if (choices[dr] === "controlenemies") {
@@ -3018,6 +3021,7 @@ ais.ai_handle = function(who) {
       let animal = localFactory.createTile("PythonNPC");
       who.summoned = animal;
       animal.summonedby = who;
+      animal.spawnedBy = who;
       who.getHomeMap().placeThing(coord[0],coord[1],animal);
     } else {return "special";}
   }
@@ -3033,6 +3037,7 @@ ais.ai_summonearthelemental = function(who) {
       who.eversummoned = 1;
       who.summoned = elem;
       elem.summonedby = who;
+      elem.spawnedBy = who;
       who.getHomeMap().placeThing(coord[0],coord[1],elem);
     } else {return;}
   }
