@@ -1871,7 +1871,7 @@ FighterNPCTile.prototype = new NPCHumanObject();
 function GremlinNPCTile() {
   this.name = 'GremlinNPC';
   this.level = 2;
-  this.addhp = -5;
+  this.addhp = 0;
   this.str = 10;
   this.dex = 15;
   this.int = 6;
@@ -1891,7 +1891,7 @@ function GremlinNPCTile() {
   this.prefix = 'a';
   this.desc = "gremlin";
   this.onHit = 'stealfood';
-  this.meleeChance = 100;
+  this.meleeChance = 50;
   this.resists = {};
   this.special = 'breedsexplosively';
   this.meleeHitSound = 'sfx_animal_hit';
