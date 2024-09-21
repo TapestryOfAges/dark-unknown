@@ -164,7 +164,7 @@ function TurnMapHostile(map) {
   let localnpcs = map.npcs.getAll();
   for (let idx=0;idx<localnpcs.length;idx++) {
     let val = localnpcs[idx];
-    if ((val.getAttitude() === "friendly") && (!val.summonedby)) {
+    if ((val.getAttitude() === "friendly") && (!val.summoned)) {
       val.setAttitude("hostile");
       val.setAggro(1);
       DebugWrite("combat", val.getName() + " (serial: " + val.getSerial() + ") turns hostile!<br />");
@@ -589,10 +589,11 @@ function SetBandAggro(band, map) {
   }
 }
 
-function StepOrDoor(who, where, nopush) {
+function StepOrDoor(who, where, nopush, nodanger) {
   let whomap = who.getHomeMap();
   let tile = whomap.getTile(where[0],where[1]);
   if (tile !== "OoB") {
+    if (nodanger && tile.isHostileTo(who)) { return {canmove: 0 }; }
     let fea = tile.getTopFeature();
     if (fea && !(MOVE_WALK & fea.getPassable()) && who.specials["open_door"] && ((who.currentActivity !== "WaitHere") || (who.getCurrentAI() !== "scheduled"))) {
       // if there is a feature, that blocks movement, while I can open doors and am not randomwalking
@@ -647,9 +648,9 @@ function StepOrDoor(who, where, nopush) {
   return {canmove: 0 };
 }
 
-function StepOrSidestep(who, path, finaldest, nopush) {
+function StepOrSidestep(who, path, finaldest, nopush, nodanger) {
   DebugWrite("ai", "In StepOrSideStep...");
-  let moved = StepOrDoor(who,path,nopush);
+  let moved = StepOrDoor(who,path,nopush, nodanger);
   if (!moved["canmove"] && !moved["opendoor"]) {
     DebugWrite("ai", " !canmove and !opendoor, trying here.");
 
