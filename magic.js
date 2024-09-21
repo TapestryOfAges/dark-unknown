@@ -867,6 +867,7 @@ function PerformIllusion(caster, infused, free, tgt) {
   duration = duration*2*SCALE_TIME;
   illusion.expiresTime = DUTime.getGameClock() + duration;  // illusion AI needs to check expiresTime and go poof if it is reached
   illusion.summonedby = caster; 
+  illusion.spawnedBy = caster;
   illusion.summoned = 1;
   caster.getHomeMap().placeThing(tgt.x,tgt.y,illusion);
   DrawMainFrame("one",caster.getHomeMap(),illusion.getx(),illusion.gety());
@@ -3241,6 +3242,7 @@ function PerformSummonAlly(caster, infused, free, tgt) {
     eletype = "Minor" + eletype;
   }
   ally.summonedby = caster;
+  ally.spawnedBy = caster;
   ally.summoned = 1;
   if ((caster === PC) || (caster.getAttitude() === "friendly")) {
     ally.setAttitude("friendly");
@@ -5144,6 +5146,7 @@ function PerformConjureDaemon(caster, infused, free, tgt) {
     duration = duration* 1.5; 
   }
   ally.summonedby = caster;
+  ally.spawnedBy = caster;
   ally.summoned = 1;
   ally.expiresTime = DUTime.getGameClock() + duration;  // AI needs to check expiresTime and go poof if it is reached
   caster.getHomeMap().placeThing(tgt.x,tgt.y,ally);
