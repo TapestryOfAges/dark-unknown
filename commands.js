@@ -1544,6 +1544,16 @@ function PerformGet(who, getitem) {
   if (!getitem) {
     let localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
     getitem = localacre.features.getTop();
+    if (getitem && !getitem.checkType("Item")) {
+      let feas = localacre.features.getAll();
+      for (let i=feas.length-1;i>=0;i--) {
+        if (feas[i].checkType("Item")) {
+          getitem = feas[i];
+          break;
+        }
+      }
+    }
+  
   }
   let retval = { txt:"", fin:1};
   if (!getitem) {
