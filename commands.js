@@ -727,7 +727,12 @@ function PerformAttack(who) {
     retval["fin"] = 0;  
     retval["input"] = "&gt;";
     return retval;
-  }  
+  }  else if (!IsVisibleOnScreen(targetCursor.x, targetCursor.y)) {
+    retval["txt"] = "Attack: You cannot see that!";
+    retval["fin"] = 0;  
+    retval["input"] = "&gt;";
+    return retval;
+  }
   if (!atkwho) {  // nothing there
     let fea = localacre.features.getTop();
     if (fea && IsAdjacent(who,fea)) {
