@@ -4343,6 +4343,11 @@ tileFactory.prototype.makeYellowPotionTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeBurntUmberPotionTile = function() {
+  let newTile = new BurntUmberPotionTile();
+  return newTile;
+}
+
 tileFactory.prototype.makePurplePotionTile = function() {
   let newTile = new PurplePotionTile();
   return newTile;
@@ -5178,6 +5183,11 @@ tileFactory.prototype.makeFighterNPCTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeGremlinNPCTile = function() {
+  let newTile = new GremlinNPCTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeImpNPCTile = function() {
   let newTile = new ImpNPCTile();
   return newTile;
@@ -5250,11 +5260,6 @@ tileFactory.prototype.makeGhostNPCTile = function() {
 
 tileFactory.prototype.makeGiantSpiderNPCTile = function() {
   let newTile = new GiantSpiderNPCTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeGremlinNPCTile = function() {
-  let newTile = new GremlinNPCTile();
   return newTile;
 }
 
@@ -6040,6 +6045,11 @@ tileFactory.prototype.makeQuicknessTile = function() {
 
 tileFactory.prototype.makeReincarnateTile = function() {
   let newTile = new ReincarnateTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeResistMagicTile = function() {
+  let newTile = new ResistMagicTile();
   return newTile;
 }
 
