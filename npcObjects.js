@@ -1887,7 +1887,7 @@ function GremlinNPCTile() {
   this.armorAs = 'LeatherArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Blood';
-  this.lootTable = 'Gremlin';
+  this.lootTable = 'none';
   this.prefix = 'a';
   this.desc = "gremlin";
   this.onHit = 'stealfood';
