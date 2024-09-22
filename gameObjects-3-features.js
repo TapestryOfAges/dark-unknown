@@ -15125,6 +15125,43 @@ YellowPotionTile.prototype.use = function(who) {
   return retval;
 }
 
+// resist magic potion
+function BurntUmberPotionTile() {
+  // Graphics Upgraded
+  this.name = "BurntUmberPotion";
+  this.desc = "burnt umber potion";
+  this.prefix = "a";
+  this.graphic = "static.gif";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -55*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.usedesc = "Drink it.";
+}
+BurntUmberPotionTile.prototype = new PotionItemObject();
+
+BurntUmberPotionTile.prototype.getLongDesc = function() {
+  if (DU.gameflags.getFlag("knowsburntumberpotion")) {
+    return "A Resist Magic potion.";
+  }
+  return "A burnt umber potion.";
+}
+
+BurntUmberPotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowsburntumberpotion",1);
+  DUPlaySound("sfx_potion");
+  let retval = {fin:1};
+  let mr = localFactory.createTile("ResistMagic");
+  let duration = 45 * SCALE_TIME;
+  let endtime = duration + DUTime.getGameClock();
+  ShowEffect(who, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+  mr.setExpiresTime(endtime);
+  who.addSpellEffect(mr);
+  retval["txt"] = "Gulp!<br />You are more resistant to magic.";
+  DrawCharFrame();
+  return retval;
+
+}
+
 // protect potion
 function PurplePotionTile() {
   //Graphics Upgraded
@@ -15147,7 +15184,7 @@ PurplePotionTile.prototype.getLongDesc = function() {
 }
 
 PurplePotionTile.prototype.use = function(who) {
-  DU.gameflags.setFlag("knowspurplepotion",1)
+  DU.gameflags.setFlag("knowspurplepotion",1);
   DUPlaySound("sfx_potion");
   let retval = {fin:1};
   retval = magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].executeSpell(PC, 0, 2);
