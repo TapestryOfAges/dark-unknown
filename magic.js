@@ -78,7 +78,7 @@ SpellObject.prototype.getManaCost = function(infuse) {
 }
 
 function CheckResist (caster, tgt, infused, diffmod) {
-  // Base chance, + bonus from armor
+  // Base chance, + bonus from armor + bonus from potions
   // caster and target level each modify by 5% either way
   // 15% harder to resist if infused
   // caster having super-high Int (>20) makes spell 10% harder to resist
@@ -3835,8 +3835,8 @@ function EmpowerReagentCommands(cmd) {
 
 // Explosion
 magic[SPELL_EXPLOSION_LEVEL][SPELL_EXPLOSION_ID].getLongDesc = function() {
-  let mindam = Dice.rollmin(DMG_MEDIUM) + Dice.rollmin(DMG_LIGHT);
-  let maxdam = Dice.rollmax(DMG_MEDIUM) + Dice.rollmax(DMG_LIGHT);
+  let mindam = Dice.rollmin(DMG_MEDIUM) + Dice.rollmin(DMG_LIGHT) + Math.floor(PC.getIntForPower() * .66);
+  let maxdam = Dice.rollmax(DMG_MEDIUM) + Dice.rollmax(DMG_LIGHT) + Math.floor(PC.getIntForPower() * .66);
   return "Deals " + mindam + "-" + maxdam + " fire damage to target space and all adjacent spaces. Half damage if resisted.";
 }
 
@@ -3892,6 +3892,8 @@ function PerformExplosion(caster, infused, free, tgt) {
 //  }
 
   let dmg = RollDamage(DMG_MEDIUM,DMG_LIGHT);
+  let cint = caster.getIntForPower();
+  dmg += Math.floor(cint * .66);
   if (infused) {
     dmg = dmg * 1.5;
   }

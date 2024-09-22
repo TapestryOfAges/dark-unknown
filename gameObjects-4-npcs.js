@@ -2023,14 +2023,22 @@ NPCObject.prototype.getResist = function(resisttype) {
       return (armor.getAbsorb());
     }
   }
+  let magicbonus = 0;
   if (resisttype === "magic") {
+    let mr = this.getSpellEffectsByName("ResistMagic");
+    if (mr) {
+      magicbonus = mr.getPower();
+    }
     let armor = this.getEquipment("armor");
     if (armor) {
-      return (armor.getResist());
+      return (armor.getResist() + magicbonus);
     }
   }    
   
   if (this.resists[resisttype]) {
+    if (resisttype === "magic") {
+      return (this.resists[resisttype] + magicbonus);
+    }
     return this.resists[resisttype];
   } 
   return 0;
