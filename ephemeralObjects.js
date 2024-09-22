@@ -735,10 +735,10 @@ EntangleTile.prototype.endEffect = function(silent) {
 
 function EtherealVisionTile() {
   this.addType("buff");
-  this.name = "Telepathy";
+  this.name = "EtherealVision";
   this.display = "<span style='color:white'>E</span>";
   this.zstatdesc = "You can detect nearby minds.";
-  this.desc = "Telepathy";
+  this.desc = "Ethereal Vision";
   this.level = 3;
 }
 EtherealVisionTile.prototype = new EphemeralObject();
@@ -748,6 +748,9 @@ EtherealVisionTile.prototype.applyEffect = function(silent) {
   if (who) {
     if ((who === PC) && !silent) {
       maintext.addText("Your mind expands.");
+    }
+    if (who === PC) {
+      DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
     }
   }
   return 1;
@@ -760,6 +763,9 @@ EtherealVisionTile.prototype.endEffect = function(silent) {
     maintext.addText("Your mind contracts.");
   }
   DrawCharFrame();
+  if (who === PC) {
+    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+  }
   return -1;
 }
 
@@ -1339,6 +1345,30 @@ ReincarnateTile.prototype.endEffect = function(silent) {
     maintext.addText("You die... but before you fall, you revive. The Reincarnation spell protects you, and then fades.");
   }
   DrawCharFrame();  
+}
+
+function ResistMagicTile() {
+  this.addType("buff");
+  this.name = "ResistMagic";
+  this.display = "<span style='color:silver'>R</span>";
+  this.power = 35;
+  this.zstatdesc = "You are more resistant to magic.";
+  this.desc = "Resist Magic";
+  this.level = 1;
+}
+ResistMagicTile.prototype = new EphemeralObject();
+
+ResistMagicTile.prototype.applyEffect = function(silent) {
+  return 1;
+}
+
+ResistMagicTile.prototype.endEffect = function(silent) {
+  let who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+  if ((who === PC) && !silent) {
+    maintext.addText("You feel less resistant to magic.");
+  }
+  DrawCharFrame();
 }
 
 function RubyLightTile() {
