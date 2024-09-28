@@ -249,7 +249,7 @@ mappages["wildingcave"].npcs[1] = {name : 'TrollNPC', x : 26, y : 19, skintone: 
 mappages["wildingcave"].npcs[2] = {name : 'TrollNPC', x : 28, y : 21, skintone: '1'};
 mappages["wildingcave"].npcs[3] = {name : 'GiantSpiderNPC', x : 12, y : 29, skintone: '1'};
 mappages["wildingcave"].npcs[4] = {name : 'GiantSpiderNPC', x : 17, y : 31, skintone: '1'};
-mappages["wildingcave"].npcs[5] = {name : 'NixieNPC', x : 18, y : 21, skintone: '1'};
+mappages["wildingcave"].npcs[5] = {name : 'NixNPC', x : 18, y : 21, skintone: '1'};
 
 mappages["wildingcave"].desc = "Wilding Cave";
 mappages["wildingcave"].longdesc = '';

@@ -345,24 +345,24 @@ mappages["grotto2"].features[106] = {name : 'Chest', x : 81, y : 27, locked : 0,
 mappages["grotto2"].features[107] = {name : 'Chest', x : 78, y : 17, locked : 0, lootgroup : 'grotto'};
 
 mappages["grotto2"].npcs = [];
-mappages["grotto2"].npcs[0] = {name : 'NixieNPC', x : 43, y : 9, Gender: 'monster', NPCBand: '2', skintone: 1};
-mappages["grotto2"].npcs[1] = {name : 'NixieNPC', x : 44, y : 7, Gender: 'monster', NPCBand: '2', skintone: 1};
-mappages["grotto2"].npcs[2] = {name : 'NixieNPC', x : 47, y : 9, Gender: 'monster', NPCBand: '2', skintone: 1};
-mappages["grotto2"].npcs[3] = {name : 'NixieNPC', x : 49, y : 9, Gender: 'monster', NPCBand: '2', skintone: 1};
-mappages["grotto2"].npcs[4] = {name : 'NixieNPC', x : 47, y : 6, Gender: 'monster', NPCBand: '2', skintone: 1};
-mappages["grotto2"].npcs[5] = {name : 'NixieNPC', x : 40, y : 25, Gender: 'monster', NPCBand: '1', skintone: 1};
-mappages["grotto2"].npcs[6] = {name : 'NixieNPC', x : 42, y : 27, Gender: 'monster', NPCBand: '1', skintone: 1};
-mappages["grotto2"].npcs[7] = {name : 'NixieNPC', x : 73, y : 21, Gender: 'monster', NPCBand: '4', skintone: 1};
-mappages["grotto2"].npcs[8] = {name : 'NixieNPC', x : 79, y : 24, Gender: 'monster', NPCBand: '4', skintone: 1};
-mappages["grotto2"].npcs[9] = {name : 'NixieNPC', x : 79, y : 20, Gender: 'monster', NPCBand: '4', skintone: 1};
-mappages["grotto2"].npcs[10] = {name : 'DeepNixieNPC', x : 37, y : 27, Gender: 'monster', NPCBand: '1', skintone: 1};
-mappages["grotto2"].npcs[11] = {name : 'DeepNixieNPC', x : 39, y : 29, Gender: 'monster', NPCBand: '1', skintone: 1};
-mappages["grotto2"].npcs[12] = {name : 'DeepNixieNPC', x : 55, y : 33, skintone: 1};
-mappages["grotto2"].npcs[13] = {name : 'DeepNixieNPC', x : 77, y : 34, Gender: 'monster', NPCBand: '5', skintone: 1};
-mappages["grotto2"].npcs[14] = {name : 'DeepNixieNPC', x : 79, y : 35, Gender: 'monster', NPCBand: '5', skintone: 1};
-mappages["grotto2"].npcs[15] = {name : 'DeepNixieNPC', x : 77, y : 37, Gender: 'monster', NPCBand: '5', skintone: 1};
-mappages["grotto2"].npcs[16] = {name : 'DeepNixieNPC', x : 96, y : 23, skintone: 1};
-mappages["grotto2"].npcs[17] = {name : 'DeepNixieNPC', x : 94, y : 16, skintone: 1};
+mappages["grotto2"].npcs[0] = {name : 'NixNPC', x : 43, y : 9, Gender: 'monster', NPCBand: '2', skintone: 1};
+mappages["grotto2"].npcs[1] = {name : 'NixNPC', x : 44, y : 7, Gender: 'monster', NPCBand: '2', skintone: 1};
+mappages["grotto2"].npcs[2] = {name : 'NixNPC', x : 47, y : 9, Gender: 'monster', NPCBand: '2', skintone: 1};
+mappages["grotto2"].npcs[3] = {name : 'NixNPC', x : 49, y : 9, Gender: 'monster', NPCBand: '2', skintone: 1};
+mappages["grotto2"].npcs[4] = {name : 'NixNPC', x : 47, y : 6, Gender: 'monster', NPCBand: '2', skintone: 1};
+mappages["grotto2"].npcs[5] = {name : 'NixNPC', x : 40, y : 25, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["grotto2"].npcs[6] = {name : 'NixNPC', x : 42, y : 27, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["grotto2"].npcs[7] = {name : 'NixNPC', x : 73, y : 21, Gender: 'monster', NPCBand: '4', skintone: 1};
+mappages["grotto2"].npcs[8] = {name : 'NixNPC', x : 79, y : 24, Gender: 'monster', NPCBand: '4', skintone: 1};
+mappages["grotto2"].npcs[9] = {name : 'NixNPC', x : 79, y : 20, Gender: 'monster', NPCBand: '4', skintone: 1};
+mappages["grotto2"].npcs[10] = {name : 'DeepNixNPC', x : 37, y : 27, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["grotto2"].npcs[11] = {name : 'DeepNixNPC', x : 39, y : 29, Gender: 'monster', NPCBand: '1', skintone: 1};
+mappages["grotto2"].npcs[12] = {name : 'DeepNixNPC', x : 55, y : 33, skintone: 1};
+mappages["grotto2"].npcs[13] = {name : 'DeepNixNPC', x : 77, y : 34, Gender: 'monster', NPCBand: '5', skintone: 1};
+mappages["grotto2"].npcs[14] = {name : 'DeepNixNPC', x : 79, y : 35, Gender: 'monster', NPCBand: '5', skintone: 1};
+mappages["grotto2"].npcs[15] = {name : 'DeepNixNPC', x : 77, y : 37, Gender: 'monster', NPCBand: '5', skintone: 1};
+mappages["grotto2"].npcs[16] = {name : 'DeepNixNPC', x : 96, y : 23, skintone: 1};
+mappages["grotto2"].npcs[17] = {name : 'DeepNixNPC', x : 94, y : 16, skintone: 1};
 mappages["grotto2"].npcs[18] = {name : 'SeaSerpentNPC', x : 91, y : 18, skintone: 1};
 mappages["grotto2"].npcs[19] = {name : 'SeaSerpentNPC', x : 107, y : 25, skintone: 1};
 mappages["grotto2"].npcs[20] = {name : 'SeaSerpentNPC', x : 67, y : 14, Gender: 'monster', NPCBand: '3', skintone: 1};
@@ -404,7 +404,7 @@ mappages["grotto2"].editorLabels = '{}';
 mappages["grotto2"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     let spawn = localFactory.createTile("Spawner");
-    let spawngroup = ["NixieNPC","DeepNixieNPC"];
+    let spawngroup = ["NixNPC","DeepNixNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(5);
@@ -429,7 +429,7 @@ mappages["grotto2"].onload = function(mapref) {
 
 
     spawn = localFactory.createTile("Spawner");
-    spawngroup = ["DeepNixieNPC","SeaSerpentNPC"];
+    spawngroup = ["DeepNixNPC","SeaSerpentNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(4);
@@ -457,7 +457,7 @@ mappages["grotto2"].onload = function(mapref) {
     monster.setSpawnedBy(spawn);
 
     spawn = localFactory.createTile("Spawner");
-    spawngroup = ["DeepNixieNPC","KrakenNPC","SeaSerpentNPC"];
+    spawngroup = ["DeepNixNPC","KrakenNPC","SeaSerpentNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(2);
