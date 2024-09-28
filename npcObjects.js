@@ -2010,8 +2010,8 @@ PythonNPCTile.prototype = new NPCObject();
 
 // Monster
 
-function NixieNPCTile() {
-  this.name = 'NixieNPC';
+function NixNPCTile() {
+  this.name = 'NixNPC';
   this.level = 2;
   this.addhp = 0;
   this.str = 12;
@@ -2034,7 +2034,7 @@ function NixieNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'a';
-  this.desc = "nixie";
+  this.desc = "nix";
   this.meleeChance = 60;
   this.resists = {};
   this.meleeHitSound = 'sfx_melee_hit';
@@ -2055,7 +2055,7 @@ function NixieNPCTile() {
     startframe: "random"
   });
 }
-NixieNPCTile.prototype = new NPCObject();
+NixNPCTile.prototype = new NPCObject();
 
 
 // Monster
@@ -3336,8 +3336,8 @@ CyclopsNPCTile.prototype = new NPCObject();
 
 // Monster
 
-function DeepNixieNPCTile() {
-  this.name = 'DeepNixieNPC';
+function DeepNixNPCTile() {
+  this.name = 'DeepNixNPC';
   this.level = 4;
   this.addhp = 0;
   this.str = 17;
@@ -3357,7 +3357,7 @@ function DeepNixieNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'a';
-  this.desc = "deep nixie";
+  this.desc = "deep nix";
   this.meleeChance = 60;
   this.spellsknown = { attack: 1, buff: 1, };
   this.resists = {};
@@ -3377,7 +3377,7 @@ function DeepNixieNPCTile() {
     startframe: "random"
   });
 }
-DeepNixieNPCTile.prototype = new NPCObject();
+DeepNixNPCTile.prototype = new NPCObject();
 
 
 // Monster
@@ -4140,7 +4140,7 @@ function GazerNPCTile() {
   this.movetype = MOVE_FLY;
   this.leavesCorpse = 'none';
   this.lootTable = 'Gazer';
-  this.prefix = 'a';
+  this.prefix = 'an';
   this.desc = "gazer";
   this.meleeChance = 20;
   this.spellsknown = { attack: 1, };
@@ -7002,12 +7002,23 @@ function FireLizardGroupTile() {
   this.name = 'FireLizardGroup';
   this.desc = 'fire lizards';
   this.peaceAI = 'Monster-10';
-  this.graphic = '349.gif';
-  this.altgraphic = ['383.gif',];
   this.group = [];
   this.group[0] = new NPCList('FireLizardNPC', '1d5+1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'static.gif';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -151 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 FireLizardGroupTile.prototype = new NPCGroupObject();
 
@@ -7015,14 +7026,25 @@ function MagmaLizardGroupTile() {
   this.name = 'MagmaLizardGroup';
   this.desc = 'fire lizards';
   this.peaceAI = 'Monster-10';
-  this.graphic = '349.gif';
-  this.altgraphic = ['383.gif',];
   this.group = [];
   this.group[0] = new NPCList('MagmaLizardNPC', '1d4');
   this.group[1] = new NPCList('FireLizardNPC', '1d4+1');
   this.group[2] = new NPCList('FireElementalNPC', '1d2-1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
+  this.graphic = 'static.gif';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -154 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
 }
 MagmaLizardGroupTile.prototype = new NPCGroupObject();
 
