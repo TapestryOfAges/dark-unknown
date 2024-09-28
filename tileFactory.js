@@ -2773,6 +2773,11 @@ tileFactory.prototype.makeWalkOnTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makePeterWalkOnTile = function() {
+  let newTile = new PeterWalkOnTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWalkOnVault1Tile = function() {
   let newTile = new WalkOnVault1Tile();
   return newTile;
@@ -3868,8 +3873,8 @@ tileFactory.prototype.makeNightshadeTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeSulfurousAshTile = function() {
-  let newTile = new SulfurousAshTile();
+tileFactory.prototype.makeVolcanicAshTile = function() {
+  let newTile = new VolcanicAshTile();
   return newTile;
 }
 
@@ -5198,8 +5203,8 @@ tileFactory.prototype.makePythonNPCTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeNixieNPCTile = function() {
-  let newTile = new NixieNPCTile();
+tileFactory.prototype.makeNixNPCTile = function() {
+  let newTile = new NixNPCTile();
   return newTile;
 }
 
@@ -5333,8 +5338,8 @@ tileFactory.prototype.makeCyclopsNPCTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeDeepNixieNPCTile = function() {
-  let newTile = new DeepNixieNPCTile();
+tileFactory.prototype.makeDeepNixNPCTile = function() {
+  let newTile = new DeepNixNPCTile();
   return newTile;
 }
 
