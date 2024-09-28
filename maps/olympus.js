@@ -677,6 +677,7 @@ mappages["olympus1"].features[603] = {name : 'StreetLamp', x : 47, y : 53};
 mappages["olympus1"].features[604] = {name : 'StreetLamp', x : 51, y : 53};
 mappages["olympus1"].features[605] = {name : 'StreetLamp', x : 51, y : 44};
 mappages["olympus1"].features[606] = {name : 'StreetLamp', x : 47, y : 44};
+mappages["olympus1"].features[607] = {name : 'PeterWalkOn', x : 79, y : 39};
 
 
 mappages["olympus1"].npcs = [];
@@ -1490,6 +1491,13 @@ mappages["olympus1"].onload = function(mapref) {
     if (!DU.gameflags.getFlag("act2") || DU.gameflags.getFlag("guard_thief_talk")) {
       mapref.deleteThing(coll);
       DUTime.removeEntityFrom(coll);  
+    }
+
+    if (DU.gameflags.getFlag("guard_sent")) {
+      let coll2 = localFactory.createTile("TownGuardNPC");
+      coll2.setNPCName("Coll");
+      coll2.setConversation("coll2");
+      mapref.placeThing(76,38,coll2);    
     }
 
     if (!DU.gameflags.getFlag("act2") || DU.gameflags.getFlag("stolenjewelry_taken")) {
