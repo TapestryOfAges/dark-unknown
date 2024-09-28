@@ -18686,20 +18686,20 @@ function NightshadeTile() {
 }
 NightshadeTile.prototype = new ItemObject();
 
-function SulfurousAshTile() {
+function VolcanicAshTile() {
   //Graphics Upgraded
-  this.name = "SulfurousAsh";
+  this.name = "VolcanicAsh";
   this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -28*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
-  this.desc = "pile of sulfurous ash";
-  this.longdesc = "Sulfurous ash, found in a volcano. A useful reagent in certain magical rituals.";
+  this.desc = "pile of volcanic ash";
+  this.longdesc = "Volcanic ash, found in a volcano. A useful reagent in certain magical rituals.";
   this.addType("Reagent");
 }
-SulfurousAshTile.prototype = new ItemObject();
+VolcanicAshTile.prototype = new ItemObject();
 
 function MassOfHerbsTile() {
   //Graphics Upgraded
