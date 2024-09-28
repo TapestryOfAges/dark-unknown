@@ -2685,6 +2685,30 @@ function DrawStats(page) {
     let spanint = "<span>";
     if (PC.getInt() > PC.getBaseInt()) { spanint = '<span style="color:cyan">'; }
     if (PC.getInt() < PC.getBaseInt()) { spanint = '<span style="color:orange">'; }
+
+    let spanstrorb = "";
+    if (PC.getOrbStr()) { spanstrorb = ` + <span style="color:cyan">${PC.getOrbStr()}</span>`; }
+    let spandexorb = "";
+    if (PC.getOrbDex()) { spandexorb = ` + <span style="color:cyan">${PC.getOrbDex()}</span>`; }
+    let spanintorb = "";
+    if (PC.getOrbInt()) { spanintorb = ` + <span style="color:cyan">${PC.getOrbInt()}</span>`; }
+    
+    let spanstrmod = "";
+    if (PC.getModStr() < 0) { spanstrmod = ` + <span style="color:orange">${PC.getModStr()}</span>`; }
+    else if (PC.getModStr() > 0) { spanstrmod = ` + <span style="color:lightgreen">${PC.getModStr()}</span>`; }
+    let spandexmod = "";
+    if (PC.getModDex() < 0) { spandexmod = ` + <span style="color:orange">${PC.getModDex()}</span>`; }
+    else if (PC.getModDex() > 0) { spandexmod = ` + <span style="color:lightgreen">${PC.getModDex()}</span>`; }
+    let spanintmod = "<span>";
+    if (PC.getModInt() < 0) { spanintmod = ` + <span style="color:orange">${PC.getModInt()}</span>`; }
+    else if (PC.getModInt() > 0) { spanintmod = ` + <span style="color:lightgreen">${PC.getModInt()}</span>`; }
+    
+    let spanstrbase = "";
+    if (spanstrmod || spanstrorb) { spanstrbase = ` = ${PC.getBaseStr()}`; }
+    let spandexbase = "";
+    if (spandexmod || spandexorb) { spandexbase = ` = ${PC.getBaseDex()}`; }
+    let spanintbase = "";
+    if (spanintmod || spanintorb) { spanintbase = ` = ${PC.getBaseInt()}`; }
     
     statsdiv = "<div class='outerstats'><div id='zstat' class='zstats'>";
     statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black; margin-top: 8px'><tr>";
@@ -2693,8 +2717,8 @@ function DrawStats(page) {
     statsdiv += "<tr><td style='width:50%'>HP: " + PC.getDisplayHP() + "/" + PC.getMaxHP() + "</td><td></td>";
     statsdiv += "<td style='width:50%'>MP: " + PC.getMana() + "/" + PC.getMaxMana() + "</td></tr>";
     statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";
-    statsdiv += "<tr><td>STR: " + spanstr + "" + PC.getStr() + "</span></td><td></td><td>Gold: " + PC.getGold() + "</td></tr>";
-    statsdiv += "<tr><td>DEX: " + spandex + "" + PC.getDex() + "</span></td><td></td><td>XP: ";
+    statsdiv += `<tr><td>STR: ${spanstr}${PC.getStr()}</span>${spanstrbase}${spanstrorb}${spanstrmod}</td><td></td><td>Gold: ${PC.getGold()}</td></tr>`;
+    statsdiv += `<tr><td>DEX: ${spandex}${PC.getDex()}</span>${spandexbase}${spandexorb}${spandexmod}</td><td></td><td>XP: `;
     if (EarnedLevel(PC)) {
       statsdiv += "<span class='leveled'>";
     }
@@ -2703,7 +2727,7 @@ function DrawStats(page) {
       statsdiv += "</span>";
     }
     statsdiv += "</td></tr>";
-    statsdiv += "<tr><td>INT: " + spanint + "" + PC.getInt() + "</span></td><td></td><td>Training: " + PC.gettp() + "</td></tr>";
+    statsdiv += `<tr><td>INT: ${spanint}${PC.getInt()}</span>${spanintbase}${spanintorb}${spanintmod}</td><td></td><td>Training: ${PC.gettp()}</td></tr>`;
     statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";
     if (PC.getEquipment("weapon")) { 
       let wpndesc = PC.getEquipment("weapon").getDesc();
