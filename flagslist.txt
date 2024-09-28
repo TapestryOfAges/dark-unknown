@@ -173,6 +173,7 @@ dawne_act2
 heather_act2
 king_act_2
 taran_prince - Taran has asked you to get your parents to help heal Lance
+nyrani_blanche - Nyrani has asked you to say hi to Blanche
 justice_escape - you've confronted justice and she escaped
 rhys_house_info - someone told you where Rhys lives
 returned_rhys - you've given Rhys's letter back to Lance
@@ -195,6 +196,8 @@ peter_speak - Peter gave his alibi
 ingrid_speak - Ingrid contradicted Peter's alibi
 guard_sent - Coll has been sent to let you in to Peter's house.
 bridle_returned - you've given the bridle back to Alex
+reported_grayson - Blanche told you she told Grayson
+coll_open - Coll went to unlock Peter's house
 stolenjewelry_taken - you've taken the stolen jewelry from the chest in Peter's house
 beldskae - Beldskae was attacked (set with either "saved" or "razed")
 beldskae_king - Daragen has talked to you about Beldskae (whether it was saved or razed)
