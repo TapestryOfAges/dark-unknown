@@ -7056,6 +7056,26 @@ function WalkOnTile() {
 }
 WalkOnTile.prototype = new FeatureObject();
 
+function PeterWalkOnTile() {
+	this.name = "PeterWalkOn";
+  this.graphic = "static.gif";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -50*32;
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+PeterWalkOnTile.prototype = new FeatureObject();
+
+PeterWalkOnTile.prototype.walkon = function(walker) {
+  if (walker !== PC) {
+    DU.gameflags.deleteFlag("coll_open");
+  }
+  return {msg:""};
+}
+
 function WalkOnVault1Tile() {
 	this.name = "WalkOnVault1";
   this.graphic = "static.gif";
@@ -12684,20 +12704,20 @@ function NightshadeTile() {
 }
 NightshadeTile.prototype = new ItemObject();
 
-function SulfurousAshTile() {
+function VolcanicAshTile() {
   //Graphics Upgraded
-  this.name = "SulfurousAsh";
+  this.name = "VolcanicAsh";
   this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -28*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
-  this.desc = "pile of sulfurous ash";
-  this.longdesc = "Sulfurous ash, found in a volcano. A useful reagent in certain magical rituals.";
+  this.desc = "pile of volcanic ash";
+  this.longdesc = "Volcanic ash, found in a volcano. A useful reagent in certain magical rituals.";
   this.addType("Reagent");
 }
-SulfurousAshTile.prototype = new ItemObject();
+VolcanicAshTile.prototype = new ItemObject();
 
 function MassOfHerbsTile() {
   //Graphics Upgraded
