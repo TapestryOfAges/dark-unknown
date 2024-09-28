@@ -536,7 +536,7 @@ mappages["pitdespair3"].terrain[63] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK
 
 mappages["pitdespair3"].features = [];
 mappages["pitdespair3"].features[0] = {name : 'Door', x : 6, y : 45, desc : "magically locked door", locked : 2, keyname : "InnerPitOfDespairKey"};
-mappages["pitdespair3"].features[1] = {name : 'SulfurousAsh', x : 19, y : 53};
+mappages["pitdespair3"].features[1] = {name : 'VolcanicAsh', x : 19, y : 53};
 mappages["pitdespair3"].features[2] = {name : 'LadderDown', x : 6, y : 47, entermap : 'pitdespair4', enterx : 15, entery : 20};
 mappages["pitdespair3"].features[3] = {name : 'Chest', x : 14, y : 57, lootgroup : 'Level3', lootedid : 'pitdespair3'};
 mappages["pitdespair3"].features[4] = {name : 'Chest', x : 13, y : 56, lootedid : 'innerpitofdespair', searchyield : 'InnerPitOfDespairKey'};
