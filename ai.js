@@ -2020,8 +2020,35 @@ ais.Courier = function(who) {
   return {fin:1};
 }
 
+ais.coll_open = function(who) {
+  // working here
+  // needs to approach and then open Peter's door
+  if (who.step === 1) {
+    let path = who.getHomeMap().getPath(who.getx(),who.gety(),77,39,MOVE_WALK);
+    if (path) {
+      path.shift();
+      StepOrSidestep(who,path[0], [77,39]);
+      if ((who.getx() === 77) && (who.gety() === 39)) { who.step = 2; }
+    } else {
+      maintext.addText('Coll says, "Excuse me. I need to get to the door..."');
+    }
+  } else if (who.step === 2) {
+    let door = who.getHomeMap().getTile(78,39).getTopFeature();
+    door.unlockMe();
+    maintext.addText('The guard unlocks the door.');
+    who.step = 3;
+  } else if (who.step === 3) {
+    let path = who.getHomeMap().getPath(who.getx(),who.gety(),76,38,MOVE_WALK);
+    if (path) {
+      path.shift();
+      StepOrSidestep(who,path[0], [76,38]);
+      if ((who.getx() === 76) && (who.gety() === 38)) { who.step = 4; }
+    } 
+  }
+}
+
 ais.Justice = function(who) {
-  console.log("Justice turn begins.");
+//  console.log("Justice turn begins.");
   let retval = {fin:1};
 
   let pcadj = 0;
