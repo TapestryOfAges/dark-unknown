@@ -3651,14 +3651,14 @@ function EmpowerReagentCommands(cmd) {
       failuretext.push(`You cease casting the spell before you begin mixing the reagents together. You will need to consider a different combination of materials.`);
       let successtext = [];
       if (tgt.getName() === "PerfectRuby") {
-        if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["Mistletoe"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["SulfurousAsh"] && targetCursor.mortar["FrozenSunlight"]) {
+        if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["Mistletoe"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["VolcanicAsh"] && targetCursor.mortar["FrozenSunlight"]) {
           if (mortar.getName() !== "CrystalMortar") {
             retval["fin"] = 2;
             retval["outcome"] = ["You place the reagents in the mortar and begin the incancation, but quickly realize something is wrong.","This mortar will shatter under the strain of this enchantment. You will need to find something more enduring before you can perform this ritual.","You remove the reagents from the mortar and put them away."];
             return retval;
           }   
           successtext.push(`You place the ruby in front of you, in the center of the pentagram, and begin the incantation.`);
-          successtext.push(`You crush the mandrake and mistletoe together, in the mortar of crystal. Then, you add the spider silk and the sulfurous ash to the mix. Finally, you carefully add the frozen sunlight and tentatively apply the pestle to it.`);
+          successtext.push(`You crush the mandrake and mistletoe together, in the mortar of crystal. Then, you add the spider silk and the volcanic ash to the mix. Finally, you carefully add the frozen sunlight and tentatively apply the pestle to it.`);
           successtext.push(`There is a rush of power, as strong as anything you have ever experienced. The world goes white for a moment.`);
           successtext.push(`When your vision returns, the mortar is empty. You pick up the gemstone and hold it before you; it is warm in your hand, and gives off a pleasant light. You can feel the power deep within it.`);
           successtext.push(`<span class='sysconv'>You have obtained: Ruby of the Sun.</span>`);
@@ -3669,7 +3669,7 @@ function EmpowerReagentCommands(cmd) {
           PC.removeFromInventory(PC.checkInventory("MandrakeRoot"));
           PC.removeFromInventory(PC.checkInventory("Mistletoe"));
           PC.removeFromInventory(PC.checkInventory("SpiderSilk"));
-          PC.removeFromInventory(PC.checkInventory("SulfurousAsh"));
+          PC.removeFromInventory(PC.checkInventory("VolcanicAsh"));
           PC.removeFromInventory(PC.checkInventory("FrozenSunlight"));
           PC.removeFromInventory(PC.checkInventory("PerfectRuby"));
           let ruby = localFactory.createTile("RubyGemoftheSun");
@@ -3803,13 +3803,13 @@ function EmpowerReagentCommands(cmd) {
           retval["fin"] = 2;
           retval["outcome"] = successtext;
           return retval;
-        } else if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["SulfurousAsh"]) {
-          successtext.push(`You crush the mandrake together with the spider silk and the sulfurous ash, and feel the magic build.`);
+        } else if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["VolcanicAsh"]) {
+          successtext.push(`You crush the mandrake together with the spider silk and the volcanic ash, and feel the magic build.`);
           successtext.push(`There is a bright flash, and the blade of the sword alights with flame, which never ceases.`);
           successtext.push(`<span class='sysconv'>You have obtained: Flaming Sword.</span>`);
           PC.removeFromInventory(PC.checkInventory("MandrakeRoot"));
           PC.removeFromInventory(PC.checkInventory("SpiderSilk"));
-          PC.removeFromInventory(PC.checkInventory("SulfurousAsh"));
+          PC.removeFromInventory(PC.checkInventory("VolcanicAsh"));
           CastSpellMana(PC,targetCursor.manacost);
           ShowEffect(PC, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
           PlayCastSound(PC,"sfx_enchant");
