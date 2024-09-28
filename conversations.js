@@ -78,7 +78,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
       } else { flags_met = 0; }
     }
     if (flags.hasOwnProperty("between_times")) {
-      let times = split("-",flags.between_times);
+      let times = flags.between_times.split("-");
       if (!CheckTimeBetween(times[0],times[1])) { flags_met = 0; }
       else { addtolog.flagsmet += " " + flags.between_times; }
     }
@@ -1419,11 +1419,15 @@ OnConvTriggers["guard_sent"] = function(speaker,keyword) {
     olympus.deleteThing(coll);
     DUTime.removeEntityFrom(coll);
   }
-  let coll2 = localFactory.createTile("GuardNPC");
+  let coll2 = localFactory.createTile("TownGuardNPC");
   coll2.setNPCName("Coll");
   coll2.setConversation("coll2");
   olympus.placeThing(76,38,coll2);
+}
 
+OnConvTriggers["coll_open"] = function(speaker,keyword) {
+  speaker.setPeaceAI("coll_open");
+  speaker.step = 1;
 }
 
 OnConvTriggers["peter_caught"] = function(speaker,keyword) {
