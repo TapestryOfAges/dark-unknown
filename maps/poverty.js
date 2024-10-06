@@ -119,6 +119,8 @@ mappages["poverty"].npcs[5] = {name : 'BardVillagerNPC', x : 7, y : 12, NPCName:
 mappages["poverty"].npcs[6] = {name : 'AdventurerVillagerNPC', x : 5, y : 16, NPCName: 'Damien', Desc: 'farmer', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'damien', Conversation: 'damien', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueTunic","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBrownPale"}'};
 mappages["poverty"].npcs[7] = {name : 'TownsfolkVillagerNPC', x : 4, y : 12, NPCName: 'Garth', Desc: 'unkempt man', Prefix: 'an', PeaceAI: 'scheduled', Schedule: 'garth', Conversation: 'garth', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"WhiteTunic","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBlackPale"}'};
 mappages["poverty"].npcs[8] = {name : 'TownsfolkVillagerNPC', x : 10, y : 15, NPCName: 'Anna', Desc: 'young woman', PeaceAI: 'scheduled', Schedule: 'anna_poverty', Conversation: 'anna', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"WhiteTunic2","head":"BrownDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"BrownDark"}'};
+mappages["poverty"].npcs[9] = {name : 'TownsfolkVillagerNPC', x : 24, y : 19, NPCName: 'Graham', Desc: 'refugee', PeaceAI: 'scheduled', Schedule: 'graham2', Conversation: 'graham2', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"GreenTunic","head":"BlondePale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"BlondePale"}'};
+mappages["poverty"].npcs[10] = {name : 'TinkerVillagerNPC', x : 23, y : 18, NPCName: 'Kathleen', Desc: 'refugee', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'kathleen2', Conversation: 'kathleen2', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"LeatherArmor","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"ShortBlackDark"}'};
 
 mappages["poverty"].desc = "Village of Poverty";
 mappages["poverty"].longdesc = ``;
@@ -174,6 +176,18 @@ mappages["poverty"].onload = function(mapref) {
         brooke.startx = loc.x;
         brooke.starty = loc.y
       }
+    }
+    if (!DU.gameflags.getFlag("beldskae_razed")) {
+      let kath;
+      let graham;
+      for (let i=0;i<npcs.length;i++) {
+        if (npcs[i].getNPCName() === "Kathleen") { kath = npcs[i]; }
+        if (npcs[i].getNPCName() === "Graham") { graham = npcs[i]; }
+      }
+      mapref.deleteThing(kath);
+      DUTime.removeEntityFrom(kath);
+      mapref.deleteThing(graham);
+      DUTime.removeEntityFrom(graham);
     }
   }
 }
@@ -297,6 +311,8 @@ mappages["poverty2"].npcs[7] = {name : 'TownsfolkVillagerNPC', x : 4, y : 12, NP
 mappages["poverty2"].npcs[8] = {name : 'TownsfolkVillagerNPC', x : 10, y : 15, NPCName: 'Anna', PeaceAI: 'scheduled', Schedule: 'anna_poverty', Conversation: 'anna', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"WhiteTunic2","head":"BrownDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"BrownDark"}'};
 mappages["poverty2"].npcs[9] = {name : 'TinkerVillagerNPC', x : 21, y : 12, NPCName: 'Katie', Desc: 'builder', Schedule: 'katie', Conversation: 'katie', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"LeatherArmor","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HammerDark","realhead":"ShortBlackDark"}'};
 mappages["poverty2"].npcs[10] = {name : 'TinkerVillagerNPC', x : 25, y : 12, NPCName: 'Brennan', Desc: 'builder', Schedule: 'brennan', Conversation: 'brennan', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"LeatherArmor","head":"RedHeadPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HammerPale","realhead":"RedHeadPale"}'};
+mappages["poverty2"].npcs[11] = {name : 'TownsfolkVillagerNPC', x : 24, y : 19, NPCName: 'Graham', Desc: 'refugee', PeaceAI: 'scheduled', Schedule: 'graham2', Conversation: 'graham2', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"GreenTunic","head":"BlondePale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"BlondePale"}'};
+mappages["poverty2"].npcs[12] = {name : 'TinkerVillagerNPC', x : 23, y : 18, NPCName: 'Kathleen', Desc: 'refugee', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'kathleen2', Conversation: 'kathleen2', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"LeatherArmor","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"ShortBlackDark"}'};
 
 mappages["poverty2"].desc = "Village of Poverty";
 mappages["poverty2"].longdesc = ``;
@@ -352,6 +368,18 @@ mappages["poverty2"].onload = function(mapref) {
         brooke.startx = loc.x;
         brooke.starty = loc.y
       }
+    }
+    if (!DU.gameflags.getFlag("beldskae_razed")) {
+      let kath;
+      let graham;
+      for (let i=0;i<npcs.length;i++) {
+        if (npcs[i].getNPCName() === "Kathleen") { kath = npcs[i]; }
+        if (npcs[i].getNPCName() === "Graham") { graham = npcs[i]; }
+      }
+      mapref.deleteThing(kath);
+      DUTime.removeEntityFrom(kath);
+      mapref.deleteThing(graham);
+      DUTime.removeEntityFrom(graham);
     }
   }
 }
