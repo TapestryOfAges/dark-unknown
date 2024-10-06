@@ -85,9 +85,13 @@ NPCObject.prototype = new AnimateObject();
 
 NPCObject.prototype.getDesc = function() {
   let knowsflag = "knows_" + this.conversation;
-  if (DU.gameflags.getFlag(knowsflag)) {
-    return this.npcname;
-  } 
+  knowsflag.replace(/2/, "");
+  if (DU.gameflags.getFlag(knowsflag) && (knowsflag !== "knows_lance")) {
+    let fname = `${this.desc} named ${this.npcname}`;
+    return fname;
+  } else if (DU.gameflags.getFlag(knowsflag)) {
+    return this.npcname; 
+  }
   return this.desc;
 }
 
