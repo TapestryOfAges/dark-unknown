@@ -512,6 +512,9 @@ DiseaseTile.prototype.applyEffect = function(silent) {
 DiseaseTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
+  if ((who === PC) && !silent) {
+    maintext.addText("You are no longer diseased.");
+  }
   DrawCharFrame();
 }
 
