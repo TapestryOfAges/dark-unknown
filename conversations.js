@@ -912,12 +912,18 @@ OnConvTriggers["warduke_engaged"] = function(speaker,keyword) {
   enemy.setAggro(1);
 }
 
+OnConvTriggers["rebuild_decide"] = function(speaker,keyword) {
+  let q = questlog.findQuest(28);
+  if (q && q.active && !q.replaced && !q.completed) { questlog.complete(28); }
+  else { questlog.complete(27); }
+}
+
 OnConvTriggers["rebuild_poverty"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("rebuild_decide");
   let dumap = maps.getMap("darkunknown");
   let feas = dumap.features.getAll();
   for (let i=0;i<feas.length;i++) {
-    if (feas[i].getDesc = "Towne of Poverty") {
+    if (feas[i].getDesc() === "Towne of Poverty") {
       feas[i].entermap = "poverty2";
     }
   }
@@ -943,10 +949,10 @@ OnConvTriggers["rebuild_no"] = function(speaker,keyword) {
   spawn.setMaxSpawns(1);
   spawn.setSpawnRadius(1);
   
-  let freq = 90 + Dice.roll("1d20");
+  let freq = Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
   
-//  dumap.placeThing(61,118,spawn);
+  dumap.placeThing(61,118,spawn);
 
   spawn = localFactory.createTile("Spawner");
   sgroup = ["NaurglenToPovertyGuardsGroup"];
@@ -955,7 +961,7 @@ OnConvTriggers["rebuild_no"] = function(speaker,keyword) {
   spawn.setMaxSpawns(1);
   spawn.setSpawnRadius(1);
   
-  freq = 90 + Dice.roll("1d20");
+  freq = Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
   
   dumap.placeThing(71,75,spawn);
@@ -968,10 +974,10 @@ console.log(spawn);
   spawn.setMaxSpawns(1);
   spawn.setSpawnRadius(1);
   
-  freq = 90 + Dice.roll("1d20");
+  freq = Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
   
-//  dumap.placeThing(81,25,spawn);
+  dumap.placeThing(81,25,spawn);
 
   spawn = localFactory.createTile("Spawner");
   sgroup = ["BeldskaeGuardsGroup"];
@@ -980,10 +986,10 @@ console.log(spawn);
   spawn.setMaxSpawns(1);
   spawn.setSpawnRadius(1);
   
-  freq = 90 + Dice.roll("1d20");
+  freq = Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
   
-//  dumap.placeThing(125,17,spawn);
+  dumap.placeThing(125,17,spawn);
 
   spawn = localFactory.createTile("Spawner");
   sgroup = ["SwainhilGuardsGroup"];
@@ -992,12 +998,11 @@ console.log(spawn);
   spawn.setMaxSpawns(1);
   spawn.setSpawnRadius(1);
   
-  freq = 90 + Dice.roll("1d20");
+  freq = Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
   
-//  dumap.placeThing(121,102,spawn);
+  dumap.placeThing(121,102,spawn);
 
-  // WORKING HERE - create guards on map, their AI, and their zoomed-in map
 }
 
 OnConvTriggers["wisp_grant"] = function(speaker, keyword) {
@@ -1427,6 +1432,7 @@ OnConvTriggers["guard_sent"] = function(speaker,keyword) {
 
 OnConvTriggers["coll_open"] = function(speaker,keyword) {
   speaker.setPeaceAI("coll_open");
+  speaker.setCurrentAI("coll_open");
   speaker.step = 1;
 }
 
@@ -1438,6 +1444,7 @@ OnConvTriggers["peter_caught"] = function(speaker,keyword) {
 
   let basement = maps.getMap("olympus0");
   peter = FindNPCByName("Peter",basement);
+  peter.setSchedule("peter2");
   basement.moveThing(24,18,peter);
 }
 
