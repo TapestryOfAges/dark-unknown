@@ -1258,7 +1258,7 @@ ais.FranklinCourier = function(who) {
   let retval = {};
   retval["fin"] = 1;
   if ((who.step === 1) && (GetSquareDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) === 1)) {
-    maintext.addText(`The courier calls to you: "${PC.getPCName()}, my ${PC.titled}! The Bard Franklin bids me say Thank you again, and that I deliver to you this. Good day!"`);
+    maintext.addText(`The courier calls to you: "${PC.getPCName()}, my ${PC.getGenderedTerms().titled}! The Bard Franklin bids me say Thank you again, and that I deliver to you this. Good day!"`);
     maintext.addText("He hands you a book, and runs off to his next delivery.");
     maintext.addText(`<span class='sysconv'>You have gained one Audachta Nemesos: Jinx.</span>`);
     PC.addToInventory(localFactory.createTile("AudachtaNemesosJinx"),1);
@@ -1695,8 +1695,8 @@ function NPCAttackPCMap(npc) {
   return 1;
 }
 
-function CheckTownProximity(coords, map) {
-  let mapfeatures = map.features.getAll();  // weirdly, this assumes that all maps this will be run on have features. Probably a safe assumption.
+function CheckTownProximity(coords, localmap) {
+  let mapfeatures = localmap.features.getAll();  // weirdly, this assumes that all maps this will be run on have features. Probably a safe assumption.
   if (!mapfeatures[0]) { return 0; }  // just in case one doesn't!
 
   for (let i = 0; i < mapfeatures.length; i++) {
@@ -2021,8 +2021,6 @@ ais.Courier = function(who) {
 }
 
 ais.coll_open = function(who) {
-  // working here
-  // needs to approach and then open Peter's door
   if (who.step === 1) {
     let path = who.getHomeMap().getPath(who.getx(),who.gety(),77,39,MOVE_WALK);
     if (path) {
@@ -2045,6 +2043,7 @@ ais.coll_open = function(who) {
       if ((who.getx() === 76) && (who.gety() === 38)) { who.step = 4; }
     } 
   }
+  return {fin:1};
 }
 
 ais.Justice = function(who) {
@@ -4096,7 +4095,7 @@ ais.PatrolS = function(who) {
 }
 
 ais.GuardPatrol = function(who,dests) {
-  if (PC.getHomeMap().getName() === "guardPatrol") { return {fin:1}; }   // don't move if PC is on a guard patrol map
+  if (PC.getHomeMap().getName().includes("guardPatrol")) { return {fin:1}; }   // don't move if PC is on a guard patrol map
   let themap = who.getHomeMap();
   let nearby = FindNearestNPC(who,"",[PC]);  // nearest entity on this map that isn't the PC
   let nearbydist = GetDistance(who.getx(),who.gety(),nearby.getx(),nearby.gety(),"manhatten");
