@@ -2513,7 +2513,7 @@ function CampfireTile() {
 	this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -98*32;
-	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
 	this.blocklos = 0;
   this.prefix = "a";
 	this.desc = "campfire";
@@ -6822,7 +6822,7 @@ function RuinsWallMidLeftMidRightTile() {
   this.spritexoffset = -5*32;
   this.spriteyoffset = -13*32;
   this.passable = MOVE_ETHEREAL;
-  this.blocklos = 2;
+//  this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
   this.peerview = "#c1c1c1";
@@ -6850,7 +6850,7 @@ function RuinsWallMidLeftBottomRightTile() {
   this.spritexoffset = -2*32;
   this.spriteyoffset = -13*32;
   this.passable = MOVE_ETHEREAL;
-  this.blocklos = 2;
+//  this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
   this.peerview = "#c1c1c1";
@@ -6864,7 +6864,7 @@ function RuinsWallBottomLeftBottomRightTile() {
   this.spritexoffset = -3*32;
   this.spriteyoffset = -13*32;
   this.passable = MOVE_ETHEREAL;
-  this.blocklos = 2;
+  //this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
   this.peerview = "#c1c1c1";
@@ -6878,7 +6878,7 @@ function RuinsWallBottomLeftMidRightTile() {
   this.spritexoffset = -4*32;
   this.spriteyoffset = -13*32;
   this.passable = MOVE_ETHEREAL;
-  this.blocklos = 2;
+//  this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
   this.peerview = "#c1c1c1";
@@ -13248,8 +13248,8 @@ function StolenJewelryTile() {
   //Graphic Upgraded
   this.name = "StolenJewelry";
   this.graphic = "static.gif";
-  this.spriteyoffset = -9*32;
-  this.spritexoffset = -98*32;
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -98*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stolen jewelry";
@@ -13266,8 +13266,8 @@ StolenJewelryTile.prototype.onGet = function(who) {
 function SilverBridleTile() {
   this.name = "SilverBridle";
   this.graphic = "static.gif";
-  this.spriteyoffset = -9*32;
-  this.spritexoffset = -127*32;
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -127*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a"
