@@ -933,14 +933,15 @@ OnConvTriggers["rebuild_no"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("rebuild_decide");
   let dumap = maps.getMap("darkunknown");
   
-  let feas = dumap.features.getAll();
-  for (let i=0; i<feas.length; i++) {
-    if (feas[i].getName() === "Spawner") {
-      if (feas[i].getMaxSpawns() > 1) {
-        feas[i].setMaxSpawns(feas[i].getMaxSpawns()-1);
-      }
-    }
-  }
+  // The guards turn out to fight a lot of enemies, let's try not retuning the spawners as well
+//  let feas = dumap.features.getAll();
+//  for (let i=0; i<feas.length; i++) {
+//    if (feas[i].getName() === "Spawner") {
+//      if (feas[i].getMaxSpawns() > 1) {
+//        feas[i].setMaxSpawns(feas[i].getMaxSpawns()-1);
+//      }
+//    }
+//  }
 
   let spawn = localFactory.createTile("Spawner");
   let sgroup = ["OnyxToHildendainGuardsGroup"];
