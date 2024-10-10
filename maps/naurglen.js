@@ -655,7 +655,7 @@ mappages["naurglen"].onload = function(mapref) {
       door.unlockMe();
     }
 
-    if (DU.gameflags.getFlag("lid_naurglenloosefloor") && !DU.gameflag.getFlag("bridle_returned") && !PC.checkInventory("SilverBridle")) {
+    if (DU.gameflags.getFlag("lid_naurglenloosefloor") && !DU.gameflags.getFlag("bridle_returned") && !PC.checkInventory("SilverBridle")) {
       DU.gameflags.deleteFlag("lid_naurglenloosefloor");
     }
   }
