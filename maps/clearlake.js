@@ -619,9 +619,9 @@ mappages["clearlake2"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 36, y : 19,
 mappages["clearlake2"].npcs[3] = {name : 'PaladinVillagerNPC', x : 31, y : 18, NPCName: 'Jonah', Desc: 'man in robes', Schedule: 'jonah', Conversation: 'jonah', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BrownRobe","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBrownPale"}'};
 mappages["clearlake2"].npcs[4] = {name : 'PaladinVillagerNPC', x : 4, y : 51, NPCName: 'Lydia', Desc: 'woman in robes', Schedule: 'lydia', Conversation: 'lydia', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BrownRobe","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"ShortBlackDark"}'};
 mappages["clearlake2"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 40, y : 34, NPCName: 'Ernest', Desc: 'artist', PeaceAI: 'scheduled', Schedule: 'ernest2', Conversation: 'ernest2', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"WhiteTunic2","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"ShortBlackDark"}'};
-mappages["clearlake2"].npcs[6] = {name : 'FighterVillagerNPC', x : 23, y : 9, NPCName: 'Ariel', PeaceAI: 'scheduled', Schedule: 'ariel', Conversation: 'ariel', Gender: 'female', Merch: 'ariel', NPCBand: '0', skintone: 1, wornlayers: '{"body":"Plate2","head":"RedHeadPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"RedHeadPale"}'};
-mappages["clearlake2"].npcs[7] = {name : 'TownsfolkVillagerNPC', x : 23, y : 17, NPCName: 'Ace', Desc: 'dealer', PeaceAI: 'scheduled', Schedule: 'ace', Conversation: 'ace', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"YellowTunic","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBrownPale"}'};
-mappages["clearlake2"].npcs[8] = {name : 'TownsfolkVillagerNPC', x : 23, y : 22, NPCName: 'Coral', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'coral', Conversation: 'coral', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"WhiteTunic2","head":"BrownDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"BrownDark"}'};
+mappages["clearlake2"].npcs[6] = {name : 'FighterVillagerNPC', x : 23, y : 9, NPCName: 'Ariel', PeaceAI: 'scheduled', Schedule: 'ariel2', Conversation: 'ariel2', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"Plate2","head":"RedHeadPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"RedHeadPale"}'};
+mappages["clearlake2"].npcs[7] = {name : 'TownsfolkVillagerNPC', x : 23, y : 17, NPCName: 'Ace', Desc: 'dealer', PeaceAI: 'scheduled', Schedule: 'ace2', Conversation: 'ace2', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"YellowTunic","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBrownPale"}'};
+mappages["clearlake2"].npcs[8] = {name : 'TownsfolkVillagerNPC', x : 23, y : 22, NPCName: 'Coral', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'coral2', Conversation: 'coral2', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"WhiteTunic2","head":"BrownDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"BrownDark"}'};
 
 mappages["clearlake2"].desc = "Clear Lake";
 mappages["clearlake2"].longdesc = ``;
@@ -659,7 +659,7 @@ mappages["clearlake2"].onload = function(mapref) {
       if (npcs[i].getNPCName() === "Ernest") { ernest = npcs[i]; }
       if (npcs[i].getNPCName() === "Lydia") { lydia = npcs[i]; }
       if (npcs[i].getNPCName() === "Jonah") { jonah = npcs[i]; }
-      if (npcs[i].getNPCName() === "Arial") { arial = npcs[i]; }
+      if (npcs[i].getNPCName() === "Ariel") { arial = npcs[i]; }
       if (npcs[i].getNPCName() === "Ace") { ace = npcs[i]; }
       if (npcs[i].getNPCName() === "Coral") { coral = npcs[i]; }
     }
