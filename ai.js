@@ -4115,14 +4115,18 @@ ais.GuardPatrol = function(who,dests) {
         if (PC.getHomeMap() === themap) {
           DrawMainFrame("one",themap,whox,whoy);
         }  
+        console.log(who.getName() + " destroyed by a " + nearby.getName());
       } else {
         let nearx = nearby.getx();
         let neary = nearby.gety();
+        let spawner = nearby.getSpawnedBy();
+        if (spawner) { spawner.deleteSpawned(nearby); }
         DUTime.removeEntityFrom(nearby);
         themap.deleteThing(nearby);
         if (PC.getHomeMap() === themap) {
           DrawMainFrame("one",themap,nearx,neary);
         }  
+        console.log(who.getName() + " destroyed a " + nearby.getName());
       }
       return {fin:1};
     }
