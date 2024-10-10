@@ -300,6 +300,7 @@ mappages["blackdragon"].npcs[15] = {name : 'TownGuardNPC', x : 20, y : 36, NPCNa
 mappages["blackdragon"].npcs[16] = {name : 'TownsfolkVillagerNPC', x : 16, y : 9, NPCName: 'Taran', Desc: 'gardener', PeaceAI: 'scheduled', Schedule: 'taran', Conversation: 'taran', ConversationFlag: 'taran', Gender: 'male', Bark: '0', NPCBand: '0', skintone: 1, wornlayers: '{"body":"GreenTunic","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBrownPale"}'};
 mappages["blackdragon"].npcs[17] = {name : 'TownsfolkVillagerNPC', x : 36, y : 27, NPCName: 'Brad', Desc: 'cook', PeaceAI: 'scheduled', Schedule: 'brad', Conversation: 'brad', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"WhiteTunic2","head":"BlondePale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"BlondePale"}'};
 mappages["blackdragon"].npcs[18] = {name : 'FighterVillagerNPC', x : 33, y : 33, NPCName: 'Nadya', PeaceAI: 'scheduled', Schedule: 'nadya', Conversation: 'nadya', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"Plate2","head":"ShortBlackDark","back":"","offhand":"OffhandDaggerDark","cloak":"","mainhand":"LongswordDark","realhead":"ShortBlackDark"}'};
+mappages["blackdragon"].npcs[19] = {name : 'RangerVillagerNPC', x : 21, y : 24, NPCName: 'Rhys', Schedule: 'rhys', Conversation: 'rhys_bdc', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"LeatherArmor","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"BowDark","realhead":"ShortBlackDark"}'};
 
 mappages["blackdragon"].desc = "Black Dragon Castle";
 mappages["blackdragon"].longdesc = `Not long ago, this site was a ruin from wars past. But recently, Prince Lance rebuilt it with shocking speed, and now it is the center of his rebellion. The drawbridge is firmly closed across a deep moat.`;
@@ -336,13 +337,19 @@ mappages["blackdragon"].onload = function(mapref) {
       Open_BDC_Gate(mapref);
       SetAct2Convos(mapref);
       let npcs = mapref.npcs.getAll();
-      let dragon, lance;
+      let dragon, lance, rhys;
       for (let i=0;i<npcs.length;i++) {
         if (npcs[i].getName() === "BlackDragonNPC") { dragon = npcs[i]; }
         if (npcs[i].getName() === "PrinceNPC") { lance = npcs[i]; }
+        if (npcs[i].getNPCName() === "Rhys") { rhys = npcs[i]; }
       }
       mapref.deleteThing(dragon);
       DUTime.removeEntityFrom(dragon);
+
+      if (!DU.gameflags.getFlag("rhys_moved")) {
+        mapref.deleteThing(rhys);
+        DUTime.removeEntityFrom(rhys);  
+      }
 
       if (DU.gameflags.getFlag("prince_awake")) {
         // Adjust Lance to Act 2 schedule
@@ -638,7 +645,7 @@ mappages["blackdragon3"].OrbPulse = function(mapref) {
 
 mappages["blackdragon3"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
-    if (DU.gameflags.getFlag("justice_escape")) {
+    if (DU.gameflags.getFlag("justice_flees")) {
       let npcs = mapref.npcs.getAll()
       let justice;
       for (let i=0;i<npcs.length;i++) {
