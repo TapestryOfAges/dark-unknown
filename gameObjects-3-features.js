@@ -9290,7 +9290,7 @@ SpawnerTile.prototype.myTurn = function() {
   }
   
   let timetonext = (this.getSpawnFreq() + (Math.random()*((this.getSpawnFreq()/2)+1)));
-  if ((this.spawned.getAll().length < this.getMaxSpawns()) && ((this.getHomeMap() != PC.getHomeMap()) || (GetDistance(PC.getx(), PC.gety(), this.getx(), this.gety()) > 10))) {
+  if ((this.spawned.getAll().length < this.getMaxSpawns()) && ((this.getHomeMap() !== PC.getHomeMap()) || (GetDistance(PC.getx(), PC.gety(), this.getx(), this.gety()) > 10))) {
       // let's do some spawning
       let spawntype = this.pickSpawn();
       let newspawn = localFactory.createTile(spawntype);
@@ -12082,8 +12082,8 @@ function SiriCloakTile() {
   this.spriteyoffset = -39*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "blue cloak";
-  this.longdesc = "A blue cloak, once worn by Siri in her adventures. It should be returned to Garen in Naurglen.";
+  this.desc = "tattered cloak";
+  this.longdesc = "A tattered cloak, once worn by Siri in her adventures. It should be returned to Garen in Naurglen.";
   this.prefix = "a";
 
   this.addType("Quest");  
