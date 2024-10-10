@@ -174,7 +174,6 @@ heather_act2
 king_act_2
 taran_prince - Taran has asked you to get your parents to help heal Lance
 nyrani_blanche - Nyrani has asked you to say hi to Blanche
-justice_escape - you've confronted justice and she escaped
 rhys_house_info - someone told you where Rhys lives
 returned_rhys - you've given Rhys's letter back to Lance
 talked_runes - Lance mentioned the rune journal to you
