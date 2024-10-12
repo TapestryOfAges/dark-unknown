@@ -1362,7 +1362,6 @@ OnConvTriggers["rhys_return"] = function(speaker,keyword) {
 OnConvTriggers["rhys_summoned"] = function(speaker,keyword) {
   PC.replaceTurnWith = function(who) {
     let bdcmap = who.getHomeMap();
-    bdcmap.placeThing(28,35,rhys);
 
     FadeOut();
     gamestate.setMode("null");
@@ -1372,7 +1371,7 @@ OnConvTriggers["rhys_summoned"] = function(speaker,keyword) {
       let lance, rhys;
       for (let i=0;i<npcs.length;i++) {
         if (npcs[i].getName() === "PrinceNPC") { lance = npcs[i]; }
-        if (npcs[i].getName() === "Rhys") { lance = npcs[i]; }
+        if (npcs[i].getNPCName() === "Rhys") { rhys = npcs[i]; }
       }
       bdcmap.moveThing(28,11,lance);
       bdcmap.moveThing(27,9,PC);
@@ -1386,6 +1385,7 @@ OnConvTriggers["rhys_summoned"] = function(speaker,keyword) {
         delete PC.replaceTurnWith;
         PC.replaceTurnWith = function(who) {
           gamestate.setMode("anykey");
+          gamestate.setTurn(PC);
           targetCursor.command = "summon";
           targetCursor.phase = 1;
           maintext.addText("The three of you progress to the back room, sealing the door behind you, and stand in an arc around the pentagram.");
