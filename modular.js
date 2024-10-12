@@ -558,6 +558,7 @@ function PerformActEnd() {
 
 function PlaySummonScene(frame) {
   if (frame === 1) {
+    DUPlayMusic("Dark Dungeon", {fade:1});
     maintext.addText("Rhys lights a series of candles, and takes the Stone from you with murmured thanks.");
   } else if (frame === 2) {
     maintext.addText('Once all is in position, he reaches out and takes each of your hands, then looks at you. "We will all be a part of the spell, but I am the one whose will it will be most constrained by. I will take the lead in the questioning."');
@@ -571,6 +572,7 @@ function PlaySummonScene(frame) {
   } else if (frame === 5) {
     maintext.addText("The incanting resumes, and there is a void visible in the heart of the flames... and then something large and terrifying steps forth.");
     let daemon = localFactory.createTile("DaemonNPC");
+    DUPlaySound("sfx_summon");
     daemon.setAttitude("friendly");
     PC.getHomeMap().placeThing(26,11,daemon);
     DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
@@ -587,7 +589,7 @@ function PlaySummonScene(frame) {
   } else if (frame === 11) {
     maintext.addText(`Rhys looks concerned. "Who is the Greatest of the Dark? What does it want?"`);
   } else if (frame === 12) {
-    maintext.addText(`The daemon answers. "Far removed from these vaults of light are the courts of darkness. And at its head is the Shepherd of the Dark. He is the night’s king, the dark unknown, the farewell of the sun forever. The cult has brought him through the great warding, just as you have done to me, but they have unleashed him; now, he needs them not, and reaches to bring forth more of his own."`);
+    maintext.addText(`The daemon answers. "Far removed from these vaults of light are the courts of darkness. And at its head is the Shepherd of the Dark. He is the night's king, the dark unknown, the farewell of the sun forever. The cult has brought him through the great warding, just as you have done to me, but they have unleashed him; now, he needs them not, and reaches to bring forth more of his own."`);
   } else if (frame === 13) {
     maintext.addText(`Lance says, "Bring forth? What do you mean?"`);
   } else if (frame === 14) {
@@ -606,8 +608,15 @@ function PlaySummonScene(frame) {
     bdcmap.deleteThing(daemon);
     DUTime.removeEntityFrom(flame);
     DUTime.removeEntityFrom(daemon);
+    DrawMainFrame("one",bdcmap,26,11);
+    DUPlaySound("sfx_dark_transition");
   } else if (frame === 18) {
     maintext.addText(`Rhys sags to his knees. "I'm sorry. It was beginning to overwhelm my binding. I wasn't strong enough. I had to send it back. I'm glad I was able to send it back. I'm sorry. I hope we learned enough."`);
+  } else if (frame === 19) {
+    maintext.addText(`Lance looks almost as weary. "...most riddled with vice? We just tried to start a WAR, so I will order a high alert here. But if you can think of a more likely alternative..."`);
+  } else if (frame === 20) {
+    maintext.addText(`"...you should go there, as quickly as you may. Good luck."`);
+    DU.gameflags.setFlag("rhys_tired",1);
     let gnome = localFactory.createTile("NegatorGnomeNPC");
     let gnomemap = maps.getMap("gnomeland");
     if (!gnomemap) {
@@ -615,10 +624,13 @@ function PlaySummonScene(frame) {
       gnomemap = maps.addMap("gnomeland");
     }
     gnomemap.placeThing(2,1,gnome);
-    newcrystal.invisible = 1;
     let cataclysm = localFactory.createTile("ScouringBeldskae");
     gnome.addSpellEffect(cataclysm);
-  
+    DUPlayMusic("Towne", {fade:1});
+    let door=PC.getHomeMap().getTile(29,13).getTopFeature();
+    door.unlockMe();
+    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+
     return 1;
   }
 }
