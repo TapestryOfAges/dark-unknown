@@ -325,7 +325,11 @@ function DoAction(code, ctrl) {
     } else if (targetCursor.command === "summon") {
       let aredone = PlaySummonScene(targetCursor.phase);
       maintext.drawTextFrame();
-      if (aredone) { PC.endTurn(); }
+      if (aredone) { 
+        maintext.setInputLine("&gt;");
+        maintext.drawTextFrame();
+        PC.endTurn(); 
+      }  
       else { targetCursor.phase++; }
     } else if (targetCursor.viewing && (targetCursor.viewing === "map")) {
       gamestate.setMode("player");
