@@ -1077,3 +1077,7 @@ ais.ToshinSleep = function(who,params) {
 
   return {fin:0};
 }
+
+ais.rhys_tired = function(who,params) {
+  DU.gameflags.deleteFlag("rhys_tired");
+}
