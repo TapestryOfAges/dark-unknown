@@ -1937,14 +1937,15 @@ function ScouringBeldskaeTile() {
 ScouringBeldskaeTile.prototype = new EphemeralObject();
 
 ScouringBeldskaeTile.prototype.applyEffect = function(silent) {
-  let applytime = DU.getGameClock();
+  let applytime = DUTime.getGameClock();
   this.expiresTime = applytime + 300;
 
   let mainmap = maps.getMap("darkunknown");
   let fea = mainmap.features.getAll();
   for (let i=0;i<fea.length;i++){
-    if (fea.getEnterMap().entermap === "beldskae") {
-      fea.setEnterMap("beldskae_scour", fea.getEnterMap().enterx, fea.getEnterMap().entery);
+    if ((fea[i].getName() === "Towne2") && (fea[i].getEnterMap().entermap === "beldskae")) {
+      fea[i].setEnterMap("beldskae_scour", fea[i].getEnterMap().enterx, fea[i].getEnterMap().entery);
+      console.log("changed Beldskae's map");
 
       return 1;
     }
