@@ -5378,6 +5378,11 @@ tileFactory.prototype.makePaladinNPCTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeSpellbladeNPCTile = function() {
+  let newTile = new SpellbladeNPCTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSeaSerpentNPCTile = function() {
   let newTile = new SeaSerpentNPCTile();
   return newTile;

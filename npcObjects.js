@@ -3727,9 +3727,66 @@ function PaladinNPCTile() {
   this.special = 'open_door,ondeathWarduke';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
-  this.gender = 'random';
+  this.gender = 'male';
 }
 PaladinNPCTile.prototype = new NPCHumanObject();
+
+
+// CorruptTownsfolk
+
+function SpellbladeNPCTile() {
+  this.name = 'SpellbladeNPC';
+  this.level = 4;
+  this.addhp = 5;
+  this.str = 16;
+  this.dex = 16;
+  this.int = 14;
+  this.alignment = 'Evil';
+  this.attitude = 'hostile';
+  this.peaceAI = 'seekPC-10';
+  this.forgetAt = 10;
+  this.withdraw = 0;
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['Plate'].frames,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+
+  this.defwornlayers.body = 'Plate'
+  this.defwornlayers.head = 'random'
+  this.defwornlayers.offhand = 'KiteShield'
+  this.defwornlayers.mainhand = 'LongswordPale'
+
+  this.meleeAttackAs = 'none';
+  this.meleeDamage = '4d4+9'
+  this.meleeStrDamage = .66
+  this.missileAttackAs = 'none';
+  this.armorAs = 'none';
+  this.armorDefense = 35;
+  this.armorAbsorb = 50;
+  this.armorResist = 15;
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'Corpse';
+  this.lootTable = 'Spellblade';
+  this.prefix = 'a';
+  this.desc = "spellblade";
+  this.meleeChance = 66;
+  this.spellsknown = { heal: 1, attack: 1, buff: 1, };
+  this.resists = {};
+  this.special = 'open_door';
+  this.meleeHitSound = 'sfx_melee_hit';
+  this.meleeAttackSound = 'sfx_melee_miss';
+  this.gender = 'random';
+}
+SpellbladeNPCTile.prototype = new NPCHumanObject();
 
 
 // Animal
@@ -4140,7 +4197,7 @@ function GazerNPCTile() {
   this.movetype = MOVE_FLY;
   this.leavesCorpse = 'none';
   this.lootTable = 'Gazer';
-  this.prefix = 'an';
+  this.prefix = 'a';
   this.desc = "gazer";
   this.meleeChance = 20;
   this.spellsknown = { attack: 1, };
@@ -6626,7 +6683,7 @@ function MidHighPartyGroupTile() {
   this.peaceAI = 'Bandit-10';
   this.group = [];
   this.group[0] = new NPCList('ThiefNPC', '1d2');
-  this.group[1] = new NPCList('PaladinNPC', '1d2');
+  this.group[1] = new NPCList('SpellbladeNPC', '1d2');
   this.group[2] = new NPCList('WizardNPC', '1d2-1');
   this.group[3] = new NPCList('RangerNPC', '1d2-1');
   this.movetype = MOVE_WALK;
@@ -6660,7 +6717,7 @@ function HighPartyGroupTile() {
   this.peaceAI = 'Bandit-10';
   this.group = [];
   this.group[0] = new NPCList('RangerNPC', '1d2');
-  this.group[1] = new NPCList('PaladinNPC', '1d2');
+  this.group[1] = new NPCList('SpellbladeNPC', '1d2');
   this.group[2] = new NPCList('ArchmageNPC', '1d2-1');
   this.group[3] = new NPCList('HandlerNPC', '1d2-1');
   this.movetype = MOVE_WALK;
