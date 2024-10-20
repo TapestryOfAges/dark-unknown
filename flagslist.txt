@@ -185,7 +185,8 @@ justice_flees - you have defeated Justice in her battleground
 rhys_return - Rhys returned to BDC
 rhys_stone - Rhys has asked you to find the Stone
 rhys_moved - set Rhys to final dialog and that he's moved in to BDC
-rhys_summoning - the summoning has occurred  ** (endgame support)
+rhys_summoned - the summoning has occurred  ** (endgame support)
+rhys_tired - set when Rhys finishes the summoning, cleared when he next sleeps
 beldskae_saved - You saved Beldskae
 beldskae_razed - Beldskae was razed
 blanche_returned - jewelry was returned to Blanche  ** (endgame support)
