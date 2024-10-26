@@ -384,16 +384,16 @@ OnDeathFuncs["cult"] = function(who) {
 }
 
 OnDeathFuncs["scouring"] = function(who) {
+  console.log("daemon killed!");
   let themap = who.getHomeMap();
   if (themap.getName() !== "beldskae_scour") { alert("Somehow on wrong map."); }
   let npcs = themap.npcs.getAll();
   for (let i=0;i<npcs.length;i++) {
-    if (npcs[i].getName() === "DaemonNPC") { return; }   // this wasn't the last daemon, keep on
+    if ((npcs[i].getName() === "DaemonNPC") && (npcs[i] !== who)) { return; }   // this wasn't the last daemon, keep on
   }
   // all the Daemons are dead!
   let world = maps.getMap("darkunknown");
   let worldfeas = world.features.getAll();
-  let beld;
   for (let i=0;i<worldfeas.length;i++) {
     let fea = worldfeas[i];
     if (fea.getEnterMap) {
@@ -624,6 +624,7 @@ function PlaySummonScene(frame) {
       gnomemap = maps.addMap("gnomeland");
     }
     gnomemap.placeThing(2,1,gnome);
+    questlog.activate(77);
     let cataclysm = localFactory.createTile("ScouringBeldskae");
     gnome.addSpellEffect(cataclysm);
     DUPlayMusic("Towne", {fade:1});
