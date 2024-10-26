@@ -2684,6 +2684,7 @@ function PerformLifeDrain(caster, infused, free, tgt) {
   
   ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
   caster.healMe(healamt, caster);
+  DrawCharFrame();
   resp["txt"] = "You feel better!";
 
 //  resp["fin"] = -1;
