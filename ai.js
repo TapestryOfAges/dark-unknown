@@ -4099,9 +4099,11 @@ ais.GuardPatrol = function(who,dests) {
   let themap = who.getHomeMap();
   let nearby = FindNearestNPC(who,"",[PC]);  // nearest entity on this map that isn't the PC
   let nearbydist = GetDistance(who.getx(),who.gety(),nearby.getx(),nearby.gety(),"manhatten");
-  if ((!nearby.getDesc().includes("guard patrol")) && (nearbydist <= 3)) {
+  if ((nearby.getAttitude() === "hostile") && (nearbydist <= 3)) {
+//    if (who.getName() === "BeldskaeGuardsGroup") { console.log("Something is near."); }
     // there is a non-guard, non-PC nearby. Head towards it unless you're too far from the road
     if (nearbydist === 1) {
+//      if (who.getName() === "BeldskaeGuardsGroup") { console.log("It is adjacent."); }
       // adjacent to a monster- smite or be smote
       if ((nearby.getName().includes("Dragon")) || (nearby.getName().includes("Daemon"))) {
         let whox = who.getx();
@@ -4140,11 +4142,13 @@ ais.GuardPatrol = function(who,dests) {
         if (!offroad) { break; }
       }
     } 
+//    if (who.getName() === "BeldskaeGuardsGroup") { console.log("Offroad: " + offroad); }
     if (!offroad) {
       // we haven't moved too far away from the road we are patrolling yet 
       let path = themap.getPath(who.getx(),who.gety(),nearby.getx(),nearby.gety(),MOVE_WALK);
       path.shift();
       StepOrSidestep(who,path[0],[nearby.getx(),nearby.gety()]);
+      delete who.path;
       return {fin:1};
     }
   } 
@@ -4153,9 +4157,29 @@ ais.GuardPatrol = function(who,dests) {
   if ((who.getx() === dests[who.destidx][0]) && (who.gety() === dests[who.destidx][1])) {
     if (who.destidx) { who.destidx = 0; } else { who.destidx = 1; }
   }
-  let path = themap.getPath(who.getx(),who.gety(),dests[who.destidx][0],dests[who.destidx][1],MOVE_WALK);
-  path.shift();
-  StepOrSidestep(who,path[0],dests[who.destidx]);
+//  if (who.getName() === "BeldskaeGuardsGroup") { console.log(who.path); }
+  if (!who.path) {
+    let path = themap.getPath(who.getx(),who.gety(),dests[who.destidx][0],dests[who.destidx][1],MOVE_WALK);
+    path.shift();
+    who.path = path;
+//    if (who.getName() === "BeldskaeGuardsGroup") { 
+//      console.log("was no path, made a new path:");
+//      console.log(who.path);
+//    }
+  } 
+  
+  let path = who.path.shift();
+  if (!who.path.length) { delete who.path; }
+  if (path) {
+    StepOrSidestep(who,path,dests[who.destidx]);
+    if ((who.getx() !== path[0]) || (who.gety() !== path[1])) { 
+      // they sidestepped and so are off the path
+      delete who.path;
+    }  
+  } else {
+//    console.log(who);
+  }
+
 
   return {fin:1};
 }
