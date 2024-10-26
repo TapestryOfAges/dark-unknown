@@ -751,6 +751,12 @@ mappages["hildendain2"].onload = function(mapref) {
         DUTime.removeEntityFrom(franklin);
       }
     }
+    if (DU.gameflags.getFlag("beldskae_razed")) {
+      if (franklin) {
+        mapref.deleteThing(franklin);
+        DUTime.removeEntityFrom(franklin);
+      }
+    }
     if (!DU.gameflags.getFlag("gauntlet_recipe")) {
       if (leon) {
         mapref.deleteThing(leon);
