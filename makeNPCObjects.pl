@@ -242,6 +242,9 @@ foreach my $line (<$groupdoc>) {
   print $out "  this.name = '$fields[0]';\n";
   print $out "  this.desc = '$fields[1]';\n";
   print $out "  this.peaceAI = '$fields[2]';\n";
+  if ($fields[0] =~ /Guard/) {
+    print $out "  this.attitude = 'friendly';\n";
+  }
   if (!$fields[17] and !$fields[21]) {
     if ($fields[3] =~ /,/) {
       $fields[3] =~ s/ //g;
