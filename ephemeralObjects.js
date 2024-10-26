@@ -1971,16 +1971,24 @@ ScouringBeldskaeTile.prototype.endEffect = function(silent) {
   for (let i=0;i<fea.length;i++){
     if (fea[i].getEnterMap) {
       if (fea[i].getEnterMap().entermap === "beldskae_scour") {
-        fea[i].setEnterMap("beldskae_razed", fea[i].getEnterMap().enterx, fea[i].getEnterMap().entery);
-        fea[i].setDesc("ruins of Beldskae");
-        let gra = fea[i].getGraphicArray();
-        gra[0] = "static.gif";
-        gra[2] = -9*32;
-        gra[3] = -3*32;
-        fea[i].setGraphicArray(gra);
+        let bx = fea[i].getx();
+        let by = fea[i].gety();
+        let ex = fea[i].getEnterMap().enterx;
+        let ey = fea[i].getEnterMap().entery;
+        mainmap.deleteThing(fea[i]);
+        let newbeld = localFactory.createTile("Ruins");
+        newbeld.setEnterMap("beldskae_razed", ex, ey);
+        newbeld.setDesc("ruins of Beldskae");
+        mainmap.placeThing(bx,by,newbeld);
+
+        if (PC.getHomeMap() === mainmap) {
+          DrawMainFrame("one",mainmap,fea[i].getx(),fea[i].gety());
+        }
 
         DU.gameflags.setFlag("beldskae_razed",1);
         DU.gameflags.setFlag("beldskae",1);
+
+        console.log("Beldskae has been razed.");
         return 1;
       }
     }
