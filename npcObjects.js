@@ -722,7 +722,7 @@ JesterNPCTile.prototype = new NPCHumanObject();
 function TownGuardNPCTile() {
   this.name = 'TownGuardNPC';
   this.level = 5;
-  this.addhp = 0;
+  this.addhp = 10;
   this.str = 23;
   this.dex = 23;
   this.int = 14;
@@ -4986,7 +4986,7 @@ function DaemonNPCTile() {
   this.forgetAt = 10;
   this.withdraw = 0;
   this.meleeAttackAs = 'none';
-  this.meleeDamage = '5d4+15'
+  this.meleeDamage = '5d4+10'
   this.meleeStrDamage = 1
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -4995,7 +4995,7 @@ function DaemonNPCTile() {
   this.armorResist = 30;
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
-  this.lootTable = 'Daemon';
+  this.lootTable = 'Level7';
   this.prefix = 'a';
   this.desc = "daemon";
   this.meleeChance = 75;
@@ -5026,7 +5026,7 @@ DaemonNPCTile.prototype = new NPCObject();
 function DoppelgangerNPCTile() {
   this.name = 'DoppelgangerNPC';
   this.level = 7;
-  this.addhp = 5;
+  this.addhp = 0;
   this.str = 20;
   this.dex = 20;
   this.int = 20;
@@ -5055,7 +5055,7 @@ function DoppelgangerNPCTile() {
   this.defwornlayers.mainhand = 'LongswordPale'
 
   this.meleeAttackAs = 'none';
-  this.meleeDamage = '5d10+22'
+  this.meleeDamage = '5d10+15'
   this.meleeStrDamage = 1
   this.missileAttackAs = 'none';
   this.armorAs = 'PlateArmor';
@@ -5088,7 +5088,7 @@ function EarthenTyrantNPCTile() {
   this.forgetAt = 10;
   this.withdraw = 0;
   this.meleeAttackAs = 'none';
-  this.meleeDamage = '5d4+15'
+  this.meleeDamage = '5d4+10'
   this.meleeStrDamage = 1
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -7189,6 +7189,7 @@ function OnyxToHildendainGuardsGroupTile() {
   this.name = 'OnyxToHildendainGuardsGroup';
   this.desc = 'a guard patrol';
   this.peaceAI = 'PatrolOH';
+  this.attitude = 'friendly';
   this.group = [];
   this.group[0] = new NPCList('GuardNPC', '5d1');
   this.movetype = MOVE_WALK;
@@ -7220,6 +7221,7 @@ function NaurglenToPovertyGuardsGroupTile() {
   this.name = 'NaurglenToPovertyGuardsGroup';
   this.desc = 'a guard patrol';
   this.peaceAI = 'PatrolNP';
+  this.attitude = 'friendly';
   this.group = [];
   this.group[0] = new NPCList('GuardNPC', '5d1');
   this.movetype = MOVE_WALK;
@@ -7251,6 +7253,7 @@ function ClearLakeGuardsGroupTile() {
   this.name = 'ClearLakeGuardsGroup';
   this.desc = 'a guard patrol';
   this.peaceAI = 'PatrolCL';
+  this.attitude = 'friendly';
   this.group = [];
   this.group[0] = new NPCList('GuardNPC', '5d1');
   this.movetype = MOVE_WALK;
@@ -7282,6 +7285,7 @@ function BeldskaeGuardsGroupTile() {
   this.name = 'BeldskaeGuardsGroup';
   this.desc = 'a guard patrol';
   this.peaceAI = 'PatrolB';
+  this.attitude = 'friendly';
   this.group = [];
   this.group[0] = new NPCList('GuardNPC', '5d1');
   this.movetype = MOVE_WALK;
@@ -7313,6 +7317,7 @@ function SwainhilGuardsGroupTile() {
   this.name = 'SwainhilGuardsGroup';
   this.desc = 'a guard patrol';
   this.peaceAI = 'PatrolS';
+  this.attitude = 'friendly';
   this.group = [];
   this.group[0] = new NPCList('GuardNPC', '5d1');
   this.movetype = MOVE_WALK;
