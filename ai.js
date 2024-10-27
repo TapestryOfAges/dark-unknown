@@ -4097,7 +4097,7 @@ ais.PatrolS = function(who) {
 ais.GuardPatrol = function(who,dests) {
   if (PC.getHomeMap().getName().includes("guardPatrol")) { return {fin:1}; }   // don't move if PC is on a guard patrol map
   let themap = who.getHomeMap();
-  let nearby = FindNearestNPC(who,"",[PC]);  // nearest entity on this map that isn't the PC
+  let nearby = FindNearestNPC(who,"",[PC], null, null, "nopath");  // nearest entity on this map that isn't the PC     <-- speed this up by just checking the tiles within 3
   let nearbydist = GetDistance(who.getx(),who.gety(),nearby.getx(),nearby.gety(),"manhatten");
   if ((nearby.getAttitude() === "hostile") && (nearbydist <= 3)) {
 //    if (who.getName() === "BeldskaeGuardsGroup") { console.log("Something is near."); }
@@ -4146,9 +4146,11 @@ ais.GuardPatrol = function(who,dests) {
     if (!offroad) {
       // we haven't moved too far away from the road we are patrolling yet 
       let path = themap.getPath(who.getx(),who.gety(),nearby.getx(),nearby.gety(),MOVE_WALK);
-      path.shift();
-      StepOrSidestep(who,path[0],[nearby.getx(),nearby.gety()]);
-      delete who.path;
+      if (path) {
+        path.shift();
+        StepOrSidestep(who,path[0],[nearby.getx(),nearby.gety()]);
+        delete who.path;
+      }
       return {fin:1};
     }
   } 
