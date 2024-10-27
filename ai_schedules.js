@@ -741,8 +741,14 @@ ais.ChangeGraphic = function(who,params) {
   return {fin:1};
 }
 
-ais.changeHuman = function(who,params) {
-
+ais.ChangeHuman = function(who,params) {
+  for (let spot in params) {
+    if ((spot === "back") || (spot === "cloak") || (spot === "body") || (spot === "head") || (spot === "mainhand") || (spot === "offhand")) {
+      who.wornlayers[spot] = params[spot];
+    } else {
+      alert("ChangeHuman sent " + spot);
+    }
+  }
 }
 
 ais.SleepOnFloor = function(who,params) {
