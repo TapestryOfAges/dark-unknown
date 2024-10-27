@@ -1052,7 +1052,7 @@ function FindNearby(what,map,radius,shape,tox,toy) {
 
 // "except" is there so you can "find nearest except this dude"
 // align is "enemy" or "ally" (or blank for either)
-function FindNearestNPC(from, align, except, findinvis, overridemove) {
+function FindNearestNPC(from, align, except, findinvis, overridemove, nopath) {
   if (!except) { except = []; }
   let found = from.getHomeMap().npcs.getAll();
   if ((PC.getHomeMap() === from.getHomeMap()) && (!except.includes(PC))) { 
@@ -1069,10 +1069,14 @@ function FindNearestNPC(from, align, except, findinvis, overridemove) {
         if (findinvis || !found.invisible) {
           let mandist = GetDistance(from.getx(),from.gety(),val.getx(),val.gety(),"manhatten");
           if (mandist < distance) {
-            let movetype = from.getMovetype();
-            if (from.specials.open_door) { movetype = MOVE_WALK_DOOR; }
-            if (overridemove) { movetype = overridemove; }
-            let dist = GetDistanceByPath(from,val,movetype);
+            let dist;
+            if (nopath) { dist = mandist; }
+            else {
+              let movetype = from.getMovetype();
+              if (from.specials.open_door) { movetype = MOVE_WALK_DOOR; }
+              if (overridemove) { movetype = overridemove; }
+              dist = GetDistanceByPath(from,val,movetype);
+            }
             if (dist && (dist < distance)) {
               nearest = val;
               distance = dist;
