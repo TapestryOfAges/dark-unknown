@@ -1394,7 +1394,7 @@ mappages["olympus1"].onload = function(mapref) {
     CheckForCourier(mapref, 51, 49, 49, 61);
     SetAct2Convos(mapref);
 
-    let tyler, sean, katrina, manny, pieran, alban, martha, una, martin, donn, davin, coll, shelaria;
+    let tyler, sean, katrina, manny, pieran, alban, martha, una, martin, donn, davin, coll, shelaria, peter;
 
     let npcs = mapref.npcs.getAll();
 
@@ -1412,12 +1412,18 @@ mappages["olympus1"].onload = function(mapref) {
       if (npcs[i].getNPCName() === "Davin") { davin = npcs[i]; }
       if (npcs[i].getNPCName() === "Coll") { coll = npcs[i]; }
       if (npcs[i].getNPCName() === "Shelaria") { shelaria = npcs[i]; }
+      if (npcs[i].getNPCName() === "Peter") { peter = npcs[i]; }
     }
 
     let o2 = maps.getMap("olympus2");
     let o2npcs = o2.npcs.getAll();
     for (let i=0;i<o2npcs.length;i++) {
       if (o2npcs[i].getNPCName() === "Manny") { manny = npcs[i]; }
+    }
+
+    if (DU.gameflags.getFlag("peter_caught")) {
+      mapref.deleteThing(peter);
+      DUTime.removeEntityFrom(peter);
     }
 
     if ((tyler.getCurrentScheduleIndex() >= 6) && (tyler.getCurrentScheduleIndex() <= 18)) {
