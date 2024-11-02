@@ -213,23 +213,20 @@ function DisplayWares(who) {
     let yesspells = 0;
     for (let idx=0;idx<stocks.stock.length;idx++) {
       let val = stocks.stock[idx];
-        if (!yesspells) {
-          conversations[who.getConversation()].say(who, conversations[who.getConversation()]["_startbuy"].responses[1]);
-        }
-        yesspells = 1;
-        let displayname = val.desc + " (lvl: " + val.lvl + ")";
-        let addme = String.fromCharCode(code+idx) + ") " + displayname;
-        let price = val.price + " gp";
-        let addedtext = addme + "<span style='float:right'>" + price + "</span>";
-        if (PC.knowsSpell(val.lvl, val.sid)) {
-          addedtext = "<span style='color:aaa'>" + addedtext + "</span>";
-        }
-        maintext.addText(addedtext);
-        
+      let displayname = val.desc + " (lvl: " + val.lvl + ")";
+      let addme = String.fromCharCode(code+idx) + ") " + displayname;
+      let price = val.price + " gp";
+      let addedtext = addme + "<span style='float:right'>" + price + "</span>";
+      if (PC.knowsSpell(val.lvl, val.sid)) {
+        addedtext = "<span style='color:aaa'>" + addedtext + "</span>";
+      } else { yesspells = 1; }
+      maintext.addText(addedtext);
     };
     if (!yesspells) {
       conversations[who.getConversation()].say(who, conversations[who.getConversation()]["_knowsall"].responses[1]);
       return 0;
+    } else {
+      conversations[who.getConversation()].say(who, conversations[who.getConversation()]["_startbuy"].responses[1]);  
     }
     return 1;
   }
