@@ -25,10 +25,10 @@ mappages["abyss0"].features[3] = {name : 'WalkOnAbyss0', x : 9, y : 8};
 
 mappages["abyss0"].npcs = [];
 
-mappages["abyss0"].desc = "The Stygian Abyss";
+mappages["abyss0"].desc = "The Great Abyss";
 mappages["abyss0"].longdesc = ``;
 mappages["abyss0"].music = 'Magic';
-mappages["abyss0"].savename = `Stygian Abyss`;
+mappages["abyss0"].savename = `Great Abyss`;
 mappages["abyss0"].exitmap = '';
 mappages["abyss0"].exitx = '65';
 mappages["abyss0"].exity = '70';
@@ -86,10 +86,10 @@ mappages["abyss1"].features[12] = {name : 'WalkOnAbyss1', x : 10, y : 8};
 
 mappages["abyss1"].npcs = [];
 
-mappages["abyss1"].desc = "The Stygian Abyss";
+mappages["abyss1"].desc = "The Great Abyss";
 mappages["abyss1"].longdesc = ``;
 mappages["abyss1"].music = 'The Great Abyss';
-mappages["abyss1"].savename = `Stygian Abyss`;
+mappages["abyss1"].savename = `Great Abyss`;
 mappages["abyss1"].exitmap = '';
 mappages["abyss1"].exitx = '65';
 mappages["abyss1"].exity = '70';
@@ -166,10 +166,10 @@ mappages["abyss2"].features[31] = {name : 'WalkOnAbyss2', x : 11, y : 8};
 
 mappages["abyss2"].npcs = [];
 
-mappages["abyss2"].desc = "The Stygian Abyss";
+mappages["abyss2"].desc = "The Great Abyss";
 mappages["abyss2"].longdesc = ``;
 mappages["abyss2"].music = 'The Great Abyss';
-mappages["abyss2"].savename = `Stygian Abyss`;
+mappages["abyss2"].savename = `Great Abyss`;
 mappages["abyss2"].exitmap = '';
 mappages["abyss2"].exitx = '65';
 mappages["abyss2"].exity = '70';
@@ -265,10 +265,10 @@ mappages["abyss3"].npcs = [];
 
 mappages["abyss3"].flow = '{"5x0":"s","5x1":"s","10x1":"n","4x2":"e","5x2":"e","6x2":"e","7x2":"e","8x2":"e","9x2":"e","10x2":"n","4x3":"n","0x4":"e","1x4":"e","2x4":"e","3x4":"e","4x4":"n"}';
 
-mappages["abyss3"].desc = "The Stygian Abyss";
+mappages["abyss3"].desc = "The Great Abyss";
 mappages["abyss3"].longdesc = ``;
 mappages["abyss3"].music = 'The Great Abyss';
-mappages["abyss3"].savename = `Stygian Abyss`;
+mappages["abyss3"].savename = `Great Abyss`;
 mappages["abyss3"].exitmap = '';
 mappages["abyss3"].exitx = '65';
 mappages["abyss3"].exity = '70';
@@ -328,10 +328,10 @@ mappages["abyss4"].npcs[0] = {name : 'AbyssYouNPC', x : 6, y : 3, NPCName: 'Subj
 
 mappages["abyss4"].flow = '{"5x0":"s","5x1":"s","10x1":"n","4x2":"e","5x2":"e","6x2":"e","7x2":"e","8x2":"e","9x2":"e","10x2":"n","4x3":"n","0x4":"e","1x4":"e","2x4":"e","3x4":"e","4x4":"n"}';
 
-mappages["abyss4"].desc = "The Stygian Abyss";
+mappages["abyss4"].desc = "The Great Abyss";
 mappages["abyss4"].longdesc = ``;
 mappages["abyss4"].music = 'The Great Abyss';
-mappages["abyss4"].savename = `Stygian Abyss`;
+mappages["abyss4"].savename = `Great Abyss`;
 mappages["abyss4"].exitmap = 'abyss0';
 mappages["abyss4"].exitx = '8';
 mappages["abyss4"].exity = '8';
@@ -404,10 +404,10 @@ mappages["abyss5"].npcs = [];
 
 mappages["abyss5"].flow = '{"5x0":"s","5x1":"s","10x1":"n","4x2":"e","5x2":"e","6x2":"e","7x2":"e","8x2":"e","9x2":"e","10x2":"n","4x3":"n","0x4":"e","1x4":"e","2x4":"e","3x4":"e","4x4":"n"}';
 
-mappages["abyss5"].desc = "The Stygian Abyss";
+mappages["abyss5"].desc = "The Great Abyss";
 mappages["abyss5"].longdesc = ``;
 mappages["abyss5"].music = '';
-mappages["abyss5"].savename = `Stygian Abyss`;
+mappages["abyss5"].savename = `Great Abyss`;
 mappages["abyss5"].exitmap = 'abyss0';
 mappages["abyss5"].exitx = '8';
 mappages["abyss5"].exity = '8';
