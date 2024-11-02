@@ -1,5 +1,6 @@
 "use strict";
 
+// MAP BEGINS HERE
 mappages["consolation"] = {};
 mappages["consolation"].terrain = [];
  mappages["consolation"].terrain[0] = 'nn ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
@@ -22,8 +23,8 @@ mappages["consolation"].terrain[16] = 'nn nn nn nn nn nn nn ## +F +F +F +F ## +F
 mappages["consolation"].terrain[17] = 'nn nn nn nn nn nn nn ## ## +F +f +F ## +f +F +F +F +F +F +F +F ## +F +F +F ## ## nn nn nn nn nn';
 mappages["consolation"].terrain[18] = 'nn nn nn nn nn nn nn nn ## ## ## +F ## ## +F +F +f +F +F +F ## ## +f ## ## ## nn nn nn nn nn nn';
 mappages["consolation"].terrain[19] = 'nn nn nn nn nn nn nn nn nn nn ## ## ## ## ## ## +F +F ## ## ## ## ## ## nn nn nn nn nn nn nn nn';
-mappages["consolation"].terrain[20] = 'nn nn nn nn nn nn nn nn nn nn nn nn nn nn ## ## +F +F ## ## nn nn nn nn nn nn nn nn nn nn nn nn';
-mappages["consolation"].terrain[21] = 'nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn ## +f +F ## nn nn nn nn nn nn nn nn nn nn nn nn nn';
+mappages["consolation"].terrain[20] = 'nn nn nn nn nn nn nn nn nn nn nn nn nn nn ## +f +F +F +f ## nn nn nn nn nn nn nn nn nn nn nn nn';
+mappages["consolation"].terrain[21] = 'nn nn nn nn nn nn nn nn nn nn nn nn nn nn ## ## +f +F ## ## nn nn nn nn nn nn nn nn nn nn nn nn';
 mappages["consolation"].terrain[22] = 'nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn ## +F +F ## nn nn nn nn nn nn nn nn nn nn nn nn nn';
 mappages["consolation"].terrain[23] = 'nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn ## +F +F ## nn nn nn nn nn nn nn nn nn nn nn nn nn';
 mappages["consolation"].terrain[24] = 'nn nn nn nn nn nn .. __ nn nn __ .. nn nn nn f! f! f! f! nn nn nn nn nn nn nn nn nn .. __ __ nn';
@@ -96,10 +97,15 @@ mappages["consolation"].features[56] = {name : 'Brazier', x : 22, y : 11};
 mappages["consolation"].features[57] = {name : 'Brazier', x : 22, y : 18};
 mappages["consolation"].features[58] = {name : 'BlueCrystal', x : 25, y : 13};
 mappages["consolation"].features[59] = {name : 'PurpleCrystal', x : 25, y : 16};
+mappages["consolation"].features[60] = {name : 'Brazier', x : 19, y : 18};
+mappages["consolation"].features[61] = {name : 'Brazier', x : 19, y : 11};
+mappages["consolation"].features[62] = {name : 'Brazier', x : 14, y : 18};
+mappages["consolation"].features[63] = {name : 'TorchWest', x : 15, y : 20};
+mappages["consolation"].features[64] = {name : 'TorchEast', x : 18, y : 20};
 
 
 mappages["consolation"].npcs = [];
-mappages["consolation"].npcs[0] = {name : 'MageVillagerNPC', x : 0, y : 0, NPCName: 'Ashlin', PeaceAI: 'doNothing', Conversation: 'ashlin_sentinel', Gender: 'female', NPCBand: '0', OverrideGraphic: '303.2.gif', skintone: '2'};
+mappages["consolation"].npcs[0] = {name : 'MageVillagerNPC', x : 0, y : 0, NPCName: 'Ashlin', PeaceAI: 'doNothing', Conversation: 'ashlin_sentinel', Gender: 'female', NPCBand: '0', OverrideGraphic: '303.2.gif', skintone: 2, wornlayers: '{"body":"BlueRobePlain","head":"ShortBrownPale","back":null,"offhand":"OffhandPale","cloak":null,"mainhand":"QuarterstaffPale"}'};
 
 mappages["consolation"].desc = "Tower of Consolation";
 mappages["consolation"].longdesc = ``;
@@ -127,6 +133,7 @@ mappages["consolation"].returny = '74';
 mappages["consolation"].returninfused = '0';
 mappages["consolation"].linkedMaps = ["consolation2","consolation3"];
 mappages["consolation"].editorLabels = '{}';
+// MAP ENDS HERE
 
 mappages["consolation"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (gamestate.getMode() !== "editor")) {
