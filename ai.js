@@ -4146,7 +4146,7 @@ ais.GuardPatrol = function(who,dests) {
     if (!offroad) {
       // we haven't moved too far away from the road we are patrolling yet 
       let path = themap.getPath(who.getx(),who.gety(),nearby.getx(),nearby.gety(),MOVE_WALK);
-      if (path) {
+      if (path.length) {
         path.shift();
         StepOrSidestep(who,path[0],[nearby.getx(),nearby.gety()]);
         delete who.path;
