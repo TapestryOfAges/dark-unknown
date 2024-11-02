@@ -398,13 +398,20 @@ OnDeathFuncs["scouring"] = function(who) {
     let fea = worldfeas[i];
     if (fea.getEnterMap) {
       if ((fea.getEnterMap().entermap === "beldskae_scour") || (fea.getEnterMap().entermap === "beldskae_razed")) {
-        fea.setEnterMap("beldskae_saved", fea.getEnterMap().enterx, fea.getEnterMap().entery);
-        fea.setDesc("Towne of Beldskae");
-        let gra = fea.getGraphicArray();
-        gra[0] = "town2.gif";
-        gra[2] = 0;
-        gra[3] = 0;
-        fea.setGraphicArray(gra);
+        let bx = fea.getx();
+        let by = fea.gety();
+        let ex = fea.getEnterMap().enterx;
+        let ey = fea.getEnterMap().entery;
+        world.deleteThing(fea);
+        let newbeld = localFactory.createTile("Towne2");
+        newbeld.setEnterMap("beldskae_saved", ex, ey);
+        newbeld.setDesc("Towne of Beldskae");
+        world.placeThing(bx,by,newbeld);
+
+        if (PC.getHomeMap() === world) {
+          DrawMainFrame("one",world,fea[i].getx(),fea[i].gety());
+        }
+
         DU.gameflags.setFlag("beldskae_saved",1);
         DU.gameflags.setFlag("beldskae",1);
       }
@@ -625,6 +632,7 @@ function PlaySummonScene(frame) {
     }
     gnomemap.placeThing(2,1,gnome);
     questlog.activate(77);
+    questlog.activate(78);
     let cataclysm = localFactory.createTile("ScouringBeldskae");
     gnome.addSpellEffect(cataclysm);
     DUPlayMusic("Towne", {fade:1});
