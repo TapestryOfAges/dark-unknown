@@ -27,7 +27,7 @@ mappages["abyss0"].npcs = [];
 
 mappages["abyss0"].desc = "The Great Abyss";
 mappages["abyss0"].longdesc = ``;
-mappages["abyss0"].music = 'Magic';
+mappages["abyss0"].music = 'Abyss';
 mappages["abyss0"].savename = `Great Abyss`;
 mappages["abyss0"].exitmap = '';
 mappages["abyss0"].exitx = '65';
@@ -88,7 +88,7 @@ mappages["abyss1"].npcs = [];
 
 mappages["abyss1"].desc = "The Great Abyss";
 mappages["abyss1"].longdesc = ``;
-mappages["abyss1"].music = 'The Great Abyss';
+mappages["abyss1"].music = 'Abyss';
 mappages["abyss1"].savename = `Great Abyss`;
 mappages["abyss1"].exitmap = '';
 mappages["abyss1"].exitx = '65';
@@ -168,7 +168,7 @@ mappages["abyss2"].npcs = [];
 
 mappages["abyss2"].desc = "The Great Abyss";
 mappages["abyss2"].longdesc = ``;
-mappages["abyss2"].music = 'The Great Abyss';
+mappages["abyss2"].music = 'Abyss';
 mappages["abyss2"].savename = `Great Abyss`;
 mappages["abyss2"].exitmap = '';
 mappages["abyss2"].exitx = '65';
@@ -267,7 +267,7 @@ mappages["abyss3"].flow = '{"5x0":"s","5x1":"s","10x1":"n","4x2":"e","5x2":"e","
 
 mappages["abyss3"].desc = "The Great Abyss";
 mappages["abyss3"].longdesc = ``;
-mappages["abyss3"].music = 'The Great Abyss';
+mappages["abyss3"].music = 'Abyss';
 mappages["abyss3"].savename = `Great Abyss`;
 mappages["abyss3"].exitmap = '';
 mappages["abyss3"].exitx = '65';
@@ -330,7 +330,7 @@ mappages["abyss4"].flow = '{"5x0":"s","5x1":"s","10x1":"n","4x2":"e","5x2":"e","
 
 mappages["abyss4"].desc = "The Great Abyss";
 mappages["abyss4"].longdesc = ``;
-mappages["abyss4"].music = 'The Great Abyss';
+mappages["abyss4"].music = 'Abyss';
 mappages["abyss4"].savename = `Great Abyss`;
 mappages["abyss4"].exitmap = 'abyss0';
 mappages["abyss4"].exitx = '8';
@@ -406,7 +406,7 @@ mappages["abyss5"].flow = '{"5x0":"s","5x1":"s","10x1":"n","4x2":"e","5x2":"e","
 
 mappages["abyss5"].desc = "The Great Abyss";
 mappages["abyss5"].longdesc = ``;
-mappages["abyss5"].music = '';
+mappages["abyss5"].music = 'Abyss';
 mappages["abyss5"].savename = `Great Abyss`;
 mappages["abyss5"].exitmap = 'abyss0';
 mappages["abyss5"].exitx = '8';
