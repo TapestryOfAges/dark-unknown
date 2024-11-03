@@ -6977,7 +6977,7 @@ WhirlpoolTile.prototype.walkon = function(walker) {
     DUPlaySound("sfx_whirlpool_travel");
     if (themap.getName() === "darkunknown") {
       let newmap = maps.addMap("underworld");
-      MoveBetweenMaps(walker,themap,newmap,83,107);
+      MoveBetweenMaps(walker,themap,newmap,70,106);
     } else if (PC.hasOwnProperty("whirlx")) {
       let newmap = maps.getMap(PC.whirlmap);
       if (!newmap) { newmap = maps.addMap(PC.whirlmap); }
