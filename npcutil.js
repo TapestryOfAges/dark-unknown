@@ -25,9 +25,18 @@ NPCSpecialFuncs["quick"] = function(who, how) {
 }
 
 NPCSpecialFuncs["mirror"] = function(who, how) {
-  who.setGraphicArray(PC.getGraphicArray());
-  who.gender = PC.gender
-  who.npcname = PC.pcname;  
+  if (gamestate.getMode() !== "editor") {
+    who.gender = PC.gender
+    who.npcname = PC.pcname;  
+    who.wornlayers.head = PC.wornlayers.head;
+    who.wornlayers.body = PC.wornlayers.body;
+    who.wornlayers.cloak = PC.wornlayers.cloak;
+    who.wornlayers.back = PC.wornlayers.back;
+    who.wornlayers.mainhand = PC.wornlayers.mainhand;
+    who.wornlayers.offhand = PC.wornlayers.offhand;
+    who.makeLayers();
+    DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
+  }
 }
 
 NPCSpecialFuncs["light"] = function(who,how) {
