@@ -1406,23 +1406,24 @@ function PerformRuneChoice() {
             let tile = themap.getTile(px,py);
             if ((tile !== "OoB") && (IsRightWater(tile.getTerrain()))) { 
               nearbywater = 1; 
+              if (!nearwaterlist.hasOwnProperty(px)) { nearwaterlist[px] = {}; }
               nearwaterlist[px][py] = 1;
             }
           }
         }
 
         let farawaywater = 0;
+        let farwaterlist = [];
         if (nearbywater) {
-          let farwaterlist = [];
           Object.keys(nearwaterlist).forEach(key => {
             Object.keys(nearwaterlist[key]).forEach(innerkey => {
               for (let i=-1;i<=1;i++) {
                 for (let j=-1;j<=1;j++) {
-                  let tile = themap.getTile(key+i,innerkey+j);
+                  let tx = parseInt(key)+i;
+                  let ty = parseInt(innerkey)+j;
+                  let tile = themap.getTile(tx,ty);
                   if ((tile !== "OoB") && (IsRightWater(tile.getTerrain()))) {
-                    if (GetDistance(PC.getx(),PC.gety(),key+i,innerkey+j,"square") === 2) {
-                      let tx = key+i;
-                      let ty = innerkey+j;
+                    if (GetDistance(PC.getx(),PC.gety(),tx,ty,"square") === 2) {
                       farwaterlist.push(`${tx},${ty}`);
                       farawaywater = 1;
                     }
@@ -1438,8 +1439,9 @@ function PerformRuneChoice() {
 
           let whirlpool = localFactory.createTile("Whirlpool");
 
-          let coords = split(",", farwaterlist[opt]);
+          let coords = farwaterlist[opt].split(",");
           themap.placeThing(coords[0],coords[1],whirlpool);
+          DrawMainFrame("one",PC.getHomeMap(),coords[0],coords[1]);
 
           PC.whirlx = coords[0];
           PC.whirly = coords[1];
