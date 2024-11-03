@@ -663,7 +663,7 @@ function GetDistanceFromPerson(who,x2,y2,disttype) {
   if (who.attachedParts) {
     for (let i=0;i<who.attachedParts.length;i++) {
       let x1 = x + who.attachedLocations[i][0];
-      let y1 = y + who.attachedlocations[i][1];
+      let y1 = y + who.attachedLocations[i][1];
       let dist = GetDistance(x1,y1,x2,y2,disttype);
       if (dist < mindist) { mindist = dist; }
     }
