@@ -5910,7 +5910,26 @@ function AbyssYouNPCTile() {
   this.peaceAI = 'abyssyou ';
   this.forgetAt = 0;
   this.withdraw = 0;
-  this.graphic = '388.gif';
+  this.graphic = 'spacer.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: HumanParts['ChainMail'].frames,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+
+  this.defwornlayers.body = 'ChainMail'
+  this.defwornlayers.head = 'random'
+  this.defwornlayers.cloak = 'BlueCloak'
+  this.defwornlayers.offhand = 'OffhandPale'
+  this.defwornlayers.mainhand = 'LongswordPale'
+
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d2'
   this.meleeStrDamage = .33
@@ -5929,7 +5948,7 @@ function AbyssYouNPCTile() {
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
 }
-AbyssYouNPCTile.prototype = new NPCObject();
+AbyssYouNPCTile.prototype = new NPCHumanObject();
 
 
 // Sentinel
