@@ -1143,6 +1143,7 @@ OnConvTriggers["given_regalia"] = function(speaker,keyword) {
   CheckOracleQuest();
   speaker.wornlayers.body = "QueenNoCrown";
   speaker.makeLayers();
+  DrawMainFrame("one",speaker.getHomeMap(),speaker.getx(),speaker.gety());
 }
 
 OnConvTriggers["returned_crown"] = function(speaker,keyword) {
@@ -1151,6 +1152,7 @@ OnConvTriggers["returned_crown"] = function(speaker,keyword) {
   else { DU.gameflags.setFlag("gave_one",1); }
   speaker.wornlayers.body = "Queen";
   speaker.makeLayers();
+  DrawMainFrame("one",speaker.getHomeMap(),speaker.getx(),speaker.gety());
 }
 
 OnConvTriggers["returned_amulet"] = function(speaker,keyword) {
