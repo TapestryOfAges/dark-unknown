@@ -1394,7 +1394,7 @@ mappages["olympus1"].onload = function(mapref) {
     CheckForCourier(mapref, 51, 49, 49, 61);
     SetAct2Convos(mapref);
 
-    let tyler, sean, katrina, manny, pieran, alban, martha, una, martin, donn, davin, coll, shelaria, peter;
+    let tyler, sean, katrina, manny, coll, shelaria, peter;
 
     let npcs = mapref.npcs.getAll();
 
@@ -1403,13 +1403,6 @@ mappages["olympus1"].onload = function(mapref) {
       if (npcs[i].getNPCName() === "Sean") { sean = npcs[i]; }
       if (npcs[i].getNPCName() === "Katrina") { katrina = npcs[i]; }
       if (npcs[i].getNPCName() === "Manny") { manny = npcs[i]; }
-      if (npcs[i].getNPCName() === "Pieran") { pieran = npcs[i]; }
-      if (npcs[i].getNPCName() === "Alban") { alban = npcs[i]; }
-      if (npcs[i].getNPCName() === "Martha") { martha = npcs[i]; }
-      if (npcs[i].getNPCName() === "Una") { una = npcs[i]; }
-      if (npcs[i].getNPCName() === "Martin") { martin = npcs[i]; }
-      if (npcs[i].getNPCName() === "Donn") { donn = npcs[i]; }
-      if (npcs[i].getNPCName() === "Davin") { davin = npcs[i]; }
       if (npcs[i].getNPCName() === "Coll") { coll = npcs[i]; }
       if (npcs[i].getNPCName() === "Shelaria") { shelaria = npcs[i]; }
       if (npcs[i].getNPCName() === "Peter") { peter = npcs[i]; }
@@ -1465,34 +1458,6 @@ mappages["olympus1"].onload = function(mapref) {
         shelaria.makeLayers();
       }
     } 
-
-    if (pieran.getCurrentScheduleIndex() === 11) {
-      pieran.realgraphic = ["310.gif","","0","0"];
-    }
-
-    if (alban.getCurrentScheduleIndex() === 11) {
-      alban.realgraphic = ["310.2.gif","","0","0"];
-    }
-
-    if (martha.getCurrentScheduleIndex() === 10) {
-      martha.realgraphic = ["310.gif","","0","0"];
-    }
-
-    if (una.getCurrentScheduleIndex() === 13) {
-      una.realgraphic = ["310.2.gif","","0","0"];
-    }
-   
-    if (martin.getCurrentScheduleIndex() === 11) {
-      martin.realgraphic = ["310.2.gif","","0","0"];
-    }
-
-    if (donn.getCurrentScheduleIndex() === 11) {
-      donn.realgraphic = ["310.gif","","0","0"];
-    }
-
-    if (davin.getCurrentScheduleIndex() === 9) {
-      davin.realgraphic = ["310.gif","","0","0"];
-    }
     
     if (!DU.gameflags.getFlag("act2") || DU.gameflags.getFlag("guard_thief_talk")) {
       mapref.deleteThing(coll);
@@ -1532,87 +1497,18 @@ mappages["olympus2"].onload = function(mapref) {
     }
     // Changes made due to schedules
 
-    let jharden, reed, yvette, brandan, lena, barbara, aler, brian, liam, poe, benedig, andrew, armaelle, gwen, vivian;
+    let jharden;
 
     let npcs = mapref.npcs.getAll();
 
     for (let i=0;i<npcs.length;i++) {
       if (npcs[i].getNPCName() === "Jharden") { jharden = npcs[i]; }
-      if (npcs[i].getNPCName() === "Reed") { reed = npcs[i]; }
-      if (npcs[i].getNPCName() === "Yvette") { yvette = npcs[i]; }
-      if (npcs[i].getNPCName() === "Brandan") { brandan = npcs[i]; }
-      if (npcs[i].getNPCName() === "Lena") { lena = npcs[i]; }
-      if (npcs[i].getNPCName() === "Barbara") { barbara = npcs[i]; }
-      if (npcs[i].getNPCName() === "Aler") { aler = npcs[i]; }
-      if (npcs[i].getNPCName() === "Brian") { brian = npcs[i]; }
-      if (npcs[i].getNPCName() === "Liam") { liam = npcs[i]; }
-      if (npcs[i].getNPCName() === "Poe") { poe = npcs[i]; }
-      if (npcs[i].getNPCName() === "Benedig") { benedig = npcs[i]; }
-      if (npcs[i].getNPCName() === "Andrew") { andrew = npcs[i]; }
-      if (npcs[i].getNPCName() === "Armaelle") { armaelle = npcs[i]; }
-      if (npcs[i].getNPCName() === "Gwen") { gwen = npcs[i]; }
-      if (npcs[i].getNPCName() === "Vivian") { vivian = npcs[i]; }
     }
 
     if ((jharden.getCurrentScheduleIndex() >= 14) || (manny.getCurrentScheduleIndex() <= 0)) {
       mapref.getTile(69,20).getTopFeature().use(jharden);
     }
 
-    if (reed.getCurrentScheduleIndex() === 21) {
-      reed.realgraphic = ["310.2.gif","","0","0"];
-    } 
-
-    if (yvette.getCurrentScheduleIndex() === 21) {
-      yvette.realgraphic = ["310.gif","","0","0"];
-    }
-
-    if (brandan.getCurrentScheduleIndex() === 19) {
-      brandan.realgraphic = ["310.gif","","0","0"];
-    }
-
-    if (lena.getCurrentScheduleIndex() === 21) {
-      lena.realgraphic = ["310.2.gif","","0","0"];
-    }
-
-    if (barbara.getCurrentScheduleIndex() === 21) {
-      barbara.realgraphic = ["310.gif","","0","0"];
-    }
-
-    if (aler.getCurrentScheduleIndex() === 21) {
-      aler.realgraphic = ["310.2.gif","","0","0"];
-    }
-
-    if (brian.getCurrentScheduleIndex() === 21) {
-      brian.realgraphic = ["310.gif","","0","0"];
-    }
-
-    if (liam.getCurrentScheduleIndex() === 20) {
-      liam.realgraphic = ["310.2.gif","","0","0"];
-    }
-
-    if (poe.getCurrentScheduleIndex() === 9) {
-      poe.realgraphic = ["310.gif","","0","0"];
-    }
-
-    if (benedig.getCurrentScheduleIndex() === 16) {
-      benedig.realgraphic = ["310.gif","","0","0"];
-    }
-
-    if (andrew.getCurrentScheduleIndex() === 25) {
-      andrew.realgraphic = ["310.2.gif","","0","0"];
-    }
-
-    if (armaelle.getCurrentScheduleIndex() === 57) {
-      armaelle.realgraphic = ["310.gif","","0","0"];
-    }
-
-    if (gwen.getCurrentScheduleIndex() === 21) {
-      gwen.realgraphic = ["310.gif","","0","0"];
-    }
-
-    if (vivian.getCurrentScheduleIndex() === 31) {
-      vivian.realgraphic = ["310.gif","","0","0"];
-    }
   }
 }
 
