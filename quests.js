@@ -263,7 +263,7 @@ questlist[101] = new Quest([100], "Cross the Abyss", "Jharden", "Castle dea Olym
 function CheckOracleQuest() {
   let q79 = questlog.findQuest(79);
   let q80 = questlog.findQuest(80);
-  if (q79 && q80 && q81 && q79.completed && q80.completed) {
+  if (q79 && q80 && q79.completed && q80.completed) {
     questlog.activate(81);
   }
 }
