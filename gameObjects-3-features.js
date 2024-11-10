@@ -11903,8 +11903,44 @@ function OracleObject() {
   this.prefix = "the";
   this.desc = "Oracle";
   this.peerview = "#959595";
+  this.conversation = "oracle";
 }
 OracleObject.prototype = new FeatureObject();
+
+OracleObject.prototype.getConversation = function() {
+  return this.conversation;
+}
+
+OracleObject.prototype.getGenderedTerms = function() {
+  let gt = {};
+  gt.pronoun = "it";
+  gt.possessive = "its";
+  gt.objective = "it";
+  gt.titled = "Lord";
+  gt.sibling = "sibling";
+  gt.kiddie = "child";    
+  return gt;  
+}
+
+OracleObject.prototype.getNPCName = function() {
+	return "The Oracle";
+}
+
+OracleObject.prototype.activate = function(timeoverride) {
+//  this.use_old = this.use;
+  this.use = function(who) {
+    let retval = {fin:1};
+    if (who === PC) {
+      maintext.addText("Use " + this.getDesc() + ":");
+      retval = PerformTalk(this,"oracle","_start");
+      retval["override"] = 1;
+      maintext.setInputLine("&gt; You say: ");
+      maintext.drawTextFrame();
+    }
+    return retval;
+  };
+  return 1;
+}
 
 function OracleLowerLeftTile() {
   this.name = "OracleLowerLeft";
