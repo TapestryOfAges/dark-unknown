@@ -242,6 +242,31 @@ function PopulateAtlas(atlasref) {
   atlasref.insertkey("FadedFancyFloor2","+&");
   atlasref.insertkey("GreyTileFloor","+t");
   atlasref.insertkey("CrackedStoneFloor","+X");
+
+  atlasref.insertkey("OceanWaterTransition0","W0");
+  atlasref.insertkey("OceanWaterTransition1","W1");
+  atlasref.insertkey("OceanWaterTransition2","W2");
+  atlasref.insertkey("OceanWaterTransition3","W3");
+  atlasref.insertkey("OceanWaterTransition4","W4");
+  atlasref.insertkey("OceanWaterTransition5","W5");
+  atlasref.insertkey("OceanWaterTransition6","W6");
+  atlasref.insertkey("OceanWaterTransition7","W7");
+  atlasref.insertkey("OceanWaterTransition8","W8");
+  atlasref.insertkey("OceanWaterTransition9","W9");
+  atlasref.insertkey("OceanWaterTransition10","W+");
+  atlasref.insertkey("OceanWaterTransition11","W=");
+  atlasref.insertkey("WaterShallowsTransition0","w0");
+  atlasref.insertkey("WaterShallowsTransition1","w1");
+  atlasref.insertkey("WaterShallowsTransition2","w2");
+  atlasref.insertkey("WaterShallowsTransition3","w3");
+  atlasref.insertkey("WaterShallowsTransition4","w4");
+  atlasref.insertkey("WaterShallowsTransition5","w5");
+  atlasref.insertkey("WaterShallowsTransition6","w6");
+  atlasref.insertkey("WaterShallowsTransition7","w7");
+  atlasref.insertkey("WaterShallowsTransition8","w8");
+  atlasref.insertkey("WaterShallowsTransition9","w9");
+  atlasref.insertkey("WaterShallowsTransition10","w10");
+  atlasref.insertkey("WaterShallowsTransition11","w11");
 }
 
 // Page object- condensed map

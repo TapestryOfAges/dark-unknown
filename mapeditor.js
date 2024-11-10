@@ -1158,7 +1158,7 @@ var featureblock = document.getElementById("featurediv");
 var creatureblock = document.getElementById("creaturediv");
 var lowlvlblock = document.getElementById("lowlvldiv");
 var highlvlblock = document.getElementById("highlvldiv");
-var seablock = document.getElementById("seadiv");
+var transblock = document.getElementById("transdiv");
 
   if (divname === "outdoor") {
     outdoorblock.style.display="block";
@@ -1190,10 +1190,10 @@ var seablock = document.getElementById("seadiv");
   } 
   else { highlvlblock.style.display="none"; }
 
-  if (divname === "sea") {
-    seablock.style.display="block";
+  if (divname === "trans") {
+    transblock.style.display="block";
   } 
-  else {seablock.style.display="none"; }
+  else {transblock.style.display="none"; }
   
 }
 

@@ -50,6 +50,210 @@ function OceanTile() {
 }
 OceanTile.prototype = new TerrainObject();
 
+function OceanWaterTransition0Tile() {
+  //Graphics Upgraded
+  this.name = "OceanWaterTransition0";
+  this.graphic = "watertrans.gif";
+  this.desc = "deep water";
+  this.blocklos = 0;
+  this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL;
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+  this.combatmap = "Water";
+  this.peerview = "#103cff";
+  this.walkSound = "water";
+
+  TilingSpritesheet.call(this, 8,0,1);
+}
+OceanWaterTransition0Tile.prototype = new TerrainObject();
+
+function OceanWaterTransition1Tile() {
+  //Graphics Upgraded
+  this.name = "OceanWaterTransition1";
+  this.graphic = "watertrans.gif";
+  this.desc = "deep water";
+  this.blocklos = 0;
+  this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL;
+  this.spritexoffset = 0;
+  this.spriteyoffset = -32;
+  this.combatmap = "Water";
+  this.peerview = "#103cff";
+  this.walkSound = "water";
+
+  TilingSpritesheet.call(this, 8,0,1);
+}
+OceanWaterTransition1Tile.prototype = new TerrainObject();
+
+function OceanWaterTransition2Tile() {
+  //Graphics Upgraded
+  this.name = "OceanWaterTransition2";
+  this.graphic = "watertrans.gif";
+  this.desc = "deep water";
+  this.blocklos = 0;
+  this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL;
+  this.spritexoffset = 0;
+  this.spriteyoffset = -2*32;
+  this.combatmap = "Water";
+  this.peerview = "#103cff";
+  this.walkSound = "water";
+
+  TilingSpritesheet.call(this, 8,0,1);
+}
+OceanWaterTransition2Tile.prototype = new TerrainObject();
+
+function OceanWaterTransition3Tile() {
+  //Graphics Upgraded
+  this.name = "OceanWaterTransition3";
+  this.graphic = "watertrans.gif";
+  this.desc = "deep water";
+  this.blocklos = 0;
+  this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL;
+  this.spritexoffset = 0;
+  this.spriteyoffset = -3*32;
+  this.combatmap = "Water";
+  this.peerview = "#103cff";
+  this.walkSound = "water";
+
+  TilingSpritesheet.call(this, 8,0,1);
+}
+OceanWaterTransition3Tile.prototype = new TerrainObject();
+
+function OceanWaterTransition4Tile() {
+  //Graphics Upgraded
+  this.name = "OceanWaterTransition4";
+  this.graphic = "watertrans.gif";
+  this.desc = "deep water";
+  this.blocklos = 0;
+  this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL;
+  this.spritexoffset = 0;
+  this.spriteyoffset = -4*32;
+  this.combatmap = "Water";
+  this.peerview = "#103cff";
+  this.walkSound = "water";
+
+  TilingSpritesheet.call(this, 8,0,1);
+}
+OceanWaterTransition4Tile.prototype = new TerrainObject();
+
+function OceanWaterTransition5Tile() {
+  //Graphics Upgraded
+  this.name = "OceanWaterTransition5";
+  this.graphic = "watertrans.gif";
+  this.desc = "deep water";
+  this.blocklos = 0;
+  this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL;
+  this.spritexoffset = 0;
+  this.spriteyoffset = -5*32;
+  this.combatmap = "Water";
+  this.peerview = "#103cff";
+  this.walkSound = "water";
+
+  TilingSpritesheet.call(this, 8,0,1);
+}
+OceanWaterTransition5Tile.prototype = new TerrainObject();
+
+function OceanWaterTransition6Tile() {
+  //Graphics Upgraded
+  this.name = "OceanWaterTransition6";
+  this.graphic = "watertrans.gif";
+  this.desc = "deep water";
+  this.blocklos = 0;
+  this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL;
+  this.spritexoffset = 0;
+  this.spriteyoffset = -6*32;
+  this.combatmap = "Water";
+  this.peerview = "#103cff";
+  this.walkSound = "water";
+
+  TilingSpritesheet.call(this, 8,0,1);
+}
+OceanWaterTransition6Tile.prototype = new TerrainObject();
+
+function OceanWaterTransition7Tile() {
+  //Graphics Upgraded
+  this.name = "OceanWaterTransition7";
+  this.graphic = "watertrans.gif";
+  this.desc = "deep water";
+  this.blocklos = 0;
+  this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL;
+  this.spritexoffset = 0;
+  this.spriteyoffset = -7*32;
+  this.combatmap = "Water";
+  this.peerview = "#103cff";
+  this.walkSound = "water";
+
+  TilingSpritesheet.call(this, 8,0,1);
+}
+OceanWaterTransition7Tile.prototype = new TerrainObject();
+
+function OceanWaterTransition8Tile() {
+  //Graphics Upgraded
+  this.name = "OceanWaterTransition8";
+  this.graphic = "watertrans.gif";
+  this.desc = "deep water";
+  this.blocklos = 0;
+  this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL;
+  this.spritexoffset = 0;
+  this.spriteyoffset = -8*32;
+  this.combatmap = "Water";
+  this.peerview = "#103cff";
+  this.walkSound = "water";
+
+  TilingSpritesheet.call(this, 8,0,1);
+}
+OceanWaterTransition8Tile.prototype = new TerrainObject();
+
+function OceanWaterTransition9Tile() {
+  //Graphics Upgraded
+  this.name = "OceanWaterTransition9";
+  this.graphic = "watertrans.gif";
+  this.desc = "deep water";
+  this.blocklos = 0;
+  this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL;
+  this.spritexoffset = 0;
+  this.spriteyoffset = -9*32;
+  this.combatmap = "Water";
+  this.peerview = "#103cff";
+  this.walkSound = "water";
+
+  TilingSpritesheet.call(this, 8,0,1);
+}
+OceanWaterTransition9Tile.prototype = new TerrainObject();
+
+function OceanWaterTransition10Tile() {
+  //Graphics Upgraded
+  this.name = "OceanWaterTransition10";
+  this.graphic = "watertrans.gif";
+  this.desc = "deep water";
+  this.blocklos = 0;
+  this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL;
+  this.spritexoffset = 0;
+  this.spriteyoffset = -10*32;
+  this.combatmap = "Water";
+  this.peerview = "#103cff";
+  this.walkSound = "water";
+
+  TilingSpritesheet.call(this, 8,0,1);
+}
+OceanWaterTransition10Tile.prototype = new TerrainObject();
+
+function OceanWaterTransition11Tile() {
+  //Graphics Upgraded
+  this.name = "OceanWaterTransition11";
+  this.graphic = "watertrans.gif";
+  this.desc = "deep water";
+  this.blocklos = 0;
+  this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL;
+  this.spritexoffset = 0;
+  this.spriteyoffset = -11*32;
+  this.combatmap = "Water";
+  this.peerview = "#103cff";
+  this.walkSound = "water";
+
+  TilingSpritesheet.call(this, 8,0,1);
+}
+OceanWaterTransition11Tile.prototype = new TerrainObject();
+
 function WaterTile() {
   this.name = "Water";
   this.graphic = "water.gif";
@@ -75,6 +279,98 @@ WaterTile.prototype.idle = function(walker) {
   let resp = InWater(walker);
   return resp;
 }
+
+function WaterShallowsTransition0Tile() {
+  this.name = "WaterShallowsTransition0";
+  this.graphic = "watertrans.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -12*32;
+  this.desc = "water";
+  this.blocklos = 0;
+  this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
+  this.combatmap = "Water";
+  this.peerview = "#128dfe";
+  this.walkSound = "water";
+
+  TilingSpritesheet.call(this, 8,0,1);
+}
+WaterShallowsTransition0Tile.prototype = new TerrainObject();
+
+WaterShallowsTransition0Tile.prototype.walkon = function(walker) {
+  let resp = InWater(walker);
+  return resp;
+}
+
+WaterShallowsTransition0Tile.prototype.idle = function(walker) {
+  let resp = InWater(walker);
+  return resp;
+}
+
+function WaterShallowsTransition1Tile() {
+  this.name = "WaterShallowsTransition1";
+  this.spriteyoffset = -13*32;
+}
+WaterShallowsTransition1Tile.prototype = new WaterShallowsTransition0Tile();
+
+function WaterShallowsTransition2Tile() {
+  this.name = "WaterShallowsTransition2";
+  this.spriteyoffset = -14*32;
+}
+WaterShallowsTransition2Tile.prototype = new WaterShallowsTransition0Tile();
+
+function WaterShallowsTransition3Tile() {
+  this.name = "WaterShallowsTransition3";
+  this.spriteyoffset = -15*32;
+}
+WaterShallowsTransition3Tile.prototype = new WaterShallowsTransition0Tile();
+
+function WaterShallowsTransition4Tile() {
+  this.name = "WaterShallowsTransition4";
+  this.spriteyoffset = -16*32;
+}
+WaterShallowsTransition4Tile.prototype = new WaterShallowsTransition0Tile();
+
+function WaterShallowsTransition5Tile() {
+  this.name = "WaterShallowsTransition5";
+  this.spriteyoffset = -17*32;
+}
+WaterShallowsTransition5Tile.prototype = new WaterShallowsTransition0Tile();
+
+function WaterShallowsTransition6Tile() {
+  this.name = "WaterShallowsTransition6";
+  this.spriteyoffset = -18*32;
+}
+WaterShallowsTransition6Tile.prototype = new WaterShallowsTransition0Tile();
+
+function WaterShallowsTransition7Tile() {
+  this.name = "WaterShallowsTransition7";
+  this.spriteyoffset = -19*32;
+}
+WaterShallowsTransition7Tile.prototype = new WaterShallowsTransition0Tile();
+
+function WaterShallowsTransition8Tile() {
+  this.name = "WaterShallowsTransition8";
+  this.spriteyoffset = -20*32;
+}
+WaterShallowsTransition8Tile.prototype = new WaterShallowsTransition0Tile();
+
+function WaterShallowsTransition9Tile() {
+  this.name = "WaterShallowsTransition9";
+  this.spriteyoffset = -21*32;
+}
+WaterShallowsTransition9Tile.prototype = new WaterShallowsTransition0Tile();
+
+function WaterShallowsTransition10Tile() {
+  this.name = "WaterShallowsTransition10";
+  this.spriteyoffset = -22*32;
+}
+WaterShallowsTransition10Tile.prototype = new WaterShallowsTransition0Tile();
+
+function WaterShallowsTransition11Tile() {
+  this.name = "WaterShallowsTransition11";
+  this.spriteyoffset = -23*32;
+}
+WaterShallowsTransition11Tile.prototype = new WaterShallowsTransition0Tile();
 
 function ShallowsTile() {
   this.name = "Shallows";

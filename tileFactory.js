@@ -23,8 +23,128 @@ tileFactory.prototype.makeOceanTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeOceanWaterTransition0Tile = function() {
+  let newTile = new OceanWaterTransition0Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOceanWaterTransition1Tile = function() {
+  let newTile = new OceanWaterTransition1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOceanWaterTransition2Tile = function() {
+  let newTile = new OceanWaterTransition2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOceanWaterTransition3Tile = function() {
+  let newTile = new OceanWaterTransition3Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOceanWaterTransition4Tile = function() {
+  let newTile = new OceanWaterTransition4Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOceanWaterTransition5Tile = function() {
+  let newTile = new OceanWaterTransition5Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOceanWaterTransition6Tile = function() {
+  let newTile = new OceanWaterTransition6Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOceanWaterTransition7Tile = function() {
+  let newTile = new OceanWaterTransition7Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOceanWaterTransition8Tile = function() {
+  let newTile = new OceanWaterTransition8Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOceanWaterTransition9Tile = function() {
+  let newTile = new OceanWaterTransition9Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOceanWaterTransition10Tile = function() {
+  let newTile = new OceanWaterTransition10Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOceanWaterTransition11Tile = function() {
+  let newTile = new OceanWaterTransition11Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWaterTile = function() {
   let newTile = new WaterTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWaterShallowsTransition0Tile = function() {
+  let newTile = new WaterShallowsTransition0Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWaterShallowsTransition1Tile = function() {
+  let newTile = new WaterShallowsTransition1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWaterShallowsTransition2Tile = function() {
+  let newTile = new WaterShallowsTransition2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWaterShallowsTransition3Tile = function() {
+  let newTile = new WaterShallowsTransition3Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWaterShallowsTransition4Tile = function() {
+  let newTile = new WaterShallowsTransition4Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWaterShallowsTransition5Tile = function() {
+  let newTile = new WaterShallowsTransition5Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWaterShallowsTransition6Tile = function() {
+  let newTile = new WaterShallowsTransition6Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWaterShallowsTransition7Tile = function() {
+  let newTile = new WaterShallowsTransition7Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWaterShallowsTransition8Tile = function() {
+  let newTile = new WaterShallowsTransition8Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWaterShallowsTransition9Tile = function() {
+  let newTile = new WaterShallowsTransition9Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWaterShallowsTransition10Tile = function() {
+  let newTile = new WaterShallowsTransition10Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWaterShallowsTransition11Tile = function() {
+  let newTile = new WaterShallowsTransition11Tile();
   return newTile;
 }
 
