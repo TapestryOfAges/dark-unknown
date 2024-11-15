@@ -3290,6 +3290,10 @@ TalkingDoorTile.prototype.getConversation = function() {
   return this.conversation;
 }
 
+TalkingDoorTile.prototype.getConversationFlag = function() {
+  return null;
+}
+
 TalkingDoorTile.prototype.getGenderedTerms = function() {
   let gt = {};
   gt.pronoun = "it";
@@ -3305,22 +3309,17 @@ TalkingDoorTile.prototype.getNPCName = function() {
 	return "The front door";
 }
 
-TalkingDoorTile.prototype.activate = function(timeoverride) {
-//  this.use_old = this.use;
-  this.use = function(who) {
-    console.log("Something tried the door.");
-    let retval = {fin:1};
-    if (who === PC) {
-      maintext.addText("Use " + this.getDesc() + ":");
-      retval = PerformTalk(this,"ash_door","_start");
-      retval["override"] = 1;
-      maintext.setInputLine("&gt; You say: ");
-      maintext.drawTextFrame();
-    }
-    return retval;
-  };
-  return 1;
-}
+TalkingDoorTile.prototype.use = function(who) {
+  let retval = {fin:1};
+  if (who === PC) {
+    maintext.addText("Use " + this.getDesc() + ":");
+    retval = PerformTalk(this,"ash_door","_start");
+    retval["override"] = 1;
+    maintext.setInputLine("&gt; You say: ");
+    maintext.drawTextFrame();
+  }
+  return retval;
+};
 
 function GreyDoorTile() {
   //Graphics Upgraded
@@ -6266,6 +6265,10 @@ CursedReflectionTile.prototype = new FeatureObject();
 
 CursedReflectionTile.prototype.getConversation = function() {
   return this.conversation;
+}
+
+CursedReflectionTile.prototype.getConversationFlag = function() {
+  return null;
 }
 
 CursedReflectionTile.prototype.getGenderedTerms = function() {
@@ -11911,6 +11914,10 @@ OracleObject.prototype.getConversation = function() {
   return this.conversation;
 }
 
+OracleObject.prototype.getConversationFlag = function() {
+  return null;
+}
+
 OracleObject.prototype.getGenderedTerms = function() {
   let gt = {};
   gt.pronoun = "it";
@@ -11926,21 +11933,17 @@ OracleObject.prototype.getNPCName = function() {
 	return "The Oracle";
 }
 
-OracleObject.prototype.activate = function(timeoverride) {
-//  this.use_old = this.use;
-  this.use = function(who) {
-    let retval = {fin:1};
-    if (who === PC) {
-      maintext.addText("Use " + this.getDesc() + ":");
-      retval = PerformTalk(this,"oracle","_start");
-      retval["override"] = 1;
-      maintext.setInputLine("&gt; You say: ");
-      maintext.drawTextFrame();
-    }
-    return retval;
-  };
-  return 1;
-}
+OracleObject.prototype.use = function(who) {
+  let retval = {fin:1};
+  if (who === PC) {
+    maintext.addText("Use " + this.getDesc() + ":");
+    retval = PerformTalk(this,"oracle","_start");
+    retval["override"] = 1;
+    maintext.setInputLine("&gt; You say: ");
+    maintext.drawTextFrame();
+  }
+  return retval;
+};
 
 function OracleLowerLeftTile() {
   this.name = "OracleLowerLeft";
