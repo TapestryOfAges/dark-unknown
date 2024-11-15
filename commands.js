@@ -1443,8 +1443,8 @@ function PerformRuneChoice() {
           themap.placeThing(coords[0],coords[1],whirlpool);
           DrawMainFrame("one",PC.getHomeMap(),coords[0],coords[1]);
 
-          PC.whirlx = coords[0];
-          PC.whirly = coords[1];
+          PC.whirlx = parseInt(coords[0]);
+          PC.whirly = parseInt(coords[1]);
           PC.whirlmap = themap.getName();
 
           DUPlaySound("sfx_create_whirlpool");
@@ -1847,14 +1847,14 @@ function PerformTalkTarget() {
   
   
   let retval = {};
-  if (!top.checkType("NPC")) {
+  if (!top.checkType("NPC") && !top.conversation) {
     retval["txt"] = "There is no one there to talk to.";
     retval["fin"] = 2;
     retval["input"] = "&gt;";
   
     return retval;
   }
-  if ((top.getAttitude() !== "friendly") && (top.getAttitude() !== "neutral")) {
+  if (top.checkType("NPC") && (top.getAttitude() !== "friendly") && (top.getAttitude() !== "neutral")) {
     let pronoun = top.getGenderedTerms().pronoun;
     pronoun = pronoun.charAt(0).toUpperCase() + pronoun.slice(1);
     retval["txt"] = pronoun + " does not want to talk to you.";
@@ -1863,7 +1863,7 @@ function PerformTalkTarget() {
   
     return retval;    
   }
-  if (top.flags.hasOwnProperty("sleep")) {
+  if (top.hasOwnProperty("flags") && top.flags.hasOwnProperty("sleep")) {
     let pronoun = top.getGenderedTerms().pronoun;
     pronoun = pronoun.charAt(0).toUpperCase() + pronoun.slice(1);
     retval["txt"] = pronoun + " is asleep.";
@@ -1889,7 +1889,7 @@ function PerformTalkTarget() {
 
   maintext.addText("Talk to: " + top.getFullDesc());
 
-  if (IsVisibleOnScreen(top.getx(),top.gety())) {
+  if (top.checkType("NPC") && IsVisibleOnScreen(top.getx(),top.gety())) {
     ShowTurnFrame(top);
   }
 
