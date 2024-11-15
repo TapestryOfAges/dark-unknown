@@ -17,6 +17,9 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
   let oldx = who.getx();
   let oldy = who.gety();
   
+  destx = parseInt(destx);
+  desty = parseInt(desty);
+  
   if (!overridetests) {  
     // check exit test
     if (typeof frommap.ExitTest === "function") {
