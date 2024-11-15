@@ -4794,7 +4794,7 @@ function GiantNPCTile() {
   this.missileRange = 5
   this.armorAs = 'ChainArmor';
   this.movetype = MOVE_WALK;
-  this.leavesCorpse = 'Blood';
+  this.leavesCorpse = 'none';
   this.lootTable = 'Giant';
   this.prefix = 'a';
   this.desc = "giant";
