@@ -3383,6 +3383,7 @@ function PerformSwordstrike(caster, infused, free, tgt) {
       }
     }
   }
+  DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
   
   return resp;
 }
