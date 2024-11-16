@@ -25,12 +25,12 @@ function SetMerchants() {
                   ];
   bill.gretchen.type = "stuff";
   
-  bill.coral = {};
-  bill.coral.stock = [ { item: "AudachtaNemesosUnlock", quantity: 1, price: 500, desc: "Audachta Nemesos: Unlock", sale: 'She winks. "So easy, it\'s almost cheating."' },
+  bill.carol = {};
+  bill.carol.stock = [ { item: "AudachtaNemesosUnlock", quantity: 1, price: 500, desc: "Audachta Nemesos: Unlock", sale: 'She winks. "So easy, it\'s almost cheating."' },
                        { item: "ScrollPeer", quantity: 5, price: 150, desc: "Scroll of Peer", sale: '"Good for finding a back way somewhere."' },
                        { item: "DarkGreenPotion", quantity: 1, price: 150, desc: "Quickness Potion", sale: '"Sometimes you need to get out in a hurry."' },
                 ];
-  bill.coral.type =  "stuff";
+  bill.carol.type =  "stuff";
 
   // Beldskae
   bill.ariel = {};
