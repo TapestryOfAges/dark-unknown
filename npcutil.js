@@ -914,6 +914,7 @@ function WhereIs(npcname) {
 function FindEmptyAdjacent(who, randompick) {
   let coordopts = [];
   let themap = who.getHomeMap();
+  let mt = who.getMovetype();
   for (let i=-1;i<=1;i++) {
     for (let j=-1;j<=1;j++) {
       let gx = who.getx()+i;
@@ -922,7 +923,9 @@ function FindEmptyAdjacent(who, randompick) {
       if (acre === "OoB") { continue; }
       if (!acre.getTopFeature() && !acre.getTopNPC()) {
         if ((PC.getx() !== gx) || (PC.gety() !== gy)) {
-          coordopts.push([gx,gy]);
+          if (acre.canMoveHere(mt)) {
+            coordopts.push([gx,gy]);
+          }
         }
       }
     }
