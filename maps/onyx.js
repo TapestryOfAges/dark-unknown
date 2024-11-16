@@ -408,7 +408,7 @@ mappages["onyx2"].features[75] = {name : 'Fireplace', x : 25, y : 30};
 mappages["onyx2"].npcs = [];
 mappages["onyx2"].npcs[0] = {name : 'DruidVillagerNPC', x : 23, y : 11, NPCName: 'William', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'william', Conversation: 'william', Gender: 'male', Merch: 'william', NPCBand: '0', skintone: 1, wornlayers: '{"body":"GreenRobe","head":"BlondePale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"SerpentStaffPale","realhead":"BlondePale"}'};
 mappages["onyx2"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 8, y : 5, NPCName: 'Rowan', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'rowan', Conversation: 'rowan', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"WhiteTunic2","head":"OldManPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"OldManPale"}'};
-mappages["onyx2"].npcs[2] = {name : 'AdventurerVillagerNPC', x : 15, y : 11, NPCName: 'Carol', PeaceAI: 'scheduled', Schedule: 'carol', Conversation: 'carol', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"LeatherArmor","head":"BrownDark","back":"","offhand":"OffhandDark","cloak":"BlueCloak","mainhand":"ShortswordDark","realhead":"BrownDark"}'};
+mappages["onyx2"].npcs[2] = {name : 'AdventurerVillagerNPC', x : 15, y : 11, NPCName: 'Carol', PeaceAI: 'scheduled', Schedule: 'carol', Conversation: 'carol', Gender: 'female', Merch: 'carol', NPCBand: '0', skintone: 2, wornlayers: '{"body":"LeatherArmor","head":"BrownDark","back":"","offhand":"OffhandDark","cloak":"BlueCloak","mainhand":"MainHandDark","realhead":"BrownDark"}'};
 mappages["onyx2"].npcs[3] = {name : 'RangerVillagerNPC', x : 22, y : 33, NPCName: 'Dawne', PeaceAI: 'scheduled', Schedule: 'dawne', Conversation: 'dawne', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"LeatherArmor","head":"ShortBrownPale","back":"Quiver","offhand":"OffhandPale","cloak":"","mainhand":"BowPale","realhead":"ShortBrownPale"}'};
 mappages["onyx2"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 10, y : 30, NPCName: 'Gretchen', Desc: 'merchant', PeaceAI: 'scheduled', Schedule: 'gretchen', Conversation: 'gretchen', Gender: 'female', Merch: 'gretchen', NPCBand: '0', skintone: 1, wornlayers: '{"body":"GreenTunic","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBlackPale"}'};
 mappages["onyx2"].npcs[5] = {name : 'TinkerVillagerNPC', x : 10, y : 33, NPCName: 'Heather', Desc: 'blacksmith', PeaceAI: 'scheduled', Schedule: 'heather', Conversation: 'heather', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"LeatherArmor","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HammerDark","realhead":"ShortBlackDark"}'};
@@ -679,11 +679,11 @@ mappages["onyxlimbo"].editorLabels = '{}';
 mappages["onyx"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     SetAct2Convos(mapref);
-  }
-  if (DU.gameflags.getFlag("act2")) {
-    let aithne = FindNPCByName("Aithne", mapref);
-    mapref.deleteThing(aithne);
-    DUTime.removeEntityFrom(aithne);
+    if (DU.gameflags.getFlag("act2")) {
+      let aithne = FindNPCByName("Aithne", mapref);
+      mapref.deleteThing(aithne);
+      DUTime.removeEntityFrom(aithne);
+    }
   }
   
 }
