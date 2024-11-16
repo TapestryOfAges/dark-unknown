@@ -133,6 +133,10 @@ NPCObject.prototype.getMaxMana = function() {
 	return this.maxmana;
 }
 
+NPCObject.prototype.getReduceResist = function() {
+  return 0;
+}
+
 NPCObject.prototype.getKnowsInfusion = function() {
 	return this.knowsInfusion;
 }
@@ -500,10 +504,12 @@ NPCObject.prototype.processDeath = function(droploot){
     let chest;
     let map = this.getHomeMap();
     if (!this.summoned && (this.getLeavesCorpse()) && (this.getLeavesCorpse() !== "none")) {
-      corpse = localFactory.createTile(this.getLeavesCorpse());
-      corpse.setSearchDelete(1);
-      if (this.skintone === 2) { corpse.spritexoffset += -32; }
-      map.placeThing(thisx,thisy, corpse);
+      if (map.getTile(thisx,thisy).getTerrain().getName() !== "WorldBelow") {
+        corpse = localFactory.createTile(this.getLeavesCorpse());
+        corpse.setSearchDelete(1);
+        if (this.skintone === 2) { corpse.spritexoffset += -32; }
+        map.placeThing(thisx,thisy, corpse);
+      }
     } else {
       chest = localFactory.createTile("Chest");
     }
