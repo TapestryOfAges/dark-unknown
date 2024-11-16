@@ -1280,8 +1280,8 @@ function PerformRuneChoice() {
           themap.deleteThing(oldgate);
         }
         
-        PC.getHomeMap().moveThing(111,67,user);
-        DrawMainFrame("draw", themap, user.getx(), user.gety());
+        PC.getHomeMap().moveThing(111,67,PC);
+        DrawMainFrame("draw", themap, PC.getx(), PC.gety());
         // teleport to entrance to air
         setTimeout(function() {
           let moongate = localFactory.createTile("Moongate");
@@ -1323,7 +1323,7 @@ function PerformRuneChoice() {
       }
     } else if (themap.getName() === "kaltonmine3") {
       if ((PC.getx() <=16) && (PC.gety() >= 22)) {
-        if (!DU.getflags.getFlag("rune_gems")) {
+        if (!DU.gameflags.getFlag("rune_gems")) {
           let alreadydone = 0;
           let fea = themap.features.getAll();
           for (let i=0;i<fea.length;i++) {
