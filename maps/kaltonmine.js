@@ -454,7 +454,7 @@ mappages["kaltonmine3"].terrain[31] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK
 
 mappages["kaltonmine3"].features = [];
 mappages["kaltonmine3"].features[0] = {name : 'LadderUp', x : 12, y : 7, entermap : 'kaltonmine2', enterx : 13, entery : 15};
-mappages["kaltonmine3"].features[1] = {name : 'LadderDown', x : 26, y : 26, entermap : 'underworld', enterx : 28, entery : 56};
+mappages["kaltonmine3"].features[1] = {name : 'LadderDown', x : 26, y : 26, entermap : 'underworld', enterx : 28, entery : 100};
 mappages["kaltonmine3"].features[2] = {name : 'PileOfRocks', x : 25, y : 5};
 mappages["kaltonmine3"].features[3] = {name : 'PileOfRocks', x : 25, y : 6};
 mappages["kaltonmine3"].features[4] = {name : 'PileOfRocks', x : 23, y : 6};
