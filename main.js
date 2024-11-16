@@ -687,6 +687,7 @@ function DoAction(code, ctrl) {
       maintext.drawTextFrame();
       document.getElementById('uiinterface').innerHTML = "";
       document.getElementById('uiinterface').style.backgroundColor = "";
+      DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
 
       return;
     } else if (response["fin"] === 2) { // moved
@@ -695,6 +696,7 @@ function DoAction(code, ctrl) {
       maintext.addText(response["txt"]);
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
+      DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
 
       PC.endTurn();
     }
