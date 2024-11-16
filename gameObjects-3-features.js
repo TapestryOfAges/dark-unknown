@@ -10608,7 +10608,7 @@ function PlatformOfWindsTile() {
 PlatformOfWindsTile.prototype = new FeatureObject();
 
 PlatformOfWindsTile.prototype.walkon = function(who) {
-  if (this.getHomeMap().getName() === "skypalace") {  // WHOOSH
+  if ((who === PC) && (this.getHomeMap().getName() === "skypalace")) {  // WHOOSH
     gamestate.setMode("null");
 
     let windlist = this.windlist;
@@ -10619,6 +10619,7 @@ PlatformOfWindsTile.prototype.walkon = function(who) {
     let response = {msg: "WHOOSH!" };
     return response;
   }
+  return { msg: "" };
 }
 
 function whoosh(whozat, windlist, spawnwhere, spawnthing) {
