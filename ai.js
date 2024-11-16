@@ -2993,6 +2993,7 @@ ais.ai_breed = function(who) {
     let newgrem = localFactory.createTile("GremlinNPC");
     delete who.fed;
     who.getHomeMap().placeThing(coordopts[0],coordopts[1],newgrem);
+    DrawMainFrame("one",who.getHomeMap(),coordopts[0],coordopts[1]);
   }
   return "special";
 }
