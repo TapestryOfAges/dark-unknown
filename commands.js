@@ -2032,6 +2032,11 @@ function PerformUse(who) {
   let retval = {};
   let usemap = who.getHomeMap();
 	let localacre = usemap.getTile(targetCursor.x,targetCursor.y);
+  if (localacre === "OoB") {
+    retval["txt"] = "There is nothing to use there.";
+    retval["fin"] = 0;
+    return retval;
+  }
 	let someone = localacre.getTopNPC();
 	if (!someone) { someone = localacre.getTopPC(); }
 	if (someone) {
