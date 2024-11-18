@@ -1460,6 +1460,7 @@ function DoAction(code, ctrl) {
         PC.addGold(-(merinv.stock[idx].price));
         DUPlaySound("sfx_coin");
         PC.addToInventory(newitem,1);
+        maintext.addText(merinv.stock[idx].sale);
 
         // if you bought a potion, you now know what that color potion is
         if (newitem.checkType("potion")) {
