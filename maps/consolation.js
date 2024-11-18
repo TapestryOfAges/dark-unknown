@@ -143,6 +143,12 @@ mappages["consolation"].onload = function(mapref) {
     portcullis = mapref.getTile(17,23).getTopFeature();
     portcullis.locked = 0;
     portcullis.use(PC,1);
+
+    if (DU.gameflags.getFlag("connor_visit")) {
+      if ((DUTime.getGameClock() - DU.gameflags.getFlag("connor_visit")) > 12*24*3) { // three days
+        DU.merchants.connor.stock[4].quantity = 1;  // He has 1 mandrake root now
+      }
+    }
   }
 }
 
@@ -234,7 +240,7 @@ mappages["consolation2"].features[46] = {name : 'Brazier', x : 13, y : 9};
 
 mappages["consolation2"].npcs = [];
 mappages["consolation2"].npcs[0] = {name : 'DruidVillagerNPC', x : 23, y : 14, NPCName: 'Darthan Haj', Desc: 'mage', PeaceAI: 'scheduled', Schedule: 'darthan', Conversation: 'darthan', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueRobeHood","head":"Hood2","back":"","offhand":"OffhandPale","cloak":"","mainhand":"SerpentStaffPale","realhead":"OldManPale"}'};
-mappages["consolation2"].npcs[1] = {name : 'MageVillagerNPC', x : 15, y : 6, NPCName: 'Connor', PeaceAI: 'scheduled', Schedule: 'connor', Conversation: 'connor', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"BlueRobe","head":"BaldBeardedDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"QuarterstaffDark","realhead":"BaldBeardedDark"}'};
+mappages["consolation2"].npcs[1] = {name : 'MageVillagerNPC', x : 15, y : 6, NPCName: 'Connor', PeaceAI: 'scheduled', Schedule: 'connor', Conversation: 'connor', Gender: 'male', Merch: 'connor', NPCBand: '0', skintone: 2, wornlayers: '{"body":"BlueRobe","head":"BaldBeardedDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"QuarterstaffDark","realhead":"BaldBeardedDark"}'};
 mappages["consolation2"].npcs[2] = {name : 'MageVillagerNPC', x : 9, y : 12, NPCName: 'Lynn', PeaceAI: 'scheduled', Schedule: 'lynn', Conversation: 'lynn', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueRobePlain","head":"BlondePale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"QuarterstaffPale","realhead":"BlondePale"}'};
 
 mappages["consolation2"].desc = "Tower of Consolation";

@@ -1173,6 +1173,10 @@ OnConvTriggers["oracle_firstquests"] = function(speaker,keyword) {
   questlog.activate(91);
 }
 
+OnConvTriggers["connor_visit"] = function(speaker,keyword) {
+  DU.gameflags.setFlag("connor_visit",DUTime.getGameClock());
+}
+
 OnConvTriggers["where_king"] = function(speaker,keyword) {
   let speakertext = speaker.getFullDesc();
   speakertext = speakertext.charAt(0).toUpperCase() + speakertext.slice(1);
