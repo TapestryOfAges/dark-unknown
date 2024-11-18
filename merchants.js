@@ -12,6 +12,14 @@ function SetMerchants() {
                     { item: "Halberd", quantity: 0, price: 3500},
                     { item: "MagicSword", quantity: 0, price: 6000, desc: "Magic Sword"} ];
   bill.aaron.type = "stuff";
+
+  bill.erin = {};
+  bill.erin.stock = [ { item: "ClothArmor", quantity: 10, price: 10, desc: "Cloth Armor", sale: '"May it serve you well."' },
+                      { item: "LeatherArmor", quantity: 10, price: 50, desc: "Leather Armor", sale: '"May it serve you well."' },
+                      { item: "ChainArmor", quantity: 5, price: 1000, desc: "Chain Mail", sale: '"May it serve you well."' },
+                      { item: "PlateArmor", quantity: 0, price: 2000, desc: "Plate Armor", sale: '"May it serve you well."' },
+                    ];
+  bill.erin.type = "stuff";   
   
   // Onyx
   bill.gretchen = {};
@@ -36,8 +44,8 @@ function SetMerchants() {
   bill.ariel = {};
   bill.ariel.stock = [ { item: "Dagger", quantity: 10, price: 7, desc: "Dagger", sale: '"May your blade be sharp."' },
                     { item: "Shortsword", quantity: 10, price: 60, desc: "Shortsword", sale: '"May your blade be sharp."' },
-                    { item: "Mace", quantity: 10, price: 220, desc: "Mace", presale: '"Heavy enough to crush bone!"', sale: '"Thank you for your patronage!"' },
-                    { item: "Axe", quantity: 10, price: 575, desc: "Axe", presale: '"For when you absolutely need to chop something in half."', sale: '"Thank you for your patronage!"'},
+                    { item: "Mace", quantity: 10, price: 220, desc: "Mace", sale: '"Heavy enough to crush bone!"' },
+                    { item: "Axe", quantity: 10, price: 575, desc: "Axe", sale: '"For when you absolutely need to chop something in half."'},
                     { item: "Longsword", quantity: 0, price: 1800, desc: "Longsword", sale: '"May your blade be sharp."'}, 
                     { item: "Halberd", quantity: 0, price: 3500, desc: "Halberd", sale: '"Enjoy your glaive. Halberd? I can never keep track, to be honest."'},
                     { item: "MagicSword", quantity: 0, price: 6600, desc: "Magic Sword"}, 
@@ -66,23 +74,6 @@ function SetMerchants() {
                   ];
   bill.colin.type = "stuff";
 
-  // Hildendain
-  bill.erin = {};
-  bill.erin.stock = [ { item: "ClothArmor", quantity: 10, price: 10, desc: "Cloth Armor", sale: '"May it serve you well."' },
-                       { item: "LeatherArmor", quantity: 10, price: 50, desc: "Leather Armor", sale: '"May it serve you well."' },
-                       { item: "ChainArmor", quantity: 5, price: 1000, desc: "Chain Mail", sale: '"May it serve you well."' },
-                       { item: "PlateArmor", quantity: 0, price: 2000, desc: "Plate Armor", sale: '"May it serve you well."' },
-                  ];
-  bill.erin.type = "stuff";
-
-  bill.deirdre = {};
-  bill.deirdre.stock = [ { item: "ClothArmor", quantity: 25, price: 10, desc: "Cloth Armor", sale: '"It will protect you in your adventures!."' },
-                       { item: "LeatherArmor", quantity: 25, price: 50, desc: "Leather Armor", sale: '"It will protect you in your adventures!."' },
-                       { item: "ChainArmor", quantity: 20, price: 800, desc: "Chain Mail", sale: '"It will protect you in your adventures!."' },
-                       { item: "PlateArmor", quantity: 10, price: 2500, desc: "Plate Armor", sale: '"It will protect you in your adventures!."' },
-                  ];
-  bill.deirdre.type = "stuff";
-  
   // Poverty
   bill.brooke = {};
   bill.brooke.stock = [ { item: "RedPotion", quantity: 2, price: 50, desc: "Cure Potion", sale: '"I added extra sugar, to make it go down easier."', sellqty: 1},
@@ -121,14 +112,23 @@ function SetMerchants() {
                                 ];
   bill.dale.type = "stuff";
 
+  bill.deirdre = {};
+  bill.deirdre.stock = [ { item: "ClothArmor", quantity: 25, price: 10, desc: "Cloth Armor", sale: '"It will protect you in your adventures!."' },
+                       { item: "LeatherArmor", quantity: 25, price: 50, desc: "Leather Armor", sale: '"It will protect you in your adventures!."' },
+                       { item: "ChainArmor", quantity: 20, price: 800, desc: "Chain Mail", sale: '"It will protect you in your adventures!."' },
+                       { item: "PlateArmor", quantity: 10, price: 2500, desc: "Plate Armor", sale: '"It will protect you in your adventures!."' },
+                  ];
+  bill.deirdre.type = "stuff"; 
+
 // Consolation
   bill.connor = {};
   bill.connor.stock = [ { item: "BrownPotion", quantity: 1, price: 160, desc: "Greater Mana Potion", sale: '"May it serve you well."', sellqty: 0},
                         { item: "BlackPotion", quantity: 1, price: 140, desc: "Bless Potion", sale: '"May it serve you well."', sellqty: 0},
                         { item: "PurplePotion", quantity: 1, price: 100, desc: "Protection Potion", sale: '"May it serve you well."', sellqty: 0},
-                        { item: "Blood Moss", quantity: 2, price: 40, desc: "Blood Moss", sale: '"Use it well."', sellqty: 0},
-                        { item: "Mandrake Root", quantity: 1, price: 90, desc: "Mandrake Root", sale: '"Use it well."', sellqty: 0},
+                        { item: "BloodMoss", quantity: 2, price: 40, desc: "Blood Moss", sale: '"Use it well."', sellqty: 0},
+                        { item: "MandrakeRoot", quantity: 1, price: 90, desc: "Mandrake Root", sale: `"Use it well. With luck, I'll harvest another soon."`, sellqty: 0},
                       ];
+  bill.connor.type = "stuff";
 
   // MAGIC
 
