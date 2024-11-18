@@ -4647,7 +4647,7 @@ function DevourerNPCTile() {
   this.armorAs = 'PlateArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
-  this.lootTable = 'Devourer';
+  this.lootTable = 'Level5';
   this.prefix = 'the';
   this.desc = "devourer";
   this.onHit = 'venom';
