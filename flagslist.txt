@@ -205,6 +205,7 @@ beldskae_jharden - Jharden has talked to you about the Abyss (which happens afte
 jharden_abyss - you've talked to Jharden after crossing the Abyss
 rune_gems - used the Rune of Kings in the appropriate place in Kalton Mine to uncover the perfect ruby
 gave_ruby - colin gave you the PerfectRuby
+magicaxe - you've picked up the magic axe
 unenchanted_sword - broken Ezwilden has been picked up
 given_regalia - Shelaria gave you her crown and scepter
 returned_crown - you brought the Hilden crown to Shelaria
