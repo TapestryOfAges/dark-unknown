@@ -4631,9 +4631,9 @@ BlackDragonNPCTile.prototype = new NPCObject();
 function DevourerNPCTile() {
   this.name = 'DevourerNPC';
   this.level = 6;
-  this.addhp = 20;
+  this.addhp = 40;
   this.str = 24;
-  this.dex = 14;
+  this.dex = 16;
   this.int = 10;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
