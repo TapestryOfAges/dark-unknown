@@ -4180,7 +4180,7 @@ CultistNPCTile.prototype = new NPCHumanObject();
 function GazerNPCTile() {
   this.name = 'GazerNPC';
   this.level = 5;
-  this.addhp = -10;
+  this.addhp = -5;
   this.str = 8;
   this.dex = 15;
   this.int = 16;
@@ -4202,7 +4202,7 @@ function GazerNPCTile() {
   this.meleeChance = 20;
   this.spellsknown = { attack: 1, };
   this.resists = {};
-  this.special = 'sleep, ruthless';
+  this.special = 'ruthless';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
   this.graphic = 'static.gif';
