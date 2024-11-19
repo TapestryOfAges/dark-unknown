@@ -17651,7 +17651,7 @@ CrossbowTile.prototype = new MissileWeaponObject();
 
 function YewWandTile() {
 	this.name = "YewWand";
-	this.damage = "4d10+0";
+	this.damage = "7d6+1";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.graphic = "static.gif";
   this.spritexoffset = 0;
@@ -17699,7 +17699,7 @@ YewWandTile.prototype.onMadeAttack = function(atk,def,dmg) {
 function WandTile() {
   //Graphics Upgraded
 	this.name = "Wand";
-	this.damage = "4d12+0";
+	this.damage = "6d6+12";
   this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -103*32;
@@ -17745,7 +17745,7 @@ WandTile.prototype.onMadeAttack = function(atk,def,dmg) {
 function MagicAxeTile() {
   //Graphics Upgraded
 	this.name = "MagicAxe";
-	this.damage = "4d12+12";
+	this.damage = "4d10";
   this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -105*32;
@@ -17771,9 +17771,14 @@ function MagicAxeTile() {
   });
 
   this.wornlayer = "mainhand";
-//  this.wornlayername = "MagicAxe";
+  this.wornlayername = "MagicAxe";
 }
 MagicAxeTile.prototype = new MissileWeaponObject();
+
+MagicAxeTile.prototype.onGet = function(who) {
+  DU.gameflags.setFlag("magicaxe",1);
+  return {};
+}
 
 function NaturalMissileWeaponTile() {
 	this.name = "NaturalMissileWeapon";
