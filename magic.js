@@ -1720,7 +1720,11 @@ magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID].executeSpell = function(caster,
   resp["fin"] = 3;  // end of turn waits on end of animation
 
   let loc = caster.getHomeMap().getTile(caster.getx(), caster.gety());
-  let shrine = loc.getTopFeature();
+  let feas = loc.features.getAll();
+  let shrine;
+  for (let i=0;i<feas.length;i++) {
+    if ((feas[i].getName() === "Shrine") || (feas[i].getName() === "BrokenShrine")) { shrine = feas[i]; }
+  }
   if ((shrine) && (shrine.gotomap)) {
     if (shrine.getName() === "Shrine") {
       if (shrine.hasOwnProperty("gotomap")) {
