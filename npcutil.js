@@ -381,7 +381,18 @@ function Attack(atk, def) {
   
   let sounds = {start: "", end: snd};
 
-  AnimateEffect({atk:atk,def:def,fromcoords:fromcoords,tocoords:tocoords,ammographic:ammographic,destgraphic:hitgraphic,sounds:sounds, type:type, duration:duration,ammoreturn:ammoreturn,dmg:dmg,endturn:endturn,retval:retval,weapon:weapon,adddmg:adddmg,adddmgtype:adddmgtype, doagain:[]});
+  let doagain = [];
+  if (ammoreturn) {
+    let dg = {};
+    dg.graphic = "spacer.gif";
+    dg.xoffset = 0;
+    dg.yoffset = 0;
+    dg.overlay = "spacer.gif";
+    doagain[0] = {atk:def,def:atk,fromcoords:tocoords,tocoords:fromcoords,ammographic:ammographic,destgraphic:dg,sounds:{start:"", end: ""}, type:type, duration:duration, ammoreturn:0, dmg:0, endturn:endturn,retval:{txt:""},weapon:weapon,adddmg:0,adddmgtype:adddmgtype, doagain: [], myturn:atk};
+    AnimateEffect({atk:atk,def:def,fromcoords:fromcoords,tocoords:tocoords,ammographic:ammographic,destgraphic:hitgraphic,sounds:sounds, type:type, duration:duration,ammoreturn:ammoreturn,dmg:dmg,endturn:endturn,retval:retval,weapon:weapon,adddmg:adddmg,adddmgtype:adddmgtype, doagain:doagain});
+  } else {
+    AnimateEffect({atk:atk,def:def,fromcoords:fromcoords,tocoords:tocoords,ammographic:ammographic,destgraphic:hitgraphic,sounds:sounds, type:type, duration:duration,ammoreturn:ammoreturn,dmg:dmg,endturn:endturn,retval:retval,weapon:weapon,adddmg:adddmg,adddmgtype:adddmgtype, doagain:doagain});
+  }
   
   let tmpval = {};
   tmpval["fin"] = -1;
