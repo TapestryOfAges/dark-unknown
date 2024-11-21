@@ -157,8 +157,8 @@ function FinishFirstAnimation(p) {
       document.getElementById('combateffects').appendChild(returnnode);
 
       returnnode.offsetTop;
-      let diffx = ammocoords.fromx - ammocoords.tox;
-      let diffy = ammocoords.fromy - ammocoords.toy;
+      let diffx = p.ammocoords.fromx - p.ammocoords.tox;
+      let diffy = p.ammocoords.fromy - p.ammocoords.toy;
       Object.assign(returnnode.style, {transform: `translate(${diffx}px,${diffy}px)` });
 
     }
