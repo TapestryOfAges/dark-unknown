@@ -1300,7 +1300,7 @@ function PerformRuneChoice() {
       cave.setEnterMap("lavatubes", 27, 18);   // make tubes!
       let nillavatile = themap.getTile(27,21);
       let nillava = nillavatile.getTopFeature();
-      if (nillava && (nillave.getName() === "Lava")) {
+      if (nillava && (nillava.getName() === "Lava")) {
         themap.deleteThing(nillava);
       }
       
