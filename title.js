@@ -167,8 +167,10 @@ function start_animations() {
             document.getElementById('over').classList.add("widenanimate");
             setTimeout(function() {
               if (gamestate.getMode() === "null") {
-                document.getElementById('sign').style.display = "inline";
-                Signature(-52);
+                if (document.getElementById('sign')) {
+                  document.getElementById('sign').style.display = "inline";
+                  Signature(-52);
+                }
               }
             }, 2500);
           }
