@@ -137,29 +137,6 @@ function FinishFirstAnimation(p) {
     if ((p.type !== "missile") || (!p.ammoreturn)) {
       FinishAnimation(p);
     } else {
-//      let returnhtml = '<div id="'+p.animid+'" style="position: absolute; left: ' + p.ammocoords.tox + 'px; top: ' + p.ammocoords.toy + 'px; background-image:url(\'graphics/' + p.ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + p.ammographic.xoffset + 'px ' + p.ammographic.yoffset + 'px; transition: left '+p.duration+'ms linear 0s, top '+p.duration+'ms linear 0s;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';      
-      let returnnode = document.createElement("div");
-      returnnode.innerHTML = `<img src="graphics/spacer.gif" width="32" height="32" />`;
-      returnnode.id = p.animid;
-      returnnode.style.width = 32;
-      returnnode.style.height = 32;
-      returnnode.position = "absolute";
-      returnnode.left = `${p.ammocoords.tox}px`;
-      returnnode.top = `${p.ammocoords.toy}px`;
-      returnnode.backgroundImage = `url("graphics/${p.ammographic.graphic}")`;
-      returnnode.backgroundRepeat = "no-repeat";
-      returnnode.backgroundPosition = `${p.ammographic.xoffset}px ${p.ammographic.yoffset}px`;
-      returnnode.style.transition = `transform ${p.duration}ms linear 0s`;
-      returnnode.addEventListener("transitionend", FinishAnimation(p), false);
-
-      
-//      document.getElementById('combateffects').innerHTML += returnhtml;
-      document.getElementById('combateffects').appendChild(returnnode);
-
-      returnnode.offsetTop;
-      let diffx = p.ammocoords.fromx - p.ammocoords.tox;
-      let diffy = p.ammocoords.fromy - p.ammocoords.toy;
-      Object.assign(returnnode.style, {transform: `translate(${diffx}px,${diffy}px)` });
 
     }
   }, 400);
