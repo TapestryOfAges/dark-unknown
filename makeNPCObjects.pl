@@ -282,6 +282,11 @@ foreach my $line (<$groupdoc>) {
       print $out "  this.special = '$fields[14]';\n";
     }
   }
+  if ($fields[20]) {
+    print $out "  this.resists = { $fields[20] };\n";
+  } else {
+    print $out "  this.resists = {};\n";
+  }
 
   if ($fields[17]) {
     # there is an animation override
