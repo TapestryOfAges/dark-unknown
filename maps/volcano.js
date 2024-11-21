@@ -133,7 +133,6 @@ mappages["volcano"].features[74] = {name : 'DirtWaterfall', x : 18, y : 30};
 
 
 mappages["volcano"].npcs = [];
-mappages["volcano"].npcs[0] = {name : 'FireLizardGroup', x : 28, y : 19, skintone: 1};
 
 mappages["volcano"].flow = '{"18x28":"s","18x29":"s","18x30":"s","18x31":"s","17x32":"s","18x32":"w","17x33":"s","17x34":"s","15x35":"s","16x35":"w","17x35":"w","13x36":"s","14x36":"w","15x36":"s","13x37":"s","15x37":"e","16x37":"s","13x38":"s","16x38":"s","13x39":"s","16x39":"s","16x40":"s"}';
 
@@ -167,12 +166,26 @@ mappages["volcano"].editorLabels = '{}';
 
 mappages["volcano"].onload = function(mapref) {
   
-  if (gamestate.getMode() !== "loadgame") {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     let shrinetile = mapref.getTile(11,34);
     let shrine = shrinetile.getTopFeature();
     shrine.gotomap = "island";
     shrine.gotox = 60;
     shrine.gotoy = 63;
+
+    let spawner = localFactory.createTile("Spawner");
+    let spgroup = ["FireLizardGroup"];
+
+    spawner.setSpawngroup(spgroup);
+    spawner.setMaxSpawns(1);
+    spawner.setSpawnRadius(2);
+    spawner.setSpawnLeash(10);
+    spawner.setSpawnSoftLeash(15);
+  
+    let freq = 10 + Dice.roll("1d20");
+    spawner.setSpawnFreq(freq);
+  
+    mapref.placeThing(28,20,spawner);
   }
   
   CreateBeaches(mapref);
@@ -213,7 +226,7 @@ mappages["lavatubes"].terrain[29] = 'F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F
 
 mappages["lavatubes"].features = [];
 mappages["lavatubes"].features[0] = {name : 'LadderUp', x : 27, y : 18, entermap : 'volcano', enterx : 27, entery : 21};
-mappages["lavatubes"].features[1] = {name : 'LadderDown', x : 21, y : 8, entermap : 'deeplava', enterx : 21, entery : 8};
+mappages["lavatubes"].features[1] = {name : 'LadderDown', x : 21, y : 8, entermap : 'deeplavatubes', enterx : 26, entery : 16};
 
 
 mappages["lavatubes"].npcs = [];
@@ -224,7 +237,7 @@ mappages["lavatubes"].npcs[3] = {name : 'FireSnakeNPC', x : 11, y : 19, skintone
 mappages["lavatubes"].npcs[4] = {name : 'FireElementalNPC', x : 14, y : 8, skintone: '1'};
 
 mappages["lavatubes"].desc = "Lava Tubes";
-mappages["lavatubes"].longdesc = 'As you descend into the lava tubes, the heat is intense. Surely this volcano is extinct...';
+mappages["lavatubes"].longdesc = 'As you descend into the lava tubes, the heat is intense. Surely this volcano is extinct... or at least not planning to wake up soon.';
 mappages["lavatubes"].music = 'Cave';
 mappages["lavatubes"].savename = `Lava Tubes`;
 mappages["lavatubes"].exitmap = 'volcano';
@@ -706,23 +719,23 @@ mappages["hydracave"].terrain[22] = 'BK BK BK BK BK BK BK BK cw cw cf cf cf cw c
 mappages["hydracave"].terrain[23] = 'BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK';
 
 mappages["hydracave"].features = [];
-mappages["hydracave"].features[0] = {name : 'MagicAxe', x : 7, y : 10};
-mappages["hydracave"].features[1] = {name : 'Gold', x : 7, y : 9};
-mappages["hydracave"].features[2] = {name : 'Gold', x : 8, y : 10};
-
+mappages["hydracave"].features[0] = {name : 'Gold', x : 7, y : 9};
+mappages["hydracave"].features[1] = {name : 'Gold', x : 8, y : 10};
+mappages["hydracave"].features[2] = {name : 'Chest', x : 7, y : 10, locked : 0, lootgroup : 'Level5', lootedid : 'hydracave'};
 
 mappages["hydracave"].npcs = [];
-mappages["hydracave"].npcs[0] = {name : 'DevourerNPC', x : 10, y : 7, skintone: '1'};
+mappages["hydracave"].npcs[0] = {name : 'DevourerNPC', x : 9, y : 6, skintone: '1'};
 mappages["hydracave"].npcs[1] = {name : 'GazerNPC', x : 12, y : 13, skintone: '1'};
 mappages["hydracave"].npcs[2] = {name : 'GazerNPC', x : 13, y : 17, skintone: '1'};
+mappages["hydracave"].npcs[3] = {name : 'HydraNPC', x : 13, y : 8, skintone: '1'};
 
 mappages["hydracave"].desc = "Small Cave";
 mappages["hydracave"].longdesc = ``;
 mappages["hydracave"].music = 'Cave';
 mappages["hydracave"].savename = `Small Cave`;
-mappages["hydracave"].exitmap = '';
-mappages["hydracave"].exitx = '65';
-mappages["hydracave"].exity = '70';
+mappages["hydracave"].exitmap = 'volcano';
+mappages["hydracave"].exitx = '16';
+mappages["hydracave"].exity = '28';
 mappages["hydracave"].wraps = '';
 mappages["hydracave"].enterx = '11';
 mappages["hydracave"].entery = '23';
@@ -750,9 +763,10 @@ mappages["hydracave"].onload = function(mapref) {
       let npcs = mapref.npcs.getAll();
       for (let i=0;i < npcs.length;i++) {
         mapref.deleteThing(npcs[i]);
+        DUTime.removeEntityFrom(npcs[i]);
       }
       let fea = mapref.features.getAll();
-      for (let i=0;i < npcs.length;i++) {
+      for (let i=0;i < fea.length;i++) {
         mapref.deleteThing(fea[i]);
       }
     } else {
