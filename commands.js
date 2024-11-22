@@ -1480,34 +1480,51 @@ function PerformRuneChoice() {
 
   } else if (targetCursor.runeChoice === 3) {
     // The Rune of Winds
-    let distance = PC.rune.void ? 3 : 2; 
+    let distance = PC.runes.void ? 3 : 2; 
 
     let PushBack = function(where, dir) {
       let tile = themap.getTile(where[0],where[1]);
       if (tile !== "OoB") {
         let who = tile.getTopNPC();
-        let desttile = who.getHomeMap().getTile(who.getx()+dir[0], who.gety()+dir[1]);
-        if (desttile !== "OoB") {
-          who.moveMe(dir[0],dir[1]);
+        if (who) {
+          for (let i=1;i<=distance;i++) {
+            let desttile = who.getHomeMap().getTile(who.getx()+dir[0], who.gety()+dir[1]);
+            if (desttile !== "OoB") {
+              who.moveMe(dir[0],dir[1]);
+            }
+          }
         }
       }
     }
 
-    PushBack([PC.getx()-1,PC.gety()-2],[0,-1]);
-    PushBack([PC.getx(),PC.gety()-2],[0,-1]);
-    PushBack([PC.getx()+1,PC.gety()-2],[0,-1]);
-    PushBack([PC.getx()+2,PC.gety()-1],[1,0]);
-    PushBack([PC.getx()+2,PC.gety()],[1,0]);
-    PushBack([PC.getx()+2,PC.gety()+1],[1,0]);
-    PushBack([PC.getx()-1,PC.gety()+2],[0,1]);
-    PushBack([PC.getx(),PC.gety()+2],[0,1]);
-    PushBack([PC.getx()+1,PC.gety()+2],[0,1]);
-    PushBack([PC.getx()-2,PC.gety()-1],[-1,0]);
-    PushBack([PC.getx()-2,PC.gety()],[-1,0]);
-    PushBack([PC.getx()-2,PC.gety()+1],[-1,0]);
+    let px = PC.getx();
+    let py = PC.gety();
+    PushBack([px-1,py-2],[0,-1]);
+    PushBack([px,py-2],[0,-1]);
+    PushBack([px+1,py-2],[0,-1]);
+    PushBack([px+2,py-1],[1,0]);
+    PushBack([px+2,py],[1,0]);
+    PushBack([px+2,py+1],[1,0]);
+    PushBack([px-1,py+2],[0,1]);
+    PushBack([px,py+2],[0,1]);
+    PushBack([px+1,py+2],[0,1]);
+    PushBack([px-2,py-1],[-1,0]);
+    PushBack([px-2,py],[-1,0]);
+    PushBack([px-2,py+1],[-1,0]);
+
+    PushBack([px-1,py-1],[-1,-1]);
+    PushBack([px,py-1],[0,-1]);
+    PushBack([px+1,py-1],[1,-1]);
+    PushBack([px+1,py],[1,0]);
+    PushBack([px+1,py+1],[1,1]);
+    PushBack([px,py+1],[0,1]);
+    PushBack([px-1,py+1],[-1,1]);
+    PushBack([px-1,py],[-1,0]);
+
 
     retval["txt"] = "You call upon the air above, and the winds swirl powerfully around you.<br />It will be some time before you can do that again.";
 
+    DUPlaySound("sfx_whoosh");
     PC.setRuneCooldown("winds",144);  // 12 hours
 
   } else if (targetCursor.runeChoice === 4) {
