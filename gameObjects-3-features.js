@@ -181,9 +181,9 @@ LavaTile.prototype.isHostileTo = function(who) {
 
 function InLava(who, lava) {
   if ((who.getMovetype() & MOVE_LEVITATE) || (who.getMovetype() & MOVE_FLY)) {
-    who.dealDamage(Dice.roll("2d4+2"), lava, "fire");
+    who.dealDamage(Dice.roll("2d4+4"), lava, "fire");
   } else {
-    who.dealDamage(Dice.roll("2d10+10"), lava, "fire");
+    who.dealDamage(Dice.roll("2d10+15"), lava, "fire");
   }
   return {msg:""};
 }
