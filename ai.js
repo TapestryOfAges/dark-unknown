@@ -3455,7 +3455,7 @@ ais.ai_magmaspit = function(who) {
   let descval = { txt: desc };
   let lava = localFactory.createTile("Lava");
   who.getHomeMap().placeThing(tgt.getx(),tgt.gety(),lava);
-  AnimateEffect({atk:who, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:bolt, destgraphic:destgraphic, sounds:{}, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"poison",doagain:[]});
+  AnimateEffect({atk:who, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:bolt, destgraphic:destgraphic, sounds:{}, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"fire",doagain:[]});
   setTimeout(function() { DrawMainFrame("one",who.getHomeMap(),tgt.getx(),tgt.gety()); }, duration);
 
   return "special_wait";
