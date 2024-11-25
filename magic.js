@@ -3713,6 +3713,7 @@ function EmpowerReagentCommands(cmd) {
           PlayCastSound(PC,"sfx_enchant");
           PC.removeFromInventory(PC.checkInventory("SpiderSilk"));
           PC.removeFromInventory(PC.checkInventory("LightningWood"));
+          PC.removeFromInventory(PC.checkInventory("BlackPearl"));
           let wasequipped = 0;
           if (PC.getMissile() === tgt) {
             wasequipped = 1;
