@@ -3660,7 +3660,7 @@ function EmpowerReagentCommands(cmd) {
         if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["Mistletoe"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["VolcanicAsh"] && targetCursor.mortar["FrozenSunlight"]) {
           if (mortar.getName() !== "CrystalMortar") {
             retval["fin"] = 2;
-            retval["outcome"] = ["You place the reagents in the mortar and begin the incancation, but quickly realize something is wrong.","This mortar will shatter under the strain of this enchantment. You will need to find something more enduring before you can perform this ritual.","You remove the reagents from the mortar and put them away."];
+            retval["outcome"] = ["You place the reagents in the mortar and begin the incancation, but quickly realize something is wrong.","This mortar will shatter under the strain of this enchantment. You will need to find something more enduring before you can perform this ritual.","You remove the reagents from the mortar and put them away.","Perhaps you need to speak to an artificer."];
             return retval;
           }   
           successtext.push(`You place the ruby in front of you, in the center of the pentagram, and begin the incantation.`);
