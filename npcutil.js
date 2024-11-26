@@ -934,7 +934,7 @@ function FindEmptyAdjacent(who, randompick) {
       if (acre === "OoB") { continue; }
       if (!acre.getTopFeature() && !acre.getTopNPC()) {
         if ((PC.getx() !== gx) || (PC.gety() !== gy)) {
-          if (acre.canMoveHere(mt)) {
+          if (acre.canMoveHere(mt).canmove) {
             coordopts.push([gx,gy]);
           }
         }
