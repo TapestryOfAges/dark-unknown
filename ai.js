@@ -221,6 +221,7 @@ ais.combat = function(who) {
 //    if (who.specials.multiattack) { nonmeleeoptions.push("ai_multiattack"); }  // needs work- what was this going to be?
     if (who.specials.summonearthelemental) { nonmeleeoptions.push("ai_summonearthelemental"); }  
     if (who.specials.necromancer) { nonmeleeoptions.push("ai_necromancer"); }  
+    if (who.specials.highnecromancer) { nonmeleeoptions.push("ai_highnecromancer"); }  
     if (who.specials.sleep) { nonmeleeoptions.push("ai_sleep"); }  
 
     // there will be more!
@@ -2533,6 +2534,7 @@ ais.ai_cast = function(who) {
         magic[SPELL_MIRROR_WARD_LEVEL][SPELL_MIRROR_WARD_ID].executeSpell(who,0,0);
       }
     } else if (choices[dr] === "highbuffself") {
+      let spelloptions = [];
       if (!who.getSpellEffectsByName("Invulnerability") && (who.getMana() >= 7) && (who.getLevel() >= 7)) {
         spelloptions.push("Invulnerability");
       }
@@ -3076,6 +3078,17 @@ ais.ai_necromancer = function(who) {
     maintext.addText("The " + who.getDesc() + " summons a skeleton!");
     let skel = localFactory.createTile("SkeletonNPC");
     who.getHomeMap().placeThing(coord[0],coord[1],skel);
+    DrawMainFrame("one",who.getHomeMap(),coord[0],coord[1]);
+  } else {return;}
+}
+
+ais.ai_highnecromancer = function(who) {
+  let coord = FindEmptyAdjacent(who,1);
+  if (coord[0]) {
+    maintext.addText("The " + who.getDesc() + " summons a spirit!");
+    let skel = localFactory.createTile("SpecterNPC");
+    who.getHomeMap().placeThing(coord[0],coord[1],skel);
+    DrawMainFrame("one",who.getHomeMap(),coord[0],coord[1]);
   } else {return;}
 }
 
