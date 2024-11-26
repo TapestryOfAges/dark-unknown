@@ -902,48 +902,51 @@ mappages["lifeshope"].features[851] = {name : 'LeftTable', x : 34, y : 9};
 mappages["lifeshope"].features[852] = {name : 'RightTable', x : 35, y : 9};
 mappages["lifeshope"].features[853] = {name : 'RightTable', x : 22, y : 9};
 mappages["lifeshope"].features[854] = {name : 'LeftTable', x : 21, y : 9};
-mappages["lifeshope"].features[855] = {name : 'LeftTable', x : 10, y : 10};
-mappages["lifeshope"].features[856] = {name : 'RightTable', x : 11, y : 10};
-mappages["lifeshope"].features[857] = {name : 'SmallTable', x : 24, y : 33};
-mappages["lifeshope"].features[858] = {name : 'LeftTable', x : 34, y : 32};
-mappages["lifeshope"].features[859] = {name : 'RightTable', x : 35, y : 32};
-mappages["lifeshope"].features[860] = {name : 'TopChair', x : 22, y : 8};
-mappages["lifeshope"].features[861] = {name : 'TopChair', x : 11, y : 9};
-mappages["lifeshope"].features[862] = {name : 'TopChair', x : 35, y : 8};
-mappages["lifeshope"].features[863] = {name : 'TopChair', x : 35, y : 31};
-mappages["lifeshope"].features[864] = {name : 'LeftChair', x : 23, y : 33};
-mappages["lifeshope"].features[865] = {name : 'LeftChair', x : 9, y : 31};
-mappages["lifeshope"].features[866] = {name : 'BookshelfOne', x : 11, y : 28};
-mappages["lifeshope"].features[867] = {name : 'Dresser', x : 35, y : 34};
-mappages["lifeshope"].features[868] = {name : 'PottedPlant', x : 23, y : 31};
-mappages["lifeshope"].features[869] = {name : 'PottedPlant', x : 13, y : 11};
-mappages["lifeshope"].features[870] = {name : 'SmallBox', x : 13, y : 8};
-mappages["lifeshope"].features[871] = {name : 'Dresser', x : 9, y : 8};
-mappages["lifeshope"].features[872] = {name : 'Dresser', x : 24, y : 6};
-mappages["lifeshope"].features[873] = {name : 'Dresser', x : 36, y : 6};
-mappages["lifeshope"].features[874] = {name : 'SmallBox', x : 36, y : 10};
-mappages["lifeshope"].features[875] = {name : 'Evergreen', x : 18, y : 15};
-mappages["lifeshope"].features[876] = {name : 'RuinsWallDoor1', x : 34, y : 29};
-mappages["lifeshope"].features[877] = {name : 'RuinsWallDoor1', x : 22, y : 28};
-mappages["lifeshope"].features[878] = {name : 'RuinsWallDoor1', x : 10, y : 27};
-mappages["lifeshope"].features[879] = {name : 'RuinsWallDoor1', x : 11, y : 12};
-mappages["lifeshope"].features[880] = {name : 'RuinsWallDoor1', x : 23, y : 11};
-mappages["lifeshope"].features[881] = {name : 'RuinsWallDoor1', x : 34, y : 11};
-mappages["lifeshope"].features[882] = {name : 'RuinsWallDoor2', x : 12, y : 7};
-mappages["lifeshope"].features[883] = {name : 'RuinsWallDoor2', x : 11, y : 32};
-mappages["lifeshope"].features[884] = {name : 'RuinsWallDoor2', x : 21, y : 32};
-mappages["lifeshope"].features[885] = {name : 'DoubleBedHead', x : 7, y : 35};
-mappages["lifeshope"].features[886] = {name : 'DoubleBedFoot', x : 8, y : 35};
-mappages["lifeshope"].features[887] = {name : 'Campfire', x : 20, y : 18};
-mappages["lifeshope"].features[888] = {name : 'Brazier', x : 9, y : 28};
-mappages["lifeshope"].features[889] = {name : 'Brazier', x : 11, y : 35};
-mappages["lifeshope"].features[890] = {name : 'Brazier', x : 21, y : 35};
-mappages["lifeshope"].features[891] = {name : 'Brazier', x : 21, y : 29};
-mappages["lifeshope"].features[892] = {name : 'Brazier', x : 32, y : 30};
-mappages["lifeshope"].features[893] = {name : 'Brazier', x : 32, y : 10};
-mappages["lifeshope"].features[894] = {name : 'Brazier', x : 21, y : 10};
-mappages["lifeshope"].features[895] = {name : 'Brazier', x : 9, y : 11};
-mappages["lifeshope"].features[896] = {name : 'Brazier', x : 13, y : 5};
+mappages["lifeshope"].features[855] = {name : 'RightTable', x : 11, y : 10};
+mappages["lifeshope"].features[856] = {name : 'SmallTable', x : 24, y : 33};
+mappages["lifeshope"].features[857] = {name : 'LeftTable', x : 34, y : 32};
+mappages["lifeshope"].features[858] = {name : 'RightTable', x : 35, y : 32};
+mappages["lifeshope"].features[859] = {name : 'TopChair', x : 22, y : 8};
+mappages["lifeshope"].features[860] = {name : 'TopChair', x : 11, y : 9};
+mappages["lifeshope"].features[861] = {name : 'TopChair', x : 35, y : 8};
+mappages["lifeshope"].features[862] = {name : 'TopChair', x : 35, y : 31};
+mappages["lifeshope"].features[863] = {name : 'LeftChair', x : 23, y : 33};
+mappages["lifeshope"].features[864] = {name : 'LeftChair', x : 9, y : 31};
+mappages["lifeshope"].features[865] = {name : 'BookshelfOne', x : 11, y : 28};
+mappages["lifeshope"].features[866] = {name : 'Dresser', x : 35, y : 34};
+mappages["lifeshope"].features[867] = {name : 'PottedPlant', x : 23, y : 31};
+mappages["lifeshope"].features[868] = {name : 'PottedPlant', x : 13, y : 11};
+mappages["lifeshope"].features[869] = {name : 'SmallBox', x : 13, y : 8};
+mappages["lifeshope"].features[870] = {name : 'Dresser', x : 9, y : 8};
+mappages["lifeshope"].features[871] = {name : 'Dresser', x : 24, y : 6};
+mappages["lifeshope"].features[872] = {name : 'Dresser', x : 36, y : 6};
+mappages["lifeshope"].features[873] = {name : 'SmallBox', x : 36, y : 10};
+mappages["lifeshope"].features[874] = {name : 'Evergreen', x : 18, y : 15};
+mappages["lifeshope"].features[875] = {name : 'RuinsWallDoor1', x : 34, y : 29};
+mappages["lifeshope"].features[876] = {name : 'RuinsWallDoor1', x : 22, y : 28};
+mappages["lifeshope"].features[877] = {name : 'RuinsWallDoor1', x : 10, y : 27};
+mappages["lifeshope"].features[878] = {name : 'RuinsWallDoor1', x : 11, y : 12};
+mappages["lifeshope"].features[879] = {name : 'RuinsWallDoor1', x : 23, y : 11};
+mappages["lifeshope"].features[880] = {name : 'RuinsWallDoor1', x : 34, y : 11};
+mappages["lifeshope"].features[881] = {name : 'RuinsWallDoor2', x : 12, y : 7};
+mappages["lifeshope"].features[882] = {name : 'RuinsWallDoor2', x : 11, y : 32};
+mappages["lifeshope"].features[883] = {name : 'RuinsWallDoor2', x : 21, y : 32};
+mappages["lifeshope"].features[884] = {name : 'DoubleBedHead', x : 7, y : 35};
+mappages["lifeshope"].features[885] = {name : 'DoubleBedFoot', x : 8, y : 35};
+mappages["lifeshope"].features[886] = {name : 'Campfire', x : 20, y : 18};
+mappages["lifeshope"].features[887] = {name : 'Brazier', x : 9, y : 28};
+mappages["lifeshope"].features[888] = {name : 'Brazier', x : 11, y : 35};
+mappages["lifeshope"].features[889] = {name : 'Brazier', x : 21, y : 35};
+mappages["lifeshope"].features[890] = {name : 'Brazier', x : 21, y : 29};
+mappages["lifeshope"].features[891] = {name : 'Brazier', x : 32, y : 30};
+mappages["lifeshope"].features[892] = {name : 'Brazier', x : 32, y : 10};
+mappages["lifeshope"].features[893] = {name : 'Brazier', x : 21, y : 10};
+mappages["lifeshope"].features[894] = {name : 'Brazier', x : 9, y : 11};
+mappages["lifeshope"].features[895] = {name : 'Brazier', x : 13, y : 5};
+mappages["lifeshope"].features[896] = {name : 'LeftTable', x : 9, y : 10};
+mappages["lifeshope"].features[897] = {name : 'MiddleTable', x : 10, y : 10};
+mappages["lifeshope"].features[898] = {name : 'AlchemyLab', x : 9, y : 10};
+mappages["lifeshope"].features[899] = {name : 'AlchemyLab2', x : 10, y : 10};
 
 
 mappages["lifeshope"].npcs = [];
@@ -982,3 +985,18 @@ mappages["lifeshope"].returninfused = '1';
 mappages["lifeshope"].linkedMaps = [""];
 mappages["lifeshope"].editorLabels = '{}';
 // MAP ENDS HERE
+
+mappages["lifeshope"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    if (!DU.gameflags.getFlag("returned_alchemy")) {
+      let fea = mapref.features.getAll();
+      for (let i=0;i < fea.length; i++) {
+//        console.log(fea[i].getName());
+        if (fea[i].getName().includes("Alchemy")) {
+//          console.log("****");
+          mapref.deleteThing(fea[i]);
+        }
+      }
+    }
+  }
+}
