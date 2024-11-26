@@ -6117,7 +6117,7 @@ SunLensTile.prototype = new FeatureObject();
 
 SunLensTile.prototype.use = function(who) {
   let retval = { fin: 1 };
-  if ((this.getx() >= 11) && (this.getx() <= 17) && (this.gety() >= 11) && (this.gety() <= 15) && CheckTimeBetween("12:00","12:59")) {
+  if (!((this.getx() >= 11) && (this.getx() <= 17) && (this.gety() >= 11) && (this.gety() <= 15)) && CheckTimeBetween("12:00","12:59")) {
     let frozen = localFactory.createTile("FrozenSunlight");
     let NPCevent = new GameEvent(frozen);
     DUTime.addAtTimeInterval(NPCevent,3*SCALE_TIME);
@@ -7573,6 +7573,7 @@ WalkOnTharockTile.prototype.walkon = function(walker) {
     let liche = localFactory.createTile("LicheNPC");
     map.deleteThing(statue);
     map.placeThing(32,27,liche);
+    liche.setMana(120);
     liche.onDeath = "tharock";
     msg = 'As you step further into the room, the statue suddenly begins to move! It no longer looks human, and a skeletal face gazes out from under the hood. "An intruder," it says. "I had thought there were none left who would be so bold. No matter- now you will die."';
     DUPlaySound("sfx_teleport");
@@ -7686,20 +7687,22 @@ function WalkOnCairns1Tile() {
 WalkOnCairns1Tile.prototype = new FeatureObject();
 
 WalkOnCairns1Tile.prototype.walkon = function(walker) {
+  if (walker !== PC) { return {msg:""} }
   let themap = this.getHomeMap();
-  if (!themap.skeletons1) {
-    themap.skeletons1 = 1;
+  let braz = themap.getTile(36,30).getFeatureByName("WalkOnCairns1");
+  if (!braz.skeletons1) {
+    braz.skeletons1 = 1;
     // awaken the skeletons in the SE chamber to attack
-    // then create 2nd walkon to make bodies in NE chamber to rise as specters
+    
     let skel1 = themap.getTile(34,38).getTopFeature();
     let skel2 = themap.getTile(30,32).getTopFeature();
     let skel3 = themap.getTile(36,29).getTopFeature();
     themap.deleteThing(skel1);
     themap.deleteThing(skel2);
     themap.deleteThing(skel3);
-    skelmob1 = localFactory.createTile("SkeletonNPC");
-    skelmob2 = localFactory.createTile("SkeletonNPC");
-    skelmob3 = localFactory.createTile("SkeletonNPC");
+    let skelmob1 = localFactory.createTile("SkeletonNPC");
+    let skelmob2 = localFactory.createTile("SkeletonNPC");
+    let skelmob3 = localFactory.createTile("SkeletonNPC");
     themap.placeThing(34,38,skelmob1);
     themap.placeThing(30,32,skelmob2);
     themap.placeThing(36,29,skelmob3);
@@ -7723,12 +7726,14 @@ function WalkOnCairns2Tile() {
 WalkOnCairns2Tile.prototype = new FeatureObject();
 
 WalkOnCairns2Tile.prototype.walkon = function(walker) {
+  if (walker !== PC) { return {msg:""} }
   let themap = this.getHomeMap();
-  if (!themap.skeletons2) {
-    themap.skeletons2 = 1;
-    spec1 = localFactory.createTile("SpecterNPC");
-    spec2 = localFactory.createTile("SpecterNPC");
-    spec3 = localFactory.createTile("SpecterNPC");
+  let braz = themap.getTile(36,30).getFeatureByName("WalkOnCairns1");
+  if (!braz.skeletons2) {
+    braz.skeletons2 = 1;
+    let spec1 = localFactory.createTile("SpecterNPC");
+    let spec2 = localFactory.createTile("SpecterNPC");
+    let spec3 = localFactory.createTile("SpecterNPC");
     themap.placeThing(48,12,spec1);
     themap.placeThing(44,21,spec2);
     themap.placeThing(52,17,spec3);
@@ -12566,6 +12571,12 @@ function DragonBoneTile() {
 }
 DragonBoneTile.prototype = new ItemObject();
 
+DragonBoneTile.prototype.onGet = function(who) {
+  questlog.complete(103);
+
+  return {};
+}
+
 function VoidstoneSculptureTile() {
   //Graphics Upgraded
   this.name = "VoidstoneSculpture";
@@ -14116,12 +14127,17 @@ function NatassaProjectsTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
   this.prefix = "a";
-  this.contents = "You read the notes carefully.%%<span class='conv'>Experiments in Alchemical Reification</span>%%<span class='conv'>Seeking to create solid objects out of immaterial things. Concepts. Feelings. Imagine: a sword, made from Justice. A shield of raw Courage.</span>%%<span class='conv'>Experiments so far a failure. Tried love. Took a step to the side and tried moonlight, came closest, but it's just too ephemeral.</span>%%<span class='conv'>Partial success! I have created a lens through which I was able to freeze sunlight into a crystal. It is simple to use- just bring it out into the sun, angle the lens, and wait. Unfortunately, the crystal sublimated seconds later. But briefly I had solid sunlight!</span>%%<span class='conv'>I have a theory- sunlight is enough akin to fire that I believe the Rune of Flames would work to stabilize the mote of sunlight. The trouble is, it is no longer possible to get to the gate on the east coast of the Isle of Lost Hope. I wonder if there is another option...</span>";
+  this.contents = "You read the notes carefully.%%<span class='conv'>Experiments in Alchemical Reification</span>%%<span class='conv'>Seeking to create solid objects out of immaterial things. Concepts. Feelings. Imagine: a sword, made from Justice. A shield of raw Courage.</span>%%<span class='conv'>Experiments so far a failure. Tried love. Took a step to the side and tried moonlight, came closest, but it's just too ephemeral.</span>%%<span class='conv'>Partial success! I have created a lens through which I was able to freeze sunlight into a crystal. It is simple to use- just bring it out into the sun when the sun is the highest in the sky, angle the lens, and wait. Unfortunately, the crystal sublimated seconds later. But briefly I had solid sunlight!</span>%%<span class='conv'>I have a theory- sunlight is enough akin to fire that I believe the Rune of Flames would work to stabilize the mote of sunlight. The trouble is, it is no longer possible to get to the gate on the east coast of the Isle of Lost Hope. I wonder if there is another option...</span>";
   this.longdesc = "Notes on Natassa's projects.";
   this.startquest = 89;
   this.completequest = 88;
 }
 NatassaProjectsTile.prototype = new BookItemObject();
+
+NatassaProjectsTile.prototype.onGet = function(who) {
+  questlog.complete(88);
+  return {};
+}
 
 function ToshinJournalTile() {
   //Graphics Upgraded
