@@ -3411,7 +3411,7 @@ magic[SPELL_EMPOWER_LEVEL][SPELL_EMPOWER_ID].executeSpell = function(caster, inf
     resp.txt = "This spell must be cast while standing in a circle of power.";
     resp.input = "&gt;";
     resp.fin = 2;
-    return retval;
+    return resp;
   }
 
   if (!PC.checkInventory("Mortar") && !PC.checkInventory("CrystalMortar")) { 
@@ -3449,7 +3449,11 @@ function PerformEmpower(caster, infused, free, tgt) {
     mortar = caster.checkInventory("CrystalMortar");
   }
   if (!mortar) {
-    retval.txt = "You have no suitable mortar to treat the reagents in.";
+    if (caster.checkInventory("CrystalMortar")) {
+      retval.txt = "You need a suitable pestle for your crystal mortar.";
+    } else {
+      retval.txt = "You have no suitable mortar to treat the reagents in.";
+    }
     retval.input ="&gt;";
     return retval;
   }
@@ -3568,7 +3572,7 @@ function ShowEmpowerReagentChoice(caster) {
         quant.style.textAlign = "right";
         quant.style.visibility = "visible";
   
-        quant.innerHTML = "<span style='position:relative;top:-2px'>" + inventorylist[i].getQuantity() + "</span>";
+        quant.innerHTML = "<span style='position:relative;top:-2px'>" + reagents[i].getQuantity() + "</span>";
       }
 
       if ((targetCursor.invx === writetox) && (targetCursor.invy === writetoy)) {
@@ -3660,6 +3664,9 @@ function EmpowerReagentCommands(cmd) {
         if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["Mistletoe"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["VolcanicAsh"] && targetCursor.mortar["FrozenSunlight"]) {
           if (mortar.getName() !== "CrystalMortar") {
             retval["fin"] = 2;
+            if (PC.checkInventory("CrystalMortar")) {
+              retval["outcome"] = ["You place the reagents in the crystal mortar and begin the incancation, but quickly realize something is wrong.","You do not have a suitable pestle to go with your crystal mortar.","You remove the reagents from the mortar and put them away.","Perhaps you need to speak to an artificer."];
+            }
             retval["outcome"] = ["You place the reagents in the mortar and begin the incancation, but quickly realize something is wrong.","This mortar will shatter under the strain of this enchantment. You will need to find something more enduring before you can perform this ritual.","You remove the reagents from the mortar and put them away.","Perhaps you need to speak to an artificer."];
             return retval;
           }   
