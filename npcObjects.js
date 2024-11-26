@@ -3864,7 +3864,7 @@ function TremendousSpiderNPCTile() {
   this.leavesCorpse = 'Blood';
   this.lootTable = 'Giant Spider';
   this.prefix = 'a';
-  this.desc = "giant spider";
+  this.desc = "tremendous spider";
   this.onHit = 'paralyze';
   this.meleeChance = 100;
   this.resists = {};
@@ -5183,7 +5183,7 @@ JusticeNPCTile.prototype = new NPCHumanObject();
 function LicheNPCTile() {
   this.name = 'LicheNPC';
   this.level = 7;
-  this.addhp = -10;
+  this.addhp = 10;
   this.str = 14;
   this.dex = 16;
   this.int = 30;
@@ -5208,7 +5208,7 @@ function LicheNPCTile() {
   this.meleeChance = 0;
   this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, buff: 1, highbuff: 1, };
   this.resists = { ice:66, poison: 100 };
-  this.special = 'necromancer, undead, open_door';
+  this.special = 'highnecromancer, undead, open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.gender = 'male';
