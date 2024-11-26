@@ -248,7 +248,8 @@ questlist[98] = new Quest([97], "Stolen Jewelry", "Blanche", "Naurglen", `While 
 questlist[99] = new Quest([], "Regards from Nyrani", "Nyrani", "Castle dea Olympus", `Nyrani has asked you to visit her cousin Blanche, in Naurglen, that she will visit soon.`, `You have relayed Nyrani's message to Blanche.`, "side");
 questlist[100] = new Quest([], "Speak with Jharden", "King Daragen", "Castle dea Olympus", `Your father has suggested that you speak to Jharden, for he has something to tell you.`, `Jharden has taught you how to cross the Abyss!`, "main");
 questlist[101] = new Quest([100], "Cross the Abyss", "Jharden", "Castle dea Olympus", `Jharden has learned how to cross the Great Abyss, and unlock the spells of the Amber Audachta. He has crafted and given you an Amulet of Reflections, and instructed you to use it while standing before a mirror.`, `You have crossed the Great Abyss, making you one of the greatest mages of this age.`, "main");
-
+questlist[102] = new Quest([], "Crate of Alchemy", "Charles", "Life's Hope", `You've been asked to find and bring back to Charles a crate of alchemy equipment that was left behind in a cave, buried under some rocks. `, `You've brought the alchemy crate back to Charles.`, "side");
+questlist[103] = new Quest([], "Dragonbone Pestle", "Tharock", "Liche's Dominion", `To use the crystal mortar, you need a suitable pestle. Tharock tells you that your best option is to seek out an Elder Dragon in the underworld, near the base of a volcano.`, `You have acquired the dragon's claw bone to use as a pestle.`, "main");
 
 // verbage for reference guide:
 // Not everything that you might think of as a "quest" will go in the log. And those that do, you will still need to take notes-
