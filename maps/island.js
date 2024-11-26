@@ -1624,7 +1624,7 @@ mappages["tharock_castle2"].features[9] = {name : 'LeftTable', x : 27, y : 30};
 mappages["tharock_castle2"].features[10] = {name : 'RightTable', x : 30, y : 30};
 mappages["tharock_castle2"].features[11] = {name : 'LeftTable', x : 29, y : 27};
 mappages["tharock_castle2"].features[12] = {name : 'RightTable', x : 30, y : 27};
-mappages["tharock_castle2"].features[13] = {name : 'RightChair', x : 31, y : 27};
+mappages["tharock_castle2"].features[13] = {name : 'TopChair', x : 29, y : 26};
 mappages["tharock_castle2"].features[14] = {name : 'WalkOnTharock', x : 29, y : 25};
 mappages["tharock_castle2"].features[15] = {name : 'WalkOnTharock', x : 29, y : 26};
 mappages["tharock_castle2"].features[16] = {name : 'WalkOnTharock', x : 28, y : 26};
@@ -1735,6 +1735,8 @@ mappages["waterfallcave"].features[4] = {name : 'PushablePileOfRocks', x : 20, y
 mappages["waterfallcave"].features[5] = {name : 'PushablePileOfRocks', x : 21, y : 18};
 mappages["waterfallcave"].features[6] = {name : 'AlchemyCrate', x : 21, y : 17};
 mappages["waterfallcave"].features[7] = {name : 'PushablePileOfRocks', x : 21, y : 17};
+mappages["waterfallcave"].features[8] = {name : 'OrbStrength', x : 5, y : 3};
+
 
 mappages["waterfallcave"].npcs = [];
 mappages["waterfallcave"].npcs[0] = {name : 'CyclopsNPC', x : 8, y : 19, skintone: '1'};
