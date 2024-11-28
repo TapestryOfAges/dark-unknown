@@ -2009,6 +2009,7 @@ function WandBreakTile() {
 WandBreakTile.prototype.applyEffect = function(silent) {
   if (!silent && (this.getAttachedTo() === PC)) {
     maintext.delayedAddText("The glow from your wand blazes in your hand!");
+    this.olddam = PC.getMissile().damage;
     PC.getMissile().damage = "6d10+12";
   }
   return 1;
@@ -2024,7 +2025,8 @@ WandBreakTile.prototype.eachTurn = function() {
 
 WandBreakTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
-  who.getMissile().damage = "4d10+0";
+  who.getMissile().damage = this.olddam;
+  delete this.olddam;
   maintext.delayedAddText("Your wand's glow returns to normal.");
 
   return 1;
@@ -2043,6 +2045,7 @@ function YewWandBreakTile() {
 YewWandBreakTile.prototype.applyEffect = function(silent) {
   if (!silent && (this.getAttachedTo() === PC)) {
     maintext.delayedAddText("The glow from your wand grows wan and dim.");
+    this.olddam = PC.getMissile().damage;
     PC.getMissile().damage = "2d10+0";
   }
   return 1;
@@ -2058,7 +2061,8 @@ YewWandBreakTile.prototype.eachTurn = function() {
 
 YewWandBreakTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
-  who.getMissile().damage = "4d10+0";
+  who.getMissile().damage = this.olddam;
+  delete this.olddam;
   maintext.delayedAddText("Your wand's glow returns to normal.");
 
   return 1;
