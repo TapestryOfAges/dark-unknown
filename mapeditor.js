@@ -553,7 +553,7 @@ function clickmap(xval,yval) {
       $('#td_bubbletile').css("background-image","url('graphics/" + graphics[0] + "')");
       $('#td_bubbletile').css("background-position", graphics[2] + "px " + graphics[3] + "px");
   	  document.images["bubbletile"].src = "graphics/" + graphics[1];
-  	  $('#featurecoordstd').text("x: " + editable.getx() + ", y: " + editable.gety());
+  	  $('#featurecoordstd').text(editable.getName() + "; x: " + editable.getx() + ", y: " + editable.gety());
       document.featureeditpopup.tileprefix.value = editable.getPrefix();
       document.featureeditpopup.tiledesc.value = editable.getDesc();
       document.featureeditpopup.walkonscript.value = editable.getWalkOnScript();
