@@ -117,7 +117,7 @@ NPCObject.prototype.getMana = function() {
 NPCObject.prototype.modMana = function(diffMana, pastcap) {
 	this.mana = this.mana + diffMana;
 	if (this.mana < 0) { this.mana = 0; }
-  if (!pastcap && (this.mana > this.maxmana)) { this.mana = this.maxmana; }
+  if (!pastcap && (this.mana > this.getMaxMana())) { this.mana = this.getMaxMana(); }
 	if (this.checkType("pc")) {
 	  DrawCharFrame();
 	}
@@ -2393,7 +2393,7 @@ let HumanParts = {
   HammerPale: { src: "humanparts.gif", type: "mainhand", spritex: 0, spritey: -77*32, frames: 5 },
   MacePale: { src: "humanparts.gif", type: "mainhand", spritex: 0, spritey: -79*32, frames: 5 },
   AxePale: { src: "humanparts.gif", type: "mainhand", spritex: 0, spritey: -81*32, frames: 5 },
-  MagicAxePale: { src: "humanparts.gif", type: "mainhand", spritex: 0, spritey: -81*32, frames: 5 },
+  MagicAxePale: { src: "humanparts.gif", type: "mainhand", spritex: 0, spritey: -113*32, frames: 5 },
   HalberdPale: { src: "humanparts.gif", type: "mainhand", spritex: 0, spritey: -83*32, frames: 5 },
   QuarterstaffPale: { src: "humanparts.gif", type: "mainhand", spritex: 0, spritey: -85*32, frames: 5 },
   CrookPale: { src: "humanparts.gif", type: "mainhand", spritex: 0, spritey: -87*32, frames: 5 },
@@ -2414,7 +2414,7 @@ let HumanParts = {
   HammerDark: { src: "humanparts.gif", type: "mainhand", spritex: 0, spritey: -78*32, frames: 5 },
   MaceDark: { src: "humanparts.gif", type: "mainhand", spritex: 0, spritey: -80*32, frames: 5 },
   AxeDark: { src: "humanparts.gif", type: "mainhand", spritex: 0, spritey: -82*32, frames: 5 },
-  MagicAxeDark: { src: "humanparts.gif", type: "mainhand", spritex: 0, spritey: -82*32, frames: 5 },
+  MagicAxeDark: { src: "humanparts.gif", type: "mainhand", spritex: 0, spritey: -114*32, frames: 5 },
   HalberdDark: { src: "humanparts.gif", type: "mainhand", spritex: 0, spritey: -84*32, frames: 5 },
   QuarterstaffDark: { src: "humanparts.gif", type: "mainhand", spritex: 0, spritey: -86*32, frames: 5 },
   CrookDark: { src: "humanparts.gif", type: "mainhand", spritex: 0, spritey: -88*32, frames: 5 },
