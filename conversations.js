@@ -826,7 +826,7 @@ OnConvTriggers["jharden_teaches"] = function(speaker,keyword) {
   } else if (!DU.gameflags.getFlag("spellbook2")) { blocked = 1; }
   if ((PC.getLevel() >= 7) && (DU.gameflags.getFlag("spellbook2")) && (!PC.knowsSpell(SPELL_MASS_CURSE_LEVEL,SPELL_MASS_CURSE_ID))) {
     maintext.addText('"This is a spell I have only just mastered myself!"');
-    maintest.addText("<span style='sysconv'>Jharden teaches you Mass Curse!</span>");
+    maintext.addText("<span style='sysconv'>Jharden teaches you Mass Curse!</span>");
     PC.addSpell(SPELL_MASS_CURSE_LEVEL,SPELL_MASS_CURSE_ID);
     taught = 1;
   } else if (!DU.gameflags.getFlag("spellbook2")) { blocked = 1; }
