@@ -3388,3 +3388,58 @@ function RiverCaveNEW_NTile() {
   this.layers = [["static.gif", "", -8*32, -67*32]];
 }
 RiverCaveNEW_NTile.prototype = new RiverBaseTile();
+
+function WSFloorTile() {
+	this.name = "WSFloor";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-1760";  
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "a";
+	this.desc = "rough stone";
+	this.peerview = "#6c6c6c";  // remember to set
+	this.walkSound = "stone";
+	
+	TilingSpritesheet.call(this, 2);
+}
+WSFloorTile.prototype = new TerrainObject();
+
+function WSWallTile() {
+  this.name = "WSWall";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1728";  
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "large stone wall";
+  this.peerview = "#ffffff";  // remember to set
+}
+WSWallTile.prototype = new TerrainObject();
+
+function WSWallVineTile() {
+  this.name = "WSWallVine";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1728";  
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "large stone wall";
+  this.peerview = "#ffffff";  // remember to set
+}
+WSWallVineTile.prototype = new TerrainObject();
+
+function WSWallMoldTile() {
+  this.name = "WSWallMold";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-1728";  
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "large stone wall";
+  this.peerview = "#ffffff";  // remember to set
+}
+WSWallMoldTile.prototype = new TerrainObject();
