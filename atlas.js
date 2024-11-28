@@ -242,6 +242,14 @@ function PopulateAtlas(atlasref) {
   atlasref.insertkey("FadedFancyFloor2","+&");
   atlasref.insertkey("GreyTileFloor","+t");
   atlasref.insertkey("CrackedStoneFloor","+X");
+  atlasref.insertkey("TitanFloor1","T1");
+  atlasref.insertkey("TitanFloor2","T2");
+  atlasref.insertkey("TitanFloor3","T3");
+  atlasref.insertkey("TitanFloor4","T4");
+  atlasref.insertkey("TitanWallTL","T5");
+  atlasref.insertkey("TitanWallTR","T6");
+  atlasref.insertkey("TitanWallBL","T7");
+  atlasref.insertkey("TitanWallBR","T8");
 
   atlasref.insertkey("OceanWaterTransition0","W0");
   atlasref.insertkey("OceanWaterTransition1","W1");

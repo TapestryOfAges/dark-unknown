@@ -645,6 +645,62 @@ function DarknessTile() {
 }
 DarknessTile.prototype = new TerrainObject();
 
+function TitanWallTLTile() {
+  //Graphics Upgraded. 
+  this.name = "TitanWallTL";
+  this.graphic = "static.gif";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -56*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = .6;
+  this.prefix = "a";
+  this.desc = "huge wall";
+  this.peerview = "#ffffff";
+}
+TitanWallTLTile.prototype = new TerrainObject();
+
+function TitanWallTRTile() {
+  //Graphics Upgraded. 
+  this.name = "TitanWallTR";
+  this.graphic = "static.gif";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -56*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = .6;
+  this.prefix = "a";
+  this.desc = "huge wall";
+  this.peerview = "#ffffff";
+}
+TitanWallTRTile.prototype = new TerrainObject();
+
+function TitanWallBLTile() {
+  //Graphics Upgraded. 
+  this.name = "TitanWallBL";
+  this.graphic = "static.gif";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -57*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = .6;
+  this.prefix = "a";
+  this.desc = "huge wall";
+  this.peerview = "#ffffff";
+}
+TitanWallBLTile.prototype = new TerrainObject();
+
+function TitanWallBRTile() {
+  //Graphics Upgraded. 
+  this.name = "TitanWallBR";
+  this.graphic = "static.gif";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -57*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = .6;
+  this.prefix = "a";
+  this.desc = "huge wall";
+  this.peerview = "#ffffff";
+}
+TitanWallBRTile.prototype = new TerrainObject();
+
 function ShinyWallTile() {
   //Graphics Upgraded. Actually, new.
   this.name = "ShinyWall";
@@ -2078,6 +2134,62 @@ function FadedCobblestone2Tile() {
 }
 FadedCobblestone2Tile.prototype = new TerrainObject();
 
+function TitanFloor1Tile() {
+  //Graphics Upgraded
+  this.name = "TitanFloor1";
+  this.graphic = "static.gif";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -58*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "large pavers";
+  this.peerview = "#64443f";
+  this.walkSound = "stone";
+}
+TitanFloor1Tile.prototype = new TerrainObject();
+
+function TitanFloor2Tile() {
+  //Graphics Upgraded
+  this.name = "TitanFloor2";
+  this.graphic = "static.gif";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -58*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "large pavers";
+  this.peerview = "#64443f";
+  this.walkSound = "stone";
+}
+TitanFloor2Tile.prototype = new TerrainObject();
+
+function TitanFloor3Tile() {
+  //Graphics Upgraded
+  this.name = "TitanFloor3";
+  this.graphic = "static.gif";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -58*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "large pavers";
+  this.peerview = "#64443f";
+  this.walkSound = "stone";
+}
+TitanFloor3Tile.prototype = new TerrainObject();
+
+function TitanFloor4Tile() {
+  //Graphics Upgraded
+  this.name = "TitanFloor4";
+  this.graphic = "static.gif";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -58*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "large pavers";
+  this.peerview = "#64443f";
+  this.walkSound = "stone";
+}
+TitanFloor4Tile.prototype = new TerrainObject();
+
 // atlas/editor needs start here
 function ClayPaversTile() {
   //Graphics Upgraded
@@ -3320,61 +3432,6 @@ function CaveColumnTile() {
 	TilingSpritesheet.call(this, 2);
 }
 CaveColumnTile.prototype = new TerrainObject();
-
-function WSFloorTile() {
-	this.name = "WSFloor";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1760";  
-	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.blocklos = 0;
-	this.prefix = "a";
-	this.desc = "rough stone";
-	this.peerview = "#6c6c6c";  // remember to set
-	this.walkSound = "stone";
-	
-	TilingSpritesheet.call(this, 2);
-}
-WSFloorTile.prototype = new TerrainObject();
-
-function WSWallTile() {
-  this.name = "WSWall";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-1728";  
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 2;
-  this.prefix = "a";
-  this.desc = "large stone wall";
-  this.peerview = "#ffffff";  // remember to set
-}
-WSWallTile.prototype = new TerrainObject();
-
-function WSWallVineTile() {
-  this.name = "WSWallVine";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-1728";  
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 2;
-  this.prefix = "a";
-  this.desc = "large stone wall";
-  this.peerview = "#ffffff";  // remember to set
-}
-WSWallVineTile.prototype = new TerrainObject();
-
-function WSWallMoldTile() {
-  this.name = "WSWallMold";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-1728";  
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 2;
-  this.prefix = "a";
-  this.desc = "large stone wall";
-  this.peerview = "#ffffff";  // remember to set
-}
-WSWallMoldTile.prototype = new TerrainObject();
 
 function RoughStoneFloorTile() {
   //Graphics Upgraded
