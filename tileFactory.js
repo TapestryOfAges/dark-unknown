@@ -218,6 +218,26 @@ tileFactory.prototype.makeDarknessTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeTitanWallTLTile = function() {
+  let newTile = new TitanWallTLTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTitanWallTRTile = function() {
+  let newTile = new TitanWallTRTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTitanWallBLTile = function() {
+  let newTile = new TitanWallBLTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTitanWallBRTile = function() {
+  let newTile = new TitanWallBRTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeShinyWallTile = function() {
   let newTile = new ShinyWallTile();
   return newTile;
@@ -718,6 +738,26 @@ tileFactory.prototype.makeFadedCobblestone2Tile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeTitanFloor1Tile = function() {
+  let newTile = new TitanFloor1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTitanFloor2Tile = function() {
+  let newTile = new TitanFloor2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTitanFloor3Tile = function() {
+  let newTile = new TitanFloor3Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTitanFloor4Tile = function() {
+  let newTile = new TitanFloor4Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeClayPaversTile = function() {
   let newTile = new ClayPaversTile();
   return newTile;
@@ -1180,26 +1220,6 @@ tileFactory.prototype.makeCaveWallTile = function() {
 
 tileFactory.prototype.makeCaveColumnTile = function() {
   let newTile = new CaveColumnTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeWSFloorTile = function() {
-  let newTile = new WSFloorTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeWSWallTile = function() {
-  let newTile = new WSWallTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeWSWallVineTile = function() {
-  let newTile = new WSWallVineTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeWSWallMoldTile = function() {
-  let newTile = new WSWallMoldTile();
   return newTile;
 }
 
@@ -1700,6 +1720,26 @@ tileFactory.prototype.makePileOfRocksTile = function() {
 
 tileFactory.prototype.makePushablePileOfRocksTile = function() {
   let newTile = new PushablePileOfRocksTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTitanDoorwayTLTile = function() {
+  let newTile = new TitanDoorwayTLTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTitanDoorwayTRTile = function() {
+  let newTile = new TitanDoorwayTRTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTitanDoorwayBLTile = function() {
+  let newTile = new TitanDoorwayBLTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTitanDoorwayBRTile = function() {
+  let newTile = new TitanDoorwayBRTile();
   return newTile;
 }
 
