@@ -1985,7 +1985,7 @@ function PythonNPCTile() {
   this.leavesCorpse = 'Blood';
   this.lootTable = 'Small Animal';
   this.prefix = 'a';
-  this.desc = "python";
+  this.desc = "viper";
   this.onHit = 'venom';
   this.meleeChance = 100;
   this.resists = {};
@@ -5257,7 +5257,7 @@ function EyesofSpiteNPCTile() {
   this.meleeChance = 15;
   this.spellsknown = { heal: 1, lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, buff: 1, highbuff: 1, };
   this.resists = {};
-  this.special = 'sleep, ondeathInsects';
+  this.special = 'sleep';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
   this.graphic = 'static.gif';
@@ -5291,8 +5291,6 @@ function ReaperLordNPCTile() {
   this.peaceAI = 'seekPC-9';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '335.gif';
-  this.altgraphic = ['369.gif',];
   this.meleeAttackAs = 'none';
   this.meleeDamage = '5d4+15'
   this.meleeStrDamage = 1
@@ -5312,6 +5310,19 @@ function ReaperLordNPCTile() {
   this.special = 'ruthless,stationary';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
+  this.graphic = 'static.gif';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -155 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
 }
 ReaperLordNPCTile.prototype = new NPCObject();
 
@@ -6016,6 +6027,55 @@ function CrystalBarrierNPCTile() {
   this.xpval = 0;
 }
 CrystalBarrierNPCTile.prototype = new NPCObject();
+
+
+// Monster
+
+function EttinJournalistNPCTile() {
+  this.name = 'EttinJournalistNPC';
+  this.level = 5;
+  this.addhp = 15;
+  this.str = 20;
+  this.dex = 10;
+  this.int = 10;
+  this.alignment = 'Evil';
+  this.attitude = 'hostile';
+  this.peaceAI = 'seekPC-10';
+  this.forgetAt = 10;
+  this.withdraw = 0;
+  this.meleeAttackAs = 'none';
+  this.meleeDamage = '4d4+9'
+  this.meleeStrDamage = .66
+  this.missileAttackAs = 'none';
+  this.armorAs = 'none';
+  this.armorDefense = 30;
+  this.armorAbsorb = 30;
+  this.armorResist = 0;
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'EttinJournalist';
+  this.prefix = 'an';
+  this.desc = "ettin";
+  this.meleeChance = 100;
+  this.resists = {};
+  this.special = 'open_door';
+  this.meleeHitSound = 'sfx_melee_hit';
+  this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.gif';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -142 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+}
+EttinJournalistNPCTile.prototype = new NPCObject();
 
 function GiantRatGroupTinyTile() {
   this.name = 'GiantRatGroupTiny';
