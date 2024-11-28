@@ -1013,7 +1013,9 @@ WorldsEndingCenterRaftTile.prototype.myTurn = function() {
           for (let k=0;k<feastack.length;k++) { raftparts.push(feastack[k]); }
           let npcstack = mymap.getTile(this.getx()+i,this.gety()+j).getNPCs();
           for (let k=0;k<npcstack.length;k++) { raftparts.push(npcstack[k]); }
-          if ((this.getx()+i === PC.getx()) && (this.gety()+j === PC.gety())) { raftparts.push(PC); }
+          if (this.getHomeMap() === PC.getHomeMap()) {
+            if ((this.getx()+i === PC.getx()) && (this.gety()+j === PC.gety())) { raftparts.push(PC); }
+          }
         }
       }
 
@@ -1204,8 +1206,8 @@ CaveTile.prototype = new FeatureObject();
 function SecretCaveTile() {
   this.name = "SecretCave";
   this.graphic = "static.gif";
-  this.spritexoffset = -7*32;
-  this.spriteyoffset = 0;
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -117*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -1645,6 +1647,58 @@ function PushablePileOfRocksTile() {
   Pushable.call(this);
 }
 PushablePileOfRocksTile.prototype = new FeatureObject();
+
+function TitanDoorwayTLTile() {
+  //Graphics Upgraded
+  this.name = "TitanDoorwayTL";
+  this.graphic = "static.gif";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -115*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "huge doorway";
+}
+TitanDoorwayTLTile.prototype = new FeatureObject();
+
+function TitanDoorwayTRTile() {
+  //Graphics Upgraded
+  this.name = "TitanDoorwayTR";
+  this.graphic = "static.gif";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -115*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "huge doorway";
+}
+TitanDoorwayTRTile.prototype = new FeatureObject();
+
+function TitanDoorwayBLTile() {
+  //Graphics Upgraded
+  this.name = "TitanDoorwayBL";
+  this.graphic = "static.gif";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -116*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "huge doorway";
+}
+TitanDoorwayBLTile.prototype = new FeatureObject();
+
+function TitanDoorwayBRTile() {
+  //Graphics Upgraded
+  this.name = "TitanDoorwayBR";
+  this.graphic = "static.gif";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -116*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "huge doorway";
+}
+TitanDoorwayBRTile.prototype = new FeatureObject();
 
 function DoorwayTile() {
   //Graphics Upgraded
@@ -3542,7 +3596,7 @@ function PoisonFieldTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
   this.prefix = "a";
-	this.desc = "poison field";
+	this.desc = "glowing green curtain";
 	this.initdelay = 1.5;
 	this.pathweight = 5;
 	
@@ -7303,18 +7357,22 @@ WalkOnWE34Tile.prototype.walkon = function(walker) {
     wallmap.moveThing(18,19,wall2);
     wallmap.moveThing(19,19,wall3);
     let wall4 = wallmap.getTile(20,16).getTopFeature();
-    let wall5 = wallmap.getTile(20,17).getTopFeature();
-    let wall6 = wallmap.getTile(20,18).getTopFeature();
-    wallmap.moveThing(22,12,wall4);
-    wallmap.moveThing(22,13,wall5);
-    wallmap.moveThing(22,14,wall6);
+    if (wall4 && (wall4.getName() === "ShiftingWall")) {
+      let wall5 = wallmap.getTile(20,17).getTopFeature();
+      let wall6 = wallmap.getTile(20,18).getTopFeature();
+      wallmap.moveThing(22,12,wall4);
+      wallmap.moveThing(22,13,wall5);
+      wallmap.moveThing(22,14,wall6);
+    }
 
     let wall7 = wallmap.getTile(33,25).getTopFeature();
-    let wall8 = wallmap.getTile(33,26).getTopFeature();
-    let wall9 = wallmap.getTile(33,27).getTopFeature();
-    wallmap.deleteThing(wall7);
-    wallmap.deleteThing(wall8);
-    wallmap.deleteThing(wall9);
+    if (wall7 && (wall7.getName() === "ShiftingWall")) {
+      let wall8 = wallmap.getTile(33,26).getTopFeature();
+      let wall9 = wallmap.getTile(33,27).getTopFeature();
+      wallmap.deleteThing(wall7);
+      wallmap.deleteThing(wall8);
+      wallmap.deleteThing(wall9);
+    }
     DUPlaySound("sfx_stone_drag");
   }
 
@@ -7375,6 +7433,7 @@ WalkOnWE36Tile.prototype.walkon = function(walker) {
     let wall2 = wallmap.getTile(9,30).getTopFeature();
     wallmap.moveThing(5,29,wall1);
     wallmap.moveThing(5,30,wall2);  
+    playsound = 1;
   }
   let walla = wallmap.getTile(13,8).getTopFeature();
   if (walla && (walla.getName() === "ShiftingWall") && (walker === PC)) {
@@ -7383,6 +7442,7 @@ WalkOnWE36Tile.prototype.walkon = function(walker) {
     wallmap.moveThing(16,8,walla);
     wallmap.moveThing(16,9,wallb);
     wallmap.moveThing(16,10,wallc);
+    playsound = 1;
   }
   let walld = wallmap.getTile(28,8).getTopFeature();
   if (walld && (walld.getName() === "ShiftingWall") && (walker === PC)) {
@@ -7391,6 +7451,7 @@ WalkOnWE36Tile.prototype.walkon = function(walker) {
     wallmap.moveThing(24,8,walld);
     wallmap.moveThing(24,9,walle);
     wallmap.moveThing(24,10,wallf);
+    playsound = 1;
   }
   if (playsound) { DUPlaySound("sfx_stone_drag"); } 
   return {msg:""};
@@ -7629,7 +7690,7 @@ WorldsEndingWalkOnTile.prototype.walkon = function(walker) {
   if ((this.getx() === 35) && (this.gety() === 34) && ((this.getHomeMap().getTile(35,34).getFeatureByName("WorldsEndingWalkOn").secondlastteleport === "39,56") && (this.getHomeMap().getTile(35,34).getFeatureByName("WorldsEndingWalkOn").lastteleport === "31,56"))) {
     // SE, SW, N
     mapref.moveThing(43,34,walker);        
-  } else if ((this.getx() === 31) && (this.gety() === 56) && ((this.getHomeMap().getTile(35,34).getFeatureByName("WorldsEndingWalkOn").lastteleport === "39,34") && (this.getHomeMap().getTile(35,34).getFeatureByName("WorldsEndingWalkOn").secondlastteleport === "35,34"))) { 
+  } else if ((this.getx() === 31) && (this.gety() === 56) && ((this.getHomeMap().getTile(35,34).getFeatureByName("WorldsEndingWalkOn").lastteleport === "35,34") && (this.getHomeMap().getTile(35,34).getFeatureByName("WorldsEndingWalkOn").secondlastteleport === "39,34"))) { 
     // NE, N, SW
     mapref.moveThing(43,56,walker);        
   } else {
@@ -12258,8 +12319,8 @@ function KineticCrystalTile() {
   this.spriteyoffset = -97*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "softly glowing crystal";
-  this.longdesc = "This pale crystal glows softly, but radiates no heat.";
+  this.desc = "hexagonal glowing crystal";
+  this.longdesc = "This pale crystal glows softly, but radiates no heat. It is hexagonal in shape.";
   this.prefix = "a";
 
   this.addType("Quest");  
@@ -14214,6 +14275,11 @@ function StephaneNoteTile() {
 }
 StephaneNoteTile.prototype = new BookItemObject();
 
+StephaneNoteTile.prototype.onGet = function(who) {
+  questlog.activate(104);
+  return {};
+}
+
 function RhysLetterTile() {
   this.name = "RhysLetter";
   this.graphic = "static.gif";
@@ -14253,7 +14319,7 @@ function LayneJournalTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "well marked scroll";
   this.prefix = "a";
-  this.contents = "<span class='conv'>Herein are the words of Layne son of Timothy, squire to Sir Caradawg of the Knights of Hilden. I record our travels into the depths of the earth, as he seeks to venture into this newly discovered underworld.</span>%%<span class='conv'>We traveled through the mine- which is beginning to see trouble from the monsters below- and emerged on an island in a lake deeply underground, within the hugest cavern you have ever seen. With great craftiness we crossed the lake, the entrance to the mine at our backs, and found ourselves facing a wide tunnel leading deeper into the underworld.</span>%%<span class='conv'>Day 2 underground: After several battles with underworld denizens, we found ourselves... back at the banks of that self-same lake. Dismayed, we continued skirting the lake and found another path, which we followed until we were blocked by a great pool of lava. And so we backtracked, continued around the lake, and took the next path outward, making camp to rest.</span>%%<span class='conv'>Day 3: This passage is much quieter- worryingly so. We quickly reached a fork, and turned right, and stalked along until the ground turned swampy and muddy. The air was dank and unpleasant, and we began to be swarmed by insects. Two exits presented themselves from here, and we chose to travel again to the right.</span>%%<span class='conv'>This twisted and turned and we were suddenly beset by monstrous beings that walked like humans. But we slew them, and reached another fork, one path smooth and the other very much like a series of rough hills. Fearing to be seen from too great a distance on the flat paths, we chose the hills.</span>%%<span class='conv'>After several hours, the hills gave way to flatland once more. We ignored a side passage on our left, and reached a large cavern with paths leaving in four directions. We chose to go right, which almost immediately turned into a dead end where we took advantage of the secure position to make camp.</span>%%<span class='conv'>Day 4: Emerging from the cave, we saw that to the right was more swampland, and we decided not to travel that way, so we continued straight across. We chose right and then right again quickly thereafter. While walking this path we were attacked by great beasts, and wounded badly but not severely. With the beasts dispatched (truly, is Sir Caradawg a great warrior!), we turned to the question of where they had came from, and my lord found, in the crook of the wall where the cave curved again to the left, a small, well hidden cave. We entered.</span>%%<span class='conv'>Day 7: I have not had the opportunity to write in some time. Calamity has struck. We entered the small cave, and traveled a short way inside, when we were surrounded by daemonic faces. They attacked without mercy and it was clear that we could not stand against them. Sir Caradawg ordered me to flee and carry word back home, and with a heavy heart I turned and ran. I have been running and hiding through this awful place since, but yet I live.</span>%%<span class='conv'>Day 8: Aha! Thank the gods, I have found an entrance to a dungeon that, if I am blessed by the luck, will take me to the surface. I write this just outside the great entrance (wondering, again, just who built these?), and will write again when I reach a place of safety inside it.</span>%%<span class='conv'>(Nothing more is written here.)</span>";
+  this.contents = `<span class='conv'>Herein are the words of Layne son of Timothy, squire to Sir Caradawg of the Knights of Hilden. I record our travels into the depths of the earth, as he seeks to venture into this newly discovered underworld.</span>%%<span class='conv'>We traveled through the mine- which is beginning to see trouble from the monsters below- and emerged on an island in a lake deeply underground, within the hugest cavern you have ever seen. With great craftiness we crossed the lake, the entrance to the mine at our backs, and found ourselves facing a wide tunnel leading deeper into the underworld.</span>%%<span class='conv'>Day 2 underground: After several battles with underworld denizens, we found ourselves... back at the banks of that self-same lake. Dismayed, we continued skirting the lake and found another path, which we followed until we were blocked by a great pool of lava. And so we backtracked, continued around the lake, and took the next path outward, making camp to rest.</span>%%<span class='conv'>Day 3: This passage is much quieter- worryingly so. We quickly reached a fork, and turned right, and stalked along until the ground turned swampy and muddy. The air was dank and unpleasant, and we began to be swarmed by insects. Two exits presented themselves from here, and we chose to travel again to the right.</span>%%<span class='conv'>This twisted and turned and we were suddenly beset by monstrous beings that walked like humans. But we slew them, and reached another fork, one path smooth and the other very much like a series of rough hills. Fearing to be seen from too great a distance on the flat paths, we chose the hills.</span>%%<span class='conv'>After several hours, the hills gave way to flatland once more. We ignored a side passage on our left, and reached a large cavern with paths leaving in four directions. We chose to go right, which almost immediately turned into a dead end where we took advantage of the secure position to make camp.</span>%%<span class='conv'>Day 4: Emerging from camp, we saw that to the right was more swampland, and we decided not to travel that way, so we continued straight across. We chose right and then right again quickly thereafter. While walking this path we were attacked by great beasts, and wounded badly but not severely. With the beasts dispatched (truly, is Sir Caradawg a great warrior!), we turned to the question of where they had came from, and my lord found, in the crook of the wall where the cave curved again to the left, a small, well hidden cave. We entered.</span>%%<span class='conv'>Day 7: I have not had the opportunity to write in some time. Calamity has struck. We entered the small cave, and traveled a short way inside, when we were surrounded by daemonic faces. They attacked without mercy and it was clear that we could not stand against them. Sir Caradawg ordered me to flee and carry word back home, and with a heavy heart I turned and ran. I have been running and hiding through this awful place since, but yet I live.</span>%%<span class='conv'>Day 8: Aha! Thank the gods, I have found an entrance to a dungeon that, if I am blessed by the luck, will take me to the surface. I write this just outside the great entrance (wondering, again, just who built these?), and will write again when I reach a place of safety inside it.</span>%%<span class='conv'>(Nothing more is written here.)</span>`;
   this.longdesc = "A scroll containing a squire's journal.";
 }
 LayneJournalTile.prototype = new BookItemObject();
@@ -17678,7 +17744,7 @@ function YewWandTile() {
   this.ammoxoffset = 0;
   this.ammoyoffset = 0;
   this.attackSound = "sfx_wand";
-  this.longdesc = "A wand made of yew, which fires bolts of magical energy.";
+  this.longdesc = "A yew wand, which fires bolts of magical energy. In your hands, it does %ave% damage on average.";
   this.enchantable = 1;
 
   ManualAnimation.call(this, { 
