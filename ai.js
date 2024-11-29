@@ -3721,7 +3721,7 @@ ais.elderdragon = function(who) {
       }
       console.log("Chosen action: " + action);
 
-      if (foes.length === 0) {
+      if ((foes.length === 0) || ((action === "spellcast") && (GetDistance(who.getx(),who.gety(),nearby.getx(),nearby.gety()) > 5.5))) {
         // All enemies are very distant from the dragon, so it will head towards the player
         action = "approach";
         nearby = PC;
@@ -3869,28 +3869,28 @@ ais.elderdragon = function(who) {
           }
         }
         if (wanttomove.south) {
-          dragonse.moveMe(0,1);
-          dragonsw.moveMe(0,1);
-          dragonne.moveMe(0,1);
+//          dragonse.moveMe(0,1);
+//          dragonsw.moveMe(0,1);
+//          dragonne.moveMe(0,1);
           who.moveMe(0,1);
           DrawMainFrame("draw",dragonmap,PC.getx(),PC.gety());
         } else if (wanttomove.west) {
           who.moveMe(-1,0);
-          dragonsw.moveMe(-1,0);
-          dragonne.moveMe(-1,0);
-          dragonse.moveMe(-1,0);
+//          dragonsw.moveMe(-1,0);
+//          dragonne.moveMe(-1,0);
+//          dragonse.moveMe(-1,0);
           DrawMainFrame("draw",dragonmap,PC.getx(),PC.gety());
         } else if (wanttomove.east) {
-          dragonne.moveMe(1,0);
-          dragonse.moveMe(1,0);
-          dragonsw.moveMe(1,0);
+//          dragonne.moveMe(1,0);
+//          dragonse.moveMe(1,0);
+//          dragonsw.moveMe(1,0);
           who.moveMe(1,0);
           DrawMainFrame("draw",dragonmap,PC.getx(),PC.gety());
         } else if (wanttomove.north) {
-          dragonne.moveMe(0,-1);
+//          dragonne.moveMe(0,-1);
           who.moveMe(0,-1);
-          dragonse.moveMe(0,-1);
-          dragonsw.moveMe(0,-1);
+//          dragonse.moveMe(0,-1);
+//          dragonsw.moveMe(0,-1);
           DrawMainFrame("draw",dragonmap,PC.getx(),PC.gety());
         }
       } else if (action === "approach") {
@@ -3920,28 +3920,28 @@ ais.elderdragon = function(who) {
           }
         }
         if (wanttomove.south) {
-          dragonse.moveMe(0,1);
-          dragonsw.moveMe(0,1);
-          dragonne.moveMe(0,1);
+//          dragonse.moveMe(0,1);
+//          dragonsw.moveMe(0,1);
+//          dragonne.moveMe(0,1);
           who.moveMe(0,1);
           DrawMainFrame("draw",dragonmap,PC.getx(),PC.gety());
         } else if (wanttomove.west) {
           who.moveMe(-1,0);
-          dragonsw.moveMe(-1,0);
-          dragonne.moveMe(-1,0);
-          dragonse.moveMe(-1,0);
+//          dragonsw.moveMe(-1,0);
+//          dragonne.moveMe(-1,0);
+//          dragonse.moveMe(-1,0);
           DrawMainFrame("draw",dragonmap,PC.getx(),PC.gety());
         } else if (wanttomove.east) {
-          dragonne.moveMe(1,0);
-          dragonse.moveMe(1,0);
-          dragonsw.moveMe(1,0);
+//          dragonne.moveMe(1,0);
+//          dragonse.moveMe(1,0);
+//          dragonsw.moveMe(1,0);
           who.moveMe(1,0);
           DrawMainFrame("draw",dragonmap,PC.getx(),PC.gety());
         } else if (wanttomove.north) {
-          dragonne.moveMe(0,-1);
+//          dragonne.moveMe(0,-1);
           who.moveMe(0,-1);
-          dragonse.moveMe(0,-1);
-          dragonsw.moveMe(0,-1);
+ //         dragonse.moveMe(0,-1);
+//          dragonsw.moveMe(0,-1);
           DrawMainFrame("draw",dragonmap,PC.getx(),PC.gety());
         }
       } else {
