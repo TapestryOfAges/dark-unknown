@@ -1210,7 +1210,7 @@ function SecretCaveTile() {
   this.spriteyoffset = -117*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a";
+  this.prefix = "";
   this.desc = "mountains";
 
   Enterable.call(this, "null", 0, 0);
@@ -1219,7 +1219,7 @@ SecretCaveTile.prototype = new FeatureObject();
 
 SecretCaveTile.prototype.onSearched = function(who) {
   let retval = {};
-  if (this.getDesc() === "mountain") {
+  if (this.getDesc() === "mountains") {
     this.desc = "cave entrance";
     this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
     this.spritexoffset = -6*32;
@@ -12427,6 +12427,7 @@ function RippedAudachtaNemesosTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a"
   this.desc = "ripped Audachta Nemesos";
+  this.brokendesc = "ripped Audachta Nemesos";
   this.longdesc = "An Audachta Nemesos that has had three pages torn out, rendering it unreadable.";
 
   this.addType("Quest");  
@@ -16858,14 +16859,6 @@ EquipableItemObject.prototype.unEquipMe = function() {
       return 0;
     }
   }
-  else if (this.checkType("Weapon")) {
-    if (who.getWeapon() === this) {
-      who.setEquipment("weapon","");
-      if (typeof this.onUnequip === "function") { this.onUnequip(who); }
-    } else {
-      return 0;
-    }
-  }
   else if (this.checkType("Missile")) {
     if (who.getMissile() === this) {
       who.setEquipment("missile","");
@@ -16873,6 +16866,14 @@ EquipableItemObject.prototype.unEquipMe = function() {
     } else {
       return 0;
     }    
+  }
+  else if (this.checkType("Weapon")) {
+    if (who.getWeapon() === this) {
+      who.setEquipment("weapon","");
+      if (typeof this.onUnequip === "function") { this.onUnequip(who); }
+    } else {
+      return 0;
+    }
   }
   else if (this.checkType("Circlet")) {
     if (who.getEquipment("circlet") === this) {
@@ -17770,7 +17771,7 @@ YewWandTile.prototype.onMadeAttack = function(atk,def,dmg) {
     return;
   } 
   let chance = Dice.roll("1d100");
-  if (chance <= 10) {
+  if (chance <= 20) {
     let breakme = localFactory.createTile("YewWandBreak");
     let expmod = Dice.roll("1d20+90");
     breakme.setExpiresTime(expmod*SCALE_TIME + DUTime.getGameClock());
