@@ -40,7 +40,7 @@ NPCSpecialFuncs["mirror"] = function(who, how) {
 }
 
 NPCSpecialFuncs["light"] = function(who,how) {
-  LightEmitting.call(who, how);
+  who.setLight(how);
 }
 
 NPCSpecialFuncs["flamearmor"] = function(who,how) {
