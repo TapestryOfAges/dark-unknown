@@ -233,6 +233,7 @@ ProtoObject.prototype.copy = function(type) {
     } else {
       DebugWrite("saveload", "<br /><span style='color:red;font-weight:bold'>" + idx + " is type " + typeof val + "</span>,  ");
       alert(savename + " SAVE NEEDS " + idx + "!");
+      console.log(this);
     }
     // ADD HERE WHEN THERE ARE MORE
     
@@ -1342,7 +1343,7 @@ function SetBySurroundCave() {
 // General func
 function SetBySurroundCoast() {
 	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
-		if (losresult >= LOS_THRESHOLD) {
+		if ((losresult >= LOS_THRESHOLD) && !PC.getSpellEffectsByName("EtherealVision")) {
 			let displaytile = eidos.getForm('BlankBlack');
 			let displaygraphic = displaytile.getGraphicArray();
 			return displaygraphic;
@@ -1412,7 +1413,7 @@ function SetBySurroundCoast() {
 // General func
 function SetBySurroundRoad() {
 	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
-		if (losresult >= LOS_THRESHOLD) {
+		if ((losresult >= LOS_THRESHOLD) && !PC.getSpellEffectsByName("EtherealVision")) {
 			let displaytile = eidos.getForm('BlankBlack');
 			let displaygraphic = displaytile.getGraphicArray();
 			return displaygraphic;
@@ -1487,7 +1488,7 @@ function SetBySurroundRoad() {
 // General func
 function SetBySurroundRiver() {
 	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
-		if (losresult >= LOS_THRESHOLD) {
+		if ((losresult >= LOS_THRESHOLD) && !PC.getSpellEffectsByName("EtherealVision")) {
 			let displaytile = eidos.getForm('BlankBlack');
 			let displaygraphic = displaytile.getGraphicArray();
 			return displaygraphic;
