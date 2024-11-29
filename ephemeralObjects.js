@@ -740,7 +740,7 @@ function EtherealVisionTile() {
   this.addType("buff");
   this.name = "EtherealVision";
   this.display = "<span style='color:white'>E</span>";
-  this.zstatdesc = "You can detect nearby minds.";
+  this.zstatdesc = "You can see through solid objects.";
   this.desc = "Ethereal Vision";
   this.level = 3;
 }
@@ -2005,12 +2005,17 @@ function WandBreakTile() {
   this.level = 1;
   this.dispellable = 0;
 }
+WandBreakTile.prototype = new EphemeralObject();
 
 WandBreakTile.prototype.applyEffect = function(silent) {
   if (!silent && (this.getAttachedTo() === PC)) {
     maintext.delayedAddText("The glow from your wand blazes in your hand!");
     this.olddam = PC.getMissile().damage;
     PC.getMissile().damage = "6d10+12";
+    this.olddesc = PC.getMissile().desc;
+    PC.getMissile().desc = "brightly glowing wand";
+    this.oldlongdesc = PC.getMissile().longdesc;
+    PC.getMissile().longdesc = "A wand that channels thunder, its energy blazing. In your hands, it does %ave% damage on average.";
   }
   return 1;
 }
@@ -2026,7 +2031,9 @@ WandBreakTile.prototype.eachTurn = function() {
 WandBreakTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
   who.getMissile().damage = this.olddam;
-  delete this.olddam;
+  who.getMissile().desc = this.olddesc;
+  who.getMissile().longdesc = this.oldlongdesc;
+  who.deleteSpellEffect(this);
   maintext.delayedAddText("Your wand's glow returns to normal.");
 
   return 1;
@@ -2041,12 +2048,17 @@ function YewWandBreakTile() {
   this.level = 1;
   this.dispellable = 0;
 }
+YewWandBreakTile.prototype = new EphemeralObject();
 
 YewWandBreakTile.prototype.applyEffect = function(silent) {
   if (!silent && (this.getAttachedTo() === PC)) {
     maintext.delayedAddText("The glow from your wand grows wan and dim.");
     this.olddam = PC.getMissile().damage;
     PC.getMissile().damage = "2d10+0";
+    this.olddesc = PC.getMissile().desc;
+    PC.getMissile().desc = "dimly glowing wand";
+    this.oldlongdesc = PC.getMissile().longdesc;
+    PC.getMissile().longdesc = "A yew wand, its energy depleted. In your hands, it does %ave% damage on average.";
   }
   return 1;
 }
@@ -2062,7 +2074,10 @@ YewWandBreakTile.prototype.eachTurn = function() {
 YewWandBreakTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
   who.getMissile().damage = this.olddam;
-  delete this.olddam;
+  who.getMissile().desc = this.olddesc;
+  who.getMissile().longdesc = this.oldlongdesc;
+  who.deleteSpellEffect(this);
+
   maintext.delayedAddText("Your wand's glow returns to normal.");
 
   return 1;
