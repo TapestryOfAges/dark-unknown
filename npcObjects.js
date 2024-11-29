@@ -5097,7 +5097,7 @@ function EarthenTyrantNPCTile() {
   this.armorResist = 100;
   this.movetype = MOVE_ETHEREAL;
   this.leavesCorpse = 'none';
-  this.lootTable = 'Earthen Tyrant';
+  this.lootTable = 'Level6';
   this.prefix = 'an';
   this.desc = "earthen tyrant";
   this.meleeChance = 90;
