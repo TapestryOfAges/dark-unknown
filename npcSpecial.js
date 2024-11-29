@@ -166,7 +166,7 @@ CartSegmentTile.prototype = new MultiSegment();
 function ElderDragonNPCTile() {
   this.name = 'ElderDragonNPC';
   this.level = 8;
-  this.addhp = 15;
+  this.addhp = 45;
   this.str = 30;
   this.dex = 30;
   this.int = 30;
@@ -183,7 +183,7 @@ function ElderDragonNPCTile() {
   this.meleeDamage = '5d8+15';
   this.meleeStrDamage = 1;
   this.missileAttackAs = 'none';
-  this.armorAs = 'PlateArmor';
+  this.armorAs = 'ExoticArmor';
   this.movetype = MOVE_FLY;
   this.leavesCorpse = 'none';
   this.lootTable = 'castlechest';
@@ -194,7 +194,7 @@ function ElderDragonNPCTile() {
   this.resists = { fire:50 };
   this.meleeHitSound = 'sfx_roar_hit';
   this.meleeAttackSound = 'sfx_roar_miss';
-  this.special = 'miniboss,ondeathElder,reach';
+  this.special = 'miniboss,ondeathElder,reach,light:2';
 
   MultiTileNPC.call(this, ["ElderDragonForelimbSegment","ElderDragonHindlimbSegment","ElderDragonTailSegment"], [[0,1],[1,1],[1,0]]);
 
@@ -203,8 +203,8 @@ function ElderDragonNPCTile() {
     animlength: 5,
     animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 220,
+    framedurationmax: 270,
     startframe: "start"
   });
 
@@ -223,8 +223,8 @@ function ElderDragonForelimbSegmentTile() {
     animlength: 5,
     animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 220,
+    framedurationmax: 270,
     startframe: "start"
   });
 }
@@ -242,8 +242,8 @@ function ElderDragonHindlimbSegmentTile() {
     animlength: 5,
     animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 220,
+    framedurationmax: 270,
     startframe: "start"
   });
 }
@@ -261,8 +261,8 @@ function ElderDragonTailSegmentTile() {
     animlength: 5,
     animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 220,
+    framedurationmax: 270,
     startframe: "start"
   });
 }
