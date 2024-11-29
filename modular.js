@@ -131,7 +131,7 @@ OnHitFuncs["paralyze"] = function(atk,def,dmg) {
     let para = localFactory.createTile("Paralyze");
     let dur = Dice.roll("1d6");
     if (dur <= 3) { dur = 1; }
-    else if (dir < 6) { dur = 2; }
+    else if (dur < 6) { dur = 2; }
     else {dur = 3; }
     para.setExpiresTime(DUTime.getGameClock() + (dur*SCALE_TIME))
     def.addSpellEffect(para);
@@ -345,13 +345,17 @@ OnDeathFuncs["destroycrystals"] = function(who) {
 }
 
 OnDeathFuncs["Elder"] = function(who) {
-  DU.gameflags.setFlag("elder_killed");
+  DU.gameflags.setFlag("elder_killed",1);
   let dgmap = who.getHomeMap();
   maintext.addText('The dragon slumps to the ground, and opens one huge eye to gaze at you. Its voice rattles forth, "It is done. I see the path before you, mortal: You venture into a darkness the likes the world has ne\'er seen. May you never return to the lands of light..." The dragon\'s labored breathing ceases.');
   for (let i=0;i<3;i++) {
     let chest = localFactory.createTile("Chest");
     chest.setLootgroup("castlechest");
     AddLoot(chest);
+    if (i===2) {
+      let claw = localFactory.createTile("DragonBone");
+      dgmap.placeThing(who.attachedParts[i].getx(), who.attachedParts[i].gety(), claw);
+    }
     dgmap.placeThing(who.attachedParts[i].getx(), who.attachedParts[i].gety(), chest);
   }
 }
