@@ -29,7 +29,7 @@ mappages["underworld"].terrain = [];
  mappages["underworld"].terrain[23] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. ^^ ., ., ., ., ^^ ^^ ^^ ^^ ^^ ^^ ff ff ff .. .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. ^^ ^^ ^^ ^^ .. .. .. .. .. ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. -- ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
  mappages["underworld"].terrain[24] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. ., ., ., ., ., ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
  mappages["underworld"].terrain[25] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. ., ., ., ., ., ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["underworld"].terrain[26] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. ^^ ^^ ., ., ., ., ., ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+ mappages["underworld"].terrain[26] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. ^^ ^^ ., ., ., ., ., ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
  mappages["underworld"].terrain[27] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ., ., ., ., ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. ^^ ^^ ^^ ^^ .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ nn ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
  mappages["underworld"].terrain[28] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ., ., ., ., ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. ^^ .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
  mappages["underworld"].terrain[29] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ., ., ., ., ., ., ., ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
@@ -746,22 +746,22 @@ mappages["hidden_cave"].terrain[31] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK
 
 mappages["hidden_cave"].features = [];
 mappages["hidden_cave"].features[0] = {name : 'SkeletonDecoration', x : 16, y : 13};
-mappages["hidden_cave"].features[1] = {name : 'UnenchantedSword', x : 17, y : 13};
+mappages["hidden_cave"].features[1] = {name : 'UnenchantedSword', x : 17, y : 13, desc : "broken, once-enchanted sword"};
 mappages["hidden_cave"].features[2] = {name : 'PlateArmor', x : 16, y : 14};
 
 
 mappages["hidden_cave"].npcs = [];
-mappages["hidden_cave"].npcs[0] = {name : 'EarthenTyrantNPC', x : 10, y : 22, skintone: '1'};
-mappages["hidden_cave"].npcs[1] = {name : 'EarthenTyrantNPC', x : 23, y : 13, skintone: '1'};
-mappages["hidden_cave"].npcs[2] = {name : 'EarthenTyrantNPC', x : 20, y : 19, skintone: '1'};
+mappages["hidden_cave"].npcs[0] = {name : 'EarthenTyrantNPC', x : 10, y : 22, skintone: 1};
+mappages["hidden_cave"].npcs[1] = {name : 'EarthenTyrantNPC', x : 23, y : 13, skintone: 1};
+mappages["hidden_cave"].npcs[2] = {name : 'EarthenTyrantNPC', x : 20, y : 19, skintone: 1};
 
 mappages["hidden_cave"].desc = "A hidden cave";
 mappages["hidden_cave"].longdesc = ``;
 mappages["hidden_cave"].music = 'Cave';
 mappages["hidden_cave"].savename = `Hidden cave`;
-mappages["hidden_cave"].exitmap = '';
-mappages["hidden_cave"].exitx = '65';
-mappages["hidden_cave"].exity = '70';
+mappages["hidden_cave"].exitmap = 'underworld';
+mappages["hidden_cave"].exitx = '63';
+mappages["hidden_cave"].exity = '27';
 mappages["hidden_cave"].wraps = '';
 mappages["hidden_cave"].enterx = '65';
 mappages["hidden_cave"].entery = '70';
@@ -807,10 +807,10 @@ mappages["eldercave"].terrain = [];
  mappages["eldercave"].terrain[6] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["eldercave"].terrain[7] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cf cf cf cw cw cw cw BK BK BK BK BK BK BK BK BK';
  mappages["eldercave"].terrain[8] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK';
- mappages["eldercave"].terrain[9] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf us us cf cf cw BK BK BK BK BK BK BK BK';
-mappages["eldercave"].terrain[10] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf us us us cf cw cw BK BK BK BK BK BK BK';
-mappages["eldercave"].terrain[11] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf us us cf cf cw BK BK BK BK BK BK BK';
-mappages["eldercave"].terrain[12] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK';
+ mappages["eldercave"].terrain[9] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf c/ `c cf cf cw BK BK BK BK BK BK BK BK';
+mappages["eldercave"].terrain[10] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf c| us us `c cf cw cw BK BK BK BK BK BK BK';
+mappages["eldercave"].terrain[11] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf c` us /c cf cf cw BK BK BK BK BK BK BK';
+mappages["eldercave"].terrain[12] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf -c cf cf cf cw BK BK BK BK BK BK BK';
 mappages["eldercave"].terrain[13] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK';
 mappages["eldercave"].terrain[14] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK';
 mappages["eldercave"].terrain[15] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK';
@@ -915,6 +915,7 @@ mappages["eldercave"].onload = function(mapref) {
 
       let dragon = localFactory.createTile("ElderDragonNPC");
       mapref.placeThing(17,12,dragon);
+      dragon.setMana(60);
     } else if (!PC.checkInventory("DragonBone")) {
       let bone = localFactory.createTile("DragonBone");
       mapref.placeThing(17,13,bone);
