@@ -143,21 +143,20 @@ function FinishFirstAnimation(p) {
 }
 
 function FinishAnimation(param) {
-
   let retval = param.retval;
   let dmg = param.dmg;
   if (param.adddmg) {
     let fbdmg = prepareSpellDamage(param.atk,param.def,param.adddmg,param.adddmgtype);
     dmg += fbdmg.dmg;
   }
+  if (param.weapon && param.weapon.onMadeAttack && (typeof param.weapon.onMadeAttack === "function")) {
+    param.weapon.onMadeAttack(param.atk,param.def,dmg);
+  }
   if ((dmg !== 0) && param.def) {
     let prehp = param.def.getHP(); 
     // handle onDamaged stuff here
     if (param.def.onDamaged) {
       dmg = OnDamagedFuncs[param.def.onDamaged](param.atk,param.def,dmg,param.weapon);
-    }
-    if (param.weapon && param.weapon.hasOwnProperty("onMadeAttack")) {
-      param.weapon.onMadeAttack(param.atk,param.def,dmg);
     }
     let effects = param.def.getSpellEffects();
     for (let i=0;i<effects.length;i++) {
@@ -376,7 +375,7 @@ function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev, skipfeatures, 
         } 
       }
       if (displaytile.alwaystop) { ontop.push(displayCell); }
-      else if (displayCell.losresult < LOS_THRESHOLD) { displayStack.push(displayCell); }
+      else if ((displayCell.losresult < LOS_THRESHOLD) || ev) { displayStack.push(displayCell); }
     } else if ((losresult < LOS_THRESHOLD) || ((tp === 1) && isnpc) || ev) {
       if (displaytile.IWasJustDrawn) { displaytile.IWasJustDrawn(); }
       displayCell.showGraphic = graphics[0];
