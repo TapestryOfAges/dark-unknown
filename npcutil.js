@@ -963,10 +963,10 @@ function CheckAreEnemies(who1,who2) {
   return 0;
 }
 
-function DoArchaemon(who) {
+function DoArchdaemon(who) {
   if (who.spoken === 3) { return; }
   if (who.justspoke) { delete who.justspoke; return; }
-  if (Dice.roll("1d100") <= 35) {
+  if (Dice.roll("1d100") <= 50) {
     if (IsVisibleOnScreen(who.getx(),who.gety())) {
       if (!who.spoken) { 
         if (who.specials.archdaemon_ashes) { maintext.addText('The great daemon speaks. "Tremble, mortal. You face Kayora, Flayer of Stars. My darkness will be the last thing that you see."'); }
@@ -978,7 +978,7 @@ function DoArchaemon(who) {
       } else if (who.spoken === 1) {
         if (who.specials.archdaemon_ashes) { maintext.addText('"Soon, we will breach the surface. There, I will put out every point of light in your sky."'); }
         if (who.specials.archdaemon_dust) { maintext.addText('"I am Kassotar, Unmaker of Dawn. The sun itself trembles before me."'); }
-        if (who.specials.archdaemon_ice) { maintext.addText('In your head, icy cold and poisonous: "It has been scores of millennia since we have been imprisoned. But some of us... remember the light. And we hate you for having it.'); }
+        if (who.specials.archdaemon_ice) { maintext.addText('In your head, icy cold and poisonous: "It has been scores of millennia since we have been imprisoned. But some of us... remember the light. And we hate you for having it."'); }
         if (who.specials.archdaemon_bone) { maintext.addText('"Those who came before you strove to make gods out of light and stone. But we have always been here in the dark. We are why they are no more."'); }
         who.spoken=2;
         who.justspoke = 1;
