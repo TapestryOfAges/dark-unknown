@@ -6502,6 +6502,7 @@ DaemonicMirrorTile.prototype.onBreak = function(who) {
   if (allbroke && (whoseturn === PC)) {
     DUPlaySound("sfx_thunder");
     let daemon = localFactory.createTile("DaemonNPC");
+    daemon.onDeath = "doppelganger";
     this.getHomeMap().placeThing(23,21,daemon);
   }
 }
@@ -8253,7 +8254,9 @@ UtterDarkTile.prototype.dissolve = function() {
   this.spriteyoffset = -54*32;
   this.spritexoffset = -4*32;
 
-  setTimeout(function() { this.getHomeMap().deleteThing(this); }, 200);
+  let tdark = this;
+
+  setTimeout(function() { tdark.getHomeMap().deleteThing(tdark); }, 200);
 }
 
 function WalkOnUtter1Tile() {
@@ -8271,6 +8274,10 @@ WalkOnUtter1Tile.prototype = new FeatureObject();
 
 WalkOnUtter1Tile.prototype.walkon = function(walker) {
   this.getHomeMap().deleteThing(this);
+  let fea = this.getHomeMap().getTile(this.getx()-1,this.gety()).features.getAll();
+  for (let i=0;i<fea.length;i++) {
+    if (fea[i].getName() === "UtterDark") { fea[i].dissolve(); }
+  }
   return {msg: "There is darkness before you, seemingly impenetrable." }
 }
 
@@ -8289,7 +8296,7 @@ WalkOnUtter2Tile.prototype = new FeatureObject();
 
 WalkOnUtter2Tile.prototype.walkon = function(walker) {
   this.getHomeMap().deleteThing(this);
-  let fea = this.getHomeMap().getAcre(this.getx()-1,this.gety()).features.getAll();
+  let fea = this.getHomeMap().getTile(this.getx()-1,this.gety()).features.getAll();
   for (let i=0;i<fea.length;i++) {
     if (fea[i].getName() === "UtterDark") { fea[i].dissolve(); }
   }
@@ -8311,7 +8318,7 @@ WalkOnUtter3Tile.prototype = new FeatureObject();
 
 WalkOnUtter3Tile.prototype.walkon = function(walker) {
   this.getHomeMap().deleteThing(this);
-  let fea = this.getHomeMap().getAcre(this.getx()-1,this.gety()).features.getAll();
+  let fea = this.getHomeMap().getTile(this.getx()-1,this.gety()).features.getAll();
   for (let i=0;i<fea.length;i++) {
     if (fea[i].getName() === "UtterDark") { fea[i].dissolve(); }
   }
@@ -8333,7 +8340,7 @@ WalkOnUtter4Tile.prototype = new FeatureObject();
 
 WalkOnUtter4Tile.prototype.walkon = function(walker) {
   this.getHomeMap().deleteThing(this);
-  let fea = this.getHomeMap().getAcre(this.getx()-1,this.gety()).features.getAll();
+  let fea = this.getHomeMap().getTile(this.getx()-1,this.gety()).features.getAll();
   for (let i=0;i<fea.length;i++) {
     if (fea[i].getName() === "UtterDark") { fea[i].dissolve(); }
   }
@@ -8359,7 +8366,7 @@ WalkOnUtter5Tile.prototype = new FeatureObject();
 
 WalkOnUtter5Tile.prototype.walkon = function(walker) {
   this.getHomeMap().deleteThing(this);
-  let fea = this.getHomeMap().getAcre(this.getx()-1,this.gety()).features.getAll();
+  let fea = this.getHomeMap().getTile(this.getx()-1,this.gety()).features.getAll();
   for (let i=0;i<fea.length;i++) {
     if (fea[i].getName() === "UtterDark") { fea[i].dissolve(); }
   }
@@ -10342,10 +10349,11 @@ function ResetRoyalPuzzle(where) {
 }
 
 function SunBeaconTile() {
+  // need to update WORKING HERE
   this.name = "SunBeacon";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-1792";
+  this.graphic = "static.gif";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -96*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
@@ -11811,13 +11819,17 @@ MoongateTile.prototype.walkon = function(who) {
     MoveBetweenMaps(who,who.getHomeMap(),newmap, this.destx, this.desty);
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
-    if (who === PC) { return {overridedraw: 1}; }
+    if (who === PC) { 
+      DUPlaySound("sfx_teleport"); 
+      if ((this.getHomeMap().getName() === "darkunknown") && (this.destmap === "skypalace")) { this.getHomeMap().deleteThing(this); }
+      return {overridedraw: 1}; 
+    }
   } else if (this.destmap && this.destx && this.desty) {
     who.getHomeMap().moveThing(this.destx,this.desty,who);
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
   }
-  DUPlaySound(who,"sfx_teleport");
+  DUPlaySound("sfx_teleport");
   return response;
 }
 
@@ -11872,14 +11884,16 @@ DaemonMoongateTile.prototype.walkon = function(who) {
 
     if (this.first) {
       let door = this.getHomeMap().getTile(21,14).getTopFeature();
+      delete this.first;
       setTimeout(function() { DissolveDoor(door,1);}, 250);
     } else if (this.second) {
       let door = this.getHomeMap().getTile(21,12).getTopFeature();
+      delete this.second;
       setTimeout(function() { DissolveDoor(door,1);}, 250);
       maintext.addText(`<span class='daemontext'>"Good, good! Come now, take your final steps." The daemon's laughter echoes through the chamber.</span>`);
     }
   }
-  DUPlaySound(who,"sfx_teleport");
+  DUPlaySound("sfx_teleport");
   return response;
 }
 
@@ -13082,11 +13096,11 @@ RubyGemoftheSunTile.prototype.use = function(who) {
       retval["txt"] = "You raise the ruby before you, but you cannot add to the light that already shines here.";
     } else {
       let sunmote = localFactory.createTile("SunBeacon");
-      themap.placeThing(sunmote,96,101);
+      themap.placeThing(96,101,sunmote);
       DrawMainFrame("draw",themap,96,101);
       retval["txt"] = "You raise the ruby before you and focus your will upon it. You command it to let the sun into the underworld, and in this place you feel it pierce the veil above you, and now a beacon of sunlight dances above the hill.";
-      let daemon = localFactory.createTile("ArchdaemonOfBone");
-      themap.placeThing(daemon,91,105);
+      let daemon = localFactory.createTile("ArchdaemonOfBoneNPC");
+      themap.placeThing(91,105,daemon);
       DU.gameflags.setFlag("bonebeacon",1);
     }
   } else if ((themap.getName() === "underworld") && (who.getx() === 106) && (who.gety() === 76)) {
@@ -13094,11 +13108,11 @@ RubyGemoftheSunTile.prototype.use = function(who) {
       retval["txt"] = "You raise the ruby before you, but you cannot add to the light that already shines here.";
     } else {
       let sunmote = localFactory.createTile("SunBeacon");
-      themap.placeThing(sunmote,106,76);
+      themap.placeThing(106,76,sunmote);
       DrawMainFrame("draw",themap,106,76);
       retval["txt"] = "You raise the ruby before you and focus your will upon it. You command it to let the sun into the underworld, and in this place you feel it pierce the veil above you, and now a beacon of sunlight dances above the hill.";
-      let daemon = localFactory.createTile("ArchdaemonOfIce");
-      themap.placeThing(daemon,104,70);
+      let daemon = localFactory.createTile("ArchdaemonOfIceNPC");
+      themap.placeThing(104,70,daemon);
       DU.gameflags.setFlag("icebeacon",1);
     }
   } else if ((themap.getName() === "underworld") && (who.getx() === 57) && (who.gety() === 55)) {
@@ -13106,11 +13120,11 @@ RubyGemoftheSunTile.prototype.use = function(who) {
       retval["txt"] = "You raise the ruby before you, but you cannot add to the light that already shines here.";
     } else {
       let sunmote = localFactory.createTile("SunBeacon");
-      themap.placeThing(sunmote,57,55);
+      themap.placeThing(57,55,sunmote);
       DrawMainFrame("draw",themap,57,55);
       retval["txt"] = "You raise the ruby before you and focus your will upon it. You command it to let the sun into the underworld, and in this place you feel it pierce the veil above you, and now a beacon of sunlight dances above the hill.";
-      let daemon = localFactory.createTile("ArchdaemonOfDust");
-      themap.placeThing(daemon,63,55);
+      let daemon = localFactory.createTile("ArchdaemonOfDustNPC");
+      themap.placeThing(63,55,daemon);
       DU.gameflags.setFlag("dustbeacon",1);
     }
   } else if ((themap.getName() === "underworld") && (who.getx() === 55) && (who.gety() === 85)) {
@@ -13118,11 +13132,11 @@ RubyGemoftheSunTile.prototype.use = function(who) {
       retval["txt"] = "You raise the ruby before you, but you cannot add to the light that already shines here.";
     } else {
       let sunmote = localFactory.createTile("SunBeacon");
-      themap.placeThing(sunmote,55,85);
+      themap.placeThing(55,85,sunmote);
       DrawMainFrame("draw",themap,55,85);
       retval["txt"] = "You raise the ruby before you and focus your will upon it. You command it to let the sun into the underworld, and in this place you feel it pierce the veil above you, and now a beacon of sunlight dances above the hill.";
-      let daemon = localFactory.createTile("ArchdaemonOfAshes");
-      themap.placeThing(daemon,53,80);
+      let daemon = localFactory.createTile("ArchdaemonOfAshesNPC");
+      themap.placeThing(53,80,daemon);
       DU.gameflags.setFlag("ashesbeacon",1);
     }
   } else if ((themap.getName() === "uttermostdark") && (who.gety() > 27) && (who.getx() > 13)) {
@@ -13407,6 +13421,7 @@ AltarOfAshesTile.prototype.use = function(who) {
   retval["fin"] = 1;
   retval["txt"] = "You realize that the altar itself is pure white, but coated in a thick layer of ash, which resists any attempts to wipe away. On top, obscured by the ash, there is a slot into which something could be inserted.";
   retval["input"] = "&gt;";
+  return retval;
 }
 
 function AltarOfIceTile() {
@@ -13427,6 +13442,7 @@ AltarOfIceTile.prototype.use = function(who) {
   retval["fin"] = 1;
   retval["txt"] = "As you approach the altar you are assailed by a bitter cold. Light glistens strangely off the icy surface, on which you see a slot into which something could be inserted.";
   retval["input"] = "&gt;";
+  return retval;
 }
 
 function AltarOfBoneTile() {
@@ -13447,6 +13463,7 @@ AltarOfBoneTile.prototype.use = function(who) {
   retval["fin"] = 1;
   retval["txt"] = "On closer inspection, you realize that this altar is made up of hundreds of clean bones. On the top, you see a slot into which something could be inserted.";
   retval["input"] = "&gt;";
+  return retval;
 }
 
 function AltarOfDustTile() {
@@ -13467,6 +13484,7 @@ AltarOfDustTile.prototype.use = function(who) {
   retval["fin"] = 1;
   retval["txt"] = "You sweep your hand across the top, but even as you cast dust off to the side, some always seems to remain. You do see, however, a slot in the top surface, into which something could be inserted.";
   retval["input"] = "&gt;";
+  return retval;
 }
 
 function GoldTile() {
