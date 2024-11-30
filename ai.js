@@ -4032,6 +4032,7 @@ ais.Darkness = function(who) {
   } else if (who.third && !who.thirdspoke) {
     if (who.third === 1) {
       maintext.addText('<span class="daemontext">"There is not enough light in all the worlds to fill a void without end and without limit."</span>');
+      who.thirdspoke = 1;
     } else {
       who.third--;
     }
@@ -4040,6 +4041,7 @@ ais.Darkness = function(who) {
   } else if (who.fourth && !who.fourthspoke) {
     if (who.fourth === 1) {
       maintext.addText('<span class="daemontext">"Those who came before you strove to make gods out of light and stone. But we have always been here in the dark. We are why they are no more."</span>');
+      who.fourthspoke = 1;
     } else {
       who.fourth--;
     }
@@ -4058,17 +4060,18 @@ ais.Darkness = function(who) {
         let mirror = thismap.getTile(i,20).getTopFeature();
         if (!mirror.broken) {
           mirror.break(PC);
-          let reflection = thismap.getTile(i,21).getTopFeature();
-          if (reflection.getName() === "DaemonicReflection") { 
-            thismap.deleteThing(reflection);
-          }
+//          let reflection = thismap.getTile(i,21).getTopFeature();
+//          if (reflection.getName() === "DaemonicReflection") { 
+//            thismap.deleteThing(reflection);
+//          }
+// Breaking the mirror handles this
           let doppel = localFactory.createTile("DoppelgangerNPC");
-          doppel.layers = PC.layers;
+          doppel.wornlayers = PC.wornlayers;
           doppel.onDeath = "doppelganger";
-          thismap.placething(i,21,doppel);
+          thismap.placeThing(i,21,doppel);
         }
       }
-    
+      DrawMainFrame("draw",thismap,PC.getx(),PC.gety());
     }
   }
 
