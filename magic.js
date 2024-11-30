@@ -3693,7 +3693,9 @@ function EmpowerReagentCommands(cmd) {
           questlog.activate(92);
 
           let oldlight = PC.getSpellEffectsByName("Light");
-          oldlight.endEffect(1);
+          if (oldlight) {
+            oldlight.endEffect(1);
+          }
 
           // Having the Ruby means permanent infused Light
           let liobj = localFactory.createTile("Light");
@@ -5145,7 +5147,7 @@ function PerformConjureDaemon(caster, infused, free, tgt) {
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
-  let ally = localFactory.createTile("Daemon");
+  let ally = localFactory.createTile("DaemonNPC");
   PlayCastSound(caster,"sfx_summon");
   let duration = caster.getIntForPower() * SCALE_TIME;
   if ((caster === PC) || (caster.getAttitude() === "friendly")) {
