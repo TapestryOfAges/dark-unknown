@@ -1681,7 +1681,7 @@ function DoAction(code, ctrl) {
     } else if (targetCursor.dark === 18) {
       maintext.addText(`<span class='mainspeaker'>King Daragen:</span> "You have gone forth into the darkness at the end of the world... but you are not alone."`);
       let endmap = maps.getMap("endgame");
-      let king = endgame.getTile(14,1).getTopNPC();
+      let king = endmap.getTile(14,1).getTopNPC();
       endmap.moveThing(5,5,king);
       targetCursor.dark++;
       if (DU.gameflags.getFlag("music")) { DUPlayMusic("Alone", {fade:1}); }
@@ -1722,8 +1722,8 @@ function DoAction(code, ctrl) {
       if (targetCursor.darkchar === 3) {
         maintext.addText(`She stands with her arm around two people, one each on either side of her. Damien and Brooke also smile at you.`);
         let endmap = maps.getMap("endgame");
-        let brooke = maps.getTile(14,7).getTopNPC();
-        let damien = maps.getTile(14,6).getTopNPC();
+        let brooke = endmap.getTile(14,7).getTopNPC();
+        let damien = endmap.getTile(14,6).getTopNPC();
         endmap.moveThing(8,1,brooke);
         endmap.moveThing(10,1,damien);
         DrawMainFrame("one",PC.getHomeMap(),8,1);
@@ -1736,8 +1736,8 @@ function DoAction(code, ctrl) {
         if (DU.gameflags.getFlag("returned_cloak")) {
           maintext.addText(`<span class='mainspeaker'>Warren:</span> "You brought back to us a memento of our dear fallen friend. It may seem like a small thing... and perhaps it is. Sometimes the smallest deeds have a greater impact than you can imagine. We owe you."`);
           let endmap = maps.getMap("endgame");
-          let warren = maps.getTile(14,9).getTopNPC();
-          let garen = maps.getTile(14,8).getTopNPC();
+          let warren = endmap.getTile(14,9).getTopNPC();
+          let garen = endmap.getTile(14,8).getTopNPC();
           endmap.moveThing(3,2,warren);
           endmap.moveThing(3,3,garen);
           DrawMainFrame("one",PC.getHomeMap(),3,2);
@@ -1748,7 +1748,7 @@ function DoAction(code, ctrl) {
         if (DU.gameflags.getFlag("franklin_gift")) {
           maintext.addText(`<span class='mainspeaker'>Franklin:</span> "I thought that was it- I would be on the road forever, never staying too long in any town, for fear my debts would catch up to me. I appreciate you and what you've done for me."`);
           let endmap = maps.getMap("endgame");
-          let franklin = maps.getTile(14,10).getTopNPC();
+          let franklin = endmap.getTile(14,10).getTopNPC();
           endmap.moveThing(11,4,franklin);
           DrawMainFrame("one",PC.getHomeMap(),11,4);
         } else { targetCursor.darkchar = 7; }
@@ -1757,7 +1757,7 @@ function DoAction(code, ctrl) {
         if (DU.gameflags.getFlag("rhiannon_recipe")) {
           maintext.addText(`<span class='mainspeaker'>Rhiannon:</span> "The tavern's been booming, since you helped me out with that recipe. Come by again any time- your meal's on me."`);
           let endmap = maps.getMap("endgame");
-          let rhi = maps.getTile(14,11).getTopNPC();
+          let rhi = endmap.getTile(14,11).getTopNPC();
           endmap.moveThing(1,5,rhi);
           DrawMainFrame("one",PC.getHomeMap(),1,5);
         } else { targetCursor.darkchar = 8; }
@@ -1781,7 +1781,7 @@ function DoAction(code, ctrl) {
         if (DU.gameflags.getFlag("blanche_returned")) {
           maintext.addText(`<span class='mainspeaker'>Blanche:</span> "I owe you. You found me my missing jewelry without any expectation of reward, just because you are a good person. Don't think we didn't notice."`);
           let endmap = maps.getMap("endgame");
-          let blanche = maps.getTile(14,12).getTopNPC();
+          let blanche = endmap.getTile(14,12).getTopNPC();
           endmap.moveThing(6,10,blanche);
           DrawMainFrame("one",PC.getHomeMap(),6,10);
         } else { targetCursor.darkchar = 10; }
@@ -1790,7 +1790,7 @@ function DoAction(code, ctrl) {
         if (DU.gameflags.getFlag("rhys_summoning")) {
           maintext.addText(`<span class='mainspeaker'>Rhys:</span> "I know he's your brother, but to me, you're the one who saved my closest friend. You drove off Justice, and sat with me as we conjured information about the enemy. I'm proud to know you, and call you friend. Thank you, for all you've done."`);
           let endmap = maps.getMap("endgame");
-          let rhys = maps.getTile(14,0).getTopNPC();
+          let rhys = endmap.getTile(14,0).getTopNPC();
           endmap.moveThing(6,4,rhys);
           DrawMainFrame("one",PC.getHomeMap(),6,4);
         } else { targetCursor.darkchar = 11; }
