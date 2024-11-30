@@ -454,7 +454,7 @@ OnDeathFuncs["utterDaemon"] = function(who) {
     if ((npcs[i].getName() === "DaemonNPC") && (npcs[i] !== who)) { count++; }
   }
   if (!count) {
-    let door = this.getHomeMap().getTile(21,10).getTopFeature();
+    let door = who.getHomeMap().getTile(21,10).getTopFeature();
     DissolveDoor(door,1);
   }
 }
@@ -466,8 +466,14 @@ OnDeathFuncs["shadow"] = function(who) {
     if ((npcs[i].getName() === "ShadowNPC") && (npcs[i] !== who)) { shadowcount++; }
   }
   if (shadowcount === 0) {
+    let dx = who.getx();
+    let dy = who.gety();
+    if ((dx < 6) || (dx > 12) || (dy < 8) || (dy > 12)) {
+      if ((PC.getx() === 9) && (PC.gety() === 10)) { dx = 8; dy = 10; }
+      else { dx = 9; dy = 10; }
+    }
     let moongate = localFactory.createTile("DaemonMoongate");
-    who.getHomeMap().placeThing(who.getx(),who.gety(),moongate);
+    who.getHomeMap().placeThing(dx,dy,moongate);
     moongate.first = 1;
     moongate.destx = 25;
     moongate.desty = 12;
@@ -477,10 +483,10 @@ OnDeathFuncs["shadow"] = function(who) {
 OnDeathFuncs["doppelganger"] = function(who) {
   let gatex = 24;
   let gatey = 21;
-  if (who.getName() === "DaemonNPC") { 
-    gatex = who.getx();
-    gatey = who.gety();
-  }
+//  if (who.getName() === "DaemonNPC") { 
+//    gatex = who.getx();
+//    gatey = who.gety();
+//  }
   // check for doppelgangers
   let thismap = who.getHomeMap();
   let npcs = thismap.npcs.getAll();
@@ -491,8 +497,13 @@ OnDeathFuncs["doppelganger"] = function(who) {
     }
   }
   if (!dops) {
+    thismap.getTile(24,20).getFeatureByName("UtterDark").dissolve();
+    thismap.getTile(23,21).getFeatureByName("UtterDark").dissolve();
+    thismap.getTile(24,21).getFeatureByName("UtterDark").dissolve();
+    thismap.getTile(25,21).getFeatureByName("UtterDark").dissolve();
+    thismap.getTile(24,22).getFeatureByName("UtterDark").dissolve();
     let moongate = localFactory.createTile("DaemonMoongate");
-    who.getHomeMap().placeThing(gatex,gatey,moongate);
+    thismap.placeThing(gatex,gatey,moongate);
     moongate.second = 1;
     moongate.destx = 25;
     moongate.desty = 12;
