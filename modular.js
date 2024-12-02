@@ -502,6 +502,7 @@ OnDeathFuncs["doppelganger"] = function(who) {
     thismap.getTile(24,21).getFeatureByName("UtterDark").dissolve();
     thismap.getTile(25,21).getFeatureByName("UtterDark").dissolve();
     thismap.getTile(24,22).getFeatureByName("UtterDark").dissolve();
+    DrawMainFrame("draw",thismap,PC.getx(),PC.gety());
     let moongate = localFactory.createTile("DaemonMoongate");
     thismap.placeThing(gatex,gatey,moongate);
     moongate.second = 1;
