@@ -1580,10 +1580,16 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
             DrawMainFrame("draw", map, PC.getx(), PC.gety());
           }
   			} else {
-          // only redraw these two spaces
-          DebugWrite("ai", "Redraw both tiles.<br />");
-			    DrawMainFrame("one", map, startx, starty);
-			    DrawMainFrame("one", map, passx, passy);
+          if (this.attachedLocations) {
+            if (map === PC.getHomeMap()) {
+              DrawMainFrame("draw", map, PC.getx(), PC.gety());
+            }
+          } else {
+            // only redraw these two spaces
+            DebugWrite("ai", "Redraw both tiles.<br />");
+		  	    DrawMainFrame("one", map, startx, starty);
+			      DrawMainFrame("one", map, passx, passy);
+          }
         }
       }
 //    }
