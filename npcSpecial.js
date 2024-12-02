@@ -290,10 +290,11 @@ function TitanNPCTile() {
   this.missileDamage = '2d12+3'
   this.missileStrDamage = 0
   this.missileRange = 5
+  this.missileAnim = 'boulder';
   this.armorAs = 'PlateArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
-  this.lootTable = 'Titan';
+  this.lootTable = 'Giant';
   this.prefix = 'a';
   this.desc = "titan";
   this.onHit = 'knockback, stun';
