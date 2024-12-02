@@ -4951,7 +4951,7 @@ function SpecterNPCTile() {
   this.meleeChance = 66;
   this.spellsknown = { lowcontrol: 1, summon: 1, attack: 1, };
   this.resists = { poison:100 };
-  this.special = 'phase, undead';
+  this.special = 'undead';
   this.meleeHitSound = 'sfx_ghost_hit';
   this.meleeAttackSound = 'sfx_ghost_miss';
   this.graphic = 'static.gif';
@@ -5055,7 +5055,7 @@ function DoppelgangerNPCTile() {
   this.defwornlayers.mainhand = 'LongswordPale'
 
   this.meleeAttackAs = 'none';
-  this.meleeDamage = '5d10+15'
+  this.meleeDamage = '5d4+15'
   this.meleeStrDamage = 1
   this.missileAttackAs = 'none';
   this.armorAs = 'PlateArmor';
@@ -5355,7 +5355,7 @@ function ShadowNPCTile() {
   this.meleeChance = 66;
   this.spellsknown = { attack: 1, highattack: 1, };
   this.resists = { poison:100 };
-  this.special = 'phase,undead,ondeathShadow';
+  this.special = 'undead,ondeathShadow';
   this.meleeHitSound = 'sfx_ghost_hit';
   this.meleeAttackSound = 'sfx_ghost_miss';
   this.graphic = 'static.gif';
@@ -5437,7 +5437,7 @@ function BalronNPCTile() {
   this.meleeChance = 75;
   this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, };
   this.resists = { fire:100 };
-  this.special = 'phase, open_door';
+  this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.graphic = 'static.gif';
@@ -5759,7 +5759,7 @@ function ShepherdOfDarkNPCTile() {
   this.desc = "Shepherd of the Dark";
   this.meleeChance = 0;
   this.resists = {};
-  this.special = 'light: .5';
+  this.special = 'miniboss, light: .5';
   this.graphic = 'static.gif';
   this.spritexoffset = 0 * 32;
   this.spriteyoffset = -126 * 32;
