@@ -2748,7 +2748,9 @@ magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID].executeSpell = function(caster, infused
       if (foes[i] !== PC) { foes[i].setAggro(1); }
       DebugWrite("magic", "Dealing " + dmg + " damage to target " + foes[i].getName() + " " + foes[i].getSerial() + ".<br />");
       
-      setTimeout(function() { ShowEffect(foes[i], 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y); }, 1000);
+//      setTimeout(function() { ShowEffect(foes[i], 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y); }, 1000);
+// I... don't know why I did this this way?
+      ShowEffect(foes[i], 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
     }
   }
   return resp;  
