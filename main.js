@@ -1844,6 +1844,9 @@ function DoAction(code, ctrl) {
       maintext.addText(`"My ${PC.getPCName()}, you have done it," says your mother with exuberance. "Prevented a war; saved the kingdom; saved your family. It is more than any one person should have been asked to do, but you were strong enough to win through. We must now be ever vigilant to the threat that you have caged beneath our land. We must never forget. For you, there will be pageants and celebrations... after you have had a week of sleep! Your quest is done. Thank you!"`);
       let endmap = maps.addMap("endgame2");
       MoveBetweenMaps(PC,PC.getHomeMap(), endmap, 6, 6);
+      DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
+      let ovt = 9*60 + 4*28*24*60 + 3*24*60;
+      SetSky(ovt); 
       let uii = document.getElementById('uiinterface');
       uii.style.backgroundColor = "";
       uii.style.backgroundImage = ``; 
@@ -1855,7 +1858,7 @@ function DoAction(code, ctrl) {
       if (clock[0]) { timedesc = `${clock[0]} years, `; }
       if (clock[1]) { timedesc += `${clock[1]} months, `; }
       timedesc += `${clock[2]} days, ${clock[3]} hours, and ${clock[4]} minutes`;
-      maintext.addText(`YOU HAVE WON CHRONICLES OF ELLUSUS I: THE DARK UNKNOWN IN ${timedesc}! CONGRATULATIONS!`);
+      maintext.addText(`YOU HAVE WON CHRONICLES OF ELLUSUS I: THE DARK UNKNOWN!<br />${PC.getPCName()} has spent ${timedesc} on this epic adventure! CONGRATULATIONS!`);
       maintext.setInputLine("");
       targetCursor.dark++;
       gamestate.setMode("null");

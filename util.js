@@ -1373,7 +1373,7 @@ function CheckPostDeathMusic(map) {
   }
 }
 
-function SetSky() {
+function SetSky(overridetime) {
   if (PC.getHomeMap().getUndergroundDesc()) {
     for (let i = 1; i<=12; i++) {
       document.getElementById("sky"+i).style.backgroundImage = "";
@@ -1385,6 +1385,9 @@ function SetSky() {
     let currenttime = DUTime.getGameClock() * 5;
     currenttime += 9*60 + 4*28*24*60 + 3*24*60;
     currenttime = Math.floor((currenttime/60)/24);
+    if (overridetime) {
+      currenttime = overridetime;
+    }
     let moon1phase = currenttime%8;
     let moon2phase = Math.floor((currenttime%24)/3);
     let moon1location = 3*moon1phase;
