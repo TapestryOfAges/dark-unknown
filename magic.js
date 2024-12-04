@@ -694,13 +694,14 @@ function PerformMend(caster,infused,free,tgt) {
   } else {
     if (tgt.cannotrepair) {
       // for quest things that need Mending but don't break/repair
-      tgt.onMend(caster);
+      tgt.onMend();
       PlayCastSound(caster,"sfx_ding");
     } else {
       tgt.repair();
       let desc = "The " + tgt.getDesc() + " glows briefly, and is mended!";
       desc = desc.charAt(0).toUpperCase() + desc.slice(1);
       PlayCastSound(caster,"sfx_ding");
+      DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
       resp["txt"] = desc;    
     }
   }
@@ -2784,6 +2785,9 @@ magic[SPELL_TELEPATHY_LEVEL][SPELL_TELEPATHY_ID].executeSpell = function(caster,
   prot.setExpiresTime(endtime);
   caster.addSpellEffect(prot, Math.max(0, free-1) );
   PlayCastSound(caster,"sfx_buff");
+  if (caster === PC) {
+    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+  }
 
   return resp;
 }
@@ -4110,7 +4114,21 @@ magic[SPELL_NEGATE_MAGIC_LEVEL][SPELL_NEGATE_MAGIC_ID].getLongDesc = function() 
 magic[SPELL_NEGATE_MAGIC_LEVEL][SPELL_NEGATE_MAGIC_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Negate Magic.<br />");
   
-  var resp = {fin:1};
+  let resp = {fin:1};
+  if (!caster.getHomeMap().getScale()) {
+    resp["fin"] = 2;
+    resp["txt"] = "There is no benefit to casting that spell here.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
+
+  if (caster.getHomeMap().getName().includes("tharock") || caster.getHomeMap().getName().includes("uttermost")) {
+    resp["fin"] = 2;
+    resp["txt"] = "You feel a strange tension... something prevents this spell from taking hold, here.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
+  
   if (!free) {
     free = 0;
     let mana = this.getManaCost(infused);
