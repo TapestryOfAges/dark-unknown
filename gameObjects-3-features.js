@@ -12450,7 +12450,8 @@ function RippedAudachtaNemesosTile() {
 }
 RippedAudachtaNemesosTile.prototype = new ItemObject();
 
-RippedAudachtaNemesosTile.prototype.onMend = function(who) {
+RippedAudachtaNemesosTile.prototype.onMend = function() {
+  let who = PC;
   if (who.checkInventory("AudachtaNemesosPage1") && who.checkInventory("AudachtaNemesosPage2") && who.checkInventory("AudachtaNemesosPage3")) {
     maintext.addText("You put the pages together with the book, and cast Mending. The entire thing glows for several heartbeats, then fades, now intact.");
     maintext.addText("<span class='sysconv'>You now have: Audachta Nemesos: Permanence.</span>");
@@ -17571,7 +17572,7 @@ function UnenchantedSwordTile() {
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "an";
-  this.longdesc = "Set this during enchantment.";
+  this.longdesc = "A mended sword, that was once enchanted.";
   
   this.brokendesc = "broken, once-enchanted sword";
   this.repairNeedsInfusion = 1;
@@ -17587,7 +17588,8 @@ UnenchantedSwordTile.prototype.getLongDesc = function() {
   if (this.broken) {
     return "A broken sword. Once it was enchanted.";
   }
-  return this.longdesc + "In your hands, it deals %ave% damage on average.";
+  let avedmg = this.getAveDamage(PC);
+  return `${this.longdesc} In your hands, it deals ${avedmg} damage on average.`;
 }
 
 UnenchantedSwordTile.prototype.onGet = function(who) {
