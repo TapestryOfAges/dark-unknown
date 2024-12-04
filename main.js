@@ -560,6 +560,16 @@ function DoAction(code, ctrl) {
             PC.endTurn(retval["initdelay"]);
           }
         }
+      } else if (code === 27) { // ESC
+        if ((targetCursor.command === "c") && (targetCursor.spellName === "Peer")) {
+          document.getElementById('uiinterface').innerHTML = "";
+          document.getElementById('uiinterface').style.backgroundColor = "";
+    
+          maintext.setInputLine("&gt;");
+          maintext.drawTextFrame();
+          DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+          PC.endTurn();
+        }
       }
     }
   }
