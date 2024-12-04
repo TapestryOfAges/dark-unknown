@@ -342,6 +342,13 @@ function Attack(atk, def) {
         }
       }
     }
+    if (weapon && (typeof weapon.onHit === "function")) { 
+      let bonus = weapon.onHit(atk,def,dmg); 
+      if (bonus.dmg) {
+        adddmg = bonus.dmg;
+        adddmgtype = bonus.dmgtype;
+      }
+    }
   }
   else { // Miss!
     // animation and sound here, too
