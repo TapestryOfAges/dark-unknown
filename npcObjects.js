@@ -5001,7 +5001,7 @@ function DaemonNPCTile() {
   this.meleeChance = 75;
   this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, };
   this.resists = {};
-  this.special = 'open_door';
+  this.special = 'open_door, nocharm';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.graphic = 'static.gif';
@@ -5484,7 +5484,7 @@ function ArchdaemonOfAshesNPCTile() {
   this.meleeChance = 75;
   this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, banned: 'Ice', };
   this.resists = { fire:60, ice:30,poison: 60 };
-  this.special = 'archdaemon_ashes, noflee';
+  this.special = 'archdaemon_ashes, noflee, nocharm';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.graphic = 'static.gif';
@@ -5531,7 +5531,7 @@ function ArchdaemonOfDustNPCTile() {
   this.meleeChance = 75;
   this.spellsknown = { lowcontrol: 1, highcontrol: 1, attack: 1, highattack: 1, };
   this.resists = { fire:40, ice:40,poison: 60 };
-  this.special = 'archdaemon_dust, noflee';
+  this.special = 'archdaemon_dust, noflee, nocharm';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.graphic = 'static.gif';
@@ -5578,7 +5578,7 @@ function ArchdaemonOfIceNPCTile() {
   this.meleeChance = 75;
   this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, banned: 'Fire', };
   this.resists = { fire:30, ice:60,poison: 60 };
-  this.special = 'archdaemon_ice, noflee';
+  this.special = 'archdaemon_ice, noflee, nocharm';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.graphic = 'static.gif';
@@ -5625,7 +5625,7 @@ function ArchdaemonOfBoneNPCTile() {
   this.meleeChance = 75;
   this.spellsknown = { summon: 1, attack: 1, highattack: 1, };
   this.resists = { fire:40, ice:40,poison: 60 };
-  this.special = 'archdaemon_bone, noflee';
+  this.special = 'archdaemon_bone, noflee, nocharm';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.graphic = 'static.gif';
