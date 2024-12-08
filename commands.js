@@ -935,6 +935,7 @@ function PerformSpellbook(code) {
     // cast a spell
     let lvl = PC.getLastSpellLevel();
     if ((lvl > 5) && (PC.getInfusion())) {
+      document.getElementById('spellbookdiv').style.display = "none";
       let retval = {};
       retval["fin"] = 2;
       retval["input"] = "&gt;";
