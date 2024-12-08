@@ -912,6 +912,12 @@ OnConvTriggers["warduke_engaged"] = function(speaker,keyword) {
   enemy.setAggro(1);
 }
 
+OnConvTriggers["jharden_abyss"] = function(speaker,keyword) {
+  let sanc = maps.getMap("olympus2");
+  let door = sanc.getTile(62,23).getTopFeature();
+  door.unlockMe();
+}
+
 OnConvTriggers["rebuild_decide"] = function(speaker,keyword) {
   let q = questlog.findQuest(28);
   if (q && q.active && !q.replaced && !q.completed) { questlog.complete(28); }

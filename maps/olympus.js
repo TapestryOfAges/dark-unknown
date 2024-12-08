@@ -1509,6 +1509,11 @@ mappages["olympus2"].onload = function(mapref) {
       mapref.getTile(69,20).getTopFeature().use(jharden);
     }
 
+    if (DU.gameflags.getFlag("jharden_abyss")) {
+      let door = mapref.getTile(62,23).getTopFeature();
+      door.unlockMe();
+    }
+
   }
 }
 
