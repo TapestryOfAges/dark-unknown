@@ -316,7 +316,7 @@ function handleFileLoadSfx(event) {
 }
 
 function QueueMusic(songname) {
-  nowplaying.song.loop = 0;
+  nowplaying.song.loop = false;
   nowplaying.song.addEventListener("ended", function(event) {
     DUPlayMusic(songname);
   });
