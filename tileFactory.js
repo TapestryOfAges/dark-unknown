@@ -1528,6 +1528,11 @@ tileFactory.prototype.makeStatue6Tile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeStatueLTile = function() {
+  let newTile = new StatueLTile();
+  return newTile;
+}
+
 tileFactory.prototype.makePaintingCrossTile = function() {
   let newTile = new PaintingCrossTile();
   return newTile;
@@ -5118,6 +5123,26 @@ tileFactory.prototype.makeUnenchantedSwordTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeLightningSwordTile = function() {
+  let newTile = new LightningSwordTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFlamingSwordTile = function() {
+  let newTile = new FlamingSwordTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeVenomSwordTile = function() {
+  let newTile = new VenomSwordTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSwordOfDefenseTile = function() {
+  let newTile = new SwordOfDefenseTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeNaturalWeaponTile = function() {
   let newTile = new NaturalWeaponTile();
   return newTile;
@@ -5775,6 +5800,11 @@ tileFactory.prototype.makeNegatorGnomeNPCTile = function() {
 
 tileFactory.prototype.makeCrystalBarrierNPCTile = function() {
   let newTile = new CrystalBarrierNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeEttinJournalistNPCTile = function() {
+  let newTile = new EttinJournalistNPCTile();
   return newTile;
 }
 
