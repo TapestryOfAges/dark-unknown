@@ -811,6 +811,19 @@ function Statue6Tile() {
 }
 Statue6Tile.prototype = new FeatureObject();
 
+function StatueLTile() {
+  //Graphics Upgraded
+  this.name = "StatueL";
+  this.graphic = "static.gif";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -55*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "statue";
+}
+StatueLTile.prototype = new FeatureObject();
+
 function PaintingCrossTile() {
   //Graphics Upgraded
   this.name = "PaintingCross";
@@ -17575,8 +17588,8 @@ function UnenchantedSwordTile() {
   this.longdesc = "A mended sword, that was once enchanted.";
   
   this.brokendesc = "broken, once-enchanted sword";
+  this.fixeddesc = "once-enchanted sword";
   this.repairNeedsInfusion = 1;
-  this.enchantable = 1;
   Breakable.call(this,["static.gif", "", -7*32, -68*32],1);
 
   this.wornlayer = "mainhand";
@@ -17606,6 +17619,145 @@ UnenchantedSwordTile.prototype.onMend = function() {
 }
 
 // LightningSword, FlamingSword, SwordOfDefense, VenomSword ?
+
+function LightningSwordTile() {
+  //Graphics Upgraded
+	this.name = "LightningSword";
+	this.damage = "5d4+15";
+	this.strdamage = 1;
+  this.graphic = "static.gif";
+	this.spritexoffset = -0*32;
+	this.spriteyoffset = -117*32;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.desc = "lightning sword";
+  this.prefix = "a";
+  this.longdesc = "A magic sword, sheathed in lightning. In your hands, it does %ave% damage plus 11 lightning damage on average.";
+
+  ManualAnimation.call(this, { 
+    animstart: -0*32,
+    animlength: 8,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 170,
+    startframe: "random"
+  });
+
+  this.wornlayer = "mainhand";
+  this.wornlayername = "LightningSword";
+}
+LightningSwordTile.prototype = new WeaponObject();
+
+LightningSwordTile.prototype.onHit = function(atk,def,dmg) {
+  let adddmg = Dice.roll("2d10");
+  return {dmg:adddmg, dmgtype: "lightning"}
+}
+
+function FlamingSwordTile() {
+  //Graphics Upgraded
+	this.name = "FlamingSword";
+	this.damage = "5d4+15";
+	this.strdamage = 1;
+  this.graphic = "static.gif";
+	this.spritexoffset = -5*32;
+	this.spriteyoffset = -102*32;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.desc = "flaming sword";
+  this.prefix = "a";
+  this.longdesc = "A magic sword, sheathed in flames. In your hands, it does %ave% damage plus 16 fire damage on average.";
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 170,
+    startframe: "random"
+  });
+
+  this.wornlayer = "mainhand";
+  this.wornlayername = "FlamingSword";
+}
+FlamingSwordTile.prototype = new WeaponObject();
+
+FlamingSwordTile.prototype.onHit = function(atk,def,dmg) {
+  let adddmg = Dice.roll("4d6+2");
+  return {dmg:adddmg, dmgtype: "fire"}
+}
+
+FlamingSwordTile.prototype.onEquip = function(who) {
+  who.setLight(who.getLight() + .5);
+
+  return {};
+}
+
+FlamingSwordTile.prototype.onUnequip = function(who) {
+  who.setLight(who.getLight() - .5);
+
+  return {};
+}
+
+function VenomSwordTile() {
+  //Graphics Upgraded
+	this.name = "VenomSword";
+	this.damage = "5d4+15";
+	this.strdamage = 1;
+  this.graphic = "static.gif";
+	this.spritexoffset = 0*32;
+	this.spriteyoffset = -118*32;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.desc = "venom sword";
+  this.prefix = "a";
+  this.longdesc = "A magic sword, slick with venom. In your hands, it does %ave% damage plus 14 poison damage on average.";
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 4,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 170,
+    startframe: "random"
+  });
+
+  this.wornlayer = "mainhand";
+  this.wornlayername = "VenomSword";
+}
+VenomSwordTile.prototype = new WeaponObject();
+
+VenomSwordTile.prototype.onHit = function(atk,def,dmg) {
+  let adddmg = Dice.roll("4d6+2");
+  return {dmg:adddmg, dmgtype: "poison"}
+}
+
+function SwordOfDefenseTile() {
+  //Graphics Upgraded
+	this.name = "SwordOfDefense";
+	this.damage = "5d4+15";
+	this.strdamage = 1;
+  this.graphic = "static.gif";
+	this.spritexoffset = -0*32;
+	this.spriteyoffset = -100*32;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.desc = "sword of defense";
+  this.prefix = "a";
+  this.longdesc = "A magic sword, with several floating orbs orbiting the blade. In your hands, it does %ave% damage on average, and improves your defenses.";
+
+  ManualAnimation.call(this, { 
+    animstart: -0*32,
+    animlength: 4,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 170,
+    startframe: "random"
+  });
+
+  this.wornlayer = "mainhand";
+  this.wornlayername = "SwordOfDefense";
+}
+SwordOfDefenseTile.prototype = new WeaponObject();
 
 function NaturalWeaponTile() {
   //Graphics Upgraded
