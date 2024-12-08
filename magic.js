@@ -3733,12 +3733,13 @@ function EmpowerReagentCommands(cmd) {
           if (PC.getMissile() === tgt) {
             wasequipped = 1;
           }
-          PC.removeFromInventory(PC.checkInventory("YewWand"));
           let newwand = localFactory.createTile("Wand");
           PC.addToInventory(newwand,1);
           if (wasequipped) {
-            PC.setEquipment("missile",newwand);
+            tgt.unEquipMe();
+            newwand.equipMe(PC);
           }
+          PC.removeFromInventory(PC.checkInventory("YewWand"));
           retval["fin"] = 2;
           retval["outcome"] = successtext;
           return retval;
@@ -4329,6 +4330,11 @@ function PerformCharm(caster, infused, free, tgt) {
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
+  if (tgt.specials.nocharm) {
+    resp["txt"] = "You cast the spell, but nothing seems to happen.";
+    return resp;
+  }
+
   if (tgt.frozenintime) {
     resp["txt"] = "You cast the spell, but nothing seems to happen.";
     return resp;
