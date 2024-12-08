@@ -2022,6 +2022,12 @@ NPCObject.prototype.getDefense = function() {
     def = def + prot.getPower();
     DebugWrite("combat", "new AC: " + def + ".<br />");
   } 
+  let wpn = this.getEquipment("weapon");
+  if (wpn && (wpn.getName() === "SwordOfDefense")) {
+    DebugWrite("combat", "PROTECTED: old AC " + def + ", ");
+    def = def + 10;
+    DebugWrite("combat", "new AC: " + def + ".<br />");
+  }
   return def;
 }
 
