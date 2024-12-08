@@ -1356,38 +1356,38 @@ function SetBySurroundCoast() {
     let tile; 
     if (localacre !== "OoB") {
     	tile = localacre.terrain;
-    	if ((tile.getName() === "Ocean") || (tile.getName() === "ShadowOcean")) { ocean = tile; }
-    	if ((tile.getName() === "Water") || (tile.getName() === "ShadowWater")) { water = tile; }
-      if ((tile.getName() === "Shallows") || (tile.getName() === "ShadowShallows")) { shallow = tile; }
-      if ((tile.getName() === "StillWater") || (tile.getName() === "ShadowStillWater")) { still = tile; }
+    	if (tile.getName() === "Ocean") { ocean = tile; }
+    	if ((tile.getName() === "Water") || tile.getName().includes("OceanWaterTransition")) { water = tile; }
+      if ((tile.getName() === "Shallows") || tile.getName().includes("WaterShallowsTransition")) { shallow = tile; }
+      if (tile.getName() === "StillWater") { still = tile; }
     }
     localacre = themap.getTile(x,y+1);
     if (localacre !== "OoB") {
     	tile = localacre.terrain;
-    	if ((tile.getName() === "Ocean") || (tile.getName() === "ShadowOcean")) { ocean = tile; }
-    	if ((tile.getName() === "Water") || (tile.getName() === "ShadowWater")) { water = tile; }
-      if ((tile.getName() === "Shallows") || (tile.getName() === "ShadowShallows")) { shallow = tile;; }
-      if ((tile.getName() === "StillWater") || (tile.getName() === "ShadowStillWater")) { still = tile; }
+    	if (tile.getName() === "Ocean") { ocean = tile; }
+    	if ((tile.getName() === "Water") || tile.getName().includes("OceanWaterTransition")) { water = tile; }
+      if ((tile.getName() === "Shallows") || tile.getName().includes("WaterShallowsTransition")) { shallow = tile; }
+      if (tile.getName() === "StillWater") { still = tile; }
     }
     localacre = themap.getTile(x+1,y);
     if (localacre !== "OoB") {
     	tile = localacre.terrain;
-    	if ((tile.getName() === "Ocean") || (tile.getName() === "ShadowOcean")) { ocean = tile; }
-    	if ((tile.getName() === "Water") || (tile.getName() === "ShadowWater")) { water = tile; }
-      if ((tile.getName() === "Shallows") || (tile.getName() === "ShadowShallows")) { shallow = tile; }
-      if ((tile.getName() === "StillWater") || (tile.getName() === "ShadowStillWater")) { still = tile; }
+    	if (tile.getName() === "Ocean") { ocean = tile; }
+    	if ((tile.getName() === "Water") || tile.getName().includes("OceanWaterTransition")) { water = tile; }
+      if ((tile.getName() === "Shallows") || tile.getName().includes("WaterShallowsTransition")) { shallow = tile; }
+      if (tile.getName() === "StillWater") { still = tile; }
     }
     localacre = themap.getTile(x-1,y);
     if (localacre !== "OoB") {
     	tile = localacre.terrain;
-    	if ((tile.getName() === "Ocean") || (tile.getName() === "ShadowOcean")) { ocean = tile; }
-    	if ((tile.getName() === "Water") || (tile.getName() === "ShadowWater")) { water = tile; }
-      if ((tile.getName() === "Shallows") || (tile.getName() === "ShadowShallows")) { shallow = tile; }
-      if ((tile.getName() === "StillWater") || (tile.getName() === "ShadowStillWater")) { still = tile; }
+    	if (tile.getName() === "Ocean") { ocean = tile; }
+    	if ((tile.getName() === "Water") || tile.getName().includes("OceanWaterTransition")) { water = tile; }
+      if ((tile.getName() === "Shallows") || tile.getName().includes("WaterShallowsTransition")) { shallow = tile; }
+      if (tile.getName() === "StillWater") { still = tile; }
     }
     let chosentile;
-    if (shallow) { chosentile = shallow; }
-    else if (water) { chosentile = water; }
+    if (shallow) { chosentile = eidos.getForm("Shallows"); }
+    else if (water) { chosentile = eidos.getForm("Water"); }
     else if (ocean) { chosentile = ocean; }
     else if (still) { chosentile = still; }
     // kludge fix for clear lake
