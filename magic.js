@@ -867,7 +867,7 @@ function PerformIllusion(caster, infused, free, tgt) {
   if (free) { duration = Dice.roll("1d6+12"); }
   duration = duration*2*SCALE_TIME;
   illusion.expiresTime = DUTime.getGameClock() + duration;  // illusion AI needs to check expiresTime and go poof if it is reached
-  illusion.summonedby = caster; 
+  illusion.summonedBy = caster; 
   illusion.spawnedBy = caster;
   illusion.summoned = 1;
   caster.getHomeMap().placeThing(tgt.x,tgt.y,illusion);
@@ -2830,7 +2830,7 @@ magic[SPELL_WATER_WALK_LEVEL][SPELL_WATER_WALK_ID].executeSpell = function(caste
 
 //Crystal Prison (aka Crystal Trap)
 magic[SPELL_CRYSTAL_TRAP_LEVEL][SPELL_CRYSTAL_TRAP_ID].getLongDesc = function() {
-  return "Places a hidden trap on a space. Imprisons the next enemy to walk on it in a crystal prison.";
+  return "Places a hidden trap under your feet. Imprisons the next enemy to walk on it in a crystal prison.";
 }
 magic[SPELL_CRYSTAL_TRAP_LEVEL][SPELL_CRYSTAL_TRAP_ID].getInfusedDesc = function() {
   return "The crystal prison is harder to escape.";
@@ -3252,7 +3252,7 @@ function PerformSummonAlly(caster, infused, free, tgt) {
   } else {
     eletype = "Minor" + eletype;
   }
-  ally.summonedby = caster;
+  ally.summonedBy = caster;
   ally.spawnedBy = caster;
   ally.summoned = 1;
   if ((caster === PC) || (caster.getAttitude() === "friendly")) {
@@ -3973,12 +3973,8 @@ magic[SPELL_JINX_LEVEL][SPELL_JINX_ID].getLongDesc = function() {
 
 magic[SPELL_JINX_LEVEL][SPELL_JINX_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Jinx.<br />");
+
   let resp = {fin:1};
-  if (!free) {
-    let mana = this.getManaCost(infused);
-    CastSpellMana(caster,mana);
-    DebugWrite("magic", "Spent " + mana + " mana.<br />");
-  }
 
   if (!caster.getHomeMap().getScale()) {
     resp["fin"] = 2;
@@ -3986,18 +3982,42 @@ magic[SPELL_JINX_LEVEL][SPELL_JINX_ID].executeSpell = function(caster, infused, 
     resp["input"] = "&gt;";
     return resp;
   }
+      
+  CreateTargetCursor({sticky: 0, command:'c',spellName:'Jinx',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "fullopen"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});    
+  resp["txt"] = "";
+  resp["input"] = "&gt; Choose target- ";
+  resp["fin"] = 4;
+  gamestate.setMode("target");
+  return resp;
+}
 
-  let radius = 4;
-  if (!free & caster.getIntForPower() > 20) { radius = 5; }
-  if (infused) { radius = radius * 1.5; }  // level 6+ spells can't be infused, but let's cover the case anyway
+function PerformJinx(caster, infused, free, tgt) {
+  gamestate.setMode("null");
+  let resp = {fin:1};
+
   let castermap = caster.getHomeMap();
+  if (castermap.getLOS(caster.getx(), caster.gety(), tgt.x, tgt.y, 1) >= LOS_THRESHOLD) { 
+    resp["fin"] = 2;
+    resp["txt"] = "Your spell cannot reach there!";
+    return resp;
+  }
+
+  if (!free) {
+    let mana = magic[SPELL_POISON_CLOUD_LEVEL][SPELL_POISON_CLOUD_ID].getManaCost(infused);
+    CastSpellMana(caster,mana);
+    DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+
+  let radius = 1;
+  if (!free & caster.getIntForPower() > 20) { radius = 2; }
+  if (infused) { radius = radius * 1.5; }  // level 6+ spells can't be infused, but let's cover the case anyway
   let npcs = castermap.getNPCsAndPCs();
   let someonejinxed = 0;
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     let desc;
     if (!val.frozenintime && CheckAreEnemies(caster,val)) {
-      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
+      if ((GetDistance(tgt.x, tgt.y, val.getx(), val.gety()) < radius) && (castermap.getLOS(tgt.x, tgt.y, val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
         val.setHitBySpell(caster,SPELL_JINX_LEVEL);
 
         let resist = CheckResist(caster,val,infused,0);
@@ -4182,7 +4202,7 @@ magic[SPELL_NEGATE_MAGIC_LEVEL][SPELL_NEGATE_MAGIC_ID].executeSpell = function(c
 
 // Lightning Storm
 magic[SPELL_STORM_LEVEL][SPELL_STORM_ID].getLongDesc = function() {
-  return "Conjures a storm that will, each turn, strike two enemies with lightning for " + Dice.rollmin(DMG_MEDIUM) + "-" + Dice.rollmax(DMG_MEDIUM) + " damage per hit. Deals half damage if resisted.";
+  return "Conjures a storm that will repeatedly strike enemies with lightning for " + Dice.rollmin(DMG_MEDIUM) + "-" + Dice.rollmax(DMG_MEDIUM) + " damage per hit. Deals half damage if resisted.";
 }
 
 magic[SPELL_STORM_LEVEL][SPELL_STORM_ID].executeSpell = function(caster, infused, free) {
@@ -4200,15 +4220,19 @@ magic[SPELL_STORM_LEVEL][SPELL_STORM_ID].executeSpell = function(caster, infused
     resp["txt"] = "You summon a small storm, which soon ends.";
     return resp;
   }
-  let liobj = localFactory.createTile("Storm");
+//  let liobj = localFactory.createTile("Storm");
+  let liobj = localFactory.createTile("StormCloud");
   
   let dur = 10*SCALE_TIME;
   if (infused) {dur = dur * 1.5; } // can't be infused, but what the heck
-  let endtime = dur + DU.DUTime.getGameClock();
+  let endtime = dur + DUTime.getGameClock();
   DebugWrite("magic", "Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />");
-  liobj.setExpiresTime(endtime);
+//  liobj.setExpiresTime(endtime);
+  liobj.expiresTime = endtime;
+  liobj.summonedBy = caster;
   
-  caster.addSpellEffect(liobj);
+//  caster.addSpellEffect(liobj);
+  castermap.placeThing(caster.getx(),caster.gety(),liobj);
   PlayCastSound(caster,"sfx_long_thunder");
   
   DrawCharFrame();
@@ -4236,7 +4260,7 @@ magic[SPELL_TREMOR_LEVEL][SPELL_TREMOR_ID].executeSpell = function(caster, infus
     return resp;
   }
  
-  let radius = 5;
+  let radius = 6;
   let foes = GetAllWithin("npcs",radius,caster.getHomeMap(),{x: caster.getx(), y: caster.gety()},"loe");
   foes = ShuffleArray(foes);
   
@@ -4261,7 +4285,7 @@ magic[SPELL_TREMOR_LEVEL][SPELL_TREMOR_ID].executeSpell = function(caster, infus
       if (foes[i] !== PC) { foes[i].setAggro(1); }
       DebugWrite("magic", "Dealing " + dmg + " damage to target " + foes[i].getName() + " " + foes[i].getSerial() + ".<br />");
       
-      setTimeout(function() { ShowEffect(foes[i], 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y); }, 1000);
+      ShowEffect(foes[i], 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
     }
   }
   return resp;  
@@ -5189,7 +5213,7 @@ function PerformConjureDaemon(caster, infused, free, tgt) {
     ally.setLevel(ally.getLevel()+1);
     duration = duration* 1.5; 
   }
-  ally.summonedby = caster;
+  ally.summonedBy = caster;
   ally.spawnedBy = caster;
   ally.summoned = 1;
   ally.expiresTime = DUTime.getGameClock() + duration;  // AI needs to check expiresTime and go poof if it is reached
@@ -5639,6 +5663,8 @@ function PerformSpellcast() {
         resp = PerformSwordstrike(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
       } else if (targetCursor.spellName === "Charm") {
         resp = PerformCharm(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
+      } else if (targetCursor.spellName = "Mind Blast") {
+        resp = PerformMindBlast(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
       } else if (targetCursor.spellName === "Arrow of Glass") {
         resp = PerformArrowOfGlass(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
       } else if (targetCursor.spellName === "Awaken") {
@@ -5684,6 +5710,8 @@ function PerformSpellcast() {
       resp = PerformConjureDaemon(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
     } else if (targetCursor.spellName === "Telekinesis") {
       resp = PerformTelekinesisMove(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, targetCursor.tgt);
+    } else if (targetCursor.spellName === "Jinx") {
+      resp = PerformJinx(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
     }
   } else if (targetCursor.spelldetails.targettype === "usable") {
     let topfeature = targettile.getTopVisibleFeature();
@@ -5824,7 +5852,7 @@ function PerformSpellcastEquip(code) {
   
 }
 
-function PerformDirSpellcast() {
+function PerformDirSpellcast(caster) {
   let resp;
   let tgt = [targetCursor.x - caster.getx(), targetCursor.y - caster.gety()];
   if (targetCursor.spellName === "Wind Change") {
