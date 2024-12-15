@@ -433,9 +433,9 @@ OutOfContext.onLoadData((event,serialized) => {
       DebugWrite("saveload", val.name + " was spawned by something, processing...");
       val.spawnedBy = universe[val.spawnedBy];
     }
-    if (val.summonedby) {
+    if (val.summonedBy) {
       DebugWrite("saveload", val.name + " was summoned by something, processing...");
-      val.summonedby = universe[val.summonedby];
+      val.summonedBy = universe[val.summonedBy];
     }
     if (val.equipment && !val.equipment.container) {
       DebugWrite("saveload", val.name + " has equipment, processing...");
