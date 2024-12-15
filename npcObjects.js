@@ -2781,7 +2781,7 @@ function MinorAirElementalNPCTile() {
   this.prefix = 'an';
   this.desc = "air elemental";
   this.meleeChance = 70;
-  this.resists = {};
+  this.resists = { lightning:50 };
   this.special = 'lbolt, mindless, wander';
   this.meleeHitSound = 'sfx_air_hit';
   this.meleeAttackSound = 'sfx_air_miss';
@@ -3261,7 +3261,7 @@ function AirElementalNPCTile() {
   this.prefix = 'an';
   this.desc = "air elemental";
   this.meleeChance = 70;
-  this.resists = {};
+  this.resists = { lightning:50 };
   this.special = 'lbolt, mindless, wander';
   this.meleeHitSound = 'sfx_air_hit';
   this.meleeAttackSound = 'sfx_air_miss';
