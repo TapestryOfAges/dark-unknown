@@ -3049,7 +3049,7 @@ ais.ai_handle = function(who) {
       maintext.addText("The " + who.getDesc() + " summons an animal!");
       let animal = localFactory.createTile("PythonNPC");
       who.summoned = animal;
-      animal.summonedby = who;
+      animal.summonedBy = who;
       animal.spawnedBy = who;
       who.getHomeMap().placeThing(coord[0],coord[1],animal);
     } else {return "special";}
@@ -3065,7 +3065,7 @@ ais.ai_summonearthelemental = function(who) {
       delete who.specials.summonearthelemental;
       who.eversummoned = 1;
       who.summoned = elem;
-      elem.summonedby = who;
+      elem.summonedBy = who;
       elem.spawnedBy = who;
       who.getHomeMap().placeThing(coord[0],coord[1],elem);
     } else {return;}

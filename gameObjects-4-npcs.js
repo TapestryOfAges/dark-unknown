@@ -563,13 +563,13 @@ NPCObject.prototype.processDeath = function(droploot){
       }
     }
     map.deleteThing(this);
-    if (this.summonedby) {
-      delete this.summonedby.summoned;
-      delete this.summonedby;
+    if (this.summonedBy) {
+      delete this.summonedBy.summoned;
+      delete this.summonedBy;
       delete this.spawnedBy;
     }
     if (this.summoned) {
-      delete this.summoned.summonedby;
+      delete this.summoned.summonedBy;
       delete this.summoned;
     }
     if ((typeof this.getLight === "function") && (Math.abs(this.getLight()) > 0)) {
@@ -1989,12 +1989,13 @@ NPCObject.prototype.getHitChance = function(atkwith) {
   let distracted = this.getSpellEffectsByName("Distract");
   if (!distracted) { distracted = this.getSpellEffectsByName("Dizzy"); }
   if (distracted) {
-    let stillon = distracted.doEffect();
-    if (stillon != -1) {
+//    let stillon = distracted.doEffect();
+//    if (stillon != -1) {
       DebugWrite("combat", "DISTRACTED: old tohit: " + tohit + ", ");
       tohit = tohit - distracted.getPower();
       DebugWrite("combat", "new tohit: " + tohit + ".<br />");
-    }
+//    }
+// I don't know what this was for.
   }
   return tohit;
 }

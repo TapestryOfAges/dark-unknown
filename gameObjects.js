@@ -24025,12 +24025,12 @@ NPCObject.prototype.processDeath = function(droploot){
       }
     }
     map.deleteThing(this);
-    if (this.summonedby) {
-      delete this.summonedby.summoned;
-      delete this.summonedby;
+    if (this.summonedBy) {
+      delete this.summonedBy.summoned;
+      delete this.summonedBy;
     }
     if (this.summoned) {
-      delete this.summoned.summonedby;
+      delete this.summoned.summonedBy;
       delete this.summoned;
     }
     if ((typeof this.getLight === "function") && (Math.abs(this.getLight()) > 0)) {
