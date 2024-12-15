@@ -3653,28 +3653,8 @@ tileFactory.prototype.makePlatformOfVoidTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeMarkOfKingsTile = function() {
-  let newTile = new MarkOfKingsTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeMarkOfWavesTile = function() {
-  let newTile = new MarkOfWavesTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeMarkOfWindsTile = function() {
-  let newTile = new MarkOfWindsTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeMarkOfFlamesTile = function() {
-  let newTile = new MarkOfFlamesTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeMarkOfVoidTile = function() {
-  let newTile = new MarkOfVoidTile();
+tileFactory.prototype.makeStormCloudTile = function() {
+  let newTile = new StormCloudTile();
   return newTile;
 }
 
