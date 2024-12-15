@@ -10771,150 +10771,104 @@ function PlatformOfVoidTile() {
 }
 PlatformOfVoidTile.prototype = new FeatureObject();
 
-function MarkOfKingsTile() {
-  //Graphics Upgraded
-  this.name = "MarkOfKings";
-  this.graphic = "static.gif";
-  this.spritexoffset = -5*32;
-  this.spriteyoffset = -161*32;
-  this.blocklos = 2;
-  this.prefix = "the";
-  this.desc = "Rune of Kings";
+// This is an invisible tile that exists to replace the Storm Ephemeral object
+function StormCloudTile() {
+ this.name = "StormCloud";
+ this.graphic = "spacer.gif";
+ this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_SWIM + MOVE_WALK;
+ this.desc = "storm cloud";
 }
-MarkOfKingsTile.prototype = new FeatureObject();
-  
-MarkOfKingsTile.prototype.use = function(user) {
-  let retval = {};
-  if (user.getRuneCooldown("kings") > DUTime.getGameClock()) {
-    retval["fin"] = 1;
-    retval["txt"] = "You are too tired to invoke this rune!"
-    return retval;
-  }
-  // check if on surface, if so check location
-  // if underground/in town, heal
-  let themap = user.getHomeMap();
-  if (!themap.getScale()) {
-    if (themap.getName() === "darkunknown") {
-      if (((user.getx() === 27) && (user.gety() === 28)) || ((user.getx() === 26) && (user.gety() === 29)) || ((user.getx() === 28) && (user.gety() === 29)) || ((user.getx() >= 25) && (user.getx() <= 28) && (user.gety() === 30)) || ((user.getx() >=25) && (user.getx() <= 27) && (user.gety() === 31))) {
-        // open entrance to grotto
-        Earthquake();
-        DUPlaySound("sfx_earthquake");
-        let cave = localFactory.createTile("Cave");
-        cave.setEnterMap("grotto", 22, 53);
-        themap.placeThing(27,30,cave);
-        retval["txt"] = "A cave entrance is revealed!";
-        return retval;
-      } else if ((user.getx() === 100) && (user.gety() === 57)) {
-        let tile = themap.getTile(112,67);
-        let oldgate = tile.getTopFeature();
-        if (oldgate && (oldgate.getName() === "Moongate")) {
-          themap.deleteThing(oldgate);
-        }
-        
-        user.getHomeMap().moveThing(111,67,user);
-        DrawMainFrame("draw", themap, user.getx(), user.gety());
-        // teleport to entrance to air
-        setTimeout(function() {
-          let moongate = localFactory.createTile("Moongate");
-          moongate.destmap = "skypalace";
-          moongate.destx = 47;
-          moongate.desty = 49;
-          themap.placeThing(112,67,moongate);
-          AnimateMoongate(moongate,0,"up",300,0,1);
-        }, 500);
+StormCloudTile.prototype = new FeatureObject();
 
-      } else {
-        // no effect
-      }
-    } else if ((themap.getName() === "volcano") && (GetDistance(user.getx(), user.gety(), 27,21) < 5)) {
-      Earthquake();
-      let cave = localFactory.createTile("Cave");
-      cave.setEnterMap("lavatubes", 0, 0);   // make tubes!
-      let nillavatile = themap.getTile(27,21);
-      let nillava = nillavatile.getTopFeature();
-      if (nillava && (nillave.getName() === "Lava")) {
-        themap.deleteThing(nillava);
-      }
-      
-      themap.placeThing(27,21,cave);
-      retval["txt"] = "A tunnel into the caldera is exposed!";
-      return retval;
-        
-    } else {
-      retval["txt"] = "Nothing happens here.";
-      return retval;
+StormCloudTile.prototype.activate = function() {
+  if (gamestate.getMode() !== "loadgame") {
+    let NPCevent = new GameEvent(this);
+    DUTime.addAtTimeInterval(NPCevent,SCALE_TIME*.5);
+  }
+
+  return;
+}
+
+StormCloudTile.prototype.myTurn = function() {
+  DebugWrite("all", "<div style='border-style:inset; border-color:#999999'><span style='" + debugstyle.header + "'>" + this.getName() + ", serial " + this.getSerial() + " is starting its turn at " + this.getx() + "," + this.gety() + ", timestamp " + DUTime.getGameClock().toFixed(5) + ".</span><br />");
+  if (!maps.getMap(this.getHomeMap().getName())) {
+
+    if (!DebugWrite("gameobj", "<span style='font-weight:bold'>Stormcloud " + this.getSerial() + " removed from game- map gone.</span><br />")) {
+      DebugWrite("magic", "<span style='font-weight:bold'>Stormcloud " + this.getSerial() + " removed from game- map gone.</span><br />");
     }
-  } else {
-    // use power
-    // set cooldown
+  
+    return 1;
   }
-  return retval;
-}  
+ 
+  if (this.expiresTime && (this.expiresTime < DUTime.getGameClock())) {
+    if (!DebugWrite("magic", "<span style='font-weight:bold'>Stormcloud " + this.getSerial() + " expired, removing itself.</span><br />")) {
+      DebugWrite("gameobj", "<span style='font-weight:bold'>Stormcloud " + this.getSerial() + " expired, removing itself.</span><br />");
+    }
+    let mymap = this.getHomeMap();
+    mymap.deleteThing(this);
+    
+    return 1;
+  }
+  
+  let caster = this.summonedBy;
+  DebugWrite("magic", "Storm fires!");
+  let castermap = caster.getHomeMap();
+  let npcs = castermap.npcs.getAll();
+  let targetlist = [];
+  for (let i=0;i<npcs.length;i++) {
+    let val=npcs[i];
+    if (!val.frozenintime && CheckAreEnemies(caster,val)) {
+      if ((GetDistance(this.getx(), this.gety(), val.getx(), val.gety()) < 6) && (castermap.getLOS(this.getx(), this.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
+        targetlist.push(val);
+      }
+    }
+  };
+  if (targetlist.length) {
+    PlayCastSound(caster,"sfx_thunder");
+    let display = getDisplayCenter(castermap, caster.getx(), caster.gety());
+    let cloud = new GameObject();
+    cloud.x = display.centerx;
+    cloud.y = display.topedge;
 
-function MarkOfWavesTile() {
-  //Graphics Upgraded
-  this.name = "MarkOfWaves";
-  this.graphic = "static.gif";
-  this.spritexoffset = -6*32;
-  this.spriteyoffset = -161*32;
-  this.blocklos = 2;
-  this.prefix = "the";
-  this.desc = "Rune of Waves";
-}
-MarkOfWavesTile.prototype = new FeatureObject();
-  
-MarkOfWavesTile.prototype.use = function(user) {
-  // summon whirlpool if at lighthouse
-  // otherwise, temp mana?
-}  
-  
-function MarkOfWindsTile() {
-  //Graphics Upgraded
-  this.name = "MarkOfWinds";
-  this.graphic = "static.gif";
-  this.spritexoffset = -7*32;
-  this.spriteyoffset = -161*32;
-  this.blocklos = 2;
-  this.prefix = "the";
-  this.desc = "Rune of Winds";
-}
-MarkOfWindsTile.prototype = new FeatureObject();
-  
-MarkOfWindsTile.prototype.use = function(user) {
-  // push back
-}  
+    // animate bolt from top-center to target 
+    let chosenidx = Math.floor(Math.random()*targetlist.length);
+    
+    let boltgraphic = {};
+    boltgraphic.graphic = "blasts.gif";
+    boltgraphic.yoffset = -64;
+    boltgraphic.xoffset = 0;
+    boltgraphic.directionalammo = 1;
+      
+    boltgraphic = GetEffectGraphic(cloud,targetlist[chosenidx],boltgraphic);
+     
+    let tmpdmg = prepareSpellDamage(caster,targetlist[chosenidx],DMG_MEDIUM,"lightning");
+    let dmg = tmpdmg.dmg;
+    if (CheckResist(caster,targetlist[chosenidx],0,0)) {
+      dmg = Math.floor(dmg/2)+1;
+    }
 
-function MarkOfFlamesTile() {
-  //Graphics Upgraded
-  this.name = "MarkOfFlames";
-  this.graphic = "static.gif";
-  this.spritexoffset = -8*32;
-  this.spriteyoffset = -161*32;
-  this.blocklos = 2;
-  this.prefix = "the";
-  this.desc = "Rune of Flames";
-}
-MarkOfFlamesTile.prototype = new FeatureObject();
+    let desc = targetlist[chosenidx].getDesc();
+    desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+    let descval = {txt: desc};
+    let sounds = {};
+    let fromcoords = GetCoords(castermap,cloud.x, cloud.y);
+    let tocoords = GetCoords(castermap,targetlist[chosenidx].getx(), targetlist[chosenidx].gety());
+    let duration = (Math.pow( Math.pow(targetlist[chosenidx].getx() - cloud.x, 2) + Math.pow (targetlist[chosenidx].gety() - cloud.y, 2)  , .5)) * 50;
+    let destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
+    AnimateEffect({atk:this, def:targetlist[chosenidx], fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"lightning", doagain:[]});
+        
+    //WORKING HERE- check over
+  }
   
-MarkOfFlamesTile.prototype.use = function(user) {
-  // various random effects- flame armor, flame sword, burn foe
-}  
+  return 0;
+}
 
-function MarkOfVoidTile() {
-  //Graphics Upgraded
-  this.name = "MarkOfVoid";
-  this.graphic = "static.gif";
-  this.spritexoffset = -9*32;
-  this.spriteyoffset = -161*32;
-  this.blocklos = 2;
-  this.prefix = "the";
-  this.desc = "Rune of Void";
+StormCloudTile.prototype.endTurn = function() {
+  let NPCevent = new GameEvent(this);
+  DUTime.addAtTimeInterval(NPCevent,SCALE_TIME*.5);
+
+  setTimeout(function() { startScheduler(); }, 5 );
 }
-MarkOfVoidTile.prototype = new FeatureObject();
-  
-MarkOfVoidTile.prototype.use = function(user) {
-  // Not sure it can be used, so this may not be useful
-}  
 
 function BrightFountainTile() {
   //Graphics Upgraded

@@ -3443,3 +3443,148 @@ function WSWallMoldTile() {
   this.peerview = "#ffffff";  // remember to set
 }
 WSWallMoldTile.prototype = new TerrainObject();
+
+function MarkOfKingsTile() {
+  //Graphics Upgraded
+  this.name = "MarkOfKings";
+  this.graphic = "static.gif";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -161*32;
+  this.blocklos = 2;
+  this.prefix = "the";
+  this.desc = "Rune of Kings";
+}
+MarkOfKingsTile.prototype = new FeatureObject();
+  
+MarkOfKingsTile.prototype.use = function(user) {
+  let retval = {};
+  if (user.getRuneCooldown("kings") > DUTime.getGameClock()) {
+    retval["fin"] = 1;
+    retval["txt"] = "You are too tired to invoke this rune!"
+    return retval;
+  }
+  // check if on surface, if so check location
+  // if underground/in town, heal
+  let themap = user.getHomeMap();
+  if (!themap.getScale()) {
+    if (themap.getName() === "darkunknown") {
+      if (((user.getx() === 27) && (user.gety() === 28)) || ((user.getx() === 26) && (user.gety() === 29)) || ((user.getx() === 28) && (user.gety() === 29)) || ((user.getx() >= 25) && (user.getx() <= 28) && (user.gety() === 30)) || ((user.getx() >=25) && (user.getx() <= 27) && (user.gety() === 31))) {
+        // open entrance to grotto
+        Earthquake();
+        DUPlaySound("sfx_earthquake");
+        let cave = localFactory.createTile("Cave");
+        cave.setEnterMap("grotto", 22, 53);
+        themap.placeThing(27,30,cave);
+        retval["txt"] = "A cave entrance is revealed!";
+        return retval;
+      } else if ((user.getx() === 100) && (user.gety() === 57)) {
+        let tile = themap.getTile(112,67);
+        let oldgate = tile.getTopFeature();
+        if (oldgate && (oldgate.getName() === "Moongate")) {
+          themap.deleteThing(oldgate);
+        }
+        
+        user.getHomeMap().moveThing(111,67,user);
+        DrawMainFrame("draw", themap, user.getx(), user.gety());
+        // teleport to entrance to air
+        setTimeout(function() {
+          let moongate = localFactory.createTile("Moongate");
+          moongate.destmap = "skypalace";
+          moongate.destx = 47;
+          moongate.desty = 49;
+          themap.placeThing(112,67,moongate);
+          AnimateMoongate(moongate,0,"up",300,0,1);
+        }, 500);
+
+      } else {
+        // no effect
+      }
+    } else if ((themap.getName() === "volcano") && (GetDistance(user.getx(), user.gety(), 27,21) < 5)) {
+      Earthquake();
+      let cave = localFactory.createTile("Cave");
+      cave.setEnterMap("lavatubes", 0, 0);   // make tubes!
+      let nillavatile = themap.getTile(27,21);
+      let nillava = nillavatile.getTopFeature();
+      if (nillava && (nillave.getName() === "Lava")) {
+        themap.deleteThing(nillava);
+      }
+      
+      themap.placeThing(27,21,cave);
+      retval["txt"] = "A tunnel into the caldera is exposed!";
+      return retval;
+        
+    } else {
+      retval["txt"] = "Nothing happens here.";
+      return retval;
+    }
+  } else {
+    // use power
+    // set cooldown
+  }
+  return retval;
+}  
+
+function MarkOfWavesTile() {
+  //Graphics Upgraded
+  this.name = "MarkOfWaves";
+  this.graphic = "static.gif";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -161*32;
+  this.blocklos = 2;
+  this.prefix = "the";
+  this.desc = "Rune of Waves";
+}
+MarkOfWavesTile.prototype = new FeatureObject();
+  
+MarkOfWavesTile.prototype.use = function(user) {
+  // summon whirlpool if at lighthouse
+  // otherwise, temp mana?
+}  
+  
+function MarkOfWindsTile() {
+  //Graphics Upgraded
+  this.name = "MarkOfWinds";
+  this.graphic = "static.gif";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -161*32;
+  this.blocklos = 2;
+  this.prefix = "the";
+  this.desc = "Rune of Winds";
+}
+MarkOfWindsTile.prototype = new FeatureObject();
+  
+MarkOfWindsTile.prototype.use = function(user) {
+  // push back
+}  
+
+function MarkOfFlamesTile() {
+  //Graphics Upgraded
+  this.name = "MarkOfFlames";
+  this.graphic = "static.gif";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -161*32;
+  this.blocklos = 2;
+  this.prefix = "the";
+  this.desc = "Rune of Flames";
+}
+MarkOfFlamesTile.prototype = new FeatureObject();
+  
+MarkOfFlamesTile.prototype.use = function(user) {
+  // various random effects- flame armor, flame sword, burn foe
+}  
+
+function MarkOfVoidTile() {
+  //Graphics Upgraded
+  this.name = "MarkOfVoid";
+  this.graphic = "static.gif";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -161*32;
+  this.blocklos = 2;
+  this.prefix = "the";
+  this.desc = "Rune of Void";
+}
+MarkOfVoidTile.prototype = new FeatureObject();
+  
+MarkOfVoidTile.prototype.use = function(user) {
+  // Not sure it can be used, so this may not be useful
+}  
