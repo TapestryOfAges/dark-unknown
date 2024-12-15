@@ -750,7 +750,7 @@ function DoAction(code, ctrl) {
           dir = "Attack " + dir + ".";
           resp = PerformAttackMap(PC);  			  
         } else if (targetCursor.command === "c") { // CAST
-          resp = PerformDirSpellcast();          
+          resp = PerformDirSpellcast(PC);          
         } else if (targetCursor.command === "p") { // PUSH
           resp = PerformPush(PC);
         }
