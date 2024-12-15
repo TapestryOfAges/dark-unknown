@@ -434,7 +434,7 @@ CrystalTrapTile.prototype.onTurn = function() {
     } else {
       maintext.addText("With a burst of strength, the " + who.getDesc() + " breaks free!");
     }
-    if (trap.infused) { who.dealDamage(DMG_HEAVY); }
+    if (this.infused) { who.dealDamage(DMG_HEAVY); }
     else { who.dealDamage(DMG_MEDIUM); }
     this.endEffect(1);
   }
@@ -1480,40 +1480,40 @@ StormTile.prototype = new EphemeralObject();
 
 
 StormTile.prototype.applyEffect = function(silent) {
-  this.lastbolt = DU.getGameClock();
+  this.lastbolt = DUTime.getGameClock();
   return 1;
 }
 
 StormTile.prototype.doEffect = function() {
-  let who = this.getAttachedTo();
-  let bolts = Math.floor((DU.getGameClock() - this.lastbolt)/SCALE_TIME)*2;
+  let caster = this.getAttachedTo();
+  let bolts = Math.floor((DUTime.getGameClock() - this.lastbolt)/SCALE_TIME)*2;
   if (DUTime.getGameClock() > this.getExpiresTime()) {
     this.endEffect();
     bolts++;
   }
   if (bolts) {
     DebugWrite("magic", "Storm fires!");
-    let castermap = who.getHomeMap();
+    let castermap = caster.getHomeMap();
     let npcs = castermap.npcs.getAll();
     let targetlist = [];
     for (let i=0;i<npcs.length;i++) {
       let val=npcs[i];
       if (!val.frozenintime && CheckAreEnemies(caster,val)) {
-        if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
+        if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < 6) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
           targetlist.push(val);
         }
       }
     };
     if (targetlist.length) {
       PlayCastSound(caster,"sfx_thunder");
-      let display = getDisplayCenter(castermap, who.getx(), who.gety());
+      let display = getDisplayCenter(castermap, caster.getx(), caster.gety());
       let cloud = new GameObject();
       cloud.x = display.centerx;
       cloud.y = display.topy;
       // animate bolt from top-center to target 
       for (let i=0; i<bolts; i++) {
         if (targetlist.length) {
-          let chosenidx = Math.floor(Math.random()*targetlength.length);
+          let chosenidx = Math.floor(Math.random()*targetlist.length);
         
           let boltgraphic = {};
           boltgraphic.graphic = "blasts.gif";
@@ -1524,7 +1524,7 @@ StormTile.prototype.doEffect = function() {
           boltgraphic = GetEffectGraphic(cloud,targetlist[chosenidx],boltgraphic);
         
           let dmg = RollDamage(DMG_MEDIUM);
-          if (CheckResist(who,targetlist[chosenidx],infused,0)) {
+          if (CheckResist(caster,targetlist[chosenidx],0,0)) {
             dmg = Math.floor(dmg/2)+1;
           }
 
