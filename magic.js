@@ -1205,7 +1205,7 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
     if ((GetDistance(val.getx(),val.gety(),tgt.x,tgt.y) < radius) && (val !== caster) && (!val.frozenintime)) {
       if (tgtmap.getLOS(val.getx(),val.gety(),tgt.x,tgt.y,1) < LOS_THRESHOLD) {
         anyonepoisoned = 1;
-        if (!IsNonLiving(val)) { val.setHitBySpell(caster,SPELL_POISON_CLOUD_LEVEL); }
+        if (!IsNonLiving(val)) { val.setHitBySpell(caster,1); }  // using 1 as spell level because multi target
         if (val.getSpellEffectsByName("Poison") || CheckResist(caster,val,infused,0) || IsNonLiving(val)) {
           // poison resisted
           ShowEffect(val, 700, "X.gif");
@@ -1471,11 +1471,14 @@ magic[SPELL_DISRUPT_UNDEAD_LEVEL][SPELL_DISRUPT_UNDEAD_ID].executeSpell = functi
   let castermap = caster.getHomeMap();
   let npcs = castermap.npcs.getAll();
   let hitany = 0;
+  let hitcount = 0;
+  let hitlist = [];
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     if ((val.special.indexOf("undead") > -1) && !val.frozenintime) {
       if (GetDistance(val.getx(),val.gety(), caster.getx(), caster.gety()) < 7) {
-        val.setHitBySpell(caster,SPELL_DISRUPT_UNDEAD_LEVEL);
+        hitcount++;
+        hitlist.push(val);
         let tmpdmg = prepareSpellDamage(caster,val,DMG_MEDIUM,"force");
         let dmg = tmpdmg.dmg;
         if (infused) {
@@ -1493,6 +1496,9 @@ magic[SPELL_DISRUPT_UNDEAD_LEVEL][SPELL_DISRUPT_UNDEAD_ID].executeSpell = functi
         hitany = 1;
       }
     }
+  }
+  for (let i=0;i<hitcount;i++) {
+    hitlist[i].setHitBySpell(caster,Math.max(Math.floor(SPELL_DISRUPT_UNDEAD_LEVEL/hitcount),1));
   }
   if (!hitany) {
     PlayCastSound(caster);
@@ -2737,7 +2743,7 @@ magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID].executeSpell = function(caster, infused
   PlayCastSound(caster,"sfx_default_hit");
   for (let i=0; i<=2; i++) {
     if (foes[i] && !foes[i].frozenintime) {
-      foes[i].setHitBySpell(caster,SPELL_SMITE_LEVEL);
+      foes[i].setHitBySpell(caster,2); 
       let tmpdmg = prepareSpellDamage(caster,foes[i],DMG_MEDIUM,"force");
       let dmg = tmpdmg.dmg;
       if (infused) { dmg = dmg * 1.5; }
@@ -3361,6 +3367,7 @@ function PerformSwordstrike(caster, infused, free, tgt) {
   PlayCastSound(caster,"sfx_default_hit");
   //tgt.dealDamage(dmg,caster,"physical");
   DealandDisplayDamage(tgt,caster,dmg,"physical");
+  tgt.setHitBySpell(caster,SPELL_SWORDSTRIKE_LEVEL);
   if (tgt !== PC) { tgt.setAggro(1); }
   
   for (let diffx = -1; diffx <=1; diffx++) {
@@ -3384,7 +3391,6 @@ function PerformSwordstrike(caster, infused, free, tgt) {
         //badguy.dealDamage(dmg,caster,"physical");
         DealandDisplayDamage(badguy,caster,dmg,"physical");
         if (badguy !== PC) { badguy.setAggro(1); }
-        badguy.setHitBySpell(caster,SPELL_SWORDSTRIKE_LEVEL);
         ShowEffect(badguy, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
         if (!hostile && (caster === PC) && (tgt.getAttitude() === "friendly")) {
           TurnMapHostile(castmap);
@@ -3929,6 +3935,8 @@ function PerformExplosion(caster, infused, free, tgt) {
   //tgt.dealDamage(dmg,caster,"fire");
 //  DealandDisplayDamage(tgt,caster,dmg,"fire");
   PlayCastSound(caster,"sfx_explosion");
+  let tgtcount = 0;
+  let tgtlist = [];
   for (let diffx = -1; diffx <=1; diffx++) {
     for (let diffy = -1; diffy <=1; diffy++) {
 //      if ((diffx === 0) && (diffy === 0)) { continue; }
@@ -3945,7 +3953,8 @@ function PerformExplosion(caster, infused, free, tgt) {
       let tile = castmap.getTile(tgt.x+diffx,tgt.y+diffy);
       let badguy = tile.getTopNPC();
       if (badguy) {
-        badguy.setHitBySpell(caster,SPELL_EXPLOSION_LEVEL);
+        tgtcount++;
+        tgtlist.push(badguy);
         let localdmg = prepareSpellDamage(caster,badguy,dmg,"fire");
         localdmg = localdmg.dmg;
         if (CheckResist(caster,badguy,infused,0)) { localdmg = localdmg/2+1; }
@@ -3961,6 +3970,9 @@ function PerformExplosion(caster, infused, free, tgt) {
         ShowEffect(0, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y, {x:tgt.x+diffx, y:tgt.y+diffy, map:caster.getHomeMap()});
       }
     }
+  }
+  for (let i=0;i<tgtcount;i++) {
+    tgtlist[i].setHitBySpell(caster,Math.max(Math.floor(SPELL_EXPLOSION_LEVEL/tgtcount),1));
   }
   
   return resp;
@@ -4013,12 +4025,15 @@ function PerformJinx(caster, infused, free, tgt) {
   if (infused) { radius = radius * 1.5; }  // level 6+ spells can't be infused, but let's cover the case anyway
   let npcs = castermap.getNPCsAndPCs();
   let someonejinxed = 0;
+  let tgtcount = 0;
+  let tgtlist = [];
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     let desc;
     if (!val.frozenintime && CheckAreEnemies(caster,val)) {
       if ((GetDistance(tgt.x, tgt.y, val.getx(), val.gety()) < radius) && (castermap.getLOS(tgt.x, tgt.y, val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
-        val.setHitBySpell(caster,SPELL_JINX_LEVEL);
+        tgtcount++;
+        tgtlist.push(val);
 
         let resist = CheckResist(caster,val,infused,0);
         let power = 66-resist;
@@ -4048,6 +4063,9 @@ function PerformJinx(caster, infused, free, tgt) {
         maintext.addText(desc);
       }
     }
+  }
+  for (let i=0;i<tgtcount;i++) {
+    tgtlist[i].setHitBySpell(caster,Math.max(Math.floor(SPELL_JINX_LEVEL/tgtlist),1));
   }
 
   if (someonejinxed) { PlayCastSound(caster,"sfx_debuff"); }
@@ -4085,12 +4103,15 @@ magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].executeSpell = function(caste
   let castermap = caster.getHomeMap();
   let npcs = castermap.getNPCsAndPCs();
   let cursed = 0;
+  let tgtlist = [];
+  let tgtcount = 0;
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     let desc;
     if (!val.frozenintime && CheckAreEnemies(caster,val)) {
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
-        val.setHitBySpell(caster,SPELL_MASS_CURSE_LEVEL);
+        tgtcount++;
+        tgtlist.push(val);
         let resist = CheckResist(caster,val,infused,0);
         let curse = localFactory.createTile("Curse");
         let power = 2 + Math.floor(caster.getIntForPower()/5);
@@ -4119,6 +4140,10 @@ magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].executeSpell = function(caste
       }
     }
     cursed = 1;
+  }
+
+  for (let i=0;i<tgtcount;i++) {
+    tgtlist[i].setHitBySpell(caster,Math.max(Math.floor(SPELL_MASS_CURSE_LEVEL/tgtcount),1));
   }
 
   if (cursed) { PlayCastSound(caster,"sfx_debuff"); }
@@ -4274,7 +4299,7 @@ magic[SPELL_TREMOR_LEVEL][SPELL_TREMOR_ID].executeSpell = function(caster, infus
   PlayCastSound(caster,"sfx_default_hit");
   for (let i=0; i<foes.length; i++) {
     if (foes[i] && !foes[i].frozenintime) {
-      foes[i].setHitBySpell(caster,SPELL_TREMOR_LEVEL);
+      foes[i].setHitBySpell(caster,Math.max(Math.floor(SPELL_TREMOR_LEVEL/foes.length),1));
       let tmpdmg = prepareSpellDamage(caster,foes[i],DMG_MEDIUM,"force");
       let dmg = tmpdmg.dmg;
       if (foes[i].movetype & MOVE_FLY) {
@@ -4442,12 +4467,15 @@ magic[SPELL_FEAR_LEVEL][SPELL_FEAR_ID].executeSpell = function(caster, infused, 
   let castermap = caster.getHomeMap();
   let npcs = castermap.getNPCsAndPCs();
   let afeared = 0;
+  let tgtcount = 0;
+  let tgtlist = [];
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     let desc;
     if (!val.frozenintime && CheckAreEnemies(caster,val)) {
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
-        val.setHitBySpell(caster,SPELL_FEAR_LEVEL);
+        tgtcount++;
+        tgtlist.push(val);
         if (CheckResist(caster,val,infused,0)) {
           if (val === PC) {
             desc = "You resist.";
@@ -4476,6 +4504,9 @@ magic[SPELL_FEAR_LEVEL][SPELL_FEAR_ID].executeSpell = function(caster, infused, 
         }
       }
     }
+  }
+  for (let i=0;i<tgtcount;i++) {
+    tgtlist[i].setHitBySpell(caster,Math.max(Math.floor(SPELL_FEAR_LEVEL/tgtcount),1));
   }
 
   if (afeared) { PlayCastSound(caster,"sfx_debuff"); } 
@@ -4644,7 +4675,7 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(c
         npccount--;
 //        let final = 0;
 //        if (!npccount) { final = 1; }
-        val.setHitBySpell(caster,SPELL_METEOR_SWARM_LEVEL);
+        val.setHitBySpell(caster,Math.max(Math.floor(SPELL_METEOR_SWARM_LEVEL/tottgt),1));
         let tmpdmg = prepareSpellDamage(caster,val,DMG_MEDIUM,"fire",0,DMG_LIGHT);
         let dmg = tmpdmg.dmg;
         if (CheckResist(caster,val,infused,0)) {
@@ -5127,6 +5158,7 @@ magic[SPELL_CONFLAGRATION_LEVEL][SPELL_CONFLAGRATION_ID].executeSpell = function
   let npcs = castermap.getNPCsAndPCs();
   let display = getDisplayCenter(PC.getHomeMap(), PC.getx(), PC.gety());
   let npccount = 0;
+  let npclist = [];
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     let desc;
@@ -5138,7 +5170,8 @@ magic[SPELL_CONFLAGRATION_LEVEL][SPELL_CONFLAGRATION_ID].executeSpell = function
           dmg = dmg/2+1;
         } 
         // In theory, it is impossible for targets to be offscreen.
-        val.setHitBySpell(caster,SPELL_CONFLAGRATION_LEVEL);
+        npccount++;
+        npclist.push(val);
         let desc = val.getDesc();
         desc = desc.charAt(0).toUpperCase() + desc.slice(1);
         ShowEffect(val, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
@@ -5146,6 +5179,9 @@ magic[SPELL_CONFLAGRATION_LEVEL][SPELL_CONFLAGRATION_ID].executeSpell = function
         DealandDisplayDamage(val,caster,dmg,"fire");
       }
     }
+  }
+  for (let i=0;i<npccount;i++) {
+    npclist[i].setHitBySpell(caster,Math.max(Math.floor(SPELL_CONFLAGRATION_LEVEL/npccount),1));
   }
 
   return resp;
