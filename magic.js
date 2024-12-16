@@ -4682,7 +4682,7 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(c
 
 // Mind Blast
 magic[SPELL_MIND_BLAST_LEVEL][SPELL_MIND_BLAST_ID].getLongDesc = function() {
-  return "Deals enough damage to instantly slay most foes.";
+  return "Deals " + Dice.rollmin(DMG_TREMENDOUS) + "-" + Dice.rollmax(DMG_TREMENDOUS) + " mental damage to a single target. Half damage if resisted."
 }
 
 magic[SPELL_MIND_BLAST_LEVEL][SPELL_MIND_BLAST_ID].executeSpell = function(caster, infused, free, tgt) {
