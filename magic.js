@@ -3151,6 +3151,7 @@ magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].executeSpell = function(caster,
     return resp;
   }
 
+  let npclist = [];
   PlayCastSound(caster,"sfx_thunder");
   let spellmap = caster.getHomeMap();
   for (let xdiff=-1; xdiff<=1; xdiff++) {
@@ -3160,26 +3161,29 @@ magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].executeSpell = function(caster,
       if (tile !== "OoB") {
         let badguy = tile.getTopNPC();
         if (badguy && !badguy.frozenintime) {
-          badguy.setHitBySpell(caster,1);
-          let tmpdmg = prepareSpellDamage(caster,badguy,DMG_MEDIUM,"force");
-          let dmg = tmpdmg.dmg;
-          if (infused) { dmg = dmg * 1.5; }
-          let resist = 0;
-          if (CheckResist(caster,badguy,infused,0)) {
-            resist = 1;
-            dmg = dmg*.5;
-          }
-
-          if (!resist) {
-            badguy.moveMe(xdiff,ydiff,1);
-          }
-          //badguy.dealDamage(dmg,caster,"force");
-          if (badguy !== PC) { badguy.setAggro(1); }
-          DealandDisplayDamage(badguy,caster,dmg,"force");
-          ShowEffect(badguy, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
+          npclist.push(badguy);
         }
       }
     }
+  }
+  for (let i=0;i<npclist.length;i++) {
+    let badguy = npclist[i];
+    badguy.setHitBySpell(caster,Math.max(Math.floor(SPELL_SHOCKWAVE_LEVEL/npclist.length),1));
+    let tmpdmg = prepareSpellDamage(caster,badguy,DMG_MEDIUM,"force");
+    let dmg = tmpdmg.dmg;
+    if (infused) { dmg = dmg * 1.5; }
+    let resist = 0;
+    if (CheckResist(caster,badguy,infused,0)) {
+      resist = 1;
+      dmg = dmg*.5;
+    }
+
+    if (!resist) {
+      badguy.moveMe(xdiff,ydiff,1);
+    }
+    if (badguy !== PC) { badguy.setAggro(1); }
+    DealandDisplayDamage(badguy,caster,dmg,"force");
+    ShowEffect(badguy, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
   }
   return resp;  
 }
@@ -3955,24 +3959,25 @@ function PerformExplosion(caster, infused, free, tgt) {
       if (badguy) {
         tgtcount++;
         tgtlist.push(badguy);
-        let localdmg = prepareSpellDamage(caster,badguy,dmg,"fire");
-        localdmg = localdmg.dmg;
-        if (CheckResist(caster,badguy,infused,0)) { localdmg = localdmg/2+1; }
-        //badguy.dealDamage(dmg,caster,"fire");
-        DealandDisplayDamage(badguy,caster,localdmg,"fire");
-        if (badguy !== PC) { badguy.setAggro(1); }
-        ShowEffect(badguy, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
-        if (!hostile && (caster === PC) && (badguy.getAttitude() === "friendly")) {
-          TurnMapHostile(castmap);
-          hostile = 1;
-        }
       } else {
         ShowEffect(0, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y, {x:tgt.x+diffx, y:tgt.y+diffy, map:caster.getHomeMap()});
       }
     }
   }
   for (let i=0;i<tgtcount;i++) {
-    tgtlist[i].setHitBySpell(caster,Math.max(Math.floor(SPELL_EXPLOSION_LEVEL/tgtcount),1));
+    let badguy = tgtlist[i];
+    badguy.setHitBySpell(caster,Math.max(Math.floor(SPELL_EXPLOSION_LEVEL/tgtcount),1));
+    let localdmg = prepareSpellDamage(caster,badguy,dmg,"fire");
+    localdmg = localdmg.dmg;
+    if (CheckResist(caster,badguy,infused,0)) { localdmg = localdmg/2+1; }
+    //badguy.dealDamage(dmg,caster,"fire");
+    DealandDisplayDamage(badguy,caster,localdmg,"fire");
+    if (badguy !== PC) { badguy.setAggro(1); }
+    ShowEffect(badguy, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
+    if (!hostile && (caster === PC) && (badguy.getAttitude() === "friendly")) {
+      TurnMapHostile(castmap);
+      hostile = 1;
+    }
   }
   
   return resp;
@@ -4029,43 +4034,44 @@ function PerformJinx(caster, infused, free, tgt) {
   let tgtlist = [];
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
-    let desc;
     if (!val.frozenintime && CheckAreEnemies(caster,val)) {
       if ((GetDistance(tgt.x, tgt.y, val.getx(), val.gety()) < radius) && (castermap.getLOS(tgt.x, tgt.y, val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
         tgtcount++;
         tgtlist.push(val);
-
-        let resist = CheckResist(caster,val,infused,0);
-        let power = 66-resist;
-        
-        if (resist < 33) {
-          desc = val.getDesc() + " resists!";
-          if (val === PC) {
-            desc = "You resist.";
-            // no X over the PC
-          } else {
-            ShowEffect(val, 700, "X.gif");
-          }       
-        } else {
-          let duration = 8 + Dice.roll("1d4") - val.getIntForPower()/5;
-          let jinx = localFactory.createTile("Confused");
-          jinx.setPower(power);
-          jinx.setExpiresTime(duration*SCALE_TIME + DUTime.getGameClock());
-          val.addSpellEffect(jinx);          
-          desc = val.getDesc() + " is confused!";
-          ShowEffect(val, 1700, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
-          if (val === PC) {
-            desc = "You have become confused.";
-          }
-          someonejinxed = 1;
-        }
-        desc = desc.charAt(0).toUpperCase() + desc.slice(1);
-        maintext.addText(desc);
       }
     }
   }
   for (let i=0;i<tgtcount;i++) {
-    tgtlist[i].setHitBySpell(caster,Math.max(Math.floor(SPELL_JINX_LEVEL/tgtlist),1));
+    let desc;
+    let val = tgtlist[i];
+    val.setHitBySpell(caster,Math.max(Math.floor(SPELL_JINX_LEVEL/tgtlist),1));
+    let resist = CheckResist(caster,val,infused,0);
+    let power = 66-resist;
+    
+    if (resist < 33) {
+      desc = val.getDesc() + " resists!";
+      if (val === PC) {
+        desc = "You resist.";
+        // no X over the PC
+      } else {
+        ShowEffect(val, 700, "X.gif");
+      }       
+    } else {
+      let duration = 8 + Dice.roll("1d4") - val.getIntForPower()/5;
+      let jinx = localFactory.createTile("Confused");
+      jinx.setPower(power);
+      jinx.setExpiresTime(duration*SCALE_TIME + DUTime.getGameClock());
+      val.addSpellEffect(jinx);          
+      desc = val.getDesc() + " is confused!";
+      ShowEffect(val, 1700, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
+      if (val === PC) {
+        desc = "You have become confused.";
+      }
+      someonejinxed = 1;
+    }
+    desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+    maintext.addText(desc);
+
   }
 
   if (someonejinxed) { PlayCastSound(caster,"sfx_debuff"); }
@@ -4112,38 +4118,39 @@ magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].executeSpell = function(caste
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
         tgtcount++;
         tgtlist.push(val);
-        let resist = CheckResist(caster,val,infused,0);
-        let curse = localFactory.createTile("Curse");
-        let power = 2 + Math.floor(caster.getIntForPower()/5);
-        if (resist) {
-          if (val === PC) {
-            desc = "You resist, but are more vulnerable to magic.";
-            // no X over the PC
-          } else {
-            ShowEffect(val, 700, "X.gif");
-          }       
-          power = 2;
-        } else {
-          if (val === PC) {
-            desc = "You are cursed! Your thoughts feel sluggish, you feel clumsier, and you feel weaker.";
-          }
-        }
-        let duration = 10 + Dice.roll("1d8") - val.getIntForPower()/4;
-        curse.setPower(power);
-        curse.setExpiresTime(duration*SCALE_TIME + DUTime.getGameClock());
-        val.addSpellEffect(curse);          
-        desc = val.getDesc() + " is cursed!";
-        ShowEffect(val, 1700, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
-        
-        desc = desc.charAt(0).toUpperCase() + desc.slice(1);
-        maintext.addText(desc);
       }
     }
     cursed = 1;
   }
 
   for (let i=0;i<tgtcount;i++) {
-    tgtlist[i].setHitBySpell(caster,Math.max(Math.floor(SPELL_MASS_CURSE_LEVEL/tgtcount),1));
+    let val = tgtlist[i];
+    val.setHitBySpell(caster,Math.max(Math.floor(SPELL_MASS_CURSE_LEVEL/tgtcount),1));
+    let resist = CheckResist(caster,val,infused,0);
+    let curse = localFactory.createTile("Curse");
+    let power = 2 + Math.floor(caster.getIntForPower()/5);
+    if (resist) {
+      if (val === PC) {
+        desc = "You resist, but are more vulnerable to magic.";
+        // no X over the PC
+      } else {
+        ShowEffect(val, 700, "X.gif");
+      }       
+      power = 2;
+    } else {
+      if (val === PC) {
+        desc = "You are cursed! Your thoughts feel sluggish, you feel clumsier, and you feel weaker.";
+      }
+    }
+    let duration = 10 + Dice.roll("1d8") - val.getIntForPower()/4;
+    curse.setPower(power);
+    curse.setExpiresTime(duration*SCALE_TIME + DUTime.getGameClock());
+    val.addSpellEffect(curse);          
+    desc = val.getDesc() + " is cursed!";
+    ShowEffect(val, 1700, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
+    
+    desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+    maintext.addText(desc);
   }
 
   if (cursed) { PlayCastSound(caster,"sfx_debuff"); }
@@ -4476,37 +4483,39 @@ magic[SPELL_FEAR_LEVEL][SPELL_FEAR_ID].executeSpell = function(caster, infused, 
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
         tgtcount++;
         tgtlist.push(val);
-        if (CheckResist(caster,val,infused,0)) {
-          if (val === PC) {
-            desc = "You resist.";
-            // no X over the PC
-          } else {
-            ShowEffect(val, 700, "X.gif");
-          }       
-        } else {
-          if (val.specials.coward) {
-            desc = val.getDesc() + " was already afraid!";
-          } else {
-            var fear = localFactory.createTile("Fear");
-            var duration = 10 + Dice.roll("1d8") - val.getIntForPower()/4;
-            fear.setPower(1);
-            fear.setExpiresTime(duration*SCALE_TIME + DUTime.getGameClock());
-            val.addSpellEffect(fear);          
-            desc = val.getDesc() + " is afraid!";
-            ShowEffect(val, 1700, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
-          }
-          afeared = 1;
-        }
- 
-        if (desc) {       
-          desc = desc.charAt(0).toUpperCase() + desc.slice(1);
-          maintext.addText(desc);
-        }
       }
     }
   }
   for (let i=0;i<tgtcount;i++) {
-    tgtlist[i].setHitBySpell(caster,Math.max(Math.floor(SPELL_FEAR_LEVEL/tgtcount),1));
+    let val = tgtlist[i];
+    val.setHitBySpell(caster,Math.max(Math.floor(SPELL_FEAR_LEVEL/tgtcount),1));
+    if (CheckResist(caster,val,infused,0)) {
+      if (val === PC) {
+        desc = "You resist.";
+        // no X over the PC
+      } else {
+        ShowEffect(val, 700, "X.gif");
+      }       
+    } else {
+      if (val.specials.coward) {
+        desc = val.getDesc() + " was already afraid!";
+      } else {
+        var fear = localFactory.createTile("Fear");
+        var duration = 10 + Dice.roll("1d8") - val.getIntForPower()/4;
+        fear.setPower(1);
+        fear.setExpiresTime(duration*SCALE_TIME + DUTime.getGameClock());
+        val.addSpellEffect(fear);          
+        desc = val.getDesc() + " is afraid!";
+        ShowEffect(val, 1700, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
+      }
+      afeared = 1;
+    }
+
+    if (desc) {       
+      desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+      maintext.addText(desc);
+    }
+
   }
 
   if (afeared) { PlayCastSound(caster,"sfx_debuff"); } 
@@ -4654,58 +4663,62 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(c
   let npcs = castermap.getNPCsAndPCs();
   let display = getDisplayCenter(PC.getHomeMap(), PC.getx(), PC.gety());
   let npccount = 0;
+  let npclist = [];
   PlayCastSound(caster,"sfx_explosion");
 
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     if (!val.frozenintime && CheckAreEnemies(caster,val)) {
-      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
+      let dist = GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety());
+      if ((dist < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
         npccount++;
+        let npcobj = {npc: val, distance: dist};
+        npclist.push(npcobj);
 //        console.log("Added " + val.getName() + " to npccount.");
       }
     }
   }
   if (!npccount) { resp['fin'] = 1; return resp; }
   let tottgt = npccount;
-  for (let i=0;i<npcs.length;i++) {
-    let val=npcs[i];
-    if (!val.frozenintime && CheckAreEnemies(caster,val)) {
-      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
+  npclist.sort(function(a,b) {
+    if (a.distance < b.distance) { return -1; }
+    else { return 1; }
+  });
+  for (let i=0;i<tottgt;i++) {
+    let val=npclist[i].npc;
 //        console.log("Processing " + val.getName() + " in meteor swarm.");
-        npccount--;
-//        let final = 0;
-//        if (!npccount) { final = 1; }
-        val.setHitBySpell(caster,Math.max(Math.floor(SPELL_METEOR_SWARM_LEVEL/tottgt),1));
-        let tmpdmg = prepareSpellDamage(caster,val,DMG_MEDIUM,"fire",0,DMG_LIGHT);
-        let dmg = tmpdmg.dmg;
-        if (CheckResist(caster,val,infused,0)) {
-          dmg = dmg/2;
-        } 
-        // In theory, it is impossible for targets to be offscreen. Unless maybe a monster is attacking a summoned/charmed ally?
-        let skysourcex = Math.random()*(display.rightedge - display.leftedge +1) + display.leftedge;
-        let skysourcey = display.topedge;
+    npccount--;
+    let final = 0;
+    if (!npccount) { final = 1; }
+    val.setHitBySpell(caster,Math.max(Math.floor(SPELL_METEOR_SWARM_LEVEL/tottgt),1));
+    let tmpdmg = prepareSpellDamage(caster,val,DMG_MEDIUM,"fire",0,DMG_LIGHT);
+    let dmg = tmpdmg.dmg;
+    if (CheckResist(caster,val,infused,0)) {
+      dmg = dmg/2;
+    } 
+    // In theory, it is impossible for targets to be offscreen. Unless maybe a monster is attacking a summoned/charmed ally?
+//    let skysourcex = Math.random()*(display.rightedge - display.leftedge +1) + display.leftedge;
+//    let skysourcey = display.topedge;
         
-        let boltgraphic = {};
-        boltgraphic.graphic = "blasts.gif";
-        boltgraphic.yoffset = 0;
-        boltgraphic.xoffset = 0;
-        boltgraphic.directionalammo = 1;
-        boltgraphic = GetEffectGraphic(caster,val,boltgraphic);
-        let desc = val.getDesc();
-        desc = desc.charAt(0).toUpperCase() + desc.slice(1);
-        let descval = {txt: desc};
+    let boltgraphic = {};
+    boltgraphic.graphic = "blasts.gif";
+    boltgraphic.yoffset = 0;
+    boltgraphic.xoffset = 0;
+    boltgraphic.directionalammo = 1;
+    boltgraphic = GetEffectGraphic(caster,val,boltgraphic);
+    let desc = val.getDesc();
+    desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+    let descval = {txt: desc};
 
-        let sounds = {};
-        let fromcoords = GetCoords(caster.getHomeMap(),caster.getx(), caster.gety());
-        let tocoords = GetCoords(val.getHomeMap(),val.getx(), val.gety());
-        let duration = (Math.pow( Math.pow(val.getx() - caster.getx(), 2) + Math.pow (val.gety() - caster.gety(), 2)  , .5)) * 100;
-        let destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
-        let weapon = localFactory.createTile("SpellWeapon");
-        weapon.dmgtype = "fire";      
-        AnimateEffect({atk:caster, def:val, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:tottgt, retval:descval, dmgtype:"fire", doagain:[]});
-        if (val !== PC) { val.setAggro(1); }
-      }
-    }
+    let sounds = {};
+    let fromcoords = GetCoords(caster.getHomeMap(),caster.getx(), caster.gety());
+    let tocoords = GetCoords(val.getHomeMap(),val.getx(), val.gety());
+    let duration = (Math.pow( Math.pow(val.getx() - caster.getx(), 2) + Math.pow (val.gety() - caster.gety(), 2)  , .5)) * 100;
+    let destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
+    let weapon = localFactory.createTile("SpellWeapon");
+    weapon.dmgtype = "fire";      
+    AnimateEffect({atk:caster, def:val, fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:final, retval:descval, dmgtype:"fire", doagain:[]});
+    if (val !== PC) { val.setAggro(1); }
   }
 
   return resp;
@@ -5164,24 +5177,25 @@ magic[SPELL_CONFLAGRATION_LEVEL][SPELL_CONFLAGRATION_ID].executeSpell = function
     let desc;
     if (!val.frozenintime && CheckAreEnemies(caster,val)) {
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
-        let tmpdmg = prepareSpellDamage(caster,val,DMG_HEAVY,"fire");
-        let dmg = tmpdmg.dmg;
-        if (CheckResist(caster,val,infused,0)) {
-          dmg = dmg/2+1;
-        } 
-        // In theory, it is impossible for targets to be offscreen.
         npccount++;
         npclist.push(val);
-        let desc = val.getDesc();
-        desc = desc.charAt(0).toUpperCase() + desc.slice(1);
-        ShowEffect(val, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
-        if (val !== PC) { val.setAggro(1); }
-        DealandDisplayDamage(val,caster,dmg,"fire");
       }
     }
   }
   for (let i=0;i<npccount;i++) {
-    npclist[i].setHitBySpell(caster,Math.max(Math.floor(SPELL_CONFLAGRATION_LEVEL/npccount),1));
+    let val=npclist[i];
+    val.setHitBySpell(caster,Math.max(Math.floor(SPELL_CONFLAGRATION_LEVEL/npccount),1));
+    let tmpdmg = prepareSpellDamage(caster,val,DMG_HEAVY,"fire");
+    let dmg = tmpdmg.dmg;
+    if (CheckResist(caster,val,infused,0)) {
+      dmg = dmg/2+1;
+    } 
+    // In theory, it is impossible for targets to be offscreen.
+    let desc = val.getDesc();
+    desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+    ShowEffect(val, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
+    if (val !== PC) { val.setAggro(1); }
+    DealandDisplayDamage(val,caster,dmg,"fire");
   }
 
   return resp;
