@@ -2927,45 +2927,50 @@ function CreateRunesPage(selected) {
   statsdiv += "<tr><td width='110'>";
   if (PC.runes.kings) { 
     let sel = "";
+    let outersel = " border-style:inset; border-color:black; border-width: 2px";
     if (selected === 1) { 
       sel = "; color: yellow"; 
+      outersel = "border-style:inset; border-width: 2px; border-color: yellow";
     }
     let opac = "";
     if (PC.getRuneCooldown("kings") > DUTime.getGameClock()) {
       opac = "; opacity: .4";
     }
-   statsdiv += `<div style='width:110;height:110;background-image:url("graphics/runes.png");background-position:0px ${hasvoid}px${opac}'></div><p style='text-align:center${sel}'>The Rune<br />of Kings</p>`;
+   statsdiv += `<div style="${outersel}"><div style='width:106;height:106;background-image:url("graphics/runes.png");background-position:0px ${hasvoid}px${opac}'></div><p style='text-align:center${sel}'>The Rune<br />of Kings</p></div>`;
   }
   statsdiv += "</td><td>";
   if (PC.runes.waves) { 
     let sel = "";
-    if (selected === 2) { sel = "; color: yellow"; }
+    let outersel = " border-style:inset; border-color:black; border-width: 2px";
+    if (selected === 2) { sel = "; color: yellow"; outersel = "border-style:inset; border-width: 2px";}
     let opac = "";
     if (PC.getRuneCooldown("waves") > DUTime.getGameClock()) {
       opac = "; opacity: .4";
     }
-   statsdiv += `<div style='width:110;height:110;background-image:url("graphics/runes.png");background-position:-110px ${hasvoid}px${opac}'></div><p style='text-align:center${sel}'>The Rune<br />of Waves</p>`;
+   statsdiv += `<div style="${outersel}"><div style='width:106;height:106;background-image:url("graphics/runes.png");background-position:-110px ${hasvoid}px${opac}'></div><p style='text-align:center${sel}'>The Rune<br />of Waves</p></div>`;
   }
   statsdiv += "</td><td rowspan='2' style='vertical-align:center'>";
   statsdiv += "</td></tr><tr><td>";
   if (PC.runes.winds) { 
     let sel = "";
-    if (selected === 3) { sel = "; color: yellow"; }
+    let outersel = " border-style:inset; border-color:black; border-width: 2px";
+    if (selected === 3) { sel = "; color: yellow"; outersel = "border-style:inset; border-width: 2px";}
     let opac = "";
     if (PC.getRuneCooldown("winds") > DUTime.getGameClock()) {
       opac = "; opacity: .4";
     }
-    statsdiv += `<div style='width:110;height:110;background-image:url("graphics/runes.png");background-position:-220px ${hasvoid}px${opac}'></div><p style='text-align:center${sel}'>The Rune<br />of Winds</p>`;
+    statsdiv += `<div style="${outersel}"><div style='width:106;height:106;background-image:url("graphics/runes.png");background-position:-220px ${hasvoid}px${opac}'></div><p style='text-align:center${sel}'>The Rune<br />of Winds</p></div>`;
   }
   statsdiv += "</td><td>";
   if (PC.runes.flames) { 
     let sel = "";
-    if (selected === 4) { sel = "; color: yellow"; }
+    let outersel = " border-style:inset; border-color:black; border-width: 2px";
+    if (selected === 4) { sel = "; color: yellow"; outersel = "border-style:inset; border-width: 2px";}
     let opac = "";
     if (PC.getRuneCooldown("flames") > DUTime.getGameClock()) {
       opac = "; opacity: .4";
     }
-   statsdiv += `<div style='width:110;height:110;background-image:url("graphics/runes.png");background-position:-330px ${hasvoid}px${opac}'></div><p style='text-align:center${sel}'>The Rune<br />of Flames</p>`;
+   statsdiv += `<div style="${outersel}"><div style='width:106;height:106;background-image:url("graphics/runes.png");background-position:-330px ${hasvoid}px${opac}'></div><p style='text-align:center${sel}'>The Rune<br />of Flames</p></div>`;
   }
   statsdiv += "</td></tr></table>";
 
