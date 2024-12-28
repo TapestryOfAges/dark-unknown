@@ -4531,7 +4531,7 @@ magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].getLongDesc = function() 
 
 magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Fire and Ice.<br />");
-  let resp = {fin:3};
+  let resp = {fin:1};
   if (!free) {
     let mana = this.getManaCost(infused);
     CastSpellMana(caster,mana);
@@ -4546,54 +4546,91 @@ magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].executeSpell = function(c
   }
 
   PlayCastSound(caster,"sfx_fire_ice");
-  PlayRing(caster,"firering.png", {}, 1, "icering.png", function(center) {
-    let centerx = center.getx();
-    let centery = center.gety();
-    let castermap = center.getHomeMap();
-    for (let i=centerx-1;i<=centerx+1;i++) {
-      for (let j=centery-1;j<=centery+1;j++) {
-        if ((i!==centerx)||(j!==centery)) {
-          let tile = castermap.getTile(i,j);
-          let tgt = tile.getTopVisibleNPC();
-          if (tgt && !tgt.frozenintime) {
-            let tmpdmg = prepareSpellDamage(caster,tgt,DMG_HEAVY,"fire");
-            let dmg = tmpdmg.dmg;
-            if (CheckResist(center,tgt,0,0)) {
-              dmg = Math.floor(dmg/2);
-            }
-            //tgt.dealDamage(dmg,center,"fire");
-            DealandDisplayDamage(tgt,caster,dmg,"fire");
-            if (tgt !== PC) { tgt.setAggro(1); }
-            tgt.setHitBySpell(caster,SPELL_FIRE_AND_ICE_LEVEL);
-          }
+
+  let centerx = caster.getx();
+  let centery = caster.gety();
+  let castermap = caster.getHomeMap();
+  let foelist = [];
+  for (let i=centerx-1;i<=centerx+1;i++) {
+    for (let j=centery-1;j<=centery+1;j++) {
+      if ((i!==centerx)||(j!==centery)) {
+        let tile = castermap.getTile(i,j);
+        let tgt = tile.getTopVisibleNPC();
+        if (tgt && !tgt.frozenintime) {
+          foelist.push(tgt);
         }
       }
     }
-  }, function(center) {
-    let centerx = center.getx();
-    let centery = center.gety();
-    let castermap = center.getHomeMap();
-    for (let i=centerx-1;i<=centerx+1;i++) {
-      for (let j=centery-1;j<=centery+1;j++) {
-        if ((i!==centerx)||(j!==centery)) {
-          let tile = castermap.getTile(i,j);
-          let tgt = tile.getTopVisibleNPC();
-          if (tgt) {
-            if (!CheckResist(center,tgt,0,0)) {
-              let freeze = localFactory.createTile("Frozen");
-              freeze.setPower(1);
-              freeze.setExpiresTime(Dice.roll("1d3+1")*SCALE_TIME + DUTime.getGameClock());
-              tgt.addSpellEffect(freeze);
-              let desc = tgt.getDesc() + " is frozen!";
-              maintext.addText(desc);
-            }
-          }
-        }
-      }
-    }    
-  });
-
+  }
+  for (let i=0;i<foelist.length;i++) {
+    // figure out graphic
+    let tgt = foelist[i];
+    let tmpdmg = prepareSpellDamage(caster,tgt,DMG_HEAVY,"fire");
+    let dmg = tmpdmg.dmg;
+    if (CheckResist(center,tgt,0,0)) {
+      dmg = Math.floor(dmg/2);
+    }
+    DealandDisplayDamage(tgt,caster,dmg,"fire");
+    if (tgt !== PC) { tgt.setAggro(1); }
+    tgt.setHitBySpell(caster,Math.max(Math.floor(SPELL_FIRE_AND_ICE_LEVEL/foelist.length),1));
+    if (!CheckResist(caster,tgt,0,0)) {
+      let freeze = localFactory.createTile("Frozen");
+      freeze.setPower(1);
+      freeze.setExpiresTime(Dice.roll("1d3+1")*SCALE_TIME + DUTime.getGameClock());
+      tgt.addSpellEffect(freeze);
+      let desc = tgt.getDesc() + " is frozen!";
+      maintext.addText(desc);
+    }
+  }
+  
   return resp;
+
+//  PlayRing(caster,"firering.png", {}, 1, "icering.png", function(center) {
+//    let centerx = center.getx();
+//    let centery = center.gety();
+//    let castermap = center.getHomeMap();
+//    for (let i=centerx-1;i<=centerx+1;i++) {
+//      for (let j=centery-1;j<=centery+1;j++) {
+//        if ((i!==centerx)||(j!==centery)) {
+//          let tile = castermap.getTile(i,j);
+//          let tgt = tile.getTopVisibleNPC();
+//          if (tgt && !tgt.frozenintime) {
+//            let tmpdmg = prepareSpellDamage(caster,tgt,DMG_HEAVY,"fire");
+//            let dmg = tmpdmg.dmg;
+//            if (CheckResist(center,tgt,0,0)) {
+//              dmg = Math.floor(dmg/2);
+//            }
+//            DealandDisplayDamage(tgt,caster,dmg,"fire");
+//            if (tgt !== PC) { tgt.setAggro(1); }
+//            tgt.setHitBySpell(caster,SPELL_FIRE_AND_ICE_LEVEL);
+//          }
+//        }
+//      }
+//    }
+//  }, function(center) {
+//    let centerx = center.getx();
+//    let centery = center.gety();
+//    let castermap = center.getHomeMap();
+//    for (let i=centerx-1;i<=centerx+1;i++) {
+//      for (let j=centery-1;j<=centery+1;j++) {
+//        if ((i!==centerx)||(j!==centery)) {
+//          let tile = castermap.getTile(i,j);
+//          let tgt = tile.getTopVisibleNPC();
+//          if (tgt) {
+//            if (!CheckResist(center,tgt,0,0)) {
+//              let freeze = localFactory.createTile("Frozen");
+//              freeze.setPower(1);
+//              freeze.setExpiresTime(Dice.roll("1d3+1")*SCALE_TIME + DUTime.getGameClock());
+//              tgt.addSpellEffect(freeze);
+//              let desc = tgt.getDesc() + " is frozen!";
+//              maintext.addText(desc);
+//            }
+//          }
+//        }
+//     }
+//    }    
+//  });
+
 }
 
 // Invulnerability
