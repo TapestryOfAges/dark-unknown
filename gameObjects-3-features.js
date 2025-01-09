@@ -10362,17 +10362,26 @@ function ResetRoyalPuzzle(where) {
 }
 
 function SunBeaconTile() {
-  // need to update WORKING HERE
   this.name = "SunBeacon";
   this.graphic = "static.gif";
-  this.spritexoffset = -5*32;
-  this.spriteyoffset = -96*32;
+  this.spritexoffset = 0*32;
+  this.spriteyoffset = -178*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "beacon of sunlight";
   
   LightEmitting.call(this, 2);
+
+  ManualAnimation.call(this, { animstart: 0,
+    animlength: 5,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
+
 }
 SunBeaconTile.prototype = new FeatureObject();
 
