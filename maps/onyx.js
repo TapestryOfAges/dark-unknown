@@ -261,8 +261,8 @@ mappages["onyx"].longdesc = `Against the backdrop of the tumultuous sea, the sma
 mappages["onyx"].music = 'Dark Towne';
 mappages["onyx"].savename = `Onyx`;
 mappages["onyx"].exitmap = 'darkunknown';
-mappages["onyx"].exitx = '50';
-mappages["onyx"].exity = '117';
+mappages["onyx"].exitx = '16';
+mappages["onyx"].exity = '107';
 mappages["onyx"].wraps = '';
 mappages["onyx"].enterx = '1';
 mappages["onyx"].entery = '15';
@@ -593,7 +593,7 @@ mappages["onyxtunnel"].terrain[62] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK 
 mappages["onyxtunnel"].terrain[63] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 
 mappages["onyxtunnel"].features = [];
-mappages["onyxtunnel"].features[0] = {name : 'LadderUp', x : 11, y : 59, entermap : 'darkunknown', enterx : 64, entery : 120};
+mappages["onyxtunnel"].features[0] = {name : 'LadderUp', x : 11, y : 59, entermap : 'darkunknown', enterx : 16, entery : 108};
 mappages["onyxtunnel"].features[1] = {name : 'LadderUp', x : 18, y : 5, entermap : 'onyx', enterx : 28, entery : 6};
 
 
