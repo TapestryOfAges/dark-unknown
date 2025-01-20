@@ -991,3 +991,75 @@ mappages["cragcave"].returny = '125';
 mappages["cragcave"].returninfused = '0';
 mappages["cragcave"].linkedMaps = [""];
 mappages["cragcave"].editorLabels = '{}';
+
+// MAP BEGINS HERE
+mappages["northcave"] = {};
+mappages["northcave"].terrain = [];
+ mappages["northcave"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["northcave"].terrain[1] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["northcave"].terrain[2] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["northcave"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["northcave"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["northcave"].terrain[5] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["northcave"].terrain[6] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["northcave"].terrain[7] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["northcave"].terrain[8] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["northcave"].terrain[9] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["northcave"].terrain[10] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK BK';
+mappages["northcave"].terrain[11] = 'BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK';
+mappages["northcave"].terrain[12] = 'BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK';
+mappages["northcave"].terrain[13] = 'BK BK BK BK BK BK cw cw cw cf cf cf cf cw cw cw cw cw cf cf cf cw cw BK BK BK BK BK BK BK';
+mappages["northcave"].terrain[14] = 'BK BK BK BK BK cw cw cf cf cf cf cw cw cw BK BK BK cw cw cf cf cf cw BK BK BK BK BK BK BK';
+mappages["northcave"].terrain[15] = 'cw cw cw cw cw cw cf cf cf cf cw cw BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK';
+mappages["northcave"].terrain[16] = 'cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK cw cw cf cf cw cw BK BK BK BK BK BK';
+mappages["northcave"].terrain[17] = 'cf cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK';
+mappages["northcave"].terrain[18] = 'cw cw cf cf cw cw cw cw BK BK BK BK cw cw cw cw BK BK BK cw cf cf cf cw BK BK BK BK BK BK';
+mappages["northcave"].terrain[19] = 'BK cw cw cw cw BK BK BK BK BK BK cw cw cf cf cw BK BK cw cw cf cf cw cw BK BK BK BK BK BK';
+mappages["northcave"].terrain[20] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cw BK BK cw cf cf cf cw BK BK BK BK BK BK BK';
+mappages["northcave"].terrain[21] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw cw BK cw cw cf cf cw cw BK BK BK BK BK BK BK';
+mappages["northcave"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK cw cw cf cf cw cw BK BK BK BK BK BK BK BK';
+mappages["northcave"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cw cw cw cw cf cf cw cw BK BK BK BK BK BK BK BK BK';
+mappages["northcave"].terrain[24] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK';
+mappages["northcave"].terrain[25] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK';
+mappages["northcave"].terrain[26] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK BK BK';
+mappages["northcave"].terrain[27] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["northcave"].terrain[28] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["northcave"].terrain[29] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+
+mappages["northcave"].features = [];
+mappages["northcave"].features[0] = {name : 'OrbExperience', x : 13, y : 20};
+
+
+mappages["northcave"].npcs = [];
+mappages["northcave"].npcs[0] = {name : 'GazerNPC', x : 12, y : 25, skintone: 1};
+mappages["northcave"].npcs[1] = {name : 'GazerNPC', x : 19, y : 21, skintone: 1};
+mappages["northcave"].npcs[2] = {name : 'EttinNPC', x : 8, y : 15, skintone: 1};
+mappages["northcave"].npcs[3] = {name : 'EttinNPC', x : 15, y : 11, skintone: 1};
+
+mappages["northcave"].desc = "A cave";
+mappages["northcave"].longdesc = ``;
+mappages["northcave"].music = 'Cave';
+mappages["northcave"].savename = `A cave`;
+mappages["northcave"].exitmap = 'ellusus';
+mappages["northcave"].exitx = '124';
+mappages["northcave"].exity = '10';
+mappages["northcave"].wraps = '';
+mappages["northcave"].enterx = '1';
+mappages["northcave"].entery = '16';
+mappages["northcave"].seeBelow = '';
+mappages["northcave"].lightLevel = 'dark';
+mappages["northcave"].alwaysRemember = '0';
+mappages["northcave"].scale = '1';
+mappages["northcave"].underground = '1';
+mappages["northcave"].undergroundDesc = '';
+mappages["northcave"].enterscript = '';
+mappages["northcave"].entertestscript = '';
+mappages["northcave"].exitscript = '';
+mappages["northcave"].exittestscript = '';
+mappages["northcave"].returnmap = 'ellusus';
+mappages["northcave"].returnx = '124';
+mappages["northcave"].returny = '10';
+mappages["northcave"].returninfused = '0';
+mappages["northcave"].linkedMaps = [""];
+mappages["northcave"].editorLabels = '{}';
+// MAP ENDS HERE
