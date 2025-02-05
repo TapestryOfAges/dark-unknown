@@ -905,30 +905,35 @@ ais.CourierPath = function(who) {
         } else { DebugWrite("ai","Didn't come out of BDC- PC in the way."); }
       } else { DebugWrite("ai","Didn't come out of BDC- NPC in the way."); }
     } else {
-      let tile = whomap.getTile(63,119);
+//      let tile = whomap.getTile(63,119);
+      let tile = whomap.getTile(15,107);
       let npcs = tile.getNPCs();
       if (!npcs.length) {
         let pcs = tile.getPCs();
         if (!pcs.length) {
-          whomap.moveThing(63,119,who);
+//          whomap.moveThing(63,119,who);
+          whomap.moveThing(15,107,who);
           who.direction = "n";
           DebugWrite("ai","Exiting Onyx, by which I mean teleporting in from the corner.");
         } else { DebugWrite("ai","Didn't come out of Onyx- PC in the way."); }
       } else { DebugWrite("ai","Didn't come out of Onyx- NPC in the way."); }
       
     }
-  } else if ((who.getx()===64) && (who.gety()===119)) {
+//  } else if ((who.getx()===64) && (who.gety()===119)) {
+  } else if ((who.getx()===15) && (who.gety()===107)) {
     whomap.moveThing(0,0,who);
     DebugWrite("ai", "Entering Onyx, by which I mean teleporting to the corner.");
-    DrawMainFrame("one",whomap,64,119);
-  } else if ((who.getx()===49) && (who.gety()===90)) {
+//    DrawMainFrame("one",whomap,64,119);
+    DrawMainFrame("one",whomap,15,107);
+  } else if ((who.getx()===48) && (who.gety()===90)) {
     whomap.moveThing(0,0,who);
     DebugWrite("ai", "Entering BDC, by which I mean teleporting to the corner.");
-    DrawMainFrame("one",whomap,49,90);
+    DrawMainFrame("one",whomap,48,90);
   } else {
     let dest = [];
-    if (who.direction === "n") { dest[0]=49; dest[1]=90; }
-    else { dest[0]=64;dest[1]=119; }
+    if (who.direction === "n") { dest[0]=48; dest[1]=90; }
+//    else { dest[0]=64;dest[1]=119; }
+    else { dest[0]=15;dest[1]=107; }
     let path = whomap.getPath(who.getx(),who.gety(),dest[0],dest[1],who.getMovetype());
     path.shift();
     if (path.length) {
