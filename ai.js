@@ -4103,7 +4103,7 @@ ais.PatrolNP = function(who) {
 
 
 ais.PatrolCL = function(who) {
-  let points = [[108,52],[81,25]];
+  let points = [[108,52],[80,43]];
   return ais.GuardPatrol(who,points);
 }
 
@@ -4113,7 +4113,7 @@ ais.PatrolB = function(who) {
 }
 
 ais.PatrolS = function(who) {
-  let points = [[109,53],[121,101]];
+  let points = [[109,53],[111,100]];
   return ais.GuardPatrol(who,points);
 }
 
