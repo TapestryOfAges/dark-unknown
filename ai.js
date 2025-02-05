@@ -4092,14 +4092,15 @@ ais.Darkness = function(who) {
 }
 
 ais.PatrolOH = function(who) {
-  let points = [[52,65],[62,118]];
+  let points = [[52,65],[14,107]];
   return ais.GuardPatrol(who,points);
 }
 
 ais.PatrolNP = function(who) {
-  let points = [[42,29],[71,75]];
+  let points = [[59,20],[65,71]];
   return ais.GuardPatrol(who,points);
 }
+
 
 ais.PatrolCL = function(who) {
   let points = [[108,52],[81,25]];
