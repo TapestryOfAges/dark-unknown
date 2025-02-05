@@ -100,11 +100,11 @@ GameStateData.prototype.loadTmp = function() {
 
 	PC.setPCName("Goldenflame");
 	let themap;
-	if (maps.getMap("darkunknown")) {
-	  themap = maps.getMap("darkunknown");
+	if (maps.getMap("ellusus")) {
+	  themap = maps.getMap("ellusus");
 	} else {
 	  themap = new GameMap();
-    themap = maps.addMap("darkunknown");
+    themap = maps.addMap("ellusus");
 	}
   let anothermap = new GameMap();
   anothermap = maps.addMap("pitdespair1");

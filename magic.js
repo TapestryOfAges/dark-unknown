@@ -1790,7 +1790,7 @@ magic[SPELL_RETURN_LEVEL][SPELL_RETURN_ID].getLongDesc = function() {
     let dest = PC.getHomeMap().getReturnMap();
     let destx = PC.getHomeMap().getReturnx();
     let desty = PC.getHomeMap().getReturny();
-    if ((dest === "darkunknown") && (destx === 69) && (desty === 74)) {
+    if ((dest === "ellusus") && (destx === 69) && (desty === 74)) {
       return "Transports you to Castle dea Olympus.";
     } else if (PC.getHomeMap().underground) {
       return "Brings you to the surface.";
@@ -1825,8 +1825,8 @@ magic[SPELL_RETURN_LEVEL][SPELL_RETURN_ID].executeSpell = function(caster, infus
 
   if (castermap.getName().indexOf("combat") > -1) {
     let fighton = castermap.getExitToMap();
-    if ((fighton === "darkunknown") || (infused)) {
-      returndest.map = "darkunknown";
+    if ((fighton === "ellusus") || (infused)) {
+      returndest.map = "ellusus";
       returndest.x = 69;
       returndest.y = 74;
     }

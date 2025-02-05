@@ -6287,7 +6287,7 @@ CursedMirrorTile.prototype.activate = function() {
 CursedMirrorTile.prototype.onBreak = function(who) {
   // generate Imp and place on broken mirror
 
-  let world = maps.getMap("darkunknown");
+  let world = maps.getMap("ellusus");
   let feas = world.features.getAll();
   for (let i=0;i<feas.length;i++) {
     if (feas[i].getName() === "HotelPheran") {
@@ -6437,7 +6437,7 @@ CursedMirrorWithImpTile.prototype.getNPCName = function() {
 CursedMirrorWithImpTile.prototype.onBreak = function(who) {
   // generate Imp and place on broken mirror
 
-  let world = maps.getMap("darkunknown");
+  let world = maps.getMap("ellusus");
   let feas = world.features.getAll();
   for (let i=0;i<feas.length;i++) {
     if (feas[i].getName() === "HotelPheran") {
@@ -7046,7 +7046,7 @@ WhirlpoolTile.prototype.walkon = function(walker) {
   if (walker === PC) {
     let themap = this.getHomeMap();
     DUPlaySound("sfx_whirlpool_travel");
-    if (themap.getName() === "darkunknown") {
+    if (themap.getName() === "ellusus") {
       let newmap = maps.addMap("underworld");
       MoveBetweenMaps(walker,themap,newmap,70,106);
     } else if (PC.hasOwnProperty("whirlx")) {
@@ -7057,7 +7057,7 @@ WhirlpoolTile.prototype.walkon = function(walker) {
       delete PC.whirly;
       delete PC.whirlmap;
     } else {
-      let newmap = maps.addMap("darkunknown");
+      let newmap = maps.addMap("ellusus");
       MoveBetweenMaps(walker,themap,newmap,69,80);
     }
     DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
@@ -11797,7 +11797,7 @@ MoongateTile.prototype.walkon = function(who) {
     DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
     if (who === PC) { 
       DUPlaySound("sfx_teleport"); 
-      if ((this.getHomeMap().getName() === "darkunknown") && (this.destmap === "skypalace")) { this.getHomeMap().deleteThing(this); }
+      if ((this.getHomeMap().getName() === "ellusus") && (this.destmap === "skypalace")) { this.getHomeMap().deleteThing(this); }
       return {overridedraw: 1}; 
     }
   } else if (this.destmap && this.destx && this.desty) {
@@ -12505,7 +12505,7 @@ function CourierPouchTile() {
 CourierPouchTile.prototype = new ItemObject();
 
 CourierPouchTile.prototype.onGet = function(who) {
-  let themap = maps.getMap("darkunknown");
+  let themap = maps.getMap("ellusus");
   let npcs = themap.npcs.getAll();
   for (let i=0;i<npcs.length;i++) {
     if (npcs[i].getName() === "CourierGroup") {

@@ -288,7 +288,7 @@ OnDeathFuncs["Patrol"] = function(who) {
 OnDeathFuncs["oliviaDead"] = function(who) {
   //deal with temporarily removing the cart
   //make its next schedule index point to "move to limbo"
-  let worldmap = maps.getMap("darkunknown");
+  let worldmap = maps.getMap("ellusus");
   let npcs = worldmap.npcs.getAll();
   for (let i=0;i<npcs.length;i++) {
     if (npcs[i].getName() === "HorseAndCartNPC") {
@@ -312,7 +312,7 @@ OnDeathFuncs["patrolDead"] = function(who) {
     if (npcs[i].getName().includes("Guard")) { guardsleft = 1; }
   }
   if (!guardsleft) {
-    let worldmap = maps.getMap("darkunknown");
+    let worldmap = maps.getMap("ellusus");
     let patrol = worldmap.getTile(PC.lastAttackedx,PC.lastAttackedy).getTopNPC();
     let spawner = patrol.getSpawnedBy();
     if (spawner) {
@@ -396,7 +396,7 @@ OnDeathFuncs["scouring"] = function(who) {
     if ((npcs[i].getName() === "DaemonNPC") && (npcs[i] !== who)) { return; }   // this wasn't the last daemon, keep on
   }
   // all the Daemons are dead!
-  let world = maps.getMap("darkunknown");
+  let world = maps.getMap("ellusus");
   let worldfeas = world.features.getAll();
   for (let i=0;i<worldfeas.length;i++) {
     let fea = worldfeas[i];

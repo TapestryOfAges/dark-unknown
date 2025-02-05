@@ -260,7 +260,7 @@ mappages["onyx"].desc = "The Towne of Onyx";
 mappages["onyx"].longdesc = `Against the backdrop of the tumultuous sea, the small rebellious city of Onyx stands before you. The view of the city is dominated by its outer walls, and a tall central tower.`;
 mappages["onyx"].music = 'Dark Towne';
 mappages["onyx"].savename = `Onyx`;
-mappages["onyx"].exitmap = 'darkunknown';
+mappages["onyx"].exitmap = 'ellusus';
 mappages["onyx"].exitx = '16';
 mappages["onyx"].exity = '107';
 mappages["onyx"].wraps = '';
@@ -276,7 +276,7 @@ mappages["onyx"].enterscript = '';
 mappages["onyx"].entertestscript = '';
 mappages["onyx"].exitscript = '';
 mappages["onyx"].exittestscript = '';
-mappages["onyx"].returnmap = 'darkunknown';
+mappages["onyx"].returnmap = 'ellusus';
 mappages["onyx"].returnx = '69';
 mappages["onyx"].returny = '74';
 mappages["onyx"].returninfused = '0';
@@ -417,7 +417,7 @@ mappages["onyx2"].desc = "The Towne of Onyx";
 mappages["onyx2"].longdesc = ``;
 mappages["onyx2"].music = 'Dark Towne';
 mappages["onyx2"].savename = `Onyx`;
-mappages["onyx2"].exitmap = 'darkunknown';
+mappages["onyx2"].exitmap = 'ellusus';
 mappages["onyx2"].exitx = '50';
 mappages["onyx2"].exity = '117';
 mappages["onyx2"].wraps = '';
@@ -433,7 +433,7 @@ mappages["onyx2"].enterscript = '';
 mappages["onyx2"].entertestscript = '';
 mappages["onyx2"].exitscript = '';
 mappages["onyx2"].exittestscript = '';
-mappages["onyx2"].returnmap = 'darkunknown';
+mappages["onyx2"].returnmap = 'ellusus';
 mappages["onyx2"].returnx = '69';
 mappages["onyx2"].returny = '74';
 mappages["onyx2"].returninfused = '0';
@@ -500,7 +500,7 @@ mappages["onyx3"].desc = "The Towne of Onyx";
 mappages["onyx3"].longdesc = ``;
 mappages["onyx3"].music = 'Dark Towne';
 mappages["onyx3"].savename = `Onyx`;
-mappages["onyx3"].exitmap = 'darkunknown';
+mappages["onyx3"].exitmap = 'ellusus';
 mappages["onyx3"].exitx = '50';
 mappages["onyx3"].exity = '117';
 mappages["onyx3"].wraps = '';
@@ -516,7 +516,7 @@ mappages["onyx3"].enterscript = '';
 mappages["onyx3"].entertestscript = '';
 mappages["onyx3"].exitscript = '';
 mappages["onyx3"].exittestscript = '';
-mappages["onyx3"].returnmap = 'darkunknown';
+mappages["onyx3"].returnmap = 'ellusus';
 mappages["onyx3"].returnx = '69';
 mappages["onyx3"].returny = '74';
 mappages["onyx3"].returninfused = '0';
@@ -593,7 +593,7 @@ mappages["onyxtunnel"].terrain[62] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK 
 mappages["onyxtunnel"].terrain[63] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 
 mappages["onyxtunnel"].features = [];
-mappages["onyxtunnel"].features[0] = {name : 'LadderUp', x : 11, y : 59, entermap : 'darkunknown', enterx : 16, entery : 108};
+mappages["onyxtunnel"].features[0] = {name : 'LadderUp', x : 11, y : 59, entermap : 'ellusus', enterx : 16, entery : 108};
 mappages["onyxtunnel"].features[1] = {name : 'LadderUp', x : 18, y : 5, entermap : 'onyx', enterx : 28, entery : 6};
 
 
@@ -603,7 +603,7 @@ mappages["onyxtunnel"].desc = "Tunnel Under Onyx";
 mappages["onyxtunnel"].longdesc = ``;
 mappages["onyxtunnel"].music = 'Cave';
 mappages["onyxtunnel"].savename = `Onyx Tunnel`;
-mappages["onyxtunnel"].exitmap = 'darkunknown';
+mappages["onyxtunnel"].exitmap = 'ellusus';
 mappages["onyxtunnel"].exitx = '64';
 mappages["onyxtunnel"].exity = '120';
 mappages["onyxtunnel"].wraps = '';
@@ -619,7 +619,7 @@ mappages["onyxtunnel"].enterscript = '';
 mappages["onyxtunnel"].entertestscript = '';
 mappages["onyxtunnel"].exitscript = 'close_tree';
 mappages["onyxtunnel"].exittestscript = '';
-mappages["onyxtunnel"].returnmap = 'darkunknown';
+mappages["onyxtunnel"].returnmap = 'ellusus';
 mappages["onyxtunnel"].returnx = '64';
 mappages["onyxtunnel"].returny = '120';
 mappages["onyxtunnel"].returninfused = '0';
@@ -628,7 +628,7 @@ mappages["onyxtunnel"].editorLabels = '{}';
 
 mappages["onyxtunnel"].close_tree = function(mapref) {
   mapref.Exit = function(ewho,etomap,efromx,efromy,etox,etoy) {
-    if (etomap.getName() === "darkunknown") {
+    if (etomap.getName() === "ellusus") {
       maintext.delayedAddText("You emerge from the trunk of a hollow tree. The opening swings shut behind you.");
       return 1;
     }

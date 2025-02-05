@@ -38,7 +38,7 @@ mappages["fulcrum1"].terrain[31] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK
 
 mappages["fulcrum1"].features = [];
 mappages["fulcrum1"].features[0] = {name : 'GreyDoorway', x : 16, y : 14};
-mappages["fulcrum1"].features[1] = {name : 'LadderUp', x : 16, y : 18, entermap : 'darkunknown', enterx : 69, entery : 96};
+mappages["fulcrum1"].features[1] = {name : 'LadderUp', x : 16, y : 18, entermap : 'ellusus', enterx : 69, entery : 96};
 
 
 mappages["fulcrum1"].npcs = [];
@@ -47,7 +47,7 @@ mappages["fulcrum1"].desc = "The Fulcrum";
 mappages["fulcrum1"].longdesc = ``;
 mappages["fulcrum1"].music = 'Dungeon';
 mappages["fulcrum1"].savename = `The Fulcrum`;
-mappages["fulcrum1"].exitmap = 'darkunknown';
+mappages["fulcrum1"].exitmap = 'ellusus';
 mappages["fulcrum1"].exitx = '83';
 mappages["fulcrum1"].exity = '90';
 mappages["fulcrum1"].wraps = '';
@@ -63,7 +63,7 @@ mappages["fulcrum1"].enterscript = '';
 mappages["fulcrum1"].entertestscript = '';
 mappages["fulcrum1"].exitscript = '';
 mappages["fulcrum1"].exittestscript = '';
-mappages["fulcrum1"].returnmap = 'darkunknown';
+mappages["fulcrum1"].returnmap = 'ellusus';
 mappages["fulcrum1"].returnx = '83';
 mappages["fulcrum1"].returny = '90';
 mappages["fulcrum1"].returninfused = '0';

@@ -754,7 +754,7 @@ OnConvTriggers["knows_arlan"] = function(speaker,keyword) {
 }
 
 OnConvTriggers["start_courier"] = function(speaker,keyword) {
-  let worldmap = maps.getMap("darkunknown");
+  let worldmap = maps.getMap("ellusus");
   let npcs = worldmap.npcs.getAll();
   let courierexists = 0;
   for (let i=0;i<npcs.length;i++) {
@@ -926,7 +926,7 @@ OnConvTriggers["rebuild_decide"] = function(speaker,keyword) {
 
 OnConvTriggers["rebuild_poverty"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("rebuild_decide");
-  let dumap = maps.getMap("darkunknown");
+  let dumap = maps.getMap("ellusus");
   let feas = dumap.features.getAll();
   for (let i=0;i<feas.length;i++) {
     if (feas[i].getDesc() === "Towne of Poverty") {
@@ -937,7 +937,7 @@ OnConvTriggers["rebuild_poverty"] = function(speaker,keyword) {
 
 OnConvTriggers["rebuild_no"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("rebuild_decide");
-  let dumap = maps.getMap("darkunknown");
+  let dumap = maps.getMap("ellusus");
   
   // The guards turn out to fight a lot of enemies, let's try not retuning the spawners as well
 //  let feas = dumap.features.getAll();

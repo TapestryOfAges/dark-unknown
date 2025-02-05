@@ -1265,7 +1265,7 @@ function PerformRuneChoice() {
     DUPlaySound("sfx_earthquake");
     let used = 0;
 
-    if (themap.getName() === "darkunknown") {
+    if (themap.getName() === "ellusus") {
       if (((PC.getx() === 27) && (PC.gety() === 28)) || ((PC.getx() === 26) && (PC.gety() === 29)) || ((PC.getx() === 28) && (PC.gety() === 29)) || ((PC.getx() >= 25) && (PC.getx() <= 28) && (PC.gety() === 30)) || ((PC.getx() >=25) && (PC.getx() <= 27) && (PC.gety() === 31))) {
         // open entrance to grotto
         let cave = localFactory.createTile("Cave");
@@ -1383,8 +1383,8 @@ function PerformRuneChoice() {
           wp = 1;
         }
       }
-      if (!wp && (themap.getName() !== "darkunknown")) {
-        let worldmap = maps.getMap("darkunknown");
+      if (!wp && (themap.getName() !== "ellusus")) {
+        let worldmap = maps.getMap("ellusus");
         feas = worldmap.features.getAll();
         for (let i=0;i<feas.length;i++) {
           if (feas[i].getName() === "Whirlpool") {

@@ -934,7 +934,7 @@ function SaveChar() {
   PC.makeLayers();
   PC.skintone = nuavskin[avatarselect.x];
   
-  themap = maps.addMap("darkunknown");
+  themap = maps.addMap("ellusus");
   maps.addMap("ellusus_limbo");
   maps.addMap("underworld");
 

@@ -1940,7 +1940,7 @@ ScouringBeldskaeTile.prototype.applyEffect = function(silent) {
   let applytime = DUTime.getGameClock();
   this.expiresTime = applytime + 300;
 
-  let mainmap = maps.getMap("darkunknown");
+  let mainmap = maps.getMap("ellusus");
   let fea = mainmap.features.getAll();
   for (let i=0;i<fea.length;i++){
     if ((fea[i].getName() === "Towne2") && (fea[i].getEnterMap().entermap === "beldskae")) {
@@ -1966,7 +1966,7 @@ ScouringBeldskaeTile.prototype.endEffect = function(silent) {
   who.getHomeMap().deleteThing(who);
   DUTime.removeEntityFrom(who); 
 
-  let mainmap = maps.getMap("darkunknown");
+  let mainmap = maps.getMap("ellusus");
   let fea = mainmap.features.getAll();
   for (let i=0;i<fea.length;i++){
     if (fea[i].getEnterMap) {

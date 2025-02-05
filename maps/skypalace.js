@@ -253,7 +253,7 @@ mappages["skypalace"].enterscript = 'entersky';
 mappages["skypalace"].entertestscript = '';
 mappages["skypalace"].exitscript = '';
 mappages["skypalace"].exittestscript = '';
-mappages["skypalace"].returnmap = 'darkunknown';
+mappages["skypalace"].returnmap = 'ellusus';
 mappages["skypalace"].returnx = '69';
 mappages["skypalace"].returny = '74';
 mappages["skypalace"].returninfused = '0';
@@ -427,7 +427,7 @@ mappages["skypalace2"].enterscript = 'entersky';
 mappages["skypalace2"].entertestscript = '';
 mappages["skypalace2"].exitscript = '';
 mappages["skypalace2"].exittestscript = '';
-mappages["skypalace2"].returnmap = 'darkunknown';
+mappages["skypalace2"].returnmap = 'ellusus';
 mappages["skypalace2"].returnx = '69';
 mappages["skypalace2"].returny = '74';
 mappages["skypalace2"].returninfused = '0';
@@ -445,7 +445,7 @@ mappages["skypalace2"].entersky = function(mapref) {
       
       var gateacre = this.getTile(11,12);
       var gate = gateacre.getTopFeature();
-      gate.destmap = "darkunknown";
+      gate.destmap = "ellusus";
       gate.destx = 100;
       gate.desty = 57;
       

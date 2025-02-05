@@ -69,7 +69,7 @@ mappages["grotto"].terrain[62] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK B
 mappages["grotto"].terrain[63] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 
 mappages["grotto"].features = [];
-mappages["grotto"].features[0] = {name : 'LadderUp', x : 22, y : 53, entermap : 'darkunknown', enterx : 27, entery : 30};
+mappages["grotto"].features[0] = {name : 'LadderUp', x : 22, y : 53, entermap : 'ellusus', enterx : 27, entery : 30};
 mappages["grotto"].features[1] = {name : 'GrottoLeverOff', x : 15, y : 22};
 mappages["grotto"].features[2] = {name : 'Chest', x : 40, y : 43, locked : 0, lootgroup : 'mostlygold', lootedid : 'grot5'};
 mappages["grotto"].features[3] = {name : 'Chest', x : 41, y : 43, locked : 0, lootgroup : 'mostlygold', lootedid : 'grot6'};
@@ -142,7 +142,7 @@ mappages["grotto"].desc = "Underwater Grotto";
 mappages["grotto"].longdesc = `You carefully pick your way down into the cave and to the waters under the earth. Here and there, islands of rock emerge from the waters. You feel the Rune of Earth pulsing in your skin, with the rhythm of the subtle waves.`;
 mappages["grotto"].music = 'Cave';
 mappages["grotto"].savename = `Grotto`;
-mappages["grotto"].exitmap = 'darkunknown';
+mappages["grotto"].exitmap = 'ellusus';
 mappages["grotto"].exitx = '27';
 mappages["grotto"].exity = '30';
 mappages["grotto"].wraps = '';
@@ -158,7 +158,7 @@ mappages["grotto"].enterscript = '';
 mappages["grotto"].entertestscript = '';
 mappages["grotto"].exitscript = '';
 mappages["grotto"].exittestscript = '';
-mappages["grotto"].returnmap = 'darkunknown';
+mappages["grotto"].returnmap = 'ellusus';
 mappages["grotto"].returnx = '27';
 mappages["grotto"].returny = '30';
 mappages["grotto"].returninfused = '0';
@@ -377,7 +377,7 @@ mappages["grotto2"].desc = "Underwater Grotto";
 mappages["grotto2"].longdesc = ``;
 mappages["grotto2"].music = 'Cave';
 mappages["grotto2"].savename = `Grotto`;
-mappages["grotto2"].exitmap = 'darkunknown';
+mappages["grotto2"].exitmap = 'ellusus';
 mappages["grotto2"].exitx = '27';
 mappages["grotto2"].exity = '30';
 mappages["grotto2"].wraps = '';
@@ -393,7 +393,7 @@ mappages["grotto2"].enterscript = '';
 mappages["grotto2"].entertestscript = '';
 mappages["grotto2"].exitscript = '';
 mappages["grotto2"].exittestscript = '';
-mappages["grotto2"].returnmap = 'darkunknown';
+mappages["grotto2"].returnmap = 'ellusus';
 mappages["grotto2"].returnx = '27';
 mappages["grotto2"].returny = '30';
 mappages["grotto2"].returninfused = '0';
@@ -477,7 +477,7 @@ mappages["grotto2"].onload = function(mapref) {
     monster.setSpawnedBy(spawn);
 
     let tele = mapref.getTile(118,46).getTopFeature();
-    tele.setDestination({map: "darkunknown", x: 27, y: 30}) ;
+    tele.setDestination({map: "ellusus", x: 27, y: 30}) ;
   }
 }
 
@@ -509,7 +509,7 @@ mappages["undergrotto"].npcs = [];
 mappages["undergrotto"].desc = "Underwater Grotto";
 mappages["undergrotto"].music = 'Cave';
 mappages["undergrotto"].savename = "Grotto";
-mappages["undergrotto"].exitmap = 'darkunknown';
+mappages["undergrotto"].exitmap = 'ellusus';
 mappages["undergrotto"].exitx = '27';
 mappages["undergrotto"].exity = '30';
 mappages["undergrotto"].wraps = 'None';
@@ -523,7 +523,7 @@ mappages["undergrotto"].enterscript = '';
 mappages["undergrotto"].entertestscript = '';
 mappages["undergrotto"].exitscript = '';
 mappages["undergrotto"].exittestscript = '';
-mappages["undergrotto"].returnmap = 'darkunknown';
+mappages["undergrotto"].returnmap = 'ellusus';
 mappages["undergrotto"].returnx = '27';
 mappages["undergrotto"].returny = '30';
 mappages["undergrotto"].returninfused = '0';

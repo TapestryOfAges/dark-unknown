@@ -747,12 +747,12 @@ function GameMap() {
   this.longdesc = "";
   this.music = "";
   this.exitTo = {};
-  this.exitTo.mapname = "darkunknown";
+  this.exitTo.mapname = "ellusus";
   this.exitTo.x = 65;
   this.exitTo.y = 70;
   this.wrap = "None";
   
-  this.returnmap = "darkunknown";
+  this.returnmap = "ellusus";
   this.returnx = 27;
   this.returny = 43;
   this.returninfused = 0;

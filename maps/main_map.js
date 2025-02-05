@@ -1252,7 +1252,7 @@ function CreateBeaches(mapref) {
   if (!DU.gameflags.getFlag("editor")) {
     for (let i=0;i<mapref.data.length;i++){ 
       for (let j=0;j<mapref.data[0].length;j++) {
-        if (mapref.getName() === "darkunknown") {
+        if (mapref.getName() === "ellusus") {
           if ((j>=100) && (j<=110) && (i>=30) && (i<=36)) { continue; }
           if ((j>=72) && (j<=89) && (i>=33) && (i<=40)) { continue; }
           if ((j>=94) && (j<=96) && (i>=88) && (i<=91)) { continue; }
@@ -1520,7 +1520,7 @@ mappages["ellusus"].enterscript = '';
 mappages["ellusus"].entertestscript = '';
 mappages["ellusus"].exitscript = '';
 mappages["ellusus"].exittestscript = '';
-mappages["ellusus"].returnmap = 'darkunknown';
+mappages["ellusus"].returnmap = 'ellusus';
 mappages["ellusus"].returnx = '69';
 mappages["ellusus"].returny = '74';
 mappages["ellusus"].returninfused = '0';
