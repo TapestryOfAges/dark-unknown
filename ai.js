@@ -4101,7 +4101,6 @@ ais.PatrolNP = function(who) {
   return ais.GuardPatrol(who,points);
 }
 
-
 ais.PatrolCL = function(who) {
   let points = [[108,52],[80,43]];
   return ais.GuardPatrol(who,points);

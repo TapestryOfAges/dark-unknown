@@ -902,6 +902,79 @@ mappages["wingcave"].returninfused = '0';
 mappages["wingcave"].linkedMaps = [""];
 mappages["wingcave"].editorLabels = '{}';
 
+// MAP BEGINS HERE
+mappages["wingcave2"] = {};
+mappages["wingcave2"].terrain = [];
+ mappages["wingcave2"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["wingcave2"].terrain[1] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["wingcave2"].terrain[2] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["wingcave2"].terrain[3] = 'BK BK BK cw cw cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["wingcave2"].terrain[4] = 'BK BK BK cw us us cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["wingcave2"].terrain[5] = 'BK BK cw cw us us cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["wingcave2"].terrain[6] = 'BK BK cw us us us us cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["wingcave2"].terrain[7] = 'BK BK cw us us us us cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["wingcave2"].terrain[8] = 'BK BK cw us us us cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["wingcave2"].terrain[9] = 'BK BK cw us us us cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["wingcave2"].terrain[10] = 'BK BK cw us us us cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["wingcave2"].terrain[11] = 'BK BK cw us us us us cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["wingcave2"].terrain[12] = 'BK BK cw us us us us cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["wingcave2"].terrain[13] = 'BK BK cw us us cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["wingcave2"].terrain[14] = 'BK BK cw cw us cf cf cf cf cf cw cw cf cf cf cf cf cw cw cw BK cw cw cw BK BK BK BK BK BK BK BK';
+mappages["wingcave2"].terrain[15] = 'BK BK BK cw cw cw cf cf cf cw cw cw cw cf cf cf cf cf cf cw cw cw ff cw cw cw cw cw cw cw cw BK';
+mappages["wingcave2"].terrain[16] = 'BK BK BK BK BK cw cw cw cw cw BK BK cw cw cf cf cf cf cf cw cw cf ff ff ff ff ff cw cw ff cw cw';
+mappages["wingcave2"].terrain[17] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf ff ff ff ff ff ff ff ff ff';
+mappages["wingcave2"].terrain[18] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf ff ff ff ff ff ff ff ff ff';
+mappages["wingcave2"].terrain[19] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cw cw ff ff ff ff ff ff ff';
+mappages["wingcave2"].terrain[20] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw cw cw cw cw cw cw cw ff cw ff ff';
+mappages["wingcave2"].terrain[21] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw';
+mappages["wingcave2"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["wingcave2"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["wingcave2"].terrain[24] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["wingcave2"].terrain[25] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["wingcave2"].terrain[26] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["wingcave2"].terrain[27] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["wingcave2"].terrain[28] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["wingcave2"].terrain[29] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["wingcave2"].terrain[30] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["wingcave2"].terrain[31] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+
+mappages["wingcave2"].features = [];
+
+
+mappages["wingcave2"].npcs = [];
+mappages["wingcave2"].npcs[0] = {name : 'DragonNPC', x : 7, y : 9, skintone: 1};
+mappages["wingcave2"].npcs[1] = {name : 'DrakeNPC', x : 13, y : 12, skintone: 1};
+mappages["wingcave2"].npcs[2] = {name : 'DrakeNPC', x : 18, y : 17, skintone: 1};
+mappages["wingcave2"].npcs[3] = {name : 'GazerNPC', x : 28, y : 18, skintone: 1};
+
+mappages["wingcave2"].desc = "Small Cave";
+mappages["wingcave2"].longdesc = ``;
+mappages["wingcave2"].music = 'Cave';
+mappages["wingcave2"].savename = `Small Cave`;
+mappages["wingcave2"].exitmap = 'ellusus';
+mappages["wingcave2"].exitx = '133';
+mappages["wingcave2"].exity = '79';
+mappages["wingcave2"].wraps = '';
+mappages["wingcave2"].enterx = '30';
+mappages["wingcave2"].entery = '19';
+mappages["wingcave2"].seeBelow = '';
+mappages["wingcave2"].lightLevel = 'dark';
+mappages["wingcave2"].alwaysRemember = '0';
+mappages["wingcave2"].scale = '1';
+mappages["wingcave2"].underground = '1';
+mappages["wingcave2"].undergroundDesc = '';
+mappages["wingcave2"].enterscript = '';
+mappages["wingcave2"].entertestscript = '';
+mappages["wingcave2"].exitscript = '';
+mappages["wingcave2"].exittestscript = '';
+mappages["wingcave2"].returnmap = 'ellusus';
+mappages["wingcave2"].returnx = '133';
+mappages["wingcave2"].returny = '79';
+mappages["wingcave2"].returninfused = '0';
+mappages["wingcave2"].linkedMaps = [""];
+mappages["wingcave2"].editorLabels = '{}';
+// MAP ENDS HERE
+
 mappages["cragcave"] = {};
 mappages["cragcave"].terrain = [];
  mappages["cragcave"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
