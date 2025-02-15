@@ -65,3 +65,13 @@ const GREEN_BALL_X = -288;
 const GREEN_BALL_Y = -3072;
 const MIRROR_SPLAT_X = -160;
 const MIRROR_SPLAT_Y = -1728;
+
+const HILLS_TILES = ["Hills", "Hills1", "Hills2"];
+const BASIC_FOREST_TILES = ["Forest", "Forest2", "ForestTilingNE", "ForestTilingNE", "ForestTilingW", "ForestTilingE", "ForestTilingSE", "ForestTilingSW", "ForestEdge", "Forest3", "ForestEdge3", "ForestEdge4", "ForestEdge5", "ForestNCoast", "ForestWCoast", "ForestSCoast", "ForestECoast"];
+const EVERGREEN_FOREST_TILES = ["EvergreenForest", "EvergreenForestEdge", "EvergreenForestEdge2", "EvergreenForestEdge3", "EvergreenForestEdge4", "DeadForest", "EvergreenForestNCoast", "EvergreenForestECoast", "EvergreenForestSCoast", "EvergreenForestWCoast"];
+const BRIGHT_FOREST_TILES = ["BrightForest", "BrightForest2", "BrightForestEdge", "BrightForestEdge2", "BrightForestEdge3", "BrightForestEdge4", "BrightForestEdge5", "BrightForestNCoast", "BrightForestECoast", "BrightForestSCoast", "BrightForestWCoast"];
+const GRASS_TILES = ["Grass", "Brush", "Underbrush"];
+const DIRT_TILES = ["Dirt", "DirtScrub"];
+const SAND_TILES = ["Sand", "SandVegetation"];
+const WATER_TILES = ["Water", "OceanWaterTransition0", "OceanWaterTransition1", "OceanWaterTransition2", "OceanWaterTransition3", "OceanWaterTransition4", "OceanWaterTransition5", "OceanWaterTransition6", "OceanWaterTransition7", "OceanWaterTransition8", "OceanWaterTransition9", "OceanWaterTransition10", "OceanWaterTransition11"];
+const SHALLOWS_TILES = ["Shallows", "WaterShallowsTransition0", "WaterShallowsTransition1", "WaterShallowsTransition2", "WaterShallowsTransition3", "WaterShallowsTransition4", "WaterShallowsTransition5", "WaterShallowsTransition6", "WaterShallowsTransition7", "WaterShallowsTransition8", "WaterShallowsTransition9", "WaterShallowsTransition10", "WaterShallowsTransition11"];
