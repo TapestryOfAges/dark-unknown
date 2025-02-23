@@ -859,12 +859,22 @@ function DoActionTitle(code, e) {
   }
 }
 
+function SweepLetters(text, where) {
+  let place = document.getElementById(where);
+  if (!place) { return; }
+  let letter = text.substr(0,1);
+  let rest = text.substr(1);
+  place.innerHTML = place.innerHTML + letter;
+  setTimeout(SweepLetters(rest,where), 100);
+}
+
 function CharCreate() {
   charname = "";
   gender = "";
   graphic = "";
-  let charprompt = "<div style='position:absolute;left:100px;top:100px'><p class='charcreate' id='charprompt'>Enter character name: _</p></div>";
+  let charprompt = "<div style='position:absolute;left:100px;top:100px'><p class='charcreate' id='prompttext'></p><p class='charcreate' id='charprompt'>_</p></div>";
   document.getElementById('maindiv').innerHTML = charprompt;
+  SweepLetters("Enter character name:", "prompttext");
   gamestate.setMode("name");
 }
 
