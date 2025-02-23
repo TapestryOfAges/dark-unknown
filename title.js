@@ -69,6 +69,8 @@ let themap = new GameMap();
 
 let testvar;
 
+let sweepid;
+
 let lastanim = "";
 
 let browserheight = window.innerHeight;
@@ -805,20 +807,22 @@ function DoActionTitle(code, e) {
           letter = letter.toLowerCase();
         }
         charname += letter;
-        let chartxt = "Enter character name: <span style='color:gold'>" + charname + "</span>";
+        let chartxt = "<span style='color:gold'>" + charname + "</span>";
         if (charname.length < 15) { chartxt += "_"; }
         document.getElementById('charprompt').innerHTML = chartxt;
       }
     } else if (code === 8) {  // backspace
       if (charname.length) {
-        charname = charname.substr(0,charname.length-1);
-        let chartxt = "Enter character name: <span style='color:gold'>" + charname + "</span>_";
+        charname = charname.substring(0,charname.length-1);
+        let chartxt = "<span style='color:gold'>" + charname + "</span>_";
         document.getElementById('charprompt').innerHTML = chartxt;
       }
     } else if (code === 13) { // enter
       if (charname.length) {
-        let chartxt = "<span style='color:gold'>" + charname + "</span><br /><br />Specify your gender: (M)ale, (F)emale, or (O)ther/decline to state";
-        document.getElementById('charprompt').innerHTML = chartxt;
+        document.getElementById('charprompt').innerHTML = "";
+        let chartxt = "<span style='color:gold'>" + charname + "</span><br /><br />";
+        document.getElementById('prompttext').innerHTML = chartxt;
+        SweepLetters("Specify your gender: (M)ale, (F)emale, or (O)ther/decline to state", "prompttext");
         gamestate.setMode("gender");
       }
     }
@@ -860,12 +864,15 @@ function DoActionTitle(code, e) {
 }
 
 function SweepLetters(text, where) {
+  if (sweepid) { clearTimeout(sweepid); }
   let place = document.getElementById(where);
   if (!place) { return; }
   let letter = text.substr(0,1);
   let rest = text.substr(1);
   place.innerHTML = place.innerHTML + letter;
-  setTimeout(SweepLetters(rest,where), 100);
+  if (rest) {
+    sweepid = setTimeout(function() { SweepLetters(rest,where) }, 10);
+  }
 }
 
 function CharCreate() {
@@ -884,13 +891,13 @@ function ChooseGraphic() {
   if (gender === "male") { chartxt += "Male"; }
   if (gender === "female") { chartxt += "Female"; }
   if (gender === "other") { chartxt += "Other"; }
-  chartxt += "</span></p><p class='charcreate'>Choose your avatar:</p>";
+  chartxt += "</span></p><p class='charcreate'></p>";
   
   chartxt += "<table cellpadding='0' cellspacing='10' cellborder='0'>";
   chartxt += "<tr>";
   for (let i=0; i<nuavatars.length; i++) {
         chartxt += "<td id='0x" + i + "' style='position:relative; width:36px; height:36px'>";
-        chartxt += `<div style='position:absolute;left:2;top:2;background-image:url("graphics/static.gif");background-position: -96px -2784px; width:32px; height: 32px'></div>`;
+        chartxt += `<div style='position:absolute;left:2;top:2;background-image:url("graphics/static.gif");background-position: 0px -3104px; width:32px; height: 32px'></div>`;
         let xpos = HumanParts[nuavatars[i][0]].spritex;
         let ypos = HumanParts[nuavatars[i][0]].spritey;
         let source = HumanParts[nuavatars[i][0]].src;
@@ -912,7 +919,7 @@ function ChooseGraphic() {
   chartxt += "</tr>";
   chartxt += "</table></div>";
   document.getElementById('maindiv').innerHTML = chartxt;
-
+  SweepLetters("Choose your avatar:", "charcreate");
   document.getElementById('0x0').style.backgroundColor = "white";
 }
 
