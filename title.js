@@ -896,24 +896,24 @@ function ChooseGraphic() {
   chartxt += "<table cellpadding='0' cellspacing='10' cellborder='0'>";
   chartxt += "<tr>";
   for (let i=0; i<nuavatars.length; i++) {
-        chartxt += "<td id='0x" + i + "' style='position:relative; width:36px; height:36px'>";
-        chartxt += `<div style='position:absolute;left:2;top:2;background-image:url("graphics/static.gif");background-position: 0px -3104px; width:32px; height: 32px'></div>`;
+        chartxt += "<td id='0x" + i + "' style='position:relative; width:68px; height:68px; '>";
+        chartxt += `<div style='position:absolute;left:2;top:2; background-color: #333333; width:64px; height: 64px'></div>`;
         let xpos = HumanParts[nuavatars[i][0]].spritex;
         let ypos = HumanParts[nuavatars[i][0]].spritey;
         let source = HumanParts[nuavatars[i][0]].src;
-        chartxt += `<div style='position:absolute;left:2;top:2;background-image:url("graphics/${source}");background-position: ${xpos}px ${ypos}px; width:32px; height: 32px'></div>`;
+        chartxt += `<div style='position:absolute;left:18;top:18;background-image:url("graphics/${source}");background-position: ${xpos}px ${ypos}px; width:32px; height: 32px; transform:scale(2)'></div>`;
         xpos = HumanParts[nuavatars[i][1]].spritex;
         ypos = HumanParts[nuavatars[i][1]].spritey;
         source = HumanParts[nuavatars[i][1]].src;
-        chartxt += `<div style='position:absolute;left:2;top:2;background-image:url("graphics/${source}");background-position: ${xpos}px ${ypos}px; width:32px; height: 32px'></div>`;
+        chartxt += `<div style='position:absolute;left:18;top:18;background-image:url("graphics/${source}");background-position: ${xpos}px ${ypos}px; width:32px; height: 32px; transform:scale(2)'></div>`;
         xpos = HumanParts[nuavatars[i][2]].spritex;
         ypos = HumanParts[nuavatars[i][2]].spritey;
         source = HumanParts[nuavatars[i][2]].src;
-        chartxt += `<div style='position:absolute;left:2;top:2;background-image:url("graphics/${source}");background-position: ${xpos}px ${ypos}px; width:32px; height: 32px'></div>`;
+        chartxt += `<div style='position:absolute;left:18;top:18;background-image:url("graphics/${source}");background-position: ${xpos}px ${ypos}px; width:32px; height: 32px; transform:scale(2)'></div>`;
         xpos = HumanParts[nuavatars[i][3]].spritex;
         ypos = HumanParts[nuavatars[i][3]].spritey;
         source = HumanParts[nuavatars[i][3]].src;
-        chartxt += `<div style='position:absolute;left:2;top:2;background-image:url("graphics/${source}");background-position: ${xpos}px ${ypos}px; width:32px; height: 32px'></div>`;
+        chartxt += `<div style='position:absolute;left:18;top:18;background-image:url("graphics/${source}");background-position: ${xpos}px ${ypos}px; width:32px; height: 32px; transform:scale(2)'></div>`;
         chartxt += '</td>';
   }
   chartxt += "</tr>";
@@ -961,6 +961,8 @@ function SaveChar() {
   PC.getHomeMap().placeThing(PC.getx(),PC.gety(),PC);
   let dagger = localFactory.createTile("Dagger");
   PC.addToInventory(dagger, 1);
+
+  RandomizePotions();
 
   dagger.equipMe(PC);
 //  PC.setEquipment("weapon",dagger);
@@ -2111,5 +2113,44 @@ function ShowTiles(board,x1,y1,x2,y2,fadein) {
 }
 
 function AnimateTiles(board,tile,tiledef) {
+
+}
+
+function RandomizePotions() {
+  let potions = ["TanPotion","OrangePotion","DeepBluePotion","BluePotion","BlackPotion","PurplePotion","BurntUmberPotion","YellowPotion",
+    "WhitePotion","RedPotion","BrownPotion","GreyPotion","PinkPotion","SilverPotion","DarkGreenPotion","GreenPotion"];
+  potions = ShuffleArray(potions);
+  let pot = localFactory.createTile("TanPotion");
+  DU.gameflags.potionmatrix[potions[0]] = {"desc": pot.desc, "spritex": pot.spritexoffset, "spritey": pot.spriteyoffset};
+  pot = localFactory.createTile("OrangePotion");
+  DU.gameflags.potionmatrix[potions[1]] = {"desc": pot.desc, "spritex": pot.spritexoffset, "spritey": pot.spriteyoffset};
+  pot = localFactory.createTile("DeepBluePotion");
+  DU.gameflags.potionmatrix[potions[2]] = {"desc": pot.desc, "spritex": pot.spritexoffset, "spritey": pot.spriteyoffset};
+  pot = localFactory.createTile("BluePotion");
+  DU.gameflags.potionmatrix[potions[3]] = {"desc": pot.desc, "spritex": pot.spritexoffset, "spritey": pot.spriteyoffset};
+  pot = localFactory.createTile("BlackPotion");
+  DU.gameflags.potionmatrix[potions[4]] = {"desc": pot.desc, "spritex": pot.spritexoffset, "spritey": pot.spriteyoffset};
+  pot = localFactory.createTile("PurplePotion");
+  DU.gameflags.potionmatrix[potions[5]] = {"desc": pot.desc, "spritex": pot.spritexoffset, "spritey": pot.spriteyoffset};
+  pot = localFactory.createTile("BurntUmberPotion");
+  DU.gameflags.potionmatrix[potions[6]] = {"desc": pot.desc, "spritex": pot.spritexoffset, "spritey": pot.spriteyoffset};
+  pot = localFactory.createTile("YellowPotion");
+  DU.gameflags.potionmatrix[potions[7]] = {"desc": pot.desc, "spritex": pot.spritexoffset, "spritey": pot.spriteyoffset};
+  pot = localFactory.createTile("WhitePotion");
+  DU.gameflags.potionmatrix[potions[8]] = {"desc": pot.desc, "spritex": pot.spritexoffset, "spritey": pot.spriteyoffset};
+  pot = localFactory.createTile("RedPotion");
+  DU.gameflags.potionmatrix[potions[9]] = {"desc": pot.desc, "spritex": pot.spritexoffset, "spritey": pot.spriteyoffset};
+  pot = localFactory.createTile("BrownPotion");
+  DU.gameflags.potionmatrix[potions[10]] = {"desc": pot.desc, "spritex": pot.spritexoffset, "spritey": pot.spriteyoffset};
+  pot = localFactory.createTile("GreyPotion");
+  DU.gameflags.potionmatrix[potions[11]] = {"desc": pot.desc, "spritex": pot.spritexoffset, "spritey": pot.spriteyoffset};
+  pot = localFactory.createTile("PinkPotion");
+  DU.gameflags.potionmatrix[potions[12]] = {"desc": pot.desc, "spritex": pot.spritexoffset, "spritey": pot.spriteyoffset};
+  pot = localFactory.createTile("SilverPotion");
+  DU.gameflags.potionmatrix[potions[13]] = {"desc": pot.desc, "spritex": pot.spritexoffset, "spritey": pot.spriteyoffset};
+  pot = localFactory.createTile("DarkGreenPotion");
+  DU.gameflags.potionmatrix[potions[14]] = {"desc": pot.desc, "spritex": pot.spritexoffset, "spritey": pot.spriteyoffset};
+  pot = localFactory.createTile("GreenPotion");
+  DU.gameflags.potionmatrix[potions[15]] = {"desc": pot.desc, "spritex": pot.spritexoffset, "spritey": pot.spriteyoffset};
 
 }

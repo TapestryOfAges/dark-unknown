@@ -14850,6 +14850,52 @@ PotionItemObject.prototype.flamed = function() {
   return 1; 
 }
 
+PotionItemObject.prototype.getDesc = function() {
+  if (DU.gameflags.getFlag("potionsrevealed") == "roguelike") {
+    return  DU.gameflags.potionmatrix[this.getName()].desc;
+  } else {
+    return this.desc;
+  }
+}
+
+PotionItemObject.prototype.getGraphicArray = function(getbase) {
+	let returnGraphic = this.graphic;
+  let returnOverlay = this.overlay;
+  let returnVars = [];
+  returnVars[0] = returnGraphic;
+  if (returnOverlay) {
+    returnVars[1] = returnOverlay;
+  }
+  else {
+  	returnVars[1] = "spacer.gif";
+  }
+  if (getbase || !this.hasOwnProperty("currframe")) {
+    if (this.spritexoffset) {
+      if (DU.gameflags.getFlag("potionsrevealed") == "roguelike") {
+        returnVars[2] = DU.gameflags.potionmatrix[this.getName()].spritex;
+      }  else {
+        returnVars[2] = this.spritexoffset;
+      }
+    } else {
+  	  returnVars[2] = "0";
+    }
+  } else {
+    returnVars[2] = this.currframe;
+  }
+  if (this.spriteyoffset) {
+    if (DU.gameflags.getFlag("potionsrevealed") == "roguelike") {
+      returnVars[3] = DU.gameflags.potionmatrix[this.getName()].spritey;
+    }  else {
+      returnVars[3] = this.spriteyoffset;
+    }
+  } else {
+  	returnVars[3] = "0";
+  }
+  
+  return(returnVars); 
+
+}
+
 // poison potions
 function GreenPotionTile() {
   //Graphics Upgraded
@@ -14865,14 +14911,14 @@ function GreenPotionTile() {
 GreenPotionTile.prototype = new PotionItemObject();
 
 GreenPotionTile.prototype.getUseDesc = function() {
-  if (DU.gameflags.getFlag("knowsgreenpotion")) {
+  if (DU.gameflags.getFlag("knowsgreenpotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return this.usedesc;
   }
   return "Drink it.";
 }
 
 GreenPotionTile.prototype.getLongDesc = function() {
-  if (DU.gameflags.getFlag("knowsgreenpotion")) {
+  if (DU.gameflags.getFlag("knowsgreenpotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "A Poison potion.";
   }
   return "A green potion.";
@@ -14982,7 +15028,7 @@ function DarkGreenPotionTile() {
 DarkGreenPotionTile.prototype = new PotionItemObject();
 
 DarkGreenPotionTile.prototype.getLongDesc = function() {
-  if (DU.gameflags.getFlag("knowsdarkgreenpotion")) {
+  if (DU.gameflags.getFlag("knowsdarkgreenpotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "A Quickness potion.";
   }
   return "A dark green potion.";
@@ -15013,7 +15059,7 @@ function SilverPotionTile() {
 SilverPotionTile.prototype = new PotionItemObject();
 
 SilverPotionTile.prototype.getLongDesc = function() {
-  if (DU.gameflags.getFlag("knowssilverpotion")) {
+  if (DU.gameflags.getFlag("knowssilverpotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "A Strength potion.";
   }
   return "A silver potion.";
@@ -15058,7 +15104,7 @@ function PinkPotionTile() {
 PinkPotionTile.prototype = new PotionItemObject();
 
 PinkPotionTile.prototype.getLongDesc = function() {
-  if (DU.gameflags.getFlag("knowspinkpotion")) {
+  if (DU.gameflags.getFlag("knowspinkpotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "A Dexterity potion.";
   }
   return "A pink potion.";
@@ -15103,7 +15149,7 @@ function GreyPotionTile() {
 GreyPotionTile.prototype = new PotionItemObject();
 
 GreyPotionTile.prototype.getLongDesc = function() {
-  if (DU.gameflags.getFlag("knowsgreypotion")) {
+  if (DU.gameflags.getFlag("knowsgreypotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "An Intelligence potion.";
   }
   return "A grey potion.";
@@ -15149,7 +15195,7 @@ function BrownPotionTile() {
 BrownPotionTile.prototype = new PotionItemObject();
 
 BrownPotionTile.prototype.getLongDesc = function() {
-  if (DU.gameflags.getFlag("knowsbrownpotion")) {
+  if (DU.gameflags.getFlag("knowsbrownpotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "A Greater Mana potion.";
   }
   return "A milky purple potion.";
@@ -15182,7 +15228,7 @@ function RedPotionTile() {
 RedPotionTile.prototype = new PotionItemObject();
 
 RedPotionTile.prototype.getLongDesc = function() {
-  if (DU.gameflags.getFlag("knowsredpotion")) {
+  if (DU.gameflags.getFlag("knowsredpotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "A Cure potion.";
   }
   return "A red potion.";
@@ -15216,7 +15262,7 @@ function WhitePotionTile() {
 WhitePotionTile.prototype = new PotionItemObject();
 
 WhitePotionTile.prototype.getLongDesc = function() {
-  if (DU.gameflags.getFlag("knowswhitepotion")) {
+  if (DU.gameflags.getFlag("knowswhitepotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "A Light potion.";
   }
   return "A white potion.";
@@ -15247,7 +15293,7 @@ function YellowPotionTile() {
 YellowPotionTile.prototype = new PotionItemObject();
 
 YellowPotionTile.prototype.getLongDesc = function() {
-  if (DU.gameflags.getFlag("knowsyellowpotion")) {
+  if (DU.gameflags.getFlag("knowsyellowpotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "A Lesser Heal potion.";
   }
   return "A yellow potion.";
@@ -15278,7 +15324,7 @@ function BurntUmberPotionTile() {
 BurntUmberPotionTile.prototype = new PotionItemObject();
 
 BurntUmberPotionTile.prototype.getLongDesc = function() {
-  if (DU.gameflags.getFlag("knowsburntumberpotion")) {
+  if (DU.gameflags.getFlag("knowsburntumberpotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "A Resist Magic potion.";
   }
   return "A burnt umber potion.";
@@ -15315,7 +15361,7 @@ function PurplePotionTile() {
 PurplePotionTile.prototype = new PotionItemObject();
 
 PurplePotionTile.prototype.getLongDesc = function() {
-  if (DU.gameflags.getFlag("knowspurplepotion")) {
+  if (DU.gameflags.getFlag("knowspurplepotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "A Protection potion.";
   }
   return "A purple potion.";
@@ -15346,7 +15392,7 @@ function BlackPotionTile() {
 BlackPotionTile.prototype = new PotionItemObject();
 
 BlackPotionTile.prototype.getLongDesc = function() {
-  if (DU.gameflags.getFlag("knowsblackpotion")) {
+  if (DU.gameflags.getFlag("knowsblackpotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "A Bless potion.";
   }
   return "A black potion.";
@@ -15377,7 +15423,7 @@ function BluePotionTile() {
 BluePotionTile.prototype = new PotionItemObject();
 
 BluePotionTile.prototype.getLongDesc = function() {
-  if (DU.gameflags.getFlag("knowsbluepotion")) {
+  if (DU.gameflags.getFlag("knowsbluepotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "A Heal potion.";
   }
   return "A blue potion.";
@@ -15408,7 +15454,7 @@ function DeepBluePotionTile() {
 DeepBluePotionTile.prototype = new PotionItemObject();
 
 DeepBluePotionTile.prototype.getLongDesc = function() {
-  if (DU.gameflags.getFlag("knowsdeepbluepotion")) {
+  if (DU.gameflags.getFlag("knowsdeepbluepotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "An Ethereal Vision potion.";
   }
   return "A deep blue potion.";
@@ -15438,7 +15484,7 @@ function OrangePotionTile() {
 OrangePotionTile.prototype = new PotionItemObject();
 
 OrangePotionTile.prototype.getLongDesc = function() {
-  if (DU.gameflags.getFlag("knowsorangepotion")) {
+  if (DU.gameflags.getFlag("knowsorangepotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "A Mana potion.";
   }
   return "An orange potion.";
@@ -15474,7 +15520,7 @@ function TanPotionTile() {
 TanPotionTile.prototype = new PotionItemObject();
 
 TanPotionTile.prototype.getLongDesc = function() {
-  if (DU.gameflags.getFlag("knowstanpotion")) {
+  if (DU.gameflags.getFlag("knowstanpotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "An Iron Flesh potion.";
   }
   return "A tan potion.";

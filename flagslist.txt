@@ -8,6 +8,7 @@ move_opens_doors
 move_attacks  - which also covers move_talks
 sticky_target
 skip_theft_warning
+potionsrevealed - "all": player can see all potion types; "blind": you learn then as you go; "roguelike": potions colors are shuffled
 
 DU.randomseed - random number generated on game creation
 karma - tracks PC's karma

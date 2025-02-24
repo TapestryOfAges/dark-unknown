@@ -78,6 +78,7 @@ function Gameflags() {
   this.autosave = 0;
   this.negate = {};
   this.karma = 0;
+  this.potionmatrix = {};
   
   this.getFlag = function(flag) { return this[flag]; }
   this.setFlag = function(flag, val) { this[flag] = val; return this[flag]; }
