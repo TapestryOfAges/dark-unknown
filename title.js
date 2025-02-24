@@ -860,7 +860,13 @@ function DoActionTitle(code, e) {
       SaveChar();
       SecondPage();
     }
+  } else if (gamestate.getMode() === "ccoptions") {
+
   }
+}
+
+function CharCreateOptions() {
+  let charopts = "<p style='text-align:center'>Game Start Options</p>";
 }
 
 function SweepLetters(text, where) {
