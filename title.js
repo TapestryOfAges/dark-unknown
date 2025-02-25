@@ -867,6 +867,10 @@ function DoActionTitle(code, e) {
 
 function CharCreateOptions() {
   let charopts = "<p style='text-align:center'>Game Start Options</p>";
+  charopts += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
+  charopts += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td>&nbsp;&nbsp;&nbsp;</td></tr>";
+  charopts += "<tr><td>=======SOUND AND MUSIC=======</td><td></td><td></td></tr>";
+  
 }
 
 function SweepLetters(text, where) {
