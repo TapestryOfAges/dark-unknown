@@ -3131,17 +3131,43 @@ function DrawOptions() {
   }
   optdiv += "</td></tr>";
 
-//  optdiv += "<tr><td>RANDOMIZE POTION COLORS:</td><td></td><td";
-//  if (targetCursor.page === 12) { 
-//    optdiv += " class='highlight'";
-//  }
-//  optdiv += ">";
-//  if (DU.gameflags.getFlag("randomize_potions")) {
-//    optdiv += "YES";
-//  } else {
-//    optdiv += "NO";
-//  }
-//  optdiv += "</td></tr>";
+  optdiv += "<tr><td>POTION KNOWLEDGE:</td><td></td><td";
+  if (targetCursor.page === 12) { 
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  if (DU.gameflags.getFlag("potionsrevealed") === "all") {
+    optdiv += "ALL";
+  } else if (DU.gameflags.getFlag("potionsrevealed") === "blind") {
+    optdiv += "BLIND";
+  } else {
+    optdiv += "ROGUELIKE";
+  }
+  optdiv += "</td></tr>";
+
+  optdiv += "<tr><td>USE QUEST JOURNAL:</td><td></td><td";
+  if (targetCursor.page === 13) { 
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  if (DU.gameflags.getFlag("allowjournal")) {
+    optdiv += "YES";
+  } else {
+    optdiv += "NO";
+  }
+  optdiv += "</td></tr>";
+
+  optdiv += "<tr><td>USE AUTOMAP:</td><td></td><td";
+  if (targetCursor.page === 14) { 
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  if (DU.gameflags.getFlag("allowautomap")) {
+    optdiv += "YES";
+  } else {
+    optdiv += "NO";
+  }
+  optdiv += "</td></tr>";
 
   optdiv += "</table></div></div>";
   
@@ -3320,7 +3346,7 @@ function performOptions(code) {
   else if ((code === 40) || (code === 191)) { // scroll down
     targetCursor.page++;
     if (targetCursor.cmd === "o") {
-      if (targetCursor.page === 12) { targetCursor.page = 11; }
+      if (targetCursor.page === 15) { targetCursor.page = 14; }
     } else if (targetCursor.cmd === "debug") {
       if (targetCursor.page === 13) { targetCursor.page = 12; }
     }
@@ -3350,13 +3376,9 @@ function performOptions(code) {
       } else if (targetCursor.page === 9) { // zoom
         if (DU.gameflags.getFlag("zoom") === 1.5) {
           DU.gameflags.setFlag("zoom",1);
-//          webFrame.setZoomFactor(1);
-//          ipcRenderer.send('resize', 1);
           OutOfContext.resize(1);
         } else if (DU.gameflags.getFlag("zoom") === 2) {
           DU.gameflags.setFlag("zoom",1.5);
-//          webFrame.setZoomFactor(1.5);
-//          ipcRenderer.send('resize', 1.5);
           OutOfContext.resize(1.5);
         }
       }
@@ -3385,13 +3407,9 @@ function performOptions(code) {
       } else if (targetCursor.page === 9) { // zoom
         if (DU.gameflags.getFlag("zoom") === 1) {
           DU.gameflags.setFlag("zoom",1.5);
-//          webFrame.setZoomFactor(1.5);
-//          ipcRenderer.send('resize', 1.5);
           OutOfContext.resize(1.5);
         } else if (DU.gameflags.getFlag("zoom") === 1.5) {
           DU.gameflags.setFlag("zoom",2);
-//          webFrame.setZoomFactor(2);
-//          ipcRenderer.send('resize', 2);
           OutOfContext.resize(2);
         }
       }
@@ -3419,6 +3437,25 @@ function performOptions(code) {
           DU.gameflags.setFlag("sound",0);
         } else {
           DU.gameflags.setFlag("sound",1);
+        }
+      } else if (targetCursor.page === 9) { // zoom
+        if (DU.gameflags.getFlag("zoom") === 1) {
+          DU.gameflags.setFlag("zoom",1.5);
+          OutOfContext.resize(1.5);
+        } else if (DU.gameflags.getFlag("zoom") === 1.5) {
+          DU.gameflags.setFlag("zoom",2);
+          OutOfContext.resize(2);
+        } else {
+          DU.gameflags.setFlag("zoom",1);
+          OutOfContext.resize(1);
+        }
+      } else if (targetCursor.page === 12) { // potions
+        if (DU.gameflags.getFlag("potionsrevealed") === "all") {
+          DU.gameflags.setFlag("potionsrevealed", "blind");
+        } else if (DU.gameflags.getFlag("potionsrevealed") === "blind") {
+          DU.gameflags.setFlag("potionsrevealed", "roguelike");
+        } else {
+          DU.gameflags.setFlag("potionsrevealed", "all");
         }
       } else {
         ToggleOption(targetCursor.page);
@@ -3592,11 +3629,17 @@ function ToggleOption(opt) {
     } else {
       DU.gameflags.setFlag("storymode", 1);
     }
-  } else if (opt === 12) {
-    if (DU.gameflags.getFlag("randomize_potions")) {
-      DU.gameflags.setFlag("randomize_potions", 0);
+  } else if (opt === 13) {
+    if (DU.gameflags.getFlag("allowjournal")) {
+      DU.gameflags.setFlag("allowjournal", 0);
     } else {
-      DU.gameflags.setFlag("randomize_potions", 1);
+      DU.gameflags.setFlag("allowjournal", 1);
+    }
+  } else if (opt === 14) {
+    if (DU.gameflags.getFlag("allowautomap")) {
+      DU.gameflags.setFlag("allowautomap", 0);
+    } else {
+      DU.gameflags.setFlag("allowautomap", 1);
     }
   }
 }

@@ -857,20 +857,265 @@ function DoActionTitle(code, e) {
     } else if ((code === 32) || (code === 13)) { // space or enter
 //      graphic = avatars[avatarselect.y][avatarselect.x];
       graphic = "spacer.gif";
-      SaveChar();
-      SecondPage();
+      targetCursor.page = 0;
+      gamestate.setMode("ccoptions");
+      DU.gameflags.setFlag("potionsrevealed", "all");
+      DU.gameflags.setFlag("allowjournal",1);
+      DU.gameflags.setFlag("allowautomap",1);
+      DU.gameflags.setFlag("sticky_target",1);
+      CharCreateOptions();
+
+//      SaveChar();
+//      SecondPage();
     }
   } else if (gamestate.getMode() === "ccoptions") {
+    if ((code === 38) || (code === 219)) { // up
+      targetCursor.page = Math.max(0,targetCursor.page-1);
+      CharCreateOptions();
+    } else if ((code === 37) || (code === 186)) {  // left
+      if (targetCursor.page === 0) {
+        if (DU.gameflags.getFlag("storymode")) { DU.gameflags.setFlag("storymode",0); }
+        else { DU.gameflags.setFlag("storymode",1); }
+      } else if (targetCursor.page === 1) {
+        if (DU.gameflags.getFlag("potionsrevealed") === "all") { DU.gameflags.setFlag("potionsrevealed","roguelike"); }
+        else if (DU.gameflags.getFlag("potionsrevealed") === "blind") { DU.gameflags.setFlag("potionsrevealed","all"); }
+        else { DU.gameflags.setFlag("potionsrevealed", "blind"); }
+      } else if (targetCursor.page === 2) {
+        if (DU.gameflags.getFlag("allowjournal")) { DU.gameflags.setFlag("allowjournal",0); }
+        else { DU.gameflags.setFlag("allowjournal",1); }
+      } else if (targetCursor.page === 3) {
+        if (DU.gameflags.getFlag("allowautomap")) { DU.gameflags.setFlag("allowautomap",0); }
+        else { DU.gameflags.setFlag("allowautomap",1); }
+      } else if (targetCursor.page === 4) {
+        if (DU.gameflags.getFlag("sticky_target")) { DU.gameflags.setFlag("sticky_target",0); }
+        else { DU.gameflags.setFlag("sticky_target",1); }
+      } else if (targetCursor.page === 5) {
+        if (DU.gameflags.getFlag("move_opens_doors")) { DU.gameflags.setFlag("move_opens_doors",0); }
+        else { DU.gameflags.setFlag("move_opens_doors",1); }
+      } else if (targetCursor.page === 6) {
+        if (DU.gameflags.getFlag("move_attacks")) { DU.gameflags.setFlag("move_attacks",0); }
+        else { DU.gameflags.setFlag("move_attacks",1); }
+      } else if (targetCursor.page === 7) {
+        if (DU.gameflags.getFlag("skip_theft_warning")) { DU.gameflags.setFlag("skip_theft_warning",0); }
+        else { DU.gameflags.setFlag("skip_theft_warning",1); }
+      }
+      if (targetCursor.page !== 8) { CharCreateOptions(); }
+    } else if ((code === 39) || (code === 222)) { // right
+      if (targetCursor.page === 0) {
+        if (DU.gameflags.getFlag("storymode")) { DU.gameflags.setFlag("storymode",0); }
+        else { DU.gameflags.setFlag("storymode",1); }
+      } else if (targetCursor.page === 1) {
+        if (DU.gameflags.getFlag("potionsrevealed") === "all") { DU.gameflags.setFlag("potionsrevealed","blind"); }
+        else if (DU.gameflags.getFlag("potionsrevealed") === "blind") { DU.gameflags.setFlag("potionsrevealed","roguelike"); }
+        else { DU.gameflags.setFlag("potionsrevealed", "all"); }
+      } else if (targetCursor.page === 2) {
+        if (DU.gameflags.getFlag("allowjournal")) { DU.gameflags.setFlag("allowjournal",0); }
+        else { DU.gameflags.setFlag("allowjournal",1); }
+      } else if (targetCursor.page === 3) {
+        if (DU.gameflags.getFlag("allowautomap")) { DU.gameflags.setFlag("allowautomap",0); }
+        else { DU.gameflags.setFlag("allowautomap",1); }
+      } else if (targetCursor.page === 4) {
+        if (DU.gameflags.getFlag("sticky_target")) { DU.gameflags.setFlag("sticky_target",0); }
+        else { DU.gameflags.setFlag("sticky_target",1); }
+      } else if (targetCursor.page === 5) {
+        if (DU.gameflags.getFlag("move_opens_doors")) { DU.gameflags.setFlag("move_opens_doors",0); }
+        else { DU.gameflags.setFlag("move_opens_doors",1); }
+      } else if (targetCursor.page === 6) {
+        if (DU.gameflags.getFlag("move_attacks")) { DU.gameflags.setFlag("move_attacks",0); }
+        else { DU.gameflags.setFlag("move_attacks",1); }
+      } else if (targetCursor.page === 7) {
+        if (DU.gameflags.getFlag("skip_theft_warning")) { DU.gameflags.setFlag("skip_theft_warning",0); }
+        else { DU.gameflags.setFlag("skip_theft_warning",1); }
+      }
+      if (targetCursor.page !== 8) { CharCreateOptions(); }
+    } else if ((code === 40) || (code === 191)) { // down
+      targetCursor.page = Math.min(8,targetCursor.page+1);
+      CharCreateOptions();
+    } else if ((code === 32) || (code === 13)) { // space or enter
+      if (targetCursor.page === 0) {
+        if (DU.gameflags.getFlag("storymode")) { DU.gameflags.setFlag("storymode",0); }
+        else { DU.gameflags.setFlag("storymode",1); }
+      } else if (targetCursor.page === 1) {
+        if (DU.gameflags.getFlag("potionsrevealed") === "all") { DU.gameflags.setFlag("potionsrevealed","blind"); }
+        else if (DU.gameflags.getFlag("potionsrevealed") === "blind") { DU.gameflags.setFlag("potionsrevealed","roguelike"); }
+        else { DU.gameflags.setFlag("potionsrevealed", "all"); }
+      } else if (targetCursor.page === 2) {
+        if (DU.gameflags.getFlag("allowjournal")) { DU.gameflags.setFlag("allowjournal",0); }
+        else { DU.gameflags.setFlag("allowjournal",1); }
+      } else if (targetCursor.page === 3) {
+        if (DU.gameflags.getFlag("allowautomap")) { DU.gameflags.setFlag("allowautomap",0); }
+        else { DU.gameflags.setFlag("allowautomap",1); }
+      } else if (targetCursor.page === 4) {
+        if (DU.gameflags.getFlag("sticky_target")) { DU.gameflags.setFlag("sticky_target",0); }
+        else { DU.gameflags.setFlag("sticky_target",1); }
+      } else if (targetCursor.page === 5) {
+        if (DU.gameflags.getFlag("move_opens_doors")) { DU.gameflags.setFlag("move_opens_doors",0); }
+        else { DU.gameflags.setFlag("move_opens_doors",1); }
+      } else if (targetCursor.page === 6) {
+        if (DU.gameflags.getFlag("move_attacks")) { DU.gameflags.setFlag("move_attacks",0); }
+        else { DU.gameflags.setFlag("move_attacks",1); }
+      } else if (targetCursor.page === 7) {
+        if (DU.gameflags.getFlag("skip_theft_warning")) { DU.gameflags.setFlag("skip_theft_warning",0); }
+        else { DU.gameflags.setFlag("skip_theft_warning",1); }
+      } else {
+        SaveChar();
+        SecondPage();
+      }
+      
+      if (targetCursor.page !== 8) { CharCreateOptions(); }
+    }
 
   }
 }
 
 function CharCreateOptions() {
-  let charopts = "<p style='text-align:center'>Game Start Options</p>";
-  charopts += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
-  charopts += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td>&nbsp;&nbsp;&nbsp;</td></tr>";
-  charopts += "<tr><td>=======SOUND AND MUSIC=======</td><td></td><td></td></tr>";
+  let charopts = "<div class='zstats'><p style='text-align:center'>Game Start Options</p>";
+  charopts += "<table cellpadding='0' cellspacing='10' border='0'><tr><td><table cellpadding='2' cellspacing='2' border='0' style='background-color:black'>";
+//  charopts += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td></tr>";
+//  charopts += "<tr><td colspan='2'>=======GAMEPLAY======</td><td></td><td></td></tr>";
+  charopts += "<tr><td>DIFFICULTY: </td><td ";
+  if (targetCursor.page === 0) {
+    charopts += "class='highlight'";
+  }
+  charopts += ">";
+  if (DU.gameflags.getFlag("storymode")) {
+    charopts += "STORY";
+  } else {
+    charopts += "NORMAL";
+  }
+  charopts += "</td></tr>";
+
+  charopts += "<tr><td>POTION KNOWLEDGE: </td><td ";
+  if (targetCursor.page === 1) {
+    charopts += "class='highlight'";
+  }
+  charopts += ">";
+  if (DU.gameflags.getFlag("potionsrevealed") === "all") {
+    charopts += "ALL";
+  } else if (DU.gameflags.getFlag("potionsrevealed") === "BLIND") {
+    chatopts += "BLIND";
+  } else {
+    charopts += "ROGUELIKE";
+  }
+  charopts += "</td></tr>";
   
+  charopts += "<tr><td>USE QUEST JOURNAL: </td><td ";
+  if (targetCursor.page === 2) {
+    charopts += "class='highlight'";
+  }
+  charopts += ">";
+  if (DU.gameflags.getFlag("allowjournal")) {
+    charopts += "YES";
+  } else {
+    charopts += "NO";
+  }
+  charopts += "</td></tr>";
+
+  charopts += "<tr><td>USE AUTOMAP: </td><td ";
+  if (targetCursor.page === 3) {
+    charopts += "class='highlight'";
+  }
+  charopts += ">";
+  if (DU.gameflags.getFlag("allowautomap")) {
+    charopts += "YES";
+  } else {
+    charopts += "NO";
+  }
+  charopts += "</td></tr>";
+
+  charopts += "<tr><td>STICKY TARGETING: </td><td ";
+  if (targetCursor.page === 4) {
+    charopts += "class='highlight'";
+  }
+  charopts += ">";
+  if (DU.gameflags.getFlag("sticky_target")) {
+    charopts += "YES";
+  } else {
+    charopts += "NO";
+  }
+  charopts += "</td></tr>";
+
+  charopts += "<tr><td>MOVE OPENS DOORS: </td><td ";
+  if (targetCursor.page === 5) {
+    charopts += "class='highlight'";
+  }
+  charopts += ">";
+  if (DU.gameflags.getFlag("move_opens_doors")) {
+    charopts += "YES";
+  } else {
+    charopts += "NO";
+  }
+  charopts += "</td></tr>";
+
+  charopts += "<tr><td>MOVE ATTACKS: </td><td ";
+  if (targetCursor.page === 6) {
+    charopts += "class='highlight'";
+  }
+  charopts += ">";
+  if (DU.gameflags.getFlag("move_attacks")) {
+    charopts += "YES";
+  } else {
+    charopts += "NO";
+  }
+  charopts += "</td></tr>";
+
+  charopts += "<tr><td>SKIP THEFT WARNING: </td><td ";
+  if (targetCursor.page === 7) {
+    charopts += "class='highlight'";
+  }
+  charopts += ">";
+  if (DU.gameflags.getFlag("skip_theft_warning")) {
+    charopts += "YES";
+  } else {
+    charopts += "NO";
+  }
+
+  charopts += "</td></tr>";
+
+  charopts += "<tr><td style='text-align:center'><span ";
+  if (targetCursor.page === 8) {
+    charopts += "class='highlight' ";
+  }
+  charopts += ">SAVE</span></td></tr>";
+
+  charopts += "</table>";
+  charopts += "</td><td>";
+
+  charopts += "<div style='border-style:solid; border-radius:5px; padding: 5px; margin-left: 40px; width: 400; height: 220'>";
+
+  if (targetCursor.page === 0) {
+    charopts += "<center>GAME DIFFICULTY</center><br />";
+    charopts += "In STORY difficulty, it is impossible to die in combat."; 
+  } else if (targetCursor.page === 1) {
+    charopts += "<center>POTION KNOWLEDGE</center><br />";
+    charopts += "ALL: You will automtically know what each color of potion does. This is the default.<br />";
+    charopts += "BLIND: To learn what a potion does, you must use it, buy it, or sell it.<br />";
+    charopts += "ROGUELIKE: Works like Blind, but at character creation, the effects of the colors are shuffled so you cannot remember from a previous game or look them up.";
+  } else if (targetCursor.page === 2) {
+    charopts += "<center>QUEST JOURNAL</center><br />";
+    charopts += "Disable the quest journal if you want the old-school experience of having to take all your own notes.";
+  } else if (targetCursor.page === 3) {
+    charopts += "<center>AUTOMAP</center><br />";
+    charopts += "Disable the automapper if you want the old-school experience of having to make your own maps on graph paper.";
+  } else if (targetCursor.page === 4) {
+    charopts += "<center>STICKY TARGETING</center><br />";
+    charopts += "When enabled, things that target (like attacking and spellcasting) will remember what you last targetted. Otherwise, the target cursor will always start on your position.";
+  } else if (targetCursor.page === 5) {
+    charopts += "<center>MOVE OPENS DOORS</center><br />";
+    charopts += "When enabled, if you use a movement key and bump into a closed door, you will automatically perform the (U)se action on the door. Otherwise, you have to Use or Open it.";
+  } else if (targetCursor.page === 6) {
+    charopts += "<center>MOVE ATTACKS</center><br />";
+    charopts += "When enabled, if you use a movement key and bump into an enemy, you will perform a melee attack against it. Otherwise, you must Attack.";
+  } else if (targetCursor.page === 7) {
+    charopts += "<center>SKIP THEFT WARNING</center><br />";
+    charopts += "When enabled, the game will not warn you when opening or taking something would be considered stealing. Unwise.";
+  } 
+
+  charopts += "</div><p style='text-align:center'>NOTE: Even these options can be changed once the game has begun.";
+
+  charopts += "</table></center>";
+  
+  document.getElementById('maindiv').innerHTML = charopts;
 }
 
 function SweepLetters(text, where) {
