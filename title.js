@@ -865,8 +865,6 @@ function DoActionTitle(code, e) {
       DU.gameflags.setFlag("sticky_target",1);
       CharCreateOptions();
 
-//      SaveChar();
-//      SecondPage();
     }
   } else if (gamestate.getMode() === "ccoptions") {
     if ((code === 38) || (code === 219)) { // up
