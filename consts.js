@@ -75,3 +75,5 @@ const DIRT_TILES = ["Dirt", "DirtScrub"];
 const SAND_TILES = ["Sand", "SandVegetation"];
 const WATER_TILES = ["Water", "OceanWaterTransition0", "OceanWaterTransition1", "OceanWaterTransition2", "OceanWaterTransition3", "OceanWaterTransition4", "OceanWaterTransition5", "OceanWaterTransition6", "OceanWaterTransition7", "OceanWaterTransition8", "OceanWaterTransition9", "OceanWaterTransition10", "OceanWaterTransition11"];
 const SHALLOWS_TILES = ["Shallows", "WaterShallowsTransition0", "WaterShallowsTransition1", "WaterShallowsTransition2", "WaterShallowsTransition3", "WaterShallowsTransition4", "WaterShallowsTransition5", "WaterShallowsTransition6", "WaterShallowsTransition7", "WaterShallowsTransition8", "WaterShallowsTransition9", "WaterShallowsTransition10", "WaterShallowsTransition11"];
+
+const CHESTS_DIRECT_TO_INVENTORY = true;

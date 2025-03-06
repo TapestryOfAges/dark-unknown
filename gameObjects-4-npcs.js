@@ -543,15 +543,21 @@ NPCObject.prototype.processDeath = function(droploot){
         else {alert (this.getName() + " has a loottable that is not defined."); }
       }
       if ((chest) && (chest.container.length)) {
-        let trapname = GetStrongestTrap(loottables);
-        if (trapname) {
-          DebugWrite("gameobj", "Chest created, might be trapped with: " + trapname + ".<br />");
-          let trap = DUTraps[trapname].getTrap();
-          if (trap.trap) {
-            chest.setTrap(trap.trap, trap.level);
+        if (!this.specials.spillloot) {
+          let trapname = GetStrongestTrap(loottables);
+          if (trapname) {
+            DebugWrite("gameobj", "Chest created, might be trapped with: " + trapname + ".<br />");
+            let trap = DUTraps[trapname].getTrap();
+            if (trap.trap) {
+              chest.setTrap(trap.trap, trap.level);
+            }
+          }
+          map.placeThing(thisx,thisy, chest);
+        } else {
+          for (let i=0;i<chest.container.length;i++) {
+            map.placeThing(thisx,thisy,chest.container[i]);
           }
         }
-        map.placeThing(thisx,thisy, chest);
       }  
     }
     if (this.attachedParts) {
