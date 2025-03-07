@@ -9683,7 +9683,7 @@ CrystalTrapSpaceTile.prototype.walkon = function(who) {
     trap.setExpiresTime(this.duration + DUTime.getGameClock());
     DebugWrite("magic", "Crystal Prison sprung. Expires at " + trap.getExpiresTime() + ".<br />");
     who.addSpellEffect(trap);
-    ShowEffect(who,1000,"crystals.gif",0,0);
+    ShowEffect(who,1000,"crystal-trap.gif",0,0);
     if (GetDistance(PC.getx(),PC.gety(),who.getx(),who.gety())) { DUPlaySound("sfx_crystal_trap"); }
 
     let trapmap = this.getHomeMap();

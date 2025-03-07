@@ -6007,7 +6007,9 @@ function CrystalBarrierNPCTile() {
   this.peaceAI = 'seekPC-0';
   this.forgetAt = 0;
   this.withdraw = 0;
-  this.graphic = 'crystals.gif';
+  this.graphic = 'static.gif';
+  this.spritexoffset = 0;
+  this.spriteyoffset = -111*32;
   this.meleeAttackAs = 'none';
   this.meleeDamage = '1d2'
   this.meleeStrDamage = .33
@@ -6025,6 +6027,17 @@ function CrystalBarrierNPCTile() {
   this.resists = { fire:30, poison:100 };
   this.special = 'crumbles,stationary,noact,ondeathDestroyCrystal';
   this.xpval = 0;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: 5,
+    animstyle: "pingpong",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 170,
+    startframe: "random"
+  });
+
 }
 CrystalBarrierNPCTile.prototype = new NPCObject();
 
