@@ -1640,6 +1640,7 @@ mappages["justice_battle"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     let crystal = mapref.getTile(7,7).getTopNPC();
     crystal.lootTable = "justicecrystal";
+    crystal.specials.spillloot = 1;
     let justice = mapref.getTile(7,5).getTopNPC();
     justice.setMana(35);
     let ward = localFactory.createTile("MirrorWard");

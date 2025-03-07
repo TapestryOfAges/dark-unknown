@@ -6,7 +6,8 @@ const {ipcMain} = require('electron')
 const path = require('path')
 const fs = require("fs");
 if (require('electron-squirrel-startup')) app.quit();    // electron forge docs suggest this, but don't explain why
-
+                                                        // I guess so when it launches more than once to handle updates it doesn't linger?
+                                                        
 const savePath = path.join(`${__dirname}`,'..','..','saves');
 
 let mainWindow = null;
