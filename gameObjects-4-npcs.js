@@ -555,7 +555,12 @@ NPCObject.prototype.processDeath = function(droploot){
           map.placeThing(thisx,thisy, chest);
         } else {
           for (let i=0;i<chest.container.length;i++) {
+<<<<<<< Updated upstream
             map.placeThing(thisx,thisy,chest.container[i]);
+=======
+            let newobj = localFactory.createTile(chest.container[i]);
+            map.placeThing(thisx,thisy,newobj);
+>>>>>>> Stashed changes
           }
         }
       }  
