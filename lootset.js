@@ -159,13 +159,9 @@ function SetLoots() {
   loots['swainhilcave'].loot[0].quantity = '1d2';
   loots['swainhilcave'].loot[0].chance = 100;
   loots['swainhilcave'].loot[1] = {};
-  loots['swainhilcave'].loot[1].objname = 'GoldLocket';
+  loots['swainhilcave'].loot[1].objname = 'Mid Ranged';
   loots['swainhilcave'].loot[1].quantity = '1';
   loots['swainhilcave'].loot[1].chance = 100;
-  loots['swainhilcave'].loot[2] = {};
-  loots['swainhilcave'].loot[2].objname = 'Mid Ranged';
-  loots['swainhilcave'].loot[2].quantity = '1';
-  loots['swainhilcave'].loot[2].chance = 100;
   loots['swainhilcave'].trap = 'weak';
 
   loots['warwizard'] = new LootTable();
@@ -175,10 +171,6 @@ function SetLoots() {
   loots['warwizard'].loot[0].objname = 'ScrollOfPeer';
   loots['warwizard'].loot[0].quantity = '1';
   loots['warwizard'].loot[0].chance = 100;
-  loots['warwizard'].loot[1] = {};
-  loots['warwizard'].loot[1].objname = 'RingOfEtherealFocus';
-  loots['warwizard'].loot[1].quantity = '1';
-  loots['warwizard'].loot[1].chance = 100;
 
   loots['Eyes'] = new LootTable();
   loots['Eyes'].goldDice = '5d12';
