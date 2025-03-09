@@ -13338,6 +13338,7 @@ function GoldLocketTile() {
 GoldLocketTile.prototype = new ItemObject();
 
 GoldLocketTile.prototype.onGet = function(who) {
+  questlog.activate(105);
   if (DU.gameflags.getFlag("knows_severyn")) {
     this.longdesc = "A locket. Inside is a portrait of someone you believe is Severyn, from Swainhil.";
     let retval = {};
