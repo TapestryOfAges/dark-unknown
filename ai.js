@@ -2007,9 +2007,9 @@ ais.Courier = function(who) {
       
     if (!who.surrendered) {
       maintext.addText("The courier surrenders and drops the letter pouch!");
-      let chest = localFactory.createTile("Chest");
-      chest.addToContainer("CourierPouch",1);
-      chest.addToContainer("Gold",30);
+      let chest = localFactory.createTile("CourierPouch");
+//      chest.addToContainer("CourierPouch",1);
+//      chest.addToContainer("Gold",30);
       couriermap.placeThing(currx,curry,chest);
       DrawMainFrame("one",who.getHomeMap(),currx,curry);
       who.surrendered = 1;
