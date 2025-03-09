@@ -612,7 +612,7 @@ mappages["toshin4"].features[5] = {name : 'Chest', x : 10, y : 17, lootgroup : '
 mappages["toshin4"].features[6] = {name : 'Chest', x : 11, y : 21, lootgroup : 'Toshin', lootedid : 'toshin4-2'};
 mappages["toshin4"].features[7] = {name : 'Chest', x : 10, y : 21, lootgroup : 'Toshin', lootedid : 'toshin4-3'};
 mappages["toshin4"].features[8] = {name : 'Chest', x : 10, y : 20, lootgroup : 'Toshin', lootedid : 'toshin4-1'};
-mappages["toshin4"].features[9] = {name : 'Chest', x : 10, y : 19, lootedid : 'toshin4-ring', searchyield : 'RingOfFireResist'};
+mappages["toshin4"].features[9] = {name : 'RingOfFireResist', x : 10, y : 19};
 mappages["toshin4"].features[10] = {name : 'Chest', x : 9, y : 17, lootgroup : 'Toshin', lootedid : 'toshin4-10'};
 mappages["toshin4"].features[11] = {name : 'Chest', x : 8, y : 17, lootgroup : 'Toshin', lootedid : 'toshin4-9'};
 mappages["toshin4"].features[12] = {name : 'Chest', x : 8, y : 18, lootgroup : 'Toshin', lootedid : 'toshin4-8'};
@@ -651,3 +651,12 @@ mappages["toshin4"].returninfused = '0';
 mappages["toshin4"].linkedMaps = ["toshin1","toshin2","toshin3"];
 mappages["toshin4"].editorLabels = '{}';
 // MAP ENDS HERE
+
+mappages["toshin4"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    if (PC.checkInventory("RingofFireResist")) {
+      let ring = mapref.getTile(10,19).getTopFeature();
+      mapref.deleteThing(ring);
+    }
+  }
+}
