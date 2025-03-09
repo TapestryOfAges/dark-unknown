@@ -1,0 +1,13 @@
+WHAT YOU WILL NEED TO KNOW TO BETA TEST
+
+(1) Where the save folder is. It should be in the game's install folder. If it isn't, it will be in your user directory. (Where that is varies between Windows versions and whether you have OneDrive enabled.) Sometimes it will be useful for you to zip up the save folder and send it to me.
+
+(2) There is an in-game debug console, but it's overly complicated and you shouldn't need to use it. You can get to it by (Y)elling "DEBUG". But probably don't bother.
+
+(3) Instead, use chromium's console. ctrl-shift-i will bring this up. If the game ever hangs, use this and find the error that it is showing (which will include filename and line number), and ideally, the stack trace. [[Insert pictures for finding each of these things.]] Send that information to me- probably will be easiest as a screenshot, but if you want to type it out that's good too. I don't currently know of any bugs that cause a hang, but obviously I don't want there to be any.
+
+I'll let you know when you've sent me such hang/crash reports whether I need your saved game.
+
+(4) Do save often, more often than you might think you need in general. It's easiest for being able to reproduce bugs if you usually have a fairly recent save.
+
+(5) When you finish the game, or realize you are not going to have time to keep plugging away at it, do send me your save folder. From your latest save I will be able to extract some useful information, most notably anything you said to an NPC that they didn't have a response for. If there's something that a lot of players are asking certain NPCs I'll know to add some dialog there.
