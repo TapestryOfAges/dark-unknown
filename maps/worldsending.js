@@ -759,10 +759,9 @@ mappages["worldsending2"].features[121] = {name : 'FenceNW', x : 43, y : 15};
 mappages["worldsending2"].features[122] = {name : 'FenceNW', x : 34, y : 16};
 mappages["worldsending2"].features[123] = {name : 'FenceNW', x : 31, y : 23};
 mappages["worldsending2"].features[124] = {name : 'LadderDown', x : 17, y : 9, entermap : 'worldsending3', enterx : 26, entery : 37};
-mappages["worldsending2"].features[125] = {name : 'Chest', x : 19, y : 29, locked : 0, lootgroup : 'worldsendcorpse', lootedid : 'worldsendcorpse'};
-mappages["worldsending2"].features[126] = {name : 'SkeletonDecoration', x : 20, y : 29};
-mappages["worldsending2"].features[127] = {name : 'LadderDown', x : 42, y : 19, entermap : 'worldsending3', enterx : 30, entery : 13};
-mappages["worldsending2"].features[128] = {name : 'LadderUp', x : 45, y : 18, entermap : 'worldsending1', enterx : 58, entery : 30};
+mappages["worldsending2"].features[125] = {name : 'SkeletonDecoration', x : 20, y : 29};
+mappages["worldsending2"].features[126] = {name : 'LadderDown', x : 42, y : 19, entermap : 'worldsending3', enterx : 30, entery : 13};
+mappages["worldsending2"].features[127] = {name : 'LadderUp', x : 45, y : 18, entermap : 'worldsending1', enterx : 58, entery : 30};
 
 
 mappages["worldsending2"].npcs = [];
@@ -826,6 +825,15 @@ mappages["worldsending2"].onload = function(mapref) {
     if (!PC.checkInventory("LayneJournal")) {
       let journalist = localFactory.createTile("EttinJournalist");
       mapref.placeThing(15,53,journalist);
+    }
+
+    if (!PC.checkInventory("YewWand") && !PC.checkInventory("Wand")) {
+      let wand = localFactory.createTile("YewWand");
+      mapref.placeThing(20,30,wand);
+    }
+    if (!PC.checkInventory("StephaneNote")) {
+      let note = localFactory.createTile("StephaneNote");
+      mapref.placeThing(20,28,note);
     }
   }
 }
