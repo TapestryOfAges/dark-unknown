@@ -360,6 +360,12 @@ OnDeathFuncs["Elder"] = function(who) {
   }
 }
 
+OnDeathFuncs["Axe"] = function(who) {
+  let dmap = who.getHomeMap();
+  let axe = localFactory.createTile("MagicAxe");
+  dmap.placeThing(who.getx(),who.gety(),axe);
+}
+
 OnDeathFuncs["endact"] = function() {
   // WORKING HERE
   let endact = localFactory.createTile("UnconsciousEndAct");
