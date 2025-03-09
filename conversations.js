@@ -918,6 +918,13 @@ OnConvTriggers["jharden_abyss"] = function(speaker,keyword) {
   door.unlockMe();
 }
 
+OnConvTriggers["knows_severyn"] = function(speaker,keyword) {
+  let locket = PC.checkInventory("GoldLocket");
+  if (locket) {
+    locket.longdesc = "A locket. Inside is a portrait of someone you believe is Severyn, from Swainhil.";
+  }
+}
+
 OnConvTriggers["rebuild_decide"] = function(speaker,keyword) {
   let q = questlog.findQuest(28);
   if (q && q.active && !q.replaced && !q.completed) { questlog.complete(28); }
