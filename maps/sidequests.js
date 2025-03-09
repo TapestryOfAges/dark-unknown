@@ -186,8 +186,9 @@ mappages["warwizardtower"].onload = function(mapref) {
   mirror.break();
 
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
-    if (!PC.checkInventory("RingOfEtherealFocus") && DU.gameflags.getFlag("lid_warwizard")) {
-      DU.gameflags.deleteFlag("lid_warwizard");
+    if (!PC.checkInventory("RingOfEtherealFocus")) {
+      let ring = localFactory.createTile("RingOfEtherealFocus");
+      mapref.placeThing(18,8,ring);
     }
   }
 }
@@ -738,7 +739,8 @@ mappages["swainhilcave"].terrain[41] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK B
 
 mappages["swainhilcave"].features = [];
 mappages["swainhilcave"].features[0] = {name : 'Campfire', x : 12, y : 16};
-mappages["swainhilcave"].features[1] = {name : 'Chest', x : 9, y : 17, locked : 0, lootgroup : 'swainhilcave', lootedid : 'swainhilcave'};
+mappages["swainhilcave"].features[1] = {name : 'GoldLocket', x : 9, y : 17};
+mappages["swainhilcave"].features[2] = {name : 'Chest', x : 9, y : 17, locked : 0, lootgroup : 'swainhilcave', lootedid : 'swainhilcave'};
 
 mappages["swainhilcave"].npcs = [];
 mappages["swainhilcave"].npcs[0] = {name : 'GiantSpiderNPC', x : 17, y : 26, skintone: '1'};
@@ -780,6 +782,13 @@ mappages["swainhilcave"].editorLabels = '{}';
 mappages["swainhilcave"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     Listener.createListener("BanditYell", "Yelling", [], "swainhilcave");
+
+    if (PC.checkInventory("GoldLocket") || DU.gameflags.getFlag("locket_returned")) {
+      let feas = mapref.getTile(9,17).getFeatures();
+      for (let i=0;i<feas.length;i++) {
+        if (feas[i].getName() === "GoldLocket") { mapref.deleteThing(feas[i]); }
+      }
+    }
   }
 }
 
