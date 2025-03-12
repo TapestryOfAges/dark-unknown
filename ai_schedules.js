@@ -792,8 +792,8 @@ ais.CheckTreasuryLock = function(who,params) {
   return {fin:1};
 }
 
-ais.PassOlympusGuardDoor = function(who,params) {
-  DebugWrite("schedules", "In PassOlympusGuardDoor going " + params.dir + ".<br />");
+ais.PassYggdrasGuardDoor = function(who,params) {
+  DebugWrite("schedules", "In PassYggdrasGuardDoor going " + params.dir + ".<br />");
   let door = who.getHomeMap().getTile(47,57).getTopFeature();
   if (who.getx() === 46) {
     DebugWrite("schedules", "West of door, going east. ");
@@ -836,7 +836,7 @@ ais.PassOlympusGuardDoor = function(who,params) {
     DebugWrite("schedules", "Door locked : " + door.getLocked() + ". Activity complete.<br />");
     return {fin:1};  
   }
-  alert("Error in PassOlympusGuardDoor - called by " + who.getNPCName());
+  alert("Error in PassYggdrasGuardDoor - called by " + who.getNPCName());
 }
 
 ais.PassBDCGuardDoor = function(who,params) {
