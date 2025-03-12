@@ -302,10 +302,10 @@ mappages["blackdragon"].npcs[17] = {name : 'TownsfolkVillagerNPC', x : 36, y : 2
 mappages["blackdragon"].npcs[18] = {name : 'FighterVillagerNPC', x : 33, y : 33, NPCName: 'Nadya', PeaceAI: 'scheduled', Schedule: 'nadya', Conversation: 'nadya', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"Plate2","head":"ShortBlackDark","back":"","offhand":"OffhandDaggerDark","cloak":"","mainhand":"LongswordDark","realhead":"ShortBlackDark"}'};
 mappages["blackdragon"].npcs[19] = {name : 'RangerVillagerNPC', x : 21, y : 24, NPCName: 'Rhys', PeaceAI: 'scheduled', Schedule: 'rhys', Conversation: 'rhys_bdc', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"LeatherArmor","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"BowDark","realhead":"ShortBlackDark"}'};
 
-mappages["blackdragon"].desc = "Black Dragon Castle";
+mappages["blackdragon"].desc = "Silverglade Keep";
 mappages["blackdragon"].longdesc = `Not long ago, this site was a ruin from wars past. But recently, Prince Lance rebuilt it with shocking speed, and now it is the center of his rebellion. The drawbridge is firmly closed across a deep moat.`;
 mappages["blackdragon"].music = 'Dark Towne';
-mappages["blackdragon"].savename = `B Drag Castle`;
+mappages["blackdragon"].savename = `Silverglade`;
 mappages["blackdragon"].exitmap = 'ellusus';
 mappages["blackdragon"].exitx = '49';
 mappages["blackdragon"].exity = '90';
@@ -513,10 +513,10 @@ mappages["blackdragon2"].features[14] = {name : 'FireField', x : 28, y : 21};
 
 mappages["blackdragon2"].npcs = [];
 
-mappages["blackdragon2"].desc = "Black Dragon Castle";
+mappages["blackdragon2"].desc = "Silverglade Keep";
 mappages["blackdragon2"].longdesc = ``;
 mappages["blackdragon2"].music = 'Dark Towne';
-mappages["blackdragon2"].savename = `B Drag Castle`;
+mappages["blackdragon2"].savename = `Silverglade`;
 mappages["blackdragon2"].exitmap = 'ellusus';
 mappages["blackdragon2"].exitx = '49';
 mappages["blackdragon2"].exity = '90';
@@ -605,10 +605,10 @@ mappages["blackdragon3"].features[9] = {name : 'EnergyField', x : 25, y : 20};
 mappages["blackdragon3"].npcs = [];
 mappages["blackdragon3"].npcs[0] = {name : 'MageVillagerNPC', x : 26, y : 20, NPCName: 'Justice', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'justice', Conversation: 'justice', ConversationFlag: 'justice', Gender: 'female', Bark: '0', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueRobe","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"QuarterstaffPale","realhead":"ShortBlackPale"}'};
 
-mappages["blackdragon3"].desc = "Black Dragon Castle";
+mappages["blackdragon3"].desc = "Silverglade Keep";
 mappages["blackdragon3"].longdesc = ``;
 mappages["blackdragon3"].music = 'Dark Towne';
-mappages["blackdragon3"].savename = `B Drag Castle`;
+mappages["blackdragon3"].savename = `Silverglade`;
 mappages["blackdragon3"].exitmap = 'ellusus';
 mappages["blackdragon3"].exitx = '49';
 mappages["blackdragon3"].exity = '90';
@@ -717,10 +717,10 @@ mappages["blackdragon4"].features[8] = {name : 'UnlitBrazier', x : 28, y : 24};
 
 mappages["blackdragon4"].npcs = [];
 
-mappages["blackdragon4"].desc = "Black Dragon Castle";
+mappages["blackdragon4"].desc = "Silverglade Keep";
 mappages["blackdragon4"].longdesc = ``;
 mappages["blackdragon4"].music = 'Dark Towne';
-mappages["blackdragon4"].savename = `B Drag Castle`;
+mappages["blackdragon4"].savename = `Silverglade`;
 mappages["blackdragon4"].exitmap = 'ellusus';
 mappages["blackdragon4"].exitx = '49';
 mappages["blackdragon4"].exity = '90';
@@ -1053,10 +1053,10 @@ mappages["blackdragon_int"].npcs[16] = {name : 'TownsfolkVillagerNPC', x : 39, y
 mappages["blackdragon_int"].npcs[17] = {name : 'FighterVillagerNPC', x : 38, y : 13, NPCName: 'Nadya', Conversation: 'nadya_int', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"Plate2","head":"ShortBlackDark","back":"","offhand":"OffhandDaggerDark","cloak":"","mainhand":"LongswordDark","realhead":"ShortBlackDark"}'};
 mappages["blackdragon_int"].npcs[18] = {name : 'MageVillagerNPC', x : 36, y : 12, NPCName: 'Justice', PCThreatAI: 'RunAway', Conversation: 'justice_int', ConversationFlag: 'justice', Gender: 'female', Bark: '0', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueRobe","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"QuarterstaffPale","realhead":"ShortBlackPale"}'};
 
-mappages["blackdragon_int"].desc = "Black Dragon Castle";
+mappages["blackdragon_int"].desc = "Silverglade Keep";
 mappages["blackdragon_int"].longdesc = ``;
 mappages["blackdragon_int"].music = 'Towne';
-mappages["blackdragon_int"].savename = `B Drag Castle`;
+mappages["blackdragon_int"].savename = `Silverglade`;
 mappages["blackdragon_int"].exitmap = 'ellusus';
 mappages["blackdragon_int"].exitx = '49';
 mappages["blackdragon_int"].exity = '90';
@@ -1168,10 +1168,10 @@ mappages["blackdragon_int2"].features[14] = {name : 'FireField', x : 28, y : 21}
 
 mappages["blackdragon_int2"].npcs = [];
 
-mappages["blackdragon_int2"].desc = "Black Dragon Castle";
+mappages["blackdragon_int2"].desc = "Silverglade Keep";
 mappages["blackdragon_int2"].longdesc = ``;
 mappages["blackdragon_int2"].music = 'Dark Towne';
-mappages["blackdragon_int2"].savename = `B Drag Castle`;
+mappages["blackdragon_int2"].savename = `Silverglade`;
 mappages["blackdragon_int2"].exitmap = 'ellusus';
 mappages["blackdragon_int2"].exitx = '49';
 mappages["blackdragon_int2"].exity = '90';
@@ -1259,10 +1259,10 @@ mappages["blackdragon_int3"].features[9] = {name : 'EnergyField', x : 25, y : 20
 
 mappages["blackdragon_int3"].npcs = [];
 
-mappages["blackdragon_int3"].desc = "Black Dragon Castle";
+mappages["blackdragon_int3"].desc = "Silverglade Keep";
 mappages["blackdragon_int3"].longdesc = ``;
 mappages["blackdragon_int3"].music = 'Dark Towne';
-mappages["blackdragon_int3"].savename = `B Drag Castle`;
+mappages["blackdragon_int3"].savename = `Silverglade`;
 mappages["blackdragon_int3"].exitmap = 'ellusus';
 mappages["blackdragon_int3"].exitx = '49';
 mappages["blackdragon_int3"].exity = '90';
@@ -1358,10 +1358,10 @@ mappages["blackdragon_int4"].features[8] = {name : 'UnlitBrazier', x : 28, y : 2
 
 mappages["blackdragon_int4"].npcs = [];
 
-mappages["blackdragon_int4"].desc = "Black Dragon Castle";
+mappages["blackdragon_int4"].desc = "Silverglade Keep";
 mappages["blackdragon_int4"].longdesc = ``;
 mappages["blackdragon_int4"].music = 'Dark Towne';
-mappages["blackdragon_int4"].savename = `B Drag Castle`;
+mappages["blackdragon_int4"].savename = `Silverglade`;
 mappages["blackdragon_int4"].exitmap = 'ellusus';
 mappages["blackdragon_int4"].exitx = '49';
 mappages["blackdragon_int4"].exity = '90';
