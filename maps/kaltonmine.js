@@ -477,9 +477,9 @@ mappages["kaltonmine3"].features[20] = {name : 'PileOfRocks', x : 9, y : 2};
 
 
 mappages["kaltonmine3"].npcs = [];
-mappages["kaltonmine3"].npcs[0] = {name : 'GazerNPC', x : 6, y : 5, skintone: '1'};
-mappages["kaltonmine3"].npcs[1] = {name : 'GazerNPC', x : 5, y : 11, skintone: '1'};
-mappages["kaltonmine3"].npcs[2] = {name : 'GazerNPC', x : 7, y : 13, skintone: '1'};
+mappages["kaltonmine3"].npcs[0] = {name : 'EvilEyeNPC', x : 6, y : 5, skintone: '1'};
+mappages["kaltonmine3"].npcs[1] = {name : 'EvilEyeNPC', x : 5, y : 11, skintone: '1'};
+mappages["kaltonmine3"].npcs[2] = {name : 'EvilEyeNPC', x : 7, y : 13, skintone: '1'};
 mappages["kaltonmine3"].npcs[3] = {name : 'DrakeNPC', x : 24, y : 7, Gender: 'monster', NPCBand: '1', skintone: '1'};
 mappages["kaltonmine3"].npcs[4] = {name : 'DrakeNPC', x : 22, y : 8, Gender: 'monster', NPCBand: '1', skintone: '1'};
 mappages["kaltonmine3"].npcs[5] = {name : 'DrakeNPC', x : 22, y : 10, Gender: 'monster', NPCBand: '1', skintone: '1'};
