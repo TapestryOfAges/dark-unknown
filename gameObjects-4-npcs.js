@@ -2815,11 +2815,11 @@ PCObject.prototype.myTurn = function() {
         PC.setHP(1);
         PC.setMana(PC.getMaxMana());
       } else {
-        if (maps.getMap("olympus1")) {
-          returnmap = maps.getMap("olympus1");
+        if (maps.getMap("yggdras1")) {
+          returnmap = maps.getMap("yggdras1");
           // though again, this shouldn't be in memory
         } else {
-          returnmap = maps.addMap("olympus1");
+          returnmap = maps.addMap("yggdras1");
         }
         AdjustStartingLocations(returnmap);
         MoveBetweenMaps(PC,PC.getHomeMap(),returnmap,49,22);
