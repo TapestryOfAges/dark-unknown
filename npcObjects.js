@@ -4177,8 +4177,8 @@ CultistNPCTile.prototype = new NPCHumanObject();
 
 // Monster
 
-function GazerNPCTile() {
-  this.name = 'GazerNPC';
+function EvilEyeNPCTile() {
+  this.name = 'EvilEyeNPC';
   this.level = 5;
   this.addhp = -5;
   this.str = 8;
@@ -4196,9 +4196,9 @@ function GazerNPCTile() {
   this.armorAs = 'LeatherArmor';
   this.movetype = MOVE_FLY;
   this.leavesCorpse = 'none';
-  this.lootTable = 'Gazer';
-  this.prefix = 'a';
-  this.desc = "gazer";
+  this.lootTable = 'Evil Eye';
+  this.prefix = 'an';
+  this.desc = "evil eye";
   this.meleeChance = 20;
   this.spellsknown = { attack: 1, };
   this.resists = {};
@@ -4219,7 +4219,7 @@ function GazerNPCTile() {
     startframe: "random"
   });
 }
-GazerNPCTile.prototype = new NPCObject();
+EvilEyeNPCTile.prototype = new NPCObject();
 
 
 // Monster
@@ -7043,12 +7043,12 @@ function ElementalistGroupTile() {
 }
 ElementalistGroupTile.prototype = new NPCHumanGroupObject();
 
-function GazersGroupTile() {
-  this.name = 'GazersGroup';
-  this.desc = 'gazers';
+function EvilEyeGroupTile() {
+  this.name = 'EvilEyeGroup';
+  this.desc = 'evil eyes';
   this.peaceAI = 'Monster-10';
   this.group = [];
-  this.group[0] = new NPCList('GazerNPC', '1d4');
+  this.group[0] = new NPCList('EvilEyeNPC', '1d4');
   this.group[1] = new NPCList('GiantInsectsNPC', '1d5');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
@@ -7067,7 +7067,7 @@ function GazersGroupTile() {
     startframe: "random"
   });
 }
-GazersGroupTile.prototype = new NPCGroupObject();
+EvilEyeGroupTile.prototype = new NPCGroupObject();
 
 function TrollGroupTile() {
   this.name = 'TrollGroup';

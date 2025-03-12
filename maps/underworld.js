@@ -344,7 +344,7 @@ mappages["underworld"].onload = function(mapref) {
 
     // swamp N of lava full of gazers and occasional reaper
     spawn = localFactory.createTile("Spawner");
-    spawngroup = ["GazerNPC","GazerNPC","GazerNPC","EyesofSpiteNPC","ReaperNPC","ReaperLordNPC"];
+    spawngroup = ["EvilEyeNPC","EvilEyeNPC","EvilEyeNPC","EyesofSpiteNPC","ReaperNPC","ReaperLordNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(4);
@@ -421,7 +421,7 @@ mappages["underworld"].onload = function(mapref) {
 
     // northern swamp has gazers, reapers, and corpsers
     spawn = localFactory.createTile("Spawner");
-    spawngroup = ["GazerNPC","GazerNPC","GazerNPC","CorpserNPC","ReaperNPC","CorpserNPC"];
+    spawngroup = ["EvilEyeNPC","EvilEyeNPC","EvilEyeNPC","CorpserNPC","ReaperNPC","CorpserNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(5);
@@ -498,7 +498,7 @@ mappages["underworld"].onload = function(mapref) {
 
     // NE swamp- more gazers, it's a swamp thing
     spawn = localFactory.createTile("Spawner");
-    spawngroup = ["GazerNPC"];
+    spawngroup = ["EvilEyeNPC"];
     
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(3);
@@ -1183,8 +1183,8 @@ mappages["endgame2"].features[22] = {name : 'PurpleCarpetE', x : 7, y : 8};
 mappages["endgame2"].features[23] = {name : 'PurpleCarpetSW', x : 5, y : 9};
 mappages["endgame2"].features[24] = {name : 'PurpleCarpetS', x : 6, y : 9};
 mappages["endgame2"].features[25] = {name : 'PurpleCarpetSE', x : 7, y : 9};
-mappages["endgame2"].features[26] = {name : 'OlympusTapestry', x : 7, y : 1};
-mappages["endgame2"].features[27] = {name : 'OlympusTapestry', x : 5, y : 1};
+mappages["endgame2"].features[26] = {name : 'YggdrasTapestry', x : 7, y : 1};
+mappages["endgame2"].features[27] = {name : 'YggdrasTapestry', x : 5, y : 1};
 mappages["endgame2"].features[28] = {name : 'MarblePillar', x : 4, y : 2};
 mappages["endgame2"].features[29] = {name : 'MarblePillar', x : 8, y : 2};
 mappages["endgame2"].features[30] = {name : 'MarblePillar', x : 9, y : 4};
@@ -1207,7 +1207,7 @@ mappages["endgame2"].npcs[5] = {name : 'RangerVillagerNPC', x : 9, y : 5, NPCNam
 mappages["endgame2"].npcs[6] = {name : 'FighterVillagerNPC', x : 3, y : 5, NPCName: 'Nyrani', Desc: 'guard captain', Gender: 'monster', NPCBand: '0', skintone: 1, wornlayers: '{"body":"Plate2","head":"ShortBrownPale","back":"","offhand":"RoundShield","cloak":"","mainhand":"LongswordPale","realhead":"ShortBrownPale"}'};
 mappages["endgame2"].npcs[7] = {name : 'MageVillagerNPC', x : 4, y : 7, NPCName: 'Jharden', Desc: 'royal advisor', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueRobePlain","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"QuarterstaffPale","realhead":"ShortBrownPale"}'};
 
-mappages["endgame2"].desc = "Castle dea Olympus";
+mappages["endgame2"].desc = "Castle dea Yggdras";
 mappages["endgame2"].longdesc = ``;
 mappages["endgame2"].music = '';
 mappages["endgame2"].savename = ``;

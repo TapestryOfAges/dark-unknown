@@ -298,22 +298,22 @@ mappages["twistoffate2"].npcs[2] = {name : 'ReaperNPC', x : 14, y : 16, skintone
 mappages["twistoffate2"].npcs[3] = {name : 'ReaperNPC', x : 26, y : 22, skintone: 1};
 mappages["twistoffate2"].npcs[4] = {name : 'ReaperNPC', x : 33, y : 15, skintone: 1};
 mappages["twistoffate2"].npcs[5] = {name : 'ReaperNPC', x : 40, y : 36, skintone: 1};
-mappages["twistoffate2"].npcs[6] = {name : 'GazerNPC', x : 21, y : 43, skintone: 1};
-mappages["twistoffate2"].npcs[7] = {name : 'GazerNPC', x : 36, y : 38, skintone: 1};
-mappages["twistoffate2"].npcs[8] = {name : 'GazerNPC', x : 43, y : 33, skintone: 1};
-mappages["twistoffate2"].npcs[9] = {name : 'GazerNPC', x : 44, y : 26, skintone: 1};
-mappages["twistoffate2"].npcs[10] = {name : 'GazerNPC', x : 40, y : 22, skintone: 1};
-mappages["twistoffate2"].npcs[11] = {name : 'GazerNPC', x : 31, y : 20, skintone: 1};
-mappages["twistoffate2"].npcs[12] = {name : 'GazerNPC', x : 27, y : 15, skintone: 1};
-mappages["twistoffate2"].npcs[13] = {name : 'GazerNPC', x : 38, y : 15, skintone: 1};
-mappages["twistoffate2"].npcs[14] = {name : 'GazerNPC', x : 22, y : 17, skintone: 1};
-mappages["twistoffate2"].npcs[15] = {name : 'GazerNPC', x : 18, y : 22, skintone: 1};
-mappages["twistoffate2"].npcs[16] = {name : 'GazerNPC', x : 16, y : 27, skintone: 1};
-mappages["twistoffate2"].npcs[17] = {name : 'GazerNPC', x : 29, y : 28, skintone: 1};
-mappages["twistoffate2"].npcs[18] = {name : 'GazerNPC', x : 19, y : 11, skintone: 1};
-mappages["twistoffate2"].npcs[19] = {name : 'GazerNPC', x : 30, y : 7, skintone: 1};
-mappages["twistoffate2"].npcs[20] = {name : 'GazerNPC', x : 14, y : 32, skintone: 1};
-mappages["twistoffate2"].npcs[21] = {name : 'GazerNPC', x : 28, y : 35, skintone: 1};
+mappages["twistoffate2"].npcs[6] = {name : 'EvilEyeNPC', x : 21, y : 43, skintone: 1};
+mappages["twistoffate2"].npcs[7] = {name : 'EvilEyeNPC', x : 36, y : 38, skintone: 1};
+mappages["twistoffate2"].npcs[8] = {name : 'EvilEyeNPC', x : 43, y : 33, skintone: 1};
+mappages["twistoffate2"].npcs[9] = {name : 'EvilEyeNPC', x : 44, y : 26, skintone: 1};
+mappages["twistoffate2"].npcs[10] = {name : 'EvilEyeNPC', x : 40, y : 22, skintone: 1};
+mappages["twistoffate2"].npcs[11] = {name : 'EvilEyeNPC', x : 31, y : 20, skintone: 1};
+mappages["twistoffate2"].npcs[12] = {name : 'EvilEyeNPC', x : 27, y : 15, skintone: 1};
+mappages["twistoffate2"].npcs[13] = {name : 'EvilEyeNPC', x : 38, y : 15, skintone: 1};
+mappages["twistoffate2"].npcs[14] = {name : 'EvilEyeNPC', x : 22, y : 17, skintone: 1};
+mappages["twistoffate2"].npcs[15] = {name : 'EvilEyeNPC', x : 18, y : 22, skintone: 1};
+mappages["twistoffate2"].npcs[16] = {name : 'EvilEyeNPC', x : 16, y : 27, skintone: 1};
+mappages["twistoffate2"].npcs[17] = {name : 'EvilEyeNPC', x : 29, y : 28, skintone: 1};
+mappages["twistoffate2"].npcs[18] = {name : 'EvilEyeNPC', x : 19, y : 11, skintone: 1};
+mappages["twistoffate2"].npcs[19] = {name : 'EvilEyeNPC', x : 30, y : 7, skintone: 1};
+mappages["twistoffate2"].npcs[20] = {name : 'EvilEyeNPC', x : 14, y : 32, skintone: 1};
+mappages["twistoffate2"].npcs[21] = {name : 'EvilEyeNPC', x : 28, y : 35, skintone: 1};
 mappages["twistoffate2"].npcs[22] = {name : 'MimicNPC', x : 30, y : 37, skintone: 1};
 mappages["twistoffate2"].npcs[23] = {name : 'MimicNPC', x : 32, y : 37, skintone: 1};
 mappages["twistoffate2"].npcs[24] = {name : 'MimicNPC', x : 34, y : 35, skintone: 1};
@@ -369,7 +369,7 @@ mappages["twistoffate2"].editorLabels = '{}';
 mappages["twistoffate2"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) { 
     let spawn = localFactory.createTile("Spawner");
-    let spawngroup = ["GazerNPC"];
+    let spawngroup = ["EvilEyeNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(3);

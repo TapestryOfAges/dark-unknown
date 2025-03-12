@@ -2703,8 +2703,8 @@ tileFactory.prototype.makeAppleTreeTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeOlympusTapestryTile = function() {
-  let newTile = new OlympusTapestryTile();
+tileFactory.prototype.makeYggdrasTapestryTile = function() {
+  let newTile = new YggdrasTapestryTile();
   return newTile;
 }
 
@@ -4918,8 +4918,8 @@ tileFactory.prototype.makeAudachtaNemesosExplosionTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeAudachtaNemesosJinxTile = function() {
-  let newTile = new AudachtaNemesosJinxTile();
+tileFactory.prototype.makeAudachtaNemesosConfusionTile = function() {
+  let newTile = new AudachtaNemesosConfusionTile();
   return newTile;
 }
 
@@ -5588,8 +5588,8 @@ tileFactory.prototype.makeCultistNPCTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeGazerNPCTile = function() {
-  let newTile = new GazerNPCTile();
+tileFactory.prototype.makeEvilEyeNPCTile = function() {
+  let newTile = new EvilEyeNPCTile();
   return newTile;
 }
 
@@ -5958,8 +5958,8 @@ tileFactory.prototype.makeElementalistGroupTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeGazersGroupTile = function() {
-  let newTile = new GazersGroupTile();
+tileFactory.prototype.makeEvilEyeGroupTile = function() {
+  let newTile = new EvilEyeGroupTile();
   return newTile;
 }
 

@@ -1252,7 +1252,7 @@ function RunIntro(idx) {
     let firstpage = `<div style='width:770;position: relative;left:5px;top:15px' id='introcontainer'>
       <table cellpadding='0' cellspacing='5' border='0'><tr>
       <td id='splash'><img id='splash1' src='graphics/splash/Castle-Day-NoRider.gif' /></td>
-      <td style='vertical-align:top; padding-top: 4px' id='splashtxt'><div id='intro1' style='color:white;padding-left:5px'><p class='charcreate'>You were born the second child of the ruling family of Ellusus- King Daragen and Queen Shelaria Olympus. Being the younger, your life is full of tutors and lessons, but also opportunity, for the weight of being heir falls upon your brother, Prince Lance.</p></div>
+      <td style='vertical-align:top; padding-top: 4px' id='splashtxt'><div id='intro1' style='color:white;padding-left:5px'><p class='charcreate'>You were born the second child of the ruling family of Ellusus- King Daragen and Queen Shelaria Yggdras. Being the younger, your life is full of tutors and lessons, but also opportunity, for the weight of being heir falls upon your brother, Prince Lance.</p></div>
       <div id='intro2' style='color:white;opacity:0'><p class='charcreate'>And Lance seemed made for the role. All things came easily to him- his studies of magic, of combat, of dance, of diplomacy. Which makes these events all the more surprising.</p></div>
       </td></tr></table>
     </div>`;
@@ -1313,7 +1313,7 @@ function RunIntro(idx) {
       document.getElementById('splash').innerHTML = `<img id='splash5' style='opacity:0' src='graphics/splash/Castle-Day-Rider.gif' />`;
       document.getElementById('splashtxt').classList.remove('titlefadeout');  
       document.getElementById('splashtxt').innerHTML = `
-      <div id='intro8' style='color:white;opacity:0'><p class='charcreate'>Shocked and saddened, your parents have summoned you to the ruling seat, Castle dea Olympus. The time for study is over. The time for leisure is past. You lock your dwelling behind you, and now as you stand outside the gates you prepare to enter and learn what lies in store for you...</p></div>`;
+      <div id='intro8' style='color:white;opacity:0'><p class='charcreate'>Shocked and saddened, your parents have summoned you to the ruling seat, Castle dea Yggdras. The time for study is over. The time for leisure is past. You lock your dwelling behind you, and now as you stand outside the gates you prepare to enter and learn what lies in store for you...</p></div>`;
       document.getElementById('intro8').classList.add('presentfadein');
       document.getElementById('splash5').classList.add('presentfadein');  
     },1000);
