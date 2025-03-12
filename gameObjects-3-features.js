@@ -1468,7 +1468,7 @@ function CastleTile() {
   this.spriteyoffset = -5*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "Castle dea Olympus";
+  this.desc = "Castle dea Yggdras";
   this.peerview = "#c1c1c1";
   this.civilized = 1;
 
@@ -1497,7 +1497,7 @@ function LeftCastleTile() {
   this.spriteyoffset = -5*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle deaOlympus";
+  this.desc = "Castle dea Yggdras";
   this.peerview = "#c1c1c1";
   this.civilized = 1;
 }
@@ -1511,7 +1511,7 @@ function RightCastleTile() {
   this.spriteyoffset = -5*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle deaOlympus";
+  this.desc = "Castle dea Yggdras";
   this.peerview = "#c1c1c1";
   this.civilized = 1;
 }
@@ -1525,7 +1525,7 @@ function FarLeftCastleTile() {
   this.spriteyoffset = -5*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle deaOlympus";
+  this.desc = "Castle dea Yggdras";
   this.peerview = "#c1c1c1";
   this.civilized = 1;
 }
@@ -1539,7 +1539,7 @@ function FarRightCastleTile() {
   this.spriteyoffset = -5*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle deaOlympus";
+  this.desc = "Castle dea Yggdras";
   this.peerview = "#c1c1c1";
   this.civilized = 1;
 }
@@ -1553,7 +1553,7 @@ function UpperFarLeftCastleTile() {
   this.spriteyoffset = -4*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle deaOlympus";
+  this.desc = "Castle dea Yggdras";
   this.peerview = "#c1c1c1";
   this.civilized = 1;
 }
@@ -1567,7 +1567,7 @@ function UpperFarRightCastleTile() {
   this.spriteyoffset = -4*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle deaOlympus";
+  this.desc = "Castle dea Yggdras";
   this.peerview = "#c1c1c1";
   this.civilized = 1;
 }
@@ -1581,7 +1581,7 @@ function UpperLeftCastleTile() {
   this.spriteyoffset = -99*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle deaOlympus";
+  this.desc = "Castle dea Yggdras";
   this.peerview = "#c1c1c1";
   this.civilized = 1;
 
@@ -1604,7 +1604,7 @@ function UpperRightCastleTile() {
   this.spriteyoffset = -99*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle deaOlympus";
+  this.desc = "Castle dea Yggdras";
   this.peerview = "#c1c1c1";
   this.civilized = 1;
 
@@ -1628,7 +1628,7 @@ function UpperCenterCastleTile() {
   this.spriteyoffset = -4*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle deaOlympus";
+  this.desc = "Castle dea Yggdras";
   this.peerview = "#c1c1c1";
   this.civilized = 1;
 }
@@ -5935,17 +5935,17 @@ function AppleTreeTile() {
 }
 AppleTreeTile.prototype = new FeatureObject();
 
-function OlympusTapestryTile() {
-  this.name = "OlympusTapestry";
+function YggdrasTapestryTile() {
+  this.name = "YggdrasTapestry";
   this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -19*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 2;
   this.prefix = "a";
-  this.desc = "tapestry with the seal of House Olympus";
+  this.desc = "tapestry with the seal of House Yggdras";
 }
-OlympusTapestryTile.prototype = new FeatureObject();
+YggdrasTapestryTile.prototype = new FeatureObject();
 
 function PaladinTapestryTile() {
   this.name = "PaladinTapestry";
@@ -8522,15 +8522,15 @@ WalkOnRotateTile.prototype.walkon = function(walker) {
 
   let currmap = this.getHomeMap();
   let mapidx = 0;
-  if (currmap.getName() === "mtdrash7a") { mapidx = 1; }
-  if (currmap.getName() === "mtdrash7b") { mapidx = 2; }
-  if (currmap.getName() === "mtdrash7c") { mapidx = 3; }
+  if (currmap.getName() === "noxtalanua7a") { mapidx = 1; }
+  if (currmap.getName() === "noxtalanua7b") { mapidx = 2; }
+  if (currmap.getName() === "noxtalanua7c") { mapidx = 3; }
   mapidx += turns;
   mapidx = mapidx % 4;
-  let destmap = "mtdrash7";
-  if (mapidx === 1) { destmap = "mtdrash7a"; }
-  if (mapidx === 2) { destmap = "mtdrash7b"; }
-  if (mapidx === 3) { destmap = "mtdrash7c"; }
+  let destmap = "noxtalanua7";
+  if (mapidx === 1) { destmap = "noxtalanua7a"; }
+  if (mapidx === 2) { destmap = "noxtalanua7b"; }
+  if (mapidx === 3) { destmap = "noxtalanua7c"; }
   DebugWrite("gameobj", "Moving from " + currmap.getName() + " to " + destmap + ".<br />");
   destmap = maps.getMap(destmap);
   let dest = { destx: PC.getx(), desty: PC.gety() };
@@ -11499,7 +11499,7 @@ DrashOrbToggleTile.prototype.use = function(who) {
   this.spritexoffset = this.spritexoffset - 32;
     if (this.spritexoffset < -128) { this.spritexoffset = 0; }
 
-    let sp = maps.getMap("mtdrash8");
+    let sp = maps.getMap("noxtalanua8");
     let orb1tile = sp.getTile(7,9);
     let orb1 = orb1tile.getTopFeature();
     let orb2tile = sp.getTile(8,8);
@@ -12319,13 +12319,13 @@ KineticCrystalTile.prototype = new ItemObject();
 
 KineticCrystalTile.prototype.onGet = function(who) {
   let wemap = who.getHomeMap();
-  let gazer = localFactory.createTile("GazerNPC");
+  let gazer = localFactory.createTile("EvilEyeNPC");
   wemap.placeThing(30,47,gazer);
-  gazer = localFactory.createTile("GazerNPC");
+  gazer = localFactory.createTile("EvilEyeNPC");
   wemap.placeThing(29,46,gazer);
-  gazer = localFactory.createTile("GazerNPC");
+  gazer = localFactory.createTile("EvilEyeNPC");
   wemap.placeThing(34,51,gazer);
-  gazer = localFactory.createTile("GazerNPC");
+  gazer = localFactory.createTile("EvilEyeNPC");
   wemap.placeThing(31,50,gazer);
 
   return {};
@@ -13684,20 +13684,20 @@ function RoyalKeyTile() {
 }
 RoyalKeyTile.prototype = new KeyItemObject();  
 
-function BlackDragonKeyTile() {
+function SilvergladeKeyTile() {
   //Graphics Upgraded
-  this.name = "BlackDragonKey";
+  this.name = "SilvergladeKey";
   this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -24*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Black Dragon Key";
+  this.desc = "Silverglade Key";
   this.prefix = "the";
-  this.longdesc = "The Black Dragon Key.";
-  this.usedesc = "Opens locked doors in Black Dragon Castle.";
+  this.longdesc = "The Silverglade Key.";
+  this.usedesc = "Opens locked doors in Silverglade Keep.";
 }
-BlackDragonKeyTile.prototype = new KeyItemObject();  
+SilvergladeKeyTile.prototype = new KeyItemObject();  
 
 function KeyOfSunTile() {
   //Graphics Upgraded
@@ -14032,7 +14032,7 @@ function BookOfLoreTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = 'A book named "Book of Lore"';
   this.prefix = "the";
-  this.contents = "You open to a random page:%%<span class='conv'>Look up. Above you are the stars, embedded in the ether, which is the power of magic.</span>%%<span class='conv'>The ether is shaped by the will of the mage, who shapes it with mana. This is primarily done with the application of spells. But, it is possible to shape the ether directly- the monstrous Gazer, for example, does not cast a spell each morning to float above the earth.</span>%%<span class='conv'>When did we learn magic? Who crafted the first spells? This knowledge is lost, but it is said it began with the fall of a star...</span>";
+  this.contents = "You open to a random page:%%<span class='conv'>Look up. Above you are the stars, embedded in the ether, which is the power of magic.</span>%%<span class='conv'>The ether is shaped by the will of the mage, who shapes it with mana. This is primarily done with the application of spells. But, it is possible to shape the ether directly- the monstrous Evil Eye, for example, does not cast a spell each morning to float above the earth.</span>%%<span class='conv'>When did we learn magic? Who crafted the first spells? This knowledge is lost, but it is said it began with the fall of a star...</span>";
   this.longdesc = "The Book of Lore. Its simple cover belies its rich contents. Sought by Arlan.";
 }
 BookOfLoreTile.prototype = new BookItemObject();
@@ -16514,19 +16514,19 @@ function AudachtaNemesosExplosionTile() {
 }
 AudachtaNemesosExplosionTile.prototype = new AudachtaNemesosObject();
 
-function AudachtaNemesosJinxTile() {
+function AudachtaNemesosConfusionTile() {
   //Graphics Upgraded
-  this.name = "AudachtaNemesosJinx";
-  this.desc = "Audachta Nemesos: Jinx";
+  this.name = "AudachtaNemesosConfusion";
+  this.desc = "Audachta Nemesos: Confusion";
   this.prefix = "an";
   this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -38*32;
-  this.spelllevel = SPELL_JINX_LEVEL;
-  this.spellnum = SPELL_JINX_ID;
-  this.spellname = "Jinx";
+  this.spelllevel = SPELL_CONFUSION_LEVEL;
+  this.spellnum = SPELL_CONFUSION_ID;
+  this.spellname = "Confusion";
 }
-AudachtaNemesosJinxTile.prototype = new AudachtaNemesosObject();
+AudachtaNemesosConfusionTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosNegateMagicTile() {
   //Graphics Upgraded
@@ -17137,7 +17137,7 @@ AmuletOfReflectionsTile.prototype.use = function(who) {
           maintext.addText('You hear a voice in your mind: "In the beginning of the journey of knowledge, the mind is a blank. The landscape, featureless and empty."');
         },2000);
       }, 2000);
-      retval["txt"] = "The room fades to black around you as your mind accepts the challenge of the Stygian Abyss.";
+      retval["txt"] = "The room fades to black around you as your mind accepts the challenge of the Great Abyss.";
       retval["fin"] = -2;
       DUPlaySound("sfx_spellcast");
       return retval;
