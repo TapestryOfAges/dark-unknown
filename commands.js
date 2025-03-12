@@ -320,8 +320,13 @@ function PerformCommand(code, ctrl) {
 	else if (code === 74) { // j
 		// jimmy lock ?
     // Journal, Quest
-    retval = PerformJournal();
-		
+    if (DU.gameflags.getFlag("allowjournal")) {
+      retval = PerformJournal();
+    } else {
+      retval["fin"] = 2;
+      retval["txt"] = "Quest journal is disabled in Options.";
+      retval["input"] = "&gt;";
+    }
 	}
 	else if (code === 75) { // k
 		// klimb - alternate "Enter" option when on an up ladder
@@ -1933,7 +1938,7 @@ function PerformTalkTarget() {
         }
       }
       if (PC.getLevel() === 2) { 
-        let basement = maps.getMap("olympus0");
+        let basement = maps.getMap("yggdras0");
         let allnpcs = basement.npcs.getAll();
         let rose;
         for (let i=0; i<allnpcs.length; i++) {
