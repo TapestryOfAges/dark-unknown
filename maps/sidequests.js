@@ -954,7 +954,7 @@ mappages["wingcave2"].npcs = [];
 mappages["wingcave2"].npcs[0] = {name : 'DragonNPC', x : 7, y : 9, skintone: 1};
 mappages["wingcave2"].npcs[1] = {name : 'DrakeNPC', x : 13, y : 12, skintone: 1};
 mappages["wingcave2"].npcs[2] = {name : 'DrakeNPC', x : 18, y : 17, skintone: 1};
-mappages["wingcave2"].npcs[3] = {name : 'GazerNPC', x : 28, y : 18, skintone: 1};
+mappages["wingcave2"].npcs[3] = {name : 'EvilEyeNPC', x : 28, y : 18, skintone: 1};
 
 mappages["wingcave2"].desc = "Small Cave";
 mappages["wingcave2"].longdesc = ``;
@@ -1113,8 +1113,8 @@ mappages["northcave"].features[0] = {name : 'OrbExperience', x : 13, y : 20};
 
 
 mappages["northcave"].npcs = [];
-mappages["northcave"].npcs[0] = {name : 'GazerNPC', x : 12, y : 25, skintone: 1};
-mappages["northcave"].npcs[1] = {name : 'GazerNPC', x : 19, y : 21, skintone: 1};
+mappages["northcave"].npcs[0] = {name : 'EvilEyeNPC', x : 12, y : 25, skintone: 1};
+mappages["northcave"].npcs[1] = {name : 'EvilEyeNPC', x : 19, y : 21, skintone: 1};
 mappages["northcave"].npcs[2] = {name : 'EttinNPC', x : 8, y : 15, skintone: 1};
 mappages["northcave"].npcs[3] = {name : 'EttinNPC', x : 15, y : 11, skintone: 1};
 
