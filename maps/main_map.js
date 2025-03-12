@@ -157,12 +157,12 @@ mappages["darkunknown_with"].features[6] = {name : 'Towne', x : 52, y : 63, desc
 mappages["darkunknown_with"].features[7] = {name : 'Dungeon3', x : 27, y : 44, entermap : 'worldsending1', enterx : 9, entery : 45};
 mappages["darkunknown_with"].features[8] = {name : 'Village', x : 73, y : 74, desc : "Village of Naurglen East", prefix : "the", entermap : 'naurglen', enterx : 83, entery : 45};
 mappages["darkunknown_with"].features[9] = {name : 'LeftCastle', x : 68, y : 73};
-mappages["darkunknown_with"].features[10] = {name : 'Castle', x : 69, y : 73, entermap : 'olympus1', enterx : 49, entery : 62};
+mappages["darkunknown_with"].features[10] = {name : 'Castle', x : 69, y : 73, entermap : 'yggdras1', enterx : 49, entery : 62};
 mappages["darkunknown_with"].features[11] = {name : 'RightCastle', x : 70, y : 73};
 mappages["darkunknown_with"].features[12] = {name : 'Dungeon', x : 117, y : 76, entermap : 'pitdespair1', enterx : 8, entery : 19};
-mappages["darkunknown_with"].features[13] = {name : 'Dungeon2', x : 133, y : 79, entermap : 'mtdrash1', enterx : 12, entery : 18};
+mappages["darkunknown_with"].features[13] = {name : 'Dungeon2', x : 133, y : 79, entermap : 'noxtalanua1', enterx : 12, entery : 18};
 mappages["darkunknown_with"].features[14] = {name : 'Dungeon4', x : 69, y : 96, entermap : 'fulcrum1', enterx : 16, entery : 16};
-mappages["darkunknown_with"].features[15] = {name : 'Keep', x : 49, y : 90, desc : "Black Dragon's Castle", prefix : "the", entermap : 'blackdragon', enterx : 12, entery : 43};
+mappages["darkunknown_with"].features[15] = {name : 'Keep', x : 49, y : 90, desc : "Silverglade Keep", entermap : 'blackdragon', enterx : 12, entery : 43};
 mappages["darkunknown_with"].features[16] = {name : 'Shrine', x : 13, y : 82};
 mappages["darkunknown_with"].features[17] = {name : 'Towne', x : 120, y : 104, desc : "Towne of Swainhil", prefix : "the", entermap : 'swainhil', enterx : 62, entery : 20};
 mappages["darkunknown_with"].features[18] = {name : 'Dungeon', x : 81, y : 128, entermap : 'vault', enterx : 15, entery : 34};
@@ -460,12 +460,12 @@ mappages["darkunknown"].features[6] = {name : 'Towne', x : 52, y : 63, desc : "T
 mappages["darkunknown"].features[7] = {name : 'Dungeon3', x : 27, y : 44, entermap : 'worldsending1', enterx : 9, entery : 45};
 mappages["darkunknown"].features[8] = {name : 'Village', x : 73, y : 74, desc : "Village of Naurglen East", prefix : "the", entermap : 'naurglen', enterx : 83, entery : 45};
 mappages["darkunknown"].features[9] = {name : 'LeftCastle', x : 68, y : 73};
-mappages["darkunknown"].features[10] = {name : 'Castle', x : 69, y : 73, entermap : 'olympus1', enterx : 49, entery : 62};
+mappages["darkunknown"].features[10] = {name : 'Castle', x : 69, y : 73, entermap : 'yggdras1', enterx : 49, entery : 62};
 mappages["darkunknown"].features[11] = {name : 'RightCastle', x : 70, y : 73};
 mappages["darkunknown"].features[12] = {name : 'Dungeon', x : 117, y : 76, entermap : 'pitdespair1', enterx : 8, entery : 19};
-mappages["darkunknown"].features[13] = {name : 'Dungeon2', x : 133, y : 79, entermap : 'mtdrash1', enterx : 12, entery : 18};
+mappages["darkunknown"].features[13] = {name : 'Dungeon2', x : 133, y : 79, entermap : 'noxtalanua1', enterx : 12, entery : 18};
 mappages["darkunknown"].features[14] = {name : 'Dungeon4', x : 69, y : 96, entermap : 'fulcrum1', enterx : 16, entery : 16};
-mappages["darkunknown"].features[15] = {name : 'Keep', x : 49, y : 90, desc : "Black Dragon's Castle", prefix : "the", entermap : 'blackdragon', enterx : 12, entery : 43};
+mappages["darkunknown"].features[15] = {name : 'Keep', x : 49, y : 90, desc : "Silverglade Keep", entermap : 'blackdragon', enterx : 12, entery : 43};
 mappages["darkunknown"].features[16] = {name : 'Shrine', x : 13, y : 82};
 mappages["darkunknown"].features[17] = {name : 'Towne', x : 120, y : 104, desc : "Towne of Swainhil", prefix : "the", entermap : 'swainhil', enterx : 62, entery : 20};
 mappages["darkunknown"].features[18] = {name : 'Dungeon', x : 81, y : 128, entermap : 'vault', enterx : 15, entery : 34};
@@ -955,7 +955,7 @@ function Placespawns(mapref) {
 
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
-  spawn.evolve[3][1] = ["SnakesGroup","MidSnakesGroup","MidSnakesGroup","GazersGroup"];
+  spawn.evolve[3][1] = ["SnakesGroup","MidSnakesGroup","MidSnakesGroup","EvilEyeGroup"];
   
   freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
@@ -1078,7 +1078,7 @@ function Placespawns(mapref) {
   // northern section of troll land
   // Zone: REMOTE
   spawn = localFactory.createTile("Spawner");
-  group = ["HeadlessGroupLarge","GazersGroup","OrcPartyLowGroup","OrcPartyHighGroup"];
+  group = ["HeadlessGroupLarge","EvilEyeGroup","OrcPartyLowGroup","OrcPartyHighGroup"];
 
   spawn.setSpawngroup(group);
   spawn.setSpawnRadius(3);
@@ -1088,7 +1088,7 @@ function Placespawns(mapref) {
 
   spawn.evolve[6] = [];
   spawn.evolve[6][0] = "spawngroup";
-  spawn.evolve[6][1] = ["GazersGroup","HeadlessGroupLarge","HeadlessGroupLarge","OrcPartyHighGroup","DaemonGroup"];
+  spawn.evolve[6][1] = ["EvilEyeGroup","HeadlessGroupLarge","HeadlessGroupLarge","OrcPartyHighGroup","DaemonGroup"];
   
   freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
@@ -1444,10 +1444,10 @@ mappages["ellusus"].features[6] = {name : 'Towne', x : 52, y : 63, desc : "Towne
 mappages["ellusus"].features[7] = {name : 'Dungeon3', x : 27, y : 44, entermap : 'worldsending1', enterx : 9, entery : 45};
 mappages["ellusus"].features[8] = {name : 'Village', x : 73, y : 74, desc : "Village of Naurglen East", prefix : "the", entermap : 'naurglen', enterx : 83, entery : 45};
 mappages["ellusus"].features[9] = {name : 'LeftCastle', x : 68, y : 73};
-mappages["ellusus"].features[10] = {name : 'Castle', x : 69, y : 73, entermap : 'olympus1', enterx : 49, entery : 62};
+mappages["ellusus"].features[10] = {name : 'Castle', x : 69, y : 73, entermap : 'yggdras1', enterx : 49, entery : 62};
 mappages["ellusus"].features[11] = {name : 'RightCastle', x : 70, y : 73};
 mappages["ellusus"].features[12] = {name : 'Dungeon', x : 117, y : 76, entermap : 'pitdespair1', enterx : 8, entery : 19};
-mappages["ellusus"].features[13] = {name : 'Keep', x : 49, y : 90, desc : "Black Dragon's Castle", prefix : "the", entermap : 'blackdragon', enterx : 12, entery : 43};
+mappages["ellusus"].features[13] = {name : 'Keep', x : 49, y : 90, desc : "Silverglade Keep", entermap : 'blackdragon', enterx : 12, entery : 43};
 mappages["ellusus"].features[14] = {name : 'Shrine', x : 13, y : 82};
 mappages["ellusus"].features[15] = {name : 'Towne', x : 109, y : 101, desc : "Towne of Swainhil", prefix : "the", entermap : 'swainhil', enterx : 62, entery : 20};
 mappages["ellusus"].features[16] = {name : 'Dungeon', x : 111, y : 111, entermap : 'vault', enterx : 15, entery : 34};
@@ -1493,7 +1493,7 @@ mappages["ellusus"].features[55] = {name : 'Cave', x : 54, y : 115, entermap : '
 mappages["ellusus"].features[56] = {name : 'Towne3', x : 16, y : 107, desc : "Towne of Onyx", prefix : "the", entermap : 'onyx', enterx : 1, entery : 15};
 mappages["ellusus"].features[57] = {name : 'Cave', x : 124, y : 10, entermap : 'northcave', enterx : 1, entery : 16};
 mappages["ellusus"].features[58] = {name : 'Dungeon4', x : 54, y : 94, entermap : 'fulcrum1', enterx : 16, entery : 16};
-mappages["ellusus"].features[59] = {name : 'Dungeon2', x : 134, y : 49, entermap : 'mtdrash1', enterx : 12, entery : 18};
+mappages["ellusus"].features[59] = {name : 'Dungeon2', x : 134, y : 49, entermap : 'noxtalanua1', enterx : 12, entery : 18};
 mappages["ellusus"].features[60] = {name : 'Cave', x : 133, y : 79, entermap : 'wingcave2', enterx : 0, entery : 0};
 mappages["ellusus"].features[61] = {name : 'BridgeNS', x : 106, y : 74};
 
