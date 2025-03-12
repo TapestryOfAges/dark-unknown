@@ -95,7 +95,7 @@ can_train - PC has training points
 jharden_newspell - At this new level, Jharden has a spell to teach you
 ash_newspell - At this new level, Asharden has a spell to teach you
 heather_serene - you've given Heather the password
-been_in_bdc - you've been in Black Dragon Castle by the front door
+been_in_bdc/been_in_SK - you've been in Silverglade Keep by the front door
 bdc_gate_open - the gate is currently open
 rebel_prisoner - you've talked to the prince and given him the letter
 asked_aara - he's asked you to look in on Aara
@@ -119,7 +119,7 @@ franklin_debt_mayor - you have cleared Franklin's name with the mayor
 franklin_debt_paid - Franklin has acknowledged that you have paid his debt
 franklin_offered - you offered money to Franklin (and could actually afford to)
 franklin_karma - you had your one shot at karma for offering him money
-franklin_gift - Franklin sent you the AN Jinx   **
+franklin_gift - Franklin sent you the AN Confusion   **
 knowsgreenpotion - you know that green potions are poison
 knowsdarkgreenpotion - you know that dark green potions are quickness
 knowssilverpotion - you know that silver potions are strength
@@ -194,7 +194,7 @@ rhys_tired - set when Rhys finishes the summoning, cleared when he next sleeps
 beldskae_saved - You saved Beldskae
 beldskae_razed - Beldskae was razed
 blanche_returned - jewelry was returned to Blanche  ** (endgame support)
-guard_thief_talk - the Castle Olympus guards have mentioned the theft to you
+guard_thief_talk - the Castle Yggdras guards have mentioned the theft to you
 peter_caught - Peter has been revealed as the thief
 peter_speak - Peter gave his alibi
 ingrid_speak - Ingrid contradicted Peter's alibi
