@@ -901,9 +901,9 @@ ais.CourierPath = function(who) {
         if (!pcs.length) {
           whomap.moveThing(48,90,who);
           who.direction = "s";
-          DebugWrite("ai","Exiting Black Dragon Castle, by which I mean teleporting in from the corner.");
-        } else { DebugWrite("ai","Didn't come out of BDC- PC in the way."); }
-      } else { DebugWrite("ai","Didn't come out of BDC- NPC in the way."); }
+          DebugWrite("ai","Exiting Silverglade Keep, by which I mean teleporting in from the corner.");
+        } else { DebugWrite("ai","Didn't come out of SK- PC in the way."); }
+      } else { DebugWrite("ai","Didn't come out of SK- NPC in the way."); }
     } else {
 //      let tile = whomap.getTile(63,119);
       let tile = whomap.getTile(15,107);
@@ -927,7 +927,7 @@ ais.CourierPath = function(who) {
     DrawMainFrame("one",whomap,15,107);
   } else if ((who.getx()===48) && (who.gety()===90)) {
     whomap.moveThing(0,0,who);
-    DebugWrite("ai", "Entering BDC, by which I mean teleporting to the corner.");
+    DebugWrite("ai", "Entering SK, by which I mean teleporting to the corner.");
     DrawMainFrame("one",whomap,48,90);
   } else {
     let dest = [];
@@ -1266,8 +1266,8 @@ ais.FranklinCourier = function(who) {
   if ((who.step === 1) && (GetSquareDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) === 1)) {
     maintext.addText(`The courier calls to you: "${PC.getPCName()}, my ${PC.getGenderedTerms().titled}! The Bard Franklin bids me say Thank you again, and that I deliver to you this. Good day!"`);
     maintext.addText("He hands you a book, and runs off to his next delivery.");
-    maintext.addText(`<span class='sysconv'>You have gained one Audachta Nemesos: Jinx.</span>`);
-    PC.addToInventory(localFactory.createTile("AudachtaNemesosJinx"),1);
+    maintext.addText(`<span class='sysconv'>You have gained one Audachta Nemesos: Confusion.</span>`);
+    PC.addToInventory(localFactory.createTile("AudachtaNemesosConfusion"),1);
     who.step = 2;
     DU.gameflags.setFlag("franklin_gift",1);
     return retval;
@@ -2621,7 +2621,7 @@ ais.ai_cast = function(who) {
         spelloptions.push("Paralyze");
       }
       if ((who.getLevel() >= 6) && (who.getMana() >= 6)) {
-        spelloptions.push("Jinx");
+        spelloptions.push("Confusion");
         spelloptions.push("MassCurse");
       }
       if ((who.getLevel() >= 7) && (who.getMana() >= 7)) {
