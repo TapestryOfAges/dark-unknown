@@ -913,7 +913,7 @@ OnConvTriggers["warduke_engaged"] = function(speaker,keyword) {
 }
 
 OnConvTriggers["jharden_abyss"] = function(speaker,keyword) {
-  let sanc = maps.getMap("olympus2");
+  let sanc = maps.getMap("yggdras2");
   let door = sanc.getTile(62,23).getTopFeature();
   door.unlockMe();
 }
@@ -1438,16 +1438,16 @@ OnConvTriggers["rhys_moved"] = function(speaker,keyword) {
 }
 
 OnConvTriggers["guard_sent"] = function(speaker,keyword) {
-  let olympus = maps.getMap("olympus1");
-  let coll = FindNPCByName("Coll",olympus);
+  let yggdras = maps.getMap("yggdras1");
+  let coll = FindNPCByName("Coll",yggdras);
   if (coll) {
-    olympus.deleteThing(coll);
+    yggdras.deleteThing(coll);
     DUTime.removeEntityFrom(coll);
   }
   let coll2 = localFactory.createTile("TownGuardNPC");
   coll2.setNPCName("Coll");
   coll2.setConversation("coll2");
-  olympus.placeThing(76,38,coll2);
+  yggdras.placeThing(76,38,coll2);
 }
 
 OnConvTriggers["coll_open"] = function(speaker,keyword) {
@@ -1457,12 +1457,12 @@ OnConvTriggers["coll_open"] = function(speaker,keyword) {
 }
 
 OnConvTriggers["peter_caught"] = function(speaker,keyword) {
-  let olympus = maps.getMap("olympus1");
-  let peter = FindNPCByName("Peter",olympus);
+  let yggdras = maps.getMap("yggdras1");
+  let peter = FindNPCByName("Peter",yggdras);
   let petereffect = localFactory.createTile("RemovePeter");
   peter.addSpellEffect(petereffect);
 
-  let basement = maps.getMap("olympus0");
+  let basement = maps.getMap("yggdras0");
   peter = FindNPCByName("Peter",basement);
   peter.setSchedule("peter2");
   basement.moveThing(24,18,peter);
