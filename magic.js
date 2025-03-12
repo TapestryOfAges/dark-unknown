@@ -198,8 +198,8 @@ const SPELL_EMPOWER_LEVEL = 6;
 const SPELL_EMPOWER_ID = GetSpellID(1);
 const SPELL_EXPLOSION_LEVEL = 6;
 const SPELL_EXPLOSION_ID = GetSpellID(2);
-const SPELL_JINX_LEVEL = 6;
-const SPELL_JINX_ID = GetSpellID(3);
+const SPELL_CONFUSION_LEVEL = 6;
+const SPELL_CONFUSION_ID = GetSpellID(3);
 const SPELL_MASS_CURSE_LEVEL = 6;
 const SPELL_MASS_CURSE_ID = GetSpellID(4);
 const SPELL_NEGATE_MAGIC_LEVEL = 6;
@@ -292,7 +292,7 @@ magic[SPELL_SWORDSTRIKE_LEVEL][SPELL_SWORDSTRIKE_ID] = new SpellObject("Swordstr
 
 magic[SPELL_EMPOWER_LEVEL][SPELL_EMPOWER_ID] = new SpellObject("Empower", SPELL_EMPOWER_LEVEL, 0);  // bless
 magic[SPELL_EXPLOSION_LEVEL][SPELL_EXPLOSION_ID] = new SpellObject("Explosion", SPELL_EXPLOSION_LEVEL, 1);  // explosion
-magic[SPELL_JINX_LEVEL][SPELL_JINX_ID] = new SpellObject("Jinx", SPELL_JINX_LEVEL, 0);  // curse
+magic[SPELL_CONFUSION_LEVEL][SPELL_CONFUSION_ID] = new SpellObject("Confusion", SPELL_CONFUSION_LEVEL, 0);  // curse
 magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID] = new SpellObject("Mass Curse", SPELL_MASS_CURSE_LEVEL, 0);  // curse
 magic[SPELL_NEGATE_MAGIC_LEVEL][SPELL_NEGATE_MAGIC_ID] = new SpellObject("Negate Magic", SPELL_NEGATE_MAGIC_LEVEL, 0);  // curse
 magic[SPELL_STORM_LEVEL][SPELL_STORM_ID] = new SpellObject("Storm", SPELL_STORM_LEVEL, 0);  // lightning zap
@@ -1791,7 +1791,7 @@ magic[SPELL_RETURN_LEVEL][SPELL_RETURN_ID].getLongDesc = function() {
     let destx = PC.getHomeMap().getReturnx();
     let desty = PC.getHomeMap().getReturny();
     if ((dest === "ellusus") && (destx === 69) && (desty === 74)) {
-      return "Transports you to Castle dea Olympus.";
+      return "Transports you to Castle dea yggdras.";
     } else if (PC.getHomeMap().underground) {
       return "Brings you to the surface.";
     } else {
@@ -1801,7 +1801,7 @@ magic[SPELL_RETURN_LEVEL][SPELL_RETURN_ID].getLongDesc = function() {
 }
 magic[SPELL_RETURN_LEVEL][SPELL_RETURN_ID].getInfusedDesc = function() {
   if (PC.getHomeMap().getReturnInfused()) {
-    return "Transports you to Castle dea Olympus.";
+    return "Transports you to Castle dea yggdras.";
   } else {
     return "No additional effect from this location.";
   }
@@ -3983,13 +3983,13 @@ function PerformExplosion(caster, infused, free, tgt) {
   return resp;
 }
 
-// Jinx
-magic[SPELL_JINX_LEVEL][SPELL_JINX_ID].getLongDesc = function() {
+// Confusion
+magic[SPELL_CONFUSION_LEVEL][SPELL_CONFUSION_ID].getLongDesc = function() {
   return "Creatures in the target space and adjacent spaces have a chance of becoming confused, and may attack their allies.";
 }
 
-magic[SPELL_JINX_LEVEL][SPELL_JINX_ID].executeSpell = function(caster, infused, free) {
-  DebugWrite("magic", "Casting Jinx.<br />");
+magic[SPELL_CONFUSION_LEVEL][SPELL_CONFUSION_ID].executeSpell = function(caster, infused, free) {
+  DebugWrite("magic", "Casting Confusion.<br />");
 
   let resp = {fin:1};
 
@@ -4000,7 +4000,7 @@ magic[SPELL_JINX_LEVEL][SPELL_JINX_ID].executeSpell = function(caster, infused, 
     return resp;
   }
       
-  CreateTargetCursor({sticky: 0, command:'c',spellName:'Jinx',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "fullopen"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});    
+  CreateTargetCursor({sticky: 0, command:'c',spellName:'Confusion',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "fullopen"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});    
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 4;
@@ -4008,7 +4008,7 @@ magic[SPELL_JINX_LEVEL][SPELL_JINX_ID].executeSpell = function(caster, infused, 
   return resp;
 }
 
-function PerformJinx(caster, infused, free, tgt) {
+function PerformConfusion(caster, infused, free, tgt) {
   gamestate.setMode("null");
   let resp = {fin:1};
 
@@ -4044,7 +4044,7 @@ function PerformJinx(caster, infused, free, tgt) {
   for (let i=0;i<tgtcount;i++) {
     let desc;
     let val = tgtlist[i];
-    val.setHitBySpell(caster,Math.max(Math.floor(SPELL_JINX_LEVEL/tgtlist),1));
+    val.setHitBySpell(caster,Math.max(Math.floor(SPELL_CONFUSION_LEVEL/tgtlist),1));
     let resist = CheckResist(caster,val,infused,0);
     let power = 66-resist;
     
@@ -5797,8 +5797,8 @@ function PerformSpellcast() {
       resp = PerformConjureDaemon(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
     } else if (targetCursor.spellName === "Telekinesis") {
       resp = PerformTelekinesisMove(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, targetCursor.tgt);
-    } else if (targetCursor.spellName === "Jinx") {
-      resp = PerformJinx(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
+    } else if (targetCursor.spellName === "Confusion") {
+      resp = PerformConfusion(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
     }
   } else if (targetCursor.spelldetails.targettype === "usable") {
     let topfeature = targettile.getTopVisibleFeature();
