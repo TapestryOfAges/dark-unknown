@@ -43,6 +43,11 @@ function PerformCommand(code, ctrl) {
       if (tmp["fin"] === 1) { return tmp; }
     }
   
+    if (DU.gameflags.getFlag("move_attacks")) {
+      let retval = PerformAttackFromMove(PC,0,-1);
+      if (retval["fin"]) { return retval; }
+    }
+
     let success = PC.moveMe(0,-1,0);
 		let txt = "Move North";
 		txt += success["msg"];
@@ -83,6 +88,11 @@ function PerformCommand(code, ctrl) {
       if (tmp["fin"] === 1) { return tmp; }
     }
 
+    if (DU.gameflags.getFlag("move_attacks")) {
+      let retval = PerformAttackFromMove(PC,-1,0);
+      if (retval["fin"]) { return retval; }
+    }
+
 		let success = PC.moveMe(-1,0,0);
 		let txt = "Move West";
 		txt += success["msg"];
@@ -121,6 +131,11 @@ function PerformCommand(code, ctrl) {
       if (tmp["fin"] === 1) { return tmp; }
     }
 
+    if (DU.gameflags.getFlag("move_attacks")) {
+      let retval = PerformAttackFromMove(PC,1,0);
+      if (retval["fin"]) { return retval; }
+    }
+
     let success = PC.moveMe(1,0,0);
 		let txt = "Move East";
 		txt += success["msg"];
@@ -157,6 +172,11 @@ function PerformCommand(code, ctrl) {
     if (drunk) {
       let tmp = drunk.doEffect();
       if (tmp["fin"] === 1) { return tmp; }
+    }
+
+    if (DU.gameflags.getFlag("move_attacks")) {
+      let retval = PerformAttackFromMove(PC,0,1);
+      if (retval["fin"]) { return retval; }
     }
 
     let success = PC.moveMe(0,1,0);
@@ -569,12 +589,21 @@ function PerformCommand(code, ctrl) {
     
     DrawStats(targetCursor.page);
 	}
-	else if ((code === 32) || (code === 13)) { // SPACE or ENTER
+	else if (code === 32) { // SPACE 
 		// pass
 		retval["txt"] = "Pass.";
 		retval["input"] = "&gt;";
 		retval["fin"] = 1;
 	}
+  else if (code === 13) { // ENTER
+    retval = PerformEnter("e");
+    if (retval["txt"] === "You cannot enter that.") {
+  		// pass
+	  	retval["txt"] = "Pass.";
+		  retval["input"] = "&gt;";
+		  retval["fin"] = 1;
+    }
+  }
   else if (code === 27) {  // ESC
     retval = PerformEscape();
   }
@@ -720,9 +749,25 @@ function PerformTarget(code)  {
 	return retval;
 }
 
+function PerformAttackFromMove(who, dx, dy) {
+  let mapscale = PC.getHomeMap().getScale();
+  let retval = {fin:0};
+  if (!mapscale) { return retval; }
+  let lacre = who.getHomeMap().getTile(who.getx()+dx,who.gety()+dy);
+  if (lacre === "OoB") { return retval; }
+  let atkwho = lacre.npcs.getTop();
+  if (atkwho && (atkwho.getAttitude() === "hostile")) {
+    retval = Attack(who,atkwho);
+    retval["extra"] = "moveintoattack";
+  }
+  return retval;
+}
+
 function PerformAttack(who) {
   let tileid = targetCursor.tileid;
-  document.getElementById(tileid).innerHTML = targetCursor.basetile;
+  if (tileid) {
+    document.getElementById(tileid).innerHTML = targetCursor.basetile;
+  }
 
   let localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
   let atkwho = localacre.npcs.getTop();
@@ -4165,10 +4210,11 @@ function ShowHelp() {
     caninfuse = "style='color:gray'";
   }
   statsdiv += `<tr><td ${caninfuse}>I - Infuse</td><td></td><td>W - Wait</td></tr>`;
-  statsdiv += "<tr><td>K - Climb</td><td></td><td>Y - Yell</td></tr>";
-  statsdiv += "<tr><td>L - Look</td><td></td><td>Z - Stats</td></tr>";
-  statsdiv += "<tr><td>CTRL-L - Load Game</td><td></td><td>SPACE - Pass Turn</tr>";
-  statsdiv += "<tr><td>M - Toggle Music</td><td></td><td></td></tr>";
+  statsdiv += "<tr><td>J - Quest Journal</td><td></td><td>Y - Yell</td></tr>";
+  statsdiv += "<tr><td>K - Climb</td><td></td><td>Z - Stats</td></tr>";
+  statsdiv += "<tr><td>L - Look</td><td></td><td>SPACE - Pass Turn</td></tr>";
+  statsdiv += "<tr><td>CTRL-L - Load Game</td><td></td><td>ENTER - Enter/Climb if</tr>";
+  statsdiv += "<tr><td>M - Toggle Music</td><td></td><td>&nbsp;can, else Pass Turn.</td></tr>";
   statsdiv += "<tr><td>O - Open</td><td></td><td></td></tr>";
   statsdiv += "<tr><td>CTRL-O - Options</td><td></td><td></td></tr>";
 

@@ -294,6 +294,11 @@ function DoAction(code, ctrl) {
       } else if (response["fin"] === 4) {
         maintext.setInputLine("&gt; [MORE]");
         maintext.drawTextFrame();
+      } else if ((response["fin"] === -1) && (response["extra"] === "moveintoattack")) {
+        // duplicating the result if you return -1 from a targeted melee attack
+        gamestate.setMode("null");
+        // wait and let the combat code set things to next turn. NOTE: possible race conition
+        raceWarning = 1;
       }
     }  
   }
