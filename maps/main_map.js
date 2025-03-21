@@ -1530,6 +1530,33 @@ mappages["ellusus"].linkedMaps = [""];
 mappages["ellusus"].editorLabels = '{}';
 // MAP ENDS HERE
 
+mappages["ellusus"].onload = function(mapref) {
+    
+  // Place spawners  
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    Placespawns(mapref);
+  // give specs to teleporters
+    let shrinetile = mapref.getTile(13,82);
+    let shrine = shrinetile.getTopFeature();
+    if (shrine) {
+      shrine.gotomap = "island";
+      shrine.gotox = 14;
+      shrine.gotoy = 76;
+    }
+  
+    shrinetile = mapref.getTile(15,16);
+    shrine = shrinetile.getTopFeature();
+    if (shrine) {
+      shrine.gotomap = "island";
+      shrine.gotox = 56;
+      shrine.gotoy = 15;
+    }
+  }
+  CreateNetwork(mapref);
+  
+  CreateBeaches(mapref);
+}
+
 
 mappages["ellusus_limbo"] = {};
 mappages["ellusus_limbo"].terrain = [];
