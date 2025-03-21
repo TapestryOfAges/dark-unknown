@@ -1958,6 +1958,11 @@ tileFactory.prototype.makeCampfireTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeCampfireTile = function() {
+  let newTile = new CampfireTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeCampfireExtinguishedTile = function() {
   let newTile = new CampfireExtinguishedTile();
   return newTile;
@@ -4228,8 +4233,8 @@ tileFactory.prototype.makeRoyalKeyTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeBlackDragonKeyTile = function() {
-  let newTile = new BlackDragonKeyTile();
+tileFactory.prototype.makeSilvergladeKeyTile = function() {
+  let newTile = new SilvergladeKeyTile();
   return newTile;
 }
 

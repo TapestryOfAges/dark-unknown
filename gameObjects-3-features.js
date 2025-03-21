@@ -2641,6 +2641,72 @@ CampfireTile.prototype.myTurn = function() {
   return 1;  
 }
 
+function FireTile() {
+	this.name = "Fire";
+	this.graphic = "static.gif";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -178*32;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
+	this.blocklos = 0;
+  this.prefix = "a";
+	this.desc = "fire";
+	this.pathweight = 5;
+	this.firedamage = "2d6+3";
+	
+	LightEmitting.call(this, 3);
+	HasAmbientNoise.call(this,"sfx_fire_crackle",1.5);
+
+  ManualAnimation.call(this, { animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
+
+}
+FireTile.prototype = new FeatureObject();
+
+FireTile.prototype.activate = function() {
+  if (gamestate.getMode() !== "loadgame") {
+    let NPCevent = new GameEvent(this);
+    DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
+  }
+  return;
+}
+
+FireTile.prototype.walkon = function(person) {
+  let resp = OnFire(person, this);
+  return resp;
+}
+FireTile.prototype.idle = function(person) {
+  let resp = OnFire(person, this);
+  return resp;
+}
+
+FireTile.prototype.isHostileTo = function(who) {
+  if (who.getResist("fire") >= 100) { return 0; }
+  return 1;
+}
+
+FireTile.prototype.myTurn = function() {
+  let mytile = this.getHomeMap().getTile(this.getx(),this.gety());
+  let feas = mytile.getFeatures();
+  for (let i=0;i<feas.length;i++) {
+    if (feas[i].flammable) {
+      if (Dice.roll("1d100") <= feas[i].flammable) {
+        feas[i].flamed();
+      }
+    }
+  };
+
+  let NPCevent = new GameEvent(this);
+  DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
+  
+  return 1;  
+}
+
 function OnFire(who, what) {
   let dmg = Dice.roll(what.firedamage);
   dmg = (1/SCALE_TIME)*(DUTime.getGameClock() - who.getLastTurnTime()) * dmg;
@@ -2649,6 +2715,7 @@ function OnFire(who, what) {
   
   return response;
 }
+
 
 function CampfireExtinguishedTile() {
 	this.name = "CampfireExtinguished";
