@@ -402,12 +402,12 @@ mappages["clearlake"].npcs[15] = {name : 'TownGuardNPC', x : 36, y : 48, NPCName
 mappages["clearlake"].npcs[16] = {name : 'ShepherdVillagerNPC', x : 23, y : 22, NPCName: 'Paulon', Desc: 'scholar', Schedule: 'paulon', Conversation: 'paulon', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BrownRobeFancy","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBrownPale"}'};
 
 mappages["clearlake"].desc = "Clear Lake";
-mappages["clearlake"].longdesc = `The noise and scents of the sea fill the air as you enter the coastal town of Clear Lake. It is built on the shore and several islands, connected by sturdy bridges.`;
+mappages["clearlake"].longdesc = `The breeze off the water brushes you as you enter the lake town of Clear Lake. It is built on the shore and several islands, connected by sturdy bridges.`;
 mappages["clearlake"].music = 'Towne';
 mappages["clearlake"].savename = `Clear Lake`;
 mappages["clearlake"].exitmap = 'ellusus';
-mappages["clearlake"].exitx = '81';
-mappages["clearlake"].exity = '23';
+mappages["clearlake"].exitx = '80';
+mappages["clearlake"].exity = '41';
 mappages["clearlake"].wraps = '';
 mappages["clearlake"].enterx = '19';
 mappages["clearlake"].entery = '62';
