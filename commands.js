@@ -2774,7 +2774,7 @@ function DrawStats(page) {
     let spandexmod = "";
     if (PC.getModDex() < 0) { spandexmod = ` + <span style="color:orange">${PC.getModDex()}</span>`; }
     else if (PC.getModDex() > 0) { spandexmod = ` + <span style="color:lightgreen">${PC.getModDex()}</span>`; }
-    let spanintmod = "<span>";
+    let spanintmod = "";
     if (PC.getModInt() < 0) { spanintmod = ` + <span style="color:orange">${PC.getModInt()}</span>`; }
     else if (PC.getModInt() > 0) { spanintmod = ` + <span style="color:lightgreen">${PC.getModInt()}</span>`; }
     
