@@ -1445,11 +1445,11 @@ HotelPheranTile.prototype.myTurn = function() {
         let choice = Dice.roll("1d7");
         if (choice === 1) { this.getHomeMap().moveThing(115,84,this); }
         else if (choice === 2) { this.getHomeMap().moveThing(114,43,this); }
-        else if (choice === 3) { this.getHomeMap().moveThing(96,38,this); }
-        else if (choice === 4) { this.getHomeMap().moveThing(49,17,this); }
-        else if (choice === 5) { this.getHomeMap().moveThing(60,41,this); }
+        else if (choice === 3) { this.getHomeMap().moveThing(99,43,this); }
+        else if (choice === 4) { this.getHomeMap().moveThing(74,24,this); }
+        else if (choice === 5) { this.getHomeMap().moveThing(61,42,this); }
         else if (choice === 6) { this.getHomeMap().moveThing(42,84,this); }
-        else if (choice === 7) { this.getHomeMap().moveThing(45,114,this); }
+        else if (choice === 7) { this.getHomeMap().moveThing(28,108,this); }
         console.log("Hotel Pheran moved!");
         console.log(`New coords: ${this.getx()},${this.gety()}.`);
       }
