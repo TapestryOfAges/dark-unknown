@@ -13580,6 +13580,7 @@ GoldTile.prototype.onGet = function(who) {
   let goldy = this.gety();
   this.getHomeMap().deleteThing(this);
   DrawMainFrame("one",who.getHomeMap(),goldx,goldy);
+  DrawCharFrame();
 
   let retval = {};
   retval.noTake = 1;
