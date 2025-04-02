@@ -437,5 +437,11 @@ mappages["shadow3"].onload = function(mapref) {
         DUTime.removeEntityFrom(rhys);
       }
     }
+    if (DU.gameflags.getFlag("cult_attack")) {
+      let wall1 = mapref.getTile(14,15).getTopFeature();
+      let wall2 = mapref.getTile(14,16).getTopFeature();
+      themap.deleteThing(wall1);
+      themap.deleteThing(wall2);
+    }
   }
 }
