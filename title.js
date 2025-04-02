@@ -124,7 +124,13 @@ function page_pre_zero() {
 //  ipcRenderer.send('toggle_dev');
   let loaddoc = document.getElementById("load");
   if (loaddoc) {
-    loaddoc.innerHTML += "<p class='charcreate' style='margin-left: 23px'>Ready.<br />Press any key...";
+    loaddoc.innerHTML += "<p class='charcreate' style='margin-left: 23px'>Ready.<br />Press any key...</p>";
+    if (beta) {
+      let verdiv = document.getElementById("version");
+      if (verdiv) {
+        verdiv.innerHTML = `<p class='charcreate'>v${DU.version}</p>`;
+      }
+    }
   }
 } 
 
@@ -863,6 +869,7 @@ function DoActionTitle(code, e) {
       DU.gameflags.setFlag("allowjournal",1);
       DU.gameflags.setFlag("allowautomap",1);
       DU.gameflags.setFlag("sticky_target",1);
+      DU.gameflags.setFlag("move_opens_doors",1);
       CharCreateOptions();
 
     }
