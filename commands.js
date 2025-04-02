@@ -2039,8 +2039,10 @@ function PerformTalkTarget() {
 }
 
 function PerformTalk(talkto, convo, topic) {
-  let forlog = {NPC: talkto.getNPCName(), conversation: convo, keyword: topic, timestamp: DUTime.getGameClock()};
-  convlog.push(forlog);
+  if (beta) {
+    let forlog = {NPC: talkto.getNPCName(), conversation: convo, keyword: topic, timestamp: DUTime.getGameClock()};
+    convlog.push(forlog);
+  }
   
   let retval = {};
   let conval = conversations[convo].respond(talkto, topic);
@@ -3074,7 +3076,7 @@ function DrawOptions() {
     optdiv += "NO";
   }
   optdiv += "</td></tr>";
-  optdiv += "<tr><td>SOUND VOLUME:</td><td></td><td";
+  optdiv += "<tr><td>SOUND FX VOLUME:</td><td></td><td";
   if (targetCursor.page === 3) { 
     optdiv += " class='highlight'";
   }
@@ -3110,7 +3112,7 @@ function DrawOptions() {
   }
   optdiv += "</td></tr>";
 
-  optdiv += "<tr><td>MOVE ATTACKS/TALKS:</td><td></td><td";
+  optdiv += "<tr><td>MOVE ATTACKS:</td><td></td><td";
   if (targetCursor.page === 6) { 
     optdiv += " class='highlight'";
   }
