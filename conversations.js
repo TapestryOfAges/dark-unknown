@@ -101,10 +101,12 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   }  // this one trigger needs to be checked before speech 
   // Technically I should rewrite so this is neither a flag nor a trigger, but that's a much larger code refactor, and this hack should suffice
 
-  if (!convlog[convlog.length-1].hasOwnProperty("hasResponse")) { 
-    convlog[convlog.length-1].hasResponse = addtolog.hasResponse;
-    convlog[convlog.length-1].flagsmet = addtolog.flagsmet;
-    convlog[convlog.length-1].itemsowned = addtolog.itemsowned;
+  if (beta) {
+    if (!convlog[convlog.length-1].hasOwnProperty("hasResponse")) { 
+      convlog[convlog.length-1].hasResponse = addtolog.hasResponse;
+      convlog[convlog.length-1].flagsmet = addtolog.flagsmet;
+      convlog[convlog.length-1].itemsowned = addtolog.itemsowned;
+    }
   }
   keep_talking = this.say(speaker, this[keyword].responses[flags_met], skipahead, noshowmainspeaker, altspeaker);
   
