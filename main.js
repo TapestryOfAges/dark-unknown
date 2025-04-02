@@ -1,7 +1,7 @@
 "use strict";
 //const isDev = require('electron-is-dev');
 let maxserial = 0;
-let beta = 0;  // set to one for additional analytics
+let beta = 1;  // set to one for additional analytics
 
 let wind = {};
 wind.xoff = 0;
@@ -13,7 +13,7 @@ let eidos = new Platonic();
 //var universe = new Object;
 
 let DU = {};
-DU.version = "0.9.2";
+DU.version = "0.10.0";
 
 DU.PC = new PCObject();
 DU.gamelength = 0;
