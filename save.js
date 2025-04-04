@@ -328,6 +328,8 @@ OutOfContext.onLoadData((event,serialized) => {
   if (savedata.convlog) {
     convlog = savedata.convlog;
   }
+  targetCursor.convprompts = {};
+  targetCursor.convsaid = {};
 
   DU.gamelength = savedata.timeplayed;
   let d = new Date();

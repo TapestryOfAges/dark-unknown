@@ -39,6 +39,8 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     if (!this.hasOwnProperty(keyword)) {
       keyword = "_confused";
       addtolog.hasResponse = 0;
+    } else {
+      targetCursor.convsaid[keyword] = 1;
     }
   
     let flags = this[keyword].flags;
@@ -265,6 +267,11 @@ Conversation.prototype.say = function(speaker, saywhat, skipahead, nospeaker, al
   speakertext = speakertext.charAt(0).toUpperCase() + speakertext.slice(1);
   speakertext = "<span class='mainspeaker'>" + speakertext + "</span>: ";
   
+  let foo = saywhat.match(/=(\w+)=/g);
+  for (const term of foo) {
+    let t2 = term.replace(/=/g, "");
+    targetCursor.convprompts[t2] = 1;
+  }
   saywhat = saywhat.replace(/=(\w+)=/g, "<span style='color:cyan'>$1</span>");
   saywhat = saywhat.replace(/%FORMAL%/g, gterms.formal);
   saywhat = saywhat.replace(/%TITLED%/g, gterms.titled);

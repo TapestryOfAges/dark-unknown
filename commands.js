@@ -2058,6 +2058,8 @@ function PerformTalk(talkto, convo, topic) {
     retval["txt"] = "";
     retval["fin"] = 1;
     retval["input"] = "&gt;";
+    targetCursor.convprompts = {};
+    targetCursor.convsaid = {};
     return retval;
   }
   

@@ -590,6 +590,27 @@ function DoAction(code, ctrl) {
     else if (code === 32) { // space
       // nothing 
     }
+    else if (code === 191) {  // / or ?
+      if (!inputText.txt.length) {
+        // there is nothing typed so far as a response
+        // willing to accept ?
+        if (DU.gameflags.getFlag("allowjournal")) {
+          // only works if the Quest Journal is enabled
+          let promptlist = "";
+          for (let prompt in targetCursor.convprompts) {
+            if (!targetCursor.convsaid[prompt] && !prompt.match(/\d/) && !prompt.match(/_/)) {
+              // during this conversation, we heard this prompt and haven't said it back yet
+              // also, ignore prompts that are from redirects, not sure if they will get included but I suspect they might
+              promptlist += ` ${prompt}`;
+            }
+          }
+          if (promptlist.length) {
+            maintext.addText(`(<span style='color:cyan'>${promptlist}</span> )`);
+            maintext.drawTextFrame();
+          }
+        }
+      }
+    }
     else if (code === 8) { // backspace
       let txt = maintext.getInputLine();
       if (inputText.txt.length) {
