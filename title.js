@@ -975,7 +975,7 @@ function DoActionTitle(code, e) {
 
 function CharCreateOptions() {
   let charopts = "<div class='zstats'><p style='text-align:center'>Game Start Options</p>";
-  charopts += "<table cellpadding='0' cellspacing='10' border='0'><tr><td><table cellpadding='2' cellspacing='2' border='0' style='background-color:black'>";
+  charopts += "<table cellpadding='0' cellspacing='10' border='0'><tr><td><table cellpadding='2' cellspacing='2' border='0' style='background-color:black; width:250px'>";
 //  charopts += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td></tr>";
 //  charopts += "<tr><td colspan='2'>=======GAMEPLAY======</td><td></td><td></td></tr>";
   charopts += "<tr><td>DIFFICULTY: </td><td ";
@@ -994,11 +994,11 @@ function CharCreateOptions() {
   if (targetCursor.page === 1) {
     charopts += "class='highlight'";
   }
-  charopts += ">";
+  charopts += " style='width:80'>";
   if (DU.gameflags.getFlag("potionsrevealed") === "all") {
     charopts += "ALL";
-  } else if (DU.gameflags.getFlag("potionsrevealed") === "BLIND") {
-    chatopts += "BLIND";
+  } else if (DU.gameflags.getFlag("potionsrevealed") === "blind") {
+    charopts += "BLIND";
   } else {
     charopts += "ROGUELIKE";
   }
