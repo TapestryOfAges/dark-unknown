@@ -2421,7 +2421,7 @@ ais.ai_cast = function(who) {
     DebugWrite("ai", "Adding BUFFSELF to the list. Always worth considering buffing myself.");
     choices.push("buffself");
   }
-  if (who.spellsknown.highbuff && (who.getLevel() >= 7) && (who.getMana() >= 7) && (!who.getSpellEffectsByName("Invulnerability") || !who.getSpellEffectsByName("Quickness"))) {
+  if (who.spellsknown.highbuff && (who.getLevel() >= 7) && (who.getMana() >= 7) && (!who.getSpellEffectsByName("Invulnerability") || !who.getSpellEffectsByName("Alacrity"))) {
     DebugWrite("ai", "Adding HIGHBUFFSELF to the list.");
     choices.push("highbuffself");
   }
@@ -2543,16 +2543,16 @@ ais.ai_cast = function(who) {
       if (!who.getSpellEffectsByName("Invulnerability") && (who.getMana() >= 7) && (who.getLevel() >= 7)) {
         spelloptions.push("Invulnerability");
       }
-      if (!who.getSpellEffectsByName("Quickness") && (who.getMana() >= 8) && (who.getLevel() >= 8)) {
-        spelloptions.push("Quickness");
+      if (!who.getSpellEffectsByName("Alacrity") && (who.getMana() >= 8) && (who.getLevel() >= 8)) {
+        spelloptions.push("Alacrity");
       }
       dr = Dice.roll("1d"+spelloptions.length+"-1");
       if (spelloptions[dr] === "Invulnerability") {
         AnnounceSpellcast("Invulnerability",who);
         magic[SPELL_INVULNERABILITY_LEVEL][SPELL_INVULNERABILITY_ID].executeSpell(who,0,0);
-      } else if (spelloptions[dr] === "Quickness") {
-        AnnounceSpellcast("Quickness",who);
-        magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID].executeSpell(who,0,0);
+      } else if (spelloptions[dr] === "Alacrity") {
+        AnnounceSpellcast("Alacrity",who);
+        magic[SPELL_ALACRITY_LEVEL][SPELL_ALACRITY_ID].executeSpell(who,0,0);
       }
     } else if (choices[dr] === "summon") {
       let spelloptions = [];
