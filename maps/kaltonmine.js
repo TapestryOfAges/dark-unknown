@@ -48,12 +48,12 @@ mappages["kaltonmine1"].terrain[41] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK
 
 mappages["kaltonmine1"].features = [];
 mappages["kaltonmine1"].features[0] = {name : 'LadderUp', x : 15, y : 5, entermap : 'ellusus', enterx : 39, entery : 48};
-mappages["kaltonmine1"].features[1] = {name : 'PetrifiedReaper', x : 34, y : 19};
-mappages["kaltonmine1"].features[2] = {name : 'PetrifiedReaper', x : 36, y : 19};
-mappages["kaltonmine1"].features[3] = {name : 'PetrifiedReaper', x : 37, y : 18};
-mappages["kaltonmine1"].features[4] = {name : 'PetrifiedReaper', x : 35, y : 17};
-mappages["kaltonmine1"].features[5] = {name : 'PetrifiedReaper', x : 37, y : 15};
-mappages["kaltonmine1"].features[6] = {name : 'PetrifiedReaper', x : 35, y : 13};
+mappages["kaltonmine1"].features[1] = {name : 'PetrifiedOlcrann', x : 34, y : 19};
+mappages["kaltonmine1"].features[2] = {name : 'PetrifiedOlcrann', x : 36, y : 19};
+mappages["kaltonmine1"].features[3] = {name : 'PetrifiedOlcrann', x : 37, y : 18};
+mappages["kaltonmine1"].features[4] = {name : 'PetrifiedOlcrann', x : 35, y : 17};
+mappages["kaltonmine1"].features[5] = {name : 'PetrifiedOlcrann', x : 37, y : 15};
+mappages["kaltonmine1"].features[6] = {name : 'PetrifiedOlcrann', x : 35, y : 13};
 mappages["kaltonmine1"].features[7] = {name : 'PileOfRocks', x : 10, y : 32};
 mappages["kaltonmine1"].features[8] = {name : 'PileOfRocks', x : 11, y : 35};
 mappages["kaltonmine1"].features[9] = {name : 'PileOfRocks', x : 17, y : 37};
@@ -219,9 +219,9 @@ mappages["kaltonmine2"].features[28] = {name : 'PileOfRocks', x : 38, y : 12};
 
 mappages["kaltonmine2"].npcs = [];
 mappages["kaltonmine2"].npcs[0] = {name : 'EttinNPC', x : 22, y : 35, skintone: '1'};
-mappages["kaltonmine2"].npcs[1] = {name : 'ReaperNPC', x : 13, y : 13, Gender: 'monster', NPCBand: '2', skintone: '1'};
-mappages["kaltonmine2"].npcs[2] = {name : 'ReaperNPC', x : 14, y : 11, Gender: 'monster', NPCBand: '2', skintone: '1'};
-mappages["kaltonmine2"].npcs[3] = {name : 'ReaperNPC', x : 14, y : 15, Gender: 'monster', NPCBand: '2', skintone: '1'};
+mappages["kaltonmine2"].npcs[1] = {name : 'OlcrannNPC', x : 13, y : 13, Gender: 'monster', NPCBand: '2', skintone: '1'};
+mappages["kaltonmine2"].npcs[2] = {name : 'OlcrannNPC', x : 14, y : 11, Gender: 'monster', NPCBand: '2', skintone: '1'};
+mappages["kaltonmine2"].npcs[3] = {name : 'OlcrannNPC', x : 14, y : 15, Gender: 'monster', NPCBand: '2', skintone: '1'};
 mappages["kaltonmine2"].npcs[4] = {name : 'GremlinNPC', x : 36, y : 21, Gender: 'monster', NPCBand: '7', skintone: '1'};
 mappages["kaltonmine2"].npcs[5] = {name : 'GremlinNPC', x : 38, y : 22, Gender: 'monster', NPCBand: '7', skintone: '1'};
 mappages["kaltonmine2"].npcs[6] = {name : 'GremlinNPC', x : 37, y : 23, Gender: 'monster', NPCBand: '7', skintone: '1'};
@@ -363,7 +363,7 @@ mappages["kaltonmine2"].onload = function(mapref) {
 
 
     spawn = localFactory.createTile("Spawner");
-    spawngroup = ["ReaperNPC"];
+    spawngroup = ["OlcrannNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(2);
@@ -484,10 +484,10 @@ mappages["kaltonmine3"].npcs[3] = {name : 'DrakeNPC', x : 24, y : 7, Gender: 'mo
 mappages["kaltonmine3"].npcs[4] = {name : 'DrakeNPC', x : 22, y : 8, Gender: 'monster', NPCBand: '1', skintone: '1'};
 mappages["kaltonmine3"].npcs[5] = {name : 'DrakeNPC', x : 22, y : 10, Gender: 'monster', NPCBand: '1', skintone: '1'};
 mappages["kaltonmine3"].npcs[6] = {name : 'DragonNPC', x : 25, y : 7, Gender: 'monster', NPCBand: '1', skintone: '1'};
-mappages["kaltonmine3"].npcs[7] = {name : 'ReaperNPC', x : 21, y : 20, Gender: 'monster', NPCBand: '2', skintone: '1'};
-mappages["kaltonmine3"].npcs[8] = {name : 'ReaperNPC', x : 23, y : 22, Gender: 'monster', NPCBand: '2', skintone: '1'};
-mappages["kaltonmine3"].npcs[9] = {name : 'ReaperNPC', x : 25, y : 24, Gender: 'monster', NPCBand: '2', skintone: '1'};
-mappages["kaltonmine3"].npcs[10] = {name : 'ReaperNPC', x : 13, y : 15, skintone: '1'};
+mappages["kaltonmine3"].npcs[7] = {name : 'OlcrannNPC', x : 21, y : 20, Gender: 'monster', NPCBand: '2', skintone: '1'};
+mappages["kaltonmine3"].npcs[8] = {name : 'OlcrannNPC', x : 23, y : 22, Gender: 'monster', NPCBand: '2', skintone: '1'};
+mappages["kaltonmine3"].npcs[9] = {name : 'OlcrannNPC', x : 25, y : 24, Gender: 'monster', NPCBand: '2', skintone: '1'};
+mappages["kaltonmine3"].npcs[10] = {name : 'OlcrannNPC', x : 13, y : 15, skintone: '1'};
 
 mappages["kaltonmine3"].desc = "Kalton Mine (L3)";
 mappages["kaltonmine3"].longdesc = ``;

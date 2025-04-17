@@ -121,7 +121,7 @@ franklin_offered - you offered money to Franklin (and could actually afford to)
 franklin_karma - you had your one shot at karma for offering him money
 franklin_gift - Franklin sent you the AN Confusion   **
 knowsgreenpotion - you know that green potions are poison
-knowsdarkgreenpotion - you know that dark green potions are quickness
+knowsdarkgreenpotion - you know that dark green potions are alacrity
 knowssilverpotion - you know that silver potions are strength
 knowspinkpotion - you know that pink potions are dexterity
 knowsgreypotion - you know that grey potions are intelligence

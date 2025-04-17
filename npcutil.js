@@ -19,7 +19,7 @@ Anchor.prototype = new Object();
 let NPCSpecialFuncs = {};
 
 NPCSpecialFuncs["quick"] = function(who, how) {
-  let qobj = localFactory.createTile("Quickness");
+  let qobj = localFactory.createTile("Alacrity");
   qobj.setExpiresTime(-1);
   who.addSpellEffect(qobj);  
 }

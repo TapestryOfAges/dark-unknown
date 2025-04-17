@@ -36,7 +36,7 @@ function SetMerchants() {
   bill.carol = {};
   bill.carol.stock = [ { item: "AudachtaNemesosUnlock", quantity: 1, price: 500, desc: "Audachta Nemesos: Unlock", sale: 'She winks. "So easy, it\'s almost cheating."' },
                        { item: "ScrollPeer", quantity: 5, price: 150, desc: "Scroll of Peer", sale: '"Good for finding a back way somewhere."' },
-                       { item: "DarkGreenPotion", quantity: 1, price: 150, desc: "Quickness Potion", sale: '"Sometimes you need to get out in a hurry."' },
+                       { item: "DarkGreenPotion", quantity: 1, price: 150, desc: "Alacrity Potion", sale: '"Sometimes you need to get out in a hurry."' },
                 ];
   bill.carol.type =  "stuff";
 
@@ -97,7 +97,7 @@ function SetMerchants() {
                         { item: "ScrollSmite", quantity: 1, price: 130, desc: "Scroll of Smite", sale: '"Something will be sure to regret meeting you."', sellqty: 1},
                         { item: "AudachtaNemesosIronFlesh", quantity: 1, price: 250, desc: "Audachta Nemesos: Iron Flesh", sale: '"Ah, an eye for the rare and valuable."', sellqty: 1},
                         { item: "GreenPotion", quantity: 0, price: 10, desc: "Poison Potion", sale: '"Useful for dealing with rats, I suppose."', sellqty: 1},
-                        { item: "DarkGreenPotion", quantity: 0, price: 150, desc: "Quickness Potion", sale: '"Would you like anything else?"', sellqty: 1},
+                        { item: "DarkGreenPotion", quantity: 0, price: 150, desc: "Alacrity Potion", sale: '"Would you like anything else?"', sellqty: 1},
                         { item: "SilverPotion", quantity: 0, price: 80, desc: "Strength Potion", sale: '"Would you like anything else?"', sellqty: 1},
                         { item: "PinkPotion", quantity: 0, price: 80, desc: "Dexterity Potion", sale: '"Would you like anything else?"', sellqty: 1},
                         { item: "GreyPotion", quantity: 0, price: 80, desc: "Intelligence Potion", sale: '"Would you like anything else?"', sellqty: 1},
@@ -125,7 +125,7 @@ function SetMerchants() {
   bill.connor.stock = [ { item: "BrownPotion", quantity: 1, price: 160, desc: "Greater Mana Potion", sale: '"May it serve you well."', sellqty: 0},
                         { item: "BlackPotion", quantity: 1, price: 140, desc: "Bless Potion", sale: '"May it serve you well."', sellqty: 0},
                         { item: "PurplePotion", quantity: 1, price: 100, desc: "Protection Potion", sale: '"May it serve you well."', sellqty: 0},
-                        { item: "BloodMoss", quantity: 2, price: 40, desc: "Blood Moss", sale: '"Use it well."', sellqty: 0},
+                        { item: "BindersMoss", quantity: 2, price: 40, desc: "Binder's Moss", sale: '"Use it well."', sellqty: 0},
                         { item: "MandrakeRoot", quantity: 1, price: 90, desc: "Mandrake Root", sale: `"Use it well. With luck, I'll harvest another soon."`, sellqty: 0},
                       ];
   bill.connor.type = "stuff";

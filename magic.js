@@ -204,10 +204,10 @@ const SPELL_MASS_CURSE_LEVEL = 6;
 const SPELL_MASS_CURSE_ID = GetSpellID(4);
 const SPELL_NEGATE_MAGIC_LEVEL = 6;
 const SPELL_NEGATE_MAGIC_ID = GetSpellID(5);
+const SPELL_QUAKE_LEVEL = 6;
+const SPELL_QUAKE_ID = GetSpellID(6);
 const SPELL_STORM_LEVEL = 6;
-const SPELL_STORM_ID = GetSpellID(6);
-const SPELL_TREMOR_LEVEL = 6;
-const SPELL_TREMOR_ID = GetSpellID(7);
+const SPELL_STORM_ID = GetSpellID(7);
 const SPELL_WEATHER_CONTROL_LEVEL = 6;
 const SPELL_WEATHER_CONTROL_ID = GetSpellID(8);
 
@@ -228,18 +228,18 @@ const SPELL_MIND_BLAST_ID = GetSpellID(7);
 const SPELL_PERMANENCE_LEVEL = 7;
 const SPELL_PERMANENCE_ID = GetSpellID(8);
 
+const SPELL_ALACRITY_LEVEL = 8;
+const SPELL_ALACRITY_ID = GetSpellID(1);
 const SPELL_ARMAGEDDON_LEVEL = 8;
-const SPELL_ARMAGEDDON_ID = GetSpellID(1);
+const SPELL_ARMAGEDDON_ID = GetSpellID(2);
 const SPELL_ARROW_OF_GLASS_LEVEL = 8;
-const SPELL_ARROW_OF_GLASS_ID = GetSpellID(2);
+const SPELL_ARROW_OF_GLASS_ID = GetSpellID(3);
 const SPELL_BUILD_GATE_LEVEL = 8;
-const SPELL_BUILD_GATE_ID = GetSpellID(3);
+const SPELL_BUILD_GATE_ID = GetSpellID(4);
 const SPELL_CONFLAGRATION_LEVEL = 8;
-const SPELL_CONFLAGRATION_ID = GetSpellID(4);
+const SPELL_CONFLAGRATION_ID = GetSpellID(5);
 const SPELL_CONJURE_DAEMON_LEVEL = 8;
-const SPELL_CONJURE_DAEMON_ID = GetSpellID(5);
-const SPELL_QUICKNESS_LEVEL = 8;
-const SPELL_QUICKNESS_ID = GetSpellID(6);
+const SPELL_CONJURE_DAEMON_ID = GetSpellID(6);
 const SPELL_REINCARNATE_LEVEL = 8;
 const SPELL_REINCARNATE_ID = GetSpellID(7);
 const SPELL_TIME_STOP_LEVEL = 8;
@@ -296,7 +296,7 @@ magic[SPELL_CONFUSION_LEVEL][SPELL_CONFUSION_ID] = new SpellObject("Confusion", 
 magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID] = new SpellObject("Mass Curse", SPELL_MASS_CURSE_LEVEL, 0);  // curse
 magic[SPELL_NEGATE_MAGIC_LEVEL][SPELL_NEGATE_MAGIC_ID] = new SpellObject("Negate Magic", SPELL_NEGATE_MAGIC_LEVEL, 0);  // curse
 magic[SPELL_STORM_LEVEL][SPELL_STORM_ID] = new SpellObject("Storm", SPELL_STORM_LEVEL, 0);  // lightning zap
-magic[SPELL_TREMOR_LEVEL][SPELL_TREMOR_ID] = new SpellObject("Tremor", SPELL_TREMOR_LEVEL, 0);  // ??
+magic[SPELL_QUAKE_LEVEL][SPELL_QUAKE_ID] = new SpellObject("Quake", SPELL_QUAKE_LEVEL, 0);  // ??
 magic[SPELL_WEATHER_CONTROL_LEVEL][SPELL_WEATHER_CONTROL_ID] = new SpellObject("Weather Control", SPELL_WEATHER_CONTROL_LEVEL, 0);  // whoosh?
 
 magic[SPELL_CHARM_LEVEL][SPELL_CHARM_ID] = new SpellObject("Charm", SPELL_CHARM_LEVEL, 1);   // curse
@@ -313,7 +313,7 @@ magic[SPELL_ARROW_OF_GLASS_LEVEL][SPELL_ARROW_OF_GLASS_ID] = new SpellObject("Ar
 magic[SPELL_BUILD_GATE_LEVEL][SPELL_BUILD_GATE_ID] = new SpellObject("Build Gate", SPELL_BUILD_GATE_LEVEL, 1);  // ??
 magic[SPELL_CONFLAGRATION_LEVEL][SPELL_CONFLAGRATION_ID] = new SpellObject("Conflagration", SPELL_CONFLAGRATION_LEVEL, 1);  // explosion
 magic[SPELL_CONJURE_DAEMON_LEVEL][SPELL_CONJURE_DAEMON_ID] = new SpellObject("Conjure Daemon", SPELL_CONJURE_DAEMON_LEVEL, 1);  // generic
-magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID] = new SpellObject("Quickness", SPELL_QUICKNESS_LEVEL, 0);   // bless
+magic[SPELL_ALACRITY_LEVEL][SPELL_ALACRITY_ID] = new SpellObject("Alacrity", SPELL_ALACRITY_LEVEL, 0);   // bless
 magic[SPELL_REINCARNATE_LEVEL][SPELL_REINCARNATE_ID] = new SpellObject("Reincarnate", SPELL_REINCARNATE_LEVEL, 0);  // bless
 magic[SPELL_TIME_STOP_LEVEL][SPELL_TIME_STOP_ID] = new SpellObject("Time Stop", SPELL_TIME_STOP_LEVEL, 0);  // bless
 
@@ -3738,7 +3738,7 @@ function EmpowerReagentCommands(cmd) {
           PlayCastSound(PC,"sfx_enchant");
           PC.removeFromInventory(PC.checkInventory("SpiderSilk"));
           PC.removeFromInventory(PC.checkInventory("LightningWood"));
-          PC.removeFromInventory(PC.checkInventory("BlackPearl"));
+          PC.removeFromInventory(PC.checkInventory("CoralVoid"));
           let wasequipped = 0;
           if (PC.getMissile() === tgt) {
             wasequipped = 1;
@@ -3755,7 +3755,7 @@ function EmpowerReagentCommands(cmd) {
           return retval;
         } 
       } else if (tgt.getName() === "DecorativeArmor") {
-        if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["BloodMoss"]) {
+        if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["BindersMoss"]) {
           successtext.push(`You pile the suit of armor in front of you, on the pentagram, and then begin the incantation.`);
           successtext.push(`You crush the mandrake together with the moss and the spider silk, and feel the magic build.`);
           successtext.push(`The power flows from the mortar in your hands into the armor. You can see it bind to the metal, glowing faintly, strengthening and protecting.`);
@@ -3766,7 +3766,7 @@ function EmpowerReagentCommands(cmd) {
           PlayCastSound(PC,"sfx_enchant");
           PC.removeFromInventory(PC.checkInventory("MandrakeRoot"));
           PC.removeFromInventory(PC.checkInventory("SpiderSilk"));
-          PC.removeFromInventory(PC.checkInventory("BloodMoss"));
+          PC.removeFromInventory(PC.checkInventory("BindersMoss"));
           PC.removeFromInventory(PC.checkInventory("DecorativeArmor"));
           let armor = localFactory.createTile("ExoticArmor");
           PC.addToInventory(armor,1);
@@ -3816,13 +3816,13 @@ function EmpowerReagentCommands(cmd) {
           retval["fin"] = 2;
           retval["outcome"] = successtext;
           return retval;
-        } else if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["BloodMoss"]) {
+        } else if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["BindersMoss"]) {
           successtext.push(`You crush the mandrake together with the spider silk and the moss, and feel the magic build.`);
           successtext.push(`Motes of light float out of the mortar and begin orbiting closely around the blade of the sword.`);
           successtext.push(`<span class='sysconv'>You have obtained: Sword of Defense.</span>`);
           PC.removeFromInventory(PC.checkInventory("MandrakeRoot"));
           PC.removeFromInventory(PC.checkInventory("SpiderSilk"));
-          PC.removeFromInventory(PC.checkInventory("BloodMoss"));
+          PC.removeFromInventory(PC.checkInventory("BindersMoss"));
           CastSpellMana(PC,targetCursor.manacost);
           ShowEffect(PC, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
           PlayCastSound(PC,"sfx_enchant");
@@ -4271,13 +4271,13 @@ magic[SPELL_STORM_LEVEL][SPELL_STORM_ID].executeSpell = function(caster, infused
   return resp;
 }
 
-// Tremor
-magic[SPELL_TREMOR_LEVEL][SPELL_TREMOR_ID].getLongDesc = function() {
+// Quake
+magic[SPELL_QUAKE_LEVEL][SPELL_QUAKE_ID].getLongDesc = function() {
   return "Deals " + Dice.rollmin(DMG_MEDIUM) + "-" + Dice.rollmax(DMG_MEDIUM) + " damage to all nearby enemies. Flying enemies take reduced damage.";
 }
 
-magic[SPELL_TREMOR_LEVEL][SPELL_TREMOR_ID].executeSpell = function(caster, infused, free) {
-  DebugWrite("magic", "Casting Tremor.<br />");
+magic[SPELL_QUAKE_LEVEL][SPELL_QUAKE_ID].executeSpell = function(caster, infused, free) {
+  DebugWrite("magic", "Casting Quake.<br />");
   let resp = {fin:1};
   if (!free) {
     let mana = this.getManaCost(infused);
@@ -4306,7 +4306,7 @@ magic[SPELL_TREMOR_LEVEL][SPELL_TREMOR_ID].executeSpell = function(caster, infus
   PlayCastSound(caster,"sfx_default_hit");
   for (let i=0; i<foes.length; i++) {
     if (foes[i] && !foes[i].frozenintime) {
-      foes[i].setHitBySpell(caster,Math.max(Math.floor(SPELL_TREMOR_LEVEL/foes.length),1));
+      foes[i].setHitBySpell(caster,Math.max(Math.floor(SPELL_QUAKE_LEVEL/foes.length),1));
       let tmpdmg = prepareSpellDamage(caster,foes[i],DMG_MEDIUM,"force");
       let dmg = tmpdmg.dmg;
       if (foes[i].movetype & MOVE_FLY) {
@@ -5313,13 +5313,13 @@ function PerformConjureDaemon(caster, infused, free, tgt) {
   return resp;
 }
 
-//Quickness
-magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID].getLongDesc = function() {
+//Alacrity
+magic[SPELL_ALACRITY_LEVEL][SPELL_ALACRITY_ID].getLongDesc = function() {
   return "Doubles the rate at which you take actions.";
 }
 
-magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID].executeSpell = function(caster, infused, free) {
-  DebugWrite("magic", "Casting Quickness.<br />");
+magic[SPELL_ALACRITY_LEVEL][SPELL_ALACRITY_ID].executeSpell = function(caster, infused, free) {
+  DebugWrite("magic", "Casting Alacrity.<br />");
   let resp = {fin:1};
   if (!free) {
     free = 0;
@@ -5328,7 +5328,7 @@ magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID].executeSpell = function(caster,
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
-  let liobj = localFactory.createTile("Quickness");
+  let liobj = localFactory.createTile("Alacrity");
   
   let dur = caster.getIntForPower()/2 * SCALE_TIME;
   if (free) { 

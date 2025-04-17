@@ -1576,7 +1576,7 @@ function HeadlessNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'Headlesses';
   this.prefix = 'a';
-  this.desc = "headless";
+  this.desc = "headless abomination";
   this.meleeChance = 100;
   this.resists = {};
   this.meleeHitSound = 'sfx_melee_hit';
@@ -4875,8 +4875,8 @@ KrakenNPCTile.prototype = new NPCObject();
 
 // Monster
 
-function ReaperNPCTile() {
-  this.name = 'ReaperNPC';
+function OlcrannNPCTile() {
+  this.name = 'OlcrannNPC';
   this.level = 6;
   this.addhp = 0;
   this.str = 12;
@@ -4897,9 +4897,9 @@ function ReaperNPCTile() {
   this.armorResist = 25;
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
-  this.lootTable = 'Reaper';
-  this.prefix = 'a';
-  this.desc = "reaper";
+  this.lootTable = 'Olcrann';
+  this.prefix = 'an';
+  this.desc = "olcrann";
   this.meleeChance = 50;
   this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, buff: 1, highbuff: 1, };
   this.resists = {};
@@ -4920,7 +4920,7 @@ function ReaperNPCTile() {
     startframe: "random"
   });
 }
-ReaperNPCTile.prototype = new NPCObject();
+OlcrannNPCTile.prototype = new NPCObject();
 
 
 // Monster
@@ -5279,8 +5279,8 @@ EyesofSpiteNPCTile.prototype = new NPCObject();
 
 // Monster
 
-function ReaperLordNPCTile() {
-  this.name = 'ReaperLordNPC';
+function LordOlcrannNPCTile() {
+  this.name = 'LordOlcrannNPC';
   this.level = 7;
   this.addhp = 0;
   this.str = 14;
@@ -5301,9 +5301,9 @@ function ReaperLordNPCTile() {
   this.armorResist = 40;
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
-  this.lootTable = 'Reaper Lord';
+  this.lootTable = 'Lord Olcrann';
   this.prefix = 'a';
-  this.desc = "reaper lord";
+  this.desc = "lord olcrann";
   this.meleeChance = 50;
   this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, buff: 1, highbuff: 1, };
   this.resists = {};
@@ -5324,7 +5324,7 @@ function ReaperLordNPCTile() {
     startframe: "random"
   });
 }
-ReaperLordNPCTile.prototype = new NPCObject();
+LordOlcrannNPCTile.prototype = new NPCObject();
 
 
 // Monster
@@ -6076,6 +6076,51 @@ function EttinJournalistNPCTile() {
   });
 }
 EttinJournalistNPCTile.prototype = new NPCObject();
+
+
+// Monster
+
+function BeamTrapNPCTile() {
+  this.name = 'BeamTrapNPC';
+  this.level = 3;
+  this.addhp = 0;
+  this.str = 10;
+  this.dex = 10;
+  this.int = 10;
+  this.alignment = 'Neutral';
+  this.attitude = 'hostile';
+  this.peaceAI = 'BeamTrap';
+  this.forgetAt = 10;
+  this.withdraw = 0;
+  this.meleeAttackAs = 'none';
+  this.meleeDamage = '2d4+1'
+  this.meleeStrDamage = .5
+  this.missileAttackAs = 'none';
+  this.armorAs = 'ChainArmor';
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.desc = "animated armor";
+  this.meleeChance = 60;
+  this.resists = { poison:100 };
+  this.special = 'construct, beams';
+  this.meleeHitSound = 'sfx_melee_hit';
+  this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.gif';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -175 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+}
+BeamTrapNPCTile.prototype = new NPCObject();
 
 function GiantRatGroupTinyTile() {
   this.name = 'GiantRatGroupTiny';

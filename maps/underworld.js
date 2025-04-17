@@ -291,9 +291,9 @@ mappages["underworld"].onload = function(mapref) {
   
     mapref.placeThing(36,112,spawn);
 
-    // reapers down little jag west of the lake
+    // olcrann down little jag west of the lake
     spawn = localFactory.createTile("Spawner");
-    spawngroup = ["ReaperNPC"];
+    spawngroup = ["OlcrannNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(2);
@@ -342,9 +342,9 @@ mappages["underworld"].onload = function(mapref) {
   
     mapref.placeThing(14,81,spawn);
 
-    // swamp N of lava full of gazers and occasional reaper
+    // swamp N of lava full of gazers and occasional olcrann
     spawn = localFactory.createTile("Spawner");
-    spawngroup = ["EvilEyeNPC","EvilEyeNPC","EvilEyeNPC","EyesofSpiteNPC","ReaperNPC","ReaperLordNPC"];
+    spawngroup = ["EvilEyeNPC","EvilEyeNPC","EvilEyeNPC","EyesofSpiteNPC","OlcrannNPC","LordOlcrannNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(4);
@@ -419,9 +419,9 @@ mappages["underworld"].onload = function(mapref) {
   
     mapref.placeThing(13,45,spawn);
 
-    // northern swamp has gazers, reapers, and corpsers
+    // northern swamp has gazers, olcrann, and corpsers
     spawn = localFactory.createTile("Spawner");
-    spawngroup = ["EvilEyeNPC","EvilEyeNPC","EvilEyeNPC","CorpserNPC","ReaperNPC","CorpserNPC"];
+    spawngroup = ["EvilEyeNPC","EvilEyeNPC","EvilEyeNPC","CorpserNPC","OlcrannNPC","CorpserNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(5);
@@ -522,9 +522,9 @@ mappages["underworld"].onload = function(mapref) {
       
     mapref.placeThing(49,110,spawn);
 
-    // far eastern cavern- reapers
+    // far eastern cavern- olcrann
     spawn = localFactory.createTile("Spawner");
-    spawngroup = ["ReaperNPC"];
+    spawngroup = ["OlcrannNPC"];
     
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(4);
@@ -563,7 +563,7 @@ mappages["underworld"].onload = function(mapref) {
 
     // clearing N of oracle
     spawn = localFactory.createTile("Spawner");
-    spawngroup = ["ReaperNPC"];
+    spawngroup = ["OlcrannNPC"];
     
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(3);
@@ -654,7 +654,7 @@ mappages["underworld"].onload = function(mapref) {
 
     // woods S of above
     spawn = localFactory.createTile("Spawner");
-    spawngroup = ["ReaperLordNPC"];
+    spawngroup = ["LordOlcrannNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(2);

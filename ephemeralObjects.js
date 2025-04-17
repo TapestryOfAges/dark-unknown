@@ -1287,19 +1287,19 @@ ProtectionTile.prototype.endEffect = function(silent) {
   return -1;
 }
 
-function QuicknessTile() {
+function AlacrityTile() {
   this.addType("buff");
-  this.name = "Quickness";
-  this.display = "<span style='color:c0c0c0'>Q</span>";
+  this.name = "Alacrity";
+  this.display = "<span style='color:c0c0c0'>A</span>";
   this.power = .5;
   this.zstatdesc = "You move extremely quickly.";
-  this.desc = "Quickness";
+  this.desc = "Alacrity";
   this.level = 8;
 }
-QuicknessTile.prototype = new EphemeralObject();
+AlacrityTile.prototype = new EphemeralObject();
 
 
-QuicknessTile.prototype.applyEffect = function(silent) {
+AlacrityTile.prototype.applyEffect = function(silent) {
   let who = this.getAttachedTo();
   let power = this.getPower();
   
@@ -1310,7 +1310,7 @@ QuicknessTile.prototype.applyEffect = function(silent) {
   return 1;
 }
 
-QuicknessTile.prototype.endEffect = function(silent) {
+AlacrityTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
   who.initmult *= (1/this.getPower());
   who.deleteSpellEffect(this);

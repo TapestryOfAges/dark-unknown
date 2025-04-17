@@ -11974,24 +11974,24 @@ function DissolveDoor(door, which) {
   }
 }
 
-function PetrifiedReaperTile() {
-  this.name = "PetrifiedReaper";
+function PetrifiedOlcrannTile() {
+  this.name = "PetrifiedOlcrann";
   this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -98*32;
   this.passable = MOVE_ETHEREAL;
   this.prefix = "a";
-  this.desc = "petrified reaper";
+  this.desc = "petrified olcrann";
 }
-PetrifiedReaperTile.prototype = new FeatureObject();
+PetrifiedOlcrannTile.prototype = new FeatureObject();
 
-PetrifiedReaperTile.prototype.use = function(who) {
+PetrifiedOlcrannTile.prototype.use = function(who) {
   let retval  ={fin:1};
 
   if (IsAdjacent(who,this)) {
-    let loot = localFactory.createTile("ReaperBark");
+    let loot = localFactory.createTile("OlcrannBark");
     PC.addToInventory(loot,1);
-    retval["txt"] = "You take some petrified reaper bark.";
+    retval["txt"] = "You take some petrified olcrann bark.";
   } else {
     retval["txt"] = "Nothing happens.";
   }
@@ -11999,12 +11999,12 @@ PetrifiedReaperTile.prototype.use = function(who) {
   return retval;
 }  
 
-PetrifiedReaperTile.prototype.onSearched = function(who) {
+PetrifiedOlcrannTile.prototype.onSearched = function(who) {
   let retval = {};
   if (IsAdjacent(who,this)) {
-    let loot = localFactory.createTile("ReaperBark");
+    let loot = localFactory.createTile("OlcrannBark");
     PC.addToInventory(loot,1);
-    retval["txt"] = "You take some petrified reaper bark.";
+    retval["txt"] = "You take some petrified olcrann bark.";
   } else {
     retval["txt"] = "Nothing happens.";
   }
@@ -12646,20 +12646,20 @@ function TrustedPinTile() {
 }
 TrustedPinTile.prototype = new ItemObject();
 
-function ReaperBarkTile() {
+function OlcrannBarkTile() {
   //Graphics Upgraded
-  this.name = "ReaperBark";
+  this.name = "OlcrannBark";
   this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -24*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "piece of petrified reaper bark";
+  this.desc = "piece of petrified olcrann bark";
   this.prefix = "a";
-  this.longdesc = "A piece of bark taken off a petrified reaper. Asharden asked you to bring it to him.";
+  this.longdesc = "A piece of bark taken off a petrified olcrann. Asharden asked you to bring it to him.";
   this.addType("Quest");
 }
-ReaperBarkTile.prototype = new ItemObject();
+OlcrannBarkTile.prototype = new ItemObject();
 
 function BlackDragonScaleTile() {
   //Graphics Upgraded
@@ -12815,20 +12815,20 @@ function SpiderSilkTile() {
 }
 SpiderSilkTile.prototype = new ItemObject();
 
-function BlackPearlTile() {
+function CoralVoidTile() {
   //Graphics Upgraded
-  this.name = "BlackPearl";
+  this.name = "CoralVoid";
   this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -26*32;
   this.blocklos = 0;
   this.prefix = "a";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "black pearl";
-  this.longdesc = "Black pearl. A useful reagent in certain magical rituals.";
+  this.desc = "coral void";
+  this.longdesc = "Coral void. A useful reagent in certain magical rituals.";
   this.addType("Reagent");
 }
-BlackPearlTile.prototype = new ItemObject();
+CoralVoidTile.prototype = new ItemObject();
 
 function ExecutionersHoodTile() {
   //Graphics Upgraded
@@ -12948,19 +12948,19 @@ function MistletoeTile() {
 }
 MistletoeTile.prototype = new ItemObject();
 
-function BloodMossTile() {
+function BindersMossTile() {
   //Graphics Upgraded
-  this.name = "BloodMoss";
+  this.name = "BindersMoss";
   this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -26*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "blood moss";
-  this.longdesc = "Some blood moss. A useful reagent in certain magical rituals.";
+  this.desc = "binder's moss";
+  this.longdesc = "Some binder's moss. A useful reagent in certain magical rituals.";
   this.addType("Reagent");
 }
-BloodMossTile.prototype = new ItemObject();
+BindersMossTile.prototype = new ItemObject();
 
 function BottledEtherTile() {
   //Graphics Upgraded
@@ -14002,7 +14002,7 @@ function SheafOfNotesTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "sheaf of notes";
   this.prefix = "a";
-  this.contents = "You read the notes:%%<span class='conv'>'Empowerment is a powerful tool, allowing the permanent enchantment of an object such as a sword or suit of armor.</span>%%<span class='conv'>'The first step in Empowering is choosing a suitable object. It must be able to take on the enchantment- this is rare.</span>%%<span class='conv'>'Then one must prepare the reagents. Your choice of reagents will dictate the nature of the enchantment that you create.</span>%%<span class='conv'>Go and stand in a pentagram, or the spell will not work.</span>%%<span class='conv'>'Prepare them with a mortar and pestle, incant the spell, and pour the mixture over the object to be enchanted. If all is as it should be, the object will be enchanted thereafter.</span>%%<span class='conv'>'I have tested many materials.</span>%%<span class='conv'>'Spider silk is necessary in almost all castings. It helps bind the magic to the object.</span>%%<span class='conv'>'Sulphurous ash is used for light and fire.</span>%%<span class='conv'>'Blood moss permits physical protection.</span>%%<span class='conv'>'Nightshade adds an air of poison or delusion.</span>%%<span class='conv'>'Black pearl projects power from the object.</span>%%<span class='conv'>'Mistletoe will ward away otherworldly evils.</span>%%<span class='conv'>'Lightning wood, from a tree recently struck, will channel the lightnings.</span>%%<span class='conv'>'Finally, mandrake root provides an infusion of additional power. This is always necessary for empowering a new object, but sometimes not for repairing one.</span>%%<span class='conv'>'Once together, cast and hope.'</span>";
+  this.contents = "You read the notes:%%<span class='conv'>'Empowerment is a powerful tool, allowing the permanent enchantment of an object such as a sword or suit of armor.</span>%%<span class='conv'>'The first step in Empowering is choosing a suitable object. It must be able to take on the enchantment- this is rare.</span>%%<span class='conv'>'Then one must prepare the reagents. Your choice of reagents will dictate the nature of the enchantment that you create.</span>%%<span class='conv'>Go and stand in a pentagram, or the spell will not work.</span>%%<span class='conv'>'Prepare them with a mortar and pestle, incant the spell, and pour the mixture over the object to be enchanted. If all is as it should be, the object will be enchanted thereafter.</span>%%<span class='conv'>'I have tested many materials.</span>%%<span class='conv'>'Spider silk is necessary in almost all castings. It helps bind the magic to the object.</span>%%<span class='conv'>'Sulphurous ash is used for light and fire.</span>%%<span class='conv'>'Blood moss permits physical protection.</span>%%<span class='conv'>'Nightshade adds an air of poison or delusion.</span>%%<span class='conv'>'Coral void projects power from the object.</span>%%<span class='conv'>'Mistletoe will ward away otherworldly evils.</span>%%<span class='conv'>'Lightning wood, from a tree recently struck, will channel the lightnings.</span>%%<span class='conv'>'Finally, mandrake root provides an infusion of additional power. This is always necessary for empowering a new object, but sometimes not for repairing one.</span>%%<span class='conv'>'Once together, cast and hope.'</span>";
   this.longdesc = "A sheaf of notes on Empowerment. Transcribed by Arlan from Toshin's original notebooks.";
 }
 SheafOfNotesTile.prototype = new BookItemObject();
@@ -15098,7 +15098,7 @@ DarkGreenPotionTile.prototype = new PotionItemObject();
 
 DarkGreenPotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowsdarkgreenpotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
-    return "A Quickness potion.";
+    return "An Alacrity potion.";
   }
   return "A dark green potion.";
 }  
@@ -15107,7 +15107,7 @@ DarkGreenPotionTile.prototype.use = function(who) {
   DU.gameflags.setFlag("knowsdarkgreenpotion",1)
   DUPlaySound("sfx_potion");
   let retval = {fin:1};
-  retval = magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID].executeSpell(PC, 0, 2);
+  retval = magic[SPELL_ALACRITY_LEVEL][SPELL_ALACRITY_ID].executeSpell(PC, 0, 2);
   retval["txt"] = "Gulp!<br />You begin to move more quickly!";
   DrawCharFrame();
   return retval;
@@ -16047,14 +16047,14 @@ function ScrollStormTile() {
 }
 ScrollStormTile.prototype = new ScrollItemObject();
 
-function ScrollTremorTile() {
-  this.name = "ScrollTremor";
-  this.desc = "scroll of Tremor";
+function ScrollQuakeTile() {
+  this.name = "ScrollQuake";
+  this.desc = "scroll of Quake";
   this.prefix = "a";
-  this.spelllevel = SPELL_TREMOR_LEVEL;
-  this.spellnum = SPELL_TREMOR_ID;
+  this.spelllevel = SPELL_QUAKE_LEVEL;
+  this.spellnum = SPELL_QUAKE_ID;
 }
-ScrollTremorTile.prototype = new ScrollItemObject();
+ScrollQuakeTile.prototype = new ScrollItemObject();
 
 function ScrollFearTile() {
   this.name = "ScrollFear";
@@ -16610,19 +16610,19 @@ function AudachtaNemesosNegateMagicTile() {
 }
 AudachtaNemesosNegateMagicTile.prototype = new AudachtaNemesosObject();
 
-function AudachtaNemesosTremorTile() {
+function AudachtaNemesosQuakeTile() {
   //Graphics Upgraded
-  this.name = "AudachtaNemesosTremor";
-  this.desc = "Audachta Nemesos: Tremor";
+  this.name = "AudachtaNemesosQuake";
+  this.desc = "Audachta Nemesos: Quake";
   this.prefix = "an";
   this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -38*32;
-  this.spelllevel = SPELL_TREMOR_LEVEL;
-  this.spellnum = SPELL_TREMOR_ID;
-  this.spellname = "Tremor";
+  this.spelllevel = SPELL_QUAKE_LEVEL;
+  this.spellnum = SPELL_QUAKE_ID;
+  this.spellname = "Quake";
 }
-AudachtaNemesosTremorTile.prototype = new AudachtaNemesosObject();
+AudachtaNemesosQuakeTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosWeatherControlTile() {
   //Graphics Upgraded
@@ -16792,19 +16792,19 @@ function AudachtaNemesosConjureDaemonTile() {
 }
 AudachtaNemesosConjureDaemonTile.prototype = new AudachtaNemesosObject();
 
-function AudachtaNemesosQuicknessTile() {
+function AudachtaNemesosAlacrityTile() {
   //Graphics Upgraded
-  this.name = "AudachtaNemesosQuickness";
-  this.desc = "Audachta Nemesos: Quickness";
+  this.name = "AudachtaNemesosAlacrity";
+  this.desc = "Audachta Nemesos: Alacrity";
   this.prefix = "an";
   this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -38*32;
-  this.spelllevel = SPELL_QUICKNESS_LEVEL;
-  this.spellnum = SPELL_QUICKNESS_ID;
-  this.spellname = "Quickness";
+  this.spelllevel = SPELL_ALACRITY_LEVEL;
+  this.spellnum = SPELL_ALACRITY_ID;
+  this.spellname = "Alacrity";
 }
-AudachtaNemesosQuicknessTile.prototype = new AudachtaNemesosObject();
+AudachtaNemesosAlacrityTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosReincarnateTile() {
   //Graphics Upgraded

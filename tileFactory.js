@@ -1958,8 +1958,8 @@ tileFactory.prototype.makeCampfireTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeCampfireTile = function() {
-  let newTile = new CampfireTile();
+tileFactory.prototype.makeFireTile = function() {
+  let newTile = new FireTile();
   return newTile;
 }
 
@@ -3798,8 +3798,8 @@ tileFactory.prototype.makeDaemonMoongateTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makePetrifiedReaperTile = function() {
-  let newTile = new PetrifiedReaperTile();
+tileFactory.prototype.makePetrifiedOlcrannTile = function() {
+  let newTile = new PetrifiedOlcrannTile();
   return newTile;
 }
 
@@ -3953,8 +3953,8 @@ tileFactory.prototype.makeTrustedPinTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeReaperBarkTile = function() {
-  let newTile = new ReaperBarkTile();
+tileFactory.prototype.makeOlcrannBarkTile = function() {
+  let newTile = new OlcrannBarkTile();
   return newTile;
 }
 
@@ -4003,8 +4003,8 @@ tileFactory.prototype.makeSpiderSilkTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeBlackPearlTile = function() {
-  let newTile = new BlackPearlTile();
+tileFactory.prototype.makeCoralVoidTile = function() {
+  let newTile = new CoralVoidTile();
   return newTile;
 }
 
@@ -4048,8 +4048,8 @@ tileFactory.prototype.makeMistletoeTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeBloodMossTile = function() {
-  let newTile = new BloodMossTile();
+tileFactory.prototype.makeBindersMossTile = function() {
+  let newTile = new BindersMossTile();
   return newTile;
 }
 
@@ -4728,8 +4728,8 @@ tileFactory.prototype.makeScrollStormTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeScrollTremorTile = function() {
-  let newTile = new ScrollTremorTile();
+tileFactory.prototype.makeScrollQuakeTile = function() {
+  let newTile = new ScrollQuakeTile();
   return newTile;
 }
 
@@ -4933,8 +4933,8 @@ tileFactory.prototype.makeAudachtaNemesosNegateMagicTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeAudachtaNemesosTremorTile = function() {
-  let newTile = new AudachtaNemesosTremorTile();
+tileFactory.prototype.makeAudachtaNemesosQuakeTile = function() {
+  let newTile = new AudachtaNemesosQuakeTile();
   return newTile;
 }
 
@@ -4998,8 +4998,8 @@ tileFactory.prototype.makeAudachtaNemesosConjureDaemonTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeAudachtaNemesosQuicknessTile = function() {
-  let newTile = new AudachtaNemesosQuicknessTile();
+tileFactory.prototype.makeAudachtaNemesosAlacrityTile = function() {
+  let newTile = new AudachtaNemesosAlacrityTile();
   return newTile;
 }
 
@@ -5663,8 +5663,8 @@ tileFactory.prototype.makeKrakenNPCTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeReaperNPCTile = function() {
-  let newTile = new ReaperNPCTile();
+tileFactory.prototype.makeOlcrannNPCTile = function() {
+  let newTile = new OlcrannNPCTile();
   return newTile;
 }
 
@@ -5703,8 +5703,8 @@ tileFactory.prototype.makeEyesofSpiteNPCTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeReaperLordNPCTile = function() {
-  let newTile = new ReaperLordNPCTile();
+tileFactory.prototype.makeLordOlcrannNPCTile = function() {
+  let newTile = new LordOlcrannNPCTile();
   return newTile;
 }
 
@@ -5790,6 +5790,11 @@ tileFactory.prototype.makeCrystalBarrierNPCTile = function() {
 
 tileFactory.prototype.makeEttinJournalistNPCTile = function() {
   let newTile = new EttinJournalistNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBeamTrapNPCTile = function() {
+  let newTile = new BeamTrapNPCTile();
   return newTile;
 }
 
@@ -6223,8 +6228,8 @@ tileFactory.prototype.makeProtectionTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeQuicknessTile = function() {
-  let newTile = new QuicknessTile();
+tileFactory.prototype.makeAlacrityTile = function() {
+  let newTile = new AlacrityTile();
   return newTile;
 }
 
