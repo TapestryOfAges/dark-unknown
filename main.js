@@ -13,7 +13,7 @@ let eidos = new Platonic();
 //var universe = new Object;
 
 let DU = {};
-DU.version = "0.10.0";
+DU.version = "0.10.1";
 
 DU.PC = new PCObject();
 DU.gamelength = 0;
