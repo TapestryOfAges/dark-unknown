@@ -243,7 +243,7 @@ function SecondPage() {
     if (gamestate.getLatestSaveIndex() === -1) {
       journey = " style='color:gray'";
     } 
-    spage += "<div id='journey'><p class='menuplain' style='margin-top:5px' id='opt2'" + journey + " onClick='makeChoice(\'journey\')' />Journey Onward</p></div>";
+    spage += "<div id='journey'><p class='menuplain' style='margin-top:5px' id='opt2'" + journey + " onClick='makeChoice(\'journey\')' />Continue Adventure</p></div>";
     spage += "<div id='credits'><p class='menuplain' style='margin-top:5px' id='opt3' onClick='makeChoice(\'credits\')' />Credits</p></div></div>";
     document.getElementById('options').innerHTML = spage;
     document.getElementById('intro').classList.add('presentfadein');
@@ -2413,4 +2413,12 @@ function RandomizePotions() {
   pot = localFactory.createTile("GreenPotion");
   DU.gameflags.potionmatrix[potions[15]] = {"desc": pot.desc, "spritex": pot.spritexoffset, "spritey": pot.spriteyoffset};
 
+}
+
+function MakeCredits(page) {
+  let table1 = "<table cellpadding='5' cellspacing='5' border='0'><tr><td colspan='2' align='center'><u>Game By:</u><br />Adam \"Goldenflame\" Burr</td></tr>";
+  table1 += "<tr><td align='center'><u>Music Composition</u><br />Adam Burr<br/><br /><u>Music Production</u><br />Adam Burr<br />Gary Burr<br /><br /><u>Cloth Map Design</u><br />David Hernandez-Burr<br /><br />";
+  table1 += "<u>Dragon Scale 3D Model<br />Denis Loubet<br /><br /></td>";
+
+  table1 += "<td align='center'><u>Splash Screens</u><br />Dom John<br /><br /><u>Tile Art</u><br />John Henderson<br />Timo Takalo<br />Adam Burr<br />Maud'Dweeb<br />MacKay Wilford</td></tr>";  
 }
