@@ -216,6 +216,7 @@ function DrawTopbarFrame(txt) {
 }
 
 function StartGame() {
+  tv = "";
   CreateDisplayTables();
 
   set_conversations();
