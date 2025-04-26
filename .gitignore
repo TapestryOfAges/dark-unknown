@@ -11,3 +11,5 @@ releases/*
 package-lock.json
 saves/*
 out/
+graphics/frame/notused/*
+graphics/title/notused/*
