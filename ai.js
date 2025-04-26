@@ -360,43 +360,6 @@ ais.segment = function(who) {
   return retval;
 }
 
-// deprecated in favor of schedules.
-ais.townsfolk = function(who) {
-  let retval = {};
-  retval["fin"] = 1;
-  
-  if (!(who.startx && who.starty)) {
-    DebugWrite("ai", "WARNING: missing startx or starty. Setting to current position...");
-    who.startx = who.getx();
-    who.starty = who.gety();
-    alert(who.getName() + " WARNING: missing startx or starty. Setting to current position...");
-  }
-  var themap = who.getHomeMap();
-  if (who.pushed || (Dice.roll("1d4") === 1)) {   // 25% chance of moving, slow wander
-                                                  // automatically wanders if was pushed
-    DebugWrite("ai", "Moving... ");
-    if (who.getLeash() && (who.getLeash() < GetDistance(who.getx(), who.gety(), who.startx, who.starty))) {
-      let path = themap.getPath(who.getx(),who.gety(),who.startx, who.starty, MOVE_WALK_DOOR);
-      path.shift();  // first entry in the path is where it already stands
-      if (path[0]){
-        DebugWrite("ai", "Moving to " + path[0][0] + "," + path[0][1] + ".<br />");
-        StepOrSidestep(who, path[0], [who.startx, who.starty]);
-        return retval;
-      } else {
-        DebugWrite("ai", "Leashed and outside leash, but no path home.<br />");
-      }
-    } else if (who.getLeash()) {
-      // able to wander (leash = 0 means stationary)
-      let moveval = ais.Randomwalk(who,25,25,25,25);
-      if ((moveval["canmove"] === 0) && (retval["nomove"] !== 1)) {
-        // it picked a direction to move but failed to move        
-      }
-    }
-  }
-  // townsfolk don't do anything else
-  return retval;
-}
-
 ais.Sam_escape = function(who) {
   let retval = { fin:1 };
   let themap = who.getHomeMap();
