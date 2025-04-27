@@ -2484,6 +2484,9 @@ tv.AnimateTile = function(divid, spritex, animlength, mintime, maxtime, animtype
       if (currframe > animlength) { currframe = 1; }
       sx = -1*(sf-1)*32 + spritex;
     }
+    tile.style.backgroundPositionX = sx;
+
+    setTimeout(function() { tv.animateTile(divid, spritex, animlength, mintime, maxtime, animtype, currframe); }, waittime);
 
   }
 }
