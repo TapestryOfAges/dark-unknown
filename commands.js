@@ -3778,6 +3778,11 @@ function DisplayInventory(restrictTo) {
     innerdiv.style.backgroundPosition = showgraphic[2] + "px " + showgraphic[3] + "px";
     innerdiv.style.position = "fixed";
 
+    if (inventorylist[i].animstart) {
+      inventorylist[i].startAnimation();
+      inventorylist[i].IWasJustDrawn();
+    }
+
     if (PC.isEquipped(inventorylist[i])) {
       invdiv.style.borderColor = "#000099";
     }
