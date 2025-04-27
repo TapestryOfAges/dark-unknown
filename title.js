@@ -2376,10 +2376,6 @@ tv.ShowTiles = function(board,x1,y1,x2,y2,fadein) {
   }
 }
 
-tv.AnimateTiles = function(board,tile,tiledef) {
-
-}
-
 tv.RandomizePotions = function() {
   let potions = ["TanPotion","OrangePotion","DeepBluePotion","BluePotion","BlackPotion","PurplePotion","BurntUmberPotion","YellowPotion",
     "WhitePotion","RedPotion","BrownPotion","GreyPotion","PinkPotion","SilverPotion","DarkGreenPotion","GreenPotion"];
@@ -2465,4 +2461,29 @@ tv.MakeCredits = function(page) {
     document.getElementById('maindiv').innerHTML = table[page];
   }
 
+}
+
+tv.AnimateTile = function(divid, spritex, animlength, mintime, maxtime, animtype, currframe) {
+  let tile = document.getElementById(divid);
+  if (tile) {
+    let waittime = Math.floor(Math.random() * (maxtime - mintime +1)) + mintime;
+
+    let sx;
+    if (animtype === "cycle") {
+      currframe++;
+      if (currframe > animlength) { currframe = 1; }
+      sx = -1*(currframe-1)*32 + spritex;
+    } else { // random
+      let diesize = animlength-1;
+      let sf = Dice.roll("1d"+diesize);
+      if (sf >= currframe) { 
+        // if you can't repeat, die size was one too small. Therefore if you roll the current frame or higher, add one.
+        sf++; 
+      }
+      currframe = sf;
+      if (currframe > animlength) { currframe = 1; }
+      sx = -1*(sf-1)*32 + spritex;
+    }
+
+  }
 }
