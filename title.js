@@ -287,7 +287,7 @@ tv.StartAttract = function() {
   let brush = `background-image:url("graphics/static.gif"); background-position: -224px 0px;width:32px;height:32px`;
   let forest = `background-image:url("graphics/static.gif"); background-position: -224px -32px;width:32px;height:32px`;
   let tree = `background-image:url("graphics/static.gif"); background-position: -64px -608px;width:32px;height:32px`;
-  let campfire = `background-image:url("graphics/static.gif"); background-position: -128px -31360px;width:32px;height:32px`;
+  let campfire = `background-image:url("graphics/static.gif"); background-position: -128px -3136px;width:32px;height:32px`;
 // animation notes: random, 4 frames, 150-300ms.
   let cave = `background-image:url("graphics/static.gif"); background-position: -192px -96px;width:32px;height:32px`;
   let dungeon = `background-image:url("graphics/static.gif"); background-position: -224px -96px;width:32px;height:32px`;
