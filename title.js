@@ -350,7 +350,7 @@ tv.StartAttract = function() {
   attractmap += `<td id='am6x2' style='opacity:0;width:32px;height:32px'></td><td id='am7x2' style='opacity:0;width:32px;height:32px'></td><td id='am8x2' style='opacity:0;width:32px;height:32px'></td><td id='am9x2' style='opacity:0;width:32px;height:32px'></td><td id='am10x2' style='opacity:0;width:32px;height:32px'></td><td id='am11x2' style='opacity:0;width:32px;height:32px'></td><td id='am12x2' style='opacity:0;width:32px;height:32px'></td><td id='am13x2' style='opacity:0;width:32px;height:32px'></td><td id='am14x2' style='opacity:0;width:32px;height:32px'></td><td id='am15x2' style='opacity:0;width:32px;height:32px'></td><td id='am16x2' style='opacity:0;width:32px;height:32px'></td><td id='am17x2' style='opacity:0;width:32px;height:32px'></td><td id='am18x2' style='opacity:0;width:32px;height:32px'></td>`;
   attractmap += `<td id='am19x2' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am20x2' style='opacity:0;${forest}'></td>`;
-  attractmap += `<td id='am21x2' style='opacity:0;${keep}'></td>`;
+  attractmap += `<td id='am21x2' style='opacity:0;${grass}'><div style='${keep}'></div></td>`;
   //animate keep
   attractmap += `<td id='am22x2' style='opacity:0;${forest}'></td>`;
   attractmap += `<td id='am23x2' style='opacity:0;${grass}'></td></tr>`;
