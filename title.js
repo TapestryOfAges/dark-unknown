@@ -1168,26 +1168,32 @@ tv.ChooseGraphic = function() {
   
   chartxt += "<table cellpadding='0' cellspacing='10' cellborder='0'>";
   chartxt += "<tr>";
-  for (let i=0; i<tv.nuavatars.length; i++) {
-        chartxt += "<td id='0x" + i + "' style='position:relative; width:68px; height:68px; '>";
-        chartxt += `<div style='position:absolute;left:2;top:2; background-color: #333333; width:64px; height: 64px'></div>`;
-        let xpos = HumanParts[tv.nuavatars[i][0]].spritex;
-        let ypos = HumanParts[tv.nuavatars[i][0]].spritey;
-        let source = HumanParts[tv.nuavatars[i][0]].src;
-        chartxt += `<div style='position:absolute;left:18;top:18;background-image:url("graphics/${source}");background-position: ${xpos}px ${ypos}px; width:32px; height: 32px; transform:scale(2)'></div>`;
-        xpos = HumanParts[tv.nuavatars[i][1]].spritex;
-        ypos = HumanParts[tv.nuavatars[i][1]].spritey;
-        source = HumanParts[tv.nuavatars[i][1]].src;
-        chartxt += `<div style='position:absolute;left:18;top:18;background-image:url("graphics/${source}");background-position: ${xpos}px ${ypos}px; width:32px; height: 32px; transform:scale(2)'></div>`;
-        xpos = HumanParts[tv.nuavatars[i][2]].spritex;
-        ypos = HumanParts[tv.nuavatars[i][2]].spritey;
-        source = HumanParts[tv.nuavatars[i][2]].src;
-        chartxt += `<div style='position:absolute;left:18;top:18;background-image:url("graphics/${source}");background-position: ${xpos}px ${ypos}px; width:32px; height: 32px; transform:scale(2)'></div>`;
-        xpos = HumanParts[tv.nuavatars[i][3]].spritex;
-        ypos = HumanParts[tv.nuavatars[i][3]].spritey;
-        source = HumanParts[tv.nuavatars[i][3]].src;
-        chartxt += `<div style='position:absolute;left:18;top:18;background-image:url("graphics/${source}");background-position: ${xpos}px ${ypos}px; width:32px; height: 32px; transform:scale(2)'></div>`;
-        chartxt += '</td>';
+//  for (let i=0; i<tv.nuavatars.length; i++) {
+//        chartxt += "<td id='0x" + i + "' style='position:relative; width:68px; height:68px; '>";
+//        chartxt += `<div style='position:absolute;left:2;top:2; background-color: #333333; width:64px; height: 64px'></div>`;
+//        let xpos = HumanParts[tv.nuavatars[i][0]].spritex;
+//        let ypos = HumanParts[tv.nuavatars[i][0]].spritey;
+//        let source = HumanParts[tv.nuavatars[i][0]].src;
+//        chartxt += `<div style='position:absolute;left:18;top:18;background-image:url("graphics/${source}");background-position: ${xpos}px ${ypos}px; width:32px; height: 32px; transform:scale(2)'></div>`;
+//        xpos = HumanParts[tv.nuavatars[i][1]].spritex;
+//        ypos = HumanParts[tv.nuavatars[i][1]].spritey;
+//        source = HumanParts[tv.nuavatars[i][1]].src;
+//        chartxt += `<div style='position:absolute;left:18;top:18;background-image:url("graphics/${source}");background-position: ${xpos}px ${ypos}px; width:32px; height: 32px; transform:scale(2)'></div>`;
+//        xpos = HumanParts[tv.nuavatars[i][2]].spritex;
+//        ypos = HumanParts[tv.nuavatars[i][2]].spritey;
+//        source = HumanParts[tv.nuavatars[i][2]].src;
+//        chartxt += `<div style='position:absolute;left:18;top:18;background-image:url("graphics/${source}");background-position: ${xpos}px ${ypos}px; width:32px; height: 32px; transform:scale(2)'></div>`;
+//        xpos = HumanParts[tv.nuavatars[i][3]].spritex;
+//        ypos = HumanParts[tv.nuavatars[i][3]].spritey;
+//        source = HumanParts[tv.nuavatars[i][3]].src;
+//        chartxt += `<div style='position:absolute;left:18;top:18;background-image:url("graphics/${source}");background-position: ${xpos}px ${ypos}px; width:32px; height: 32px; transform:scale(2)'></div>`;
+//        chartxt += '</td>';
+//  }
+  for (let i=0;i<6;i++) {
+    chartxt += "<td id='0x" + i + "' style='position:relative; width:68px; height:68px; '>";
+    chartxt += `<div style='position:absolute;left:2;top:2; background-color: #555555; width:64px; height: 64px'></div>`;
+    let source = "humancharcreate.gif";
+    chartxt += `<div style='position:absolute;left:2;top:2;background-image:url("graphics/${source}");background-position: ${-1*i*64}px 0px; width:64px; height: 64px;'></div></td>`;
   }
   chartxt += "</tr>";
   chartxt += "</table></div>";
