@@ -351,6 +351,7 @@ tv.StartAttract = function() {
   attractmap += `<td id='am19x2' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am20x2' style='opacity:0;${forest}'></td>`;
   attractmap += `<td id='am21x2' style='opacity:0;${grass}'><div style='${keep}'></div></td>`;
+  tv.AnimateTile("am21x2", 0, 4, 150, 250, "random", 1);
   //animate keep
   attractmap += `<td id='am22x2' style='opacity:0;${forest}'></td>`;
   attractmap += `<td id='am23x2' style='opacity:0;${grass}'></td></tr>`;
