@@ -170,6 +170,8 @@ function DestroyJusticeCrystals() {
 function TurnMapHostile(map) {
   DebugWrite("combat", "Attacked a friendly! Turning hostile...<br />");
   PC.diffKarma(-10); 
+  addToKarmaLog("Karma", -10, `Attacked an innocent on ${map.getName()}.`);
+  maintext.addText("<span style='color:red'>Your karma has suffered GREATLY.</span>");
   let localnpcs = map.npcs.getAll();
   for (let idx=0;idx<localnpcs.length;idx++) {
     let val = localnpcs[idx];
