@@ -56,6 +56,14 @@ let whoseturn;
 let firstload = 1;
 
 let convlog = [];
+let karmalog = [];
+
+function addToKarmaLog(type, amount, circumstance) {
+  if (beta) {
+    let entry = `${type}: Change of ${amount} due to ${circumstance}`;
+    karmalog.push(entry);
+  }
+}
 
 function DrawCharFrame() {
   let txt = "<table cellpadding='0' cellspacing='0' border='0' width='100%' style='margin-top:1px'><tr><td colspan='2'>";
@@ -65,7 +73,11 @@ function DrawCharFrame() {
   let dismp = "" + PC.getMana();
   while (dismp.length < 3) { dismp = " " + dismp; }
   dismp = dismp.replace(/ /g, "&nbsp;");
-  txt = txt + PC.getPCName() + "</td><td id='hpcell' style='text-align:right'>HP:&nbsp;" + dishp + "</td></tr>";
+  let styling = "";
+  if (PC.getHP() <= (PC.getMaxHP() * (1/5))) {
+    styling = "color:red";
+  }
+  txt = `${txt}${PC.getPCName()}</td><td id='hpcell' style='text-align:right;${styling}'>HP:&nbsp;${dishp}</td></tr>`;
   txt = txt + "<tr><td width='33%' id='gpcell'>GP: " + PC.getGold() + "</td><td width='34%'>" + SpellInitials(PC) + "</td><td width='33%' style='text-align:right'>MP:&nbsp;" + dismp + "</td></tr></table>";
   document.getElementById('charstats').innerHTML = txt;
 }
