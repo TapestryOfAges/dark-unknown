@@ -734,6 +734,7 @@ function Breakable(brokengraphicarray, startsbroken, breaksound) {
     }
     if (this.karmamod && (who === PC)) { 
       PC.diffKarma(this.karmamod);
+      addToKarmaLog("Karma", this.karmamod, `Player broke a ${this.getName()}.`);
     }
     if (typeof this.onBreak === "function") {
       this.onBreak(who);
@@ -741,7 +742,12 @@ function Breakable(brokengraphicarray, startsbroken, breaksound) {
     let retval = {};
     retval["fin"] = 1;
     if (notext) { retval["txt"] = ""; }
-    else { retval["txt"] =  "You break the " + olddesc + "!"; }
+    else { 
+      retval["txt"] =  "You break the " + olddesc + "!"; 
+      if (this.karmamod && (who === PC)) {
+        retval["txt"] += "<span style='color:red'>Your karma has suffered.</span>";
+      }
+    }
     retval["input"] = "&gt;";
     return retval;
   }
@@ -872,10 +878,16 @@ function OpenContainer(opensound, lockedsound) {
   this.usePrompt = function(code) {
     if (code === 89) {
       PC.diffKarma(0-this.getKarmaPenalty());
+      let inside = this.searchYield;
+      if (!inside) { inside = this.getLootedID(); }
+      addToKarmaLog("Karma", `-${this.getKarmaPenalty()}`, `Opened a container on ${this.getHomeMap().getName()} containing ${inside}.`);
       this.setKarmaPenalty(0);
+      maintext.delayedAddText("<span style='color:red'>Your karma has suffered.</span>");
       return this.use(PC);
     } else {
+      let retval = {};
       retval["txt"] = "You decide not to open it.";
+      return retval;
     }
   }
 
@@ -892,6 +904,8 @@ function OpenContainer(opensound, lockedsound) {
     if (this.getKarmaPenalty() && (who === PC) && !fire) {
       if (DU.gameflags.getFlag("skip_theft_warning")) {
         PC.diffKarma(0-this.getKarmaPenalty());
+        addToKarmaLog("Karma", `-${this.getKarmaPenalty()}`, `Opened a container on ${this.getHomeMap().getName()} containing ${inside}.`);
+        maintext.delayedAddText("<span style='color:red'>Your karma has suffered.</span>");
       } else {
         retval["override"] = -1;
         retval["fin"] = -1;
