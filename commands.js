@@ -1646,9 +1646,11 @@ function PerformGet(who, getitem) {
       }
     } else {
       who.addToInventory(getitem);
-      retval["txt"] = "Taken: " + getitem.getPrefix() + " " + getitem.getDesc() + ".";
+      retval["txt"] = `Taken: ${getitem.getPrefix()} ${getitem.getDesc()}.`;
       if (getitem.karmaPenalty) {
         who.diffKarma(-getitem.karmaPenalty);
+        addToKarmaLog("Karma",`-${getitem.karmaPenalty}`, `Stole ${getitem.getPrefix()} ${getitem.getDesc()}.`);
+        retval["txt"] = `\n<span style='color:red'>Theft! Your karma has suffered.`;
       }
     }
     if (onget["txt"]) {
