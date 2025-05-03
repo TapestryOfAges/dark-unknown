@@ -1176,7 +1176,9 @@ function maps_check_escape(mapref) {
       // possibly check for bribery if I decide to go that route
       if ((PC.getHP() > (PC.getMaxHP() * (1/5))) && (PC.getLevel() !== 1)) {
         DebugWrite("combat","PC has more than 1/5 its hp, gains coward point for fleeing.<br />");
+        addToKarmaLog("Cowardice!",1,`Fled from ${numenemies} enemies.`);
         DU.gameflags.setFlag("coward",DU.gameflags.getFlag("coward")+1);
+        maintext.addText("<span style='color:red'>Cowardice!</span>");
       } else {
         DebugWrite("combat","PC has less than 1/5 its hp or is level 1, able to flee freely.<br />");
       }
