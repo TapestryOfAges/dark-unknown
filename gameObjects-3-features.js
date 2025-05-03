@@ -14681,6 +14681,7 @@ KyvekBoxTile.prototype.usePrompt = function(code) {
   if (code === 89) {
     retval["txt"] = "You break the seal and empty the coin into your own pouches. You gain 600 gold.";
     PC.diffKarma(-1);
+    addToKarmaLog("Karma", -1, `Opened Kyvek's box.`);
     PC.addGold(600);
     PC.removeFromInventory(this);
     DrawCharFrame();
