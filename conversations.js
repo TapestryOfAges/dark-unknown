@@ -146,6 +146,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   }
   if (triggers.hasOwnProperty("give_karma")) {
     PC.diffKarma(parseInt(triggers.give_karma));
+    addToKarmaLog("Karma",triggers.give_karma,`Conversation with ${speaker}, saying ${keyword}.`);
   }
   if (triggers.hasOwnProperty("give_xp")) {
     PC.addxp(parseInt(triggers.give_xp));
