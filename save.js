@@ -177,6 +177,7 @@ GameStateData.prototype.saveGame = function(flag) {
   savedata.merchants = DU.merchants;
   savedata.events = {};
   savedata.convlog = [];
+  savedata.karmalog = [];
   savedata.timeplayed = 0;
   if (DU.starttime) {
     let d = new Date;
@@ -187,6 +188,7 @@ GameStateData.prototype.saveGame = function(flag) {
   savedata.quests = JSON.stringify(questlog.log);
   if (beta) {
     savedata.convlog = JSON.stringify(convlog);
+    savedata.karmalog = JSON.stringify(karmalog);
   }
 
 	Listener.clearListeners(); // clear out unneeded listeners
@@ -327,6 +329,7 @@ OutOfContext.onLoadData((event,serialized) => {
   DU.merchants = savedata.merchants;
   if (savedata.convlog) {
     convlog = savedata.convlog;
+    karmalog = savedata.karmalog;
   }
   targetCursor.convprompts = {};
   targetCursor.convsaid = {};
