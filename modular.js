@@ -326,6 +326,7 @@ OnDeathFuncs["patrolDead"] = function(who) {
 OnDeathFuncs["Warduke"] = function() {
   DU.gameflags.setFlag("warduke_defeated",1);
   PC.diffKarma(2);
+  addToKarmaLog("Karma", 2, "Defeated Warduke.");
   questlog.complete(13);
   questlog.activate(49);
 }
