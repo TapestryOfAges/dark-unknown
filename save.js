@@ -328,8 +328,8 @@ OutOfContext.onLoadData((event,serialized) => {
   DUTime = DU.DUTime;
   DU.merchants = savedata.merchants;
   if (savedata.convlog) {
-    convlog = savedata.convlog;
-    karmalog = savedata.karmalog;
+    convlog = JSON.parse(savedata.convlog);
+    karmalog = JSON.parse(savedata.karmalog);
   }
   targetCursor.convprompts = {};
   targetCursor.convsaid = {};
