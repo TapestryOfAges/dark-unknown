@@ -269,9 +269,11 @@ Conversation.prototype.say = function(speaker, saywhat, skipahead, nospeaker, al
   speakertext = "<span class='mainspeaker'>" + speakertext + "</span>: ";
   
   let foo = saywhat.match(/=(\w+)=/g);
-  for (const term of foo) {
-    let t2 = term.replace(/=/g, "");
-    targetCursor.convprompts[t2] = 1;
+  if (foo) {
+    for (const term of foo) {
+      let t2 = term.replace(/=/g, "");
+      targetCursor.convprompts[t2] = 1;
+    }
   }
   saywhat = saywhat.replace(/=(\w+)=/g, "<span style='color:cyan'>$1</span>");
   saywhat = saywhat.replace(/%FORMAL%/g, gterms.formal);
