@@ -241,11 +241,11 @@ tv.SecondPage = function() {
     spage = "<div id='textoptions' class='textoptions'>";
     spage += "<div id='intro'><p class='menuselect' style='margin-top:5px' id='opt0' onClick='makeChoice(\'intro\')' />View Introduction</p></div>";
     spage += "<div id='create'><p class='menuplain' style='margin-top:5px' id='opt1' onClick='makeChoice(\'create\')' />Create Character</p></div>";
-    let journey = "";
+    let journey = " style='margin-top:5px'";
     if (gamestate.getLatestSaveIndex() === -1) {
-      journey = " style='color:gray'";
+      journey = " style='margin-top:5px; color:gray'";
     } 
-    spage += "<div id='journey'><p class='menuplain' style='margin-top:5px' id='opt2'" + journey + " onClick='makeChoice(\'journey\')' />Continue Adventure</p></div>";
+    spage += "<div id='journey'><p class='menuplain' id='opt2'" + journey + " onClick='makeChoice(\'journey\')' />Continue Adventure</p></div>";
     spage += "<div id='credits'><p class='menuplain' style='margin-top:5px' id='opt3' onClick='makeChoice(\'credits\')' />Credits</p></div></div>";
     document.getElementById('options').innerHTML = spage;
     document.getElementById('intro').classList.add('presentfadein');
@@ -265,11 +265,11 @@ tv.finishedFinalPage = function() {
   spage = "<div id='textoptions' class='textoptions'>";
   spage += "<div id='intro'><p class='menuselect' style='margin-top:5px' id='opt0' onClick='makeChoice(\'intro\')' />View Introduction</p></div>";
   spage += "<div id='create'><p class='menuplain' style='margin-top:5px' id='opt1' onClick='makeChoice(\'create\')' />Create Character</p></div>";
-  let journey = "";
+  let journey = " style='margin-top:5px'";
   if (gamestate.getLatestSaveIndex() === -1) {
-    journey = " style='color:gray'";
+    journey = " style='margin-top:5px; color:gray'";
   } 
-  spage += "<div id='journey'><p class='menuplain' style='margin-top:5px' id='opt2'" + journey + " onClick='makeChoice(\'journey\')' />Journey Onward</p></div>";
+  spage += "<div id='journey'><p class='menuplain' id='opt2'" + journey + " onClick='makeChoice(\'journey\')' />Continue Adventure</p></div>";
   spage += "<div id='credits'><p class='menuplain' style='margin-top:5px' id='opt3' onClick='makeChoice(\'credits\')' />Credits</p></div></div>";
 
   document.getElementById('options').innerHTML = spage;
