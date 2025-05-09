@@ -65,8 +65,8 @@
 /* Dark Unknown */
 @font-face {  
 	  font-family: "Commodore64";  
-	  src: url( fonts/cbm-6480-webfont.eot ); /* IE */  
-	  src: local("Commodore64"), url( 'fonts/CBM-6480.TTF' ) format("truetype"); /* non-IE */  
+/*	  src: local("Commodore64"), url( 'fonts/CBM-6480.TTF' ) format("truetype"); /* non-IE */  
+    src: url('fonts/PetMe1282Y.ttf');
 	}  
 	
 @font-face {  
@@ -80,7 +80,7 @@ div.topbar { text-align:center;
 	           color:white;
 	           vertical-align:top;
 	           font-family:"Commodore64";
-	           font-size:16pt; 
+	           font-size:12pt; 
 	           line-height:24px;
 }
 	           
@@ -89,14 +89,14 @@ div.topbar p { margin-top:-4px ; margin-bottom: 0px}
 div.oversky {
 	color:white;
 	font-family:"Commodore64";
-	font-size:16pt;
+	font-size:12pt;
 	margin-top:-4px;
 	line-height:20px;
 }
 
 div.charstats table { color:white;
                 font-family:"Commodore64";
-   	            font-size:16pt;
+   	            font-size:12pt;
    	            margin-top:-8px;
    	            line-height:20px;
 }
@@ -118,7 +118,7 @@ div.journalpage { width: 45%;
 
 div.journalpage table { color:white;
 	font-family:"Commodore64";
-	 font-size:16pt;
+	 font-size:12pt;
 	 line-height:20px;
 	margin-top:0px;
 }
@@ -130,27 +130,27 @@ div.zstats { width:100%;
 		   
 div.zstats table { color:white;
                 font-family:"Commodore64";
-   	            font-size:16pt;
+   	            font-size:12pt;
    	            line-height:20px;
                 margin-top:0px;
 }
 
 div.zstats div { color:white;
 	font-family:"Commodore64";
-	 font-size:16pt;
+	 font-size:12pt;
 	 line-height:20px;
 	margin-top:0px;
 }
 
 div.zstats p { color:white;
 	font-family:"Commodore64";
-	 font-size:16pt;
+	 font-size:12pt;
 	 line-height:20px;
 	margin-top:0px;
 }
 
 div.maintextframe { font-family:"Commodore64";
-	                  font-size:16pt;
+	                  font-size:12pt;
 	                  color: white; 
 	                  margin-top:-4px;
 	                  line-height:20px;
@@ -160,7 +160,7 @@ div.maintextframe { font-family:"Commodore64";
 }
 
 div.innertextframe { font-family:"Commodore64";
-	                  font-size:16pt;
+	                  font-size:12pt;
 	                  color: white; 
 	                  margin-top:-4px;
 	                  line-height:20px;
@@ -175,7 +175,7 @@ div.innertextframe { font-family:"Commodore64";
 }
 
 div.inputtext { font-family:"Commodore64";
-	              font-size:16pt;
+	              font-size:12pt;
 	              color:white; 
 	              line-height:20px;
 	              position: absolute;
@@ -248,7 +248,7 @@ div.spelldescs { position:absolute;
 								 border-style: double; 
 								 border-width: 3px;
 								 font-family:"Commodore64";
-								 font-size:16pt;
+								 font-size:12pt;
 								 color:white; 
 								 line-height:20px;
 								 padding: 5px }
@@ -258,20 +258,20 @@ span.selected { color: red; }
 
 p.charcreate { color:white;
                 font-family:"Commodore64";
-   	            font-size:16pt;
+   	            font-size:12pt;
    	            margin-top:-8px;
    	            line-height:20px;
 }
 
 p.menuselect { color:yellow;
 	font-family:"Commodore64";
-	 font-size:16pt;
+	 font-size:12pt;
 	 line-height:10px;
 }
 
 p.menuplain { color:white;
 	font-family:"Commodore64";
-	 font-size:16pt;
+	 font-size:12pt;
 	 line-height:10px;
 }
 
@@ -287,14 +287,14 @@ div.demotop { text-align:center;
 	           vertical-align:top;
 	           font-weight:bold;
 	           font-family:"Commodore64";
-	           font-size:16pt; 
+	           font-size:12pt; 
 						 line-height:16px;
 }
 
 div.demo { color:white;
 	           vertical-align:top;
 	           font-family:"Commodore64";
-	           font-size:16pt; 
+	           font-size:12pt; 
 						 line-height:16px;
 						 width: 600px;
 						 text-align:left;
