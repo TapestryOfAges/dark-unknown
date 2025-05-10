@@ -31,13 +31,13 @@ const createWindow = () => {
 app.whenReady().then(() => {
   ipcMain.on('resize', function(event, zoom) {
     if (zoom === 1) {
-//      mainWindow.setMinimumSize(776,480);
       mainWindow.setContentSize(776,456);
     } else if (zoom === 1.5) {
-//      mainWindow.setMinimumSize(1164,720);
       mainWindow.setContentSize(1164,684);
     } else if (zoom === 2) {
       mainWindow.setContentSize(1552,912);
+    } else if (zoom === 3) {
+      mainWindow.setContentSize(2328,1368);
     }
   });
 
@@ -113,6 +113,8 @@ app.whenReady().then(() => {
             fs.writeFileSync(`${savePath}/${saveslot}`, JSON.stringify(saves[i]));
           }
 
+          let settings = {mvol: 10, fxvol: 10, loop: true, ambient: true, zoom: 2};
+          fs.writeFileSync(`${savePath}/settings`, JSON.stringify(settings));
           console.log("Initialized saved games.");    
         } else {
           console.log("Unknown error with saved games:");
@@ -146,6 +148,28 @@ app.whenReady().then(() => {
   
   ipcMain.on('load_save', function(event,idx) {
     let loadsave = fs.readFileSync(`${savePath}/save${idx}`,'utf8');
+    mainWindow.webContents.send('sendLoad', loadsave);
+  });
+
+  ipcMain.on('write_settings', function(event,params) {
+    fs.writeFileSync(`${savePath}/settings`, JSON.stringify(params));
+  });
+  
+  ipcMain.on('load_settings', function(event) {
+    let loadsave;
+    try {
+      loadsave = fs.readFileSync(`${savePath}/settings`,'utf8');
+    } catch(err) {
+      if (err.message.indexOf("no such file") !== -1) {
+        loadsave = {mvol: 10, fxvol: 10, loop: true, ambient: true, zoom: 2};
+        fs.writeFileSync(`${savePath}/settings`, JSON.stringify(loadsave));
+        console.log("Initialized settings games.");    
+      } else {
+        console.log("Unknown error with settings games:");
+        console.log(err.message);
+      }
+    }
+
     mainWindow.webContents.send('sendLoad', loadsave);
   });
 
