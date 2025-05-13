@@ -81,8 +81,8 @@ function GameSettings() {
 GameSettings.prototype = new Object();
 
 GameSettings.prototype.setSettings = function(settings) {
-  this.music = settings.music;
-  this.sound = settings.sound;
+  this.music = settings.mvol;
+  this.sound = settings.fxvol;
   this.ambientsound = settings.ambientsound;
   this.loopmusic = settings.loopmusic;
   this.zoom = settings.zoom;

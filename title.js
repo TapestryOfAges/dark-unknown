@@ -140,22 +140,24 @@ function page_pre_zero() {
       }
     }
   }
+  OutOfContext.load_settings();
 } 
 
-tv.load_settings = function() {
-  console.log("in load_settings");
-  OutOfContext.load_settings();
-}
+//tv.load_settings = function() {
+//  console.log("in load_settings");
+//  OutOfContext.load_settings();
+//}
 
 OutOfContext.onLoadSettings((event,settings) => {
-  for (let setting in settings) {
-    DU.settings.setSetting(setting, settings[setting]);
-  }
+//  for (let setting in settings) {
+//    DU.settings.setSetting(setting, settings[setting]);
+//  }
+  DU.settings.setSettings(settings);
   OutOfContext.resize(DU.settings.getSetting("zoom"));
 });
 
 tv.page_zero = function() {
-  tv.load_settings();
+//  tv.load_settings();
   let fleft = -3;
   let ftop = 0;
   let signl = fleft+324;
@@ -183,8 +185,11 @@ tv.start_animations = function() {
     tv.dusong.name = "Dark Unknown";
     tv.dusong.song = musicpreload["Dark Unknown"];
     musicpreload = {};
-    tv.dusong.song.play();
-    tv.dusong.song.loop = true;
+    if (DU.settings.getSetting("music")) {
+      tv.dusong.song.play();
+      tv.dusong.song.loop = true;
+      tv.dusong.song.volume = DU.settings.getSetting("music");
+    }
     if (gamestate.getMode() === "null") {
       document.getElementById('ToA').classList.add('titlefadein');
       setTimeout(function() {
@@ -826,7 +831,9 @@ tv.DoActionTitle = function(code, e) {
       else if (tv.optselect === 2) {
 //        window.open("game.html", "_self");
         tv.CreateGameSpace();
-        tv.dusong.song.pause();
+        if (DU.settings.getSetting("music")) {
+          tv.dusong.song.pause();
+        }
         tv.dusong = {};
         StartGame();
       }
@@ -905,7 +912,11 @@ tv.DoActionTitle = function(code, e) {
     }
   } else if (gamestate.getMode() === "ccoptions") {
     if ((code === 38) || (code === 219)) { // up
-      targetCursor.page = Math.max(0,targetCursor.page-1);
+      if (targetCursor.page === 0) {
+        targetCursor.page = 8;
+      } else {
+        targetCursor.page = targetCursor.page-1;
+      }
       tv.CharCreateOptions();
     } else if ((code === 37) || (code === 186)) {  // left
       if (targetCursor.page === 0) {
@@ -964,7 +975,11 @@ tv.DoActionTitle = function(code, e) {
       }
       if (targetCursor.page !== 8) { tv.CharCreateOptions(); }
     } else if ((code === 40) || (code === 191)) { // down
-      targetCursor.page = Math.min(8,targetCursor.page+1);
+      if (targetCursor.page === 8) {
+        targetCursor.page = 0;
+      } else {
+        targetCursor.page = targetCursor.page+1;
+      }
       tv.CharCreateOptions();
     } else if ((code === 32) || (code === 13)) { // space or enter
       if (targetCursor.page === 0) {
@@ -1287,12 +1302,15 @@ tv.SaveChar = function() {
 tv.RunIntro = function(idx) {
   if (idx === 0) {
     gamestate.setMode("null");
-    tv.dusong.song.pause();
-    tv.dusong = {};
-    tv.dusong.name = "Charcreate";
-    tv.dusong.song = new Audio(GetMusicPath("Charcreate"));
-    tv.dusong.song.play();
-    tv.dusong.song.loop = true;
+    if (DU.settings.getSetting("music")) {
+      tv.dusong.song.pause();
+      tv.dusong = {};
+      tv.dusong.name = "Charcreate";
+      tv.dusong.song = new Audio(GetMusicPath("Charcreate"));
+      tv.dusong.song.play();
+      tv.dusong.song.loop = true;
+      tv.dusong.song.volume = DU.settings.getSetting("music");
+    }
 
     let firstpage = `<div style='width:770;position: relative;left:5px;top:15px' id='introcontainer'>
       <table cellpadding='0' cellspacing='5' border='0'><tr>
@@ -1369,12 +1387,15 @@ tv.RunIntro = function(idx) {
     document.getElementById('splashtxt').classList.add('titlefadeout');
     setTimeout(function() {
       tv.SecondPage();
-      tv.dusong.song.pause();
-      tv.dusong = {};
-      tv.dusong.name = "Dark Unknown";
-      tv.dusong.song = new Audio(GetMusicPath("Dark Unknown"));
-      tv.dusong.song.play();
-      tv.dusong.song.loop = true;
+      if (DU.settings.getSetting("music")) {
+        tv.dusong.song.pause();
+        tv.dusong = {};
+        tv.dusong.name = "Dark Unknown";
+        tv.dusong.song = new Audio(GetMusicPath("Dark Unknown"));
+        tv.dusong.song.play();
+        tv.dusong.song.loop = true;
+        tv.dusong.song.volume = DU.settings.getSetting("music");
+      }
   
     },1000);
   }
