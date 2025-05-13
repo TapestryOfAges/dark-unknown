@@ -560,6 +560,21 @@ mappages["swainhil"].onload = function(mapref) {
     if (!DU.gameflags.getFlag("bard_simon_played")) {
       Listener.createListener("SimonHarp", "Harpsichord Plays", [], "swainhil");
     }
+    if (!DU.gameflags.getFlag("act2")) {
+      let ian = mapref.getTile(25,10).getTopNPC();
+      if (ian && (ian.getNPCName() === "ian") ) { 
+        mapref.deleteThing(ian); 
+        DUTime.removeEntityFrom(ian);
+      } else {
+        let npcs = mapref.npcs.getAll();
+        for (let i=0;i<npcs.length;i++) {
+          if (npcs[i].getNPCName() === "Ian") {
+            mapref.deleteThing(npcs[i]);
+            DUTime.removeEntityFrom(npcs[i]);
+          }
+        }
+      }
+    }
   }
 }
 
