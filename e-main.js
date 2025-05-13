@@ -101,7 +101,7 @@ app.whenReady().then(() => {
     }
           
     createDirectory(savePath).then((path) => {
-      console.log(`Successfully created directory: '${path}'`);
+//      console.log(`Successfully created directory: '${path}'`);
       try {
         fs.readFileSync(`${savePath}/save3`,'utf8');
       } catch(err) {
@@ -113,7 +113,7 @@ app.whenReady().then(() => {
             fs.writeFileSync(`${savePath}/${saveslot}`, JSON.stringify(saves[i]));
           }
 
-          let settings = {mvol: 10, fxvol: 10, loop: true, ambient: true, zoom: 2};
+          let settings = {mvol: 1, fxvol: 1, loop: true, ambient: true, zoom: 2};
           fs.writeFileSync(`${savePath}/settings`, JSON.stringify(settings));
           console.log("Initialized saved games.");    
         } else {
@@ -158,10 +158,10 @@ app.whenReady().then(() => {
   ipcMain.on('load_settings', function(event) {
     let loadsave;
     try {
-      loadsave = fs.readFileSync(`${savePath}/settings`,'utf8');
+      loadsave = JSON.parse(fs.readFileSync(`${savePath}/settings`,'utf8'));
     } catch(err) {
       if (err.message.indexOf("no such file") !== -1) {
-        loadsave = {mvol: 10, fxvol: 10, loop: true, ambient: true, zoom: 2};
+        loadsave = {mvol: 1, fxvol: 1, loop: true, ambient: true, zoom: 2};
         fs.writeFileSync(`${savePath}/settings`, JSON.stringify(loadsave));
         console.log("Initialized settings games.");    
       } else {
@@ -170,7 +170,7 @@ app.whenReady().then(() => {
       }
     }
 
-    mainWindow.webContents.send('sendLoad', loadsave);
+    mainWindow.webContents.send('sendSettings', loadsave);
   });
 
   createWindow()
