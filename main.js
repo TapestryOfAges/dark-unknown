@@ -13,7 +13,7 @@ let eidos = new Platonic();
 //var universe = new Object;
 
 let DU = {};
-DU.version = "0.10.2";
+DU.version = "0.10.3";
 
 DU.PC = new PCObject();
 DU.gamelength = 0;
@@ -44,6 +44,7 @@ let finder = new PF.AStarFinder({
   heuristic: PF.Heuristic.euclidean
 });
 DU.gameflags = new Gameflags();
+DU.settings = new GameSettings();
 
 let Listener = new DUListener();
 
