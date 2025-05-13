@@ -132,12 +132,30 @@ function page_pre_zero() {
       if (verdiv) {
         verdiv.innerHTML = `<p class='charcreate'>v${DU.version}</p>`;
       }
+      let changelog = document.getElementById("changelog");
+      if (changelog) {
+        changelog.innerHTML = `<p class='charcreate'>CHANGELOG:</p><ul class='charcreate'>`;
+        changelog.innerHTML += `<li class='charcreate'>Returning soldier in Swainhil properly doesn't return until Act 2</li>`;
+        changelog.innerHTML += `</ul>`;
+      }
     }
   }
 } 
 
+tv.load_settings = function() {
+  console.log("in load_settings");
+  OutOfContext.load_settings();
+}
+
+OutOfContext.onLoadSettings((event,settings) => {
+  for (let setting in settings) {
+    DU.settings.setSetting(setting, settings[setting]);
+  }
+  OutOfContext.resize(DU.settings.getSetting("zoom"));
+});
 
 tv.page_zero = function() {
+  tv.load_settings();
   let fleft = -3;
   let ftop = 0;
   let signl = fleft+324;
