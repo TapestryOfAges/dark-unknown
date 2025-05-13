@@ -256,7 +256,7 @@ div.spelldescs { position:absolute;
 span.selected { color: red; }
 
 
-p.charcreate { color:white;
+.charcreate { color:white;
                 font-family:"Commodore64";
    	            font-size:12pt;
    	            margin-top:-8px;
