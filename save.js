@@ -71,6 +71,46 @@ OutOfContext.onGetSaveIndex((event,value) => {
 
 OutOfContext.create_dir();
 
+function GameSettings() {
+  this.music = 0;
+  this.sound = 0;
+  this.ambientsound = true;
+  this.loopmusic = true;
+  this.zoom = 0;
+}
+GameSettings.prototype = new Object();
+
+GameSettings.prototype.setSettings = function(settings) {
+  this.music = settings.music;
+  this.sound = settings.sound;
+  this.ambientsound = settings.ambientsound;
+  this.loopmusic = settings.loopmusic;
+  this.zoom = settings.zoom;
+}
+
+GameSettings.prototype.saveSettings = function() {
+  let setting = {
+    mvol: this.music, 
+    fxvol: this.sound, 
+    loop: this.loopmusic, 
+    ambient: this.ambientsound, 
+    zoom: this.zoom
+  };
+  //working here
+}
+
+GameSettings.prototype.getSetting = function(which) {
+  return this[which];
+}
+
+GameSettings.prototype.setSetting = function(which,what) {
+  if (this.hasOwnProperty(which)) {
+    this[which] = what;
+    return true;
+  } 
+  return false;
+}
+
 function Gameflags() {
   this.music = 0;
   this.sound = 1;
