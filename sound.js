@@ -204,11 +204,11 @@ function audio_init_2() {
 function DUPlaySound(sound, soundmult) {
   if (!soundmult) { soundmult = 1; } 
   let playing = {};
-  if (DU.gameflags.getFlag("sound") && !DU.gameflags.getFlag("mute")) { 
+  if (DU.settings.getSetting("sound") && !DU.gameflags.getFlag("mute")) { 
 //    playing.song = createjs.Sound.play(sound); 
     playing.song = new Audio(GetSfxPath(sound));
     playing.name = sound; 
-    playing.song.volume = DU.gameflags.getFlag("sound") * soundmult;
+    playing.song.volume = DU.settings.getSetting("sound") * soundmult;
     playing.song.play();
   }
   return playing;
@@ -216,7 +216,7 @@ function DUPlaySound(sound, soundmult) {
 
 function DUPlayMusic(sound, params) {
   if (!params) { params = {}; }
-  if (DU.gameflags.getFlag("music")) { 
+  if (DU.settings.getSetting("music")) { 
     if (nowplaying.name === sound) { return nowplaying; }
     if (!params.fade) {
       StopMusic();
@@ -230,12 +230,12 @@ function DUPlayMusic(sound, params) {
 
 function StartSong(sound, params) {
   let loopval = 0;
-  if (DU.gameflags.getFlag("loopmusic")) { loopval = true; }
+  if (DU.settings.getSetting("loopmusic")) { loopval = true; }
   let playing = {};
   playing.song = new Audio(GetMusicPath(sound)); 
   playing.name = sound; 
   playing.song.loop = loopval;
-  playing.song.volume = DU.gameflags.getFlag("music");
+  playing.song.volume = DU.settings.getSetting("music");
   if (params.startat) { playing.song.currentTime = params.startat; }
   playing.song.play();
   nowplaying = playing;
@@ -256,7 +256,7 @@ function FadeMusic(sound,params) {
 
 function DUPlayAmbient(sound) {
   let playing = {};
-  if (DU.gameflags.getFlag("ambientsound") && DU.gameflags.getFlag("sound")) { 
+  if (DU.settings.getSetting("ambientsound") && DU.settings.getSetting("sound")) { 
 //    playing.song = createjs.Sound.play(sound, {loop:-1}); 
     playing.song = new Audio(GetSfxPath(sound));
     playing.song.loop = true;
@@ -271,8 +271,8 @@ function DUPlayAmbient(sound) {
 
 function IncAmbientVol(playing) {
   if (playing.name === ambient.name) {
-    if (playing.song.volume < DU.gameflags.getFlag("sound")) {
-      playing.song.volume = Math.min(playing.song.volume + .125, DU.gameflags.getFlag("sound"));
+    if (playing.song.volume < DU.settings.getSetting("sound")) {
+      playing.song.volume = Math.min(playing.song.volume + .125, DU.settings.getSetting("sound"));
       setTimeout(function() { IncAmbientVol(playing); }, 250);
     }
   }
