@@ -1,8 +1,10 @@
 
-music
-sound
+music (moved to settings)
+mvol - last music volume setting
+sound (moved to settings)
+svol - last sfx volume setting
 tablet
-zoom
+zoom (moved to settings)
 autosave
 move_opens_doors
 move_attacks  - which also covers move_talks
