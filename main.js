@@ -285,7 +285,7 @@ function DoAction(code, ctrl) {
     OutOfContext.toggle_dev();
     return; 
   }  // ctrl-i opens dev console no matter the mode
-  if (debug && ctrl && (code === 88)) { 
+  if ((debug || beta) && ctrl && (code === 27)) { 
     // BE VERY CAREFUL WITH THIS.
     // recovers from syntax errors, returns control to player
     gamestate.setMode("player");
@@ -1712,7 +1712,7 @@ function DoAction(code, ctrl) {
     } else if (targetCursor.dark === 15) {
       maintext.addText(`"${PC.getPCName()}? ${PC.getPCName()}, can you hear me?"`);
       targetCursor.dark++;
-      if (DU.gameflags.getFlag("music")) { DUPlayMusic("Alone", {fade:1}); }
+      if (DU.settings.getSetting("music")) { DUPlayMusic("Alone", {fade:1}); }
     } else if (targetCursor.dark === 16) {
       maintext.addText("Your brother. In your mind, you see a vision of him, and standing to either side of him are your mother and your father. The Rune of Kings blazes on the flesh of each, tying each of you to the land, to the kingdom, and to each other. Each of them reaches out a hand, and hold fast to your shoulders.");
       targetCursor.dark++;
@@ -1871,7 +1871,7 @@ function DoAction(code, ctrl) {
     } else if (targetCursor.dark === 24) {
       maintext.addText("Pure and bright, your will strikes the ruby like steel on flint. And the ruby awakes.");
       document.getElementById('uiinterface').style.backgroundImage = `url('graphics/splash/DemonGem-Part3.gif')`; 
-      if (DU.gameflags.getFlag("music")) { DUPlayMusic("Light", {fade:1, queue:"Theme"}); }
+      if (DU.settings.getSetting("music")) { DUPlayMusic("Light", {fade:1, queue:"Theme"}); }
       targetCursor.dark++;
     } else if (targetCursor.dark === 25) {
       maintext.addText("Light bursts forth, as bright as the sun, more pure than anything you've ever seen. You cannot see the daemon well, because it is not a thing that can be lit. But against this light, you see it cringe away, step back, cry out; against this light, it cannot stand.")
