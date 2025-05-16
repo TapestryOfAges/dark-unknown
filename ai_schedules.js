@@ -1087,4 +1087,6 @@ ais.ToshinSleep = function(who,params) {
 
 ais.rhys_tired = function(who,params) {
   DU.gameflags.deleteFlag("rhys_tired");
+
+  return {fin:1};
 }
