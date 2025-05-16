@@ -86,7 +86,7 @@ function SetMerchants() {
   bill.severyn.stock = [ { item: "BluePalmCrystal", quantity: 4, price: 100, desc: "Blue Palm Crystal", sale: '"The energies will be harmonious with your own."', sellqty: 1},
                         { item: "GreenPalmCrystal", quantity: 4, price: 35, desc: "Green Palm Crystal", sale: '"Its aura overcomes any toxin."', sellqty: 1},
                         { item: "PurplePalmCrystal", quantity: 2, price: 200, desc: "Purple Palm Crystal", sale: '"It will open your third eye!"', sellqty: 1},
-                        { item: "JadeNecklace", quantity: 1, price: 200, desc: "Jade Necklace", sale: '"This will bring you luck."', sellqty: 1},
+//                        { item: "JadeNecklace", quantity: 1, price: 200, desc: "Jade Necklace", sale: '"This will bring you luck."', sellqty: 1},
                                 ];
   bill.severyn.type = "stuff";
 
