@@ -252,6 +252,7 @@ questlist[102] = new Quest([], "Crate of Alchemy", "Charles", "Life's Hope", `Yo
 questlist[103] = new Quest([], "Dragonbone Pestle", "Tharock", "Liche's Dominion", `To use the crystal mortar, you need a suitable pestle. Tharock tells you that your best option is to seek out an Elder Dragon in the underworld, near the base of a volcano.`, `You have acquired the dragon's claw bone to use as a pestle.`, "main");
 questlist[104] = new Quest([], "Ian's Sibling", "A Letter", "World's Ending", `You have found a scrap of parchment with the last words of a poor explorer. They ask you to bring word of their final fate to their brother, Ian, in Swainhil.`, `You have told Ian his brother's fate.`, "side");
 questlist[105] = new Quest([], "Gold Locket", "A gold locket", "A cave", `In the back of a bandit cave, you found a gold locket, <IFFLAG:knows_severyn>which appears to contain a portrait of Severyn of Swainhil. Perhaps you could return it to her.</IFFLAG><IFNOT:knows_severyn>which contains a portrait of a woman you do not recognize. If you can find her, you can return it to her.</IFNOT>`, `You have returned the locket to Severyn.`, "side");
+questlist[106] = new Quest([5], "A Cave Near the Coast", "Erin", "Hildendain", `The monsters in the cave are slain. Report back to Nyrani in Castle dea Yggdras.`, `The monsters in the cave are slain.`, "side");
 
 
 // verbage for reference guide:
