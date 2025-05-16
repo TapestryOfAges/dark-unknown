@@ -3730,7 +3730,7 @@ function LadderDownTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
-  this.desc = "ladder";
+  this.desc = "ladder leading down";
   this.peerview = "#eaa35f";
 
   Enterable.call(this, "null", 0, 0);
@@ -3751,7 +3751,7 @@ function LadderUpTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
-  this.desc = "ladder";
+  this.desc = "ladder leading up";
   this.peerview = "#eaa35f";
 
   Enterable.call(this, "null", 0, 0);
@@ -8123,7 +8123,7 @@ WalkOnNoGalaxyTile.prototype.walkon = function(walker) {
     mymap.setBackground("");
   
     let normalsong = mymap.getMusic();
-    if (DU.gameflags.getFlag("music") && nowplaying.name && (nowplaying.name !== normalsong)) {
+    if (DU.settings.getSetting("music") && nowplaying.name && (nowplaying.name !== normalsong)) {
       DUPlayMusic(normalsong, {fade:1});
     }
     DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
@@ -8151,7 +8151,7 @@ WalkOnGalaxy1Tile.prototype.walkon = function(walker) {
     mymap.setOpacity(.2);
   
      let song = "Sirius";
-     if (DU.gameflags.getFlag("music") && nowplaying.name && (nowplaying.name !== song)) {
+     if (DU.settings.getSetting("music") && nowplaying.name && (nowplaying.name !== song)) {
       DUPlayMusic(song, {fade:1});
     }
     DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
@@ -8179,7 +8179,7 @@ WalkOnGalaxy2Tile.prototype.walkon = function(walker) {
     mymap.setOpacity(.5);
   
     let song = "Sirius";
-    if (DU.gameflags.getFlag("music") && nowplaying.name && (nowplaying.name !== song)) {
+    if (DU.settings.getSetting("music") && nowplaying.name && (nowplaying.name !== song)) {
      DUPlayMusic(song, {fade:1});
     }
     DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
@@ -8207,7 +8207,7 @@ WalkOnGalaxy3Tile.prototype.walkon = function(walker) {
     mymap.setOpacity(.8);
   
     let song = "Sirius";
-    if (DU.gameflags.getFlag("music") && nowplaying.name && (nowplaying.name !== song)) {
+    if (DU.settings.getSetting("music") && nowplaying.name && (nowplaying.name !== song)) {
       DUPlayMusic(song, {fade:1});
     }
     DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
@@ -11267,7 +11267,7 @@ UDTeleporterPlatformTile.prototype.walkon = function(who) {
   if (who === PC) { 
     DUPlaySound("sfx_teleport"); 
     response.overridedraw = 1; 
-    if (DU.gameflags.getFlag("music")) { DUPlayMusic("Final", {fade:1}); }
+    if (DU.settings.getSetting("music")) { DUPlayMusic("Final", {fade:1}); }
     DU.gameflags.setFlag("final_music",1);
   }
   return response;
@@ -13184,7 +13184,7 @@ RubyGemoftheSunTile.prototype.use = function(who) {
       DU.gameflags.setFlag("ashesbeacon",1);
     }
   } else if ((themap.getName() === "uttermostdark") && (who.gety() > 27) && (who.getx() > 13)) {
-    if (DU.gameflags.getFlag("music")) { DUPlayMusic("Despair", {fade:1}); }
+    if (DU.settings.getSetting("music")) { DUPlayMusic("Despair", {fade:1}); }
     let uii = document.getElementById('uiinterface');
     if (uii) {
       uii.innerHTML = `<img src="graphics/spacer.gif" width="416" height="416" />`;
