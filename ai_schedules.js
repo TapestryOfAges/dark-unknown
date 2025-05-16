@@ -749,6 +749,7 @@ ais.ChangeHuman = function(who,params) {
       alert("ChangeHuman sent " + spot);
     }
   }
+  return {fin:1}
 }
 
 ais.SleepOnFloor = function(who,params) {
