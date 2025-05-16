@@ -182,14 +182,13 @@ mappages["warwizardtower"].linkedMaps = [""];
 mappages["warwizardtower"].editorLabels = '{}';
 
 mappages["warwizardtower"].onload = function(mapref) {
-  let mirror = mapref.getTile(15,4).getTopFeature();
-  mirror.break();
-
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     if (!PC.checkInventory("RingOfEtherealFocus")) {
       let ring = localFactory.createTile("RingOfEtherealFocus");
       mapref.placeThing(18,8,ring);
     }
+    let mirror = mapref.getTile(15,4).getTopFeature();
+    mirror.break();
   }
 }
 
