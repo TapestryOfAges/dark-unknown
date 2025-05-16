@@ -104,6 +104,7 @@ mappages["headlesscave"].hc_check_clear = function(mapref) {
     }
     if (!anyheadlesses) {
       DU.gameflags.setFlag("cave_cleared",1);
+      questlog.activate(106);
     }
   }
   
