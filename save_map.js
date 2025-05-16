@@ -454,11 +454,13 @@ GameStateData.prototype.loadGame = function(idx) {
   } else {
     DUMusic["Dark Towne"] = "Dark Towne";
   }
-  if (DU.gameflags.getFlag("music")) {  
+  if (DU.settings.getSetting("music")) {  
     let song = PC.getHomeMap().getMusic();
     DUPlayMusic(song);
   }
-  ProcessAmbientNoise(PC.getHomeMap().getTile(PC.getx(),PC.gety()));
+  if (DU.settings.getSetting("sound") && DU.settings.getSetting("ambientsound")) {
+    ProcessAmbientNoise(PC.getHomeMap().getTile(PC.getx(),PC.gety()));
+  }
   startScheduler();
 }
 
