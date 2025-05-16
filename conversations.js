@@ -353,7 +353,7 @@ Conversation.prototype.say = function(speaker, saywhat, skipahead, nospeaker, al
 //                     start_sell -- change game state, sell stuff to merchant
 
 function InnRoom(xc,yc,doors,innmap) {
-  if (DU.gameflags.getFlag("music")) {
+  if (DU.settings.getSetting("music")) {
 //    StopMusic();
     DUPlayMusic("Lullaby", {fade:1});
   }
@@ -364,7 +364,7 @@ function InnRoom(xc,yc,doors,innmap) {
   FadeOut();
   setTimeout(function() {
     maintext.addText("ZZZZZZ...");
-    if (DU.gameflags.getFlag("music")) {
+    if (DU.settings.getSetting("music")) {
       QueueMusic(PC.getHomeMap().getMusic());
     }
     while(doors[0]) {
@@ -775,7 +775,7 @@ OnConvTriggers["start_courier"] = function(speaker,keyword) {
   
   if (!courierexists) {
     let courier = localFactory.createTile("CourierGroup");
-    worldmap.placeThing(45,111,courier);
+    worldmap.placeThing(28,102,courier);
     courier.setCurrentAI("CourierPath");
     DebugWrite("plot","Courier spawned.<br />");
   } else {
@@ -1070,7 +1070,7 @@ OnConvTriggers["sirius_book1"] = function(speaker,keyword) {
 }
 
 OnConvTriggers["talked_shelaria"] = function(speaker,keyword) {
-  if (DU.gameflags.getFlag("music")) {
+  if (DU.settings.getSetting("music")) {
 //    StopMusic(nowplaying);
     DUPlayMusic("Lament", {fade:1});
   }
@@ -1081,7 +1081,7 @@ OnConvTriggers["rescued_sam"] = function(speaker,keyword) {
 }
 
 OnConvTriggers["reset_music"] = function(speaker,keyword) {
-  if (DU.gameflags.getFlag("music")) {
+  if (DU.settings.getSetting("music")) {
     let song = speaker.getHomeMap().getMusic();
 //    StopMusic(nowplaying);
     DUPlayMusic(song, {fade:1});
