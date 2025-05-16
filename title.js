@@ -78,11 +78,11 @@ tv.lastanim = "";
 //let browserheight = window.innerHeight;
 tv.browserwidth = window.innerWidth;
 
-DU.gameflags.setFlag("music", 1);
-DU.gameflags.setFlag("loopmusic", 1);
-DU.gameflags.setFlag("sound", 1);
-DU.gameflags.setFlag("ambientsound", 1);
-DU.gameflags.setFlag("zoom", 1);
+//DU.gameflags.setFlag("music", 1);
+//DU.gameflags.setFlag("loopmusic", 1);
+//DU.gameflags.setFlag("sound", 1);
+//DU.gameflags.setFlag("ambientsound", 1);
+//DU.gameflags.setFlag("zoom", 1);
 
 tv.el = function(e) {
   let code = (e.keyCode ? e.keyCode : e.which);
@@ -126,7 +126,7 @@ function page_pre_zero() {
 //  ipcRenderer.send('toggle_dev');
   let loaddoc = document.getElementById("load");
   if (loaddoc) {
-    loaddoc.innerHTML += "<p class='charcreate' style='margin-left: 23px'>Ready.<br />Press any key...</p>";
+    loaddoc.innerHTML += "<p class='charcreate' style='margin-top:-30px;margin-left:3px'>Ready.<br />Press any key...</p>";
     if (beta) {
       let verdiv = document.getElementById("version");
       if (verdiv) {
@@ -134,8 +134,15 @@ function page_pre_zero() {
       }
       let changelog = document.getElementById("changelog");
       if (changelog) {
-        changelog.innerHTML = `<p class='charcreate'>CHANGELOG:</p><ul class='charcreate'>`;
-        changelog.innerHTML += `<li class='charcreate'>Returning soldier in Swainhil properly doesn't return until Act 2</li>`;
+        changelog.innerHTML = `<p class='charcreate'>CHANGELOG:</p><ul style='margin-top:0px>`;
+        changelog.innerHTML += `<li class='changelog'>Rearranged this screen to make room for a changelog.</li>`;
+        changelog.innerHTML += `<li class='changelog'>Returning soldier in Swainhil properly doesn't return until Act 2</li>`;
+        changelog.innerHTML += `<li class='changelog'>ctrl-S now saves</li>`;
+        changelog.innerHTML += `<li class='changelog'>Separated out the sound and visual options as "settings", which are now saved globally rather than being associated with a specific savegame. This will unfortunately blow away your current choices in this domains, but only when you first update.</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed a crash with a schedule in Beldskae</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed a bug when someone dies due to an attack they are making (because the opponent has Fire Armor up or something similar)</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed a crash bug if you loaded a game inside War Wizard's Tower</li>`;
+        changelog.innerHTML += `<li class='changelog'>Can no longer get trapped in some NPC's dialogs</li>`;
         changelog.innerHTML += `</ul>`;
       }
     }
@@ -1315,7 +1322,7 @@ tv.RunIntro = function(idx) {
     let firstpage = `<div style='width:770;position: relative;left:5px;top:15px' id='introcontainer'>
       <table cellpadding='0' cellspacing='5' border='0'><tr>
       <td id='splash'><img id='splash1' src='graphics/splash/Castle-Day-NoRider.gif' /></td>
-      <td style='vertical-align:top; padding-top: 4px' id='splashtxt'><div id='intro1' style='color:white;padding-left:5px'><p class='charcreate'>You were born the second child of the ruling family of Ellusus- King Daragen and Queen Shelaria Yggdras. Being the younger, your life is full of tutors and lessons, but also opportunity, for the weight of being heir falls upon your brother, Prince Lance.</p></div>
+      <td style='vertical-align:top; padding-top: 4px' id='splashtxt'><div id='intro1' style='color:white;padding-left:5px'><p class='charcreate'>You were born the second child of King Daragen and Queen Shelaria Yggdras of the ruling family of Ellusus. Being the younger, your life is full of tutors and lessons, but also opportunity, for the weight of being heir falls upon your brother, Prince Lance.</p></div>
       <div id='intro2' style='color:white;opacity:0'><p class='charcreate'>And Lance seemed made for the role. All things came easily to him- his studies of magic, of combat, of dance, of diplomacy. Which makes these events all the more surprising.</p></div>
       </td></tr></table>
     </div>`;
