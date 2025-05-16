@@ -83,8 +83,8 @@ GameSettings.prototype = new Object();
 GameSettings.prototype.setSettings = function(settings) {
   this.music = settings.mvol;
   this.sound = settings.fxvol;
-  this.ambientsound = settings.ambientsound;
-  this.loopmusic = settings.loopmusic;
+  this.ambientsound = settings.ambient;
+  this.loopmusic = settings.loop;
   this.zoom = settings.zoom;
 }
 
@@ -96,7 +96,7 @@ GameSettings.prototype.saveSettings = function() {
     ambient: this.ambientsound, 
     zoom: this.zoom
   };
-  //working here
+  OutOfContext.write_settings(setting);
 }
 
 GameSettings.prototype.getSetting = function(which) {
@@ -599,7 +599,7 @@ OutOfContext.onLoadData((event,serialized) => {
   } else {
     DUMusic["Dark Towne"] = "Dark Towne";
   }
-  if (DU.gameflags.getFlag("music")) {  
+  if (DU.settings.getSetting("music")) {  
     if (DU.gameflags.getFlag("final_music")) {
       DUPlayMusic("Final");
     } else {
