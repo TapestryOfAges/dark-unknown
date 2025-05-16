@@ -188,7 +188,7 @@ function FinishAnimation(param) {
         firearmor.flashback(param.atk);
       }
     }
-    if ((param.atk === PC) && param.atk.dead) { endturn = 0; }
+    if ((param.atk === PC) && param.atk.dead) { param.endturn = 0; }
   } else {
     if (retval["txt"] === "You") { retval["txt"] = ""; } 
   }
