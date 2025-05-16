@@ -383,18 +383,22 @@ function PerformCommand(code, ctrl) {
 	}
 	else if (code === 77) { // m
 		// was mix - now, toggles music
-    if (DU.gameflags.getFlag("music")) {
-      DU.gameflags.setFlag("music", 0);
+    if (DU.settings.getSetting("music")) {
+      DU.gameflags.setFlag("mvol",DU.settings.getSetting("music"));  // store the last music volume, so turning music back on doesn't blast it
+      DU.settings.setSetting("music", 0);
       StopMusic(nowplaying);
       retval["txt"] = "Music off.";
     } else {
-      DU.gameflags.setFlag("music", 1);
+      let vol = DU.gameflags.getFlag("mvol");
+      if (!vol) { vol = 1; }
+      DU.settings.setSetting("music", vol);
       let song = PC.getHomeMap().getMusic();
       DUPlayMusic(song);
       retval["txt"] = "Music on.";
     }		
     retval["input"] = "&gt;";
     retval["fin"] = 2;
+    DU.settings.saveSettings();
 	}
 	else if (code === 78) { // n
 		// new order - not used
@@ -441,13 +445,8 @@ function PerformCommand(code, ctrl) {
 		targetCursor.y = PC.gety();
 	}
 	else if (code === 81) { // q
-    gamestate.setMode("choosesave");
-    ShowSaveGames("Select a slot to save in:");
-    retval["txt"] = "";
-    retval["input"] = "&gt;";
-    retval["fin"] = 2;
-    targetCursor.command = "q";
-	}
+    retval =  PerformQuit();
+  }
 	else if (code === 82) { // r
     // Ready (contains functionality that used to be Wear/Weild)
 
@@ -469,12 +468,8 @@ function PerformCommand(code, ctrl) {
 
 	}
 	else if (code === 83) { // s
-    if (ctrl) { // output conversation log
-      retval["input"] = "&gt;";
-      retval["fin"] = 2;
-	    let serialized = JSON.stringify(convlog);  
-	    let savescreen = window.open('','savescreen');
-  	  savescreen.document.write(serialized);
+    if (ctrl) { // save
+      retval =  PerformQuit();
     } else {
   		gamestate.setMode("choosedir");
 	  	retval["txt"] = "";
@@ -486,30 +481,38 @@ function PerformCommand(code, ctrl) {
   	}
 	}
 	else if (code === 84) { // t
-    // talk
-	  if (PC.getHomeMap().getScale() === '0') {
-		  retval["txt"] = "No one to talk to.";
-		  retval["fin"] = 2;
-  	 return retval; 
-	  }
-    gamestate.setMode("target");
-    targetCursor.x = PC.getx();
-    targetCursor.y = PC.gety();
-    targetCursor.command = "t";
-    targetCursor.targetlimit = (VIEWSIZEX -1)/2;
-    targetCursor.targetCenterlimit = 3;
+    if (ctrl && beta) { // output conversation log
+      retval["input"] = "&gt;";
+      retval["fin"] = 2;
+	    let serialized = JSON.stringify(convlog);  
+	    let savescreen = window.open('','savescreen');
+  	  savescreen.document.write(serialized);
+    } else {
+      // talk
+	    if (PC.getHomeMap().getScale() === '0') {
+		    retval["txt"] = "No one to talk to.";
+		    retval["fin"] = 2;
+    	 return retval; 
+	    }
+      gamestate.setMode("target");
+      targetCursor.x = PC.getx();
+      targetCursor.y = PC.gety();
+      targetCursor.command = "t";
+      targetCursor.targetlimit = (VIEWSIZEX -1)/2;
+      targetCursor.targetCenterlimit = 3;
 
-    let edges = getDisplayCenter(PC.getHomeMap(),PC.getx(),PC.gety());
-    let leftedge = targetCursor.x - edges.leftedge;
-    let topedge = targetCursor.y - edges.topedge;
+      let edges = getDisplayCenter(PC.getHomeMap(),PC.getx(),PC.gety());
+      let leftedge = targetCursor.x - edges.leftedge;
+      let topedge = targetCursor.y - edges.topedge;
 
-    let tileid = "mainview_" + leftedge + "x" + topedge;
-    targetCursor.tileid = tileid;
-    targetCursor.basetile = document.getElementById(tileid).innerHTML;
-    document.getElementById(tileid).innerHTML = targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />';
-    retval["txt"] = "";
-    retval["input"] = "&gt; Talk: ";
-    retval["fin"] = 2;
+      let tileid = "mainview_" + leftedge + "x" + topedge;
+      targetCursor.tileid = tileid;
+      targetCursor.basetile = document.getElementById(tileid).innerHTML;
+      document.getElementById(tileid).innerHTML = targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />';
+      retval["txt"] = "";
+      retval["input"] = "&gt; Talk: ";
+      retval["fin"] = 2;
+    }
 	}
 	else if (code === 85) { // u
     // use
@@ -523,8 +526,9 @@ function PerformCommand(code, ctrl) {
 	}
 	else if (code === 86) { // v
 		// volume - turns sound effects on and off
-		if (DU.gameflags.getFlag("sound")) { 
-		  DU.gameflags.setFlag("sound", 0); 
+		if (DU.settings.getSetting("sound")) { 
+      DU.gameflags.setFlag("svol",DU.settings.getSetting("sound"));
+		  DU.settings.setSetting("sound", 0); 
       retval["txt"] = "Sound effects off.";
       
       if (Object.keys(ambient).length) { // if ambient is not an empty object
@@ -533,13 +537,16 @@ function PerformCommand(code, ctrl) {
       }
 		}
 		else { 
-      DU.gameflags.setFlag("sound", 1); 
+      let nvol = DU.gameflags.getFlag("svol");
+      if (!nvol) { nvol = 1; }
+      DU.settings.setSetting("sound", nvol); 
       retval["txt"] = "Sound effects on.";
 
       ProcessAmbientNoise(PC.getHomeMap().getTile(PC.getx(),PC.gety()));
     }
     retval["input"] = "&gt;";
     retval["fin"] = 2;
+    DU.settings.saveSettings();
 	}
 	else if (code === 87) { // w
     // wait, was wear/wield
@@ -1765,6 +1772,17 @@ function PerformPush(who) {
   }
   
   return {fin:1, input:"&gt;", txt: "That won't budge!"};
+}
+
+function PerformQuit() {
+  let retval = {};
+  gamestate.setMode("choosesave");
+  ShowSaveGames("Select a slot to save in:");
+  retval["txt"] = "";
+  retval["input"] = "&gt;";
+  retval["fin"] = 2;
+  targetCursor.command = "q";
+  return retval;
 }
 
 function PerformSearch(who) {
@@ -3056,15 +3074,15 @@ function DrawOptions() {
   let optdiv = "<div><div id='opt' class='zstats'>";
   optdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
   optdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td>&nbsp;&nbsp;&nbsp;</td></tr>";
-  optdiv += "<tr><td>=======SOUND AND MUSIC=======</td><td></td><td></td></tr>";
+  optdiv += "<tr><td>=======<span style='color:yellow'>SETTINGS (SOUND AND DISPLAY)</span>=======</td><td></td><td></td></tr>";
   optdiv += "<tr><td>MUSIC VOLUME:</td><td></td><td";
   if (targetCursor.page === 1) { 
     optdiv += " class='highlight'";
   }
   optdiv += ">";
-  if (DU.gameflags.getFlag("music")) {
-    let modmusic = DU.gameflags.getFlag('music')*10;
-    optdiv += modmusic;
+  if (DU.settings.getSetting("music")) {
+    let modmusic = DU.settings.getSetting('music')*10;
+    optdiv += `${modmusic}`;
   } else {
     optdiv += "0";
   }
@@ -3074,7 +3092,7 @@ function DrawOptions() {
     optdiv += " class='highlight'";
   }
   optdiv += ">";
-  if (DU.gameflags.getFlag("loopmusic")) {
+  if (DU.settings.getSetting("loopmusic")) {
     optdiv += "YES";
   } else {
     optdiv += "NO";
@@ -3085,9 +3103,9 @@ function DrawOptions() {
     optdiv += " class='highlight'";
   }
   optdiv += ">";
-  if (DU.gameflags.getFlag("sound")) {
-    let modsound = DU.gameflags.getFlag("sound")*10;
-    optdiv += modsound;
+  if (DU.settings.getSetting("sound")) {
+    let modsound = DU.settings.getSetting("sound")*10;
+    optdiv += `${modsound}`;
   } else {
     optdiv += "0";
   }
@@ -3097,15 +3115,26 @@ function DrawOptions() {
     optdiv += " class='highlight'";
   }
   optdiv += ">";
-  if (DU.gameflags.getFlag("ambientsound")) {
+  if (DU.settings.getSetting("ambientsound")) {
     optdiv += "YES";
   } else {
     optdiv += "NO";
   }
   optdiv += "</td></tr>";  
-  optdiv += "<tr><td><br />=======USER INTERFACE=======</td><td></td><td></td></tr>";
-  optdiv += "<tr><td>MOVE OPENS DOORS:</td><td></td><td";
+
+  optdiv += "<tr><td>ZOOM:</td><td></td><td";
   if (targetCursor.page === 5) { 
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  let zlev = DU.settings.getSetting("zoom");
+//  if (!DU.gameflags.getFlag("zoom")) { DU.gameflags.setFlag("zoom",1); zlev = 1; }
+  optdiv += zlev + "x";
+  optdiv += "</td></tr>";
+
+  optdiv += "<tr><td><br />=======<span style='color:yellow'>USER INTERFACE</span>=======</td><td></td><td></td></tr>";
+  optdiv += "<tr><td>MOVE OPENS DOORS:</td><td></td><td";
+  if (targetCursor.page === 6) { 
     optdiv += " class='highlight'";
   }
   optdiv += ">";
@@ -3117,7 +3146,7 @@ function DrawOptions() {
   optdiv += "</td></tr>";
 
   optdiv += "<tr><td>MOVE ATTACKS:</td><td></td><td";
-  if (targetCursor.page === 6) { 
+  if (targetCursor.page === 7) { 
     optdiv += " class='highlight'";
   }
   optdiv += ">";
@@ -3129,7 +3158,7 @@ function DrawOptions() {
   optdiv += "</td></tr>";
 
   optdiv += "<tr><td>STICKY TARGETING:</td><td></td><td";
-  if (targetCursor.page === 7) { 
+  if (targetCursor.page === 8) { 
     optdiv += " class='highlight'";
   }
   optdiv += ">";
@@ -3141,7 +3170,7 @@ function DrawOptions() {
   optdiv += "</td></tr>";
 
   optdiv += "<tr><td>SHOW MOVES IN LOG:</td><td></td><td";
-  if (targetCursor.page === 8) {
+  if (targetCursor.page === 9) {
     optdiv += " class='highlight'";
   }
   optdiv += ">";
@@ -3150,16 +3179,6 @@ function DrawOptions() {
   } else {
     optdiv += "NO";
   }
-  optdiv += "</td></tr>";
-
-  optdiv += "<tr><td>ZOOM:</td><td></td><td";
-  if (targetCursor.page === 9) { 
-    optdiv += " class='highlight'";
-  }
-  optdiv += ">";
-  let zlev = DU.gameflags.getFlag("zoom");
-  if (!DU.gameflags.getFlag("zoom")) { DU.gameflags.setFlag("zoom",1); zlev = 1; }
-  optdiv += zlev + "x";
   optdiv += "</td></tr>";
 
   optdiv += "<tr><td>SKIP THEFT WARNING:</td><td></td><td";
@@ -3174,7 +3193,7 @@ function DrawOptions() {
   }
   optdiv += "</td></tr>";
 
-  optdiv += "<tr><td><br />=======GAMEPLAY=======</td><td></td><td></td></tr>";
+  optdiv += "<tr><td><br />=======<span style='color:yellow'>GAMEPLAY</span>=======</td><td></td><td></td></tr>";
   optdiv += "<tr><td>DIFFICULTY:</td><td></td><td";
   if (targetCursor.page === 11) { 
     optdiv += " class='highlight'";
@@ -3390,10 +3409,13 @@ function performOptions(code) {
   let retval = {};
   if ((code === 27) || (code === 79)) { // ESC or O again
     retval["fin"] = 0;
-    delete targetCursor.cmd;
     document.getElementById('uiinterface').innerHTML = "";
     document.getElementById('uiinterface').style.backgroundColor = "";
-}
+    if (targetCursor.cmd === "o") {
+      DU.settings.saveSettings();
+    }
+    delete targetCursor.cmd;
+  }
   else if ((code === 38) || (code === 219)) { // scroll up
     targetCursor.page--;
     if (targetCursor.page === 0) { targetCursor.page = 1; } 
@@ -3411,31 +3433,38 @@ function performOptions(code) {
   else if ((code === 37) || (code === 186)) {  // left, for volumes or zoom
     if (targetCursor.cmd === "o") {
       if (targetCursor.page === 1) {  // volume
-        if (DU.gameflags.getFlag("music")) {
-          let newvol = Math.max(0,DU.gameflags.getFlag("music")-.1);
+        if (DU.settings.getSetting("music")) {
+          let newvol = Math.max(0,DU.settings.getSetting("music")-.1);
           newvol = newvol*10;
           newvol = parseInt(newvol);
           newvol = newvol/10;
-          DU.gameflags.setFlag("music", newvol);
-          if (nowplaying.song) {
-            nowplaying.song.volume = DU.gameflags.getFlag("music");
+          DU.settings.setSetting("music", newvol);
+          if (nowplaying.song && newvol) {
+            nowplaying.song.volume = newvol;
+          } else if (!newvol && nowplaying.song) {
+            DU.gameflags.setFlag("mvol",.1);
+            StopMusic(nowplaying);
           }
         }
       } else if (targetCursor.page === 3) {  // volume
-        if (DU.gameflags.getFlag("sound")) {
-          let newvol = Math.max(0,DU.gameflags.getFlag("sound")-.1);
+        if (DU.settings.getSetting("sound")) {
+          let newvol = Math.max(0,DU.settings.getSetting("sound")-.1);
           newvol = newvol*10;
           newvol = parseInt(newvol);
           newvol = newvol/10;
-          DU.gameflags.setFlag("sound", newvol);
+          DU.settings.setSetting("sound", newvol);
+          if (!newvol) { DU.gameflags.setFlag("svol",.1); }
         }
-      } else if (targetCursor.page === 9) { // zoom
-        if (DU.gameflags.getFlag("zoom") === 1.5) {
-          DU.gameflags.setFlag("zoom",1);
+      } else if (targetCursor.page === 5) { // zoom
+        if (DU.settings.getSetting("zoom") === 1.5) {
+          DU.settings.setSetting("zoom",1);
           OutOfContext.resize(1);
-        } else if (DU.gameflags.getFlag("zoom") === 2) {
-          DU.gameflags.setFlag("zoom",1.5);
+        } else if (DU.settings.getSetting("zoom") === 2) {
+          DU.settings.setSetting("zoom",1.5);
           OutOfContext.resize(1.5);
+        } else if (DU.settings.getSetting("zoom") === 3) {
+          DU.settings.setSetting("zoom",2);
+          OutOfContext.resize(2);
         }
       }
     }
@@ -3443,30 +3472,36 @@ function performOptions(code) {
   else if ((code === 39) || (code === 222)) {  // right, for volumes
     if (targetCursor.cmd === "o") {
       if (targetCursor.page === 1) {
-        let newvol = Math.min(1,DU.gameflags.getFlag("music")+.1);
+        let newvol = Math.min(1,DU.settings.getSetting("music")+.1);
         newvol = newvol*10;
         newvol = parseInt(newvol+.001);
         newvol = newvol/10;
-        DU.gameflags.setFlag("music", newvol);
+        DU.settings.setSetting("music", newvol);
         if (nowplaying.song) {
-          nowplaying.song.volume = DU.gameflags.getFlag("music");
+          nowplaying.song.volume = newvol;
         } else {
           let song = PC.getHomeMap().getMusic();
           DUPlayMusic(song);
         }
       } else if (targetCursor.page === 3) {
-        let newvol = Math.min(1,DU.gameflags.getFlag("sound")+.1);
+        let newvol = Math.min(1,DU.settings.getSetting("sound")+.1);
         newvol = newvol*10;
         newvol = parseInt(newvol+.001);
         newvol = newvol/10;
-        DU.gameflags.setFlag("sound", newvol);
-      } else if (targetCursor.page === 9) { // zoom
-        if (DU.gameflags.getFlag("zoom") === 1) {
-          DU.gameflags.setFlag("zoom",1.5);
+        DU.settings.setSetting("sound", newvol);
+        if (newvol === .1) {
+          ProcessAmbientNoise(PC.getHomeMap().getTile(PC.getx(),PC.gety()));
+        }
+      } else if (targetCursor.page === 5) { // zoom
+        if (DU.settings.getSetting("zoom") === 1) {
+          DU.settings.setSetting("zoom",1.5);
           OutOfContext.resize(1.5);
-        } else if (DU.gameflags.getFlag("zoom") === 1.5) {
-          DU.gameflags.setFlag("zoom",2);
+        } else if (DU.settings.getSetting("zoom") === 1.5) {
+          DU.settings.setSetting("zoom",2);
           OutOfContext.resize(2);
+        } else if (DU.settings.getSetting("zoom") === 2) {
+          DU.settings.setSetting("zoom",3);
+          OutOfContext.resize(3);
         }
       }
     }
@@ -3474,13 +3509,16 @@ function performOptions(code) {
   else if ((code === 32) || (code === 13)) {  // space or enter
     if (targetCursor.cmd === "o") {
       if (targetCursor.page === 1) {
-        if (DU.gameflags.getFlag("music")) {
-          DU.gameflags.setFlag("music",0);
+        if (DU.settings.getSetting("music")) {
+          DU.gameflags.setFlag("mvol", DU.settings.getSetting("music"));
+          DU.settings.setSetting("music",0);
           if (nowplaying.song) {
-            nowplaying.song.volume = 0;
+            StopMusic(nowplaying);
           }
         } else {
-          DU.gameflags.setFlag("music",1);
+          let newvol = DU.gameflags.getFlag("mvol");
+          if (!newvol) { newvol = 1; }
+          DU.settings.setSetting("music",newvol);
           if (nowplaying.song) {
             nowplaying.song.volume = 1;
           } else {
@@ -3489,20 +3527,30 @@ function performOptions(code) {
           }
         }
       } else if (targetCursor.page === 3) {
-        if (DU.gameflags.getFlag("sound")) {
-          DU.gameflags.setFlag("sound",0);
+        if (DU.settings.getSetting("sound")) {
+          DU.settings.setSetting("sound",0);
+          if (Object.keys(ambient).length) { // if ambient is not an empty object
+            DecAmbientVol(ambient);
+            ambient = {}; 
+          }
         } else {
-          DU.gameflags.setFlag("sound",1);
+          let newvol = DU.gameflags.getFlag("svol");
+          if (!newvol) { newvol = 1; }
+          DU.settings.setSetting("sound",newvol);
+          ProcessAmbientNoise(PC.getHomeMap().getTile(PC.getx(),PC.gety()));
         }
-      } else if (targetCursor.page === 9) { // zoom
-        if (DU.gameflags.getFlag("zoom") === 1) {
-          DU.gameflags.setFlag("zoom",1.5);
+      } else if (targetCursor.page === 5) { // zoom
+        if (DU.settings.getSetting("zoom") === 1) {
+          DU.settings.setSetting("zoom",1.5);
           OutOfContext.resize(1.5);
-        } else if (DU.gameflags.getFlag("zoom") === 1.5) {
-          DU.gameflags.setFlag("zoom",2);
+        } else if (DU.settings.getSetting("zoom") === 1.5) {
+          DU.settings.setSetting("zoom",2);
           OutOfContext.resize(2);
+        } else if (DU.settings.getSetting("zoom") === 2) {
+          DU.settings.setSetting("zoom",3);
+          OutOfContext.resize(3);
         } else {
-          DU.gameflags.setFlag("zoom",1);
+          DU.settings.setSetting("zoom",1);
           OutOfContext.resize(1);
         }
       } else if (targetCursor.page === 12) { // potions
@@ -3610,23 +3658,26 @@ function ToggleDebugOption(opt) {
 
 function ToggleOption(opt) {
   if (opt === 1) {
-    if (DU.gameflags.getFlag("music")) {
-      DU.gameflags.setFlag("music", 0);
+    if (DU.settings.getSetting("music")) {
+      DU.gameflags.setFlag("mvol",DU.settings.getSetting("music"));
+      DU.settings.setSetting("music", 0);
       StopMusic(nowplaying);
     } else {
-      DU.gameflags.setFlag("music", 1);
+      let newvol = DU.gameflags.getFlag("mvol");
+      if (!newvol) { newvol = 1; }
+      DU.settings.setSetting("music", newvol);
       let song = PC.getHomeMap().getMusic();
       DUPlayMusic(song);
     }
   } else if (opt === 2) {
-   	if (DU.gameflags.getFlag("loopmusic")) { 
-	    DU.gameflags.setFlag("loopmusic", 0); 
-      if (DU.gameflags.getFlag("music")) {
+   	if (DU.settings.getSetting("loopmusic")) { 
+	    DU.settings.setSetting("loopmusic", 0); 
+      if (DU.settings.getSetting("music")) {
         nowplaying.song.loop = 0;
       }
 	  } else { 
-      DU.gameflags.setFlag("loopmusic", 1); 
-      if (DU.gameflags.getFlag("music")) {
+      DU.settings.setSetting("loopmusic", 1); 
+      if (DU.settings.getSetting("music")) {
         if (nowplaying.song.playState === "playFinished") {
           let song = PC.getHomeMap().getMusic();
           DUPlayMusic(song);  
@@ -3636,43 +3687,55 @@ function ToggleOption(opt) {
       }
     }		
   } else if (opt === 3) {
-   	if (DU.gameflags.getFlag("sound")) { 
-	    DU.gameflags.setFlag("sound", 0); 
+   	if (DU.settings.getSetting("sound")) { 
+	    DU.settings.setSetting("sound", 0); 
+      if (Object.keys(ambient).length) { // if ambient is not an empty object
+        DecAmbientVol(ambient);
+        ambient = {}; 
+      }
 	  } else { 
-      DU.gameflags.setFlag("sound", 1); 
+      let newvol = DU.gameflags.getFlag("svol");
+      if (!newvol) { newvol = 1; }
+      DU.settings.setSetting("sound", newvol); 
+      ProcessAmbientNoise(PC.getHomeMap().getTile(PC.getx(),PC.gety()));
     }
   } else if (opt === 4) {
-   	if (DU.gameflags.getFlag("ambientsound")) { 
-	    DU.gameflags.setFlag("ambientsound", 0); 
+   	if (DU.settings.getSetting("ambientsound")) { 
+	    DU.settings.setSetting("ambientsound", 0); 
+      if (Object.keys(ambient).length) { // if ambient is not an empty object
+        DecAmbientVol(ambient);
+        ambient = {}; 
+      }
 	  } else { 
-      DU.gameflags.setFlag("ambientsound", 1); 
+      DU.settings.setSetting("ambientsound", 1); 
+      ProcessAmbientNoise(PC.getHomeMap().getTile(PC.getx(),PC.gety()));
     }
   } else if (opt === 5) {
+    // ZOOM HANDLED ELSEWHERE
+  } else if (opt === 6) {
     if (DU.gameflags.getFlag("move_opens_doors")) {
       DU.gameflags.setFlag("move_opens_doors", 0);
     } else {
       DU.gameflags.setFlag("move_opens_doors", 1);
     }
-  } else if (opt === 6) {
+  } else if (opt === 7) {
     if (DU.gameflags.getFlag("move_attacks")) {
       DU.gameflags.setFlag("move_attacks", 0);
     } else {
       DU.gameflags.setFlag("move_attacks", 1);
     }
-  } else if (opt === 7) {
+  } else if (opt === 8) {
     if (DU.gameflags.getFlag("sticky_target")) {
       DU.gameflags.setFlag("sticky_target", 0);
     } else {
       DU.gameflags.setFlag("sticky_target", 1);
     }
-  } else if (opt === 8) {
+  } else if (opt === 9) {
     if (DU.gameflags.getFlag("show_move")) {
       DU.gameflags.setFlag("show_move", 0);
     } else {
       DU.gameflags.setFlag("show_move", 1);
     }
-  } else if (opt === 9) {
-    // ZOOM HANDLED ELSEWHERE
   } else if (opt === 10) {
     if (DU.gameflags.getFlag("skip_theft_warning")) {
       DU.gameflags.setFlag("skip_theft_warning", 0);
