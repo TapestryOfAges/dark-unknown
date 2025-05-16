@@ -160,7 +160,7 @@ EventFunctions["BDragon"] = function(ev) {
       } else {
         console.log("what happened?"); 
       }
-      if (DU.gameflags.getFlag("music")) {
+      if (DU.settings.getSetting("music")) {
         DUPlayMusic("Tension", {fade:1});
       }        
     }
