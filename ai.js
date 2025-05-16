@@ -4016,7 +4016,7 @@ ais.Darkness = function(who) {
   } else if (!who.alone) {
     if ((PC.gety() > 27) && (PC.getx() > 11)) {
       who.alone = 1;
-      if (DU.gameflags.getFlag("music")) { DUPlayMusic("Heartbeat", {fade:1}); }
+      if (DU.settings.getSetting("music")) { DUPlayMusic("Heartbeat", {fade:1}); }
     }
   }
 
