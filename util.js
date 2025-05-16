@@ -102,7 +102,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
   }
 
 	if (who === PC) { ProcessAmbientNoise(tile); }
-	if ((DU.gameflags.getFlag("music")) && (who === PC) && tomap.getMusic() && (tomap.getMusic() !== nowplaying.name)) {
+	if ((DU.settings.getSetting("music")) && (who === PC) && tomap.getMusic() && (tomap.getMusic() !== nowplaying.name)) {
 //	  StopMusic(nowplaying);
 	  let song = tomap.getMusic();
 	  DUPlayMusic(song);
