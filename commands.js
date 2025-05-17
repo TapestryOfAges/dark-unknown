@@ -604,12 +604,12 @@ function PerformCommand(code, ctrl) {
 	}
   else if (code === 13) { // ENTER
     retval = PerformEnter("e");
-    if (retval["txt"] === "You cannot enter that.") {
-  		// pass
-	  	retval["txt"] = "Pass.";
-		  retval["input"] = "&gt;";
-		  retval["fin"] = 1;
-    }
+    // if (retval["txt"] === "You cannot enter that.") {
+  	// 	// pass
+	  // 	retval["txt"] = "Pass.";
+		//   retval["input"] = "&gt;";
+		//   retval["fin"] = 1;
+    // }
   }
   else if (code === 27) {  // ESC
     retval = PerformEscape();
@@ -1657,7 +1657,7 @@ function PerformGet(who, getitem) {
       if (getitem.karmaPenalty) {
         who.diffKarma(-getitem.karmaPenalty);
         addToKarmaLog("Karma",`-${getitem.karmaPenalty}`, `Stole ${getitem.getPrefix()} ${getitem.getDesc()}.`);
-        retval["txt"] = `\n<span style='color:red'>Theft! Your karma has suffered.`;
+        retval["txt"] = `<br /><span style='color:red'>Theft! Your karma has suffered.`;
       }
     }
     if (onget["txt"]) {
@@ -4287,8 +4287,8 @@ function ShowHelp() {
   statsdiv += "<tr><td>J - Quest Journal</td><td></td><td>Y - Yell</td></tr>";
   statsdiv += "<tr><td>K - Climb</td><td></td><td>Z - Stats</td></tr>";
   statsdiv += "<tr><td>L - Look</td><td></td><td>SPACE - Pass Turn</td></tr>";
-  statsdiv += "<tr><td>CTRL-L - Load Game</td><td></td><td>ENTER - Enter/Climb if</tr>";
-  statsdiv += "<tr><td>M - Toggle Music</td><td></td><td>&nbsp;can, else Pass Turn.</td></tr>";
+  statsdiv += "<tr><td>CTRL-L - Load Game</td><td></td><td>ENTER - Enter</td></tr>";
+  statsdiv += "<tr><td>M - Toggle Music</td><td></td><td></td></tr>";
   statsdiv += "<tr><td>O - Open</td><td></td><td></td></tr>";
   statsdiv += "<tr><td>CTRL-O - Options</td><td></td><td></td></tr>";
 
