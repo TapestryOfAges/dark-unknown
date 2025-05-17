@@ -3152,6 +3152,7 @@ magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].executeSpell = function(caster,
   }
 
   let npclist = [];
+  let npcdir = [];
   PlayCastSound(caster,"sfx_thunder");
   let spellmap = caster.getHomeMap();
   for (let xdiff=-1; xdiff<=1; xdiff++) {
@@ -3162,6 +3163,7 @@ magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].executeSpell = function(caster,
         let badguy = tile.getTopNPC();
         if (badguy && !badguy.frozenintime) {
           npclist.push(badguy);
+          npcdir.push([xdiff,ydiff]);
         }
       }
     }
@@ -3179,6 +3181,8 @@ magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].executeSpell = function(caster,
     }
 
     if (!resist) {
+      let xdiff = npcdir[i][0];
+      let ydiff = npcdir[i][1];
       badguy.moveMe(xdiff,ydiff,1);
     }
     if (badguy !== PC) { badguy.setAggro(1); }
