@@ -253,6 +253,9 @@ questlist[103] = new Quest([], "Dragonbone Pestle", "Tharock", "Liche's Dominion
 questlist[104] = new Quest([], "Ian's Sibling", "A Letter", "World's Ending", `You have found a scrap of parchment with the last words of a poor explorer. They ask you to bring word of their final fate to their brother, Ian, in Swainhil.`, `You have told Ian his brother's fate.`, "side");
 questlist[105] = new Quest([], "Gold Locket", "A gold locket", "A cave", `In the back of a bandit cave, you found a gold locket, <IFFLAG:knows_severyn>which appears to contain a portrait of Severyn of Swainhil. Perhaps you could return it to her.</IFFLAG><IFNOT:knows_severyn>which contains a portrait of a woman you do not recognize. If you can find her, you can return it to her.</IFNOT>`, `You have returned the locket to Severyn.`, "side");
 questlist[106] = new Quest([5], "A Cave Near the Coast", "Erin", "Hildendain", `The monsters in the cave are slain. Report back to Nyrani in Castle dea Yggdras.`, `The monsters in the cave are slain.`, "side");
+questlist[107] = new Quest([16], "Kyvek's Debt", "Kyvek", "Naurglen", `The King has given you a token to show to Trevor, keeper of the treasury, in the basement of Castle Yggdras. He will redeem the debt to Kyvek. <IFFLAG:kyvek_fetch>You've given Trevor the token and he will return soon to give you Kyvek's money.</IFFLAG>`, ``, "side");
+questlist[108] = new Quest([107], "Kyvek's Debt", "Kyvek", "Naurglen", `You have the money for Kyvek- all that remains is to bring it to him, in Naurglen.`, `You have arranged for Kyvek to be repaid.`, "side");
+questlist[109] = new Quest([108], "Kyvek's Debt", "Kyvek", "Naurglen", `You have the money for Kyvek- all that remains is to bring it to him, in Naurglen.`, `You have arranged for Kyvek to be repaid... but then you stole the money for yourself.`, "side");
 
 
 // verbage for reference guide:
