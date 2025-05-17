@@ -667,6 +667,7 @@ mappages["hildendain"].onload = function(mapref) {
     } else {
       if (anna) {
         if (anna.getCurrentScheduleIndex() >= 9) {
+          // FIX THIS, she's trying to use an old graphic for sleep
           anna.setGraphic("012.gif");
         }
       }
@@ -688,6 +689,7 @@ mappages["hildendain"].onload = function(mapref) {
       if (aoife) {
         aoife.setSchedule("aoife2");
         let loc = DU.schedules["aoife2"].getNPCLocationByTime(GetClockTime(), 1, 1, mapref, aoife);
+        aoife.setCurrentScheduleIndex(DU.schedules[aoife.getSchedule()].currentIndex);
         mapref.moveThing(loc.x,loc.y,aoife);
         let aoifetile = mapref.getTile(loc.x,loc.y);
         aoifetile.executeWalkons(aoife);
