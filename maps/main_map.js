@@ -1494,7 +1494,7 @@ mappages["ellusus"].features[56] = {name : 'Towne3', x : 16, y : 107, desc : "To
 mappages["ellusus"].features[57] = {name : 'Cave', x : 124, y : 10, entermap : 'northcave', enterx : 1, entery : 16};
 mappages["ellusus"].features[58] = {name : 'Dungeon4', x : 54, y : 94, entermap : 'fulcrum1', enterx : 16, entery : 16};
 mappages["ellusus"].features[59] = {name : 'Dungeon2', x : 134, y : 49, entermap : 'noxtalanua1', enterx : 12, entery : 18};
-mappages["ellusus"].features[60] = {name : 'Cave', x : 133, y : 79, entermap : 'wingcave2', enterx : 0, entery : 0};
+mappages["ellusus"].features[60] = {name : 'Cave', x : 133, y : 79, entermap : 'wingcave2', enterx : 30, entery : 19};
 mappages["ellusus"].features[61] = {name : 'BridgeNS', x : 106, y : 74};
 
 
