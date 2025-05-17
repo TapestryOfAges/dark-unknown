@@ -219,6 +219,7 @@ GameStateData.prototype.saveGame = function(flag) {
   savedata.convlog = [];
   savedata.karmalog = [];
   savedata.timeplayed = 0;
+  savedata.version = DU.version;
   if (DU.starttime) {
     let d = new Date;
     let ms = d.getTime();
@@ -607,6 +608,28 @@ OutOfContext.onLoadData((event,serialized) => {
       DUPlayMusic(song);
     }
   }
+
+  if (!savedata.version) { savedata.version = "0.10.3"; }
+  const savever = savedata.version.split(".");
+  if ((parseInt(savever[1]) < 10) || (parseInt(savever[2]) < 4)) {  // fix to versions prior to 0.10.4
+    console.log("Upgrading save to 0.10.4.");
+    let mmap = maps.getMap("ellusus");
+    let fixtile = mmap.getTile(133,79);
+    let fea = fixtile.getFeatures();
+    let fixcave;
+    for (let i=0;i<fea.length;i++) {
+      if (fea[i].getName() === "Cave") { fixcave = fea[i]; }
+    }
+    if (fixcave) {
+      console.log(`Old cave entrance coords: ${fixcave.enterx}, ${fixcave.entery}.`);
+      fixcave.enterx = 30;
+      fixcave.entery = 19;
+      console.log(`New cave entrance coords: ${fixcave.enterx}, ${fixcave.entery}.`);
+    } else {
+      console.log("Couldn't find the cave to fix...?");
+    }
+  }
+
   ProcessAmbientNoise(PC.getHomeMap().getTile(PC.getx(),PC.gety()));
   startScheduler();
   StartPostLoad();
