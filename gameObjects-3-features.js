@@ -14684,6 +14684,8 @@ KyvekBoxTile.prototype.usePrompt = function(code) {
     addToKarmaLog("Karma", -1, `Opened Kyvek's box.`);
     PC.addGold(600);
     PC.removeFromInventory(this);
+    questlog.activate(109);
+    questlog.complete(109);
     DrawCharFrame();
   } else {
     retval["txt"] = "You put the box away, unopened.";
