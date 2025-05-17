@@ -135,14 +135,14 @@ function page_pre_zero() {
       let changelog = document.getElementById("changelog");
       if (changelog) {
         changelog.innerHTML = `<p class='charcreate'>CHANGELOG:</p><ul style='margin-top:0px>`;
-        changelog.innerHTML += `<li class='changelog'>Rearranged this screen to make room for a changelog.</li>`;
-        changelog.innerHTML += `<li class='changelog'>Returning soldier in Swainhil properly doesn't return until Act 2</li>`;
-        changelog.innerHTML += `<li class='changelog'>ctrl-S now saves</li>`;
-        changelog.innerHTML += `<li class='changelog'>Separated out the sound and visual options as "settings", which are now saved globally rather than being associated with a specific savegame. This will unfortunately blow away your current choices in this domains, but only when you first update.</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed a crash with a schedule in Beldskae</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed a bug when someone dies due to an attack they are making (because the opponent has Fire Armor up or something similar)</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed a crash bug if you loaded a game inside War Wizard's Tower</li>`;
-        changelog.innerHTML += `<li class='changelog'>Can no longer get trapped in some NPC's dialogs</li>`;
+        changelog.innerHTML += `<li class='changelog'>[Enter] now only duplicates [E], it cannot pass the turn</li>`;
+        changelog.innerHTML += `<li class='changelog'>Kyvek's sidequest now updates the journal on steps along the way</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed Shockwave</li>`;
+        changelog.innerHTML += `<li class='changelog'>The "load game" system can now apply fixes if it sees a saved game is from a previous version. With this I should be able to minimize if not eliminate updates that invalidate saved games</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed several dungeon entrances and exits</li>`;
+        changelog.innerHTML += `<li class='changelog'>Sam now uses her schedule when at home</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed a crash bug with stealing</li>`;
+        changelog.innerHTML += `<li class='changelog'>Aoife's schedule no longer crashes under certain circumstances</li>`;
         changelog.innerHTML += `</ul>`;
       }
     }
