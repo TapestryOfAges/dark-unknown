@@ -11988,9 +11988,10 @@ PetrifiedOlcrannTile.prototype = new FeatureObject();
 PetrifiedOlcrannTile.prototype.use = function(who) {
   let retval  ={fin:1};
 
-  if (IsAdjacent(who,this)) {
+  if (IsAdjacent(who,this) && !this.harvested) {
     let loot = localFactory.createTile("OlcrannBark");
     PC.addToInventory(loot,1);
+    this.harvested = 1;
     retval["txt"] = "You take some petrified olcrann bark.";
   } else {
     retval["txt"] = "Nothing happens.";
@@ -12001,9 +12002,10 @@ PetrifiedOlcrannTile.prototype.use = function(who) {
 
 PetrifiedOlcrannTile.prototype.onSearched = function(who) {
   let retval = {};
-  if (IsAdjacent(who,this)) {
+  if (IsAdjacent(who,this) && !this.harvested) {
     let loot = localFactory.createTile("OlcrannBark");
     PC.addToInventory(loot,1);
+    this.harvested = 1;
     retval["txt"] = "You take some petrified olcrann bark.";
   } else {
     retval["txt"] = "Nothing happens.";
