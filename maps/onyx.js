@@ -245,6 +245,7 @@ mappages["onyx"].features[198] = {name : 'Brazier', x : 26, y : 6};
 mappages["onyx"].features[199] = {name : 'StreetLamp', x : 6, y : 17};
 mappages["onyx"].features[200] = {name : 'StreetLamp', x : 21, y : 24};
 mappages["onyx"].features[201] = {name : 'StreetLamp', x : 18, y : 13};
+mappages["onyx"].features[202] = {name : 'StreetLamp', x : 12, y : 13};
 
 
 mappages["onyx"].npcs = [];
