@@ -3563,7 +3563,7 @@ FireFieldTile.prototype.activate = function() {
     let mytile = this.getHomeMap().getTile(this.getx(),this.gety());
     let npcs = mytile.getNPCs();
     for (let i=0;i<npcs.length;i++) {
-      InAFireField(npcs[i]);
+      InAFireField(npcs[i], this);
     }
 
     let NPCevent = new GameEvent(this);
@@ -12246,7 +12246,7 @@ function SiriCloakTile() {
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "tattered cloak";
-  this.longdesc = "A tattered cloak, once worn by Siri in her adventures. It should be returned to Garen in Naurglen.";
+  this.longdesc = "A tattered cloak, once worn by Siri in her adventures. It should be returned to Warren in Naurglen.";
   this.prefix = "a";
 
   this.addType("Quest");  
