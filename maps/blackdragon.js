@@ -346,7 +346,7 @@ mappages["blackdragon"].onload = function(mapref) {
       mapref.deleteThing(dragon);
       DUTime.removeEntityFrom(dragon);
 
-      if (!DU.gameflags.getFlag("rhys_moved")) {
+      if (!DU.gameflags.getFlag("rhys_moved") || !DU.gameflags.getFlag("prince_awake")) {
         mapref.deleteThing(rhys);
         DUTime.removeEntityFrom(rhys);  
       }
@@ -374,15 +374,21 @@ mappages["blackdragon"].onload = function(mapref) {
       door.unlockMe();
     } else {
       let npcs = mapref.npcs.getAll();
-      let dragon;
+      let dragon, rhys;
       for (let i=0;i<npcs.length;i++) {
         if (npcs[i].getName() === "BlackDragonNPC") { dragon = npcs[i]; }
+        if (npcs[i].getNPCName() === "Rhys") { rhys = npcs[i]; }
       }
       dragon.setMaxHP(3000);
       dragon.setHP(3000);
+
+      if (rhys) {
+        mapref.deleteThing(rhys);
+        DUTime.removeEntityFrom(rhys);  
+      }
     }
   } else if ((gamestate.getMode() === "loadgame") && (!DU.gameflags.getFlag("editor")) && (DU.gameflags.getFlag("bdc_gate_open"))) {
-    LowerDrawbridge(mapref);
+//    LowerDrawbridge(mapref);
   }
 }
 
