@@ -82,6 +82,7 @@ met_ash - you've spoken with Asharden at least once
 ash_quest1 - Asharden has given you the quest to get bark
 ash_get_book - you've given Asharden the bark and he is fetching you a spellbook.
 ash_has_book - Asharden has the book, next time you talk to him he'll give it to you.
+ash_olcrann - you've turned in the bark
 lvl4 - reached level four and has not yet heard the "rune of kings" spiel
 lvl4_rune - reached level four and have heard spiel
 lvl* - reached level *
