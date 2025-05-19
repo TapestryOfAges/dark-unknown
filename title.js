@@ -135,14 +135,15 @@ function page_pre_zero() {
       let changelog = document.getElementById("changelog");
       if (changelog) {
         changelog.innerHTML = `<p class='charcreate'>CHANGELOG:</p><ul style='margin-top:0px>`;
-        changelog.innerHTML += `<li class='changelog'>[Enter] now only duplicates [E], it cannot pass the turn</li>`;
-        changelog.innerHTML += `<li class='changelog'>Kyvek's sidequest now updates the journal on steps along the way</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed Shockwave</li>`;
-        changelog.innerHTML += `<li class='changelog'>The "load game" system can now apply fixes if it sees a saved game is from a previous version. With this I should be able to minimize if not eliminate updates that invalidate saved games</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed several dungeon entrances and exits</li>`;
-        changelog.innerHTML += `<li class='changelog'>Sam now uses her schedule when at home</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed a crash bug with stealing</li>`;
-        changelog.innerHTML += `<li class='changelog'>Aoife's schedule no longer crashes under certain circumstances</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed some capitalization issues in text</li>`;
+        changelog.innerHTML += `<li class='changelog'>Asharden will no longer accept infinite amounts of olcrann bark</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed text on Siri cloak</li>`;
+        changelog.innerHTML += `<li class='changelog'>Added another street light to Onyx so you can see the entrance to the Inn at night</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed minor animation bug</li>`;
+        changelog.innerHTML += `<li class='changelog'>Wall of Fire no longer doesn't take responsibility for its damage when first cast</li>`;
+        changelog.innerHTML += `<li class='changelog'>Rhys won't return to the keep before he's supposed to</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed bug with loading in Silverglade Keep, but keep an eye out to make sure it didn't introduce a bug that can trap you inside the keep</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed bug with Courier's path</li>`;
         changelog.innerHTML += `</ul>`;
       }
     }
