@@ -1201,7 +1201,9 @@ function ManualAnimation(params) {
           this.makeLayers(this.currframenum);
           for (let i=0;i<this.layers.length;i++) {
             let fdiv = document.getElementById(divid + "_" + i);
-            fdiv.style.backgroundPosition = this.layers[i][2] + "px " + this.layers[i][3] + "px";
+            if (fdiv) {
+              fdiv.style.backgroundPosition = this.layers[i][2] + "px " + this.layers[i][3] + "px";
+            }
           }
           if (this.currframenum === 1) { delaymult = 3; }
         }
