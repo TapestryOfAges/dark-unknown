@@ -248,7 +248,7 @@ function DealandDisplayDamage(def,atk,dmg, dmgtype) {
     }
     else {  
       if (def.specials.crumbles) { maintext.delayedAddText(desc +  ": It crumbles to dust!"); }
-      else if (atk.getName() === "BlackDragonNPC") { retval["txt"] += ": Unconscious!"; }
+      else if (atk && (atk.getName() === "BlackDragonNPC")) { retval["txt"] += ": Unconscious!"; }
       else { maintext.delayedAddText(desc + ": Killed!"); }
       
       if (def.getXPVal() && (atk === PC)) {
