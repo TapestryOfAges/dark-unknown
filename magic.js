@@ -1791,7 +1791,7 @@ magic[SPELL_RETURN_LEVEL][SPELL_RETURN_ID].getLongDesc = function() {
     let destx = PC.getHomeMap().getReturnx();
     let desty = PC.getHomeMap().getReturny();
     if ((dest === "ellusus") && (destx === 69) && (desty === 74)) {
-      return "Transports you to Castle dea yggdras.";
+      return "Transports you to Castle dea Yggdras.";
     } else if (PC.getHomeMap().underground) {
       return "Brings you to the surface.";
     } else {
@@ -1801,7 +1801,7 @@ magic[SPELL_RETURN_LEVEL][SPELL_RETURN_ID].getLongDesc = function() {
 }
 magic[SPELL_RETURN_LEVEL][SPELL_RETURN_ID].getInfusedDesc = function() {
   if (PC.getHomeMap().getReturnInfused()) {
-    return "Transports you to Castle dea yggdras.";
+    return "Transports you to Castle dea Yggdras.";
   } else {
     return "No additional effect from this location.";
   }
