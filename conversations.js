@@ -656,6 +656,11 @@ function CheckAllHealth() {
 
 OnConvTriggers["ash_get_book"] = function(speaker,keyword) {
   DU.gameflags.setFlag("ash_olcrann",1);
+  let morebark = PC.checkInventory("OlcrannBark");
+  if (morebark) {
+    morebark.setQuantity(1);
+    PC.removeFromInventory(moreback);
+  }
   let ashmap = PC.getHomeMap(); // he has to be on the PC's map since they just talked to him
   let npcs = ashmap.npcs.getAll();
   let ash;
