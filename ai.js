@@ -883,12 +883,12 @@ ais.CourierPath = function(who) {
       
     }
 //  } else if ((who.getx()===64) && (who.gety()===119)) {
-  } else if ((who.getx()===15) && (who.gety()===107)) {
+  } else if ((who.getx()===15) && (who.gety()===107) && (who.direction === "s")) {
     whomap.moveThing(0,0,who);
     DebugWrite("ai", "Entering Onyx, by which I mean teleporting to the corner.");
 //    DrawMainFrame("one",whomap,64,119);
     DrawMainFrame("one",whomap,15,107);
-  } else if ((who.getx()===48) && (who.gety()===90)) {
+  } else if ((who.getx()===48) && (who.gety()===90) && (who.direction === "n")) {
     whomap.moveThing(0,0,who);
     DebugWrite("ai", "Entering SK, by which I mean teleporting to the corner.");
     DrawMainFrame("one",whomap,48,90);
