@@ -823,7 +823,7 @@ mappages["worldsending2"].onload = function(mapref) {
     }
 
     if (!PC.checkInventory("LayneJournal")) {
-      let journalist = localFactory.createTile("EttinJournalist");
+      let journalist = localFactory.createTile("EttinJournalistNPC");
       mapref.placeThing(15,53,journalist);
     }
 
