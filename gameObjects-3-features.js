@@ -7291,6 +7291,7 @@ WalkOnVault3Tile.prototype.walkon = function(walker) {
     return {msg:"You Blink, and reappear... and immediately all around you has changed.", override : 4};
   } else if (!DU.gameflags.getFlag("time_started")) {
     let para = localFactory.createTile("Paralyze");
+    para.setExpiresTime(-1);
     walker.addSpellEffect(para);
     walker.frozenintime = 1;
   }
@@ -8534,6 +8535,7 @@ SpinnerTile.prototype = new FeatureObject();
 
 SpinnerTile.prototype.walkon = function(walker) {
   let diso = localFactory.createTile("Disoriented");
+  diso.setExpiresTime(-1);
   walker.addSpellEffect(diso);
   return {msg:""};
 }
@@ -12002,13 +12004,15 @@ PetrifiedOlcrannTile.prototype.use = function(who) {
 
 PetrifiedOlcrannTile.prototype.onSearched = function(who) {
   let retval = {};
+  retval.exitOut = 1;
+  retval.fin = 1;
   if (IsAdjacent(who,this) && !this.harvested) {
     let loot = localFactory.createTile("OlcrannBark");
     PC.addToInventory(loot,1);
     this.harvested = 1;
     retval["txt"] = "You take some petrified olcrann bark.";
   } else {
-    retval["txt"] = "Nothing happens.";
+    retval["txt"] = "You don't find anything more.";
   }
   return retval;
 }
@@ -12302,6 +12306,7 @@ JusticeOrbTile.prototype.onGet = function(who) {
   gnomemap.placeThing(2,1,newcrystal);
   newcrystal.invisible = 1;
   let cataclysm = localFactory.createTile("JusticeCollapse");
+  cataclysm.setExpiresTime(-1);
   newcrystal.addSpellEffect(cataclysm);
 
   return {};
@@ -13206,6 +13211,7 @@ RubyGemoftheSunTile.prototype.use = function(who) {
   } else {
     retval["txt"] = "You raise the ruby before you, motes of sunlight glinting within its facets. You focus upon it and light blazes forth, illuminating every cranny, before fading back to the brightness it holds usually.";
     let light = localFactory.createTile("RubyLight");
+    light.setExpiresTime(-1); // it automatically turns itself off on your next turn
     who.addSpellEffect(light);
   }
 
@@ -13974,7 +13980,7 @@ BookItemObject.prototype.use = function(who) {
     }
   }
   if (this.completequest) {
-    questlog.activate(this.completequest);
+    questlog.complete(this.completequest);
   }
   return retval;
 }
