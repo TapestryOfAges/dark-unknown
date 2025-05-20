@@ -135,15 +135,15 @@ function page_pre_zero() {
       let changelog = document.getElementById("changelog");
       if (changelog) {
         changelog.innerHTML = `<p class='charcreate'>CHANGELOG:</p><ul style='margin-top:0px>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed some capitalization issues in text</li>`;
-        changelog.innerHTML += `<li class='changelog'>Asharden will no longer accept infinite amounts of olcrann bark</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed text on Siri cloak</li>`;
-        changelog.innerHTML += `<li class='changelog'>Added another street light to Onyx so you can see the entrance to the Inn at night</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed minor animation bug</li>`;
-        changelog.innerHTML += `<li class='changelog'>Wall of Fire no longer doesn't take responsibility for its damage when first cast</li>`;
-        changelog.innerHTML += `<li class='changelog'>Rhys won't return to the keep before he's supposed to</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed bug with loading in Silverglade Keep, but keep an eye out to make sure it didn't introduce a bug that can trap you inside the keep</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed bug with Courier's path</li>`;
+        changelog.innerHTML += `<li class='changelog'>When Ash takes olcrann bark, he'll take all you have so as to unclutter your inventory</li>`;
+        changelog.innerHTML += `<li class='changelog'>But also, you can only take one per tree per visit to the dungeon</li>`;
+        changelog.innerHTML += `<li class='changelog'>Aithne only gives you a letter once</li>`;
+        changelog.innerHTML += `<li class='changelog'>Bug with spawning the Ettin Journalist</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed a bug with quests that get completed by reading a book</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed a bug when a quest would get started part way through a chain through dialog</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed mana cost for Confusion</li>`;
+        changelog.innerHTML += `<li class='changelog'>Poison applied by poison needle and poison gas traps on chests was bugged</li>`;
+        changelog.innerHTML += `<li class='changelog'>Standardized expiration time on infinite duration effects</li>`;
         changelog.innerHTML += `</ul>`;
       }
     }
