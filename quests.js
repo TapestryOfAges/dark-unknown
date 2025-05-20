@@ -35,7 +35,7 @@ class Questlog {
             this.log[repentry].replaced = 1;
             this.log[repentry].active = 0;
           } else {
-            this.activate(questlist[questnum].replaced[i]);
+            this.activate(questlist[questnum].replaces[i]);
             repentry = this.findQuest(questlist[questnum].replaces[i]);
             this.log[repentry].replaced = 1;
             this.log[repentry].active = 0;
