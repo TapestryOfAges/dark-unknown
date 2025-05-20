@@ -4024,7 +4024,7 @@ function PerformConfusion(caster, infused, free, tgt) {
   }
 
   if (!free) {
-    let mana = magic[SPELL_POISON_CLOUD_LEVEL][SPELL_POISON_CLOUD_ID].getManaCost(infused);
+    let mana = magic[SPELL_CONFUSION_LEVEL][SPELL_CONFUSION_ID].getManaCost(infused);
     CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
@@ -4209,6 +4209,7 @@ magic[SPELL_NEGATE_MAGIC_LEVEL][SPELL_NEGATE_MAGIC_ID].executeSpell = function(c
   gnomemap.placeThing(2,2,gnome);
   let negtile = localFactory.createTile("NegateMagic");
   negtile.negatedmap = castermap.getName();
+  negtile.setExpiresTime(-1);
   gnome.addSpellEffect(negtile, Math.max(0, free-1) );  
 
   let everyone = castermap.getNPCsAndPCs();
