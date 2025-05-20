@@ -721,6 +721,9 @@ function PerformTrap(who, trap, traplvl, trapped) {
         maintext.addText("TRAP! A dart strikes you. You are poisoned.");
       }
       let poison = localFactory.createTile("Poison");
+      let duration = Dice.roll("2d10+10") * SCALE_TIME;
+      poison.setExpiresTime(duration + DUTime.getGameClock());
+
       who.addSpellEffect(poison);
       if (GetDistance(who.getx(),who.gety(),trapped.getx(),trapped.gety()) <= 5) {
         DUPlaySound("sfx_default_hit");
@@ -769,6 +772,9 @@ function PerformTrap(who, trap, traplvl, trapped) {
       maintext.addText("TRAP! You are poisoned.");
     }
     let poison = localFactory.createTile("Poison");
+    let duration = Dice.roll("4d10+10") * SCALE_TIME;
+    poison.setExpiresTime(duration + DUTime.getGameClock());
+
     who.addSpellEffect(poison);
     DrawCharFrame();
     return 1;    
