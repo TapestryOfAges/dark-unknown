@@ -1237,6 +1237,7 @@ function PoisonTile() {
   this.zstatdesc = "Poison courses through your veins.";
   this.desc = "poison";
   this.level = 2;
+  this.power = 1;
 }
 PoisonTile.prototype = new DamageOverTimeObject();
 
@@ -1868,6 +1869,7 @@ JusticeCollapseTile.prototype.doEffect = function() {
     delete PC.returntoy;
     FadeOut();
     let jc2 = localFactory.createTile("DelayTurnStart");
+    jc2.setExpiresTime(-1);
     PC.addSpellEffect(jc2,1);
     setTimeout(function() { 
       DrawMainFrame("draw", newmap, PC.getx(), PC.gety());

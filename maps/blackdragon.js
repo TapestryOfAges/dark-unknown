@@ -1650,10 +1650,12 @@ mappages["justice_battle"].onload = function(mapref) {
     let justice = mapref.getTile(7,5).getTopNPC();
     justice.setMana(35);
     let ward = localFactory.createTile("MirrorWard");
+    ward.setExpiresTime(-1);
     justice.addSpellEffect(ward);
     let prot = localFactory.createTile("Protection");
     let power = Math.floor(justice.getIntForPower()*2/3)+1;
     prot.setPower(power);
+    prot.setExpiresTime(-1);
     justice.addSpellEffect(prot);
   }
 }

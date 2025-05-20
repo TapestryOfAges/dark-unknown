@@ -965,8 +965,8 @@ ais.GetDrunk = function(who, params) {
     let strength = Dice.roll("1d"+strwidth) + (params.min-1);
     let drunk = localFactory.createTile("Drunk");
     drunk.setPower(strength);
-    who.addSpellEffect(drunk);
     drunk.setExpiresTime(parseInt(params.duration)*SCALE_TIME + DUTime.getGameClock());
+    who.addSpellEffect(drunk);
   }
   return {fin:1};
 }

@@ -3305,6 +3305,7 @@ function InASwamp(who) {
   if (Dice.roll("1d100") < chance) {  // diseased!
     if (who.getSpellEffectsByName("Disease")) { return 0; }
     let disease = localFactory.createTile("Disease");
+    disease.setExpiresTime(-1);
     who.addSpellEffect(disease);
     
     DrawCharFrame();

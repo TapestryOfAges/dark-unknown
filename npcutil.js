@@ -98,11 +98,13 @@ NPCSpecialFuncs["underground"] = function(who,how) {
 
 NPCSpecialFuncs["courierSurrender"] = function(who,how) {
   let eobj = localFactory.createTile("CourierSurrender");
+  eobj.setExpiresTime(-1);
   who.addSpellEffect(eobj);
 }
 
 NPCSpecialFuncs["courierFlee"] = function(who,how) {
   let eobj = localFactory.createTile("CourierFlee");
+  eobj.setExpiresTime(-1);
   who.addSpellEffect(eobj);
 }
 

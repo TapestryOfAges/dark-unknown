@@ -657,6 +657,7 @@ function PlaySummonScene(frame) {
     questlog.activate(77);
     questlog.activate(78);
     let cataclysm = localFactory.createTile("ScouringBeldskae");
+    cataclysm.setExpiresTime(-1);
     gnome.addSpellEffect(cataclysm);
     DUPlayMusic("Towne", {fade:1});
     let door=PC.getHomeMap().getTile(29,13).getTopFeature();

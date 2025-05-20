@@ -182,11 +182,13 @@ mappages["vault"].onload = function(mapref) {
       let frozen = mapref.getTile(10,9).getTopNPC();
       frozen.noAnim = 1;
       let para = localFactory.createTile("Paralyze");
+      para.setExpiresTime(-1);
       frozen.addSpellEffect(para);
       frozen.frozenintime = 1;
       frozen = mapref.getTile(10,11).getTopNPC();
       frozen.noAnim = 1;
       para = localFactory.createTile("Paralyze");
+      para.setExpiresTime(-1);
       frozen.addSpellEffect(para);
       frozen.frozenintime = 1;
       let braz = mapref.getTile(7,8).getTopFeature();

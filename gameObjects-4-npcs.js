@@ -1027,7 +1027,7 @@ NPCObject.prototype.addSpellEffect = function(spellobj, silent) {
         silent = 1;
         let totin = spellobj.getInstances() + otherEffects[i].getInstances();
         DebugWrite("magic", "That spell is already on the target.<br />");
-        if (otherEffects[i].getPower() > spellobj.getPower()) {  // keep old one, extend it
+        if (otherEffects[i].getPower() >= spellobj.getPower()) {  // keep old one, extend it
           let adddur = (1/(totin - 1))*(spellobj.getPower() / otherEffects[i].getPower()) * (spellobj.getExpiresTime() - DU.DUTime.getGameClock());
           DebugWrite("magic", "Old one is stronger, extending by " + adddur + ".<br />");
           if (otherEffects[i].getExpiresTime() > -1) {  // don't change expire time if it's permanent

@@ -1478,6 +1478,7 @@ OnConvTriggers["peter_caught"] = function(speaker,keyword) {
   let yggdras = maps.getMap("yggdras1");
   let peter = FindNPCByName("Peter",yggdras);
   let petereffect = localFactory.createTile("RemovePeter");
+  petereffect.setExpiresTime(-1);
   peter.addSpellEffect(petereffect);
 
   let basement = maps.getMap("yggdras0");
