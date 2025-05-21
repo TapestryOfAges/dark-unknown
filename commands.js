@@ -3990,15 +3990,18 @@ function PerformInventoryScreen(code, restrict) {
       }
       delete targetCursor.spelldetails;
       return retval;      
-    }
-    if (targetCursor.command === "o") {
+    } else if (targetCursor.command === "o") {
       if (!CheckOpenAsUse(inventorylist[invselect])) {
         maintext.delayedAddText("You cannot open that.");
         retval = {fin:0};
         delete targetCursor.itemlist;
         return retval;
       }
-    }    
+    } else if (targetCursor.command === "z") {
+      // can't use items from ztats screen: that's purely informational
+      retval["fin"] = 1;  
+      return retval;
+    }
     targetCursor.command = 'u';
     retval = MakeUseHappen(PC, inventorylist[invselect], "inventory");
     retval["usefin"] = retval["fin"];
