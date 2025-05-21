@@ -13,7 +13,7 @@ let eidos = new Platonic();
 //var universe = new Object;
 
 let DU = {};
-DU.version = "0.10.6";
+DU.version = "0.10.8";
 
 DU.PC = new PCObject();
 DU.gamelength = 0;
@@ -564,6 +564,7 @@ function DoAction(code, ctrl) {
         if (targetCursor.command === "c") {
           document.getElementById('uiinterface').innerHTML = "";
           document.getElementById('uiinterface').style.backgroundColor = "";
+          delete targetCursor.spellName;
     
           maintext.setInputLine("&gt;");
           maintext.drawTextFrame();
@@ -583,6 +584,7 @@ function DoAction(code, ctrl) {
         if ((targetCursor.command === "c") && (targetCursor.spellName === "Peer")) {
           document.getElementById('uiinterface').innerHTML = "";
           document.getElementById('uiinterface').style.backgroundColor = "";
+          delete targetCursor.spellName;
     
           maintext.setInputLine("&gt;");
           maintext.drawTextFrame();
