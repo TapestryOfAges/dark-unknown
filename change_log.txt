@@ -1,0 +1,72 @@
+
+v 0.10.8
+ * Fixed a bug with the Courier fleeing before the guards do
+
+v 0.10.7
+ * Items can no longer be used from the Ztats screen (which is going to be redesigned anyway)
+ * Creatures will no longer try to return to a home they cannot reach
+ * Text fixes
+ * Book of Lore shouldn't reappear once taken
+ * Heal now reports the correct values
+ * Colin now has a work/life balance
+
+v 0.10.6
+ * When Ash takes olcrann bark, he'll take all you have so as to unclutter your inventory
+ * But also, you can only take one per tree per visit to the dungeon
+ * Aithne only gives you a letter once
+ * Fixed some more text issues
+ * Bug with spawning the Ettin Journalist
+ * Fixed a bug with quests that get completed by reading a book
+ * Fixed a bug when a quest would get started part way through a chain through dialog
+ * Fixed mana cost for Confusion
+ * Poison applied by poison needle and poison gas traps on chests was bugged
+ * Standardized expiration time on infinite duration effects
+
+v 0.10.5
+ * Fixed some capitalization issues in text
+ * Asharden will no longer accept infinite amounts of olcrann bark
+ * Fixed text on Siri cloak
+ * Added another street light to Onyx so you can see the entrance to the Inn at night
+ * Fixed minor animation bug
+ * Wall of Fire no longer doesn't take responsibility for its damage when first cast
+ * Rhys won't return to the keep before he's supposed to
+ * Fixed bug with loading in Silverglade Keep, but keep an eye out to make sure it didn't introduce a bug that can trap you inside the keep
+ * Fixed a bug with the Courier's pathfinding 
+
+v 0.10.4
+ * [Enter] now only duplicates [E], it cannot pass the turn
+ * Kyvek's sidequest now updates the journal on steps along the way
+ * Fixed Shockwave
+ * The "load game" system can now apply fixes if it sees a saved game is from a previous version. With this I should be able to minimize if not eliminate updates that invalidate saved games
+ * Fixed the entrance coordinates of a small cave on the wing
+ * Fixed the exit coordinates from Nox Talanua, and also where it Returns to
+ * Two of the dungeon entrances in the underworld is now walkable
+ * Sam now uses her schedule when at home
+ * Karma announcements now have linebreaks
+ * Aoife's schedule no longer crashes if you visit Hildendain late at night after dealing with her trainee
+ * Fixed a crash bug with stealing
+ * Fixed a recently introduced bug that crashed Naurglen
+
+
+v 0.10.3
+ * Rearranged "loading" screen to display an abridged changelog
+ * Returning soldier in Swainhil properly doesn't return until Act 2
+ * ctrl-S now saves. In beta mode, ctrl-T now pops up the conversation log (though not in any particularly readable fashion)
+ * Added karma penalties to some chests that were missing them
+ * Added chairs to some of the small rooms in the Castle
+ * Kylee's dialog now highlights "Julian" and "Sam" in the "Uncle" response
+ * Questlog changes when you clear the Cave Near the Coast
+ * Kiba has a response to "Evan", and some minor improvements to her dialog's look
+ * Separated out the sound and visual options as "settings", which are now saved globally rather than being associated with a specific savegame. This will unfortunately blow away your current choices in these domains, but only when you first update.
+ * Fixed a crash with a schedule in Beldskae
+ * Fixed a bug when someone dies due to an attack they are making (because the opponent has Fire Armor up or something similar)
+ * Fixed a crash bug if you loaded a game inside War Wizard's Tower
+ * Fixed a bug with the loot in one of the chests in War Wizard's Tower
+ * Paulon now uses his schedule
+ * Paulon's dialog no longer traps you forever
+ * Fixed some other conversations so they can't either
+ * Fixed a typo in gremlin loot table
+ * The courier no longer spawns in the ocean and then drowns
+ * You can now stay at the inn in Hildendain
+ * Anna's dialog is more clear about who is who when you ask her about "armor" and "weapon"
+ * Fixed a bug with Rhys's schedule if you're there when he stays overnight
