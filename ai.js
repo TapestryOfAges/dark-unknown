@@ -59,7 +59,10 @@ ais.seekPC = function(who,radius) {
       // isn't at home, doesn't see PC, heads home
       let path = whomap.getPath(who.getx(),who.gety(),who.startx,who.starty,who.getMovetype());
       path.shift();
-      let moved = StepOrSidestep(who,path[0],[who.startx, who.starty]);
+      let moved = 0;
+      if (path.length) {
+        moved = StepOrSidestep(who,path[0],[who.startx, who.starty]);
+      }
       if (!moved) {
         let moveval = ais.Randomwalk(who,25,25,25,25);
       }
@@ -1893,7 +1896,7 @@ ais.Courier = function(who) {
       if ((Math.abs(diffx) > Math.abs(diffy)) || ((coin === 1) && (Math.abs(diffx) === Math.abs(diffy)))) {
         if (diffx > 0) {
           pathdest = [whox+1,whoy];
-          rundest = [whomap.getWidth()-1,whoy];
+          rundest = [couriermap.getWidth()-1,whoy];
         } else {
           pathdest = [whox-1,whoy];
           rundest = [0,whoy];
@@ -1915,7 +1918,7 @@ ais.Courier = function(who) {
       } else {
         if (diffy > 0) {
           pathdest = [whox,whoy+1];
-          rundest = [whox,whomap.getHeight()-1];
+          rundest = [whox,couriermap.getHeight()-1];
         } else {
           pathdest = [whox,whoy-1];
           rundest = [whox,0];
