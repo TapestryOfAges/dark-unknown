@@ -569,7 +569,7 @@ mappages["pitdespair3"].features[29] = {name : 'Lava', x : 17, y : 53};
 
 mappages["pitdespair3"].npcs = [];
 mappages["pitdespair3"].npcs[0] = {name : 'LurkerNPC', x : 14, y : 21, skintone: 1};
-mappages["pitdespair3"].npcs[1] = {name : 'LurkerNPC', x : 17, y : 20, skintone: 1};
+mappages["pitdespair3"].npcs[1] = {name : 'HydraNPC', x : 17, y : 26, skintone: 1};
 mappages["pitdespair3"].npcs[2] = {name : 'LurkerNPC', x : 12, y : 29, skintone: 1};
 mappages["pitdespair3"].npcs[3] = {name : 'LurkerNPC', x : 14, y : 32, skintone: 1};
 mappages["pitdespair3"].npcs[4] = {name : 'LurkerNPC', x : 21, y : 34, skintone: 1};
@@ -607,7 +607,7 @@ mappages["pitdespair3"].onload = function(mapref) {
     
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     let spawn = localFactory.createTile("Spawner");
-    let spawngroup = ["HydraNPC"];
+    let spawngroup = ["LurkerNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(2);
