@@ -145,7 +145,7 @@ app.whenReady().then(() => {
   ipcMain.on('write_save', function(event,params) {
     fs.writeFileSync(`${savePath}/save${params.idx}`, params.serialized);
   });
-  
+
   ipcMain.on('load_save', function(event,idx) {
     let loadsave = fs.readFileSync(`${savePath}/save${idx}`,'utf8');
     mainWindow.webContents.send('sendLoad', loadsave);
@@ -172,6 +172,12 @@ app.whenReady().then(() => {
 
     mainWindow.webContents.send('sendSettings', loadsave);
   });
+
+  ipcMain.on('write_error', function(event,params) {
+    fs.writeFileSync(`${savePath}/err.log`, params);
+  });
+
+
 
   createWindow()
 })

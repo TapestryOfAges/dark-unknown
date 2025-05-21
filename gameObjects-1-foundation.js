@@ -232,10 +232,13 @@ ProtoObject.prototype.copy = function(type) {
       copydata[idx] = val;
     } else {
       DebugWrite("saveload", "<br /><span style='color:red;font-weight:bold'>" + idx + " is type " + typeof val + "</span>,  ");
-      alert(savename + " SAVE NEEDS " + idx + "!");
+//      alert(savename + " SAVE NEEDS " + idx + "!");
       console.log(this);
       console.log("---");
       console.log(val);
+      let sendme = { needs: idx, obj: this } ;
+      OutOfContext.write_error(JSON.stringify(sendme));
+      if (beta) { alert("Please send err.log to gf@tapestryofages.com ."); } 
     }
     // ADD HERE WHEN THERE ARE MORE
     
