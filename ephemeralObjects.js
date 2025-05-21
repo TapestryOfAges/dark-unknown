@@ -532,6 +532,7 @@ DisorientedTile.prototype.applyEffect = function(silent) {
   let who = this.getAttachedTo();
   if ((who === PC) && !silent) {
     maintext.delayedAddText("You are disoriented as the floor spins beneath you!");
+    DrawCharFrame();
   }
   return 1;
 }
