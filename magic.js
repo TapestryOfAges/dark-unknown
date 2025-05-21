@@ -2367,12 +2367,12 @@ function PerformBlink(caster,destx, desty) {
 
 // Heal
 magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].getLongDesc = function() {
-  return "Heals you for " + Dice.rollmin(PC.getLevel() + "d8+" + PC.getIntForPower()) + "-" + Dice.rollmax(PC.getLevel() + "d8+" + PC.getIntForPower()) + ".";
+  return "Heals you for " + Dice.rollmin((PC.getLevel()+1) + "d8+" + PC.getIntForPower()*2) + "-" + Dice.rollmax((PC.getLevel()+1) + "d8+" + PC.getIntForPower()*2) + ".";
 }
 magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].getInfusedDesc = function() {
-  let minheal = Dice.rollmin(PC.getLevel() + "d8+" + PC.getIntForPower());
+  let minheal = Dice.rollmin((PC.getLevel()+1) + "d8+" + PC.getIntForPower()*2);
   minheal = Math.floor(1.5 * minheal);
-  let maxheal = Dice.rollmax(PC.getLevel() + "d8+" + PC.getIntForPower());
+  let maxheal = Dice.rollmax((PC.getLevel()+1) + "d8+" + PC.getIntForPower()*2);
   maxheal = Math.floor(1.5 * maxheal);
   return "Heals " + minheal + "-" + maxheal + "HP instead.";
 }
