@@ -1,6 +1,8 @@
 
 v 0.10.8
  * Fixed a bug with the Courier fleeing before the guards do
+ * Added additional error logging for one specific hard-to-investigate bug
+ * Pit of Despair 3 made a little easier
 
 v 0.10.7
  * Items can no longer be used from the Ztats screen (which is going to be redesigned anyway)
@@ -46,7 +48,6 @@ v 0.10.4
  * Aoife's schedule no longer crashes if you visit Hildendain late at night after dealing with her trainee
  * Fixed a crash bug with stealing
  * Fixed a recently introduced bug that crashed Naurglen
-
 
 v 0.10.3
  * Rearranged "loading" screen to display an abridged changelog
