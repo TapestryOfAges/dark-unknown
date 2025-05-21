@@ -384,7 +384,7 @@ mappages["noxtalanua3"].onload = function(mapref) {
     walkon = mapref.getTile(13,10).getTopFeature();
     walkon.message = `As you pass, writing appears upon the wall. In blue letters, it reads: "The rich fire reflected in the mirror"`;
 
-    if (PC.checkInventory('EmpowermentNotes') || PC.checkInventory('BookOfLore')) {
+    if (PC.checkInventory('SheafOfNotes') || PC.checkInventory('BookOfLore')) {
       let BoL = mapref.getTile(16,11).getTopFeature();
       mapref.deleteThing(BoL);
     }
