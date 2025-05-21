@@ -135,15 +135,15 @@ function page_pre_zero() {
       let changelog = document.getElementById("changelog");
       if (changelog) {
         changelog.innerHTML = `<p class='charcreate'>CHANGELOG:</p><ul style='margin-top:0px>`;
-        changelog.innerHTML += `<li class='changelog'>When Ash takes olcrann bark, he'll take all you have so as to unclutter your inventory</li>`;
-        changelog.innerHTML += `<li class='changelog'>But also, you can only take one per tree per visit to the dungeon</li>`;
-        changelog.innerHTML += `<li class='changelog'>Aithne only gives you a letter once</li>`;
-        changelog.innerHTML += `<li class='changelog'>Bug with spawning the Ettin Journalist</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed a bug with quests that get completed by reading a book</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed a bug when a quest would get started part way through a chain through dialog</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed mana cost for Confusion</li>`;
-        changelog.innerHTML += `<li class='changelog'>Poison applied by poison needle and poison gas traps on chests was bugged</li>`;
-        changelog.innerHTML += `<li class='changelog'>Standardized expiration time on infinite duration effects</li>`;
+        changelog.innerHTML += `<li class='changelog'>Items can no longer be used from the Ztats screen (which is going to be redesigned anyway)</li>`;
+        changelog.innerHTML += `<li class='changelog'>Creatures will no longer try to return to a home they cannot reach</li>`;
+        changelog.innerHTML += `<li class='changelog'>Text fixes</li>`;
+        changelog.innerHTML += `<li class='changelog'>Book of Lore shouldn't reappear once taken</li>`;
+        changelog.innerHTML += `<li class='changelog'>Heal now reports the correct values</li>`;
+        changelog.innerHTML += `<li class='changelog'>Colin now has a work/life balance</li>`;
+//        changelog.innerHTML += `<li class='changelog'>Fixed mana cost for Confusion</li>`;
+//        changelog.innerHTML += `<li class='changelog'>Poison applied by poison needle and poison gas traps on chests was bugged</li>`;
+//        changelog.innerHTML += `<li class='changelog'>Standardized expiration time on infinite duration effects</li>`;
         changelog.innerHTML += `</ul>`;
       }
     }
