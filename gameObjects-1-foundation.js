@@ -234,6 +234,8 @@ ProtoObject.prototype.copy = function(type) {
       DebugWrite("saveload", "<br /><span style='color:red;font-weight:bold'>" + idx + " is type " + typeof val + "</span>,  ");
       alert(savename + " SAVE NEEDS " + idx + "!");
       console.log(this);
+      console.log("---");
+      console.log(val);
     }
     // ADD HERE WHEN THERE ARE MORE
     
