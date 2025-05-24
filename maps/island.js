@@ -413,6 +413,10 @@ mappages["island_cave"].editorLabels = '{}';
 
 mappages["island_cave"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) { 
+    if (PC.gety() === 40) {
+      mapref.setExitToX(30);
+      mapref.setExitToY(40);
+    }
     let walkonloc = mapref.getTile(42,0);
     let walkontile = walkonloc.getTopFeature();
     walkontile.setxto = 30;
