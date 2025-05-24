@@ -2410,6 +2410,17 @@ function MakeUseHappen(who,used,where) {
   let retval = used.use(who);
   if (retval["override"] === 1) {
     delete retval["override"];
+    if (used.checkType("Consumable") && !retval["preserve"]) {
+      if (where === "map") {
+      // being used from the ground
+        used.getHomeMap().deleteThing(used);
+        DrawMainFrame("one",used.getHomeMap(),used.getx(),used.gety());
+	  	} else {
+		    // being used from inventory
+		    who.removeFromInventory(used);
+		  }
+      delete targetCursor.itemSource;
+		}
   } else {
     if (retval["override"] !== -1) {
       retval["fin"] = 1;
@@ -2739,6 +2750,7 @@ function performZstats(code) {
     }
     if (typeof exitInv === "object") {
       // (U)se return
+      return exitInv;
     } else if (exitInv) {
       ScrollStats(250);    
     }
@@ -3814,7 +3826,7 @@ function DisplayInventory(restrictTo) {
       let topedge = 10+55*j;
       let qleftedge = leftedge + 18;
       let qtopedge = topedge + 36;
-      document.getElementById('uiinterface').innerHTML += "<div id='invquant_"+i+"x"+j+"' style='position:absolute; left: " + qleftedge + "; top: " + qtopedge + "; width:12px; height: 10px; border:2px; border-style: solid; border-color:#666; visibility:hidden'></div>";
+      document.getElementById('uiinterface').innerHTML += "<div id='invquant_"+i+"x"+j+"' style='position:absolute; left: " + qleftedge + "; top: " + qtopedge + "; width:12px; height: 11px; border:2px; border-style: solid; border-color:#666; visibility:hidden'></div>";
       document.getElementById('uiinterface').innerHTML += "<div id='inv_"+i+"x"+j+"' style='position:absolute; left: " + leftedge + "; top: " + topedge + "; width:32px; height: 32px; border:3px; border-style: solid; border-color:#666;'></div>";
     }
   }
@@ -3866,7 +3878,7 @@ function DisplayInventory(restrictTo) {
       quant.style.textAlign = "right";
       quant.style.visibility = "visible";
 
-      quant.innerHTML = "<span style='position:relative;top:-2px'>" + inventorylist[i].getQuantity() + "</span>";
+      quant.innerHTML = "<span style='position:relative;top:0px'>" + inventorylist[i].getQuantity() + "</span>";
     }
 
   }
