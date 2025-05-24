@@ -3,7 +3,7 @@ v 0.10.10
  * Fixes to hopefully-won't-get-used-often error reporting 
  * Fixed an issue that can double the Prince
  * Narrow cave exit goes to the right place if you leave immediately from the north
- 
+ * Fix to cave near Consolation
 
 v 0.10.9
  * Purple Palm Crystals now correctly turn to dust after use
