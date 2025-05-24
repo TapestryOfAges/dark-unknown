@@ -69,6 +69,8 @@ ProtoObject.prototype.setName = function(newname) {  // USE SPARINGLY
 }
 
 ProtoObject.prototype.copy = function(type) {
+  // Remember- any new object that you add here to be saved must be added in onLoadData
+  // IF it uses serials to remove circular references
   if (type === "clean") {
     let tilename = this.name;
     return localFactory.createTile(tilename);
@@ -100,8 +102,7 @@ ProtoObject.prototype.copy = function(type) {
     } else if (typeof val === "function") {  // real one has a function base one does not
       alert("Function on " + copydata.name + ": " + idx);
       console.log(this);
-    }
-    else if (typeof val !== "object") { 
+    } else if (typeof val !== "object") { 
       if (val != base_version[idx]) {
         copydata[idx] = val;
         DebugWrite("saveload", idx + " <span style='color:lime'>different, copying</span>... ");
@@ -123,8 +124,8 @@ ProtoObject.prototype.copy = function(type) {
         }
         DebugWrite("saveload", idx + " an array containing serial " + copydata[idx][i] + "...  ");
       }
-    } else if (idx === "attachedTo") {
-      copydata[idx] = val.getSerial();
+//    } else if (idx === "attachedTo") {   // attachedTo also handled 41 lines later
+//      copydata[idx] = val.getSerial();
     } else if (Array.isArray(val)) {
       if (Array.isArray(base_version[idx]) && arrayCompare(val, base_version[idx])) {
         DebugWrite("saveload", idx + " an array and <span style='color:firebrick'>the same, moving on</span>...  ");
@@ -164,7 +165,7 @@ ProtoObject.prototype.copy = function(type) {
       }
       copydata[idx] = spawnserials;
       DebugWrite("saveload", "<span style='font-weight:bold'>" + idx + " <span style='color:lime'>saved as serials, serial# " + copydata[idx] + "</span>...</span>");
-    } else if ((idx === "equippedTo") || (idx === "attachedTo") || (idx === "spawnedBy") || (idx === "summonedBy") || (idx === "linkedItem")) {
+    } else if ((idx === "equippedTo") || (idx === "attachedTo") || (idx === "spawnedBy") || (idx === "summonedBy") || (idx === "linkedItem") || (idx === "summoned")) {
       if (val) {
         copydata[idx] = val.getSerial();
         DebugWrite("saveload", "<span style='font-weight:bold'>" + idx + " <span style='color:lime'>saved as serial, serial# " + copydata[idx] + "</span>...</span> ");
@@ -236,9 +237,22 @@ ProtoObject.prototype.copy = function(type) {
       console.log(this);
       console.log("---");
       console.log(val);
-      let sendme = { needs: idx, obj: this } ;
-      OutOfContext.write_error(JSON.stringify(sendme));
-      if (beta) { alert("Please send err.log to gf@tapestryofages.com ."); } 
+      let sendme = { needs: idx, obj: this.getName(), valtype: typeof val, value: val } ;
+      let senddata;
+      try {
+        senddata = JSON.stringify(sendme);
+      } catch {
+        // circular references
+        if (typeof val.getType() === "function") {
+          sendme.value = val.getType();
+        } else {
+          sendme.value = "";
+        }
+      }
+      OutOfContext.write_error(senddata);
+      if (beta) { 
+        alert("Please send err.log to gf@tapestryofages.com . If at all possible, leaving this instance running until Adam can ask you questions about the contents of your dev console would be helpful, but don't worry about it if you want."); 
+      } 
     }
     // ADD HERE WHEN THERE ARE MORE
     

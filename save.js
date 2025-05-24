@@ -446,6 +446,9 @@ OutOfContext.onLoadData((event,serialized) => {
     if (val.equippedTo) {
       val.equippedTo = universe[val.equippedTo];
     }
+    if (val.summoned) {
+      val.summoned = universe[val.summoned];
+    }
     if (val.linkedItem) {
       val.linkedItem = universe[val.linkedItem];
     }
