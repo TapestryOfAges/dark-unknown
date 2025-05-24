@@ -14896,6 +14896,7 @@ PurplePalmCrystalTile.prototype.use = function(who) {
   }
   let retval = magic[SPELL_PEER_LEVEL][SPELL_PEER_ID].executeSpell(PC, 0, 2);
   retval["txt"] = "You grasp the crystal. Gazing into it, you see yourself from above."  
+  targetCursor.itemSource = "PurplePalmCrystal";
   if (who === PC) {
     DrawCharFrame();
     DUPlaySound("sfx_crystal_use");
