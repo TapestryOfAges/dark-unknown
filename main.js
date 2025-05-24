@@ -13,7 +13,7 @@ let eidos = new Platonic();
 //var universe = new Object;
 
 let DU = {};
-DU.version = "0.10.8";
+DU.version = "0.10.10";
 
 DU.PC = new PCObject();
 DU.gamelength = 0;
@@ -401,8 +401,12 @@ function DoAction(code, ctrl) {
         delete targetCursor.prince;
         let body = localFactory.createTile("PrinceBody");
         let pmap = prince.getHomeMap();
-        pmap.placeThing(prince.getx(),prince.gety(),body);
+        let px = prince.getx();
+        let py = prince.gety();
+        pmap.placeThing(px,py,body);
         pmap.deleteThing(prince);
+        DUTime.removeEntityFrom(prince);
+        DrawMainFrame("one",pmap,px,py);
 //        prince.realgraphic = prince.getGraphicArray();
 //        prince.setGraphicArray(["static.gif","",-256,-2464]);
 //        prince.setAttitude("neutral"); // so dragon doesn't attack him
@@ -808,6 +812,13 @@ function DoAction(code, ctrl) {
             maintext.setInputLine("(Y/N) &gt;");
             maintext.drawTextFrame();
             gamestate.setMode("anykey");
+          } else if ((targetCursor.command === "c") && (targetCursor.spellName === "Peer")) {
+            // I think the only way we can get here is through using purple palm crystals
+            console.log("I'm here.");
+            maintext.setInputLine("&gt;[MORE]");
+            maintext.addText(resp["txt"]);
+            gamestate.setMode("anykey");
+            maintext.drawTextFrame();
           } else {
             if ((resp["fin"] > 2) && (targetCursor.command !== "t")) {
               gamestate.setMode("player");
