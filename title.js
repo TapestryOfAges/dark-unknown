@@ -87,18 +87,20 @@ tv.browserwidth = window.innerWidth;
 tv.el = function(e) {
   let code = (e.keyCode ? e.keyCode : e.which);
   if (e.ctrlKey && (code === 73)) { OutOfContext.toggle_dev(); return; }  // ctrl-i opens dev console no matter the mode
-  if (gamestate.getMode() !== "import") {
-    e.preventDefault();
-  }
-  if (gamestate.getMode() === "init") {
-    gamestate.setMode("null");
-    tv.page_zero();
-  }
+  if (IsWantedCode(code)) {
+    if (gamestate.getMode() !== "import") {
+      e.preventDefault();
+    }
+    if (gamestate.getMode() === "init") {
+      gamestate.setMode("null");
+      tv.page_zero();
+    }
 
-  else if (gamestate.getMode() !== "null") {
-    tv.DoActionTitle(code, e);
-  } else {
-    tv.finishedFinalPage();
+    else if (gamestate.getMode() !== "null") {
+      tv.DoActionTitle(code, e);
+    } else {
+      tv.finishedFinalPage();
+    }
   }
 }
 
@@ -135,15 +137,16 @@ function page_pre_zero() {
       let changelog = document.getElementById("changelog");
       if (changelog) {
         changelog.innerHTML = `<p class='charcreate'>CHANGELOG:</p><ul style='margin-top:0px>`;
-        changelog.innerHTML += `<li class='changelog'>Items can no longer be used from the Ztats screen (which is going to be redesigned anyway)</li>`;
-        changelog.innerHTML += `<li class='changelog'>Creatures will no longer try to return to a home they cannot reach</li>`;
-        changelog.innerHTML += `<li class='changelog'>Text fixes</li>`;
-        changelog.innerHTML += `<li class='changelog'>Book of Lore shouldn't reappear once taken</li>`;
-        changelog.innerHTML += `<li class='changelog'>Heal now reports the correct values</li>`;
-        changelog.innerHTML += `<li class='changelog'>Colin now has a work/life balance</li>`;
-//        changelog.innerHTML += `<li class='changelog'>Fixed mana cost for Confusion</li>`;
-//        changelog.innerHTML += `<li class='changelog'>Poison applied by poison needle and poison gas traps on chests was bugged</li>`;
-//        changelog.innerHTML += `<li class='changelog'>Standardized expiration time on infinite duration effects</li>`;
+        changelog.innerHTML += `<li class='changelog'>Purple Palm Crystals and Scroll of Peer are now correctly used up</li>`;
+        changelog.innerHTML += `<li class='changelog'>Using a purple palm crystal from the ground no longer screws up the display</li>`;
+        changelog.innerHTML += `<li class='changelog'>[Space] and [Enter] to use from inventory no longer have different behaviors</li>`;
+        changelog.innerHTML += `<li class='changelog'>Title screen and intro no longer respond to all keys (allowing things like alt-tab to not count as hitting any key)</li>`;
+        changelog.innerHTML += `<li class='changelog'>You can now hit ESC to shortcut the introduction</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed animation bug when the player sits on a throne</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed the draw order of some features in Swainhil (chairs were under the carpet)</li>`;
+        changelog.innerHTML += `<li class='changelog'>Added some lights to the Bard's college and Castle dea Yggdras</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed bug that would prevent saving under unusual circumstances</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed some Castle schedules</li>`;
         changelog.innerHTML += `</ul>`;
       }
     }
@@ -787,8 +790,13 @@ tv.StartAttract = function() {
 
 tv.DoActionTitle = function(code, e) {
   if (gamestate.getMode() === "intro") {
-    tv.RunIntro(tv.introidx);
-    tv.introidx++;
+    if (code === 27) {
+      tv.introidx = 8;
+      tv.RunIntro(tv.introidx);
+    } else if (IsWantedCode(code)) {
+      tv.RunIntro(tv.introidx);
+      tv.introidx++;
+    }
   }
   if (gamestate.getMode() === "on") {
     if ((code === 38) || (code === 219)) {    // up arrow or [
