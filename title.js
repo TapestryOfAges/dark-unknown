@@ -137,16 +137,16 @@ function page_pre_zero() {
       let changelog = document.getElementById("changelog");
       if (changelog) {
         changelog.innerHTML = `<p class='charcreate'>CHANGELOG:</p><ul style='margin-top:0px>`;
-        changelog.innerHTML += `<li class='changelog'>Purple Palm Crystals and Scroll of Peer are now correctly used up</li>`;
-        changelog.innerHTML += `<li class='changelog'>Using a purple palm crystal from the ground no longer screws up the display</li>`;
-        changelog.innerHTML += `<li class='changelog'>[Space] and [Enter] to use from inventory no longer have different behaviors</li>`;
-        changelog.innerHTML += `<li class='changelog'>Title screen and intro no longer respond to all keys (allowing things like alt-tab to not count as hitting any key)</li>`;
-        changelog.innerHTML += `<li class='changelog'>You can now hit ESC to shortcut the introduction</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed animation bug when the player sits on a throne</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed the draw order of some features in Swainhil (chairs were under the carpet)</li>`;
-        changelog.innerHTML += `<li class='changelog'>Added some lights to the Bard's college and Castle dea Yggdras</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed bug that would prevent saving under unusual circumstances</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed some Castle schedules</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixes to hopefully-won't-get-used-often error reporting</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed an issue that can double the Prince</li>`;
+        changelog.innerHTML += `<li class='changelog'>Narrow cave exit goes to the right place if you leave immediately from the north</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fix to cave near Consolation</li>`;
+        changelog.innerHTML += `<li class='changelog'>Finished adding karma penalties to owned boxes/chests</li>`;
+        changelog.innerHTML += `<li class='changelog'>Mending mirrors no longer has a delayed update to the graphic</li>`;
+//        changelog.innerHTML += `<li class='changelog'>Fixed the draw order of some features in Swainhil (chairs were under the carpet)</li>`;
+//        changelog.innerHTML += `<li class='changelog'>Added some lights to the Bard's college and Castle dea Yggdras</li>`;
+//        changelog.innerHTML += `<li class='changelog'>Fixed bug that would prevent saving under unusual circumstances</li>`;
+//        changelog.innerHTML += `<li class='changelog'>Fixed some Castle schedules</li>`;
         changelog.innerHTML += `</ul>`;
       }
     }
