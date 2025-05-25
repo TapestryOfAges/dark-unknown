@@ -525,28 +525,34 @@ function PerformCommand(code, ctrl) {
 		targetCursor.y = PC.gety();
 	}
 	else if (code === 86) { // v
-		// volume - turns sound effects on and off
-		if (DU.settings.getSetting("sound")) { 
-      DU.gameflags.setFlag("svol",DU.settings.getSetting("sound"));
-		  DU.settings.setSetting("sound", 0); 
-      retval["txt"] = "Sound effects off.";
-      
-      if (Object.keys(ambient).length) { // if ambient is not an empty object
-        DecAmbientVol(ambient);
-        ambient = {}; 
+    if (ctrl) {
+      retval["input"] = "&gt;";
+      retval["fin"] = 2;
+      retval["txt"] = `v${DU.version}`;
+    } else {
+      // volume - turns sound effects on and off
+      if (DU.settings.getSetting("sound")) { 
+        DU.gameflags.setFlag("svol",DU.settings.getSetting("sound"));
+        DU.settings.setSetting("sound", 0); 
+        retval["txt"] = "Sound effects off.";
+        
+        if (Object.keys(ambient).length) { // if ambient is not an empty object
+          DecAmbientVol(ambient);
+          ambient = {}; 
+        }
       }
-		}
-		else { 
-      let nvol = DU.gameflags.getFlag("svol");
-      if (!nvol) { nvol = 1; }
-      DU.settings.setSetting("sound", nvol); 
-      retval["txt"] = "Sound effects on.";
+      else { 
+        let nvol = DU.gameflags.getFlag("svol");
+        if (!nvol) { nvol = 1; }
+        DU.settings.setSetting("sound", nvol); 
+        retval["txt"] = "Sound effects on.";
 
-      ProcessAmbientNoise(PC.getHomeMap().getTile(PC.getx(),PC.gety()));
+        ProcessAmbientNoise(PC.getHomeMap().getTile(PC.getx(),PC.gety()));
+      }
+      retval["input"] = "&gt;";
+      retval["fin"] = 2;
+      DU.settings.saveSettings();
     }
-    retval["input"] = "&gt;";
-    retval["fin"] = 2;
-    DU.settings.saveSettings();
 	}
 	else if (code === 87) { // w
     // wait, was wear/wield
