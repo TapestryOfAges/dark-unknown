@@ -789,7 +789,7 @@ function Breakable(brokengraphicarray, startsbroken, breaksound) {
     if (typeof this.onMend === "function") {
       this.onMend();
     }
-    DrawMainFrame("one", this.getHomeMap(), this.getx(), this.gety());  // will try to draw 0,0 if in inventory, which is ok
+    DrawMainFrame("one", this.getHomeMap(), this.getx(), this.gety());   // will try to draw 0,0 if in inventory, which is ok
   }
 }
 
