@@ -5859,7 +5859,8 @@ function PerformSpellcast() {
           resp["txt"] = "That is not in need of mending.";
           resp["input"] = "&gt;";
         }	 
-        document.getElementById(targetCursor.tileid).innerHTML = targetCursor.basetile;     
+        document.getElementById(targetCursor.tileid).innerHTML = targetCursor.basetile;    
+        DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety()); 
         delete targetCursor.spellName;
       }
     } else if (targetCursor.spellName === "Empower") {
