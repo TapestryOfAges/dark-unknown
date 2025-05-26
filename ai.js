@@ -3070,7 +3070,7 @@ ais.ai_whirlpool = function(who) {
     foe = FindNearestNPC(who, "enemy", null, 0, MOVE_WALK_LOE);
   }
   let themap = who.getHomeMap();
-  if (IsAdjacent(who,foe)) {
+  if (foe && IsAdjacent(who,foe)) {
     let terrain = themap.getTile(who.getx(),who.gety()).getTerrain().getName();
     let countflukes = 0;
     let flukelist = [];
