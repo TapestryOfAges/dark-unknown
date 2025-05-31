@@ -14,7 +14,7 @@ Conversation.prototype = new Object();
 // 4  : switch to sell
 
 Conversation.prototype.respond = function(speaker, keyword, skipahead) { 
-    
+  if (!targetCursor.hasOwnProperty("skipahead")) { targetCursor.skipahead = 0; }
   if (!skipahead) { skipahead = targetCursor.skipahead; }
   let flags_met;
   let necessary_item;
@@ -243,7 +243,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
       maintext.drawTextFrame();
         
       if (retval["fin"] === 1) {
-        PC.endTurn(retval["initdelay"]);
+//        PC.endTurn(retval["initdelay"]);
         return;
       }
  
