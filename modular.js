@@ -419,8 +419,8 @@ OnDeathFuncs["scouring"] = function(who) {
         newbeld.setDesc("Towne of Beldskae");
         world.placeThing(bx,by,newbeld);
 
-        if (PC.getHomeMap() === world) {
-          DrawMainFrame("one",world,fea[i].getx(),fea[i].gety());
+        if (PC.getHomeMap() === world) {  // this, again, shouldn't be able to be true
+          DrawMainFrame("one",world,fea.getx(),fea.gety());
         }
 
         DU.gameflags.setFlag("beldskae_saved",1);
