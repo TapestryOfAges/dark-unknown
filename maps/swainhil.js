@@ -151,7 +151,7 @@ mappages["swainhil"].features[82] = {name : 'SignpostRight', x : 55, y : 18};
 mappages["swainhil"].features[83] = {name : 'ArmourySign2', x : 54, y : 18};
 mappages["swainhil"].features[84] = {name : 'HealerSign2', x : 43, y : 18};
 mappages["swainhil"].features[85] = {name : 'SignpostLeft', x : 42, y : 18};
-mappages["swainhil"].features[86] = {name : 'Door', x : 57, y : 48, desc : "magically locked door", locked : 2};
+mappages["swainhil"].features[86] = {name : 'Door', x : 57, y : 48, desc : "magically locked door", locked : 2, keyname : "PaladinKey"};
 mappages["swainhil"].features[87] = {name : 'StairUp', x : 57, y : 57, entermap : 'swainhil2', enterx : 57, entery : 57};
 mappages["swainhil"].features[88] = {name : 'Evergreen', x : 60, y : 23};
 mappages["swainhil"].features[89] = {name : 'Evergreen', x : 62, y : 24};
@@ -579,6 +579,9 @@ mappages["swainhil"].onload = function(mapref) {
         }
       }
     }
+    if (DU.gameflags.getFlag("paladin_joined")) {
+      RemoveKarmaPenaltyFromPaladins();
+    }
   }
 }
 
@@ -921,7 +924,7 @@ mappages["swainhil3"].features[32] = {name : 'BedFoot', x : 42, y : 41};
 mappages["swainhil3"].features[33] = {name : 'Mirror', x : 43, y : 41};
 mappages["swainhil3"].features[34] = {name : 'Chest', x : 41, y : 43, lootgroup : 'Mage Town', karmaPenalty : '1', lootedid : 'swainhil_sirius_chest'};
 mappages["swainhil3"].features[35] = {name : 'StairDown2', x : 57, y : 49, entermap : 'swainhil2', enterx : 57, entery : 49};
-mappages["swainhil3"].features[36] = {name : 'Door', x : 57, y : 50, desc : "locked door", locked : 1};
+mappages["swainhil3"].features[36] = {name : 'Door', x : 57, y : 50, desc : "locked door", locked : 1, keyname : "PaladinKey"};
 mappages["swainhil3"].features[37] = {name : 'Door', x : 58, y : 51};
 mappages["swainhil3"].features[38] = {name : 'Door', x : 56, y : 51};
 mappages["swainhil3"].features[39] = {name : 'BookshelfLeft', x : 55, y : 56, lootedid : 'swainhil_paladin_shelf', searchyield : 'OrangePotion'};
@@ -979,3 +982,20 @@ mappages["swainhil3"].linkedMaps = ["swainhil","swainhil2"];
 mappages["swainhil3"].editorLabels = '{}';
 // MAP ENDS HERE
 
+function RemoveKarmaPenaltyFromPaladins() {
+  let map1 = maps.getMap("swainhil");
+  let chest = map1.getTile(53,52).getTopFeature();
+  chest.setKarmaPenalty(0);
+  chest = map1.getTile(61,52).getTopFeature();
+  chest.setKarmaPenalty(0);
+
+  let map2 = maps.getMap("swainhil3");
+  let fea = map2.features.getAll();
+  for (let i=0; i<fea.length;i++) {
+    if (fea[i].getx() > 57) {
+      if (fea[i].karmaPenalty) {
+        fea[i].setKarmaPenalty(0);
+      }
+    }
+  }
+}
