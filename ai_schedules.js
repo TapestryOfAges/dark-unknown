@@ -148,10 +148,38 @@ ais.RouteTo = function(who, params) {
   let drunk = who.getSpellEffectsByName("Drunk");
   if (!who.flags.closedoor && drunk && (Dice.roll("1d15") <= drunk.getPower())) {
     let dir = Dice.roll("1d6");
-    if (dir === 1) { who.moveMe(0,-1,0); }
-    if (dir === 2) { who.moveMe(1,0,0); }
-    if (dir === 3) { who.moveMe(0,1,0); }
-    if (dir === 4) { who.moveMe(-1,0,0); }  
+    if (dir === 1) { 
+      let desttile = who.getHomeMap().getTile(who.getx(),who.gety()-1); 
+      if (desttile !== "OoB") {
+        if (!desttile.isHostileTo(who)) {
+          who.moveMe(0,-1,0); 
+        }
+      }
+    }
+    else if (dir === 2) { 
+      let desttile = who.getHomeMap().getTile(who.getx()+1,who.gety()); 
+      if (desttile !== "OoB") {
+        if (!desttile.isHostileTo(who)) {
+          who.moveMe(1,0,0); 
+        }
+      }
+    }
+    else if (dir === 3) { 
+      let desttile = who.getHomeMap().getTile(who.getx(),who.gety()+1); 
+      if (desttile !== "OoB") {
+        if (!desttile.isHostileTo(who)) {
+          who.moveMe(0,1,0); 
+        }
+      }
+    }
+    else if (dir === 4) { 
+      let desttile = who.getHomeMap().getTile(who.getx()-1,who.gety()); 
+      if (desttile !== "OoB") {
+        if (!desttile.isHostileTo(who)) {
+          who.moveMe(-1,0,0); 
+        }
+      }
+    }  
     console.log(who.getNPCName() + " stumbling.");
     return {fin:1,canmove:0};
   }
