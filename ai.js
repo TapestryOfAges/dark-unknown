@@ -690,25 +690,29 @@ ais.Isaac_initiate = function(who) {
     // add two walkons in the seats on either side of him that trigger the ceremony. 
     let swain2 = maps.getMap("swainhil2");
     let yelena = localFactory.createTile("PaladinVillagerNPC");
-    yelena.setGraphic("307.gif"); // WORKING HERE - replace in newart branch
+//    yelena.setGraphic("307.gif"); // WORKING HERE - replace in newart branch
     yelena.skintone = 1;
     yelena.setConversation("yelena_initiation");
     yelena.setNPCName("Yelena");
+    yelena.wornlayers = JSON.parse('{"body":"PlatePaladin","head":"ShortBlackPale","back":"","offhand":"KiteShield","cloak":"BlueCloak","mainhand":"AxePale","realhead":"ShortBlackPale"}');
     let amaeryl = localFactory.createTile("PaladinVillagerNPC");
-    amaeryl.setGraphic("307.2.gif");
+//    amaeryl.setGraphic("307.2.gif");
     amaeryl.skintone = 2;
     amaeryl.setConversation("amaeryl_initiation");
     amaeryl.setNPCName("Amaeryl");
+    amaeryl.wornlayers = JSON.parse('{"body":"PlatePaladin","head":"BrownDark","back":"","offhand":"KiteShield","cloak":"BlueCloak","mainhand":"LongswordDark","realhead":"BrownDark"}');
     let skar = localFactory.createTile("PaladinVillagerNPC");
-    skar.setGraphic("307.2.gif");
+//    skar.setGraphic("307.2.gif");
     skar.skintone = 2;
     skar.setConversation("skar_initiation");
     skar.setNPCName("Urskar");
+    skar.wornlayers = JSON.parse('{"body":"PlatePaladin","head":"BaldBeardedDark","back":"","offhand":"KiteShield","cloak":"BlueCloak","mainhand":"LongswordDark","realhead":"BaldBeardedDark"}');
     let linley = localFactory.createTile("PaladinVillagerNPC");
-    linley.setGraphic("paladin-offcolor.gif");
+//    linley.setGraphic("paladin-offcolor.gif");
     linley.skincolor = 1;
     linley.setConversation("linley_initiation");
     linley.setNPCName("Linley");
+    linley.wornlayers = JSON.parse('{"body":"PlatePaladin","head":"ShortBrownPale","back":"","offhand":"KiteShield","cloak":"BlueCloak","mainhand":"LongswordDark","realhead":"ShortBrownPale"}');
     swain2.placeThing(56,51,yelena);
     swain2.getTile(56,51).executeWalkons(yelena);  
     swain2.placeThing(57,51,amaeryl);
@@ -4182,4 +4186,11 @@ ais.TestAnimations = function(who) {
 
   return retval;
 
+}
+
+ais.deep_sleep = function(who) {
+  who.flags.sleep = 1;
+  let retval = { fin: 1};
+
+  return retval;
 }
