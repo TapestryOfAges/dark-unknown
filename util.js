@@ -828,7 +828,7 @@ function ApplyRune(who, rune, runeref) {
   let runecap = rune.charAt(0).toUpperCase() + rune.slice(1)
   let rettxt = "You touch the glowing sigil.";
   if (who.runes[rune] !==1) { 
-    maintext.delayedAddText("You have been marked with the Rune of " + runecap + "!"); 
+    maintext.delayedAddText("You have been marked with the Rune of " + runecap + "!<br /><span style='sysconv'>To use a Rune, press (F) to Focus upon it.</span>"); 
     DUPlaySound("sfx_dangerous_buff");
     if (rune === "kings") { 
       DU.gameflags.setFlag("rune_kings_1",1); 
