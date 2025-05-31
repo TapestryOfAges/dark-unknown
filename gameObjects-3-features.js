@@ -176,11 +176,14 @@ LavaTile.prototype.idle = function(person) {
 
 LavaTile.prototype.isHostileTo = function(who) {
   if (who.getResist("fire") >= 100) { return 0; }
+  if (who.getMovetype() & MOVE_FLY) { return 0; }
   return 1;
 }
 
 function InLava(who, lava) {
-  if ((who.getMovetype() & MOVE_LEVITATE) || (who.getMovetype() & MOVE_FLY)) {
+  if ((who.getMovetype() & MOVE_FLY) || (who.getMovetype() & MOVE_ETHEREAL)) {
+    return {msg:""};
+  } else if ((who.getMovetype() & MOVE_LEVITATE) || (who.getMovetype() & MOVE_FLY)) {
     who.dealDamage(Dice.roll("2d4+4"), lava, "fire");
   } else {
     who.dealDamage(Dice.roll("2d10+15"), lava, "fire");
@@ -3145,7 +3148,7 @@ function FireplaceTile() {
 	this.blocklos = 2;
   this.prefix = "a";
 	this.desc = "fireplace";
-	this.pathweight = 5;
+	this.pathweight = 20;
   this.firedamage = "3d4";
 //  this.nowander = 1;
 	
@@ -13671,11 +13674,11 @@ function HomeKeyTile() {
 HomeKeyTile.prototype = new KeyItemObject();
 
 function PaladinKeyTile() {
+  //Graphics Upgraded - same as Royal Key, which I think I am not using
   this.name = "PaladinKey";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-1280";
+  this.graphic = "static.gif";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -24*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "the";
@@ -13756,7 +13759,7 @@ function RoyalKeyTile() {
   this.desc = "Royal Key";
   this.prefix = "the";
   this.longdesc = "The Royal Key.";
-  this.usedesc = "Opens locked doors in Castle dea'Saryn.";
+  this.usedesc = "Opens locked doors in Castle dea Yggdras.";
 }
 RoyalKeyTile.prototype = new KeyItemObject();  
 
@@ -14819,7 +14822,7 @@ function BluePalmCrystalTile() {
   this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -37*32;
-  this.passable = MOVE_ETHEREAL;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "blue palm crystal";
@@ -14847,7 +14850,7 @@ function GreenPalmCrystalTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -37*32;
-  this.passable = MOVE_ETHEREAL;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "green palm crystal";
@@ -14876,7 +14879,7 @@ function PurplePalmCrystalTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -37*32;
-  this.passable = MOVE_ETHEREAL;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "purple palm crystal";
