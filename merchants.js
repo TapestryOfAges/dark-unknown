@@ -8,9 +8,9 @@ function SetMerchants() {
                     { item: "Shortsword", quantity: 10, price: 50, desc: "Shortsword", presale: '"Quality goods, I promise you."', sale: '"Thank you. May it serve you well."' },
                     { item: "Mace", quantity: 7, price: 200, desc: "Mace", presale: '"Got some heft to it."', sale: '"Thank you. May it serve you well."' },
                     { item: "Axe", quantity: 4, price: 500, desc: "Axe", presale: '"Good for chopping people out of armor."', sale: '"Thank you. May it serve you well."'},
-                    { item: "Longsword", quantity: 0, price: 1700}, 
-                    { item: "Halberd", quantity: 0, price: 3500},
-                    { item: "MagicSword", quantity: 0, price: 6000, desc: "Magic Sword"} ];
+                    { item: "Longsword", quantity: 0, price: 1700, desc: "Longsword", presale: '"Many a fighter\'s preferred weapon."', sale: '"Thank you. May it serve you well."'}, 
+                    { item: "Halberd", quantity: 0, price: 3500, desc: "Halberd", presale: '"Reach and heft, what more do you want?"', sale: '"Thank you. May it serve you well."'},
+                    { item: "MagicSword", quantity: 0, price: 6000, desc: "Magic Sword", presale: '"Buying it back?"', sale: '"Thank you. May it serve you well."'} ];
   bill.aaron.type = "stuff";
 
   bill.erin = {};
@@ -247,7 +247,9 @@ function GetSellBack(seller, merchant) {
         qty = qty-1;
       }
       if (qty) {
-        let displayname = ininv.desc;
+//        let displayname = ininv.desc;
+        let displayname = val.desc;
+        if (!displayname) { displayname = ininv.desc; }
         displayname = displayname + " (" + qty + ")";
         let addme = String.fromCharCode(code+idx) + ") " + displayname;
         let price;
