@@ -4993,7 +4993,7 @@ function DaemonNPCTile() {
   this.armorDefense = 40;
   this.armorAbsorb = 30;
   this.armorResist = 30;
-  this.movetype = MOVE_WALK;
+  this.movetype = MOVE_LEVITATE;
   this.leavesCorpse = 'none';
   this.lootTable = 'Level7';
   this.prefix = 'a';
@@ -5796,7 +5796,7 @@ function IllusionNPCTile() {
   this.meleeStrDamage = .5
   this.missileAttackAs = 'none';
   this.armorAs = 'ChainArmor';
-  this.movetype = MOVE_WALK;
+  this.movetype = MOVE_LEVITATE;
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'an';
@@ -5845,7 +5845,7 @@ function InfusedIllusionNPCTile() {
   this.meleeStrDamage = .66
   this.missileAttackAs = 'none';
   this.armorAs = 'ChainArmor';
-  this.movetype = MOVE_WALK;
+  this.movetype = MOVE_LEVITATE;
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'an';
