@@ -245,7 +245,9 @@ function StartSong(sound, params) {
 function FadeMusic(sound,params) {
   let playing = nowplaying;
   if (playing.song.volume > 0) {
-    playing.song.volume -= .125;
+    let vol = playing.song.volume;
+    vol = Math.max(0,vol-.125);
+    playing.song.volume = vol;
     setTimeout(function() { FadeMusic(sound,params); }, 150);
   } else {
     playing.song.pause();
@@ -280,7 +282,9 @@ function IncAmbientVol(playing) {
 
 function DecAmbientVol(playing) {
   if (playing.song.volume > 0) {
-    playing.song.volume -= .125;
+    let vol = playing.song.volume;
+    vol = Math.max(0,vol-.125);
+    playing.song.volume = vol;
     setTimeout(function() { DecAmbientVol(playing); }, 150);
   } else {
     playing.song.pause();
