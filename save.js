@@ -372,6 +372,7 @@ OutOfContext.onLoadData((event,serialized) => {
     convlog = JSON.parse(savedata.convlog);
     karmalog = JSON.parse(savedata.karmalog);
   }
+  targetCursor = {};
   targetCursor.convprompts = {};
   targetCursor.convsaid = {};
 
@@ -559,6 +560,10 @@ OutOfContext.onLoadData((event,serialized) => {
         
       }
       delete val.traceback;
+    }
+    if (val.revealmimic) {
+      delete val.revealmimic;
+      RevealMimic(val);
     }
     if (val.name === "PC") {
       PC = val;
