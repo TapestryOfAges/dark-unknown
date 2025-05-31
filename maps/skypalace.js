@@ -437,18 +437,20 @@ mappages["skypalace2"].editorLabels = '{}';
 
 mappages["skypalace2"].entersky = function(mapref) {
   mapref.Enter = function(enterer, enterfrom, fromx, fromy, tox, toy){
-    if (enterer === PC) {
-      //$("#worldlayer").html("<img src='graphics/high_world.gif' width='416' height='416' />");
-//      $("#worldlayer").css("background-image", "url('graphics/high_world.gif')");
+    if (gamestate.getMode() !== "loadgame") {
+      if (enterer === PC) {
+        //$("#worldlayer").html("<img src='graphics/high_world.gif' width='416' height='416' />");
+  //      $("#worldlayer").css("background-image", "url('graphics/high_world.gif')");
 
-      setTimeout(function() {wind_blow();}, 100);
-      
-      var gateacre = this.getTile(11,12);
-      var gate = gateacre.getTopFeature();
-      gate.destmap = "ellusus";
-      gate.destx = 100;
-      gate.desty = 57;
-      
+        setTimeout(function() {wind_blow();}, 100);
+        
+        var gateacre = this.getTile(11,12);
+        var gate = gateacre.getTopFeature();
+        gate.destmap = "ellusus";
+        gate.destx = 100;
+        gate.desty = 57;
+        
+      }
     }
   }
 }
