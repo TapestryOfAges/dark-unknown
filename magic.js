@@ -3241,22 +3241,45 @@ function PerformSummonAlly(caster, infused, free, tgt) {
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
+  let desttile = caster.getHomeMap().getTile(tgt.x,tgt.y);
+  let canmove = desttile.canMoveHere(MOVE_WALK);
+  let desttype = "ground";
+  if (!canmove["canmove"]) {
+    canmove = desttile.canMoveHere(MOVE_LEVITATE);
+    if (!canmove["canmove"]) {
+      desttype = "air";
+    } else { desttype = "water"; }
+  }
+  
   PlayCastSound(caster,"sfx_summon");
   let ally;
   let eletype;
-  switch (Dice.roll("1d4")) {
-    case 1: 
-      eletype = "AirElemental";
-      break;
-    case 2:
-      eletype = "WaterElemental";
-      break;
-    case 3:
-      eletype = "FireElemental";
-      break;
-    case 4:
-      eletype = "EarthElemental";
-      break;
+  if (desttype === "ground") {
+    switch (Dice.roll("1d4")) {
+      case 1: 
+        eletype = "AirElemental";
+        break;
+      case 2:
+        eletype = "WaterElemental";
+        break;
+      case 3:
+        eletype = "FireElemental";
+        break;
+      case 4:
+        eletype = "EarthElemental";
+        break;
+    }
+  } else if (desttype === "water") {
+    switch (Dice.roll("1d2")) {
+      case 1:
+        eletype = "AirElemental";
+        break;
+      case 2:
+        eletype = "WaterElemental";
+        break;
+    }
+  } else {
+    eletype = "AirElemental"; 
   }
   ally = localFactory.createTile(eletype+"NPC");
   let duration = caster.getIntForPower() * SCALE_TIME;
@@ -4536,7 +4559,16 @@ magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].getLongDesc = function() 
 
 magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Fire and Ice.<br />");
-  let resp = {fin:1};
+  // work in progress
+  if (beta) {
+    let resp = {fin:2};
+    resp["txt"] = "This spell is under construction.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
+  // end work in progress
+  
+  let resp = {fin:3};
   if (!free) {
     let mana = this.getManaCost(infused);
     CastSpellMana(caster,mana);
@@ -4551,6 +4583,9 @@ magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].executeSpell = function(c
   }
 
   PlayCastSound(caster,"sfx_fire_ice");
+
+  let where = GetCoords(caster.getHomeMap(),caster.getx(), caster.gety());
+  
 
   let centerx = caster.getx();
   let centery = caster.gety();
@@ -5773,7 +5808,7 @@ function PerformSpellcast() {
   } else if ((targetCursor.spelldetails.targettype === "open") || (targetCursor.spelldetails.targettype === "fullopen")) {
     let nonpcs = 0;
     if (targetCursor.spelldetails.targettype === "fullopen") { nonpcs = 1; }
-    let canmove = targettile.canMoveHere(MOVE_WALK,nonpcs);
+    let canmove = targettile.canMoveHere(MOVE_LEVITATE,nonpcs);
     if (!canmove["canmove"]) {
       resp["fin"] = 0;
       resp["txt"] = "You cannot cast there.";
