@@ -137,15 +137,15 @@ function page_pre_zero() {
       let changelog = document.getElementById("changelog");
       if (changelog) {
         changelog.innerHTML = `<p class='charcreate'>CHANGELOG:</p><ul style='margin-top:0px>`;
-        changelog.innerHTML += `<li class='changelog'>Fixes to hopefully-won't-get-used-often error reporting</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed an issue that can double the Prince</li>`;
-        changelog.innerHTML += `<li class='changelog'>Narrow cave exit goes to the right place if you leave immediately from the north</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fix to cave near Consolation</li>`;
-        changelog.innerHTML += `<li class='changelog'>Finished adding karma penalties to owned boxes/chests</li>`;
-        changelog.innerHTML += `<li class='changelog'>Mending mirrors no longer has a delayed update to the graphic</li>`;
-//        changelog.innerHTML += `<li class='changelog'>Fixed the draw order of some features in Swainhil (chairs were under the carpet)</li>`;
-//        changelog.innerHTML += `<li class='changelog'>Added some lights to the Bard's college and Castle dea Yggdras</li>`;
-//        changelog.innerHTML += `<li class='changelog'>Fixed bug that would prevent saving under unusual circumstances</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed a bug with fading music that is already very quiet</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed a bug with Summon Ally that I introduced in the previous version</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed a bug with the second story Liche's Dominion map</li>`;
+//        changelog.innerHTML += `<li class='changelog'>Mimics don't lose track of whether they are visibly animating when you save/reload</li>`;
+//        changelog.innerHTML += `<li class='changelog'>Fixed an issue that can cause a conversation to keep looping</li>`;
+//        changelog.innerHTML += `<li class='changelog'>Fixed crash when loading in the Palace in the Skies</li>`;
+//        changelog.innerHTML += `<li class='changelog'>Flying and ethereal creatures no longer take damage while over lava</li>`;
+//        changelog.innerHTML += `<li class='changelog'>Drunk people can no longer stumble into a fireplace</li>`;
+//        changelog.innerHTML += `<li class='changelog'>NPCs should be much, much less willing than they already were (which wasn't much) to try to walk through a fireplace to get somewhere.</li>`;
 //        changelog.innerHTML += `<li class='changelog'>Fixed some Castle schedules</li>`;
         changelog.innerHTML += `</ul>`;
       }
