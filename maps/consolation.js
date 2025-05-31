@@ -105,7 +105,7 @@ mappages["consolation"].features[64] = {name : 'TorchEast', x : 18, y : 20};
 
 
 mappages["consolation"].npcs = [];
-mappages["consolation"].npcs[0] = {name : 'MageVillagerNPC', x : 0, y : 0, NPCName: 'Ashlin', PeaceAI: 'doNothing', Conversation: 'ashlin_sentinel', Gender: 'female', NPCBand: '0', OverrideGraphic: '303.2.gif', skintone: 2, wornlayers: '{"body":"BlueRobePlain","head":"ShortBrownPale","back":null,"offhand":"OffhandPale","cloak":null,"mainhand":"QuarterstaffPale"}'};
+mappages["consolation"].npcs[0] = {name : 'MageVillagerNPC', x : 0, y : 0, NPCName: 'Ashlin', Level: 5, PeaceAI: 'doNothing', Conversation: 'ashlin_sentinel', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"BlueRobePlain","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"QuarterstaffPale","realhead":""}'};
 
 mappages["consolation"].desc = "Tower of Consolation";
 mappages["consolation"].longdesc = ``;
@@ -167,7 +167,7 @@ mappages["consolation2"].terrain = [];
  mappages["consolation2"].terrain[9] = 'sb sb sb sb sb sb sb sb sb sb sb ## ## +F +f +F +F +f +F +F +f ## ## sb sb sb sb sb sb sb sb sb';
 mappages["consolation2"].terrain[10] = 'sb sb sb sb sb sb sb sb sb sb ## ## ## ## ## ## ## +F ## ## ## ## ## ## sb sb sb sb sb sb sb sb';
 mappages["consolation2"].terrain[11] = 'sb sb sb sb sb sb sb sb ## ## ## +f ## ## +F +f +F +F +F +F ## ## +F ## ## ## sb sb sb sb sb sb';
-mappages["consolation2"].terrain[12] = 'sb sb sb sb sb sb sb ## ## +F +F +F ## ++ +f +F +F +F +F +f +F ## +F +F +F ## ## sb sb sb sb sb';
+mappages["consolation2"].terrain[12] = 'sb sb sb sb sb sb sb ## ## +F +F +F ## f# +f +F +F +F +F +f +F ## +F +F +F ## ## sb sb sb sb sb';
 mappages["consolation2"].terrain[13] = 'sb sb sb sb sb sb sb ## +F +F +F +F ## +F +F +F +F +F +F +F +F ## +f +F +F +F ## sb sb sb sb sb';
 mappages["consolation2"].terrain[14] = 'sb sb sb sb sb sb sb #O +f +F +f +F +F +F +F +F +F +F +f +F +F +F +F +f +F +f #O sb sb sb sb sb';
 mappages["consolation2"].terrain[15] = 'sb sb sb sb sb sb sb ## +F +F +f +F ## +F +f +F +F +F +F +F +F ## +F +F +F +f ## sb sb sb sb sb';
@@ -251,9 +251,9 @@ mappages["consolation2"].features[58] = {name : 'Brazier', x : 18, y : 24};
 
 
 mappages["consolation2"].npcs = [];
-mappages["consolation2"].npcs[0] = {name : 'DruidVillagerNPC', x : 23, y : 14, NPCName: 'Darthan Haj', Desc: 'mage', PeaceAI: 'scheduled', Schedule: 'darthan', Conversation: 'darthan', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueRobeHood","head":"Hood2","back":"","offhand":"OffhandPale","cloak":"","mainhand":"SerpentStaffPale","realhead":"OldManPale"}'};
-mappages["consolation2"].npcs[1] = {name : 'MageVillagerNPC', x : 15, y : 6, NPCName: 'Connor', PeaceAI: 'scheduled', Schedule: 'connor', Conversation: 'connor', Gender: 'male', Merch: 'connor', NPCBand: '0', skintone: 2, wornlayers: '{"body":"BlueRobe","head":"BaldBeardedDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"QuarterstaffDark","realhead":"BaldBeardedDark"}'};
-mappages["consolation2"].npcs[2] = {name : 'MageVillagerNPC', x : 9, y : 12, NPCName: 'Lynn', PeaceAI: 'scheduled', Schedule: 'lynn', Conversation: 'lynn', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueRobePlain","head":"BlondePale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"QuarterstaffPale","realhead":"BlondePale"}'};
+mappages["consolation2"].npcs[0] = {name : 'DruidVillagerNPC', x : 23, y : 14, NPCName: 'Darthan Haj', Desc: 'mage', Level: 5, PeaceAI: 'scheduled', Schedule: 'darthan', Conversation: 'darthan', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueRobeHood","head":"Hood2","back":"","offhand":"OffhandPale","cloak":"","mainhand":"SerpentStaffPale","realhead":"OldManPale"}'};
+mappages["consolation2"].npcs[1] = {name : 'MageVillagerNPC', x : 15, y : 6, NPCName: 'Connor', Level: 5, PeaceAI: 'scheduled', Schedule: 'connor', Conversation: 'connor', Gender: 'male', Merch: 'connor', NPCBand: '0', skintone: 2, wornlayers: '{"body":"BlueRobe","head":"BaldBeardedDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"QuarterstaffDark","realhead":"BaldBeardedDark"}'};
+mappages["consolation2"].npcs[2] = {name : 'MageVillagerNPC', x : 9, y : 12, NPCName: 'Lynn', Level: 5, PeaceAI: 'scheduled', Schedule: 'lynn', Conversation: 'lynn', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueRobePlain","head":"BlondePale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"QuarterstaffPale","realhead":"BlondePale"}'};
 
 mappages["consolation2"].desc = "Tower of Consolation";
 mappages["consolation2"].longdesc = ``;
@@ -368,12 +368,11 @@ mappages["consolation3"].features[44] = {name : 'Brazier', x : 21, y : 14};
 mappages["consolation3"].features[45] = {name : 'Brazier', x : 19, y : 14};
 mappages["consolation3"].features[46] = {name : 'SmallTable2', x : 16, y : 8};
 
-
 mappages["consolation3"].npcs = [];
-mappages["consolation3"].npcs[0] = {name : 'DruidVillagerNPC', x : 23, y : 12, NPCName: 'Ashbourne', PeaceAI: 'scheduled', Schedule: 'ashbourne', Conversation: 'ashbourne', Gender: 'male', Merch: 'ashbourne', NPCBand: '0', skintone: 1, wornlayers: '{"body":"GreenRobe","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"SerpentStaffPale","realhead":"ShortBlackPale"}'};
-mappages["consolation3"].npcs[1] = {name : 'MageVillagerNPC', x : 9, y : 12, NPCName: 'Eshkaz', PeaceAI: 'scheduled', Schedule: 'eshkaz', Conversation: 'eshkaz', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"RedRobe","head":"OldManPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"QuarterstaffPale","realhead":"OldManPale"}'};
+mappages["consolation3"].npcs[0] = {name : 'DruidVillagerNPC', x : 23, y : 12, NPCName: 'Ashbourne', Level: 5, PeaceAI: 'scheduled', Schedule: 'ashbourne', Conversation: 'ashbourne', Gender: 'male', Merch: 'ashbourne', NPCBand: '0', skintone: 1, wornlayers: '{"body":"GreenRobe","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"SerpentStaffPale","realhead":"ShortBlackPale"}'};
+mappages["consolation3"].npcs[1] = {name : 'MageVillagerNPC', x : 9, y : 12, NPCName: 'Eshkaz', Level: 5, PeaceAI: 'scheduled', Schedule: 'eshkaz', Conversation: 'eshkaz', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"RedRobe","head":"OldManPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"QuarterstaffPale","realhead":"OldManPale"}'};
 mappages["consolation3"].npcs[2] = {name : 'MageVillagerNPC', x : 14, y : 18, NPCName: 'Ladonna', PeaceAI: 'scheduled', Schedule: 'ladonna', Conversation: 'ladonna', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BrownRobe","head":"BlondePale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"QuarterstaffPale","realhead":"BlondePale"}'};
-mappages["consolation3"].npcs[3] = {name : 'MageVillagerNPC', x : 15, y : 6, NPCName: 'Ashlin', PeaceAI: 'scheduled', Schedule: 'ashlin', Conversation: 'ashlin', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"BlueRobePlain","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"QuarterstaffDark","realhead":"ShortBlackDark"}'};
+mappages["consolation3"].npcs[3] = {name : 'MageVillagerNPC', x : 15, y : 6, NPCName: 'Ashlin', Level: 5, PeaceAI: 'scheduled', Schedule: 'ashlin', Conversation: 'ashlin', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"BlueRobePlain","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"QuarterstaffDark","realhead":"ShortBlackDark"}'};
 
 mappages["consolation3"].desc = "Tower of Consolation";
 mappages["consolation3"].longdesc = ``;
