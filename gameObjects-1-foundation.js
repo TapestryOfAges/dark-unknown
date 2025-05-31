@@ -100,8 +100,13 @@ ProtoObject.prototype.copy = function(type) {
 //      return;
       // both have a function. Assuming they're the same, not worth caring
     } else if (typeof val === "function") {  // real one has a function base one does not
-      alert("Function on " + copydata.name + ": " + idx);
-      console.log(this);
+      if ((idx === "startAnimation") || (idx === "IWasJustDrawn") || (idx === "animateMe")) {
+        // is mimic that is awake
+        copydata["revealmimic"] = 1;
+      } else {
+        alert("Function on " + copydata.name + ": " + idx);
+        console.log(this);
+      }
     } else if (typeof val !== "object") { 
       if (val != base_version[idx]) {
         copydata[idx] = val;
@@ -109,6 +114,8 @@ ProtoObject.prototype.copy = function(type) {
       } else {
         DebugWrite("saveload", idx + " <span style='color:firebrick'>the same, moving on</span>...  ");
       }
+    } else if (val === null) {
+      // don't need to save this
     } else if (idx === "attachedParts") {
       copydata[idx] = [];
       for (let i=0;i<val.length;i++) {
