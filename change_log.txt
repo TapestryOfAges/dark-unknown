@@ -1,4 +1,44 @@
 
+v 0.10.15
+ * Missed one of the chests in the paladins' tower, now they all have the karma penalty removed when appropriate
+ * Fix to the descriptions of some items merchants will sell you or, more often, buy from you
+
+v 0.10.14
+ * Fixed a bug with the Paladin Initiation scene
+ * There is no longer an error popup when you try to SELL to a merchant when you have nothing they'd like to buy
+ * Key to the Paladin tower now opens its doors, and also has a graphic
+ * When you join the Paladins, the karma penalty is now removed from the chests in their dwelling
+ * Fixed errors with the lootgroup for some of the paladin chests
+
+v 0.10.13
+ * Fixed a bug with fading music that is already very quiet
+ * Fixed a bug with Summon Ally that I introduced in the previous version
+ * Fixed a bug with the second story Liche's Dominion map
+
+v 0.10.12
+ * Conjured Illusions and Daemons now levitate rather than walk
+ * If you cast Summon Ally over water, you can only get Water and Air elementals
+ * Spells that you don't have to target something specific with (eg Explosion) can now be cast over water
+ * Mimics don't lose track of whether they are visibly animating when you save/reload
+ * Fixed an issue that can cause a conversation to keep looping
+ * Fixed quest typos
+ * Fixed crash when loading in the Palace in the Skies
+ * Flying and ethereal creatures no longer take damage while over lava
+ * Fixed crash bug in Darthan's schedule
+ * Drunk people can no longer stumble into a fireplace
+ * Denizens of Consolation are now higher level
+ * Minor fixes to Consolation map
+ * NPCs should be much, much less willing than they already were (which wasn't much) to try to walk through a fireplace to get somewhere.
+
+v 0.10.11
+ * Palm crystals no longer block movement
+ * When you gain your first Rune, you are instructed what key to hit to use it
+ * Blanche no longer gives infinite XP if you keep telling her her friend says hello
+ * A couple conversation edits
+ * Lance is no longer only pretending to be asleep in early Act 2
+ * Moved some deep water a smidge further from the coast so you can waterwalk around that part of the land
+ * Fixed rare bug with tipping
+
 v 0.10.10
  * Fixes to hopefully-won't-get-used-often error reporting 
  * Fixed an issue that can double the Prince
