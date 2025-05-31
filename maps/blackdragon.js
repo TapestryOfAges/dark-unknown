@@ -361,13 +361,15 @@ mappages["blackdragon"].onload = function(mapref) {
         let placedacre = mapref.getTile(loc.x,loc.y);
         placedacre.executeWalkons(lance);  
       } else {
-        lance.setSchedule("lance_unconscious");
+//        lance.setSchedule("lance_unconscious");
+        lance.setPeaceAI("deep_sleep");
+        lance.setCurrentAI("deep_sleep");
         let prevacre = mapref.getTile(lance.getx(),lance.gety());
         prevacre.executeWalkoffs(lance);
         mapref.moveThing(25,17,lance);
         let placedacre = mapref.getTile(25,17);
         placedacre.executeWalkons(lance);  
-        lance.sleep = 1;
+        lance.flags.sleep = 1;
       }
       //Unlock his door
       let door = mapref.getTile(32,17).getTopFeature();
