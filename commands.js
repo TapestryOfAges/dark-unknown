@@ -2110,7 +2110,7 @@ function PerformTalk(talkto, convo, topic) {
     }
     if (targetCursor.overrideMode) {
       delete targetCursor.overrideMode;
-      if (gamestate.getMode() === "singlenumber") { retval["input"] = "Tip how much?"; }
+      if (gamestate.getMode() === "singlenumber") { retval["input"] = "Tip how much?"; delete targetCursor.itemSource;}
     } else {
       gamestate.setMode("talk");
     }
