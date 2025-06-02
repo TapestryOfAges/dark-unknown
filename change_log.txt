@@ -3,6 +3,7 @@ v 0.10.15
  * Missed one of the chests in the paladins' tower, now they all have the karma penalty removed when appropriate
  * Fix to the descriptions of some items merchants will sell you or, more often, buy from you
  * Fix to volume controls in the options
+ * Fix to description of where the Twist of Fate dungeon is
 
 v 0.10.14
  * Fixed a bug with the Paladin Initiation scene
