@@ -8184,7 +8184,7 @@ WalkOnGalaxy2Tile.prototype.walkon = function(walker) {
   
     let song = "Sirius";
     if (DU.settings.getSetting("music") && nowplaying.name && (nowplaying.name !== song)) {
-     DUPlayMusic(song, {fade:1});
+      DUPlayMusic(song, {fade:1});
     }
     DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
   }

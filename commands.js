@@ -3099,7 +3099,7 @@ function DrawOptions() {
   }
   optdiv += ">";
   if (DU.settings.getSetting("music")) {
-    let modmusic = DU.settings.getSetting('music')*10;
+    let modmusic = DU.settings.getSetting('music');
     optdiv += `${modmusic}`;
   } else {
     optdiv += "0";
@@ -3122,7 +3122,7 @@ function DrawOptions() {
   }
   optdiv += ">";
   if (DU.settings.getSetting("sound")) {
-    let modsound = DU.settings.getSetting("sound")*10;
+    let modsound = DU.settings.getSetting("sound");
     optdiv += `${modsound}`;
   } else {
     optdiv += "0";
@@ -3452,26 +3452,20 @@ function performOptions(code) {
     if (targetCursor.cmd === "o") {
       if (targetCursor.page === 1) {  // volume
         if (DU.settings.getSetting("music")) {
-          let newvol = Math.max(0,DU.settings.getSetting("music")-.1);
-          newvol = newvol*10;
-          newvol = parseInt(newvol);
-          newvol = newvol/10;
+          let newvol = Math.max(0,DU.settings.getSetting("music")-1);
           DU.settings.setSetting("music", newvol);
           if (nowplaying.song && newvol) {
-            nowplaying.song.volume = newvol;
+            nowplaying.song.volume = newvol/10;
           } else if (!newvol && nowplaying.song) {
-            DU.gameflags.setFlag("mvol",.1);
+            DU.gameflags.setFlag("mvol",1);
             StopMusic(nowplaying);
           }
         }
       } else if (targetCursor.page === 3) {  // volume
         if (DU.settings.getSetting("sound")) {
-          let newvol = Math.max(0,DU.settings.getSetting("sound")-.1);
-          newvol = newvol*10;
-          newvol = parseInt(newvol);
-          newvol = newvol/10;
+          let newvol = Math.max(0,DU.settings.getSetting("sound")-1);
           DU.settings.setSetting("sound", newvol);
-          if (!newvol) { DU.gameflags.setFlag("svol",.1); }
+          if (!newvol) { DU.gameflags.setFlag("svol",1); }
         }
       } else if (targetCursor.page === 5) { // zoom
         if (DU.settings.getSetting("zoom") === 1.5) {
@@ -3490,24 +3484,18 @@ function performOptions(code) {
   else if ((code === 39) || (code === 222)) {  // right, for volumes
     if (targetCursor.cmd === "o") {
       if (targetCursor.page === 1) {
-        let newvol = Math.min(1,DU.settings.getSetting("music")+.1);
-        newvol = newvol*10;
-        newvol = parseInt(newvol+.001);
-        newvol = newvol/10;
+        let newvol = Math.min(10,DU.settings.getSetting("music")+1);
         DU.settings.setSetting("music", newvol);
         if (nowplaying.song) {
-          nowplaying.song.volume = newvol;
+          nowplaying.song.volume = newvol/10;
         } else {
           let song = PC.getHomeMap().getMusic();
           DUPlayMusic(song);
         }
       } else if (targetCursor.page === 3) {
-        let newvol = Math.min(1,DU.settings.getSetting("sound")+.1);
-        newvol = newvol*10;
-        newvol = parseInt(newvol+.001);
-        newvol = newvol/10;
+        let newvol = Math.min(10,DU.settings.getSetting("sound")+1);
         DU.settings.setSetting("sound", newvol);
-        if (newvol === .1) {
+        if (newvol === 1) {
           ProcessAmbientNoise(PC.getHomeMap().getTile(PC.getx(),PC.gety()));
         }
       } else if (targetCursor.page === 5) { // zoom
@@ -3535,8 +3523,8 @@ function performOptions(code) {
           }
         } else {
           let newvol = DU.gameflags.getFlag("mvol");
-          if (!newvol) { newvol = 1; }
-          DU.settings.setSetting("music",newvol);
+          if (!newvol) { newvol = 10; }
+          DU.settings.setSetting("music",newvol/10);
           if (nowplaying.song) {
             nowplaying.song.volume = 1;
           } else {
@@ -3553,8 +3541,8 @@ function performOptions(code) {
           }
         } else {
           let newvol = DU.gameflags.getFlag("svol");
-          if (!newvol) { newvol = 1; }
-          DU.settings.setSetting("sound",newvol);
+          if (!newvol) { newvol = 10; }
+          DU.settings.setSetting("sound",newvol/10);
           ProcessAmbientNoise(PC.getHomeMap().getTile(PC.getx(),PC.gety()));
         }
       } else if (targetCursor.page === 5) { // zoom
@@ -3682,8 +3670,8 @@ function ToggleOption(opt) {
       StopMusic(nowplaying);
     } else {
       let newvol = DU.gameflags.getFlag("mvol");
-      if (!newvol) { newvol = 1; }
-      DU.settings.setSetting("music", newvol);
+      if (!newvol) { newvol = 10; }
+      DU.settings.setSetting("music", newvol/10);
       let song = PC.getHomeMap().getMusic();
       DUPlayMusic(song);
     }

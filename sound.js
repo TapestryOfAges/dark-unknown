@@ -208,7 +208,7 @@ function DUPlaySound(sound, soundmult) {
 //    playing.song = createjs.Sound.play(sound); 
     playing.song = new Audio(GetSfxPath(sound));
     playing.name = sound; 
-    playing.song.volume = DU.settings.getSetting("sound") * soundmult;
+    playing.song.volume = DU.settings.getSetting("sound")/10 * soundmult;
     playing.song.play();
   }
   return playing;
@@ -235,7 +235,7 @@ function StartSong(sound, params) {
   playing.song = new Audio(GetMusicPath(sound)); 
   playing.name = sound; 
   playing.song.loop = loopval;
-  playing.song.volume = DU.settings.getSetting("music");
+  playing.song.volume = DU.settings.getSetting("music")/10;
   if (params.startat) { playing.song.currentTime = params.startat; }
   playing.song.play();
   nowplaying = playing;
@@ -273,8 +273,8 @@ function DUPlayAmbient(sound) {
 
 function IncAmbientVol(playing) {
   if (playing.name === ambient.name) {
-    if (playing.song.volume < DU.settings.getSetting("sound")) {
-      playing.song.volume = Math.min(playing.song.volume + .125, DU.settings.getSetting("sound"));
+    if (playing.song.volume < DU.settings.getSetting("sound")/10) {
+      playing.song.volume = Math.min(playing.song.volume + .125, DU.settings.getSetting("sound")/10);
       setTimeout(function() { IncAmbientVol(playing); }, 250);
     }
   }

@@ -199,7 +199,7 @@ tv.start_animations = function() {
     if (DU.settings.getSetting("music")) {
       tv.dusong.song.play();
       tv.dusong.song.loop = true;
-      tv.dusong.song.volume = DU.settings.getSetting("music");
+      tv.dusong.song.volume = DU.settings.getSetting("music")/10;
     }
     if (gamestate.getMode() === "null") {
       document.getElementById('ToA').classList.add('titlefadein');
@@ -1325,7 +1325,7 @@ tv.RunIntro = function(idx) {
       tv.dusong.song = new Audio(GetMusicPath("Charcreate"));
       tv.dusong.song.play();
       tv.dusong.song.loop = true;
-      tv.dusong.song.volume = DU.settings.getSetting("music");
+      tv.dusong.song.volume = DU.settings.getSetting("music")/10;
     }
 
     let firstpage = `<div style='width:770;position: relative;left:5px;top:15px' id='introcontainer'>
@@ -1410,7 +1410,7 @@ tv.RunIntro = function(idx) {
         tv.dusong.song = new Audio(GetMusicPath("Dark Unknown"));
         tv.dusong.song.play();
         tv.dusong.song.loop = true;
-        tv.dusong.song.volume = DU.settings.getSetting("music");
+        tv.dusong.song.volume = DU.settings.getSetting("music")/10;
       }
   
     },1000);
