@@ -637,6 +637,11 @@ OutOfContext.onLoadData((event,serialized) => {
       console.log("Couldn't find the cave to fix...?");
     }
   }
+  if ((parseInt(savever[1]) < 10) || (parseInt(savever[2]) < 15)) {  // fix to versions prior to 0.10.15
+    console.log("Upgrading save to 0.10.15.");
+    if (DU.gameflage.getFlag("mvol")) { DU.gameflags.setFlag("mvol") = DU.gameflags.getFlag("mvol")*10; }
+    if (DU.gameflage.getFlag("svol")) { DU.gameflags.setFlag("svol") = DU.gameflags.getFlag("svol")*10; }
+  }
 
   ProcessAmbientNoise(PC.getHomeMap().getTile(PC.getx(),PC.gety()));
   startScheduler();
