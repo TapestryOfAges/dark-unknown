@@ -1451,10 +1451,10 @@ HotelPheranTile.prototype.myTurn = function() {
         else if (choice === 3) { this.getHomeMap().moveThing(99,43,this); }
         else if (choice === 4) { this.getHomeMap().moveThing(74,24,this); }
         else if (choice === 5) { this.getHomeMap().moveThing(61,42,this); }
-        else if (choice === 6) { this.getHomeMap().moveThing(42,84,this); }
+        else if (choice === 6) { this.getHomeMap().moveThing(40,86,this); }
         else if (choice === 7) { this.getHomeMap().moveThing(28,108,this); }
-        console.log("Hotel Pheran moved!");
-        console.log(`New coords: ${this.getx()},${this.gety()}.`);
+//        console.log("Hotel Pheran moved!");
+//        console.log(`New coords: ${this.getx()},${this.gety()}.`);
       }
     }
     let NPCevent = new GameEvent(this);
@@ -6489,6 +6489,10 @@ CursedMirrorWithImpTile.prototype.getConversation = function() {
   return this.conversation;
 }
 
+CursedMirrorWithImpTile.prototype.getConversationFlag = function() {
+  return null;
+}
+
 CursedMirrorWithImpTile.prototype.getGenderedTerms = function() {
   let gt = {};
   gt.pronoun = "it";
@@ -6846,7 +6850,7 @@ BrilliantPoolTile.prototype.usePrompt = function(code) {
     retval["txt"] = "You drink from the pool.";
     retval["override"] = 1;        
     retval["fin"] = 3;
-    targetCursor.booktext = ["You feel tremendous power rush into you!","You view the world from above, seeing the secrets and the minds of each and every living thing.","This bright elixir peerless you have drunk...","YOU KNOW ALL THINGS!","...It is too much for your mortal mind...","Suddenly you are aware of just one thing-", "your mind is burning."];
+    targetCursor.booktext = ["You feel tremendous power rush into you!","You view the world from above, seeing the secrets and the minds of each and every living thing.","This bright elixir peerless you have drunk...","YOU KNOW ALL THINGS!","...It is too much for your mortal mind...","Suddenly you are aware of just one thing-", "your mind is burning.","<span class='sysconv'>Your Intelligence has increased.</span>"];
     targetCursor.useditem = this;
     targetCursor.bookfinish = 1;
   } else {
@@ -7815,6 +7819,7 @@ WalkOnChangeExitTile.prototype.walkon = function(walker) {
     let themap=walker.getHomeMap();
     themap.setExitToX(this.setxto);
     themap.setExitToY(this.setyto);
+    themap.edited;
   }
   return {msg:""};
 }
@@ -9216,7 +9221,7 @@ function NightshadeSpawnerTile() {
 NightshadeSpawnerTile.prototype = new FeatureObject();
 
 NightshadeSpawnerTile.prototype.activate = function() {
-  if (gamestate.getMode() !== "loadgame") {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     DebugWrite("gameobj", "Activating Nightshade spawner.");
 
     this.addToSearchYield("Nightshade");
@@ -12435,7 +12440,7 @@ function ChaliceTile() {
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "chalice";
-  this.longdesc = "The Chalice of the Paladins. Isaac seeks its return, in Swainhil.";
+  this.longdesc = "The Chalice of the Paladins. It was stolen by Warduke.";
   this.prefix = "a";
 
   this.addType("Quest");  
@@ -15654,8 +15659,9 @@ ScrollItemObject.prototype.use = function(who) {
   }
   let retval = {};
   retval = magic[this.spelllevel][this.spellnum].executeSpell(PC, 0, 1);
-  if (retval["fin"] === 4) { 
+  if ((retval["fin"] === 4) || (retval["fin"] === 3) || (retval["fin"] === -1)) { 
     retval["override"] = 1; 
+    if ((retval["fin"] === 3) || (retval["fin"] === -1)) { retval["fin"] = 2; }
     targetCursor.castFrom = this;
   } else if (retval["fin"] === 2) {
     retval["override"] = 1;
