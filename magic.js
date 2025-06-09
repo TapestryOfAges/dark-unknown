@@ -574,10 +574,10 @@ magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell = function(caster, i
 
 // Flame Blade
 magic[SPELL_FLAME_BLADE_LEVEL][SPELL_FLAME_BLADE_ID].getLongDesc = function () {
-  return "Sheathes your melee weapon in flame, dealing an extra " + Dice.rollmin(DMG_NEGLIGABLE) + "-" + Dice.rollmax(DMG_NEGLIGABLE) + "damage for 1 hit.";
+  return "Sheathes your melee weapon in flame, dealing an extra " + Dice.rollmin(DMG_NEGLIGABLE) + "-" + Dice.rollmax(DMG_NEGLIGABLE) + " damage for 1 hit.";
 }
 magic[SPELL_FLAME_BLADE_LEVEL][SPELL_FLAME_BLADE_ID].getInfusedDesc = function() {
-  return "Damage increases to " + Dice.rollmin(DMG_NEGLIGABLE) + ".";
+  return "Damage increases to " + Dice.rollmin(DMG_LIGHT) + "-" + Dice.rollmax(DMG_LIGHT) + " damage for 2-5 hits.";
 }
 
 magic[SPELL_FLAME_BLADE_LEVEL][SPELL_FLAME_BLADE_ID].executeSpell = function(caster, infused, free) {
@@ -606,7 +606,7 @@ magic[SPELL_FLAME_BLADE_LEVEL][SPELL_FLAME_BLADE_ID].executeSpell = function(cas
   if (infused) { 
     duration = duration * 2; 
     flameblade.uses = Dice.roll("1d4+1");
-    flameblade.damage = DMG_LIGHT;
+    flameblade.damage = "3d4";
     flameblade.power = 3;
   }
   let endtime = duration + DUTime.getGameClock();
@@ -2670,7 +2670,7 @@ function PerformLifeDrain(caster, infused, free, tgt) {
     return resp;
   }
 
-  let tmpdmg = prepareSpellDamage(caster,tgt,DMG_MEDIUM);
+  let tmpdmg = prepareSpellDamage(caster,tgt,DMG_MEDIUM, "drain");
   let dmg = tmpdmg.dmg;
   if (infused) {
     dmg = dmg * 1.5;
@@ -3029,7 +3029,7 @@ function PerformParalyze(caster, infused, free, tgt) {
       desc = "You resist.";
       // no X over the PC
     } else {
-      ShowEffect(val, 700, "X.gif");
+      ShowEffect(tgt, 700, "X.gif");
     }
     PlayCastSound(caster);
   }
@@ -4320,7 +4320,9 @@ magic[SPELL_QUAKE_LEVEL][SPELL_QUAKE_ID].executeSpell = function(caster, infused
     return resp;
   }
  
-  let radius = 6;
+  let radius = 5;
+  if (caster.getIntForPower() >= 20) { radius++; }
+  if (caster.getIntForPower() >= 30) { radius++; }
   let foes = GetAllWithin("npcs",radius,caster.getHomeMap(),{x: caster.getx(), y: caster.gety()},"loe");
   foes = ShuffleArray(foes);
   
