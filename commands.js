@@ -769,7 +769,7 @@ function PerformAttackFromMove(who, dx, dy) {
   let lacre = who.getHomeMap().getTile(who.getx()+dx,who.gety()+dy);
   if (lacre === "OoB") { return retval; }
   let atkwho = lacre.npcs.getTop();
-  if (atkwho && (atkwho.getAttitude() === "hostile")) {
+  if (atkwho && (atkwho.getAttitude() === "hostile") && !atkwho.invisible && !atkwho.specials.mimic) {
     retval = Attack(who,atkwho);
     retval["extra"] = "moveintoattack";
   }
@@ -796,6 +796,7 @@ function PerformAttack(who) {
     retval["input"] = "&gt;";
     return retval;
   }
+  if (atkwho && (atkwho.invisible || atkwho.specials.mimic)) { atkwho = ""; }
   if (!atkwho) {  // nothing there
     let fea = localacre.features.getTop();
     if (fea && IsAdjacent(who,fea)) {
@@ -1982,6 +1983,8 @@ function PerformTalkTarget() {
   }
 
   maintext.addText("Talk to: " + top.getFullDesc());
+
+  targetCursor.skipahead = 0;
 
   if (top.checkType("NPC") && IsVisibleOnScreen(top.getx(),top.gety())) {
     ShowTurnFrame(top);
