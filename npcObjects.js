@@ -5886,7 +5886,7 @@ function ToshinSentinelNPCTile() {
   this.prefix = 'a';
   this.desc = "floating sentinel";
   this.meleeChance = 0;
-  this.resists = { fire:100, poison:100 };
+  this.resists = { fire:100, poison:100, magic:120 };
   this.special = 'unkillable';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
