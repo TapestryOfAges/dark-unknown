@@ -461,7 +461,7 @@ function InWater(who) {
 
   let dur = DUTime.getGameClock() - who.getLastTurnTime();
   response.msg = "You have trouble keeping your head above the rough waters!";
-  let dmg = dur * 3;
+  let dmg = dur * 10;
   who.dealDamage(dmg);
   
   return response;
@@ -3277,7 +3277,7 @@ SwampTile.prototype.idle = function(person) {
 }
 
 SwampTile.prototype.isHostileTo = function(who) {
-  if (IsNonLiving(who)) {
+  if (IsNonLiving(who) || (MOVE_LEVITATE & who.getMovetype()) || (MOVE_FLY & who.getMovetype())) {
     return 0;
   }
   return 1;
