@@ -13,7 +13,7 @@ let eidos = new Platonic();
 //var universe = new Object;
 
 let DU = {};
-DU.version = "0.10.15";
+DU.version = "0.10.16";
 
 DU.PC = new PCObject();
 DU.gamelength = 0;
@@ -687,7 +687,8 @@ function DoAction(code, ctrl) {
         maintext.drawTextFrame();
         
         if (retval["fin"] === 1) {
-          PC.endTurn(retval["initdelay"]);
+          if (targetCursor.alreadyEnded) { delete targetCursor.alreadyEnded; }
+          else { PC.endTurn(retval["initdelay"]); }
         }
         if (retval["fin"] === "inn") {
           let nextmorning = GetGameClockByClockTime("7:00");
@@ -1278,6 +1279,7 @@ function DoAction(code, ctrl) {
         }
         maintext.setInputLine(retval["input"]);
         maintext.drawTextFrame();  
+        DrawCharFrame();
         gamestate.setMode("talk");
       }
     } else if (code === 27) {
