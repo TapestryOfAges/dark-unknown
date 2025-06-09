@@ -201,6 +201,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   if (triggers.hasOwnProperty("end_convo")) {
     if ((triggers.end_convo !== 1) && (triggers.end_convo !== "1")) {
       this.say(speaker, triggers.end_convo, 0, noshowmainspeaker, altspeaker);
+      targetCursor.skipahead = 0;
     }
     maintext.addText(" ");
     if (keep_talking !== -1) {
@@ -218,6 +219,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
       }
     } else {
       keep_talking = this.say(speaker, this["_soldout"].responses[flags_met], skipahead, noshowmainspeaker, altspeaker);
+      if (keep_talking !== 2) { targetCursor.skipahead = 0; }
     }
 
   }
@@ -243,7 +245,8 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
       maintext.drawTextFrame();
         
       if (retval["fin"] === 1) {
-//        PC.endTurn(retval["initdelay"]);
+        PC.endTurn(retval["initdelay"]);
+        targetCursor.alreadyEnded = 1;
         return;
       }
  
@@ -659,7 +662,7 @@ OnConvTriggers["ash_get_book"] = function(speaker,keyword) {
   let morebark = PC.checkInventory("OlcrannBark");
   if (morebark) {
     morebark.setQuantity(1);
-    PC.removeFromInventory(moreback);
+    PC.removeFromInventory(morebark);
   }
   let ashmap = PC.getHomeMap(); // he has to be on the PC's map since they just talked to him
   let npcs = ashmap.npcs.getAll();
@@ -1368,6 +1371,7 @@ OnConvTriggers["rhys_return"] = function(speaker,keyword) {
     rhys.setNPCName("Rhys");
     let bdcmap = who.getHomeMap();
     bdcmap.placeThing(28,35,rhys);
+    bdcmap.getTile(28,35).executeWalkons(rhys);
     rhys.wornlayers.head = "ShortBlackDark";
     rhys.wornlayers.realhead = "ShortBlackDark";
     rhys.wornlayers.mainhand = "BowDark";
@@ -1382,8 +1386,13 @@ OnConvTriggers["rhys_return"] = function(speaker,keyword) {
       for (let i=0;i<npcs.length;i++) {
         if (npcs[i].getName() === "PrinceNPC") { lance = npcs[i]; }
       }
+      bdcmap.getTile(lance.getx(),lance.gety()).executeWalkoffs(lance);
       bdcmap.moveThing(29,33,lance);
+      bdcmap.getTile(29,33).executeWalkons(lance);
+
+      bdcmap.getTile(PC.getx(),PC.gety()).executeWalkoffs(PC);
       bdcmap.moveThing(30,35,PC);
+      bdcmap.getTile(30,35).executeWalkons(PC);
       DrawMainFrame("draw",bdcmap,PC.getx(),PC.gety());
       FadeIn();
 
