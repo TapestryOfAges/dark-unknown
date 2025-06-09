@@ -395,10 +395,8 @@ mappages["shadow3"].npcs = [];
 mappages["shadow3"].npcs[0] = {name : 'CorpserNPC', x : 37, y : 19, skintone: 1};
 mappages["shadow3"].npcs[1] = {name : 'CorpserNPC', x : 38, y : 21, skintone: 1};
 mappages["shadow3"].npcs[2] = {name : 'CorpserNPC', x : 32, y : 26, skintone: 1};
-mappages["shadow3"].npcs[3] = {name : 'CorpserNPC', x : 26, y : 21, skintone: 1};
-mappages["shadow3"].npcs[4] = {name : 'CorpserNPC', x : 22, y : 9, skintone: 1};
-mappages["shadow3"].npcs[5] = {name : 'CorpserNPC', x : 25, y : 6, skintone: 1};
-mappages["shadow3"].npcs[6] = {name : 'RangerVillagerNPC', x : 11, y : 15, NPCName: 'Rhys', Level: 6, Conversation: 'rhys', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"LeatherArmor","head":"ShortBlackDark","back":"Quiver","offhand":"OffhandDark","cloak":"","mainhand":"BowDark","realhead":"ShortBlackDark"}'};
+mappages["shadow3"].npcs[3] = {name : 'OlcrannNPC', x : 25, y : 6, skintone: 1};
+mappages["shadow3"].npcs[4] = {name : 'RangerVillagerNPC', x : 11, y : 15, NPCName: 'Rhys', Level: 6, Conversation: 'rhys', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"LeatherArmor","head":"ShortBlackDark","back":"Quiver","offhand":"OffhandDark","cloak":"","mainhand":"BowDark","realhead":"ShortBlackDark"}'};
 
 mappages["shadow3"].desc = "Dungeon Shadow";
 mappages["shadow3"].longdesc = ``;
