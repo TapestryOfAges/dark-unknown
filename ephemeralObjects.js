@@ -418,6 +418,10 @@ CrystalTrapTile.prototype.onDamaged = function(hitby, dmg) {
   }
 }
 
+CrystalTrapTile.prototype.getReduceResist = function() {
+  return 0; 
+}
+
 CrystalTrapTile.prototype.onTurn = function() {
   if (DUTime.getGameClock() > this.getExpiresTime()) {
     DebugWrite("magic", "CrystalPrison drops.");
@@ -434,8 +438,11 @@ CrystalTrapTile.prototype.onTurn = function() {
     } else {
       maintext.addText("With a burst of strength, the " + who.getDesc() + " breaks free!");
     }
-    if (this.infused) { who.dealDamage(DMG_HEAVY); }
-    else { who.dealDamage(DMG_MEDIUM); }
+    let localdmg;
+    if (this.infused) { localdmg = prepareSpellDamage(this, who, DMG_HEAVY, "physical"); }
+    else { localdmg = prepareSpellDamage(this, who, DMG_MEDIUM, "physical"); }
+
+    DealandDisplayDamage(who,this,localdmg.dmg,"physical");
     this.endEffect(1);
   }
   // else, didn't break free, nothing happens.
