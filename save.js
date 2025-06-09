@@ -213,6 +213,7 @@ GameStateData.prototype.saveGame = function(flag) {
   ExtendObject(true,savedata.gameflags,DU.gameflags);
 	savedata.objs = {};
 	savedata.maps = [];       // this turns into a list of names of maps, to be re-loaded on load
+  savedata.mapedits = {};
 	
   savedata.merchants = DU.merchants;
   savedata.events = {};
@@ -246,6 +247,15 @@ GameStateData.prototype.saveGame = function(flag) {
     let val = DU.maps.data[idx];
 	  savedata.maps.push(idx);
 	  
+    if (DU.maps.data[idx].edited) {
+      let edits = {};
+      edits.exitToMap = DU.maps.data[idx].getExitToMap();
+      edits.exitToX = DU.maps.data[idx].getExitToX();
+      edits.exitToY = DU.maps.data[idx].getExitToY();
+      edits.returnInfused = DU.maps.data[idx].getReturnInfused();
+      savedata.mapedits[idx] = edits;
+    }
+
 	  // save features
 	  let mapfeatures = val.features.getAll();
     DebugWrite("saveload", "<br /><span style='font-weight:bold'>Copying " + mapfeatures.length + " features from map " + idx + "</span><br />");
@@ -405,6 +415,16 @@ OutOfContext.onLoadData((event,serialized) => {
     //load all the maps
     loadmaps[val] = maps.addMap(val);
     DebugWrite("saveload", "Loaded map: " + val + "<br />");
+
+    if (savedata.mapedits) {
+      if (savedata.mapedits[val]) {
+        loadmaps[val].edited = 1;
+        loadmaps[val].setExitToMap(savedata.mapedits[val].exitToMap);
+        loadmaps[val].setExitToX(savedata.mapedits[val].exitToX);
+        loadmaps[val].setExitToY(savedata.mapedits[val].exitToY);
+        loadmaps[val].setReturnInfused(savedata.mapedits[val].returnInfused);
+      }
+    }
   }
   
   DebugWrite("saveload", "<br /><h3>Done loading maps, on to objs...</h3>");
@@ -639,8 +659,8 @@ OutOfContext.onLoadData((event,serialized) => {
   }
   if ((parseInt(savever[1]) < 10) || (parseInt(savever[2]) < 15)) {  // fix to versions prior to 0.10.15
     console.log("Upgrading save to 0.10.15.");
-    if (DU.gameflage.getFlag("mvol")) { DU.gameflags.setFlag("mvol") = DU.gameflags.getFlag("mvol")*10; }
-    if (DU.gameflage.getFlag("svol")) { DU.gameflags.setFlag("svol") = DU.gameflags.getFlag("svol")*10; }
+    if (DU.gameflags.getFlag("mvol")) { DU.gameflags.setFlag("mvol", DU.gameflags.getFlag("mvol")*10); }
+    if (DU.gameflags.getFlag("svol")) { DU.gameflags.setFlag("svol", DU.gameflags.getFlag("svol")*10); }
   }
 
   ProcessAmbientNoise(PC.getHomeMap().getTile(PC.getx(),PC.gety()));
