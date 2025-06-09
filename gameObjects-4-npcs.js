@@ -2059,16 +2059,17 @@ NPCObject.prototype.getResist = function(resisttype) {
     if (mr) {
       magicbonus = mr.getPower();
     }
+    if (this.resists["magic"]) { magicbonus += this.resists["magic"]; }
     let armor = this.getEquipment("armor");
     if (armor) {
       return (armor.getResist() + magicbonus);
-    }
+    } else { return magicbonus; }
   }    
   
   if (this.resists[resisttype]) {
-    if (resisttype === "magic") {
-      return (this.resists[resisttype] + magicbonus);
-    }
+//    if (resisttype === "magic") {
+//      return (this.resists[resisttype] + magicbonus);
+//    }
     return this.resists[resisttype];
   } 
   return 0;
