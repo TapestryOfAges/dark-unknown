@@ -1129,6 +1129,7 @@ function maps_set_exits(mapref) {
       this.setExitToMap(efrommap.getName());
       this.setExitToX(efromx);
       this.setExitToY(efromy);    
+      this.edited = 1;
       
       this.setReturn(efrommap.getName(), 69,74);
       if (efrommap.getName() !== "ellusus") {
