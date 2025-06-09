@@ -986,8 +986,10 @@ function RemoveKarmaPenaltyFromPaladins() {
   let map1 = maps.getMap("swainhil");
   let chest = map1.getTile(53,52).getTopFeature();
   chest.setKarmaPenalty(0);
+  delete chest.trapped;
   chest = map1.getTile(61,52).getTopFeature();
   chest.setKarmaPenalty(0);
+  delete chest.trapped;
 
   let map2 = maps.getMap("swainhil3");
   let fea = map2.features.getAll();
@@ -995,6 +997,7 @@ function RemoveKarmaPenaltyFromPaladins() {
     if (fea[i].getx() > 57) {
       if (fea[i].karmaPenalty) {
         fea[i].setKarmaPenalty(0);
+        delete fea[i].trapped;
       }
     }
   }
