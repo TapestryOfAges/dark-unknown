@@ -849,7 +849,10 @@ function DoPCDeath() {
 
 function GetOctant(diffx, diffy) {
   // diffx and diffy created via dest.x-start.x and dest.y-start.y
-  
+  if ((diffx === 0) && (diffy === 0)) {
+    return Dice.roll("1d8-1");
+  }
+
   if ((diffx === 0) && (diffy < 0)) {
     return 0;
   } else if ((diffx === 0) && (diffy > 0)) {
