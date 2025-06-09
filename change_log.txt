@@ -1,9 +1,33 @@
 
+v 0.10.16
+ * The sentinels in the Toshin tower maze are now wholly magic resistant
+ * When you do something rash that increases your int, there is a system message letting you know that that was a consequence
+ * Quake radius has gone from always 6 to ranging between 5-7 depending on your Int.
+ * Isaac will accept the Chalice back
+ * Lance has a response to QUEST, which is a keyword, and which varies depending on what he knows you need to do
+ * Fix to bug when you run out of things to sell to a merchant, which I introduced when I fixed a bug when you have nothing they want when you first say SELL
+
 v 0.10.15
  * Missed one of the chests in the paladins' tower, now they all have the karma penalty removed when appropriate
  * Fix to the descriptions of some items merchants will sell you or, more often, buy from you
  * Fix to volume controls in the options
  * Fix to description of where the Twist of Fate dungeon is
+ * Increased damage from drowning somewhat
+ * Hopefully fixed a rare lockup bug when starting conversation
+ * Map editor stops adding more and more nightshade to the swamp
+ * Scrolls of Return no longer let enemies take turns while it's animating
+ * Better breadcrumbs for what to do after the daemon summoning
+ * Fixed a bug that prevented people from sitting in their chairs at a certain group meeting
+ * Made it less likely that corpsers interfere with the cult stronghold scene
+ * Fixed errors with turning in bark to Asharden, and improved his dialog around this task
+ * Flying things don't mind swamps as much
+ * Saving on combat maps no longer corrupts the save
+ * Fixed a crash bug with the damage from Crystal Prison
+ * Fixed display of the benefit of Infusing Flame Blade
+ * If, for some reason, you cast Wall of Flame on yourself, the angle of the wall is randomized
+ * NPCs in combat will ignore creatures that are still hidden underground or are unrevealed mimics
+ * You can no longer attack enemies that are still hidden underground or are unrevealed mimics
+ * When you join the paladins, traps are removed from paladin chests
 
 v 0.10.14
  * Fixed a bug with the Paladin Initiation scene
