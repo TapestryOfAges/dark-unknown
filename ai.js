@@ -1276,7 +1276,7 @@ ais.PaladinCourier = function(who) {
   let retval = {};
   retval["fin"] = 1;
   if ((who.step === 1) && (GetSquareDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) === 1)) {
-    maintext.addText(`The courier calls to you: "${PC.getPCName()}, my ${PC.titled}! I come to you with a message from Lord Isaac of Swainhil. He bids you come to him in Swainhil. I am to say: you have passed the trails. Congratulations, and farewell!"`);
+    maintext.addText(`The courier calls to you: "${PC.getPCName()}, my ${PC.getGenderedTerms().titled}! I come to you with a message from Lord Isaac of Swainhil. He bids you come to him in Swainhil. I am to say: you have passed the trails. Congratulations, and farewell!"`);
     maintext.addText("She turns away, off to make her next delivery.");
     who.step = 2;
     DU.gameflags.setFlag("paladin_stage2",1);
@@ -2336,6 +2336,7 @@ ais.ai_cast = function(who) {
     npcs.push(PC);
   }
   for (let i=0;i<npcs.length;i++) {
+    if (npcs[i].invisible || npcs[i].specials.mimic) { continue; }
     if (GetDistance(who.getx(),who.gety(),npcs[i].getx(),npcs[i].gety()) < 5.5) {
       if (CheckAreEnemies(npcs[i],who)) {
         if (themap.getLOS(who.getx(), who.gety(), npcs[i].getx(), npcs[i].gety()) < LOS_THRESHOLD) {
