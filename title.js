@@ -137,16 +137,16 @@ function page_pre_zero() {
       let changelog = document.getElementById("changelog");
       if (changelog) {
         changelog.innerHTML = `<p class='charcreate'>CHANGELOG:</p><ul style='margin-top:0px>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed a bug with fading music that is already very quiet</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed a bug with Summon Ally that I introduced in the previous version</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed a bug with the second story Liche's Dominion map</li>`;
-//        changelog.innerHTML += `<li class='changelog'>Mimics don't lose track of whether they are visibly animating when you save/reload</li>`;
-//        changelog.innerHTML += `<li class='changelog'>Fixed an issue that can cause a conversation to keep looping</li>`;
-//        changelog.innerHTML += `<li class='changelog'>Fixed crash when loading in the Palace in the Skies</li>`;
-//        changelog.innerHTML += `<li class='changelog'>Flying and ethereal creatures no longer take damage while over lava</li>`;
-//        changelog.innerHTML += `<li class='changelog'>Drunk people can no longer stumble into a fireplace</li>`;
-//        changelog.innerHTML += `<li class='changelog'>NPCs should be much, much less willing than they already were (which wasn't much) to try to walk through a fireplace to get somewhere.</li>`;
-//        changelog.innerHTML += `<li class='changelog'>Fixed some Castle schedules</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fix to the descriptions for things merchants will buy from you</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fix to volume controls</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fix to description of where Twist of Fate dungeon is</li>`;
+        changelog.innerHTML += `<li class='changelog'>Scrolls of Return no longer let enemies take turns while it animates</li>`;
+        changelog.innerHTML += `<li class='changelog'>Flying things don't mind swamps as much</li>`;
+        changelog.innerHTML += `<li class='changelog'>Saving on combat maps no longer corrupts the save</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed a crash bug with the damage from Crystal Prison</li>`;
+        changelog.innerHTML += `<li class='changelog'>If you cast Wall of Flame on yourself, the angle of the wall is randomized</li>`;
+        changelog.innerHTML += `<li class='changelog'>Creatures that are hidden underground or unrevealed mimics are not valid combat options</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed rare lockup bug when starting a conversation</li>`;
         changelog.innerHTML += `</ul>`;
       }
     }
