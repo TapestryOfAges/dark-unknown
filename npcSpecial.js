@@ -79,12 +79,16 @@ MultiSegment.prototype.getResist = function(rtype) {
   return this.attachedTo.getResist(rtype);
 }
 
-MultiSegment.prototype.getDesc = function(rtype) {
-  return this.attachedTo.getDesc(rtype);
+MultiSegment.prototype.getDesc = function() {
+  return this.attachedTo.getDesc();
 }
 
-MultiSegment.prototype.getFullDesc = function(rtype) {
-  return this.attachedTo.getFullDesc(rtype);
+MultiSegment.prototype.getFullDesc = function() {
+  return this.attachedTo.getFullDesc();
+}
+
+MultiSegment.prototype.getLevel = function() {
+  return this.attachedTo.getLevel();
 }
 
 function HorseAndCartNPCTile() {
