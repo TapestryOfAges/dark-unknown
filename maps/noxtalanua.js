@@ -1270,7 +1270,7 @@ mappages["noxtalanua8"].onload = function(mapref) {
     walk1.message = "";
 
     let spawn = localFactory.createTile("Spawner");
-    let spawngroup = ["OrcNPC","OrcShamanNPC","OrcCaptain"];
+    let spawngroup = ["OrcNPC","OrcShamanNPC","OrcCaptainNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(5);
