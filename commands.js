@@ -559,7 +559,7 @@ function PerformCommand(code, ctrl) {
     let poisoned = PC.getSpellEffectsByName("Poison");
     let waithere = 1;
     if (poisoned) {
-      retval["txt"] = "You are poisoned- waiting might be a bad idea.";
+      retval["txt"] = "You are poisoned- waiting might be a poor idea.";
       retval["input"] = "&gt;";
       retval["fin"] = 2;
       waithere = 0;
