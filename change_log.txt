@@ -1,4 +1,20 @@
 
+v 0.10.18
+
+v 0.10.17
+ * Fixed bug in Asharden finally following his schedule
+ * Fixed bug where an unconscious Lance would still talk to you and not make sense
+ * Fixed bug with precursor wall LOS
+ * I have reconsidered and you can no longer cast Wall of Fire over water
+ * Storm will no longer strike unrevealed mimics or underground/underwater creatures
+ * Storm will no longer hang the game when it runs out of targets
+ * Creatures with electrical auras no longer crash the game when hit by Storm
+ * Fixed bug with using scrolls after Negating magic
+ * Fixed XP value for multi-tile creatures if you "kill" one of the secondary pieces
+ * More dialog improvements
+ * Fixed a crash bug with a post-[Redacted] schedule in Poverty 
+ * Fixed a crash bug with Mass Curse, and with Charm
+
 v 0.10.16
  * The sentinels in the Toshin tower maze are now wholly magic resistant
  * When you do something rash that increases your int, there is a system message letting you know that that was a consequence
@@ -6,6 +22,20 @@ v 0.10.16
  * Isaac will accept the Chalice back
  * Lance has a response to QUEST, which is a keyword, and which varies depending on what he knows you need to do
  * Fix to bug when you run out of things to sell to a merchant, which I introduced when I fixed a bug when you have nothing they want when you first say SELL
+ * [Redacted] won't get randomly restored sometimes after being destroyed
+ * Fixed quest entry that had outdated information
+ * Fixed a bug that could lock you out of completing the stolen bridle mystery
+ * Fixed bug trying to go down ladders in the Liche's Dominion
+ * Re-added two books to the library
+ * If you left while Asharden was getting you a book and then got the book from him later, it didn't properly have the Audachta Scribe spell in it
+ * Asharden now properly follows his schedule. Also his first floor is better lit
+ * Fixed a bug with the maze in Toshin's tower where the fact that you were using the console would become sticky
+ * When Jharden mentions his sanctum, it is now a keyword and he will tell you where it is
+ * Paladin quest "Do Good" is now properly replaced by the final quest in the chain
+ * Some dialog fixes
+ * Fixed a spawner definition in Nox Talanua
+ * Fixed bug in code to make sure the wall in the cult stronghold stays knocked down
+ * Fixed bug with trying to drink from the Brilliant Pool a second time
 
 v 0.10.15
  * Missed one of the chests in the paladins' tower, now they all have the karma penalty removed when appropriate

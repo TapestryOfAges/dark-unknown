@@ -137,16 +137,16 @@ function page_pre_zero() {
       let changelog = document.getElementById("changelog");
       if (changelog) {
         changelog.innerHTML = `<p class='charcreate'>CHANGELOG:</p><ul style='margin-top:0px>`;
-        changelog.innerHTML += `<li class='changelog'>Fix to the descriptions for things merchants will buy from you</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fix to volume controls</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fix to description of where Twist of Fate dungeon is</li>`;
-        changelog.innerHTML += `<li class='changelog'>Scrolls of Return no longer let enemies take turns while it animates</li>`;
-        changelog.innerHTML += `<li class='changelog'>Flying things don't mind swamps as much</li>`;
-        changelog.innerHTML += `<li class='changelog'>Saving on combat maps no longer corrupts the save</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed a crash bug with the damage from Crystal Prison</li>`;
-        changelog.innerHTML += `<li class='changelog'>If you cast Wall of Flame on yourself, the angle of the wall is randomized</li>`;
-        changelog.innerHTML += `<li class='changelog'>Creatures that are hidden underground or unrevealed mimics are not valid combat options</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed rare lockup bug when starting a conversation</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed bug in Asharden finally following his schedule</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed bug where an unconscious Lance would still talk to you and not make sense</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed bug with precursor wall LOS</li>`;
+        changelog.innerHTML += `<li class='changelog'>I have reconsidered and you can no longer cast Wall of Fire over water</li>`;
+        changelog.innerHTML += `<li class='changelog'>Storm will no longer strike unrevealed mimics or underground/underwater creatures</li>`;
+        changelog.innerHTML += `<li class='changelog'>Storm will no longer hang the game when it runs out of targets</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed bug with using scrolls after Negating magic</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed XP value for multi-tile creatures if you "kill" one of the secondary pieces</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed a crash bug with a post-[Redacted] schedule in Poverty </li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed a crash bug with Mass Curse, and with Charm</li>`;
         changelog.innerHTML += `</ul>`;
       }
     }
