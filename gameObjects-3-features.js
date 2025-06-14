@@ -6841,9 +6841,14 @@ BrilliantPoolTile.prototype.use = function(who) {
 BrilliantPoolTile.prototype.usePrompt = function(code) {
   let retval = {};
   retval["fin"] = 1;
+  if (code === 78) {
+    retval["txt"] = "You choose not to drink from the pool.";
+    retval["fin"] = 1;
+    return retval;
+  }
   if (DU.gameflags.getFlag("pool_drunk")) {
     retval["txt"] = "Having previously drunk of the pool, you are now too smart to dare try that again.";
-    retval["fin"] = 3;
+    retval["fin"] = 1;
     return retval;
   }
   if (code === 89) {
@@ -7131,7 +7136,7 @@ WhirlpoolTile.prototype.walkon = function(walker) {
       delete PC.whirly;
       delete PC.whirlmap;
     } else {
-      let newmap = maps.addMap("ellusus");
+      let newmap = maps.getMap("ellusus");
       MoveBetweenMaps(walker,themap,newmap,69,80);
     }
     DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
@@ -10898,20 +10903,20 @@ StormCloudTile.prototype.myTurn = function() {
   
   let caster = this.summonedBy;
   DebugWrite("magic", "Storm fires!");
-  let castermap = caster.getHomeMap();
-  let npcs = castermap.npcs.getAll();
+  let stormmap = this.getHomeMap();
+  let npcs = stormmap.npcs.getAll();
   let targetlist = [];
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
-    if (!val.frozenintime && CheckAreEnemies(caster,val)) {
-      if ((GetDistance(this.getx(), this.gety(), val.getx(), val.gety()) < 6) && (castermap.getLOS(this.getx(), this.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
+    if (!val.frozenintime && CheckAreEnemies(caster,val) && !val.invisible && !val.specials.mimic) {
+      if ((GetDistance(this.getx(), this.gety(), val.getx(), val.gety()) < 6) && (stormmap.getLOS(this.getx(), this.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
         targetlist.push(val);
       }
     }
   };
   if (targetlist.length) {
     PlayCastSound(caster,"sfx_thunder");
-    let display = getDisplayCenter(castermap, caster.getx(), caster.gety());
+    let display = getDisplayCenter(stormmap, caster.getx(), caster.gety());
     let cloud = new GameObject();
     cloud.x = display.centerx;
     cloud.y = display.topedge;
@@ -10937,14 +10942,14 @@ StormCloudTile.prototype.myTurn = function() {
     desc = desc.charAt(0).toUpperCase() + desc.slice(1);
     let descval = {txt: desc};
     let sounds = {};
-    let fromcoords = GetCoords(castermap,cloud.x, cloud.y);
-    let tocoords = GetCoords(castermap,targetlist[chosenidx].getx(), targetlist[chosenidx].gety());
+    let fromcoords = GetCoords(stormmap,cloud.x, cloud.y);
+    let tocoords = GetCoords(stormmap,targetlist[chosenidx].getx(), targetlist[chosenidx].gety());
     let duration = (Math.pow( Math.pow(targetlist[chosenidx].getx() - cloud.x, 2) + Math.pow (targetlist[chosenidx].gety() - cloud.y, 2)  , .5)) * 50;
     let destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
     AnimateEffect({atk:this, def:targetlist[chosenidx], fromcoords:fromcoords, tocoords:tocoords, ammographic:boltgraphic, destgraphic:destgraphic, sounds:sounds, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"lightning", doagain:[]});
         
     //WORKING HERE- check over
-  }
+  } else { return 1; }
   
   return 0;
 }
@@ -15647,6 +15652,7 @@ ScrollItemObject.prototype.getLongDesc = function() {
 }
 
 ScrollItemObject.prototype.use = function(who) {
+  let retval = {};
   if (DU.gameflags.getFlag("negate")[who.getHomeMap().getName()]) {
     retval["txt"] = "Magic has been negated, you cannot cast spells here.";
     retval["fin"] = 2;
@@ -15657,7 +15663,6 @@ ScrollItemObject.prototype.use = function(who) {
     
     return retval;
   }
-  let retval = {};
   retval = magic[this.spelllevel][this.spellnum].executeSpell(PC, 0, 1);
   if ((retval["fin"] === 4) || (retval["fin"] === 3) || (retval["fin"] === -1)) { 
     retval["override"] = 1; 
