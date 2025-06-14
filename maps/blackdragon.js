@@ -1095,6 +1095,15 @@ mappages["blackdragon_int"].onload = function(mapref) {
     let gate = mapref.getTile(12,38).getTopFeature();
     gate.unlockMe();
     gate.use();
+
+    let npcs = mapref.npcs.getAll();
+    let lance;
+    for (let i=0;i<npcs.length;i++) {
+      if (npcs[i].getName() === "PrinceNPC") { lance = npcs[i]; }
+    }
+    lance.setPeaceAI("deep_sleep");
+    lance.setCurrentAI("deep_sleep");
+
   }
 }
 
