@@ -439,6 +439,8 @@ mappages["hildendain"].features[366] = {name : 'TorchWest', x : 31, y : 36};
 mappages["hildendain"].features[367] = {name : 'TorchWest', x : 31, y : 40};
 mappages["hildendain"].features[368] = {name : 'TorchEast', x : 21, y : 36};
 mappages["hildendain"].features[369] = {name : 'TorchEast', x : 21, y : 40};
+mappages["hildendain"].features[370] = {name : 'HildendainTapestry', x : 24, y : 2};
+mappages["hildendain"].features[371] = {name : 'HildendainTapestry', x : 28, y : 2};
 
 mappages["hildendain"].npcs = [];
 mappages["hildendain"].npcs[0] = {name : 'PaladinNPC', x : 36, y : 6, NPCName: 'Warduke', Desc: 'ex-paladin', Prefix: 'an', PeaceAI: 'doNothing', Conversation: 'warduke', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"Plate","head":"BlueSolidHelm","back":"","offhand":"KiteShield","cloak":"","mainhand":"LongswordPale","realhead":"ShortBlackPale"}'};
