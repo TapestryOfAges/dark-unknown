@@ -679,6 +679,10 @@ OnConvTriggers["ash_get_book"] = function(speaker,keyword) {
   }        
 }
 
+OnConvTriggers["spellbook2"] = function(speaker,keyword) {
+  PC.addSpell(SPELL_AUDACHTA_SCRIBE_LEVEL, SPELL_AUDACHTA_SCRIBE_ID);
+}
+
 OnConvTriggers["anna_return"] = function(speaker,keyword) {
   let annamap = PC.getHomeMap(); // she has to be on the PC's map since they just talked to her
   let npcs = annamap.npcs.getAll();
@@ -905,6 +909,7 @@ OnConvTriggers["place_mal"] = function(speaker,keyword) {
   if (shelf.getName() !== "MapsAndLegends") {
     shelf.setSearchYield(["MapsAndLegends"]);
   }
+  DU.gameflags.deleteFlag("place_mal");
 }
 
 OnConvTriggers["place_tod"] = function(speaker,keyword) {
@@ -913,14 +918,33 @@ OnConvTriggers["place_tod"] = function(speaker,keyword) {
   if (shelf.getName() !== "ATreatiseOnDragons") {
     shelf.setSearchYield(["ATreatiseOnDragons"]);
   }
+  DU.gameflags.deleteFlag("place_tod");
 }
 
 OnConvTriggers["place_wod"] = function(speaker,keyword) {
-  let tile = speaker.getHomeMap().getTile(36,32);
+  let tile = speaker.getHomeMap().getTile(36,36);
   let shelf = tile.getTopFeature();
   if (shelf.getName() !== "AWarningOnDaemons") {
     shelf.setSearchYield(["AWarningOnDaemons"]);
   }
+  DU.gameflags.deleteFlag("place_wod");
+}
+
+OnConvTriggers["place_wim"] = function(speaker,keyword) {
+  let tile = speaker.getHomeMap().getTile(28,36);
+  let shelf = tile.getTopFeature();
+  if (shelf.getName() !== "WhatIsMagic") {
+    shelf.setSearchYield(["WhatIsMagic"]);
+  }
+  DU.gameflags.deleteFlag("place_wim");
+}
+
+OnConvTriggers["clear_returns"] = function(speaker,keyword) {
+  DU.gameflags.deleteFlag("clear_returns");
+  DU.gameflags.deleteFlag("place_wim");
+  DU.gameflags.deleteFlag("place_wod");
+  DU.gameflags.deleteFlag("place_tod");
+  DU.gameflags.deleteFlag("place_mal");
 }
 
 OnConvTriggers["warduke_engaged"] = function(speaker,keyword) {
