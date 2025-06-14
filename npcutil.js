@@ -626,7 +626,7 @@ function StepOrDoor(who, where, nopush, nodanger) {
   if (tile !== "OoB") {
     if (nodanger && tile.isHostileTo(who)) { return {canmove: 0 }; }
     let fea = tile.getTopFeature();
-    if (fea && !(MOVE_WALK & fea.getPassable()) && who.specials["open_door"] && ((who.currentActivity !== "WaitHere") || (who.getCurrentAI() !== "scheduled"))) {
+    if (fea && !(MOVE_WALK & fea.getPassable()) && who.specials["open_door"] && (((who.currentActivity !== "WaitHere") || who.waitLeashed) || (who.getCurrentAI() !== "scheduled"))) {
       // if there is a feature, that blocks movement, while I can open doors and am not randomwalking
       if (fea.closedgraphic) {
         // Destination tile has a door
