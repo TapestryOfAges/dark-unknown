@@ -1476,7 +1476,7 @@ mappages["yggdras1"].onload = function(mapref) {
       DUTime.removeEntityFrom(coll);  
     }
 
-    if (DU.gameflags.getFlag("guard_sent")) {
+    if (DU.gameflags.getFlag("guard_sent") && !DU.gameflags.getFlag("stolenjewelry_taken")) {
       let coll2 = localFactory.createTile("TownGuardNPC");
       coll2.setNPCName("Coll");
       coll2.setConversation("coll2");
