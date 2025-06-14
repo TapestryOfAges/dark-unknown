@@ -2004,7 +2004,7 @@ magic[SPELL_WALL_OF_FLAME_LEVEL][SPELL_WALL_OF_FLAME_ID].executeSpell = function
     return resp;
   }
 
-  CreateTargetCursor({sticky: 0, command:'c',spellName:'Wall of Flame',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "fullopen"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});        
+  CreateTargetCursor({sticky: 0, command:'c',spellName:'Wall of Flame',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "fullopennowater"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});        
   resp["txt"] = "";
   resp["input"] = "&gt; Choose where to conjure- ";
   resp["fin"] = 4;
@@ -2040,9 +2040,10 @@ function PerformWallOfFlame(caster, infused, free, tgt) {
   let expires = duration + DU.DUTime.getGameClock();
   
   // make the first firefield
-  let field1 = localFactory.createTile("FireField");
-  castermap.placeThing(tgt.x, tgt.y, field1)
-  field1.expiresTime = expires;
+  let field1 = TryToPlaceField(castermap, tgt.x, tgt.y, "FireField");
+  if (field1) {
+    field1.expiresTime = expires;
+  }
   
   // determine which direction it was, for whether the wall is diagonal, horizontal, or vertical.
   let dir = GetEffectGraphic(caster,field1,{}).fired;
@@ -4156,24 +4157,27 @@ magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].executeSpell = function(caste
     let resist = CheckResist(caster,val,infused,0);
     let curse = localFactory.createTile("Curse");
     let power = 2 + Math.floor(caster.getIntForPower()/5);
+    let desc;
     if (resist) {
       if (val === PC) {
         desc = "You resist, but are more vulnerable to magic.";
         // no X over the PC
       } else {
         ShowEffect(val, 700, "X.gif");
+        desc = val.getDesc() + " resists, but is more vulnerable to magic.";
       }       
       power = 2;
     } else {
       if (val === PC) {
         desc = "You are cursed! Your thoughts feel sluggish, you feel clumsier, and you feel weaker.";
+      } else {
+        desc = val.getDesc() + " is cursed!";
       }
     }
     let duration = 10 + Dice.roll("1d8") - val.getIntForPower()/4;
     curse.setPower(power);
     curse.setExpiresTime(duration*SCALE_TIME + DUTime.getGameClock());
     val.addSpellEffect(curse);          
-    desc = val.getDesc() + " is cursed!";
     ShowEffect(val, 1700, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
     
     desc = desc.charAt(0).toUpperCase() + desc.slice(1);
@@ -4182,6 +4186,7 @@ magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].executeSpell = function(caste
 
   if (cursed) { PlayCastSound(caster,"sfx_debuff"); }
   else { PlayCastSound(caster); }
+  maintext.drawTextFrame(); 
 
   return resp;
 }
@@ -4462,7 +4467,7 @@ function PerformCharm(caster, infused, free, tgt) {
       desc = "You resist.";
       // no X over the PC
     } else {
-      ShowEffect(val, 700, "X.gif");
+      ShowEffect(tgt, 700, "X.gif");
     }
     PlayCastSound(caster);
   }
@@ -5807,10 +5812,12 @@ function PerformSpellcast() {
       
     }
     
-  } else if ((targetCursor.spelldetails.targettype === "open") || (targetCursor.spelldetails.targettype === "fullopen")) {
+  } else if ((targetCursor.spelldetails.targettype === "open") || (targetCursor.spelldetails.targettype === "fullopen") || (targetCursor.spelldetails.targettype === "fullopennowater")) {
     let nonpcs = 0;
+    let mtype = MOVE_LEVITATE;
     if (targetCursor.spelldetails.targettype === "fullopen") { nonpcs = 1; }
-    let canmove = targettile.canMoveHere(MOVE_LEVITATE,nonpcs);
+    if (targetCursor.spelldetails.targettype === "fullopennowater") { nonpcs = 1; mtype = MOVE_WALK; }
+    let canmove = targettile.canMoveHere(mtype,nonpcs);
     if (!canmove["canmove"]) {
       resp["fin"] = 0;
       resp["txt"] = "You cannot cast there.";
