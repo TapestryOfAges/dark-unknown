@@ -13,7 +13,7 @@ let eidos = new Platonic();
 //var universe = new Object;
 
 let DU = {};
-DU.version = "0.10.16";
+DU.version = "0.10.18";
 
 DU.PC = new PCObject();
 DU.gamelength = 0;
@@ -816,7 +816,6 @@ function DoAction(code, ctrl) {
             gamestate.setMode("anykey");
           } else if ((targetCursor.command === "c") && (targetCursor.spellName === "Peer")) {
             // I think the only way we can get here is through using purple palm crystals
-            console.log("I'm here.");
             maintext.setInputLine("&gt;[MORE]");
             maintext.addText(resp["txt"]);
             gamestate.setMode("anykey");
@@ -1177,6 +1176,8 @@ function DoAction(code, ctrl) {
     if (((code >= 65) && (code <= 90)) || (code === 32)) {  // letter
       if (inputText.thing === "toshin") {
         let retval = PerformToshinAltar(code);
+        delete inputText.thing;
+        delete inputText.thingref;
         if (retval["fin"] === 2) {
           gamestate.setMode("player");
           gamestate.setTurn(PC);
