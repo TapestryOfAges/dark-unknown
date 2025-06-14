@@ -652,7 +652,7 @@ function TitanWallTLTile() {
   this.spritexoffset = -7*32;
   this.spriteyoffset = -56*32;
   this.passable = MOVE_ETHEREAL;
-  this.blocklos = .6;
+  this.blocklos = 2;
   this.prefix = "a";
   this.desc = "huge wall";
   this.peerview = "#ffffff";
@@ -666,7 +666,7 @@ function TitanWallTRTile() {
   this.spritexoffset = -8*32;
   this.spriteyoffset = -56*32;
   this.passable = MOVE_ETHEREAL;
-  this.blocklos = .6;
+  this.blocklos = 2;
   this.prefix = "a";
   this.desc = "huge wall";
   this.peerview = "#ffffff";
@@ -680,7 +680,7 @@ function TitanWallBLTile() {
   this.spritexoffset = -7*32;
   this.spriteyoffset = -57*32;
   this.passable = MOVE_ETHEREAL;
-  this.blocklos = .6;
+  this.blocklos = 2;
   this.prefix = "a";
   this.desc = "huge wall";
   this.peerview = "#ffffff";
@@ -694,7 +694,7 @@ function TitanWallBRTile() {
   this.spritexoffset = -7*32;
   this.spriteyoffset = -57*32;
   this.passable = MOVE_ETHEREAL;
-  this.blocklos = .6;
+  this.blocklos = 2;
   this.prefix = "a";
   this.desc = "huge wall";
   this.peerview = "#ffffff";
