@@ -397,6 +397,9 @@ OutOfContext.onLoadData((event,serialized) => {
   Listener = new DUListener();
   
   nowplaying = {};  
+  if (Object.keys(ambient).length) { // if ambient is not an empty object
+    DecAmbientVol(ambient);
+  }
   ambient = {};  
   let attaches = [];
   
