@@ -352,9 +352,11 @@ ais.WaitHere = function(who,params) {
     if (!params.leashLength) { params.leashLength = 0; }
     if (GetDistance(who.getx(),who.gety(),leashCenter.x,leashCenter.y) > params.leashLength) {
       let path = whomap.getPath(who.getx(),who.gety(),leashCenter.x,leashCenter.y,MOVE_WALK_DOOR);        
-      if (path) {
+      if (path.length) {
         path.shift();
+        who.waitLeashed = 1;
         StepOrSidestep(who,path[0], [leashCenter.x,leashCenter.y]);
+        delete who.waitLeashed;
         DebugWrite("schedules", "Tried to move toward the center of my leash.");
       } else {
         DebugWrite("schedules", "No path back into my leash.");
