@@ -1,5 +1,11 @@
 
 v 0.10.18
+ * Fixed a bug with Rhys arriving at the keep
+ * You can no longer Return from the extradimensional battleground
+ * Blink can no longer drop you on top of another NPC
+ * You no longer gain XP for killing yourself
+ * Anna uses the correct graphic to sleep on the floor if you arrive in town while she's asleep
+ * Move Opens Doors now opens locked doors when you have the key
 
 v 0.10.17
  * Fixed bug in Asharden finally following his schedule
