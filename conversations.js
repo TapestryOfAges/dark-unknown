@@ -1393,13 +1393,15 @@ OnConvTriggers["rhys_return"] = function(speaker,keyword) {
     rhys.setGraphic("305.gif");
     rhys.setConversation("rhys_group");
     rhys.setNPCName("Rhys");
-    let bdcmap = who.getHomeMap();
-    bdcmap.placeThing(28,35,rhys);
-    bdcmap.getTile(28,35).executeWalkons(rhys);
+    rhys.wornlayers = {};
+    rhys.wornlayers.body = "LeatherArmor";
     rhys.wornlayers.head = "ShortBlackDark";
     rhys.wornlayers.realhead = "ShortBlackDark";
     rhys.wornlayers.mainhand = "BowDark";
     rhys.wornlayers.offhand = "OffhandDark";
+    let bdcmap = who.getHomeMap();
+    bdcmap.placeThing(28,35,rhys);
+    bdcmap.getTile(28,35).executeWalkons(rhys);
 
     FadeOut();
     gamestate.setMode("null");
