@@ -2313,7 +2313,7 @@ magic[SPELL_BLINK_LEVEL][SPELL_BLINK_ID].executeSpell = function(caster, infused
     ShuffleArray(possdest);
     while (!success && possdest[0]) {
       let tile = castermap.getTile(possdest[0].x,possdest[0].y);
-      if ((tile !== "OoB") && (tile.canMoveHere(castermove, 1).canmove)) {
+      if ((tile !== "OoB") && (tile.canMoveHere(castermove, 0).canmove)) {
         let movetype = MOVE_WALK;
         if (castermove & MOVE_ETHEREAL) { movetype = MOVE_ETHEREAL; }
         else if (castermove & MOVE_FLY) { movetype = MOVE_FLY; }
