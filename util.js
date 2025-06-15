@@ -1266,6 +1266,11 @@ function BumpIntoDoor(door,who) {
   retval["msg"] = "Blocked!";
   retval["canmove"] = 0;
 
+  if (DU.gameflags.getFlag("move_opens_doors") && door.locked && door.keyname && (who === PC)) {
+    if (who.inventory.getByName(door.keyname)) {
+      door.unlockMe();
+    }
+  }
   if (DU.gameflags.getFlag("move_opens_doors") && !door.locked && (who === PC)) {
     door.use(who);
     retval["msg"] = "Open door!";
