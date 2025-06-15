@@ -666,9 +666,10 @@ mappages["hildendain"].onload = function(mapref) {
       }
     } else {
       if (anna) {
-        if (anna.getCurrentScheduleIndex() >= 9) {
+        if (anna.getCurrentScheduleIndex() >= 12) {
           // FIX THIS, she's trying to use an old graphic for sleep
-          anna.setGraphic("012.gif");
+//          anna.setGraphic("012.gif");
+          ais.SleepOnFloor(anna);
         }
       }
     }
