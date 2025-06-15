@@ -178,7 +178,7 @@ function FinishAnimation(param) {
       else if (param.atk.getName() === "BlackDragonNPC") { retval["txt"] += ": Unconscious!"; }
       else {retval["txt"] += ": Killed!"; }
         
-      if (param.def.getXPVal() && (param.atk === PC)) {
+      if (param.def.getXPVal() && (param.atk === PC) && (!param.def.checkType("pc"))) {
         retval["txt"] += " (XP gained: " + param.def.getXPVal() + ")";
       }
     }
