@@ -446,7 +446,7 @@ mappages["underworld"].onload = function(mapref) {
     mapref.placeThing(32,35,spawn);
 
     spawn = localFactory.createTile("Spawner");
-    spawngroup = ["RangerNPC","PaladinNPC","WizardNPC"];
+    spawngroup = ["RangerNPC","SpellbladeNPC","WizardNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(4);
