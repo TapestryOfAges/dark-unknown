@@ -566,7 +566,7 @@ mappages["swainhil"].onload = function(mapref) {
     }
     if (!DU.gameflags.getFlag("act2")) {
       let ian = mapref.getTile(25,10).getTopNPC();
-      if (ian && (ian.getNPCName() === "ian") ) { 
+      if (ian && (ian.getNPCName() === "Ian") ) { 
         mapref.deleteThing(ian); 
         DUTime.removeEntityFrom(ian);
       } else {
