@@ -740,8 +740,19 @@ ais.UseThing = function(who,params) {
 ais.CloseDoor = function(who,params) {
   let tile = who.getHomeMap().getTile(params.x,params.y);
   let thing = tile.getTopFeature();
-  if (typeof thing.use === "function") {
+  if (thing && (typeof thing.use === "function")) {
     if (thing.open) {
+      MakeUseHappen(who,thing,"map");
+    }
+  }
+  return {fin:1};
+}
+
+ais.OpenDoor = function(who,params) {
+  let tile = who.getHomeMap().getTile(params.x,params.y);
+  let thing = tile.getTopFeature();
+  if (thing && (typeof thing.use === "function")) {
+    if (!thing.open) {
       MakeUseHappen(who,thing,"map");
     }
   }
