@@ -3149,6 +3149,7 @@ function FireplaceTile() {
   this.prefix = "a";
 	this.desc = "fireplace";
 	this.pathweight = 20;
+  this.civilizedpathweight = 100; // always go around
   this.firedamage = "3d4";
 //  this.nowander = 1;
 	
@@ -3623,6 +3624,7 @@ function InAFireField(who, field) {
   let resist = who.getResist("magic");
   resist = 1-(resist/100);
   dmg = dmg*resist;
+  if (dmg < 0) { dmg = 0; }
   //who.dealDamage(dmg, this, "fire");
   DealandDisplayDamage(who,field, dmg, "fire");
   DebugWrite("gameobj", "Firefield deals " + dmg + " damage to " + who.getName() + ".");
