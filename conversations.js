@@ -692,6 +692,15 @@ OnConvTriggers["anna_return"] = function(speaker,keyword) {
   }
   if (!anna) { alert("Couldn't find Anna to change her AI."); }
   else {
+    if ((anna.getx() >= 5) && (anna.getx() <= 15) && (anna.gety() >= 42) && (anna.gety() <= 45)) {
+      let feas = annamap.getTile(14,41).getFeatures();
+      for (let i=0;i<=feas.length;i++) {
+        if (feas[i].getName().includes("Door")) {
+          feas[i].unlockMe();
+        }
+      }
+
+    }
     anna.setSchedule("anna_leaves");
     anna.setCurrentScheduleIndex(0);
   }
