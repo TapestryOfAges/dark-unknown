@@ -1,4 +1,15 @@
 
+v 0.10.19  
+ * Added more mountains around the edges of NW island
+ * Anna much less likely to be locked in when she wants to storm off
+ * Quest entry for Tyler's quest reminds you the passcode, and he'll tell you if you say code
+ * Trying to push something off the edge of the map no longer hangs the game
+ * The Rune of Flames no longer has a 50/50 chance of crashing
+ * Fixed Underworld spawn table that had a "paladin" rather than a "spellblade"
+ * Fixed some schedules involving secret doors
+ * You can no longer wait "until Sunup" if you are underground
+ * Ref Guide now mentions the uses for [?]
+
 v 0.10.18
  * Fixed a bug with Rhys arriving at the keep
  * You can no longer Return from the extradimensional battleground

@@ -137,15 +137,15 @@ function page_pre_zero() {
       let changelog = document.getElementById("changelog");
       if (changelog) {
         changelog.innerHTML = `<p class='charcreate'>CHANGELOG:</p><ul style='margin-top:0px>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed bug with Rhys arriving at the Keep</li>`;
-        changelog.innerHTML += `<li class='changelog'>You can no longer Return from the extradimensional battleground</li>`;
-        changelog.innerHTML += `<li class='changelog'>Blink can no longer drop you on top of another NPC</li>`;
-        changelog.innerHTML += `<li class='changelog'>You no longer gain XP for killing yourself</li>`;
-        changelog.innerHTML += `<li class='changelog'>Anna uses the correct graphic to sleep on the floor if you arrive in town while she's asleep</li>`;
-        changelog.innerHTML += `<li class='changelog'>Move Opens Doors now opens locked doors when you have the key</li>`;
-//        changelog.innerHTML += `<li class='changelog'>Fixed bug with using scrolls after Negating magic</li>`;
-//        changelog.innerHTML += `<li class='changelog'>Fixed XP value for multi-tile creatures if you "kill" one of the secondary pieces</li>`;
-//        changelog.innerHTML += `<li class='changelog'>Fixed a crash bug with a post-[Redacted] schedule in Poverty </li>`;
+        changelog.innerHTML += `<li class='changelog'>Added more mountains around the edges of the NW island</li>`;
+        changelog.innerHTML += `<li class='changelog'>Anna much less likely to be locked in when she wants to storm off</li>`;
+        changelog.innerHTML += `<li class='changelog'>Quest entry for Tyler's quest reminds you the passcode</li>`;
+        changelog.innerHTML += `<li class='changelog'>Tyler will remind you if you say CODE</li>`;
+        changelog.innerHTML += `<li class='changelog'>Trying to push something off the edge of the map no longer hangs the game</li>`;
+        changelog.innerHTML += `<li class='changelog'>The Rune of Flames no longer has a 50/50 chance of crashing</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed Underworld spawn table that still had "paladin" rather than "spellblade"</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed some schedules involving secret doors</li>`;
+        changelog.innerHTML += `<li class='changelog'>You can no longer wait "until sunup" if you are underground</li>`;
 //        changelog.innerHTML += `<li class='changelog'>Fixed a crash bug with Mass Curse, and with Charm</li>`;
         changelog.innerHTML += `</ul>`;
       }
