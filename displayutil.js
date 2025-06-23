@@ -269,6 +269,13 @@ function SortDisplayTiles(disparray) {
   return disparray;
 }
 
+function TransitionTerrain(graphic, mapref, x, y) {
+  if (!mapref.transover) { return graphic; }
+  let override = mapref.transover[`${x},${y}`];
+  if (override) { return override;}
+  else { return graphic; }
+}
+
 function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev, skipfeatures, skipnpcs, skipseebelow) {
 
   let baseStack = [];
