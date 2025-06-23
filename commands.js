@@ -564,7 +564,8 @@ function PerformCommand(code, ctrl) {
       retval["fin"] = 2;
       waithere = 0;
     }
-    let tile = PC.getHomeMap().getTile(PC.getx(),PC.gety());
+    let waitmap = PC.getHomeMap();
+    let tile = waitmap.getTile(PC.getx(),PC.gety());
     if ((tile.getTerrain().getName() === "Ocean") || ((tile.getTerrain().getName() === "Water") && !tile.isBridge()) || ((tile.getTerrain().getName() === "Shallows") && !tile.isBridge()) || tile.isHostileTo(PC)) {
       retval["txt"] = "This is not the best place to wait around.";
       retval["input"] = "&gt;";
@@ -574,7 +575,11 @@ function PerformCommand(code, ctrl) {
     if (waithere) {
       gamestate.setMode("anykey");
       targetCursor.command = 'w';
-      retval['input'] = "Wait - how many hours (1-9, S=sunup)? ";
+      if (waitmap.getUnderground()) {
+        retval['input'] = "Wait - how many hours (1-9)? ";
+      } else {
+        retval['input'] = "Wait - how many hours (1-9, S=sunup)? ";
+      }
       retval["fin"] = 2;
     }
 	}
@@ -1609,7 +1614,7 @@ function PerformRuneChoice() {
         DebugWrite("magic", "End time is " + endtime + ".<br />");
         prot.setExpiresTime(endtime);
         prot.setPower(power);
-        PC.addSpellEffect(prot, Math.max(0, free) );
+        PC.addSpellEffect(prot,1);
         ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
         PlayCastSound(caster,"sfx_flame_armor");
       } else if (flip === 2) {  // not putting else here to remind me to add more options if I think of them
