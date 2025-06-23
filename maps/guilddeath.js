@@ -38,7 +38,7 @@ mappages["fulcrum1"].terrain[31] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK
 
 mappages["fulcrum1"].features = [];
 mappages["fulcrum1"].features[0] = {name : 'GreyDoorway', x : 16, y : 14};
-mappages["fulcrum1"].features[1] = {name : 'LadderUp', x : 16, y : 18, entermap : 'ellusus', enterx : 69, entery : 96};
+mappages["fulcrum1"].features[1] = {name : 'LadderUp', x : 16, y : 18, entermap : 'ellusus', enterx : 54, entery : 94};
 
 
 mappages["fulcrum1"].npcs = [];
