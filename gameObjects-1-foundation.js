@@ -536,7 +536,7 @@ function Pushable() {
       let diffy = this.gety() - who.gety();
       let objmap = who.getHomeMap();
       let pushto = objmap.getTile(this.getx()+diffx,this.gety()+diffy);
-      if (pushto === "OoB") { return this.pullMe(); }
+      if (pushto === "OoB") { return this.pullMe(who); }
       let canmove = pushto.canMoveHere(MOVE_WALK);
       let canpush = 0;
       if (canmove["canmove"]) {
@@ -1807,6 +1807,52 @@ function SetBySurroundRiver() {
 		}
 		return graphics;
 	}
+}
+
+function SetBySurroundTransition(tile,x,y,themap,graphics,checklos,fromx,fromy,losresult,terrainname) {
+  let matches = {};
+
+  let get_t_ind = function(ter) {
+    let order = ["Mountain", "Hills", "Forest", "Swamp", "Cave", "Grass", "Meadow", "Dirt", "Sand"];
+    for (let i=0;i<order.length;i++) {
+      if (order[i].includes(ter)) { return i; }
+    }
+    return -1;
+  }
+
+  let myind = get_t_ind(terrainname);
+
+  let north_t, south_t, east_t, west_t;
+  let north = themap.getTile(x,y-1);
+  if (north !== "OoB") {
+    north_t = north.getTerrain().getName();
+    if (north_t.includes("Brush") || north_t.includes("Underbrush")) { north_t = "Grass"; }
+  } else { north_t = "OoB"; }
+  let east = themap.getTile(x+1,y);
+  if (east !== "OoB") {
+    east_t = east.getTerrain().getName();
+    if (east_t.includes("Brush") || east_t.includes("Underbrush")) { east_t = "Grass"; }
+  } else { east = "OoB"; }
+  let west = themap.getTile(x-1,y);
+  if (west !== "OoB") {
+    west_t = west.getTerrain().getName();
+    if (west_t.includes("Brush") || west_t.includes("Underbrush")) { west_t = "Grass"; }
+  } else { west_t = "OoB"; }
+  let south = themap.getTile(x,y+1);
+  if (south !== "OoB") {
+    south_t = south.getTerrain().getName();
+    if (south_t.includes("Brush") || south_t.includes("Underbrush")) { south_t = "Grass"; }
+  } else { south_t = "OoB"; }
+
+  if (get_t_ind(north_t) <= myind) { matches.n = 1; } 
+  else { matches.n = 0; }
+  if (get_t_ind(east_t) <= myind) { matches.e = 1; } 
+  else { matches.e = 0; }
+  if (get_t_ind(south_t) <= myind) { matches.s = 1; } 
+  else { matches.s = 0; }
+  if (get_t_ind(west_t) <= myind) { matches.w = 1; } 
+  else { matches.w = 0; }
+  
 }
 
 // General func
