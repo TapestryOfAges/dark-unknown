@@ -16157,7 +16157,7 @@ function AudachtaNemesosObject() {
   this.spellnum = 0;
   this.flammable = 40;
 }
-AudachtaNemesosObject.prototype = new ConsumableItemObject();
+AudachtaNemesosObject.prototype = new ItemObject();
 
 AudachtaNemesosObject.prototype.getLongDesc = function() {
   let spellname = magic[this.spelllevel][this.spellnum].getName();
