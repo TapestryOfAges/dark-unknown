@@ -1,4 +1,10 @@
 
+v 0.10.20
+ * Waiting no longer fails to fade out under certain circumstances
+ * More schedule fixes
+ * Audachta Nemeses are no longer Usable items
+
+
 v 0.10.19  
  * Added more mountains around the edges of NW island
  * Anna much less likely to be locked in when she wants to storm off
