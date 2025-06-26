@@ -722,10 +722,10 @@ function PerformMend(caster,infused,free,tgt) {
 
 // Vulnerability
 magic[SPELL_VULNERABILITY_LEVEL][SPELL_VULNERABILITY_ID].getLongDesc = function() {
-  return "Decreases the target's chance to avoid an attack by 10%.";
+  return "Decreases the target's chance to avoid an attack by 15%.";
 }
 magic[SPELL_VULNERABILITY_LEVEL][SPELL_VULNERABILITY_ID].getInfusedDesc = function() {
-  return "Increases the duration, and the decrease becomes 15%.";
+  return "Increases the duration, and the decrease becomes 25%.";
 }
 
 magic[SPELL_VULNERABILITY_LEVEL][SPELL_VULNERABILITY_ID].executeSpell = function(caster, infused, free, tgt) {
@@ -790,8 +790,8 @@ function PerformVulnerability(caster, infused, free, tgt) {
       desc = "You are vulnerable!";
     }
     vulobj.setExpiresTime(dur + DUTime.getGameClock());
-    let power = 10;
-    if (infused) { power = 15; }
+    let power = 15;
+    if (infused) { power = 25; }
     vulobj.setPower(power);
     tgt.addSpellEffect(vulobj, Math.max(0,free-1) );
     PlayCastSound(caster,"sfx_debuff");
@@ -1210,11 +1210,21 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
   
   let anyonepoisoned = 0;
   let potential_targets = tgtmap.getNPCsAndPCs();
+
+  let AoETargets = new AoETargetList();
   
   for (let i=0;i<potential_targets.length;i++) {
     let val=potential_targets[i];
-    if ((GetDistance(val.getx(),val.gety(),tgt.x,tgt.y) < radius) && (val !== caster) && (!val.frozenintime)) {
+    if ((GetDistance(val.getx(),val.gety(),tgt.x,tgt.y) <= radius) && (val !== caster) && (!val.frozenintime)) {
       if (tgtmap.getLOS(val.getx(),val.gety(),tgt.x,tgt.y,1) < LOS_THRESHOLD) {
+        if (val.attachedTo) {
+          if (!AoETargets.AddID(val.attachedTo.getSerial())) {
+            continue;
+          }
+        } else {
+          // this should never trigger
+          if (!AoETargets.AddID(val.getSerial())) { continue; }
+        }
         anyonepoisoned = 1;
         if (!IsNonLiving(val)) { val.setHitBySpell(caster,1); }  // using 1 as spell level because multi target
         if (val.getSpellEffectsByName("Poison") || CheckResist(caster,val,infused,0) || IsNonLiving(val)) {
@@ -1484,10 +1494,21 @@ magic[SPELL_DISRUPT_UNDEAD_LEVEL][SPELL_DISRUPT_UNDEAD_ID].executeSpell = functi
   let hitany = 0;
   let hitcount = 0;
   let hitlist = [];
+
+  let AoETargets = new AoETargetList();
+
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     if ((val.special.indexOf("undead") > -1) && !val.frozenintime) {
-      if (GetDistance(val.getx(),val.gety(), caster.getx(), caster.gety()) < 7) {
+      if (GetDistance(val.getx(),val.gety(), caster.getx(), caster.gety()) <= 6) {
+        if (val.attachedTo) {
+          if (!AoETargets.AddID(val.attachedTo.getSerial())) {
+            continue;
+          }
+        } else {
+          // this should never trigger
+          if (!AoETargets.AddID(val.getSerial())) { continue; }
+        }
         hitcount++;
         hitlist.push(val);
         let tmpdmg = prepareSpellDamage(caster,val,DMG_MEDIUM,"force");
@@ -2746,6 +2767,11 @@ magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID].executeSpell = function(caster, infused
   if (infused) { radius = 4; }
   let foes = GetAllWithin("npcs",radius,caster.getHomeMap(),{x: caster.getx(), y: caster.gety()},"loe");
   foes = ShuffleArray(foes);
+
+  for (let i=foes.length-1;i>=0;i--) {
+    // remove multi-tile segments
+    if (foes.hasOwnProperty("attachedTo")) { foes.splice(i,1); } 
+  }
   
   if (!foes[0]) {
     resp["txt"] = "No enemies nearby.";
