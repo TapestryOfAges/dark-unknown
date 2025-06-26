@@ -534,11 +534,22 @@ magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell = function(caster, i
   let castermap = caster.getHomeMap();
   let npcs = castermap.getNPCsAndPCs();
   let distracted = 0;
+
+  let AoETargets = new AoETargetList();
+
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     if (CheckAreEnemies(val,caster) && !val.frozenintime) {   // only affect enemies who are not Vault frozen in time
-      val.setHitBySpell(caster,SPELL_DISTRACT_LEVEL);
-      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
+      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) <= radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
+        if (val.attachedTo) {
+          if (!AoETargets.AddID(val.attachedTo.getSerial())) {
+            continue;
+          }
+        } else {
+          // this should never trigger
+          if (!AoETargets.AddID(val.getSerial())) { continue; }
+        }
+        val.setHitBySpell(caster,SPELL_DISTRACT_LEVEL);
         let desc = "";
         if (!CheckResist(caster,val,infused,0)) {
           let distract = localFactory.createTile("Distract");
@@ -6126,4 +6137,22 @@ function PlayCastSound(caster,sfxname) {
       setTimeout(function() { DUPlaySound(sfxname); }, 300); 
     }
   }
+}
+
+class AoETargetList {
+  constructor() {
+    this.targetList = [];
+  } 
+
+  AddID(idval) {
+    if (this.targetList.includes(idval)) {
+      console.log(id + " is already on targetList.");
+      return false;
+    } else {
+      this.targetList.push(idval);
+      console.log(this.targetList);
+      return true;
+    }
+  }
+  
 }
