@@ -3,6 +3,7 @@ v 0.10.20
  * Waiting no longer fails to fade out under certain circumstances
  * More schedule fixes
  * Audachta Nemeses are no longer Usable items
+ * Vulnerability now imposes a 15/25% penalty to the enemy's AC
 
 
 v 0.10.19  
