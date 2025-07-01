@@ -1621,6 +1621,10 @@ GameMap.prototype.saveMap = function (name) {
     let jsflow = JSON.stringify(flow);
     printerwin.document.write(`<br />\n${name}.flow = '${jsflow}';<br />\n`);
   }
+  if (this.transover) { 
+    let transjson = JSON.stringify(this.transover);
+    printerwin.document.write(`<br />\n${name}.transover = '${transjson}';<br />\n`);
+  }
   printerwin.document.write("<br />\n" + name + ".desc = \"" + this.getDesc() + "\";<br />\n");
   printerwin.document.write(name + ".longdesc = `" + this.getLongDesc() + "`;<br />\n");
   printerwin.document.write(name + ".music = '" + this.getMusic() + "';<br />\n");
@@ -1721,6 +1725,9 @@ GameMap.prototype.loadMap = function (name) {
     } else {
       this.allLabels = {};
     }
+  }
+  if (mappages.readPage(name,"transover")) {
+    this.transover = JSON.parse(mappages.readPage(name, "transover"));
   }
   if (!DU.gameflags.getFlag("editor")) {
     if(mappages.readPage(name, "enterscript")) {
