@@ -3567,6 +3567,7 @@ FireFieldTile.prototype.activate = function() {
     let mytile = this.getHomeMap().getTile(this.getx(),this.gety());
     let npcs = mytile.getNPCs();
     for (let i=0;i<npcs.length;i++) {
+      if (npcs[i].getName() === "TitanHeadSegment") { continue; }
       InAFireField(npcs[i], this);
     }
 
@@ -3618,12 +3619,22 @@ FireFieldTile.prototype.myTurn = function() {
 }
 
 function InAFireField(who, field) {
+  let mult = 1;
+  if (who.attachedTo || who.attachedParts) {
+    // multitile monster
+    let allpieces = [];
+    if (who.attachedTo) {
+      allpieces = who.attachedTo.attachedParts;
+    } else {
+      allpieces = who.attachedParts;
+    }
+  }
   let tmpdmg = prepareSpellDamage(field,who,"2d6+3","fire");
   let dmg = (1/SCALE_TIME)*(DUTime.getGameClock() - who.getLastTurnTime()) * tmpdmg.dmg;
   let response = {msg:"The fire field burns you!"};
   let resist = who.getResist("magic");
   resist = 1-(resist/100);
-  dmg = dmg*resist;
+  dmg = dmg*resist*mult;
   if (dmg < 0) { dmg = 0; }
   //who.dealDamage(dmg, this, "fire");
   DealandDisplayDamage(who,field, dmg, "fire");
