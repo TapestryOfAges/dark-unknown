@@ -4,7 +4,10 @@ v 0.10.20
  * More schedule fixes
  * Audachta Nemeses are no longer Usable items
  * Vulnerability now imposes a 15/25% penalty to the enemy's AC
-
+ * Knockback effects should no longer be able to split up multi-tile monsters
+ * AoEs should no longer double-count multi-tile monsters
+ * Titan heads cannot be considered to be in a fire field
+ * Walls of Fire no longer deal damage to each part of a multi-tile monster that is standing in the fire
 
 v 0.10.19  
  * Added more mountains around the edges of NW island
