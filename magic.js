@@ -3192,6 +3192,9 @@ magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].executeSpell = function(caster,
   let npclist = [];
   let npcdir = [];
   PlayCastSound(caster,"sfx_thunder");
+
+  let AoETargets = new AoETargetList();
+
   let spellmap = caster.getHomeMap();
   for (let xdiff=-1; xdiff<=1; xdiff++) {
     for (let ydiff=-1;ydiff<=1; ydiff++) {
@@ -3200,6 +3203,15 @@ magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].executeSpell = function(caster,
       if (tile !== "OoB") {
         let badguy = tile.getTopNPC();
         if (badguy && !badguy.frozenintime) {
+          if (badguy.attachedTo) {
+            if (!AoETargets.AddID(badguy.attachedTo.getSerial())) {
+              continue;
+            }
+          } else {
+            // this should never trigger
+            if (!AoETargets.AddID(badguy.getSerial())) { continue; }
+          }
+          if (badguy.attachedTo) { badguy = badguy.attachedTo; }
           npclist.push(badguy);
           npcdir.push([xdiff,ydiff]);
         }
@@ -3439,6 +3451,8 @@ function PerformSwordstrike(caster, infused, free, tgt) {
   tgt.setHitBySpell(caster,SPELL_SWORDSTRIKE_LEVEL);
   if (tgt !== PC) { tgt.setAggro(1); }
   
+  let AoETargets = new AoETargetList();
+
   for (let diffx = -1; diffx <=1; diffx++) {
     for (let diffy = -1; diffy <=1; diffy++) {
       if ((diffx === 0) && (diffy === 0)) { continue; }
@@ -3454,6 +3468,14 @@ function PerformSwordstrike(caster, infused, free, tgt) {
       let tile = castmap.getTile(tgt.getx()+diffx,tgt.gety()+diffy);
       let badguy = tile.getTopNPC();
       if (badguy) {
+        if (badguy.attachedTo) {
+          if (!AoETargets.AddID(badguy.attachedTo.getSerial())) {
+            continue;
+          }
+        } else {
+          // this should never trigger
+          if (!AoETargets.AddID(badguy.getSerial())) { continue; }
+        }
         let tmpdmg = prepareSpellDamage(caster,badguy,DMG_LIGHT,"physical");
         dmg = tmpdmg.dmg;
         if (CheckResist(caster,badguy,infused,0)) { dmg = dmg/2+1; }
@@ -4006,6 +4028,8 @@ function PerformExplosion(caster, infused, free, tgt) {
   PlayCastSound(caster,"sfx_explosion");
   let tgtcount = 0;
   let tgtlist = [];
+  let AoETargets = new AoETargetList();
+
   for (let diffx = -1; diffx <=1; diffx++) {
     for (let diffy = -1; diffy <=1; diffy++) {
 //      if ((diffx === 0) && (diffy === 0)) { continue; }
@@ -4022,6 +4046,15 @@ function PerformExplosion(caster, infused, free, tgt) {
       let tile = castmap.getTile(tgt.x+diffx,tgt.y+diffy);
       let badguy = tile.getTopNPC();
       if (badguy) {
+        if (badguy.attachedTo) {
+          if (!AoETargets.AddID(badguy.attachedTo.getSerial())) {
+            ShowEffect(0, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y, {x:tgt.x+diffx, y:tgt.y+diffy, map:caster.getHomeMap()});
+            continue;
+          }
+        } else {
+          // this should never trigger
+          if (!AoETargets.AddID(badguy.getSerial())) { continue; }
+        }
         tgtcount++;
         tgtlist.push(badguy);
       } else {
@@ -4097,10 +4130,20 @@ function PerformConfusion(caster, infused, free, tgt) {
   let someonejinxed = 0;
   let tgtcount = 0;
   let tgtlist = [];
+  let AoETargets = new AoETargetList();
+
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     if (!val.frozenintime && CheckAreEnemies(caster,val)) {
       if ((GetDistance(tgt.x, tgt.y, val.getx(), val.gety()) < radius) && (castermap.getLOS(tgt.x, tgt.y, val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
+        if (val.attachedTo) {
+          if (!AoETargets.AddID(val.attachedTo.getSerial())) {
+            continue;
+          }
+        } else {
+          // this should never trigger
+          if (!AoETargets.AddID(val.getSerial())) { continue; }
+        }
         tgtcount++;
         tgtlist.push(val);
       }
@@ -4176,11 +4219,21 @@ magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].executeSpell = function(caste
   let cursed = 0;
   let tgtlist = [];
   let tgtcount = 0;
+  let AoETargets = new AoETargetList();
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     let desc;
     if (!val.frozenintime && CheckAreEnemies(caster,val)) {
-      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
+      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) <= radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
+        if (val.attachedTo) {
+          if (!AoETargets.AddID(val.attachedTo.getSerial())) {
+            continue;
+          }
+        } else {
+          // this should never trigger
+          if (!AoETargets.AddID(val.getSerial())) { continue; }
+        }
+
         tgtcount++;
         tgtlist.push(val);
       }
@@ -4376,8 +4429,18 @@ magic[SPELL_QUAKE_LEVEL][SPELL_QUAKE_ID].executeSpell = function(caster, infused
   PlayCastSound(caster,"sfx_earthquake");
   Earthquake();
   PlayCastSound(caster,"sfx_default_hit");
+  let AoETargets = new AoETargetList();
   for (let i=0; i<foes.length; i++) {
     if (foes[i] && !foes[i].frozenintime) {
+      if (val.attachedTo) {
+        if (!AoETargets.AddID(val.attachedTo.getSerial())) {
+          continue;
+        }
+      } else {
+        // this should never trigger
+        if (!AoETargets.AddID(val.getSerial())) { continue; }
+      }
+
       foes[i].setHitBySpell(caster,Math.max(Math.floor(SPELL_QUAKE_LEVEL/foes.length),1));
       let tmpdmg = prepareSpellDamage(caster,foes[i],DMG_MEDIUM,"force");
       let dmg = tmpdmg.dmg;
@@ -4547,12 +4610,22 @@ magic[SPELL_FEAR_LEVEL][SPELL_FEAR_ID].executeSpell = function(caster, infused, 
   let npcs = castermap.getNPCsAndPCs();
   let afeared = 0;
   let tgtcount = 0;
+  let AoETargets = new AoETargetList();  
   let tgtlist = [];
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     let desc;
     if (!val.frozenintime && CheckAreEnemies(caster,val)) {
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
+        if (val.attachedTo) {
+          if (!AoETargets.AddID(val.attachedTo.getSerial())) {
+            continue;
+          }
+        } else {
+          // this should never trigger
+          if (!AoETargets.AddID(val.getSerial())) { continue; }
+        }
+
         tgtcount++;
         tgtlist.push(val);
       }
@@ -4626,14 +4699,12 @@ magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].executeSpell = function(c
     return resp;
   }
 
-  PlayCastSound(caster,"sfx_fire_ice");
-
-  let where = GetCoords(caster.getHomeMap(),caster.getx(), caster.gety());
-  
+  PlayCastSound(caster,"sfx_fire_ice");  
 
   let centerx = caster.getx();
   let centery = caster.gety();
   let castermap = caster.getHomeMap();
+  let AoETargets = new AoETargetList();
   let foelist = [];
   for (let i=centerx-1;i<=centerx+1;i++) {
     for (let j=centery-1;j<=centery+1;j++) {
@@ -4641,6 +4712,15 @@ magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].executeSpell = function(c
         let tile = castermap.getTile(i,j);
         let tgt = tile.getTopVisibleNPC();
         if (tgt && !tgt.frozenintime) {
+          if (val.attachedTo) {
+            if (!AoETargets.AddID(val.attachedTo.getSerial())) {
+              continue;
+            }
+          } else {
+            // this should never trigger
+            if (!AoETargets.AddID(val.getSerial())) { continue; }
+          }
+
           foelist.push(tgt);
         }
       }
@@ -4668,52 +4748,6 @@ magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].executeSpell = function(c
   }
   
   return resp;
-
-//  PlayRing(caster,"firering.png", {}, 1, "icering.png", function(center) {
-//    let centerx = center.getx();
-//    let centery = center.gety();
-//    let castermap = center.getHomeMap();
-//    for (let i=centerx-1;i<=centerx+1;i++) {
-//      for (let j=centery-1;j<=centery+1;j++) {
-//        if ((i!==centerx)||(j!==centery)) {
-//          let tile = castermap.getTile(i,j);
-//          let tgt = tile.getTopVisibleNPC();
-//          if (tgt && !tgt.frozenintime) {
-//            let tmpdmg = prepareSpellDamage(caster,tgt,DMG_HEAVY,"fire");
-//            let dmg = tmpdmg.dmg;
-//            if (CheckResist(center,tgt,0,0)) {
-//              dmg = Math.floor(dmg/2);
-//            }
-//            DealandDisplayDamage(tgt,caster,dmg,"fire");
-//            if (tgt !== PC) { tgt.setAggro(1); }
-//            tgt.setHitBySpell(caster,SPELL_FIRE_AND_ICE_LEVEL);
-//          }
-//        }
-//      }
-//    }
-//  }, function(center) {
-//    let centerx = center.getx();
-//    let centery = center.gety();
-//    let castermap = center.getHomeMap();
-//    for (let i=centerx-1;i<=centerx+1;i++) {
-//      for (let j=centery-1;j<=centery+1;j++) {
-//        if ((i!==centerx)||(j!==centery)) {
-//          let tile = castermap.getTile(i,j);
-//          let tgt = tile.getTopVisibleNPC();
-//          if (tgt) {
-//            if (!CheckResist(center,tgt,0,0)) {
-//              let freeze = localFactory.createTile("Frozen");
-//              freeze.setPower(1);
-//              freeze.setExpiresTime(Dice.roll("1d3+1")*SCALE_TIME + DUTime.getGameClock());
-//              tgt.addSpellEffect(freeze);
-//              let desc = tgt.getDesc() + " is frozen!";
-//              maintext.addText(desc);
-//            }
-//          }
-//        }
-//     }
-//    }    
-//  });
 
 }
 
@@ -4785,13 +4819,23 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(c
   let display = getDisplayCenter(PC.getHomeMap(), PC.getx(), PC.gety());
   let npccount = 0;
   let npclist = [];
+  let AoETargets = new AoETargetList();
   PlayCastSound(caster,"sfx_explosion");
 
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     if (!val.frozenintime && CheckAreEnemies(caster,val)) {
       let dist = GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety());
-      if ((dist < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
+      if ((dist <= radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
+        if (val.attachedTo) {
+          if (!AoETargets.AddID(val.attachedTo.getSerial())) {
+            continue;
+          }
+        } else {
+          // this should never trigger
+          if (!AoETargets.AddID(val.getSerial())) { continue; }
+        }
+
         npccount++;
         let npcobj = {npc: val, distance: dist};
         npclist.push(npcobj);
@@ -5293,11 +5337,21 @@ magic[SPELL_CONFLAGRATION_LEVEL][SPELL_CONFLAGRATION_ID].executeSpell = function
   let display = getDisplayCenter(PC.getHomeMap(), PC.getx(), PC.gety());
   let npccount = 0;
   let npclist = [];
+  let AoETargets = new AoETargetList();
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     let desc;
     if (!val.frozenintime && CheckAreEnemies(caster,val)) {
-      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
+      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) <= radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
+        if (val.attachedTo) {
+          if (!AoETargets.AddID(val.attachedTo.getSerial())) {
+            continue;
+          }
+        } else {
+          // this should never trigger
+          if (!AoETargets.AddID(val.getSerial())) { continue; }
+        }
+
         npccount++;
         npclist.push(val);
       }
@@ -6172,7 +6226,7 @@ class AoETargetList {
 
   AddID(idval) {
     if (this.targetList.includes(idval)) {
-      console.log(id + " is already on targetList.");
+      console.log(idval + " is already on targetList.");
       return false;
     } else {
       this.targetList.push(idval);
