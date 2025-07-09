@@ -3628,6 +3628,17 @@ function InAFireField(who, field) {
     } else {
       allpieces = who.attachedParts;
     }
+    let ffcount = 1;
+    for (let i=0;i<allpieces.length;i++) {
+      if (allpieces[i].noidle) { continue; } 
+      let where = who.getHomeMap().getTile(allpieces[i].getx(),allpieces[i].gety()).getAllFeatures();
+      for (let j=0;j<where.length;j++) {
+        if (where[j].getName() === "FireField") { ffcount++; }
+      }
+    }
+    mult = 1/ffcount;
+    // find out how many sections are in fire fields. Divide the damage from each field by that amount
+    // skip the ones that don't count as in the field (noidle)
   }
   let tmpdmg = prepareSpellDamage(field,who,"2d6+3","fire");
   let dmg = (1/SCALE_TIME)*(DUTime.getGameClock() - who.getLastTurnTime()) * tmpdmg.dmg;

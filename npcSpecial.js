@@ -329,6 +329,7 @@ function TitanHeadSegmentTile() {
   this.spriteyoffset = -157*32;
   this.movetype = MOVE_ETHEREAL;
   this.alwaystop = 1;
+  this.noidle = 1;
 
   ManualAnimation.call(this, { 
     animstart: -5*32,

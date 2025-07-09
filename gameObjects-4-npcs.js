@@ -1507,14 +1507,18 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
     let entertiles = [];
     for (let i=0;i<alltiles.length;i++) {
       if ((allpassx[i] < leftx) || (allpassx[i] > rightx) || (allpassy[i] < topy) || (allpassy[i] > bottomy)) {
-        entertiles.push(alltiles[i]);
+        if (!allparts[i].noidle) {
+          entertiles.push(alltiles[i]);
+        }
       }
     }
     if (!alltiles.includes(map.getTile(this.getx(),this.gety()))) { exittiles.push(map.getTile(this.getx(),this.gety())); }
     if (this.attachedParts) {
       for (let i=0;i<this.attachedParts.length;i++) {
         let parttile = map.getTile(this.getx()+this.attachedLocations[i][0],this.gety() + this.attachedLocations[i][1]);
-        if (!alltiles.includes(parttile)) { exittiles.push(parttile); }
+        if (!allparts[i].noidle) {
+          if (!alltiles.includes(parttile)) { exittiles.push(parttile); }
+        }
       }
     }
 
@@ -1718,6 +1722,16 @@ NPCObject.prototype.myTurn = function() {
   if ((oldloc.map === this.getHomeMap().getName()) && (oldloc.x === this.getx()) && (oldloc.y === this.gety())) {  // npc did not move
     let tile = this.getHomeMap().getTile(this.getx(),this.gety());
     let idleval = tile.executeIdles(this);
+    if (this.attachedParts) {
+      // if a multi-tile entity idles, check its other bits to see if the tiles they are on have .idle methods
+      for (let i=0;i<this.attachedLocations.length;i++) {
+        if (!this.attachedParts[i].noIdle) {
+          let attachtile = this.getHomeMap().getTile(this.getXPVal() + this.attachedLocations[i][0], this.gety() + this.attachedLocations[i][1]);
+          attachtile.executeIdles(this.attachedParts[i]);  // maybe just 'this', but send the part so
+                                                           // damage bursts can show up properly?
+        }
+      }
+    }
   } else {
     let newloc = {};
     newloc.map = this.getHomeMap().getName();
