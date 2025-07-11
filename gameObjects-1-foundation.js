@@ -578,15 +578,19 @@ function Pushable() {
   this.pullMe = function(who) {
     let retval = {fin:1,input:"&gt;"};
     let objmap = this.getHomeMap();
+    if (!objmap.getTile(who.getx(),who.gety()).canMoveHere(MOVE_WALK)) { 
+      retval.txt = "Push: You can neither push nor pull this here."; 
+      return retval; 
+    }
     let diffx = this.getx()-who.getx();
     let diffy = this.gety()-who.gety();
     let movetox = who.getx();
     let movetoy = who.gety();
-    if (movetox && movetoy && this.getx() && this.gety()) {
-      objmap.moveThing(0,0,this);
-    } else { objmap.moveThing(3,3,this); }
-    let moveval = who.moveMe(diffx,diffy);
+//    if (movetox && movetoy && this.getx() && this.gety()) {
+//      objmap.moveThing(0,0,this);
+//    } else { objmap.moveThing(3,3,this); }
     objmap.moveThing(movetox,movetoy,this);
+    let moveval = who.moveMe(diffx,diffy);
     retval["txt"] = "Pull: " + this.getDesc() + ".";
     retval["canmove"] = moveval["canmove"];
     if ("facing" in this) {
@@ -597,7 +601,6 @@ function Pushable() {
       else if (diffy < 0) { this.facing = 0; graphic = this.getGraphicFromFacing(0); }
       this.setGraphicArray(graphic);
     }
-    if (objmap === PC.getHomeMap()) { DrawMainFrame("one",objmap,movetox,movetoy); }
 
     if ((typeof this.getLight === "function") && (this.getLight() !== 0)) {
       if (PC.getHomeMap() === objmap) {
