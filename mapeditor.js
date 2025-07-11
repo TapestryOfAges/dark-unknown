@@ -21,6 +21,7 @@ var brushdowny = -1;
 let flowing = 0;
 var editable;
 var editnpcs;
+let transselect = 0;
 
 var browserheight;
 var losgrid = new LOSMatrix(13);
