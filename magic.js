@@ -5942,7 +5942,7 @@ function PerformSpellcast() {
     }
   } else if (targetCursor.spelldetails.targettype === "usable") {
     let topfeature = targettile.getTopVisibleFeature();
-    if (topfeature.pushable) {
+    if (topfeature && topfeature.pushable) {
       document.getElementById(targetCursor.tileid).innerHTML = targetCursor.basetile;
 
       CreateTargetCursor({sticky: 0, command:'c',spellName:'Telekinesis',spelldetails:{ caster: targetCursor.spelldetails.caster, infused: targetCursor.spelldetails.infused, free: targetCursor.spelldetails.free, targettype: "open"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: targetCursor.targetCenterlimit});
@@ -5951,7 +5951,7 @@ function PerformSpellcast() {
       resp["input"] = "&gt; Choose where to move it- ";
       resp["fin"] = 4;
       gamestate.setMode("target");
-    } else if (typeof topfeature.use === "function") {
+    } else if (topfeature && (typeof topfeature.use === "function")) {
       resp = PerformTelekinesis(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, topfeature);
     } else {
       resp["fin"] = 0;
