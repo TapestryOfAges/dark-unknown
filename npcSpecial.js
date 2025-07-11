@@ -315,8 +315,8 @@ function TitanNPCTile() {
     animlength: 5,
     animstyle: "cycle",
     allowrepeat: 0,
-    framedurationmin: 120,
-    framedurationmax: 170,
+    framedurationmin: 240,
+    framedurationmax: 340,
     startframe: "start"
   });
 }
