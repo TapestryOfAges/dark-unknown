@@ -8,6 +8,8 @@ v 0.10.20
  * AoEs should no longer double-count multi-tile monsters
  * Titan heads cannot be considered to be in a fire field
  * Walls of Fire no longer deal damage to each part of a multi-tile monster that is standing in the fire
+ * Telekinesis no longer throws an error on invalid targets
+ * Chests that are on water can no longer be Pulled if you are waterwalking
 
 v 0.10.19  
  * Added more mountains around the edges of NW island
