@@ -3631,11 +3631,12 @@ function InAFireField(who, field) {
     let ffcount = 1;
     for (let i=0;i<allpieces.length;i++) {
       if (allpieces[i].noidle) { continue; } 
-      let where = who.getHomeMap().getTile(allpieces[i].getx(),allpieces[i].gety()).getAllFeatures();
+      let where = who.getHomeMap().getTile(allpieces[i].getx(),allpieces[i].gety()).getFeatures();
       for (let j=0;j<where.length;j++) {
         if (where[j].getName() === "FireField") { ffcount++; }
       }
     }
+//    console.log(`ffcount = ${ffcount}`);
     mult = 1/ffcount;
     // find out how many sections are in fire fields. Divide the damage from each field by that amount
     // skip the ones that don't count as in the field (noidle)
