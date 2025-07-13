@@ -23,6 +23,8 @@ var editable;
 var editnpcs;
 let transselect = 0;
 
+let transoptions = ["Mountains", "Hills", "Forest", "Forest [tiled]", "Evergreen", "Evergreen", "Bright Forest", "Bright Forest [tiled]", "Swamp", "Dirt", "Meadow", "Grass"];
+
 var browserheight;
 var losgrid = new LOSMatrix(13);
 var DUTime = new Timeline(0);
@@ -1762,4 +1764,8 @@ function drawFlow() {
       }
     }
   }
+}
+
+function CreateTransitionModal() {
+  let block = document.getElementById("transcontent");
 }
