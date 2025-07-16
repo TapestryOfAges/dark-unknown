@@ -39,9 +39,29 @@ mappages["fulcrum1"].terrain[31] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK
 mappages["fulcrum1"].features = [];
 mappages["fulcrum1"].features[0] = {name : 'GreyDoorway', x : 16, y : 14};
 mappages["fulcrum1"].features[1] = {name : 'LadderUp', x : 16, y : 18, entermap : 'ellusus', enterx : 54, entery : 94};
+mappages["fulcrum1"].features[2] = {name : 'MysticBeam', x : 0, y : 0};
+mappages["fulcrum1"].features[3] = {name : 'MysticBeam', x : 0, y : 0};
+mappages["fulcrum1"].features[4] = {name : 'MysticBeam', x : 0, y : 0};
+mappages["fulcrum1"].features[5] = {name : 'MysticBeam', x : 0, y : 0};
+mappages["fulcrum1"].features[6] = {name : 'MysticBeam', x : 0, y : 0};
+mappages["fulcrum1"].features[7] = {name : 'MysticBeam', x : 0, y : 0};
 
 
 mappages["fulcrum1"].npcs = [];
+mappages["fulcrum1"].npcs[0] = {name : 'GuardianLeftNPC', x : 8, y : 12, skintone: 1};
+mappages["fulcrum1"].npcs[1] = {name : 'GuardianLeftNPC', x : 7, y : 15, skintone: 1};
+mappages["fulcrum1"].npcs[2] = {name : 'GuardianLeftNPC', x : 8, y : 20, skintone: 1};
+mappages["fulcrum1"].npcs[3] = {name : 'GuardianLeftNPC', x : 19, y : 20, skintone: 1};
+mappages["fulcrum1"].npcs[4] = {name : 'GuardianLeftNPC', x : 18, y : 15, skintone: 1};
+mappages["fulcrum1"].npcs[5] = {name : 'GuardianLeftNPC', x : 20, y : 12, skintone: 1};
+mappages["fulcrum1"].npcs[6] = {name : 'GuardianLeftNPC', x : 14, y : 11, skintone: 1};
+mappages["fulcrum1"].npcs[7] = {name : 'GuardianRightNPC', x : 18, y : 11, skintone: 1};
+mappages["fulcrum1"].npcs[8] = {name : 'GuardianRightNPC', x : 25, y : 12, skintone: 1};
+mappages["fulcrum1"].npcs[9] = {name : 'GuardianRightNPC', x : 26, y : 15, skintone: 1};
+mappages["fulcrum1"].npcs[10] = {name : 'GuardianRightNPC', x : 25, y : 20, skintone: 1};
+mappages["fulcrum1"].npcs[11] = {name : 'GuardianRightNPC', x : 13, y : 20, skintone: 1};
+mappages["fulcrum1"].npcs[12] = {name : 'GuardianRightNPC', x : 14, y : 15, skintone: 1};
+mappages["fulcrum1"].npcs[13] = {name : 'GuardianRightNPC', x : 12, y : 12, skintone: 1};
 
 mappages["fulcrum1"].desc = "The Fulcrum";
 mappages["fulcrum1"].longdesc = ``;
