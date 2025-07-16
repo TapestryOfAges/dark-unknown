@@ -10,6 +10,7 @@ v 0.10.20
  * Walls of Fire no longer deal damage to each part of a multi-tile monster that is standing in the fire
  * Telekinesis no longer throws an error on invalid targets
  * Chests that are on water can no longer be Pulled if you are waterwalking
+ * Added new monster for the Fulcrum
 
 v 0.10.19  
  * Added more mountains around the edges of NW island
