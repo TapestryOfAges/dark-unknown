@@ -7277,6 +7277,8 @@ function WalkOnFulcrumTile() {
 WalkOnFulcrumTile.prototype = new FeatureObject();
 
 WalkOnFulcrumTile.prototype.walkon = function(who) {
+  let retval = { msg: "" };
+  if (who !== PC) { return retval; }
   let left, right;
   let mymap = this.getHomeMap();
   //find left guardian
