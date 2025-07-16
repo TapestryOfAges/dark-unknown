@@ -1768,4 +1768,51 @@ function drawFlow() {
 
 function CreateTransitionModal() {
   let block = document.getElementById("transcontent");
+  let html = `<table cellpadding='5' cellspacing='0' border='0'><tr><td>`;
+  html += "<select id='transselect'><option value='' onChange='ChangeTransitionType()'></option>";
+  for (let i=0;i<transoptions.length;i++) {
+    let sel = "";
+    if (transselect === i) { sel = " selected"; }
+    html += `<options value='${transoptions[i]}'${sel}>${transoptions[i]}</option>`;
+  }
+  html += '</select><br /><div id="transtiles"></div></td>';
+  html += `<td><center>Layer 2:<br /><div style='width:32;height:32' id='translayer2'></div><br /><br />Layer 1:<br /><div style='width:32;height:32' id='translayer1'></div><br /><br />Layer 0:<br /><div style='width:32;height:32' id='translayer0'></div><br /><br /></center></td></tr></table>`;
+  block.innerHTML = html;
 }
+
+let transpixels = {};
+transpixels["Swamp"] = 0;
+transpixels["Sand"] = -32;
+transpixels["Dirt"] = -64;
+transpixels["Meadow"] = -96;
+transpixels["Grass"] = -128;
+transpixels["Mountain"] = -160;
+transpixels["Hill"] = -192;
+transpixels["Evergreen"] = -224;
+transpixels["Bright"] = -256;
+transpixels["Forest"] = -288;
+transpixels["ForestTiledLR"] = -320;
+transpixels["ForestTiledLL"] = -352;
+transpixels["ForestTiledMR"] = -384;
+transpixels["ForestTiledML"] = -416;
+transpixels["ForestTiledUR"] = -448;
+transpixels["ForestTiledUL"] = -480;
+transpixels["BrightTiledB1"] = -512;
+transpixels["BrightTiledB2"] = -544;
+transpixels["BrightTiledC"] = -576;
+transpixels["BrightTiledT1"] = -608;
+transpixels["BrightTiledT2"] = -640;
+transpixels["n"] = 0;
+transpixels["s"] = -32;
+transpixels["w"] = -64;
+transpixels["e"] = -96;
+transpixels["nw"] = -128;
+transpixels["ne"] = -160;
+transpixels["sw"] = -192;
+transpixels["se"] = -224;
+transpixels["nsw"] = -256;
+transpixels["nse"] = -288;
+transpixels["new"] = -320;
+transpixels["sew"] = -352;
+transpixels["ns"] = -384;
+transpixels["ew"] = -416;
