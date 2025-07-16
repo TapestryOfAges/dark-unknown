@@ -2380,6 +2380,38 @@ function BloodTile() {
 }
 BloodTile.prototype = new FeatureObject();
 
+function MysticBeamTile() {
+	this.name = "MysticBeam";
+  this.graphic = "static.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -160*32 - 9; // see if I can move this up without showing any of the tile beneath on the spritesheet
+	this.passable = 0; // impassable
+	this.blocklos = 0;
+	this.blockloe = 1;
+  this.prefix = "a"; 
+	this.desc = "beam of energy";
+	
+  LightEmitting.call(this, 1);
+
+  ManualAnimation.call(this, { animstart: 0,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
+
+}
+MysticBeamTile.prototype = new FeatureObject();
+
+MysticBeamTile.prototype.bumpinto = function(who) {
+  if (who === PC) {
+    DUPlaySound("sfx_small_zap");
+  }
+  return {msg: ""};
+}
+
 function EnergyFieldTile() {
 	this.name = "EnergyField";
   this.graphic = "electricfield.gif";
@@ -7230,6 +7262,60 @@ function WalkOnTile() {
 	this.invisible = 1;
 }
 WalkOnTile.prototype = new FeatureObject();
+
+function WalkOnFulcrumTile() {
+	this.name = "WalkOnFulcrum";
+  this.graphic = "static.gif";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -50*32;
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnFulcrumTile.prototype = new FeatureObject();
+
+WalkOnFulcrumTile.prototype.walkon = function(who) {
+  let left, right;
+  let mymap = this.getHomeMap();
+  //find left guardian
+  let y=this.gety();
+  let x=this.getx();
+  while (1) {
+    x -= 1;
+    let tile = mymap.getTile(x,y);
+    if (tile === OoB) { // this should never happen
+      break;
+    }
+    let npc = tile.getTopNPC();
+    if (npc && npc.getName() === "GuardianLeft") {
+      if (npc.getHP() === npc.getMaxHP()) { left = npc; }
+      break;
+    }
+    let terrain = tile.getTerrain();
+    if (terrain.getName() === "GreyWall") { break; }
+  }
+
+  //find right guardian
+  if (left) {
+    while (1) {
+      x += 1;
+      let tile = mymap.getTile(x,y);
+      if (tile === OoB) { // this should never happen
+        break;
+      }
+      let npc = tile.getTopNPC();
+      if (npc && npc.getName() === "GuardianRight") {
+        if (npc.getHP() === npc.getMaxHP()) { right = npc; }
+        break;
+      }
+      let terrain = tile.getTerrain();
+      if (terrain.getName() === "GreyWall") { break; }
+    }
+  }
+
+}
 
 function PeterWalkOnTile() {
 	this.name = "PeterWalkOn";
