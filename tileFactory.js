@@ -1913,6 +1913,11 @@ tileFactory.prototype.makeBloodTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeMysticBeamTile = function() {
+  let newTile = new MysticBeamTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeEnergyFieldTile = function() {
   let newTile = new EnergyFieldTile();
   return newTile;
@@ -5658,6 +5663,16 @@ tileFactory.prototype.makeGiantNPCTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeGuardianLeftNPCTile = function() {
+  let newTile = new GuardianLeftNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGuardianRightNPCTile = function() {
+  let newTile = new GuardianRightNPCTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeKrakenNPCTile = function() {
   let newTile = new KrakenNPCTile();
   return newTile;
@@ -6255,11 +6270,6 @@ tileFactory.prototype.makeSleepTile = function() {
 
 tileFactory.prototype.makeSlowTile = function() {
   let newTile = new SlowTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeStormTile = function() {
-  let newTile = new StormTile();
   return newTile;
 }
 

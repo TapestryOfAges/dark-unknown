@@ -4825,6 +4825,98 @@ GiantNPCTile.prototype = new NPCObject();
 
 // Monster
 
+function GuardianLeftNPCTile() {
+  this.name = 'GuardianLeftNPC';
+  this.level = 6;
+  this.addhp = 0;
+  this.str = 20;
+  this.dex = 16;
+  this.int = 8;
+  this.alignment = 'Evil';
+  this.attitude = 'hostile';
+  this.peaceAI = 'fulcrumGuardian';
+  this.forgetAt = 10;
+  this.withdraw = 0;
+  this.meleeAttackAs = 'none';
+  this.meleeDamage = '4d4+9'
+  this.meleeStrDamage = .66
+  this.missileAttackAs = 'none';
+  this.armorAs = 'ChainArmor';
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.prefix = 'a';
+  this.desc = "stone guardian";
+  this.meleeChance = 60;
+  this.resists = {};
+  this.special = 'mindless, energy bolt';
+  this.meleeHitSound = 'sfx_melee_hit';
+  this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.gif';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -179 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+}
+GuardianLeftNPCTile.prototype = new NPCObject();
+
+
+// Monster
+
+function GuardianRightNPCTile() {
+  this.name = 'GuardianRightNPC';
+  this.level = 6;
+  this.addhp = 0;
+  this.str = 20;
+  this.dex = 16;
+  this.int = 8;
+  this.alignment = 'Evil';
+  this.attitude = 'hostile';
+  this.peaceAI = 'fulcrumGuardian';
+  this.forgetAt = 10;
+  this.withdraw = 0;
+  this.meleeAttackAs = 'none';
+  this.meleeDamage = '4d4+9'
+  this.meleeStrDamage = .66
+  this.missileAttackAs = 'none';
+  this.armorAs = 'ChainArmor';
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.prefix = 'a';
+  this.desc = "stone guardian";
+  this.meleeChance = 60;
+  this.resists = {};
+  this.special = 'mindless, energy bolt';
+  this.meleeHitSound = 'sfx_melee_hit';
+  this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.gif';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -136 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+}
+GuardianRightNPCTile.prototype = new NPCObject();
+
+
+// Monster
+
 function KrakenNPCTile() {
   this.name = 'KrakenNPC';
   this.level = 6;
@@ -5879,14 +5971,17 @@ function ToshinSentinelNPCTile() {
   this.meleeDamage = '1d2'
   this.meleeStrDamage = .33
   this.missileAttackAs = 'none';
-  this.armorAs = 'ExoticArmor';
+  this.armorAs = 'none';
+  this.armorDefense = 100;
+  this.armorAbsorb = 100;
+  this.armorResist = 100;
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'a';
   this.desc = "floating sentinel";
   this.meleeChance = 0;
-  this.resists = { fire:100, poison:100, magic:120 };
+  this.resists = { fire:100, poison:100 };
   this.special = 'unkillable';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
