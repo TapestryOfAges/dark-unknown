@@ -7282,8 +7282,14 @@ WalkOnFulcrumTile.prototype.walkon = function(who) {
   let left, right;
   let mymap = this.getHomeMap();
   //find left guardian
-  let y=this.gety();
+  let y=this.gety()+1;
   let x=this.getx();
+  let chktile = mymap.getTile(x,y);
+  let fea = chktile.getFeatures();
+  for (let i=0;i<fea.length;i++) {
+    if (fea[i].getName() === "MysticBeam") { return retval; }
+    // someone stepped laterally while the beams were already out
+  }
   while (1) {
     x -= 1;
     let tile = mymap.getTile(x,y);
@@ -7316,7 +7322,36 @@ WalkOnFulcrumTile.prototype.walkon = function(who) {
       if (terrain.getName() === "GreyWall") { break; }
     }
   }
+  
+  if (left && right) {
+    let leftx = left.getx()+1;
+    let rightx = right.getx()-1;
+    DUPlaySound("sfx_wand2");
+    for (let xi = leftx; xi<=rightx; xi++) {
+      let tile = mymap.getTile(xi,y);
+      let npc = tile.getTopNPC();
+      if (npc) {
+        if (mymap.getTile(xi,y++).canMoveHere(MOVE_WALK).canmove) {
+          npc.moveMe(xi,y++);
+        } else if (mymap.getTile(xi,y--).canMoveHere(MOVE_WALK).canmove) {
+          npc.moveMe(xi,y--);
+        }
+        // good enough. If it gets to stay in the beam, whatever.
+      }
+      let beam = mymap.getTile(0,0).getTopFeature();
+      if (beam) {
+        mymap.moveThing(xi,y,beam);
+        retval["msg"] = "A mystical beam suddenly appears between the eyes of the two guardians!";
+      }
+    }
+  }
 
+  return retval;
+}
+
+WalkOnFulcrumTile.prototype.walkoff = function(who) {
+  let retval = {msg:""};
+  if (who !== PC) { return retval; }
 }
 
 function PeterWalkOnTile() {
