@@ -11,6 +11,7 @@ v 0.10.20
  * Telekinesis no longer throws an error on invalid targets
  * Chests that are on water can no longer be Pulled if you are waterwalking
  * Added new monster for the Fulcrum
+ * WalkOff methods are now sent the direction of travel
 
 v 0.10.19  
  * Added more mountains around the edges of NW island

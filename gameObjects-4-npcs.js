@@ -1535,7 +1535,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 
     if (walkoffsuccess) {
       for (let i=0;i<exittiles.length;i++) {
-        let walkofftile = exittiles[i].executeWalkoffs(this);
+        let walkofftile = exittiles[i].executeWalkoffs(this, {diffx: diffx, diffy: diffy});
 	      if (walkofftile.msg) {
 	        if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
 	        retval["msg"] += walkoffval.msg;

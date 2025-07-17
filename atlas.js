@@ -652,11 +652,11 @@ Acre.prototype.executeWalkons = function(walker) {
 	return response;
 }
 
-Acre.prototype.executeWalkoffs = function(walker) {
+Acre.prototype.executeWalkoffs = function(walker, params) {
 	let terrain = this.getTerrain();
 	let response = {msg:""};
 	if (typeof terrain.walkoff === "function") {
-    let resp = terrain.walkoff(walker);
+    let resp = terrain.walkoff(walker, params);
     if (resp) {
       response = resp;
     }
@@ -665,7 +665,7 @@ Acre.prototype.executeWalkoffs = function(walker) {
 	if (features) {
 		for (let i = 0; i < features.length; i++) {
 			if (typeof features[i].walkoff === "function") {
-				let resp = features[i].walkoff(walker);
+				let resp = features[i].walkoff(walker, params);
 				if (resp.msg) {
           if (response.msg) { response.msg += "<br />"; }
           response.msg += resp.msg;
