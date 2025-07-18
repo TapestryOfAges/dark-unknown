@@ -4829,8 +4829,8 @@ function GuardianLeftNPCTile() {
   this.name = 'GuardianLeftNPC';
   this.level = 6;
   this.addhp = 0;
-  this.str = 20;
-  this.dex = 16;
+  this.str = 18;
+  this.dex = 25;
   this.int = 8;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
@@ -4875,8 +4875,8 @@ function GuardianRightNPCTile() {
   this.name = 'GuardianRightNPC';
   this.level = 6;
   this.addhp = 0;
-  this.str = 20;
-  this.dex = 16;
+  this.str = 18;
+  this.dex = 25;
   this.int = 8;
   this.alignment = 'Evil';
   this.attitude = 'hostile';

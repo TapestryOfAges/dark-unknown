@@ -2948,6 +2948,11 @@ tileFactory.prototype.makeWalkOnTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWalkOnFulcrumTile = function() {
+  let newTile = new WalkOnFulcrumTile();
+  return newTile;
+}
+
 tileFactory.prototype.makePeterWalkOnTile = function() {
   let newTile = new PeterWalkOnTile();
   return newTile;

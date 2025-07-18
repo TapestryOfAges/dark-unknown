@@ -7281,8 +7281,12 @@ WalkOnFulcrumTile.prototype.walkon = function(who) {
   if (who !== PC) { return retval; }
   let left, right;
   let mymap = this.getHomeMap();
+  let direction = 1;
+  if (this.gety() === 12) {
+    direction = -1; 
+  }
   //find left guardian
-  let y=this.gety()+1;
+  let y=this.gety()+direction;
   let x=this.getx();
   let chktile = mymap.getTile(x,y);
   let fea = chktile.getFeatures();
@@ -7293,28 +7297,31 @@ WalkOnFulcrumTile.prototype.walkon = function(who) {
   while (1) {
     x -= 1;
     let tile = mymap.getTile(x,y);
-    if (tile === OoB) { // this should never happen
+//    console.log(tile);
+    if (tile === "OoB") { // this should never happen
       break;
     }
     let npc = tile.getTopNPC();
-    if (npc && npc.getName() === "GuardianLeft") {
+    if (npc && npc.getName() === "GuardianLeftNPC") {
+//      console.log("found left guardian- checking if its wounded");
       if (npc.getHP() === npc.getMaxHP()) { left = npc; }
       break;
     }
     let terrain = tile.getTerrain();
     if (terrain.getName() === "GreyWall") { break; }
   }
+//  console.log(left);
 
   //find right guardian
   if (left) {
     while (1) {
       x += 1;
       let tile = mymap.getTile(x,y);
-      if (tile === OoB) { // this should never happen
+      if (tile === "OoB") { // this should never happen
         break;
       }
       let npc = tile.getTopNPC();
-      if (npc && npc.getName() === "GuardianRight") {
+      if (npc && npc.getName() === "GuardianRightNPC") {
         if (npc.getHP() === npc.getMaxHP()) { right = npc; }
         break;
       }
@@ -7322,6 +7329,7 @@ WalkOnFulcrumTile.prototype.walkon = function(who) {
       if (terrain.getName() === "GreyWall") { break; }
     }
   }
+//  console.log(right);
   
   if (left && right) {
     let leftx = left.getx()+1;
@@ -7346,12 +7354,26 @@ WalkOnFulcrumTile.prototype.walkon = function(who) {
     }
   }
 
+  DrawMainFrame("draw",mymap,PC.getx(),PC.gety());
   return retval;
 }
 
-WalkOnFulcrumTile.prototype.walkoff = function(who) {
+WalkOnFulcrumTile.prototype.walkoff = function(who, p) {
   let retval = {msg:""};
+  let mymap = this.getHomeMap();
   if (who !== PC) { return retval; }
+
+  if (p && ((p.diffx === -1) || (p.diffx === 1))) { return retval; }  // taking a lateral step
+
+  let feas = mymap.features.getAll();
+  for (let i=0;i<feas.length;i++) {
+    if (feas[i].getName() === "MysticBeam") {
+      mymap.moveThing(0,0,feas[i]);
+    } 
+  }
+
+  DrawMainFrame("draw",mymap,PC.getx(),PC.gety());
+  return retval;
 }
 
 function PeterWalkOnTile() {

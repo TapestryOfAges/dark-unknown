@@ -4195,3 +4195,54 @@ ais.deep_sleep = function(who) {
 
   return retval;
 }
+
+ais.fulcrumGuardian = function(who) {
+  let df = 1;
+  if (who.getName() === "GuardianRightNPC") { df = -1; }
+  let x = who.getx();
+  let y = who.gety();
+  let mymap = who.getHomeMap();
+
+  // are we wounded? If so, activate
+  if (who.getHP() < who.getMaxHP()) {
+    who.currentAI = "combat";
+    who.peaceAI = "seekPC-15";
+
+    while(1) {
+      x += df;
+      let tile = mymap.getTile(x,y);
+      if (tile === "OoB") { break; }
+      let fea = tile.getTopFeature();
+      if (fea && (fea.getName() === "MysticBeam")) { mymap.moveThing(0,0,fea); }
+      else { break; }
+    }
+    DrawMainFrame("draw",mymap,PC.getx(),PC.gety());
+    console.log("wounded!");
+    return {fin:1};
+  }
+
+
+  // next thing we do is check for counterpart, if it's gone or damaged, wake up
+  let awaken = 0;
+  while (1) {
+    x += df;
+    let tile = mymap.getTile(x,y);
+    if (tile === "OoB") { awaken = 1; }
+    else {
+      let npc = tile.getTopNPC();
+      if (npc && (npc.getName().includes("Guardian"))) {
+        if ((npc.getHP() < npc.getMaxHP()) || (npc.getCurrentAI().includes("combat"))) { console.log("Counterpart is in combat.");  awaken = 1; break; }
+        else { break; }
+      } 
+      if (tile.getTerrain().getName() === "GreyWall") {
+        console.log("Found the far wall.");
+        awaken = 1; break;
+      }
+    }
+  }
+  if (awaken) {
+    who.currentAI = "combat";
+    who.peaceAI = "seekPC-15";
+  }
+  return {fin:1};
+}
