@@ -7376,6 +7376,27 @@ WalkOnFulcrumTile.prototype.walkoff = function(who, p) {
   return retval;
 }
 
+function WalkOnFulcrum2Tile() {
+	this.name = "WalkOnFulcrum2";
+  this.graphic = "static.gif";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -50*32;
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnFulcrum2Tile.prototype = new FeatureObject();
+
+WalkOnFulcrum2Tile.prototype.walkon = function(who) {
+  if (this.alreadyused) { return {msg:""}; }
+
+  if (this.getx() === 15) { // Western ladder
+
+  } 
+}
+
 function PeterWalkOnTile() {
 	this.name = "PeterWalkOn";
   this.graphic = "static.gif";
