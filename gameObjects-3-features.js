@@ -7392,9 +7392,40 @@ WalkOnFulcrum2Tile.prototype = new FeatureObject();
 WalkOnFulcrum2Tile.prototype.walkon = function(who) {
   if (this.alreadyused) { return {msg:""}; }
 
+  let mymap = this.getHomeMap();
+  let f2 = maps.getMap("fulcrum2");
+  let f3 = maps.getMap("fulcrum3");
   if (this.getx() === 15) { // Western ladder
+    let feas = mymap.getTile(17,21).getFeatures();
+    for (let i=0;i<feas.length;i++) {
+      mymap.deleteThing(feas[i]);
+    }
+    let f2fea = f2.features.getAll();
+    for (let i=0;i<f2fea.length;i++) {
+      if ((f2fea[i].gety() === 21) || (f2fea[i].gety() === 4)) { continue; }  // ladders. Leave 'em
+      let newx = (16 - f2fea[i].getx())*2 + f2fea[i].getx();
+      f2.moveThing(newx,f2fea[i].gety(),f2fea[i]);
+    }
+    let f2npc = f2.npcs.getAll();
+    for (let i=0;i<f2npc.length;i++) {
+      if (f2npc[i].gety() === 21) { continue; }
+      let newx = (16 - f2npc[i].getx())*2 + f2npc[i].getx();
+      f2.moveThing(newx,f2npc[i].gety(),f2npc[i]);
+    }
+    // flip NPCs and features across the energy line
 
-  } 
+    if (PC.checkInventory("DecorativeArmor") || PC.checkInventory("ExoticArmor")) { 
+      let smith = f3.getTile(10,10).getTopNPC();
+      f3.deleteThing(smith);
+      DUTime.removeEntityFrom(smith);
+    }
+    
+  } else {
+    let feas = mymap.getTile(15,21).getFeatures();
+    for (let i=0;i<feas.length;i++) {
+      mymap.deleteThing(feas[i]);
+    }
+  }
 }
 
 function PeterWalkOnTile() {

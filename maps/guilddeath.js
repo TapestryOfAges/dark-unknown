@@ -128,3 +128,161 @@ mappages["fulcrum1"].returninfused = '0';
 mappages["fulcrum1"].linkedMaps = [""];
 mappages["fulcrum1"].editorLabels = '{}';
 // MAP ENDS HERE
+
+// MAP BEGINS HERE
+mappages["fulcrum2"] = {};
+mappages["fulcrum2"].terrain = [];
+ mappages["fulcrum2"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["fulcrum2"].terrain[1] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["fulcrum2"].terrain[2] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["fulcrum2"].terrain[3] = 'BK BK BK BK BK BK BK BK +s +$ BK BK BK BK BK BK BK BK BK BK BK BK BK +s +s BK BK BK BK BK BK BK BK BK';
+ mappages["fulcrum2"].terrain[4] = 'BK BK BK BK BK BK BK BK +s +s +s BK BK BK BK BK BK BK BK BK BK BK +s +s +s BK BK BK BK BK BK BK BK BK';
+ mappages["fulcrum2"].terrain[5] = 'BK BK BK BK BK BK BK BK +s +s +$ +s BK BK BK BK BK BK BK BK BK +s +s +s +s BK BK BK BK BK BK BK BK BK';
+ mappages["fulcrum2"].terrain[6] = 'BK BK BK BK BK BK BK BK BK BK +s +s +$ BK BK BK BK BK BK BK +s +s +s BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["fulcrum2"].terrain[7] = 'BK BK BK BK BK BK BK BK BK BK BK +s +s +s BK BK BK BK BK +s +s +s BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["fulcrum2"].terrain[8] = 'BK BK BK BK BK BK BK BK BK BK BK BK +s +$ +s +s +s +s +s +s +s BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["fulcrum2"].terrain[9] = 'BK BK BK BK BK BK BK BK BK BK BK BK +$ +s +s +s +s +s +s +$ +s BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["fulcrum2"].terrain[10] = 'BK BK BK BK BK BK BK BK BK BK BK +s +s +s +s +s +s +$ +s +s +s +s BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["fulcrum2"].terrain[11] = 'BK BK BK BK BK BK BK BK BK BK +$ +s +s +s BK BK BK BK BK +s +s +s +s BK BK BK BK BK BK BK BK BK BK BK';
+mappages["fulcrum2"].terrain[12] = 'BK BK BK BK BK BK BK BK BK +s +s +s +$ BK BK BK BK BK BK BK +s +$ +s +s BK BK BK BK BK BK BK BK BK BK';
+mappages["fulcrum2"].terrain[13] = 'BK BK BK BK BK BK BK BK +s +s +s +s BK BK BK BK BK BK BK BK BK +s +s +s +s BK BK BK BK BK BK BK BK BK';
+mappages["fulcrum2"].terrain[14] = 'BK BK BK BK BK BK BK +s +s +$ +s BK BK BK BK BK BK BK BK BK BK BK +s +$ +s +s BK BK BK BK BK BK BK BK';
+mappages["fulcrum2"].terrain[15] = 'BK BK BK BK BK BK BK +$ +s +s BK BK BK BK BK BK BK BK BK BK BK BK BK +s +s +s BK BK BK BK BK BK BK BK';
+mappages["fulcrum2"].terrain[16] = 'BK BK BK BK BK BK BK +s +s +s BK BK BK BK BK BK BK BK BK BK BK BK BK +$ +s +s BK BK BK BK BK BK BK BK';
+mappages["fulcrum2"].terrain[17] = 'BK BK BK BK BK BK BK +s +$ +s BK BK BK BK BK BK BK BK BK BK BK BK BK +s +s +$ BK BK BK BK BK BK BK BK';
+mappages["fulcrum2"].terrain[18] = 'BK BK BK BK BK BK BK +s +s +s BK BK BK BK BK BK BK BK BK BK BK BK BK +s +s +s BK BK BK BK BK BK BK BK';
+mappages["fulcrum2"].terrain[19] = 'BK BK BK BK BK BK BK +s +s +$ +s +$ BK BK BK BK BK BK BK BK BK +s +s +s +s +s BK BK BK BK BK BK BK BK';
+mappages["fulcrum2"].terrain[20] = 'BK BK BK BK BK BK BK BK +s +s +s +s +s +s +s +$ g# +s +s +$ +s +s +s +s +$ BK BK BK BK BK BK BK BK BK';
+mappages["fulcrum2"].terrain[21] = 'BK BK BK BK BK BK BK BK BK BK +s +s +s +$ +s +s g# +s +s +s +s +$ +s BK BK BK BK BK BK BK BK BK BK BK';
+mappages["fulcrum2"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK +s +s g# +s +$ BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["fulcrum2"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK g# g# g# g# g# BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["fulcrum2"].terrain[24] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["fulcrum2"].terrain[25] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["fulcrum2"].terrain[26] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["fulcrum2"].terrain[27] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["fulcrum2"].terrain[28] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["fulcrum2"].terrain[29] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["fulcrum2"].terrain[30] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["fulcrum2"].terrain[31] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+
+mappages["fulcrum2"].features = [];
+mappages["fulcrum2"].features[0] = {name : 'LadderUp', x : 17, y : 21, entermap : 'fulcrum1', enterx : 17, entery : 21};
+mappages["fulcrum2"].features[1] = {name : 'LadderUp', x : 15, y : 21, entermap : 'fulcrum', enterx : 15, entery : 21};
+mappages["fulcrum2"].features[2] = {name : 'LadderDown', x : 23, y : 4, entermap : 'fulcrum3', enterx : 9, entery : 5};
+mappages["fulcrum2"].features[3] = {name : 'LadderDown', x : 9, y : 4, entermap : 'fulcrum3', enterx : 9, entery : 5};
+mappages["fulcrum2"].features[4] = {name : 'Chest', x : 14, y : 8};
+mappages["fulcrum2"].features[5] = {name : 'Chest', x : 15, y : 8};
+mappages["fulcrum2"].features[6] = {name : 'Chest', x : 15, y : 9};
+mappages["fulcrum2"].features[7] = {name : 'Chest', x : 14, y : 9};
+mappages["fulcrum2"].features[8] = {name : 'Chest', x : 14, y : 10};
+mappages["fulcrum2"].features[9] = {name : 'Chest', x : 15, y : 10};
+mappages["fulcrum2"].features[10] = {name : 'Chest', x : 12, y : 11};
+mappages["fulcrum2"].features[11] = {name : 'Chest', x : 12, y : 7};
+mappages["fulcrum2"].features[12] = {name : 'Chest', x : 11, y : 10};
+mappages["fulcrum2"].features[13] = {name : 'Crate', x : 12, y : 9};
+mappages["fulcrum2"].features[14] = {name : 'Crate', x : 11, y : 7};
+mappages["fulcrum2"].features[15] = {name : 'EnergyField', x : 16, y : 8};
+mappages["fulcrum2"].features[16] = {name : 'EnergyField', x : 16, y : 9};
+mappages["fulcrum2"].features[17] = {name : 'EnergyField', x : 16, y : 10};
+
+
+mappages["fulcrum2"].npcs = [];
+
+mappages["fulcrum2"].desc = "";
+mappages["fulcrum2"].longdesc = ``;
+mappages["fulcrum2"].music = 'Dungeon';
+mappages["fulcrum2"].savename = `The Fulcrum`;
+mappages["fulcrum2"].exitmap = '';
+mappages["fulcrum2"].exitx = '65';
+mappages["fulcrum2"].exity = '70';
+mappages["fulcrum2"].wraps = '';
+mappages["fulcrum2"].enterx = '65';
+mappages["fulcrum2"].entery = '70';
+mappages["fulcrum2"].seeBelow = '';
+mappages["fulcrum2"].lightLevel = 'dark';
+mappages["fulcrum2"].alwaysRemember = '0';
+mappages["fulcrum2"].scale = '1';
+mappages["fulcrum2"].underground = '1';
+mappages["fulcrum2"].undergroundDesc = 'Level 2';
+mappages["fulcrum2"].enterscript = '';
+mappages["fulcrum2"].entertestscript = '';
+mappages["fulcrum2"].exitscript = '';
+mappages["fulcrum2"].exittestscript = '';
+mappages["fulcrum2"].returnmap = 'ellusus';
+mappages["fulcrum2"].returnx = '54';
+mappages["fulcrum2"].returny = '94';
+mappages["fulcrum2"].returninfused = '0';
+mappages["fulcrum2"].linkedMaps = [""];
+mappages["fulcrum2"].editorLabels = '{}';
+// MAP ENDS HERE
+
+// MAP BEGINS HERE
+mappages["fulcrum3"] = {};
+mappages["fulcrum3"].terrain = [];
+ mappages["fulcrum3"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["fulcrum3"].terrain[1] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["fulcrum3"].terrain[2] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["fulcrum3"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["fulcrum3"].terrain[4] = 'BK BK BK BK BK BK BK g# g# g# g# g# BK BK BK BK BK BK BK BK';
+ mappages["fulcrum3"].terrain[5] = 'BK BK BK BK BK BK BK g# +s +s +s g# BK BK BK BK BK BK BK BK';
+ mappages["fulcrum3"].terrain[6] = 'BK BK BK BK BK BK BK g# +s +s +s g# BK BK BK BK BK BK BK BK';
+ mappages["fulcrum3"].terrain[7] = 'BK BK BK BK BK BK g# g# g# +s g# g# g# BK BK BK BK BK BK BK';
+ mappages["fulcrum3"].terrain[8] = 'BK BK BK BK BK g# g# +s +s +s +s +s g# g# BK BK BK BK BK BK';
+ mappages["fulcrum3"].terrain[9] = 'BK BK BK BK BK g# +s +s +s +s +s +s +s g# BK BK BK BK BK BK';
+mappages["fulcrum3"].terrain[10] = 'BK BK BK BK BK g# +s +s +s +s +s +s +s g# BK BK BK BK BK BK';
+mappages["fulcrum3"].terrain[11] = 'BK BK BK BK BK g# +s +s +s +s +s +s +s g# BK BK BK BK BK BK';
+mappages["fulcrum3"].terrain[12] = 'BK BK BK BK BK g# g# +s +s +s +s +s g# g# BK BK BK BK BK BK';
+mappages["fulcrum3"].terrain[13] = 'BK BK BK BK BK BK g# g# g# +s g# g# g# BK BK BK BK BK BK BK';
+mappages["fulcrum3"].terrain[14] = 'BK BK BK BK BK BK BK g# +s +s +s g# BK BK BK BK BK BK BK BK';
+mappages["fulcrum3"].terrain[15] = 'BK BK BK BK BK BK BK g# +s +s +s g# BK BK BK BK BK BK BK BK';
+mappages["fulcrum3"].terrain[16] = 'BK BK BK BK BK BK BK g# g# g# g# g# BK BK BK BK BK BK BK BK';
+mappages["fulcrum3"].terrain[17] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["fulcrum3"].terrain[18] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["fulcrum3"].terrain[19] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["fulcrum3"].terrain[20] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["fulcrum3"].terrain[21] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+
+mappages["fulcrum3"].features = [];
+mappages["fulcrum3"].features[0] = {name : 'LadderUp', x : 9, y : 14, entermap : 'ellusus', enterx : 54, entery : 94};
+mappages["fulcrum3"].features[1] = {name : 'GreyDoor1', x : 9, y : 7};
+mappages["fulcrum3"].features[2] = {name : 'GreyDoor1', x : 9, y : 13};
+mappages["fulcrum3"].features[3] = {name : 'Campfire', x : 11, y : 9};
+mappages["fulcrum3"].features[4] = {name : 'Campfire', x : 12, y : 9};
+mappages["fulcrum3"].features[5] = {name : 'Campfire', x : 12, y : 10};
+mappages["fulcrum3"].features[6] = {name : 'Campfire', x : 12, y : 11};
+mappages["fulcrum3"].features[7] = {name : 'Campfire', x : 11, y : 11};
+mappages["fulcrum3"].features[8] = {name : 'Anvil', x : 11, y : 10};
+mappages["fulcrum3"].features[9] = {name : 'Well', x : 7, y : 10};
+
+
+mappages["fulcrum3"].npcs = [];
+mappages["fulcrum3"].npcs[0] = {name : 'TinkerVillagerNPC', x : 10, y : 10, NPCName: 'Smith', Conversation: 'smith', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"Plate2","head":"DarkOpenHelm","back":"","offhand":"OffhandGauntlet","cloak":"","mainhand":"HammerPale","realhead":"DarkOpenHelm"}'};
+
+
+mappages["fulcrum3"].desc = "";
+mappages["fulcrum3"].longdesc = ``;
+mappages["fulcrum3"].music = 'Dungeon';
+mappages["fulcrum3"].savename = `The Fulcrum`;
+mappages["fulcrum3"].exitmap = '';
+mappages["fulcrum3"].exitx = '65';
+mappages["fulcrum3"].exity = '70';
+mappages["fulcrum3"].wraps = '';
+mappages["fulcrum3"].enterx = '65';
+mappages["fulcrum3"].entery = '70';
+mappages["fulcrum3"].seeBelow = '';
+mappages["fulcrum3"].lightLevel = 'dark';
+mappages["fulcrum3"].alwaysRemember = '0';
+mappages["fulcrum3"].scale = '1';
+mappages["fulcrum3"].underground = '1';
+mappages["fulcrum3"].undergroundDesc = 'Level 3';
+mappages["fulcrum3"].enterscript = '';
+mappages["fulcrum3"].entertestscript = '';
+mappages["fulcrum3"].exitscript = '';
+mappages["fulcrum3"].exittestscript = '';
+mappages["fulcrum3"].returnmap = 'ellusus';
+mappages["fulcrum3"].returnx = '54';
+mappages["fulcrum3"].returny = '94';
+mappages["fulcrum3"].returninfused = '0';
+mappages["fulcrum3"].linkedMaps = [""];
+mappages["fulcrum3"].editorLabels = '{}';
+// MAP ENDS HERE
