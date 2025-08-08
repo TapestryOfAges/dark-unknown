@@ -81,8 +81,10 @@ mappages["fulcrum1"].features[40] = {name : 'WalkOnFulcrum', x : 9, y : 19};
 mappages["fulcrum1"].features[41] = {name : 'WalkOnFulcrum', x : 10, y : 19};
 mappages["fulcrum1"].features[42] = {name : 'WalkOnFulcrum', x : 11, y : 19};
 mappages["fulcrum1"].features[43] = {name : 'WalkOnFulcrum', x : 12, y : 19};
-mappages["fulcrum1"].features[44] = {name : 'LadderDown', x : 15, y : 21, entermap : 'null', enterx : 0, entery : 0};
-mappages["fulcrum1"].features[45] = {name : 'LadderDown', x : 17, y : 21, entermap : 'null', enterx : 0, entery : 0};
+mappages["fulcrum1"].features[44] = {name : 'LadderDown', x : 15, y : 21, entermap : 'fulcrum2', enterx : 15, entery : 21};
+mappages["fulcrum1"].features[45] = {name : 'LadderDown', x : 17, y : 21, entermap : 'fulcrum2', enterx : 17, entery : 21};
+mappages["fulcrum1"].features[46] = {name : 'WalkOnFulcrum2', x : 15, y : 21};
+mappages["fulcrum1"].features[47] = {name : 'WalkOnFulcrum2', x : 17, y : 21};
 
 
 mappages["fulcrum1"].npcs = [];
@@ -125,9 +127,10 @@ mappages["fulcrum1"].returnmap = 'ellusus';
 mappages["fulcrum1"].returnx = '54';
 mappages["fulcrum1"].returny = '94';
 mappages["fulcrum1"].returninfused = '0';
-mappages["fulcrum1"].linkedMaps = [""];
+mappages["fulcrum1"].linkedMaps = ["fulcrum2","fulcrum3"];
 mappages["fulcrum1"].editorLabels = '{}';
 // MAP ENDS HERE
+
 
 // MAP BEGINS HERE
 mappages["fulcrum2"] = {};
@@ -212,7 +215,7 @@ mappages["fulcrum2"].returnmap = 'ellusus';
 mappages["fulcrum2"].returnx = '54';
 mappages["fulcrum2"].returny = '94';
 mappages["fulcrum2"].returninfused = '0';
-mappages["fulcrum2"].linkedMaps = [""];
+mappages["fulcrum2"].linkedMaps = ["fulcrum1","fulcrum3"];
 mappages["fulcrum2"].editorLabels = '{}';
 // MAP ENDS HERE
 
@@ -256,7 +259,7 @@ mappages["fulcrum3"].features[9] = {name : 'Well', x : 7, y : 10};
 
 
 mappages["fulcrum3"].npcs = [];
-mappages["fulcrum3"].npcs[0] = {name : 'TinkerVillagerNPC', x : 10, y : 10, NPCName: 'Smith', Conversation: 'smith', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"Plate2","head":"DarkOpenHelm","back":"","offhand":"OffhandGauntlet","cloak":"","mainhand":"HammerPale","realhead":"DarkOpenHelm"}'};
+mappages["fulcrum3"].npcs[0] = {name : 'TinkerVillagerNPC', x : 10, y : 10, PeaceAI: 'fulcrumSmith', NPCName: 'Smith', Conversation: 'smith', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"Plate2","head":"DarkOpenHelm","back":"","offhand":"OffhandGauntlet","cloak":"","mainhand":"HammerPale","realhead":"DarkOpenHelm"}'};
 
 
 mappages["fulcrum3"].desc = "";
@@ -283,6 +286,6 @@ mappages["fulcrum3"].returnmap = 'ellusus';
 mappages["fulcrum3"].returnx = '54';
 mappages["fulcrum3"].returny = '94';
 mappages["fulcrum3"].returninfused = '0';
-mappages["fulcrum3"].linkedMaps = [""];
+mappages["fulcrum3"].linkedMaps = ["fulcrum1","fulcrum2"];
 mappages["fulcrum3"].editorLabels = '{}';
 // MAP ENDS HERE
