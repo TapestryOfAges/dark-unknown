@@ -709,6 +709,19 @@ FenceEWGateTile.prototype.bumpinto = function(who) {
   return BumpIntoDoor(this,who);
 }
 
+function DisabledAutomatonTile() {
+  // Graphics Upgraded
+  this.name = "DisabledAutomaton";
+  this.graphic = "static.gif";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -56*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "disabled automaton";
+}
+DisabledAutomatonTile.prototype = new FeatureObject();
+
 function StatueBaseTile() {
   // Graphics Upgraded
   this.name = "StatueBase";
@@ -7426,6 +7439,7 @@ WalkOnFulcrum2Tile.prototype.walkon = function(who) {
       mymap.deleteThing(feas[i]);
     }
   }
+  return {msg:""};
 }
 
 function PeterWalkOnTile() {

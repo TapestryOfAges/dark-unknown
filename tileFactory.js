@@ -1488,6 +1488,11 @@ tileFactory.prototype.makeFenceEWGateTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeDisabledAutomatonTile = function() {
+  let newTile = new DisabledAutomatonTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeStatueBaseTile = function() {
   let newTile = new StatueBaseTile();
   return newTile;
@@ -2950,6 +2955,11 @@ tileFactory.prototype.makeWalkOnTile = function() {
 
 tileFactory.prototype.makeWalkOnFulcrumTile = function() {
   let newTile = new WalkOnFulcrumTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnFulcrum2Tile = function() {
+  let newTile = new WalkOnFulcrum2Tile();
   return newTile;
 }
 
