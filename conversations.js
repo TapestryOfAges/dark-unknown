@@ -1567,6 +1567,28 @@ OnConvTriggers["given_crystal"] = function(speaker,keyword) {
 
 function ConvTestFlags() {};
 
+OnConvTriggers["self_armor"] = function(speaker,keyword) {  
+  let tile = speaker.getHomeMap().getTile(9,10);
+  let y = 10;
+  if (tile.getTopNPC()) {
+    y=9;
+  }
+  let armor = localFactory.createTile("DecorativeArmor");
+  speaker.getHomeMap().placeThing(9,y,armor);
+  DrawMainFrame("one",speaker.getHomeMap(),9,y);
+}
+
+OnConvTriggers["automaton"] = function(speaker,keyword) {
+  let auto = speaker.getHomeMap().getTile(10,10).getTopNPC();
+  if (auto) {
+    speaker.getHomeMap().deleteThing(auto);
+    DUTime.removeEntityFrom(auto);
+  }
+  let disauto = localFactory.createTile("DisabledAutomaton");
+  speaker.getHomeMap().placeTile(10,10,disauto);
+  DrawMainFrame("one",speaker.getHomeMap(),10,10);
+}
+
 ConvTestFlags["on_quest"] = function(speaker,keyword,questnum) {
   questnum = parseInt(questnum);
   console.log(questnum);
