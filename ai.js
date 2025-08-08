@@ -4217,7 +4217,7 @@ ais.fulcrumGuardian = function(who) {
       else { break; }
     }
     DrawMainFrame("draw",mymap,PC.getx(),PC.gety());
-    console.log("wounded!");
+//    console.log("wounded!");
     return {fin:1};
   }
 
@@ -4231,11 +4231,14 @@ ais.fulcrumGuardian = function(who) {
     else {
       let npc = tile.getTopNPC();
       if (npc && (npc.getName().includes("Guardian"))) {
-        if ((npc.getHP() < npc.getMaxHP()) || (npc.getCurrentAI().includes("combat"))) { console.log("Counterpart is in combat.");  awaken = 1; break; }
+        if ((npc.getHP() < npc.getMaxHP()) || (npc.getCurrentAI().includes("combat"))) { 
+          // console.log("Counterpart is in combat.");  
+          awaken = 1; 
+          break; }
         else { break; }
       } 
       if (tile.getTerrain().getName() === "GreyWall") {
-        console.log("Found the far wall.");
+//        console.log("Found the far wall.");
         awaken = 1; break;
       }
     }
@@ -4243,6 +4246,16 @@ ais.fulcrumGuardian = function(who) {
   if (awaken) {
     who.currentAI = "combat";
     who.peaceAI = "seekPC-15";
+  }
+  return {fin:1};
+}
+
+ais.fulcrumSmith = function(who) {
+  if (!who.talked && (who.getHomeMap() === PC.getHomeMap())) {
+    if (GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety(),"manhatten") <= 4) {
+      who.talked = 1;
+      PC.forcedTalk = who;
+    }
   }
   return {fin:1};
 }
