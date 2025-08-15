@@ -1996,7 +1996,7 @@ function GreyDoor1Tile() {
   this.spriteyoffset = -18*32;
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 1; 
-	this.losupclose = {distance: 1 , blocklos: 0};
+//	this.losupclose = {distance: 1 , blocklos: 0};
 	this.blockloe = 1;
 	this.prefix = "a";
   this.desc = "door";
