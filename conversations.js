@@ -1579,14 +1579,15 @@ OnConvTriggers["self_armor"] = function(speaker,keyword) {
 }
 
 OnConvTriggers["automaton"] = function(speaker,keyword) {
-  let auto = speaker.getHomeMap().getTile(10,10).getTopNPC();
+  let mymap = speaker.getHomeMap();
+  let auto = mymap.getTile(10,10).getTopNPC();
   if (auto) {
     speaker.getHomeMap().deleteThing(auto);
     DUTime.removeEntityFrom(auto);
   }
   let disauto = localFactory.createTile("DisabledAutomaton");
-  speaker.getHomeMap().placeTile(10,10,disauto);
-  DrawMainFrame("one",speaker.getHomeMap(),10,10);
+  mymap.placeThing(10,10,disauto);
+  DrawMainFrame("one",mymap,10,10);
 }
 
 ConvTestFlags["on_quest"] = function(speaker,keyword,questnum) {
