@@ -23,7 +23,7 @@ var editable;
 var editnpcs;
 let transselect = 0;
 
-let transoptions = ["Mountains", "Hills", "Forest", "Forest [tiled]", "Evergreen", "Evergreen", "Bright Forest", "Bright Forest [tiled]", "Swamp", "Dirt", "Meadow", "Grass"];
+let transoptions = ["Mountains", "Hills", "Forest", "Forest [tiled]", "Evergreen", "Evergreen [tiled]", "Bright Forest", "Bright Forest [tiled]", "Swamp", "Dirt", "Meadow", "Grass"];
 
 var browserheight;
 var losgrid = new LOSMatrix(13);
@@ -652,6 +652,8 @@ function clickmap(xval,yval) {
     cornery = -1;
 //    document.brushes.elements[7].checked = true; 
 // what the heck were these for?
+  } else if (document.brushes.elements[7].checked) { // Transition picker
+    CreateTransitionModal();
   }
 }
 
@@ -1767,17 +1769,23 @@ function drawFlow() {
 }
 
 function CreateTransitionModal() {
+  var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
+  $('#transitionbubble').jqm({onShow:myOpen}); 
+  $('#transitionbubble').jqmShow();
+
   let block = document.getElementById("transcontent");
   let html = `<table cellpadding='5' cellspacing='0' border='0'><tr><td>`;
-  html += "<select id='transselect'><option value='' onChange='ChangeTransitionType()'></option>";
+  html += "<select id='transselect'><option value='' onChange='ChangeTransitionType(-1)'></option>";
   for (let i=0;i<transoptions.length;i++) {
     let sel = "";
     if (transselect === i) { sel = " selected"; }
-    html += `<options value='${transoptions[i]}'${sel}>${transoptions[i]}</option>`;
+    html += `<option value='${transoptions[i]}' onChange='ChangeTransitionType(${i})'${sel}>${transoptions[i]}</option>`;
   }
-  html += '</select><br /><div id="transtiles"></div></td>';
-  html += `<td><center>Layer 2:<br /><div style='width:32;height:32' id='translayer2'></div><br /><br />Layer 1:<br /><div style='width:32;height:32' id='translayer1'></div><br /><br />Layer 0:<br /><div style='width:32;height:32' id='translayer0'></div><br /><br /></center></td></tr></table>`;
+  html += '</select><br /><div id="transtiles"></div></td></tr>';
+  html += `<tr><td><center>Layer 2:<br /><div style='width:32;height:32' id='translayer2'></div><br /><br />Layer 1:<br /><div style='width:32;height:32' id='translayer1'></div><br /><br />Layer 0:<br /><div style='width:32;height:32' id='translayer0'></div><br /><br /></center></td></tr></table>`;
+  console.log(html);
   block.innerHTML = html;
+  if (transselect) { ChangeTransitionType(transselect); }
 }
 
 let transpixels = {};
