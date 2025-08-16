@@ -137,16 +137,16 @@ function page_pre_zero() {
       let changelog = document.getElementById("changelog");
       if (changelog) {
         changelog.innerHTML = `<p class='charcreate'>CHANGELOG:</p><ul style='margin-top:0px>`;
-        changelog.innerHTML += `<li class='changelog'>Added more mountains around the edges of the NW island</li>`;
-        changelog.innerHTML += `<li class='changelog'>Anna much less likely to be locked in when she wants to storm off</li>`;
-        changelog.innerHTML += `<li class='changelog'>Quest entry for Tyler's quest reminds you the passcode</li>`;
-        changelog.innerHTML += `<li class='changelog'>Tyler will remind you if you say CODE</li>`;
-        changelog.innerHTML += `<li class='changelog'>Trying to push something off the edge of the map no longer hangs the game</li>`;
-        changelog.innerHTML += `<li class='changelog'>The Rune of Flames no longer has a 50/50 chance of crashing</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed Underworld spawn table that still had "paladin" rather than "spellblade"</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed some schedules involving secret doors</li>`;
-        changelog.innerHTML += `<li class='changelog'>You can no longer wait "until sunup" if you are underground</li>`;
-//        changelog.innerHTML += `<li class='changelog'>Fixed a crash bug with Mass Curse, and with Charm</li>`;
+        changelog.innerHTML += `<li class='changelog'>Waiting no longer fails to fade out sometimes</li>`;
+        changelog.innerHTML += `<li class='changelog'>Audachta Nemesos are no longer Usable items</li>`;
+        changelog.innerHTML += `<li class='changelog'>Vulnerability now imposes at 15/25% penalty to AC</li>`;
+        changelog.innerHTML += `<li class='changelog'>Knockback effects will no longer split up multi-tile monsters</li>`;
+        changelog.innerHTML += `<li class='changelog'>AoEs and Walls of Fire no longer double-count multi-tile monsters</li>`;
+        changelog.innerHTML += `<li class='changelog'>Titan heads cannot be considered to be in a wall of fire</li>`;
+        changelog.innerHTML += `<li class='changelog'>Telekinesis no longer throws an error on invalid targets</li>`;
+        changelog.innerHTML += `<li class='changelog'>Chests that are in the water can no longer be Pulled if you are waterwalking</li>`;
+        changelog.innerHTML += `<li class='changelog'>Completed Dungeon Fulcrum, and created a new monster to live there</li>`;
+        changelog.innerHTML += `<li class='changelog'>Walkoff methods are now sent your direction of travel</li>`;
         changelog.innerHTML += `</ul>`;
       }
     }

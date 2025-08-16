@@ -6,12 +6,13 @@ v 0.10.20
  * Vulnerability now imposes a 15/25% penalty to the enemy's AC
  * Knockback effects should no longer be able to split up multi-tile monsters
  * AoEs should no longer double-count multi-tile monsters
- * Titan heads cannot be considered to be in a fire field
+ * Titan heads cannot be considered to be in a wall of fire
  * Walls of Fire no longer deal damage to each part of a multi-tile monster that is standing in the fire
  * Telekinesis no longer throws an error on invalid targets
  * Chests that are on water can no longer be Pulled if you are waterwalking
  * Added new monster for the Fulcrum
  * WalkOff methods are now sent the direction of travel
+ * Completed dungeon Fulcrum
 
 v 0.10.19  
  * Added more mountains around the edges of NW island
