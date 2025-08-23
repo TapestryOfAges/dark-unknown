@@ -1167,7 +1167,7 @@ tv.CharCreateOptions = function() {
     charopts += "Disable the automapper if you want the old-school experience of having to make your own maps on graph paper.";
   } else if (targetCursor.page === 4) {
     charopts += "<center>STICKY TARGETING</center><br />";
-    charopts += "When enabled, things that target (like attacking and spellcasting) will remember what you last targetted. Otherwise, the target cursor will always start on your position.";
+    charopts += "When enabled, things that target (like attacking and spellcasting) will remember what you last targeted. Otherwise, the target cursor will always start on your position.";
   } else if (targetCursor.page === 5) {
     charopts += "<center>MOVE OPENS DOORS</center><br />";
     charopts += "When enabled, if you use a movement key and bump into a closed door, you will automatically perform the (U)se action on the door. Otherwise, you have to Use or Open it.";
