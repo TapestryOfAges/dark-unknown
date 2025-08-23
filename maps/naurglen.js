@@ -644,7 +644,8 @@ mappages["naurglen"].onload = function(mapref) {
       kylee.setSchedule("kylee2");
       sam.setBark("sam");
     } else {
-      mapref.deleteThing(sam);
+      mapref.deleteThing(sam);      
+      DUTime.removeEntityFrom(sam);
     }
     if (DU.gameflags.getFlag("derek_pony")) { DU.gameflags.setFlag("derek_pony2", 1); }
     if (!DU.gameflags.getFlag("act2")) {
