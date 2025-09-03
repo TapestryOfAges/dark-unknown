@@ -178,8 +178,8 @@ function FinishAnimation(param) {
       else if (param.atk.getName() === "BlackDragonNPC") { retval["txt"] += ": Unconscious!"; }
       else {retval["txt"] += ": Killed!"; }
         
-      if (param.def.getXPVal() && (param.atk === PC) && (!param.def.checkType("pc"))) {
-        retval["txt"] += " (XP gained: " + param.def.getXPVal() + ")";
+      if (param.def.getXPVal() && ((param.atk === PC) || (param.atk.summonedBy === PC)) && (!param.def.checkType("pc"))) {
+        retval["txt"] += " (Worth: " + param.def.getXPVal() + ")";
       }
     }
     let firearmor = param.def.getSpellEffectsByName("FireArmor");
