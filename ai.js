@@ -42,14 +42,16 @@ ais.seekPC = function(who,radius) {
     let moveval = ais.Randomwalk(who,25,25,25,25);
   } else if (who.summoned) {
     let summoner = who.getSpawnedBy();
-    if (whomap === summoner.getHomeMap()) {
-//      if (!IsAdjacent(who,who.getSpawnedBy())) {
-      if (GetDistanceFromPerson(who,summoner.getx(),summoner.gety(),"square") > 2) {
-        let path = whomap.getPath(who.getx(),who.gety(),summoner.getx(),summoner.gety(),who.getMovetype());
-        path.shift();
-        let moved = StepOrSidestep(who,path[0],[who.startx, who.starty]);
-        if (!moved) {
-          let moveval = ais.Randomwalk(who,25,25,25,25);
+    if (summoner) {
+      if (whomap === summoner.getHomeMap()) {
+  //      if (!IsAdjacent(who,who.getSpawnedBy())) {
+        if (GetDistanceFromPerson(who,summoner.getx(),summoner.gety(),"square") > 2) {
+          let path = whomap.getPath(who.getx(),who.gety(),summoner.getx(),summoner.gety(),who.getMovetype());
+          path.shift();
+          let moved = StepOrSidestep(who,path[0],[who.startx, who.starty]);
+          if (!moved) {
+            let moveval = ais.Randomwalk(who,25,25,25,25);
+          }
         }
       }
     }
@@ -1067,6 +1069,11 @@ ais.OutdoorHostile = function(who, radius, pname) {
   if (who.getHomeMap() !== pcmap) {
     if ((pcmap.getName().match(/combat/)) && (pcmap.getExitToMap() === who.getHomeMap().getName())) {
       // if PC is on a combat map, use map's exit coords to determine location
+
+      // But, as an experiment: let's stop moving while PC is in combat
+      return retval;
+
+      // leave these here in case I go back to this
       locx = pcmap.getExitToX();
       locy = pcmap.getExitToY();
     } else {
