@@ -137,16 +137,16 @@ function page_pre_zero() {
       let changelog = document.getElementById("changelog");
       if (changelog) {
         changelog.innerHTML = `<p class='charcreate'>CHANGELOG:</p><ul style='margin-top:0px>`;
-        changelog.innerHTML += `<li class='changelog'>Waiting no longer fails to fade out sometimes</li>`;
-        changelog.innerHTML += `<li class='changelog'>Audachta Nemesos are no longer Usable items</li>`;
-        changelog.innerHTML += `<li class='changelog'>Vulnerability now imposes at 15/25% penalty to AC</li>`;
-        changelog.innerHTML += `<li class='changelog'>Knockback effects will no longer split up multi-tile monsters</li>`;
-        changelog.innerHTML += `<li class='changelog'>AoEs and Walls of Fire no longer double-count multi-tile monsters</li>`;
-        changelog.innerHTML += `<li class='changelog'>Titan heads cannot be considered to be in a wall of fire</li>`;
-        changelog.innerHTML += `<li class='changelog'>Telekinesis no longer throws an error on invalid targets</li>`;
-        changelog.innerHTML += `<li class='changelog'>Chests that are in the water can no longer be Pulled if you are waterwalking</li>`;
-        changelog.innerHTML += `<li class='changelog'>Completed Dungeon Fulcrum, and created a new monster to live there</li>`;
-        changelog.innerHTML += `<li class='changelog'>Walkoff methods are now sent your direction of travel</li>`;
+        changelog.innerHTML += `<li class='changelog'>When killing monsters, game no longer says "you gain: N XP" but rather "worth: N XP", so I can show the whole number value it's worth rather than the value you get, which will likely have multiple decimal places</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed a bug that can cause the Courier to respawn</li>`;
+        changelog.innerHTML += `<li class='changelog'>Dawne now has two ways to remind you the loyalist password if you forget</li>`;
+        changelog.innerHTML += `<li class='changelog'>The quest "A Man on the Inside" also reminds you what the password is in the journal</li>`;
+//        changelog.innerHTML += `<li class='changelog'>Fixed a typo in Layne's journal</li>`;
+//        changelog.innerHTML += `<li class='changelog'>Fixed a fence on a raft that was going off in the wrong direction</li>`;
+        changelog.innerHTML += `<li class='changelog'>Spell scrolls are no longer consumed if the spell can't be cast in that location</li>`;
+        changelog.innerHTML += `<li class='changelog'>You now gain XP for things your summons kill</li>`;
+        changelog.innerHTML += `<li class='changelog'>Save/reload while there is a summoned creature that can't figure out how to find you no longer causes a crash</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed crash if you tip a bartender soon after using the Infinite Scroll</li>`;
         changelog.innerHTML += `</ul>`;
       }
     }

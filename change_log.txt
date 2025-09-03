@@ -1,18 +1,23 @@
+v 0.10.22
+ * When killing monsters, game no longer says "you gain: N XP" but rather "worth: N XP", so I can show the whole number value it's worth rather than the value you get, which will likely have multiple decimal places
+ * Fixed a bug that can cause the Courier to respawn
+ * Dawne now has two ways to remind you the loyalist password if you forget
+ * The quest "A Man on the Inside" also reminds you what the password is in the journal
+ * Fixed a typo in Layne's journal
+ * Fixed a fence on a raft that was going off in the wrong direction
+ * Spell scrolls are no longer consumed if the spell can't be cast in that location
+ * You now gain XP for things your summons kill
+ * Save/reload while there is a summoned creature that can't figure out how to find you no longer causes a crash
+ * Fixed crash if you tip a bartender soon after using the Infinite Scroll
 
-v 0.10.20
- * Waiting no longer fails to fade out under certain circumstances
- * More schedule fixes
- * Audachta Nemeses are no longer Usable items
- * Vulnerability now imposes a 15/25% penalty to the enemy's AC
- * Knockback effects should no longer be able to split up multi-tile monsters
- * AoEs should no longer double-count multi-tile monsters
- * Titan heads cannot be considered to be in a wall of fire
- * Walls of Fire no longer deal damage to each part of a multi-tile monster that is standing in the fire
- * Telekinesis no longer throws an error on invalid targets
- * Chests that are on water can no longer be Pulled if you are waterwalking
- * Added new monster for the Fulcrum
- * WalkOff methods are now sent the direction of travel
- * Completed dungeon Fulcrum
+v 0.10.21
+ * Some dialog fixes
+ * Reduced monster group sizes at lower levels (now capped by a function of plevel)
+ * Removed some of the larger bandit groups from lower level spawners
+ * Carey no longer falls asleep before reaching her bed
+ * It kinda breaks the simulation, but sometimes that has to give way to better gameplay: monsters will no longer move on the world map if you are in a fight. 
+ * XP is no longer parsed as an Int after being modified by your karma- this was rounding it down too far 
+ * Searching a chest a second time no longer adds a second Trap descriptor to the chest's description- and also no longer decreases the trap difficulty each time
 
 v 0.10.19  
  * Added more mountains around the edges of NW island
