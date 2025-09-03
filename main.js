@@ -13,7 +13,7 @@ let eidos = new Platonic();
 //var universe = new Object;
 
 let DU = {};
-DU.version = "0.10.20";
+DU.version = "0.10.22";
 
 DU.PC = new PCObject();
 DU.gamelength = 0;
@@ -1250,6 +1250,7 @@ function DoAction(code, ctrl) {
             maintext.setInputLine("&gt;");
             maintext.drawTextFrame();
             delete targetCursor.itemSource;
+            delete targetCursor.itemname;
             PC.endTurn();
           } else {
             retval = scroll.firstResponse(code);
@@ -1262,6 +1263,7 @@ function DoAction(code, ctrl) {
           maintext.drawTextFrame();
           gamestate.setMode("player");
           delete targetCursor.itemSource;
+          delete targetCursor.itemname;
           gamestate.setTurn(PC);
         }
       } else if (inputText.cmd === "t") {
