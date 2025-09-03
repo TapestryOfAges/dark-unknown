@@ -1822,8 +1822,11 @@ function PerformSearch(who) {
 	      descriptor = "challenging ";
 	    }
 	    retval["txt"] = "Search: You find a " + descriptor + "trap!";
-	    searched.setDesc(searched.getDesc() + " [Trap (" + descriptor + ")]");
-      searched.trapchallenge = searched.trapchallenge - 5;
+      if (!searched.searched) {
+        searched.setDesc(searched.getDesc() + " [Trap (" + descriptor + ")]");
+        searched.trapchallenge = searched.trapchallenge - 5;
+        searched.searched = 1;
+      }
 	    // finding a trap reduces the challenge of removing it
 	  } else {
 	    retval["txt"] = "Search: You find nothing there.";
