@@ -2179,17 +2179,30 @@ function NPCList(npcs,num) {
 }
 
 NPCGroupObject.prototype.populate = function() {
+  return MonsterPopulate(this);
+}
+
+function MonsterPopulate(grp) {
   let population = [];
-  for (let i=0; i<this.group.length; i++) {
-    let num = Dice.roll(this.group[i].count);
+  for (let i=0; i<grp.group.length; i++) {
+    let num = Dice.roll(grp.group[i].count);
     for (let j=1; j<=num; j++) {
       if (population.length < 8) {
-        let monster = localFactory.createTile(this.group[i].npc);
+        let monster = grp.group[i].npc;
         population[population.length] = monster;
       }
     }
   }
   
+  ShuffleArray(population);
+  while (population.length > Math.max(PC.getLevel()*2 - 1,2)) {
+    population.pop();
+  }
+
+  for (let i=0;i<population.length;i++) {
+    population[i] = localFactory.createTile(population[i]);
+  }
+
   return population;
 }
 
@@ -2671,18 +2684,7 @@ function NPCHumanGroupObject() {
 NPCHumanGroupObject.prototype = new NPCHumanObject();
 
 NPCHumanGroupObject.prototype.populate = function() {
-  let population = [];
-  for (let i=0; i<this.group.length; i++) {
-    let num = Dice.roll(this.group[i].count);
-    for (let j=1; j<=num; j++) {
-      if (population.length < 8) {
-        let monster = localFactory.createTile(this.group[i].npc);
-        population[population.length] = monster;
-      }
-    }
-  }
-  
-  return population;
+  return MonsterPopulate(this);
 }
 
 
@@ -2967,7 +2969,7 @@ PCObject.prototype.setxp = function(newxp) {
 }
 
 PCObject.prototype.addxp = function(diffxp) {
-  diffxp = parseInt(diffxp);
+  diffxp = parseFloat(diffxp);
   this.xp += diffxp;
   this.xp = Math.min(this.xp,XP_MAX);
   return this.xp;
