@@ -584,7 +584,7 @@ function Placespawns(mapref) {
 
   onyxspawn.evolve[2] = [];
   onyxspawn.evolve[2][0] = "spawngroup";
-  onyxspawn.evolve[2][1] = ["HoodGroupSmall","HoodGroupSmall","HoodGroupLarge","RogueGroupSmall"];
+  onyxspawn.evolve[2][1] = ["HoodGroupSmall","HoodGroupSmall","RogueGroupSmall"];
   
   onyxspawn.evolve[3] = [];
   onyxspawn.evolve[3][0] = "spawngroup";
@@ -844,7 +844,7 @@ function Placespawns(mapref) {
   // Pit
   // Zone: E
   spawn = localFactory.createTile("Spawner");
-  group = ["HoodGroupSmall","HoodGroupSmall","HoodGroupLarge","PitRogueGroupSmall"];
+  group = ["HoodGroupSmall","HoodGroupSmall","PitRogueGroupSmall"];
 
   spawn.setSpawngroup(group);
   spawn.setSpawnRadius(3);
@@ -854,11 +854,11 @@ function Placespawns(mapref) {
 
   spawn.evolve[2] = [];
   spawn.evolve[2][0] = "spawngroup";
-  spawn.evolve[2][1] = ["HoodGroupSmall","HoodGroupLarge","PitRogueGroupSmall","PitRogueGroupSmall","ThiefGroupSmall"];
+  spawn.evolve[2][1] = ["HoodGroupSmall","PitRogueGroupSmall","PitRogueGroupSmall","ThiefGroupSmall"];
 
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
-  spawn.evolve[3][1] = ["PitRogueGroupSmall","PitRogueGroupSmall","ThiefGroupSmall","ThiefGroupLarge"];
+  spawn.evolve[3][1] = ["HoodGroupLarge","PitRogueGroupSmall","PitRogueGroupSmall","ThiefGroupSmall","ThiefGroupLarge"];
 
   spawn.evolve[4] = [];
   spawn.evolve[4][0] = "maxSpawns";
