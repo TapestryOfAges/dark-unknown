@@ -1781,11 +1781,26 @@ function CreateTransitionModal() {
     if (transselect === i) { sel = " selected"; }
     html += `<option value='${transoptions[i]}' onChange='ChangeTransitionType(${i})'${sel}>${transoptions[i]}</option>`;
   }
-  html += '</select><br /><div id="transtiles"></div></td></tr>';
-  html += `<tr><td><center>Layer 2:<br /><div style='width:32;height:32' id='translayer2'></div><br /><br />Layer 1:<br /><div style='width:32;height:32' id='translayer1'></div><br /><br />Layer 0:<br /><div style='width:32;height:32' id='translayer0'></div><br /><br /></center></td></tr></table>`;
+  html += '</select><br /><div id="transtiles"></div></td>';
+  html += `<div style='width:32;height:32' id='transdisplay'></div></tr>`;
+  html += `<tr><td colspan='2'><center>Layer 2:<br /><div id='translayer2'></div><br /><br />Layer 1:<br /><div id='translayer1'></div><br /><br />Layer 0:<br /><div id='translayer0'></div><br /><br /></center></td></tr></table>`;
   console.log(html);
   block.innerHTML = html;
-  if (transselect) { ChangeTransitionType(transselect); }
+//  if (transselect) { ChangeTransitionType(transselect); }
+}
+
+function CreateTransitionScreen(x,y) {
+  tt = TransitionTerrain(null,amap,x,y);
+  tile = amap.getTile(x,y).getTerrain();
+  let t0 = document.getElementById("translayer0");
+  t0.innerHTML = `<div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/water.gif');background-position:0px 0px" id='water.gif 0 0' onclick="transSelection(0,'water.gif',0,0)"></div>`;
+  t0.innerHTML += `<div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/water.gif');background-position:0px -32px" id='water.gif 0 -32' onclick="transSelection(0,'water.gif',0,-32)"></div>`;
+  t0.innerHTML += `<div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/water.gif');background-position:0px -64px" id='water.gif 0 -64' onclick="transSelection(0,'water.gif',0,-64)"></div>`;
+  t0.innerHTML += `<div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/WaterCaveSheet.gif');background-position:0px 0px" id='WaterCaveSheet.gif 0 0' onclick="transSelection(0,'waterCaveSheet.gif',0,0)"></div>`;
+}
+
+function TransitionTerrain(xxx,themap,x,y) {
+
 }
 
 let transpixels = {};
