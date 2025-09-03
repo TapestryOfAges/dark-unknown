@@ -525,6 +525,13 @@ magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell = function(caster, i
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
+  if (!caster.getHomeMap().getScale()) {
+    resp["fin"] = 2;
+    resp["txt"] = "There is no benefit to casting that spell here.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
+
   let radius = 3;
   if (!free & caster.getIntForPower() > 20) { radius = 4; }
   if (infused) { radius = radius * 1.5; } 
@@ -2346,15 +2353,22 @@ magic[SPELL_BLINK_LEVEL][SPELL_BLINK_ID].executeSpell = function(caster, infused
     while (!success && possdest[0]) {
       let tile = castermap.getTile(possdest[0].x,possdest[0].y);
       if ((tile !== "OoB") && (tile.canMoveHere(castermove, 0).canmove)) {
-        let movetype = MOVE_WALK;
-        if (castermove & MOVE_ETHEREAL) { movetype = MOVE_ETHEREAL; }
-        else if (castermove & MOVE_FLY) { movetype = MOVE_FLY; }
-        else if (castermove & MOVE_LEVITATE) { movetype = MOVE_LEVITATE; }
-        else if (castermove & MOVE_SWIM) { movetype = MOVE_SWIM; }
-        
-        let path = castermap.getPath(casterx,castery,possdest[0].x,possdest[0].y,movetype);
-        if (path.length) {
-          success = PerformBlink(caster,possdest[0].x,possdest[0].y);
+        let fea = tile.features.getAll();
+        let vaultwalk = 0;
+        for (let i=0;i<fea.length;i++) {
+          if (fea.getName().includes("VaultWalk")) { vaultwalk = 1; }
+        }
+        if (!vaultwalk) {
+          let movetype = MOVE_WALK;
+          if (castermove & MOVE_ETHEREAL) { movetype = MOVE_ETHEREAL; }
+          else if (castermove & MOVE_FLY) { movetype = MOVE_FLY; }
+          else if (castermove & MOVE_LEVITATE) { movetype = MOVE_LEVITATE; }
+          else if (castermove & MOVE_SWIM) { movetype = MOVE_SWIM; }
+          
+          let path = castermap.getPath(casterx,castery,possdest[0].x,possdest[0].y,movetype);
+          if (path.length) {
+            success = PerformBlink(caster,possdest[0].x,possdest[0].y);
+          }
         }
       }
       if (!success) { possdest.shift(); }
@@ -4432,13 +4446,13 @@ magic[SPELL_QUAKE_LEVEL][SPELL_QUAKE_ID].executeSpell = function(caster, infused
   let AoETargets = new AoETargetList();
   for (let i=0; i<foes.length; i++) {
     if (foes[i] && !foes[i].frozenintime) {
-      if (val.attachedTo) {
-        if (!AoETargets.AddID(val.attachedTo.getSerial())) {
+      if (foes[i].attachedTo) {
+        if (!AoETargets.AddID(foes[i].attachedTo.getSerial())) {
           continue;
         }
       } else {
         // this should never trigger
-        if (!AoETargets.AddID(val.getSerial())) { continue; }
+        if (!AoETargets.AddID(foes[i].getSerial())) { continue; }
       }
 
       foes[i].setHitBySpell(caster,Math.max(Math.floor(SPELL_QUAKE_LEVEL/foes.length),1));
