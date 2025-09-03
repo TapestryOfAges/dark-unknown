@@ -900,7 +900,7 @@ function WindowTile() {
 	this.blockloe = 1;
 	this.prefix = "a";
 	this.desc = "window";
-  this.peerview = "#fffff";
+  this.peerview = "#ffffff";
 }
 WindowTile.prototype = new TerrainObject();
 
