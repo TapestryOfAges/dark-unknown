@@ -5540,6 +5540,14 @@ magic[SPELL_TIME_STOP_LEVEL][SPELL_TIME_STOP_ID].getLongDesc = function() {
 magic[SPELL_TIME_STOP_LEVEL][SPELL_TIME_STOP_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Time Stop.<br />");
   let resp = {fin:1};
+  
+  if (caster.getSpellEffectsByName("TimeStop")) {
+    resp["fin"] = 2;
+    resp["txt"] = "Time is already stopped.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
+
   if (!free) {
     let mana = this.getManaCost(infused);
     CastSpellMana(caster,mana);
