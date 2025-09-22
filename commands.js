@@ -563,6 +563,11 @@ function PerformCommand(code, ctrl) {
       retval["input"] = "&gt;";
       retval["fin"] = 2;
       waithere = 0;
+    } else if (PC.getSpellEffectsByName("TimeStop")) {
+      retval["txt"] = "Time is stopped- waiting might be a poor idea.";
+      retval["input"] = "&gt;";
+      retval["fin"] = 2;
+      waithere = 0;
     }
     let waitmap = PC.getHomeMap();
     let tile = waitmap.getTile(PC.getx(),PC.gety());
@@ -1615,8 +1620,8 @@ function PerformRuneChoice() {
         prot.setExpiresTime(endtime);
         prot.setPower(power);
         PC.addSpellEffect(prot,1);
-        ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
-        PlayCastSound(caster,"sfx_flame_armor");
+        ShowEffect(PC, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
+        PlayCastSound(PC,"sfx_flame_armor");
       } else if (flip === 2) {  // not putting else here to remind me to add more options if I think of them
         retval["txt"] = "You call upon the fire that burns within. You feel it stir, and lash out at your enemies.<br />It will be some time before you can do that again.";
         // cast Conflagration
