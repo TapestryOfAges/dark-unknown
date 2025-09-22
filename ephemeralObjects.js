@@ -1553,6 +1553,7 @@ TimeStopTile.prototype.applyEffect = function(silent) {
 }
 
 TimeStopTile.prototype.eachTurn = function() {
+  console.log("Time tick: " + PC.getMana());
   let who = this.getAttachedTo();
   if (who.getHomeMap().getScale()) {
     who.modMana(-5);
