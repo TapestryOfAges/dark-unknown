@@ -179,7 +179,7 @@ function FinishAnimation(param) {
       else {retval["txt"] += ": Killed!"; }
         
       if (param.def.getXPVal() && ((param.atk === PC) || (param.atk.summonedBy === PC)) && (!param.def.checkType("pc"))) {
-        retval["txt"] += " (Worth: " + param.def.getXPVal() + ")";
+        retval["txt"] += " (Worth: " + param.def.getXPVal() + " XP)";
       }
     }
     let firearmor = param.def.getSpellEffectsByName("FireArmor");
@@ -248,11 +248,11 @@ function DealandDisplayDamage(def,atk,dmg, dmgtype) {
     }
     else {  
       if (def.specials.crumbles) { maintext.delayedAddText(desc +  ": It crumbles to dust!"); }
-      else if (atk && (atk.getName() === "BlackDragonNPC")) { retval["txt"] += ": Unconscious!"; }
+      else if (atk && (atk.getName() === "BlackDragonNPC")) { maintext.delayedAddText(desc + ": Unconscious!"); }
       else { maintext.delayedAddText(desc + ": Killed!"); }
       
       if (def.getXPVal() && (atk === PC)) {
-        maintext.delayedAddText(" (XP gained: " + def.getXPVal() + ")");
+        maintext.delayedAddText(" (Worth: " + def.getXPVal() + " XP)");
       }
     }
     return stillalive;
