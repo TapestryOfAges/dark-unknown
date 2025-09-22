@@ -1774,16 +1774,143 @@ function CreateTransitionModal() {
   $('#transitionbubble').jqmShow();
 
   let block = document.getElementById("transcontent");
-  let html = `<table cellpadding='5' cellspacing='0' border='0'><tr><td>`;
+  let html = `<table cellpadding='5' cellspacing='0' border='0' style='width:100%'><tr><td colspan='2'>`;
   html += "<select id='transselect'><option value='' onChange='ChangeTransitionType(-1)'></option>";
   for (let i=0;i<transoptions.length;i++) {
     let sel = "";
     if (transselect === i) { sel = " selected"; }
     html += `<option value='${transoptions[i]}' onChange='ChangeTransitionType(${i})'${sel}>${transoptions[i]}</option>`;
   }
-  html += '</select><br /><div id="transtiles"></div></td>';
-  html += `<div style='width:32;height:32' id='transdisplay'></div></tr>`;
-  html += `<tr><td colspan='2'><center>Layer 2:<br /><div id='translayer2'></div><br /><br />Layer 1:<br /><div id='translayer1'></div><br /><br />Layer 0:<br /><div id='translayer0'></div><br /><br /></center></td></tr></table>`;
+  html += '</select><br /><div id="transtiles"></div></td><table><tr>';
+  html += ``;
+
+  html += `</tr><table></tr>`;
+  html += `<tr><td><center>Layer 2:<br /><div id='translayer2'></div></td>`;
+  html += `<td><div style='width:32;height:32' id='translayer2image'></div><br />3: <input type='text' id='layer2-3' size='12'/><br />2: <input type='text' id='layer2-2' size='12'/><br />1: <input type='text' id='layer2-1' size='12'/><br />0: <input type='text' id='layer2-0' size='12'/></td></tr>`;
+  html += `<tr><td><center>Layer 1:<br /><div id='translayer1'><table><tr>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/water.gif');background-position:0px 0px" id='water.gif 0 0' onclick="transSelection(0,'water.gif',0,0)"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/water.gif');background-position:0px -32px" id='water.gif 0 -32' onclick="transSelection(0,'water.gif',0,-32)"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/water.gif');background-position:0px -64px" id='water.gif 0 -64' onclick="transSelection(0,'water.gif',0,-64)"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/WaterCaveSheet.gif');background-position:0px 0px" id='WaterCaveSheet.gif 0 0' onclick="transSelection(0,'waterCaveSheet.gif',0,0)"></div></td>`;
+  // Grass
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-192px 0px" id='static.gif -192 0' onclick="transSelection(0,'static.gif',-192,0)"></div></td>`;
+  // SouthCoast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-192px -1664px" id='static.gif -192 -1664' onclick="transSelection(0,'static.gif',-192,-1664)"></div></td>`;
+  // NorthCoast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-96px -1760px" id='static.gif -96 -1760' onclick="transSelection(0,'static.gif',-96,-1760)"></div></td>`;
+  // EastCoast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-96px -1792px" id='static.gif -96 -1792' onclick="transSelection(0,'static.gif',-96,-1792)"></div></td>`;
+  // WestCoast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-96px -1824px" id='static.gif -96 -1824' onclick="transSelection(0,'static.gif',-96,-1824)"></div></td>`;
+  // Northeast Coast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-192px -1632px" id='static.gif -192 -1632' onclick="transSelection(0,'static.gif',-192,-1632)"></div></td>`;
+  // Southwest Coast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-192px -1600px" id='static.gif -192 -1600' onclick="transSelection(0,'static.gif',-192,-1600)"></div></td>`;
+  // Northwest Coast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-32px -1664px" id='static.gif -32 -1664' onclick="transSelection(0,'static.gif',-32,-1664)"></div></td>`;
+  // Southeast Coast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-32px -1632px" id='static.gif -32 -1632' onclick="transSelection(0,'static.gif',-32,-1632)"></div></td>`;
+  // Meadow
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:0px 0px" id='static.gif 0 0' onclick="transSelection(0,'static.gif',0,0)"></div></td>`;
+  // MeadowSouthCoast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-160px -1664px" id='static.gif -160 -1664' onclick="transSelection(0,'static.gif',-160,-1664)"></div></td>`;
+  // MeadowNorthCoast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-64px -1760px" id='static.gif -64 -1760' onclick="transSelection(0,'static.gif',-64,-1760)"></div></td>`;
+  // MeadowEastCoast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-64px -1792px" id='static.gif -64 -1792' onclick="transSelection(0,'static.gif',-64,-1792)"></div></td>`;
+  // MeadowWestCoast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-64px -1824px" id='static.gif -64 -1824' onclick="transSelection(0,'static.gif',-64,-1824)"></div></td>`;
+  // Meadow Northeast Coast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-160px -1632px" id='static.gif -160 -1632' onclick="transSelection(0,'static.gif',-160,-1632)"></div></td>`;
+  // Meadow Southwest Coast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-160px -1600px" id='static.gif -160 -1600' onclick="transSelection(0,'static.gif',-160,-1600)"></div></td>`;
+  // Meadow Northwest Coast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:0px -1664px" id='static.gif 0 -1664' onclick="transSelection(0,'static.gif',0,-1664)"></div></td>`;
+  // Meadow Southeast Coast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:0px -1632px" id='static.gif 0 -1632' onclick="transSelection(0,'static.gif',0,-1632)"></div></td>`;
+
+  html += `</tr><tr>`;
+  // Cave
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:0px -96px" id='static.gif 0 -96' onclick="transSelection(0,'static.gif',0,-96)"></div></td>`;  
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-32px -96px" id='static.gif -32 -96' onclick="transSelection(0,'static.gif',-32,-96)"></div></td>`;  
+  // CaveSouthCoast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-160px -1696px" id='static.gif -160 -1696' onclick="transSelection(0,'static.gif',-160,-1696)"></div></td>`;
+  // CaveNorthCoast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-192px -1760px" id='static.gif -192 -1760' onclick="transSelection(0,'static.gif',-192,-1760)"></div></td>`;
+  // CaveEastCoast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-192px -1792px" id='static.gif -192 -1792' onclick="transSelection(0,'static.gif',-192,-1792)"></div></td>`;
+  // CaveWestCoast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-192px -1824px" id='static.gif -192 -1824' onclick="transSelection(0,'static.gif',-192,-1824)"></div></td>`;
+    // Sand
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-128px 0px" id='static.gif -128 0' onclick="transSelection(0,'static.gif',-128,0)"></div></td>`;
+  // SandSouthCoast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-224px -1664px" id='static.gif -224 -1664' onclick="transSelection(0,'static.gif',-224,-1664)"></div></td>`;
+  // SandNorthCoast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-128px -1760px" id='static.gif -128 -1760' onclick="transSelection(0,'static.gif',-128,-1760)"></div></td>`;
+  // SandEastCoast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-128px -1792px" id='static.gif -128 -1792' onclick="transSelection(0,'static.gif',-128,-1792)"></div></td>`;
+  // SandWestCoast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-128px -1824px" id='static.gif -128 -1824' onclick="transSelection(0,'static.gif',-128,-1824)"></div></td>`;
+  // Sand Northeast Coast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-224px -1632px" id='static.gif -224 -1632' onclick="transSelection(0,'static.gif',-224,-1632)"></div></td>`;
+  // Sand Southwest Coast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-224px -1600px" id='static.gif -224 -1600' onclick="transSelection(0,'static.gif',-224,-1600)"></div></td>`;
+  // Sand Northwest Coast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-64px -1664px" id='static.gif -64 -1664' onclick="transSelection(0,'static.gif',-64,-1664)"></div></td>`;
+  // Sand Southeast Coast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-64px -1632px" id='static.gif -64 -1632' onclick="transSelection(0,'static.gif',-64,-1632)"></div></td>`;
+
+  html += `</tr><tr>`;
+  // Cave
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:0px -128px" id='static.gif 0 -128' onclick="transSelection(0,'static.gif',0,-128)"></div></td>`;  
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-32px -128px" id='static.gif -32 -128' onclick="transSelection(0,'static.gif',-32,-128)"></div></td>`;  
+  // Cave Northeast Coast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-32px -1696px" id='static.gif -32 -1696' onclick="transSelection(0,'static.gif',-32,-1696)"></div></td>`;
+  // Cave Southwest Coast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-288px -1600px" id='static.gif -288 -1600' onclick="transSelection(0,'static.gif',-288,-1600)"></div></td>`;
+  // Cave Northwest Coast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-128px -1664px" id='static.gif -128 -1664' onclick="transSelection(0,'static.gif',-128,-1664)"></div></td>`;
+  // Cave Southeast Coast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-128px -1632px" id='static.gif -128 -1632' onclick="transSelection(0,'static.gif',-128,-1632)"></div></td>`;
+  // Dirt
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:0px -64px" id='static.gif 0 -64' onclick="transSelection(0,'static.gif',0,-64)"></div></td>`;
+  // DirtSouthCoast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-128px -1696px" id='static.gif -128 -1696' onclick="transSelection(0,'static.gif',-128,-1696)"></div></td>`;
+  // DirtNorthCoast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-160px -1760px" id='static.gif -160 -1760' onclick="transSelection(0,'static.gif',-160,-1760)"></div></td>`;
+  // DirtEastCoast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-160px -1792px" id='static.gif -160 -1792' onclick="transSelection(0,'static.gif',-160,-1792)"></div></td>`;
+  // DirtWestCoast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-160px -1824px" id='static.gif -160 -1824' onclick="transSelection(0,'static.gif',-160,-1824)"></div></td>`;
+  // Dirt Northeast Coast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:0px -1696px" id='static.gif 0 -1696' onclick="transSelection(0,'static.gif',0,-1696)"></div></td>`;
+  // Dirt Southwest Coast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-256px -1600px" id='static.gif -256 -1600' onclick="transSelection(0,'static.gif',-256,-1600)"></div></td>`;
+  // Dirt Northwest Coast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-96px -1664px" id='static.gif -96 -1664' onclick="transSelection(0,'static.gif',-96,-1664)"></div></td>`;
+  // Dirt Southeast Coast
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-96px -1632px" id='static.gif -96 -1632' onclick="transSelection(0,'static.gif',-96,-1632)"></div></td>`;
+  // Swamp
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-288px 0px" id='static.gif -288 0' onclick="transSelection(0,'static.gif',-288,0)"></div></td>`;
+  // Hills
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-256px 0px" id='static.gif -256 0' onclick="transSelection(0,'static.gif',-256,0)"></div></td>`;
+  // Hills1
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-224px -224px" id='static.gif -224 -224' onclick="transSelection(0,'static.gif',-224,-224)"></div></td>`;
+  // Hills2
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-288px -576px" id='static.gif -288 -576' onclick="transSelection(0,'static.gif',-288,-576)"></div></td>`;
+
+
+  html += `</tr></table></div></td>`;
+  html += `<td><div style='width:32;height:32' id='translayer1image'></div><br />3: <input type='text' id='layer1-3' size='12'/><br />2: <input type='text' id='layer1-2' size='12'/><br />1: <input type='text' id='layer1-1' size='12'/><br />0: <input type='text' id='layer1-0' size='12'/></td></tr>`;
+  html += `<tr><td><center>Layer 0:<br /><div id='translayer0'><table><tr>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/water.gif');background-position:0px 0px" id='water.gif 0 0' onclick="transSelection(0,'water.gif',0,0)"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/water.gif');background-position:0px -32px" id='water.gif 0 -32' onclick="transSelection(0,'water.gif',0,-32)"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/water.gif');background-position:0px -64px" id='water.gif 0 -64' onclick="transSelection(0,'water.gif',0,-64)"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/WaterCaveSheet.gif');background-position:0px 0px" id='WaterCaveSheet.gif 0 0' onclick="transSelection(0,'waterCaveSheet.gif',0,0)"></div></td>`;
+  html += `</tr></table></div></td>`;
+  html += `<td><div style='width:32;height:32' id='translayer0image'></div><br />3: <input type='text' id='layer0-3' size='12'/><br />2: <input type='text' id='layer0-2' size='12'/><br />1: <input type='text' id='layer0-1' size='12'/><br />0: <input type='text' id='layer0-0' size='12'/></td></tr>`;
+  html += `</table>`;
+//  Layer 1:<br /><div id='translayer1'></div><br /><br />Layer 0:<br /><div id='translayer0'></div><br /><br /></center></td></tr></table>`;
   console.log(html);
   block.innerHTML = html;
 //  if (transselect) { ChangeTransitionType(transselect); }
