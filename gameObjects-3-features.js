@@ -9497,7 +9497,7 @@ function TwistOfFateLOEFixerTile() {
 TwistOfFateLOEFixerTile.prototype = new FeatureObject();
 
 TwistOfFateLOEFixerTile.prototype.activate = function() {
-  console.log("Setting LOE in ToF2.");
+//  console.log("Setting LOE in ToF2.");
   let mapref = this.getHomeMap();
   mapref.setWalkableAt(21,44,true,MOVE_WALK_LOE);
   mapref.setWalkableAt(30,41,true,MOVE_WALK_LOE);
