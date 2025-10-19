@@ -301,7 +301,7 @@ function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev, skipfeatures, 
   }
     
   baseStack = localacre.getTileStack();
-  let maplevel = mapname;
+  let maplevel = mapname;  // can be used to get terrain transitions from other maps
   if (!skipseebelow) {
     while (baseStack[0].getName() === "SeeBelow") {
       baseStack.shift();
