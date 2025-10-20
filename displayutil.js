@@ -270,10 +270,10 @@ function SortDisplayTiles(disparray) {
 }
 
 function TransitionTerrain(graphic, mapref, x, y) {
-  if (!mapref.transover) { return graphic; }
+  if (!mapref.transover) { return [graphic]; }
   let override = mapref.transover[`${x},${y}`];
   if (override) { return override;}
-  else { return graphic; }
+  else { return [graphic]; }
 }
 
 function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev, skipfeatures, skipnpcs, skipseebelow) {
@@ -302,6 +302,7 @@ function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev, skipfeatures, 
     
   baseStack = localacre.getTileStack();
   let maplevel = mapname;  // can be used to get terrain transitions from other maps
+                          // note: "mapname" is actually a mapref
   if (!skipseebelow) {
     while (baseStack[0].getName() === "SeeBelow") {
       baseStack.shift();
