@@ -269,11 +269,11 @@ function SortDisplayTiles(disparray) {
   return disparray;
 }
 
-function TransitionTerrain(graphic, mapref, x, y) {
-  if (!mapref.transover) { return [graphic]; }
+function TransitionTerrain(mapref, x, y) {
+  if (!mapref.transover) { return null; }
   let override = mapref.transover[`${x},${y}`];
   if (override) { return override;}
-  else { return [graphic]; }
+  else { return null; }
 }
 
 function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev, skipfeatures, skipnpcs, skipseebelow) {
@@ -326,7 +326,12 @@ function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev, skipfeatures, 
     displayCell.layers = displaytile.layers;
     let isnpc = 0;  // specifically, ones with minds who will be seen by telepathy
     if (displaytile.checkType("NPC") && !displaytile.specials.mindless) { isnpc = 1; }
-    let graphics = displaytile.getGraphicArray();
+    let graphics;
+    if (displaytile.checkType("terrain")) {
+      graphics = displaytile.getGraphicArrayTerrain(maplevel, x, y);
+    } else {
+      graphics = displaytile.getGraphicArray();
+    }
     if ((typeof displaytile.setBySurround === "function") && ((losresult < LOS_THRESHOLD) || ev || (displaytile.getName() === "CaveWall"))) {
       if (displaytile.IWasJustDrawn) { displaytile.IWasJustDrawn(); }
       graphics = displaytile.setBySurround(x,y,mapname,graphics,1,centerx,centery,losresult);

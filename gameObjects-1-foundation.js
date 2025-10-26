@@ -415,6 +415,22 @@ GameObject.prototype.getGraphicArray = function(getbase) {
   return(returnVars); 
 }
 
+GameObject.prototype.getGraphicArrayTerrain = function(mapref, x, y) {
+  let ttr = TransitionTerrain(mapref,x,y);
+  if (!ttr) {
+    return this.getGraphicArray();
+  }
+  let returnGraphic;
+  if (ttr[0][1]) {
+    returnGraphic = ttr[0];
+    returnGraphic[4] = [ttr[1],ttr[2]];
+  } else {
+    returnGraphic = ttr[1];
+    returnGraphic[4] = [ttr[2]];
+  }
+  return returnGraphic;
+}
+
 GameObject.prototype.setOverlay = function(newgraphic) {
 	this.overlay = newgraphic;
 }

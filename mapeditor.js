@@ -22,8 +22,7 @@ let flowing = 0;
 var editable;
 var editnpcs;
 let transselect = 0;
-
-let transoptions = ["Mountains", "Hills", "Forest", "Forest [tiled]", "Evergreen", "Evergreen [tiled]", "Bright Forest", "Bright Forest [tiled]", "Swamp", "Dirt", "Meadow", "Grass"];
+let transx, transy;
 
 var browserheight;
 var losgrid = new LOSMatrix(13);
@@ -1775,17 +1774,17 @@ function CreateTransitionModal() {
   $('#transitionbubble').jqmShow();
 
   let block = document.getElementById("transcontent");
-  let html = `<table cellpadding='5' cellspacing='0' border='0' style='width:100%'><tr><td colspan='2'>`;
+  let html = `<table cellpadding='5' cellspacing='0' border='0' style='width:100%'><tr><td>`;
   html += "<select id='transselect'><option value='' onChange='ChangeTransitionType(-1)'></option>";
   for (let i=0;i<transoptions.length;i++) {
     let sel = "";
     if (transselect === i) { sel = " selected"; }
-    html += `<option value='${transoptions[i]}' onChange='ChangeTransitionType(${i})'${sel}>${transoptions[i]}</option>`;
+    html += `<option value='${transoptions[i]}' onChange='ChangeTransitionType("${transoptions[i]}")'${sel}>${transoptions[i]}</option>`;
   }
-  html += '</select><br /><div id="transtiles"></div></td><table><tr>';
+  html += '</select></td><td id="seltilename"></td><td><div id="transtilearea"></div></td></tr></table>';
   html += ``;
 
-  html += `</tr><table></tr>`;
+  html += `<table>`;
   html += `<tr><td><center>Layer 2:<br /><div id='translayer2'></div></td>`;
   html += `<td><div style='width:32;height:32' id='translayer2image'></div><br />3: <input type='text' id='layer2-3' size='12'/><br />2: <input type='text' id='layer2-2' size='12'/><br />1: <input type='text' id='layer2-1' size='12'/><br />0: <input type='text' id='layer2-0' size='12'/></td></tr>`;
   html += `<tr><td><center>Layer 1:<br /><div id='translayer1'><table><tr>`;
@@ -1912,48 +1911,106 @@ function CreateTransitionModal() {
   html += `</tr></table></div></td>`;
   html += `<td><div style='width:32;height:32' id='translayer0image'></div><br />3: <input type='text' id='layer0-3' size='12'/><br />2: <input type='text' id='layer0-2' size='12'/><br />1: <input type='text' id='layer0-1' size='12'/><br />0: <input type='text' id='layer0-0' size='12'/></td></tr>`;
   html += `</table>`;
-//  Layer 1:<br /><div id='translayer1'></div><br /><br />Layer 0:<br /><div id='translayer0'></div><br /><br /></center></td></tr></table>`;
-//  console.log(html);
+
   block.innerHTML = html;
-//  if (transselect) { ChangeTransitionType(transselect); }
 }
 
-// function CreateTransitionScreen(x,y) {
-//   tt = TransitionTerrain(null,amap,x,y);
-//   tile = amap.getTile(x,y).getTerrain();
-//   let t0 = document.getElementById("translayer0");
-//   t0.innerHTML = `<div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/water.gif');background-position:0px 0px" id='water.gif 0 0' onclick="transSelection(0,'water.gif',0,0)"></div>`;
-//   t0.innerHTML += `<div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/water.gif');background-position:0px -32px" id='water.gif 0 -32' onclick="transSelection(0,'water.gif',0,-32)"></div>`;
-//   t0.innerHTML += `<div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/water.gif');background-position:0px -64px" id='water.gif 0 -64' onclick="transSelection(0,'water.gif',0,-64)"></div>`;
-//   t0.innerHTML += `<div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/WaterCaveSheet.gif');background-position:0px 0px" id='WaterCaveSheet.gif 0 0' onclick="transSelection(0,'waterCaveSheet.gif',0,0)"></div>`;
-// }
+function TransitionTile(x,y) {
+  CreateTransitionModal();
+  transx = x;
+  transy = y;
 
-// function TransitionTerrain(xxx,themap,x,y) {
+  let tname = amap.getTile(x,y).getTerrain().getName();
+  document.getElementById("seltilename").innerHTML = tname;
 
-// }
+  let tsel = "<table>";
+  for (let j=y-1;j<=y+1;j++) {
+    tsel += `<tr>`;
+    for (let i=x-1;i<=x+1;i++) {
+      let ttile = amap.getTile(i,j);
+      if (ttile !== "OoB") {
+        let graphic = ttile.getTerrain().getGraphicArray();
+        tsel += `<div style='position:absolute;left:0;top:0;background-image:url("${graphic[1]}");background-position: ${graphic[2]} ${graphic[3]};width:32;height:32'></div>`;
+        if (graphic[4]) {
+          tsel += `<div style='position:absolute;left:0;top:0;background-image:url("${graphic[4][0][1]}");background-position: ${graphic[4][0][2]} ${graphic[4][0][3]};width:32;height:32'></div>`;
+        }
+      } else {
+        tsel += `<td style='width:32;height:32;background-color:black'></td>`;
+      }
+    }
+    tsel += `</tr>`;
+  }
+  tsel += '</table>';
+  document.getElementById("transtilearea").innerHTML = tsel;
+
+  if (tname.includes("Mountain")) {
+    ChangeTransitionType("Mountains");
+  } else if (tname.includes("Hill")) {
+    ChangeTransitionType("Hills");
+  } else if (tname.includes("BrightForestEdge")) {
+    ChangeTransitionType("Bright Forest [tiled]");
+  } else if (tname.includes("BrightForest")) {
+    ChangeTransitionType("Bright Forest");
+  } else if (tname.includes("EvergreenForestEdge")) {
+    ChangeTransitionType("Evergreen [tiled]");
+  } else if (tname.includes("EvergreenForest")) {
+    ChangeTransitionType("Evergreen");
+  } else if (tname.includes("ForestTiling")) {
+    ChangeTransitionType("Forest [tiled]");
+  } else if (tname.includes("Forest")) {
+    ChangeTransitionType("Forest");
+  } else if (tname.includes("Swamp")) {
+    ChangeTransitionType("Swamp");
+  } else if (tname.includes("Dirt")) {
+    ChangeTransitionType("Dirt");
+  } else if (tname.includes("Meadow")) {
+    ChangeTransitionType("Meadow");
+  } else if (tname.includes("Grass")) {
+    ChangeTransitionType("Grass");
+  }
+}
+
+function ChangeTransitionType(totype) {
+  let ttile = "<table><tr>";
+  if (totype === "Mountains") {
+    let ty = transpixels["Mountains"];
+    for (tx = 0;tx<=15;tx++) {
+
+    }
+  }
+  ttile += "</tr></table>";
+}
+
+let transoptions = ["Mountains", "Hills", "Forest", "Forest [tiled]", "Evergreen", "Evergreen [tiled]", "Bright Forest", "Bright Forest [tiled]", "Swamp", "Dirt", "Meadow", "Grass"];
 
 let transpixels = {};
-transpixels["Swamp"] = 0;
-transpixels["Sand"] = -32;
-transpixels["Dirt"] = -64;
-transpixels["Meadow"] = -96;
-transpixels["Grass"] = -128;
-transpixels["Mountain"] = -160;
-transpixels["Hill"] = -192;
-transpixels["Evergreen"] = -224;
-transpixels["Bright"] = -256;
-transpixels["Forest"] = -288;
+transpixels["Swamp"] = -640;
+transpixels["Sand"] = -608;
+transpixels["Dirt"] = -576;
+transpixels["Meadow"] = -544;
+transpixels["Grass"] = -512;
+transpixels["Mountain"] = -480;
+transpixels["Hill"] = -448;
+transpixels["Evergreen"] = -416;
+transpixels["Bright"] = -384;
+transpixels["Forest"] = -352;
 transpixels["ForestTiledLR"] = -320;
-transpixels["ForestTiledLL"] = -352;
-transpixels["ForestTiledMR"] = -384;
-transpixels["ForestTiledML"] = -416;
-transpixels["ForestTiledUR"] = -448;
-transpixels["ForestTiledUL"] = -480;
-transpixels["BrightTiledB1"] = -512;
-transpixels["BrightTiledB2"] = -544;
-transpixels["BrightTiledC"] = -576;
-transpixels["BrightTiledT1"] = -608;
-transpixels["BrightTiledT2"] = -640;
+transpixels["ForestTiledLL"] = -288;
+transpixels["ForestTiledMR"] = -256;
+transpixels["ForestTiledML"] = -224;
+transpixels["ForestTiledUR"] = -192;
+transpixels["ForestTiledUL"] = -160;
+transpixels["BrightTiledB1"] = -128;
+transpixels["BrightTiledB2"] = -96;
+transpixels["BrightTiledC"] = -64;
+transpixels["BrightTiledT1"] = -32;
+transpixels["BrightTiledT2"] = 0;
+
+let transpixelsrev = {};
+for (const [key, value] of Object.entries(transpixels)) {
+  transpixelsrev[value] = key;
+}
+
 transpixels["n"] = 0;
 transpixels["s"] = -32;
 transpixels["w"] = -64;
