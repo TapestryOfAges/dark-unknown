@@ -1974,14 +1974,69 @@ function ChangeTransitionType(totype) {
   let ttile = "<table><tr>";
   if (totype === "Mountains") {
     let ty = transpixels["Mountains"];
-    for (tx = 0;tx<=15;tx++) {
-
+    ttile += `<td>N: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:0px ${ty}px" id='TerrainBlend.gif 0 ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',0,${ty}])"></div><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-32px ${ty}px" id='TerrainBlend.gif -32 ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',-32,${ty}])"></div></td>`; 
+    ttile += `<td>S: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-64px ${ty}px" id='TerrainBlend.gif -64 ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',-64,${ty}])"></div><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-96px ${ty}px" id='TerrainBlend.gif -96 ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',-96,${ty}])"></div></td>`; 
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-128px ${ty}px" id='TerrainBlend.gif -128 ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',-128,${ty}])"></div></td>`; 
+    ttile += `<td>E: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-160px ${ty}px" id='TerrainBlend.gif -160 ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',-160,${ty}])"></div></td>`; 
+    ttile += `<td>NW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-192px ${ty}px" id='TerrainBlend.gif -192 ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',-192,${ty}])"></div></td>`; 
+    ttile += `<td>SW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-224px ${ty}px" id='TerrainBlend.gif -224 ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',-224,${ty}])"></div></td>`; 
+    ttile += `<td>SE: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-256x ${ty}px" id='TerrainBlend.gif -256 ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',-256,${ty}])"></div></td>`; 
+    ttile += `<td>SE: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-288px ${ty}px" id='TerrainBlend.gif -288 ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',-288,${ty}])"></div></td>`; 
+    ttile += `<td>SNW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-320px ${ty}px" id='TerrainBlend.gif -320 ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',-320,${ty}])"></div></td>`; 
+    ttile += `<td>SNE: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-352px ${ty}px" id='TerrainBlend.gif -352 ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',-352,${ty}])"></div></td>`; 
+    ttile += `<td>WNE: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-384px ${ty}px" id='TerrainBlend.gif -384 ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',-384,${ty}])"></div></td>`; 
+    ttile += `<td>WSE: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-416px ${ty}px" id='TerrainBlend.gif -416 ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',-416,${ty}])"></div></td>`; 
+    ttile += `<td>NS: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-448px ${ty}px" id='TerrainBlend.gif -448 ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',-448,${ty}])"></div></td>`; 
+    ttile += `<td>EW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-480px ${ty}px" id='TerrainBlend.gif -480 ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',-480,${ty}])"></div></td>`; 
+  } else if ((totype === "Hills") ||  (totype === "Swamp") || (totype === "Dirt") || (totype === "Meadow") || (totype === "Grass") || (totype === "Sand") || (totype === "Forest") || (totype === "Bright Forest") || (totype === "Evergreen")) {
+    let ty = transpixels[totype];
+    for (let i=0;i<directions.length;i++) {
+      let tx = transpixels[directions[i]];
+      let dir = directions[i].toUpperCase();
+      ttile += `<td>${dir}: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',${tx},${ty}])"></div></td>`;
     }
+    if ((totype !== "Forest") && (totype !== "Bright Forest") && (totype !== "Evergreen")) {
+      ttile += `<td>NSEW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-448px ${ty}px" id='TerrainBlend.gif -448 ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',-448,${ty}])"></div></td>`;
+    }
+  } else if (totype === "Forest [tiled]") {
+    ttile += `<td colspan='3'>Upper Left:</td><td colspan='3'>Upper Right:</td><td>Mid Left:</td><td>Mid Right:</td><td colspan='3'>Lower Left:</td><td colspan='3'>Lower Right:</td></tr><tr>`;
+    let ty = transpixels["ForestTiledUL"];
+    ttile += `<td>N: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:0px ${ty}px" id='TerrainBlend.gif 0 ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',0,${ty}])"></div></td>`;
+    let tx = transpixels["w"];
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',${tx},${ty}])"></div></td>`;
+    tx = transpixels["nw"];
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',${tx},${ty}])"></div></td>`;
+    ty = transpixels["ForestTiledUR"];
+    ttile += `<td>N: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:0px ${ty}px" id='TerrainBlend.gif 0 ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',0,${ty}])"></div></td>`;
+    tx = transpixels["e"];
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',${tx},${ty}])"></div></td>`;
+    tx = transpixels["ne"];
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',${tx},${ty}])"></div></td>`;
+    ty = transpixels["ForestTiledML"];
+    tx = transpixels["w"];
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',${tx},${ty}])"></div></td>`;
+    ty = transpixels["ForestTiledMR"];
+    tx = transpixels["e"];
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',${tx},${ty}])"></div></td>`;
+    ty = transpixels["ForestTiledLL"];
+    tx = transpixels["s"];
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',${tx},${ty}])"></div></td>`;
+    tx = transpixels["w"];
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',${tx},${ty}])"></div></td>`;
+    tx = transpixels["sw"];
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',${tx},${ty}])"></div></td>`;
+    ty = transpixels["ForestTiledLR"];
+    tx = transpixels["s"];
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',${tx},${ty}])"></div></td>`;
+    tx = transpixels["e"];
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',${tx},${ty}])"></div></td>`;
+    tx = transpixels["se"];
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,[0,'TerrainBlend.gif',${tx},${ty}])"></div></td>`;
   }
   ttile += "</tr></table>";
 }
 
-let transoptions = ["Mountains", "Hills", "Forest", "Forest [tiled]", "Evergreen", "Evergreen [tiled]", "Bright Forest", "Bright Forest [tiled]", "Swamp", "Dirt", "Meadow", "Grass"];
+let transoptions = ["Mountains", "Hills", "Forest", "Forest [tiled]", "Evergreen", "Bright Forest", "Bright Forest [tiled]", "Swamp", "Dirt", "Sand", "Meadow", "Grass"];
 
 let transpixels = {};
 transpixels["Swamp"] = -640;
@@ -2011,6 +2066,7 @@ for (const [key, value] of Object.entries(transpixels)) {
   transpixelsrev[value] = key;
 }
 
+let directions = ["n","s","w","e","nw","ne","sw","se","nsw","nse","new","sew","ns","ew"];
 transpixels["n"] = 0;
 transpixels["s"] = -32;
 transpixels["w"] = -64;
