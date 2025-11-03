@@ -421,7 +421,7 @@ GameObject.prototype.getGraphicArrayTerrain = function(mapref, x, y) {
     return this.getGraphicArray();
   }
   let returnGraphic;
-  if (ttr[0][1]) {
+  if (ttr[0][0]) {
     returnGraphic = ttr[0];
     returnGraphic[4] = [ttr[1],ttr[2]];
   } else {
