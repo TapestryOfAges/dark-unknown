@@ -1787,131 +1787,138 @@ function CreateTransitionModal() {
   html += `<tr><td><center>Layer 2:<br /><div id='translayer2'></div></td>`;
   html += `<td><div style='width:32;height:32' id='translayer2image'></div><br />3: <input type='text' id='layer2-3' size='12'/><br />2: <input type='text' id='layer2-2' size='12'/><br />1: <input type='text' id='layer2-1' size='12'/><br />0: <input type='text' id='layer2-0' size='12'/></td></tr>`;
   html += `<tr><td><center>Layer 1:<br /><div id='translayer1'><table><tr>`;
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/water.gif');background-position:0px 0px" id='water.gif 0 0' onclick="transSelection(1, ['water.gif','',0,0])"></div></td>`;
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/water.gif');background-position:0px -32px" id='water.gif 0 -32' onclick="transSelection(1, ['water.gif','',0,-32])"></div></td>`;
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/water.gif');background-position:0px -64px" id='water.gif 0 -64' onclick="transSelection(1, ['water.gif','',0,-64])"></div></td>`;
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/WaterCaveSheet.gif');background-position:0px 0px" id='WaterCaveSheet.gif 0 0' onclick="transSelection(1,['waterCaveSheet.gif','',0,0])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/water.gif');background-position:0px 0px" id='water.gif 0 0' onclick="transSelection(1, ['water.gif','spacer.gif',0,0])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/water.gif');background-position:0px -32px" id='water.gif 0 -32' onclick="transSelection(1, ['water.gif','spacer.gif',0,-32])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/water.gif');background-position:0px -64px" id='water.gif 0 -64' onclick="transSelection(1, ['water.gif','spacer.gif',0,-64])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/WaterCaveSheet.gif');background-position:0px 0px" id='WaterCaveSheet.gif 0 0' onclick="transSelection(1,['waterCaveSheet.gif','spacer.gif',0,0])"></div></td>`;
   // Grass
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-192px 0px" id='static.gif -192 0' onclick="transSelection(1,['static.gif','',-192,0])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-192px 0px" id='static.gif -192 0' onclick="transSelection(1,['static.gif','spacer.gif',-192,0])"></div></td>`;
   // SouthCoast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-192px -1664px" id='static.gif -192 -1664' onclick="transSelection(1,['static.gif','',-192,-1664])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-192px -1664px" id='static.gif -192 -1664' onclick="transSelection(1,['static.gif','spacer.gif',-192,-1664])"></div></td>`;
   // NorthCoast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-96px -1760px" id='static.gif -96 -1760' onclick="transSelection(1,['static.gif','',-96,-1760])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-96px -1760px" id='static.gif -96 -1760' onclick="transSelection(1,['static.gif','spacer.gif',-96,-1760])"></div></td>`;
   // EastCoast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-96px -1792px" id='static.gif -96 -1792' onclick="transSelection(1,['static.gif','',-96,-1792])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-96px -1792px" id='static.gif -96 -1792' onclick="transSelection(1,['static.gif','spacer.gif',-96,-1792])"></div></td>`;
   // WestCoast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-96px -1824px" id='static.gif -96 -1824' onclick="transSelection(1,['static.gif','',-96,-1824])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-96px -1824px" id='static.gif -96 -1824' onclick="transSelection(1,['static.gif','spacer.gif',-96,-1824])"></div></td>`;
   // Northeast Coast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-192px -1632px" id='static.gif -192 -1632' onclick="transSelection(1,['static.gif','',-192,-1632])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-192px -1632px" id='static.gif -192 -1632' onclick="transSelection(1,['static.gif','spacer.gif',-192,-1632])"></div></td>`;
   // Southwest Coast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-192px -1600px" id='static.gif -192 -1600' onclick="transSelection(1,['static.gif','',-192,-1600])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-192px -1600px" id='static.gif -192 -1600' onclick="transSelection(1,['static.gif','spacer.gif',-192,-1600])"></div></td>`;
   // Northwest Coast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-32px -1664px" id='static.gif -32 -1664' onclick="transSelection(1,['static.gif','',-32,-1664])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-32px -1664px" id='static.gif -32 -1664' onclick="transSelection(1,['static.gif','spacer.gif',-32,-1664])"></div></td>`;
   // Southeast Coast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-32px -1632px" id='static.gif -32 -1632' onclick="transSelection(1,['static.gif','',-32,-1632])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-32px -1632px" id='static.gif -32 -1632' onclick="transSelection(1,['static.gif','spacer.gif',-32,-1632])"></div></td>`;
   // Meadow
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:0px 0px" id='static.gif 0 0' onclick="transSelection(1,['static.gif','',0,0])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:0px 0px" id='static.gif 0 0' onclick="transSelection(1,['static.gif','spacer.gif',0,0])"></div></td>`;
   // MeadowSouthCoast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-160px -1664px" id='static.gif -160 -1664' onclick="transSelection(1,['static.gif','',-160,-1664])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-160px -1664px" id='static.gif -160 -1664' onclick="transSelection(1,['static.gif','spacer.gif',-160,-1664])"></div></td>`;
   // MeadowNorthCoast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-64px -1760px" id='static.gif -64 -1760' onclick="transSelection(1,['static.gif','',-64,-1760])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-64px -1760px" id='static.gif -64 -1760' onclick="transSelection(1,['static.gif','spacer.gif',-64,-1760])"></div></td>`;
   // MeadowEastCoast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-64px -1792px" id='static.gif -64 -1792' onclick="transSelection(1,['static.gif','',-64,-1792])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-64px -1792px" id='static.gif -64 -1792' onclick="transSelection(1,['static.gif','spacer.gif',-64,-1792])"></div></td>`;
   // MeadowWestCoast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-64px -1824px" id='static.gif -64 -1824' onclick="transSelection(1,['static.gif','',-64,-1824])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-64px -1824px" id='static.gif -64 -1824' onclick="transSelection(1,['static.gif','spacer.gif',-64,-1824])"></div></td>`;
   // Meadow Northeast Coast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-160px -1632px" id='static.gif -160 -1632' onclick="transSelection(1,['static.gif','',-160,-1632])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-160px -1632px" id='static.gif -160 -1632' onclick="transSelection(1,['static.gif','spacer.gif',-160,-1632])"></div></td>`;
   // Meadow Southwest Coast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-160px -1600px" id='static.gif -160 -1600' onclick="transSelection(1,['static.gif','',-160,-1600])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-160px -1600px" id='static.gif -160 -1600' onclick="transSelection(1,['static.gif','spacer.gif',-160,-1600])"></div></td>`;
   // Meadow Northwest Coast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:0px -1664px" id='static.gif 0 -1664' onclick="transSelection(1,['static.gif','',0,-1664])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:0px -1664px" id='static.gif 0 -1664' onclick="transSelection(1,['static.gif','spacer.gif',0,-1664])"></div></td>`;
   // Meadow Southeast Coast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:0px -1632px" id='static.gif 0 -1632' onclick="transSelection(1,['static.gif','',0,-1632])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:0px -1632px" id='static.gif 0 -1632' onclick="transSelection(1,['static.gif','spacer.gif',0,-1632])"></div></td>`;
 
   html += `</tr><tr>`;
   // Cave
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:0px -96px" id='static.gif 0 -96' onclick="transSelection(1,['static.gif','',0,-96])"></div></td>`;  
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-32px -96px" id='static.gif -32 -96' onclick="transSelection(1,['static.gif','',-32,-96])"></div></td>`;  
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:0px -96px" id='static.gif 0 -96' onclick="transSelection(1,['static.gif','spacer.gif',0,-96])"></div></td>`;  
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-32px -96px" id='static.gif -32 -96' onclick="transSelection(1,['static.gif','spacer.gif',-32,-96])"></div></td>`;  
   // CaveSouthCoast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-160px -1696px" id='static.gif -160 -1696' onclick="transSelection(1,['static.gif','',-160,-1696])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-160px -1696px" id='static.gif -160 -1696' onclick="transSelection(1,['static.gif','spacer.gif',-160,-1696])"></div></td>`;
   // CaveNorthCoast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-192px -1760px" id='static.gif -192 -1760' onclick="transSelection(1,['static.gif','',-192,-1760])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-192px -1760px" id='static.gif -192 -1760' onclick="transSelection(1,['static.gif','spacer.gif',-192,-1760])"></div></td>`;
   // CaveEastCoast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-192px -1792px" id='static.gif -192 -1792' onclick="transSelection(1,['static.gif','',-192,-1792])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-192px -1792px" id='static.gif -192 -1792' onclick="transSelection(1,['static.gif','spacer.gif',-192,-1792])"></div></td>`;
   // CaveWestCoast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-192px -1824px" id='static.gif -192 -1824' onclick="transSelection(1,['static.gif','',-192,-1824])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-192px -1824px" id='static.gif -192 -1824' onclick="transSelection(1,['static.gif','spacer.gif',-192,-1824])"></div></td>`;
     // Sand
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-128px 0px" id='static.gif -128 0' onclick="transSelection(1,['static.gif','',-128,0])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-128px 0px" id='static.gif -128 0' onclick="transSelection(1,['static.gif','spacer.gif',-128,0])"></div></td>`;
   // SandSouthCoast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-224px -1664px" id='static.gif -224 -1664' onclick="transSelection(1,['static.gif','',-224,-1664])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-224px -1664px" id='static.gif -224 -1664' onclick="transSelection(1,['static.gif','spacer.gif',-224,-1664])"></div></td>`;
   // SandNorthCoast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-128px -1760px" id='static.gif -128 -1760' onclick="transSelection(1,['static.gif','',-128,-1760])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-128px -1760px" id='static.gif -128 -1760' onclick="transSelection(1,['static.gif','spacer.gif',-128,-1760])"></div></td>`;
   // SandEastCoast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-128px -1792px" id='static.gif -128 -1792' onclick="transSelection(1,['static.gif','',-128,-1792])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-128px -1792px" id='static.gif -128 -1792' onclick="transSelection(1,['static.gif','spacer.gif',-128,-1792])"></div></td>`;
   // SandWestCoast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-128px -1824px" id='static.gif -128 -1824' onclick="transSelection(1,['static.gif','',-128,-1824])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-128px -1824px" id='static.gif -128 -1824' onclick="transSelection(1,['static.gif','spacer.gif',-128,-1824])"></div></td>`;
   // Sand Northeast Coast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-224px -1632px" id='static.gif -224 -1632' onclick="transSelection(1,['static.gif','',-224,-1632])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-224px -1632px" id='static.gif -224 -1632' onclick="transSelection(1,['static.gif','spacer.gif',-224,-1632])"></div></td>`;
   // Sand Southwest Coast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-224px -1600px" id='static.gif -224 -1600' onclick="transSelection(1,['static.gif','',-224,-1600])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-224px -1600px" id='static.gif -224 -1600' onclick="transSelection(1,['static.gif','spacer.gif',-224,-1600])"></div></td>`;
   // Sand Northwest Coast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-64px -1664px" id='static.gif -64 -1664' onclick="transSelection(1,['static.gif','',-64,-1664])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-64px -1664px" id='static.gif -64 -1664' onclick="transSelection(1,['static.gif','spacer.gif',-64,-1664])"></div></td>`;
   // Sand Southeast Coast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-64px -1632px" id='static.gif -64 -1632' onclick="transSelection(1,['static.gif','',-64,-1632])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-64px -1632px" id='static.gif -64 -1632' onclick="transSelection(1,['static.gif','spacer.gif',-64,-1632])"></div></td>`;
 
   html += `</tr><tr>`;
   // Cave
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:0px -128px" id='static.gif 0 -128' onclick="transSelection(1,['static.gif','',0,-128])"></div></td>`;  
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-32px -128px" id='static.gif -32 -128' onclick="transSelection(1,['static.gif','',-32,-128])"></div></td>`;  
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:0px -128px" id='static.gif 0 -128' onclick="transSelection(1,['static.gif','spacer.gif',0,-128])"></div></td>`;  
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-32px -128px" id='static.gif -32 -128' onclick="transSelection(1,['static.gif','spacer.gif',-32,-128])"></div></td>`;  
   // Cave Northeast Coast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-32px -1696px" id='static.gif -32 -1696' onclick="transSelection(1,['static.gif','',-32,-1696])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-32px -1696px" id='static.gif -32 -1696' onclick="transSelection(1,['static.gif','spacer.gif',-32,-1696])"></div></td>`;
   // Cave Southwest Coast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-288px -1600px" id='static.gif -288 -1600' onclick="transSelection(1,['static.gif','',-288,-1600])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-288px -1600px" id='static.gif -288 -1600' onclick="transSelection(1,['static.gif','spacer.gif',-288,-1600])"></div></td>`;
   // Cave Northwest Coast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-128px -1664px" id='static.gif -128 -1664' onclick="transSelection(1,['static.gif','',-128,-1664])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-128px -1664px" id='static.gif -128 -1664' onclick="transSelection(1,['static.gif','spacer.gif',-128,-1664])"></div></td>`;
   // Cave Southeast Coast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-128px -1632px" id='static.gif -128 -1632' onclick="transSelection(1,['static.gif','',-128,-1632])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-128px -1632px" id='static.gif -128 -1632' onclick="transSelection(1,['static.gif','spacer.gif',-128,-1632])"></div></td>`;
   // Dirt
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:0px -64px" id='static.gif 0 -64' onclick="transSelection(1,['static.gif','',0,-64])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:0px -64px" id='static.gif 0 -64' onclick="transSelection(1,['static.gif','spacer.gif',0,-64])"></div></td>`;
   // DirtSouthCoast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-128px -1696px" id='static.gif -128 -1696' onclick="transSelection(1,['static.gif','',-128,-1696])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-128px -1696px" id='static.gif -128 -1696' onclick="transSelection(1,['static.gif','spacer.gif',-128,-1696])"></div></td>`;
   // DirtNorthCoast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-160px -1760px" id='static.gif -160 -1760' onclick="transSelection(1,['static.gif','',-160,-1760])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-160px -1760px" id='static.gif -160 -1760' onclick="transSelection(1,['static.gif','spacer.gif',-160,-1760])"></div></td>`;
   // DirtEastCoast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-160px -1792px" id='static.gif -160 -1792' onclick="transSelection(1,['static.gif','',-160,-1792])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-160px -1792px" id='static.gif -160 -1792' onclick="transSelection(1,['static.gif','spacer.gif',-160,-1792])"></div></td>`;
   // DirtWestCoast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-160px -1824px" id='static.gif -160 -1824' onclick="transSelection(1,['static.gif','',-160,-1824])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-160px -1824px" id='static.gif -160 -1824' onclick="transSelection(1,['static.gif','spacer.gif',-160,-1824])"></div></td>`;
   // Dirt Northeast Coast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:0px -1696px" id='static.gif 0 -1696' onclick="transSelection(1,['static.gif','',0,-1696])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:0px -1696px" id='static.gif 0 -1696' onclick="transSelection(1,['static.gif','spacer.gif',0,-1696])"></div></td>`;
   // Dirt Southwest Coast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-256px -1600px" id='static.gif -256 -1600' onclick="transSelection(1,['static.gif','',-256,-1600])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-256px -1600px" id='static.gif -256 -1600' onclick="transSelection(1,['static.gif','spacer.gif',-256,-1600])"></div></td>`;
   // Dirt Northwest Coast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-96px -1664px" id='static.gif -96 -1664' onclick="transSelection(1,['static.gif','',-96,-1664])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-96px -1664px" id='static.gif -96 -1664' onclick="transSelection(1,['static.gif','spacer.gif',-96,-1664])"></div></td>`;
   // Dirt Southeast Coast
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-96px -1632px" id='static.gif -96 -1632' onclick="transSelection(1,['static.gif','',-96,-1632])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-96px -1632px" id='static.gif -96 -1632' onclick="transSelection(1,['static.gif','spacer.gif',-96,-1632])"></div></td>`;
   // Swamp
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-288px 0px" id='static.gif -288 0' onclick="transSelection(1,['static.gif','',-288,0])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-288px 0px" id='static.gif -288 0' onclick="transSelection(1,['static.gif','spacer.gif',-288,0])"></div></td>`;
   // Hills
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-256px 0px" id='static.gif -256 0' onclick="transSelection(1,['static.gif','',-256,0])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-256px 0px" id='static.gif -256 0' onclick="transSelection(1,['static.gif','spacer.gif',-256,0])"></div></td>`;
   // Hills1
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-224px -224px" id='static.gif -224 -224' onclick="transSelection(1,['static.gif','',-224,-224])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-224px -224px" id='static.gif -224 -224' onclick="transSelection(1,['static.gif','spacer.gif',-224,-224])"></div></td>`;
   // Hills2
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-288px -576px" id='static.gif -288 -576' onclick="transSelection(1,['static.gif','',-288,-576])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/static.gif');background-position:-288px -576px" id='static.gif -288 -576' onclick="transSelection(1,['static.gif','spacer.gif',-288,-576])"></div></td>`;
 
 
   html += `</tr></table></div></td>`;
   html += `<td><div style='width:32;height:32' id='translayer1image'></div><br />3: <input type='text' id='layer1-3' size='12'/><br />2: <input type='text' id='layer1-2' size='12'/><br />1: <input type='text' id='layer1-1' size='12'/><br />0: <input type='text' id='layer1-0' size='12'/></td></tr>`;
   
   html += `<tr><td><center>Layer 0:<br /><div id='translayer0'><table><tr>`;
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/water.gif');background-position:0px 0px" id='water.gif 0 0' onclick="transSelection(0,['water.gif','',0,0])"></div></td>`;
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/water.gif');background-position:0px -32px" id='water.gif 0 -32' onclick="transSelection(0,['water.gif','',0,-32])"></div></td>`;
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/water.gif');background-position:0px -64px" id='water.gif 0 -64' onclick="transSelection(0,['water.gif','',0,-64])"></div></td>`;
-  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/WaterCaveSheet.gif');background-position:0px 0px" id='WaterCaveSheet.gif 0 0' onclick="transSelection(0,['waterCaveSheet.gif','',0,0])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/water.gif');background-position:0px 0px" id='water.gif 0 0' onclick="transSelection(0,['water.gif','spacer.gif',0,0])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/water.gif');background-position:0px -32px" id='water.gif 0 -32' onclick="transSelection(0,['water.gif','spacer.gif',0,-32])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/water.gif');background-position:0px -64px" id='water.gif 0 -64' onclick="transSelection(0,['water.gif','spacer.gif',0,-64])"></div></td>`;
+  html += `<td><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/WaterCaveSheet.gif');background-position:0px 0px" id='WaterCaveSheet.gif 0 0' onclick="transSelection(0,['waterCaveSheet.gif','spacer.gif',0,0])"></div></td>`;
   html += `</tr></table></div></td>`;
   html += `<td><div style='width:32;height:32' id='translayer0image'></div><br />3: <input type='text' id='layer0-3' size='12'/><br />2: <input type='text' id='layer0-2' size='12'/><br />1: <input type='text' id='layer0-1' size='12'/><br />0: <input type='text' id='layer0-0' size='12'/></td></tr>`;
   html += `</table>`;
 
   block.innerHTML = html;
+
+  for (let i=0;i<=2;i++) {
+    for (let j=0;j<=3;j++) {
+      let fieldname = `layer${i}-${j}`;
+      document.getElementById(fieldname).value = "";
+    }
+  }
 }
 
 function TransitionTile(x,y) {
@@ -1973,7 +1980,7 @@ function TransitionTile(x,y) {
     let override = amap.transover[`${x},${y}`];
     if (override) {
       for (let i=0;i<=2;i++) {
-        grapharray = override[i];
+        let grapharray = override[i];
         let img = `<div style='width:32;height:32;background-image:url("graphics/${grapharray[0]}");background-position: ${grapharray[2]}px ${grapharray[3]}px'></div>`;
         document.getElementById(`translayer${i}image`).innerHTML = img;
 
@@ -1998,135 +2005,135 @@ function ChangeTransitionType(passedtype) {
   let ttile = "<table><tr>";
   if (totype === "Mountains") {
     let ty = transpixels["Mountains"];
-    ttile += `<td>N: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:0px ${ty}px" id='TerrainBlend.gif 0 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',0,${ty}])"></div><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-32px ${ty}px" id='TerrainBlend.gif -32 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',-32,${ty}])"></div></td>`; 
-    ttile += `<td>S: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-64px ${ty}px" id='TerrainBlend.gif -64 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',-64,${ty}])"></div><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-96px ${ty}px" id='TerrainBlend.gif -96 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',-96,${ty}])"></div></td>`; 
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-128px ${ty}px" id='TerrainBlend.gif -128 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',-128,${ty}])"></div></td>`; 
-    ttile += `<td>E: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-160px ${ty}px" id='TerrainBlend.gif -160 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',-160,${ty}])"></div></td>`; 
-    ttile += `<td>NW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-192px ${ty}px" id='TerrainBlend.gif -192 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',-192,${ty}])"></div></td>`; 
-    ttile += `<td>SW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-224px ${ty}px" id='TerrainBlend.gif -224 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',-224,${ty}])"></div></td>`; 
-    ttile += `<td>NE: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-256px ${ty}px" id='TerrainBlend.gif -256 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',-256,${ty}])"></div></td>`; 
-    ttile += `<td>SE: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-288px ${ty}px" id='TerrainBlend.gif -288 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',-288,${ty}])"></div></td>`; 
-    ttile += `<td>SNW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-320px ${ty}px" id='TerrainBlend.gif -320 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',-320,${ty}])"></div></td>`; 
-    ttile += `<td>SNE: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-352px ${ty}px" id='TerrainBlend.gif -352 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',-352,${ty}])"></div></td>`; 
-    ttile += `<td>WNE: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-384px ${ty}px" id='TerrainBlend.gif -384 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',-384,${ty}])"></div></td>`; 
-    ttile += `<td>WSE: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-416px ${ty}px" id='TerrainBlend.gif -416 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',-416,${ty}])"></div></td>`; 
-    ttile += `<td>NS: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-448px ${ty}px" id='TerrainBlend.gif -448 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',-448,${ty}])"></div></td>`; 
-    ttile += `<td>EW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-480px ${ty}px" id='TerrainBlend.gif -480 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',-480,${ty}])"></div></td>`; 
+    ttile += `<td>N: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:0px ${ty}px" id='TerrainBlend.gif 0 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',0,${ty}])"></div><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-32px ${ty}px" id='TerrainBlend.gif -32 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-32,${ty}])"></div></td>`; 
+    ttile += `<td>S: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-64px ${ty}px" id='TerrainBlend.gif -64 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-64,${ty}])"></div><div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-96px ${ty}px" id='TerrainBlend.gif -96 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-96,${ty}])"></div></td>`; 
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-128px ${ty}px" id='TerrainBlend.gif -128 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-128,${ty}])"></div></td>`; 
+    ttile += `<td>E: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-160px ${ty}px" id='TerrainBlend.gif -160 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-160,${ty}])"></div></td>`; 
+    ttile += `<td>NW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-192px ${ty}px" id='TerrainBlend.gif -192 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-192,${ty}])"></div></td>`; 
+    ttile += `<td>SW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-224px ${ty}px" id='TerrainBlend.gif -224 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-224,${ty}])"></div></td>`; 
+    ttile += `<td>NE: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-256px ${ty}px" id='TerrainBlend.gif -256 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-256,${ty}])"></div></td>`; 
+    ttile += `<td>SE: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-288px ${ty}px" id='TerrainBlend.gif -288 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-288,${ty}])"></div></td>`; 
+    ttile += `<td>SNW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-320px ${ty}px" id='TerrainBlend.gif -320 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-320,${ty}])"></div></td>`; 
+    ttile += `<td>SNE: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-352px ${ty}px" id='TerrainBlend.gif -352 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-352,${ty}])"></div></td>`; 
+    ttile += `<td>WNE: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-384px ${ty}px" id='TerrainBlend.gif -384 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-384,${ty}])"></div></td>`; 
+    ttile += `<td>WSE: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-416px ${ty}px" id='TerrainBlend.gif -416 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-416,${ty}])"></div></td>`; 
+    ttile += `<td>NS: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-448px ${ty}px" id='TerrainBlend.gif -448 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-448,${ty}])"></div></td>`; 
+    ttile += `<td>EW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-480px ${ty}px" id='TerrainBlend.gif -480 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-480,${ty}])"></div></td>`; 
   } else if ((totype === "Hills") ||  (totype === "Swamp") || (totype === "Dirt") || (totype === "Meadow") || (totype === "Grass") || (totype === "Sand") || (totype === "Forest") || (totype === "Bright Forest") || (totype === "Evergreen")) {
     let ty = transpixels[totype];
     for (let i=0;i<directions.length;i++) {
       let tx = transpixels[directions[i]];
       let dir = directions[i].toUpperCase();
-      ttile += `<td>${dir}: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+      ttile += `<td>${dir}: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     }
     if ((totype !== "Forest") && (totype !== "Bright Forest") && (totype !== "Evergreen")) {
-      ttile += `<td>NSEW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-448px ${ty}px" id='TerrainBlend.gif -448 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',-448,${ty}])"></div></td>`;
+      ttile += `<td>NSEW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-448px ${ty}px" id='TerrainBlend.gif -448 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-448,${ty}])"></div></td>`;
     }
   } else if (totype === "Forest [tiled]") {
     ttile += `<td colspan='3'>Upper Left:</td><td colspan='3'>Upper Right:</td><td>Mid Left:</td><td>Mid Right:</td><td colspan='3'>Lower Left:</td><td colspan='3'>Lower Right:</td></tr><tr>`;
     let ty = transpixels["ForestTiledUL"];
-    ttile += `<td>N: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:0px ${ty}px" id='TerrainBlend.gif 0 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',0,${ty}])"></div></td>`;
+    ttile += `<td>N: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:0px ${ty}px" id='TerrainBlend.gif 0 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',0,${ty}])"></div></td>`;
     let tx = transpixels["w"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["nw"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     ty = transpixels["ForestTiledUR"];
-    ttile += `<td>N: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:0px ${ty}px" id='TerrainBlend.gif 0 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',0,${ty}])"></div></td>`;
+    ttile += `<td>N: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:0px ${ty}px" id='TerrainBlend.gif 0 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',0,${ty}])"></div></td>`;
     tx = transpixels["e"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["ne"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     ty = transpixels["ForestTiledML"];
     tx = transpixels["w"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     ty = transpixels["ForestTiledMR"];
     tx = transpixels["e"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     ty = transpixels["ForestTiledLL"];
     tx = transpixels["s"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["w"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["sw"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     ty = transpixels["ForestTiledLR"];
     tx = transpixels["s"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["e"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["se"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
   } else if (totype === "Bright Forest [tiled]") {
     ttile += `<td colspan='7'>Top V1:</td><td colspan='7'>Top V2:</td><td colspan="3">Center:</td></tr><tr>`;
     let ty = transpixels["BrightTiledT2"];
     let tx = transpixels["n"];
-    ttile += `<td>N: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>N: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["w"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["e"];
-    ttile += `<td>E: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>E: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["nw"];
-    ttile += `<td>NW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>NW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["ne"];
-    ttile += `<td>NE: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>NE: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["new"];
-    ttile += `<td>NEW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>NEW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["ew"];
-    ttile += `<td>EW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>EW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     ty = transpixels["BrightTiledT1"];
     tx = transpixels["n"];
-    ttile += `<td>N: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>N: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["w"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["e"];
-    ttile += `<td>E: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>E: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["nw"];
-    ttile += `<td>NW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>NW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["ne"];
-    ttile += `<td>NE: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>NE: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["new"];
-    ttile += `<td>NEW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>NEW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["ew"];
-    ttile += `<td>EW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>EW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     ty = transpixels["BrightTiledC"];
     tx = transpixels["w"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["e"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["ew"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
 
     ttile += `</tr><tr><td colspan='7'>Bottom V1:</td><td colspan='7'>Bottom V2:</td></tr><tr>`;
     ty = transpixels["BrightTiledB2"];
     tx = transpixels["s"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["w"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["e"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["sw"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["se"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["sew"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["ew"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     ty = transpixels["BrightTiledB1"];
     tx = transpixels["s"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["w"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["e"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["sw"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["se"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["sew"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     tx = transpixels["ew"];
-    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','',${tx},${ty}])"></div></td>`;
+    ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
   }
   ttile += "</tr></table>";
 
@@ -2137,15 +2144,26 @@ let transoptions = ["Mountains", "Hills", "Forest", "Forest [tiled]", "Evergreen
 
 let transpixels = {};
 transpixels["Swamp"] = -640;
+transpixels["5"] = -640;
 transpixels["Sand"] = -608;
+transpixels["4"] = -608;
 transpixels["Dirt"] = -576;
+transpixels["3"] = -576;
 transpixels["Meadow"] = -544;
+transpixels["2"] = -544;
 transpixels["Grass"] = -512;
+transpixels["1"] = -512;
 transpixels["Mountains"] = -480;
+transpixels["10"] = -480;
 transpixels["Hills"] = -448;
+transpixels["9"] = -448;
 transpixels["Evergreen"] = -416;
+transpixels["7"] = -416;
 transpixels["Bright"] = -384;
+transpixels["BrightForest"] = -384;
+transpixels["8"] = -384;
 transpixels["Forest"] = -352;
+transpixels["6"] = -352;
 transpixels["ForestTiledLR"] = -320;
 transpixels["ForestTiledLL"] = -288;
 transpixels["ForestTiledMR"] = -256;
@@ -2189,44 +2207,67 @@ function transSelection(n,grapharray) {
   document.getElementById(`layer${n}-0`).value = `${grapharray[0]}`;
 }
 
-function generateTrasition() {
+function generateTransition() {
+  console.log(`Generating transition for ${transx}, ${transy}`);
   let tile = amap.getTile(transx,transy).getTerrain();
   let tname = tile.getName();
   let ttier = GetTransTier(tname);
   let directions = "";
+  let basedata = {};
   if (ttier) {
     let ntile = amap.getTile(transx,transy-1);
     if (ntile !== "OoB") {
-      if (GetTransTier(ntile.getTerrain().getName()) < ttier) { directions += "n"; }
+      let ntier = GetTransTier(ntile.getTerrain().getName());
+      if (ntier < ttier) { directions += "n"; basedata[ntier]++; }
     }
     let stile = amap.getTile(transx,transy+1);
     if (stile !== "OoB") {
-      if (GetTransTier(stile.getTerrain().getName()) < ttier) { directions += "s"; }
+      let stier = GetTransTier(stile.getTerrain().getName());
+      if (stier < ttier) { directions += "s"; basedata[stier]++; }
     }
     let etile = amap.getTile(transx+1,transy);
     if (etile !== "OoB") {
-      if (GetTransTier(etile.getTerrain().getName()) < ttier) { directions += "e"; }
+      let etier = GetTransTier(etile.getTerrain().getName());
+      if (etier < ttier) { directions += "e"; basedata[etier]++; }
     }
     let wtile = amap.getTile(transx-1,transy);
     if (wtile !== "OoB") {
-      if (GetTransTier(wtile.getTerrain().getName()) < ttier) { directions += "w"; }
+      let wtier = GetTransTier(wtile.getTerrain().getName());
+      if (wtier < ttier) { directions += "w"; basedata[wtier]++; }
     }
     if (directions) {
+      let mx = 0;
+      let mxid = -1;
+      for (let i=0;i<=10;i++) {
+        if (basedata[i] && (basedata[i] > mx)) {
+          mx = basedata[i];
+          mxid = i;
+        }
+      }
+      if (mxid === -1) { console.log("Cannot generate transition."); }
 
+      if (mxid && (mxid <= 9) && (!tname.includes("Edge")) && (!tname.includes("Tiling"))) {
+        document.getElementById("layer2-0").value = "TerrainBlend.gif";
+        document.getElementById("layer2-1").value = "spacer.gif";
+        document.getElementById("layer2-2").value = transpixels[directions];
+        document.getElementById("layer2-3").value = transpixels[ttier];
+      }
     }
   }
 }
 
 function GetTransTier(tname) {
-  if (tname.includes("Mountain")) { return 9; }
-  else if (tname.includes("Hill")) { return 8; }
-  else if (tname.includes("BrightForest")) { return 7; }
-  else if (tname.includes("Evergreen")) { return 6; }
-  else if (tname.includes("Forest")) { return 5; }
-  else if (tname.includes("Swamp")) { return 4; }
+  if (tname.includes("Mountain")) { return 10; }
+  else if (tname.includes("Hill")) { return 9; }
+  else if (tname.includes("BrightForest")) { return 8; }
+  else if (tname.includes("Evergreen")) { return 7; }
+  else if (tname.includes("Forest")) { return 6; }
+  else if (tname.includes("Swamp")) { return 5; }
+  else if (tname.includes("Sand")) { return 4; }
   else if (tname.includes("Dirt")) { return 3; }
   else if (tname.includes("Meadow")) { return 2; }
   else if (tname.includes("Grass")) { return 1; }
+  else if (tname.includes("River")) { return 1; }
   return 0;
 }
 
@@ -2240,15 +2281,13 @@ function submitTransition(val) {
       tarr[1] = [ document.getElementById("layer1-0").value, document.getElementById("layer1-1").value, parseInt(document.getElementById("layer1-2").value), parseInt(document.getElementById("layer1-3").value) ];
       tarr[2] = [ document.getElementById("layer2-0").value, document.getElementById("layer2-1").value, parseInt(document.getElementById("layer2-2").value), parseInt(document.getElementById("layer2-3").value) ];
       if (tarr[1][0] && tarr[2][0]) { 
-        console.log(tarr);
         amap.transover[coord] = tarr; 
-        console.log(amap.transover[coord]);
         RedrawTile(transx,transy);
-        console.log(amap.transover[coord]);
       }
       else { alert("Incomplete selections."); }
     }
   } else if (val === -1) { // delete
     delete amap.transover[coord];
+    RedrawTile(transx,transy);
   }
 }
