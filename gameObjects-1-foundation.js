@@ -422,12 +422,13 @@ GameObject.prototype.getGraphicArrayTerrain = function(mapref, x, y) {
   }
   let returnGraphic;
   if (ttr[0][0]) {
-    returnGraphic = ttr[0];
-    returnGraphic[4] = [ttr[1],ttr[2]];
+    returnGraphic = [...ttr[0]];
+    returnGraphic[4] = [[...ttr[1]],[...ttr[2]]];
   } else {
-    returnGraphic = ttr[1];
-    returnGraphic[4] = [ttr[2]];
+    returnGraphic = [...ttr[1]];
+    returnGraphic[4] = [...[ttr[2]]];
   }
+  console.log(returnGraphic);
   return returnGraphic;
 }
 
