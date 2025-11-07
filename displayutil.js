@@ -395,6 +395,7 @@ function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev, skipfeatures, 
       displayCell.graphics2 = graphics[2];
       displayCell.graphics3 = graphics[3];
       displayCell.graphics1 = graphics[1];
+      if (graphics[4]) { displayCell.layers = graphics[4]; }
       if (typeof displaytile.doTile === "function") {
         let showGraphic = displaytile.doTile(x,y,displayCell);
         if ("graphic" in showGraphic) { displayCell.showGraphic = showGraphic.graphic; }
