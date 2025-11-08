@@ -2251,6 +2251,28 @@ function generateTransition() {
         document.getElementById("layer2-1").value = "spacer.gif";
         document.getElementById("layer2-2").value = transpixels[directions];
         document.getElementById("layer2-3").value = transpixels[ttier];
+
+        if (mxid === 1) {  // grass
+          document.getElementById("layer1-0").value = "static.gif";
+          document.getElementById("layer1-1").value = "spacer.gif";
+          document.getElementById("layer1-2").value = -6*32;
+          document.getElementById("layer1-3").value = 0;
+        } else if (mxid === 2) { // meadow
+          document.getElementById("layer1-0").value = "static.gif";
+          document.getElementById("layer1-1").value = "spacer.gif";
+          document.getElementById("layer1-2").value = 0;
+          document.getElementById("layer1-3").value = 0;
+        } else if (mxid === 3) { // dirt
+          document.getElementById("layer1-0").value = "static.gif";
+          document.getElementById("layer1-1").value = "spacer.gif";
+          document.getElementById("layer1-2").value = 0;
+          document.getElementById("layer1-3").value = -64;
+        } else if (mxid === 4) { // sand
+          document.getElementById("layer1-0").value = "static.gif";
+          document.getElementById("layer1-1").value = "spacer.gif";
+          document.getElementById("layer1-2").value = -4*32;
+          document.getElementById("layer1-3").value = 0;
+        }
       }
     }
   }
