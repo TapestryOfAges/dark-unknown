@@ -2247,31 +2247,42 @@ function generateTransition() {
       if (mxid === -1) { console.log("Cannot generate transition."); }
 
       if (mxid && (mxid <= 9) && (!tname.includes("Edge")) && (!tname.includes("Tiling"))) {
-        document.getElementById("layer2-0").value = "TerrainBlend.gif";
-        document.getElementById("layer2-1").value = "spacer.gif";
-        document.getElementById("layer2-2").value = transpixels[directions];
-        document.getElementById("layer2-3").value = transpixels[ttier];
+        transSelection(2,["TerrainBlend.gif", "spacer.gif", transpixels[directions], transpixels[ttier]]);
+        // document.getElementById("layer2-0").value = "TerrainBlend.gif";
+        // document.getElementById("layer2-1").value = "spacer.gif";
+        // document.getElementById("layer2-2").value = transpixels[directions];
+        // document.getElementById("layer2-3").value = transpixels[ttier];
 
         if (mxid === 1) {  // grass
-          document.getElementById("layer1-0").value = "static.gif";
-          document.getElementById("layer1-1").value = "spacer.gif";
-          document.getElementById("layer1-2").value = -6*32;
-          document.getElementById("layer1-3").value = 0;
+          transSelection(1,["static.gif", "spacer.gif", -7*32, 0]);
+          // document.getElementById("layer1-0").value = "static.gif";
+          // document.getElementById("layer1-1").value = "spacer.gif";
+          // document.getElementById("layer1-2").value = -6*32;
+          // document.getElementById("layer1-3").value = 0;
         } else if (mxid === 2) { // meadow
-          document.getElementById("layer1-0").value = "static.gif";
-          document.getElementById("layer1-1").value = "spacer.gif";
-          document.getElementById("layer1-2").value = 0;
-          document.getElementById("layer1-3").value = 0;
+          transSelection(1,["static.gif", "spacer.gif", 0, 0]);
+          // document.getElementById("layer1-0").value = "static.gif";
+          // document.getElementById("layer1-1").value = "spacer.gif";
+          // document.getElementById("layer1-2").value = 0;
+          // document.getElementById("layer1-3").value = 0;
         } else if (mxid === 3) { // dirt
-          document.getElementById("layer1-0").value = "static.gif";
-          document.getElementById("layer1-1").value = "spacer.gif";
-          document.getElementById("layer1-2").value = 0;
-          document.getElementById("layer1-3").value = -64;
+          transSelection(1,["static.gif", "spacer.gif", 0, -64]);
+          // document.getElementById("layer1-0").value = "static.gif";
+          // document.getElementById("layer1-1").value = "spacer.gif";
+          // document.getElementById("layer1-2").value = 0;
+          // document.getElementById("layer1-3").value = -64;
         } else if (mxid === 4) { // sand
-          document.getElementById("layer1-0").value = "static.gif";
-          document.getElementById("layer1-1").value = "spacer.gif";
-          document.getElementById("layer1-2").value = -4*32;
-          document.getElementById("layer1-3").value = 0;
+          transSelection(1,["static.gif", "spacer.gif", -4*32, 0]);
+          // document.getElementById("layer1-0").value = "static.gif";
+          // document.getElementById("layer1-1").value = "spacer.gif";
+          // document.getElementById("layer1-2").value = -4*32;
+          // document.getElementById("layer1-3").value = 0;
+        } else if (mxid === 5) { // swamp
+          transSelection(1,["static.gif", "spacer.gif", -9*32, 0]);
+          // document.getElementById("layer1-0").value = "static.gif";
+          // document.getElementById("layer1-1").value = "spacer.gif";
+          // document.getElementById("layer1-2").value = -9*32;
+          // document.getElementById("layer1-3").value = 0;
         }
       }
     }
