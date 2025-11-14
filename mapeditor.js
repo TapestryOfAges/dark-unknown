@@ -2144,26 +2144,26 @@ let transoptions = ["Mountains", "Hills", "Forest", "Forest [tiled]", "Evergreen
 
 let transpixels = {};
 transpixels["Swamp"] = -640;
-transpixels["5"] = -640;
+transpixels[5] = -640;
 transpixels["Sand"] = -608;
-transpixels["4"] = -608;
+transpixels[4] = -608;
 transpixels["Dirt"] = -576;
-transpixels["3"] = -576;
+transpixels[3] = -576;
 transpixels["Meadow"] = -544;
-transpixels["2"] = -544;
+transpixels[2] = -544;
 transpixels["Grass"] = -512;
-transpixels["1"] = -512;
+transpixels[1] = -512;
 transpixels["Mountains"] = -480;
-transpixels["10"] = -480;
+transpixels[10] = -480;
 transpixels["Hills"] = -448;
-transpixels["9"] = -448;
+transpixels[9] = -448;
 transpixels["Evergreen"] = -416;
-transpixels["7"] = -416;
+transpixels[7] = -416;
 transpixels["Bright"] = -384;
 transpixels["BrightForest"] = -384;
-transpixels["8"] = -384;
+transpixels[8] = -384;
 transpixels["Forest"] = -352;
-transpixels["6"] = -352;
+transpixels[6] = -352;
 transpixels["ForestTiledLR"] = -320;
 transpixels["ForestTiledLL"] = -288;
 transpixels["ForestTiledMR"] = -256;
@@ -2196,6 +2196,7 @@ transpixels["new"] = -320;
 transpixels["sew"] = -352;
 transpixels["ns"] = -384;
 transpixels["ew"] = -416;
+transpixels["nsew"] = -448;
 
 function transSelection(n,grapharray) {
   let img = `<div style='width:32;height:32;background-image:url("graphics/${grapharray[0]}");background-position: ${grapharray[2]}px ${grapharray[3]}px'></div>`;
@@ -2216,6 +2217,9 @@ function generateTransition() {
   let basedata = {};
   if (ttier) {
     let ntile = amap.getTile(transx,transy-1);
+    for (let i=0;i<=10;i++) {
+      basedata[i] = 0;
+    }
     if (ntile !== "OoB") {
       let ntier = GetTransTier(ntile.getTerrain().getName());
       if (ntier < ttier) { directions += "n"; basedata[ntier]++; }
@@ -2244,17 +2248,84 @@ function generateTransition() {
           mxid = i;
         }
       }
-      if (mxid === -1) { console.log("Cannot generate transition."); }
+      if (mxid === -1) { console.log("Cannot generate transition."); return;}
 
-      if (mxid && (mxid <= 9) && (!tname.includes("Edge")) && (!tname.includes("Tiling"))) {
-        transSelection(2,["TerrainBlend.gif", "spacer.gif", transpixels[directions], transpixels[ttier]]);
-        // document.getElementById("layer2-0").value = "TerrainBlend.gif";
-        // document.getElementById("layer2-1").value = "spacer.gif";
-        // document.getElementById("layer2-2").value = transpixels[directions];
-        // document.getElementById("layer2-3").value = transpixels[ttier];
+      if (mxid) {
+        if ((!tname.includes("Edge")) && (!tname.includes("Tiling")) && (ttier <= 9)) {
+          transSelection(2,["TerrainBlend.gif", "spacer.gif", transpixels[directions], transpixels[ttier]]);
+          // document.getElementById("layer2-0").value = "TerrainBlend.gif";
+          // document.getElementById("layer2-1").value = "spacer.gif";
+          // document.getElementById("layer2-2").value = transpixels[directions];
+          // document.getElementById("layer2-3").value = transpixels[ttier];
+        } else if (tname.includes("BrightForestEdge")) {
+          let tx = transpixels[directions];
+          let ty = -1;
+          if (tname === "BrightForestEdge") { ty === 0; }
+          else if (tname === "BrightForestEdge2") { ty = 128; }
+          else if (tname === "BrightForestEdge3") { ty = 96; }
+          else if (tname === "BrightForestEdge4") { ty = 64; }
+          else if (tname === "BrightForestEdge5") { ty = 32; }
+          else { console.log("Failed to find transition for Bright Forest Edge."); }
+          if (ty > -1) {
+            ty = -1 * ty;
+            transSelection(2,["TerrainBlend.gif", "spacer.gif", transpixels[directions], ty]);
+          }
+        } else if (tname.includes("ForestTiling")) { 
+          let ty = -1;
+          let tx = transpixels[directions];
+          if (tname === "ForestTilingNW") { ty = 160; }
+          else if (tname === "ForestTilingNE") { ty = 192; } 
+          else if (tname === "ForestTilingW") { ty = 224; }
+          else if (tname === "ForestTilingE") { ty = 256; }
+          else if (tname === "ForestTilingSW") { ty = 288; }
+          else if (tname === "ForestTilingSE") { ty = 320; }
+          else { console.log("Failed to find transition tile for Forest Tiling here."); }
+          if (ty > -1) {
+            ty = -1*ty;
+            transSelection(2,["TerrainBlend.gif", "spacer.gif", transpixels[directions], ty]);
+          }
+        } else if (ttier === 10) {
+          let tilingx = (((transy % 2) + transx) % 2) * 32;
+          let ty = transpixels["Mountains"];
+          let tx = -1;
+          if (directions === "n") {
+            tx = 0 + tilingx;
+          } else if (directions === "s") {
+            tx = 64 + tilingx;
+          } else if (directions === "w") {
+            tx = 128;
+          } else if (directions === "e") {
+            tx = 160;
+          } else if (directions === "nw") {
+            tx = 192;
+          } else if (directions === "ne") {
+            tx = 224;
+          } else if (directions === "sw") {
+            tx = 256;
+          } else if (directions === "se") {
+            tx = 288; 
+          } else if (directions === "nsw") {
+            tx = 320;
+          } else if (directions === "nse") {
+            tx = 352;
+          } else if (directions === "new") {
+            tx = 384;
+          } else if (directions === "sew") {
+            tx = 416;
+          } else if (directions === "ns") {
+            tx = 448;
+          } else if (directions === "ew") {
+            tx = 480;
+          } else { console.log("Mountain has " + directions + " directions. No good."); }
+
+          if (tx > -1) { 
+            tx = -1*tx;
+            transSelection(2,["TerrainBlend.gif", "spacer.gif", tx, ty]);
+          }
+        }
 
         if (mxid === 1) {  // grass
-          transSelection(1,["static.gif", "spacer.gif", -7*32, 0]);
+          transSelection(1,["static.gif", "spacer.gif", -6*32, 0]);
           // document.getElementById("layer1-0").value = "static.gif";
           // document.getElementById("layer1-1").value = "spacer.gif";
           // document.getElementById("layer1-2").value = -6*32;
@@ -2283,6 +2354,15 @@ function generateTransition() {
           // document.getElementById("layer1-1").value = "spacer.gif";
           // document.getElementById("layer1-2").value = -9*32;
           // document.getElementById("layer1-3").value = 0;
+        } else if ((mxid >= 6) && (mxid <= 8)) {
+          transSelection(1,["static.gif", "spacer.gif", -6*32, 0]);
+          // if surrounded by forests of any type, use grass as the underlying stuff
+        } else if (mxid === 9) {
+          transSelection(1,["static.gif", "spacer.gif", -7*32, -7*32]);
+          // use the single bump hill by default, but see if I should use the rolling hills
+        } else {
+          // mxid is 0, so it's anything not accounted for above. Most likely, water, possibly cobblestone/wood
+          // think I'll assume we want a solid line before any kind of actual floor
         }
       }
     }
@@ -2301,6 +2381,8 @@ function GetTransTier(tname) {
   else if (tname.includes("Meadow")) { return 2; }
   else if (tname.includes("Grass")) { return 1; }
   else if (tname.includes("River")) { return 1; }
+  else if (tname.includes("Brush")) { return 1; }
+  else if (tname.includes("Underbrush")) { return 1; }
   return 0;
 }
 
