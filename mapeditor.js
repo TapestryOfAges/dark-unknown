@@ -1772,6 +1772,7 @@ function CreateTransitionModal() {
   var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
   $('#transitionbubble').jqm({onShow:myOpen}); 
   $('#transitionbubble').jqmShow();
+  document.getElementById("transitionbubble").style.removeProperty("visibility");
 
   let block = document.getElementById("transcontent");
   let html = `<table cellpadding='5' cellspacing='0' border='0' style='width:100%'><tr><td>`;
@@ -2211,7 +2212,10 @@ function transSelection(n,grapharray) {
 function clearTransSelections() {
   for (let i=0;i<=2;i++) {
     for (let j=0;j<=3;j++) {
-      document.getElementById(`layer${i}-${j}`).value = "";
+      let lay = `layer${i}-${j}`;
+      let line = document.getElementById(lay);
+      if (!line) { console.log("Couldn't find " + lay); }
+      line.value = "";
     }
   }
 }
@@ -2418,6 +2422,11 @@ function submitTransition(val) {
 function automaticTransition(x,y) {
   transx = x;
   transy = y;
+  var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
+  $('#transitionbubble').jqm({onShow:myOpen}); 
+  $('#transitionbubble').jqmShow();
+  document.getElementById("transitionbubble").style.visibility = "hidden";
+
   clearTransSelections();
 
   generateTransition();
