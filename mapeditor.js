@@ -2208,6 +2208,14 @@ function transSelection(n,grapharray) {
   document.getElementById(`layer${n}-0`).value = `${grapharray[0]}`;
 }
 
+function clearTransSelections() {
+  for (let i=0;i<=2;i++) {
+    for (let j=0;j<=3;j++) {
+      document.getElementById(`layer${i}-${j}`).value = "";
+    }
+  }
+}
+
 function generateTransition() {
   console.log(`Generating transition for ${transx}, ${transy}`);
   let tile = amap.getTile(transx,transy).getTerrain();
@@ -2404,5 +2412,16 @@ function submitTransition(val) {
   } else if (val === -1) { // delete
     delete amap.transover[coord];
     RedrawTile(transx,transy);
+  }
+}
+
+function automaticTransition(x,y) {
+  transx = x;
+  transy = y;
+  clearTransSelections();
+
+  generateTransition();
+  if (document.getElementById("layer1-0").value && document.getElementById("layer2-0").value) {
+    submitTransition(1);
   }
 }
