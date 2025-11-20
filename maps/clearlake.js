@@ -401,6 +401,8 @@ mappages["clearlake"].npcs[14] = {name : 'TownGuardNPC', x : 37, y : 28, NPCName
 mappages["clearlake"].npcs[15] = {name : 'TownGuardNPC', x : 36, y : 48, NPCName: 'Butiro', PeaceAI: 'scheduled', Schedule: 'butiro', Conversation: 'butiro', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateWhiteTabard","head":"BrownDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BrownDark"}'};
 mappages["clearlake"].npcs[16] = {name : 'ShepherdVillagerNPC', x : 23, y : 22, NPCName: 'Paulon', Desc: 'scholar', PeaceAI: 'scheduled', Schedule: 'paulon', Conversation: 'paulon', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BrownRobeFancy","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBrownPale"}'};
 
+mappages["clearlake"].transover = '{"41,21":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]]}';
+
 mappages["clearlake"].desc = "Clear Lake";
 mappages["clearlake"].longdesc = `The breeze off the water brushes you as you enter the lake town of Clear Lake. It is built on the shore and several islands, connected by sturdy bridges.`;
 mappages["clearlake"].music = 'Towne';

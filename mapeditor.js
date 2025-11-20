@@ -2408,6 +2408,7 @@ function submitTransition(val) {
       tarr[1] = [ document.getElementById("layer1-0").value, document.getElementById("layer1-1").value, parseInt(document.getElementById("layer1-2").value), parseInt(document.getElementById("layer1-3").value) ];
       tarr[2] = [ document.getElementById("layer2-0").value, document.getElementById("layer2-1").value, parseInt(document.getElementById("layer2-2").value), parseInt(document.getElementById("layer2-3").value) ];
       if (tarr[1][0] && tarr[2][0]) { 
+        if (!amap.transover) { amap.transover = {}; }
         amap.transover[coord] = tarr; 
         RedrawTile(transx,transy);
       }
@@ -2422,9 +2423,7 @@ function submitTransition(val) {
 function automaticTransition(x,y) {
   transx = x;
   transy = y;
-  var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
-  $('#transitionbubble').jqm({onShow:myOpen}); 
-  $('#transitionbubble').jqmShow();
+  CreateTransitionModal();
   document.getElementById("transitionbubble").style.visibility = "hidden";
 
   clearTransSelections();
@@ -2432,5 +2431,25 @@ function automaticTransition(x,y) {
   generateTransition();
   if (document.getElementById("layer1-0").value && document.getElementById("layer2-0").value) {
     submitTransition(1);
+  }
+}
+
+function areaTransition(x1,y1,x2,y2,terraintype) {
+  if (x1 > x2) { let tmp = x1; x1=x2; x2=tmp; }
+  if (y1 > y2) { let tmp = y1; y1=y2; y2=tmp; }
+  for (let i=x1;i<=x2;i++) {
+    for (let j=y1;j<=y2;j++) {
+      let tile = amap.getTile(i,j).getTerrain();
+      if ((terraintype === "Grass") && (tile.getName() === "Grass")) { automaticTransition(i,j); }
+      else if ((terraintype === "Meadow") && (tile.getName() === "Meadow")) { automaticTransition(i,j); }
+      else if ((terraintype === "Sand") && (tile.getName() === "Sand")) { automaticTransition(i,j); }
+      else if ((terraintype === "Dirt") && (tile.getName() === "Dirt")) { automaticTransition(i,j); }
+      else if ((terraintype === "Swamp") && (tile.getName() === "Swamp")) { automaticTransition(i,j); }
+      else if ((terraintype === "Forest") && ((tile.getName() === "Forest") || (tile.getName() === "Forest2") || (tile.getName().includes("ForestTiling")))) { automaticTransition(i,j); }
+      else if ((terraintype === "Evergreen") && (tile.getName().includes("Evergreen"))) { automaticTransition(i,j); }
+      else if ((terraintype === "BrightForest") && (tile.getName().includes("BrightForest"))) { automaticTransition(i,j); }
+      else if ((terraintype === "Hills") && (tile.getName().includes("Hills"))) { automaticTransition(i,j); }
+      else if ((terraintype === "Mountain") && (tile.getName().includes("Mountain")) && (tile.getName() !== "FlameMountain")) { automaticTransition(i,j); }
+    }
   }
 }
