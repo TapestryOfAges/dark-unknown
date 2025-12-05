@@ -396,7 +396,7 @@ function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev, skipfeatures, 
       displayCell.graphics3 = graphics[3];
       displayCell.graphics1 = graphics[1];
       if (graphics[4]) { displayCell.layers = graphics[4]; }
-      if (typeof displaytile.doTile === "function") {
+      if ((typeof displaytile.doTile === "function") && !IsTransition(mapname,x,y)) {
         let showGraphic = displaytile.doTile(x,y,displayCell);
         if ("graphic" in showGraphic) { displayCell.showGraphic = showGraphic.graphic; }
         if ("spritexoffset" in showGraphic) { 
@@ -460,6 +460,13 @@ function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev, skipfeatures, 
     }
   }
   return returnStack;
+}
+
+function IsTransition(mapref,x,y) {
+  if (!mapref.transover) { return false; }
+  let override = mapref.transover[`${x},${y}`];
+  if (override) { return true;}
+  else { return false; }
 }
 
 function GetDisplayDirectionalLight(centerx,centery,x,y,lightmap,sunlight) {
