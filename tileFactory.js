@@ -633,6 +633,46 @@ tileFactory.prototype.makeWestLavaCoastCaveTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeSouthwestLavaCoastDirtTile = function() {
+  let newTile = new SouthwestLavaCoastDirtTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSouthwestLavaCoastCaveTile = function() {
+  let newTile = new SouthwestLavaCoastCaveTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSoutheastLavaCoastDirtTile = function() {
+  let newTile = new SoutheastLavaCoastDirtTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSoutheastLavaCoastCaveTile = function() {
+  let newTile = new SoutheastLavaCoastCaveTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeNortheastLavaCoastDirtTile = function() {
+  let newTile = new NortheastLavaCoastDirtTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeNortheastLavaCoastCaveTile = function() {
+  let newTile = new NortheastLavaCoastCaveTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeNorthwestLavaCoastDirtTile = function() {
+  let newTile = new NorthwestLavaCoastDirtTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeNorthwestLavaCoastCaveTile = function() {
+  let newTile = new NorthwestLavaCoastCaveTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeRiverTile = function() {
   let newTile = new RiverTile();
   return newTile;
@@ -5618,6 +5658,16 @@ tileFactory.prototype.makeEvilEyeNPCTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeGuardianLeftNPCTile = function() {
+  let newTile = new GuardianLeftNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGuardianRightNPCTile = function() {
+  let newTile = new GuardianRightNPCTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeHydraNPCTile = function() {
   let newTile = new HydraNPCTile();
   return newTile;
@@ -5675,16 +5725,6 @@ tileFactory.prototype.makeEttinSorcererNPCTile = function() {
 
 tileFactory.prototype.makeGiantNPCTile = function() {
   let newTile = new GiantNPCTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeGuardianLeftNPCTile = function() {
-  let newTile = new GuardianLeftNPCTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeGuardianRightNPCTile = function() {
-  let newTile = new GuardianRightNPCTile();
   return newTile;
 }
 
