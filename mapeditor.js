@@ -32,6 +32,7 @@ var PC = new PCObject();
 var DU = {};
 DU.DUTime = DUTime;
 gamestate = new GameStateData();
+gamestate.setMode("editor");
 var DULoot = SetLoots();            //
 var DULootGroups = SetLootGroups(); //  see loot.js and lootset.js for population
 var DUTraps = SetTraps();           //
@@ -2011,8 +2012,8 @@ function ChangeTransitionType(passedtype) {
     ttile += `<td>W: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-128px ${ty}px" id='TerrainBlend.gif -128 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-128,${ty}])"></div></td>`; 
     ttile += `<td>E: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-160px ${ty}px" id='TerrainBlend.gif -160 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-160,${ty}])"></div></td>`; 
     ttile += `<td>NW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-192px ${ty}px" id='TerrainBlend.gif -192 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-192,${ty}])"></div></td>`; 
-    ttile += `<td>SW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-224px ${ty}px" id='TerrainBlend.gif -224 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-224,${ty}])"></div></td>`; 
-    ttile += `<td>NE: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-256px ${ty}px" id='TerrainBlend.gif -256 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-256,${ty}])"></div></td>`; 
+    ttile += `<td>NE: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-224px ${ty}px" id='TerrainBlend.gif -224 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-224,${ty}])"></div></td>`; 
+    ttile += `<td>SW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-256px ${ty}px" id='TerrainBlend.gif -256 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-256,${ty}])"></div></td>`; 
     ttile += `<td>SE: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-288px ${ty}px" id='TerrainBlend.gif -288 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-288,${ty}])"></div></td>`; 
     ttile += `<td>SNW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-320px ${ty}px" id='TerrainBlend.gif -320 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-320,${ty}])"></div></td>`; 
     ttile += `<td>SNE: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-352px ${ty}px" id='TerrainBlend.gif -352 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-352,${ty}])"></div></td>`; 
@@ -2027,9 +2028,9 @@ function ChangeTransitionType(passedtype) {
       let dir = directions[i].toUpperCase();
       ttile += `<td>${dir}: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:${tx}px ${ty}px" id='TerrainBlend.gif ${tx} ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',${tx},${ty}])"></div></td>`;
     }
-    if ((totype !== "Forest") && (totype !== "Bright Forest") && (totype !== "Evergreen")) {
+    //if ((totype !== "Forest") && (totype !== "Bright Forest") && (totype !== "Evergreen")) {
       ttile += `<td>NSEW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-448px ${ty}px" id='TerrainBlend.gif -448 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-448,${ty}])"></div></td>`;
-    }
+    //}
   } else if (totype === "Forest [tiled]") {
     ttile += `<td colspan='3'>Upper Left:</td><td colspan='3'>Upper Right:</td><td>Mid Left:</td><td>Mid Right:</td><td colspan='3'>Lower Left:</td><td colspan='3'>Lower Right:</td></tr><tr>`;
     let ty = transpixels["ForestTiledUL"];
@@ -2370,8 +2371,9 @@ function generateTransition() {
           transSelection(1,["static.gif", "spacer.gif", -6*32, 0]);
           // if surrounded by forests of any type, use grass as the underlying stuff
         } else if (mxid === 9) {
-          transSelection(1,["static.gif", "spacer.gif", -7*32, -7*32]);
+          transSelection(1,["static.gif", "spacer.gif", -256, 0]);
           // use the single bump hill by default, but see if I should use the rolling hills
+          // made the change!
         } else {
           // mxid is 0, so it's anything not accounted for above. Most likely, water, possibly cobblestone/wood
           // think I'll assume we want a solid line before any kind of actual floor
@@ -2450,6 +2452,27 @@ function areaTransition(x1,y1,x2,y2,terraintype) {
       else if ((terraintype === "BrightForest") && (tile.getName().includes("BrightForest"))) { automaticTransition(i,j); }
       else if ((terraintype === "Hills") && (tile.getName().includes("Hills"))) { automaticTransition(i,j); }
       else if ((terraintype === "Mountain") && (tile.getName().includes("Mountain")) && (tile.getName() !== "FlameMountain")) { automaticTransition(i,j); }
+    }
+  }
+}
+
+function areaDeleteTransition(x1,y1,x2,y2,terraintype) {
+  if (x1 > x2) { let tmp = x1; x1=x2; x2=tmp; }
+  if (y1 > y2) { let tmp = y1; y1=y2; y2=tmp; }
+  for (let i=x1;i<=x2;i++) {
+    for (let j=y1;j<=y2;j++) {
+      let coord = `${i}x${j}`;
+      let tile = amap.getTile(i,j).getTerrain();
+      if ((terraintype === "Grass") && (tile.getName() === "Grass")) { delete amap.transover[coord]; }
+      else if ((terraintype === "Meadow") && (tile.getName() === "Meadow")) { delete amap.transover[coord]; }
+      else if ((terraintype === "Sand") && (tile.getName() === "Sand")) { delete amap.transover[coord]; }
+      else if ((terraintype === "Dirt") && (tile.getName() === "Dirt")) { delete amap.transover[coord]; }
+      else if ((terraintype === "Swamp") && (tile.getName() === "Swamp")) { delete amap.transover[coord]; }
+      else if ((terraintype === "Forest") && ((tile.getName() === "Forest") || (tile.getName() === "Forest2") || (tile.getName().includes("ForestTiling")))) { delete amap.transover[coord]; }
+      else if ((terraintype === "Evergreen") && (tile.getName().includes("Evergreen"))) { delete amap.transover[coord]; }
+      else if ((terraintype === "BrightForest") && (tile.getName().includes("BrightForest"))) { delete amap.transover[coord]; }
+      else if ((terraintype === "Hills") && (tile.getName().includes("Hills"))) { delete amap.transover[coord]; }
+      else if ((terraintype === "Mountain") && (tile.getName().includes("Mountain")) && (tile.getName() !== "FlameMountain")) { delete amap.transover[coord]; }
     }
   }
 }
