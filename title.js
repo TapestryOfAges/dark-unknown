@@ -1301,6 +1301,8 @@ tv.SaveChar = function() {
 //  PC.setEquipment("armor",armor);
   let homekey = localFactory.createTile("HomeKey");
   PC.addToInventory(homekey,1);
+  let torch = localFactory.createTile("Torch");
+  PC.addToInventory(torch,1,3);
 
   DU.gameflags.setFlag("knows_avery", 1);
   DU.gameflags.setFlag("coward", 0); 
@@ -2504,10 +2506,13 @@ tv.MakeCredits = function(page) {
   table[1] += "<td align='center' valign='top' style='width:33%'><p class='charcreate'>John Hosie<br />Indi Martin<br />Browncoat Jayson<br />Michael Lavery</p></td>";
   table[1] += "<td align='center' valign='top' style='width:33%'><p class='charcreate'>Brandon Luders<br />Erik Smith<br />Stirring Dragon Games<br />David Youd</p></td></tr></table>";
 
-  table[2] = "<table cellpadding='5' cellspacing='5' border='0' style='width:100%' id='creditstable'><tr><td align='center' valign='top' colspan='2'><p class='charcreate'><u>Image Licensing</u><br /><br />Palace in the Sky clouds by:<br />Daniel Gregory Benoy (https://opengameart.org/content/fluffy-clouds)<br />CC-by-SA license (https://creativecommons.org/licenses/by-sa/3.0/)<br />Some clouds edited by merging them together.<br /><br />";
+  table[2] = "<table cellpadding='5' cellspacing='5' border='0' style='width:100%'><tr><td align='center' valign='top' colspan='2'><p class='charcreate'><u>Image Licensing</u><br /><br />Palace in the Sky clouds by:<br />Daniel Gregory Benoy (https://opengameart.org/content/fluffy-clouds)<br />CC-by-SA license (https://creativecommons.org/licenses/by-sa/3.0/)<br />Some clouds edited by merging them together.<br /><br />";
   table[2] += "Spellbook by:<br />DeviantArt user \"flameshaft\" (http://flameshaft.deviantart.com/art/Open-book-289133547)<br /><br /><u>Sound Effect Licensing</u><br /><br />";
   table[2] += "DOOR HANDLE JIGGLE.wav by Kyle1Katarn<br />https://freesound.org/s/108407/ -- License: Attribution 3.0<br />Door-Lock-Turn-01.wav by DWOBoyle<br />https://freesound.org/s/151588/ -- License: Attribution 4.0<br />";
   table[2] += "door close 3.wav by THE_bizniss<br />https://freesound.org/s/53270/ -- License: Attribution 3.0<br />stone_on_stone_dragging5.aif by thanvannispen<br />https://freesound.org/s/29991/ -- License: Attribution 4.0</td></tr></table>"
+
+  table[3] += `<table cellpadding='5' cellspacing='5' border='0' style='width:100%' id='creditstable'><tr><td align='center' valign='top' colspan='2'><p class='charcreate'>In Loving Memory of<br /><span style='color:gold'>Adam D'Addario</span><br />The original <span style='color:silver'>Lance Silverglade</span>, and who passed away before he got a chance to play.</td>`;
+  table[3] += `</tr></table>`;
 
   if (page >= table.length) {
     gamestate.setMode("null");
