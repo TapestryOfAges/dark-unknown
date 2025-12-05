@@ -100,6 +100,7 @@ mappages["beldskaecave"].ClearOrcs = function(mapref) {
   }
 }
 
+// MAP BEGINS HERE
 mappages["warwizardtower"] = {};
 mappages["warwizardtower"].terrain = [];
  mappages["warwizardtower"].terrain[0] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
@@ -128,34 +129,37 @@ mappages["warwizardtower"].terrain[22] = '^^ ^^ ^^ ^^ ^^ nn nn nn nn nn nn nn nn
 mappages["warwizardtower"].terrain[23] = '^^ ^^ ^^ ^^ nn nn nn nn nn nn nn nn nn nn nn nn nn nn ^^ ^^ ^^ ^^ ^^ ^^';
 
 mappages["warwizardtower"].features = [];
-mappages["warwizardtower"].features[0] = {name : 'Campfire', x : 18, y : 15};
-mappages["warwizardtower"].features[1] = {name : 'Door', x : 14, y : 6};
-mappages["warwizardtower"].features[2] = {name : 'BookshelfLeft', x : 18, y : 4};
-mappages["warwizardtower"].features[3] = {name : 'BookshelfRight', x : 19, y : 4, lootedid : 'warwizardbooks', searchyield : 'YellowPotion'};
-mappages["warwizardtower"].features[4] = {name : 'Mirror', x : 15, y : 4};
-mappages["warwizardtower"].features[5] = {name : 'Evergreen', x : 8, y : 13};
-mappages["warwizardtower"].features[6] = {name : 'Evergreen', x : 7, y : 21};
-mappages["warwizardtower"].features[7] = {name : 'Evergreen', x : 14, y : 19};
-mappages["warwizardtower"].features[8] = {name : 'Evergreen', x : 5, y : 8};
-mappages["warwizardtower"].features[9] = {name : 'Evergreen', x : 8, y : 2};
-mappages["warwizardtower"].features[10] = {name : 'Evergreen', x : 14, y : 2};
-mappages["warwizardtower"].features[11] = {name : 'Chest', x : 19, y : 8, locked : 0, lootgroup : 'warwizard', lootedid : 'warwizard'};
+mappages["warwizardtower"].features[0] = {name : 'Door', x : 14, y : 6};
+mappages["warwizardtower"].features[1] = {name : 'BookshelfLeft', x : 18, y : 4};
+mappages["warwizardtower"].features[2] = {name : 'BookshelfRight', x : 19, y : 4, lootedid : 'warwizardbooks', searchyield : 'YellowPotion'};
+mappages["warwizardtower"].features[3] = {name : 'Mirror', x : 15, y : 4};
+mappages["warwizardtower"].features[4] = {name : 'Evergreen', x : 8, y : 13};
+mappages["warwizardtower"].features[5] = {name : 'Evergreen', x : 7, y : 21};
+mappages["warwizardtower"].features[6] = {name : 'Evergreen', x : 14, y : 19};
+mappages["warwizardtower"].features[7] = {name : 'Evergreen', x : 5, y : 8};
+mappages["warwizardtower"].features[8] = {name : 'Evergreen', x : 8, y : 2};
+mappages["warwizardtower"].features[9] = {name : 'Evergreen', x : 14, y : 2};
+mappages["warwizardtower"].features[10] = {name : 'Chest', x : 19, y : 8, lootgroup : 'warwizard', lootedid : 'warwizard'};
+mappages["warwizardtower"].features[11] = {name : 'Campfire', x : 18, y : 15};
+
 
 mappages["warwizardtower"].npcs = [];
-mappages["warwizardtower"].npcs[0] = {name : 'OrcNPC', x : 18, y : 14, skintone: '1'};
-mappages["warwizardtower"].npcs[1] = {name : 'OrcNPC', x : 19, y : 13, skintone: '1'};
-mappages["warwizardtower"].npcs[2] = {name : 'TrollNPC', x : 16, y : 15, skintone: '1'};
-mappages["warwizardtower"].npcs[3] = {name : 'TrollNPC', x : 18, y : 17, skintone: '1'};
-mappages["warwizardtower"].npcs[4] = {name : 'TrollNPC', x : 7, y : 6, skintone: '1'};
-mappages["warwizardtower"].npcs[5] = {name : 'TrollNPC', x : 8, y : 5, skintone: '1'};
-mappages["warwizardtower"].npcs[6] = {name : 'TrollNPC', x : 12, y : 3, skintone: '1'};
-mappages["warwizardtower"].npcs[7] = {name : 'EttinNPC', x : 10, y : 6, skintone: '1'};
-mappages["warwizardtower"].npcs[8] = {name : 'OrcShamanNPC', x : 16, y : 4, skintone: '1'};
-mappages["warwizardtower"].npcs[9] = {name : 'OrcShamanNPC', x : 18, y : 7, skintone: '1'};
-mappages["warwizardtower"].npcs[10] = {name : 'TrollNPC', x : 15, y : 8, skintone: '1'};
+mappages["warwizardtower"].npcs[0] = {name : 'OrcNPC', x : 18, y : 14, skintone: 1};
+mappages["warwizardtower"].npcs[1] = {name : 'OrcNPC', x : 19, y : 13, skintone: 1};
+mappages["warwizardtower"].npcs[2] = {name : 'TrollNPC', x : 16, y : 15, skintone: 1};
+mappages["warwizardtower"].npcs[3] = {name : 'TrollNPC', x : 18, y : 17, skintone: 1};
+mappages["warwizardtower"].npcs[4] = {name : 'TrollNPC', x : 7, y : 6, skintone: 1};
+mappages["warwizardtower"].npcs[5] = {name : 'TrollNPC', x : 8, y : 5, skintone: 1};
+mappages["warwizardtower"].npcs[6] = {name : 'TrollNPC', x : 12, y : 3, skintone: 1};
+mappages["warwizardtower"].npcs[7] = {name : 'EttinNPC', x : 10, y : 6, skintone: 1};
+mappages["warwizardtower"].npcs[8] = {name : 'OrcShamanNPC', x : 16, y : 4, skintone: 1};
+mappages["warwizardtower"].npcs[9] = {name : 'OrcShamanNPC', x : 18, y : 7, skintone: 1};
+mappages["warwizardtower"].npcs[10] = {name : 'TrollNPC', x : 15, y : 8, skintone: 1};
+
+mappages["warwizardtower"].transover = '{"3,8":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-160,-480]],"3,9":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-160,-480]],"3,23":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-160,-480]],"4,7":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-288,-480]],"4,10":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-224,-480]],"4,20":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-160,-480]],"4,21":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-160,-480]],"4,22":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-288,-480]],"5,6":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-288,-480]],"5,11":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-224,-480]],"5,19":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-288,-480]],"6,3":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-160,-480]],"6,4":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-160,-480]],"6,5":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-288,-480]],"6,12":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-224,-480]],"6,13":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-160,-480]],"6,14":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-160,-480]],"6,15":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-160,-480]],"6,17":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-160,-480]],"6,18":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-288,-480]],"7,2":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-288,-480]],"7,16":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-352,-480]],"8,1":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-96,-480]],"9,1":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-64,-480]],"10,1":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-96,-480]],"11,1":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-64,-480]],"12,1":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-96,-480]],"13,1":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-64,-480]],"14,1":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-96,-480]],"14,14":[["","",null,null],["static.gif","spacer.gif",-256,0],["TerrainBlend.gif","spacer.gif",-192,-480]],"14,15":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-256,-480]],"15,1":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-64,-480]],"15,12":[["","",null,null],["static.gif","spacer.gif",-256,0],["TerrainBlend.gif","spacer.gif",-192,-480]],"15,13":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-128,-480]],"15,14":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-160,-480]],"15,15":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-288,-480]],"16,1":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-96,-480]],"16,11":[["","",null,null],["static.gif","spacer.gif",-256,0],["TerrainBlend.gif","spacer.gif",-192,-480]],"16,13":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-288,-480]],"17,1":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-64,-480]],"17,10":[["","",null,null],["static.gif","spacer.gif",-256,0],["TerrainBlend.gif","spacer.gif",-384,-480]],"17,12":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-96,-480]],"18,11":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-32,-480]],"18,12":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-64,-480]],"18,23":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-192,-480]],"19,11":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",0,-480]],"19,12":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-96,-480]],"19,22":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-192,-480]],"20,13":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-256,-480]],"20,17":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-192,-480]],"20,18":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-128,-480]],"20,19":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-128,-480]],"20,20":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-128,-480]],"20,21":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-128,-480]],"21,14":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-128,-480]],"21,15":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-128,-480]],"21,16":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-128,-480]],"22,5":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-128,-480]],"22,6":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-128,-480]],"22,7":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-128,-480]],"22,8":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-128,-480]]}';
 
 mappages["warwizardtower"].desc = "Tower of the War Wizard";
-mappages["warwizardtower"].longdesc = 'Emerging from the cave, you see an small vale between the mountains. Ahead is an unfinished tower, second story exposed to the sky. And with its builder long gone, the valley is now inhabited by orcs and trolls.';
+mappages["warwizardtower"].longdesc = `Emerging from the cave, you see an small vale between the mountains. Ahead is an unfinished tower, second story exposed to the sky. And with its builder long gone, the valley is now inhabited by orcs and trolls.`;
 mappages["warwizardtower"].music = 'Ruins';
 mappages["warwizardtower"].savename = `War Tower`;
 mappages["warwizardtower"].exitmap = 'ellusus';
@@ -180,6 +184,7 @@ mappages["warwizardtower"].returny = '8';
 mappages["warwizardtower"].returninfused = '0';
 mappages["warwizardtower"].linkedMaps = [""];
 mappages["warwizardtower"].editorLabels = '{}';
+// MAP ENDS HERE
 
 mappages["warwizardtower"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
@@ -192,6 +197,7 @@ mappages["warwizardtower"].onload = function(mapref) {
   }
 }
 
+// MAP BEGINS HERE
 mappages["wildingcave"] = {};
 mappages["wildingcave"].terrain = [];
  mappages["wildingcave"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -211,19 +217,19 @@ mappages["wildingcave"].terrain[13] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK
 mappages["wildingcave"].terrain[14] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK';
 mappages["wildingcave"].terrain[15] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw cw cf cf cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["wildingcave"].terrain[16] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["wildingcave"].terrain[17] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["wildingcave"].terrain[18] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf uu uu uu uu uu uu cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["wildingcave"].terrain[19] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf uu uu ww uu ww uu uu uu cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK';
-mappages["wildingcave"].terrain[20] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf uu uu ww ww ww ww ww uu uu cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK';
-mappages["wildingcave"].terrain[21] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf uu ww ww uu uu uu uu uu uu cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK';
-mappages["wildingcave"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf uu ww ww uu /. -- .` uu uu uu cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK';
-mappages["wildingcave"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf uu uu ww uu |. .. .| uu ww uu uu uu cf cf cf cw BK BK BK BK BK BK BK BK BK BK';
-mappages["wildingcave"].terrain[24] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf uu ww uu `. __ ./ uu ww ww ww uu uu uu cw cw BK BK BK BK BK BK BK BK BK BK';
-mappages["wildingcave"].terrain[25] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf uu uu uu uu uu uu uu ww ww ww uu uu uu cw BK BK BK BK BK BK BK BK BK BK BK';
-mappages["wildingcave"].terrain[26] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf uu uu uu ww ww ww ww ww ww ww uu uu cw cw BK BK BK BK BK BK BK BK BK BK BK';
-mappages["wildingcave"].terrain[27] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf uu uu uu ww ww ww uu uu uu cf cw BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["wildingcave"].terrain[28] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf uu uu uu uu uu cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["wildingcave"].terrain[29] = 'BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["wildingcave"].terrain[17] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf _c _c _c _c _c _c cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["wildingcave"].terrain[18] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf c/ w4 w0 w0 w0 w6 uu `c cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["wildingcave"].terrain[19] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf c| uu w2 ww ww ww w9 w0 w6 `c cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK';
+mappages["wildingcave"].terrain[20] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf c| uu w2 ww ww ww ww ww w3 uu |c cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK';
+mappages["wildingcave"].terrain[21] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf c| uu w2 ww w8 w1 w1 w1 w7 uu `c cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK';
+mappages["wildingcave"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf c| uu w2 ww w3 /. -- .` w4 w0 w6 `c _c cf cf cf cw BK BK BK BK BK BK BK BK BK BK';
+mappages["wildingcave"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf c| uu w2 ww w3 |. .. .| w2 ww w9 w0 w6 `c _c cf cw BK BK BK BK BK BK BK BK BK BK';
+mappages["wildingcave"].terrain[24] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf c` w5 w1 w7 `. __ ./ w2 ww ww ww w3 uu uu cw cw BK BK BK BK BK BK BK BK BK BK';
+mappages["wildingcave"].terrain[25] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf c| uu uu uu w4 w0 w0 w11 ww ww ww w3 uu uu cw BK BK BK BK BK BK BK BK BK BK BK';
+mappages["wildingcave"].terrain[26] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf c` uu uu w2 ww ww ww ww ww ww w3 uu cw cw BK BK BK BK BK BK BK BK BK BK BK';
+mappages["wildingcave"].terrain[27] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf c` uu w5 w10 ww ww ww w8 w1 w7 /c cw BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["wildingcave"].terrain[28] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf -c c` w5 w1 w1 w1 w7 /c -c cf cw BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["wildingcave"].terrain[29] = 'BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf -c -c -c -c -c cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["wildingcave"].terrain[30] = 'BK BK BK BK BK BK BK BK cw cw cf cf cf cf cw cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["wildingcave"].terrain[31] = 'BK BK BK BK BK BK BK BK cw cf cf cf cf cw cw cw cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["wildingcave"].terrain[32] = 'BK BK BK BK BK BK BK BK cw cf cf cf cw cw BK cw cw cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -239,20 +245,21 @@ mappages["wildingcave"].terrain[41] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK
 
 mappages["wildingcave"].features = [];
 mappages["wildingcave"].features[0] = {name : 'OrbDexterity', x : 22, y : 8};
-mappages["wildingcave"].features[1] = {name : 'Chest', x : 9, y : 34, locked : 0, lootgroup : 'wilding2', lootedid : 'wildingcave2'};
-mappages["wildingcave"].features[2] = {name : 'Chest', x : 8, y : 34, locked : 0, lootgroup : 'wilding1', lootedid : 'wildingcave1'};
-mappages["wildingcave"].features[3] = {name : 'Chest', x : 21, y : 23, locked : 0, lootgroup : 'wilding3', lootedid : 'wildingcave3'};
+mappages["wildingcave"].features[1] = {name : 'Chest', x : 9, y : 34, lootgroup : 'wilding2', lootedid : 'wildingcave2'};
+mappages["wildingcave"].features[2] = {name : 'Chest', x : 8, y : 34, lootgroup : 'wilding1', lootedid : 'wildingcave1'};
+mappages["wildingcave"].features[3] = {name : 'Chest', x : 21, y : 23, lootgroup : 'wilding3', lootedid : 'wildingcave3'};
+
 
 mappages["wildingcave"].npcs = [];
-mappages["wildingcave"].npcs[0] = {name : 'LurkerNPC', x : 23, y : 7, skintone: '1'};
-mappages["wildingcave"].npcs[1] = {name : 'TrollNPC', x : 26, y : 19, skintone: '1'};
-mappages["wildingcave"].npcs[2] = {name : 'TrollNPC', x : 28, y : 21, skintone: '1'};
-mappages["wildingcave"].npcs[3] = {name : 'GiantSpiderNPC', x : 12, y : 29, skintone: '1'};
-mappages["wildingcave"].npcs[4] = {name : 'GiantSpiderNPC', x : 17, y : 31, skintone: '1'};
-mappages["wildingcave"].npcs[5] = {name : 'NixNPC', x : 18, y : 21, skintone: '1'};
+mappages["wildingcave"].npcs[0] = {name : 'LurkerNPC', x : 23, y : 7, skintone: 1};
+mappages["wildingcave"].npcs[1] = {name : 'TrollNPC', x : 26, y : 19, skintone: 1};
+mappages["wildingcave"].npcs[2] = {name : 'TrollNPC', x : 28, y : 21, skintone: 1};
+mappages["wildingcave"].npcs[3] = {name : 'GiantSpiderNPC', x : 12, y : 29, skintone: 1};
+mappages["wildingcave"].npcs[4] = {name : 'GiantSpiderNPC', x : 17, y : 31, skintone: 1};
+mappages["wildingcave"].npcs[5] = {name : 'NixNPC', x : 18, y : 21, skintone: 1};
 
 mappages["wildingcave"].desc = "Wilding Cave";
-mappages["wildingcave"].longdesc = '';
+mappages["wildingcave"].longdesc = ``;
 mappages["wildingcave"].music = 'Cave';
 mappages["wildingcave"].savename = `Wilding Cave`;
 mappages["wildingcave"].exitmap = 'ellusus';
@@ -277,6 +284,7 @@ mappages["wildingcave"].returny = '115';
 mappages["wildingcave"].returninfused = '0';
 mappages["wildingcave"].linkedMaps = [""];
 mappages["wildingcave"].editorLabels = '{}';
+// MAP ENDS HERE
 
 mappages["northroadcave"] = {};
 mappages["northroadcave"].terrain = [];
@@ -342,6 +350,7 @@ mappages["northroadcave"].returninfused = '0';
 mappages["northroadcave"].linkedMaps = [""];
 mappages["northroadcave"].editorLabels = '{}';
 
+// MAP BEGINS HERE
 mappages["consolationcave"] = {};
 mappages["consolationcave"].terrain = [];
  mappages["consolationcave"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw ww ww cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -350,27 +359,27 @@ mappages["consolationcave"].terrain = [];
  mappages["consolationcave"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw ww ww ww cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["consolationcave"].terrain[4] = 'BK BK BK BK BK BK BK cw cw cw cw cw cw BK cw cw cw ww ww ww ww cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["consolationcave"].terrain[5] = 'BK BK BK BK cw cw cw cw uu uu uu uu cw cw cw ww ww ww ww ww ww ww cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["consolationcave"].terrain[6] = 'BK BK BK BK cw uu uu uu uu uu uu uu uu ww ww ww ww ww ww ww ww ww cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["consolationcave"].terrain[7] = 'BK BK BK cw cw uu ww uu uu uu uu uu ww ww ww ww ww ww ww ww ww ww ww cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["consolationcave"].terrain[8] = 'BK BK BK cw uu uu /b -b -b b` ww ww ww ww ww ww ww ww ww ww ww ww ww ww cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["consolationcave"].terrain[9] = 'BK BK cw cw uu uu |b ., ., b| ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["consolationcave"].terrain[6] = 'BK BK BK BK cw uu uu uu uu uu uu uu uu w4 w11 ww ww ww ww ww ww ww cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["consolationcave"].terrain[7] = 'BK BK BK cw cw uu uu uu uu uu uu w4 w0 w11 ww ww ww ww ww ww ww ww ww cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["consolationcave"].terrain[8] = 'BK BK BK cw uu uu /b -b -b b` w4 w11 ww ww ww ww ww ww ww ww ww ww ww ww cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["consolationcave"].terrain[9] = 'BK BK cw cw uu uu |b ., ., b| w11 ww ww ww ww ww ww ww ww ww ww ww ww ww ww cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["consolationcave"].terrain[10] = 'BK BK cw uu uu /b ., ., ., b| ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["consolationcave"].terrain[11] = 'BK BK cw uu uu |b ., ., ., b| ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK';
-mappages["consolationcave"].terrain[12] = 'BK cw cw uu /b ., ., ., ., b/ ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK';
-mappages["consolationcave"].terrain[13] = 'BK cw uu uu |b ., ., ., b/ ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK';
-mappages["consolationcave"].terrain[14] = 'BK cw uu uu |b ., ., b/ ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK';
-mappages["consolationcave"].terrain[15] = 'BK cw uu uu `b ., b| ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww cf cf cf cf cw cw cw cf cf cw BK BK BK BK BK BK';
-mappages["consolationcave"].terrain[16] = 'BK cw cw uu uu `b b/ uu ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww cf cf cf cf cw cw BK cw cw cf cw BK BK BK BK BK BK';
-mappages["consolationcave"].terrain[17] = 'BK BK cw uu uu uu uu uu uu ww ww ww ww ww ww ww ww ww ww ww ww ww ww cf cf cf cw cw BK BK BK cw cf cw BK BK BK BK BK BK';
-mappages["consolationcave"].terrain[18] = 'BK BK cw cw uu uu uu cw cw ww ww ww ww ww ww ww ww ww ww ww ww ww cf cf cf cw cw BK BK BK cw cw cf cw BK BK BK BK BK BK';
-mappages["consolationcave"].terrain[19] = 'BK BK BK cw uu uu cw cw cw ww ww ww ww ww ww ww ww ww ww ww ww ww cf cw cw cw BK BK BK cw cw cf cf cw BK BK BK BK BK BK';
+mappages["consolationcave"].terrain[11] = 'BK BK cw uu uu |b ., ., ., b| ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww |c cf cw cw BK BK BK BK BK BK BK BK BK BK BK';
+mappages["consolationcave"].terrain[12] = 'BK cw cw uu /b ., ., ., ., b/ ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww |c cf cf cw cw cw BK BK BK BK BK BK BK BK BK';
+mappages["consolationcave"].terrain[13] = 'BK cw uu uu |b ., ., ., b/ ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww |c cf cf cf cf cw cw cw BK BK BK BK BK BK BK';
+mappages["consolationcave"].terrain[14] = 'BK cw uu uu |b ., ., b/ ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww |c cf cf cf cf cf cf cw cw BK BK BK BK BK BK';
+mappages["consolationcave"].terrain[15] = 'BK cw uu uu `b ., b| w1 w10 ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww /c cf cf cf cw cw cw cf cf cw BK BK BK BK BK BK';
+mappages["consolationcave"].terrain[16] = 'BK cw cw uu uu `b b/ uu w5 w10 ww ww ww ww ww ww ww ww ww ww ww ww ww /c cf cf cf cw cw BK cw cw cf cw BK BK BK BK BK BK';
+mappages["consolationcave"].terrain[17] = 'BK BK cw uu uu uu uu uu uu w2 ww ww ww ww ww ww ww ww ww ww ww ww ww |c cf cf cw cw BK BK BK cw cf cw BK BK BK BK BK BK';
+mappages["consolationcave"].terrain[18] = 'BK BK cw cw uu uu uu cw cw w11 ww ww ww ww ww ww ww ww ww ww ww ww /c cf cf cw cw BK BK BK cw cw cf cw BK BK BK BK BK BK';
+mappages["consolationcave"].terrain[19] = 'BK BK BK cw uu uu cw cw cw ww ww ww ww ww ww ww ww ww ww ww ww ww |c cw cw cw BK BK BK cw cw cf cf cw BK BK BK BK BK BK';
 mappages["consolationcave"].terrain[20] = 'BK BK BK cw cw cw cw BK cw cw ww ww ww ww ww ww ww ww ww ww ww ww cw cw BK BK BK BK cw cw cf cf cw cw BK BK BK BK BK BK';
 mappages["consolationcave"].terrain[21] = 'BK BK BK BK BK BK BK BK BK cw ww ww ww ww ww ww ww ww ww ww cw cw cw BK BK BK BK BK cw cf cf cw cw BK BK BK BK BK BK BK';
 mappages["consolationcave"].terrain[22] = 'BK BK BK BK BK BK BK BK cw cw ww ww ww ww ww ww ww ww cw cw cw BK BK BK BK BK BK BK cw cf cw cw BK BK BK BK BK BK BK BK';
 mappages["consolationcave"].terrain[23] = 'BK BK BK BK BK BK BK BK cw ww ww ww ww ww ww ww ww cw cw BK BK BK BK BK BK BK BK BK cw cf cw BK BK BK BK BK BK BK BK BK';
 mappages["consolationcave"].terrain[24] = 'BK BK BK BK BK BK BK BK cw ww ww ww ww ww ww cw cw cw BK BK BK BK BK BK BK BK BK BK cw cf cw cw BK BK BK BK BK BK BK BK';
 mappages["consolationcave"].terrain[25] = 'BK BK BK BK BK BK BK BK cw ww ww ww ww cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cw cw cw cw BK BK cw cw cw';
-mappages["consolationcave"].terrain[26] = 'BK BK BK BK BK cw cw cw cw ww ww ww cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cw cw cw cw cf cf';
+mappages["consolationcave"].terrain[26] = 'BK BK BK BK BK cw cw cw cw W0 W0 W6 cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cw cw cw cw cf cf';
 mappages["consolationcave"].terrain[27] = 'BK BK BK BK BK cw WW WW WW WW WW cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cf cf cf cw cf cf cf';
 mappages["consolationcave"].terrain[28] = 'BK BK BK BK cw cw WW WW WW WW WW cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf';
 mappages["consolationcave"].terrain[29] = 'BK BK BK cw cw WW WW WW WW WW WW cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw cw';
@@ -385,17 +394,18 @@ mappages["consolationcave"].features[3] = {name : 'LadderDown', x : 8, y : 9, en
 mappages["consolationcave"].features[4] = {name : 'CampfireExtinguished', x : 7, y : 12};
 mappages["consolationcave"].features[5] = {name : 'SkeletonDecoration', x : 6, y : 13};
 mappages["consolationcave"].features[6] = {name : 'SkeletonDecoration', x : 8, y : 11};
-mappages["consolationcave"].features[7] = {name : 'Chest', x : 6, y : 11, locked : 0, lootgroup : 'archeochest', lootedid : 'consarcheochest'};
+mappages["consolationcave"].features[7] = {name : 'Chest', x : 6, y : 11, lootgroup : 'archeochest', lootedid : 'consarcheochest'};
+
 
 mappages["consolationcave"].npcs = [];
-mappages["consolationcave"].npcs[0] = {name : 'SeaSerpentNPC', x : 16, y : 16, skintone: '1'};
-mappages["consolationcave"].npcs[1] = {name : 'SeaSerpentNPC', x : 17, y : 10, skintone: '1'};
-mappages["consolationcave"].npcs[2] = {name : 'FlukeNPC', x : 14, y : 9, skintone: '1'};
-mappages["consolationcave"].npcs[3] = {name : 'FlukeNPC', x : 20, y : 12, skintone: '1'};
-mappages["consolationcave"].npcs[4] = {name : 'FlukeNPC', x : 13, y : 16, skintone: '1'};
+mappages["consolationcave"].npcs[0] = {name : 'SeaSerpentNPC', x : 16, y : 16, skintone: 1};
+mappages["consolationcave"].npcs[1] = {name : 'SeaSerpentNPC', x : 17, y : 10, skintone: 1};
+mappages["consolationcave"].npcs[2] = {name : 'FlukeNPC', x : 14, y : 9, skintone: 1};
+mappages["consolationcave"].npcs[3] = {name : 'FlukeNPC', x : 20, y : 12, skintone: 1};
+mappages["consolationcave"].npcs[4] = {name : 'FlukeNPC', x : 13, y : 16, skintone: 1};
 
 mappages["consolationcave"].desc = "Island Valley Cave";
-mappages["consolationcave"].longdesc = '';
+mappages["consolationcave"].longdesc = ``;
 mappages["consolationcave"].music = 'Cave';
 mappages["consolationcave"].savename = `Isle Val Cave`;
 mappages["consolationcave"].exitmap = 'ellusus';
@@ -420,6 +430,7 @@ mappages["consolationcave"].returny = '17';
 mappages["consolationcave"].returninfused = '0';
 mappages["consolationcave"].linkedMaps = ["consolationcave2"];
 mappages["consolationcave"].editorLabels = '{}';
+// MAP ENDS HERE
 
 // MAP BEGINS HERE
 mappages["consolationcave2"] = {};
@@ -805,6 +816,7 @@ mappages["swainhilcave"].onload = function(mapref) {
   }
 }
 
+// MAP BEGINS HERE
 mappages["wingcave"] = {};
 mappages["wingcave"].terrain = [];
  mappages["wingcave"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -820,18 +832,18 @@ mappages["wingcave"].terrain = [];
 mappages["wingcave"].terrain[10] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw cw cw cf cf cf cw cw cw cw BK cw cw ww ww cw BK';
 mappages["wingcave"].terrain[11] = 'cw cw cw cw BK BK BK BK BK cw cw cw cf cf cf cf cf cf cf cf cf cf cf cf cw cw cw ww ww ww cw BK';
 mappages["wingcave"].terrain[12] = 'cf cf cf cw cw BK cw cw cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw ww ww cw cw BK';
-mappages["wingcave"].terrain[13] = 'cf cf cf cf cw cw cw cf cf cf cf cf cf cf cf cw cw cw cf cf cw cw cw cf cf cf ww ww ww cw BK BK';
-mappages["wingcave"].terrain[14] = 'cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw cw BK cw cw cw cw BK cw cw cf cf ww ww ww cw BK BK';
-mappages["wingcave"].terrain[15] = 'cw cw cf cf cf cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK cw cf cf cf ww ww cw cw BK BK';
-mappages["wingcave"].terrain[16] = 'BK cw cw cw cw cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK cw cw cf cf cf ww ww cw BK BK BK';
-mappages["wingcave"].terrain[17] = 'BK BK BK BK cw cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf ww ww ww cw BK BK BK';
-mappages["wingcave"].terrain[18] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf ww ww ww cw BK BK BK';
-mappages["wingcave"].terrain[19] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cf cf cf cf ww ww ww cw cw BK BK BK';
-mappages["wingcave"].terrain[20] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf ww ww ww ww cw BK BK BK BK';
-mappages["wingcave"].terrain[21] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf ww ww ww ww cw cw BK BK BK BK';
-mappages["wingcave"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf ww ww ww ww ww cw BK BK BK BK BK';
-mappages["wingcave"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf ww ww ww ww cw cw cw BK BK BK BK BK';
-mappages["wingcave"].terrain[24] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf ww ww ww ww cw cw BK BK BK BK BK BK BK';
+mappages["wingcave"].terrain[13] = 'cf cf cf cf cw cw cw cf cf cf cf cf cf cf cf cw cw cw cf cf cw cw cw cf cf c| ww ww ww cw BK BK';
+mappages["wingcave"].terrain[14] = 'cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw cw BK cw cw cw cw BK cw cw cf c| ww ww ww cw BK BK';
+mappages["wingcave"].terrain[15] = 'cw cw cf cf cf cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK cw cf cf c| ww ww cw cw BK BK';
+mappages["wingcave"].terrain[16] = 'BK cw cw cw cw cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK cw cw cf cf c/ ww ww cw BK BK BK';
+mappages["wingcave"].terrain[17] = 'BK BK BK BK cw cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK cw cw cf cf c| ww ww ww cw BK BK BK';
+mappages["wingcave"].terrain[18] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf c/ ww ww ww cw BK BK BK';
+mappages["wingcave"].terrain[19] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cf cf cf c/ ww ww ww cw cw BK BK BK';
+mappages["wingcave"].terrain[20] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf c/ ww ww ww ww cw BK BK BK BK';
+mappages["wingcave"].terrain[21] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf c/ ww ww ww ww cw cw BK BK BK BK';
+mappages["wingcave"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf c/ ww ww ww ww ww cw BK BK BK BK BK';
+mappages["wingcave"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf c/ ww ww ww ww cw cw cw BK BK BK BK BK';
+mappages["wingcave"].terrain[24] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf c| ww ww ww ww cw cw BK BK BK BK BK BK BK';
 mappages["wingcave"].terrain[25] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf ww ww ww cw cw BK BK BK BK BK BK BK BK';
 mappages["wingcave"].terrain[26] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["wingcave"].terrain[27] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -923,6 +935,7 @@ mappages["wingcave"].returny = '62';
 mappages["wingcave"].returninfused = '0';
 mappages["wingcave"].linkedMaps = [""];
 mappages["wingcave"].editorLabels = '{}';
+// MAP ENDS HERE
 
 // MAP BEGINS HERE
 mappages["wingcave2"] = {};
@@ -968,6 +981,8 @@ mappages["wingcave2"].npcs[0] = {name : 'DragonNPC', x : 7, y : 9, skintone: 1};
 mappages["wingcave2"].npcs[1] = {name : 'DrakeNPC', x : 13, y : 12, skintone: 1};
 mappages["wingcave2"].npcs[2] = {name : 'DrakeNPC', x : 18, y : 17, skintone: 1};
 mappages["wingcave2"].npcs[3] = {name : 'EvilEyeNPC', x : 28, y : 18, skintone: 1};
+
+mappages["wingcave2"].transover = '{"22,15":[["","",null,null],["static.gif","spacer.gif",0,-128],["TerrainBlend.gif","spacer.gif",-320,-640]],"22,16":[["","",null,null],["static.gif","spacer.gif",0,-96],["TerrainBlend.gif","spacer.gif",-192,-640]],"23,17":[["","",null,null],["static.gif","spacer.gif",-32,-128],["TerrainBlend.gif","spacer.gif",-64,-640]],"23,18":[["","",null,null],["static.gif","spacer.gif",-32,-96],["TerrainBlend.gif","spacer.gif",-64,-640]],"28,20":[["","",null,null],["static.gif","spacer.gif",0,-96],["TerrainBlend.gif","spacer.gif",-352,-640]],"29,16":[["","",null,null],["static.gif","spacer.gif",-32,-96],["TerrainBlend.gif","spacer.gif",-320,-640]]}';
 
 mappages["wingcave2"].desc = "Small Cave";
 mappages["wingcave2"].longdesc = ``;

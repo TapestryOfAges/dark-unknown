@@ -124,12 +124,13 @@ mappages["combatGrass2"].check_escape = function(mapref) {
 }
 
 
-mappages["combatShore1"] = new Object();
-mappages["combatShore1"].terrain = new Array;
- mappages["combatShore1"].terrain[0] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
- mappages["combatShore1"].terrain[1] = 'ww ww ww ww ww ww ww ww ww ww uu uu uu';
- mappages["combatShore1"].terrain[2] = 'ww ww ww ww ww ww uu uu uu uu uu uu uu';
- mappages["combatShore1"].terrain[3] = 'ww ww ww uu uu uu uu uu uu uu uu uu uu';
+// MAP BEGINS HERE
+mappages["combatShore1"] = {};
+mappages["combatShore1"].terrain = [];
+ mappages["combatShore1"].terrain[0] = 'ww ww ww ww ww ww ww ww ww w8 w1 w1 w1';
+ mappages["combatShore1"].terrain[1] = 'ww ww ww ww ww w8 w1 w1 w1 w7 uu uu uu';
+ mappages["combatShore1"].terrain[2] = 'ww ww w8 w1 w1 w7 uu uu uu uu uu uu uu';
+ mappages["combatShore1"].terrain[3] = 'w1 w1 w7 uu uu uu uu uu uu uu uu uu uu';
  mappages["combatShore1"].terrain[4] = 'uu uu uu uu uu uu uu uu uu uu /. -- --';
  mappages["combatShore1"].terrain[5] = 'uu uu uu uu /. -- -- -- -- -- .. .. ..';
  mappages["combatShore1"].terrain[6] = 'uu uu /. -- .. .. .. .. .. .. .. .. ..';
@@ -140,17 +141,18 @@ mappages["combatShore1"].terrain[10] = '.. .. ,, .. .. .. .. .. .. .. .. .. ..';
 mappages["combatShore1"].terrain[11] = '.. .. .. .. .. .. .. ,, .. .. .. .. ..';
 mappages["combatShore1"].terrain[12] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
 
-mappages["combatShore1"].features = new Array;
+mappages["combatShore1"].features = [];
 
 
-mappages["combatShore1"].npcs = new Array;
+mappages["combatShore1"].npcs = [];
 
-mappages["combatShore1"].desc = 'Combat';
+mappages["combatShore1"].desc = "Combat";
+mappages["combatShore1"].longdesc = ``;
 mappages["combatShore1"].music = 'Combat';
-mappages["combatShore1"].savename = 'Combat';
+mappages["combatShore1"].savename = `Combat`;
 mappages["combatShore1"].exitmap = '';
-mappages["combatShore1"].exitx = '';
-mappages["combatShore1"].exity = '';
+mappages["combatShore1"].exitx = '65';
+mappages["combatShore1"].exity = '70';
 mappages["combatShore1"].wraps = '';
 mappages["combatShore1"].enterx = '6';
 mappages["combatShore1"].entery = '9';
@@ -158,11 +160,19 @@ mappages["combatShore1"].seeBelow = '';
 mappages["combatShore1"].lightLevel = 'bright';
 mappages["combatShore1"].alwaysRemember = '0';
 mappages["combatShore1"].scale = '1';
+mappages["combatShore1"].underground = '0';
+mappages["combatShore1"].undergroundDesc = '';
 mappages["combatShore1"].enterscript = 'set_exits';
 mappages["combatShore1"].entertestscript = '';
 mappages["combatShore1"].exitscript = '';
 mappages["combatShore1"].exittestscript = 'check_escape';
-mappages["combatShore1"].linkedMaps = new Array("");
+mappages["combatShore1"].returnmap = '';
+mappages["combatShore1"].returnx = 'NaN';
+mappages["combatShore1"].returny = 'NaN';
+mappages["combatShore1"].returninfused = '0';
+mappages["combatShore1"].linkedMaps = [""];
+mappages["combatShore1"].editorLabels = '{}';
+// MAP ENDS HERE
 
 // manually added
 
@@ -174,12 +184,13 @@ mappages["combatShore1"].check_escape = function(mapref) {
   maps_check_escape(mapref);
 }
 
+// MAP BEGINS HERE
 mappages["combatShore2"] = {};
 mappages["combatShore2"].terrain = [];
  mappages["combatShore2"].terrain[0] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
- mappages["combatShore2"].terrain[1] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
- mappages["combatShore2"].terrain[2] = 'uu uu ww ww ww uu uu uu uu uu uu ww ww';
- mappages["combatShore2"].terrain[3] = 'uu uu ww uu uu uu uu uu uu uu uu uu uu';
+ mappages["combatShore2"].terrain[1] = 'w1 w1 w10 ww w8 w1 w1 w1 w1 w1 w1 w10 ww';
+ mappages["combatShore2"].terrain[2] = 'uu uu w5 w1 w7 uu uu uu uu uu uu w5 w1';
+ mappages["combatShore2"].terrain[3] = 'uu uu uu uu uu uu uu uu uu uu uu uu uu';
  mappages["combatShore2"].terrain[4] = '-- .` uu uu uu uu uu /. -- .` uu uu uu';
  mappages["combatShore2"].terrain[5] = '.. .. .` uu /. -- -- .. .. .. .` uu /.';
  mappages["combatShore2"].terrain[6] = '.. .. .. -- .. .. .. .. .. .. .. -- ..';
@@ -224,6 +235,7 @@ mappages["combatShore2"].returny = 'NaN';
 mappages["combatShore2"].returninfused = '0';
 mappages["combatShore2"].linkedMaps = [];
 mappages["combatShore2"].editorLabels = '{}';
+// MAP ENDS HERE
 
 // manually added
 
@@ -288,33 +300,37 @@ mappages["combatWater1"].check_escape = function(mapref) {
 }
 
 
-mappages["combatWater2"] = new Object();
-mappages["combatWater2"].terrain = new Array;
+// MAP BEGINS HERE
+mappages["combatWater2"] = {};
+mappages["combatWater2"].terrain = [];
  mappages["combatWater2"].terrain[0] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
  mappages["combatWater2"].terrain[1] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
- mappages["combatWater2"].terrain[2] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
- mappages["combatWater2"].terrain[3] = 'ww uu uu uu ww ww ww ww ww ww ww ww ww';
- mappages["combatWater2"].terrain[4] = 'ww ww ww uu ww ww ww ww ww ww ww ww ww';
- mappages["combatWater2"].terrain[5] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
+ mappages["combatWater2"].terrain[2] = 'w8 w1 w1 w1 w10 ww ww ww ww ww ww ww ww';
+ mappages["combatWater2"].terrain[3] = 'w3 uu uu uu w2 ww ww ww ww ww ww ww ww';
+ mappages["combatWater2"].terrain[4] = 'w9 w0 w6 uu w2 ww ww ww ww ww ww ww ww';
+ mappages["combatWater2"].terrain[5] = 'ww ww w9 w0 w11 ww ww ww ww ww ww ww ww';
  mappages["combatWater2"].terrain[6] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
- mappages["combatWater2"].terrain[7] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
- mappages["combatWater2"].terrain[8] = 'ww ww ww ww ww ww ww ww ww uu uu ww ww';
- mappages["combatWater2"].terrain[9] = 'ww ww ww ww ww uu ww ww ww ww ww ww ww';
-mappages["combatWater2"].terrain[10] = 'ww ww ww ww uu uu ww ww ww ww ww ww ww';
-mappages["combatWater2"].terrain[11] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
+ mappages["combatWater2"].terrain[7] = 'ww ww ww ww ww ww ww ww w8 w1 w1 w10 ww';
+ mappages["combatWater2"].terrain[8] = 'ww ww ww ww w8 w1 w10 ww w3 uu uu w2 ww';
+ mappages["combatWater2"].terrain[9] = 'ww ww ww w8 w7 uu w2 ww w9 w0 w0 w11 ww';
+mappages["combatWater2"].terrain[10] = 'ww ww ww w3 uu uu w2 ww ww ww ww ww ww';
+mappages["combatWater2"].terrain[11] = 'ww ww ww w9 w0 w0 w11 ww ww ww ww ww ww';
 mappages["combatWater2"].terrain[12] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
 
-mappages["combatWater2"].features = new Array;
+mappages["combatWater2"].features = [];
 
 
-mappages["combatWater2"].npcs = new Array;
+mappages["combatWater2"].npcs = [];
 
-mappages["combatWater2"].desc = 'Combat';
+mappages["combatWater2"].transover = '{}';
+
+mappages["combatWater2"].desc = "Combat";
+mappages["combatWater2"].longdesc = ``;
 mappages["combatWater2"].music = 'Combat';
-mappages["combatWater2"].savename = 'Combat';
+mappages["combatWater2"].savename = `Combat`;
 mappages["combatWater2"].exitmap = '';
-mappages["combatWater2"].exitx = '';
-mappages["combatWater2"].exity = '';
+mappages["combatWater2"].exitx = '65';
+mappages["combatWater2"].exity = '70';
 mappages["combatWater2"].wraps = 'None';
 mappages["combatWater2"].enterx = '6';
 mappages["combatWater2"].entery = '9';
@@ -322,11 +338,19 @@ mappages["combatWater2"].seeBelow = '';
 mappages["combatWater2"].lightLevel = 'bright';
 mappages["combatWater2"].alwaysRemember = '0';
 mappages["combatWater2"].scale = '1';
+mappages["combatWater2"].underground = '0';
+mappages["combatWater2"].undergroundDesc = '';
 mappages["combatWater2"].enterscript = 'set_exits';
 mappages["combatWater2"].entertestscript = '';
 mappages["combatWater2"].exitscript = '';
 mappages["combatWater2"].exittestscript = 'check_escape';
-mappages["combatWater2"].linkedMaps = new Array("");
+mappages["combatWater2"].returnmap = '';
+mappages["combatWater2"].returnx = 'NaN';
+mappages["combatWater2"].returny = 'NaN';
+mappages["combatWater2"].returninfused = '0';
+mappages["combatWater2"].linkedMaps = [""];
+mappages["combatWater2"].editorLabels = '{}';
+// MAP ENDS HERE
 
 // manually added
 
@@ -464,8 +488,9 @@ mappages["combatBrush2"].check_escape = function(mapref) {
 
 // Hill
 
-mappages["combatHill1"] = new Object();
-mappages["combatHill1"].terrain = new Array;
+// MAP BEGINS HERE
+mappages["combatHill1"] = {};
+mappages["combatHill1"].terrain = [];
  mappages["combatHill1"].terrain[0] = '^^ ^^ ^^ ^^ nn .. .. .. .. .. nn ^^ ^^';
  mappages["combatHill1"].terrain[1] = '^^ ^^ ^^ nn .. .. .. .. .. .. nn nn ^^';
  mappages["combatHill1"].terrain[2] = '^^ ^^ ^^ .. .. .. .. .. nn nn nn nn nn';
@@ -475,22 +500,25 @@ mappages["combatHill1"].terrain = new Array;
  mappages["combatHill1"].terrain[6] = 'nn .. .. .. ^^ .. .. nn ^^ .. ^^ ^^ ..';
  mappages["combatHill1"].terrain[7] = '.. .. nn .. .. .. nn nn .. .. ^^ nn nn';
  mappages["combatHill1"].terrain[8] = '.. nn ^^ .. .. .. .. .. .. ^^ ^^ nn nn';
- mappages["combatHill1"].terrain[9] = '.. nn ^^ ^^ nn .. .. .. .. .. .. .. ..';
+ mappages["combatHill1"].terrain[9] = '.. nn ^^ ^^ n1 .. .. .. .. .. .. .. ..';
 mappages["combatHill1"].terrain[10] = '^^ ^^ ^^ ^^ .. .. .. .. .. .. nn nn ..';
 mappages["combatHill1"].terrain[11] = '^^ ^^ ^^ nn .. .. .. .. .. nn ^^ ^^ ^^';
 mappages["combatHill1"].terrain[12] = '^^ ^^ nn .. .. .. .. nn ^^ ^^ ^^ ^^ ^^';
 
-mappages["combatHill1"].features = new Array;
+mappages["combatHill1"].features = [];
 
 
-mappages["combatHill1"].npcs = new Array;
+mappages["combatHill1"].npcs = [];
 
-mappages["combatHill1"].desc = 'Combat';
+mappages["combatHill1"].transover = '{"0,6":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-448]],"1,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-448]],"1,9":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-64,-448]],"2,3":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-448]],"2,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-320,-448]],"2,12":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-96,-448]],"3,1":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-448]],"3,11":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-448]],"4,0":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-448]],"4,3":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-448]],"5,3":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-160,-448]],"6,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-256,-448]],"7,6":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-64,-448]],"7,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-448]],"7,12":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-448]],"8,2":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-256,-448]],"9,2":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-448]],"9,11":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-448]],"10,0":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-64,-448]],"10,1":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-64,-448]],"10,10":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-448]],"11,3":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-448]],"11,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-448]],"11,10":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-160,-448]],"12,3":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-448]],"12,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-448]],"12,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-448]],"0,5":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-96,-480]],"0,10":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-480]],"1,3":[["","",null,null],["static.gif","spacer.gif",-256,0],["TerrainBlend.gif","spacer.gif",-160,-480]],"1,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-160,-480]],"1,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-288,-480]],"1,10":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-32,-480]],"1,12":[["","",null,null],["static.gif","spacer.gif",-256,0],["TerrainBlend.gif","spacer.gif",-160,-480]],"2,1":[["","",null,null],["static.gif","spacer.gif",-256,0],["TerrainBlend.gif","spacer.gif",-160,-480]],"2,2":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-288,-480]],"2,8":[["","",null,null],["static.gif","spacer.gif",-256,0],["TerrainBlend.gif","spacer.gif",-384,-480]],"2,9":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-128,-480]],"2,11":[["","",null,null],["static.gif","spacer.gif",-256,0],["TerrainBlend.gif","spacer.gif",-288,-480]],"3,0":[["","",null,null],["static.gif","spacer.gif",-256,0],["TerrainBlend.gif","spacer.gif",-288,-480]],"3,9":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-480]],"3,10":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-288,-480]],"4,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-192,-480]],"4,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-480,-480]],"4,6":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-416,-480]],"5,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-352,-480]],"7,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-320,-480]],"8,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-480]],"8,6":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-416,-480]],"8,12":[["","",null,null],["static.gif","spacer.gif",-256,0],["TerrainBlend.gif","spacer.gif",-192,-480]],"9,3":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-320,-480]],"9,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-320,-480]],"9,12":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-32,-480]],"10,3":[["","",null,null],["static.gif","spacer.gif",-256,0],["TerrainBlend.gif","spacer.gif",-224,-480]],"10,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-480,-480]],"10,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-480]],"10,6":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-480]],"10,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-480,-480]],"10,8":[["","",null,null],["static.gif","spacer.gif",-256,0],["TerrainBlend.gif","spacer.gif",-288,-480]],"10,11":[["","",null,null],["static.gif","spacer.gif",-256,0],["TerrainBlend.gif","spacer.gif",-192,-480]],"11,0":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-256,-480]],"11,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-480]],"11,6":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-288,-480]],"11,11":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",0,-480]],"12,1":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-256,-480]],"12,11":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-480]],"4,9":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-448,-448]]}';
+
+mappages["combatHill1"].desc = "Combat";
+mappages["combatHill1"].longdesc = ``;
 mappages["combatHill1"].music = 'Combat';
-mappages["combatHill1"].savename = 'Combat';
+mappages["combatHill1"].savename = `Combat`;
 mappages["combatHill1"].exitmap = '';
-mappages["combatHill1"].exitx = '';
-mappages["combatHill1"].exity = '';
+mappages["combatHill1"].exitx = '65';
+mappages["combatHill1"].exity = '70';
 mappages["combatHill1"].wraps = 'None';
 mappages["combatHill1"].enterx = '6';
 mappages["combatHill1"].entery = '9';
@@ -498,11 +526,19 @@ mappages["combatHill1"].seeBelow = '';
 mappages["combatHill1"].lightLevel = 'bright';
 mappages["combatHill1"].alwaysRemember = '0';
 mappages["combatHill1"].scale = '1';
+mappages["combatHill1"].underground = '0';
+mappages["combatHill1"].undergroundDesc = '';
 mappages["combatHill1"].enterscript = 'set_exits';
 mappages["combatHill1"].entertestscript = '';
 mappages["combatHill1"].exitscript = '';
 mappages["combatHill1"].exittestscript = 'check_escape';
-mappages["combatHill1"].linkedMaps = new Array("");
+mappages["combatHill1"].returnmap = '';
+mappages["combatHill1"].returnx = 'NaN';
+mappages["combatHill1"].returny = 'NaN';
+mappages["combatHill1"].returninfused = '0';
+mappages["combatHill1"].linkedMaps = [""];
+mappages["combatHill1"].editorLabels = '{}';
+// MAP ENDS HERE
 
 // manually added
 
@@ -515,8 +551,9 @@ mappages["combatHill1"].check_escape = function(mapref) {
 }
 
 
-mappages["combatHill2"] = new Object();
-mappages["combatHill2"].terrain = new Array;
+// MAP BEGINS HERE
+mappages["combatHill2"] = {};
+mappages["combatHill2"].terrain = [];
  mappages["combatHill2"].terrain[0] = '^^ ^^ nn .. .. nn nn nn .. nn nn ^^ ^^';
  mappages["combatHill2"].terrain[1] = '^^ ^^ nn .. .. .. nn .. .. .. nn nn ^^';
  mappages["combatHill2"].terrain[2] = '^^ nn nn .. .. .. .. .. .. .. .. nn ^^';
@@ -531,17 +568,20 @@ mappages["combatHill2"].terrain[10] = 'nn ^^ ^^ ^^ .. .. .. .. .. .. ^^ ^^ ^^';
 mappages["combatHill2"].terrain[11] = '^^ ^^ ^^ nn .. .. .. .. .. .. ^^ ^^ ^^';
 mappages["combatHill2"].terrain[12] = '^^ ^^ ^^ nn nn .. .. .. .. nn nn ^^ ^^';
 
-mappages["combatHill2"].features = new Array;
+mappages["combatHill2"].features = [];
 
 
-mappages["combatHill2"].npcs = new Array;
+mappages["combatHill2"].npcs = [];
 
-mappages["combatHill2"].desc = 'Combat';
+mappages["combatHill2"].transover = '{"0,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-448]],"0,9":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-448]],"1,3":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-448]],"1,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-448]],"2,0":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-96,-448]],"2,1":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-96,-448]],"2,2":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-448]],"3,6":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-448]],"3,11":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-96,-448]],"4,6":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-448]],"4,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-448]],"4,12":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-160,-448]],"5,0":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-192,-448]],"5,6":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-160,-448]],"5,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-448]],"6,1":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-352,-448]],"7,0":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-448]],"7,6":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-448]],"7,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-192,-448]],"8,6":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-448]],"8,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-192,-448]],"9,0":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-192,-448]],"9,6":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-160,-448]],"9,9":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-192,-448]],"9,12":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-448]],"10,1":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-192,-448]],"11,2":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-64,-448]],"11,3":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-192,-448]],"12,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-192,-448]],"12,9":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-448]],"0,2":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-288,-480]],"0,11":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-32,-480]],"1,0":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-160,-480]],"1,1":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-288,-480]],"1,9":[["","",null,null],["static.gif","spacer.gif",-256,0],["TerrainBlend.gif","spacer.gif",-192,-480]],"1,10":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-128,-480]],"2,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-192,-480]],"2,11":[["","",null,null],["static.gif","spacer.gif",-256,0],["TerrainBlend.gif","spacer.gif",-160,-480]],"2,12":[["","",null,null],["static.gif","spacer.gif",-256,0],["TerrainBlend.gif","spacer.gif",-160,-480]],"3,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-192,-480]],"3,8":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-160,-480]],"3,9":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-160,-480]],"3,10":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-288,-480]],"4,7":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-352,-480]],"9,7":[["","",null,null],["static.gif","spacer.gif",-256,0],["TerrainBlend.gif","spacer.gif",-192,-480]],"9,8":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-256,-480]],"10,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-480]],"10,9":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-128,-480]],"10,10":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-480]],"10,11":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-256,-480]],"11,0":[["","",null,null],["static.gif","spacer.gif",-256,0],["TerrainBlend.gif","spacer.gif",-256,-480]],"11,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-480]],"11,9":[["","",null,null],["static.gif","spacer.gif",-256,0],["TerrainBlend.gif","spacer.gif",-160,-480]],"11,12":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-128,-480]],"12,1":[["","",null,null],["static.gif","spacer.gif",-256,0],["TerrainBlend.gif","spacer.gif",-128,-480]],"12,2":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",-256,-480]],"12,10":[["","",null,null],["static.gif","spacer.gif",-224,-224],["TerrainBlend.gif","spacer.gif",0,-480]]}';
+
+mappages["combatHill2"].desc = "Combat";
+mappages["combatHill2"].longdesc = ``;
 mappages["combatHill2"].music = 'Combat';
-mappages["combatHill2"].savename = 'Combat';
+mappages["combatHill2"].savename = `Combat`;
 mappages["combatHill2"].exitmap = '';
-mappages["combatHill2"].exitx = '';
-mappages["combatHill2"].exity = '';
+mappages["combatHill2"].exitx = '65';
+mappages["combatHill2"].exity = '70';
 mappages["combatHill2"].wraps = 'None';
 mappages["combatHill2"].enterx = '6';
 mappages["combatHill2"].entery = '9';
@@ -549,12 +589,19 @@ mappages["combatHill2"].seeBelow = '';
 mappages["combatHill2"].lightLevel = 'bright';
 mappages["combatHill2"].alwaysRemember = '0';
 mappages["combatHill2"].scale = '1';
+mappages["combatHill2"].underground = '0';
+mappages["combatHill2"].undergroundDesc = '';
 mappages["combatHill2"].enterscript = 'set_exits';
 mappages["combatHill2"].entertestscript = '';
 mappages["combatHill2"].exitscript = '';
 mappages["combatHill2"].exittestscript = 'check_escape';
-mappages["combatHill2"].linkedMaps = new Array("");
-
+mappages["combatHill2"].returnmap = '';
+mappages["combatHill2"].returnx = 'NaN';
+mappages["combatHill2"].returny = 'NaN';
+mappages["combatHill2"].returninfused = '0';
+mappages["combatHill2"].linkedMaps = [""];
+mappages["combatHill2"].editorLabels = '{}';
+// MAP ENDS HERE
 
 // manually added
 
@@ -745,8 +792,9 @@ mappages["combatForest2"].check_escape = function(mapref) {
 
 //Swamp
 
-mappages["combatSwamp1"] = new Object();
-mappages["combatSwamp1"].terrain = new Array;
+// MAP BEGINS HERE
+mappages["combatSwamp1"] = {};
+mappages["combatSwamp1"].terrain = [];
  mappages["combatSwamp1"].terrain[0] = '.. .. ff .. .. .. .. .. .. .. .. .. ..';
  mappages["combatSwamp1"].terrain[1] = '.. ff .. .. .. .. .. .. .. ff ff ff ..';
  mappages["combatSwamp1"].terrain[2] = 'ff ff .. .. .. .. .. .. .. .. .. ff ..';
@@ -761,17 +809,20 @@ mappages["combatSwamp1"].terrain[10] = 'ff ff .. .. .. .. .. .. .. .. ff .. ff';
 mappages["combatSwamp1"].terrain[11] = 'ff .. .. .. .. .. .. .. .. ff ff ff ..';
 mappages["combatSwamp1"].terrain[12] = '.. .. .. .. .. .. .. .. .. .. ff .. ..';
 
-mappages["combatSwamp1"].features = new Array;
+mappages["combatSwamp1"].features = [];
 
 
-mappages["combatSwamp1"].npcs = new Array;
+mappages["combatSwamp1"].npcs = [];
 
-mappages["combatSwamp1"].desc = 'Combat';
+mappages["combatSwamp1"].transover = '{"0,2":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-384,-640]],"0,6":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-160,-640]],"0,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-640]],"0,10":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-640]],"0,11":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-640]],"1,1":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-320,-640]],"1,2":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-640]],"1,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-640]],"1,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-352,-640]],"1,10":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-288,-640]],"2,0":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-352,-640]],"2,3":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-640]],"2,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-640]],"2,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-256,-640]],"3,3":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-288,-640]],"3,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-288,-640]],"9,1":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-256,-640]],"9,11":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-256,-640]],"10,1":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-384,-640]],"10,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-448,-640]],"10,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-256,-640]],"10,10":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-320,-640]],"10,12":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-416,-640]],"11,1":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-160,-640]],"11,2":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-352,-640]],"11,6":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-320,-640]],"11,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-640]],"11,11":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-288,-640]],"12,10":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-256,-640]]}';
+
+mappages["combatSwamp1"].desc = "Combat";
+mappages["combatSwamp1"].longdesc = ``;
 mappages["combatSwamp1"].music = 'Combat';
-mappages["combatSwamp1"].savename = 'Combat';
+mappages["combatSwamp1"].savename = `Combat`;
 mappages["combatSwamp1"].exitmap = '';
-mappages["combatSwamp1"].exitx = '';
-mappages["combatSwamp1"].exity = '';
+mappages["combatSwamp1"].exitx = '65';
+mappages["combatSwamp1"].exity = '70';
 mappages["combatSwamp1"].wraps = 'None';
 mappages["combatSwamp1"].enterx = '6';
 mappages["combatSwamp1"].entery = '9';
@@ -779,11 +830,19 @@ mappages["combatSwamp1"].seeBelow = '';
 mappages["combatSwamp1"].lightLevel = 'bright';
 mappages["combatSwamp1"].alwaysRemember = '0';
 mappages["combatSwamp1"].scale = '1';
+mappages["combatSwamp1"].underground = '0';
+mappages["combatSwamp1"].undergroundDesc = '';
 mappages["combatSwamp1"].enterscript = 'set_exits';
 mappages["combatSwamp1"].entertestscript = '';
 mappages["combatSwamp1"].exitscript = '';
 mappages["combatSwamp1"].exittestscript = 'check_escape';
-mappages["combatSwamp1"].linkedMaps = new Array("");
+mappages["combatSwamp1"].returnmap = '';
+mappages["combatSwamp1"].returnx = 'NaN';
+mappages["combatSwamp1"].returny = 'NaN';
+mappages["combatSwamp1"].returninfused = '0';
+mappages["combatSwamp1"].linkedMaps = [""];
+mappages["combatSwamp1"].editorLabels = '{}';
+// MAP ENDS HERE
 
 // manually added
 
@@ -796,8 +855,9 @@ mappages["combatSwamp1"].check_escape = function(mapref) {
 }
 
 
-mappages["combatSwamp2"] = new Object();
-mappages["combatSwamp2"].terrain = new Array;
+// MAP BEGINS HERE
+mappages["combatSwamp2"] = {};
+mappages["combatSwamp2"].terrain = [];
  mappages["combatSwamp2"].terrain[0] = '.. .. ff ff .. .. .. .. .. .. ff ff ..';
  mappages["combatSwamp2"].terrain[1] = '.. ff .. .. .. .. ff ff ff .. .. .. ff';
  mappages["combatSwamp2"].terrain[2] = 'ff .. .. .. .. .. .. .. .. .. .. .. ..';
@@ -812,17 +872,20 @@ mappages["combatSwamp2"].terrain[10] = 'ff .. .. .. .. .. .. .. .. .. .. ff ff';
 mappages["combatSwamp2"].terrain[11] = 'ff ff ff .. .. .. .. .. .. .. .. .. ..';
 mappages["combatSwamp2"].terrain[12] = 'ff .. .. .. ff ff ff ff ff .. .. .. ..';
 
-mappages["combatSwamp2"].features = new Array;
+mappages["combatSwamp2"].features = [];
 
 
-mappages["combatSwamp2"].npcs = new Array;
+mappages["combatSwamp2"].npcs = [];
 
-mappages["combatSwamp2"].desc = 'Combat';
+mappages["combatSwamp2"].transover = '{"0,2":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-160,-640]],"0,3":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-640]],"0,10":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-160,-640]],"0,12":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-96,-640]],"1,1":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-448,-640]],"1,6":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-640]],"1,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-352,-640]],"1,11":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-384,-640]],"2,0":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-192,-640]],"2,6":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-288,-640]],"2,11":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-288,-640]],"3,0":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-640]],"4,12":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-640]],"5,12":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-640]],"6,1":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-256,-640]],"6,12":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-640]],"7,1":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-384,-640]],"7,12":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-640]],"8,1":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-288,-640]],"8,12":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-160,-640]],"10,0":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-192,-640]],"10,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-448,-640]],"11,0":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-640]],"11,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-320,-640]],"11,6":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-352,-640]],"11,10":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-256,-640]],"12,1":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-256,-640]],"12,9":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-640]],"12,10":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-640]]}';
+
+mappages["combatSwamp2"].desc = "Combat";
+mappages["combatSwamp2"].longdesc = ``;
 mappages["combatSwamp2"].music = 'Combat';
-mappages["combatSwamp2"].savename = 'Combat';
+mappages["combatSwamp2"].savename = `Combat`;
 mappages["combatSwamp2"].exitmap = '';
-mappages["combatSwamp2"].exitx = '';
-mappages["combatSwamp2"].exity = '';
+mappages["combatSwamp2"].exitx = '65';
+mappages["combatSwamp2"].exity = '70';
 mappages["combatSwamp2"].wraps = 'None';
 mappages["combatSwamp2"].enterx = '6';
 mappages["combatSwamp2"].entery = '9';
@@ -830,11 +893,19 @@ mappages["combatSwamp2"].seeBelow = '';
 mappages["combatSwamp2"].lightLevel = 'bright';
 mappages["combatSwamp2"].alwaysRemember = '0';
 mappages["combatSwamp2"].scale = '1';
+mappages["combatSwamp2"].underground = '0';
+mappages["combatSwamp2"].undergroundDesc = '';
 mappages["combatSwamp2"].enterscript = 'set_exits';
 mappages["combatSwamp2"].entertestscript = '';
 mappages["combatSwamp2"].exitscript = '';
 mappages["combatSwamp2"].exittestscript = 'check_escape';
-mappages["combatSwamp2"].linkedMaps = new Array("");
+mappages["combatSwamp2"].returnmap = '';
+mappages["combatSwamp2"].returnx = 'NaN';
+mappages["combatSwamp2"].returny = 'NaN';
+mappages["combatSwamp2"].returninfused = '0';
+mappages["combatSwamp2"].linkedMaps = [""];
+mappages["combatSwamp2"].editorLabels = '{}';
+// MAP ENDS HERE
 
 // manually added
 
@@ -848,8 +919,9 @@ mappages["combatSwamp2"].check_escape = function(mapref) {
 
 // Coast (PC is on water)
 
-mappages["combatCoast1"] = new Object();
-mappages["combatCoast1"].terrain = new Array;
+// MAP BEGINS HERE
+mappages["combatCoast1"] = {};
+mappages["combatCoast1"].terrain = [];
  mappages["combatCoast1"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
  mappages["combatCoast1"].terrain[1] = '.. .. .. .. .. .. .. .. .. .. ,, ,, ..';
  mappages["combatCoast1"].terrain[2] = '.. ,, .. .. .. .. .. .. .. .. .. ,, ..';
@@ -857,24 +929,25 @@ mappages["combatCoast1"].terrain = new Array;
  mappages["combatCoast1"].terrain[4] = '.. .. .. .. .. .. .. .. .. .. __ ./ uu';
  mappages["combatCoast1"].terrain[5] = '`. __ _, _, __ __ __ __ __ ./ uu uu uu';
  mappages["combatCoast1"].terrain[6] = 'uu uu uu uu uu uu uu uu uu uu uu uu uu';
- mappages["combatCoast1"].terrain[7] = 'uu uu uu uu uu uu uu uu uu uu uu uu ww';
- mappages["combatCoast1"].terrain[8] = 'ww ww uu uu uu uu uu uu ww ww ww ww ww';
- mappages["combatCoast1"].terrain[9] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
+ mappages["combatCoast1"].terrain[7] = 'uu uu uu uu uu uu uu uu uu uu uu uu w4';
+ mappages["combatCoast1"].terrain[8] = 'w0 w6 uu uu uu uu uu uu w4 w0 w0 w0 w11';
+ mappages["combatCoast1"].terrain[9] = 'ww w9 w0 w0 w0 w0 w0 w0 w11 ww ww ww ww';
 mappages["combatCoast1"].terrain[10] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
 mappages["combatCoast1"].terrain[11] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
 mappages["combatCoast1"].terrain[12] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
 
-mappages["combatCoast1"].features = new Array;
+mappages["combatCoast1"].features = [];
 
 
-mappages["combatCoast1"].npcs = new Array;
+mappages["combatCoast1"].npcs = [];
 
-mappages["combatCoast1"].desc = 'Combat';
+mappages["combatCoast1"].desc = "Combat";
+mappages["combatCoast1"].longdesc = ``;
 mappages["combatCoast1"].music = 'Combat';
-mappages["combatCoast1"].savename = 'Combat';
+mappages["combatCoast1"].savename = `Combat`;
 mappages["combatCoast1"].exitmap = '';
-mappages["combatCoast1"].exitx = '';
-mappages["combatCoast1"].exity = '';
+mappages["combatCoast1"].exitx = '65';
+mappages["combatCoast1"].exity = '70';
 mappages["combatCoast1"].wraps = 'None';
 mappages["combatCoast1"].enterx = '6';
 mappages["combatCoast1"].entery = '9';
@@ -882,11 +955,19 @@ mappages["combatCoast1"].seeBelow = '';
 mappages["combatCoast1"].lightLevel = 'bright';
 mappages["combatCoast1"].alwaysRemember = '0';
 mappages["combatCoast1"].scale = '1';
+mappages["combatCoast1"].underground = '0';
+mappages["combatCoast1"].undergroundDesc = '';
 mappages["combatCoast1"].enterscript = 'set_exits';
 mappages["combatCoast1"].entertestscript = '';
 mappages["combatCoast1"].exitscript = '';
 mappages["combatCoast1"].exittestscript = 'check_escape';
-mappages["combatCoast1"].linkedMaps = new Array("");
+mappages["combatCoast1"].returnmap = '';
+mappages["combatCoast1"].returnx = 'NaN';
+mappages["combatCoast1"].returny = 'NaN';
+mappages["combatCoast1"].returninfused = '0';
+mappages["combatCoast1"].linkedMaps = [""];
+mappages["combatCoast1"].editorLabels = '{}';
+// MAP ENDS HERE
 
 // manually added
 
@@ -899,6 +980,7 @@ mappages["combatCoast1"].check_escape = function(mapref) {
 }
 
 
+// MAP BEGINS HERE
 mappages["combatCoast2"] = {};
 mappages["combatCoast2"].terrain = [];
  mappages["combatCoast2"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
@@ -908,10 +990,10 @@ mappages["combatCoast2"].terrain = [];
  mappages["combatCoast2"].terrain[4] = './ uu uu uu `. .. .. .. .. .. .. .. ..';
  mappages["combatCoast2"].terrain[5] = 'uu uu uu uu uu `. __ __ __ __ __ __ ./';
  mappages["combatCoast2"].terrain[6] = 'uu uu uu uu uu uu uu uu uu uu uu uu uu';
- mappages["combatCoast2"].terrain[7] = 'uu ww ww ww uu uu uu uu uu uu uu uu ww';
- mappages["combatCoast2"].terrain[8] = 'ww ww ww ww ww ww uu uu uu uu uu uu ww';
- mappages["combatCoast2"].terrain[9] = 'ww ww ww ww ww ww ww uu uu uu ww ww ww';
-mappages["combatCoast2"].terrain[10] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
+ mappages["combatCoast2"].terrain[7] = 'uu w4 w0 w6 uu uu uu uu uu uu uu uu w4';
+ mappages["combatCoast2"].terrain[8] = 'w0 w11 ww w9 w0 w6 uu uu uu uu uu uu w2';
+ mappages["combatCoast2"].terrain[9] = 'ww ww ww ww ww w9 w6 uu uu uu w4 w0 w11';
+mappages["combatCoast2"].terrain[10] = 'ww ww ww ww ww ww w9 w0 w0 w0 w11 ww ww';
 mappages["combatCoast2"].terrain[11] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
 mappages["combatCoast2"].terrain[12] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
 
@@ -922,6 +1004,8 @@ mappages["combatCoast2"].features[2] = {name : 'PileOfRocks', x : 1, y : 2};
 
 
 mappages["combatCoast2"].npcs = [];
+
+mappages["combatCoast2"].transover = '{}';
 
 mappages["combatCoast2"].desc = "Combat";
 mappages["combatCoast2"].longdesc = ``;
@@ -949,6 +1033,7 @@ mappages["combatCoast2"].returny = 'NaN';
 mappages["combatCoast2"].returninfused = '0';
 mappages["combatCoast2"].linkedMaps = [""];
 mappages["combatCoast2"].editorLabels = '{}';
+// MAP ENDS HERE
 
 // manually added
 
@@ -1228,6 +1313,8 @@ mappages["oliviaCart"].npcs[0] = {name : 'BardVillagerNPC', x : 6, y : 5, NPCNam
 mappages["oliviaCart"].npcs[1] = {name : 'HorseNPC', x : 8, y : 4, Gender: 'monster', NPCBand: '0', OverrideGraphic: 'horse.gif', skintone: 1};
 mappages["oliviaCart"].npcs[2] = {name : 'HorseNPC', x : 8, y : 7, Gender: 'monster', NPCBand: '0', OverrideGraphic: 'horse.gif', skintone: 1};
 
+mappages["oliviaCart"].transover = '{"0,3":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-160,-576]],"0,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"1,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"1,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"2,3":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-576]],"2,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"3,3":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"3,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-576]],"5,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-192,-576]],"8,3":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"8,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"9,3":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"9,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"10,3":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-160,-576]],"10,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"11,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"11,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"12,3":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-576]],"12,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]]}';
+
 mappages["oliviaCart"].desc = "Olivia's Cart";
 mappages["oliviaCart"].longdesc = ``;
 mappages["oliviaCart"].music = 'Village';
@@ -1291,11 +1378,13 @@ mappages["guardPatrolOH"].features = [];
 
 
 mappages["guardPatrolOH"].npcs = [];
-mappages["guardPatrolOH"].npcs[0] = {name : 'TownGuardNPC', x : 3, y : 4, NPCName: 'Torin', Desc: 'soldier', Conversation: 'torin', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["guardPatrolOH"].npcs[1] = {name : 'TownGuardNPC', x : 6, y : 3, NPCName: 'Alan', Desc: 'soldier', Conversation: 'alan', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["guardPatrolOH"].npcs[2] = {name : 'TownGuardNPC', x : 9, y : 5, NPCName: 'Jerome', Desc: 'soldier', Conversation: 'jerome', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["guardPatrolOH"].npcs[3] = {name : 'TownGuardNPC', x : 8, y : 8, NPCName: 'Alanis', Desc: 'soldier', Conversation: 'alanis', Gender: 'female', NPCBand: '0', skintone: '1'};
-mappages["guardPatrolOH"].npcs[4] = {name : 'TownGuardNPC', x : 4, y : 7, NPCName: 'Dara', Desc: 'soldier', Conversation: 'dara', Gender: 'female', NPCBand: '0', skintone: '1'};
+mappages["guardPatrolOH"].npcs[0] = {name : 'TownGuardNPC', x : 3, y : 4, NPCName: 'Torin', Desc: 'soldier', Conversation: 'torin', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"ShortBrownPale","back":null,"offhand":"OffhandPale","cloak":null,"mainhand":"HalberdPale"}'};
+mappages["guardPatrolOH"].npcs[1] = {name : 'TownGuardNPC', x : 6, y : 3, NPCName: 'Alan', Desc: 'soldier', Conversation: 'alan', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"OldManPale","back":null,"offhand":"OffhandPale","cloak":null,"mainhand":"HalberdPale"}'};
+mappages["guardPatrolOH"].npcs[2] = {name : 'TownGuardNPC', x : 9, y : 5, NPCName: 'Jerome', Desc: 'soldier', Conversation: 'jerome', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"ShortBlackPale","back":null,"offhand":"OffhandPale","cloak":null,"mainhand":"HalberdPale"}'};
+mappages["guardPatrolOH"].npcs[3] = {name : 'TownGuardNPC', x : 8, y : 8, NPCName: 'Alanis', Desc: 'soldier', Conversation: 'alanis', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"ShortBlackDark","back":null,"offhand":"OffhandDark","cloak":null,"mainhand":"HalberdDark"}'};
+mappages["guardPatrolOH"].npcs[4] = {name : 'TownGuardNPC', x : 4, y : 7, NPCName: 'Dara', Desc: 'soldier', Conversation: 'dara', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"ShortBlackPale","back":null,"offhand":"OffhandPale","cloak":null,"mainhand":"HalberdPale"}'};
+
+mappages["guardPatrolOH"].transover = '{"0,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"0,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"1,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-576]],"1,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"2,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"2,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-576]],"3,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"3,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"4,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-160,-576]],"4,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"5,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"5,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"6,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"6,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"7,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"7,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-192,-576]],"8,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"8,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"9,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-576]],"9,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"10,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-160,-576]],"10,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"11,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"11,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-576]],"12,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"12,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]]}';
 
 mappages["guardPatrolOH"].desc = "Combat";
 mappages["guardPatrolOH"].longdesc = ``;
@@ -1362,11 +1451,13 @@ mappages["guardPatrolNP"].features = [];
 
 
 mappages["guardPatrolNP"].npcs = [];
-mappages["guardPatrolNP"].npcs[0] = {name : 'TownGuardNPC', x : 3, y : 4, NPCName: 'Curtr', Desc: 'soldier', Conversation: 'curtr', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["guardPatrolNP"].npcs[1] = {name : 'TownGuardNPC', x : 6, y : 3, NPCName: 'Beauregard', Desc: 'soldier', Conversation: 'beauregard', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["guardPatrolNP"].npcs[2] = {name : 'TownGuardNPC', x : 9, y : 5, NPCName: 'Geoff', Desc: 'soldier', Conversation: 'geoff', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["guardPatrolNP"].npcs[3] = {name : 'TownGuardNPC', x : 8, y : 8, NPCName: 'Tanya', Desc: 'soldier', Conversation: 'tanya', Gender: 'female', NPCBand: '0', skintone: '1'};
-mappages["guardPatrolNP"].npcs[4] = {name : 'TownGuardNPC', x : 4, y : 7, NPCName: 'Celeste', Desc: 'soldier', Conversation: 'celeste', Gender: 'female', NPCBand: '0', skintone: '1'};
+mappages["guardPatrolNP"].npcs[0] = {name : 'TownGuardNPC', x : 3, y : 4, NPCName: 'Curtr', Desc: 'soldier', Conversation: 'curtr', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"OldManPale","back":null,"offhand":"OffhandPale","cloak":null,"mainhand":"HalberdPale"}'};
+mappages["guardPatrolNP"].npcs[1] = {name : 'TownGuardNPC', x : 6, y : 3, NPCName: 'Beauregard', Desc: 'soldier', Conversation: 'beauregard', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"OldManPale","back":null,"offhand":"OffhandPale","cloak":null,"mainhand":"HalberdPale"}'};
+mappages["guardPatrolNP"].npcs[2] = {name : 'TownGuardNPC', x : 9, y : 5, NPCName: 'Geoff', Desc: 'soldier', Conversation: 'geoff', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"ShortBlackDark","back":null,"offhand":"OffhandDark","cloak":null,"mainhand":"HalberdDark"}'};
+mappages["guardPatrolNP"].npcs[3] = {name : 'TownGuardNPC', x : 8, y : 8, NPCName: 'Tanya', Desc: 'soldier', Conversation: 'tanya', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"BrownDark","back":null,"offhand":"OffhandDark","cloak":null,"mainhand":"HalberdDark"}'};
+mappages["guardPatrolNP"].npcs[4] = {name : 'TownGuardNPC', x : 4, y : 7, NPCName: 'Celeste', Desc: 'soldier', Conversation: 'celeste', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"BrownDark","back":null,"offhand":"OffhandDark","cloak":null,"mainhand":"HalberdDark"}'};
+
+mappages["guardPatrolNP"].transover = '{"0,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"0,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"1,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-576]],"1,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"2,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"2,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-576]],"3,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"3,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"4,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-160,-576]],"4,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"5,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"5,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"6,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"6,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"7,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"7,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-192,-576]],"8,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"8,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"9,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-576]],"9,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"10,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-160,-576]],"10,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"11,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"11,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-576]],"12,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"12,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]]}';
 
 mappages["guardPatrolNP"].desc = "Combat";
 mappages["guardPatrolNP"].longdesc = ``;
@@ -1432,11 +1523,13 @@ mappages["guardPatrolCL"].features = [];
 
 
 mappages["guardPatrolCL"].npcs = [];
-mappages["guardPatrolCL"].npcs[0] = {name : 'TownGuardNPC', x : 3, y : 4, NPCName: 'Er Thom', Desc: 'soldier', Conversation: 'erthom', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["guardPatrolCL"].npcs[1] = {name : 'TownGuardNPC', x : 6, y : 3, NPCName: 'Richard', Desc: 'soldier', Conversation: 'richard', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["guardPatrolCL"].npcs[2] = {name : 'TownGuardNPC', x : 9, y : 5, NPCName: 'Homer', Desc: 'soldier', Conversation: 'homer', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["guardPatrolCL"].npcs[3] = {name : 'TownGuardNPC', x : 8, y : 8, NPCName: 'Sally', Desc: 'soldier', Conversation: 'sally', Gender: 'female', NPCBand: '0', skintone: '1'};
-mappages["guardPatrolCL"].npcs[4] = {name : 'TownGuardNPC', x : 4, y : 7, NPCName: 'Patty', Desc: 'soldier', Conversation: 'patty', Gender: 'female', NPCBand: '0', skintone: '1'};
+mappages["guardPatrolCL"].npcs[0] = {name : 'TownGuardNPC', x : 3, y : 4, NPCName: 'Er Thom', Desc: 'soldier', Conversation: 'erthom', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"BlondePale","back":null,"offhand":"OffhandPale","cloak":null,"mainhand":"HalberdPale"}'};
+mappages["guardPatrolCL"].npcs[1] = {name : 'TownGuardNPC', x : 6, y : 3, NPCName: 'Richard', Desc: 'soldier', Conversation: 'richard', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"ShortBlackDark","back":null,"offhand":"OffhandDark","cloak":null,"mainhand":"HalberdDark"}'};
+mappages["guardPatrolCL"].npcs[2] = {name : 'TownGuardNPC', x : 9, y : 5, NPCName: 'Homer', Desc: 'soldier', Conversation: 'homer', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"ShortBrownPale","back":null,"offhand":"OffhandPale","cloak":null,"mainhand":"HalberdPale"}'};
+mappages["guardPatrolCL"].npcs[3] = {name : 'TownGuardNPC', x : 8, y : 8, NPCName: 'Sally', Desc: 'soldier', Conversation: 'sally', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"OldManPale","back":null,"offhand":"OffhandPale","cloak":null,"mainhand":"HalberdPale"}'};
+mappages["guardPatrolCL"].npcs[4] = {name : 'TownGuardNPC', x : 4, y : 7, NPCName: 'Patty', Desc: 'soldier', Conversation: 'patty', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"ShortBrownPale","back":null,"offhand":"OffhandPale","cloak":null,"mainhand":"HalberdPale"}'};
+
+mappages["guardPatrolCL"].transover = '{"0,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"0,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"1,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-576]],"1,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"2,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"2,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-576]],"3,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"3,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"4,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-160,-576]],"4,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"5,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"5,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"6,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"6,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"7,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"7,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-192,-576]],"8,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"8,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"9,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-576]],"9,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"10,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-160,-576]],"10,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"11,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"11,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-576]],"12,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"12,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]]}';
 
 mappages["guardPatrolCL"].desc = "Combat";
 mappages["guardPatrolCL"].longdesc = ``;
@@ -1502,11 +1595,13 @@ mappages["guardPatrolB"].features = [];
 
 
 mappages["guardPatrolB"].npcs = [];
-mappages["guardPatrolB"].npcs[0] = {name : 'TownGuardNPC', x : 3, y : 4, NPCName: 'Marcy', Desc: 'soldier', Conversation: 'marcy', Gender: 'female', NPCBand: '0', skintone: '1'};
-mappages["guardPatrolB"].npcs[1] = {name : 'TownGuardNPC', x : 6, y : 3, NPCName: 'Chuck', Desc: 'soldier', Conversation: 'chuck', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["guardPatrolB"].npcs[2] = {name : 'TownGuardNPC', x : 9, y : 5, NPCName: 'Ford', Desc: 'soldier', Conversation: 'ford', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["guardPatrolB"].npcs[3] = {name : 'TownGuardNPC', x : 8, y : 8, NPCName: 'Andromeda', Desc: 'soldier', Conversation: 'andromeda', Gender: 'female', NPCBand: '0', skintone: '1'};
-mappages["guardPatrolB"].npcs[4] = {name : 'TownGuardNPC', x : 4, y : 7, NPCName: 'Beverly', Desc: 'soldier', Conversation: 'beverly', Gender: 'female', NPCBand: '0', skintone: '1'};
+mappages["guardPatrolB"].npcs[0] = {name : 'TownGuardNPC', x : 3, y : 4, NPCName: 'Marcy', Desc: 'soldier', Conversation: 'marcy', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"BlondePale","back":null,"offhand":"OffhandPale","cloak":null,"mainhand":"HalberdPale"}'};
+mappages["guardPatrolB"].npcs[1] = {name : 'TownGuardNPC', x : 6, y : 3, NPCName: 'Chuck', Desc: 'soldier', Conversation: 'chuck', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"ShortBlackPale","back":null,"offhand":"OffhandPale","cloak":null,"mainhand":"HalberdPale"}'};
+mappages["guardPatrolB"].npcs[2] = {name : 'TownGuardNPC', x : 9, y : 5, NPCName: 'Ford', Desc: 'soldier', Conversation: 'ford', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"BrownDark","back":null,"offhand":"OffhandDark","cloak":null,"mainhand":"HalberdDark"}'};
+mappages["guardPatrolB"].npcs[3] = {name : 'TownGuardNPC', x : 8, y : 8, NPCName: 'Andromeda', Desc: 'soldier', Conversation: 'andromeda', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"BrownDark","back":null,"offhand":"OffhandDark","cloak":null,"mainhand":"HalberdDark"}'};
+mappages["guardPatrolB"].npcs[4] = {name : 'TownGuardNPC', x : 4, y : 7, NPCName: 'Beverly', Desc: 'soldier', Conversation: 'beverly', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"ShortBrownPale","back":null,"offhand":"OffhandPale","cloak":null,"mainhand":"HalberdPale"}'};
+
+mappages["guardPatrolB"].transover = '{"0,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"0,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"1,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-576]],"1,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"2,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"2,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-576]],"3,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"3,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"4,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-160,-576]],"4,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"5,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"5,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"6,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"6,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"7,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"7,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-192,-576]],"8,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"8,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"9,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-576]],"9,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"10,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-160,-576]],"10,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"11,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"11,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-576]],"12,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"12,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]]}';
 
 mappages["guardPatrolB"].desc = "Combat";
 mappages["guardPatrolB"].longdesc = ``;
@@ -1572,11 +1667,13 @@ mappages["guardPatrolS"].features = [];
 
 
 mappages["guardPatrolS"].npcs = [];
-mappages["guardPatrolS"].npcs[0] = {name : 'TownGuardNPC', x : 3, y : 4, NPCName: 'Melody', Desc: 'soldier', Conversation: 'melody', Gender: 'female', NPCBand: '0', skintone: '1'};
-mappages["guardPatrolS"].npcs[1] = {name : 'TownGuardNPC', x : 6, y : 3, NPCName: 'Steven', Desc: 'soldier', Conversation: 'steven', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["guardPatrolS"].npcs[2] = {name : 'TownGuardNPC', x : 9, y : 5, NPCName: 'Bart', Desc: 'soldier', Conversation: 'bart', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["guardPatrolS"].npcs[3] = {name : 'TownGuardNPC', x : 8, y : 8, NPCName: 'Sigrun', Desc: 'soldier', Conversation: 'sigrun', Gender: 'female', NPCBand: '0', skintone: '1'};
-mappages["guardPatrolS"].npcs[4] = {name : 'TownGuardNPC', x : 4, y : 7, NPCName: 'Seraphina', Desc: 'soldier', Conversation: 'seraphina', Gender: 'female', NPCBand: '0', skintone: '1'};
+mappages["guardPatrolS"].npcs[0] = {name : 'TownGuardNPC', x : 3, y : 4, NPCName: 'Melody', Desc: 'soldier', Conversation: 'melody', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"BrownDark","back":null,"offhand":"OffhandDark","cloak":null,"mainhand":"HalberdDark"}'};
+mappages["guardPatrolS"].npcs[1] = {name : 'TownGuardNPC', x : 6, y : 3, NPCName: 'Steven', Desc: 'soldier', Conversation: 'steven', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"ShortBlackPale","back":null,"offhand":"OffhandPale","cloak":null,"mainhand":"HalberdPale"}'};
+mappages["guardPatrolS"].npcs[2] = {name : 'TownGuardNPC', x : 9, y : 5, NPCName: 'Bart', Desc: 'soldier', Conversation: 'bart', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"BrownDark","back":null,"offhand":"OffhandDark","cloak":null,"mainhand":"HalberdDark"}'};
+mappages["guardPatrolS"].npcs[3] = {name : 'TownGuardNPC', x : 8, y : 8, NPCName: 'Sigrun', Desc: 'soldier', Conversation: 'sigrun', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"BaldBeardedDark","back":null,"offhand":"OffhandDark","cloak":null,"mainhand":"HalberdDark"}'};
+mappages["guardPatrolS"].npcs[4] = {name : 'TownGuardNPC', x : 4, y : 7, NPCName: 'Seraphina', Desc: 'soldier', Conversation: 'seraphina', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateCheckeredTabard","head":"BrownDark","back":null,"offhand":"OffhandDark","cloak":null,"mainhand":"HalberdDark"}'};
+
+mappages["guardPatrolS"].transover = '{"0,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"0,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"1,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-576]],"1,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"2,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"2,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-576]],"3,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"3,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"4,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-160,-576]],"4,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"5,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"5,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"6,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"6,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"7,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"7,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-192,-576]],"8,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"8,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"9,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-576]],"9,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"10,4":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-160,-576]],"10,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]],"11,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"11,8":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-224,-576]],"12,5":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"12,7":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-32,-576]]}';
 
 mappages["guardPatrolS"].desc = "Combat";
 mappages["guardPatrolS"].longdesc = ``;
