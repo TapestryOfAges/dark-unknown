@@ -827,6 +827,7 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 	this.closedLOS = [];
 	this.closedgraphic = closedgraphic;
 	this.opengraphic = opengraphic;
+  this.lockedsound = lockedsound;
 	// NOTE: These should be arrays in the standard graphics[0-3] style.
 	
 	this.use = function(who, silentdoors) {
@@ -835,9 +836,11 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
     
     let mymap = this.getHomeMap();
 		
+    let unlocked = 0;
 		if (this.locked && this.keyname) {
 		  if (who.inventory.getByName(this.keyname)) {
         this.unlockMe();
+        unlocked = 1;
       }
     }
 		if (this.open === 1) {
@@ -898,7 +901,11 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 			}
 			
 			retval["fin"] = 1;
-			retval["txt"] = "Opened!";
+      if (unlocked) {
+        retval["txt"] = "Door unlocked.<br />Opened!";
+      } else {
+  			retval["txt"] = "Opened!";
+      }
 			retval["redrawtype"] = "draw";
 			this.open = 1;
 		}
@@ -1416,44 +1423,55 @@ function SetBySurroundCoast() {
     let water;
     let shallow;
     let still;
+    let lava;
     let localacre = themap.getTile(x,y-1);
+    let fea;
     let tile; 
     if (localacre !== "OoB") {
     	tile = localacre.terrain;
+      fea = localacre.getTopFeature();
     	if (tile.getName() === "Ocean") { ocean = tile; }
     	if ((tile.getName() === "Water") || tile.getName().includes("OceanWaterTransition")) { water = tile; }
       if ((tile.getName() === "Shallows") || tile.getName().includes("WaterShallowsTransition")) { shallow = tile; }
       if (tile.getName() === "StillWater") { still = tile; }
+      if (fea && fea.getName().includes("Lava")) { lava = tile; }
     }
     localacre = themap.getTile(x,y+1);
     if (localacre !== "OoB") {
     	tile = localacre.terrain;
+      fea = localacre.getTopFeature();
     	if (tile.getName() === "Ocean") { ocean = tile; }
     	if ((tile.getName() === "Water") || tile.getName().includes("OceanWaterTransition")) { water = tile; }
       if ((tile.getName() === "Shallows") || tile.getName().includes("WaterShallowsTransition")) { shallow = tile; }
       if (tile.getName() === "StillWater") { still = tile; }
+      if (fea && fea.getName().includes("Lava")) { lava = tile; }
     }
     localacre = themap.getTile(x+1,y);
     if (localacre !== "OoB") {
     	tile = localacre.terrain;
+      fea = localacre.getTopFeature();
     	if (tile.getName() === "Ocean") { ocean = tile; }
     	if ((tile.getName() === "Water") || tile.getName().includes("OceanWaterTransition")) { water = tile; }
       if ((tile.getName() === "Shallows") || tile.getName().includes("WaterShallowsTransition")) { shallow = tile; }
       if (tile.getName() === "StillWater") { still = tile; }
+      if (fea && fea.getName().includes("Lava")) { lava = tile; }
     }
     localacre = themap.getTile(x-1,y);
     if (localacre !== "OoB") {
     	tile = localacre.terrain;
+      fea = localacre.getTopFeature();
     	if (tile.getName() === "Ocean") { ocean = tile; }
     	if ((tile.getName() === "Water") || tile.getName().includes("OceanWaterTransition")) { water = tile; }
       if ((tile.getName() === "Shallows") || tile.getName().includes("WaterShallowsTransition")) { shallow = tile; }
       if (tile.getName() === "StillWater") { still = tile; }
+      if (fea && fea.getName().includes("Lava")) { lava = tile; }
     }
     let chosentile;
     if (shallow) { chosentile = eidos.getForm("Shallows"); }
     else if (water) { chosentile = eidos.getForm("Water"); }
     else if (ocean) { chosentile = ocean; }
     else if (still) { chosentile = still; }
+    else if (lava) { chosentile = lava; }
     // kludge fix for clear lake
     else if (themap.getName() === "clearlake") { 
       shallow = eidos.getForm("Shallows");
@@ -1467,9 +1485,15 @@ function SetBySurroundCoast() {
     }
     
     let chosengraphics = chosentile.getGraphicArray();
-    graphics[0] = chosengraphics[0];
-    graphics[2] = chosengraphics[2];
-    graphics[3] = chosengraphics[3];
+    if (lava) {
+      graphics[0] = "lava.gif";
+      graphics[2] = 0;
+      graphics[3] = 0;
+    } else {
+      graphics[0] = chosengraphics[0];
+      graphics[2] = chosengraphics[2];
+      graphics[3] = chosengraphics[3];
+    }
     return graphics;
   }
 }
