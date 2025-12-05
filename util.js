@@ -1265,15 +1265,26 @@ function BumpIntoDoor(door,who) {
   let retval = {};
   retval["msg"] = "Blocked!";
   retval["canmove"] = 0;
+  let unlocked = 0;
 
   if (DU.gameflags.getFlag("move_opens_doors") && door.locked && door.keyname && (who === PC)) {
     if (who.inventory.getByName(door.keyname)) {
       door.unlockMe();
+      unlocked = 1;
     }
+  } else if (DU.gameflags.getFlag("move_opens_doors") && door.locked && (who === PC)) {
+    retval["msg"] = "Locked.";
+    if (door.lockedsound && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety()) < 6) && (PC.getHomeMap() === mymap)) {
+		  DUPlaySound(door.lockedsound); 
+		}
   }
   if (DU.gameflags.getFlag("move_opens_doors") && !door.locked && (who === PC)) {
     door.use(who);
-    retval["msg"] = "Open door!";
+    if (unlocked) {
+      retval["msg"] = "Door unlocked.<br />Open door!";
+    } else {
+      retval["msg"] = "Open door!";
+    }
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
   }
   return retval;
