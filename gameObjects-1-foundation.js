@@ -401,7 +401,7 @@ GameObject.prototype.getGraphicArray = function(getbase) {
     if (this.spritexoffset) {
       returnVars[2] = this.spritexoffset;
     } else {
-  	  returnVars[2] = "0";
+  	  returnVars[2] = 0;
     }
   } else {
     returnVars[2] = this.currframe;
@@ -409,7 +409,7 @@ GameObject.prototype.getGraphicArray = function(getbase) {
   if (this.spriteyoffset) {
     returnVars[3] = this.spriteyoffset;
   } else {
-  	returnVars[3] = "0";
+  	returnVars[3] = 0;
   }
   
   return(returnVars); 
@@ -428,7 +428,7 @@ GameObject.prototype.getGraphicArrayTerrain = function(mapref, x, y) {
     returnGraphic = [...ttr[1]];
     returnGraphic[4] = [...[ttr[2]]];
   }
-  console.log(returnGraphic);
+  //console.log(returnGraphic);
   return returnGraphic;
 }
 
@@ -1093,6 +1093,10 @@ function Tiling(tileval) {
 // Abstract class Tiling-spritesheet
 function TilingSpritesheet(tileval, horizonly, knightsjump, kjfactor) {
   this.doTile = function(tilingx,tilingy,tilegraphic) {
+    if ((tilegraphic[2] === 0) && (tilegraphic[3] === -3104)) { 
+      // is blank black, don't tile
+      return {};
+    }
     if (knightsjump) {
       if (!kjfactor) { kjfactor = 1; }
       tilingx = ((tilingy*2 + tilingx)*kjfactor % tileval) * 32;
