@@ -532,7 +532,7 @@ mappages["swainhil"].npcs[12] = {name : 'TownGuardNPC', x : 57, y : 4, NPCName: 
 mappages["swainhil"].npcs[13] = {name : 'TinkerVillagerNPC', x : 25, y : 10, NPCName: 'Ian', Desc: 'soldier', PeaceAI: 'scheduled', Schedule: 'ian', Conversation: 'ian', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"LeatherArmor","head":"OldManPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"ShortswordPale","realhead":"OldManPale"}'};
 
 mappages["swainhil"].desc = "The Towne of Swainhil";
-mappages["swainhil"].longdesc = ``;
+mappages["swainhil"].longdesc = `The scenic town of Swainhil is in the most distant portion of the kingdom. Famed for its beer (and thus its Lakeside Tavern), it is also the home of two of the kingdom's larger guilds: the Bards and the Paladins.`;
 mappages["swainhil"].music = 'Towne';
 mappages["swainhil"].savename = `Swainhil`;
 mappages["swainhil"].exitmap = 'ellusus';
