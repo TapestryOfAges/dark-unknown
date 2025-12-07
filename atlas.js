@@ -2684,19 +2684,15 @@ Pages.prototype.readPage = function (name,type) {
     return this[name][type];
   } else {
   	return "";
-  }
-  
+  }  
 }
 
 
 function Platonic() {
-
   this.data = {};
-
 }
 
 Platonic.prototype.getForm = function (name) {
-
   if (this.data[name]) {
     return this.data[name];
   }
@@ -2706,7 +2702,6 @@ Platonic.prototype.getForm = function (name) {
     this.data[name] = localFactory.createTile(name);
     return this.data[name];
   }
-
 }
 
 function MapMemory() {
