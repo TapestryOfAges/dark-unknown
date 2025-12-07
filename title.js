@@ -2504,7 +2504,9 @@ tv.MakeCredits = function(page) {
   table[1] += "<u>More Special Thanks to my Patreon Supporters</u><br /></td></tr>";
   table[1] += "<tr><td align='center' valign='top' style='width:33%'><p class='charcreate'>Almus<br />Cranberry<br />Frank Flury<br />Christopher Galbreath</p></td>";
   table[1] += "<td align='center' valign='top' style='width:33%'><p class='charcreate'>John Hosie<br />Indi Martin<br />Browncoat Jayson<br />Michael Lavery</p></td>";
-  table[1] += "<td align='center' valign='top' style='width:33%'><p class='charcreate'>Brandon Luders<br />Erik Smith<br />Stirring Dragon Games<br />David Youd</p></td></tr></table>";
+  table[1] += "<td align='center' valign='top' style='width:33%'><p class='charcreate'>Brandon Luders<br />Erik Smith<br />Stirring Dragon Games<br />David Youd</p></td></tr>";
+  table[1] += "<tr><td align='center' valign='top' colspan='3'><p class='charcreate'><br /><u>Even more special thanks to my beta testers:</u></p>";
+  table[1] += `<p class='charcreate'>Jeremy Roy (Golden Beard Games)<br />Grulio<br />Laura "Shadow of Light Dragon" Campbell<br />Rikkles</td></tr></table>`;
 
   table[2] = "<table cellpadding='5' cellspacing='5' border='0' style='width:100%'><tr><td align='center' valign='top' colspan='2'><p class='charcreate'><u>Image Licensing</u><br /><br />Palace in the Sky clouds by:<br />Daniel Gregory Benoy (https://opengameart.org/content/fluffy-clouds)<br />CC-by-SA license (https://creativecommons.org/licenses/by-sa/3.0/)<br />Some clouds edited by merging them together.<br /><br />";
   table[2] += "Spellbook by:<br />DeviantArt user \"flameshaft\" (http://flameshaft.deviantart.com/art/Open-book-289133547)<br /><br /><u>Sound Effect Licensing</u><br /><br />";
