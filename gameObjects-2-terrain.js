@@ -7,7 +7,6 @@ function TerrainObject() {
   this.addType("Terrain");
   this.combatmap = "";
 }
-
 TerrainObject.prototype = new InanimateObject();
 
 TerrainObject.prototype.serialize = function() {
@@ -3000,7 +2999,7 @@ function ForestTile() {
   this.spriteyoffset = -32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = .5;
-	this.losupclose = { distance : 1 , blocklos : 0 };
+//	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
   this.initdelay = 1.3;
   this.pathweight = 1.3;
