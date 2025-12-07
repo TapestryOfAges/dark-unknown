@@ -34,7 +34,11 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
   }
 
   if (typeof frommap.Exit === "function") {
-    frommap.Exit(who,tomap,oldx,oldy,destx,desty);
+    let exitret = frommap.Exit(who,tomap,oldx,oldy,destx,desty);
+    if (exitret && exitret.hasOwnProperty("newdest")) {
+      destx = exitret.newdest.x;
+      desty = exitret.newdest.y;
+    }
   }
   
   if (typeof tomap.Enter === "function") {
