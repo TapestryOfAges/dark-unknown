@@ -50,7 +50,9 @@ function PerformCommand(code, ctrl) {
 
     let success = PC.moveMe(0,-1,0);
 		let txt = "Move North";
-		txt += success["msg"];
+    if (success["msg"]) {
+  		txt += success["msg"];
+    }
 		retval["txt"] = txt;
 		retval["input"] = "&gt;";
 		retval["fin"] = 1;
@@ -95,7 +97,9 @@ function PerformCommand(code, ctrl) {
 
 		let success = PC.moveMe(-1,0,0);
 		let txt = "Move West";
-		txt += success["msg"];
+    if (success["msg"]) {
+  		txt += success["msg"];
+    }
 		retval["txt"] = txt;
 		retval["input"] = "&gt;";
 		retval["fin"] = 1;
@@ -138,7 +142,9 @@ function PerformCommand(code, ctrl) {
 
     let success = PC.moveMe(1,0,0);
 		let txt = "Move East";
-		txt += success["msg"];
+    if (success["msg"]) {
+  		txt += success["msg"];
+    }
 		retval["txt"] = txt;
 		retval["input"] = "&gt;";
 		retval["fin"] = 1;
@@ -181,7 +187,9 @@ function PerformCommand(code, ctrl) {
 
     let success = PC.moveMe(0,1,0);
 		let txt = "Move South";
-		txt += success["msg"];
+    if (success["msg"]) {
+  		txt += success["msg"];
+    }
 		retval["txt"] = txt;
 		retval["input"] = "&gt;";
 		retval["fin"] = 1;
