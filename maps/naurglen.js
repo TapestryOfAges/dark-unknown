@@ -609,7 +609,7 @@ mappages["naurglen"].underground = '0';
 mappages["naurglen"].undergroundDesc = '';
 mappages["naurglen"].enterscript = '';
 mappages["naurglen"].entertestscript = '';
-mappages["naurglen"].exitscript = '';
+mappages["naurglen"].exitscript = 'naurglenexit';
 mappages["naurglen"].exittestscript = '';
 mappages["naurglen"].returnmap = 'ellusus';
 mappages["naurglen"].returnx = '69';
@@ -618,6 +618,14 @@ mappages["naurglen"].returninfused = '0';
 mappages["naurglen"].linkedMaps = ["naurglen2","naurglen_limbo"];
 mappages["naurglen"].editorLabels = '{"div_tile66x16":"Evelyn","div_tile74x14":"Grayson","div_tile89x17":"Dora and Ingrid","div_tile92x33":"Kyvek Room","div_tile56x37":"Amaeryl","div_tile26x39":"Kylee and Sam","div_tile45x8":"Warren and Garen","div_tile23x22":"Derek","div_tile9x38":"PC Home","div_tile74x37":"Hazel","div_tile22x6":"Samuel","div_tile7x23":"Blanche"}';
 // MAP ENDS HERE
+
+mappages["naurglen"].naurglenexit = function(mapref) {
+  mapref.Exit = function(who,tomap,oldx,oldy,destx,desty) {
+    if (oldx <= 49) { 
+      return {newdest: {x: destx-1, y: desty}};
+    }
+  }
+}
 
 mappages["naurglen"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
