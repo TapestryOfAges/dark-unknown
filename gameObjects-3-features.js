@@ -5402,7 +5402,7 @@ function BedWalkOn(bedwho,bedarr) {
   for (let i=0;i<fea.length;i++) {
     if (fea[i].getName() === "BedFoot") { 
       fea[i].setGraphicArray(["static.gif","",-6*32,-90*32]); 
-      fea[i].passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
+//      fea[i].passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
       DrawMainFrame("one",fea[i].getHomeMap(),fea[i].getx(),fea[i].gety());
     }
   }
@@ -5424,7 +5424,7 @@ function BedWalkOff(who, bed) {
   for (let i=0;i<fea.length;i++) {
     if (fea[i].getName() === "BedFoot") { 
       fea[i].setGraphicArray(["static.gif","",-9*32,-89*32]);
-      fea[i].passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+//      fea[i].passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
       DrawMainFrame("one",fea[i].getHomeMap(),fea[i].getx(),fea[i].gety());
     }
   }
@@ -5535,7 +5535,7 @@ DoubleBedHeadTile.prototype.setLook = function() {
   for (let i=0;i<fea.length;i++) { if (fea[i].getName() === "DoubleBedFoot") { foot = fea[i]; } }
   if (!this.occupants[0] && !this.occupants[1]) {
     foot.setGraphicArray(["static.gif","",-5*32,-91*32]);
-    foot.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+//    foot.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
     DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
     DrawMainFrame("one",this.getHomeMap(),this.getx()+1,this.gety());
   } else if (this.occupants[0] && !this.occupants[1]) {
@@ -5544,7 +5544,7 @@ DoubleBedHeadTile.prototype.setLook = function() {
     this.occupants[0].animating = 0;  
     this.occupants[0].makeLayers();
     foot.setGraphicArray(["static.gif","",-7*32,-91*32]);
-    foot.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
+//    foot.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
     DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
     DrawMainFrame("one",this.getHomeMap(),this.getx()+1,this.gety());
   } else if (!this.occupants[0] && this.occupants[1]) {
@@ -5553,7 +5553,7 @@ DoubleBedHeadTile.prototype.setLook = function() {
     this.occupants[1].animating = 0; 
     this.occupants[1].makeLayers(); 
     foot.setGraphicArray(["static.gif","",-7*32,-91*32]);
-    foot.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
+//    foot.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
     DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
     DrawMainFrame("one",this.getHomeMap(),this.getx()+1,this.gety());
   } else if (this.occupants[0] && this.occupants[1]) {
@@ -5566,7 +5566,7 @@ DoubleBedHeadTile.prototype.setLook = function() {
     this.occupants[0].makeLayers();
     this.occupants[1].makeLayers();
     foot.setGraphicArray(["static.gif","",-7*32,-91*32]);
-    foot.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
+//    foot.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
     DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
     DrawMainFrame("one",this.getHomeMap(),this.getx()+1,this.gety());
   } else {
@@ -5591,6 +5591,10 @@ function BedFootTile() {
 }
 BedFootTile.prototype = new FeatureObject();
 
+BedFootTile.prototype.bumpinto = function(bumper) {
+  return FootBump(this,bumper);
+}
+
 function DoubleBedFootTile() {
   this.name = "DoubleBedFoot";
   this.graphic = "static.gif";
@@ -5607,6 +5611,19 @@ function DoubleBedFootTile() {
   this.civilizedpathweight = 5;
 }
 DoubleBedFootTile.prototype = new FeatureObject();
+
+BedFootTile.prototype.bumpinto = function(bumper) {
+  return FootBump(this,bumper);
+}
+
+function FootBump(bed,bumper) {
+  let head = bumper.getHomeMap().getTile(bed.getx()-1,bed.gety()).getTopNPC();
+  if (!head) { head = bumper.getHomeMap().getTile(bed.getx()-1,bed.gety()).getTopPC(); }
+  if (head && (head !== bumper)) { 
+    return { msg: "Blocked!", canmove: 0};
+  }
+  return {canmove:1, msg: ""};
+}
 
 function DoubleBedTopHeadTile() {
   this.name = "DoubleBedTopHead";
