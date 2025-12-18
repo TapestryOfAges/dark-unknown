@@ -242,7 +242,7 @@ GameStateData.prototype.saveGame = function(flag) {
 	  savedata.events[val.name].flagsreq = val.flagsreq;
 	  savedata.events[val.name].linkedtomap = val.linkedtomap;
 	}
-  
+  savedata.mapmagic = JSON.stringify(mapmagic);
   for (let idx in DU.maps.data) {
     let val = DU.maps.data[idx];
 	  savedata.maps.push(idx);
@@ -396,6 +396,12 @@ OutOfContext.onLoadData((event,serialized) => {
   ExtendObject(true,DU.gameflags,savedata.gameflags);
   Listener = new DUListener();
   
+  if (savedata.mapmagic) {
+    mapmagic = JSON.parse(savedata.mapmagic);
+  } else {
+    mapmagic = {};
+  }
+
   nowplaying = {};  
   if (Object.keys(ambient).length) { // if ambient is not an empty object
     DecAmbientVol(ambient);
