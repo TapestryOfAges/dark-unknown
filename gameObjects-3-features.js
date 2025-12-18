@@ -14174,6 +14174,12 @@ MapOfEllususTile.prototype.use = function(who) {
     uii.innerHTML = `<img src="graphics/spacer.gif" width="416" height="416" />`;
     uii.style.backgroundColor = "";
     uii.style.backgroundImage = `url('graphics/ellususmap.gif')`;  
+    if (PC.checkInventory("Sextant")) {
+      let left = PC.getx()*3-16-4;
+      let top = PC.gety()*3-3;
+      let div = `<div style='position:absolute;left:${left};top:${top};width:10;height:8;z-index:75'><img src='graphics/sextant-cursor.gif' width='10' height='8' /></div>`;
+      uii.innerHTML += div;
+    }
   }
   return retval;
 }
@@ -14205,6 +14211,12 @@ MapOfLostHopeTile.prototype.use = function(who) {
     uii.innerHTML = `<img src="graphics/spacer.gif" width="416" height="416" />`;
     uii.style.backgroundColor = "";
     uii.style.backgroundImage = `url('graphics/losthopemap.gif')`;  
+    if (PC.checkInventory("Sextant")) {
+      let left = PC.getx()*3+104-4;
+      let top = PC.gety()*3+74-3;
+      let div = `<div style='position:absolute;left:${left};top:${top};width:10;height:8;z-index:75'><img src='graphics/sextant-cursor.gif' width='10' height='8' /></div>`;
+      uii.innerHTML += div;
+    }
   }
   return retval;
 }
