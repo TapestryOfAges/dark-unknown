@@ -1783,7 +1783,7 @@ function CreateTransitionModal() {
     if (transselect === i) { sel = " selected"; }
     html += `<option value='${transoptions[i]}'>${transoptions[i]}</option>`;
   }
-  html += '</select></td><td id="seltilename"></td><td><div id="transtilearea"></div></td></tr></table>';
+  html += '</select></td><td id="seltilename"></td><td><div id="transtilearea" style="width:96;height:96"></div></td></tr></table>';
 
   html += `<table>`;
   html += `<tr><td><center>Layer 2:<br /><div id='translayer2'></div></td>`;
@@ -1931,16 +1931,16 @@ function TransitionTile(x,y) {
   let tname = amap.getTile(x,y).getTerrain().getName();
   document.getElementById("seltilename").innerHTML = tname;
 
-  let tsel = "<table>";
+  let tsel = "<table cellpadding='0' cellspacing='0' border='0' style='width:96; height:96'>";
   for (let j=y-1;j<=y+1;j++) {
     tsel += `<tr>`;
     for (let i=x-1;i<=x+1;i++) {
       let ttile = amap.getTile(i,j);
       if (ttile !== "OoB") {
         let graphic = ttile.getTerrain().getGraphicArray();
-        tsel += `<td style='position:absolute'><div style='position:absolute;left:0;top:0;background-image:url("graphics/${graphic[0]}");background-position: ${graphic[2]} ${graphic[3]};width:32;height:32'></div>`;
+        tsel += `<td style='position:relative; width:32; height:32'><div style='position:absolute;left:0;top:0;background-image:url("graphics/${graphic[0]}");background-position: ${graphic[2]}px ${graphic[3]}px;width:32;height:32'></div>`;
         if (graphic[4]) {
-          tsel += `<div style='position:absolute;left:0;top:0;background-image:url("graphics/${graphic[4][0][0]}");background-position: ${graphic[4][0][2]} ${graphic[4][0][3]};width:32;height:32'></div>`;
+          tsel += `<div style='position:absolute;left:0;top:0;background-image:url("graphics/${graphic[4][0][0]}");background-position: ${graphic[4][0][2]}px ${graphic[4][0][3]}px;width:32;height:32'></div>`;
         }
         tsel += `</td>`;
       } else {
@@ -2021,7 +2021,7 @@ function ChangeTransitionType(passedtype) {
     ttile += `<td>WSE: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-416px ${ty}px" id='TerrainBlend.gif -416 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-416,${ty}])"></div></td>`; 
     ttile += `<td>NS: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-448px ${ty}px" id='TerrainBlend.gif -448 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-448,${ty}])"></div></td>`; 
     ttile += `<td>EW: <div style="width:32;height:32;border-style:solid;border-width:2;border-color:black;background-image:url('graphics/TerrainBlend.gif');background-position:-480px ${ty}px" id='TerrainBlend.gif -480 ${ty}' onclick="transSelection(2,['TerrainBlend.gif','spacer.gif',-480,${ty}])"></div></td>`; 
-  } else if ((totype === "Hills") ||  (totype === "Swamp") || (totype === "Dirt") || (totype === "Meadow") || (totype === "Grass") || (totype === "Sand") || (totype === "Forest") || (totype === "Bright Forest") || (totype === "Evergreen")) {
+  } else if ((totype === "Hills") ||  (totype === "Swamp") || (totype === "Dirt") || (totype === "Meadow") || (totype === "Grass") || (totype === "Sand") || (totype === "Forest") || (totype === "Bright Forest") || (totype === "Evergreen") || (totype === "DeadForest") || (totype === "DeadEvergreen")) {
     let ty = transpixels[totype];
     for (let i=0;i<directions.length;i++) {
       let tx = transpixels[directions[i]];
@@ -2142,7 +2142,7 @@ function ChangeTransitionType(passedtype) {
   document.getElementById("translayer2").innerHTML = ttile;
 }
 
-let transoptions = ["Mountains", "Hills", "Forest", "Forest [tiled]", "Evergreen", "Bright Forest", "Bright Forest [tiled]", "Swamp", "Dirt", "Sand", "Meadow", "Grass"];
+let transoptions = ["Mountains", "Hills", "Forest", "Forest [tiled]", "Evergreen", "Bright Forest", "Bright Forest [tiled]", "DeadForest", "DeadEvergreen", "Swamp", "Dirt", "Sand", "Meadow", "Grass"];
 
 let transpixels = {};
 transpixels["Swamp"] = -640;
@@ -2163,6 +2163,7 @@ transpixels["Evergreen"] = -416;
 transpixels[7] = -416;
 transpixels["Bright"] = -384;
 transpixels["BrightForest"] = -384;
+transpixels["Bright Forest"] = -384;
 transpixels[8] = -384;
 transpixels["Forest"] = -352;
 transpixels[6] = -352;
@@ -2177,6 +2178,8 @@ transpixels["BrightTiledB2"] = -96;
 transpixels["BrightTiledC"] = -64;
 transpixels["BrightTiledT1"] = -32;
 transpixels["BrightTiledT2"] = 0;
+transpixels["DeadForest"] = -672;
+transpixels["DeadEvergreen"] = -704;
 
 let transpixelsrev = {};
 for (const [key, value] of Object.entries(transpixels)) {
@@ -2461,7 +2464,7 @@ function areaDeleteTransition(x1,y1,x2,y2,terraintype) {
   if (y1 > y2) { let tmp = y1; y1=y2; y2=tmp; }
   for (let i=x1;i<=x2;i++) {
     for (let j=y1;j<=y2;j++) {
-      let coord = `${i}x${j}`;
+      let coord = `${i},${j}`;
       let tile = amap.getTile(i,j).getTerrain();
       if ((terraintype === "Grass") && (tile.getName() === "Grass")) { delete amap.transover[coord]; }
       else if ((terraintype === "Meadow") && (tile.getName() === "Meadow")) { delete amap.transover[coord]; }
