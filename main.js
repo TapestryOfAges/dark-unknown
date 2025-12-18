@@ -58,6 +58,7 @@ let firstload = 1;
 
 let convlog = [];
 let karmalog = [];
+let mapmagic = {};
 
 function addToKarmaLog(type, amount, circumstance) {
   if (beta) {
