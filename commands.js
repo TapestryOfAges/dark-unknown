@@ -390,26 +390,55 @@ function PerformCommand(code, ctrl) {
     }
 	}
 	else if (code === 77) { // m
-		// was mix - now, toggles music
-    if (DU.settings.getSetting("music")) {
-      DU.gameflags.setFlag("mvol",DU.settings.getSetting("music"));  // store the last music volume, so turning music back on doesn't blast it
-      DU.settings.setSetting("music", 0);
-      StopMusic(nowplaying);
-      retval["txt"] = "Music off.";
+		// was mix
+    let mymap = PC.getHomeMap().getName();
+    if ((mymap === "ellusus") && PC.checkInventory("MapOfEllusus")) {
+      retval["txt"] = "You examine the map of Ellusus...";
+      retval["fin"] = 2;
+      retval["input"] = "[MORE]";
+      targetCursor.viewing = "map";
+      let uii = document.getElementById('uiinterface');
+      if (uii) {
+        uii.innerHTML = `<img src="graphics/spacer.gif" width="416" height="416" />`;
+        uii.style.backgroundColor = "";
+        uii.style.backgroundImage = `url('graphics/ellususmap.gif')`;  
+        if (PC.checkInventory("Sextant")) {
+          let left = PC.getx()*3-16-4;
+          let top = PC.gety()*3-3;
+          let div = `<div style='position:absolute;left:${left};top:${top};width:10;height:8;z-index:75'><img src='graphics/sextant-cursor.gif' width='10' height='8' /></div>`;
+          uii.innerHTML += div;
+        }
+        gamestate.setMode("anykey");
+      }
+    } else if ((mymap === "island") && PC.checkInventory("MapOfLostHope")) {
+      retval["txt"] = "You examine the map of the Land of Lost Hope...";
+      retval["fin"] = 2;
+      retval["input"] = "[MORE]";
+      targetCursor.viewing = "map";
+      let uii = document.getElementById('uiinterface');
+      if (uii) {
+        uii.innerHTML = `<img src="graphics/spacer.gif" width="416" height="416" />`;
+        uii.style.backgroundColor = "";
+        uii.style.backgroundImage = `url('graphics/losthopemap.gif')`;  
+        if (PC.checkInventory("Sextant")) {
+          let left = PC.getx()*3+104-4;
+          let top = PC.gety()*3+74-3;
+          let div = `<div style='position:absolute;left:${left};top:${top};width:10;height:8;z-index:75'><img src='graphics/sextant-cursor.gif' width='10' height='8' /></div>`;
+          uii.innerHTML += div;
+        }
+        gamestate.setMode("anykey");
+      }
     } else {
-      let vol = DU.gameflags.getFlag("mvol");
-      if (!vol) { vol = 1; }
-      DU.settings.setSetting("music", vol);
-      let song = PC.getHomeMap().getMusic();
-      DUPlayMusic(song);
-      retval["txt"] = "Music on.";
-    }		
-    retval["input"] = "&gt;";
-    retval["fin"] = 2;
-    DU.settings.saveSettings();
-	}
+      retval["fin"] = -1;
+      retval["txt"] = "You do not have a map of this location.";
+    }
+
+  }
 	else if (code === 78) { // n
-		// new order - not used
+		// new order - shoved version here for now
+      retval["input"] = "&gt;";
+      retval["fin"] = 2;
+      retval["txt"] = `v${DU.version}`;
 		
 	}
 	else if (code === 79) { // o
@@ -534,11 +563,6 @@ function PerformCommand(code, ctrl) {
 	}
 	else if (code === 86) { // v
     if (ctrl) {
-      retval["input"] = "&gt;";
-      retval["fin"] = 2;
-      retval["txt"] = `v${DU.version}`;
-    } else {
-      // volume - turns sound effects on and off
       if (DU.settings.getSetting("sound")) { 
         DU.gameflags.setFlag("svol",DU.settings.getSetting("sound"));
         DU.settings.setSetting("sound", 0); 
@@ -557,6 +581,24 @@ function PerformCommand(code, ctrl) {
 
         ProcessAmbientNoise(PC.getHomeMap().getTile(PC.getx(),PC.gety()));
       }
+      retval["input"] = "&gt;";
+      retval["fin"] = 2;
+      DU.settings.saveSettings();
+    } else {
+      // volume - turns sound effects on and off
+      if (DU.settings.getSetting("music")) {
+        DU.gameflags.setFlag("mvol",DU.settings.getSetting("music"));  // store the last music volume, so turning music back on doesn't blast it
+        DU.settings.setSetting("music", 0);
+        StopMusic(nowplaying);
+        retval["txt"] = "Music off.";
+      } else {
+        let vol = DU.gameflags.getFlag("mvol");
+        if (!vol) { vol = 1; }
+        DU.settings.setSetting("music", vol);
+        let song = PC.getHomeMap().getMusic();
+        DUPlayMusic(song);
+        retval["txt"] = "Music on.";
+      }		
       retval["input"] = "&gt;";
       retval["fin"] = 2;
       DU.settings.saveSettings();
@@ -4090,7 +4132,7 @@ function MakeInventoryList(restrictTo) {
     } else if (restrictTo === "usable") {
       if (PCinv[i].checkType("potion")) { inventorylist.potion.push(PCinv[i]); }
       else if (PCinv[i].checkType("scroll")) { inventorylist.scroll.push(PCinv[i]); }
-      else if (PCinv[i].checkType("audachta")) { inventorylist.audachta.push(PCinv[i]); }
+//      else if (PCinv[i].checkType("audachta")) { inventorylist.audachta.push(PCinv[i]); }
       else if (typeof PCinv[i].use === "function") { inventorylist.usable.push(PCinv[i]); }
     } else if (restrictTo === "audachta") {
       if (PCinv[i].checkType("audachta")) { inventorylist.audachta.push(PCinv[i]); }
