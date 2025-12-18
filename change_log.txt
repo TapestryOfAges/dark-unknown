@@ -1,14 +1,20 @@
 v 0.11.0
  * Terrain now has transition art to make boundaries look smoother and the world less blocky
  * If you use/bump into a locked door while you have the key, the game now tells you that you unlocked it
- * When "Move Opens Doors" is enabled, if you bump into a locked door the game now tells you it is locked, much like it would if you tried to Use it.
- * You now start the game with 3 torches.
- * You can now step east while in bed. (Previously, you were blocked by your own feet.)
- * Forests are more consistent about how they block LOS.
- * If you leave out the west side of Naurglen, you now emerge out of the west tile.
- * Swainhil and Poverty now have long descriptions for when you first visit.
- * Results of a Peer are better centered.
- * Cave walls that you can't see will no longer be sometimes drawn with the wrong graphics.
+ * When "Move Opens Doors" is enabled, if you bump into a locked door the game now tells you it is locked, much like it would if you tried to Use it
+ * You now start the game with 3 torches
+ * You can now step east while in bed (Previously, you were blocked by your own feet)
+ * Forests are more consistent about how they block LOS
+ * If you leave out the west side of Naurglen, you now emerge out of the west tile
+ * Swainhil and Poverty now have long descriptions for when you first visit
+ * Results of a Peer are better centered
+ * Cave walls that you can't see will no longer be sometimes drawn with the wrong graphics
+ * Brush graphic no longer looks like it's cut off in the corner
+ * Grass and Mountain graphics improved to tile more cleanly
+ * Audachta no longer appear as a "usable" when (U)sing from inventory
+ * [V] now toggles music, [ctrl-V] now toggles volume
+ * [M] now shows the map of your current location, if you have one
+ * Owning a Sextant puts your location on maps if you have one
 
 v 0.10.23
  * More dialog fixes
