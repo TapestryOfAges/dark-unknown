@@ -1589,10 +1589,10 @@ function MakePeerView() {
       let tile = amap.getTile(j,i);
       let fea = tile.getTopFeature();
       let col;
-      if (fea && fea.peerview) { col = fea.peerview; }
+      if (fea && fea.getPeerview()) { col = fea.getPeerview(); }
       else {
         let terrain = tile.getTerrain();
-        col = terrain.peerview;
+        col = terrain.getPeerview();
       }
       pview += "<td style='background-color:" + col + "'><img src='spacer.gif' width='3' height='3' /></td>";
     }
