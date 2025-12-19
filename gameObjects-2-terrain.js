@@ -42,7 +42,7 @@ function OceanTile() {
   this.spritexoffset = 0;
   this.spriteyoffset = 0;
   this.combatmap = "Water";
-  this.peerview = "#103cff";
+  this.peerview = DEEP_WATER_PEER;
   this.walkSound = "water";
 
   TilingSpritesheet.call(this, 8,0,1);
@@ -59,7 +59,7 @@ function OceanWaterTransition0Tile() {
   this.spritexoffset = 0;
   this.spriteyoffset = 0;
   this.combatmap = "Water";
-  this.peerview = "#103cff";
+  this.peerview = DEEP_WATER_PEER;
   this.walkSound = "water";
 
   TilingSpritesheet.call(this, 8,0,1);
@@ -76,7 +76,7 @@ function OceanWaterTransition1Tile() {
   this.spritexoffset = 0;
   this.spriteyoffset = -32;
   this.combatmap = "Water";
-  this.peerview = "#103cff";
+  this.peerview = DEEP_WATER_PEER;
   this.walkSound = "water";
 
   TilingSpritesheet.call(this, 8,0,1);
@@ -93,7 +93,7 @@ function OceanWaterTransition2Tile() {
   this.spritexoffset = 0;
   this.spriteyoffset = -2*32;
   this.combatmap = "Water";
-  this.peerview = "#103cff";
+  this.peerview = DEEP_WATER_PEER;
   this.walkSound = "water";
 
   TilingSpritesheet.call(this, 8,0,1);
@@ -110,7 +110,7 @@ function OceanWaterTransition3Tile() {
   this.spritexoffset = 0;
   this.spriteyoffset = -3*32;
   this.combatmap = "Water";
-  this.peerview = "#103cff";
+  this.peerview = DEEP_WATER_PEER;
   this.walkSound = "water";
 
   TilingSpritesheet.call(this, 8,0,1);
@@ -127,7 +127,7 @@ function OceanWaterTransition4Tile() {
   this.spritexoffset = 0;
   this.spriteyoffset = -4*32;
   this.combatmap = "Water";
-  this.peerview = "#103cff";
+  this.peerview = DEEP_WATER_PEER;
   this.walkSound = "water";
 
   TilingSpritesheet.call(this, 8,0,1);
@@ -144,7 +144,7 @@ function OceanWaterTransition5Tile() {
   this.spritexoffset = 0;
   this.spriteyoffset = -5*32;
   this.combatmap = "Water";
-  this.peerview = "#103cff";
+  this.peerview = DEEP_WATER_PEER;
   this.walkSound = "water";
 
   TilingSpritesheet.call(this, 8,0,1);
@@ -161,7 +161,7 @@ function OceanWaterTransition6Tile() {
   this.spritexoffset = 0;
   this.spriteyoffset = -6*32;
   this.combatmap = "Water";
-  this.peerview = "#103cff";
+  this.peerview = DEEP_WATER_PEER;
   this.walkSound = "water";
 
   TilingSpritesheet.call(this, 8,0,1);
@@ -178,7 +178,7 @@ function OceanWaterTransition7Tile() {
   this.spritexoffset = 0;
   this.spriteyoffset = -7*32;
   this.combatmap = "Water";
-  this.peerview = "#103cff";
+  this.peerview = DEEP_WATER_PEER;
   this.walkSound = "water";
 
   TilingSpritesheet.call(this, 8,0,1);
@@ -195,7 +195,7 @@ function OceanWaterTransition8Tile() {
   this.spritexoffset = 0;
   this.spriteyoffset = -8*32;
   this.combatmap = "Water";
-  this.peerview = "#103cff";
+  this.peerview = DEEP_WATER_PEER;
   this.walkSound = "water";
 
   TilingSpritesheet.call(this, 8,0,1);
@@ -212,7 +212,7 @@ function OceanWaterTransition9Tile() {
   this.spritexoffset = 0;
   this.spriteyoffset = -9*32;
   this.combatmap = "Water";
-  this.peerview = "#103cff";
+  this.peerview = DEEP_WATER_PEER;
   this.walkSound = "water";
 
   TilingSpritesheet.call(this, 8,0,1);
@@ -229,7 +229,7 @@ function OceanWaterTransition10Tile() {
   this.spritexoffset = 0;
   this.spriteyoffset = -10*32;
   this.combatmap = "Water";
-  this.peerview = "#103cff";
+  this.peerview = DEEP_WATER_PEER;
   this.walkSound = "water";
 
   TilingSpritesheet.call(this, 8,0,1);
@@ -246,7 +246,7 @@ function OceanWaterTransition11Tile() {
   this.spritexoffset = 0;
   this.spriteyoffset = -11*32;
   this.combatmap = "Water";
-  this.peerview = "#103cff";
+  this.peerview = DEEP_WATER_PEER;
   this.walkSound = "water";
 
   TilingSpritesheet.call(this, 8,0,1);
@@ -262,7 +262,7 @@ function WaterTile() {
   this.blocklos = 0;
   this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
   this.combatmap = "Water";
-  this.peerview = "#128dfe";
+  this.peerview = WATER_PEER;
   this.walkSound = "water";
 
   TilingSpritesheet.call(this, 8,0,1);
@@ -288,7 +288,7 @@ function WaterShallowsTransition0Tile() {
   this.blocklos = 0;
   this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
   this.combatmap = "Water";
-  this.peerview = "#128dfe";
+  this.peerview = WATER_PEER;
   this.walkSound = "water";
 
   TilingSpritesheet.call(this, 8,0,1);
@@ -380,7 +380,7 @@ function ShallowsTile() {
   this.blocklos = 0;
   this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
   this.combatmap = "Water";
-  this.peerview = "#12bbff";
+  this.peerview = SHALLOW_WATER_PEER;
   this.walkSound = "water";
 
   TilingSpritesheet.call(this, 8,0,1);
@@ -406,7 +406,7 @@ function StillWaterTile() {
   this.spritexoffset = 0;
   this.spriteyoffset = 0;
   this.combatmap = "Water";
-  this.peerview = "#12bbff";
+  this.peerview = SHALLOW_WATER_PEER;
   this.walkSound = "water";
 
   TilingSpritesheet.call(this, 8,0,1,3);
@@ -476,7 +476,7 @@ function NoBlockMountainTile() {
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.combatmap = "Hill";
-  this.peerview = "#ffffff";
+  this.peerview = MOUNTAIN_PEER;
   this.walkSound = "hill";
   TilingSpritesheet.call(this, 2, 1);
 }
@@ -492,7 +492,7 @@ function MountainTile() {
   this.blocklos = 1;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.combatmap = "Hill";
-  this.peerview = "#ffffff";
+  this.peerview = MOUNTAIN_PEER;
   this.walkSound = "hill";
   TilingSpritesheet.call(this, 2, 1);
 }
@@ -508,7 +508,7 @@ function MountainPassTile() {
   this.blocklos = 1;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_WALK;
   this.combatmap = "Hill";
-  this.peerview = "#ffffff";
+  this.peerview = MOUNTAIN_PEER;
   this.walkSound = "hill";
   TilingSpritesheet.call(this, 2, 1);
 }
@@ -523,7 +523,7 @@ function FlameMountainTile() {
   this.blocklos = 1;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.combatmap = "Hill";
-  this.peerview = "#4a110c";
+  this.peerview = FLAME_MOUNTAIN_PEER;
   this.walkSound = "hill";
   TilingSpritesheet.call(this, 2, 1);
 }
@@ -539,7 +539,7 @@ function Mountain1Tile() {
   this.blocklos = 1;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.combatmap = "Hill";
-  this.peerview = "#ffffff";
+  this.peerview = MOUNTAIN_PEER;
   this.walkSound = "hill";
 }
 Mountain1Tile.prototype = new TerrainObject();
@@ -554,7 +554,7 @@ function Mountain2Tile() {
   this.blocklos = 1;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.combatmap = "Hill";
-  this.peerview = "#ffffff";
+  this.peerview = MOUNTAIN_PEER;
   this.walkSound = "hill";
 }
 Mountain2Tile.prototype = new TerrainObject();
@@ -569,7 +569,7 @@ function FancyFloorTile() {
   this.blocklos = 0;
   this.prefix = "the";
   this.desc = "floor";
-  this.peerview = "#128dfe";
+  this.peerview = WATER_PEER;
   this.walkSound = "stone";
 }
 FancyFloorTile.prototype = new TerrainObject();
@@ -584,7 +584,7 @@ function FancyFloor2Tile() {
   this.blocklos = 0;
   this.prefix = "the";
   this.desc = "floor";
-  this.peerview = "#128dfe";
+  this.peerview = WATER_PEER;
   this.walkSound = "stone";
 }
 FancyFloor2Tile.prototype = new TerrainObject();
@@ -599,7 +599,7 @@ function FancyFloor3Tile() {
   this.blocklos = 0;
   this.prefix = "the";
   this.desc = "floor";
-  this.peerview = "#128dfe";
+  this.peerview = WATER_PEER;
   this.walkSound = "stone";
 }
 FancyFloor3Tile.prototype = new TerrainObject();
@@ -613,7 +613,7 @@ function BlankBlackTile() {
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 2;
   this.desc = "darkness";
-  this.peerview = "#000000";
+  this.peerview = DARKNESS_PEER;
 }
 BlankBlackTile.prototype = new TerrainObject();
 
@@ -627,7 +627,7 @@ function ChasmTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "chasm";
-  this.peerview = "#000000";
+  this.peerview = DARKNESS_PEER;
 }
 ChasmTile.prototype = new TerrainObject();
 
@@ -640,7 +640,7 @@ function DarknessTile() {
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.desc = "darkness";
-  this.peerview = "#000000";
+  this.peerview = DARKNESS_PEER;
 }
 DarknessTile.prototype = new TerrainObject();
 
@@ -654,7 +654,7 @@ function TitanWallTLTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "huge wall";
-  this.peerview = "#ffffff";
+  this.peerview = MOUNTAIN_PEER;
 }
 TitanWallTLTile.prototype = new TerrainObject();
 
@@ -668,7 +668,7 @@ function TitanWallTRTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "huge wall";
-  this.peerview = "#ffffff";
+  this.peerview = MOUNTAIN_PEER;
 }
 TitanWallTRTile.prototype = new TerrainObject();
 
@@ -682,7 +682,7 @@ function TitanWallBLTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "huge wall";
-  this.peerview = "#ffffff";
+  this.peerview = MOUNTAIN_PEER;
 }
 TitanWallBLTile.prototype = new TerrainObject();
 
@@ -696,7 +696,7 @@ function TitanWallBRTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "huge wall";
-  this.peerview = "#ffffff";
+  this.peerview = MOUNTAIN_PEER;
 }
 TitanWallBRTile.prototype = new TerrainObject();
 
@@ -710,7 +710,7 @@ function ShinyWallTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "#ffffff";
+  this.peerview = MOUNTAIN_PEER;
 }
 ShinyWallTile.prototype = new TerrainObject();
 
@@ -724,7 +724,7 @@ function OffwhiteWallTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "#ffffff";
+  this.peerview = MOUNTAIN_PEER;
 }
 OffwhiteWallTile.prototype = new TerrainObject();
 
@@ -738,7 +738,7 @@ function WallTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "#ffffff";
+  this.peerview = MOUNTAIN_PEER;
 }
 WallTile.prototype = new TerrainObject();
 
@@ -752,7 +752,7 @@ function FireplaceWallTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "#ffffff";
+  this.peerview = MOUNTAIN_PEER;
 }
 FireplaceWallTile.prototype = new TerrainObject();
 
@@ -766,7 +766,7 @@ function GreyWallTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 GreyWallTile.prototype = new TerrainObject();
 
@@ -780,7 +780,7 @@ function GreyFireplaceWallTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 GreyFireplaceWallTile.prototype = new TerrainObject();
 
@@ -794,7 +794,7 @@ function RuinsWallTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 RuinsWallTile.prototype = new TerrainObject();
 
@@ -808,7 +808,7 @@ function RuinsWallArchTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 RuinsWallArchTile.prototype = new TerrainObject();
 
@@ -822,7 +822,7 @@ function RuinsWallIvyTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 RuinsWallIvyTile.prototype = new TerrainObject();
 
@@ -836,7 +836,7 @@ function RuinsWallIvy2Tile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 RuinsWallIvy2Tile.prototype = new TerrainObject();
 
@@ -850,7 +850,7 @@ function IllusionaryRuinsWallTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 IllusionaryRuinsWallTile.prototype = new TerrainObject();
 
@@ -867,7 +867,7 @@ function ArrowSlitTile() {
 	this.loeupclose = {distance : 0 , blocklow : .2 };
 	this.prefix = "an";
 	this.desc = "arrow slit";
-  this.peerview = "#ffffff";
+  this.peerview = MOUNTAIN_PEER;
 }
 ArrowSlitTile.prototype = new TerrainObject();
 
@@ -884,7 +884,7 @@ function GreyArrowSlitTile() {
 	this.loeupclose = {distance : 0 , blocklow : .2 };
 	this.prefix = "an";
 	this.desc = "arrow slit";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 GreyArrowSlitTile.prototype = new TerrainObject();
 
@@ -899,7 +899,7 @@ function WindowTile() {
 	this.blockloe = 1;
 	this.prefix = "a";
 	this.desc = "window";
-  this.peerview = "#ffffff";
+  this.peerview = MOUNTAIN_PEER;
 }
 WindowTile.prototype = new TerrainObject();
 
@@ -914,7 +914,7 @@ function GreyWindowTile() {
 	this.blockloe = 1;
 	this.prefix = "a";
 	this.desc = "window";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 GreyWindowTile.prototype = new TerrainObject();
 
@@ -927,7 +927,7 @@ function PlanksNSTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "wooden planks";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
   this.walkSound = "stone";
 }
 PlanksNSTile.prototype = new TerrainObject();
@@ -941,7 +941,7 @@ function DarkPlanksNSTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "wooden planks";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
   this.walkSound = "stone";
 }
 DarkPlanksNSTile.prototype = new TerrainObject();
@@ -955,7 +955,7 @@ function RoughPlanksNSTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "wooden planks";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
   this.walkSound = "stone";
 }
 RoughPlanksNSTile.prototype = new TerrainObject();
@@ -970,7 +970,7 @@ function SouthCoastMeadowTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#61a01e";
+  this.peerview = MEADOW_PEER;
   this.walkSound = "grass";
 }
 SouthCoastMeadowTile.prototype = new TerrainObject();
@@ -985,7 +985,7 @@ function SouthCoastTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#618928";
+  this.peerview = GRASS_PEER;
   this.walkSound = "grass";
 }
 SouthCoastTile.prototype = new TerrainObject();
@@ -1000,7 +1000,7 @@ function SouthCoastSandTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
 }
 SouthCoastSandTile.prototype = new TerrainObject();
@@ -1015,7 +1015,7 @@ function SouthCoastDirtTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
 }
 SouthCoastDirtTile.prototype = new TerrainObject();
@@ -1030,7 +1030,7 @@ function SouthCoastCaveTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#626262";
+  this.peerview = CAVE_PEER;
   this.walkSound = "grass";
 }
 SouthCoastCaveTile.prototype = new TerrainObject();
@@ -1045,7 +1045,7 @@ function NorthCoastMeadowTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#61a01e";
+  this.peerview = MEADOW_PEER;
   this.walkSound = "grass";
 }
 NorthCoastMeadowTile.prototype = new TerrainObject();
@@ -1060,7 +1060,7 @@ function NorthCoastTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#618928";
+  this.peerview = GRASS_PEER;
   this.walkSound = "grass";
 }
 NorthCoastTile.prototype = new TerrainObject();
@@ -1075,7 +1075,7 @@ function NorthCoastSandTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
 }
 NorthCoastSandTile.prototype = new TerrainObject();
@@ -1090,7 +1090,7 @@ function NorthCoastDirtTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
 }
 NorthCoastDirtTile.prototype = new TerrainObject();
@@ -1105,7 +1105,7 @@ function NorthCoastCaveTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#626262";
+  this.peerview = CAVE_PEER;
   this.walkSound = "grass";
 }
 NorthCoastCaveTile.prototype = new TerrainObject();
@@ -1120,7 +1120,7 @@ function EastCoastMeadowTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#61a01e";
+  this.peerview = MEADOW_PEER;
   this.walkSound = "grass";
 }
 EastCoastMeadowTile.prototype = new TerrainObject();
@@ -1135,7 +1135,7 @@ function EastCoastTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#618928";
+  this.peerview = GRASS_PEER;
   this.walkSound = "grass";
 }
 EastCoastTile.prototype = new TerrainObject();
@@ -1156,7 +1156,7 @@ function EastCoastSandTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
 }
 EastCoastSandTile.prototype = new TerrainObject();
@@ -1171,7 +1171,7 @@ function EastCoastDirtTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
 }
 EastCoastDirtTile.prototype = new TerrainObject();
@@ -1186,7 +1186,7 @@ function EastCoastCaveTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#626262";
+  this.peerview = CAVE_PEER;
   this.walkSound = "grass";
 }
 EastCoastCaveTile.prototype = new TerrainObject();
@@ -1201,7 +1201,7 @@ function WestCoastMeadowTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#61a01e";
+  this.peerview = MEADOW_PEER;
   this.walkSound = "grass";
 }
 WestCoastMeadowTile.prototype = new TerrainObject();
@@ -1216,7 +1216,7 @@ function WestCoastTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#618928";
+  this.peerview = GRASS_PEER;
   this.walkSound = "grass";
 }
 WestCoastTile.prototype = new TerrainObject();
@@ -1231,7 +1231,7 @@ function WestCoastSandTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
 }
 WestCoastSandTile.prototype = new TerrainObject();
@@ -1246,7 +1246,7 @@ function WestCoastDirtTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
 }
 WestCoastDirtTile.prototype = new TerrainObject();
@@ -1261,7 +1261,7 @@ function WestCoastCaveTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#626262";
+  this.peerview = CAVE_PEER;
   this.walkSound = "grass";
 }
 WestCoastCaveTile.prototype = new TerrainObject();
@@ -1277,7 +1277,7 @@ function NortheastCoastMeadowTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#61a01e";
+  this.peerview = MEADOW_PEER;
   this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
@@ -1295,7 +1295,7 @@ function NortheastCoastTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#618928";
+  this.peerview = GRASS_PEER;
   this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
@@ -1313,7 +1313,7 @@ function NortheastCoastSandTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
@@ -1331,7 +1331,7 @@ function NortheastCoastDirtTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
@@ -1349,7 +1349,7 @@ function NortheastCoastCaveTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#626262";
+  this.peerview = CAVE_PEER;
   this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
@@ -1367,7 +1367,7 @@ function SouthwestCoastMeadowTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#61a01e";
+  this.peerview = MEADOW_PEER;
   this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
@@ -1385,7 +1385,7 @@ function SouthwestCoastTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#618928";
+  this.peerview = GRASS_PEER;
   this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
@@ -1403,7 +1403,7 @@ function SouthwestCoastSandTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
@@ -1421,7 +1421,7 @@ function SouthwestCoastDirtTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
@@ -1439,7 +1439,7 @@ function SouthwestCoastCaveTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#626262";
+  this.peerview = CAVE_PEER;
   this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
@@ -1457,7 +1457,7 @@ function NorthwestCoastMeadowTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#61a01e";
+  this.peerview = MEADOW_PEER;
   this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
@@ -1475,7 +1475,7 @@ function NorthwestCoastTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#618928";
+  this.peerview = GRASS_PEER;
   this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
@@ -1493,7 +1493,7 @@ function NorthwestCoastSandTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
@@ -1511,7 +1511,7 @@ function NorthwestCoastDirtTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
@@ -1529,7 +1529,7 @@ function NorthwestCoastCaveTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#626262";
+  this.peerview = CAVE_PEER;
   this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
@@ -1547,7 +1547,7 @@ function SoutheastCoastMeadowTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#61a01e";
+  this.peerview = MEADOW_PEER;
   this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
@@ -1565,7 +1565,7 @@ function SoutheastCoastTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#618928";
+  this.peerview = GRASS_PEER;
   this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
@@ -1583,7 +1583,7 @@ function SoutheastCoastSandTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
@@ -1601,7 +1601,7 @@ function SoutheastCoastDirtTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
@@ -1619,7 +1619,7 @@ function SoutheastCoastCaveTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#626262";
+  this.peerview = CAVE_PEER;
   this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
@@ -1638,7 +1638,7 @@ function SouthLavaCoastMeadowTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#61a01e";
+  this.peerview = MEADOW_PEER;
   this.walkSound = "grass";
 }
 SouthLavaCoastMeadowTile.prototype = new TerrainObject();
@@ -1653,7 +1653,7 @@ function SouthLavaCoastTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#618928";
+  this.peerview = GRASS_PEER;
   this.walkSound = "grass";
 }
 SouthLavaCoastTile.prototype = new TerrainObject();
@@ -1668,7 +1668,7 @@ function SouthLavaCoastSandTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
 }
 SouthLavaCoastSandTile.prototype = new TerrainObject();
@@ -1683,7 +1683,7 @@ function SouthLavaCoastDirtTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
 }
 SouthLavaCoastDirtTile.prototype = new TerrainObject();
@@ -1698,7 +1698,7 @@ function SouthLavaCoastCaveTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#626262";
+  this.peerview = CAVE_PEER;
   this.walkSound = "grass";
 }
 SouthLavaCoastCaveTile.prototype = new TerrainObject();
@@ -1713,7 +1713,7 @@ function NorthLavaCoastMeadowTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#61a01e";
+  this.peerview = MEADOW_PEER;
   this.walkSound = "grass";
 }
 NorthLavaCoastMeadowTile.prototype = new TerrainObject();
@@ -1728,7 +1728,7 @@ function NorthLavaCoastTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#618928";
+  this.peerview = GRASS_PEER;
   this.walkSound = "grass";
 }
 NorthLavaCoastTile.prototype = new TerrainObject();
@@ -1743,7 +1743,7 @@ function NorthLavaCoastSandTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
 }
 NorthLavaCoastSandTile.prototype = new TerrainObject();
@@ -1758,7 +1758,7 @@ function NorthLavaCoastDirtTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
 }
 NorthLavaCoastDirtTile.prototype = new TerrainObject();
@@ -1773,7 +1773,7 @@ function NorthLavaCoastCaveTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#626262";
+  this.peerview = CAVE_PEER;
   this.walkSound = "grass";
 }
 NorthLavaCoastCaveTile.prototype = new TerrainObject();
@@ -1788,7 +1788,7 @@ function EastLavaCoastMeadowTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#61a01e";
+  this.peerview = MEADOW_PEER;
   this.walkSound = "grass";
 }
 EastLavaCoastMeadowTile.prototype = new TerrainObject();
@@ -1803,7 +1803,7 @@ function EastLavaCoastTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#618928";
+  this.peerview = GRASS_PEER;
   this.walkSound = "grass";
 }
 EastLavaCoastTile.prototype = new TerrainObject();
@@ -1818,7 +1818,7 @@ function EastLavaCoastSandTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
 }
 EastLavaCoastSandTile.prototype = new TerrainObject();
@@ -1833,7 +1833,7 @@ function EastLavaCoastDirtTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
 }
 EastLavaCoastDirtTile.prototype = new TerrainObject();
@@ -1848,7 +1848,7 @@ function EastLavaCoastCaveTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#626262";
+  this.peerview = CAVE_PEER;
   this.walkSound = "grass";
 }
 EastLavaCoastCaveTile.prototype = new TerrainObject();
@@ -1863,7 +1863,7 @@ function WestLavaCoastMeadowTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#61a01e";
+  this.peerview = MEADOW_PEER;
   this.walkSound = "grass";
 }
 WestLavaCoastMeadowTile.prototype = new TerrainObject();
@@ -1878,7 +1878,7 @@ function WestLavaCoastTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#618928";
+  this.peerview = GRASS_PEER;
   this.walkSound = "grass";
 }
 WestLavaCoastTile.prototype = new TerrainObject();
@@ -1893,7 +1893,7 @@ function WestLavaCoastSandTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
 }
 WestLavaCoastSandTile.prototype = new TerrainObject();
@@ -1908,7 +1908,7 @@ function WestLavaCoastDirtTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
 }
 WestLavaCoastDirtTile.prototype = new TerrainObject();
@@ -1923,7 +1923,7 @@ function WestLavaCoastCaveTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#626262";
+  this.peerview = CAVE_PEER;
   this.walkSound = "grass";
 }
 WestLavaCoastCaveTile.prototype = new TerrainObject();
@@ -1939,7 +1939,7 @@ function SouthwestLavaCoastDirtTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
@@ -1957,7 +1957,7 @@ function SouthwestLavaCoastCaveTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
@@ -1975,7 +1975,7 @@ function SoutheastLavaCoastDirtTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
@@ -1993,7 +1993,7 @@ function SoutheastLavaCoastCaveTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
@@ -2011,7 +2011,7 @@ function NortheastLavaCoastDirtTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
@@ -2029,7 +2029,7 @@ function NortheastLavaCoastCaveTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
@@ -2047,7 +2047,7 @@ function NorthwestLavaCoastDirtTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
@@ -2065,7 +2065,7 @@ function NorthwestLavaCoastCaveTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
@@ -2086,7 +2086,7 @@ function RiverTile() {
   this.prefix = "a";
   this.desc = "river";
   this.combatmap = "Water";
-  this.peerview = "#12bbff";
+  this.peerview = SHALLOW_WATER_PEER;
   this.walkSound = "water";
   
   SetBySurroundRiver.call(this);
@@ -2174,7 +2174,7 @@ function RedCobblestoneTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "cobblestones";
-  this.peerview = "#a51a14";
+  this.peerview = RED_COBBLE_PEER;
   this.walkSound = "stone";
 }
 RedCobblestoneTile.prototype = new TerrainObject();
@@ -2188,7 +2188,7 @@ function BlueCobblestoneTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "cobblestones";
-  this.peerview = "#0d2185";
+  this.peerview = BLUE_COBBLE_PEER;
   this.walkSound = "stone";
 }
 BlueCobblestoneTile.prototype = new TerrainObject();
@@ -2202,7 +2202,7 @@ function BlackCobblestoneTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "cobblestones";
-  this.peerview = "#1d1d1d";
+  this.peerview = BLACK_COBBLE_PEER;
   this.walkSound = "stone";
 }
 BlackCobblestoneTile.prototype = new TerrainObject();
@@ -2216,7 +2216,7 @@ function CrackedBlackCobblestoneTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "cobblestones";
-  this.peerview = "#1d1d1d";
+  this.peerview = BLACK_COBBLE_PEER;
   this.walkSound = "stone";
 }
 CrackedBlackCobblestoneTile.prototype = new TerrainObject();
@@ -2230,7 +2230,7 @@ function CobblestoneTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "cobblestones";
-  this.peerview = "#772e24";
+  this.peerview = COBBLE_PEER;
   this.walkSound = "stone";
 }
 CobblestoneTile.prototype = new TerrainObject();
@@ -2244,7 +2244,7 @@ function BrokenCobblestoneTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "cobblestones";
-  this.peerview = "#772e24";
+  this.peerview = COBBLE_PEER;
   this.walkSound = "stone";
 }
 BrokenCobblestoneTile.prototype = new TerrainObject();
@@ -2258,7 +2258,7 @@ function FadedCobblestoneTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "cobblestones";
-  this.peerview = "#64443f";
+  this.peerview = CLAY_PEER;
   this.walkSound = "stone";
 }
 FadedCobblestoneTile.prototype = new TerrainObject();
@@ -2272,7 +2272,7 @@ function FadedCobblestone2Tile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "cobblestones";
-  this.peerview = "#64443f";
+  this.peerview = CLAY_PEER;
   this.walkSound = "stone";
 }
 FadedCobblestone2Tile.prototype = new TerrainObject();
@@ -2286,7 +2286,7 @@ function TitanFloor1Tile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "large pavers";
-  this.peerview = "#64443f";
+  this.peerview = CLAY_PEER;
   this.walkSound = "stone";
 }
 TitanFloor1Tile.prototype = new TerrainObject();
@@ -2300,7 +2300,7 @@ function TitanFloor2Tile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "large pavers";
-  this.peerview = "#64443f";
+  this.peerview = CLAY_PEER;
   this.walkSound = "stone";
 }
 TitanFloor2Tile.prototype = new TerrainObject();
@@ -2314,7 +2314,7 @@ function TitanFloor3Tile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "large pavers";
-  this.peerview = "#64443f";
+  this.peerview = CLAY_PEER;
   this.walkSound = "stone";
 }
 TitanFloor3Tile.prototype = new TerrainObject();
@@ -2328,7 +2328,7 @@ function TitanFloor4Tile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "large pavers";
-  this.peerview = "#64443f";
+  this.peerview = CLAY_PEER;
   this.walkSound = "stone";
 }
 TitanFloor4Tile.prototype = new TerrainObject();
@@ -2343,7 +2343,7 @@ function ClayPaversTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "clay brick floor";
-  this.peerview = "#64443f";
+  this.peerview = CLAY_PEER;
   this.walkSound = "stone";
 }
 ClayPaversTile.prototype = new TerrainObject();
@@ -2358,7 +2358,7 @@ function FadedWoodNSTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "wood floor";
-  this.peerview = "#c08e5e";
+  this.peerview = FADED_WOOD_PEER;
   this.walkSound = "stone";
 }
 FadedWoodNSTile.prototype = new TerrainObject();
@@ -2373,7 +2373,7 @@ function FadedWoodEWTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "wood floor";
-  this.peerview = "#c08e5e";
+  this.peerview = FADED_WOOD_PEER;
   this.walkSound = "stone";
 }
 FadedWoodEWTile.prototype = new TerrainObject();
@@ -2388,7 +2388,7 @@ function BlueTileFloorTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "blue tile floor";
-  this.peerview = "#476478";
+  this.peerview = BLUE_FLOOR_PEER;
   this.walkSound = "stone";
 }
 BlueTileFloorTile.prototype = new TerrainObject();
@@ -2403,7 +2403,7 @@ function BlueMarbleTileFloorTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "tile floor";
-  this.peerview = "#476478";
+  this.peerview = BLUE_FLOOR_PEER;
   this.walkSound = "stone";
 }
 BlueMarbleTileFloorTile.prototype = new TerrainObject();
@@ -2418,7 +2418,7 @@ function GreenTileFloorTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "tile floor";
-  this.peerview = "#477865";
+  this.peerview = GREEN_FLOOR_PEER;
   this.walkSound = "stone";
 }
 GreenTileFloorTile.prototype = new TerrainObject();
@@ -2433,7 +2433,7 @@ function GreenCheckeredTileFloorTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "tile floor";
-  this.peerview = "#477865";
+  this.peerview = GREEN_FLOOR_PEER;
   this.walkSound = "stone";
 }
 GreenCheckeredTileFloorTile.prototype = new TerrainObject();
@@ -2448,7 +2448,7 @@ function StonePaverTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "stone paver";
-  this.peerview = "#959595";
+  this.peerview = STONE_PAVER_PEER;
   this.walkSound = "stone";
 }
 StonePaverTile.prototype = new TerrainObject();
@@ -2463,7 +2463,7 @@ function StonePaver2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "stone paver";
-  this.peerview = "#959595";
+  this.peerview = STONE_PAVER_PEER;
   this.walkSound = "stone";
 }
 StonePaver2Tile.prototype = new TerrainObject();
@@ -2478,7 +2478,7 @@ function RedTileFloorTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "tile floor";
-  this.peerview = "#a95e56";
+  this.peerview = RED_TILE_PEER;
   this.walkSound = "stone";
 }
 RedTileFloorTile.prototype = new TerrainObject();
@@ -2493,7 +2493,7 @@ function DarkBlueTileFloorTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "tile floor";
-  this.peerview = "#636899";
+  this.peerview = BLUE_TILE_PEER;
   this.walkSound = "stone";
 }
 DarkBlueTileFloorTile.prototype = new TerrainObject();
@@ -2508,7 +2508,7 @@ function BrokenTileFloorTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "tile floor";
-  this.peerview = "#64443f";
+  this.peerview = CLAY_PEER;
   this.walkSound = "stone";
 }
 BrokenTileFloorTile.prototype = new TerrainObject();
@@ -2523,7 +2523,7 @@ function GreyTileFloorTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "tile floor";
-  this.peerview = "#959595";
+  this.peerview = STONE_PAVER_PEER;
   this.walkSound = "stone";
 }
 GreyTileFloorTile.prototype = new TerrainObject();
@@ -2537,7 +2537,7 @@ function FadedFancyFloorTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "floor";
-  this.peerview = "#477865";
+  this.peerview = GREEN_FLOOR_PEER;
   this.walkSound = "stone";
 }
 FadedFancyFloorTile.prototype = new TerrainObject();
@@ -2551,7 +2551,7 @@ function FadedFancyFloor2Tile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "floor";
-  this.peerview = "#8d7058";
+  this.peerview = FANCY_TILE_PEER;
   this.walkSound = "stone";
 }
 FadedFancyFloor2Tile.prototype = new TerrainObject();
@@ -2565,7 +2565,7 @@ function FadedFancyFloor3Tile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "floor";
-  this.peerview = "#8d7058";
+  this.peerview = FANCY_TILE_PEER;
   this.walkSound = "stone";
 }
 FadedFancyFloor3Tile.prototype = new TerrainObject();
@@ -2579,7 +2579,7 @@ function CrackedStoneFloorTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "floor";
-  this.peerview = "#66756d";
+  this.peerview = CRACKED_STONE_PEER;
   this.walkSound = "stone";
 }
 CrackedStoneFloorTile.prototype = new TerrainObject();
@@ -2593,7 +2593,7 @@ function FadedDarkWoodNSTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "floor";
-  this.peerview = "#9e8c74";
+  this.peerview = DARK_FADED_WOOD_PEER;
   this.walkSound = "stone";
 }
 FadedDarkWoodNSTile.prototype = new TerrainObject();
@@ -2607,7 +2607,7 @@ function CobblestoneRoadTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "cobblestones";
-  this.peerview = "#772e24";
+  this.peerview = COBBLE_PEER;
   this.walkSound = "stone";
   this.civilizedpathweight = .6;
 }
@@ -2622,7 +2622,7 @@ function PurpleCobblestoneRoadTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "cobblestones";
-  this.peerview = "#553668";
+  this.peerview = PURPLE_COBBLE_PEER;
   this.walkSound = "stone";
   this.civilizedpathweight = .6;
 }
@@ -2637,7 +2637,7 @@ function PlanksEWTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "wooden planks";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
   this.walkSound = "stone";
 }
 PlanksEWTile.prototype = new TerrainObject();
@@ -2651,7 +2651,7 @@ function DarkPlanksEWTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "wooden planks";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
   this.walkSound = "stone";
 }
 DarkPlanksEWTile.prototype = new TerrainObject();
@@ -2665,7 +2665,7 @@ function RoughPlanksEWTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "wooden planks";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
   this.walkSound = "stone";
 }
 RoughPlanksEWTile.prototype = new TerrainObject();
@@ -2679,7 +2679,7 @@ function MeadowTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "grass";
-  this.peerview = "#61a01e";
+  this.peerview = MEADOW_PEER;
   this.walkSound = "grass";
   this.combatmap = "Grass"; 
 }
@@ -2694,7 +2694,7 @@ function GrassTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "grass";
-  this.peerview = "#618928";
+  this.peerview = GRASS_PEER;
   this.walkSound = "grass";
   this.combatmap = "Grass"; 
 }
@@ -2717,7 +2717,7 @@ function DirtTile() {
   this.blocklos = 0;
   this.desc = "dirt";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
 }
 DirtTile.prototype = new TerrainObject();
@@ -2732,7 +2732,7 @@ function DirtScrubTile() {
   this.blocklos = 0;
   this.desc = "dirt";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
 }
 DirtScrubTile.prototype = new TerrainObject();
@@ -2747,7 +2747,7 @@ function FallowFarmTile() {
   this.blocklos = 0;
   this.desc = "dirt";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
 }
 FallowFarmTile.prototype = new TerrainObject();
@@ -2762,7 +2762,7 @@ function FarmTile() {
   this.blocklos = 0;
   this.desc = "dirt";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
 }
 FarmTile.prototype = new TerrainObject();
@@ -2777,7 +2777,7 @@ function FallowFarm2Tile() {
   this.blocklos = 0;
   this.desc = "dirt";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
 }
 FallowFarm2Tile.prototype = new TerrainObject();
@@ -2792,7 +2792,7 @@ function Farm2Tile() {
   this.blocklos = 0;
   this.desc = "dirt";
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
 }
 Farm2Tile.prototype = new TerrainObject();
@@ -2808,7 +2808,7 @@ function RoadTile() {
   this.prefix = "a";
   this.desc = "dirt road";
   this.combatmap = "Grass";
-  this.peerview = "#4d462c";
+  this.peerview = ROAD_PEER;
   
   this.initdelay = 0.8;
   this.pathweight = .8;
@@ -2830,7 +2830,7 @@ function RoadWNTile() {
   this.prefix = "a";
   this.desc = "dirt road";
   this.combatmap = "Grass";
-  this.peerview = "#4d462c";
+  this.peerview = ROAD_PEER;
   
   this.initdelay = 0.8;
   this.pathweight = .8;
@@ -2851,7 +2851,7 @@ function BrushTile() {
   this.initdelay = 1.1;
   this.pathweight = 1.1;
   this.combatmap = "Brush";
-  this.peerview = "#618928";
+  this.peerview = GRASS_PEER;
   this.walkSound = "grass";
 }
 BrushTile.prototype = new TerrainObject();
@@ -2868,7 +2868,7 @@ function BushesTile() {
   this.initdelay = 1.2;
   this.pathweight = 1.1;
   this.combatmap = "Brush";
-  this.peerview = "#618928";
+  this.peerview = GRASS_PEER;
   this.walkSound = "grass";
 }
 BushesTile.prototype = new TerrainObject();
@@ -2885,7 +2885,7 @@ function UnderbrushTile() {
   this.initdelay = 1.1;
   this.pathweight = 1.1;
   this.combatmap = "Brush";
-  this.peerview = "#618928";
+  this.peerview = GRASS_PEER;
   this.walkSound = "grass";
 }
 UnderbrushTile.prototype = new TerrainObject();
@@ -2902,7 +2902,7 @@ function SandTile() {
   this.initdelay = 1.1;
   this.pathweight = 1.1;
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
 }
 SandTile.prototype = new TerrainObject();
@@ -2919,7 +2919,7 @@ function SandVegetationTile() {
   this.initdelay = 1.1;
   this.pathweight = 1.1;
   this.combatmap = "Grass";
-  this.peerview = "#5f6114";
+  this.peerview = SAND_PEER;
   this.walkSound = "grass";
 }
 SandVegetationTile.prototype = new TerrainObject();
@@ -2936,7 +2936,7 @@ function BrushNCoastTile() {
   this.initdelay = 1.1;
   this.pathweight = 1.1;
   this.combatmap = "Brush";
-  this.peerview = "#618928";
+  this.peerview = GRASS_PEER;
   this.walkSound = "grass";
 }
 BrushNCoastTile.prototype = new TerrainObject();
@@ -2952,7 +2952,7 @@ function BrushECoastTile() {
   this.initdelay = 1.1;
   this.pathweight = 1.1;
   this.combatmap = "Brush";
-  this.peerview = "#618928";
+  this.peerview = GRASS_PEER;
   this.walkSound = "grass";
 }
 BrushECoastTile.prototype = new TerrainObject();
@@ -2969,7 +2969,7 @@ function BrushSCoastTile() {
   this.initdelay = 1.1;
   this.pathweight = 1.1;
   this.combatmap = "Brush";
-  this.peerview = "#618928";
+  this.peerview = GRASS_PEER;
   this.walkSound = "grass";
 }
 BrushSCoastTile.prototype = new TerrainObject();
@@ -2986,7 +2986,7 @@ function BrushWCoastTile() {
   this.initdelay = 1.1;  
   this.pathweight = 1.1;
   this.combatmap = "Brush";
-  this.peerview = "#618928";
+  this.peerview = GRASS_PEER;
   this.walkSound = "grass";
 }
 BrushWCoastTile.prototype = new TerrainObject();
@@ -3004,7 +3004,7 @@ function ForestTile() {
   this.initdelay = 1.3;
   this.pathweight = 1.3;
   this.combatmap = "Forest";
-  this.peerview = "#326a25";
+  this.peerview = FOREST_PEER;
   this.walkSound = "forest";
 }
 ForestTile.prototype = new TerrainObject();
@@ -3354,7 +3354,7 @@ function HillsTile() {
   this.initdelay = 1.5;
   this.pathweight = 1.5;
   this.combatmap = "Hill";
-  this.peerview = "#b6d123";
+  this.peerview = HILL_PEER;
   this.walkSound = "hill";
 }
 HillsTile.prototype = new TerrainObject();
@@ -3371,7 +3371,7 @@ function Hills1Tile() {
   this.initdelay = 1.5;
   this.pathweight = 1.5;
   this.combatmap = "Hill";
-  this.peerview = "#b6d123";
+  this.peerview = HILL_PEER;
   this.walkSound = "hill";
 }
 Hills1Tile.prototype = new TerrainObject();
@@ -3388,7 +3388,7 @@ function Hills2Tile() {
   this.initdelay = 1.5;
   this.pathweight = 1.5;
   this.combatmap = "Hill";
-  this.peerview = "#b6d123";
+  this.peerview = HILL_PEER;
   this.walkSound = "hill";
 }
 Hills2Tile.prototype = new TerrainObject();
@@ -3405,7 +3405,7 @@ function SwampTile() {
   this.initdelay = 1.2;
   this.pathweight = 4;
   this.combatmap = "Swamp";
-  this.peerview = "#122112";
+  this.peerview = SWAMP_PEER;
   this.walkSound = "swamp";
 }
 SwampTile.prototype = new TerrainObject();
@@ -3467,7 +3467,7 @@ function ShinglesTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "roof";
-  this.peerview = "#08d66d";
+  this.peerview = ROOF_PEER;
 }
 ShinglesTile.prototype = new TerrainObject();
 
@@ -3481,7 +3481,7 @@ function Shingles2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "roof";
-  this.peerview = "#08d66d";
+  this.peerview = ROOF_PEER;
 }
 Shingles2Tile.prototype = new TerrainObject();
 
@@ -3495,7 +3495,7 @@ function ShinglesTopTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "roof";
-  this.peerview = "#08d66d";
+  this.peerview = ROOF_PEER;
 }
 ShinglesTopTile.prototype = new TerrainObject();
 
@@ -3509,7 +3509,7 @@ function IcyFloorTile() {
 	this.blocklos = 0;
 	this.prefix = "an";
 	this.desc = "icy floor";
-	this.peerview = "#3f89b2";
+	this.peerview = ICE_PEER;
 	this.walkSound = "stone";
 }
 IcyFloorTile.prototype = new TerrainObject();
@@ -3524,7 +3524,7 @@ function Icy2FloorTile() {
 	this.blocklos = 0;
 	this.prefix = "an";
 	this.desc = "icy floor";
-	this.peerview = "#3f89b2";
+	this.peerview = ICE_PEER;
 	this.walkSound = "stone";
 }
 Icy2FloorTile.prototype = new TerrainObject();
@@ -3539,7 +3539,7 @@ function CaveFloorTile() {
 	this.blocklos = 0;
 	this.prefix = "a";
 	this.desc = "cave floor";
-	this.peerview = "#626262";
+	this.peerview = CAVE_PEER;
 	this.walkSound = "stone";
 	
 	TilingSpritesheet.call(this, 2);
@@ -3555,7 +3555,7 @@ function CaveWallTile() {
 	this.blocklos = 1;
 	this.prefix = "a";
 	this.desc = "cave wall";
-	this.peerview = "#000000";
+	this.peerview = DARKNESS_PEER;
 	
 	TilingSpritesheet.call(this, 2);
 	SetBySurroundCave.call(this);
@@ -3571,7 +3571,7 @@ function CaveColumnTile() {
 	this.blocklos = .5;
 	this.prefix = "a";
 	this.desc = "cave wall";
-	this.peerview = "#000000";
+	this.peerview = DARKNESS_PEER;
 	
 	TilingSpritesheet.call(this, 2);
 }
@@ -3586,7 +3586,7 @@ function RoughStoneFloorTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.desc = "floor";
-	this.peerview = "#4d462c";
+	this.peerview = ROAD_PEER;
 	this.walkSound = "stone";
 }
 RoughStoneFloorTile.prototype = new TerrainObject();
@@ -3600,7 +3600,7 @@ function LightRoughStoneFloorTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.desc = "floor";
-	this.peerview = "#4d462c";
+	this.peerview = ROAD_PEER;
 	this.walkSound = "stone";
 }
 LightRoughStoneFloorTile.prototype = new TerrainObject();
@@ -3615,7 +3615,7 @@ function HexTransparentFloorTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.desc = "floor";
-	this.peerview = "#1d1d1d";
+	this.peerview = BLACK_COBBLE_PEER;
 	this.walkSound = "stone";
 }
 HexTransparentFloorTile.prototype = new TerrainObject();
@@ -3629,7 +3629,7 @@ function CyanCobblestoneTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.desc = "floor";
-	this.peerview = "#235373";
+	this.peerview = CYAN_PEER;
 	this.walkSound = "stone";
 }
 CyanCobblestoneTile.prototype = new TerrainObject();
@@ -3643,7 +3643,7 @@ function GreenCobblestoneTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.desc = "floor";
-	this.peerview = "#009267";
+	this.peerview = GREEN_COBBLE_PEER;
 	this.walkSound = "stone";
 }
 GreenCobblestoneTile.prototype = new TerrainObject();
@@ -3657,7 +3657,7 @@ function GreenCheckeredFloorTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.desc = "floor";
-	this.peerview = "#a8ecb6";
+	this.peerview = GREEN_CHECKERED_PEER;
 	this.walkSound = "stone";
 }
 GreenCheckeredFloorTile.prototype = new TerrainObject();
@@ -3685,7 +3685,7 @@ function LavaTubeTile() {
 	this.blocklos = 0;
 	this.prefix = "a";
 	this.desc = "lava tube";
-	this.peerview = "#626262";
+	this.peerview = CAVE_PEER;
 	this.walkSound = "stone";
 }
 LavaTubeTile.prototype = new TerrainObject();

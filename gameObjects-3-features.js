@@ -149,7 +149,7 @@ function LavaTile() {
   
   HasAmbientNoise.call(this,"sfx_bubbling_lava",1.5);
   LightEmitting.call(this, 1);
-  this.peerview = "#e42015";
+  this.peerview = LAVA_PEER;
 
   ManualAnimation.call(this, { 
     animstart: 0,
@@ -913,7 +913,7 @@ function CoralTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "coral reef";
-  this.peerview = "#f2a9e0";  
+  this.peerview = CORAL_PEER;
   
   LightEmitting.call(this, 3);
 
@@ -940,7 +940,7 @@ function WorldsEndingRaftTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "raft";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
   this.walkSound = "stone";
   this.bridge = 1;
 }
@@ -956,7 +956,7 @@ function WorldsEndingCenterRaftTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "raft";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
   this.walkSound = "stone";
   this.bridge = 1;
 }
@@ -1271,7 +1271,7 @@ function TowneTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "towne";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
   this.civilized = 1;
 
   Enterable.call(this, "null", 0, 0);
@@ -1298,7 +1298,7 @@ function Towne2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "towne";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
   this.civilized = 1;
 
   Enterable.call(this, "null", 0, 0);
@@ -1325,7 +1325,7 @@ function Towne3Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "towne";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
   this.civilized = 1;
 
   Enterable.call(this, "null", 0, 0);
@@ -1342,7 +1342,7 @@ function KeepTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "keep";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
   this.civilized = 1;
 
   Enterable.call(this, "null", 0, 0);
@@ -1367,7 +1367,7 @@ function TowerTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "tower";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 
   Enterable.call(this, "null", 0, 0);
 
@@ -1394,7 +1394,7 @@ function LighthouseTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "lighthouse";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 
   Enterable.call(this, "null", 0, 0);
 
@@ -1420,7 +1420,7 @@ function VillageTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "village";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
   this.civilized = 1;
 
   Enterable.call(this, "null", 0, 0);
@@ -1437,7 +1437,7 @@ function HotelPheranTile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "inn";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
   this.civilized = 1;
 
   Enterable.call(this, "hotelcalifornia0", 7, 18);
@@ -1485,7 +1485,7 @@ function CastleTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "Castle dea Yggdras";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
   this.civilized = 1;
 
   Enterable.call(this, "null", 0, 0);
@@ -1514,7 +1514,7 @@ function LeftCastleTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.desc = "Castle dea Yggdras";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
   this.civilized = 1;
 }
 LeftCastleTile.prototype = new FeatureObject();
@@ -1528,7 +1528,7 @@ function RightCastleTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.desc = "Castle dea Yggdras";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
   this.civilized = 1;
 }
 RightCastleTile.prototype = new FeatureObject();
@@ -1542,7 +1542,7 @@ function FarLeftCastleTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.desc = "Castle dea Yggdras";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
   this.civilized = 1;
 }
 FarLeftCastleTile.prototype = new FeatureObject();
@@ -1556,7 +1556,7 @@ function FarRightCastleTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.desc = "Castle dea Yggdras";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
   this.civilized = 1;
 }
 FarRightCastleTile.prototype = new FeatureObject();
@@ -1570,7 +1570,7 @@ function UpperFarLeftCastleTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.desc = "Castle dea Yggdras";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
   this.civilized = 1;
 }
 UpperFarLeftCastleTile.prototype = new FeatureObject();
@@ -1584,7 +1584,7 @@ function UpperFarRightCastleTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.desc = "Castle dea Yggdras";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
   this.civilized = 1;
 }
 UpperFarRightCastleTile.prototype = new FeatureObject();
@@ -1598,7 +1598,7 @@ function UpperLeftCastleTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.desc = "Castle dea Yggdras";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
   this.civilized = 1;
 
   ManualAnimation.call(this, { animstart: -4*32,
@@ -1621,7 +1621,7 @@ function UpperRightCastleTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.desc = "Castle dea Yggdras";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
   this.civilized = 1;
 
   ManualAnimation.call(this, { animstart: 0,
@@ -1645,7 +1645,7 @@ function UpperCenterCastleTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.desc = "Castle dea Yggdras";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
   this.civilized = 1;
 }
 UpperCenterCastleTile.prototype = new FeatureObject();
@@ -1659,7 +1659,7 @@ function PileOfRocksTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "pile of rocks";
-  this.peerview = "#959595";
+  this.peerview = STONE_PAVER_PEER;
 }
 PileOfRocksTile.prototype = new FeatureObject();
 
@@ -1672,7 +1672,7 @@ function PushablePileOfRocksTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "pile of rocks";
-  this.peerview = "#959595";
+  this.peerview = STONE_PAVER_PEER;
   Pushable.call(this);
 }
 PushablePileOfRocksTile.prototype = new FeatureObject();
@@ -1827,7 +1827,7 @@ function ShrineTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "gate";
-  this.peerview = "#626262";
+  this.peerview = CAVE_PEER;
 }
 ShrineTile.prototype = new FeatureObject();
 
@@ -1841,7 +1841,7 @@ function BrokenShrineTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "broken gate";
-  this.peerview = "#626262";
+  this.peerview = CAVE_PEER;
 }
 BrokenShrineTile.prototype = new FeatureObject();
 
@@ -1855,7 +1855,7 @@ function RuinsTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "ruin";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -2455,7 +2455,7 @@ function DrawbridgeTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "wooden drawbridge";
-  this.peerview = "#c08e5e";
+  this.peerview = FADED_WOOD_PEER;
   this.walkSound = "stone";
   this.bridge = 1;
 }
@@ -3297,7 +3297,7 @@ function AltarTile() {
 	this.blocklos = 0;
 	this.prefix = "an";
 	this.desc = "altar";
-	this.peerview = "#c1c1c1";
+	this.peerview = GREY_PEER;
 }
 AltarTile.prototype = new FeatureObject();
 
@@ -3311,7 +3311,7 @@ function ThinAltarTile() {
 	this.blocklos = 0;
 	this.prefix = "an";
 	this.desc = "altar";
-	this.peerview = "#c1c1c1";
+	this.peerview = GREY_PEER;
 }
 ThinAltarTile.prototype = new FeatureObject();
 
@@ -3804,7 +3804,7 @@ function LadderDownTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "ladder leading down";
-  this.peerview = "#eaa35f";
+  this.peerview = LADDER_PEER;
 
   Enterable.call(this, "null", 0, 0);
   this.descend = "Climb down!";
@@ -3825,7 +3825,7 @@ function LadderUpTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "ladder leading up";
-  this.peerview = "#eaa35f";
+  this.peerview = LADDER_PEER;
 
   Enterable.call(this, "null", 0, 0);
   this.klimb = "Climb up!";
@@ -3845,7 +3845,7 @@ function StairDownTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs down";
-  this.peerview = "#626262";
+  this.peerview = CAVE_PEER;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -3865,7 +3865,7 @@ function StairUpTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs up";
-  this.peerview = "#626262";
+  this.peerview = CAVE_PEER;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -3885,7 +3885,7 @@ function StairDown2Tile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs down";
-  this.peerview = "#626262";
+  this.peerview = CAVE_PEER;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -3905,7 +3905,7 @@ function StairUp2Tile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs up";
-  this.peerview = "#626262";
+  this.peerview = CAVE_PEER;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -3925,7 +3925,7 @@ function FancyStairDownTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs down";
-  this.peerview = "#626262";
+  this.peerview = CAVE_PEER;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -3945,7 +3945,7 @@ function FancyStairUpTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs up";
-  this.peerview = "#626262";
+  this.peerview = CAVE_PEER;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -3965,7 +3965,7 @@ function FancyStairDown2Tile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs down";
-  this.peerview = "#626262";
+  this.peerview = CAVE_PEER;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -3985,7 +3985,7 @@ function FancyStairUp2Tile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs up";
-  this.peerview = "#626262";
+  this.peerview = CAVE_PEER;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -4005,7 +4005,7 @@ function WoodenStairDownTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs down";
-  this.peerview = "#eaa35f";
+  this.peerview = LADDER_PEER;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -4025,7 +4025,7 @@ function WoodenStairUpTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs up";
-  this.peerview = "#eaa35f";
+  this.peerview = LADDER_PEER;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -4045,7 +4045,7 @@ function WoodenStairDown2Tile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs down";
-  this.peerview = "#eaa35f";
+  this.peerview = LADDER_PEER;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -4065,7 +4065,7 @@ function WoodenStairUp2Tile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs up";
-  this.peerview = "#eaa35f";
+  this.peerview = LADDER_PEER;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -4086,7 +4086,7 @@ function SingleSignpostTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "signpost";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 SingleSignpostTile.prototype = new FeatureObject();
 
@@ -4100,7 +4100,7 @@ function SignpostLeftTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "signpost";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 SignpostLeftTile.prototype = new FeatureObject();
 
@@ -4114,7 +4114,7 @@ function SignpostRightTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "signpost";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 SignpostRightTile.prototype = new FeatureObject();
 
@@ -4128,7 +4128,7 @@ function CarpenterSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "carpenter";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 CarpenterSignTile.prototype = new FeatureObject();
 
@@ -4142,7 +4142,7 @@ function CarpenterSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "carpenter";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 CarpenterSign2Tile.prototype = new FeatureObject();
 
@@ -4156,7 +4156,7 @@ function InnSignTile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "inn";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 InnSignTile.prototype = new FeatureObject();
 
@@ -4170,7 +4170,7 @@ function InnSign2Tile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "inn";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 InnSign2Tile.prototype = new FeatureObject();
 
@@ -4184,7 +4184,7 @@ function TavernSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "tavern";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 TavernSignTile.prototype = new FeatureObject();
 
@@ -4198,7 +4198,7 @@ function TavernSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "tavern";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 TavernSign2Tile.prototype = new FeatureObject();
 
@@ -4212,7 +4212,7 @@ function ArmourySignTile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "armoury";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 ArmourySignTile.prototype = new FeatureObject();
 
@@ -4226,7 +4226,7 @@ function ArmourySign2Tile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "armoury";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 ArmourySign2Tile.prototype = new FeatureObject();
 
@@ -4240,7 +4240,7 @@ function GrocerSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "grocer";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 GrocerSignTile.prototype = new FeatureObject();
 
@@ -4254,7 +4254,7 @@ function GrocerSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "grocer";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 GrocerSign2Tile.prototype = new FeatureObject();
 
@@ -4268,7 +4268,7 @@ function WeaponSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "weaponsmith";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 WeaponSignTile.prototype = new FeatureObject();
 
@@ -4282,7 +4282,7 @@ function WeaponSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "weaponsmith";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 WeaponSign2Tile.prototype = new FeatureObject();
 
@@ -4296,7 +4296,7 @@ function BowyerSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bowyer";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 BowyerSignTile.prototype = new FeatureObject();
 
@@ -4310,7 +4310,7 @@ function BowyerSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bowyer";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 BowyerSign2Tile.prototype = new FeatureObject();
 
@@ -4324,7 +4324,7 @@ function AlchemistSignTile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "alchemist";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 AlchemistSignTile.prototype = new FeatureObject();
 
@@ -4338,7 +4338,7 @@ function AlchemistSign2Tile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "alchemist";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 AlchemistSign2Tile.prototype = new FeatureObject();
 
@@ -4352,7 +4352,7 @@ function MagicShoppeSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "magic shoppe";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 MagicShoppeSignTile.prototype = new FeatureObject();
 
@@ -4366,7 +4366,7 @@ function MagicShoppeSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "magic shoppe";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 MagicShoppeSign2Tile.prototype = new FeatureObject();
 
@@ -4380,7 +4380,7 @@ function HealerSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "healer";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 HealerSignTile.prototype = new FeatureObject();
 
@@ -4394,7 +4394,7 @@ function HealerSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "healer";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 HealerSign2Tile.prototype = new FeatureObject();
 
@@ -4408,7 +4408,7 @@ function CasinoSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "casino";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 CasinoSignTile.prototype = new FeatureObject();
 
@@ -4422,7 +4422,7 @@ function CasinoSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "casino";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 CasinoSign2Tile.prototype = new FeatureObject();
 
@@ -4436,7 +4436,7 @@ function PaladinSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "sign showing a chalice";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 PaladinSignTile.prototype = new FeatureObject();
 
@@ -4450,7 +4450,7 @@ function PaladinSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "sign showing a chalice";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 PaladinSign2Tile.prototype = new FeatureObject();
 
@@ -4464,7 +4464,7 @@ function HerbalistSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "herbalist";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 HerbalistSignTile.prototype = new FeatureObject();
 
@@ -4478,7 +4478,7 @@ function HerbalistSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "herbalist";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 HerbalistSign2Tile.prototype = new FeatureObject();
 
@@ -4492,7 +4492,7 @@ function CartographerSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "cartographer";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 CartographerSignTile.prototype = new FeatureObject();
 
@@ -4506,7 +4506,7 @@ function CartographerSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "cartographer";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 CartographerSign2Tile.prototype = new FeatureObject();
 
@@ -4520,7 +4520,7 @@ function WhitesmithSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "whitesmith";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 WhitesmithSignTile.prototype = new FeatureObject();
 
@@ -4534,7 +4534,7 @@ function WhitesmithSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "whitesmith";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 WhitesmithSign2Tile.prototype = new FeatureObject();
 
@@ -4548,7 +4548,7 @@ function CourthouseSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "courthouse";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 CourthouseSignTile.prototype = new FeatureObject();
 
@@ -4562,7 +4562,7 @@ function CourthouseSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "courthouse";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 CourthouseSign2Tile.prototype = new FeatureObject();
 
@@ -4576,7 +4576,7 @@ function BardSignTile() {
   this.blocklos = 0;
   this.prefix = "the";
   this.desc = "Bardic College";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 BardSignTile.prototype = new FeatureObject();
 
@@ -4590,7 +4590,7 @@ function BardSign2Tile() {
   this.blocklos = 0;
   this.prefix = "the";
   this.desc = "Bardic College";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 BardSign2Tile.prototype = new FeatureObject();
 
@@ -4604,7 +4604,7 @@ function BrokenSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "broken sign";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 BrokenSignTile.prototype = new FeatureObject();
 
@@ -4618,7 +4618,7 @@ function BrokenSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "broken sign";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 BrokenSign2Tile.prototype = new FeatureObject();
 
@@ -4632,7 +4632,7 @@ function UnfinishedSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "broken sign";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 UnfinishedSignTile.prototype = new FeatureObject();
 
@@ -4646,7 +4646,7 @@ function UnfinishedSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "broken sign";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
 }
 UnfinishedSign2Tile.prototype = new FeatureObject();
 
@@ -4659,7 +4659,7 @@ function NSPierWTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "wooden pier";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
   this.walkSound = "stone";
 }
 NSPierWTile.prototype = new FeatureObject();
@@ -4673,7 +4673,7 @@ function NSPierETile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "wooden pier";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
   this.walkSound = "stone";
 }
 NSPierETile.prototype = new FeatureObject();
@@ -4687,7 +4687,7 @@ function EWPierNTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "wooden pier";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
   this.walkSound = "stone";
 }
 EWPierNTile.prototype = new FeatureObject();
@@ -4701,7 +4701,7 @@ function EWPierSTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "wooden pier";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
   this.walkSound = "stone";
 }
 EWPierSTile.prototype = new FeatureObject();
@@ -4715,7 +4715,7 @@ function TombstoneTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "tombstone";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 TombstoneTile.prototype = new FeatureObject();
 
@@ -4825,7 +4825,7 @@ function WBridgeNSTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bridge";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
   this.walkSound = "stone";
   this.bridge = 1;
 }
@@ -4841,7 +4841,7 @@ function EBridgeNSTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bridge";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
   this.walkSound = "stone";
   this.bridge = 1;
 }
@@ -4857,7 +4857,7 @@ function BridgeNSTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bridge";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
   this.walkSound = "stone";
   this.bridge = 1;
 }
@@ -4873,7 +4873,7 @@ function BridgeNSBrokenTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bridge";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
   this.walkSound = "stone";
   this.bridge = 1;
 }
@@ -4889,7 +4889,7 @@ function NBridgeEWTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bridge";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
   this.walkSound = "stone";
   this.bridge = 1;
 }
@@ -4905,7 +4905,7 @@ function SBridgeEWTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bridge";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
   this.walkSound = "stone";
   this.bridge = 1;
 }
@@ -4921,7 +4921,7 @@ function BridgeEWTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bridge";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
   this.walkSound = "stone";
   this.bridge = 1;
 }
@@ -4937,7 +4937,7 @@ function BridgeEWBrokenTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bridge";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
   this.walkSound = "stone";
   this.bridge = 1;
 }
@@ -5699,7 +5699,7 @@ function LooseFloorboardEWTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "wooden planks";
-  this.peerview = "#9d5a20";
+  this.peerview = WOOD_PEER;
   this.walkSound = "stone";
   this.prefix = "a";
   this.lootonce = 1;
@@ -6970,7 +6970,7 @@ function SecretDoorTile() {
 	
 	this.searchDesc = "secret door";
 	this.searchPrefix = "a";
-  this.peerview = "#ffffff";
+  this.peerview = MOUNTAIN_PEER;
   
   this.pathweight = 2; 
 	
@@ -6990,7 +6990,7 @@ function GreySecretDoorTile() {
 	
 	this.searchDesc = "secret door";
 	this.searchPrefix = "a";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
   
   this.pathweight = 2; 
 	
@@ -7007,7 +7007,7 @@ function ShiftingWallTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 ShiftingWallTile.prototype = new FeatureObject();
 
@@ -7020,7 +7020,7 @@ function DestructableStoneWallTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 DestructableStoneWallTile.prototype = new FeatureObject();
 
@@ -7034,7 +7034,7 @@ function RuinsWallTallLeftMidRightTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 RuinsWallTallLeftMidRightTile.prototype = new FeatureObject();
 
@@ -7048,7 +7048,7 @@ function RuinsWallTallLeftMidRight2Tile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 RuinsWallTallLeftMidRight2Tile.prototype = new FeatureObject();
 
@@ -7062,7 +7062,7 @@ function RuinsWallMidLeftMidRightTile() {
 //  this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 RuinsWallMidLeftMidRightTile.prototype = new FeatureObject();
 
@@ -7076,7 +7076,7 @@ function RuinsWallMidLeftTallRightTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 RuinsWallMidLeftTallRightTile.prototype = new FeatureObject();
 
@@ -7090,7 +7090,7 @@ function RuinsWallMidLeftBottomRightTile() {
 //  this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 RuinsWallMidLeftBottomRightTile.prototype = new FeatureObject();
 
@@ -7104,7 +7104,7 @@ function RuinsWallBottomLeftBottomRightTile() {
   //this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 RuinsWallBottomLeftBottomRightTile.prototype = new FeatureObject();
 
@@ -7118,7 +7118,7 @@ function RuinsWallBottomLeftMidRightTile() {
 //  this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 RuinsWallBottomLeftMidRightTile.prototype = new FeatureObject();
 
@@ -8592,7 +8592,7 @@ function UtterDarkTile() {
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 2;
   this.desc = "darkness";
-  this.peerview = "#000000";
+  this.peerview = DARKNESS_PEER;
 }
 UtterDarkTile.prototype = new FeatureObject();
 
@@ -9874,7 +9874,7 @@ function CrenellationNWTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "crenellation";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 CrenellationNWTile.prototype = new FeatureObject();
 
@@ -9887,7 +9887,7 @@ function CrenellationETile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "crenellation";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 CrenellationETile.prototype = new FeatureObject();
 
@@ -9900,7 +9900,7 @@ function CrenellationNETile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "crenellation";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 CrenellationNETile.prototype = new FeatureObject();
 
@@ -9913,7 +9913,7 @@ function CrenellationSTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "crenellation";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 CrenellationSTile.prototype = new FeatureObject();
 
@@ -9926,7 +9926,7 @@ function CrenellationWTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "crenellation";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 CrenellationWTile.prototype = new FeatureObject();
 
@@ -9939,7 +9939,7 @@ function CrenellationNTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "crenellation";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 CrenellationNTile.prototype = new FeatureObject();
 
@@ -9952,7 +9952,7 @@ function CrenellationSWTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "crenellation";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 CrenellationSWTile.prototype = new FeatureObject();
 
@@ -9965,7 +9965,7 @@ function CrenellationSETile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "crenellation";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 CrenellationSETile.prototype = new FeatureObject();
 
@@ -9978,7 +9978,7 @@ function CrenellationNWInnerTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "crenellation";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 CrenellationNWInnerTile.prototype = new FeatureObject();
 
@@ -9991,7 +9991,7 @@ function CrenellationNEInnerTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "crenellation";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 CrenellationNEInnerTile.prototype = new FeatureObject();
 
@@ -10004,7 +10004,7 @@ function CrenellationSWInnerTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "crenellation";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 CrenellationSWInnerTile.prototype = new FeatureObject();
 
@@ -10017,7 +10017,7 @@ function CrenellationSEInnerTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "crenellation";
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 CrenellationSEInnerTile.prototype = new FeatureObject();
 
@@ -10116,7 +10116,7 @@ function DisplayCounterNTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "display counter";
-  this.peerview = "#452318";
+  this.peerview = COUNTER_PEER;
 }
 DisplayCounterNTile.prototype = new FeatureObject();
 
@@ -10131,7 +10131,7 @@ function DisplayCounterSTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "display counter";
-  this.peerview = "#452318";
+  this.peerview = COUNTER_PEER;
 }
 DisplayCounterSTile.prototype = new FeatureObject();
 
@@ -10146,7 +10146,7 @@ function DisplayCounterCTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "display counter";
-  this.peerview = "#452318";
+  this.peerview = COUNTER_PEER;
 }
 DisplayCounterCTile.prototype = new FeatureObject();
 
@@ -10161,7 +10161,7 @@ function MerchantCounterClothTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "display counter";
-  this.peerview = "#452318";
+  this.peerview = COUNTER_PEER;
 }
 MerchantCounterClothTile.prototype = new FeatureObject();
 
@@ -10176,7 +10176,7 @@ function MerchantCounterScaleTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "display counter";
-  this.peerview = "#452318";
+  this.peerview = COUNTER_PEER;
 }
 MerchantCounterScaleTile.prototype = new FeatureObject();
 
@@ -10191,7 +10191,7 @@ function MerchantCounterBillTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "display counter";
-  this.peerview = "#452318";
+  this.peerview = COUNTER_PEER;
 }
 MerchantCounterBillTile.prototype = new FeatureObject();
 
@@ -10206,7 +10206,7 @@ function MerchantCounterBookTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "display counter";
-  this.peerview = "#452318";
+  this.peerview = COUNTER_PEER;
 }
 MerchantCounterBookTile.prototype = new FeatureObject();
 
@@ -10221,7 +10221,7 @@ function MerchantCounterEdgeTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "display counter";
-  this.peerview = "#452318";
+  this.peerview = COUNTER_PEER;
 }
 MerchantCounterEdgeTile.prototype = new FeatureObject();
 
@@ -10236,7 +10236,7 @@ function MerchantCounterTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "display counter";
-  this.peerview = "#452318";
+  this.peerview = COUNTER_PEER;
 }
 MerchantCounterTile.prototype = new FeatureObject();
 
@@ -10251,7 +10251,7 @@ function ArmorRackLeatherTile() {
   this.blockloe = 0;
   this.prefix = "a";
   this.desc = "display suit of leather armor";
-  this.peerview = "#452318";
+  this.peerview = COUNTER_PEER;
 }
 ArmorRackLeatherTile.prototype = new FeatureObject();
 
@@ -10266,7 +10266,7 @@ function ArmorRackChainTile() {
   this.blockloe = 0;
   this.prefix = "a";
   this.desc = "display suit of chain mail";
-  this.peerview = "#452318";
+  this.peerview = COUNTER_PEER;
 }
 ArmorRackChainTile.prototype = new FeatureObject();
 
@@ -10281,7 +10281,7 @@ function ArmorRackPlateTile() {
   this.blockloe = 0;
   this.prefix = "a";
   this.desc = "display suit of plate armor";
-  this.peerview = "#452318";
+  this.peerview = COUNTER_PEER;
 }
 ArmorRackPlateTile.prototype = new FeatureObject();
 
@@ -10295,7 +10295,7 @@ function ShieldDisplayTile() {
   this.blockloe = 0;
   this.prefix = "a";
   this.desc = "shield on a rack";
-  this.peerview = "#452318";
+  this.peerview = COUNTER_PEER;
 }
 ShieldDisplayTile.prototype = new FeatureObject();
 
@@ -10729,7 +10729,7 @@ function SandstoneWallTile() {
   this.passable = MOVE_ETHEREAL;
   this.prefix = "a"
   this.desc = "sandstone wall";
-  this.peerview = "#eee557";
+  this.peerview = SANDSTONE_PEER;
 
   this.pushable = 1;
   
@@ -10777,7 +10777,7 @@ function BlackDragonLadderWallTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
-  this.peerview = "white";  // update if used
+  this.peerview = MOUNTAIN_PEER;  // update if used
 }
 BlackDragonLadderWallTile.prototype = new FeatureObject();
 
@@ -10822,7 +10822,7 @@ function WallOfWavesTile() {
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Waves";
-  this.peerview = "#ffffff";
+  this.peerview = MOUNTAIN_PEER;
 }
 WallOfWavesTile.prototype = new FeatureObject();
 
@@ -10856,7 +10856,7 @@ function WallOfWindsTile() {
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Winds";
-  this.peerview = "#ffffff";
+  this.peerview = MOUNTAIN_PEER;
 }
 WallOfWindsTile.prototype = new FeatureObject();
 
@@ -10890,7 +10890,7 @@ function WallOfKingsTile() {
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Kings";
-  this.peerview = "#ffffff";
+  this.peerview = MOUNTAIN_PEER;
 }
 WallOfKingsTile.prototype = new FeatureObject();
 
@@ -10922,7 +10922,7 @@ function WallOfFlamesTile() {
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Flames";
-  this.peerview = "#ffffff";
+  this.peerview = MOUNTAIN_PEER;
 }
 WallOfFlamesTile.prototype = new FeatureObject();
 
@@ -10958,7 +10958,7 @@ function WallOfVoidTile() {
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Void";
-  this.peerview = "#ffffff";
+  this.peerview = MOUNTAIN_PEER;
 }
 WallOfVoidTile.prototype = new FeatureObject();
 
@@ -11222,7 +11222,7 @@ function BrightFountainTile() {
   this.spriteyoffset = -101*32;
   this.prefix = "a";
   this.desc = "fountain";
-  this.peerview = "#12bbff";
+  this.peerview = SHALLOW_WATER_PEER;
   this.passable = MOVE_ETHEREAL + MOVE_FLY;
   
   HasAmbientNoise.call(this,"sfx_fountain_splash",1.5);
@@ -11247,7 +11247,7 @@ function BlueFountainTile() {
   this.spriteyoffset = -102*32;
   this.prefix = "a";
   this.desc = "fountain";
-  this.peerview = "#12bbff";
+  this.peerview = SHALLOW_WATER_PEER;
   this.passable = MOVE_ETHEREAL + MOVE_FLY;
   
   HasAmbientNoise.call(this,"sfx_fountain_splash",1.5);
@@ -11272,7 +11272,7 @@ function FountainTile() {
   this.spriteyoffset = -101*32;
   this.prefix = "a";
   this.desc = "fountain";
-  this.peerview = "#12bbff";
+  this.peerview = SHALLOW_WATER_PEER;
   this.passable = MOVE_ETHEREAL + MOVE_FLY;
   
   HasAmbientNoise.call(this,"sfx_fountain_splash",2);
@@ -11297,7 +11297,7 @@ function WideFountainTile() {
   this.spriteyoffset = -123*32;
   this.prefix = "a";
   this.desc = "fountain";
-  this.peerview = "#12bbff";
+  this.peerview = SHALLOW_WATER_PEER;
   this.passable = MOVE_ETHEREAL + MOVE_FLY;
   
   HasAmbientNoise.call(this,"sfx_fountain_splash",2);
@@ -11321,7 +11321,7 @@ function BrokenFountainTile() {
   this.spriteyoffset = -53*32;
   this.prefix = "a";
   this.desc = "broken fountain";
-  this.peerview = "#12bbff";
+  this.peerview = SHALLOW_WATER_PEER;
   this.passable = MOVE_ETHEREAL + MOVE_FLY;
 }
 BrokenFountainTile.prototype = new FeatureObject();
@@ -11335,7 +11335,7 @@ function BlueCrystalTile() {
   this.prefix = "a";
   this.desc = "crystal";
   LightEmitting.call(this, 2);
-  this.peerview = "#12bbff";
+  this.peerview = SHALLOW_WATER_PEER;
   this.passable = MOVE_ETHEREAL;
 
   ManualAnimation.call(this, { 
@@ -11360,7 +11360,7 @@ function PurpleCrystalTile() {
   this.prefix = "a";
   this.desc = "crystal";
   LightEmitting.call(this, 2);
-  this.peerview = "#d52bff";
+  this.peerview = PURPLE_CRYSTAL_PEER;
   this.passable = MOVE_ETHEREAL;
 
   ManualAnimation.call(this, { 
@@ -11384,7 +11384,7 @@ function YellowCrystalTile() {
   this.prefix = "a";
   this.desc = "crystal";
   LightEmitting.call(this, 2);
-  this.peerview = "#ffdf17";
+  this.peerview = YELLOW_CRYSTAL_PEER;
   this.passable = MOVE_ETHEREAL;
 
   ManualAnimation.call(this, { 
@@ -11408,7 +11408,7 @@ function GreenCrystalTile() {
   this.prefix = "a";
   this.desc = "crystal";
   LightEmitting.call(this, 2);
-  this.peerview = "#b9fc48";
+  this.peerview = GREEN_CRYSTAL_PEER;
   this.passable = MOVE_ETHEREAL;
 
   ManualAnimation.call(this, { 
@@ -11432,7 +11432,7 @@ function RedCrystalTile() {
   this.prefix = "a";
   this.desc = "crystal";
   LightEmitting.call(this, 2);
-  this.peerview = "#e42015";
+  this.peerview = LAVA_PEER;
   this.passable = MOVE_ETHEREAL;
 
   ManualAnimation.call(this, { 
@@ -11455,7 +11455,7 @@ function WhiteCrystalTile() {
   this.spriteyoffset = -116*32;
   this.prefix = "a";
   this.desc = "crystal";
-  this.peerview = "#ffffff";
+  this.peerview = MOUNTAIN_PEER;
   this.passable = MOVE_ETHEREAL;
 
   ManualAnimation.call(this, { 
@@ -11602,7 +11602,7 @@ function ToshinPanelTile() {
   this.val[67] = 0;
   this.val[68] = 0;
   this.val[69] = 0;
-  this.peerview = "#c1c1c1";
+  this.peerview = GREY_PEER;
 }
 ToshinPanelTile.prototype = new FeatureObject();
 
@@ -12301,7 +12301,7 @@ function OracleObject() {
   this.passable = MOVE_ETHEREAL;
   this.prefix = "the";
   this.desc = "Oracle";
-  this.peerview = "#959595";
+  this.peerview = STONE_PAVER_PEER;
   this.conversation = "oracle";
 }
 OracleObject.prototype = new FeatureObject();
@@ -12394,7 +12394,7 @@ function SwordInStoneTile() {
   this.passable = MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "sword driven into a stone";
-  this.peerview = "#959595";
+  this.peerview = STONE_PAVER_PEER;
 }
 SwordInStoneTile.prototype = new FeatureObject();
 
@@ -12421,7 +12421,7 @@ function StoneWithoutSwordTile() {
   this.passable = MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "stone that once cradled a sword";
-  this.peerview = "#959595";
+  this.peerview = STONE_PAVER_PEER;
 }
 StoneWithoutSwordTile.prototype = new FeatureObject();
 
@@ -13731,7 +13731,7 @@ function AltarOfAshesTile() {
 	this.blocklos = 0;
 	this.prefix = "a";
 	this.desc = "mottled white and dark altar";
-	this.peerview = "#c1c1c1";
+	this.peerview = GREY_PEER;
 }
 AltarOfAshesTile.prototype = new FeatureObject();
 
@@ -13752,7 +13752,7 @@ function AltarOfIceTile() {
 	this.blocklos = 0;
 	this.prefix = "an";
 	this.desc = "iridescent altar";
-	this.peerview = "#c1c1c1";
+	this.peerview = GREY_PEER;
 }
 AltarOfIceTile.prototype = new FeatureObject();
 
@@ -13773,7 +13773,7 @@ function AltarOfBoneTile() {
 	this.blocklos = 0;
 	this.prefix = "an";
 	this.desc = "altar of pure white, made of many small angular pieces";
-	this.peerview = "#c1c1c1";
+	this.peerview = GREY_PEER;
 }
 AltarOfBoneTile.prototype = new FeatureObject();
 
@@ -13794,7 +13794,7 @@ function AltarOfDustTile() {
 	this.blocklos = 0;
 	this.prefix = "a";
 	this.desc = "grey altar, covered with a coating of dust";
-	this.peerview = "#c1c1c1";
+	this.peerview = GREY_PEER;
 }
 AltarOfDustTile.prototype = new FeatureObject();
 
@@ -14163,26 +14163,26 @@ function MapOfEllususTile() {
 }
 MapOfEllususTile.prototype = new ItemObject();  
 
-MapOfEllususTile.prototype.use = function(who) {
-  let retval = {};
-  retval["txt"] = "Use: Map of Ellusus.<br /> You examine the map of Ellusus...";
-  retval["override"] = 1;
-  retval["fin"] = 3;
-  targetCursor.viewing = "map";
-  let uii = document.getElementById('uiinterface');
-  if (uii) {
-    uii.innerHTML = `<img src="graphics/spacer.gif" width="416" height="416" />`;
-    uii.style.backgroundColor = "";
-    uii.style.backgroundImage = `url('graphics/ellususmap.gif')`;  
-    if (PC.checkInventory("Sextant")) {
-      let left = PC.getx()*3-16-4;
-      let top = PC.gety()*3-3;
-      let div = `<div style='position:absolute;left:${left};top:${top};width:10;height:8;z-index:75'><img src='graphics/sextant-cursor.gif' width='10' height='8' /></div>`;
-      uii.innerHTML += div;
-    }
-  }
-  return retval;
-}
+// MapOfEllususTile.prototype.use = function(who) {
+//   let retval = {};
+//   retval["txt"] = "Use: Map of Ellusus.<br /> You examine the map of Ellusus...";
+//   retval["override"] = 1;
+//   retval["fin"] = 3;
+//   targetCursor.viewing = "map";
+//   let uii = document.getElementById('uiinterface');
+//   if (uii) {
+//     uii.innerHTML = `<img src="graphics/spacer.gif" width="416" height="416" />`;
+//     uii.style.backgroundColor = "";
+//     uii.style.backgroundImage = `url('graphics/ellususmap.gif')`;  
+//     if (PC.checkInventory("Sextant")) {
+//       let left = PC.getx()*3-16-4;
+//       let top = PC.gety()*3-3;
+//       let div = `<div style='position:absolute;left:${left};top:${top};width:10;height:8;z-index:75'><img src='graphics/sextant-cursor.gif' width='10' height='8' /></div>`;
+//       uii.innerHTML += div;
+//     }
+//   }
+//   return retval;
+// }
 
 // Maps
 function MapOfLostHopeTile() {
@@ -14200,26 +14200,26 @@ function MapOfLostHopeTile() {
 }
 MapOfLostHopeTile.prototype = new ItemObject();  
 
-MapOfLostHopeTile.prototype.use = function(who) {
-  let retval = {};
-  retval["txt"] = "Use: Map of the Land of Lost Hope.<br /> You examine the map of the Land of Lost Hope...";
-  retval["override"] = 1;
-  retval["fin"] = 3;
-  targetCursor.viewing = "map";
-  let uii = document.getElementById('uiinterface');
-  if (uii) {
-    uii.innerHTML = `<img src="graphics/spacer.gif" width="416" height="416" />`;
-    uii.style.backgroundColor = "";
-    uii.style.backgroundImage = `url('graphics/losthopemap.gif')`;  
-    if (PC.checkInventory("Sextant")) {
-      let left = PC.getx()*3+104-4;
-      let top = PC.gety()*3+74-3;
-      let div = `<div style='position:absolute;left:${left};top:${top};width:10;height:8;z-index:75'><img src='graphics/sextant-cursor.gif' width='10' height='8' /></div>`;
-      uii.innerHTML += div;
-    }
-  }
-  return retval;
-}
+// MapOfLostHopeTile.prototype.use = function(who) {
+//   let retval = {};
+//   retval["txt"] = "Use: Map of the Land of Lost Hope.<br /> You examine the map of the Land of Lost Hope...";
+//   retval["override"] = 1;
+//   retval["fin"] = 3;
+//   targetCursor.viewing = "map";
+//   let uii = document.getElementById('uiinterface');
+//   if (uii) {
+//     uii.innerHTML = `<img src="graphics/spacer.gif" width="416" height="416" />`;
+//     uii.style.backgroundColor = "";
+//     uii.style.backgroundImage = `url('graphics/losthopemap.gif')`;  
+//     if (PC.checkInventory("Sextant")) {
+//       let left = PC.getx()*3+104-4;
+//       let top = PC.gety()*3+74-3;
+//       let div = `<div style='position:absolute;left:${left};top:${top};width:10;height:8;z-index:75'><img src='graphics/sextant-cursor.gif' width='10' height='8' /></div>`;
+//       uii.innerHTML += div;
+//     }
+//   }
+//   return retval;
+// }
 
 
 // Books/Journals

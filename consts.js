@@ -77,3 +77,53 @@ const WATER_TILES = ["Water", "OceanWaterTransition0", "OceanWaterTransition1", 
 const SHALLOWS_TILES = ["Shallows", "WaterShallowsTransition0", "WaterShallowsTransition1", "WaterShallowsTransition2", "WaterShallowsTransition3", "WaterShallowsTransition4", "WaterShallowsTransition5", "WaterShallowsTransition6", "WaterShallowsTransition7", "WaterShallowsTransition8", "WaterShallowsTransition9", "WaterShallowsTransition10", "WaterShallowsTransition11"];
 
 const CHESTS_DIRECT_TO_INVENTORY = true;
+
+const DEEP_WATER_PEER = 1;
+const WATER_PEER = 2;
+const SHALLOW_WATER_PEER = 3;
+const MOUNTAIN_PEER = 4;
+const FLAME_MOUNTAIN_PEER = 5;
+const DARKNESS_PEER = 6; 
+const GREY_PEER = 7; 
+const WOOD_PEER = 8;
+const MEADOW_PEER = 9;
+const GRASS_PEER = 10;
+const SAND_PEER = 11;
+const CAVE_PEER = 12;
+const RED_COBBLE_PEER = 13;
+const BLUE_COBBLE_PEER = 14; 
+const BLACK_COBBLE_PEER = 15;
+const COBBLE_PEER = 16;
+const CLAY_PEER = 17;
+const FADED_WOOD_PEER = 18;
+const BLUE_FLOOR_PEER = 19;
+const GREEN_FLOOR_PEER = 20;
+const STONE_PAVER_PEER = 21;
+const RED_TILE_PEER = 22;
+const BLUE_TILE_PEER = 23;
+const FANCY_TILE_PEER = 24;
+const CRACKED_STONE_PEER = 25;
+const DARK_FADED_WOOD_PEER = 26;
+const PURPLE_COBBLE_PEER = 27;
+const ROAD_PEER = 28;
+const FOREST_PEER = 29;
+const HILL_PEER = 30;
+const SWAMP_PEER = 31;
+const ROOF_PEER = 32;
+const ICE_PEER = 33;
+const CYAN_COBBLE_PEER = 34;
+const GREEN_COBBLE_PEER = 35;
+const GREEN_CHECKERED_PEER = 36;
+const YELLOW_CHECKERED_PEER = 37;
+const LAVA_PEER = 38;
+const CORAL_PEER = 39;
+const LADDER_PEER = 40;
+const COUNTER_PEER = 41;
+const SANDSTONE_PEER = 42;
+const PURPLE_CRYSTAL = 43;
+const YELLOW_CRYSTAL = 44;
+const GREEN_CRYSTAL = 45;
+const PEER_COLORS = ["#000000", 
+                     "#103cff", "#128dfe", "#12bbff", "#ffffff", "#4a110c", "#000000", "#c1c1c1", "#9d5a20", "#61a01e", "#618928", "#5f6114", "#626262", "#a51a14", "#0d2185", "#1d1d1d", "#772e24", "#64443f", "#c08e5e", "#476478", "#477865", 
+                     "#959595", "#a95e56", "#636899", "#8d7058", "#66756d", "#9e8c74", "#553668", "#4d462c", "#326a25", "#b6d123", "#122112", "#08d66d", "#3f89b2", "#235373", "#009267", "#a8ecb6", "#f4e5a0", "#e42015", "#f2a9e0", "#eaa35f",
+                     "#452318", "#eee557", "#d52bff", "#ffdf17", "#b9fc48"];
