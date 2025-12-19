@@ -1954,7 +1954,9 @@ InanimateObject.prototype.setUseScript = function(newscript) {
 }
 
 InanimateObject.prototype.getPeerview = function() {
-	return this.peerview;
+  if (!this.peerview) { return PEER_COLORS[DARKNESS_PEER]; }
+  
+	return PEER_COLORS[this.peerview];
 }
 
 InanimateObject.prototype.setPeerview = function(newview) {
