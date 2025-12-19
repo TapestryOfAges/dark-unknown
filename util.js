@@ -103,9 +103,21 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
 		  DUTime.cleanTimeline();
   	}
   	DrawCharFrame();  // to remove Negate if it's present
+    ProcessAmbientNoise(tile);
+
+    // check and see if the player has the MagicMap, and if so, if they have not visiting this map before
+    // if true, initialize the automap to all black
+    if (PC.checkInventory("MagicMap") && !mapmagic.hasOwnProperty(tomap.getName())) { 
+      mapmagic[tomap.getName()] = [];
+      for (let i=0;i<tomap.getHeight();i++) {
+        mapmagic[i] = [];
+        for (let j=0;j<tomap.getWidth();j++) {
+          mapmagic[i][j] = 0;
+        }
+      }
+    }
   }
 
-	if (who === PC) { ProcessAmbientNoise(tile); }
 	if ((DU.settings.getSetting("music")) && (who === PC) && tomap.getMusic() && (tomap.getMusic() !== nowplaying.name)) {
 //	  StopMusic(nowplaying);
 	  let song = tomap.getMusic();
