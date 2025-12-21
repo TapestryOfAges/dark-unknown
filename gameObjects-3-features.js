@@ -14221,6 +14221,21 @@ MapOfLostHopeTile.prototype = new ItemObject();
 //   return retval;
 // }
 
+function MagicMapTile() {
+  //Graphics Upgraded
+  this.name = "MagicMap";
+  this.graphic = "static.gif";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -57*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "magical map";
+  this.prefix = "a";
+  this.longdesc = "A magic map that will fill in as you explore.";
+  this.usedesc = "Inspect the map.";
+}
+MagicMapTile.prototype = new ItemObject();  
+
 
 // Books/Journals
 function BookItemObject() {
