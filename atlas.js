@@ -784,6 +784,7 @@ function GameMap() {
   this.pathGrid = {};
   this.network = [];
   this.opacity = .6;
+  this.automap = 1;
   
   this.lightsList = {};
   this.soundList = {};
@@ -794,6 +795,17 @@ GameMap.prototype.getNPCsAndPCs = function() {
   let alltargets = this.npcs.getAll();
   alltargets.push(PC);
   return alltargets;
+}
+
+GameMap.prototype.setAutomap = function(newval) {
+  newval = parseInt(newval);
+  if ((newval === 1) || (newval === 0)) { this.automap = newval; }
+  else { alert("Invalid automap val: " + newval); }
+}
+
+GameMap.prototype.getAutomap = function() {
+  if (!this.automap) { return 1; }
+  return this.automap;
 }
 
 GameMap.prototype.setName = function(name) {
@@ -1657,6 +1669,7 @@ GameMap.prototype.saveMap = function (name) {
   printerwin.document.write(name + ".returnx = '" + this.getReturnx() + "';<br />\n");
   printerwin.document.write(name + ".returny = '" + this.getReturny() + "';<br />\n");
   printerwin.document.write(name + ".returninfused = '" + this.getReturnInfused() + "';<br />\n");
+  printerwin.document.write(name + ".automap = '" + this.getAutomap() + "';<br />\n");
   let linkedMapList;
   let linkedMapArray = this.getLinkedMaps();
   if (linkedMapArray.length > 0) {
@@ -1727,6 +1740,7 @@ GameMap.prototype.loadMap = function (name) {
   this.setSaveName(mappages.readPage(name, "savename"));
   this.setReturn(mappages.readPage(name, "returnmap"), mappages.readPage(name, "returnx"), mappages.readPage(name, "returny"));
   this.setReturnInfused(mappages.readPage(name, "returninfused"));
+  this.setAutomap(mappages.readPage(name, "automap"));
   if (DU.gameflags.getFlag("editor")) {
     if (mappages.readPage(name, "editorLabels")) {
       this.allLabels = JSON.parse(mappages.readPage(name, "editorLabels"));
