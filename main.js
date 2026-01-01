@@ -60,13 +60,6 @@ let convlog = [];
 let karmalog = [];
 let mapmagic = {};
 
-function addToKarmaLog(type, amount, circumstance) {
-  if (beta) {
-    let entry = `${type}: Change of ${amount} due to ${circumstance}`;
-    karmalog.push(entry);
-  }
-}
-
 function DrawCharFrame() {
   let txt = "<table cellpadding='0' cellspacing='0' border='0' width='100%' style='margin-top:1px'><tr><td colspan='2'>";
   let dishp = "" + PC.getDisplayHP();

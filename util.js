@@ -1720,6 +1720,13 @@ function SuppressMove(txt, direction) {
   return txt;
 }
 
+function addToKarmaLog(type, amount, circumstance) {
+  if (beta) {
+    let entry = `${type}: Change of ${amount} due to ${circumstance}`;
+    karmalog.push(entry);
+  }
+}
+
 //EXTERNALLY SOURCED
 
 // this function found on stackexchange
