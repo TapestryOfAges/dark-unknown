@@ -141,7 +141,8 @@ function CreateTileHTML(x,y) {
   if (document.getElementById("showfeatures").checked) { fea = 0; }
   let npcs = 1;
   if (document.getElementById("shownpcs").checked) { npcs = 0; }
-  let thiscell = GetDisplayStack(amap,x,y,x,y,0,0,fea,npcs,1);
+  let thiscell;
+  [thiscell] = GetDisplayStack(amap,x,y,x,y,0,0,fea,npcs,1);
   let tilehtml = "";
   for (let k=0;k<thiscell.length;k++) {
     let newdiv = `<div style="position:absolute; top:0px; left:0px; background-image: url('graphics/${thiscell[k].showGraphic}'); background-repeat:no-repeat; background-position: ${thiscell[k].graphics2}px ${thiscell[k].graphics3}px">
