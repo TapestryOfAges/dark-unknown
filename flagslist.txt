@@ -17,6 +17,10 @@ allowautomap
 DU.randomseed - random number generated on game creation
 karma - tracks PC's karma
 
+visited_beldskae_razed
+visited_beldskae_saved
+visited_poverty2  - visited these maps, so it only copies from an earlier automap state once
+
 kingspeech  - talked to king at beginning of game
 talked_shelaria - talked to queen
 shel_changed - Shelaria has asked you to ask people "changed"
@@ -137,6 +141,8 @@ knowsblackpotion
 knowsdeepbluepotion
 knowsorangepotion
 knowsbrownpotion
+strange_map - you've been told to talk to Robert about the strange map
+learned_palimpsest - you know that the automap you found is called a Palimpsest Map
 rebuild_poverty
 pool_drunk - you have drunk from the brilliant pool
 joined_guild - you've fulfilled Carol's request and gotten admittance to the Guild
