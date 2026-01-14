@@ -256,6 +256,8 @@ questlist[106] = new Quest([5], "A Cave Near the Coast", "Erin", "Hildendain", `
 questlist[107] = new Quest([16], "Kyvek's Debt", "Kyvek", "Naurglen", `The King has given you a token to show to Trevor, keeper of the treasury, in the basement of Castle Yggdras. He will redeem the debt to Kyvek. <IFFLAG:kyvek_fetch>You've given Trevor the token and he will return soon to give you Kyvek's money.</IFFLAG>`, ``, "side");
 questlist[108] = new Quest([107], "Kyvek's Debt", "Kyvek", "Naurglen", `You have the money for Kyvek- all that remains is to bring it to him, in Naurglen.`, `You have arranged for Kyvek to be repaid.`, "side");
 questlist[109] = new Quest([108], "Kyvek's Debt", "Kyvek", "Naurglen", `You have the money for Kyvek- all that remains is to bring it to him, in Naurglen.`, `You have arranged for Kyvek to be repaid... but then you stole the money for yourself.`, "side");
+questlist[110] = new Quest([], "Investigate Strange Map", "Behind a bookshelf", "Castle dea Yggdras", `You have found a strange map behind a bookshelf. You might have to ask around to figure out what it is. <IFFLAG:strange_map>It has been suggested that you speak to the cartographer in Clear Lake about it.</IFFLAG>`, ``, "side");
+questlist[111] = new Quest([110], "Repair the Palimpsest Map", "Robert", "Clear Lake", `Your strange map is a work of magic called a Palimpsest Map. This one isn't working properly- perhaps a magician would know why.`, ``, "side");
 
 
 // verbage for reference guide:
