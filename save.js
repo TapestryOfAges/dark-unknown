@@ -648,7 +648,7 @@ OutOfContext.onLoadData((event,serialized) => {
 
   if (!savedata.version) { savedata.version = "0.10.3"; }
   const savever = savedata.version.split(".");
-  if ((parseInt(savever[1]) < 10) || (parseInt(savever[2]) < 4)) {  // fix to versions prior to 0.10.4
+  if ((parseInt(savever[1]) < 10) || ((parseInt(savever[1]) === 10) && (parseInt(savever[2]) < 4))) {  // fix to versions prior to 0.10.4
     console.log("Upgrading save to 0.10.4.");
     let mmap = maps.getMap("ellusus");
     let fixtile = mmap.getTile(133,79);
@@ -666,7 +666,7 @@ OutOfContext.onLoadData((event,serialized) => {
       console.log("Couldn't find the cave to fix...?");
     }
   }
-  if ((parseInt(savever[1]) < 10) || (parseInt(savever[2]) < 15)) {  // fix to versions prior to 0.10.15
+  if ((parseInt(savever[1]) < 10) || ((parseInt(savever[1]) === 10) && (parseInt(savever[2]) < 15))) {  // fix to versions prior to 0.10.15
     console.log("Upgrading save to 0.10.15.");
     if (DU.gameflags.getFlag("mvol")) { DU.gameflags.setFlag("mvol", DU.gameflags.getFlag("mvol")*10); }
     if (DU.gameflags.getFlag("svol")) { DU.gameflags.setFlag("svol", DU.gameflags.getFlag("svol")*10); }
