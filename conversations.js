@@ -683,6 +683,12 @@ OnConvTriggers["spellbook2"] = function(speaker,keyword) {
   PC.addSpell(SPELL_AUDACHTA_SCRIBE_LEVEL, SPELL_AUDACHTA_SCRIBE_ID);
 }
 
+OnConvTriggers["learned_palimpsest"] = function(speaker,keyword) {
+  let strangemap = PC.checkInventory("MagicMapUnknown");
+  strangemap.setDesc("Palimpsest Map");
+  strangemap.longdesc = "A faded Palimpsest Map you found behind a bookshelf.";
+}
+
 OnConvTriggers["anna_return"] = function(speaker,keyword) {
   let annamap = PC.getHomeMap(); // she has to be on the PC's map since they just talked to her
   let npcs = annamap.npcs.getAll();
