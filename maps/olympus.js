@@ -253,7 +253,7 @@ mappages["yggdras1"].features[179] = {name : 'TopChair', x : 38, y : 17};
 mappages["yggdras1"].features[180] = {name : 'Harpsichord', x : 27, y : 20};
 mappages["yggdras1"].features[181] = {name : 'TopChair', x : 27, y : 19};
 mappages["yggdras1"].features[182] = {name : 'BookshelfLeft', x : 27, y : 15};
-mappages["yggdras1"].features[183] = {name : 'BookshelfRight', x : 28, y : 15};
+mappages["yggdras1"].features[183] = {name : 'BookshelfRightMap', x : 28, y : 15};
 mappages["yggdras1"].features[184] = {name : 'GrandfatherClock', x : 36, y : 15};
 mappages["yggdras1"].features[185] = {name : 'Door', x : 51, y : 57, desc : "locked door", locked : 1};
 mappages["yggdras1"].features[186] = {name : 'Door', x : 47, y : 57, desc : "locked door", locked : 1};
@@ -741,6 +741,7 @@ mappages["yggdras1"].returnmap = 'ellusus';
 mappages["yggdras1"].returnx = '69';
 mappages["yggdras1"].returny = '74';
 mappages["yggdras1"].returninfused = '0';
+mappages["yggdras1"].automap = '1';
 mappages["yggdras1"].linkedMaps = ["yggdras2","yggdras0","yggdras_limbo"];
 mappages["yggdras1"].editorLabels = '{"div_tile14x24":"Tyler and Sonya","div_tile81x37":"Peter","div_tile81x28":"Sean","div_tile80x19":"Katrina","div_tile26x48":"Peter","div_tile64x49":"Alex","div_tile68x39":"Tyler","div_tile68x21":"Shelaria","div_tile66x20":"Sonya","div_tile67x16":"Sean","div_tile52x21":"Jharden","div_tile48x22":"Kaye","div_tile49x19":"Daragen","div_tile44x19":"Nyrani","div_tile29x31":"Olivia","div_tile35x39":"Katrina","div_tile11x53":"Barracks","div_tile83x28":"Plus Eli","div_tile16x25":"plus Yoshi","div_tile35x15":"Yoshi","div_tile37x16":"Eli"}';
 // MAP ENDS HERE
@@ -1203,6 +1204,7 @@ mappages["yggdras2"].returnmap = 'ellusus';
 mappages["yggdras2"].returnx = '69';
 mappages["yggdras2"].returny = '74';
 mappages["yggdras2"].returninfused = '0';
+mappages["yggdras2"].automap = '1';
 mappages["yggdras2"].linkedMaps = ["yggdras1","yggdras0","yggdras_limbo"];
 mappages["yggdras2"].editorLabels = '{"div_tile31x17":"Royal bedroom","div_tile35x23":"PC Room","div_tile28x23":"Lance\'s room","div_tile70x17":"Jharden","div_tile28x31":"Kaye","div_tile35x35":"Alex","div_tile61x32":"Erica","div_tile35x31":"Trevor","div_tile10x19":"Nyrani","div_tile28x35":"Manny"}';
 // MAP ENDS HERE
@@ -1353,6 +1355,7 @@ mappages["yggdras0"].returnmap = 'ellusus';
 mappages["yggdras0"].returnx = '69';
 mappages["yggdras0"].returny = '73';
 mappages["yggdras0"].returninfused = '0';
+mappages["yggdras0"].automap = '1';
 mappages["yggdras0"].linkedMaps = ["yggdras1","yggdras2","yggdras_limbo"];
 mappages["yggdras0"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -1396,6 +1399,7 @@ mappages["yggdras_limbo"].returnmap = '';
 mappages["yggdras_limbo"].returnx = 'NaN';
 mappages["yggdras_limbo"].returny = 'NaN';
 mappages["yggdras_limbo"].returninfused = '0';
+mappages["yggdras_limbo"].automap = '0';
 mappages["yggdras_limbo"].linkedMaps = ["yggdras0","yggdras1","yggdras2"];
 mappages["yggdras_limbo"].editorLabels = '{}';
 // MAP ENDS HERE
