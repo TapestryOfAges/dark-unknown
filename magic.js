@@ -3128,9 +3128,9 @@ magic[SPELL_PEER_LEVEL][SPELL_PEER_ID].executeSpell = function(caster, infused, 
         let tile = castermap.getTile(i,j);
         if (tile === "OoB") { 
           if (caster.getHomeMap().getScale()) {
-            peerhtml += "<td style='background-color:black; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>"; 
+            peerhtml += `<td style='background-color:${PEER_COLORS[0]}; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>`; 
           } else {
-            peerhtml += "<td style='background-color:#103cff; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>"; 
+            peerhtml += `<td style='background-color:${PEER_COLORS[DEEP_WATER_PEER]}; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>`; 
           }
         }
         else {
@@ -3139,11 +3139,10 @@ magic[SPELL_PEER_LEVEL][SPELL_PEER_ID].executeSpell = function(caster, infused, 
             peerhtml += "<td style='background-color:purple; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>"; 
           } else {
             let fea = tile.getTopVisibleFeature();
-            if (fea && fea.getPeerview()) {
+            if (fea && (fea.getPeerview() !== PEER_COLORS[0])) {
               let peer = fea.getPeerview();
               if (peer) { peerhtml += "<td style='background-color:"+peer+"; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>"; }
-            }
-            else {
+            } else {
               let terr = tile.getTerrain();
               let peer = terr.getPeerview();
               if (peer) { peerhtml += "<td style='background-color:"+peer+"; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>"; }
