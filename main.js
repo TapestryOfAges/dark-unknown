@@ -135,7 +135,8 @@ function DrawMainFrame(how, themap, centerx, centery) {
 }
 
 function MainViewDrawTile(themap, centerx, centery, j, i, tp, ev, displayspecs) {
-  let thiscell = GetDisplayStack(themap,centerx,centery,j,i,tp,ev);
+  let thiscell, isseen;
+  [thiscell, isseen] = GetDisplayStack(themap,centerx,centery,j,i,tp,ev);
   let yidx = i-displayspecs.topedge;
   let xidx = j-displayspecs.leftedge;
   let mview = document.getElementById('mainview_'+xidx+'x'+yidx);
@@ -160,7 +161,20 @@ function MainViewDrawTile(themap, centerx, centery, j, i, tp, ev, displayspecs) 
       mview.innerHTML += "<div style='background-image: url(\"graphics/static.gif\"); background-position:0px -3104px; position:absolute;left:0px;top:0px;width:32px;height:32px' ></div>";
     }  
   }
-
+  if (mapmagic.active) {
+    let tile = themap.getTile(j,i);
+    let fea = tile.getTopVisibleFeature();
+    if (fea && (fea.getPeerview() !== PEER_COLORS[0])) {
+      mapmagic[themap.getName()][j][i] = fea.getPeerview();
+    } else {
+      let terr = tile.getTerrain();
+      let peer = terr.getPeerview();
+      if (peer) { mapmagic[themap.getName()][j][i] = peer; }
+      else {
+        mapmagic[themap.getName()][j][i] = 0;
+      }
+    }
+  }
 }
 
 function OldMainViewDrawTile(themap, centerx, centery, j, i, tp, ev, displayspecs) {
@@ -345,14 +359,23 @@ function DoAction(code, ctrl) {
       }  
       else { targetCursor.phase++; }
     } else if (targetCursor.viewing && (targetCursor.viewing === "map")) {
-      gamestate.setMode("player");
-      document.getElementById('uiinterface').innerHTML = ``;
-      document.getElementById('uiinterface').style.backgroundColor = "";    
-      document.getElementById('uiinterface').style.backgroundImage = "";    
-      maintext.setInputLine("&gt;");
-      maintext.drawTextFrame();   
-      DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
-      PC.endTurn();
+      if ((code === 77) && PC.checkInventory("MagicMap") && ((PC.getHomeMap().getName() === "ellusus") || (PC.getHomeMap().getName() === "island"))) {
+        let response = PerformCommand(code);
+        maintext.addText(response["txt"]);
+        maintext.setInputLine(response["input"]);
+        maintext.drawTextFrame();
+      } else {
+        gamestate.setMode("player");
+        document.getElementById('uiinterface').innerHTML = ``;
+        document.getElementById('uiinterface').style.backgroundColor = "";    
+        document.getElementById('uiinterface').style.backgroundImage = "";    
+        maintext.setInputLine("&gt;");
+        maintext.drawTextFrame();   
+        DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+        delete targetCursor.viewing;
+        delete targetCursor.toggleMap;
+        PC.endTurn();
+      }
     } else if (targetCursor.command === "justice") { 
       if (!targetCursor.frame) {
         maintext.addText("Justice draws an eldritch symbol in the air and speaks one syllable in a harsh tone...");
