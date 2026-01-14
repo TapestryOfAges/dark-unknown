@@ -76,6 +76,7 @@ mappages["headlesscave"].returnmap = 'ellusus';
 mappages["headlesscave"].returnx = '48';
 mappages["headlesscave"].returny = '78';
 mappages["headlesscave"].returninfused = '0';
+mappages["headlesscave"].automap = '1';
 mappages["headlesscave"].linkedMaps = [""];
 mappages["headlesscave"].editorLabels = '{}';
 

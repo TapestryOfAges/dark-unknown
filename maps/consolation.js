@@ -133,6 +133,7 @@ mappages["consolation"].returnmap = 'ellusus';
 mappages["consolation"].returnx = '69';
 mappages["consolation"].returny = '74';
 mappages["consolation"].returninfused = '0';
+mappages["consolation"].automap = '1';
 mappages["consolation"].linkedMaps = ["consolation2","consolation3"];
 mappages["consolation"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -281,6 +282,7 @@ mappages["consolation2"].returnmap = 'ellusus';
 mappages["consolation2"].returnx = '69';
 mappages["consolation2"].returny = '74';
 mappages["consolation2"].returninfused = '0';
+mappages["consolation2"].automap = '1';
 mappages["consolation2"].linkedMaps = ["consolation","consolation3"];
 mappages["consolation2"].editorLabels = '{"div_tile16x7":"Connor","div_tile9x14":"Lynn","div_tile23x14":"Darthan Haj"}';
 // MAP ENDS HERE
@@ -400,6 +402,7 @@ mappages["consolation3"].returnmap = 'ellusus';
 mappages["consolation3"].returnx = '69';
 mappages["consolation3"].returny = '74';
 mappages["consolation3"].returninfused = '0';
+mappages["consolation3"].automap = '1';
 mappages["consolation3"].linkedMaps = ["consolation","consolation2"];
 mappages["consolation3"].editorLabels = '{"div_tile16x16":"Ladonna","div_tile9x15":"Eshkaz","div_tile16x8":"Lynn","div_tile22x15":"Ashbourne"}';
 // MAP ENDS HERE

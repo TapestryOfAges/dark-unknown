@@ -148,6 +148,7 @@ mappages["poverty"].returnmap = 'ellusus';
 mappages["poverty"].returnx = '69';
 mappages["poverty"].returny = '74';
 mappages["poverty"].returninfused = '0';
+mappages["poverty"].automap = '1';
 mappages["poverty"].linkedMaps = [""];
 mappages["poverty"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -342,12 +343,17 @@ mappages["poverty2"].returnmap = 'ellusus';
 mappages["poverty2"].returnx = '69';
 mappages["poverty2"].returny = '74';
 mappages["poverty2"].returninfused = '0';
+mappages["poverty2"].automap = '1';
 mappages["poverty2"].linkedMaps = [""];
 mappages["poverty2"].editorLabels = '{}';
 // MAP ENDS HERE
 
 mappages["poverty2"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    if (!DU.gameflags.getFlag("visited_poverty2")) {
+      mapmagic["poverty2"] = JSON.parse(JSON.stringify(mapmagic["poverty2"]));
+      DU.gameflags.setFlag("visited_poverty2",1);
+    }
     let npcs = mapref.npcs.getAll();
     if (!DU.gameflags.getFlag("anna_return")) { 
       let anna;

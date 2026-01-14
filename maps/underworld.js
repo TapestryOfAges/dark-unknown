@@ -245,6 +245,7 @@ mappages["underworld"].returnmap = 'ellusus';
 mappages["underworld"].returnx = '69';
 mappages["underworld"].returny = '74';
 mappages["underworld"].returninfused = '1';
+mappages["underworld"].automap = '1';
 mappages["underworld"].linkedMaps = [""];
 mappages["underworld"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -778,6 +779,7 @@ mappages["hidden_cave"].returnmap = 'ellusus';
 mappages["hidden_cave"].returnx = '69';
 mappages["hidden_cave"].returny = '74';
 mappages["hidden_cave"].returninfused = '1';
+mappages["hidden_cave"].automap = '1';
 mappages["hidden_cave"].linkedMaps = [""];
 mappages["hidden_cave"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -868,6 +870,7 @@ mappages["eldercave"].returnmap = 'underworld';
 mappages["eldercave"].returnx = '36';
 mappages["eldercave"].returny = '91';
 mappages["eldercave"].returninfused = '0';
+mappages["eldercave"].automap = '1';
 mappages["eldercave"].linkedMaps = [""];
 mappages["eldercave"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -1042,6 +1045,7 @@ mappages["uttermostdark"].returnmap = '';
 mappages["uttermostdark"].returnx = 'NaN';
 mappages["uttermostdark"].returny = 'NaN';
 mappages["uttermostdark"].returninfused = '0';
+mappages["uttermostdark"].automap = '1';
 mappages["uttermostdark"].linkedMaps = [""];
 mappages["uttermostdark"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -1134,6 +1138,7 @@ mappages["endgame"].returnmap = '';
 mappages["endgame"].returnx = 'NaN';
 mappages["endgame"].returny = 'NaN';
 mappages["endgame"].returninfused = '0';
+mappages["endgame"].automap = '0';
 mappages["endgame"].linkedMaps = [""];
 mappages["endgame"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -1230,6 +1235,7 @@ mappages["endgame2"].returnmap = '';
 mappages["endgame2"].returnx = 'NaN';
 mappages["endgame2"].returny = 'NaN';
 mappages["endgame2"].returninfused = '0';
+mappages["endgame2"].automap = '0';
 mappages["endgame2"].linkedMaps = [""];
 mappages["endgame2"].editorLabels = '{}';
 // MAP ENDS HERE

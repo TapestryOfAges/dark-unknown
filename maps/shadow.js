@@ -82,6 +82,7 @@ mappages["shadow1"].returnmap = 'ellusus';
 mappages["shadow1"].returnx = '96';
 mappages["shadow1"].returny = '31';
 mappages["shadow1"].returninfused = '0';
+mappages["shadow1"].automap = '1';
 mappages["shadow1"].linkedMaps = ["shadow2","shadow3"];
 mappages["shadow1"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -232,6 +233,7 @@ mappages["shadow2"].returnmap = 'ellusus';
 mappages["shadow2"].returnx = '96';
 mappages["shadow2"].returny = '31';
 mappages["shadow2"].returninfused = '0';
+mappages["shadow2"].automap = '1';
 mappages["shadow2"].linkedMaps = ["shadow1","shadow3"];
 mappages["shadow2"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -422,6 +424,7 @@ mappages["shadow3"].returnmap = 'ellusus';
 mappages["shadow3"].returnx = '96';
 mappages["shadow3"].returny = '31';
 mappages["shadow3"].returninfused = '0';
+mappages["shadow3"].automap = '1';
 mappages["shadow3"].linkedMaps = ["shadow1","shadow2"];
 mappages["shadow3"].editorLabels = '{}';
 // MAP ENDS HERE

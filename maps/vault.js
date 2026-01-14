@@ -171,6 +171,7 @@ mappages["vault"].returnmap = 'ellusus';
 mappages["vault"].returnx = '69';
 mappages["vault"].returny = '74';
 mappages["vault"].returninfused = '0';
+mappages["vault"].automap = '1';
 mappages["vault"].linkedMaps = [""];
 mappages["vault"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -314,6 +315,7 @@ mappages["vaultfuture"].returnmap = 'ellusus';
 mappages["vaultfuture"].returnx = '69';
 mappages["vaultfuture"].returny = '74';
 mappages["vaultfuture"].returninfused = '0';
+mappages["vaultfuture"].automap = '1';
 mappages["vaultfuture"].linkedMaps = [""];
 mappages["vaultfuture"].editorLabels = '{}';
 // MAP ENDS HERE

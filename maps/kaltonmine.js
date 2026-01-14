@@ -99,6 +99,7 @@ mappages["kaltonmine1"].returnmap = 'ellusus';
 mappages["kaltonmine1"].returnx = '39';
 mappages["kaltonmine1"].returny = '48';
 mappages["kaltonmine1"].returninfused = '0';
+mappages["kaltonmine1"].automap = '1';
 mappages["kaltonmine1"].linkedMaps = ["kaltonmine2","kaltonmine3"];
 mappages["kaltonmine1"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -286,6 +287,7 @@ mappages["kaltonmine2"].returnmap = 'ellusus';
 mappages["kaltonmine2"].returnx = '39';
 mappages["kaltonmine2"].returny = '48';
 mappages["kaltonmine2"].returninfused = '0';
+mappages["kaltonmine2"].automap = '1';
 mappages["kaltonmine2"].linkedMaps = ["kaltonmine1","kaltonmine3"];
 mappages["kaltonmine2"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -513,6 +515,7 @@ mappages["kaltonmine3"].returnmap = 'ellusus';
 mappages["kaltonmine3"].returnx = '39';
 mappages["kaltonmine3"].returny = '48';
 mappages["kaltonmine3"].returninfused = '0';
+mappages["kaltonmine3"].automap = '1';
 mappages["kaltonmine3"].linkedMaps = ["kaltonmine2","kaltonmine1"];
 mappages["kaltonmine3"].editorLabels = '{}';
 // MAP ENDS HERE

@@ -162,6 +162,7 @@ mappages["volcano"].returnmap = 'ellusus';
 mappages["volcano"].returnx = '69';
 mappages["volcano"].returny = '74';
 mappages["volcano"].returninfused = '1';
+mappages["volcano"].automap = '1';
 mappages["volcano"].linkedMaps = [""];
 mappages["volcano"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -262,6 +263,7 @@ mappages["lavatubes"].returnmap = 'volcano';
 mappages["lavatubes"].returnx = '27';
 mappages["lavatubes"].returny = '21';
 mappages["lavatubes"].returninfused = '0';
+mappages["lavatubes"].automap = '1';
 mappages["lavatubes"].linkedMaps = ["deeplavatubes"];
 mappages["lavatubes"].editorLabels = '{}';
 
@@ -539,6 +541,7 @@ mappages["deeplavatubes"].returnmap = 'volcano';
 mappages["deeplavatubes"].returnx = '27';
 mappages["deeplavatubes"].returny = '21';
 mappages["deeplavatubes"].returninfused = '0';
+mappages["deeplavatubes"].automap = '1';
 mappages["deeplavatubes"].linkedMaps = ["lavatubes"];
 mappages["deeplavatubes"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -688,6 +691,7 @@ mappages["skarabrae"].returnmap = 'ellusus';
 mappages["skarabrae"].returnx = '69';
 mappages["skarabrae"].returny = '74';
 mappages["skarabrae"].returninfused = '1';
+mappages["skarabrae"].automap = '1';
 mappages["skarabrae"].linkedMaps = [""];
 mappages["skarabrae"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -755,6 +759,7 @@ mappages["hydracave"].returnmap = 'volcano';
 mappages["hydracave"].returnx = '16';
 mappages["hydracave"].returny = '28';
 mappages["hydracave"].returninfused = '0';
+mappages["hydracave"].automap = '1';
 mappages["hydracave"].linkedMaps = [""];
 mappages["hydracave"].editorLabels = '{}';
 // MAP ENDS HERE

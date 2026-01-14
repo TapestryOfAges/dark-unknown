@@ -1528,6 +1528,7 @@ mappages["ellusus"].returnmap = 'ellusus';
 mappages["ellusus"].returnx = '69';
 mappages["ellusus"].returny = '74';
 mappages["ellusus"].returninfused = '0';
+mappages["ellusus"].automap = '1';
 mappages["ellusus"].linkedMaps = [""];
 mappages["ellusus"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -1593,6 +1594,7 @@ mappages["ellusus_limbo"].exittestscript = '';
 mappages["ellusus_limbo"].returnmap = '';
 mappages["ellusus_limbo"].returnx = '';
 mappages["ellusus_limbo"].returny = '';
+mappages["ellusus_limbo"].automap = '0';
 mappages["ellusus_limbo"].returninfused = '0';
 mappages["ellusus_limbo"].linkedMaps = [""];
  
@@ -1629,6 +1631,7 @@ mappages["gnomeland"].exittestscript = '';
 mappages["gnomeland"].returnmap = '';
 mappages["gnomeland"].returnx = '';
 mappages["gnomeland"].returny = '';
+mappages["ellusus"].automap = '0';
 mappages["gnomeland"].returninfused = '0';
 mappages["gnomeland"].linkedMaps = [""];
 
@@ -1680,6 +1683,7 @@ mappages["landsbeyond"].returnmap = '';
 mappages["landsbeyond"].returnx = 'NaN';
 mappages["landsbeyond"].returny = 'NaN';
 mappages["landsbeyond"].returninfused = '0';
+mappages["landsbeyond"].automap = '0';
 mappages["landsbeyond"].linkedMaps = [""];
 mappages["landsbeyond"].editorLabels = '{}';
 // MAP ENDS HERE

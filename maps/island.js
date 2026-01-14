@@ -147,6 +147,7 @@ mappages["island"].returnmap = 'ellusus';
 mappages["island"].returnx = '69';
 mappages["island"].returny = '74';
 mappages["island"].returninfused = '1';
+mappages["island"].automap = '1';
 mappages["island"].linkedMaps = [""];
 mappages["island"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -407,6 +408,7 @@ mappages["island_cave"].returnmap = 'island';
 mappages["island_cave"].returnx = '33';
 mappages["island_cave"].returny = '47';
 mappages["island_cave"].returninfused = '0';
+mappages["island_cave"].automap = '1';
 mappages["island_cave"].linkedMaps = [""];
 mappages["island_cave"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -588,6 +590,7 @@ mappages["abandoned_mine"].returnmap = 'island';
 mappages["abandoned_mine"].returnx = '30';
 mappages["abandoned_mine"].returny = '77';
 mappages["abandoned_mine"].returninfused = '0';
+mappages["abandoned_mine"].automap = '1';
 mappages["abandoned_mine"].linkedMaps = [""];
 mappages["abandoned_mine"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -1164,6 +1167,7 @@ mappages["tharock_castle"].returnmap = 'ellusus';
 mappages["tharock_castle"].returnx = '69';
 mappages["tharock_castle"].returny = '74';
 mappages["tharock_castle"].returninfused = '1';
+mappages["tharock_castle"].automap = '1';
 mappages["tharock_castle"].linkedMaps = ["tharock_castle2","tharock_castle_shadow"];
 mappages["tharock_castle"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -1548,6 +1552,7 @@ mappages["tharock_castle_shadow"].returnmap = '';
 mappages["tharock_castle_shadow"].returnx = 'NaN';
 mappages["tharock_castle_shadow"].returny = 'NaN';
 mappages["tharock_castle_shadow"].returninfused = '1';
+mappages["tharock_castle_shadow"].automap = '0';
 mappages["tharock_castle_shadow"].linkedMaps = ["tharock_castle","tharock_castle2"];
 mappages["tharock_castle_shadow"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -1702,6 +1707,7 @@ mappages["tharock_castle2"].returnmap = 'ellusus';
 mappages["tharock_castle2"].returnx = '69';
 mappages["tharock_castle2"].returny = '74';
 mappages["tharock_castle2"].returninfused = '1';
+mappages["tharock_castle2"].automap = '1';
 mappages["tharock_castle2"].linkedMaps = ["tharock_castle","tharock_castle_shadow"];
 mappages["tharock_castle2"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -1780,6 +1786,7 @@ mappages["waterfallcave"].returnmap = 'island';
 mappages["waterfallcave"].returnx = '54';
 mappages["waterfallcave"].returny = '48';
 mappages["waterfallcave"].returninfused = '0';
+mappages["waterfallcave"].automap = '1';
 mappages["waterfallcave"].linkedMaps = [""];
 mappages["waterfallcave"].editorLabels = '{}';
 // MAP ENDS HERE

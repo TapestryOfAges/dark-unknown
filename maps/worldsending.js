@@ -197,6 +197,7 @@ mappages["worldsending1"].returnmap = 'ellusus';
 mappages["worldsending1"].returnx = '27';
 mappages["worldsending1"].returny = '44';
 mappages["worldsending1"].returninfused = '0';
+mappages["worldsending1"].automap = '1';
 mappages["worldsending1"].linkedMaps = ["spire2","spire3","worldsending2","worldsending3"];
 mappages["worldsending1"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -392,6 +393,7 @@ mappages["spire2"].returnmap = 'ellusus';
 mappages["spire2"].returnx = '27';
 mappages["spire2"].returny = '44';
 mappages["spire2"].returninfused = '0';
+mappages["spire2"].automap = '1';
 mappages["spire2"].linkedMaps = ["spire3","worldsending1","worldsending2","worldsending3"];
 mappages["spire2"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -541,6 +543,7 @@ mappages["spire3"].returnmap = 'ellusus';
 mappages["spire3"].returnx = '27';
 mappages["spire3"].returny = '44';
 mappages["spire3"].returninfused = '0';
+mappages["spire3"].automap = '1';
 mappages["spire3"].linkedMaps = ["spire2","worldsending1","worldsending2","worldsending3"];
 mappages["spire3"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -809,6 +812,7 @@ mappages["worldsending2"].returnmap = 'ellusus';
 mappages["worldsending2"].returnx = '27';
 mappages["worldsending2"].returny = '44';
 mappages["worldsending2"].returninfused = '0';
+mappages["worldsending2"].automap = '1';
 mappages["worldsending2"].linkedMaps = ["spire2","spire3","worldsending3","worldsending1"];
 mappages["worldsending2"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -990,6 +994,7 @@ mappages["worldsending3"].returnmap = 'ellusus';
 mappages["worldsending3"].returnx = '27';
 mappages["worldsending3"].returny = '44';
 mappages["worldsending3"].returninfused = '0';
+mappages["worldsending3"].automap = '1';
 mappages["worldsending3"].linkedMaps = ["worldsending2","worldsending1","spire2","spire3"];
 mappages["worldsending3"].editorLabels = '{}';
 // MAP ENDS HERE

@@ -328,6 +328,7 @@ mappages["blackdragon"].returnmap = 'ellusus';
 mappages["blackdragon"].returnx = '69';
 mappages["blackdragon"].returny = '74';
 mappages["blackdragon"].returninfused = '0';
+mappages["blackdragon"].automap = '1';
 mappages["blackdragon"].linkedMaps = ["blackdragon2","blackdragon3","blackdragon4"];
 mappages["blackdragon"].editorLabels = '{"div_tile13x23":"Taran","div_tile20x18":"Nadya","div_tile13x19":"Brad"}';
 // MAP ENDS HERE
@@ -547,6 +548,7 @@ mappages["blackdragon2"].returnmap = 'ellusus';
 mappages["blackdragon2"].returnx = '69';
 mappages["blackdragon2"].returny = '74';
 mappages["blackdragon2"].returninfused = '0';
+mappages["blackdragon2"].automap = '1';
 mappages["blackdragon2"].linkedMaps = ["blackdragon","blackdragon3","blackdragon4"];
 mappages["blackdragon2"].editorLabels = '{}';
 
@@ -639,6 +641,7 @@ mappages["blackdragon3"].returnmap = 'ellusus';
 mappages["blackdragon3"].returnx = '69';
 mappages["blackdragon3"].returny = '74';
 mappages["blackdragon3"].returninfused = '0';
+mappages["blackdragon3"].automap = '1';
 mappages["blackdragon3"].linkedMaps = ["blackdragon2","blackdragon","blackdragon4"];
 mappages["blackdragon3"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -751,6 +754,7 @@ mappages["blackdragon4"].returnmap = 'ellusus';
 mappages["blackdragon4"].returnx = '69';
 mappages["blackdragon4"].returny = '74';
 mappages["blackdragon4"].returninfused = '0';
+mappages["blackdragon4"].automap = '1';
 mappages["blackdragon4"].linkedMaps = ["blackdragon2","blackdragon3","blackdragon"];
 mappages["blackdragon4"].editorLabels = '{}';
 
@@ -1081,14 +1085,15 @@ mappages["blackdragon_int"].alwaysRemember = '0';
 mappages["blackdragon_int"].scale = '1';
 mappages["blackdragon_int"].underground = '0';
 mappages["blackdragon_int"].undergroundDesc = '';
-mappages["blackdragon_int"].enterscript = '';
+mappages["blackdragon_int"].enterscript = 'maps_enter';
 mappages["blackdragon_int"].entertestscript = '';
-mappages["blackdragon_int"].exitscript = '';
+mappages["blackdragon_int"].exitscript = 'maps_exit';
 mappages["blackdragon_int"].exittestscript = '';
 mappages["blackdragon_int"].returnmap = 'ellusus';
 mappages["blackdragon_int"].returnx = '69';
 mappages["blackdragon_int"].returny = '74';
 mappages["blackdragon_int"].returninfused = '0';
+mappages["blackdragon_int"].automap = '1';
 mappages["blackdragon_int"].linkedMaps = ["blackdragon_int2","blackdragon_int3","blackdragon_int4"];
 mappages["blackdragon_int"].editorLabels = '{"div_tile13x23":"Taran","div_tile20x18":"Nadya","div_tile13x19":"Brad"}';
 // MAP ENDS HERE
@@ -1111,12 +1116,20 @@ mappages["blackdragon_int"].onload = function(mapref) {
   }
 }
 
+mappages["blackdragon_int"].maps_enter = function(mapref) {
+  mapref.Enter = function(who,frommap,fromx,fromy,tox,toy) {
+    if (frommap.getName() === "landsbeyond") {
+      mapmagic["blackdragon_int"] = JSON.parse(JSON.stringify(mapmagic["blackdragon"]));
+    }
+  }
+}
 mappages["blackdragon_int"].maps_exit = function(mapref) {
   mapref.Exit = function(who,tomap,fromx,fromy,tox,toy) {
     if ((tomap.getName() === "ellusus") || (tomap.getName() === "landsbeyond")) {
       if (DU.gameflags.getFlag("lid_lancenotes") && !PC.checkInventory("LanceRuneNotes")) {
         DU.gameflags.deleteFlag("lid_lancenotes");
       }
+      mapmagic["blackdragon"] = JSON.parse(JSON.stringify(mapmagic["blackdragon_int"]));
     }
   }
 }
@@ -1213,6 +1226,7 @@ mappages["blackdragon_int2"].returnmap = 'ellusus';
 mappages["blackdragon_int2"].returnx = '69';
 mappages["blackdragon_int2"].returny = '74';
 mappages["blackdragon_int2"].returninfused = '0';
+mappages["blackdragon_int2"].automap = '1';
 mappages["blackdragon_int2"].linkedMaps = ["blackdragon_int","blackdragon_int3","blackdragon_int4"];
 mappages["blackdragon_int2"].editorLabels = '{}';
 
@@ -1304,6 +1318,7 @@ mappages["blackdragon_int3"].returnmap = 'ellusus';
 mappages["blackdragon_int3"].returnx = '69';
 mappages["blackdragon_int3"].returny = '74';
 mappages["blackdragon_int3"].returninfused = '0';
+mappages["blackdragon_int3"].automap = '1';
 mappages["blackdragon_int3"].linkedMaps = ["blackdragon_int2","blackdragon_int","blackdragon_int4"];
 mappages["blackdragon_int3"].editorLabels = '{}';
 
@@ -1403,6 +1418,7 @@ mappages["blackdragon_int4"].returnmap = 'ellusus';
 mappages["blackdragon_int4"].returnx = '69';
 mappages["blackdragon_int4"].returny = '74';
 mappages["blackdragon_int4"].returninfused = '0';
+mappages["blackdragon_int4"].automap = '1';
 mappages["blackdragon_int4"].linkedMaps = ["blackdragon_int2","blackdragon_int3","blackdragon_int"];
 mappages["blackdragon_int4"].editorLabels = '{}';
 
@@ -1518,6 +1534,7 @@ mappages["bdcave"].returnmap = 'ellusus';
 mappages["bdcave"].returnx = '47';
 mappages["bdcave"].returny = '74';
 mappages["bdcave"].returninfused = '0';
+mappages["bdcave"].automap = '1';
 mappages["bdcave"].linkedMaps = [""];
 mappages["bdcave"].editorLabels = '{}';
 
@@ -1654,6 +1671,7 @@ mappages["justice_battle"].returnmap = '';
 mappages["justice_battle"].returnx = '';
 mappages["justice_battle"].returny = '';
 mappages["justice_battle"].returninfused = '0';
+mappages["justice_battle"].automap = '1';
 mappages["justice_battle"].linkedMaps = [""];
 mappages["justice_battle"].editorLabels = '{}';
 

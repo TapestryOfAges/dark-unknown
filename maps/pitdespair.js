@@ -164,6 +164,7 @@ mappages["pitdespair1"].returnmap = 'ellusus';
 mappages["pitdespair1"].returnx = '117';
 mappages["pitdespair1"].returny = '76';
 mappages["pitdespair1"].returninfused = '0';
+mappages["pitdespair1"].automap = '1';
 mappages["pitdespair1"].linkedMaps = ["pitdespair2","pitdespair3","pitdespair4"];
 mappages["pitdespair1"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -352,6 +353,7 @@ mappages["pitdespair2"].returnmap = 'ellusus';
 mappages["pitdespair2"].returnx = '117';
 mappages["pitdespair2"].returny = '76';
 mappages["pitdespair2"].returninfused = '0';
+mappages["pitdespair2"].automap = '1';
 mappages["pitdespair2"].linkedMaps = ["pitdespair1","pitdespair3","pitdespair4"];
 mappages["pitdespair2"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -599,6 +601,7 @@ mappages["pitdespair3"].returnmap = 'ellusus';
 mappages["pitdespair3"].returnx = '117';
 mappages["pitdespair3"].returny = '76';
 mappages["pitdespair3"].returninfused = '0';
+mappages["pitdespair3"].automap = '1';
 mappages["pitdespair3"].linkedMaps = ["pitdespair1","pitdespair2","pitdespair4"];
 mappages["pitdespair3"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -762,6 +765,7 @@ mappages["pitdespair4"].returnmap = 'ellusus';
 mappages["pitdespair4"].returnx = '117';
 mappages["pitdespair4"].returny = '76';
 mappages["pitdespair4"].returninfused = '0';
+mappages["pitdespair4"].automap = '1';
 mappages["pitdespair4"].linkedMaps = ["pitdespair1","pitdespair2","pitdespair3"];
 mappages["pitdespair4"].editorLabels = '{}';
 // MAP ENDS HERE

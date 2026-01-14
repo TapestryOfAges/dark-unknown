@@ -555,6 +555,7 @@ mappages["swainhil"].returnmap = 'ellusus';
 mappages["swainhil"].returnx = '69';
 mappages["swainhil"].returny = '74';
 mappages["swainhil"].returninfused = '0';
+mappages["swainhil"].automap = '1';
 mappages["swainhil"].linkedMaps = ["swainhil2","swainhil3"];
 mappages["swainhil"].editorLabels = '{"div_tile52x8":"Severyn","div_tile25x15":"Dale","div_tile38x8":"Mandy","div_tile18x8":"Isaac","div_tile26x8":"Ian and Carey","div_tile45x8":"Elaine"}';
 // MAP ENDS HERE
@@ -818,6 +819,7 @@ mappages["swainhil2"].returnmap = 'ellusus';
 mappages["swainhil2"].returnx = '69';
 mappages["swainhil2"].returny = '74';
 mappages["swainhil2"].returninfused = '0';
+mappages["swainhil2"].automap = '1';
 mappages["swainhil2"].linkedMaps = ["swainhil","swainhil3"];
 mappages["swainhil2"].editorLabels = '{"div_tile31x47":"Markus","div_tile26x38":"Alison","div_tile32x38":"Simon","div_tile40x38":"Rebecca"}';
 // MAP ENDS HERE
@@ -978,6 +980,7 @@ mappages["swainhil3"].returnmap = 'ellusus';
 mappages["swainhil3"].returnx = '69';
 mappages["swainhil3"].returny = '74';
 mappages["swainhil3"].returninfused = '0';
+mappages["swainhil3"].automap = '1';
 mappages["swainhil3"].linkedMaps = ["swainhil","swainhil2"];
 mappages["swainhil3"].editorLabels = '{}';
 // MAP ENDS HERE

@@ -127,6 +127,7 @@ mappages["fulcrum1"].returnmap = 'ellusus';
 mappages["fulcrum1"].returnx = '54';
 mappages["fulcrum1"].returny = '94';
 mappages["fulcrum1"].returninfused = '0';
+mappages["fulcrum1"].automap = '1';
 mappages["fulcrum1"].linkedMaps = ["fulcrum2","fulcrum3"];
 mappages["fulcrum1"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -217,6 +218,7 @@ mappages["fulcrum2"].returnmap = 'ellusus';
 mappages["fulcrum2"].returnx = '54';
 mappages["fulcrum2"].returny = '94';
 mappages["fulcrum2"].returninfused = '0';
+mappages["fulcrum2"].automap = '1';
 mappages["fulcrum2"].linkedMaps = ["fulcrum1","fulcrum3"];
 mappages["fulcrum2"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -288,6 +290,7 @@ mappages["fulcrum3"].returnmap = 'ellusus';
 mappages["fulcrum3"].returnx = '54';
 mappages["fulcrum3"].returny = '94';
 mappages["fulcrum3"].returninfused = '0';
+mappages["fulcrum3"].automap = '1';
 mappages["fulcrum3"].linkedMaps = ["fulcrum1","fulcrum2"];
 mappages["fulcrum3"].editorLabels = '{}';
 // MAP ENDS HERE

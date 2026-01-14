@@ -982,6 +982,7 @@ mappages["lifeshope"].returnmap = 'ellusus';
 mappages["lifeshope"].returnx = '69';
 mappages["lifeshope"].returny = '74';
 mappages["lifeshope"].returninfused = '1';
+mappages["lifeshope"].automap = '1';
 mappages["lifeshope"].linkedMaps = [""];
 mappages["lifeshope"].editorLabels = '{}';
 // MAP ENDS HERE

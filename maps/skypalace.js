@@ -259,6 +259,7 @@ mappages["skypalace"].returnmap = 'ellusus';
 mappages["skypalace"].returnx = '69';
 mappages["skypalace"].returny = '74';
 mappages["skypalace"].returninfused = '0';
+mappages["skypalace"].automap = '1';
 mappages["skypalace"].linkedMaps = ["skypalace2"];
 mappages["skypalace"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -433,6 +434,7 @@ mappages["skypalace2"].returnmap = 'ellusus';
 mappages["skypalace2"].returnx = '69';
 mappages["skypalace2"].returny = '74';
 mappages["skypalace2"].returninfused = '0';
+mappages["skypalace2"].automap = '1';
 mappages["skypalace2"].linkedMaps = ["skypalace"];
 mappages["skypalace2"].editorLabels = '{}';
 // MAP ENDS HERE

@@ -160,6 +160,7 @@ mappages["toshin1"].returnmap = 'ellusus';
 mappages["toshin1"].returnx = '69';
 mappages["toshin1"].returny = '74';
 mappages["toshin1"].returninfused = '0';
+mappages["toshin1"].automap = '1';
 mappages["toshin1"].linkedMaps = ["toshin2","toshin3","toshin4"];
 mappages["toshin1"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -326,6 +327,7 @@ mappages["toshin2"].returnmap = 'ellusus';
 mappages["toshin2"].returnx = '69';
 mappages["toshin2"].returny = '74';
 mappages["toshin2"].returninfused = '0';
+mappages["toshin2"].automap = '1';
 mappages["toshin2"].linkedMaps = ["toshin1","toshin3","toshin4"];
 mappages["toshin2"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -489,6 +491,7 @@ mappages["toshin3"].returnmap = 'ellusus';
 mappages["toshin3"].returnx = '69';
 mappages["toshin3"].returny = '74';
 mappages["toshin3"].returninfused = '0';
+mappages["toshin3"].automap = '1';
 mappages["toshin3"].linkedMaps = ["toshin1","toshin2","toshin4"];
 mappages["toshin3"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -650,6 +653,7 @@ mappages["toshin4"].returnmap = 'ellusus';
 mappages["toshin4"].returnx = '69';
 mappages["toshin4"].returny = '74';
 mappages["toshin4"].returninfused = '0';
+mappages["toshin4"].automap = '1';
 mappages["toshin4"].linkedMaps = ["toshin1","toshin2","toshin3"];
 mappages["toshin4"].editorLabels = '{}';
 // MAP ENDS HERE

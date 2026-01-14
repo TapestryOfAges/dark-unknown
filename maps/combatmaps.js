@@ -50,6 +50,7 @@ mappages["combatGrass1"].returnmap = '';
 mappages["combatGrass1"].returnx = 'NaN';
 mappages["combatGrass1"].returny = 'NaN';
 mappages["combatGrass1"].returninfused = '0';
+mappages["combatGrass1"].automap = '0';
 mappages["combatGrass1"].linkedMaps = [""];
 mappages["combatGrass1"].editorLabels = '{}';
 
@@ -110,6 +111,7 @@ mappages["combatGrass2"].returnmap = '';
 mappages["combatGrass2"].returnx = 'NaN';
 mappages["combatGrass2"].returny = 'NaN';
 mappages["combatGrass2"].returninfused = '0';
+mappages["combatGrass2"].automap = '0';
 mappages["combatGrass2"].linkedMaps = [""];
 mappages["combatGrass2"].editorLabels = '{}';
 
@@ -170,6 +172,7 @@ mappages["combatShore1"].returnmap = '';
 mappages["combatShore1"].returnx = 'NaN';
 mappages["combatShore1"].returny = 'NaN';
 mappages["combatShore1"].returninfused = '0';
+mappages["combatShore1"].automap = '0';
 mappages["combatShore1"].linkedMaps = [""];
 mappages["combatShore1"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -233,6 +236,7 @@ mappages["combatShore2"].returnmap = '';
 mappages["combatShore2"].returnx = 'NaN';
 mappages["combatShore2"].returny = 'NaN';
 mappages["combatShore2"].returninfused = '0';
+mappages["combatShore2"].automap = '0';
 mappages["combatShore2"].linkedMaps = [];
 mappages["combatShore2"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -249,8 +253,9 @@ mappages["combatShore2"].check_escape = function(mapref) {
 
 // Water
 
-mappages["combatWater1"] = new Object();
-mappages["combatWater1"].terrain = new Array;
+// MAP BEGINS HERE
+mappages["combatWater1"] = {};
+mappages["combatWater1"].terrain = [];
  mappages["combatWater1"].terrain[0] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
  mappages["combatWater1"].terrain[1] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
  mappages["combatWater1"].terrain[2] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
@@ -265,17 +270,18 @@ mappages["combatWater1"].terrain[10] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
 mappages["combatWater1"].terrain[11] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
 mappages["combatWater1"].terrain[12] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
 
-mappages["combatWater1"].features = new Array;
+mappages["combatWater1"].features = [];
 
 
-mappages["combatWater1"].npcs = new Array;
+mappages["combatWater1"].npcs = [];
 
-mappages["combatWater1"].desc = 'Combat';
+mappages["combatWater1"].desc = "Combat";
+mappages["combatWater1"].longdesc = ``;
 mappages["combatWater1"].music = 'Combat';
-mappages["combatWater1"].savename = 'Combat';
+mappages["combatWater1"].savename = `Combat`;
 mappages["combatWater1"].exitmap = '';
-mappages["combatWater1"].exitx = '';
-mappages["combatWater1"].exity = '';
+mappages["combatWater1"].exitx = '65';
+mappages["combatWater1"].exity = '70';
 mappages["combatWater1"].wraps = 'None';
 mappages["combatWater1"].enterx = '6';
 mappages["combatWater1"].entery = '9';
@@ -283,11 +289,20 @@ mappages["combatWater1"].seeBelow = '';
 mappages["combatWater1"].lightLevel = 'bright';
 mappages["combatWater1"].alwaysRemember = '0';
 mappages["combatWater1"].scale = '1';
+mappages["combatWater1"].underground = '0';
+mappages["combatWater1"].undergroundDesc = '';
 mappages["combatWater1"].enterscript = 'set_exits';
 mappages["combatWater1"].entertestscript = '';
 mappages["combatWater1"].exitscript = '';
 mappages["combatWater1"].exittestscript = 'check_escape';
-mappages["combatWater1"].linkedMaps = new Array("");
+mappages["combatWater1"].returnmap = '';
+mappages["combatWater1"].returnx = 'NaN';
+mappages["combatWater1"].returny = 'NaN';
+mappages["combatWater1"].returninfused = '0';
+mappages["combatWater1"].automap = '0';
+mappages["combatWater1"].linkedMaps = [""];
+mappages["combatWater1"].editorLabels = '{}';
+// MAP ENDS HERE
 
 // manually added
 
@@ -348,6 +363,7 @@ mappages["combatWater2"].returnmap = '';
 mappages["combatWater2"].returnx = 'NaN';
 mappages["combatWater2"].returny = 'NaN';
 mappages["combatWater2"].returninfused = '0';
+mappages["combatWater2"].automap = '0';
 mappages["combatWater2"].linkedMaps = [""];
 mappages["combatWater2"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -414,6 +430,7 @@ mappages["combatBrush1"].returnmap = '';
 mappages["combatBrush1"].returnx = 'NaN';
 mappages["combatBrush1"].returny = 'NaN';
 mappages["combatBrush1"].returninfused = '0';
+mappages["combatBrush1"].automap = '0';
 mappages["combatBrush1"].linkedMaps = [""];
 mappages["combatBrush1"].editorLabels = '{}';
 
@@ -473,6 +490,7 @@ mappages["combatBrush2"].returnmap = '';
 mappages["combatBrush2"].returnx = 'NaN';
 mappages["combatBrush2"].returny = 'NaN';
 mappages["combatBrush2"].returninfused = '0';
+mappages["combatBrush2"].automap = '0';
 mappages["combatBrush2"].linkedMaps = [""];
 mappages["combatBrush2"].editorLabels = '{}';
 
@@ -536,6 +554,7 @@ mappages["combatHill1"].returnmap = '';
 mappages["combatHill1"].returnx = 'NaN';
 mappages["combatHill1"].returny = 'NaN';
 mappages["combatHill1"].returninfused = '0';
+mappages["combatHill1"].automap = '0';
 mappages["combatHill1"].linkedMaps = [""];
 mappages["combatHill1"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -599,6 +618,7 @@ mappages["combatHill2"].returnmap = '';
 mappages["combatHill2"].returnx = 'NaN';
 mappages["combatHill2"].returny = 'NaN';
 mappages["combatHill2"].returninfused = '0';
+mappages["combatHill2"].automap = '0';
 mappages["combatHill2"].linkedMaps = [""];
 mappages["combatHill2"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -688,6 +708,7 @@ mappages["combatForest1"].returnmap = '';
 mappages["combatForest1"].returnx = 'NaN';
 mappages["combatForest1"].returny = 'NaN';
 mappages["combatForest1"].returninfused = '0';
+mappages["combatForest1"].automap = '0';
 mappages["combatForest1"].linkedMaps = [""];
 mappages["combatForest1"].editorLabels = '{}';
 
@@ -777,6 +798,7 @@ mappages["combatForest2"].returnmap = '';
 mappages["combatForest2"].returnx = 'NaN';
 mappages["combatForest2"].returny = 'NaN';
 mappages["combatForest2"].returninfused = '0';
+mappages["combatForest2"].automap = '0';
 mappages["combatForest2"].linkedMaps = [""];
 mappages["combatForest2"].editorLabels = '{}';
 
@@ -840,6 +862,7 @@ mappages["combatSwamp1"].returnmap = '';
 mappages["combatSwamp1"].returnx = 'NaN';
 mappages["combatSwamp1"].returny = 'NaN';
 mappages["combatSwamp1"].returninfused = '0';
+mappages["combatSwamp1"].automap = '0';
 mappages["combatSwamp1"].linkedMaps = [""];
 mappages["combatSwamp1"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -903,6 +926,7 @@ mappages["combatSwamp2"].returnmap = '';
 mappages["combatSwamp2"].returnx = 'NaN';
 mappages["combatSwamp2"].returny = 'NaN';
 mappages["combatSwamp2"].returninfused = '0';
+mappages["combatSwamp2"].automap = '0';
 mappages["combatSwamp2"].linkedMaps = [""];
 mappages["combatSwamp2"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -965,6 +989,7 @@ mappages["combatCoast1"].returnmap = '';
 mappages["combatCoast1"].returnx = 'NaN';
 mappages["combatCoast1"].returny = 'NaN';
 mappages["combatCoast1"].returninfused = '0';
+mappages["combatCoast1"].automap = '0';
 mappages["combatCoast1"].linkedMaps = [""];
 mappages["combatCoast1"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -1031,6 +1056,7 @@ mappages["combatCoast2"].returnmap = '';
 mappages["combatCoast2"].returnx = 'NaN';
 mappages["combatCoast2"].returny = 'NaN';
 mappages["combatCoast2"].returninfused = '0';
+mappages["combatCoast2"].automap = '0';
 mappages["combatCoast2"].linkedMaps = [""];
 mappages["combatCoast2"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -1112,6 +1138,7 @@ mappages["combatBridge1"].returnmap = '';
 mappages["combatBridge1"].returnx = 'NaN';
 mappages["combatBridge1"].returny = 'NaN';
 mappages["combatBridge1"].returninfused = '0';
+mappages["combatBridge1"].automap = '0';
 mappages["combatBridge1"].linkedMaps = [""];
 mappages["combatBridge1"].editorLabels = '{}';
 
@@ -1193,6 +1220,7 @@ mappages["combatBridge2"].returnmap = '';
 mappages["combatBridge2"].returnx = 'NaN';
 mappages["combatBridge2"].returny = 'NaN';
 mappages["combatBridge2"].returninfused = '0';
+mappages["combatBridge2"].automap = '0';
 mappages["combatBridge2"].linkedMaps = [""];
 mappages["combatBridge2"].editorLabels = '{}';
 
@@ -1339,6 +1367,7 @@ mappages["oliviaCart"].returnmap = 'ellusus';
 mappages["oliviaCart"].returnx = '69';
 mappages["oliviaCart"].returny = '74';
 mappages["oliviaCart"].returninfused = '0';
+mappages["oliviaCart"].automap = '0';
 mappages["oliviaCart"].linkedMaps = [""];
 mappages["oliviaCart"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -1410,6 +1439,7 @@ mappages["guardPatrolOH"].returnmap = 'ellusus';
 mappages["guardPatrolOH"].returnx = '69';
 mappages["guardPatrolOH"].returny = '74';
 mappages["guardPatrolOH"].returninfused = '0';
+mappages["guardPatrolOH"].automap = '0';
 mappages["guardPatrolOH"].linkedMaps = [""];
 mappages["guardPatrolOH"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -1483,6 +1513,7 @@ mappages["guardPatrolNP"].returnmap = 'ellusus';
 mappages["guardPatrolNP"].returnx = '69';
 mappages["guardPatrolNP"].returny = '74';
 mappages["guardPatrolNP"].returninfused = '0';
+mappages["guardPatrolNP"].automap = '0';
 mappages["guardPatrolNP"].linkedMaps = [""];
 mappages["guardPatrolNP"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -1555,6 +1586,7 @@ mappages["guardPatrolCL"].returnmap = 'ellusus';
 mappages["guardPatrolCL"].returnx = '69';
 mappages["guardPatrolCL"].returny = '74';
 mappages["guardPatrolCL"].returninfused = '0';
+mappages["guardPatrolCL"].automap = '0';
 mappages["guardPatrolCL"].linkedMaps = [""];
 mappages["guardPatrolCL"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -1627,6 +1659,7 @@ mappages["guardPatrolB"].returnmap = 'ellusus';
 mappages["guardPatrolB"].returnx = '69';
 mappages["guardPatrolB"].returny = '74';
 mappages["guardPatrolB"].returninfused = '0';
+mappages["guardPatrolB"].automap = '0';
 mappages["guardPatrolB"].linkedMaps = [""];
 mappages["guardPatrolB"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -1699,6 +1732,7 @@ mappages["guardPatrolS"].returnmap = 'ellusus';
 mappages["guardPatrolS"].returnx = '69';
 mappages["guardPatrolS"].returny = '74';
 mappages["guardPatrolS"].returninfused = '0';
+mappages["guardPatrolS"].automap = '0';
 mappages["guardPatrolS"].linkedMaps = [""];
 mappages["guardPatrolS"].editorLabels = '{}';
 // MAP ENDS HERE

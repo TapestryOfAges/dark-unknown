@@ -99,6 +99,7 @@ mappages["asharden1"].returnmap = 'ellusus';
 mappages["asharden1"].returnx = '69';
 mappages["asharden1"].returny = '74';
 mappages["asharden1"].returninfused = '0';
+mappages["asharden1"].automap = '1';
 mappages["asharden1"].linkedMaps = ["asharden2","asharden3"];
 mappages["asharden1"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -223,6 +224,7 @@ mappages["asharden2"].returnmap = 'ellusus';
 mappages["asharden2"].returnx = '69';
 mappages["asharden2"].returny = '74';
 mappages["asharden2"].returninfused = '0';
+mappages["asharden2"].automap = '1';
 mappages["asharden2"].linkedMaps = ["asharden1","asharden3"];
 mappages["asharden2"].editorLabels = '{}';
 
@@ -304,5 +306,6 @@ mappages["asharden3"].returnmap = 'ellusus';
 mappages["asharden3"].returnx = '69';
 mappages["asharden3"].returny = '74';
 mappages["asharden3"].returninfused = '0';
+mappages["asharden3"].automap = '1';
 mappages["asharden3"].linkedMaps = ["asharden1","asharden2"];
 mappages["asharden3"].editorLabels = '{}';

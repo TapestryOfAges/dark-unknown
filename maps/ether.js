@@ -322,6 +322,7 @@ mappages["ether"].returnx = 'NaN';
 mappages["ether"].returny = 'NaN';
 mappages["ether"].returninfused = '0';
 mappages["ether"].undergroundDesc = 'Otherworldly';
+mappages["ether"].automap = '1';
 mappages["ether"].linkedMaps = [""];
 
 
@@ -588,6 +589,7 @@ mappages["etherwisp"].returnmap = '';
 mappages["etherwisp"].returnx = 'NaN';
 mappages["etherwisp"].returny = 'NaN';
 mappages["etherwisp"].returninfused = '0';
+mappages["etherwisp"].automap = '1';
 mappages["etherwisp"].linkedMaps = [""];
 mappages["etherwisp"].editorLabels = '{}';
 // MAP ENDS HERE

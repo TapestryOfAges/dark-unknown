@@ -427,6 +427,7 @@ mappages["clearlake"].returnmap = 'ellusus';
 mappages["clearlake"].returnx = '69';
 mappages["clearlake"].returny = '74';
 mappages["clearlake"].returninfused = '0';
+mappages["clearlake"].automap = '1';
 mappages["clearlake"].linkedMaps = ["clearlake2","clearlake0"];
 mappages["clearlake"].editorLabels = '{"div_tile5x52":"Colin and Maggie","div_tile5x38":"Flora","div_tile22x10":"Xylia","div_tile40x31":"Julian","div_tile40x39":"Rhys (act 2)","div_tile15x57":"Lisa","div_tile22x15":"PC"}';
 // MAP ENDS HERE
@@ -649,6 +650,7 @@ mappages["clearlake2"].returnmap = 'ellusus';
 mappages["clearlake2"].returnx = '69';
 mappages["clearlake2"].returny = '74';
 mappages["clearlake2"].returninfused = '0';
+mappages["clearlake2"].automap = '1';
 mappages["clearlake2"].linkedMaps = ["clearlake","clearlake0"];
 mappages["clearlake2"].editorLabels = '{"div_tile41x38":"Suzanne","div_tile40x32":"Ernest post-Scour","div_tile32x53":"Robert","div_tile6x52":"Lydia","div_tile32x19":"Jonah","div_tile36x18":"Aubrey and Kiki"}';
 // MAP ENDS HERE
@@ -737,6 +739,7 @@ mappages["clearlake0"].returnmap = 'ellusus';
 mappages["clearlake0"].returnx = '81';
 mappages["clearlake0"].returny = '23';
 mappages["clearlake0"].returninfused = '0';
+mappages["clearlake0"].automap = '1';
 mappages["clearlake0"].linkedMaps = ["clearlake","clearlake2"];
 mappages["clearlake0"].editorLabels = '{}';
 
@@ -799,5 +802,6 @@ mappages["tunnels"].returnmap = 'ellusus';
 mappages["tunnels"].returnx = '81';
 mappages["tunnels"].returny = '23';
 mappages["tunnels"].returninfused = '0';
+mappages["tunnels"].automap = '1';
 mappages["tunnels"].linkedMaps = [""];
 mappages["tunnels"].editorLabels = '{}';

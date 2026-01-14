@@ -49,6 +49,7 @@ mappages["abyss0"].returnmap = '';
 mappages["abyss0"].returnx = 'NaN';
 mappages["abyss0"].returny = 'NaN';
 mappages["abyss0"].returninfused = '0';
+mappages["abyss0"].automap = '0';
 mappages["abyss0"].linkedMaps = ["abyss1","abyss2","abyss3","abyss4","abyss5"];
 mappages["abyss0"].editorLabels = '{}';
 
@@ -110,6 +111,7 @@ mappages["abyss1"].returnmap = '';
 mappages["abyss1"].returnx = 'NaN';
 mappages["abyss1"].returny = 'NaN';
 mappages["abyss1"].returninfused = '0';
+mappages["abyss1"].automap = '0';
 mappages["abyss1"].linkedMaps = ["abyss0","abyss2","abyss3","abyss4","abyss5"];
 mappages["abyss1"].editorLabels = '{}';
 
@@ -192,6 +194,7 @@ mappages["abyss2"].returnmap = '';
 mappages["abyss2"].returnx = 'NaN';
 mappages["abyss2"].returny = 'NaN';
 mappages["abyss2"].returninfused = '0';
+mappages["abyss2"].automap = '0';
 mappages["abyss2"].linkedMaps = ["abyss1","abyss0","abyss3","abyss4","abyss5"];
 mappages["abyss2"].editorLabels = '{}';
 
@@ -293,6 +296,7 @@ mappages["abyss3"].returnmap = '';
 mappages["abyss3"].returnx = 'NaN';
 mappages["abyss3"].returny = 'NaN';
 mappages["abyss3"].returninfused = '0';
+mappages["abyss3"].automap = '0';
 mappages["abyss3"].linkedMaps = ["abyss1","abyss2","abyss0","abyss4","abyss5"];
 mappages["abyss3"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -358,6 +362,7 @@ mappages["abyss4"].returnmap = '';
 mappages["abyss4"].returnx = 'NaN';
 mappages["abyss4"].returny = 'NaN';
 mappages["abyss4"].returninfused = '0';
+mappages["abyss4"].automap = '0';
 mappages["abyss4"].linkedMaps = ["abyss1","abyss2","abyss3","abyss0","abyss5"];
 mappages["abyss4"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -436,6 +441,7 @@ mappages["abyss5"].returnmap = '';
 mappages["abyss5"].returnx = 'NaN';
 mappages["abyss5"].returny = 'NaN';
 mappages["abyss5"].returninfused = '0';
+mappages["abyss5"].automap = '0';
 mappages["abyss5"].linkedMaps = ["abyss1","abyss2","abyss3","abyss0","abyss4"];
 mappages["abyss5"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -1009,6 +1015,7 @@ mappages["abyss_castle_1"].returnmap = '';
 mappages["abyss_castle_1"].returnx = 'NaN';
 mappages["abyss_castle_1"].returny = 'NaN';
 mappages["abyss_castle_1"].returninfused = '0';
+mappages["abyss_castle_1"].automap = '0';
 mappages["abyss_castle_1"].linkedMaps = ["abyss_castle_2","abyss_castle_3","abyss_castle_4","abyss_castle_5","abyss_castle_6","abyss_castle_7","abyss_castle_8"];
 mappages["abyss_castle_1"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -1453,6 +1460,7 @@ mappages["abyss_castle_2"].returnmap = '';
 mappages["abyss_castle_2"].returnx = 'NaN';
 mappages["abyss_castle_2"].returny = 'NaN';
 mappages["abyss_castle_2"].returninfused = '0';
+mappages["abyss_castle_2"].automap = '0';
 mappages["abyss_castle_2"].linkedMaps = ["abyss_castle_1","abyss_castle_3","abyss_castle_4","abyss_castle_5","abyss_castle_6","abyss_castle_7","abyss_castle_8"];
 mappages["abyss_castle_2"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -1854,6 +1862,7 @@ mappages["abyss_castle_3"].returnmap = '';
 mappages["abyss_castle_3"].returnx = 'NaN';
 mappages["abyss_castle_3"].returny = 'NaN';
 mappages["abyss_castle_3"].returninfused = '0';
+mappages["abyss_castle_3"].automap = '0';
 mappages["abyss_castle_3"].linkedMaps = ["abyss_castle_1","abyss_castle_2","abyss_castle_4","abyss_castle_5","abyss_castle_6","abyss_castle_7","abyss_castle_8"];
 mappages["abyss_castle_3"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -2353,6 +2362,7 @@ mappages["abyss_castle_4"].returnmap = '';
 mappages["abyss_castle_4"].returnx = 'NaN';
 mappages["abyss_castle_4"].returny = 'NaN';
 mappages["abyss_castle_4"].returninfused = '0';
+mappages["abyss_castle_4"].automap = '0';
 mappages["abyss_castle_4"].linkedMaps = ["abyss_castle_1","abyss_castle_2","abyss_castle_3","abyss_castle_5","abyss_castle_6","abyss_castle_7","abyss_castle_8"];
 mappages["abyss_castle_4"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -2756,6 +2766,7 @@ mappages["abyss_castle_5"].returnmap = '';
 mappages["abyss_castle_5"].returnx = 'NaN';
 mappages["abyss_castle_5"].returny = 'NaN';
 mappages["abyss_castle_5"].returninfused = '0';
+mappages["abyss_castle_5"].automap = '0';
 mappages["abyss_castle_5"].linkedMaps = ["abyss_castle_1","abyss_castle_2","abyss_castle_3","abyss_castle_4","abyss_castle_6","abyss_castle_7","abyss_castle_8"];
 mappages["abyss_castle_5"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -3689,6 +3700,7 @@ mappages["abyss_castle_6"].returnmap = '';
 mappages["abyss_castle_6"].returnx = 'NaN';
 mappages["abyss_castle_6"].returny = 'NaN';
 mappages["abyss_castle_6"].returninfused = '0';
+mappages["abyss_castle_6"].automap = '0';
 mappages["abyss_castle_6"].linkedMaps = ["abyss_castle_1","abyss_castle_2","abyss_castle_3","abyss_castle_4","abyss_castle_5","abyss_castle_7","abyss_castle_8"];
 mappages["abyss_castle_6"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -4090,6 +4102,7 @@ mappages["abyss_castle_7"].returnmap = '';
 mappages["abyss_castle_7"].returnx = 'NaN';
 mappages["abyss_castle_7"].returny = 'NaN';
 mappages["abyss_castle_7"].returninfused = '0';
+mappages["abyss_castle_7"].automap = '0';
 mappages["abyss_castle_7"].linkedMaps = ["abyss_castle_1","abyss_castle_2","abyss_castle_3","abyss_castle_4","abyss_castle_5","abyss_castle_6","abyss_castle_8"];
 mappages["abyss_castle_7"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -4879,6 +4892,7 @@ mappages["abyss_castle_8"].returnmap = '';
 mappages["abyss_castle_8"].returnx = 'NaN';
 mappages["abyss_castle_8"].returny = 'NaN';
 mappages["abyss_castle_8"].returninfused = '0';
+mappages["abyss_castle_8"].automap = '0';
 mappages["abyss_castle_8"].linkedMaps = ["abyss_castle_1","abyss_castle_2","abyss_castle_3","abyss_castle_4","abyss_castle_5","abyss_castle_6","abyss_castle_7"];
 mappages["abyss_castle_8"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -5280,6 +5294,7 @@ mappages["abyss_castle_0"].returnmap = '';
 mappages["abyss_castle_0"].returnx = 'NaN';
 mappages["abyss_castle_0"].returny = 'NaN';
 mappages["abyss_castle_0"].returninfused = '0';
+mappages["abyss_castle_0"].automap = '0';
 mappages["abyss_castle_0"].linkedMaps = [""];
 mappages["abyss_castle_0"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -5462,6 +5477,7 @@ mappages["abyss_final"].returnmap = '';
 mappages["abyss_final"].returnx = 'NaN';
 mappages["abyss_final"].returny = 'NaN';
 mappages["abyss_final"].returninfused = '0';
+mappages["abyss_final"].automap = '0';
 mappages["abyss_final"].linkedMaps = [""];
 mappages["abyss_final"].editorLabels = '{}';
 // MAP ENDS HERE

@@ -281,6 +281,7 @@ mappages["onyx"].returnmap = 'ellusus';
 mappages["onyx"].returnx = '69';
 mappages["onyx"].returny = '74';
 mappages["onyx"].returninfused = '0';
+mappages["onyx"].automap = '1';
 mappages["onyx"].linkedMaps = ["onyx2","onyx3","onyxtunnel","onyxlimbo"];
 mappages["onyx"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -438,6 +439,7 @@ mappages["onyx2"].returnmap = 'ellusus';
 mappages["onyx2"].returnx = '69';
 mappages["onyx2"].returny = '74';
 mappages["onyx2"].returninfused = '0';
+mappages["onyx2"].automap = '1';
 mappages["onyx2"].linkedMaps = ["onyx","onyx3","onyxtunnel","onyxlimbo"];
 mappages["onyx2"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -521,6 +523,7 @@ mappages["onyx3"].returnmap = 'ellusus';
 mappages["onyx3"].returnx = '69';
 mappages["onyx3"].returny = '74';
 mappages["onyx3"].returninfused = '0';
+mappages["onyx3"].automap = '1';
 mappages["onyx3"].linkedMaps = ["onyx","onyx2","onyxtunnel","onyxlimbo"];
 mappages["onyx3"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -624,6 +627,7 @@ mappages["onyxtunnel"].returnmap = 'ellusus';
 mappages["onyxtunnel"].returnx = '64';
 mappages["onyxtunnel"].returny = '120';
 mappages["onyxtunnel"].returninfused = '0';
+mappages["onyxtunnel"].automap = '1';
 mappages["onyxtunnel"].linkedMaps = ["onyx","onyx2","onyx3","onyxlimbo"];
 mappages["onyxtunnel"].editorLabels = '{}';
 
@@ -673,6 +677,7 @@ mappages["onyxlimbo"].returnmap = '';
 mappages["onyxlimbo"].returnx = 'NaN';
 mappages["onyxlimbo"].returny = 'NaN';
 mappages["onyxlimbo"].returninfused = '0';
+mappages["onyxlimbo"].automap = '0';
 mappages["onyxlimbo"].linkedMaps = ["onyx","onyx2","onyx3","onyxtunnel"];
 mappages["onyxlimbo"].editorLabels = '{}';
 

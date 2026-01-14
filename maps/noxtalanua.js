@@ -97,6 +97,7 @@ mappages["noxtalanua1"].returnmap = 'ellusus';
 mappages["noxtalanua1"].returnx = '134';
 mappages["noxtalanua1"].returny = '49';
 mappages["noxtalanua1"].returninfused = '0';
+mappages["noxtalanua1"].automap = '1';
 mappages["noxtalanua1"].linkedMaps = ["noxtalanua2","noxtalanua3","noxtalanua4","noxtalanua5","noxtalanua6","noxtalanua7","noxtalanua7a","noxtalanua7b","noxtalanua7c","noxtalanua8"];
 mappages["noxtalanua1"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -239,6 +240,7 @@ mappages["noxtalanua2"].returnmap = 'ellusus';
 mappages["noxtalanua2"].returnx = '134';
 mappages["noxtalanua2"].returny = '49';
 mappages["noxtalanua2"].returninfused = '0';
+mappages["noxtalanua2"].automap = '1';
 mappages["noxtalanua2"].linkedMaps = ["noxtalanua1","noxtalanua3","noxtalanua4","noxtalanua5","noxtalanua6","noxtalanua7","noxtalanua7a","noxtalanua7b","noxtalanua7c","noxtalanua8"];
 mappages["noxtalanua2"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -366,6 +368,7 @@ mappages["noxtalanua3"].returnmap = 'ellusus';
 mappages["noxtalanua3"].returnx = '134';
 mappages["noxtalanua3"].returny = '49';
 mappages["noxtalanua3"].returninfused = '0';
+mappages["noxtalanua3"].automap = '1';
 mappages["noxtalanua3"].linkedMaps = ["noxtalanua1","noxtalanua2","noxtalanua4","noxtalanua5","noxtalanua6","noxtalanua7","noxtalanua7a","noxtalanua7b","noxtalanua7c","noxtalanua8"];
 mappages["noxtalanua3"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -470,6 +473,7 @@ mappages["noxtalanua4"].returnmap = 'ellusus';
 mappages["noxtalanua4"].returnx = '134';
 mappages["noxtalanua4"].returny = '49';
 mappages["noxtalanua4"].returninfused = '0';
+mappages["noxtalanua4"].automap = '1';
 mappages["noxtalanua4"].linkedMaps = ["noxtalanua1","noxtalanua2","noxtalanua3","noxtalanua5","noxtalanua6","noxtalanua7","noxtalanua7a","noxtalanua7b","noxtalanua7c","noxtalanua8"];
 mappages["noxtalanua4"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -626,6 +630,7 @@ mappages["noxtalanua5"].returnmap = 'ellusus';
 mappages["noxtalanua5"].returnx = '134';
 mappages["noxtalanua5"].returny = '49';
 mappages["noxtalanua5"].returninfused = '0';
+mappages["noxtalanua5"].automap = '1';
 mappages["noxtalanua5"].linkedMaps = ["noxtalanua1","noxtalanua2","noxtalanua3","noxtalanua4","noxtalanua6","noxtalanua7","noxtalanua7a","noxtalanua7b","noxtalanua7c","noxtalanua8"];
 mappages["noxtalanua5"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -780,6 +785,7 @@ mappages["noxtalanua6"].returnmap = 'ellusus';
 mappages["noxtalanua6"].returnx = '134';
 mappages["noxtalanua6"].returny = '49';
 mappages["noxtalanua6"].returninfused = '0';
+mappages["noxtalanua6"].automap = '1';
 mappages["noxtalanua6"].linkedMaps = ["noxtalanua1","noxtalanua2","noxtalanua3","noxtalanua4","noxtalanua5","noxtalanua7","noxtalanua7a","noxtalanua7b","noxtalanua7c","noxtalanua8"];
 mappages["noxtalanua6"].editorLabels = '{}';
 
@@ -889,6 +895,7 @@ mappages["noxtalanua7"].returnmap = 'ellusus';
 mappages["noxtalanua7"].returnx = '134';
 mappages["noxtalanua7"].returny = '49';
 mappages["noxtalanua7"].returninfused = '0';
+mappages["noxtalanua7"].automap = '0';
 mappages["noxtalanua7"].linkedMaps = ["noxtalanua1","noxtalanua2","noxtalanua3","noxtalanua4","noxtalanua5","noxtalanua6","noxtalanua7a","noxtalanua7b","noxtalanua7c","noxtalanua8"];
 mappages["noxtalanua7"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -1034,6 +1041,7 @@ mappages["noxtalanua7a"].returnmap = 'ellusus';
 mappages["noxtalanua7a"].returnx = '133';
 mappages["noxtalanua7a"].returny = '79';
 mappages["noxtalanua7a"].returninfused = '0';
+mappages["noxtalanua7a"].automap = '0';
 mappages["noxtalanua7a"].linkedMaps = ["noxtalanua1","noxtalanua2","noxtalanua3","noxtalanua4","noxtalanua5","noxtalanua6","noxtalanua7","noxtalanua7b","noxtalanua7c","noxtalanua8"];
 mappages["noxtalanua7a"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -1102,6 +1110,7 @@ mappages["noxtalanua7b"].returnmap = 'ellusus';
 mappages["noxtalanua7b"].returnx = '134';
 mappages["noxtalanua7b"].returny = '49';
 mappages["noxtalanua7b"].returninfused = '0';
+mappages["noxtalanua7b"].automap = '0';
 mappages["noxtalanua7b"].linkedMaps = ["noxtalanua1","noxtalanua2","noxtalanua3","noxtalanua4","noxtalanua5","noxtalanua6","noxtalanua7","noxtalanua7a","noxtalanua7c","noxtalanua8"];
 mappages["noxtalanua7b"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -1170,6 +1179,7 @@ mappages["noxtalanua7c"].returnmap = 'ellusus';
 mappages["noxtalanua7c"].returnx = '133';
 mappages["noxtalanua7c"].returny = '79';
 mappages["noxtalanua7c"].returninfused = '0';
+mappages["noxtalanua7c"].automap = '0';
 mappages["noxtalanua7c"].linkedMaps = ["noxtalanua1","noxtalanua2","noxtalanua3","noxtalanua4","noxtalanua5","noxtalanua6","noxtalanua7","noxtalanua7a","noxtalanua7b","noxtalanua8"];
 mappages["noxtalanua7c"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -1260,6 +1270,7 @@ mappages["noxtalanua8"].returnmap = 'ellusus';
 mappages["noxtalanua8"].returnx = '134';
 mappages["noxtalanua8"].returny = '49';
 mappages["noxtalanua8"].returninfused = '0';
+mappages["noxtalanua8"].automap = '1';
 mappages["noxtalanua8"].linkedMaps = ["noxtalanua1","noxtalanua2","noxtalanua3","noxtalanua4","noxtalanua5","noxtalanua6","noxtalanua7","noxtalanua7a","noxtalanua7b","noxtalanua7c"];
 mappages["noxtalanua8"].editorLabels = '{}';
 // MAP ENDS HERE

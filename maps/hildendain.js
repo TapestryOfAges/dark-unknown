@@ -491,6 +491,7 @@ mappages["hildendain"].returnmap = 'ellusus';
 mappages["hildendain"].returnx = '69';
 mappages["hildendain"].returny = '74';
 mappages["hildendain"].returninfused = '0';
+mappages["hildendain"].automap = '1';
 mappages["hildendain"].linkedMaps = ["hildendain2","hildendain0"];
 mappages["hildendain"].editorLabels = '{"div_tile38x32":"Alexis","div_tile31x22":"Rhiannon","div_tile38x23":"Dave","div_tile14x45":"Anna","div_tile5x43":"Aaron Erin","div_tile25x34":"Franklin","div_tile45x32":"Kiba"}';
 // MAP ENDS HERE
@@ -622,6 +623,7 @@ mappages["hildendain2"].returnmap = 'ellusus';
 mappages["hildendain2"].returnx = '69';
 mappages["hildendain2"].returny = '74';
 mappages["hildendain2"].returninfused = '0';
+mappages["hildendain2"].automap = '1';
 mappages["hildendain2"].linkedMaps = ["hildendain","hildendain0"];
 mappages["hildendain2"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -906,5 +908,6 @@ mappages["hildendain0"].returnmap = 'ellusus';
 mappages["hildendain0"].returnx = '69';
 mappages["hildendain0"].returny = '74';
 mappages["hildendain0"].returninfused = '0';
+mappages["hildendain0"].automap = '1';
 mappages["hildendain0"].linkedMaps = ["hildendain","hildendain2"];
 mappages["hildendain0"].editorLabels = '{}';

@@ -98,6 +98,7 @@ mappages["hotelcalifornia0"].returnmap = '';
 mappages["hotelcalifornia0"].returnx = 'NaN';
 mappages["hotelcalifornia0"].returny = 'NaN';
 mappages["hotelcalifornia0"].returninfused = '0';
+mappages["hotelcalifornia0"].automap = '1';
 mappages["hotelcalifornia0"].linkedMaps = ["hotelcalifornia","hotelcalifornia2","hotelcalifornia3","hotelcalifornia4","hotelcalifornia5","hotelcalifornia6","hotelcalifornia7","hotelcalifornia8"];
 mappages["hotelcalifornia0"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -192,6 +193,7 @@ mappages["hotelcalifornia"].returnmap = '';
 mappages["hotelcalifornia"].returnx = 'NaN';
 mappages["hotelcalifornia"].returny = 'NaN';
 mappages["hotelcalifornia"].returninfused = '0';
+mappages["hotelcalifornia"].automap = '1';
 mappages["hotelcalifornia"].linkedMaps = ["hotelcalifornia0","hotelcalifornia2","hotelcalifornia3","hotelcalifornia4","hotelcalifornia5","hotelcalifornia6","hotelcalifornia7","hotelcalifornia8"];
 mappages["hotelcalifornia"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -282,6 +284,7 @@ mappages["hotelcalifornia2"].returnmap = '';
 mappages["hotelcalifornia2"].returnx = 'NaN';
 mappages["hotelcalifornia2"].returny = 'NaN';
 mappages["hotelcalifornia2"].returninfused = '0';
+mappages["hotelcalifornia2"].automap = '0';
 mappages["hotelcalifornia2"].linkedMaps = ["hotelcalifornia0","hotelcalifornia","hotelcalifornia3","hotelcalifornia4","hotelcalifornia5","hotelcalifornia6","hotelcalifornia7","hotelcalifornia8"];
 mappages["hotelcalifornia2"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -397,6 +400,7 @@ mappages["hotelcalifornia3"].returnmap = '';
 mappages["hotelcalifornia3"].returnx = 'NaN';
 mappages["hotelcalifornia3"].returny = 'NaN';
 mappages["hotelcalifornia3"].returninfused = '0';
+mappages["hotelcalifornia3"].automap = '0';
 mappages["hotelcalifornia3"].linkedMaps = ["hotelcalifornia0","hotelcalifornia","hotelcalifornia2","hotelcalifornia4","hotelcalifornia5","hotelcalifornia6","hotelcalifornia7","hotelcalifornia8"];
 mappages["hotelcalifornia3"].editorLabels = '{}';
 
@@ -521,6 +525,7 @@ mappages["hotelcalifornia4"].returnmap = '';
 mappages["hotelcalifornia4"].returnx = 'NaN';
 mappages["hotelcalifornia4"].returny = 'NaN';
 mappages["hotelcalifornia4"].returninfused = '0';
+mappages["hotelcalifornia4"].automap = '0';
 mappages["hotelcalifornia4"].linkedMaps = ["hotelcalifornia0","hotelcalifornia","hotelcalifornia2","hotelcalifornia3","hotelcalifornia5","hotelcalifornia6","hotelcalifornia7","hotelcalifornia8"];
 mappages["hotelcalifornia4"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -615,6 +620,7 @@ mappages["hotelcalifornia5"].returnmap = '';
 mappages["hotelcalifornia5"].returnx = 'NaN';
 mappages["hotelcalifornia5"].returny = 'NaN';
 mappages["hotelcalifornia5"].returninfused = '0';
+mappages["hotelcalifornia5"].automap = '0';
 mappages["hotelcalifornia5"].linkedMaps = ["hotelcalifornia0","hotelcalifornia","hotelcalifornia2","hotelcalifornia3","hotelcalifornia4","hotelcalifornia6","hotelcalifornia7","hotelcalifornia8"];
 mappages["hotelcalifornia5"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -710,6 +716,7 @@ mappages["hotelcalifornia6"].returnmap = '';
 mappages["hotelcalifornia6"].returnx = 'NaN';
 mappages["hotelcalifornia6"].returny = 'NaN';
 mappages["hotelcalifornia6"].returninfused = '0';
+mappages["hotelcalifornia6"].automap = '0';
 mappages["hotelcalifornia6"].linkedMaps = ["hotelcalifornia0","hotelcalifornia","hotelcalifornia2","hotelcalifornia3","hotelcalifornia4","hotelcalifornia5","hotelcalifornia7","hotelcalifornia8"];
 mappages["hotelcalifornia6"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -825,6 +832,7 @@ mappages["hotelcalifornia7"].returnmap = '';
 mappages["hotelcalifornia7"].returnx = 'NaN';
 mappages["hotelcalifornia7"].returny = 'NaN';
 mappages["hotelcalifornia7"].returninfused = '0';
+mappages["hotelcalifornia7"].automap = '0';
 mappages["hotelcalifornia7"].linkedMaps = ["hotelcalifornia0","hotelcalifornia","hotelcalifornia2","hotelcalifornia3","hotelcalifornia4","hotelcalifornia5","hotelcalifornia6","hotelcalifornia8"];
 mappages["hotelcalifornia7"].editorLabels = '{}';
 
@@ -901,5 +909,6 @@ mappages["hotelcalifornia8"].returnmap = '';
 mappages["hotelcalifornia8"].returnx = 'NaN';
 mappages["hotelcalifornia8"].returny = 'NaN';
 mappages["hotelcalifornia8"].returninfused = '0';
+mappages["hotelcalifornia8"].automap = '1';
 mappages["hotelcalifornia8"].linkedMaps = ["hotelcalifornia0","hotelcalifornia","hotelcalifornia2","hotelcalifornia3","hotelcalifornia4","hotelcalifornia5","hotelcalifornia6","hotelcalifornia7"];
 mappages["hotelcalifornia8"].editorLabels = '{}';

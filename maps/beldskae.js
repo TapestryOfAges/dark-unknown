@@ -347,6 +347,7 @@ mappages["beldskae"].returnmap = 'ellusus';
 mappages["beldskae"].returnx = '69';
 mappages["beldskae"].returny = '74';
 mappages["beldskae"].returninfused = '0';
+mappages["beldskae"].automap = '1';
 mappages["beldskae"].linkedMaps = ["beldskae2","beldskae3"];
 mappages["beldskae"].editorLabels = '{"div_tile23x10":"Ariel shop","div_tile43x23":"Ariel","div_tile22x29":"Megan shop and house","div_tile9x22":"Mia","div_tile53x14":"Allan and Steph","div_tile44x14":"Ace","div_tile22x18":"Barri","div_tile8x18":"Denise"}';
 // MAP ENDS HERE
@@ -502,6 +503,7 @@ mappages["beldskae2"].returnmap = 'ellusus';
 mappages["beldskae2"].returnx = '69';
 mappages["beldskae2"].returny = '74';
 mappages["beldskae2"].returninfused = '0';
+mappages["beldskae2"].automap = '1';
 mappages["beldskae2"].linkedMaps = ["beldskae","beldskae3"];
 mappages["beldskae2"].editorLabels = '{"div_tile39x14":"PC","div_tile33x22":"Ernest","div_tile33x14":"Kelse","div_tile33x26":"Percy","div_tile39x17":"Ursula","div_tile39x21":"Rich","div_tile33x17":"Grant"}';
 // MAP ENDS HERE
@@ -615,6 +617,7 @@ mappages["beldskae3"].returnmap = 'ellusus';
 mappages["beldskae3"].returnx = '69';
 mappages["beldskae3"].returny = '74';
 mappages["beldskae3"].returninfused = '0';
+mappages["beldskae3"].automap = '1';
 mappages["beldskae3"].linkedMaps = ["beldskae","beldskae2"];
 mappages["beldskae3"].editorLabels = '{"div_tile34x14":"Coral","div_tile33x23":"Conrad"}';
 // MAP ENDS HERE
@@ -1026,6 +1029,7 @@ mappages["beldskae_scour"].returnmap = 'ellusus';
 mappages["beldskae_scour"].returnx = '69';
 mappages["beldskae_scour"].returny = '74';
 mappages["beldskae_scour"].returninfused = '0';
+mappages["beldskae_scour"].automap = '1';
 mappages["beldskae_scour"].linkedMaps = ["beldskae2_scour"];
 mappages["beldskae_scour"].editorLabels = '{"div_tile23x10":"Ariel shop","div_tile43x23":"Ariel","div_tile22x29":"Megan shop and house","div_tile9x22":"Mia","div_tile53x14":"Allan and Steph","div_tile44x14":"Ace","div_tile22x18":"Barri","div_tile8x18":"Denise"}';
 // MAP ENDS HERE
@@ -1165,6 +1169,7 @@ mappages["beldskae2_scour"].returnmap = 'ellusus';
 mappages["beldskae2_scour"].returnx = '69';
 mappages["beldskae2_scour"].returny = '74';
 mappages["beldskae2_scour"].returninfused = '0';
+mappages["beldskae2_scour"].automap = '1';
 mappages["beldskae2_scour"].linkedMaps = ["beldskae_scour"];
 mappages["beldskae2_scour"].editorLabels = '{"div_tile39x14":"PC","div_tile33x22":"Ernest","div_tile33x14":"Kelse","div_tile33x26":"Percy","div_tile39x17":"Ursula","div_tile39x21":"Rich","div_tile33x17":"Grant"}';
 // MAP ENDS HERE
@@ -1178,6 +1183,8 @@ mappages["beldskae_scour"].onload = function(mapref) {
         npcs[i].onDeath = "scouring";
       }
     }
+    mapmagic["beldskae_scour"] = JSON.parse(JSON.stringify(mapmagic["beldskae"]));
+    mapmagic["beldskae2_scour"] = JSON.parse(JSON.stringify(mapmagic["beldskae2"]));
   }
 }
 
@@ -1579,6 +1586,7 @@ mappages["beldskae_razed"].returnmap = 'ellusus';
 mappages["beldskae_razed"].returnx = '69';
 mappages["beldskae_razed"].returny = '74';
 mappages["beldskae_razed"].returninfused = '0';
+mappages["beldskae_razed"].automap = '1';
 mappages["beldskae_razed"].linkedMaps = [""];
 mappages["beldskae_razed"].editorLabels = '{"div_tile23x10":"Ariel shop","div_tile43x23":"Ariel","div_tile22x29":"Megan shop and house","div_tile9x22":"Mia","div_tile53x14":"Allan and Steph","div_tile44x14":"Ace","div_tile22x18":"Barri","div_tile8x18":"Denise"}';
 // MAP ENDS HERE
@@ -1591,6 +1599,10 @@ mappages["beldskae_razed"].onload = function(mapref) {
       if (fea[i].getName() === "Mirror") {
         fea[i].break();
       }
+    }
+    if (!DU.gameflags.getFlag("visited_beldskae_razed")) {
+      mapmagic["beldskae_razed"] = JSON.parse(JSON.stringify(mapmagic["beldskae"]));
+      DU.gameflags.setFlag("visited_beldskae_razed",1);
     }
   }
 }
@@ -1920,9 +1932,20 @@ mappages["beldskae_saved"].returnmap = 'ellusus';
 mappages["beldskae_saved"].returnx = '69';
 mappages["beldskae_saved"].returny = '74';
 mappages["beldskae_saved"].returninfused = '0';
+mappages["beldskae_saved"].automap = '1';
 mappages["beldskae_saved"].linkedMaps = ["beldskae2_saved"];
 mappages["beldskae_saved"].editorLabels = '{"div_tile23x10":"Ariel shop","div_tile43x23":"Ariel","div_tile22x29":"Megan shop and house","div_tile9x22":"Mia","div_tile53x14":"Allan and Steph","div_tile44x14":"Ace","div_tile22x18":"Barri","div_tile8x18":"Denise"}';
 // MAP ENDS HERE
+
+mappages["beldskae_saved"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    if (!DU.gameflags.getFlag("visited_beldskae_saved")) {
+      mapmagic["beldskae_saved"] = JSON.parse(JSON.stringify(mapmagic["beldskae"]));
+      mapmagic["beldskae2_saved"] = JSON.parse(JSON.stringify(mapmagic["beldskae2"]));
+      DU.gameflags.setFlag("visited_beldskae_saved",1);
+    }
+  }
+}
 
 // MAP BEGINS HERE
 mappages["beldskae2_saved"] = {};
@@ -2065,6 +2088,7 @@ mappages["beldskae2_saved"].returnmap = 'ellusus';
 mappages["beldskae2_saved"].returnx = '69';
 mappages["beldskae2_saved"].returny = '74';
 mappages["beldskae2_saved"].returninfused = '0';
+mappages["beldskae2_saved"].automap = '1';
 mappages["beldskae2_saved"].linkedMaps = ["beldskae_saved"];
 mappages["beldskae2_saved"].editorLabels = '{"div_tile39x14":"PC","div_tile33x22":"Ernest","div_tile33x14":"Kelse","div_tile33x26":"Percy","div_tile39x17":"Ursula","div_tile39x21":"Rich","div_tile33x17":"Grant"}';
 // MAP ENDS HERE

@@ -148,6 +148,7 @@ mappages["miningvillage"].returnmap = 'ellusus';
 mappages["miningvillage"].returnx = '69';
 mappages["miningvillage"].returny = '74';
 mappages["miningvillage"].returninfused = '1';
+mappages["miningvillage"].automap = '1';
 mappages["miningvillage"].linkedMaps = [""];
 mappages["miningvillage"].editorLabels = '{}';
 // MAP ENDS HERE

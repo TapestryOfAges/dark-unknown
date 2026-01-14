@@ -69,6 +69,7 @@ mappages["beldskaecave"].returnmap = 'ellusus';
 mappages["beldskaecave"].returnx = '128';
 mappages["beldskaecave"].returny = '13';
 mappages["beldskaecave"].returninfused = '0';
+mappages["beldskaecave"].automap = '1';
 mappages["beldskaecave"].linkedMaps = [""];
 mappages["beldskaecave"].editorLabels = '{}';
 
@@ -182,6 +183,7 @@ mappages["warwizardtower"].returnmap = 'ellusus';
 mappages["warwizardtower"].returnx = '130';
 mappages["warwizardtower"].returny = '8';
 mappages["warwizardtower"].returninfused = '0';
+mappages["warwizardtower"].automap = '1';
 mappages["warwizardtower"].linkedMaps = [""];
 mappages["warwizardtower"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -282,6 +284,7 @@ mappages["wildingcave"].returnmap = 'ellusus';
 mappages["wildingcave"].returnx = '54';
 mappages["wildingcave"].returny = '115';
 mappages["wildingcave"].returninfused = '0';
+mappages["wildingcave"].automap = '1';
 mappages["wildingcave"].linkedMaps = [""];
 mappages["wildingcave"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -347,6 +350,7 @@ mappages["northroadcave"].returnmap = 'ellusus';
 mappages["northroadcave"].returnx = '62';
 mappages["northroadcave"].returny = '32';
 mappages["northroadcave"].returninfused = '0';
+mappages["northroadcave"].automap = '1';
 mappages["northroadcave"].linkedMaps = [""];
 mappages["northroadcave"].editorLabels = '{}';
 
@@ -428,6 +432,7 @@ mappages["consolationcave"].returnmap = 'ellusus';
 mappages["consolationcave"].returnx = '11';
 mappages["consolationcave"].returny = '17';
 mappages["consolationcave"].returninfused = '0';
+mappages["consolationcave"].automap = '1';
 mappages["consolationcave"].linkedMaps = ["consolationcave2"];
 mappages["consolationcave"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -551,6 +556,7 @@ mappages["consolationcave2"].returnmap = 'ellusus';
 mappages["consolationcave2"].returnx = '11';
 mappages["consolationcave2"].returny = '17';
 mappages["consolationcave2"].returninfused = '0';
+mappages["consolationcave2"].automap = '1';
 mappages["consolationcave2"].linkedMaps = ["consolationcave"];
 mappages["consolationcave2"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -633,6 +639,7 @@ mappages["shrinecave"].returnmap = 'ellusus';
 mappages["shrinecave"].returnx = '18';
 mappages["shrinecave"].returny = '85';
 mappages["shrinecave"].returninfused = '0';
+mappages["shrinecave"].automap = '1';
 mappages["shrinecave"].linkedMaps = [""];
 mappages["shrinecave"].editorLabels = '{}';
 
@@ -701,6 +708,7 @@ mappages["coastalcave"].returnmap = 'ellusus';
 mappages["coastalcave"].returnx = '118';
 mappages["coastalcave"].returny = '81';
 mappages["coastalcave"].returninfused = '0';
+mappages["coastalcave"].automap = '1';
 mappages["coastalcave"].linkedMaps = [""];
 mappages["coastalcave"].editorLabels = '{}';
 
@@ -800,6 +808,7 @@ mappages["swainhilcave"].returnmap = 'ellusus';
 mappages["swainhilcave"].returnx = '113';
 mappages["swainhilcave"].returny = '109';
 mappages["swainhilcave"].returninfused = '0';
+mappages["swainhilcave"].automap = '1';
 mappages["swainhilcave"].linkedMaps = [""];
 mappages["swainhilcave"].editorLabels = '{}';
 
@@ -933,6 +942,7 @@ mappages["wingcave"].returnmap = 'ellusus';
 mappages["wingcave"].returnx = '140';
 mappages["wingcave"].returny = '62';
 mappages["wingcave"].returninfused = '0';
+mappages["wingcave"].automap = '1';
 mappages["wingcave"].linkedMaps = [""];
 mappages["wingcave"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -1008,6 +1018,7 @@ mappages["wingcave2"].returnmap = 'ellusus';
 mappages["wingcave2"].returnx = '133';
 mappages["wingcave2"].returny = '79';
 mappages["wingcave2"].returninfused = '0';
+mappages["wingcave2"].automap = '1';
 mappages["wingcave2"].linkedMaps = [""];
 mappages["wingcave2"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -1099,6 +1110,7 @@ mappages["cragcave"].returnmap = 'ellusus';
 mappages["cragcave"].returnx = '119';
 mappages["cragcave"].returny = '125';
 mappages["cragcave"].returninfused = '0';
+mappages["cragcave"].automap = '1';
 mappages["cragcave"].linkedMaps = [""];
 mappages["cragcave"].editorLabels = '{}';
 
@@ -1170,6 +1182,7 @@ mappages["northcave"].returnmap = 'ellusus';
 mappages["northcave"].returnx = '124';
 mappages["northcave"].returny = '10';
 mappages["northcave"].returninfused = '0';
+mappages["northcave"].automap = '1';
 mappages["northcave"].linkedMaps = [""];
 mappages["northcave"].editorLabels = '{}';
 // MAP ENDS HERE

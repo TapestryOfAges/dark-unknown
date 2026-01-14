@@ -150,6 +150,7 @@ mappages["waterplane"].returnmap = '';
 mappages["waterplane"].returnx = 'NaN';
 mappages["waterplane"].returny = 'NaN';
 mappages["waterplane"].returninfused = '0';
+mappages["waterplane"].automap = '1';
 mappages["waterplane"].linkedMaps = [""];
 mappages["waterplane"].editorLabels = '{}';
 // MAP ENDS HERE

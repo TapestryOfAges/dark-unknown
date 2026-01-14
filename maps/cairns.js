@@ -163,6 +163,7 @@ mappages["cairns"].returnmap = 'island';
 mappages["cairns"].returnx = '15';
 mappages["cairns"].returny = '48';
 mappages["cairns"].returninfused = '0';
+mappages["cairns"].automap = '1';
 mappages["cairns"].linkedMaps = [""];
 mappages["cairns"].editorLabels = '{}';
 // MAP ENDS HERE

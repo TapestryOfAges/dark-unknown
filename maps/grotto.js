@@ -162,6 +162,7 @@ mappages["grotto"].returnmap = 'ellusus';
 mappages["grotto"].returnx = '27';
 mappages["grotto"].returny = '30';
 mappages["grotto"].returninfused = '0';
+mappages["grotto"].automap = '1';
 mappages["grotto"].linkedMaps = ["grotto2","undergrotto"];
 mappages["grotto"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -399,6 +400,7 @@ mappages["grotto2"].returnmap = 'ellusus';
 mappages["grotto2"].returnx = '27';
 mappages["grotto2"].returny = '30';
 mappages["grotto2"].returninfused = '0';
+mappages["grotto2"].automap = '1';
 mappages["grotto2"].linkedMaps = ["grotto","undergrotto"];
 mappages["grotto2"].editorLabels = '{}';
 // MAP ENDS HERE
@@ -533,6 +535,7 @@ mappages["undergrotto"].returnmap = 'ellusus';
 mappages["undergrotto"].returnx = '27';
 mappages["undergrotto"].returny = '30';
 mappages["undergrotto"].returninfused = '0';
+mappages["undergrotto"].automap = '1';
 mappages["undergrotto"].linkedMaps = ["grotto","grotto2"];
 mappages["undergrotto"].editorLabels = '{}';
 // MAP ENDS HERE
