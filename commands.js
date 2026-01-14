@@ -392,7 +392,7 @@ function PerformCommand(code, ctrl) {
 	else if (code === 77) { // m
 		// was mix
     let mymap = PC.getHomeMap().getName();
-    if ((mymap === "ellusus") && PC.checkInventory("MapOfEllusus")) {
+    if ((mymap === "ellusus") && PC.checkInventory("MapOfEllusus") && !targetCursor.toggleMap) {
       retval["txt"] = "You examine the map of Ellusus...";
       retval["fin"] = 2;
       retval["input"] = "[MORE]";
@@ -402,6 +402,7 @@ function PerformCommand(code, ctrl) {
         uii.innerHTML = `<img src="graphics/spacer.gif" width="416" height="416" />`;
         uii.style.backgroundColor = "";
         uii.style.backgroundImage = `url('graphics/ellususmap.gif')`;  
+        targetCursor.toggleMap = 1;
         if (PC.checkInventory("Sextant")) {
           let left = PC.getx()*3-16-4;
           let top = PC.gety()*3-3;
@@ -410,7 +411,7 @@ function PerformCommand(code, ctrl) {
         }
         gamestate.setMode("anykey");
       }
-    } else if ((mymap === "island") && PC.checkInventory("MapOfLostHope")) {
+    } else if ((mymap === "island") && PC.checkInventory("MapOfLostHope") && !targetCursor.toggleMap) {
       retval["txt"] = "You examine the map of the Land of Lost Hope...";
       retval["fin"] = 2;
       retval["input"] = "[MORE]";
@@ -420,6 +421,7 @@ function PerformCommand(code, ctrl) {
         uii.innerHTML = `<img src="graphics/spacer.gif" width="416" height="416" />`;
         uii.style.backgroundColor = "";
         uii.style.backgroundImage = `url('graphics/losthopemap.gif')`;  
+        targetCursor.toggleMap = 1;
         if (PC.checkInventory("Sextant")) {
           let left = PC.getx()*3+104-4;
           let top = PC.gety()*3+74-3;
@@ -428,6 +430,56 @@ function PerformCommand(code, ctrl) {
         }
         gamestate.setMode("anykey");
       }
+    } else if (PC.checkInventory("MagicMap")) {
+      retval["txt"] = "You examine your magic map...";
+      retval["fin"] = 2;
+      retval["input"] = "[MORE]";
+      targetCursor.viewing = "map";
+      delete targetCursor.toggleMap;
+      // DRAW MAGIC MAP
+
+      let castermap = PC.getHomeMap();
+      let eachwayx = Math.floor(VIEWSIZEX/2)*4+1;
+      let eachwayy = Math.floor(VIEWSIZEY/2)*4+1;
+      const leftx = PC.getx()-eachwayx;
+      const rightx = PC.getx()+eachwayx;
+      const topy = PC.gety()-eachwayy;
+      const bottomy = PC.gety()+eachwayy;
+      let peerhtml = "<table id='peerview' cellpadding='0' cellspacing='0' border='0' style=\"position:relative; z-index:20; top:5px\">";
+      for (let j=topy;j<=bottomy;j++) {
+        peerhtml += "<tr><td style='background-color:black; width:4px; height:8px'><img src='graphics/spacer.gif' width='4' height='8' /></td>";
+        for (let i=leftx;i<=rightx;i++) {
+          if ((PC.getx() === i) && (PC.gety() === j)) {
+            // PC
+            peerhtml += "<td style='background-color:cyan; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>";
+          } else {
+            if ((i<0) || (i>=castermap.getWidth()) || (j<0) || (j>=castermap.getHeight())) {
+              if (castermap.getScale()) {
+                peerhtml += `<td style='background-color:${PEER_COLORS[0]}; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>`; 
+              } else {
+                peerhtml += `<td style='background-color:${PEER_COLORS[DEEP_WATER_PEER]}; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>`; 
+              }
+            } else {
+              peerhtml += "<td style='background-color:"+mapmagic[mymap][i][j]+"; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>";
+            }
+          }
+        }
+        peerhtml += "</tr>";
+      }
+      peerhtml += "<tr><td style='background-color:black; width:4px; height:8px'><img src='graphics/spacer.gif' width='4' height='8' /></td>";
+      for (let i=leftx;i<=rightx;i++) {
+        peerhtml += "<td style='background-color:black; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>";
+      }
+      peerhtml += "</tr></table>";
+      let uii = document.getElementById('uiinterface');
+      if (uii) {
+        uii.innerHTML = peerhtml;
+        uii.style.backgroundColor = "black";
+        targetCursor.toggleMap = 1;
+        gamestate.setMode("anykey");
+      }
+
+
     } else {
       retval["fin"] = -1;
       retval["txt"] = "You do not have a map of this location.";
