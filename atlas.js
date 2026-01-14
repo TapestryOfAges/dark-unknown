@@ -798,6 +798,7 @@ GameMap.prototype.getNPCsAndPCs = function() {
 }
 
 GameMap.prototype.setAutomap = function(newval) {
+//  console.log(newval);
   newval = parseInt(newval);
   if ((newval === 1) || (newval === 0)) { this.automap = newval; }
   else { alert("Invalid automap val: " + newval); }
