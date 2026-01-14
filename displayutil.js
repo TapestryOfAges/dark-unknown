@@ -289,6 +289,7 @@ function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev, skipfeatures, 
   let blocks = localacre.getBlocksLOS();
     
   let lighthere = 0;
+  let isseen = 1;
   let sunlight = mapname.getAmbientLight();
   if (sunlight === 1) {
     lighthere = 1;
@@ -459,7 +460,7 @@ function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev, skipfeatures, 
       }
     }
   }
-  return returnStack;
+  return [returnStack,isseen];
 }
 
 function IsTransition(mapref,x,y) {
