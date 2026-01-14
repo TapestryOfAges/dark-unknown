@@ -2663,6 +2663,11 @@ tileFactory.prototype.makeBookshelfRightTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeBookshelfRightMapTile = function() {
+  let newTile = new BookshelfRightMapTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeBookshelfOneTile = function() {
   let newTile = new BookshelfOneTile();
   return newTile;
@@ -4315,6 +4320,16 @@ tileFactory.prototype.makeMapOfEllususTile = function() {
 
 tileFactory.prototype.makeMapOfLostHopeTile = function() {
   let newTile = new MapOfLostHopeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMagicMapUnchargedTile = function() {
+  let newTile = new MagicMapUnchargedTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMagicMapTile = function() {
+  let newTile = new MagicMapTile();
   return newTile;
 }
 
