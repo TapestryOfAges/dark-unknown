@@ -122,6 +122,7 @@ function SafeLavaTile() {
   this.desc = "lava";
   this.spritexoffset = 0;
   this.spriteyoffset = -165*32;
+  this.peerview = LAVA_PEER;
   
   ManualAnimation.call(this, { 
     animstart: 0,
@@ -417,6 +418,7 @@ function WoodenPillarTile() {
   this.blockloe = .2;
   this.prefix = "a";
   this.desc = "pole";
+  this.peerview = COUNTER_PEER;
 }
 WoodenPillarTile.prototype = new FeatureObject();
 
@@ -430,6 +432,7 @@ function MarblePillarTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "pillar";
+  this.peerview = MOUNTAIN_PEER;
 }
 MarblePillarTile.prototype = new FeatureObject();
 
@@ -443,6 +446,7 @@ function CrackedMarblePillarTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "pillar";
+  this.peerview = MOUNTAIN_PEER;
 }
 CrackedMarblePillarTile.prototype = new FeatureObject();
 
@@ -456,6 +460,7 @@ function BrokenMarblePillarTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "broken pillar";
+  this.peerview = MOUNTAIN_PEER;
 }
 BrokenMarblePillarTile.prototype = new FeatureObject();
 
@@ -470,6 +475,7 @@ function FenceNSWTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "fence";
+  this.peerview = COUNTER_PEER;
 }
 FenceNSWTile.prototype = new FeatureObject();
 
@@ -484,6 +490,7 @@ function FenceWTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "fence";
+  this.peerview = COUNTER_PEER;
 }
 FenceWTile.prototype = new FeatureObject();
 
@@ -498,6 +505,7 @@ function FenceWBrokenTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "fence";
+  this.peerview = COUNTER_PEER;
 }
 FenceWBrokenTile.prototype = new FeatureObject();
 
@@ -512,6 +520,7 @@ function FenceEBrokenTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "fence";
+  this.peerview = COUNTER_PEER;
 }
 FenceEBrokenTile.prototype = new FeatureObject();
 
@@ -526,6 +535,7 @@ function FenceETile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "fence";
+  this.peerview = COUNTER_PEER;
 }
 FenceETile.prototype = new FeatureObject();
 
@@ -540,6 +550,7 @@ function FencePostTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "fence";
+  this.peerview = COUNTER_PEER;
 }
 FencePostTile.prototype = new FeatureObject();
 
@@ -554,6 +565,7 @@ function FenceBrokenPostTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "fence";
+  this.peerview = COUNTER_PEER;
 }
 FenceBrokenPostTile.prototype = new FeatureObject();
 
@@ -568,6 +580,7 @@ function FenceNSEWTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "fence";
+  this.peerview = COUNTER_PEER;
 }
 FenceNSEWTile.prototype = new FeatureObject();
 
@@ -581,6 +594,7 @@ function FenceNWTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "fence";
+  this.peerview = COUNTER_PEER;
 }
 FenceNWTile.prototype = new FeatureObject();
 
@@ -594,6 +608,7 @@ function FenceNETile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "fence";
+  this.peerview = COUNTER_PEER;
 }
 FenceNETile.prototype = new FeatureObject();
 
@@ -607,6 +622,7 @@ function FenceEWTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "fence";
+  this.peerview = COUNTER_PEER;
 }
 FenceEWTile.prototype = new FeatureObject();
 
@@ -620,6 +636,7 @@ function FenceSETile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "fence";
+  this.peerview = COUNTER_PEER;
 }
 FenceSETile.prototype = new FeatureObject();
 
@@ -633,6 +650,7 @@ function FenceSWTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "fence";
+  this.peerview = COUNTER_PEER;
 }
 FenceSWTile.prototype = new FeatureObject();
 
@@ -646,6 +664,7 @@ function FenceNSTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "fence";
+  this.peerview = COUNTER_PEER;
 }
 FenceNSTile.prototype = new FeatureObject();
 
@@ -659,6 +678,7 @@ function FenceEWSTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "fence";
+  this.peerview = COUNTER_PEER;
 }
 FenceEWSTile.prototype = new FeatureObject();
 
@@ -672,6 +692,7 @@ function FenceEWNTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "fence";
+  this.peerview = COUNTER_PEER;
 }
 FenceEWNTile.prototype = new FeatureObject();
 
@@ -685,6 +706,7 @@ function FenceENSTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "fence";
+  this.peerview = COUNTER_PEER;
 }
 FenceENSTile.prototype = new FeatureObject();
 
@@ -698,6 +720,7 @@ function FenceEWGateTile() {
 	this.blocklos = 0; 
 	this.prefix = "a";
 	this.desc = "gate";
+  this.peerview = COUNTER_PEER;
 
   this.pathweight = 2; 
 
@@ -732,6 +755,7 @@ function StatueBaseTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "statue";
+  this.peerview = CRACKED_STONE_PEER;
 }
 StatueBaseTile.prototype = new FeatureObject();
 
@@ -759,6 +783,7 @@ function Statue1Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "statue";
+  this.peerview = CRACKED_STONE_PEER;
 }
 Statue1Tile.prototype = new FeatureObject();
 
@@ -772,6 +797,7 @@ function Statue2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "statue";
+  this.peerview = CRACKED_STONE_PEER;
 }
 Statue2Tile.prototype = new FeatureObject();
 
@@ -785,6 +811,7 @@ function Statue3Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "sculpture";
+  this.peerview = CRACKED_STONE_PEER;
 }
 Statue3Tile.prototype = new FeatureObject();
 
@@ -798,6 +825,7 @@ function Statue4Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "sculpture";
+  this.peerview = CRACKED_STONE_PEER;
 }
 Statue4Tile.prototype = new FeatureObject();
 
@@ -811,6 +839,7 @@ function Statue5Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "sculpture";
+  this.peerview = CRACKED_STONE_PEER;
 }
 Statue5Tile.prototype = new FeatureObject();
 
@@ -824,6 +853,7 @@ function Statue6Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "sculpture";
+  this.peerview = CRACKED_STONE_PEER;
 }
 Statue6Tile.prototype = new FeatureObject();
 
@@ -837,6 +867,7 @@ function StatueLTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "statue";
+  this.peerview = CRACKED_STONE_PEER;
 }
 StatueLTile.prototype = new FeatureObject();
 
@@ -901,6 +932,7 @@ function WoodSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "sign";
+  this.peerview = COUNTER_PEER;
 }
 WoodSignTile.prototype = new FeatureObject();
 
@@ -943,6 +975,7 @@ function WorldsEndingRaftTile() {
   this.peerview = WOOD_PEER;
   this.walkSound = "stone";
   this.bridge = 1;
+  this.peerview = COUNTER_PEER;
 }
 WorldsEndingRaftTile.prototype = new FeatureObject();
 
@@ -959,6 +992,7 @@ function WorldsEndingCenterRaftTile() {
   this.peerview = WOOD_PEER;
   this.walkSound = "stone";
   this.bridge = 1;
+  this.peerview = COUNTER_PEER;
 }
 WorldsEndingCenterRaftTile.prototype = new FeatureObject();
 
@@ -1122,6 +1156,7 @@ function DungeonTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "dungeon entrance";
+  this.peerview = CAVE_PEER;
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -1137,6 +1172,7 @@ function Dungeon2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "dungeon entrance";
+  this.peerview = CAVE_PEER;
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -1152,6 +1188,7 @@ function Dungeon3Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "dungeon entrance";
+  this.peerview = CAVE_PEER;
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -1167,6 +1204,7 @@ function Dungeon4Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "dungeon entrance";
+  this.peerview = CAVE_PEER;
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -1182,6 +1220,7 @@ function Dungeon5Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "dungeon entrance";
+  this.peerview = CAVE_PEER;
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -1197,6 +1236,7 @@ function Dungeon6Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "dungeon entrance";
+  this.peerview = CAVE_PEER;
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -1212,6 +1252,7 @@ function Dungeon7Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "dungeon entrance";
+  this.peerview = CAVE_PEER;
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -1227,6 +1268,7 @@ function CaveTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "cave entrance";
+  this.peerview = CAVE_PEER;
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -1687,6 +1729,7 @@ function TitanDoorwayTLTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "huge doorway";
+  this.peerview = GREY_PEER;
 }
 TitanDoorwayTLTile.prototype = new FeatureObject();
 
@@ -1700,6 +1743,7 @@ function TitanDoorwayTRTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "huge doorway";
+  this.peerview = GREY_PEER;
 }
 TitanDoorwayTRTile.prototype = new FeatureObject();
 
@@ -1713,6 +1757,7 @@ function TitanDoorwayBLTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "huge doorway";
+  this.peerview = GREY_PEER;
 }
 TitanDoorwayBLTile.prototype = new FeatureObject();
 
@@ -1726,6 +1771,7 @@ function TitanDoorwayBRTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "huge doorway";
+  this.peerview = GREY_PEER;
 }
 TitanDoorwayBRTile.prototype = new FeatureObject();
 
@@ -1739,6 +1785,7 @@ function DoorwayTile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "archway";
+  this.peerview = GREY_PEER;
 }
 DoorwayTile.prototype = new FeatureObject();
 
@@ -1752,6 +1799,7 @@ function DoorwayDarkenedTile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "archway";
+  this.peerview = GREY_PEER;
 }
 DoorwayDarkenedTile.prototype = new FeatureObject();
 
@@ -1765,6 +1813,7 @@ function GreyDoorwayTile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "archway";
+  this.peerview = GREY_PEER;
 }
 GreyDoorwayTile.prototype = new FeatureObject();
 
@@ -1778,6 +1827,7 @@ function GreyDoorwayDarkenedTile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "archway";
+  this.peerview = GREY_PEER;
 }
 GreyDoorwayDarkenedTile.prototype = new FeatureObject();
 
@@ -1790,6 +1840,7 @@ function DaemonDoorwayTile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "archway";
+  this.peerview = GREY_PEER;
 }
 DaemonDoorwayTile.prototype = new FeatureObject();
 
@@ -1802,6 +1853,7 @@ function StoneDoorwayTile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "archway";
+  this.peerview = GREY_PEER;
 }
 StoneDoorwayTile.prototype = new FeatureObject();
 
@@ -1814,6 +1866,7 @@ function WallDoorwayTile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "archway";
+  this.peerview = GREY_PEER;
 }
 WallDoorwayTile.prototype = new FeatureObject();
 
@@ -1925,6 +1978,7 @@ function WallDoor1Tile() {
 	this.blockloe = 1;
 	this.prefix = "a";
   this.desc = "door";
+  this.peerview = WOOD_PEER;
   
   this.pathweight = 2; 
 
@@ -1950,6 +2004,7 @@ function WallDoorWindow1Tile() {
 	this.blockloe = 1;
 	this.prefix = "a";
   this.desc = "door";
+  this.peerview = WOOD_PEER;
   
   this.pathweight = 2; 
 
@@ -1975,6 +2030,7 @@ function WallDoorWindow1LitTile() {
 	this.blockloe = 1;
 	this.prefix = "a";
   this.desc = "door";
+  this.peerview = WOOD_PEER;
   
   this.pathweight = 2; 
 
@@ -2000,7 +2056,8 @@ function GreyDoor1Tile() {
 	this.blockloe = 1;
 	this.prefix = "a";
   this.desc = "door";
-  
+  this.peerview = WOOD_PEER;
+
   this.pathweight = 2; 
 
   Openable.call(this, ["static.gif","",-7*32,-18*32], ["static.gif","",-7*32,-17*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
@@ -2025,7 +2082,8 @@ function GreyDoorWindow1Tile() {
 	this.blockloe = 1;
 	this.prefix = "a";
   this.desc = "door";
-  
+  this.peerview = WOOD_PEER;
+
   this.pathweight = 2; 
 
   Openable.call(this, ["static.gif","",0,-18*32], ["static.gif","",-7*32,-17*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
@@ -2050,7 +2108,8 @@ function GreyDoorWindow1LitTile() {
 	this.blockloe = 1;
 	this.prefix = "a";
   this.desc = "door";
-  
+  this.peerview = WOOD_PEER;
+
   this.pathweight = 2; 
 
   Openable.call(this, ["static.gif","",-32,-18*32], ["static.gif","",-7*32,-17*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
@@ -2075,7 +2134,8 @@ function RuinsWallDoorWindow1Tile() {
 	this.blockloe = 1;
 	this.prefix = "a";
   this.desc = "door";
-  
+  this.peerview = WOOD_PEER;
+
   this.pathweight = 2; 
 
   Openable.call(this, ["static.gif","",-9*32,-13*32], ["static.gif","",-9*32,-14*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
@@ -2100,7 +2160,8 @@ function RuinsWallDoorWindow1LitTile() {
 	this.blockloe = 1;
 	this.prefix = "a";
   this.desc = "door";
-  
+  this.peerview = WOOD_PEER;
+
   this.pathweight = 2; 
 
   Openable.call(this, ["static.gif","",0,-14*32], ["static.gif","",-9*32,-14*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
@@ -2125,7 +2186,8 @@ function RuinsWallDoorWindow2Tile() {
 	this.blockloe = 1;
 	this.prefix = "a";
   this.desc = "door";
-  
+  this.peerview = WOOD_PEER;
+
   this.pathweight = 2; 
 
   Openable.call(this, ["static.gif","",-3*32,-14*32], ["static.gif","",-9*32,-14*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
@@ -2150,7 +2212,8 @@ function RuinsWallDoorWindow2LitTile() {
 	this.blockloe = 1;
 	this.prefix = "a";
   this.desc = "door";
-  
+  this.peerview = WOOD_PEER;
+
   this.pathweight = 2; 
 
   Openable.call(this, ["static.gif","",-4*32,-14*32], ["static.gif","",-9*32,-14*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
@@ -2175,7 +2238,8 @@ function DoorWindowTile() {
 	this.blockloe = 1;
 	this.prefix = "a";
   this.desc = "door";
-  
+  this.peerview = WOOD_PEER;
+
   this.pathweight = 2; 
 
   Openable.call(this, ["static.gif","",-3*32,-16*32], ["static.gif","",-8*32,-16*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
@@ -2200,7 +2264,8 @@ function DoorWindowLitTile() {
 	this.blockloe = 1;
 	this.prefix = "a";
   this.desc = "door";
-  
+  this.peerview = WOOD_PEER;
+
   this.pathweight = 2; 
 
   Openable.call(this, ["static.gif","",-4*32,-16*32], ["static.gif","",-8*32,-16*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
@@ -2225,7 +2290,8 @@ function GreyDoorWindowTile() {
 	this.blockloe = 1;
 	this.prefix = "a";
   this.desc = "door";
-  
+  this.peerview = WOOD_PEER;
+
   this.pathweight = 2; 
 
   Openable.call(this, ["static.gif","",-4*32,-18*32], ["static.gif","",-7*32,-17*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
@@ -2250,7 +2316,8 @@ function GreyDoorWindowLitTile() {
 	this.blockloe = 1;
 	this.prefix = "a";
   this.desc = "door";
-  
+  this.peerview = WOOD_PEER;
+
   this.pathweight = 2; 
 
   Openable.call(this, ["static.gif","",-5*32,-18*32], ["static.gif","",-7*32,-17*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
@@ -2274,6 +2341,7 @@ function StonePortcullisTile() {
 	this.prefix = "a";
 	this.desc = "portcullis";
 	this.heavy = 1;
+  this.peerview = GREY_PEER;
 
   this.pathweight = 2; 
 
@@ -2295,6 +2363,7 @@ function StonePortcullisAlwaysClosedTile() {
 	this.prefix = "a";
 	this.desc = "portcullis";
 	this.heavy = 1;
+  this.peerview = GREY_PEER;
 
   this.pathweight = 2; 
 }
@@ -2312,6 +2381,7 @@ function WallPortcullisTile() {
 	this.prefix = "a";
 	this.desc = "portcullis";
 	this.heavy = 1;
+  this.peerview = GREY_PEER;
 
   this.pathweight = 2; 
 
@@ -2335,6 +2405,7 @@ function GreyWallPortcullisTile() {
 	this.prefix = "a";
 	this.desc = "portcullis";
 	this.heavy = 1;
+  this.peerview = GREY_PEER;
 
   this.pathweight = 2; 
 
@@ -2471,6 +2542,7 @@ function StreetLampTile() {
 	this.blocklos = 0;
   this.prefix = "a";
 	this.desc = "street lamp";
+  this.peerview = GREY_PEER;
 
 	LightEmitting.call(this, 5);
 
@@ -2788,6 +2860,7 @@ function BrazierTile() {
 	this.blocklos = 0;
   this.prefix = "a";
 	this.desc = "brazier";
+  this.peerview = CRACKED_STONE_PEER;
 	
 	LightEmitting.call(this, 4);  
   ManualAnimation.call(this, { animstart: -128,
@@ -2832,6 +2905,7 @@ function UnlitBrazierTile() {
 	this.blocklos = 0;
   this.prefix = "an";
   this.desc = "unlit brazier";
+  this.peerview = CRACKED_STONE_PEER;
   
   LightEmitting.call(this, 0);  
 }
@@ -2867,6 +2941,7 @@ function WEBrazierTile() {
 	this.blocklos = 0;
   this.prefix = "a";
 	this.desc = "brazier";
+  this.peerview = CRACKED_STONE_PEER;
 	
 	LightEmitting.call(this, 4);  
   ManualAnimation.call(this, { animstart: -128,
@@ -2909,6 +2984,7 @@ function UnlitWEBrazierTile() {
 	this.blocklos = 0;
   this.prefix = "an";
 	this.desc = "unlit brazier";
+  this.peerview = CRACKED_STONE_PEER;
 }
 UnlitWEBrazierTile.prototype = new FeatureObject();
 
@@ -2992,6 +3068,7 @@ function WEBrazier2Tile() {
 	this.blocklos = 0;
   this.prefix = "a";
 	this.desc = "brazier";
+  this.peerview = CRACKED_STONE_PEER;
 	
 	LightEmitting.call(this, 4);  
   ManualAnimation.call(this, { animstart: -128,
@@ -3036,6 +3113,7 @@ function WEUnlitBrazier2Tile() {
 	this.blocklos = 0;
   this.prefix = "an";
   this.desc = "unlit brazier";
+  this.peerview = CRACKED_STONE_PEER;
   
   LightEmitting.call(this, 0);  
 }
@@ -3325,6 +3403,7 @@ function ThroneTile() {
 	this.blocklos = 0;
 	this.prefix = "the";
 	this.desc = "throne";
+  this.peerview = DARK_FADED_WOOD_PEER;
 
   this.nowander = 1;
   this.nopush = 1;
@@ -3352,6 +3431,7 @@ function BDThroneTile() {
 	this.blocklos = 0;
 	this.prefix = "the";
 	this.desc = "throne";
+  this.peerview = DARK_FADED_WOOD_PEER;
 
   this.nowander = 1;
   this.nopush = 1;
@@ -3380,6 +3460,7 @@ function RuinsWallDoor1Tile() {
 	this.blocklos = 1; 
 	this.prefix = "a";
   this.desc = "door";
+  this.peerview = WOOD_PEER;
   
   this.pathweight = 2; 
 
@@ -3402,6 +3483,7 @@ function RuinsWallDoor2Tile() {
 	this.blocklos = 1; 
 	this.prefix = "a";
   this.desc = "door";
+  this.peerview = WOOD_PEER;
   
   this.pathweight = 2; 
 
@@ -3425,6 +3507,7 @@ function DoorTile() {
 	this.blocklos = 1; 
 	this.prefix = "a";
   this.desc = "door";
+  this.peerview = WOOD_PEER;
   
   this.pathweight = 2; 
 
@@ -3448,6 +3531,7 @@ function DaemonDoorTile() {
 	this.blocklos = 1; 
 	this.prefix = "a";
   this.desc = "door";
+  this.peerview = WOOD_PEER;
   
   this.pathweight = 2; 
 
@@ -3516,6 +3600,7 @@ function GreyDoorTile() {
 	this.blocklos = 1; 
 	this.prefix = "a";
   this.desc = "door";
+  this.peerview = WOOD_PEER;
   
   this.pathweight = 2; 
 
@@ -4731,6 +4816,7 @@ function TrainingDummyTile() {
   this.desc = "training dummy";
   this.pathweight = 10; 
   this.civilizedpathweight = 10; // paths should never go through this unless there is no choice
+  this.peerview = WOOD_PEER;
   
   Pushable.call(this);
   this.heavy = 1;
@@ -4749,6 +4835,7 @@ function ArcheryTargetTile() {
   this.desc = "archery target";
   this.pathweight = 10; 
   this.civilizedpathweight = 10; // paths should never go through this unless there is no choice
+  this.peerview = WOOD_PEER;
   
   Pushable.call(this);
   this.heavy = 1;
@@ -4812,6 +4899,7 @@ function AnvilTile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "anvil";
+  this.peerview = CAVE_PEER;
 }
 AnvilTile.prototype = new FeatureObject();
 
@@ -5186,6 +5274,7 @@ function SmallTableTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "table";
+  this.peerview = DARK_FADED_WOOD_PEER;
 }
 SmallTableTile.prototype = new FeatureObject();
 
@@ -5200,6 +5289,7 @@ function SmallTable2Tile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "table";
+  this.peerview = DARK_FADED_WOOD_PEER;
 }
 SmallTable2Tile.prototype = new FeatureObject();
 
@@ -5214,6 +5304,7 @@ function SmallTable3Tile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "table";
+  this.peerview = DARK_FADED_WOOD_PEER;
 }
 SmallTable3Tile.prototype = new FeatureObject();
 
@@ -5228,6 +5319,7 @@ function LeftTableTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "table";
+  this.peerview = DARK_FADED_WOOD_PEER;
 }
 LeftTableTile.prototype = new FeatureObject();
 
@@ -5242,6 +5334,7 @@ function MiddleTableTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "table";
+  this.peerview = DARK_FADED_WOOD_PEER;
 }
 MiddleTableTile.prototype = new FeatureObject();
 
@@ -5256,6 +5349,7 @@ function RightTableTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "table";
+  this.peerview = DARK_FADED_WOOD_PEER;
 }
 RightTableTile.prototype = new FeatureObject();
 
@@ -5295,6 +5389,7 @@ function HarpsichordTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "harpsichord";
+  this.peerview = DARK_FADED_WOOD_PEER;
 }
 HarpsichordTile.prototype = new FeatureObject();
 
@@ -5670,6 +5765,7 @@ function EmptyBookshelfLeftTile() {
   this.lootonce = 1;
 	this.lootgroup = "";
 	this.lootedid = "";
+  this.peerview = DARK_FADED_WOOD_PEER;
 }
 EmptyBookshelfLeftTile.prototype = new FeatureObject();
 
@@ -5688,6 +5784,7 @@ function EmptyBookshelfRightTile() {
   this.lootonce = 1;
 	this.lootgroup = "";
 	this.lootedid = "";
+  this.peerview = DARK_FADED_WOOD_PEER;
 }
 EmptyBookshelfRightTile.prototype = new FeatureObject();
 
@@ -5731,6 +5828,7 @@ function BookshelfLeftTile() {
   this.lootonce = 1;
 	this.lootgroup = "";
 	this.lootedid = "";
+  this.peerview = DARK_FADED_WOOD_PEER;
 }
 BookshelfLeftTile.prototype = new FeatureObject();
 
@@ -5749,6 +5847,7 @@ function BookshelfLeft2Tile() {
   this.lootonce = 1;
 	this.lootgroup = "";
 	this.lootedid = "";
+  this.peerview = DARK_FADED_WOOD_PEER;
 }
 BookshelfLeft2Tile.prototype = new FeatureObject();
 
@@ -5767,8 +5866,41 @@ function BookshelfRightTile() {
   this.lootonce = 1;
 	this.lootgroup = "";
 	this.lootedid = "";
+  this.peerview = DARK_FADED_WOOD_PEER;
 }
 BookshelfRightTile.prototype = new FeatureObject();
+
+function BookshelfRightMapTile() {
+  //Graphics Upgraded
+  this.name = "BookshelfRightMap";
+  this.graphic = "static.gif";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -84*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "bookshelf";
+  this.showsearched = 1;
+  this.searchedgraphic = ["static.gif", "", -7*32, -84*32];
+  this.lootonce = 1;
+	this.lootgroup = "";
+	this.lootedid = "";
+  this.peerview = DARK_FADED_WOOD_PEER;
+}
+BookshelfRightMapTile.prototype = new FeatureObject();
+
+BookshelfRightMapTile.prototype.onSearched = function(who) {
+  let retval = {};
+  if (DU.gameflags.getFlag("allowautomap") && !PC.checkInventory("MagicMap") && !PC.checkInventory("MagicMapUnknown")) {
+    retval.txt = "Behind the bookshelf you find a strange, faded map. You do not recognize what it shows.<br /><span class='sysconv'>You have obtained: Strange Map.</span>";
+    let strangemap = localFactory.createTile("MagicMapUnknown");
+    PC.addToInventory(strangemap,1);
+    questlog.activate(110);
+    retval.fin = 1;
+    retval.exitOut = 1;
+  }
+  return retval;
+}
 
 function BookshelfOneTile() {
   //Graphics Upgraded
@@ -5785,6 +5917,7 @@ function BookshelfOneTile() {
   this.lootonce = 1;
 	this.lootgroup = "";
 	this.lootedid = "";
+  this.peerview = DARK_FADED_WOOD_PEER;
 }
 BookshelfOneTile.prototype = new FeatureObject();
 
@@ -5801,6 +5934,7 @@ function RuinedBookshelfOneTile() {
   this.lootonce = 1;
 	this.lootgroup = "";
 	this.lootedid = "";
+  this.peerview = DARK_FADED_WOOD_PEER;
 }
 RuinedBookshelfOneTile.prototype = new FeatureObject();
 
@@ -5817,6 +5951,7 @@ function RuinedBookshelfLeftTile() {
   this.lootonce = 1;
 	this.lootgroup = "";
 	this.lootedid = "";
+  this.peerview = DARK_FADED_WOOD_PEER;
 }
 RuinedBookshelfLeftTile.prototype = new FeatureObject();
 
@@ -5833,6 +5968,7 @@ function RuinedBookshelfRightTile() {
   this.lootonce = 1;
 	this.lootgroup = "";
 	this.lootedid = "";
+  this.peerview = DARK_FADED_WOOD_PEER;
 }
 RuinedBookshelfRightTile.prototype = new FeatureObject();
 
@@ -5890,6 +6026,7 @@ function DresserTile() {
 	this.lootedid = "";
   this.showsearched = 1;
   this.searchedgraphic = ["static.gif","",-7*32,-82*32];
+  this.peerview = DARK_FADED_WOOD_PEER;
 	
 	this.container = [];
 	OpenContainer.call(this,"","");
@@ -5910,6 +6047,7 @@ function Dresser2Tile() {
 	this.lootedid = "";
   this.showsearched = 1;
   this.searchedgraphic = ["static.gif","",-8*32,-82*32];
+  this.peerview = DARK_FADED_WOOD_PEER;
 	
 	this.container = [];
 	OpenContainer.call(this,"","");
@@ -5930,6 +6068,7 @@ function Dresser3Tile() {
 	this.lootedid = "";
   this.showsearched = 1;
   this.searchedgraphic = ["static.gif","",0,-83*32];
+  this.peerview = DARK_FADED_WOOD_PEER;
 	
 	this.container = [];
 	OpenContainer.call(this,"","");
@@ -5950,6 +6089,7 @@ function VanityTile() {
 	this.lootedid = "";
   this.showsearched = 1;
   this.searchedgraphic = ["static.gif","",-4*32,-82*32];
+  this.peerview = DARK_FADED_WOOD_PEER;
 	
 	this.container = [];
 	OpenContainer.call(this,"","");
@@ -5970,6 +6110,7 @@ function Vanity2Tile() {
 	this.lootedid = "";
   this.showsearched = 1;
   this.searchedgraphic = ["static.gif","",-5*32,-82*32];
+  this.peerview = DARK_FADED_WOOD_PEER;
 	
 	this.container = [];
 	OpenContainer.call(this,"","");
@@ -5990,6 +6131,7 @@ function Vanity3Tile() {
 	this.lootedid = "";
   this.showsearched = 1;
   this.searchedgraphic = ["static.gif","",-6*32,-82*32];
+  this.peerview = DARK_FADED_WOOD_PEER;
 	
 	this.container = [];
 	OpenContainer.call(this,"","");
@@ -6006,7 +6148,7 @@ function CaskTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "cask";
-	
+	this.peerview = DARK_FADED_WOOD_PEER;
 }
 CaskTile.prototype = new FeatureObject();
 
@@ -6020,6 +6162,7 @@ function TreeTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "tree";
+  this.peerview = FOREST_PEER;
 }
 TreeTile.prototype = new FeatureObject();
 
@@ -6033,6 +6176,7 @@ function AutumnTreeTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "tree";
+  this.peerview = FOREST_PEER;
 }
 AutumnTreeTile.prototype = new FeatureObject();
 
@@ -6046,6 +6190,7 @@ function EvergreenTile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "evergreen tree";
+  this.peerview = FOREST_PEER;
 }
 EvergreenTile.prototype = new FeatureObject();
 
@@ -6059,6 +6204,7 @@ function WillowTreeTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "willow tree";
+  this.peerview = FOREST_PEER;
 }
 WillowTreeTile.prototype = new FeatureObject();
 
@@ -6076,6 +6222,7 @@ function DeadTreeTile() {
 	this.lootedid = "";
   this.showsearched = 0;
   this.searchedgraphic = ["static.gif","",0,-19*32];
+  this.peerview = COUNTER_PEER;
 	}
 DeadTreeTile.prototype = new FeatureObject();
 
@@ -6089,6 +6236,7 @@ function AppleTreeTile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "apple tree";
+  this.peerview = FOREST_PEER;
 }
 AppleTreeTile.prototype = new FeatureObject();
 
@@ -6138,6 +6286,7 @@ function GrandfatherClockTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "grandfather clock";
+  this.peerview = DARK_FADED_WOOD_PEER;
 
   ManualAnimation.call(this, { animstart: 0,
     animlength: 8,
@@ -6366,6 +6515,7 @@ function MirrorTile() {
   this.prefix = "a";
   this.desc = "mirror";
   this.karmamod = -1;
+  this.peerview = SANDSTONE_PEER;
   
   Breakable.call(this,["static.gif", "", -8*32, -76*32],0,"sfx_break_glass");
   this.brokendesc = "broken mirror";
@@ -6425,6 +6575,7 @@ function CursedMirrorTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "mirror";
+  this.peerview = SANDSTONE_PEER;
   
   Breakable.call(this,["static.gif", "", -7*32, -76*32],0,"sfx_break_glass");
   this.brokendesc = "broken mirror";
@@ -6554,7 +6705,8 @@ function CursedMirrorWithImpTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "mirror";
-  
+  this.peerview = SANDSTONE_PEER;
+
   Breakable.call(this,["static.gif", "", -7*32, -76*32],0,"sfx_break_glass");
   this.brokendesc = "broken mirror";
 
@@ -6645,6 +6797,7 @@ function DaemonicMirrorTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "mirror";
+  this.peerview = SANDSTONE_PEER;
   
   Breakable.call(this,["static.gif", "", -9*32, -118*32],0,"sfx_break_glass");
   this.brokendesc = "broken mirror";
@@ -6897,6 +7050,7 @@ function BrilliantPoolTile() {
   this.blocklos = 0;
   this.prefix = "the";
   this.desc = "Brilliant Pool";
+  this.peerview = DEEP_WATER_PEER;
 
   ManualAnimation.call(this, { animstart: -6*32,
     animlength: 4,
@@ -7132,6 +7286,7 @@ function WellTile() {
 	this.blocklos = 0; 
 	this.prefix = "a";
 	this.desc = "well";
+  this.peerview = GREY_PEER;
 }
 WellTile.prototype = new FeatureObject();
 
@@ -7157,6 +7312,7 @@ function BareWellTile() {
 	this.blocklos = 0; 
 	this.prefix = "a";
 	this.desc = "well";
+  this.peerview = GREY_PEER;
 }
 BareWellTile.prototype = new FeatureObject();
 
@@ -10992,6 +11148,7 @@ function PlatformOfWavesTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
+  this.peerview = CAVE_PEER;
 }
 PlatformOfWavesTile.prototype = new FeatureObject();
 
@@ -11035,6 +11192,7 @@ function PlatformOfWindsTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
+  this.peerview = CAVE_PEER;
 }
 PlatformOfWindsTile.prototype = new FeatureObject();
 
@@ -11086,6 +11244,7 @@ function PlatformOfKingsTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
+  this.peerview = CAVE_PEER;
 }
 PlatformOfKingsTile.prototype = new FeatureObject();
 
@@ -11099,6 +11258,7 @@ function PlatformOfFlamesTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
+  this.peerview = CAVE_PEER;
 }
 PlatformOfFlamesTile.prototype = new FeatureObject();
 
@@ -11112,6 +11272,7 @@ function PlatformOfVoidTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
+  this.peerview = CAVE_PEER;
 }
 PlatformOfVoidTile.prototype = new FeatureObject();
 
@@ -11480,6 +11641,7 @@ function TeleporterPlatformTile() {
   this.desc = "platform";
   this.destination;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.peerview = CAVE_PEER;
 }
 TeleporterPlatformTile.prototype = new FeatureObject();
 
@@ -11523,6 +11685,7 @@ function UDTeleporterPlatformTile() {
   this.desc = "platform";
   this.destination;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.peerview = CAVE_PEER;
 }
 UDTeleporterPlatformTile.prototype = new FeatureObject();
 
@@ -11551,6 +11714,7 @@ function PitTeleporterPlatformTile() {
   this.desc = "platform";
   this.destination;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.peerview = CAVE_PEER;
 }
 PitTeleporterPlatformTile.prototype = new FeatureObject();
 
@@ -14221,6 +14385,36 @@ MapOfLostHopeTile.prototype = new ItemObject();
 //   return retval;
 // }
 
+function MagicMapUnknownTile() {
+  //Graphics Upgraded
+  this.name = "MagicMapUnknown";
+  this.graphic = "static.gif";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -57*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "strange map";
+  this.prefix = "a";
+  this.longdesc = "A strange map found behind a bookshelf.";
+}
+MagicMapUnknownTile.prototype = new ItemObject();  
+
+function MagicMapUnchargedTile() {
+  //Graphics Upgraded
+  this.name = "MagicMapUncharged";
+  this.graphic = "static.gif";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -57*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "strange map";
+  this.prefix = "a";
+  this.longdesc = "A magic map that will fill in as you explore, once it has had nightshade applied.";
+  this.usedesc = "Add nightshade to the map.";
+}
+MagicMapUnchargedTile.prototype = new ItemObject();  
+
+
 function MagicMapTile() {
   //Graphics Upgraded
   this.name = "MagicMap";
@@ -14303,7 +14497,7 @@ function SheafOfNotesTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "sheaf of notes";
   this.prefix = "a";
-  this.contents = "You read the notes:%%<span class='conv'>'Empowerment is a powerful tool, allowing the permanent enchantment of an object such as a sword or suit of armor.</span>%%<span class='conv'>'The first step in Empowering is choosing a suitable object. It must be able to take on the enchantment- this is rare.</span>%%<span class='conv'>'Then one must prepare the reagents. Your choice of reagents will dictate the nature of the enchantment that you create.</span>%%<span class='conv'>Go and stand in a pentagram, or the spell will not work.</span>%%<span class='conv'>'Prepare them with a mortar and pestle, incant the spell, and pour the mixture over the object to be enchanted. If all is as it should be, the object will be enchanted thereafter.</span>%%<span class='conv'>'I have tested many materials.</span>%%<span class='conv'>'Spider silk is necessary in almost all castings. It helps bind the magic to the object.</span>%%<span class='conv'>'Sulphurous ash is used for light and fire.</span>%%<span class='conv'>'Blood moss permits physical protection.</span>%%<span class='conv'>'Nightshade adds an air of poison or delusion.</span>%%<span class='conv'>'Coral void projects power from the object.</span>%%<span class='conv'>'Mistletoe will ward away otherworldly evils.</span>%%<span class='conv'>'Lightning wood, from a tree recently struck, will channel the lightnings.</span>%%<span class='conv'>'Finally, mandrake root provides an infusion of additional power. This is always necessary for empowering a new object, but sometimes not for repairing one.</span>%%<span class='conv'>'Once together, cast and hope.'</span>";
+  this.contents = "You read the notes:%%<span class='conv'>'Empowerment is a powerful tool, allowing the permanent enchantment of an object such as a sword or suit of armor.</span>%%<span class='conv'>'The first step in Empowering is choosing a suitable object. It must be able to take on the enchantment- this is rare.</span>%%<span class='conv'>'Then one must prepare the reagents. Your choice of reagents will dictate the nature of the enchantment that you create.</span>%%<span class='conv'>Go and stand in a pentagram, or the spell will not work.</span>%%<span class='conv'>'Prepare them with a mortar and pestle, incant the spell, and pour the mixture over the object to be enchanted. If all is as it should be, the object will be enchanted thereafter.</span>%%<span class='conv'>'I have tested many materials.</span>%%<span class='conv'>'Spider silk is necessary in almost all castings. It helps bind the magic to the object.</span>%%<span class='conv'>'Sulphurous ash is used for light and fire.</span>%%<span class='conv'>'Blood moss permits physical protection.</span>%%<span class='conv'>'Nightshade adds an air of poison or delusion, and allows you to see the unseen.</span>%%<span class='conv'>'Coral void projects power from the object.</span>%%<span class='conv'>'Mistletoe will ward away otherworldly evils.</span>%%<span class='conv'>'Lightning wood, from a tree recently struck, will channel the lightnings.</span>%%<span class='conv'>'Finally, mandrake root provides an infusion of additional power. This is always necessary for empowering a new object, but sometimes not for repairing one.</span>%%<span class='conv'>'Once together, cast and hope.'</span>";
   this.longdesc = "A sheaf of notes on Empowerment. Transcribed by Arlan from Toshin's original notebooks.";
 }
 SheafOfNotesTile.prototype = new BookItemObject();
