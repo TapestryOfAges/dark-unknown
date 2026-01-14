@@ -15,6 +15,8 @@ v 0.11.0
  * [V] now toggles music, [ctrl-V] now toggles volume
  * [M] now shows the map of your current location, if you have one
  * Owning a Sextant puts your location on maps if you have one
+ * Different versions of certain maps share their automap
+ * Fixed bug with version check on-load
 
 v 0.10.23
  * More dialog fixes
