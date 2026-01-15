@@ -143,6 +143,7 @@ knowsorangepotion
 knowsbrownpotion
 strange_map - you've been told to talk to Robert about the strange map
 learned_palimpsest - you know that the automap you found is called a Palimpsest Map
+map_uncharged - you've learned that the map needs to be recharged
 rebuild_poverty
 pool_drunk - you have drunk from the brilliant pool
 joined_guild - you've fulfilled Carol's request and gotten admittance to the Guild

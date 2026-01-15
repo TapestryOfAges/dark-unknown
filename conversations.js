@@ -689,6 +689,11 @@ OnConvTriggers["learned_palimpsest"] = function(speaker,keyword) {
   strangemap.longdesc = "A faded Palimpsest Map you found behind a bookshelf.";
 }
 
+OnConvTriggers["map_uncharged"] = function(speaker,keyword) {
+  PC.removeFromInventory("MagicMapUnknown");
+  PC.addToInventory(localFactory.createTile("MagicMapUncharged"),1);
+}
+
 OnConvTriggers["anna_return"] = function(speaker,keyword) {
   let annamap = PC.getHomeMap(); // she has to be on the PC's map since they just talked to her
   let npcs = annamap.npcs.getAll();
