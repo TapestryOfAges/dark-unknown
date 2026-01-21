@@ -458,7 +458,7 @@ mappages["spire3"].features[0] = {name : 'StairDown', x : 13, y : 12, entermap :
 mappages["spire3"].features[1] = {name : 'Door', x : 11, y : 13};
 mappages["spire3"].features[2] = {name : 'SecretDoor', x : 17, y : 13};
 mappages["spire3"].features[3] = {name : 'SunLens', x : 15, y : 12};
-mappages["spire3"].features[4] = {name : 'BookshelfOne', x : 16, y : 12, searchyield : 'NatassaProjects'};
+mappages["spire3"].features[4] = {name : 'NatBookshelfOne', x : 16, y : 12, searchyield : 'NatassaProjects'};
 mappages["spire3"].features[5] = {name : 'CrenellationNW', x : 9, y : 6};
 mappages["spire3"].features[6] = {name : 'CrenellationNW', x : 7, y : 8};
 mappages["spire3"].features[7] = {name : 'CrenellationN', x : 8, y : 8};
@@ -550,7 +550,7 @@ mappages["spire3"].editorLabels = '{}';
 
 mappages["spire3"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
-    if (PC.checkInventory("NatassaProjects")) { 
+    if (PC.checkInventory("NatassaProjects") || !DU.gameflags.getFlag("oracle_spoke")) { 
       let tile = mapref.getTile(16,12);
       let shelf = tile.getTopFeature();
       shelf.searchyield = '';
