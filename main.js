@@ -15,10 +15,9 @@ let eidos = new Platonic();
 let DU = {};
 DU.version = "0.11.0";
 
-DU.PC = new PCObject();
+let PC = new PCObject();
 DU.gamelength = 0;
 DU.starttime;
-let PC = DU.PC;  // alias
 
 let timeouts = {};
 
@@ -165,13 +164,13 @@ function MainViewDrawTile(themap, centerx, centery, j, i, tp, ev, displayspecs) 
     let tile = themap.getTile(j,i);
     let fea = tile.getTopVisibleFeature();
     if (fea && (fea.getPeerview() !== PEER_COLORS[0])) {
-      mapmagic[themap.getName()][j][i] = fea.getPeerview();
+      mapmagic[themap.getName()][i][j] = fea.getPeerview();
     } else {
       let terr = tile.getTerrain();
       let peer = terr.getPeerview();
-      if (peer) { mapmagic[themap.getName()][j][i] = peer; }
+      if (peer) { mapmagic[themap.getName()][i][j] = peer; }
       else {
-        mapmagic[themap.getName()][j][i] = 0;
+        mapmagic[themap.getName()][i][j] = 0;
       }
     }
   }
