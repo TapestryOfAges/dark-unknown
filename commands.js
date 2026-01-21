@@ -460,7 +460,7 @@ function PerformCommand(code, ctrl) {
                 peerhtml += `<td style='background-color:${PEER_COLORS[DEEP_WATER_PEER]}; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>`; 
               }
             } else {
-              peerhtml += "<td style='background-color:"+mapmagic[mymap][i][j]+"; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>";
+              peerhtml += "<td style='background-color:"+mapmagic[mymap][j][i]+"; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>";
             }
           }
         }
@@ -475,7 +475,6 @@ function PerformCommand(code, ctrl) {
       if (uii) {
         uii.innerHTML = peerhtml;
         uii.style.backgroundColor = "black";
-        targetCursor.toggleMap = 1;
         gamestate.setMode("anykey");
       }
 
@@ -1709,6 +1708,7 @@ function PerformRuneChoice() {
     if (fs && !fs.stabilized) {
       fs.stabilized = 1;
       retval["txt"] += "You hold the frozen sunlight in the palm of your hand, and reach out with the power of your mastery over fire. The sunlight, which had been fading and dissolving as you watched, solidifies into a stable form.";
+      questlog.complete(90);
     } else {
       let flip = Dice.roll("1d2");
       if (flip === 1) {
