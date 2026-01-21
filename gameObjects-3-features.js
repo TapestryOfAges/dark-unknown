@@ -5921,6 +5921,35 @@ function BookshelfOneTile() {
 }
 BookshelfOneTile.prototype = new FeatureObject();
 
+function NatBookshelfOneTile() {
+  //Graphics Upgraded
+  this.name = "NatBookshelfOne";
+  this.graphic = "static.gif";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -83*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "bookshelf";
+  this.showsearched = 1;
+  this.searchedgraphic = ["static.gif", "", -5*32, -83*32];
+  this.lootonce = 1;
+	this.lootgroup = "";
+	this.lootedid = "";
+  this.peerview = DARK_FADED_WOOD_PEER;
+}
+NatBookshelfOneTile.prototype = new FeatureObject();
+
+NatBookshelfOneTile.prototype.onSearched = function(who) {
+  if (!DU.gameflags.getFlag("oracle_spoke")) {
+    this.setGraphicArray(this.getSearchedGraphic());
+    let retval = {};
+    retval["fin"] = 1;
+    retval["exitOut"] = 1;
+    retval["txt"] = "You search the shelf and find notes on many projects, but none seem relevant to your current quest.";
+  }
+}
+
 function RuinedBookshelfOneTile() {
   //Graphics Upgraded
   this.name = "RuinedBookshelfOne";
@@ -11092,7 +11121,7 @@ WallOfFlamesTile.prototype.use = function(user) {
   retval["txt"] = retval["msg"];
   delete retval['msg'];
   let q = questlog.findQuest(89);
-  if (q) { 
+  if (q > -1) { 
     questlog.activate(90);
   }
   return retval;
@@ -14407,13 +14436,38 @@ function MagicMapUnchargedTile() {
   this.spriteyoffset = -57*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "strange map";
+  this.desc = "Palimpsest Map";
   this.prefix = "a";
   this.longdesc = "A magic map that will fill in as you explore, once it has had nightshade applied.";
   this.usedesc = "Add nightshade to the map.";
 }
 MagicMapUnchargedTile.prototype = new ItemObject();  
 
+MagicMapUnchargedTile.prototype.use = function(who) {
+  let retval = {};
+  retval["fin"] = 1;
+  let nightshade = PC.checkInventory("Nightshade");
+  if (nightshade) {
+    questlog.complete(112);
+    PC.removeFromInventory(nightshade);
+    retval["txt"] = "You unroll the map, and then touch one piece of nightshade to it. You are startled as the map absorbs the nightshade entirely! The map then goes blank... and begins filling in the area around you.";
+    let newmap = localFactory.createTile("MagicMap");
+    PC.removeFromInventory(PC.checkInventory("MagicMapUncharged"));
+    PC.addToInventory(newmap, 1);
+    let mapname = PC.getHomeMap().getName()
+    mapmagic[mapname] = [];
+    for (let i=0;i<PC.getHomeMap().getHeight();i++) {
+      mapmagic[mapname][i] = [];
+      for (let j=0;j<PC.getHomeMap().getWidth();j++) {
+        mapmagic[mapname][i][j] = 0;
+      }
+    }
+    mapmagic.active = 1;
+  } else {
+    retval["txt"] = "You unroll the map, but then put it away in frustration.";
+  }
+  return retval;
+}
 
 function MagicMapTile() {
   //Graphics Upgraded
@@ -14423,10 +14477,9 @@ function MagicMapTile() {
   this.spriteyoffset = -57*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "magical map";
+  this.desc = "Palimpsest Map";
   this.prefix = "a";
   this.longdesc = "A magic map that will fill in as you explore.";
-  this.usedesc = "Inspect the map.";
 }
 MagicMapTile.prototype = new ItemObject();  
 
