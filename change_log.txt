@@ -15,8 +15,12 @@ v 0.11.0
  * [V] now toggles music, [ctrl-V] now toggles volume
  * [M] now shows the map of your current location, if you have one
  * Owning a Sextant puts your location on maps if you have one
+ * Automap implemented
  * Different versions of certain maps share their automap
  * Fixed bug with version check on-load
+ * Fixed issues with the quest log and the Frozen Sunlight quest chain
+ * Slightly reduced the challenge level of spawns in SE swamp
+ * Creating two characters in a row no longer causes bugs
 
 v 0.10.23
  * More dialog fixes
