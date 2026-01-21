@@ -137,16 +137,17 @@ function page_pre_zero() {
       let changelog = document.getElementById("changelog");
       if (changelog) {
         changelog.innerHTML = `<p class='charcreate'>CHANGELOG:</p><ul style='margin-top:0px>`;
-        changelog.innerHTML += `<li class='changelog'>When killing monsters, game no longer says "you gain: N XP" but rather "worth: N XP", so I can show the whole number value it's worth rather than the value you get, which will likely have multiple decimal places</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed a bug that can cause the Courier to respawn</li>`;
-        changelog.innerHTML += `<li class='changelog'>Dawne now has two ways to remind you the loyalist password if you forget</li>`;
-        changelog.innerHTML += `<li class='changelog'>The quest "A Man on the Inside" also reminds you what the password is in the journal</li>`;
-//        changelog.innerHTML += `<li class='changelog'>Fixed a typo in Layne's journal</li>`;
-//        changelog.innerHTML += `<li class='changelog'>Fixed a fence on a raft that was going off in the wrong direction</li>`;
-        changelog.innerHTML += `<li class='changelog'>Spell scrolls are no longer consumed if the spell can't be cast in that location</li>`;
-        changelog.innerHTML += `<li class='changelog'>You now gain XP for things your summons kill</li>`;
-        changelog.innerHTML += `<li class='changelog'>Save/reload while there is a summoned creature that can't figure out how to find you no longer causes a crash</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed crash if you tip a bartender soon after using the Infinite Scroll</li>`;
+        changelog.innerHTML += `<li class='changelog'>Terrain now has transition art to make boundaries smoother and the world less blocky</li>`;
+        changelog.innerHTML += `<li class='changelog'>With Move Opens Doors, game reports that a door is locked if you bump into it</li>`;
+        changelog.innerHTML += `<li class='changelog'>You now start the game with 3 torches</li>`;
+        changelog.innerHTML += `<li class='changelog'>Forests are more consistent about how they block LOS</li>`;
+        changelog.innerHTML += `<li class='changelog'>Various other graphics improvements</li>`;
+        changelog.innerHTML += `<li class='changelog'>[M] now shows the map if you have one, and triggers the automap if you have it</li>`;
+        changelog.innerHTML += `<li class='changelog'>If you leave out of the west side of Naurglen, you emerge from its western tile</li>`;
+        changelog.innerHTML += `<li class='changelog'>Audachta no longer appears as Usable in your inventory</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed issues with the quest log and the Frozen Sunlight quest chain</li>`;
+        changelog.innerHTML += `<li class='changelog'>You can now leave a bed to the east</li>`;
+        changelog.innerHTML += `<li class='changelog'>Results of a Peer are better centered</li>`;
         changelog.innerHTML += `</ul>`;
       }
     }
@@ -900,24 +901,28 @@ tv.DoActionTitle = function(code, e) {
     if ((code === 38) || (code === 219)) { // up
  
     } else if ((code === 37) || (code === 186)) {  // left
+      gamestate.setMode("null");
       if (tv.avatarselect.x > 0) {
         document.getElementById(tv.avatarselect.y + "x" + tv.avatarselect.x).style.backgroundColor = "black";
         tv.avatarselect.x--;
         document.getElementById(tv.avatarselect.y + "x" + tv.avatarselect.x).style.backgroundColor = "white";
       }
+      gamestate.setMode("graphic");
     } else if ((code === 39) || (code === 222)) { // right
+      gamestate.setMode("null");
       if (tv.avatarselect.x < 5) {
         document.getElementById(tv.avatarselect.y + "x" + tv.avatarselect.x).style.backgroundColor = "black";
         tv.avatarselect.x++;
         document.getElementById(tv.avatarselect.y + "x" + tv.avatarselect.x).style.backgroundColor = "white";
       }
+      gamestate.setMode("graphic");
     } else if ((code === 40) || (code === 191)) { // down
  
     } else if ((code === 32) || (code === 13)) { // space or enter
 //      graphic = avatars[tv.avatarselect.y][tv.avatarselect.x];
+      gamestate.setMode("ccoptions");
       tv.graphic = "spacer.gif";
       targetCursor.page = 0;
-      gamestate.setMode("ccoptions");
       DU.gameflags.setFlag("potionsrevealed", "all");
       DU.gameflags.setFlag("allowjournal",1);
       DU.gameflags.setFlag("allowautomap",1);
@@ -1253,10 +1258,6 @@ tv.ChooseGraphic = function() {
 }
 
 tv.SaveChar = function() {
-  DU.merchants = {};
-  DU.merchants = SetMerchants();
-  DU.randomseed = Math.floor(Math.random()*100)+1;
-  
   PC.setPCName(tv.charname);
   PC.setGraphic(tv.graphic);
   PC.setGender(tv.gender);
@@ -1280,37 +1281,43 @@ tv.SaveChar = function() {
   PC.makeLayers();
   PC.skintone = tv.nuavskin[tv.avatarselect.x];
   
-  tv.themap = maps.addMap("ellusus");
-  maps.addMap("ellusus_limbo");
-  maps.addMap("underworld");
+  if (!tv.madeChar) {
+    DU.merchants = {};
+    DU.merchants = SetMerchants();
+    DU.randomseed = Math.floor(Math.random()*100)+1;
+    tv.themap = maps.addMap("ellusus");
+    maps.addMap("ellusus_limbo");
+    maps.addMap("underworld");
 
-  PC.setHomeMap(tv.themap);
-  PC.setx(69);
-  PC.sety(74);
-  PC.getHomeMap().placeThing(PC.getx(),PC.gety(),PC);
-  let dagger = localFactory.createTile("Dagger");
-  PC.addToInventory(dagger, 1);
+    PC.setHomeMap(tv.themap);
+    PC.setx(69);
+    PC.sety(74);
+    PC.getHomeMap().placeThing(PC.getx(),PC.gety(),PC);
+    let dagger = localFactory.createTile("Dagger");
+    PC.addToInventory(dagger, 1);
 
-  tv.RandomizePotions();
+    tv.RandomizePotions();
 
-  dagger.equipMe(PC);
-//  PC.setEquipment("weapon",dagger);
-  let armor = localFactory.createTile("ClothArmor");
-  PC.addToInventory(armor, 1);
-  armor.equipMe(PC);
-//  PC.setEquipment("armor",armor);
-  let homekey = localFactory.createTile("HomeKey");
-  PC.addToInventory(homekey,1);
-  let torch = localFactory.createTile("Torch");
-  PC.addToInventory(torch,1,3);
+    dagger.equipMe(PC);
+  //  PC.setEquipment("weapon",dagger);
+    let armor = localFactory.createTile("ClothArmor");
+    PC.addToInventory(armor, 1);
+    armor.equipMe(PC);
+  //  PC.setEquipment("armor",armor);
+    let homekey = localFactory.createTile("HomeKey");
+    PC.addToInventory(homekey,1);
+    let torch = localFactory.createTile("Torch");
+    PC.addToInventory(torch,1,3);
 
-  DU.gameflags.setFlag("knows_avery", 1);
-  DU.gameflags.setFlag("coward", 0); 
-  questlog.activate(0);
-  
-  let PCEvent = new GameEvent(PC);
-	DUTime.addAtTimeInterval(PCEvent,.0001);
-	
+    DU.gameflags.setFlag("knows_avery", 1);
+    DU.gameflags.setFlag("coward", 0); 
+    questlog.activate(0);
+    
+    let PCEvent = new GameEvent(PC);
+    DUTime.addAtTimeInterval(PCEvent,.0001);
+
+    tv.madeChar = 1;
+  }	
 	gamestate.saveGame(9);
 	
   saveIndex[9].loc = "Char Create";
