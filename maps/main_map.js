@@ -941,7 +941,7 @@ function Placespawns(mapref) {
   // great swamp
   // Zone: SE
   spawn = localFactory.createTile("Spawner");
-  group = ["SnakesGroup"];
+  group = ["InsectsGroupSmall"];
 
   spawn.setSpawngroup(group);
   spawn.setSpawnRadius(6);
@@ -951,7 +951,7 @@ function Placespawns(mapref) {
 
   spawn.evolve[2] = [];
   spawn.evolve[2][0] = "spawngroup";
-  spawn.evolve[2][1] = ["SnakesGroup","MidSnakesGroup"];
+  spawn.evolve[2][1] = ["SnakesGroup","InsectsGroupLarge"];
 
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
