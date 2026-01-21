@@ -690,7 +690,7 @@ OnConvTriggers["learned_palimpsest"] = function(speaker,keyword) {
 }
 
 OnConvTriggers["map_uncharged"] = function(speaker,keyword) {
-  PC.removeFromInventory("MagicMapUnknown");
+  PC.removeFromInventory(PC.checkInventory("MagicMapUnknown"));
   PC.addToInventory(localFactory.createTile("MagicMapUncharged"),1);
 }
 
@@ -992,7 +992,7 @@ OnConvTriggers["knows_severyn"] = function(speaker,keyword) {
 
 OnConvTriggers["rebuild_decide"] = function(speaker,keyword) {
   let q = questlog.findQuest(28);
-  if (q && q.active && !q.replaced && !q.completed) { questlog.complete(28); }
+  if ((q > -1) && q.active && !q.replaced && !q.completed) { questlog.complete(28); }
   else { questlog.complete(27); }
 }
 
@@ -1606,7 +1606,7 @@ ConvTestFlags["on_quest"] = function(speaker,keyword,questnum) {
   console.log(questnum);
   let dq = questlog.findQuest(questnum);
   console.log(dq);
-  if ((dq > 0) && questlog.log[dq].active) {
+  if ((dq > -1) && questlog.log[dq].active) {
     return 1;
   }
   return 0;
