@@ -258,7 +258,7 @@ questlist[108] = new Quest([107], "Kyvek's Debt", "Kyvek", "Naurglen", `You have
 questlist[109] = new Quest([108], "Kyvek's Debt", "Kyvek", "Naurglen", `You have the money for Kyvek- all that remains is to bring it to him, in Naurglen.`, `You have arranged for Kyvek to be repaid... but then you stole the money for yourself.`, "side");
 questlist[110] = new Quest([], "Investigate Strange Map", "Behind a bookshelf", "Castle dea Yggdras", `You have found a strange map behind a bookshelf. You might have to ask around to figure out what it is. <IFFLAG:strange_map>It has been suggested that you speak to the cartographer in Clear Lake about it.</IFFLAG>`, ``, "side");
 questlist[111] = new Quest([110], "Repair the Palimpsest Map", "Robert", "Clear Lake", `Your strange map is a work of magic called a Palimpsest Map. This one isn't working properly- perhaps a magician would know why.`, ``, "side");
-
+questlist[112] = new Quest([111], "Repair the Palimpsest Map", "Robert", "Clear Lake", `To activate the Palimpsest Map, you will need to acquire some nightshade. Use the map, and then press the nightshade to its surface.`, `You have activated the Palimpsest Map! (To view the map, press [M].)`, "side");
 
 // verbage for reference guide:
 // Not everything that you might think of as a "quest" will go in the log. And those that do, you will still need to take notes-
