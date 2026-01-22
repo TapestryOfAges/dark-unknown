@@ -1,5 +1,9 @@
-v 0.11.0
- * Terrain now has transition art to make boundaries look smoother and the world less blocky
+v 0.11.2
+ * When "Move Opens Doors" is on, bumping into a door that does something special when Used now works
+ * Look no longer says you are standing on a chair or bed that you are sitting/lying in
+ * Drakes now have movetype Levitate- they aren't good enough fliers to get over mountains (which is why they had Walk before) but I do want them to be able to fly over water.
+
+v 0.11.1
  * If you use/bump into a locked door while you have the key, the game now tells you that you unlocked it
  * When "Move Opens Doors" is enabled, if you bump into a locked door the game now tells you it is locked, much like it would if you tried to Use it
  * You now start the game with 3 torches
@@ -18,9 +22,12 @@ v 0.11.0
  * Automap implemented
  * Different versions of certain maps share their automap
  * Fixed bug with version check on-load
- * Fixed issues with the quest log and the Frozen Sunlight quest chain
+ * Fixed issues with the quest log and the Frozen Sunlight and Stolen Accessories quest chains
  * Slightly reduced the challenge level of spawns in SE swamp
  * Creating two characters in a row no longer causes bugs
+
+v 0.11.0
+ * Terrain now has transition art to make boundaries look smoother and the world less blocky
 
 v 0.10.23
  * More dialog fixes
