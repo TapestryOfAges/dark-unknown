@@ -2887,7 +2887,12 @@ PCObject.prototype.myTurn = function() {
       }
 
       if (this.forcedTalk) {
-        if (this.forcedTalk.getNPCName() === "Ashlin") {
+        if (this.forcedTalk.getName() === "TalkingDoor") {
+          let newresponse = PerformTalk(this.forcedTalk,"ash_door","_start");
+          maintext.addText(newresponse["txt"]);
+          maintext.setInputLine(newresponse["input"]);
+          maintext.drawTextFrame();
+        } else if (this.forcedTalk.getNPCName() === "Ashlin") {
           let ashlin = this.forcedTalk;
           if (ashlin && !DU.gameflags.getFlag("enter_consolation")) {
             let themap = this.getHomeMap();
