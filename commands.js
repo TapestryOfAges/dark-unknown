@@ -58,7 +58,9 @@ function PerformCommand(code, ctrl) {
 		retval["fin"] = 1;
     if (success["msg"].match("Blocked")) { 
       DUPlaySound("sfx_walk_blocked"); 
-      retval["fin"] = 2; 
+      if (!success["endturn"]) {
+        retval["fin"] = 2; 
+      }
     }
     if (success["msg"].match("WHOOSH")) {
       retval["fin"] = 2;
@@ -105,7 +107,9 @@ function PerformCommand(code, ctrl) {
 		retval["fin"] = 1;
     if (success["msg"].match("Blocked")) { 
       DUPlaySound("sfx_walk_blocked"); 
-      retval["fin"] = 2; 
+      if (!success["endturn"]) {
+        retval["fin"] = 2; 
+      }
     }
     if (success["msg"].match("WHOOSH")) {
       retval["fin"] = 2;
@@ -150,7 +154,9 @@ function PerformCommand(code, ctrl) {
 		retval["fin"] = 1;
     if (success["msg"].match("Blocked")) { 
       DUPlaySound("sfx_walk_blocked"); 
-      retval["fin"] = 2; 
+      if (!success["endturn"]) {
+        retval["fin"] = 2; 
+      }
     }
     if (success["msg"].match("WHOOSH")) {
       retval["fin"] = 2;
@@ -195,7 +201,9 @@ function PerformCommand(code, ctrl) {
 		retval["fin"] = 1;
     if (success["msg"].match("Blocked")) { 
       DUPlaySound("sfx_walk_blocked"); 
-      retval["fin"] = 2; 
+      if (!success["endturn"]) {
+        retval["fin"] = 2; 
+      }
     }
     if (success["msg"].match("WHOOSH")) {
       retval["fin"] = 2;
@@ -1195,7 +1203,13 @@ function PerformLook() {
   }
   let tile = map.getTile(targetCursor.x,targetCursor.y);
   if ((targetCursor.x === PC.getx())	&& (targetCursor.y === PC.gety())) {
-  	txt = "You are standing on ";
+    if (PC.sitting === "chair") {
+      txt = "You are sitting on ";
+    } else if (PC.inBed) {
+      txt = "You are lying in ";
+    } else {
+    	txt = "You are standing on ";
+    }
   } else {
   	txt = "You see ";
   }
@@ -2703,6 +2717,15 @@ function PerformYell() {
 				newmap = maps.addMap("swainhil");
 			}
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,48,19);		  
+      DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
+    } else if (inputText.txt === "GOASH") {
+      let newmap = new GameMap();
+      if (maps.getMap("asharden1")) {
+				newmap = maps.getMap("asharden1");
+			} else {
+				newmap = maps.addMap("asharden1");
+			}
+      MoveBetweenMaps(PC,PC.getHomeMap(),newmap,25,24);		  
       DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
     } else if (inputText.txt === "GOGROTTO") {
 		    let homemap = PC.getHomeMap();
