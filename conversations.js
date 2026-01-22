@@ -1177,6 +1177,8 @@ OnConvTriggers["given_box"] = function(speaker,keyword) {
 OnConvTriggers["bard_commended"] = function(speaker,keyword) {
   DU.gameflags.setFlag("bard_simon_confirmed",1);
   DU.gameflags.setFlag("bard_book_alison",1);
+  questlog.complete(45);
+  questlog.complete(47);
 }
 
 OnConvTriggers["paladin_initiation"] = function(speaker,keyword) {
