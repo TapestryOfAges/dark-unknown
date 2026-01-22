@@ -3588,6 +3588,15 @@ TalkingDoorTile.prototype.use = function(who) {
   return retval;
 };
 
+TalkingDoorTile.prototype.bumpinto = function(who) {
+  PC.forcedTalk = this;
+  let retval = {};
+  retval["msg"] = "Blocked!";
+  retval["canmove"] = 0;
+  retval["endturn"] = 1;
+  return retval;
+}
+
 function GreyDoorTile() {
   //Graphics Upgraded
   Lockable.call(this, ["static.gif","",-2*32,-18*32], ["static.gif","",-9*32,-41*32], ["static.gif","",-3*32,-18*32], "a", "door", "a", "locked door", "a", "magically locked door");
@@ -6526,7 +6535,7 @@ SunLensTile.prototype.use = function(who) {
 
     who.addToInventory(frozen,1);
     retval["txt"] = "You angle the lens to catch the sunlight, and on the other side the light is concentrated to a point. There is a haze, and then in a flash a small glowing crystal coalesces. You catch it before it can fall to the ground.";
-    maintext.delayedAddText = "<span class='sysconv'>You have gained: crystalized sunlight.</span>";
+    maintext.delayedAddText("<span class='sysconv'>You have gained: crystalized sunlight.</span>");
   } else {
     retval["txt"] = "Nothing happens when you try to use the strange device.";
   }
