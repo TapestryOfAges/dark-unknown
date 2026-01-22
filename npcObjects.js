@@ -3402,7 +3402,7 @@ function DrakeNPCTile() {
   this.armorDefense = 15;
   this.armorAbsorb = 33;
   this.armorResist = 25;
-  this.movetype = MOVE_WALK;
+  this.movetype = MOVE_LEVITATE;
   this.leavesCorpse = 'none';
   this.lootTable = 'Level5';
   this.prefix = 'a';
