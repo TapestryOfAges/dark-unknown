@@ -169,20 +169,25 @@ function DestroyJusticeCrystals() {
   DUPlaySound("sfx_break_glass");
 }
 
-function TurnMapHostile(map) {
-  DebugWrite("combat", "Attacked a friendly! Turning hostile...<br />");
-  PC.diffKarma(-10); 
-  addToKarmaLog("Karma", -10, `Attacked an innocent on ${map.getName()}.`);
-  maintext.addText("<span style='color:red'>Your karma has suffered GREATLY.</span>");
-  let localnpcs = map.npcs.getAll();
-  for (let idx=0;idx<localnpcs.length;idx++) {
-    let val = localnpcs[idx];
-    if ((val.getAttitude() === "friendly") && (!val.summoned)) {
-      val.setAttitude("hostile");
-      val.setAggro(1);
-      DebugWrite("combat", val.getName() + " (serial: " + val.getSerial() + ") turns hostile!<br />");
+function TurnMapHostile(map, def) {
+  if (def.getSpellEffectsByName("Charm")) {
+    let charm = def.getSpellEffectsByName("Charm");
+    charm.endEffect();
+  } else {
+    DebugWrite("combat", "Attacked a friendly! Turning hostile...<br />");
+    PC.diffKarma(-10); 
+    addToKarmaLog("Karma", -10, `Attacked an innocent on ${map.getName()}.`);
+    maintext.addText("<span style='color:red'>Your karma has suffered GREATLY.</span>");
+    let localnpcs = map.npcs.getAll();
+    for (let idx=0;idx<localnpcs.length;idx++) {
+      let val = localnpcs[idx];
+      if ((val.getAttitude() === "friendly") && (!val.summoned)) {
+        val.setAttitude("hostile");
+        val.setAggro(1);
+        DebugWrite("combat", val.getName() + " (serial: " + val.getSerial() + ") turns hostile!<br />");
+      }
     }
-  };
+  }
 }
 
 function Attack(atk, def) {
@@ -253,7 +258,7 @@ function Attack(atk, def) {
     if (def.getAttitude() === "friendly") {
       // Make it and its friends hostile. 
       // shouldn't this be done with an event/observer?
-      TurnMapHostile(def.getHomeMap());
+      TurnMapHostile(def.getHomeMap(), def);
     }
 
     if (weapon.wornlayer) {   // PC holds the latest weapon they attacked with
