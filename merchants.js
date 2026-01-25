@@ -74,6 +74,12 @@ function SetMerchants() {
                   ];
   bill.colin.type = "stuff";
 
+  bill.robert = {};
+  bill.robert.stock = [ { item: "MapOfEllusus", quantity: 1, price: 50, desc: "Map of Ellusus", sale: '"I trust it will serve you well."' }, 
+                       { item: "Sextant", quantity: 2, price: 500, desc: "Sextant", sale: '"It should help you find yourself."' },
+                  ];
+  bill.robert.type = "stuff";
+
   // Poverty
   bill.brooke = {};
   bill.brooke.stock = [ { item: "RedPotion", quantity: 2, price: 50, desc: "Cure Potion", sale: '"I added extra sugar, to make it go down easier."', sellqty: 1},
