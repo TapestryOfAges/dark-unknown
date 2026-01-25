@@ -1118,7 +1118,7 @@ function PerformMagicBolt(caster, infused, free, tgt) {
     
   tgt = newtgt;
   if ((caster === PC) && (multitargets[0].def.getAttitude() === "friendly")) {
-    TurnMapHostile(caster.getHomeMap());
+    TurnMapHostile(caster.getHomeMap(), multitargets[0].def);
   }
   tgt.setHitBySpell(caster,SPELL_MAGIC_BOLT_LEVEL);
 
@@ -1711,7 +1711,7 @@ function PerformFireball(caster, infused, free, tgt) {
   tgt = newtgt;
   tgt.setHitBySpell(caster,SPELL_FIREBALL_LEVEL);
   if ((caster === PC) && (multitargets[0].def.getAttitude() === "friendly")) {
-    TurnMapHostile(caster.getHomeMap());
+    TurnMapHostile(caster.getHomeMap(), multitargets[0].def);
   }
 
   let tmpdmg = prepareSpellDamage(caster,tgt,DMG_MEDIUM,"fire");
@@ -2578,7 +2578,7 @@ function PerformIceball(caster, infused, free, tgt) {
   tgt = newtgt;
   tgt.setHitBySpell(caster,SPELL_ICEBALL_LEVEL);
   if ((caster === PC) && (multitargets[0].def.getAttitude() === "friendly")) {
-    TurnMapHostile(caster.getHomeMap());
+    TurnMapHostile(caster.getHomeMap(), multitargets[0].def);
   }
 
   let tmpdmg = prepareSpellDamage(caster,tgt,DMG_MEDIUM,"ice");
@@ -2709,7 +2709,7 @@ function PerformLifeDrain(caster, infused, free, tgt) {
   tgt = newtgt;
   tgt.setHitBySpell(caster,SPELL_LIFE_DRAIN_LEVEL);
   if ((caster === PC) && (origtgt.getAttitude() === "friendly")) {
-    TurnMapHostile(caster.getHomeMap());
+    TurnMapHostile(caster.getHomeMap(), origtgt);
   }
 
   if (IsNonLiving(tgt)) {
@@ -3443,7 +3443,7 @@ function PerformSwordstrike(caster, infused, free, tgt) {
   tgt = newtgt;
   let hostile = 0;
   if ((caster === PC) && (origtgt.getAttitude() === "friendly")) {
-    TurnMapHostile(castmap);
+    TurnMapHostile(castmap), origtgt;
     hostile = 1;
   }
 
@@ -3497,7 +3497,7 @@ function PerformSwordstrike(caster, infused, free, tgt) {
         if (badguy !== PC) { badguy.setAggro(1); }
         ShowEffect(badguy, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
         if (!hostile && (caster === PC) && (tgt.getAttitude() === "friendly")) {
-          TurnMapHostile(castmap);
+          TurnMapHostile(castmap, tgt);
           hostile = 1;
         }
       }
@@ -4086,7 +4086,7 @@ function PerformExplosion(caster, infused, free, tgt) {
     if (badguy !== PC) { badguy.setAggro(1); }
     ShowEffect(badguy, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
     if (!hostile && (caster === PC) && (badguy.getAttitude() === "friendly")) {
-      TurnMapHostile(castmap);
+      TurnMapHostile(castmap, badguy);
       hostile = 1;
     }
   }
@@ -4966,7 +4966,7 @@ function PerformMindBlast(caster, infused, free, tgt) {
   tgt = newtgt;
   tgt.setHitBySpell(caster,SPELL_MIND_BLAST_LEVEL);
   if ((caster === PC) && (origtgt.getAttitude() === "friendly")) {
-    TurnMapHostile(caster.getHomeMap());
+    TurnMapHostile(caster.getHomeMap(), origtgt);
   }
   let power = caster.getIntForPower();
   if (free) { power = Dice.roll("1d5+12"); }
@@ -5270,7 +5270,7 @@ function PerformArrowOfGlass(caster, infused, free, tgt) {
   tgt = newtgt;
   tgt.setHitBySpell(caster,SPELL_ARROW_OF_GLASS_LEVEL);
   if ((caster === PC) && (multitargets[0].def.getAttitude() === "friendly")) {
-    TurnMapHostile(caster.getHomeMap());
+    TurnMapHostile(caster.getHomeMap(), multitargets[0].def);
   }
   let power = caster.getIntForPower();
   if (free) { power = Dice.roll("1d5+12"); }
