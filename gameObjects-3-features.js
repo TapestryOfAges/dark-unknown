@@ -15635,7 +15635,7 @@ GreenPotionTile.prototype.throw = function(who,tgt) {
   poison.setExpiresTime(duration + DUTime.getGameClock());
   tgt.addSpellEffect(poison);
   if ((who === PC) && (tgt.getAttitude() === "friendly")) {
-    TurnMapHostile(caster.getHomeMap());
+    TurnMapHostile(caster.getHomeMap(), tgt);
   }
   retval["txt"] = "The potion poisons the " + tgt.getDesc() + "!";
   retval["input"] = "&gt;"
