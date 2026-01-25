@@ -330,7 +330,7 @@ mappages["spire2"].features[38] = {name : 'SmallBox', x : 27, y : 13, lootgroup 
 mappages["spire2"].features[39] = {name : 'BookshelfRight', x : 26, y : 13, lootedid : 'spireshelf4', searchyield : 'ScrollHeal'};
 mappages["spire2"].features[40] = {name : 'BookshelfLeft', x : 25, y : 13, searchyield : 'NatassaResearch,NatassaResearch2'};
 mappages["spire2"].features[41] = {name : 'Vanity', x : 12, y : 7};
-mappages["spire2"].features[42] = {name : 'BookshelfOne', x : 13, y : 7, lootedid : 'spireshelf1', searchyield : 'NatassaJournal'};
+mappages["spire2"].features[42] = {name : 'BookshelfOne', x : 13, y : 7, searchyield : 'NatassaJournal'};
 mappages["spire2"].features[43] = {name : 'Chest', x : 20, y : 15, lootgroup : 'spireloot', lootedid : 'spire4'};
 mappages["spire2"].features[44] = {name : 'Mirror', x : 22, y : 13};
 mappages["spire2"].features[45] = {name : 'RightChair', x : 22, y : 10};
@@ -403,16 +403,21 @@ mappages["spire2"].onload = function(mapref) {
     if (PC.checkInventory("NatassaResearch") && PC.checkInventory("NatassaResearch2")) { 
       let tile = mapref.getTile(25,13);
       let shelf = tile.getTopFeature();
-      shelf.searchyield = '';
+      shelf.searchYield = [];
     } else if (PC.checkInventory("NatassaResearch")) {
       let tile = mapref.getTile(25,13);
       let shelf = tile.getTopFeature();
-      shelf.searchyield = 'NatassaResearch2';
+      shelf.searchYield = ['NatassaResearch2'];
     } else if (PC.checkInventory("NatassaResearch2")) {
       let tile = mapref.getTile(25,13);
       let shelf = tile.getTopFeature();
-      shelf.searchyield = 'NatassaResearch';
+      shelf.searchYield = ['NatassaResearch'];
     } 
+    if (PC.checkInventory("NatassaJournal")) {
+      let tile = mapref.getTile(13,7);
+      let shelf = tile.getTopFeature();
+      shelf.searchYield = [];
+    }
   }
 }
 
@@ -553,7 +558,7 @@ mappages["spire3"].onload = function(mapref) {
     if (PC.checkInventory("NatassaProjects") || !DU.gameflags.getFlag("oracle_spoke")) { 
       let tile = mapref.getTile(16,12);
       let shelf = tile.getTopFeature();
-      shelf.searchyield = '';
+      shelf.searchYield = [];
     }
   }
 }
