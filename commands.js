@@ -332,6 +332,7 @@ function PerformCommand(code, ctrl) {
 		targetCursor.command = "g";
 		targetCursor.x = PC.getx();
 		targetCursor.y = PC.gety();		
+    delete targetCursor.getAll;
 	}
 	else if (code === 72) { // h
 		// hole up and camp, not used
@@ -891,6 +892,7 @@ function PerformAttackFromMove(who, dx, dy) {
   if (atkwho && (atkwho.getAttitude() === "hostile") && !atkwho.invisible && !atkwho.specials.mimic) {
     retval = Attack(who,atkwho);
     retval["extra"] = "moveintoattack";
+    targetCursor.lastTarget = atkwho;
   }
   return retval;
 }
@@ -1808,6 +1810,61 @@ function PerformGet(who, getitem) {
     retval["fin"] = 0;
     return retval;
   }
+}
+
+function PerformGetAll(who) {
+  let retval = { txt:"", fin:1};
+  let localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
+  let feas = localacre.features.getAll();
+  let allitems = [];
+  let msg = "There is nothing there.";
+  if (feas.length) { msg = "You can't get that."; }
+  for (let i=0;i<feas.length;i++) {
+    if (feas[i].checkType("Item")) {
+      if (feas[i].prompt && !DU.gameflags.getFlag("skip_theft_warning")) {
+        retval["fin"] = 3; 
+        targetCursor.command = "g";
+        targetCursor.getitem = feas[i];
+      }
+      if ((feas[i].getName() === "Gold") || !feas[i].noTake) {
+        allitems.unshift(feas[i]);
+      }
+    }
+  }
+  if (!allitems.length) {
+    retval["txt"] = msg;
+    retval["fin"] = 0;
+    return retval;    
+  } else {
+    let itemmap = who.getHomeMap();
+    for (let i=0;i<allitems.length;i++) {
+      let getitem = allitems[i];
+      let onget = {};
+      if (typeof getitem.onGet === "function") {
+        onget = getitem.onGet(who);
+      }
+      if (getitem.noTake || onget.noTake) {
+//      retval["fin"] = 0;
+      } else {
+        who.addToInventory(getitem);
+        if (retval["txt"]) { retval["txt"] += "<br />"; }
+        retval["txt"] += `Taken: ${getitem.getPrefix()} ${getitem.getDesc()}.`;
+        if (getitem.karmaPenalty) {
+          who.diffKarma(-getitem.karmaPenalty);
+          addToKarmaLog("Karma",`-${getitem.karmaPenalty}`, `Stole ${getitem.getPrefix()} ${getitem.getDesc()}.`);
+          retval["txt"] += `<br /><span style='color:red'>Theft! Your karma has suffered.`;
+        }
+      }
+      if (onget["txt"]) {
+        if (retval["txt"]) { retval["txt"] = retval["txt"] + "<br />"; }
+        retval["txt"] = retval["txt"] + onget["txt"];
+      }
+    }
+    DrawMainFrame("one",itemmap,targetCursor.x,targetCursor.y);
+    DrawCharFrame();
+
+    return retval;    
+  } 
 }
 
 function PerformJournal() {

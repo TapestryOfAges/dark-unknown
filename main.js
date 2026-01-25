@@ -775,6 +775,9 @@ function DoAction(code, ctrl) {
       PC.endTurn();
     }
   } else if (gamestate.getMode() === "choosedir") {
+    if ((targetCursor.command === "g") && (code === 65)) {
+      targetCursor.getAll = 1;
+    }
     let response = PerformChooseDir(code);
     if (response["fin"] === 1) { // direction chosen
       if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety()) && ((targetCursor.command === "u")||(targetCursor.command === "o")) ) {
@@ -802,7 +805,11 @@ function DoAction(code, ctrl) {
         } else if (targetCursor.command === "uk") {
           resp = KeyUse(PC,targetCursor.useditem);
         } else if (targetCursor.command === "g") { // GET
-          resp = PerformGet(PC);
+          if (targetCursor.getAll) {
+            resp = PerformGetAll(PC);
+          } else {
+            resp = PerformGet(PC);
+          }
         } else if (targetCursor.command === "s") { // SEARCH
           resp = PerformSearch(PC);
         } else if (targetCursor.command === "a") {  // ATTACK
