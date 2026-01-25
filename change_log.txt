@@ -1,7 +1,15 @@
 v 0.11.2
  * When "Move Opens Doors" is on, bumping into a door that does something special when Used now works
  * Look no longer says you are standing on a chair or bed that you are sitting/lying in
- * Drakes now have movetype Levitate- they aren't good enough fliers to get over mountains (which is why they had Walk before) but I do want them to be able to fly over water.
+ * Drakes now have movetype Levitate- they aren't good enough fliers to get over mountains (which is why they had Walk before) but I do want them to be able to fly over water
+ * Robert now sells a map of Ellusus and a sextant
+ * Attacking something through move attacks updates the last position of the target cursor to the defender 
+ * Attacking a creature you've charmed no longer causes a karma penalty, but instead just breaks the charm
+ * If you enter Beldskae while Kalli would have her helmet off, it uses the correct graphic
+ * Fixed bugs with what was supposed to prevent you from getting Natassa's journals multiple times
+ * One of the Paladin quests no longer gets orphaned in your log
+ * Headless Cave quest completion checked as you kill each headless, not when you leave the cave
+ * Black dragon no longer gets identified as "a black dragon named black dragon".
 
 v 0.11.1
  * If you use/bump into a locked door while you have the key, the game now tells you that you unlocked it
