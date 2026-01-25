@@ -70,7 +70,7 @@ mappages["headlesscave"].underground = '1';
 mappages["headlesscave"].undergroundDesc = 'Underground';
 mappages["headlesscave"].enterscript = '';
 mappages["headlesscave"].entertestscript = '';
-mappages["headlesscave"].exitscript = 'hc_check_clear';
+mappages["headlesscave"].exitscript = '';
 mappages["headlesscave"].exittestscript = '';
 mappages["headlesscave"].returnmap = 'ellusus';
 mappages["headlesscave"].returnx = '48';
@@ -89,6 +89,13 @@ mappages["headlesscave"].onload = function(mapref) {
           mapref.deleteThing(allnpcs[i]);
           DU.DUTime.removeEntityFrom(allnpcs[i]);
         }
+      }
+    }
+  } else {
+    let allnpcs = mapref.npcs.getAll();
+    for (let i=0;i<allnpcs.length;i++) {
+      if (allnpcs[i].getName() === "HeadlessNPC") {
+        allnpcs[i].onDeath = "headlesscave";
       }
     }
   }

@@ -341,6 +341,22 @@ OnDeathFuncs["Warduke"] = function() {
   questlog.activate(49);
 }
 
+OnDeathFuncs["headlesscave"] = function() {
+  let allnpcs = mapref.npcs.getAll();
+  let anyheadlesses = 0;
+  for (let i=0; i<allnpcs.length;i++) {
+    if (allnpcs[i].getName() === "HeadlessNPC") {
+      anyheadlesses = 1;
+    }
+  }
+  if (!anyheadlesses && (questlog.findQuest(9) !== -1)) {
+    if (!DU.gameflags.getFlag("cave_cleared")) {
+      DU.gameflags.setFlag("cave_cleared",1);
+      questlog.activate(106);
+    }
+  }
+}
+
 OnDeathFuncs["Borogard"] = function() {
   DU.gameflags.setFlag("borogard_killed",1);
 }
