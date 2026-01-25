@@ -638,7 +638,8 @@ mappages["beldskae"].onload = function(mapref) {
     }
 
     if ((kalli.getCurrentScheduleIndex() >= 32) && (kalli.getCurrentScheduleIndex() < 1)) {
-      kalli.setGraphic("paladin-offcolor.gif");
+//      kalli.setGraphic("paladin-offcolor.gif");
+      kalli.wornlayers["head"] = "ShortBlackPale";
     }
 
     let sstile = mapref.getTile(22,12).getFeatures();
