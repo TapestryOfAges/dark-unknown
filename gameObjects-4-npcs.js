@@ -1125,7 +1125,9 @@ NPCObject.prototype.activate = function(timeoverride) {
     this.currentPath = [];
     this.destType;
 
-    this.maxhp = this.level * 10 + Dice.roll("1d10-6");
+    let hp_mult = 1;
+    if (DU.gameflags.getFlag("difficulty") === "hard") { hp_mult = HARD_HP_MULTIPLIER; }
+    this.maxhp = (this.level * 10 + Dice.roll("1d10-6"))*hp_mult;
     if (this.addhp) { 
       this.maxhp += this.addhp; 
       if (this.maxhp < 0) { this.maxhp = 1; }
@@ -3086,7 +3088,7 @@ PCObject.prototype.dealDamage = function(dmg, src, type) {
   }
   
   if (this.getHP() <= 0) { // killed!
-    if (DU.gameflags.getFlag("storymode")) { this.setHP(1); }
+    if (DU.gameflags.getFlag("difficulty") === "story") { this.setHP(1); }
     else {
       this.processDeath(1);
       return -1;

@@ -941,8 +941,11 @@ tv.DoActionTitle = function(code, e) {
       tv.CharCreateOptions();
     } else if ((code === 37) || (code === 186)) {  // left
       if (targetCursor.page === 0) {
-        if (DU.gameflags.getFlag("storymode")) { DU.gameflags.setFlag("storymode",0); }
-        else { DU.gameflags.setFlag("storymode",1); }
+        // if (DU.gameflags.getFlag("storymode")) { DU.gameflags.setFlag("storymode",0); }
+        // else { DU.gameflags.setFlag("storymode",1); }
+        if (DU.gameflags.getFlag("difficulty") === "story") { DU.gameflags.setFlag("difficulty","hard"); }
+        else if (DU.gameflags.getFlag("difficulty") === "normal") { DU.gameflags.setFlag("difficulty","story"); }
+        else { DU.gameflags.setFlag("difficulty", "hard"); }
       } else if (targetCursor.page === 1) {
         if (DU.gameflags.getFlag("potionsrevealed") === "all") { DU.gameflags.setFlag("potionsrevealed","roguelike"); }
         else if (DU.gameflags.getFlag("potionsrevealed") === "blind") { DU.gameflags.setFlag("potionsrevealed","all"); }
@@ -969,8 +972,11 @@ tv.DoActionTitle = function(code, e) {
       if (targetCursor.page !== 8) { tv.CharCreateOptions(); }
     } else if ((code === 39) || (code === 222)) { // right
       if (targetCursor.page === 0) {
-        if (DU.gameflags.getFlag("storymode")) { DU.gameflags.setFlag("storymode",0); }
-        else { DU.gameflags.setFlag("storymode",1); }
+        // if (DU.gameflags.getFlag("storymode")) { DU.gameflags.setFlag("storymode",0); }
+        // else { DU.gameflags.setFlag("storymode",1); }
+        if (DU.gameflags.getFlag("difficulty") === "story") { DU.gameflags.setFlag("difficulty","normal"); }
+        else if (DU.gameflags.getFlag("difficulty") === "normal") { DU.gameflags.setFlag("difficulty","hard"); }
+        else { DU.gameflags.setFlag("difficulty", "story"); }
       } else if (targetCursor.page === 1) {
         if (DU.gameflags.getFlag("potionsrevealed") === "all") { DU.gameflags.setFlag("potionsrevealed","blind"); }
         else if (DU.gameflags.getFlag("potionsrevealed") === "blind") { DU.gameflags.setFlag("potionsrevealed","roguelike"); }
@@ -1004,8 +1010,11 @@ tv.DoActionTitle = function(code, e) {
       tv.CharCreateOptions();
     } else if ((code === 32) || (code === 13)) { // space or enter
       if (targetCursor.page === 0) {
-        if (DU.gameflags.getFlag("storymode")) { DU.gameflags.setFlag("storymode",0); }
-        else { DU.gameflags.setFlag("storymode",1); }
+        // if (DU.gameflags.getFlag("storymode")) { DU.gameflags.setFlag("storymode",0); }
+        // else { DU.gameflags.setFlag("storymode",1); }
+        if (DU.gameflags.getFlag("difficulty") === "story") { DU.gameflags.setFlag("difficulty","normal"); }
+        else if (DU.gameflags.getFlag("difficulty") === "normal") { DU.gameflags.setFlag("difficulty","hard"); }
+        else { DU.gameflags.setFlag("difficulty", "story"); }
       } else if (targetCursor.page === 1) {
         if (DU.gameflags.getFlag("potionsrevealed") === "all") { DU.gameflags.setFlag("potionsrevealed","blind"); }
         else if (DU.gameflags.getFlag("potionsrevealed") === "blind") { DU.gameflags.setFlag("potionsrevealed","roguelike"); }
@@ -1051,8 +1060,10 @@ tv.CharCreateOptions = function() {
     charopts += "class='highlight'";
   }
   charopts += ">";
-  if (DU.gameflags.getFlag("storymode")) {
+  if (DU.gameflags.getFlag("difficulty") === "story") {
     charopts += "STORY";
+  } else if (DU.gameflags.getFlag("difficulty") === "hard") {
+    charopts += "HARD";
   } else {
     charopts += "NORMAL";
   }

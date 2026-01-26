@@ -18,6 +18,8 @@ LootTable.prototype.getLoot = function() {
   lootobj.gold = 0;
   lootobj.lootlist = [];  // array of objnames
   let hasgold = 0;
+  let hard_mult = 1;
+  if (DU.gameflags.getFlag("difficulty") === "hard") { hard_mult = HARD_LOOT_MULTIPLIER; }
   
   if ((this.goldDice !== "0") && (Math.random() <= (this.goldChance/100))) {
     lootobj.gold = Dice.roll(this.goldDice);
@@ -26,8 +28,8 @@ LootTable.prototype.getLoot = function() {
   if (this.loot.length) {
     if ((hasgold) || (!this.linked)) {
       for (let i=0; i<this.loot.length; i++) {
-        if (Math.random() <= (this.loot[i].chance / 100)) {
-          let lootquant = this.loot[i].quantity;
+        if (Math.random() <= (this.loot[i].chance * hard_mult / 100)) {
+ //         let lootquant = this.loot[i].quantity;
           let theloot = this.loot[i].objname;
           let quant = Dice.roll(this.loot[i].quantity);
           for (let j=1;j<=quant;j++) {

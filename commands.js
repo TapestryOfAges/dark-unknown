@@ -3415,8 +3415,10 @@ function DrawOptions() {
     optdiv += " class='highlight'";
   }
   optdiv += ">";
-  if (DU.gameflags.getFlag("storymode")) {
+  if (DU.gameflags.getFlag("difficulty") === "story") {
     optdiv += "STORY";
+  } else if (DU.gameflags.getFlag("difficulty") === "hard") {
+    optdiv += "HARD";
   } else {
     optdiv += "NORMAL";
   }
@@ -3947,10 +3949,12 @@ function ToggleOption(opt) {
       DU.gameflags.setFlag("skip_theft_warning", 1);
     }
   } else if (opt === 11) {
-    if (DU.gameflags.getFlag("storymode")) {
-      DU.gameflags.setFlag("storymode", 0);
+    if (DU.gameflags.getFlag("difficulty") === "story") {
+      DU.gameflags.setFlag("difficulty", "normal");
+    } else if (DU.gameflags.getFlag("difficulty") === "normal") {
+      DU.gameflags.setFlag("difficulty", "hard");
     } else {
-      DU.gameflags.setFlag("storymode", 1);
+      DU.gameflags.setFlag("difficulty", "story");
     }
   } else if (opt === 13) {
     if (DU.gameflags.getFlag("allowjournal")) {
@@ -4485,17 +4489,17 @@ function ShowHelp() {
     canfocus = "style='color:gray'";
   }
   statsdiv += `<tr><td ${canfocus}>F - Focus</td><td></td><td>U - Use</td></tr>`;
-  statsdiv += "<tr><td>G - Get</td><td></td><td>V - Toggle Volume</td></tr>";
+  statsdiv += "<tr><td>G - Get</td><td></td><td>V - Toggle Music</td></tr>";
   let caninfuse = "";
   if (!PC.getInfusion()) { 
     caninfuse = "style='color:gray'";
   }
-  statsdiv += `<tr><td ${caninfuse}>I - Infuse</td><td></td><td>W - Wait</td></tr>`;
-  statsdiv += "<tr><td>J - Quest Journal</td><td></td><td>Y - Yell</td></tr>";
-  statsdiv += "<tr><td>K - Climb</td><td></td><td>Z - Stats</td></tr>";
-  statsdiv += "<tr><td>L - Look</td><td></td><td>SPACE - Pass Turn</td></tr>";
-  statsdiv += "<tr><td>CTRL-L - Load Game</td><td></td><td>ENTER - Enter</td></tr>";
-  statsdiv += "<tr><td>M - Toggle Music</td><td></td><td></td></tr>";
+  statsdiv += `<tr><td ${caninfuse}>I - Infuse</td><td></td><td>CTRL-V - Toggle Volume</td></tr>`;
+  statsdiv += "<tr><td>J - Quest Journal</td><td></td><td>W - Wait</td></tr>";
+  statsdiv += "<tr><td>K - Climb</td><td></td><td>Y - Yell</td></tr>";
+  statsdiv += "<tr><td>L - Look</td><td></td><td>Z - Stats</td></tr>";
+  statsdiv += "<tr><td>CTRL-L - Load Game</td><td></td><td>SPACE - Pass Turn</td></tr>";
+  statsdiv += "<tr><td>M - Show Map</td><td></td><td>ENTER - Enter</td></tr>";
   statsdiv += "<tr><td>O - Open</td><td></td><td></td></tr>";
   statsdiv += "<tr><td>CTRL-O - Options</td><td></td><td></td></tr>";
 
