@@ -9,7 +9,9 @@ v 0.11.2
  * Fixed bugs with what was supposed to prevent you from getting Natassa's journals multiple times
  * One of the Paladin quests no longer gets orphaned in your log
  * Headless Cave quest completion checked as you kill each headless, not when you leave the cave
- * Black dragon no longer gets identified as "a black dragon named black dragon".
+ * Black dragon no longer gets identified as "a black dragon named black dragon"
+ * Added a "hard" mode- slightly higher monster HP, lower drop rate on consumables
+ * Updated Help screen
 
 v 0.11.1
  * If you use/bump into a locked door while you have the key, the game now tells you that you unlocked it
