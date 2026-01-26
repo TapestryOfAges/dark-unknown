@@ -293,7 +293,8 @@ function Attack(atk, def) {
   DebugWrite("combat", "Chance to hit: " + tohit + "<br />");
 //  var preanim = PreAnimationEffect(mapref, fromx,fromy,tox,toy,graphic,xoffset,yoffset,destgraphic,destxoffset,destyoffset)
   let dmg = 0;
-  let storymode = DU.gameflags.getFlag("storymode");
+  let storymode = 0;
+  if (DU.gameflags.getFlag("difficulty") === "story") { storymode = 1; }
   let snd;
   let adddmg;
   let adddmgtype;
