@@ -841,6 +841,7 @@ function makescript() {
 }
 
 function PrintDialogue(speech, keyword) {
+  if ((keyword === "_linkedTo") || (keyword === "_linkedto")) { return ""; }
   //alert(keyword);
   var tmptxt = "";
   var keytype = "";
