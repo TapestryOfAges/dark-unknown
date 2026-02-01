@@ -11669,6 +11669,95 @@ function WhiteCrystalTile() {
 }
 WhiteCrystalTile.prototype = new FeatureObject();
 
+function PlanarGateActiveTile() {
+  this.name = "PlanarGateActive";
+  this.graphic = "static.gif";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -106*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "planar gate";
+
+  ManualAnimation.call(this, { animstart: 4,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 150,
+    startframe: "start"
+  });
+
+}
+PlanarGateActiveTile.prototype = new FeatureObject();
+
+function PlanarGateInactiveTile() {
+  this.name = "PlanarGateInactive";
+  this.graphic = "static.gif";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -180*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "planar gate";
+}
+PlanarGateInactiveTile.prototype = new FeatureObject();
+
+function PlanarGateIncompleteTile() {
+  this.name = "PlanarGateIncomplete";
+  this.graphic = "static.gif";
+  this.spritexoffset = -0*32;
+  this.spriteyoffset = -180*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "planar gate";
+}
+PlanarGateIncompleteTile.prototype = new FeatureObject();
+
+function PlanarGateWalkOnTile() {
+	this.name = "PlanarGateWalkOn";
+  this.graphic = "static.gif";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -50*32;
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+PlanarGateWalkOnTile.prototype = new FeatureObject();
+
+// Ether: Gold
+// Air: Tin (Lydia)
+// Water: Silver (Sybel)
+// Fire: Antimony
+// Earth: Iron (Janet - who appears if you hand off the chili recipe)
+
+PlanarGateWalkOnTile.prototype.walkon = function(who) {
+  let pkey = who.checkInventory("PlanarKey");
+  if (pkey.contains) {
+
+  }
+}
+
+
+function PlanarKeyTile() {
+  this.name = "PlanarKey";
+  this.graphic = "static.gif";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -180*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "small box";
+  this.content = null;
+}
+PlanarKeyTile.prototype = new FeatureObject();
+
+PlanarKeyTile.prototype.getLongDesc = function() {
+  let longdesc = "A small box you received from Asharden. Place a piece of metal from his alchemy table within that matches the plane you seek to visit, and the Planar Gate will open.<br />";
+  if (!this.content) { longdesc += "The box is empty."; }
+  else { longdesc += "The box currently contains a chunk of " + this.content + "."; }
+  return longdesc;
+}
+
 function TeleporterPlatformTile() {
   //Graphic Upgraded
   this.name = "TeleporterPlatform";
