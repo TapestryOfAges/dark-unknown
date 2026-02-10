@@ -246,6 +246,7 @@ mappages["onyx"].features[199] = {name : 'StreetLamp', x : 6, y : 17};
 mappages["onyx"].features[200] = {name : 'StreetLamp', x : 21, y : 24};
 mappages["onyx"].features[201] = {name : 'StreetLamp', x : 18, y : 13};
 mappages["onyx"].features[202] = {name : 'StreetLamp', x : 12, y : 13};
+mappages["onyx"].features[203] = {name : 'Campfire', x : 33, y : 22};
 
 
 mappages["onyx"].npcs = [];
@@ -256,6 +257,9 @@ mappages["onyx"].npcs[3] = {name : 'TownGuardNPC', x : 5, y : 14, NPCName: 'Wash
 mappages["onyx"].npcs[4] = {name : 'TownGuardNPC', x : 5, y : 16, NPCName: 'Ali', PeaceAI: 'scheduled', Schedule: 'ali', Conversation: 'onyx_guard', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateSash","head":"BlueClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BrownDark"}'};
 mappages["onyx"].npcs[5] = {name : 'TownGuardNPC', x : 28, y : 32, NPCName: 'Patty', PeaceAI: 'scheduled', Schedule: 'patty', Conversation: 'onyx_guard', Gender: 'female', NPCBand: '0', skintone: 2, wornlayers: '{"body":"PlateSash","head":"BlueClosedHelm","back":"","offhand":"OffhandDark","cloak":"","mainhand":"HalberdDark","realhead":"BrownDark"}'};
 mappages["onyx"].npcs[6] = {name : 'TownGuardNPC', x : 18, y : 15, NPCName: 'Calvin', PeaceAI: 'scheduled', Schedule: 'calvin', Conversation: 'onyx_guard', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateSash","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"HalberdPale","realhead":"ShortBrownPale"}'};
+mappages["onyx"].npcs[7] = {name : 'TownsfolkVillagerNPC', x : 34, y : 22, NPCName: 'Balthazar', Desc: 'hermit', Schedule: 'balthazar', Conversation: 'balthazar', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"GreenTunic","head":"OldManPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"OldManPale"}'};
+
+mappages["onyx"].transover = '{"14,33":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-576]],"15,33":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",0,-576]],"16,32":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-576]],"17,31":[["","",null,null],["static.gif","spacer.gif",-192,0],["TerrainBlend.gif","spacer.gif",-128,-576]]}';
 
 mappages["onyx"].desc = "The Towne of Onyx";
 mappages["onyx"].longdesc = `Against the backdrop of the tumultuous sea, the small rebellious city of Onyx stands before you. The view of the city is dominated by its outer walls, and a tall central tower.`;
