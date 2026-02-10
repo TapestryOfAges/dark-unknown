@@ -12,6 +12,10 @@ v 0.11.2
  * Black dragon no longer gets identified as "a black dragon named black dragon"
  * Added a "hard" mode- slightly higher monster HP, lower drop rate on consumables
  * Updated Help screen
+ * Ladder down tile art no longer as tall, making it much more visually distinct from a Ladder up
+ * Added new creature: Ephemeral Spirit (Lesser and Greater), with some new AI behaviors.
+ * Added new NPCs Sybel and Balthazar, who are part of the Planar Primer sidequest
+ * Enemy casters less passive if they are 6 or more tiles away from you
 
 v 0.11.1
  * If you use/bump into a locked door while you have the key, the game now tells you that you unlocked it
