@@ -221,6 +221,8 @@ ais.combat = function(who) {
     if (who.specials.magmaheal) { nonmeleeoptions.push("ai_magmaheal"); }  
     if (who.specials.magmaspit) { nonmeleeoptions.push("ai_magmaspit"); }  
     if (who.specials.teleport) { nonmeleeoptions.push("ai_teleport"); }  // needs work
+    if (who.specials.blink) { nonmeleeoptions.push("ai_blink"); }
+    if (who.specials.transpose) { nonmeleeoptions.push("ai_transpose"); }
     if (who.specials.energybolt) { nonmeleeoptions.push("ai_energybolt"); }  
     if (who.specials.phase) { nonmeleeoptions.push("ai_phase"); }  
 //    if (who.specials.multiattack) { nonmeleeoptions.push("ai_multiattack"); }  // needs work- what was this going to be?
@@ -2344,7 +2346,7 @@ ais.ai_cast = function(who) {
   }
   for (let i=0;i<npcs.length;i++) {
     if (npcs[i].invisible || npcs[i].specials.mimic) { continue; }
-    if (GetDistance(who.getx(),who.gety(),npcs[i].getx(),npcs[i].gety()) < 5.5) {
+    if ((GetDistance(who.getx(),who.gety(),npcs[i].getx(),npcs[i].gety()) < 5.5) || (IsObjectVisibleOnScreen(who) && IsObjectVisibleOnScreen(npcs[i]))) {
       if (CheckAreEnemies(npcs[i],who)) {
         if (themap.getLOS(who.getx(), who.gety(), npcs[i].getx(), npcs[i].gety()) < LOS_THRESHOLD) {
           enemies.push(npcs[i]);
@@ -2823,6 +2825,68 @@ ais.ai_cast = function(who) {
   return "special";
 }
 
+ais.ai_blink = function(who) {
+  console.log("AI blink.");
+  let startx = who.getx();
+  let starty = who.gety();
+  magic[SPELL_BLINK_LEVEL][SPELL_BLINK_ID].executeSpell(who,0,1);
+
+  
+  if ((who.getx() !== startx) || (who.gety() !== starty)) {
+    if (who.specials.spawnFields) {
+      let tfea = who.getHomeMap().getTile(startx,starty).getTopFeature();
+      if (!tfea) {
+        let roll = Dice.roll("1d10");
+        let fieldtype = "EnergyField";
+        if (roll <= 4) { fieldtype = "SleepField"; }
+        else if (roll <= 7) { fieldtype = "PoisonField"; }
+        else if (roll <= 9) { fieldtype = "FireField"; }
+
+        who.getHomeMap().placeThing(startx,starty,localFactory.createTile(fieldtype));
+      }
+    }
+    return "special";
+  } 
+}
+
+ais.ai_tranpose = function(who) {
+  console.log("AI transpose");
+  let npclist = [];
+  let mymap = who.getHomeMap();
+  let npcs = mymap.npcs.getAll();
+  if (PC.getHomeMap() === who.getHomeMap()) { npclist.push(PC); }
+  for (let i=0;i<npcs.length;i++) {
+    if (npcs[i] !== who) { 
+      if ((GetDistance(npcs[i].getx(),npcs[i].gety(),who.getx(),who.gety()) <= 5) && (mymap.getLOS(who.getx(),who.gety(),npcs[i].getx(),npcs[i].gety()) < LOS_THRESHOLD)) {  
+        npclist.push(npcs[i]); 
+      }
+    }
+  }
+
+  if (npclist.length >= 2) {
+    npclist = ShuffleArray(npclist);
+    // swap NPCs 0 and 1
+    let x0 = npclist[0].getx();
+    let y0 = npclist[0].gety();
+    mymap.moveThing(npclist[1].getx(),npclist[1].gety(),npclist[0]);
+    mymap.moveThing(x0,y0,npclist[1]);
+    PlayCastSound(who, "sfx_teleport");
+    ShowEffect(npclist[0], 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+    ShowEffect(npclist[1], 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+
+    if ((npclist[0] === PC) || (npclist[1] === PC)) {
+      let other = npclist[0];
+      if (other === PC) { other = npclist[1]; }
+      maintext.addText(who.getLongDesc() + " pulses strangely and you and " + other.getLongDesc() + " exchange positions!");
+    } else {
+      if ((PC.getHomeMap() === mymap) && IsObjectVisibleOnScreen(who)) {
+        maintext.addText(who.getLongDesc() + " pulses strangely and " + npclist[0].getLongDesc() + " and " + npclist[1].getLongDesc() + " exchange positions!");
+      }
+    }
+    return "special";
+  }
+}
+
 ais.ai_teleport = function(who) {
   if (Dice.roll("1d6") === 1) {
     let tgt = FindNearestNPC(who,"enemy");
@@ -2849,7 +2913,7 @@ ais.ai_teleport = function(who) {
         if (path) {
           themap.moveThing(opts[op][0],opts[op][1],who);
           ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
-          return;
+          return 1;
         }
         tries++;
       }
@@ -3051,6 +3115,7 @@ ais.ai_summonearthelemental = function(who) {
       elem.summonedBy = who;
       elem.spawnedBy = who;
       who.getHomeMap().placeThing(coord[0],coord[1],elem);
+      return "special";
     } else {return;}
   }
 }
@@ -3062,6 +3127,7 @@ ais.ai_necromancer = function(who) {
     let skel = localFactory.createTile("SkeletonNPC");
     who.getHomeMap().placeThing(coord[0],coord[1],skel);
     DrawMainFrame("one",who.getHomeMap(),coord[0],coord[1]);
+    return "special";
   } else {return;}
 }
 
@@ -3072,6 +3138,7 @@ ais.ai_highnecromancer = function(who) {
     let skel = localFactory.createTile("SpecterNPC");
     who.getHomeMap().placeThing(coord[0],coord[1],skel);
     DrawMainFrame("one",who.getHomeMap(),coord[0],coord[1]);
+    return "special";
   } else {return;}
 }
 
