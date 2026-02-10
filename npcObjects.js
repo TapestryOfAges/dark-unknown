@@ -3575,6 +3575,52 @@ FireSnakeNPCTile.prototype = new NPCObject();
 
 // Monster
 
+function LesserEphemeralSpiritNPCTile() {
+  this.name = 'LesserEphemeralSpiritNPC';
+  this.level = 4;
+  this.addhp = 0;
+  this.str = 12;
+  this.dex = 12;
+  this.int = 12;
+  this.alignment = 'Neutral';
+  this.attitude = 'hostile';
+  this.peaceAI = 'seekPC-10';
+  this.forgetAt = 10;
+  this.withdraw = 0;
+  this.meleeAttackAs = 'none';
+  this.meleeDamage = '4d4+3'
+  this.meleeStrDamage = .66
+  this.missileAttackAs = 'none';
+  this.armorAs = 'ChainArmor';
+  this.movetype = MOVE_LEVITATE;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.prefix = 'an';
+  this.desc = "ephemeral spirit";
+  this.meleeChance = 60;
+  this.resists = {};
+  this.special = 'mindless, energy bolt, lbolt, transpose, blink, spawn fields';
+  this.meleeHitSound = 'sfx_ghost_hit';
+  this.meleeAttackSound = 'sfx_ghost_miss';
+  this.graphic = 'static.gif';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -179 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+}
+LesserEphemeralSpiritNPCTile.prototype = new NPCObject();
+
+
+// Monster
+
 function LurkerNPCTile() {
   this.name = 'LurkerNPC';
   this.level = 4;
@@ -4913,6 +4959,52 @@ function GiantNPCTile() {
   });
 }
 GiantNPCTile.prototype = new NPCObject();
+
+
+// Monster
+
+function GreaterEphemeralSpiritNPCTile() {
+  this.name = 'GreaterEphemeralSpiritNPC';
+  this.level = 6;
+  this.addhp = 0;
+  this.str = 15;
+  this.dex = 15;
+  this.int = 15;
+  this.alignment = 'Neutral';
+  this.attitude = 'hostile';
+  this.peaceAI = 'seekPC-10';
+  this.forgetAt = 10;
+  this.withdraw = 0;
+  this.meleeAttackAs = 'none';
+  this.meleeDamage = '5d4+8'
+  this.meleeStrDamage = .66
+  this.missileAttackAs = 'none';
+  this.armorAs = 'ChainArmor';
+  this.movetype = MOVE_LEVITATE;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.prefix = 'an';
+  this.desc = "ephemeral spirit";
+  this.meleeChance = 30;
+  this.resists = {};
+  this.special = 'mindless, energy bolt, lbolt, transpose, blink, spawn fields';
+  this.meleeHitSound = 'sfx_ghost_hit';
+  this.meleeAttackSound = 'sfx_ghost_miss';
+  this.graphic = 'static.gif';
+  this.spritexoffset = -5 * 32;
+  this.spriteyoffset = -179 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: -5*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 65,
+    framedurationmax: 96,
+    startframe: "random"
+  });
+}
+GreaterEphemeralSpiritNPCTile.prototype = new NPCObject();
 
 
 // Monster

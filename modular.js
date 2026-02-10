@@ -492,6 +492,27 @@ OnDeathFuncs["utterDaemon"] = function(who) {
   }
 }
 
+OnDeathFuncs["cleanFields"] = function(who) {
+  let mymap = who.getHomeMap();
+  let count = 0;
+  let npcs = mymap.npcs.getAll();
+  for (let i=0;i<npcs.length;i++) {
+    if (((npcs[i].getName() === "LesserEphemeralSpiritNPC") || (npcs[i].getName() === "GreaterEphemeralSpiritNPC")) && (npcs[i] !== who)) { count++; }
+  }
+  if (!count) {
+    maintext.addText("The strange magic fades away... and with it, the detritus of the fight.");
+    let feas = mymap.features.getAll();
+    for (let i=0;i<feas.length;i++) {
+      if ((feas[i].getName() === "SleepField") || (feas[i].getName() === "PoisonField") || (feas[i].getName() === "EnergyField")) {
+        mymap.deleteThing(feas[i]);
+      } else if (feas[i].getName() === "FireField") {
+        mymap.deleteThing(feas[i]);
+        DUTime.removeEntityFrom(feas[i]);
+      }
+    }
+  }
+}
+
 OnDeathFuncs["shadow"] = function(who) {
   let npcs = who.getHomeMap().npcs.getAll();
   let shadowcount = 0;

@@ -1620,6 +1620,19 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
       delete this.hasFrame;
     }
   }
+
+  if (this.specials.spawnFields) {
+    let tfea = this.getHomeMap().getTile(startx,starty).getTopFeature();
+    if (!tfea) {
+      let roll = Dice.roll("1d10");
+      let fieldtype = "EnergyField";
+      if (roll <= 4) { fieldtype = "SleepField"; }
+      else if (roll <= 7) { fieldtype = "PoisonField"; }
+      else if (roll <= 9) { fieldtype = "FireField"; }
+
+      this.getHomeMap().placeThing(startx,starty,localFactory.createTile(fieldtype));
+    }
+  }
 	return retval;
 }
 

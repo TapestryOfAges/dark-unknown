@@ -152,6 +152,10 @@ NPCSpecialFuncs["ondeathShadow"] = function(who,how) {
   who.onDeath = "shadow";
 }
 
+NPCSpecialFuncs["spawnfields"] = function(who,how) {
+  who.onDeath = "cleanFields";
+}
+
 NPCSpecialFuncs["patrol"] = function(who,how) {
   let ainame = who.getPeaceAI();
   who.overridecombat = 'guard' + ainame;
