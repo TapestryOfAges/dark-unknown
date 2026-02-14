@@ -1224,8 +1224,12 @@ function PerformLook() {
   let npcs = tile.getNPCs();
   if (npcs.length > 0) {
   	for (let i=(npcs.length-1) ; i >= 0; i-- ) {
-  		if (seethis == "") { seethis = npcs[i].getFullDesc(); }
-  		else { seethis += ", " + npcs[i].getFullDesc(); }
+      let mydesc = npcs[i].getFullDesc();
+      if (npcs[i].getHP() < npcs[i].getMaxHP()) {
+        mydesc = mydesc + " [" + GetDamageDescriptor(npcs[i]) + "]";
+      }
+  		if (seethis == "") { seethis = mydesc; }
+  		else { seethis += ", " + mydesc; }
   	}
   }
   let features = tile.getFeatures();
@@ -1877,13 +1881,17 @@ function PerformJournal() {
   targetCursor.page = 1;
   targetCursor.scrolllocation = 0;
 
-  let journaltitles = "<div class='journalpage' style='top:10px; left:5px;'><table cellpadding='2' cellspacing='0' border='0' style='width:100%'>";
+  let journaltabs = `<div class='journaltab' style='top:-1px; left:11px; width:92px;height:14px;text-align:center;background-color:#cccccc;color:black' id='journalmaintab'>Main Quests</div>`;
+  journaltabs += `<div class='journaltab' style='top:-1px; left:107px; width:92px;height:14px;text-align:center' id='journalmaintabcomp'>Side Quests</div>`;
+  journaltabs += `<div class='journaltab' style='top:-1px; left:205px; width:92px;height:14px;text-align:center' id='journalsidetab'>Main Comp</div>`;
+  journaltabs += `<div class='journaltab' style='top:-1px; left:302px; width:92px;height:14px;text-align:center' id='journalsidetabcomp'>Side Comp</div>`;
+  let journaltitles = "<div class='journalpage' style='top:16px; left:8px;'><table cellpadding='2' cellspacing='0' border='0' style='width:100%'>";
   journaltitles += "<tr><td style='text-align:center;color:yellow' id='questtitletype'>Main Quests</td></tr>";
   for (let i=0; i<8; i++) {
     journaltitles += "<tr><td id='questtitle" + i + "'></td></tr>"
   }
   journaltitles += "</table></div>";
-  let journaldetails = "<div class='journalpage' style='top:10px; left:210px;'><table cellpadding='2' cellspacing='0' border='0' style='width:100%'>";
+  let journaldetails = "<div class='journalpage' style='top:16px; left:213px;'><table cellpadding='2' cellspacing='0' border='0' style='width:100%'>";
   journaldetails += "<tr><td style='text-align:center;color:yellow' id='questdesctype'>Quest Description</td></tr>";
   journaldetails += "<tr><td id='questdesc'></td></tr>";
   journaldetails += "</table></div>";
@@ -1891,7 +1899,7 @@ function PerformJournal() {
   document.getElementById('worldlayer').innerHTML = "<img src='graphics/spacer.gif' width='416' height='416' />";
   document.getElementById('worldlayer').style.backgroundImage = "";
   document.getElementById('worldlayer').style.backgroundColor = "black";
-  document.getElementById('uiinterface').innerHTML = journaltitles + journaldetails;
+  document.getElementById('uiinterface').innerHTML = journaltabs + journaltitles + journaldetails;
   document.getElementById('uiinterface').style.backgroundColor = "black";
 
   FillInJournal();
@@ -1905,6 +1913,19 @@ function FillInJournal() {
     document.getElementById("questtitle"+i).innerHTML = "";
   }
   document.getElementById("questdesc").innerHTML = "";
+
+  const tabnames = ["journalmaintab","journalmaintabcomp","journalsidetab","journalsidetabcomp"];
+  for (let i=1;i<=4;i++) {
+    let mytab = document.getElementById(tabnames[i-1]);
+    if (targetCursor.page === i) {
+      mytab.style.color = "black";
+      mytab.style.backgroundColor = "#cccccc";
+    } else {
+      mytab.style.color = "white";
+      mytab.style.backgroundColor = "black";
+    }
+  }
+
   if (targetCursor.page === 1) { document.getElementById("questtitletype").innerHTML = "Main Quests"; }
   if (targetCursor.page === 2) { document.getElementById("questtitletype").innerHTML = "Side Quests"; }
   if (targetCursor.page === 3) { document.getElementById("questtitletype").innerHTML = "Completed Main Quests"; }
