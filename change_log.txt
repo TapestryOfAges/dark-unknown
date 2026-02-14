@@ -16,6 +16,11 @@ v 0.11.2
  * Added new creature: Ephemeral Spirit (Lesser and Greater), with some new AI behaviors.
  * Added new NPCs Sybel and Balthazar, who are part of the Planar Primer sidequest
  * Enemy casters less passive if they are 6 or more tiles away from you
+ * Fleshed out dialog for about a dozen NPCs
+ * Roads blend better at the tile boundaries
+ * Look now shows the damage descriptor for wounded NPCs
+ * Olcrann are now vulnerable to fire and lightning to varying degrees, and have a lighting attack
+ * Quest journal has tabs to make it clearer that there is more than the first page
 
 v 0.11.1
  * If you use/bump into a locked door while you have the key, the game now tells you that you unlocked it
