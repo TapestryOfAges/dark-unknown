@@ -777,6 +777,7 @@ function DoAction(code, ctrl) {
   } else if (gamestate.getMode() === "choosedir") {
     if ((targetCursor.command === "g") && (code === 65)) {
       targetCursor.getAll = 1;
+      maintext.setInputLine("&gt; Get all: ");
     }
     let response = PerformChooseDir(code);
     if (response["fin"] === 1) { // direction chosen

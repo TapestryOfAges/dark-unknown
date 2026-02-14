@@ -4,6 +4,7 @@ v 0.11.2
  * Drakes now have movetype Levitate- they aren't good enough fliers to get over mountains (which is why they had Walk before) but I do want them to be able to fly over water
  * Robert now sells a map of Ellusus and a sextant
  * Attacking something through move attacks updates the last position of the target cursor to the defender 
+ * Added a "Get All" option when getting loot
  * Attacking a creature you've charmed no longer causes a karma penalty, but instead just breaks the charm
  * If you enter Beldskae while Kalli would have her helmet off, it uses the correct graphic
  * Fixed bugs with what was supposed to prevent you from getting Natassa's journals multiple times
