@@ -5086,8 +5086,8 @@ function OlcrannNPCTile() {
   this.desc = "olcrann";
   this.meleeChance = 50;
   this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, buff: 1, highbuff: 1, };
-  this.resists = {};
-  this.special = 'ruthless,stationary';
+  this.resists = { fire:-50, lightning:-25 };
+  this.special = 'ruthless,stationary, lbolt';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
   this.graphic = 'static.gif';
