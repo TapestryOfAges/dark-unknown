@@ -11314,6 +11314,33 @@ function PlatformOfVoidTile() {
 }
 PlatformOfVoidTile.prototype = new FeatureObject();
 
+function OpenGraveTile() {
+  //Graphics Upgraded
+  this.name = "OpenGrave";
+  this.graphic = "static.gif";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -110*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "an";
+  this.desc = "open grave";
+}
+OpenGraveTile.prototype = new FeatureObject();
+
+function SkeletonUnburiedTile() {
+  //Graphic Upgraded
+  this.name = "SkeletonUnburied";
+  this.graphic = "static.gif";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -90*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "skeleton";
+
+  Pushable.call(this);
+}
+SkeletonUnburiedTile.prototype = new FeatureObject();
+
 // This is an invisible tile that exists to replace the Storm Ephemeral object
 function StormCloudTile() {
  this.name = "StormCloud";
@@ -13037,6 +13064,57 @@ FrozenSunlightTile.prototype.myTurn = function() {
   }
   
   return 1;
+}
+
+function SpectralShovelTile() {
+  this.name = "SpectralShovel";
+  this.graphic = "static.gif";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -180*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a"
+  this.desc = "spectral shovel";
+  this.longdesc = "A shovel with a weirdly transparent handle. Somehow you can hold it.";
+
+  this.addType("Quest");  
+}
+SpectralShovelTile.prototype = new ItemObject();
+
+SpectralShovelTile.prototype.use = function(who) {
+  if (who.getHomeMap() !== "northlostcave") { alert("How do you have this?"); }
+  gamestate.setMode("choosedir");
+  let retval={};
+  retval["override"] = 1;
+  retval["fin"] = 4;
+  retval["input"] = "&gt; Choose direction-";
+  if (who === PC) {
+    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+  }
+  targetCursor.command = "us";
+  targetCursor.useditem = this;
+  return retval;
+}
+
+SpectralShovelTile.prototype.dig = function(who) {
+  let retval={};
+  retval["fin"] = 1;
+  retval["input"] = "&gt;";
+  let tile = who.getHomeMap().getTile(targetCursor.x,targetCursor.y).getTerrain();
+  if (tile.getName() === "Dirt") {
+    let hole = localFactory.createTile("OpenGrave");
+    who.getHomeMap().placeThing(targetCursor.x,targetCursor.y,hole);
+    let npcs = who.getHomeMap().npcs.getAll();
+    for (let i=0;i<npcs.length;i++) {
+      if (npcs[i].getName() === "GhostNPC") {
+        npcs[i].setConversation("lysander1");
+        npcs[i].grave = 1;
+      }
+    }
+  } else {
+    retval["txt"] = "The ground is too hard to dig there."
+  }
+  return retval;
 }
 
 function RippedAudachtaNemesosTile() {
@@ -17712,6 +17790,33 @@ EquipableItemObject.prototype.setToHitBonus = function(newbonus) {
 
 // TRINKETS
 
+function CircletOfIntellectTile() {
+  //Graphics Upgraded
+  this.name = "CircletOfIntellect";
+  this.graphic = "static.gif";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -21*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Circlet of Intellect";
+  this.prefix = "a";
+  this.longdesc = "A circlet that makes your mind sharper.";
+  this.addType("Circlet");
+}
+CircletOfIntellectTile.prototype = new EquipableItemObject();
+
+CircletOfIntellectTile.prototype.onEquip = function(who) {
+  who.setOrbInt(who.getOrbInt()+2);
+  
+  return {};
+}
+
+CircletOfIntellectTile.prototype.onUnequip = function(who) {
+  who.setOrbInt(who.getOrbInt()-2);
+  return {};
+}
+
+
 function RingOfFireResistTile() {
   //Graphics Upgraded
   this.name = "RingOfFireResist";
@@ -17763,8 +17868,9 @@ RingOfEtherealFocusTile.prototype = new EquipableItemObject();
 
 RingOfEtherealFocusTile.prototype.onGet = function(who) {
   this.equipMe(who);
-  questlog.complete(69);  // consider writing special case for completing quests not started, since
-                          // this one is particularly easy to complete without seeing the start
+  if (!DU.gameflags.getFlag("dave_ring")) {
+    questlog.activate(113);
+  }
 
   return {};
 }
