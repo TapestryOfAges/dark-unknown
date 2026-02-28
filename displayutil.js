@@ -251,7 +251,7 @@ function DealandDisplayDamage(def,atk,dmg, dmgtype) {
       else if (atk && (atk.getName() === "BlackDragonNPC")) { maintext.delayedAddText(desc + ": Unconscious!"); }
       else { maintext.delayedAddText(desc + ": Killed!"); }
       
-      if (def.getXPVal() && (atk === PC)) {
+      if (def.getXPVal() && (atk === PC) && (def !== PC)) {
         maintext.delayedAddText(" (Worth: " + def.getXPVal() + " XP)");
       }
     }
