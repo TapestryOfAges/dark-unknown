@@ -99,7 +99,7 @@ mappages["island"].features[0] = {name : 'Cave', x : 33, y : 47, entermap : 'isl
 mappages["island"].features[1] = {name : 'Cave', x : 30, y : 40, entermap : 'island_cave', enterx : 43, entery : 0};
 mappages["island"].features[2] = {name : 'Cave', x : 15, y : 48, entermap : 'cairns', enterx : 29, entery : 62};
 mappages["island"].features[3] = {name : 'Tower', x : 58, y : 33, entermap : 'null', enterx : 0, entery : 0};
-mappages["island"].features[4] = {name : 'Cave', x : 13, y : 13, entermap : 'null', enterx : 0, entery : 0};
+mappages["island"].features[4] = {name : 'Cave', x : 13, y : 13, entermap : 'northlostcave', enterx : 10, entery : 40};
 mappages["island"].features[5] = {name : 'Shrine', x : 56, y : 15};
 mappages["island"].features[6] = {name : 'Shrine', x : 14, y : 76};
 mappages["island"].features[7] = {name : 'Keep', x : 42, y : 65, entermap : 'tharock_castle', enterx : 33, entery : 62};
@@ -1805,4 +1805,141 @@ mappages["waterfallcave"].onload = function(mapref) {
 
 
   }
+}
+
+// MAP BEGINS HERE
+mappages["northlostcave"] = {};
+mappages["northlostcave"].terrain = [];
+ mappages["northlostcave"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["northlostcave"].terrain[1] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["northlostcave"].terrain[2] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["northlostcave"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["northlostcave"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["northlostcave"].terrain[5] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["northlostcave"].terrain[6] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["northlostcave"].terrain[7] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["northlostcave"].terrain[8] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["northlostcave"].terrain[9] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[10] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[11] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[12] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[13] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw BK BK BK BK BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[14] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cw cw BK BK BK BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[15] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cw BK BK BK BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[16] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[17] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cw BK BK BK BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[18] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[19] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[20] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cw BK BK BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[21] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw BK BK BK BK BK BK BK cw cw cf cf cf ., ., cw BK BK BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cw BK BK BK BK BK BK BK cw cf cf cf cf ., ., cw cw BK BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cw cw BK BK BK BK BK cw cw cf cf cf cf ., ., cf cw cw BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[24] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cw BK BK BK BK BK cw cf cf cf cf cf ., ., ., cf cw cw BK BK BK BK BK';
+mappages["northlostcave"].terrain[25] = 'BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cw cw cw BK cw cw cw cf cf cf cf cf cf ., ., ., cw BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[26] = 'BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cw cw cw cf cf cf cf cf cf cf cf ., ., ., cw BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[27] = 'BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf ., ., cw BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[28] = 'BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf ., ., cw BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[29] = 'BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cw cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw cw cw BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[30] = 'BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw cw BK cw cw cw cf cf cf cf cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[31] = 'BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK cw cw cw cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[32] = 'BK BK BK BK BK BK BK BK cw cw cf cf cf cf cw BK BK BK BK BK BK cw cw cw cw cw cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[33] = 'BK BK BK BK BK BK BK BK cw cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[34] = 'BK BK BK BK BK BK BK cw cw cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[35] = 'BK BK BK BK BK BK BK cw cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[36] = 'BK BK BK BK BK BK BK cw cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[37] = 'BK BK BK BK BK BK BK cw cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[38] = 'BK BK BK BK BK BK BK cw cw cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[39] = 'BK BK BK BK BK BK BK BK cw cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[40] = 'BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["northlostcave"].terrain[41] = 'BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+
+mappages["northlostcave"].features = [];
+mappages["northlostcave"].features[0] = {name : 'SkeletonDecoration', x : 31, y : 18};
+mappages["northlostcave"].features[1] = {name : 'Tombstone', x : 33, y : 24};
+mappages["northlostcave"].features[2] = {name : 'PileOfRocks', x : 33, y : 23};
+
+
+mappages["northlostcave"].npcs = [];
+mappages["northlostcave"].npcs[0] = {name : 'SkeletonNPC', x : 13, y : 26, skintone: 1};
+mappages["northlostcave"].npcs[1] = {name : 'SkeletonNPC', x : 15, y : 27, skintone: 1};
+mappages["northlostcave"].npcs[2] = {name : 'SkeletonNPC', x : 17, y : 25, skintone: 1};
+mappages["northlostcave"].npcs[3] = {name : 'SkeletonNPC', x : 25, y : 30, skintone: 1};
+mappages["northlostcave"].npcs[4] = {name : 'SkeletonNPC', x : 33, y : 26, skintone: 1};
+mappages["northlostcave"].npcs[5] = {name : 'SkeletonNPC', x : 29, y : 23, skintone: 1};
+mappages["northlostcave"].npcs[6] = {name : 'GhostNPC', x : 29, y : 17, NPCName: 'Lysander', dex: 30, Attitude: 'friendly', Conversation: 'lysander', Gender: 'male', Leash: 2, NPCBand: '0', skintone: 1};
+mappages["northlostcave"].npcs[7] = {name : 'PhantomNPC', x : 21, y : 28, skintone: 1};
+
+mappages["northlostcave"].transover = '{"32,21":[["","",null,null],["static.gif","spacer.gif",0,-128],["TerrainBlend.gif","spacer.gif",0,-576]],"31,21":[["","",null,null],["static.gif","spacer.gif",-32,-128],["TerrainBlend.gif","spacer.gif",-128,-576]],"31,22":[["","",null,null],["static.gif","spacer.gif",-32,-96],["TerrainBlend.gif","spacer.gif",-64,-576]],"31,23":[["","",null,null],["static.gif","spacer.gif",0,-96],["TerrainBlend.gif","spacer.gif",-64,-576]],"32,23":[["","",null,null],["static.gif","spacer.gif",-32,-128],["TerrainBlend.gif","spacer.gif",-96,-576]],"31,24":[["","",null,null],["static.gif","spacer.gif",-32,-96],["TerrainBlend.gif","spacer.gif",-192,-576]],"33,24":[["","",null,null],["static.gif","spacer.gif",0,-96],["TerrainBlend.gif","spacer.gif",-160,-576]],"34,25":[["","",null,null],["static.gif","spacer.gif",0,-128],["TerrainBlend.gif","spacer.gif",0,-576]],"32,25":[["","",null,null],["static.gif","spacer.gif",-32,-96],["TerrainBlend.gif","spacer.gif",-64,-576]],"32,26":[["","",null,null],["static.gif","spacer.gif",-32,-128],["TerrainBlend.gif","spacer.gif",-192,-576]],"33,27":[["","",null,null],["static.gif","spacer.gif",0,-96],["TerrainBlend.gif","spacer.gif",-64,-576]],"33,28":[["","",null,null],["static.gif","spacer.gif",0,-128],["TerrainBlend.gif","spacer.gif",-64,-576]]}';
+
+mappages["northlostcave"].desc = "Small Cave";
+mappages["northlostcave"].longdesc = `As you enter the cave you hear the distinct sound of a foot trodding on bone, and a voice deep in the cave crying, "Help!"`;
+mappages["northlostcave"].music = 'Cave';
+mappages["northlostcave"].savename = `Small Cave`;
+mappages["northlostcave"].exitmap = 'island';
+mappages["northlostcave"].exitx = '13';
+mappages["northlostcave"].exity = '13';
+mappages["northlostcave"].wraps = '';
+mappages["northlostcave"].enterx = '10';
+mappages["northlostcave"].entery = '40';
+mappages["northlostcave"].seeBelow = '';
+mappages["northlostcave"].lightLevel = 'dark';
+mappages["northlostcave"].alwaysRemember = '0';
+mappages["northlostcave"].scale = '1';
+mappages["northlostcave"].underground = '1';
+mappages["northlostcave"].undergroundDesc = 'Small Cave';
+mappages["northlostcave"].enterscript = '';
+mappages["northlostcave"].entertestscript = '';
+mappages["northlostcave"].exitscript = '';
+mappages["northlostcave"].exittestscript = '';
+mappages["northlostcave"].returnmap = 'island';
+mappages["northlostcave"].returnx = '13';
+mappages["northlostcave"].returny = '13';
+mappages["northlostcave"].returninfused = '0';
+mappages["northlostcave"].automap = '1';
+mappages["northlostcave"].linkedMaps = [""];
+mappages["northlostcave"].editorLabels = '{}';
+// MAP ENDS HERE
+
+mappages["northlostcave"].onload = function(mapref) {
+  
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    if (DU.gameflags.getFlag("ghost_rest")) {
+      let npcs = mapref.npcs.getAll();
+      for (let i=0;i<npcs.length;i++) {
+        if (npcs[i].getAttitude() === "Friendly") {
+          mapref.deleteThing(npcs[i]);
+          DUTime.removeEntityFrom(npcs[i]);
+        }
+      }
+      let feas = mapref.features.getAll();
+      for (let i=0;i<feas.length;i++) {
+        if (feas[i].getName() === "Tombstone") {
+          let coords = DU.gameflags.getFlag("ghost_rest").split(",");
+          mapref.moveThing(coords[0],coords[1],feas[i]);
+        } else if (feas[i].getName() === "PileOfRocks") {
+          mapref.deleteThing(feas[i]);
+        }
+      }
+    } else {
+      let feas = mapref.features.getAll();
+      for (let i=0;i<feas.length;i++) {
+        if (feas[i].getName() === "Tombstone") {
+          mapref.deleteThing(feas[i]);
+        }
+      }
+    }
+  }
+}
+
+mappages["northlostcave"].nlc_exit = function(mapref) {
+  mapref.Exit = function(who,tomap,oldx,oldy,destx,desty) {
+    shovel = PC.checkInventory("SpectralShovel");
+    if (shovel) {
+      PC.removeFromInventory(shovel);
+      if (tomap.getName() !== "landsbeyond") {
+        maintext.addText("As you leave the cave, the ghostly shovel fades away in your hands.");
+      }
+    }
+  }
+  return 1;
 }
