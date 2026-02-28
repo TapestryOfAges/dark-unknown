@@ -1,3 +1,12 @@
+v 0.11.3
+ * Killing yourself with an AoE no longer claims you gained XP (you didn't)
+ * Killing yourself with Explosion in some places is no longer a crash
+ * NPC arrows and bolts point in the correct direction
+ * [B] is now [B]attle Report, and briefly flashes a health bar above all visible NPCs
+ * Updated help page
+ * Coded animation for Fire and Ice
+ * Implemented the last cave that was not yet made.
+
 v 0.11.2
  * When "Move Opens Doors" is on, bumping into a door that does something special when Used now works
  * Look no longer says you are standing on a chair or bed that you are sitting/lying in
@@ -21,7 +30,7 @@ v 0.11.2
  * Roads blend better at the tile boundaries
  * Look now shows the damage descriptor for wounded NPCs
  * Olcrann are now vulnerable to fire and lightning to varying degrees, and have a lighting attack
- * Quest journal has tabs to make it clearer that there is more than the first page
+ * Quest journal has tabs to make it clearer that there is more than the Main Quests page
 
 v 0.11.1
  * If you use/bump into a locked door while you have the key, the game now tells you that you unlocked it
