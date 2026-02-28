@@ -147,7 +147,7 @@ function SetMerchants() {
                   { item: "MagicBoltSpell", desc: "Magic Bolt", lvl: SPELL_MAGIC_BOLT_LEVEL, sid: SPELL_MAGIC_BOLT_ID, price: 200, presale: '"The easiest of the spells that do damage directly."'},
                   { item: "ProtectionSpell", desc: "Protection", lvl: SPELL_PROTECTION_LEVEL, sid: SPELL_PROTECTION_ID, price: 200, presale: '"Because it\'s often better to just prevent the damage in the first place."'},
                   { item: "FireArmorSpell", desc: "Fire Armor", lvl: SPELL_FIRE_ARMOR_LEVEL, sid: SPELL_FIRE_ARMOR_ID, price: 400, presale: '"Alas, it only comes in red."'},
-                  { item: "WallofFlameSpell", desc: "Wall of Flame", lvl: SPELL_WALL_OF_FLAME_LEVEL, sid: SPELL_WALL_OF_FLAME_ID, price: 400, presale: '"This? Also just red."'},
+                  { item: "WallofFlameSpell", desc: "Wall of Flame", lvl: SPELL_WALL_OF_FLAME_LEVEL, sid: SPELL_WALL_OF_FLAME_ID, price: 400, presale: '"This? Also just comes in red."'},
                 ];
   bill.alexis.type = "spells"; 
   
