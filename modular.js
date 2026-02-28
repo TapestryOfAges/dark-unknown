@@ -341,12 +341,12 @@ OnDeathFuncs["Warduke"] = function() {
   questlog.activate(49);
 }
 
-OnDeathFuncs["headlesscave"] = function() {
-  let allnpcs = mapref.npcs.getAll();
+OnDeathFuncs["headlesscave"] = function(who) {
+  let allnpcs = who.getHomeMap().npcs.getAll();
   let anyheadlesses = 0;
   for (let i=0; i<allnpcs.length;i++) {
-    if (allnpcs[i].getName() === "HeadlessNPC") {
-      anyheadlesses = 1;
+    if ((allnpcs[i].getName() === "HeadlessNPC") && (allnpcs[i] !== who)) {
+      anyheadlesses++;
     }
   }
   if (!anyheadlesses && (questlog.findQuest(9) !== -1)) {
