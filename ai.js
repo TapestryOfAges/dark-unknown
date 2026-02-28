@@ -3628,6 +3628,48 @@ function FindMissileTarget(who,radius) {
   }
 }
 
+ais.ghostie = function(who) {
+  if ((GetSquareDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) <= 3) && !DU.gameflags.getFlag("knows_lysander")) {
+    PC.forcedTalk = who;
+  } else if (!DU.gameflags.getFlag("knows_lysander")) {
+    if (Dice.roll("1d16") === 1) {
+      let which = Dice.roll("1d4");
+      if (which === 1) { maintext.addText("You hear a voice calling for help from deeper in the cave!"); }
+      else if (which === 2) { maintext.addText("A voice calls out, \"Oh, won't someone come help?\""); }
+      else if (which === 3) { maintext.addText("There is a voice, deep in the cave. You cannot make out words but it sounds distressed."); }
+      else { maintext.addText("A voice cries, \"Help! Please!\""); }
+    }
+  } else if (who.grave && !who.filledgrave) {
+    if (GetSquareDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) > 3) {
+      let path = themap.getPath(who.getx(),who.gety(),PC.getx(),PC.gety(),MOVE_WALK);
+      if (path.length) {
+        path.shift();
+        StepOrSidestep(who,path[0],[nearby.getx(),nearby.gety()]);
+      }
+    }
+    let skeleton,hole;
+    let fea = who.getHomeMap().features.getAll();
+    for (let i=0;i<fea.length;i++) {
+      if (fea[i].getName() === "OpenGrave") { hole = fea[i]; }
+      else if (fea[i].getName() === "SkeletonUnburied") { skeleton = fea[i]; }
+      if (hole && skeleton && (skeleton.getx() === hole.getx()) && (skeleton.gety() === hole.gety()) && ((PC.getx() !== hole.getx()) || (PC.gety() !== hole.gety()))) {
+        maintext.addText(`The ghost's faltering voice cries out, "Ah! It is almost done."`);
+        maintext.setInputLine("&gt; [MORE]");
+        let retval = {};
+        retval['fin'] = 1;
+        retval["wait"] = 1;
+        gamestate.setMode("anykey");
+        targetCursor.command = "ghost";
+        targetCursor.frame = 1;
+        targetCursor.x = hole.x;
+        targetCursor.y = hole.y;
+        return retval;
+      }
+    }
+  }
+  return {fin:1}
+}
+
 ais.Tharock = function(who) {
   if (who.timer) {
     if (who.timer === 3) {
