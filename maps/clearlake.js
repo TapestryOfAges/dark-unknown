@@ -447,6 +447,9 @@ mappages["clearlake"].onload = function(mapref) {
     if (!DU.gameflags["act2"]) {
       let door = mapref.getTile(38,39).getTopFeature();
       door.lockMe(1);
+
+      let campfire = mapref.getTile(43,58).getTopFeature();
+      mapref.deleteThing(campfire);
     }
   }
 }
