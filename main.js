@@ -357,6 +357,74 @@ function DoAction(code, ctrl) {
         PC.endTurn(); 
       }  
       else { targetCursor.phase++; }
+    } else if (targetCursor.command === "ghost") {
+      if (targetCursor.frame === 1) {
+        maintext.addText("You turn and see that the ghost of Lysander is now floating right beside you.");
+        let npcs = PC.getHomeMap().npcs.getAll();
+        let ghost;
+        for (let i=0;i<npcs.length;i++) {
+          if (npcs[i].getName() === "GhostNPC") { ghost = npcs[i]; }
+        }
+        if ((PC.getx()-1 !== targetCursor.x) && (PC.gety() !== targetCursor.y) && 
+          ((PC.getHomeMap().getTile(PC.getx()-1,PC.gety()).getTerrain().getName() === "CaveFloor") || (PC.getHomeMap().getTile(PC.getx()-1,PC.gety()).getTerrain().getName() === "Dirt"))) {
+          PC.getHomeMap().moveThing(PC.getx()-1,PC.gety(),ghost);
+          DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+        } else { 
+          PC.getHomeMap().moveThing(PC.getx(),PC.gety()+1,ghost);
+          DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+        }
+        targetCursor.frame++;
+      } else if (targetCursor.frame === 2) {
+        maintext.addText(`Lysander says, "You have dug me a grave, and laid my bones to rest. Before I join them for all time, I must do what I can to repay you."`);
+        targetCursor.frame++;
+      } else if (targetCursor.frame === 3) {
+        maintext.addText(`He makes a gesture, and a circlet, previously unnoticed atop the skull of his skeleton, comes free and drifts towards you. "Take this, please. I can feel that you are also adept at the magical arts, and this aided me a great deal over the years."`);
+        targetCursor.frame++;
+      } else if (targetCursor.frame === 4) {
+        let circlet = localFactory.createTile("CircletOfIntellect");
+        PC.addToInventory(circlet,1);
+        circlet.equipMe(PC);
+        maintext.addText(`<span class='sysconv'>You have obtained a Circlet of Intellect.</span>`);
+        targetCursor.frame++;
+      } else if (targetCursor.frame === 5) {
+        maintext.addText(`"There. And now."<br />He gestures again, and the grave fills with dirt. "My power could not open the ground, but it can fill it with the loose earth you removed."`);
+        let fea = PC.getHomeMap().features.getAll();
+        for (let i=0;i<fea.length;i++) {
+          if (fea[i].getName() === "OpenGrave") {
+            PC.getHomeMap().deleteThing(fea[i]);
+          }
+        }
+        DrawMainFrame("one",PC.getHomeMap(),targetCursor.x,targetCursor.y);
+        targetCursor.frame++;
+      } else if (targetCursor.frame === 6) {
+        maintext.addText(`"And finally." One last gesture, and a large stone is reshaped and placed at the head of the grave."`);
+        let fea = PC.getHomeMap().features.getAll();
+        for (let i=0;i<fea.length;i++) {
+          if (fea[i].getName() === "PileOfRocks") {
+            PC.getHomeMap().deleteThing(fea[i]);
+          }
+        }
+        let gstone = localFactory.createTile("Tombstone");
+        PC.getHomeMap().placeThing(targetCursor.x,targetCursor.y-1,gstone);
+        DrawMainFrame("one",PC.getHomeMap(),targetCursor.x,targetCursor.y-1);
+        ShowEffect(gstone, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+        targetCursor.frame++;
+      } else if (targetCursor.frame === 7) {
+        maintext.addText(`"Now I may rest. Thank you again..." Both he and his voice fade.`);
+        let npcs = PC.getHomeMap().npcs.getAll();
+        for (let i=0;i<npcs.length;i++) {
+          if (npcs[i].getName() === "GhostNPC") {
+            PC.getHomeMap().deleteThing(npcs[i]);
+            DUTime.removeEntityFrom(npcs[i]);
+          }
+        }
+        delete targetCursor.frame;
+        delete targetCursor.x;
+        delete targetCursor.y;
+        delete targetCursor.command;
+        gamestate.setMode("null");
+        setTimeout(function() { startScheduler(); }, 5 );
+      }
     } else if (targetCursor.viewing && (targetCursor.viewing === "map")) {
       if ((code === 77) && PC.checkInventory("MagicMap") && ((PC.getHomeMap().getName() === "ellusus") || (PC.getHomeMap().getName() === "island"))) {
         let response = PerformCommand(code);
@@ -778,6 +846,9 @@ function DoAction(code, ctrl) {
     if ((targetCursor.command === "g") && (code === 65)) {
       targetCursor.getAll = 1;
       maintext.setInputLine("&gt; Get all: ");
+      maintext.drawTextFrame();
+    } else if (code === 66) {
+      PerformBattleReport();
     }
     let response = PerformChooseDir(code);
     if (response["fin"] === 1) { // direction chosen
@@ -793,7 +864,7 @@ function DoAction(code, ctrl) {
           maintext.setInputLine(resp["input"]);
         }
       }
-      else if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety()) && ((targetCursor.command === "a") || (targetCursor.command === "s") || (targetCursor.command === "c") || (targetCursor.command === "p") || (targetCursor.command === "uk"))) {
+      else if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety()) && ((targetCursor.command === "a") || (targetCursor.command === "s") || (targetCursor.command === "c") || (targetCursor.command === "p") || (targetCursor.command === "uk") || (targetCursor.command === "us"))) {
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame();
         gamestate.setMode("player");
@@ -805,6 +876,8 @@ function DoAction(code, ctrl) {
           resp = PerformUse(PC);
         } else if (targetCursor.command === "uk") {
           resp = KeyUse(PC,targetCursor.useditem);
+        } else if (targetCursor.command === "us") {
+          resp = PC.checkInventory("SpectralShovel").dig(PC);
         } else if (targetCursor.command === "g") { // GET
           if (targetCursor.getAll) {
             resp = PerformGetAll(PC);
@@ -878,6 +951,9 @@ function DoAction(code, ctrl) {
     }
   }
   else if (gamestate.getMode() === "target") {
+    if (code === 66) {
+      PerformBattleReport();
+    }
     let response = PerformTarget(code);
     if (response["fin"] === 1) {  // move the cursor
    		let edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
