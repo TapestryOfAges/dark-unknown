@@ -14,8 +14,10 @@ Conversation.prototype = new Object();
 // 4  : switch to sell
 
 Conversation.prototype.respond = function(speaker, keyword, skipahead) { 
+  console.log(skipahead);
   if (!targetCursor.hasOwnProperty("skipahead")) { targetCursor.skipahead = 0; }
   if (!skipahead) { skipahead = targetCursor.skipahead; }
+  console.log(skipahead)
   let flags_met;
   let necessary_item;
   let keep_talking = 0;
@@ -112,6 +114,8 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   }
   keep_talking = this.say(speaker, this[keyword].responses[flags_met], skipahead, noshowmainspeaker, altspeaker);
   
+  console.log("KT:" + keep_talking)
+
   if (keep_talking === 2) { 
     targetCursor.keyword = keyword;
     targetCursor.skipahead = ++skipahead;
@@ -121,6 +125,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   targetCursor.skipahead = 0;
   // handle triggers
   triggers = this[keyword].triggers[flags_met];  // should be redundant, but just to be sure
+  console.log(triggers);
   
   if (triggers.hasOwnProperty("give_item")) {
     let newitem = localFactory.createTile(triggers.give_item);
