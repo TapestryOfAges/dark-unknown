@@ -747,6 +747,12 @@ OnConvTriggers["garrick_flipout"] = function(speaker,keyword) {
   }
 }
 
+OnConvTriggers["dave_ring"] = function(speaker,keyword) {
+  if (!PC.checkInventory("RingOfEtherealFocus")) {
+    questlog.activate(69);
+  }
+}
+
 OnConvTriggers["chits_exchanged"] = function(speaker,keyword) {
   if (DU.gameflags.getFlag("exchange_chits")) {
     DU.gameflags.deleteFlag("exchange_chits");
