@@ -1260,9 +1260,11 @@ NPCObject.prototype.activate = function(timeoverride) {
       } else if (this.missileAnim === "arrow") {
         missileweapon.ammoxoffset = 0;
         missileweapon.ammoyoffset = -73*32;
+        missileweapon.directionalammo = 1;
       } else if (this.missileAnim === "bolt") {
         missileweapon.ammoxoffset = 0;
         missileweapon.ammoyoffset = -74*32;
+        missileweapon.directionalammo = 1;
       } else if (this.missileAnim === "boulder") {
         missileweapon.ammoxoffset = -8*32;
         missileweapon.ammoyoffset = -53*32;
