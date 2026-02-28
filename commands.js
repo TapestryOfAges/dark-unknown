@@ -275,7 +275,8 @@ function PerformCommand(code, ctrl) {
 	}
 	else if (code === 66) { // b
 		// board - not used in Dark Unknown but available for hooking
-		
+    // Battle Report
+    PerformBattleReport();
 	}
 	else if (code === 67) { // c
 		// cast
@@ -1171,6 +1172,25 @@ function PerformSpellbook(code) {
   } else {
     retval["fin"] = 0;
     return retval;  
+  }
+}
+
+function PerformBattleReport() {
+  if (PC.getHomeMap().getScale()) {
+    let npcs = PC.getHomeMap().npcs.getAll();
+    for (let i=0;i<npcs.length;i++) {
+      if (npcs[i].attachedTo) { continue; }
+      let sx = 0;
+      let sy = -181*32;
+      if (npcs[i].getAttitude() === "hostile") { sx = -5*32; }
+      let ratio = npcs[i].getHP()/npcs[i].getMaxHP();
+      if (ratio === 1) { sx -= 0; }
+      else if (ratio > .66) { sx -= 32; }
+      else if (ratio > .4) { sx -= 64; }
+      else if (ratio > .2) { sx -= 96; }
+      else { sx -= 128; }
+      ShowEffect(npcs[i], 2000, "static.gif", sx, sy);
+    }
   }
 }
 
@@ -4496,33 +4516,33 @@ function ShowHelp() {
   statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
   statsdiv += "<tr><td colspan='3' style='text-align:center'>GAME COMMANDS</td></tr>";
   statsdiv += "<tr><td colspan='3'>&nbsp;</td></tr>";
-  statsdiv += "<tr><td>ARROW KEYS - Move</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>P - Push</td></tr>";
-  statsdiv += "<tr><td>A - Attack/Approach</td><td></td><td>Q - Save</td></tr>";
+  statsdiv += "<tr><td>ARROW KEYS - Move</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>O - Open</td></tr>";
+  statsdiv += "<tr><td>A - Attack/Approach</td><td></td><td>CTRL-O - Options</td></tr>";
+  statsdiv += "<tr><td>B - Battle Report</td><td></td><td>P - Push</td></tr>";
   let hasspellbook = "";
   if (!DU.gameflags.getFlag("spellbook")) {
     hasspellbook = "style='color:gray'";
   }
-  statsdiv += `<tr><td ${hasspellbook}>C - Cast</td><td></td><td>R - Ready Equipment</td></tr>`;
-  statsdiv += "<tr><td>D - Descend</td><td></td><td>S - Search</td></tr>";
-  statsdiv += "<tr><td>E - Enter</td><td></td><td>T - Talk</td></tr>";
+  statsdiv += `<tr><td ${hasspellbook}>C - Cast</td><td></td><td>Q - Save</td></tr>`;
+  statsdiv += "<tr><td>D - Descend</td><td></td><td>R - Ready Equipment</td></tr>";
+  statsdiv += "<tr><td>E - Enter</td><td></td><td>S - Search</td></tr>";
   let canfocus = "";
   if (!DU.gameflags.getFlag("rune_kings")) {
     canfocus = "style='color:gray'";
   }
-  statsdiv += `<tr><td ${canfocus}>F - Focus</td><td></td><td>U - Use</td></tr>`;
-  statsdiv += "<tr><td>G - Get</td><td></td><td>V - Toggle Music</td></tr>";
+  statsdiv += `<tr><td ${canfocus}>F - Focus</td><td></td><td>T - Talk</td></tr>`;
+  statsdiv += "<tr><td>G - Get</td><td></td><td>U - Use</td></tr>";
   let caninfuse = "";
   if (!PC.getInfusion()) { 
     caninfuse = "style='color:gray'";
   }
-  statsdiv += `<tr><td ${caninfuse}>I - Infuse</td><td></td><td>CTRL-V - Toggle Volume</td></tr>`;
-  statsdiv += "<tr><td>J - Quest Journal</td><td></td><td>W - Wait</td></tr>";
-  statsdiv += "<tr><td>K - Climb</td><td></td><td>Y - Yell</td></tr>";
-  statsdiv += "<tr><td>L - Look</td><td></td><td>Z - Stats</td></tr>";
-  statsdiv += "<tr><td>CTRL-L - Load Game</td><td></td><td>SPACE - Pass Turn</td></tr>";
-  statsdiv += "<tr><td>M - Show Map</td><td></td><td>ENTER - Enter</td></tr>";
-  statsdiv += "<tr><td>O - Open</td><td></td><td></td></tr>";
-  statsdiv += "<tr><td>CTRL-O - Options</td><td></td><td></td></tr>";
+  statsdiv += `<tr><td ${caninfuse}>I - Infuse</td><td></td><td>V - Toggle Music</td></tr>`;
+  statsdiv += "<tr><td>J - Quest Journal</td><td></td><td>CTRL-V - Toggle Volume</td></tr>";
+  statsdiv += "<tr><td>K - Climb</td><td></td><td>W - Wait</td></tr>";
+  statsdiv += "<tr><td>L - Look</td><td></td><td>Y - Yell</td></tr>";
+  statsdiv += "<tr><td>CTRL-L - Load Game</td><td></td><td>Z - Stats</td></tr>";
+  statsdiv += "<tr><td>M - Show Map</td><td></td><td>SPACE - Pass Turn</td></tr>";
+  statsdiv += "<tr><td></td><td></td><td>ENTER - Enter</td></tr>";
 
   statsdiv += "</table></div></div>";
 
