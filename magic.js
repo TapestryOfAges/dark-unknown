@@ -4689,14 +4689,6 @@ magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].getLongDesc = function() 
 
 magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Fire and Ice.<br />");
-  // work in progress
-  if (beta) {
-    let resp = {fin:2};
-    resp["txt"] = "This spell is under construction.";
-    resp["input"] = "&gt;";
-    return resp;
-  }
-  // end work in progress
   
   let resp = {fin:3};
   if (!free) {
@@ -4712,8 +4704,6 @@ magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].executeSpell = function(c
     return resp;
   }
 
-  PlayCastSound(caster,"sfx_fire_ice");  
-
   let centerx = caster.getx();
   let centery = caster.gety();
   let castermap = caster.getHomeMap();
@@ -4725,13 +4715,13 @@ magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].executeSpell = function(c
         let tile = castermap.getTile(i,j);
         let tgt = tile.getTopVisibleNPC();
         if (tgt && !tgt.frozenintime) {
-          if (val.attachedTo) {
-            if (!AoETargets.AddID(val.attachedTo.getSerial())) {
+          if (tgt.attachedTo) {
+            if (!AoETargets.AddID(tgt.attachedTo.getSerial())) {
               continue;
             }
           } else {
             // this should never trigger
-            if (!AoETargets.AddID(val.getSerial())) { continue; }
+            if (!AoETargets.AddID(tgt.getSerial())) { continue; }
           }
 
           foelist.push(tgt);
@@ -4739,26 +4729,75 @@ magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].executeSpell = function(c
       }
     }
   }
-  for (let i=0;i<foelist.length;i++) {
-    // figure out graphic
-    let tgt = foelist[i];
-    let tmpdmg = prepareSpellDamage(caster,tgt,DMG_HEAVY,"fire");
-    let dmg = tmpdmg.dmg;
-    if (CheckResist(center,tgt,0,0)) {
-      dmg = Math.floor(dmg/2);
-    }
-    DealandDisplayDamage(tgt,caster,dmg,"fire");
-    if (tgt !== PC) { tgt.setAggro(1); }
-    tgt.setHitBySpell(caster,Math.max(Math.floor(SPELL_FIRE_AND_ICE_LEVEL/foelist.length),1));
-    if (!CheckResist(caster,tgt,0,0)) {
-      let freeze = localFactory.createTile("Frozen");
-      freeze.setPower(1);
-      freeze.setExpiresTime(Dice.roll("1d3+1")*SCALE_TIME + DUTime.getGameClock());
-      tgt.addSpellEffect(freeze);
-      let desc = tgt.getDesc() + " is frozen!";
-      maintext.addText(desc);
-    }
+
+  let circle = [[-1,-1],[0,-1],[1,-1],[1,0],[1,1],[0,1],[-1,1],[-1,0]];  // circle around the PC
+  let waittime = 100; // ms between flames
+  PlayCastSound(caster,"sfx_fire_ice");  
+  ShowEffect("", 500, "fireandice.gif", 0, -32, {map:castermap, x:centerx+circle[0][0], y:centery+circle[0][1]});
+  for (let n=1;n<8;n++) {
+    setTimeout(function() { ShowEffect("", 500, "fireandice.gif", 0, -32, {map:castermap, x:centerx+circle[n][0], y:centery+circle[n][1]}); }, (n+1)*waittime);
   }
+
+  setTimeout(function() {
+    for (let i=0;i<foelist.length;i++) {
+      let tgt = foelist[i];
+      let tmpdmg = prepareSpellDamage(caster,tgt,DMG_HEAVY,"fire");
+      let dmg = tmpdmg.dmg;
+      if (CheckResist(caster,tgt,0,0)) {
+        dmg = Math.floor(dmg/2);
+      }
+      DealandDisplayDamage(tgt,caster,dmg,"fire");
+      ShowEffect(tgt, 100, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
+      if (tgt !== PC) { tgt.setAggro(1); }
+      tgt.setHitBySpell(caster,Math.max(Math.floor(SPELL_FIRE_AND_ICE_LEVEL/foelist.length),1));
+    }
+
+    ShowEffect("", 500, "fireandice.gif", 0, 0, {map:castermap, x:centerx+circle[0][0], y:centery+circle[0][1]});
+    for (let n=1;n<8;n++) {
+      setTimeout(function() { ShowEffect("", 500, "fireandice.gif", 0, 0, {map:castermap, x:centerx+circle[n][0], y:centery+circle[n][1]}); }, (n+1)*waittime);
+    }
+  }, waittime*10);
+
+  setTimeout(function() {
+    for (let i=0;i<foelist.length;i++) {
+      let tgt = foelist[i];
+      if ((tgt.getHP() > 0) && !CheckResist(caster,tgt,0,0)) {
+        let freeze = localFactory.createTile("Frozen");
+        freeze.setPower(1);
+        freeze.setExpiresTime(Dice.roll("1d3+1")*SCALE_TIME + DUTime.getGameClock());
+        tgt.addSpellEffect(freeze);
+        let dd = tgt.getDesc();
+        dd = dd.charAt(0).toUpperCase() + dd.slice(1);
+        let desc = dd + " is frozen!";
+        ShowEffect(tgt, 100, "static.gif", BLUE_SPLAT_X, BLUE_SPLAT_Y);
+        maintext.addText(desc);
+      }
+    }
+    DrawMainFrame("draw", castermap, centerx, centery);
+    DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");  
+    caster.endTurn();
+  }, waittime*20);
+
+  // for (let i=0;i<foelist.length;i++) {
+  //   // figure out graphic
+  //   let tgt = foelist[i];
+  //   let tmpdmg = prepareSpellDamage(caster,tgt,DMG_HEAVY,"fire");
+  //   let dmg = tmpdmg.dmg;
+  //   if (CheckResist(center,tgt,0,0)) {
+  //     dmg = Math.floor(dmg/2);
+  //   }
+  //   DealandDisplayDamage(tgt,caster,dmg,"fire");
+  //   if (tgt !== PC) { tgt.setAggro(1); }
+  //   tgt.setHitBySpell(caster,Math.max(Math.floor(SPELL_FIRE_AND_ICE_LEVEL/foelist.length),1));
+  //   if (!CheckResist(caster,tgt,0,0)) {
+  //     let freeze = localFactory.createTile("Frozen");
+  //     freeze.setPower(1);
+  //     freeze.setExpiresTime(Dice.roll("1d3+1")*SCALE_TIME + DUTime.getGameClock());
+  //     tgt.addSpellEffect(freeze);
+  //     let desc = tgt.getDesc() + " is frozen!";
+  //     maintext.addText(desc);
+  //   }
+  // }
   
   return resp;
 
@@ -5707,6 +5746,10 @@ function TravelByMoongateOld(who, color, destmap, destx, desty) {
 let spellcount = {};
 
 function ShowEffect(onwhat, duration, graphic, xoff, yoff, extraparams) {
+  if (PC.getHomeMap().getName() === "landsbeyond") {
+    // if PC died and was moved to Landsbeyond, stop drawing effects
+    return; 
+  }
   let temporary = 0;
   if (!onwhat) {
     onwhat = localFactory.createTile("Placeholder");
@@ -5731,7 +5774,6 @@ function ShowEffect(onwhat, duration, graphic, xoff, yoff, extraparams) {
   where.x = 0;
   where.y = 0;
   let animurl = "";
-  spellcount["anim" + onwhat.getSerial()] = onwhat;
   if (IsObjectVisibleOnScreen(onwhat)) {
     where = GetCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
     animurl = "graphics/" + graphic ;
@@ -5739,6 +5781,7 @@ function ShowEffect(onwhat, duration, graphic, xoff, yoff, extraparams) {
   }
   let animhtml;
   if (animurl) {
+    spellcount["anim" + onwhat.getSerial()] = onwhat;
     let docid = "anim" + onwhat.getSerial();
     let docdiv = document.getElementById(docid);
     if (!docdiv) {
