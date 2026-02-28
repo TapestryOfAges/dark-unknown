@@ -3629,7 +3629,7 @@ function CyanCobblestoneTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.desc = "floor";
-	this.peerview = CYAN_PEER;
+	this.peerview = CYAN_COBBLE_PEER;
 	this.walkSound = "stone";
 }
 CyanCobblestoneTile.prototype = new TerrainObject();
