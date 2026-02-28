@@ -59,6 +59,7 @@ mappages["testmap"].returnmap = 'ellusus';
 mappages["testmap"].returnx = '69';
 mappages["testmap"].returny = '74';
 mappages["testmap"].returninfused = '0';
+mappages["testmap"].automap = '1';
 mappages["testmap"].linkedMaps = [];
 
 
