@@ -14,7 +14,7 @@ Conversation.prototype = new Object();
 // 4  : switch to sell
 
 Conversation.prototype.respond = function(speaker, keyword, skipahead) { 
-  console.log(skipahead);
+  console.log("SA" + skipahead);
   if (!targetCursor.hasOwnProperty("skipahead")) { targetCursor.skipahead = 0; }
   if (!skipahead) { skipahead = targetCursor.skipahead; }
   console.log(skipahead)
@@ -204,6 +204,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     }
   }
   if (triggers.hasOwnProperty("end_convo")) {
+    console.log("end convo... ")
     if ((triggers.end_convo !== 1) && (triggers.end_convo !== "1")) {
       this.say(speaker, triggers.end_convo, 0, noshowmainspeaker, altspeaker);
       targetCursor.skipahead = 0;
@@ -212,6 +213,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     if (keep_talking !== -1) {
       keep_talking = 0;
     }
+    console.log(keep_talking);
   }
   if (triggers.hasOwnProperty("start_shop")) {
     if (HasStock(speaker.getMerch())) {
