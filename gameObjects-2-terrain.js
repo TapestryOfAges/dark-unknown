@@ -435,6 +435,10 @@ function InWater(who) {
     // entity is levitating and so won't drown
     return response;
   }  
+  if (MOVE_LEVITATE_MONSTER & whomov) {
+    // entity is levitating and so won't drown
+    return response;
+  }  
   if (MOVE_ETHEREAL & whomov) {
     // entity is ethereal and can't drown
     return response;

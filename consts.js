@@ -14,6 +14,9 @@ const MOVE_LEVITATE = 8;
 const MOVE_WALK = 16;
 const MOVE_WALK_DOOR = 32;
 const MOVE_WALK_LOE = 64; // not for real paths, but to allow for Metal Twister to work
+const MOVE_WALK_MONSTER = 128; // walk for monsters on ellusus so they don't try to go near cities
+const MOVE_LEVITATE_MONSTER = 256;
+
 
 const SCALE_TIME = .2;
 

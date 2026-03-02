@@ -1558,6 +1558,8 @@ mappages["ellusus"].onload = function(mapref) {
   CreateNetwork(mapref);
   
   CreateBeaches(mapref);
+
+  BlockCivilized(mapref);
 }
 
 

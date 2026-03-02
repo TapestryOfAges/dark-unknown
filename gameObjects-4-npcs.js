@@ -540,7 +540,9 @@ NPCObject.prototype.processDeath = function(droploot){
             }
           }
         }
-        else {alert (this.getName() + " has a loottable that is not defined."); }
+        else {
+          alert (this.getName() + " has a loottable that is not defined."); 
+        }
       }
       if ((chest) && (chest.container.length)) {
         if (!this.specials.spillloot) {
@@ -1339,6 +1341,11 @@ NPCObject.prototype.activate = function(timeoverride) {
     if (typeof this.attachParts === "function") { this.attachParts(); }
     this.startx = this.getx();
     this.starty = this.gety();
+
+    if (this.getHomeMap().getName() === "ellusus") {
+      if (this.getMovetype() === MOVE_WALK) { this.setMovetype(MOVE_WALK_MONSTER); }
+      else if (this.getMovetype() === MOVE_LEVITATE) { this.setMovetype(MOVE_LEVITATE_MONSTER); }
+    }
     
     this.nextMana = DUTime.getGameClock() + MANA_REGEN;
     this.nextHP = DUTime.getGameClock() + HP_REGEN;

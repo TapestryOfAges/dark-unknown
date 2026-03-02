@@ -6907,7 +6907,7 @@ function DrakesSmallGroupTile() {
   this.peaceAI = 'Animal-5';
   this.group = [];
   this.group[0] = new NPCList('DrakeNPC', '1d4+1');
-  this.movetype = MOVE_FLY;
+  this.movetype = MOVE_LEVITATE;
   this.attackword = 'attack';
   this.resists = {};
   this.graphic = 'static.gif';
@@ -6933,7 +6933,7 @@ function DrakesLargeGroupTile() {
   this.group = [];
   this.group[0] = new NPCList('DrakeNPC', '1d6+1');
   this.group[1] = new NPCList('DragonNPC', '1d2-1');
-  this.movetype = MOVE_FLY;
+  this.movetype = MOVE_LEVITATE;
   this.attackword = 'attack';
   this.resists = {};
   this.graphic = 'static.gif';
@@ -6959,7 +6959,7 @@ function DragonsGroupTile() {
   this.group = [];
   this.group[0] = new NPCList('DrakeNPC', '1d3');
   this.group[1] = new NPCList('DragonNPC', '1d3+1');
-  this.movetype = MOVE_FLY;
+  this.movetype = MOVE_LEVITATE;
   this.attackword = 'attack';
   this.resists = {};
   this.graphic = 'static.gif';
@@ -7463,7 +7463,7 @@ function InsectsGroupSmallTile() {
   this.peaceAI = 'Animal-5';
   this.group = [];
   this.group[0] = new NPCList('GiantInsectsNPC', '1d4');
-  this.movetype = MOVE_FLY;
+  this.movetype = MOVE_LEVITATE;
   this.attackword = 'attack';
   this.resists = {};
   this.graphic = 'static.gif';
@@ -7488,7 +7488,7 @@ function InsectsGroupLargeTile() {
   this.peaceAI = 'Animal-5';
   this.group = [];
   this.group[0] = new NPCList('GiantInsectsNPC', '2d4+1');
-  this.movetype = MOVE_FLY;
+  this.movetype = MOVE_LEVITATE;
   this.attackword = 'attack';
   this.resists = {};
   this.graphic = 'static.gif';
