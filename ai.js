@@ -1344,15 +1344,16 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
       let diffy = coords[1] - who.gety();
       let civilized = 0;
       // check to see if move would bring close to a settlement
-      if (who.getHomeMap().getScale() === 0) {  // only care about it if on an outdoor map
-        DebugWrite("ai", "Checking for civilization proximity.");
-        civilized = CheckTownProximity( { x: coords[0], y: coords[1] }, who.getHomeMap());
-        if (civilized) { 
-          DebugWrite("ai", " Civilized!");
-          retval["canmove"] = 0; 
-        }
-        DebugWrite("ai", "<br />");
-      }  
+      // CURRENTLY disabled as I try a new method of dealing with this
+      // if (who.getHomeMap().getScale() === 0) {  // only care about it if on an outdoor map
+      //   DebugWrite("ai", "Checking for civilization proximity.");
+      //   civilized = CheckTownProximity( { x: coords[0], y: coords[1] }, who.getHomeMap());
+      //   if (civilized) { 
+      //     DebugWrite("ai", " Civilized!");
+      //     retval["canmove"] = 0; 
+      //   }
+      //   DebugWrite("ai", "<br />");
+      // }  
 
       DebugWrite("ai", "AI " + who.getName() + " moving from " + who.getx() + ", " + who.gety() + " to " + coords[0] + ", " + coords[1] + " :");
       let turnscheck = who.setTurnsToRecalcDest(who.getTurnsToRecalcDest() - 1);
@@ -1543,17 +1544,17 @@ ais.Randomwalk = function(who, chance_north, chance_east, chance_south, chance_w
     }
   }
 
-  if (who.getHomeMap().getScale() === 0) {  // only care about it if on an outdoor map
-    let civilized = CheckTownProximity( { x: destx, y: desty }, who.getHomeMap());
-    if (civilized) {
-      DebugWrite("ai", who.getName() + " refused to randomwalk close to civilization at " + (destx) + "," + (desty) + ".");
-      retval["nomove"] = 1;
-      retval["canmove"] = 0;
-      retval["diffx"] = diffx;
-      retval["diffy"] = diffy;
-      return retval; 
-    }
-  }
+  // if (who.getHomeMap().getScale() === 0) {  // only care about it if on an outdoor map
+  //   let civilized = CheckTownProximity( { x: destx, y: desty }, who.getHomeMap());
+  //   if (civilized) {
+  //     DebugWrite("ai", who.getName() + " refused to randomwalk close to civilization at " + (destx) + "," + (desty) + ".");
+  //     retval["nomove"] = 1;
+  //     retval["canmove"] = 0;
+  //     retval["diffx"] = diffx;
+  //     retval["diffy"] = diffy;
+  //     return retval; 
+  //   }
+  // }
   retval = StepOrSidestep(who, [destx,desty], [destx,desty], "nopush");
   retval["nomove"] = 0;  // NOTE- this is 0 even if they didn't move. If it gets to this point,
                          // canmove is the only reliable indicator of whether it moved. Checking
