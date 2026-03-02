@@ -1600,6 +1600,7 @@ function DoAction(code, ctrl) {
             }
             DUPlaySound("sfx_coin");
             PerformTalk(targetCursor.talkingto, targetCursor.talkingto.getConversation(), "sell");
+            if (targetCursor.alreadyEnded) { delete targetCursor.alreadyEnded; }
             DrawCharFrame();
           }
         } 
