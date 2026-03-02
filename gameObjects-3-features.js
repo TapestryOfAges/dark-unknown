@@ -1508,12 +1508,14 @@ HotelPheranTile.prototype.myTurn = function() {
         else if (choice === 5) { this.getHomeMap().moveThing(61,42,this); }
         else if (choice === 6) { this.getHomeMap().moveThing(40,86,this); }
         else if (choice === 7) { this.getHomeMap().moveThing(28,108,this); }
-//        console.log("Hotel Pheran moved!");
-//        console.log(`New coords: ${this.getx()},${this.gety()}.`);
+        console.log("Hotel Pheran moved!");
+        console.log(`New coords: ${this.getx()},${this.gety()}.`);
       }
     }
     let NPCevent = new GameEvent(this);
-    DUTime.addAtTimeInterval(NPCevent,50);  
+    let dur = 5;
+    if (this.onscreen) { dur = 50; }
+    DUTime.addAtTimeInterval(NPCevent,dur);  
   }
   return 1;
 }
