@@ -828,8 +828,20 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 	this.closedgraphic = closedgraphic;
 	this.opengraphic = opengraphic;
   this.lockedsound = lockedsound;
+  this.inside = null;
 	// NOTE: These should be arrays in the standard graphics[0-3] style.
 	
+  this.isInside = function(who) {
+    if (!this.inside) { return false; }
+
+    if ((this.inside === "N") && (who.getx() === this.getx()) && (who.gety() === this.gety()-1)) { return true; }
+    if ((this.inside === "S") && (who.getx() === this.getx()) && (who.gety() === this.gety()+1)) { return true; }
+    if ((this.inside === "E") && (who.getx() === this.getx()+1) && (who.gety() === this.gety())) { return true; }
+    if ((this.inside === "W") && (who.getx() === this.getx()-1) && (who.gety() === this.gety())) { return true; }
+
+    return false;
+  }
+
 	this.use = function(who, silentdoors) {
 		let retval = {};
     retval["fin"] = 0;
@@ -870,7 +882,7 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 			this.open = 0;
 		} else {
 			if (typeof this.getLocked === "function") {
-				if (this.getLocked()) {
+				if (this.getLocked() && (this.isInside(who))) {
 					retval["fin"] = 1;
 					retval["txt"] = "Locked.";
 					if (!silentdoors && lockedsound && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety()) < 6) && (PC.getHomeMap() === mymap)) {

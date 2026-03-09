@@ -19,6 +19,7 @@ var brushdown = 0;
 var brushdownx = -1;
 var brushdowny = -1;
 let flowing = 0;
+let editinginside = 0;
 var editable;
 var editnpcs;
 let transselect = 0;
@@ -39,6 +40,8 @@ var DUTraps = SetTraps();           //
 var Dice = new DiceObject();
 var localatlas = new Atlas();
 PopulateAtlas(localatlas);
+
+let finder = null;
 
 var graphicpicks = [];
 let humanpicks = {};
@@ -2479,6 +2482,23 @@ function areaDeleteTransition(x1,y1,x2,y2,terraintype) {
       else if ((terraintype === "BrightForest") && (tile.getName().includes("BrightForest"))) { delete amap.transover[coord]; }
       else if ((terraintype === "Hills") && (tile.getName().includes("Hills"))) { delete amap.transover[coord]; }
       else if ((terraintype === "Mountain") && (tile.getName().includes("Mountain")) && (tile.getName() !== "FlameMountain")) { delete amap.transover[coord]; }
+    }
+  }
+}
+
+function InsideEditor() {
+  if (!finder) {
+    finder = new PF.AStarFinder({
+      heuristic: PF.Heuristic.euclidean
+    });
+  }
+}
+
+function findInside() {
+  let feas = amap.features.getAll();
+  for (let i=0;i<feas.length;i++) {
+    if (feas[i].hasOwnProperty(inside)) {
+      
     }
   }
 }
