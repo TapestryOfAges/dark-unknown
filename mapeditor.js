@@ -2507,11 +2507,18 @@ function InsideEditor() {
   }
 }
 
-function findInside() {
+function findInsideAll(tgtx, tgty) {
+  if (!tgtx) {
+    // fill in both from inside modal
+  }
   let feas = amap.features.getAll();
   for (let i=0;i<feas.length;i++) {
     if (feas[i].hasOwnProperty(inside)) {
       
     }
   }
+}
+
+function findInside(door, tgtx, tgty) {
+  
 }
