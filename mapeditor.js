@@ -2514,11 +2514,17 @@ function findInsideAll(tgtx, tgty) {
   let feas = amap.features.getAll();
   for (let i=0;i<feas.length;i++) {
     if (feas[i].hasOwnProperty(inside)) {
-      
+      findInside(feas[i], tgtx, tgty);
     }
   }
 }
 
 function findInside(door, tgtx, tgty) {
-  
+  let testpath = amap.getPath(door.getx(),door.gety(),tgtx,tgty)
+  testpath.shift()
+  if ((testpath[0][0] == door.getx()) && (testpath[0][1] == door.gety()+1)) { door.inside = "N"; return "N"; }
+  if ((testpath[0][0] == door.getx()) && (testpath[0][1] == door.gety()-1)) { door.inside = "S"; return "S"; }
+  if ((testpath[0][0] == door.getx()+1) && (testpath[0][1] == door.gety())) { door.inside = "W"; return "W"; }
+  if ((testpath[0][0] == door.getx()-1) && (testpath[0][1] == door.gety())) { door.inside = "E"; return "E"; }
+  return null;
 }
