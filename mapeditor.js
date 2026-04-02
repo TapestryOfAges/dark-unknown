@@ -575,6 +575,16 @@ function clickmap(xval,yval) {
         var lockedblock = document.getElementById("bubblelock");
     	  lockedblock.style.display = "none";
       }
+      if (editable.hasOwnProperty("inside")) {
+        let insideblock = document.getElementById("bubbleinside");
+        insideblock.style.display = "table-row";
+        let insideselect = document.getElementById("tileinside");
+        if (!editable.inside) { insideselect.value = ""; }
+        else { insideselect.value = editable.inside; }
+      } else {
+        let insideblock = document.getElementById("bubbleinside");
+        insideblock.style.display = "none";
+      }
       if (editable.getEnterMap && (typeof editable.getEnterMap === "function")) {
       	var portalblock = document.getElementById("bubbleportal");
     	  portalblock.style.display = "table-row";
@@ -705,6 +715,9 @@ function submitEditFeature(change) {
 		if ((document.featureeditpopup.tilekeyname.value) && (editable.getLocked != null) && (document.featureeditpopup.tilekeyname.value !== editable.keyname)) {
 			editable.keyname = document.featureeditpopup.tilekeyname.value;
 		}
+    if (editable.hasOwnProperty("inside") && (editable.inside !== document.featureeditpopup.tileinside.value)) {
+      editable.inside = document.featureeditpopup.tileinside.value;
+    }
 		if ((document.featureeditpopup.tileentermap.value) && (editable.getEnterMap != null) && (document.featureeditpopup.tileentermap.value !== editable.getEnterMap().entermap)) {
 			editable.setEnterMap(document.featureeditpopup.tileentermap.value, document.featureeditpopup.tileenterx.value, document.featureeditpopup.tileentery.value);
 		}
