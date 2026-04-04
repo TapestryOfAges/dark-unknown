@@ -2009,7 +2009,7 @@ ais.Courier = function(who) {
 ais.coll_open = function(who) {
   if (who.step === 1) {
     let path = who.getHomeMap().getPath(who.getx(),who.gety(),77,39,MOVE_WALK);
-    if (path) {
+    if (path.length) {
       path.shift();
       StepOrSidestep(who,path[0], [77,39]);
       if ((who.getx() === 77) && (who.gety() === 39)) { who.step = 2; }
@@ -2023,7 +2023,7 @@ ais.coll_open = function(who) {
     who.step = 3;
   } else if (who.step === 3) {
     let path = who.getHomeMap().getPath(who.getx(),who.gety(),76,38,MOVE_WALK);
-    if (path) {
+    if (path.length) {
       path.shift();
       StepOrSidestep(who,path[0], [76,38]);
       if ((who.getx() === 76) && (who.gety() === 38)) { who.step = 4; }
