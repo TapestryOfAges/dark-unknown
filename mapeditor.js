@@ -2508,23 +2508,30 @@ function InsideEditor() {
 }
 
 function findInsideAll(tgtx, tgty) {
+  InsideEditor();  // move to in-editor implementation if I ever bother finishing it
   if (!tgtx) {
     // fill in both from inside modal
   }
   let feas = amap.features.getAll();
   for (let i=0;i<feas.length;i++) {
-    if (feas[i].hasOwnProperty(inside)) {
+    if (feas[i].hasOwnProperty("inside") && (!feas[i].inside)) {
       findInside(feas[i], tgtx, tgty);
+      console.log(feas[i])
     }
   }
 }
 
 function findInside(door, tgtx, tgty) {
-  let testpath = amap.getPath(door.getx(),door.gety(),tgtx,tgty)
-  testpath.shift()
-  if ((testpath[0][0] == door.getx()) && (testpath[0][1] == door.gety()+1)) { door.inside = "N"; return "N"; }
-  if ((testpath[0][0] == door.getx()) && (testpath[0][1] == door.gety()-1)) { door.inside = "S"; return "S"; }
-  if ((testpath[0][0] == door.getx()+1) && (testpath[0][1] == door.gety())) { door.inside = "W"; return "W"; }
-  if ((testpath[0][0] == door.getx()-1) && (testpath[0][1] == door.gety())) { door.inside = "E"; return "E"; }
-  return null;
+  let testpath = amap.getPath(door.getx(),door.gety(),tgtx,tgty,MOVE_WALK_DOOR)
+  if (testpath.length) {
+    testpath.shift()
+    if ((testpath[0][0] == door.getx()) && (testpath[0][1] == door.gety()+1)) { door.inside = "N"; return "N"; }
+    if ((testpath[0][0] == door.getx()) && (testpath[0][1] == door.gety()-1)) { door.inside = "S"; return "S"; }
+    if ((testpath[0][0] == door.getx()+1) && (testpath[0][1] == door.gety())) { door.inside = "W"; return "W"; }
+    if ((testpath[0][0] == door.getx()-1) && (testpath[0][1] == door.gety())) { door.inside = "E"; return "E"; }
+    return null;
+  } else {
+    console.log("NO PATH:")
+    console.log(door)
+  }
 }
