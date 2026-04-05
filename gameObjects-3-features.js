@@ -5802,8 +5802,10 @@ EmptyBookshelfRightTile.prototype = new FeatureObject();
 function LooseFloorboardEWTile() {
   this.name = "LooseFloorboardEW";
   this.graphic = "static.gif";
-  this.spritexoffset = -6*32;
-  this.spriteyoffset = -7*32;
+  // this.spritexoffset = -6*32;
+  // this.spriteyoffset = -7*32;
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -86*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "wooden planks";
@@ -11588,7 +11590,7 @@ function PurpleCrystalTile() {
   this.prefix = "a";
   this.desc = "crystal";
   LightEmitting.call(this, 2);
-  this.peerview = PURPLE_CRYSTAL_PEER;
+  this.peerview = PURPLE_COBBLE_PEER;
   this.passable = MOVE_ETHEREAL;
 
   ManualAnimation.call(this, { 
