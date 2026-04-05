@@ -40,7 +40,7 @@ mappages["poverty"].terrain[33] = '.. .. .. .. .. ,, .. .. .. .. .. .. .. ., ., 
 mappages["poverty"].terrain[34] = '.. .. .. .. .. .. .. .. .. .. .. .. ., ., ., ., ., .. .. .. .. .. .. .. .. .. .. ff ff ff ff .. .. .. .. .. .. ff .. ..';
 
 mappages["poverty"].features = [];
-mappages["poverty"].features[0] = {name : 'Door', x : 19, y : 25};
+mappages["poverty"].features[0] = {name : 'Door', x : 19, y : 25, locked : 0, inside : "E"};
 mappages["poverty"].features[1] = {name : 'BookshelfLeft', x : 21, y : 24};
 mappages["poverty"].features[2] = {name : 'BookshelfRight', x : 22, y : 24};
 mappages["poverty"].features[3] = {name : 'BookshelfLeft', x : 25, y : 24};
@@ -236,7 +236,7 @@ mappages["poverty2"].terrain[33] = '.. .. .. .. .. ,, .. .. .. .. .. .. .. ., .,
 mappages["poverty2"].terrain[34] = '.. .. .. .. .. .. .. .. .. .. .. .. ., ., ., ., ., .. .. .. .. .. .. .. .. .. .. ff ff ff ff .. .. .. .. .. .. ff .. ..';
 
 mappages["poverty2"].features = [];
-mappages["poverty2"].features[0] = {name : 'Door', x : 19, y : 25};
+mappages["poverty2"].features[0] = {name : 'Door', x : 19, y : 25, locked : 0, inside : "E"};
 mappages["poverty2"].features[1] = {name : 'BookshelfLeft', x : 21, y : 24};
 mappages["poverty2"].features[2] = {name : 'BookshelfRight', x : 22, y : 24};
 mappages["poverty2"].features[3] = {name : 'BookshelfLeft', x : 25, y : 24};
