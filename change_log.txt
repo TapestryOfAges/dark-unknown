@@ -1,14 +1,18 @@
+v 0.11.4
+ * Fixed bug with the conversation help (hitting ? to get reminded of keywords you haven't responded to yet)
+
 v 0.11.3
  * Killing yourself with an AoE no longer claims you gained XP (you didn't)
  * Killing yourself with Explosion in some places is no longer a crash
  * NPC arrows and bolts point in the correct direction
- * [B] is now [B]attle Report, and briefly flashes a health bar above all visible NPCs
+ * [B] is now [B]attle Report, and briefly flashes a health bar in front of all visible NPCs
  * Updated help page
  * Coded animation for Fire and Ice
  * Implemented the last cave that was not yet made
  * Headless cave quest correctly completes in the journal
  * Intermittent dialog-doesn't-end bug fixed
  * Changed method by which monsters are prevented from getting too close to towns
+ * NPCs can no longer lock PCs into buildings
 
 v 0.11.2
  * When "Move Opens Doors" is on, bumping into a door that does something special when Used now works

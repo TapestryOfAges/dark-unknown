@@ -703,7 +703,8 @@ function DoAction(code, ctrl) {
           // only works if the Quest Journal is enabled
           let promptlist = "";
           for (let prompt in targetCursor.convprompts) {
-            if (!targetCursor.convsaid[prompt] && !prompt.match(/\d/) && !prompt.match(/_/)) {
+            let testprompt = prompt.substring(0,6).toLowerCase();
+            if (!targetCursor.convsaid[testprompt] && !prompt.match(/\d/) && !prompt.match(/_/)) {
               // during this conversation, we heard this prompt and haven't said it back yet
               // also, ignore prompts that are from redirects, not sure if they will get included but I suspect they might
               promptlist += ` ${prompt}`;
@@ -1493,7 +1494,7 @@ function DoAction(code, ctrl) {
     }
   }
   else if (gamestate.getMode() === "buy") {
-    if ((code === 27) || (code ===13)) {    // ESC or enter
+    if ((code === 27) || (code === 13)) {    // ESC or enter
       let convo = targetCursor.talkingto.getConversation();
       maintext.addText(" ");
       maintext.addText("You buy: Nothing.");
