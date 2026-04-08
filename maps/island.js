@@ -291,6 +291,9 @@ mappages["island"].onload = function(mapref) {
   
   CreateBeaches(mapref);
 
+  mapref.pathGrid[MOVE_WALK_MONSTER] = mapref.pathGrid[MOVE_WALK];
+  mapref.pathGrid[MOVE_LEVITATE_MONSTER] = mapref.pathGrid[MOVE_LEVITATE];
+
 }
 
 // MAP BEGINS HERE
