@@ -622,7 +622,8 @@ mappages["naurglen"].editorLabels = '{"div_tile66x16":"Evelyn","div_tile74x14":"
 
 mappages["naurglen"].naurglenexit = function(mapref) {
   mapref.Exit = function(who,tomap,oldx,oldy,destx,desty) {
-    if (oldx <= 49) { 
+    
+    if ((oldx <= 49) && (tomap.getName() !== "naurglen2")) { 
       return {newdest: {x: destx-1, y: desty}};
     }
   }
