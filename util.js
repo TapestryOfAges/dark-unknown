@@ -1865,78 +1865,15 @@ function IsPlainObject(obj) {
 }
 
 function BlockCivilized(mapref) {
-  const blocklist=[                               [16,104],  // Onyx
-                                        [15,105],           [17,105],
-                              [14,106],                               [18,106],
-                    [13,107],                                                   [19,107],
-                              [14,108],                               [18,108],
-                                        [15,109],           [17,109],
-                                                  [16,110],
-                                               [59,14],  // Poverty
-                                      [58,15],          [60,15],
-                             [57,16],                            [61,16],
-                    [56,17],                                              [62,17],
-                             [57,18],                            [61,18],
-                                      [58,19],          [60,19],
-                                               [59,20],
-                    [80,38], // Clear Lake
-                    [79,39], [81,39],
-                    [78,40], [82,40],
-                    [77,41], [83,41],
-                    [78,42], [82,42],
-                    [79,43], [81,43],
-                    [80,44],
-                    [52,60], // Hildendain
-                    [51,61], [53,61],
-                    [50,62], [54,62],
-                    [49,63], [55,63],
-                    [50,64], [54,64],
-                    [51,65], [53,65],
-                    [52,66],
-                    [67,69],[68,69],[69,69],[70,69],[71,69],[72,69],[73,69], // Capital region
-                    [66,70], [74,70],
-                    [65,71], [75,71],
-                    [64,72], [76,72],
-                    [64,73], [76,73],
-                    [64,74], [76,74],
-                    [65,75], [75,75],
-                    [66,76], [74,76],
-                    [67,77],[68,77],[69,77],[70,77],[71,77],[72,77],[73,77],
-                    [49,87], // Silverglade Keep
-                    [48,88], [50,88],
-                    [47,89], [51,89],
-                    [46,90], [51,90],
-                    [47,91], [51,91],
-                    [48,92], [50,92],
-                    [49,93],
-                    [109,98], // Swainhil
-                    [108,99], [110,99],
-                    [107,100], [111,100],
-                    [106,101], [112,101],
-                    [107,102], [111,102],
-                    [108,103], [110,103],
-                    [109,104],
-                    [123,11], // Beldskae
-                    [122,12], [124,12],
-                    [121,13], [125,13],
-                    [120,14], [126,14],
-                    [121,15], [125,15],
-                    [122,16], [124,16],
-                    [123,17]
-  ];
-
+  
   mapref.pathGrid[MOVE_WALK_MONSTER] = new PF.Grid(mapref.getWidth(), mapref.getHeight());
-  console.log(mapref.getTile(80,53).canMoveHere(MOVE_WALK, 1));
-  console.log(mapref.getTile(80,53).canMoveHere(MOVE_WALK_MONSTER, 1));
   mapref.pathGrid[MOVE_LEVITATE_MONSTER] = new PF.Grid(mapref.getWidth(), mapref.getHeight());
   for (let i=0; i<mapref.getWidth(); i++) {
     for (let j=0; j<mapref.getHeight(); j++) {
       let thisspot = mapref.getTile(i,j);
       let response = thisspot.canMoveHere(MOVE_WALK, 1);
       if (!response["canmove"]) { mapref.setWalkableAt(i,j,false,MOVE_WALK_MONSTER); }
-      else { 
-        console.log(`${i},${j}`);
-        mapref.setWalkableAt(i,j,true,MOVE_WALK_MONSTER); }
+      else { mapref.setWalkableAt(i,j,true,MOVE_WALK_MONSTER); }
       let pathweight;
       pathweight = thisspot.getPathWeight(); 
       if (!pathweight) { pathweight = 1; }
