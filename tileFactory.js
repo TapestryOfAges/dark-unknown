@@ -1318,6 +1318,11 @@ tileFactory.prototype.makePlaceholderTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeMonsterBlockerTile = function() {
+  let newTile = new MonsterBlockerTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSafeLavaTile = function() {
   let newTile = new SafeLavaTile();
   return newTile;
@@ -3728,6 +3733,16 @@ tileFactory.prototype.makePlatformOfVoidTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeOpenGraveTile = function() {
+  let newTile = new OpenGraveTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSkeletonUnburiedTile = function() {
+  let newTile = new SkeletonUnburiedTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeStormCloudTile = function() {
   let newTile = new StormCloudTile();
   return newTile;
@@ -3785,6 +3800,31 @@ tileFactory.prototype.makeRedCrystalTile = function() {
 
 tileFactory.prototype.makeWhiteCrystalTile = function() {
   let newTile = new WhiteCrystalTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePlanarGateActiveTile = function() {
+  let newTile = new PlanarGateActiveTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePlanarGateInactiveTile = function() {
+  let newTile = new PlanarGateInactiveTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePlanarGateIncompleteTile = function() {
+  let newTile = new PlanarGateIncompleteTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePlanarGateWalkOnTile = function() {
+  let newTile = new PlanarGateWalkOnTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePlanarKeyTile = function() {
+  let newTile = new PlanarKeyTile();
   return newTile;
 }
 
@@ -3980,6 +4020,11 @@ tileFactory.prototype.makeChaliceTile = function() {
 
 tileFactory.prototype.makeFrozenSunlightTile = function() {
   let newTile = new FrozenSunlightTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSpectralShovelTile = function() {
+  let newTile = new SpectralShovelTile();
   return newTile;
 }
 
@@ -5098,6 +5143,11 @@ tileFactory.prototype.makeAudachtaNemesosTimeStopTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeCircletOfIntellectTile = function() {
+  let newTile = new CircletOfIntellectTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeRingOfFireResistTile = function() {
   let newTile = new RingOfFireResistTile();
   return newTile;
@@ -5618,6 +5668,11 @@ tileFactory.prototype.makeFireSnakeNPCTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeLesserEphemeralSpiritNPCTile = function() {
+  let newTile = new LesserEphemeralSpiritNPCTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeLurkerNPCTile = function() {
   let newTile = new LurkerNPCTile();
   return newTile;
@@ -5750,6 +5805,11 @@ tileFactory.prototype.makeEttinSorcererNPCTile = function() {
 
 tileFactory.prototype.makeGiantNPCTile = function() {
   let newTile = new GiantNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGreaterEphemeralSpiritNPCTile = function() {
+  let newTile = new GreaterEphemeralSpiritNPCTile();
   return newTile;
 }
 
