@@ -260,7 +260,7 @@ function WaterTile() {
   this.spriteyoffset = -32;
   this.desc = "water";
   this.blocklos = 0;
-  this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
+  this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER;
   this.combatmap = "Water";
   this.peerview = WATER_PEER;
   this.walkSound = "water";
@@ -286,7 +286,7 @@ function WaterShallowsTransition0Tile() {
   this.spriteyoffset = -12*32;
   this.desc = "water";
   this.blocklos = 0;
-  this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
+  this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER;
   this.combatmap = "Water";
   this.peerview = WATER_PEER;
   this.walkSound = "water";
@@ -378,7 +378,7 @@ function ShallowsTile() {
   this.spriteyoffset = -2*32;
   this.desc = "shallow water";
   this.blocklos = 0;
-  this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
+  this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER;
   this.combatmap = "Water";
   this.peerview = SHALLOW_WATER_PEER;
   this.walkSound = "water";
@@ -402,7 +402,7 @@ function StillWaterTile() {
   this.graphic = "WaterCaveSheet.gif";
   this.desc = "stagnant water";
   this.blocklos = 0;
-  this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
+  this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER;
   this.spritexoffset = 0;
   this.spriteyoffset = 0;
   this.combatmap = "Water";
@@ -510,7 +510,7 @@ function MountainPassTile() {
   this.spriteyoffset = -117*32;
   this.desc = "mountains";
   this.blocklos = 1;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_WALK + MOVE_WALK_MONSTER;
   this.combatmap = "Hill";
   this.peerview = MOUNTAIN_PEER;
   this.walkSound = "hill";
@@ -569,7 +569,7 @@ function FancyFloorTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -4*32;
-  this.passable = MOVE_ETHEREAL + MOVE_FLY + MOVE_WALK + MOVE_LEVITATE;
+  this.passable = MOVE_ETHEREAL + MOVE_FLY + MOVE_WALK + MOVE_WALK_MONSTER + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER;
   this.blocklos = 0;
   this.prefix = "the";
   this.desc = "floor";
@@ -584,7 +584,7 @@ function FancyFloor2Tile() {
   this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -5*32;
-  this.passable = MOVE_ETHEREAL + MOVE_FLY + MOVE_WALK + MOVE_LEVITATE;
+  this.passable = MOVE_ETHEREAL + MOVE_FLY + MOVE_WALK + MOVE_WALK_MONSTER + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER;
   this.blocklos = 0;
   this.prefix = "the";
   this.desc = "floor";
@@ -599,7 +599,7 @@ function FancyFloor3Tile() {
   this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -7*32;
-  this.passable = MOVE_ETHEREAL + MOVE_FLY + MOVE_WALK + MOVE_LEVITATE;
+  this.passable = MOVE_ETHEREAL + MOVE_FLY + MOVE_WALK + MOVE_WALK_MONSTER + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER;
   this.blocklos = 0;
   this.prefix = "the";
   this.desc = "floor";
@@ -752,7 +752,7 @@ function FireplaceWallTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -15*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
@@ -780,7 +780,7 @@ function GreyFireplaceWallTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -18*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
@@ -850,7 +850,7 @@ function IllusionaryRuinsWallTile() {
   this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -13*32;
-  this.passable = MOVE_WALK + MOVE_LEVITATE + MOVE_ETHEREAL + MOVE_FLY;
+  this.passable = MOVE_WALK + MOVE_WALK_MONSTER + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_ETHEREAL + MOVE_FLY;
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
@@ -928,7 +928,7 @@ function PlanksNSTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -7*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "wooden planks";
   this.peerview = WOOD_PEER;
@@ -942,7 +942,7 @@ function DarkPlanksNSTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -7*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "wooden planks";
   this.peerview = WOOD_PEER;
@@ -956,7 +956,7 @@ function RoughPlanksNSTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -1*32;
   this.spriteyoffset = -7*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "wooden planks";
   this.peerview = WOOD_PEER;
@@ -970,7 +970,7 @@ function SouthCoastMeadowTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -52*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -985,7 +985,7 @@ function SouthCoastTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -52*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1000,7 +1000,7 @@ function SouthCoastSandTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -52*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1015,7 +1015,7 @@ function SouthCoastDirtTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -53*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1030,7 +1030,7 @@ function SouthCoastCaveTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -53*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1045,7 +1045,7 @@ function NorthCoastMeadowTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -55*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1060,7 +1060,7 @@ function NorthCoastTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -55*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1075,7 +1075,7 @@ function NorthCoastSandTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -55*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1090,7 +1090,7 @@ function NorthCoastDirtTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -55*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1105,7 +1105,7 @@ function NorthCoastCaveTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -55*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1120,7 +1120,7 @@ function EastCoastMeadowTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -56*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1135,7 +1135,7 @@ function EastCoastTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -56*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1156,7 +1156,7 @@ function EastCoastSandTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -56*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1171,7 +1171,7 @@ function EastCoastDirtTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -56*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1186,7 +1186,7 @@ function EastCoastCaveTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -56*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1201,7 +1201,7 @@ function WestCoastMeadowTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -57*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1216,7 +1216,7 @@ function WestCoastTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -57*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1231,7 +1231,7 @@ function WestCoastSandTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -57*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1246,7 +1246,7 @@ function WestCoastDirtTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -57*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1261,7 +1261,7 @@ function WestCoastCaveTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -57*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1277,7 +1277,7 @@ function NortheastCoastMeadowTile() {
   this.spriteyoffset = "0";
   //this.overlay = "necoast.gif";
   this.layers = [["static.gif","",-5*32,-51*32]];
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1295,7 +1295,7 @@ function NortheastCoastTile() {
   this.spriteyoffset = "0";
   //this.overlay = "necoast.gif";
   this.layers = [["static.gif","",-6*32,-51*32]];
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1313,7 +1313,7 @@ function NortheastCoastSandTile() {
   this.spriteyoffset = "0";
   //this.overlay = "necoast-sand.gif";
   this.layers = [["static.gif","",-7*32,-51*32]]
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1331,7 +1331,7 @@ function NortheastCoastDirtTile() {
   this.spriteyoffset = "0";
   //this.overlay = "necoast-sand.gif";
   this.layers = [["static.gif","",0,-53*32]]
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1349,7 +1349,7 @@ function NortheastCoastCaveTile() {
   this.spriteyoffset = "0";
   //this.overlay = "necoast-sand.gif";
   this.layers = [["static.gif","",-1*32,-53*32]]
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1367,7 +1367,7 @@ function SouthwestCoastMeadowTile() {
   this.spriteyoffset = "0";
 //  this.overlay = "swcoast.gif";
   this.layers = [["static.gif","",-5*32,-50*32]];
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1385,7 +1385,7 @@ function SouthwestCoastTile() {
   this.spriteyoffset = "0";
 //  this.overlay = "swcoast.gif";
   this.layers = [["static.gif","",-6*32,-50*32]];
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1403,7 +1403,7 @@ function SouthwestCoastSandTile() {
   this.spriteyoffset = "0";
   //this.overlay = "swcoast-sand.gif";
   this.layers = [["static.gif","",-7*32,-50*32]];
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1421,7 +1421,7 @@ function SouthwestCoastDirtTile() {
   this.spriteyoffset = "0";
   //this.overlay = "swcoast-sand.gif";
   this.layers = [["static.gif","",-8*32,-50*32]];
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1439,7 +1439,7 @@ function SouthwestCoastCaveTile() {
   this.spriteyoffset = "0";
   //this.overlay = "swcoast-sand.gif";
   this.layers = [["static.gif","",-9*32,-50*32]];
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1457,7 +1457,7 @@ function NorthwestCoastMeadowTile() {
   this.spriteyoffset = "0";
 //  this.overlay = "nwcoast.gif";
   this.layers = [["static.gif","",0,-52*32]];
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1475,7 +1475,7 @@ function NorthwestCoastTile() {
   this.spriteyoffset = "0";
 //  this.overlay = "nwcoast.gif";
   this.layers = [["static.gif","",-32,-52*32]];
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1493,7 +1493,7 @@ function NorthwestCoastSandTile() {
   this.spriteyoffset = "0";
 //  this.overlay = "nwcoast-sand.gif";
   this.layers = [["static.gif","",-2*32,-52*32]];
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1511,7 +1511,7 @@ function NorthwestCoastDirtTile() {
   this.spriteyoffset = "0";
 //  this.overlay = "nwcoast-sand.gif";
   this.layers = [["static.gif","",-3*32,-52*32]];
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1529,7 +1529,7 @@ function NorthwestCoastCaveTile() {
   this.spriteyoffset = "0";
 //  this.overlay = "nwcoast-sand.gif";
   this.layers = [["static.gif","",-4*32,-52*32]];
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1547,7 +1547,7 @@ function SoutheastCoastMeadowTile() {
   this.spriteyoffset = "0";
 //  this.overlay = "secoast.gif";
   this.layers = [["static.gif","",0,-51*32]];
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1565,7 +1565,7 @@ function SoutheastCoastTile() {
   this.spriteyoffset = "0";
 //  this.overlay = "secoast.gif";
   this.layers = [["static.gif","",-32,-51*32]];
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1583,7 +1583,7 @@ function SoutheastCoastSandTile() {
   this.spriteyoffset = "0";
   //this.overlay = "secoast-sand.gif";
   this.layers = [["static.gif","",-2*32,-51*32]];
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1601,7 +1601,7 @@ function SoutheastCoastDirtTile() {
   this.spriteyoffset = "0";
   //this.overlay = "secoast-sand.gif";
   this.layers = [["static.gif","",-3*32,-51*32]];
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1619,7 +1619,7 @@ function SoutheastCoastCaveTile() {
   this.spriteyoffset = "0";
   //this.overlay = "secoast-sand.gif";
   this.layers = [["static.gif","",-4*32,-51*32]];
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1638,7 +1638,7 @@ function SouthLavaCoastMeadowTile() {
   this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -48*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1653,7 +1653,7 @@ function SouthLavaCoastTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -1*32;
   this.spriteyoffset = -48*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1668,7 +1668,7 @@ function SouthLavaCoastSandTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -48*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1683,7 +1683,7 @@ function SouthLavaCoastDirtTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -48*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1698,7 +1698,7 @@ function SouthLavaCoastCaveTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -48*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1713,7 +1713,7 @@ function NorthLavaCoastMeadowTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -48*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1728,7 +1728,7 @@ function NorthLavaCoastTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -48*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1743,7 +1743,7 @@ function NorthLavaCoastSandTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -48*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1758,7 +1758,7 @@ function NorthLavaCoastDirtTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -48*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1773,7 +1773,7 @@ function NorthLavaCoastCaveTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -48*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1788,7 +1788,7 @@ function EastLavaCoastMeadowTile() {
   this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -49*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1803,7 +1803,7 @@ function EastLavaCoastTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -1*32;
   this.spriteyoffset = -49*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1818,7 +1818,7 @@ function EastLavaCoastSandTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -49*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1833,7 +1833,7 @@ function EastLavaCoastDirtTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -49*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1848,7 +1848,7 @@ function EastLavaCoastCaveTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -49*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1863,7 +1863,7 @@ function WestLavaCoastMeadowTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -49*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1878,7 +1878,7 @@ function WestLavaCoastTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -49*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1893,7 +1893,7 @@ function WestLavaCoastSandTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -49*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1908,7 +1908,7 @@ function WestLavaCoastDirtTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -49*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1923,7 +1923,7 @@ function WestLavaCoastCaveTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -49*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1939,7 +1939,7 @@ function SouthwestLavaCoastDirtTile() {
   this.spriteyoffset = 0;
   //this.overlay = "swcoast-sand.gif";
   this.layers = [["static.gif","",-2*32,-59*32]];
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1957,7 +1957,7 @@ function SouthwestLavaCoastCaveTile() {
   this.spriteyoffset = 0;
   //this.overlay = "swcoast-sand.gif";
   this.layers = [["static.gif","",-3*32,-59*32]];
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1975,7 +1975,7 @@ function SoutheastLavaCoastDirtTile() {
   this.spriteyoffset = 0;
   //this.overlay = "swcoast-sand.gif";
   this.layers = [["static.gif","",-8*32,-119*32]];
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -1993,7 +1993,7 @@ function SoutheastLavaCoastCaveTile() {
   this.spriteyoffset = 0;
   //this.overlay = "swcoast-sand.gif";
   this.layers = [["static.gif","",-9*32,-119*32]];
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -2011,7 +2011,7 @@ function NortheastLavaCoastDirtTile() {
   this.spriteyoffset = 0;
   //this.overlay = "swcoast-sand.gif";
   this.layers = [["static.gif","",-7*32,-115*32]];
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -2029,7 +2029,7 @@ function NortheastLavaCoastCaveTile() {
   this.spriteyoffset = 0;
   //this.overlay = "swcoast-sand.gif";
   this.layers = [["static.gif","",-7*32,-116*32]];
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -2047,7 +2047,7 @@ function NorthwestLavaCoastDirtTile() {
   this.spriteyoffset = 0;
   //this.overlay = "swcoast-sand.gif";
   this.layers = [["static.gif","",-4*32,-177*32]];
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -2065,7 +2065,7 @@ function NorthwestLavaCoastCaveTile() {
   this.spriteyoffset = 0;
   //this.overlay = "swcoast-sand.gif";
   this.layers = [["static.gif","",-5*32,-177*32]];
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
@@ -2085,7 +2085,7 @@ function RiverTile() {
 //  this.graphic = "water.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -32;
-  this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
+  this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_FLY;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "river";
@@ -2175,7 +2175,7 @@ function RedCobblestoneTile() {
   this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -6*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "cobblestones";
   this.peerview = RED_COBBLE_PEER;
@@ -2189,7 +2189,7 @@ function BlueCobblestoneTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -6*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "cobblestones";
   this.peerview = BLUE_COBBLE_PEER;
@@ -2203,7 +2203,7 @@ function BlackCobblestoneTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -6*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "cobblestones";
   this.peerview = BLACK_COBBLE_PEER;
@@ -2217,7 +2217,7 @@ function CrackedBlackCobblestoneTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -6*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "cobblestones";
   this.peerview = BLACK_COBBLE_PEER;
@@ -2231,7 +2231,7 @@ function CobblestoneTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -6*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "cobblestones";
   this.peerview = COBBLE_PEER;
@@ -2245,7 +2245,7 @@ function BrokenCobblestoneTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -6*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "cobblestones";
   this.peerview = COBBLE_PEER;
@@ -2259,7 +2259,7 @@ function FadedCobblestoneTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -85*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "cobblestones";
   this.peerview = CLAY_PEER;
@@ -2273,7 +2273,7 @@ function FadedCobblestone2Tile() {
   this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -86*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "cobblestones";
   this.peerview = CLAY_PEER;
@@ -2287,7 +2287,7 @@ function TitanFloor1Tile() {
   this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -58*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "large pavers";
   this.peerview = CLAY_PEER;
@@ -2301,7 +2301,7 @@ function TitanFloor2Tile() {
   this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -58*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "large pavers";
   this.peerview = CLAY_PEER;
@@ -2315,7 +2315,7 @@ function TitanFloor3Tile() {
   this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -58*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "large pavers";
   this.peerview = CLAY_PEER;
@@ -2329,7 +2329,7 @@ function TitanFloor4Tile() {
   this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -58*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "large pavers";
   this.peerview = CLAY_PEER;
@@ -2344,7 +2344,7 @@ function ClayPaversTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -86*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "clay brick floor";
   this.peerview = CLAY_PEER;
@@ -2358,7 +2358,7 @@ function FadedWoodNSTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -86*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "wood floor";
@@ -2373,7 +2373,7 @@ function FadedWoodEWTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -86*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "wood floor";
@@ -2388,7 +2388,7 @@ function BlueTileFloorTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -86*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "blue tile floor";
@@ -2403,7 +2403,7 @@ function BlueMarbleTileFloorTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -86*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "tile floor";
@@ -2418,7 +2418,7 @@ function GreenTileFloorTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -86*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "tile floor";
@@ -2433,7 +2433,7 @@ function GreenCheckeredTileFloorTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -86*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "tile floor";
@@ -2448,7 +2448,7 @@ function StonePaverTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -86*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "stone paver";
@@ -2463,7 +2463,7 @@ function StonePaver2Tile() {
   this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -86*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "stone paver";
@@ -2478,7 +2478,7 @@ function RedTileFloorTile() {
   this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -87*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "tile floor";
@@ -2493,7 +2493,7 @@ function DarkBlueTileFloorTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -87*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "tile floor";
@@ -2508,7 +2508,7 @@ function BrokenTileFloorTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -87*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "tile floor";
@@ -2523,7 +2523,7 @@ function GreyTileFloorTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -87*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "tile floor";
@@ -2538,7 +2538,7 @@ function FadedFancyFloorTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -87*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "floor";
   this.peerview = GREEN_FLOOR_PEER;
@@ -2552,7 +2552,7 @@ function FadedFancyFloor2Tile() {
   this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -87*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "floor";
   this.peerview = FANCY_TILE_PEER;
@@ -2566,7 +2566,7 @@ function FadedFancyFloor3Tile() {
   this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -87*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "floor";
   this.peerview = FANCY_TILE_PEER;
@@ -2580,7 +2580,7 @@ function CrackedStoneFloorTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -87*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "floor";
   this.peerview = CRACKED_STONE_PEER;
@@ -2594,7 +2594,7 @@ function FadedDarkWoodNSTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -87*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "floor";
   this.peerview = DARK_FADED_WOOD_PEER;
@@ -2608,7 +2608,7 @@ function CobblestoneRoadTile() {
   this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -5*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "cobblestones";
   this.peerview = COBBLE_PEER;
@@ -2623,7 +2623,7 @@ function PurpleCobblestoneRoadTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -5*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "cobblestones";
   this.peerview = PURPLE_COBBLE_PEER;
@@ -2638,7 +2638,7 @@ function PlanksEWTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -7*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "wooden planks";
   this.peerview = WOOD_PEER;
@@ -2652,7 +2652,7 @@ function DarkPlanksEWTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -7*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "wooden planks";
   this.peerview = WOOD_PEER;
@@ -2666,7 +2666,7 @@ function RoughPlanksEWTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -7*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "wooden planks";
   this.peerview = WOOD_PEER;
@@ -2680,7 +2680,7 @@ function MeadowTile() {
   this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "grass";
   this.peerview = MEADOW_PEER;
@@ -2695,7 +2695,7 @@ function GrassTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "grass";
   this.peerview = GRASS_PEER;
@@ -2717,7 +2717,7 @@ function DirtTile() {
   this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -2*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "dirt";
   this.combatmap = "Grass";
@@ -2732,7 +2732,7 @@ function DirtScrubTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -2*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "dirt";
   this.combatmap = "Grass";
@@ -2747,7 +2747,7 @@ function FallowFarmTile() {
   this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "dirt";
   this.combatmap = "Grass";
@@ -2762,7 +2762,7 @@ function FarmTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "dirt";
   this.combatmap = "Grass";
@@ -2777,7 +2777,7 @@ function FallowFarm2Tile() {
   this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "dirt";
   this.combatmap = "Grass";
@@ -2792,7 +2792,7 @@ function Farm2Tile() {
   this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "dirt";
   this.combatmap = "Grass";
@@ -2807,7 +2807,7 @@ function RoadTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -9*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "dirt road";
@@ -2829,7 +2829,7 @@ function RoadWNTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -8*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "dirt road";
@@ -2849,7 +2849,7 @@ function BrushTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "brush";
   this.initdelay = 1.1;
@@ -2866,7 +2866,7 @@ function BushesTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "bushes";
   this.initdelay = 1.2;
@@ -2883,7 +2883,7 @@ function UnderbrushTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "grass";
   this.initdelay = 1.1;
@@ -2900,7 +2900,7 @@ function SandTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "sand";
   this.initdelay = 1.1;
@@ -2917,7 +2917,7 @@ function SandVegetationTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "sand";
   this.initdelay = 1.1;
@@ -2934,7 +2934,7 @@ function BrushNCoastTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -45*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "brush";
   this.initdelay = 1.1;
@@ -2950,7 +2950,7 @@ function BrushECoastTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -45*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "brush";
   this.initdelay = 1.1;
@@ -2967,7 +2967,7 @@ function BrushSCoastTile() {
   this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -45*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "brush";
   this.initdelay = 1.1;
@@ -2984,7 +2984,7 @@ function BrushWCoastTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -45*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "brush";
   this.initdelay = 1.1;  
@@ -3001,7 +3001,7 @@ function ForestTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = .5;
 //	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
@@ -3352,7 +3352,7 @@ function HillsTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "hills";
   this.initdelay = 1.5;
@@ -3369,7 +3369,7 @@ function Hills1Tile() {
   this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -7*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "hills";
   this.initdelay = 1.5;
@@ -3386,7 +3386,7 @@ function Hills2Tile() {
   this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -18*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "hills";
   this.initdelay = 1.5;
@@ -3403,7 +3403,7 @@ function SwampTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blocklos = 0;
   this.desc = "swamp";
   this.initdelay = 1.2;
@@ -3509,7 +3509,7 @@ function IcyFloorTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -3*32;  
-	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
 	this.blocklos = 0;
 	this.prefix = "an";
 	this.desc = "icy floor";
@@ -3524,7 +3524,7 @@ function Icy2FloorTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -3*32;  
-	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
 	this.blocklos = 0;
 	this.prefix = "an";
 	this.desc = "icy floor";
@@ -3539,7 +3539,7 @@ function CaveFloorTile() {
   this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -3*32;  
-	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
 	this.blocklos = 0;
 	this.prefix = "a";
 	this.desc = "cave floor";
@@ -3587,7 +3587,7 @@ function RoughStoneFloorTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -5*32;
-	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
 	this.blocklos = 0;
 	this.desc = "floor";
 	this.peerview = ROAD_PEER;
@@ -3601,7 +3601,7 @@ function LightRoughStoneFloorTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -5*32;
-	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
 	this.blocklos = 0;
 	this.desc = "floor";
 	this.peerview = ROAD_PEER;
@@ -3616,7 +3616,7 @@ function HexTransparentFloorTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -10*32;
-	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
 	this.blocklos = 0;
 	this.desc = "floor";
 	this.peerview = BLACK_COBBLE_PEER;
@@ -3630,7 +3630,7 @@ function CyanCobblestoneTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -6*32;
-	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
 	this.blocklos = 0;
 	this.desc = "floor";
 	this.peerview = CYAN_COBBLE_PEER;
@@ -3644,7 +3644,7 @@ function GreenCobblestoneTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -6*32;
-	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
 	this.blocklos = 0;
 	this.desc = "floor";
 	this.peerview = GREEN_COBBLE_PEER;
@@ -3658,7 +3658,7 @@ function GreenCheckeredFloorTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -6*32;
-	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
 	this.blocklos = 0;
 	this.desc = "floor";
 	this.peerview = GREEN_CHECKERED_PEER;
@@ -3672,7 +3672,7 @@ function YellowCheckeredFloorTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -6*32;
-	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
 	this.blocklos = 0;
 	this.desc = "floor";
 	this.peerview = "#f4e5a0";
@@ -3685,7 +3685,7 @@ function LavaTubeTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = 0;
-	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
 	this.blocklos = 0;
 	this.prefix = "a";
 	this.desc = "lava tube";
