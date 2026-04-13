@@ -113,6 +113,17 @@ function PlaceholderTile() {
 }
 PlaceholderTile.prototype = new FeatureObject();
 
+function MonsterBlockerTile() {
+  // For PCs to be able to move through but block monster movement
+  this.name = "MonsterBlocker";
+  this.graphic = "spacer.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK + MOVE_SWIM;
+  this.blocklos = 0;
+  this.desc = "nothing";
+  this.invisible = 1;
+}
+MonsterBlockerTile.prototype = new FeatureObject();
+
 function SafeLavaTile() {
   //Graphic Upgraded
   this.name = "SafeLava";
