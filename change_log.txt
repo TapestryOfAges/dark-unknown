@@ -1,5 +1,12 @@
 v 0.11.4
  * Fixed bug with the conversation help (hitting ? to get reminded of keywords you haven't responded to yet)
+ * Fixed bug introduced when I changed the method of preventing monsters from getting too close to towns
+ * Robert didn't have all of the required merchant dialog
+ * Ghost Inn no longer forgets where you entered from if you save/reload
+ * Guard patrols and the Courier are except from being kept away from towns
+ * Robber enemy groups can no longer spawn very close to Onyx
+ * Magic map no longer sees things you don't
+ * Fixed some bugs with the magic map when you transition into Act 2
 
 v 0.11.3
  * Killing yourself with an AoE no longer claims you gained XP (you didn't)
