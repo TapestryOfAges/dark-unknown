@@ -112,10 +112,14 @@ mappages["hotelcalifornia0"].onload = function(mapref) {
     h8.setExitToX(PC.getx());
     h8.setExitToY(PC.gety());
 
+    let placeholder = h8.getTile(10,9).getTopFeature();
+    placeholder.heldx = PC.getx();
+    placeholder.heldy = PC.gety();
+
     let h7 = maps.getMap("hotelcalifornia7");
     h7.setExitToX(PC.getx());
     h7.setExitToY(PC.gety());
-  }
+  } 
 }
 
 // MAP BEGINS HERE
@@ -826,7 +830,7 @@ mappages["hotelcalifornia7"].underground = '0';
 mappages["hotelcalifornia7"].undergroundDesc = '';
 mappages["hotelcalifornia7"].enterscript = '';
 mappages["hotelcalifornia7"].entertestscript = '';
-mappages["hotelcalifornia7"].exitscript = '';
+mappages["hotelcalifornia7"].exitscript = 'h7exit';
 mappages["hotelcalifornia7"].exittestscript = '';
 mappages["hotelcalifornia7"].returnmap = '';
 mappages["hotelcalifornia7"].returnx = 'NaN';
@@ -835,6 +839,18 @@ mappages["hotelcalifornia7"].returninfused = '0';
 mappages["hotelcalifornia7"].automap = '0';
 mappages["hotelcalifornia7"].linkedMaps = ["hotelcalifornia0","hotelcalifornia","hotelcalifornia2","hotelcalifornia3","hotelcalifornia4","hotelcalifornia5","hotelcalifornia6","hotelcalifornia8"];
 mappages["hotelcalifornia7"].editorLabels = '{}';
+
+mappages["hotelcalifornia7"].h7exit = function(mapref) {
+  mapref.Exit = function(who,tomap,oldx,oldy,destx,desty) {
+    if (tomap.getName() === "ellusus") {
+      let h8 = maps.getMap("hotelcalifornia8");
+      let placeholder = h8.getTile(10,9).getTopFeature();
+      if (placeholder.hasOwnProperty("heldx")) {
+        return {newdest: {x: placeholder.heldx, y: placeholder.heldy}};
+      }
+    }
+  }
+}
 
 mappages["hotelcalifornia8"] = {};
 mappages["hotelcalifornia8"].terrain = [];
@@ -903,7 +919,7 @@ mappages["hotelcalifornia8"].underground = '0';
 mappages["hotelcalifornia8"].undergroundDesc = '';
 mappages["hotelcalifornia8"].enterscript = '';
 mappages["hotelcalifornia8"].entertestscript = '';
-mappages["hotelcalifornia8"].exitscript = '';
+mappages["hotelcalifornia8"].exitscript = 'h8exit';
 mappages["hotelcalifornia8"].exittestscript = '';
 mappages["hotelcalifornia8"].returnmap = '';
 mappages["hotelcalifornia8"].returnx = 'NaN';
@@ -912,3 +928,12 @@ mappages["hotelcalifornia8"].returninfused = '0';
 mappages["hotelcalifornia8"].automap = '1';
 mappages["hotelcalifornia8"].linkedMaps = ["hotelcalifornia0","hotelcalifornia","hotelcalifornia2","hotelcalifornia3","hotelcalifornia4","hotelcalifornia5","hotelcalifornia6","hotelcalifornia7"];
 mappages["hotelcalifornia8"].editorLabels = '{}';
+
+mappages["hotelcalifornia8"].h8exit = function(mapref) {
+  mapref.Exit = function(who,tomap,oldx,oldy,destx,desty) {
+    let placeholder = mapref.getTile(10,9).getTopFeature();
+    if (placeholder.hasOwnProperty("heldx")) {
+      return {newdest: {x: placeholder.heldx, y: placeholder.heldy}};
+    }
+  }
+}
