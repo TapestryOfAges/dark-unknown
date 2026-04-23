@@ -160,7 +160,7 @@ function MainViewDrawTile(themap, centerx, centery, j, i, tp, ev, displayspecs) 
       mview.innerHTML += "<div style='background-image: url(\"graphics/static.gif\"); background-position:0px -3104px; position:absolute;left:0px;top:0px;width:32px;height:32px' ></div>";
     }  
   }
-  if (mapmagic.active) {
+  if (mapmagic.active && (ev || (thiscell[0].lighthere >= SHADOW_THRESHOLD) && (thiscell[0].losresult < LOS_THRESHOLD))) {
     let tile = themap.getTile(j,i);
     let fea = tile.getTopVisibleFeature();
     if (fea && (fea.getPeerview() !== PEER_COLORS[0])) {
