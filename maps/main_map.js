@@ -578,7 +578,7 @@ function Placespawns(mapref) {
 
   onyxspawn.setSpawngroup(onyxgroup);
   onyxspawn.setMaxSpawns(2);
-  onyxspawn.setSpawnRadius(3);
+  onyxspawn.setSpawnRadius(2);
   onyxspawn.setSpawnLeash(15);
   onyxspawn.setSpawnSoftLeash(10);
 
@@ -602,7 +602,7 @@ function Placespawns(mapref) {
   onyxspawn.setSpawnFreq(freq);
   
 //  mapref.placeThing(56,119,onyxspawn);
-  mapref.placeThing(20,106,onyxspawn);
+  mapref.placeThing(22,107,onyxspawn);
 
       
   // center of NW island
@@ -1554,12 +1554,13 @@ mappages["ellusus"].onload = function(mapref) {
       shrine.gotox = 56;
       shrine.gotoy = 15;
     }
+    BlockCivilized(mapref);
   }
   CreateNetwork(mapref);
   
   CreateBeaches(mapref);
 
-  BlockCivilized(mapref);
+  CreateMonsterPaths(mapref);
 }
 
 
@@ -1633,7 +1634,7 @@ mappages["gnomeland"].exittestscript = '';
 mappages["gnomeland"].returnmap = '';
 mappages["gnomeland"].returnx = '';
 mappages["gnomeland"].returny = '';
-mappages["ellusus"].automap = '0';
+mappages["gnomeland"].automap = '0';
 mappages["gnomeland"].returninfused = '0';
 mappages["gnomeland"].linkedMaps = [""];
 
