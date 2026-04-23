@@ -1119,8 +1119,11 @@ mappages["blackdragon_int"].onload = function(mapref) {
 
 mappages["blackdragon_int"].maps_enter = function(mapref) {
   mapref.Enter = function(who,frommap,fromx,fromy,tox,toy) {
-    if (frommap.getName() === "landsbeyond") {
-      mapmagic["blackdragon_int"] = JSON.parse(JSON.stringify(mapmagic["blackdragon"]));
+    if ((who === PC) && frommap && (frommap.getName() === "landsbeyond")) {
+      console.log("Updating magic map.");
+      if (mapmagic.hasOwnProperty("blackdragon")) {
+        mapmagic["blackdragon_int"] = JSON.parse(JSON.stringify(mapmagic["blackdragon"]));
+      }
     }
   }
 }
@@ -1130,7 +1133,9 @@ mappages["blackdragon_int"].maps_exit = function(mapref) {
       if (DU.gameflags.getFlag("lid_lancenotes") && !PC.checkInventory("LanceRuneNotes")) {
         DU.gameflags.deleteFlag("lid_lancenotes");
       }
-      mapmagic["blackdragon"] = JSON.parse(JSON.stringify(mapmagic["blackdragon_int"]));
+      if (mapmagic.hasOwnProperty("blackdragon")) {
+        mapmagic["blackdragon"] = JSON.parse(JSON.stringify(mapmagic["blackdragon_int"]));
+      }
     }
   }
 }
