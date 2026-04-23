@@ -1291,7 +1291,7 @@ function BumpIntoDoor(door,who) {
     }
   } else if (DU.gameflags.getFlag("move_opens_doors") && door.locked && (who === PC)) {
     retval["msg"] = "Locked.";
-    if (door.lockedsound && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety()) < 6) && (PC.getHomeMap() === mymap)) {
+    if (door.lockedsound && (GetDistance(PC.getx(),PC.gety(),door.getx(),door.gety()) < 6) && (PC.getHomeMap() === mymap)) {
 		  DUPlaySound(door.lockedsound); 
 		}
   }
@@ -1864,8 +1864,8 @@ function IsPlainObject(obj) {
   return typeof Ctor === "function" && fnToString.call(Ctor) === ObjectFunctionString;
 }
 
-function BlockCivilized(mapref) {
-  
+
+function CreateMonsterPaths(mapref) {  
   mapref.pathGrid[MOVE_WALK_MONSTER] = new PF.Grid(mapref.getWidth(), mapref.getHeight());
   mapref.pathGrid[MOVE_LEVITATE_MONSTER] = new PF.Grid(mapref.getWidth(), mapref.getHeight());
   for (let i=0; i<mapref.getWidth(); i++) {
@@ -1885,9 +1885,15 @@ function BlockCivilized(mapref) {
       mapref.setWeightAt(i,j,pathweight,MOVE_LEVITATE_MONSTER);      
     }
   }
+}
+
+function BlockCivilized(mapref) {
   for (let idx=0;idx<blocklist.length;idx++) {
     mapref.setWalkableAt(blocklist[idx][0],blocklist[idx][1],false,MOVE_WALK_MONSTER);
     mapref.setWalkableAt(blocklist[idx][0],blocklist[idx][1],false,MOVE_LEVITATE_MONSTER);
+
+    let newmonsterblocker = localFactory.createTile("MonsterBlocker");
+    mapref.placeThing(blocklist[idx][0],blocklist[idx][1],newmonsterblocker);
   }
 
 }
