@@ -1342,7 +1342,7 @@ NPCObject.prototype.activate = function(timeoverride) {
     this.startx = this.getx();
     this.starty = this.gety();
 
-    if (this.getHomeMap().getName() === "ellusus") {
+    if ((this.getHomeMap().getName() === "ellusus") && (!this.getName().includes("Guard")) && (!this.getName().includes("Courier"))) {
       if (this.getMovetype() === MOVE_WALK) { this.setMovetype(MOVE_WALK_MONSTER); }
       else if (this.getMovetype() === MOVE_LEVITATE) { this.setMovetype(MOVE_LEVITATE_MONSTER); }
     }

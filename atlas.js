@@ -564,11 +564,12 @@ Acre.prototype.canMoveHere = function(movetype, nonpcs) {
 	
   let doors = 0;
   if (movetype & MOVE_WALK_DOOR) { 
-    movetype -= MOVE_WALK; 
+    movetype -= MOVE_WALK_DOOR; 
+    movetype += MOVE_WALK;
     doors = 1;
   }
   
-	let featurepassability = MOVE_FLY + MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	let featurepassability = MOVE_FLY + MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK + MOVE_WALK_MONSTER + MOVE_LEVITATE_MONSTER;
   let features = this.getFeatures();
   let bridge = 0;
 	if (features[0]) {

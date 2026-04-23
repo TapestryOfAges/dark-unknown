@@ -1163,7 +1163,7 @@ function DungeonTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -3*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK + MOVE_WALK_MONSTER + MOVE_LEVITATE_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "dungeon entrance";
@@ -1179,7 +1179,7 @@ function Dungeon2Tile() {
   this.graphic = "static.gif";
   this.spritexoffset = 0;
   this.spriteyoffset = -40*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK + MOVE_WALK_MONSTER + MOVE_LEVITATE_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "dungeon entrance";
@@ -1195,7 +1195,7 @@ function Dungeon3Tile() {
   this.graphic = "static.gif";
   this.spritexoffset = -32;
   this.spriteyoffset = -40*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK + MOVE_WALK_MONSTER + MOVE_LEVITATE_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "dungeon entrance";
@@ -1211,7 +1211,7 @@ function Dungeon4Tile() {
   this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -40*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK + MOVE_WALK_MONSTER + MOVE_LEVITATE_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "dungeon entrance";
@@ -1227,7 +1227,7 @@ function Dungeon5Tile() {
   this.graphic = "static.gif";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -40*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK + MOVE_WALK_MONSTER + MOVE_LEVITATE_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "dungeon entrance";
@@ -1243,7 +1243,7 @@ function Dungeon6Tile() {
   this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -40*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK + MOVE_WALK_MONSTER + MOVE_LEVITATE_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "dungeon entrance";
@@ -1259,7 +1259,7 @@ function Dungeon7Tile() {
   this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -40*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK + MOVE_WALK_MONSTER + MOVE_LEVITATE_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "dungeon entrance";
@@ -1275,7 +1275,7 @@ function CaveTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -3*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK + MOVE_WALK_MONSTER + MOVE_LEVITATE_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "cave entrance";
@@ -1889,7 +1889,7 @@ function ShrineTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -3*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK + MOVE_WALK_MONSTER + MOVE_LEVITATE_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "gate";
@@ -1903,7 +1903,7 @@ function BrokenShrineTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -3*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK + MOVE_WALK_MONSTER + MOVE_LEVITATE_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "broken gate";
@@ -4931,7 +4931,7 @@ function WBridgeNSTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -2*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK + MOVE_WALK_MONSTER + MOVE_LEVITATE_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bridge";
@@ -4947,7 +4947,7 @@ function EBridgeNSTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -2*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK + MOVE_WALK_MONSTER + MOVE_LEVITATE_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bridge";
@@ -4963,7 +4963,7 @@ function BridgeNSTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -2*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK + MOVE_WALK_MONSTER + MOVE_LEVITATE_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bridge";
@@ -4995,7 +4995,7 @@ function NBridgeEWTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -2*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK + MOVE_WALK_MONSTER + MOVE_LEVITATE_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bridge";
@@ -5011,7 +5011,7 @@ function SBridgeEWTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -2*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK + MOVE_WALK_MONSTER + MOVE_LEVITATE_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bridge";
@@ -5027,7 +5027,7 @@ function BridgeEWTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -2*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK + MOVE_WALK_MONSTER + MOVE_LEVITATE_MONSTER;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bridge";
