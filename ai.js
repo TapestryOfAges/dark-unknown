@@ -1465,7 +1465,7 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
           who.setCurrentPath(path);
           who.setDestination({x: who.homex, y: who.homey}, dur);
           who.setDestinationType("spawn");
-          DebugWrite("ai", "Set path to: " + spawnedby.getx() + ", " + spawnedby.gety() + "<br />");
+          DebugWrite("ai", "Set path to: " + spawnedby.getx() + ", " + spawnedby.gety() + " (Spawner)<br />");
           retval["fin"] = 1;
           return retval;
         }
