@@ -915,6 +915,10 @@ function submitEditNPC(change) {
 function changemaptile(xval,yval,toTerrain) {
   if (!toTerrain) { toTerrain = selectionval; }
   amap.setTerrain(xval,yval,toTerrain);
+  if (amap.hasOwnProperty("transover")) {
+    let coords = `${xval},${yval}`;
+    delete amap.transover[coords];
+  }
   setTimeout(function() { RedrawTile(xval,yval); }, 1);
 }
 
