@@ -7039,7 +7039,7 @@ function WaterfallFlowTile() {
   this.name = "WaterfallFlow";
   this.graphic = "walkon.gif";
   this.invisible = 1;
-  this.passable = MOVE_SWIM + MOVE_LEVITATE + MOVE_ETHEREAL + MOVE_FLY;
+  this.passable = MOVE_ETHEREAL + MOVE_FLY;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "waterfall flow walkon";
