@@ -11716,10 +11716,12 @@ function PlanarGateActiveTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -106*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "planar gate";
 
+  HasAmbientNoise.call(this,"sfx_portal_ambient",1.5);
+  
   ManualAnimation.call(this, { animstart: 4,
     animlength: 5,
     animstyle: "random",
@@ -11732,12 +11734,29 @@ function PlanarGateActiveTile() {
 }
 PlanarGateActiveTile.prototype = new FeatureObject();
 
+PlanarGateActiveTile.prototype.bumpinto = function(who) {
+  let pkey = who.checkInventory("PlanarKey");
+  if (pkey.contents === "gold") {
+
+  } else if (pkey.contents === "silver") {
+
+  } else if (pkey.contents === "tin") {
+
+  } else if (pkey.contents === "iron") {
+
+  } else if (pkey.contents === "antimony") {
+
+  } else {
+    
+  }
+}
+
 function PlanarGateInactiveTile() {
   this.name = "PlanarGateInactive";
   this.graphic = "static.gif";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -180*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "planar gate";
 }
@@ -11770,34 +11789,121 @@ PlanarGateWalkOnTile.prototype = new FeatureObject();
 // Ether: Gold
 // Air: Tin (Lydia)
 // Water: Silver (Sybel)
-// Fire: Antimony
+// Fire: Antimony (Balthazar)
 // Earth: Iron (Janet - who appears if you hand off the chili recipe)
 
 PlanarGateWalkOnTile.prototype.walkon = function(who) {
   let pkey = who.checkInventory("PlanarKey");
-  if (pkey.contains) {
+  let pmap = this.getHomeMap();
+  let retval = {txt: "" };
+  if (pkey.content) {
+    let gatetile = pmap.getTile(this.getx() + this.gatex, this.gety() + this.gatey);
+    let fea = gatetile.features.getAll();
+    let gate;
+    for (let i=0;i<fea.length;i++) {
+      if (fea[i].getName() === "PlanarGateInactive") { gate = fea[i]; }
+    }
+    if (gate) {
+      pmap.deleteThing(gate);
+      let newgate = localFactory.createTile("PlanarGateActive");
+      pmap.placeThing(this.getx() + this.gatex, this.gety() + this.gatey, newgate);
+    }
+  } 
+  return retval;
+}
 
+PlanarGateWalkOnTile.prototype.walkoff = function(who, params) {
+  let pmap = this.getHomeMap();
+  let retval = {txt: ""};
+  let gatetile = pmap.getTile(this.getx() + this.gatex, this.gety() + this.gatey);
+  let fea = gatetile.features.getAll();
+  let gate;
+  for (let i=0;i<fea.length;i++) {
+    if (fea[i].getName() === "PlanarGateActive") { gate = fea[i]; }
   }
+  if (gate) {
+    pmap.deleteThing(gate);
+    let newgate = localFactory.createTile("PlanarGateInactive");
+    pmap.placeThing(this.getx() + this.gatex, this.gety() + this.gatey, newgate);
+  }
+  return retval;
 }
 
-
-function PlanarKeyTile() {
-  this.name = "PlanarKey";
+function PlanarAlchemyLabTile() {
+  // Graphics Upgraded
+  this.name = "PlanarAlchemyLab";
   this.graphic = "static.gif";
-  this.spritexoffset = -3*32;
-  this.spriteyoffset = -180*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.prefix = "a";
-  this.desc = "small box";
-  this.content = null;
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -146*32;
+  this.passable = MOVE_ETHEREAL + MOVE_FLY;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "alchemy lab";
 }
-PlanarKeyTile.prototype = new FeatureObject();
+PlanarAlchemyLabTile.prototype = new FeatureObject();
 
-PlanarKeyTile.prototype.getLongDesc = function() {
-  let longdesc = "A small box you received from Asharden. Place a piece of metal from his alchemy table within that matches the plane you seek to visit, and the Planar Gate will open.<br />";
-  if (!this.content) { longdesc += "The box is empty."; }
-  else { longdesc += "The box currently contains a chunk of " + this.content + "."; }
-  return longdesc;
+PlanarAlchemyLabTile.prototype.use = function(who) {
+  return PAUse(who);
+}
+
+function PlanarAlchemyLab2Tile() {
+  // Graphics Upgraded
+  this.name = "PlanarAlchemyLab2";
+  this.graphic = "static.gif";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -146*32;
+  this.passable = MOVE_ETHEREAL + MOVE_FLY;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "alchemy lab";
+}
+PlanarAlchemyLab2Tile.prototype = new FeatureObject();
+
+PlanarAlchemyLab2Tile.prototype.use = function(who) {
+  return PAUse(who);
+}
+
+function PAUse(who) {
+  let pkey = who.checkInventory("PlanarKey");
+  if (!pkey) {
+    let retval = {txt: "Asharden apparently has an idiosycratic way of arranging his table. You wouldn't know where to begin."};
+    return retval;
+  }
+  retval["override"] = -1;
+  retval["fin"] = 4;
+  retval["txt"] = "You find Asharden's collection of metals. Which one would you like to place in your Planar Key?";
+  retval["input"] = "You choose: ";
+  gamestate.setMode("talk");
+  targetCursor.itemname = "PlanarKey";
+  targetCursor.itemSource = pkey;
+  inputText.cmd = "u";
+
+  return retval;
+}
+
+function PAUse2(who, metal) {
+  let retval = {};
+  retval["fin"] = 1;
+  const LIST_OF_METALS = ["antimony", "tin", "iron", "silver", "gold", "copper", "brass", "bronze", "steel", "electrum", "stibnite", 
+                          "mercury", "quicksilver", "orichalcum", "bismuth", "lead", "pyrite", "gypsum", "zinc", "mithril"];
+  if (!metal) {
+    retval["fin"] = 0;
+    retval["txt"] = "You put everything back where it was.";
+    return retval;
+  } else if (LIST_OF_METALS.includes(metal.lower())) {
+    let pkey = who.checkInventory("PlanarKey");
+    if (pkey.contents) {
+      retval["txt"] = `You place the ${pkey.contents} back on the alchemy table, and replace it with a piece of ${metal}.`;
+    } else {
+      retval["txt"] = `You place a piece of ${metal} in the planar key.`;
+    }
+    pkey.contents = metal;
+  } else {
+    retval["fin"] = 1;
+    retval["txt"] = "You cannot find that.";
+  }
+
+  return retval;
 }
 
 function TeleporterPlatformTile() {
@@ -12118,35 +12224,35 @@ function OrbToggleTile() {
 OrbToggleTile.prototype = new FeatureObject();
 
 OrbToggleTile.prototype.use = function(who) {
-    this.spritexoffset = this.spritexoffset - 32;
-    if (this.spritexoffset < -128) { this.spritexoffset = 0; }
+  this.spritexoffset = this.spritexoffset - 32;
+  if (this.spritexoffset < -128) { this.spritexoffset = 0; }
 
-    let sp = maps.getMap("skypalace");
-    let orb1tile = sp.getTile(33,27);
-    let orb1 = orb1tile.getTopFeature();
-    let orb2tile = sp.getTile(29,32);
-    let orb2 = orb2tile.getTopFeature();
-    let orb3tile = sp.getTile(37,32);
-    let orb3 = orb3tile.getTopFeature();
-    if ((orb1.spritexoffset === -32) && (orb2.spritexoffset === -96) && (orb3.spritexoffset === -64)) {
-      let moongate = localFactory.createTile("Moongate");
-      moongate.destmap = "skypalace2";
-      moongate.destx = 11;
-      moongate.desty = 12;
-      sp.placeThing(33,31,moongate);
-      AnimateMoongate(moongate,0,"up",300,0,1);
-    } else {
-      let mgtile = sp.getTile(33,31);
-      let moongate = mgtile.getTopFeature();
-      if (moongate) {
-        AnimateMoongate(moongate,0,"down",300,1,0);
-        delete moongate.destmap;
-      }
+  let sp = maps.getMap("skypalace");
+  let orb1tile = sp.getTile(33,27);
+  let orb1 = orb1tile.getTopFeature();
+  let orb2tile = sp.getTile(29,32);
+  let orb2 = orb2tile.getTopFeature();
+  let orb3tile = sp.getTile(37,32);
+  let orb3 = orb3tile.getTopFeature();
+  if ((orb1.spritexoffset === -32) && (orb2.spritexoffset === -96) && (orb3.spritexoffset === -64)) {
+    let moongate = localFactory.createTile("Moongate");
+    moongate.destmap = "skypalace2";
+    moongate.destx = 11;
+    moongate.desty = 12;
+    sp.placeThing(33,31,moongate);
+    AnimateMoongate(moongate,0,"up",300,0,1);
+  } else {
+    let mgtile = sp.getTile(33,31);
+    let moongate = mgtile.getTopFeature();
+    if (moongate) {
+      AnimateMoongate(moongate,0,"down",300,1,0);
+      delete moongate.destmap;
     }
-  
-    let retval = {};
-    retval["txt"] = "Done!";
-    return retval;
+  }
+
+  let retval = {};
+  retval["txt"] = "Done!";
+  return retval;
 }
 
 // Mt Drash
@@ -12796,6 +12902,25 @@ ItemObject.prototype.getLongDesc = function() {
 
 ItemObject.prototype.getUseDesc = function() {
   return this.usedesc;
+}
+
+function PlanarKeyTile() {
+  this.name = "PlanarKey";
+  this.graphic = "static.gif";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -180*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "small box";
+  this.content = null;
+}
+PlanarKeyTile.prototype = new ItemObject();
+
+PlanarKeyTile.prototype.getLongDesc = function() {
+  let longdesc = "A small box you received from Asharden. Place a piece of metal from his alchemy table within that matches the plane you seek to visit, and the Planar Gate will open.<br />";
+  if (!this.content) { longdesc += "The box is empty."; }
+  else { longdesc += "The box currently contains a chunk of " + this.content + "."; }
+  return longdesc;
 }
 
 function AmbroseShieldTile() {
