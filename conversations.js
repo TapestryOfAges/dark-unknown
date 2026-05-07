@@ -1094,6 +1094,11 @@ OnConvTriggers["wisp_grant"] = function(speaker, keyword) {
   PC.addSpell(SPELL_ARMAGEDDON_LEVEL,SPELL_ARMAGEDDON_ID);
 }
 
+OnConvTriggers["ashardenprimer"] = function(speaker, keyword) {
+  DU.gameflags.setFlag("ashardenprimer",DUTime.getGameClock());
+  speaker.setCurrentAI("AshardenGate");
+}
+
 function HasLibraryBooks() {
   let hasbook = 0;
   if (PC.checkInventory("MapsAndLegends")) {
