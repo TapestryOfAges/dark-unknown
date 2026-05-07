@@ -677,6 +677,49 @@ ais.GarrickEscort = function(who) {
   return retval;
 }
 
+ais.AshardenGate = function(who) {
+  let retval = {};
+  retval["fin"] = 1;
+  let mymap = who.getHomeMap();
+  if (mymap.getName() === "asharden1") {
+    if ((who.getx() === 29) && (who.gety() === 20)) {
+      let ash2 = maps.getMap("asharden2");
+      MoveBetweenMaps(who,mymap,ash2,29,20);
+    } else {
+      // make path to ladder
+      let path = mymap.getPath(who.getx(), who.gety(), 29, 20, MOVE_WALK_DOOR);
+      path.shift();
+      if (path[0]) {
+        StepOrSidestep(who,path[0],[29,20]);
+      }
+    }
+  } else if (mymap.getName() === "asharden2") {
+    if ((who.getx() === 21) && (who.gety() === 15)) {
+      let ash3 = maps.getMap("asharden3");
+      MoveBetweenMaps(who,mymap,ash3,21,15);
+    } else {
+      // make path to up ladder
+      let path = mymap.getPath(who.getx(), who.gety(), 21, 15, MOVE_WALK_DOOR);
+      path.shift();
+      if (path[0]) {
+        StepOrSidestep(who,path[0],[21,15]);
+      }
+    }
+  } else {
+    if ((who.getx() === 26) && (who.gety() === 18)) {
+      // work on building the Gate
+    } else {
+      // move towards 26 18
+      let path = mymap.getPath(who.getx(), who.gety(), 26, 18, MOVE_WALK_DOOR);
+      path.shift();
+      if (path[0]) {
+        StepOrSidestep(who,path[0],[26,18]);
+      }
+    }
+  }
+  return retval;
+}
+
 ais.Isaac_initiate = function(who) {
   let themap = who.getHomeMap();
   if (!who.dest) { who.dest = 1; }

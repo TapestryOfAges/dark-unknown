@@ -6,6 +6,7 @@ let beta = 1;  // set to one for additional analytics
 let wind = {};
 wind.xoff = 0;
 wind.yoff = 2;
+let blocksound = 0;
 
 let mappages = new Pages();
 let localFactory = new tileFactory();
@@ -695,7 +696,7 @@ function DoAction(code, ctrl) {
     else if (code === 32) { // space
       // nothing 
     }
-    else if (code === 191) {  // / or ?
+    else if ((code === 191) && (inputText.cmd === "t")) {  // / or ?
       if (!inputText.txt.length) {
         // there is nothing typed so far as a response
         // willing to accept ?
@@ -815,6 +816,15 @@ function DoAction(code, ctrl) {
         
         if (retval["fin"] === 1) {
           PC.endTurn(retval["initdelay"]);
+        }
+      } else if (inputText.cmd === "u") {
+        if (targetCursor.itemname === "PlanarKey") {
+          retval = PAUse2(PC);
+          maintext.addText(retval["txt"]);
+          maintext.drawTextFrame();
+          if (retval["fin"] === 1) {
+            PC.endTurn(retval["initdelay"]);
+          }
         }
       }
     }

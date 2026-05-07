@@ -228,6 +228,7 @@ mappages["asharden2"].automap = '1';
 mappages["asharden2"].linkedMaps = ["asharden1","asharden3"];
 mappages["asharden2"].editorLabels = '{}';
 
+// MAP BEGINS HERE
 mappages["asharden3"] = {};
 mappages["asharden3"].terrain = [];
  mappages["asharden3"].terrain[0] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
@@ -271,13 +272,23 @@ mappages["asharden3"].features[1] = {name : 'LeftTable', x : 26, y : 16};
 mappages["asharden3"].features[2] = {name : 'RightTable', x : 29, y : 16};
 mappages["asharden3"].features[3] = {name : 'MiddleTable', x : 27, y : 16};
 mappages["asharden3"].features[4] = {name : 'MiddleTable', x : 28, y : 16};
-mappages["asharden3"].features[5] = {name : 'AlchemyLab', x : 27, y : 16};
-mappages["asharden3"].features[6] = {name : 'AlchemyLab2', x : 28, y : 16};
+mappages["asharden3"].features[5] = {name : 'PlanarAlchemyLab', x : 27, y : 16};
+mappages["asharden3"].features[6] = {name : 'PlanarAlchemyLab2', x : 28, y : 16};
 mappages["asharden3"].features[7] = {name : 'TopChair', x : 28, y : 15};
 mappages["asharden3"].features[8] = {name : 'BookshelfLeft', x : 23, y : 15};
 mappages["asharden3"].features[9] = {name : 'BookshelfRight', x : 24, y : 15};
 mappages["asharden3"].features[10] = {name : 'Brazier', x : 29, y : 20};
 mappages["asharden3"].features[11] = {name : 'Brazier', x : 21, y : 20};
+mappages["asharden3"].features[12] = {name : 'PentagramNW', x : 22, y : 18};
+mappages["asharden3"].features[13] = {name : 'PentagramN', x : 23, y : 18};
+mappages["asharden3"].features[14] = {name : 'PentagramNE', x : 24, y : 18};
+mappages["asharden3"].features[15] = {name : 'PentagramW', x : 22, y : 19};
+mappages["asharden3"].features[16] = {name : 'PentagramC', x : 23, y : 19};
+mappages["asharden3"].features[17] = {name : 'PentagramE', x : 24, y : 19};
+mappages["asharden3"].features[18] = {name : 'PentagramSE', x : 24, y : 20};
+mappages["asharden3"].features[19] = {name : 'PentagramS', x : 23, y : 20};
+mappages["asharden3"].features[20] = {name : 'PentagramSW', x : 22, y : 20};
+mappages["asharden3"].features[21] = {name : 'TorchEast', x : 29, y : 15};
 
 
 mappages["asharden3"].npcs = [];
@@ -309,3 +320,4 @@ mappages["asharden3"].returninfused = '0';
 mappages["asharden3"].automap = '1';
 mappages["asharden3"].linkedMaps = ["asharden1","asharden2"];
 mappages["asharden3"].editorLabels = '{}';
+// MAP ENDS HERE

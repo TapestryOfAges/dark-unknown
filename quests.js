@@ -260,6 +260,8 @@ questlist[110] = new Quest([], "Investigate Strange Map", "Behind a bookshelf", 
 questlist[111] = new Quest([110], "Repair the Palimpsest Map", "Robert", "Clear Lake", `Your strange map is a work of magic called a Palimpsest Map. This one isn't working properly- perhaps a magician would know why.`, ``, "side");
 questlist[112] = new Quest([111], "Repair the Palimpsest Map", "Robert", "Clear Lake", `To activate the Palimpsest Map, you will need to acquire some nightshade. Use the map, and then press the nightshade to its surface.`, `You have activated the Palimpsest Map! (To view the map, press [M].)`, "side");
 questlist[113] = new Quest([69], "War Wizard's Tower", "Dave", "Hildendain", `You have found the ring in the war wizard's tower- now, return it to Dave in Hildendain.`, `Dave has freely given you the ring!`, "side");
+questlist[114] = new Quest([], "The Planar Gate", "Asharden", "Asharden's Tower", `Return in a day, and see what Asharden has made from the instructions in Eshkaz's book.`, `The Planar Gate is built and available for your use.`, "side");
+
 
 // verbage for reference guide:
 // Not everything that you might think of as a "quest" will go in the log. And those that do, you will still need to take notes-

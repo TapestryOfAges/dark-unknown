@@ -3823,8 +3823,13 @@ tileFactory.prototype.makePlanarGateWalkOnTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makePlanarKeyTile = function() {
-  let newTile = new PlanarKeyTile();
+tileFactory.prototype.makePlanarAlchemyLabTile = function() {
+  let newTile = new PlanarAlchemyLabTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePlanarAlchemyLab2Tile = function() {
+  let newTile = new PlanarAlchemyLab2Tile();
   return newTile;
 }
 
@@ -3960,6 +3965,11 @@ tileFactory.prototype.makeStoneWithoutSwordTile = function() {
 
 tileFactory.prototype.makeFrozenSpellTile = function() {
   let newTile = new FrozenSpellTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePlanarKeyTile = function() {
+  let newTile = new PlanarKeyTile();
   return newTile;
 }
 

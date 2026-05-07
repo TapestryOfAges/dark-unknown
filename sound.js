@@ -86,6 +86,7 @@ DUSound["sfx_dark_transition"] = "sfx/Dark Transition.wav"; // RPGSEB Dark Trans
 DUSound["sfx_create_whirlpool"] = "sfx/whirlpool_create.mp3"; // MS SFX B Stereo/Water/Water Wall (summon)
 DUSound["sfx_whirlpool"] = "sfx/whirlpool.mp3"; // MS SFX B Stereo/Water/Water Wall (loop)
 DUSound["sfx_whirlpool_travel"] = "sfx/whirlpool_travel.mp3"; // MS SFX B Stereo/Water/Water Wall (collapse)
+DUSound["sfx_portal_opens"] = "sfx/Dark_Spell_03.wav"; // Khron Studio - Elemental Epslls Vol 1/ 32.Dark Spell/
 
 // Magic spell sounds
 DUSound["sfx_spellcast"] = "sfx/Enchantment 2.wav"; // RPGSEB Enchantment 2
