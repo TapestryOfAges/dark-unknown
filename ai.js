@@ -707,7 +707,30 @@ ais.AshardenGate = function(who) {
     }
   } else {
     if ((who.getx() === 26) && (who.gety() === 18)) {
-      // work on building the Gate
+      // get time construction began
+      let starttime = DU.gameflags.getFlag("ashardenprimer");
+      let timepassed = DUTime.getGameClock() - parseFloat(starttime);
+      let hours = timepassed * 5 / 60;
+      let gate = mymap.getTile(27,18).getTopFeature();
+      if (hours >= 24) {
+        if (gate.getName() === "PlanarGateIncomplete") {
+          mymap.deleteThing(gate);
+          gate = localFactory.createTile("PlanarGateInactive");
+          mymap.placeThing(27,18,gate);
+        }
+      } else if (hours >= 12) {
+        if (gate.spritexoffset === 0) {
+          gate.spritexoffset += 32;
+        }
+      } else if (hours >= 6) {
+        if (!gate || (gate.getName() !== "PlanarGateIncomplete")) {
+          if (gate) {
+            mymap.moveThing(27,17,gate);
+          }
+          gate = localFactory.createTile("PlanarGateIncomplate");
+          mymap.placeThing(26,18,gate);
+        }
+      }
     } else {
       // move towards 26 18
       let path = mymap.getPath(who.getx(), who.gety(), 26, 18, MOVE_WALK_DOOR);

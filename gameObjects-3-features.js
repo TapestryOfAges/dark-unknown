@@ -11721,7 +11721,7 @@ function PlanarGateActiveTile() {
   this.desc = "planar gate";
 
   HasAmbientNoise.call(this,"sfx_portal_ambient",1.5);
-  
+
   ManualAnimation.call(this, { animstart: 4,
     animlength: 5,
     animstyle: "random",
@@ -11807,6 +11807,11 @@ PlanarGateWalkOnTile.prototype.walkon = function(who) {
       pmap.deleteThing(gate);
       let newgate = localFactory.createTile("PlanarGateActive");
       pmap.placeThing(this.getx() + this.gatex, this.gety() + this.gatey, newgate);
+      if (!blocksound) {
+        blocksound = 1;
+        DUPlaySound("sfx_portal_opens");
+        setTimeout( () => { blocksound = 0; }, 4000); 
+      }
     }
   } 
   return retval;
