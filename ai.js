@@ -706,21 +706,62 @@ ais.AshardenGate = function(who) {
       }
     }
   } else {
-    if ((who.getx() === 26) && (who.gety() === 18)) {
+    let gate = mymap.getTile(27,18).getTopFeature();
+    if (DU.gameflags.getFlag("planargate")) {
+      // gate is finished
+      if (DU.gameflags.getFlag("planargate2")) {
+        if (who.getHomeMap() === PC.getHomeMap()) {
+          // PC has talked to him, he will go open the gate
+          if (((who.getx() === 26) && (who.gety() === 18)) || ((who.getx() === 27) && (who.gety() === 17))) {
+
+          } else {
+            let thing = mymap.getTile(26,18).getTopPC();
+            if (!thing) { thing = mymap.getTile(26,18).getTopNPC(); }
+            let gotox = 26;
+            let gotoy = 18;
+            if (thing) { gotox = 27; gotoy = 17; }
+            let path = mymap.getPath(who.getx(), who.gety(), 28, 15, MOVE_WALK_DOOR);
+            path.shift();
+            if (path[0]) {
+              StepOrSidestep(who,path[0],[28,15]);
+            }
+          }
+        } else {
+          // PC has wandered downstairs, Asharden will go back to his seat
+          if ((who.getx() !== 28) || (who.gety() !== 15)) {
+            // tired. Go sit in a chair
+            let path = mymap.getPath(who.getx(), who.gety(), 28, 15, MOVE_WALK_DOOR);
+            path.shift();
+            if (path[0]) {
+              StepOrSidestep(who,path[0],[28,15]);
+            }
+          } // in the chair already
+        }
+      } else if ((who.getx() !== 28) || (who.gety() !== 15)) {
+        // tired. Go sit in a chair
+        let path = mymap.getPath(who.getx(), who.gety(), 28, 15, MOVE_WALK_DOOR);
+        path.shift();
+        if (path[0]) {
+          StepOrSidestep(who,path[0],[28,15]);
+        }
+      } // if he's in the chair, he does nothing, is good
+    }
+    else if ((who.getx() === 26) && (who.gety() === 18)) {
       // get time construction began
       let starttime = DU.gameflags.getFlag("ashardenprimer");
       let timepassed = DUTime.getGameClock() - parseFloat(starttime);
       let hours = timepassed * 5 / 60;
-      let gate = mymap.getTile(27,18).getTopFeature();
       if (hours >= 24) {
         if (gate.getName() === "PlanarGateIncomplete") {
           mymap.deleteThing(gate);
           gate = localFactory.createTile("PlanarGateInactive");
           mymap.placeThing(27,18,gate);
+          return retval;
         }
       } else if (hours >= 12) {
         if (gate.spritexoffset === 0) {
           gate.spritexoffset += 32;
+          return retval;
         }
       } else if (hours >= 6) {
         if (!gate || (gate.getName() !== "PlanarGateIncomplete")) {
@@ -729,7 +770,34 @@ ais.AshardenGate = function(who) {
           }
           gate = localFactory.createTile("PlanarGateIncomplate");
           mymap.placeThing(26,18,gate);
+          DU.gameflags.setFlag("planargate",1);
+          if ((PC.getx() >= 13) && (PC.getx() <= 34) && (PC.gety() >= 14) && (PC.gety() <= 20)) {
+            // Yes, this should be audible from downstairs, but not outside the tower
+            maintext.addText('Asharden cries out, "It is finished!"');
+          }
+          return retval;
         }
+      }
+      // if he actually did something, it returned, so now we do some barks
+      if (PC.getHomeMap().getName() === "asharden3") {
+        let roll = Dice.roll("1d120");
+        switch(roll) {
+          case 1:
+            maintext.addText("Asharden mutters something to himself as he works.");
+            break;
+          case 2:
+            maintext.addText("Asharden fiddles with a piece of arcane material.");
+            break;
+          case 3:
+            DUPlaySound("sfx_spellcast");
+            break;
+          case 4:
+            DUPlaySound("sfx_crystal_use");
+            break;
+          case 5: 
+            maintext.addText("Asharden spends a moment examining his progress.");
+            break;
+        }          
       }
     } else {
       // move towards 26 18
