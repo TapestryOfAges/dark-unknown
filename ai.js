@@ -713,17 +713,26 @@ ais.AshardenGate = function(who) {
         if (who.getHomeMap() === PC.getHomeMap()) {
           // PC has talked to him, he will go open the gate
           if (((who.getx() === 26) && (who.gety() === 18)) || ((who.getx() === 27) && (who.gety() === 17))) {
-
+            if (targetCursor.event = "PlanarGate") {
+              // letting things narrate
+            } else {
+              gamestate.setMode("anykey");
+              targetCursor.event = "PlanarGate";
+              targetCursor.frame = 0;
+              maintext.addText("Asharden steps close to the gate and raises the small box. His face takes on an expression of intense concentration.");
+              maintext.setInputLine("&gt; [MORE]");
+              maintext.drawTextFrame();
+            }
           } else {
             let thing = mymap.getTile(26,18).getTopPC();
             if (!thing) { thing = mymap.getTile(26,18).getTopNPC(); }
             let gotox = 26;
             let gotoy = 18;
             if (thing) { gotox = 27; gotoy = 17; }
-            let path = mymap.getPath(who.getx(), who.gety(), 28, 15, MOVE_WALK_DOOR);
+            let path = mymap.getPath(who.getx(), who.gety(), gotox, gotoy, MOVE_WALK_DOOR);
             path.shift();
             if (path[0]) {
-              StepOrSidestep(who,path[0],[28,15]);
+              StepOrSidestep(who,path[0],[gotox,gotoy]);
             }
           }
         } else {

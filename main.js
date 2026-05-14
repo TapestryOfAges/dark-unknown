@@ -325,6 +325,9 @@ function DoAction(code, ctrl) {
     }  
   }
   else if (gamestate.getMode() === "anykey") {
+    if (targetCursor.event === "PlanarGate") {
+      
+    }
     if (targetCursor.command === "garrick") {
       let retval = GarrickScene(targetCursor.stage);
       if (retval["fin"] === 1) {
