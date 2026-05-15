@@ -327,7 +327,15 @@ function DoAction(code, ctrl) {
   else if (gamestate.getMode() === "anykey") {
     if (targetCursor.event === "PlanarGate") {
       if (!targetCursor.frame) {
-        
+        maintext.addText("Asharden speaks a long set of words of power.");
+        targetCursor.frame = 1;
+      } else if (targetCursor.frame === 1) {
+        DUPlaySound("sfx_portal_opens");
+        maintext.addText("The space inside the frame fills with light as the portal opens!");
+        targetCursor.frame = 2;
+        let gate = mymap.getTile(27,18).getTopFeature();
+        gate.spritexoffset = -64;
+        DrawMainFrame("one",PC.getHomeMap(),PC.getx(),PC.gety());
       }
     }
     if (targetCursor.command === "garrick") {

@@ -11793,6 +11793,8 @@ PlanarGateWalkOnTile.prototype = new FeatureObject();
 // Earth: Iron (Janet - who appears if you hand off the chili recipe)
 
 PlanarGateWalkOnTile.prototype.walkon = function(who) {
+  // FIXME
+  // What is this doing here rather than in the Planar Travel spell?
   let pkey = who.checkInventory("PlanarKey");
   let pmap = this.getHomeMap();
   let retval = {txt: "" };
