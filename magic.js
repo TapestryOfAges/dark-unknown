@@ -4592,6 +4592,56 @@ function PerformCharm(caster, infused, free, tgt) {
 }
 
 // Ethereal Travel
+magic[SPELL_ETHEREAL_TRAVEL_LEVEL][SPELL_ETHEREAL_TRAVEL_ID].getLongDesc = function() {
+  let mymap = PC.getHomeMap().getName();
+  if ((mymap === "waterplane") || (mymap === "airplane") || (mymap === "earthplane") || (mymap === "fireplane")) {
+    return "This spell will return you to the Planar Gate.";
+  }
+  return "If cast while standing next to a Planar Gate, while holding a primed Planar Key, this spell will cause the gate to open.";
+}
+
+magic[SPELL_ETHEREAL_TRAVEL_LEVEL][SPELL_ETHEREAL_TRAVEL_ID].executeSpell = function(caster,infused,free) {
+  let retval = {fin:1};
+  if (caster.getHomeMap().getName() === "asharden3") {
+    if (((caster.getx() === 27) && (caster.gety() === 17)) ||
+       ((caster.getx() === 27) && (caster.gety() === 19)) ||
+       ((caster.getx() === 26) && (caster.gety() === 18)) ||
+       ((caster.getx() === 28) && (caster.gety() === 18))) {
+
+      let pkey = who.checkInventory("PlanarKey");
+      let pmap = caster.getHomeMap();
+      if (pkey.content) {
+        let gatetile = pmap.getTile(27, 18);
+        let fea = gatetile.features.getAll();
+        let gate;
+        for (let i=0;i<fea.length;i++) {
+          if (fea[i].getName() === "PlanarGateInactive") { gate = fea[i]; }
+        }
+        if (gate) {
+          pmap.deleteThing(gate);
+          let newgate = localFactory.createTile("PlanarGateActive");
+          pmap.placeThing(this.getx() + this.gatex, this.gety() + this.gatey, newgate);
+          DUPlaySound("sfx_portal_opens");
+          retval["txt"] = "The portal opens!";
+          return retval;
+        } else {
+          retval["fin"] = 2;
+          retval["txt"] = "The gate is already open.";
+          return retval;
+        }
+      } 
+      return retval;  
+    } else {
+      retval["fin"] = 2;
+      retval["txt"] = "You need to be standing near a Planar Gate.";
+      return retval;
+    }
+  } else {
+    retval["fin"] = 2;
+    retval["txt"] = "You need to be standing near a Planar Gate.";
+    return retval;
+  }
+}
 
 // Fear
 magic[SPELL_FEAR_LEVEL][SPELL_FEAR_ID].getLongDesc = function() {

@@ -6,7 +6,6 @@ let beta = 1;  // set to one for additional analytics
 let wind = {};
 wind.xoff = 0;
 wind.yoff = 2;
-let blocksound = 0;
 
 let mappages = new Pages();
 let localFactory = new tileFactory();
@@ -326,6 +325,7 @@ function DoAction(code, ctrl) {
   }
   else if (gamestate.getMode() === "anykey") {
     if (targetCursor.event === "PlanarGate") {
+      let mymap = maps.getMap("asharden3");
       if (!targetCursor.frame) {
         maintext.addText("Asharden speaks a long set of words of power.");
         targetCursor.frame = 1;
@@ -333,9 +333,45 @@ function DoAction(code, ctrl) {
         DUPlaySound("sfx_portal_opens");
         maintext.addText("The space inside the frame fills with light as the portal opens!");
         targetCursor.frame = 2;
+        let gate = localFactory.createTile("PlanarGate");
+        mymap.placeThing(27,18,gate);
+        if (PC.getHomeMap() === mymap) {
+          DrawMainFrame("one",mymap,27,18);
+        }
+      } else if (targetCursor.frame === 2) {
+        maintext.addText(`A look of alarm crosses Asharden's face. "Something went wrong. Let me close the..."`);
+        targetCursor.frame = 3;
+      } else if (targetCursor.frame === 3) {
+        maintext.addText("Before he can close the portal, something alien and strange comes through!");
+        targetCursor.frame = 4;
+        let beast = localFactory.createTile("LesserEphemeralSpirit");
+        mymap.placeThing(27,18,beast);
+        beast.activate();
+        beast = localFactory.createTile("LesserEphemeralSpirit");
+        mymap.placeThing(27,18,beast);
+        beast.activate();
+        beast = localFactory.createTile("LesserEphemeralSpirit");
+        mymap.placeThing(27,18,beast);
+        beast.activate();
+        beast = localFactory.createTile("GreaterEphemeralSpirit");
+        mymap.placeThing(27,18,beast);
+        beast.activate();
+        beast = localFactory.createTile("GreaterEphemeralSpirit");
+        mymap.placeThing(27,18,beast);
+        beast.activate();
+      } else if (targetCursor.frame === 4) {
+        maintext.addText("The portal slams closed, and Asharden immediately blinks to the other side of the room.");
         let gate = mymap.getTile(27,18).getTopFeature();
-        gate.spritexoffset = -64;
-        DrawMainFrame("one",PC.getHomeMap(),PC.getx(),PC.gety());
+        mymap.deleteThing(gate)
+        let asharden;
+        let npcs = mymap.npcs.getAll();
+        for (let i=0;i<npcs.length;i++) {
+          if (npcs[i].getNPCName() === "Asharden") { asharden = npcs[i]; }
+        }
+        magic[SPELL_BLINK_LEVEL][SPELL_BLINK_ID].executeSpell(asharden,0,1);
+        asharden.endTurn();
+        delete targetCursor.frame;
+        delete targetCursor.event;
       }
     }
     if (targetCursor.command === "garrick") {
