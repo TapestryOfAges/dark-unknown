@@ -3044,44 +3044,6 @@ function GiantSnakeNPCTile() {
 GiantSnakeNPCTile.prototype = new NPCObject();
 
 
-// Animal
-
-function SeahorseNPCTile() {
-  this.name = 'SeahorseNPC';
-  this.level = 3;
-  this.addhp = 0;
-  this.str = 13;
-  this.dex = 13;
-  this.int = 10;
-  this.alignment = 'Neutral';
-  this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-10';
-  this.forgetAt = 10;
-  this.withdraw = 0;
-  this.graphic = '326.gif';
-  this.altgraphic = ['360.gif',];
-  this.meleeAttackAs = 'none';
-  this.meleeDamage = '2d4+3'
-  this.meleeStrDamage = 1
-  this.missileAttackAs = 'none';
-  this.armorAs = 'none';
-  this.armorDefense = 10;
-  this.armorAbsorb = 20;
-  this.armorResist = 10;
-  this.movetype = MOVE_SWIM;
-  this.leavesCorpse = 'none';
-  this.lootTable = 'none';
-  this.prefix = 'a';
-  this.desc = "seahorse";
-  this.meleeChance = 80;
-  this.resists = {};
-  this.special = 'lbolt';
-  this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeAttackSound = 'sfx_animal_miss';
-}
-SeahorseNPCTile.prototype = new NPCObject();
-
-
 // CorruptTownsfolk
 
 function ThiefNPCTile() {
@@ -3599,7 +3561,7 @@ function LesserEphemeralSpiritNPCTile() {
   this.desc = "ephemeral spirit";
   this.meleeChance = 60;
   this.resists = {};
-  this.special = 'mindless, energy bolt, lbolt, transpose, blink, spawn fields';
+  this.special = 'mindless, energy bolt, lbolt, transpose, blink, spawn fields, ondeathEphemera';
   this.meleeHitSound = 'sfx_ghost_hit';
   this.meleeAttackSound = 'sfx_ghost_miss';
   this.graphic = 'static.gif';
@@ -4987,7 +4949,7 @@ function GreaterEphemeralSpiritNPCTile() {
   this.desc = "ephemeral spirit";
   this.meleeChance = 30;
   this.resists = {};
-  this.special = 'mindless, energy bolt, lbolt, transpose, blink, spawn fields';
+  this.special = 'mindless, energy bolt, lbolt, transpose, blink, spawn fields, ondeathEphemera';
   this.meleeHitSound = 'sfx_ghost_hit';
   this.meleeAttackSound = 'sfx_ghost_miss';
   this.graphic = 'static.gif';
