@@ -107,6 +107,37 @@ mappages["asharden1"].editorLabels = '{}';
 mappages["asharden1"].onload = function(mapref) {
 
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+
+    let asharden;
+    let npcs = mapref.npcs.getAll();
+    for (let i=0;i<npcs.length;i++) {
+      if (npcs[i].getNPCName() === "Asharden") { asharden = npcs[i]; }
+    }
+
+    if (DU.gameflags.getFlag("ashardenprimer") && !DU.gameflags.getFlag("planargate2")) {
+      let a3 = maps.getMap("asharden3");
+      MoveBetweenMaps(asharden,mapref,a3,26,18);
+
+      if (!DU.gameflags.getFlag("planargate")) {
+        let starttime = DU.gameflags.getFlag("ashardenprimer");
+        let timepassed = DUTime.getGameClock() - parseFloat(starttime);
+
+        if (timepassed > 24) {
+          let gate = localFactory.createTile("PlanarGateInactive");
+          a3.placeThing(27,18,gate);
+          DU.gameflags.setFlag("planargate",1);
+        } else if (timepassed > 12) {
+          let gate = localFactory.createTile("PlanarGateIncomplete");
+          a3.placeThing(27,18,gate);
+          gate.spritexoffset += 32;
+        } else if (timepassed > 6) {
+          let gate = localFactory.createTile("PlanarGateIncomplete");
+          a3.placeThing(27,18,gate);
+        }
+      }
+    }
+
+
     let doorloc = mapref.getTile(25,21);
     let door = doorloc.getTopFeature();
     if (DU.gameflags.getFlag("ash_password")) {  

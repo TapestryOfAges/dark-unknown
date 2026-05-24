@@ -2986,7 +2986,9 @@ ais.ai_blink = function(who) {
         else if (roll <= 7) { fieldtype = "PoisonField"; }
         else if (roll <= 9) { fieldtype = "FireField"; }
 
-        who.getHomeMap().placeThing(startx,starty,localFactory.createTile(fieldtype));
+        let newfield = localFactory.createTile(fieldtype);
+        newfield.spawnedBy = who;
+        who.getHomeMap().placeThing(startx,starty,newfield);
       }
     }
     return "special";

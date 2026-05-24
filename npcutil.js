@@ -136,6 +136,10 @@ NPCSpecialFuncs["ondeathElder"] = function(who,how) {
   who.onDeath = "Elder";
 }
 
+NPCSpecialFuncs["ondeathEphemera"] = function(who,how) {
+  who.onDeath = "Ephemera";
+}
+
 NPCSpecialFuncs["archdaemon_ashes"] = function(who,how) {
   who.onDeath = "archdaemon_ashes";
 }

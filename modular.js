@@ -565,6 +565,33 @@ OnDeathFuncs["doppelganger"] = function(who) {
   }
 }
 
+OnDeathFuncs["Ephemera"] = function(who) {
+  let mymap = who.getHomeMap();
+  // When it dies, any fields it generated go away
+  feas = mymap.features.getAll();
+  for (let i=0;i<feas.length;i++) {
+    if (feas[i].getName().includes("Field")) {
+      if (feas[i].spawnedBy === who) {
+        if (feas[i].getName() === "FireField") { DUTime.removeEntityFrom(feas[i]); }
+        mymap.deleteThing(feas[i]);
+      }
+    }
+  }
+
+  npcs = mymap.npcs.getAll();
+  // check and see if this was the last Ephemera to die
+  let count = 0;
+  let asharden;
+  for (let i=0; i<npcs.length;i++) {
+    if (npcs[i].getName().includes("Ephemera")) { count++; }
+    if (npcs[i].getNPCName() === "Asharden") { asharden = npcs[i]; }
+  }
+  if (!count) {
+    PC.forcedTalk = asharden;
+    asharden.setConversation("asharden_gate");
+  }
+}
+
 function PerformActEnd() {
   let endact = PC.getSpellEffectsByName("UnconsciousEndAct");
   if (endact.getPower() === 1) {

@@ -243,6 +243,7 @@ ian_told - you've told Ian his brother's fate
 ashardenprimer - you've given Asharden the book from Eshkaz
 planargate - the gate has been built
 planargate2 - he has told you about the gate
+planarkey - he has given you the planar key
 returned_alchemy - you've brought the box of alchemy equipment back from the cave, on the IoLH
 worldsendingraft - you've placed the kinetic crystal to make the raft go in World's Ending
 final_music - the "Final" music track has started playing in Uttermost Dark
