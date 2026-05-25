@@ -1099,6 +1099,15 @@ OnConvTriggers["ashardenprimer"] = function(speaker, keyword) {
   speaker.setCurrentAI("AshardenGate");
 }
 
+OnConvTriggers["planarkey"] = function(speaker,keyword) {
+  let pkey = localFactory.createTile("PlanarKey");
+  PC.addToInventory(pkey,1);
+  maintext.addText("<span class='sysconv'>You have obtained: Planar Key.</span>");
+  maintext.addText("<span class='sysconv'>You have learned the spell: Ethereal Travel.</span>");
+  PC.addSpell(SPELL_ETHEREAL_TRAVEL_LEVEL, SPELL_ETHEREAL_TRAVEL_ID);
+  speaker.setConversation("asharden");
+}
+
 function HasLibraryBooks() {
   let hasbook = 0;
   if (PC.checkInventory("MapsAndLegends")) {
@@ -1112,6 +1121,10 @@ function HasLibraryBooks() {
   if (PC.checkInventory("AWarningOnDaemons")) {
     hasbook = 1;
     PC.removeFromInventory("AWarningOnDaemons");
+  }
+  if (PC.checkInventory("WhatIsMagic")) {
+    hasbook = 1;
+    PC.removeFromInventory("WhatIsMagic");
   }
   return hasbook;
 
