@@ -802,12 +802,12 @@ GameMap.prototype.getNPCsAndPCs = function() {
 GameMap.prototype.setAutomap = function(newval) {
 //  console.log(newval);
   newval = parseInt(newval);
-  if ((newval === 1) || (newval === 0)) { this.automap = newval; }
+  if ((newval === 1) || (newval === 0)) { console.log(newval); this.automap = newval; }
   else { alert("Invalid automap val: " + newval); }
 }
 
 GameMap.prototype.getAutomap = function() {
-  if (!this.automap) { return 1; }
+  if (!this.hasOwnProperty("automap")) { return 1; }
   return this.automap;
 }
 
