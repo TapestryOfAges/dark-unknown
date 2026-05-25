@@ -125,9 +125,9 @@ const CORAL_PEER = 39;
 const LADDER_PEER = 40;
 const COUNTER_PEER = 41;
 const SANDSTONE_PEER = 42;
-const PURPLE_CRYSTAL = 43;
-const YELLOW_CRYSTAL = 44;
-const GREEN_CRYSTAL = 45;
+const PURPLE_CRYSTAL_PEER = 43;
+const YELLOW_CRYSTAL_PEER = 44;
+const GREEN_CRYSTAL_PEER = 45;
 const PEER_COLORS = ["#000000", 
                      "#103cff", "#128dfe", "#12bbff", "#ffffff", "#4a110c", "#000000", "#c1c1c1", "#9d5a20", "#61a01e", "#618928", "#5f6114", "#626262", "#a51a14", "#0d2185", "#1d1d1d", "#772e24", "#64443f", "#c08e5e", "#476478", "#477865", 
                      "#959595", "#a95e56", "#636899", "#8d7058", "#66756d", "#9e8c74", "#553668", "#4d462c", "#326a25", "#b6d123", "#122112", "#08d66d", "#3f89b2", "#235373", "#009267", "#a8ecb6", "#f4e5a0", "#e42015", "#f2a9e0", "#eaa35f",
