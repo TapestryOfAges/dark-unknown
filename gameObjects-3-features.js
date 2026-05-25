@@ -11601,7 +11601,7 @@ function PurpleCrystalTile() {
   this.prefix = "a";
   this.desc = "crystal";
   LightEmitting.call(this, 2);
-  this.peerview = PURPLE_COBBLE_PEER;
+  this.peerview = PURPLE_CRYSTAL_PEER;
   this.passable = MOVE_ETHEREAL;
 
   ManualAnimation.call(this, { 
@@ -11736,8 +11736,13 @@ PlanarGateActiveTile.prototype = new FeatureObject();
 
 PlanarGateActiveTile.prototype.bumpinto = function(who) {
   let pkey = who.checkInventory("PlanarKey");
+  let dest = "";
   if (pkey.contents === "gold") {
-
+    if (DU.gameflags.getFlag("met_wisp")) {
+      dest = "ether";
+    } else {
+      dest = "etherwisp";
+    }
   } else if (pkey.contents === "silver") {
 
   } else if (pkey.contents === "tin") {
