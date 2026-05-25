@@ -496,8 +496,10 @@ OnDeathFuncs["cleanFields"] = function(who) {
   let mymap = who.getHomeMap();
   let count = 0;
   let npcs = mymap.npcs.getAll();
+  let asharden;
   for (let i=0;i<npcs.length;i++) {
     if (((npcs[i].getName() === "LesserEphemeralSpiritNPC") || (npcs[i].getName() === "GreaterEphemeralSpiritNPC")) && (npcs[i] !== who)) { count++; }
+    if (npcs[i].getNPCName() === "Asharden") { asharden = npcs[i]; }
   }
   if (!count) {
     maintext.addText("The strange magic fades away... and with it, the detritus of the fight.");
@@ -510,6 +512,9 @@ OnDeathFuncs["cleanFields"] = function(who) {
         DUTime.removeEntityFrom(feas[i]);
       }
     }
+    PC.forcedTalk = asharden;
+    asharden.setConversation("asharden_gate");
+    DU.gameflags.setFlag("ephemeradefeated");
   }
 }
 
@@ -562,33 +567,6 @@ OnDeathFuncs["doppelganger"] = function(who) {
     moongate.second = 1;
     moongate.destx = 25;
     moongate.desty = 12;
-  }
-}
-
-OnDeathFuncs["Ephemera"] = function(who) {
-  let mymap = who.getHomeMap();
-  // When it dies, any fields it generated go away
-  feas = mymap.features.getAll();
-  for (let i=0;i<feas.length;i++) {
-    if (feas[i].getName().includes("Field")) {
-      if (feas[i].spawnedBy === who) {
-        if (feas[i].getName() === "FireField") { DUTime.removeEntityFrom(feas[i]); }
-        mymap.deleteThing(feas[i]);
-      }
-    }
-  }
-
-  npcs = mymap.npcs.getAll();
-  // check and see if this was the last Ephemera to die
-  let count = 0;
-  let asharden;
-  for (let i=0; i<npcs.length;i++) {
-    if (npcs[i].getName().includes("Ephemera")) { count++; }
-    if (npcs[i].getNPCName() === "Asharden") { asharden = npcs[i]; }
-  }
-  if (!count) {
-    PC.forcedTalk = asharden;
-    asharden.setConversation("asharden_gate");
   }
 }
 
