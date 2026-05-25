@@ -117,6 +117,8 @@ mappages["asharden1"].onload = function(mapref) {
     if (DU.gameflags.getFlag("ashardenprimer") && !DU.gameflags.getFlag("planargate2")) {
       let a3 = maps.getMap("asharden3");
       MoveBetweenMaps(asharden,mapref,a3,26,18);
+      asharden.setPeaceAI("AshardenGate");
+      asharden.setCurrentAI("AshardenGate");
 
       if (!DU.gameflags.getFlag("planargate")) {
         let starttime = DU.gameflags.getFlag("ashardenprimer");
@@ -135,6 +137,8 @@ mappages["asharden1"].onload = function(mapref) {
           a3.placeThing(27,18,gate);
         }
       }
+    } else if (DU.gameflags.getFlag("planargate2") && !DU.gameflags.getFlag("planarkey")) {
+      asharden.setConversation("asharden_gate");
     }
 
 
