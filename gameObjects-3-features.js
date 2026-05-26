@@ -3634,6 +3634,36 @@ GreyDoorTile.prototype.bumpinto = function(who) {
   return BumpIntoDoor(this,who);
 }
 
+function ExplosionTrapTile() {
+  this.name = "ExplosionTrap";
+  this.graphic = "target-cursor.gif";
+  this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+  this.blockslos = 0;
+  this.prefix = "an";
+  this.desc = "explosion trap";
+  this.invisible = 1;
+  
+  this.stocked = 1;
+}
+ExplosionTrapTile.prototype = new FeatureObject();
+
+ExplosionTrapTile.prototype.activate = function() {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    DebugWrite("gameobj", "Activating Explosion Trap.");
+
+    let nexttick = 10 + Dice.roll("1d20");
+
+    let NPCevent = new GameEvent(this);
+    DUTime.addAtTimeInterval(NPCevent,nexttick);
+  }
+}
+
+ExplosionTrapTile.prototype.myTurn = function() {
+  DUTime.addAtTimeInterval(NPCevent,nexttick);
+
+  return 1;
+}
+
 function SleepFieldTile() {
 	this.name = "SleepField";
 	this.graphic = "sleepfield.gif";
@@ -9703,10 +9733,11 @@ NightshadeSpawnerTile.prototype.myTurn = function() {
   if (!this.searchYield.length) {
     DebugWrite("gameobj", "Nightshade spawner regrowing Nightshade.");
     this.addToSearchYield("Nightshade");
-    let nexttick = GetGameClockByClockTime("0:00");
-    let NPCevent = new GameEvent(this);
-    DUTime.addAtTimeInterval(NPCevent,nexttick);
   }
+
+  let nexttick = GetGameClockByClockTime("0:00");
+  let NPCevent = new GameEvent(this);
+  DUTime.addAtTimeInterval(NPCevent,nexttick);
 
   return 1;
 }
