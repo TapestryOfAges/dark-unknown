@@ -5163,7 +5163,7 @@ mappages["fireplane"].features[4599] = {name : 'Fire', x : 14, y : 14};
 
 mappages["fireplane"].npcs = [];
 
-mappages["fireplane"].desc = "";
+mappages["fireplane"].desc = "Plane of Fire";
 mappages["fireplane"].longdesc = ``;
 mappages["fireplane"].music = 'Ether';
 mappages["fireplane"].savename = `Plane of Fire`;
