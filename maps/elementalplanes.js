@@ -5316,7 +5316,7 @@ mappages["fireplane"].linkedMaps = [""];
 mappages["fireplane"].editorLabels = '{}';
 // MAP ENDS HERE
 
-mappages["waterplane"].onload = function(mapref) {
+mappages["fireplane"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) { 
     let spawn = localFactory.createTile("Spawner");
     let spawngroup = ["FireSnakeNPC"];
@@ -5336,16 +5336,16 @@ mappages["waterplane"].onload = function(mapref) {
 
 
     spawn = localFactory.createTile("Spawner");
-    let spawngroup = ["FireElementalNPC"];
+    spawngroup = ["FireElementalNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(1);
     spawn.setSpawnRadius(2);
 
-    let freq = 50 + Dice.roll("3d20");
+    freq = 50 + Dice.roll("3d20");
     spawn.setSpawnFreq(freq);
 
-    let monster = mapref.getTile(29,17).getTopNPC();
+    monster = mapref.getTile(29,17).getTopNPC();
     spawn.addSpawned(monster);
     monster.setSpawnedBy(spawn);
 
@@ -5353,16 +5353,16 @@ mappages["waterplane"].onload = function(mapref) {
 
 
     spawn = localFactory.createTile("Spawner");
-    let spawngroup = ["MarmaSpawnNPC"];
+    spawngroup = ["MarmaSpawnNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(1);
     spawn.setSpawnRadius(2);
 
-    let freq = 50 + Dice.roll("3d20");
+    freq = 50 + Dice.roll("3d20");
     spawn.setSpawnFreq(freq);
 
-    let monster = mapref.getTile(11,16).getTopNPC();
+    monster = mapref.getTile(11,16).getTopNPC();
     spawn.addSpawned(monster);
     monster.setSpawnedBy(spawn);
 
@@ -5370,16 +5370,16 @@ mappages["waterplane"].onload = function(mapref) {
 
 
     spawn = localFactory.createTile("Spawner");
-    let spawngroup = ["MarmaSpawnNPC"];
+    spawngroup = ["MarmaSpawnNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(1);
     spawn.setSpawnRadius(2);
 
-    let freq = 50 + Dice.roll("3d20");
+    freq = 50 + Dice.roll("3d20");
     spawn.setSpawnFreq(freq);
 
-    let monster = mapref.getTile(13,30).getTopNPC();
+    monster = mapref.getTile(13,30).getTopNPC();
     spawn.addSpawned(monster);
     monster.setSpawnedBy(spawn);
 
@@ -5387,16 +5387,16 @@ mappages["waterplane"].onload = function(mapref) {
 
 
     spawn = localFactory.createTile("Spawner");
-    let spawngroup = ["FireElementalNPC"];
+    spawngroup = ["FireElementalNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(1);
     spawn.setSpawnRadius(2);
 
-    let freq = 50 + Dice.roll("3d20");
+    freq = 50 + Dice.roll("3d20");
     spawn.setSpawnFreq(freq);
 
-    let monster = mapref.getTile(48,33).getTopNPC();
+    monster = mapref.getTile(48,33).getTopNPC();
     spawn.addSpawned(monster);
     monster.setSpawnedBy(spawn);
 
@@ -5404,16 +5404,16 @@ mappages["waterplane"].onload = function(mapref) {
 
 
     spawn = localFactory.createTile("Spawner");
-    let spawngroup = ["MarmaSpawnNPC"];
+    spawngroup = ["MarmaSpawnNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(1);
     spawn.setSpawnRadius(2);
 
-    let freq = 50 + Dice.roll("3d20");
+    freq = 50 + Dice.roll("3d20");
     spawn.setSpawnFreq(freq);
 
-    let monster = mapref.getTile(65,34).getTopNPC();
+    monster = mapref.getTile(65,34).getTopNPC();
     spawn.addSpawned(monster);
     monster.setSpawnedBy(spawn);
 
@@ -5421,16 +5421,16 @@ mappages["waterplane"].onload = function(mapref) {
 
 
     spawn = localFactory.createTile("Spawner");
-    let spawngroup = ["DragonNPC"];
+    spawngroup = ["DragonNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(1);
     spawn.setSpawnRadius(2);
 
-    let freq = 50 + Dice.roll("3d20");
+    freq = 50 + Dice.roll("3d20");
     spawn.setSpawnFreq(freq);
 
-    let monster = mapref.getTile(80,35).getTopNPC();
+    monster = mapref.getTile(80,35).getTopNPC();
     spawn.addSpawned(monster);
     monster.setSpawnedBy(spawn);
 
@@ -5438,16 +5438,16 @@ mappages["waterplane"].onload = function(mapref) {
 
 
     spawn = localFactory.createTile("Spawner");
-    let spawngroup = ["MarmaSpawnNPC"];
+    spawngroup = ["MarmaSpawnNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(1);
     spawn.setSpawnRadius(2);
 
-    let freq = 50 + Dice.roll("3d20");
+    freq = 50 + Dice.roll("3d20");
     spawn.setSpawnFreq(freq);
 
-    let monster = mapref.getTile(82,51).getTopNPC();
+    monster = mapref.getTile(82,51).getTopNPC();
     spawn.addSpawned(monster);
     monster.setSpawnedBy(spawn);
 
@@ -5455,16 +5455,16 @@ mappages["waterplane"].onload = function(mapref) {
 
 
     spawn = localFactory.createTile("Spawner");
-    let spawngroup = ["MarmaSpawnNPC"];
+    spawngroup = ["MarmaSpawnNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(1);
     spawn.setSpawnRadius(2);
 
-    let freq = 50 + Dice.roll("3d20");
+    freq = 50 + Dice.roll("3d20");
     spawn.setSpawnFreq(freq);
 
-    let monster = mapref.getTile(67,51).getTopNPC();
+    monster = mapref.getTile(67,51).getTopNPC();
     spawn.addSpawned(monster);
     monster.setSpawnedBy(spawn);
 
@@ -5472,16 +5472,16 @@ mappages["waterplane"].onload = function(mapref) {
 
 
     spawn = localFactory.createTile("Spawner");
-    let spawngroup = ["FireSnakeNPC"];
+    spawngroup = ["FireSnakeNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(2);
     spawn.setSpawnRadius(2);
 
-    let freq = 50 + Dice.roll("3d20");
+    freq = 50 + Dice.roll("3d20");
     spawn.setSpawnFreq(freq);
 
-    let monster = mapref.getTile(53,41).getTopNPC();
+    monster = mapref.getTile(53,41).getTopNPC();
     spawn.addSpawned(monster);
     monster.setSpawnedBy(spawn);
 
@@ -5489,16 +5489,16 @@ mappages["waterplane"].onload = function(mapref) {
 
 
     spawn = localFactory.createTile("Spawner");
-    let spawngroup = ["FireElementalNPC"];
+    spawngroup = ["FireElementalNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(1);
     spawn.setSpawnRadius(2);
 
-    let freq = 50 + Dice.roll("3d20");
+    freq = 50 + Dice.roll("3d20");
     spawn.setSpawnFreq(freq);
 
-    let monster = mapref.getTile(29,43).getTopNPC();
+    monster = mapref.getTile(29,43).getTopNPC();
     spawn.addSpawned(monster);
     monster.setSpawnedBy(spawn);
 
@@ -5506,16 +5506,16 @@ mappages["waterplane"].onload = function(mapref) {
 
 
     spawn = localFactory.createTile("Spawner");
-    let spawngroup = ["DragonNPC"];
+    spawngroup = ["DragonNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(1);
     spawn.setSpawnRadius(2);
 
-    let freq = 50 + Dice.roll("3d20");
+    freq = 50 + Dice.roll("3d20");
     spawn.setSpawnFreq(freq);
 
-    let monster = mapref.getTile(18,60).getTopNPC();
+    monster = mapref.getTile(18,60).getTopNPC();
     spawn.addSpawned(monster);
     monster.setSpawnedBy(spawn);
 
@@ -5523,16 +5523,16 @@ mappages["waterplane"].onload = function(mapref) {
 
 
     spawn = localFactory.createTile("Spawner");
-    let spawngroup = ["MarmaSpawnNPC"];
+    spawngroup = ["MarmaSpawnNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(1);
     spawn.setSpawnRadius(2);
 
-    let freq = 50 + Dice.roll("3d20");
+    freq = 50 + Dice.roll("3d20");
     spawn.setSpawnFreq(freq);
 
-    let monster = mapref.getTile(35,63).getTopNPC();
+    monster = mapref.getTile(35,63).getTopNPC();
     spawn.addSpawned(monster);
     monster.setSpawnedBy(spawn);
 
@@ -5540,16 +5540,16 @@ mappages["waterplane"].onload = function(mapref) {
 
 
     spawn = localFactory.createTile("Spawner");
-    let spawngroup = ["FireElementalNPC"];
+    spawngroup = ["FireElementalNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(1);
     spawn.setSpawnRadius(2);
 
-    let freq = 50 + Dice.roll("3d20");
+    freq = 50 + Dice.roll("3d20");
     spawn.setSpawnFreq(freq);
 
-    let monster = mapref.getTile(72,66).getTopNPC();
+    monster = mapref.getTile(72,66).getTopNPC();
     spawn.addSpawned(monster);
     monster.setSpawnedBy(spawn);
 
@@ -5557,16 +5557,16 @@ mappages["waterplane"].onload = function(mapref) {
 
 
     spawn = localFactory.createTile("Spawner");
-    let spawngroup = ["DaemonNPC"];
+    spawngroup = ["DaemonNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(1);
     spawn.setSpawnRadius(2);
 
-    let freq = 50 + Dice.roll("3d20");
+    freq = 50 + Dice.roll("3d20");
     spawn.setSpawnFreq(freq);
 
-    let monster = mapref.getTile(81,81).getTopNPC();
+    monster = mapref.getTile(81,81).getTopNPC();
     spawn.addSpawned(monster);
     monster.setSpawnedBy(spawn);
 
@@ -5574,16 +5574,16 @@ mappages["waterplane"].onload = function(mapref) {
 
 
     spawn = localFactory.createTile("Spawner");
-    let spawngroup = ["ImpNPC"];
+    spawngroup = ["ImpNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(3);
     spawn.setSpawnRadius(2);
 
-    let freq = 50 + Dice.roll("3d20");
+    freq = 50 + Dice.roll("3d20");
     spawn.setSpawnFreq(freq);
 
-    let monster = mapref.getTile(11,16).getTopNPC();
+    monster = mapref.getTile(11,16).getTopNPC();
     spawn.addSpawned(monster);
     monster.setSpawnedBy(spawn);
 
@@ -5591,16 +5591,16 @@ mappages["waterplane"].onload = function(mapref) {
 
 
     spawn = localFactory.createTile("Spawner");
-    let spawngroup = ["FireElementalNPC"];
+    spawngroup = ["FireElementalNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(2);
     spawn.setSpawnRadius(2);
 
-    let freq = 50 + Dice.roll("3d20");
+    freq = 50 + Dice.roll("3d20");
     spawn.setSpawnFreq(freq);
 
-    let monster = mapref.getTile(35,80).getTopNPC();
+    monster = mapref.getTile(35,80).getTopNPC();
     spawn.addSpawned(monster);
     monster.setSpawnedBy(spawn);
 
@@ -5608,16 +5608,16 @@ mappages["waterplane"].onload = function(mapref) {
 
 
     spawn = localFactory.createTile("Spawner");
-    let spawngroup = ["DaemonNPC"];
+    spawngroup = ["DaemonNPC"];
 
     spawn.setSpawngroup(spawngroup);
     spawn.setMaxSpawns(1);
     spawn.setSpawnRadius(2);
 
-    let freq = 50 + Dice.roll("3d20");
+    freq = 50 + Dice.roll("3d20");
     spawn.setSpawnFreq(freq);
 
-    let monster = mapref.getTile(14,80).getTopNPC();
+    monster = mapref.getTile(14,80).getTopNPC();
     spawn.addSpawned(monster);
     monster.setSpawnedBy(spawn);
 
