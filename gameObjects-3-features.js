@@ -3659,6 +3659,42 @@ ExplosionTrapTile.prototype.activate = function() {
 }
 
 ExplosionTrapTile.prototype.myTurn = function() {
+
+  if (this.getHomeMap() !== PC.getHomeMap()) { return 1; } 
+  let dr = Dice.roll("1d5");
+
+  let pattern = [];
+  if ((dr === 1) || (dr === 2)) {
+    // rad 1
+    pattern = [[0,0]];
+  } else if ((dr === 3) || (dr === 4)) {
+    // rad 2
+    pattern = [[-1,-1],[0,-1],[1,-1], [-1,0],[0,0],[1,0], [-1,1],[0,1],[1,1]];
+  } else {
+    // rad 3 but in a starburst
+    pattern = [[-1,-1],[0,-1],[1,-1], [-1,0],[0,0],[1,0], [-1,1],[0,1],[1,1],
+               [-2,-2],[0,-2],[2,-2], [-2,0],[2,0], [-2,2],[0,2],[2,2]];
+  }
+
+  for (let i=0; i<pattern.length; i++){
+    let tgt;
+    if ((PC.getx() === (this.getx() + pattern[i][0])) && (PC.gety() === (this.gety() + pattern[i][1]))) { tgt = PC; }
+    else {
+      let loc = this.getHomeMap().getAcre(this.getx() + pattern[i][0], this.gety() + pattern[i][1]);
+      tgt = loc.getTopNPC();
+    }
+    if (tgt) {
+      let dmg = 10 + Dice.roll("1d20");
+      DealandDisplayDamage(tgt,this,dmg,"fire");
+      ShowEffect(tgt, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
+    } else {
+      ShowEffect(0, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y, {x:this.getx()+pattern[i][0], y:this.gety() + pattern[i][1], map:this.getHomeMap()});
+    }
+  }
+
+
+  let nexttick = 10 + Dice.roll("1d20");
+  let NPCevent = new GameEvent(this);
   DUTime.addAtTimeInterval(NPCevent,nexttick);
 
   return 1;

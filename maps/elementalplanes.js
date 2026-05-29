@@ -5159,9 +5159,133 @@ mappages["fireplane"].features[4596] = {name : 'Fire', x : 22, y : 35};
 mappages["fireplane"].features[4597] = {name : 'Fire', x : 9, y : 22};
 mappages["fireplane"].features[4598] = {name : 'Fire', x : 9, y : 13};
 mappages["fireplane"].features[4599] = {name : 'Fire', x : 14, y : 14};
+mappages["fireplane"].features[4600] = {name : 'ExplosionTrap', x : 13, y : 13};
+mappages["fireplane"].features[4601] = {name : 'ExplosionTrap', x : 10, y : 17};
+mappages["fireplane"].features[4602] = {name : 'ExplosionTrap', x : 32, y : 15};
+mappages["fireplane"].features[4603] = {name : 'ExplosionTrap', x : 23, y : 17};
+mappages["fireplane"].features[4604] = {name : 'ExplosionTrap', x : 30, y : 25};
+mappages["fireplane"].features[4605] = {name : 'ExplosionTrap', x : 18, y : 33};
+mappages["fireplane"].features[4606] = {name : 'ExplosionTrap', x : 9, y : 35};
+mappages["fireplane"].features[4607] = {name : 'ExplosionTrap', x : 32, y : 42};
+mappages["fireplane"].features[4608] = {name : 'ExplosionTrap', x : 22, y : 42};
+mappages["fireplane"].features[4609] = {name : 'ExplosionTrap', x : 16, y : 52};
+mappages["fireplane"].features[4610] = {name : 'ExplosionTrap', x : 23, y : 59};
+mappages["fireplane"].features[4611] = {name : 'ExplosionTrap', x : 13, y : 61};
+mappages["fireplane"].features[4612] = {name : 'ExplosionTrap', x : 20, y : 66};
+mappages["fireplane"].features[4613] = {name : 'ExplosionTrap', x : 9, y : 68};
+mappages["fireplane"].features[4614] = {name : 'ExplosionTrap', x : 9, y : 77};
+mappages["fireplane"].features[4615] = {name : 'ExplosionTrap', x : 16, y : 80};
+mappages["fireplane"].features[4616] = {name : 'ExplosionTrap', x : 24, y : 85};
+mappages["fireplane"].features[4617] = {name : 'ExplosionTrap', x : 47, y : 85};
+mappages["fireplane"].features[4618] = {name : 'ExplosionTrap', x : 42, y : 75};
+mappages["fireplane"].features[4619] = {name : 'ExplosionTrap', x : 34, y : 82};
+mappages["fireplane"].features[4620] = {name : 'ExplosionTrap', x : 29, y : 76};
+mappages["fireplane"].features[4621] = {name : 'ExplosionTrap', x : 34, y : 69};
+mappages["fireplane"].features[4622] = {name : 'ExplosionTrap', x : 47, y : 61};
+mappages["fireplane"].features[4623] = {name : 'ExplosionTrap', x : 37, y : 63};
+mappages["fireplane"].features[4624] = {name : 'ExplosionTrap', x : 39, y : 53};
+mappages["fireplane"].features[4625] = {name : 'ExplosionTrap', x : 46, y : 46};
+mappages["fireplane"].features[4626] = {name : 'ExplosionTrap', x : 54, y : 41};
+mappages["fireplane"].features[4627] = {name : 'ExplosionTrap', x : 53, y : 47};
+mappages["fireplane"].features[4628] = {name : 'ExplosionTrap', x : 52, y : 29};
+mappages["fireplane"].features[4629] = {name : 'ExplosionTrap', x : 44, y : 30};
+mappages["fireplane"].features[4630] = {name : 'ExplosionTrap', x : 39, y : 34};
+mappages["fireplane"].features[4631] = {name : 'ExplosionTrap', x : 46, y : 14};
+mappages["fireplane"].features[4632] = {name : 'ExplosionTrap', x : 52, y : 10};
+mappages["fireplane"].features[4633] = {name : 'ExplosionTrap', x : 54, y : 17};
+mappages["fireplane"].features[4634] = {name : 'ExplosionTrap', x : 63, y : 12};
+mappages["fireplane"].features[4635] = {name : 'ExplosionTrap', x : 75, y : 9};
+mappages["fireplane"].features[4636] = {name : 'ExplosionTrap', x : 83, y : 18};
+mappages["fireplane"].features[4637] = {name : 'ExplosionTrap', x : 76, y : 16};
+mappages["fireplane"].features[4638] = {name : 'ExplosionTrap', x : 70, y : 19};
+mappages["fireplane"].features[4639] = {name : 'ExplosionTrap', x : 63, y : 29};
+mappages["fireplane"].features[4640] = {name : 'ExplosionTrap', x : 66, y : 38};
+mappages["fireplane"].features[4641] = {name : 'ExplosionTrap', x : 73, y : 41};
+mappages["fireplane"].features[4642] = {name : 'ExplosionTrap', x : 78, y : 32};
+mappages["fireplane"].features[4643] = {name : 'ExplosionTrap', x : 84, y : 32};
+mappages["fireplane"].features[4644] = {name : 'ExplosionTrap', x : 60, y : 48};
+mappages["fireplane"].features[4645] = {name : 'ExplosionTrap', x : 69, y : 52};
+mappages["fireplane"].features[4646] = {name : 'ExplosionTrap', x : 59, y : 55};
+mappages["fireplane"].features[4647] = {name : 'ExplosionTrap', x : 78, y : 46};
+mappages["fireplane"].features[4648] = {name : 'ExplosionTrap', x : 86, y : 50};
+mappages["fireplane"].features[4649] = {name : 'ExplosionTrap', x : 78, y : 54};
+mappages["fireplane"].features[4650] = {name : 'ExplosionTrap', x : 86, y : 60};
+mappages["fireplane"].features[4651] = {name : 'ExplosionTrap', x : 69, y : 64};
+mappages["fireplane"].features[4652] = {name : 'ExplosionTrap', x : 76, y : 71};
+mappages["fireplane"].features[4653] = {name : 'ExplosionTrap', x : 79, y : 64};
+mappages["fireplane"].features[4654] = {name : 'ExplosionTrap', x : 85, y : 70};
+mappages["fireplane"].features[4655] = {name : 'ExplosionTrap', x : 84, y : 80};
+mappages["fireplane"].features[4656] = {name : 'ExplosionTrap', x : 75, y : 85};
+mappages["fireplane"].features[4657] = {name : 'ExplosionTrap', x : 67, y : 82};
+mappages["fireplane"].features[4658] = {name : 'ExplosionTrap', x : 69, y : 76};
+mappages["fireplane"].features[4659] = {name : 'ExplosionTrap', x : 62, y : 82};
+mappages["fireplane"].features[4660] = {name : 'ExplosionTrap', x : 58, y : 78};
+mappages["fireplane"].features[4661] = {name : 'ExplosionTrap', x : 52, y : 70};
+mappages["fireplane"].features[4662] = {name : 'ExplosionTrap', x : 58, y : 67};
+mappages["fireplane"].features[4663] = {name : 'ExplosionTrap', x : 54, y : 61};
 
 
 mappages["fireplane"].npcs = [];
+mappages["fireplane"].npcs[0] = {name : 'ImpNPC', x : 48, y : 15, skintone: 1};
+mappages["fireplane"].npcs[1] = {name : 'ImpNPC', x : 73, y : 17, skintone: 1};
+mappages["fireplane"].npcs[2] = {name : 'ImpNPC', x : 84, y : 19, skintone: 1};
+mappages["fireplane"].npcs[3] = {name : 'ImpNPC', x : 82, y : 51, skintone: 1};
+mappages["fireplane"].npcs[4] = {name : 'ImpNPC', x : 84, y : 54, skintone: 1};
+mappages["fireplane"].npcs[5] = {name : 'ImpNPC', x : 57, y : 71, skintone: 1};
+mappages["fireplane"].npcs[6] = {name : 'ImpNPC', x : 59, y : 74, skintone: 1};
+mappages["fireplane"].npcs[7] = {name : 'ImpNPC', x : 11, y : 78, skintone: 1};
+mappages["fireplane"].npcs[8] = {name : 'ImpNPC', x : 23, y : 85, skintone: 1};
+mappages["fireplane"].npcs[9] = {name : 'ImpNPC', x : 10, y : 35, skintone: 1};
+mappages["fireplane"].npcs[10] = {name : 'ImpNPC', x : 19, y : 33, skintone: 1};
+mappages["fireplane"].npcs[11] = {name : 'ImpNPC', x : 19, y : 11, skintone: 1};
+mappages["fireplane"].npcs[12] = {name : 'ImpNPC', x : 9, y : 11, skintone: 1};
+mappages["fireplane"].npcs[13] = {name : 'FireLizardNPC', x : 57, y : 16, skintone: 1};
+mappages["fireplane"].npcs[14] = {name : 'FireLizardNPC', x : 42, y : 30, skintone: 1};
+mappages["fireplane"].npcs[15] = {name : 'FireLizardNPC', x : 49, y : 45, skintone: 1};
+mappages["fireplane"].npcs[16] = {name : 'FireLizardNPC', x : 13, y : 30, skintone: 1};
+mappages["fireplane"].npcs[17] = {name : 'FireLizardNPC', x : 14, y : 60, skintone: 1};
+mappages["fireplane"].npcs[18] = {name : 'FireLizardNPC', x : 35, y : 80, skintone: 1};
+mappages["fireplane"].npcs[19] = {name : 'FireLizardNPC', x : 52, y : 75, skintone: 1};
+mappages["fireplane"].npcs[20] = {name : 'FireLizardNPC', x : 83, y : 69, skintone: 1};
+mappages["fireplane"].npcs[21] = {name : 'FireLizardNPC', x : 80, y : 35, skintone: 1};
+mappages["fireplane"].npcs[22] = {name : 'MinorFireElementalNPC', x : 48, y : 33, skintone: 1};
+mappages["fireplane"].npcs[23] = {name : 'MinorFireElementalNPC', x : 60, y : 54, skintone: 1};
+mappages["fireplane"].npcs[24] = {name : 'MinorFireElementalNPC', x : 72, y : 66, skintone: 1};
+mappages["fireplane"].npcs[25] = {name : 'MinorFireElementalNPC', x : 72, y : 83, skintone: 1};
+mappages["fireplane"].npcs[26] = {name : 'MinorFireElementalNPC', x : 22, y : 65, skintone: 1};
+mappages["fireplane"].npcs[27] = {name : 'MinorFireElementalNPC', x : 40, y : 54, skintone: 1};
+mappages["fireplane"].npcs[28] = {name : 'MinorFireElementalNPC', x : 28, y : 20, skintone: 1};
+mappages["fireplane"].npcs[29] = {name : 'MinorFireElementalNPC', x : 11, y : 16, skintone: 1};
+mappages["fireplane"].npcs[30] = {name : 'MinorFireElementalNPC', x : 33, y : 71, skintone: 1};
+mappages["fireplane"].npcs[31] = {name : 'MinorFireElementalNPC', x : 86, y : 32, skintone: 1};
+mappages["fireplane"].npcs[32] = {name : 'FireElementalNPC', x : 65, y : 34, skintone: 1};
+mappages["fireplane"].npcs[33] = {name : 'FireElementalNPC', x : 76, y : 10, skintone: 1};
+mappages["fireplane"].npcs[34] = {name : 'FireElementalNPC', x : 29, y : 43, skintone: 1};
+mappages["fireplane"].npcs[35] = {name : 'FireElementalNPC', x : 18, y : 81, skintone: 1};
+mappages["fireplane"].npcs[36] = {name : 'FireElementalNPC', x : 58, y : 66, skintone: 1};
+mappages["fireplane"].npcs[37] = {name : 'FireElementalNPC', x : 86, y : 49, skintone: 1};
+mappages["fireplane"].npcs[38] = {name : 'FireElementalNPC', x : 52, y : 9, skintone: 1};
+mappages["fireplane"].npcs[39] = {name : 'FireSnakeNPC', x : 64, y : 27, skintone: 1};
+mappages["fireplane"].npcs[40] = {name : 'FireSnakeNPC', x : 51, y : 27, skintone: 1};
+mappages["fireplane"].npcs[41] = {name : 'FireSnakeNPC', x : 53, y : 41, skintone: 1};
+mappages["fireplane"].npcs[42] = {name : 'FireSnakeNPC', x : 67, y : 51, skintone: 1};
+mappages["fireplane"].npcs[43] = {name : 'FireSnakeNPC', x : 46, y : 83, skintone: 1};
+mappages["fireplane"].npcs[44] = {name : 'FireSnakeNPC', x : 17, y : 54, skintone: 1};
+mappages["fireplane"].npcs[45] = {name : 'FireSnakeNPC', x : 21, y : 41, skintone: 1};
+mappages["fireplane"].npcs[46] = {name : 'FireSnakeNPC', x : 26, y : 10, skintone: 1};
+mappages["fireplane"].npcs[47] = {name : 'DragonNPC', x : 74, y : 41, skintone: 1};
+mappages["fireplane"].npcs[48] = {name : 'DragonNPC', x : 45, y : 61, skintone: 1};
+mappages["fireplane"].npcs[49] = {name : 'DragonNPC', x : 81, y : 81, skintone: 1};
+mappages["fireplane"].npcs[50] = {name : 'DragonNPC', x : 14, y : 80, skintone: 1};
+mappages["fireplane"].npcs[51] = {name : 'DragonNPC', x : 11, y : 49, skintone: 1};
+mappages["fireplane"].npcs[52] = {name : 'MagmaSpawnNPC', x : 35, y : 39, skintone: 1};
+mappages["fireplane"].npcs[53] = {name : 'MagmaSpawnNPC', x : 34, y : 24, skintone: 1};
+mappages["fireplane"].npcs[54] = {name : 'MagmaSpawnNPC', x : 78, y : 52, skintone: 1};
+mappages["fireplane"].npcs[55] = {name : 'MagmaSpawnNPC', x : 61, y : 83, skintone: 1};
+mappages["fireplane"].npcs[56] = {name : 'MagmaSpawnNPC', x : 43, y : 75, skintone: 1};
+mappages["fireplane"].npcs[57] = {name : 'DaemonNPC', x : 35, y : 63, skintone: 1};
+mappages["fireplane"].npcs[58] = {name : 'DaemonNPC', x : 64, y : 41, skintone: 1};
+mappages["fireplane"].npcs[59] = {name : 'DaemonNPC', x : 9, y : 41, skintone: 1};
 
 mappages["fireplane"].desc = "Plane of Fire";
 mappages["fireplane"].longdesc = ``;
@@ -5171,8 +5295,8 @@ mappages["fireplane"].exitmap = '';
 mappages["fireplane"].exitx = '65';
 mappages["fireplane"].exity = '70';
 mappages["fireplane"].wraps = '';
-mappages["fireplane"].enterx = '65';
-mappages["fireplane"].entery = '70';
+mappages["fireplane"].enterx = '58';
+mappages["fireplane"].entery = '10';
 mappages["fireplane"].seeBelow = '';
 mappages["fireplane"].lightLevel = 'bright';
 mappages["fireplane"].alwaysRemember = '0';
@@ -5191,3 +5315,312 @@ mappages["fireplane"].automap = '0';
 mappages["fireplane"].linkedMaps = [""];
 mappages["fireplane"].editorLabels = '{}';
 // MAP ENDS HERE
+
+mappages["waterplane"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) { 
+    let spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["FireSnakeNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(2);
+    spawn.setSpawnRadius(2);
+
+    let freq = 50 + Dice.roll("3d20");
+    spawn.setSpawnFreq(freq);
+
+    let monster = mapref.getTile(73,17).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    mapref.placeThing(79,17,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["FireElementalNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(1);
+    spawn.setSpawnRadius(2);
+
+    let freq = 50 + Dice.roll("3d20");
+    spawn.setSpawnFreq(freq);
+
+    let monster = mapref.getTile(29,17).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    mapref.placeThing(28,20,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["MarmaSpawnNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(1);
+    spawn.setSpawnRadius(2);
+
+    let freq = 50 + Dice.roll("3d20");
+    spawn.setSpawnFreq(freq);
+
+    let monster = mapref.getTile(11,16).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    mapref.placeThing(12,13,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["MarmaSpawnNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(1);
+    spawn.setSpawnRadius(2);
+
+    let freq = 50 + Dice.roll("3d20");
+    spawn.setSpawnFreq(freq);
+
+    let monster = mapref.getTile(13,30).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    mapref.placeThing(14,32,spawn);    
+
+
+    spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["FireElementalNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(1);
+    spawn.setSpawnRadius(2);
+
+    let freq = 50 + Dice.roll("3d20");
+    spawn.setSpawnFreq(freq);
+
+    let monster = mapref.getTile(48,33).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    mapref.placeThing(49,30,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["MarmaSpawnNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(1);
+    spawn.setSpawnRadius(2);
+
+    let freq = 50 + Dice.roll("3d20");
+    spawn.setSpawnFreq(freq);
+
+    let monster = mapref.getTile(65,34).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    mapref.placeThing(64,31,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["DragonNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(1);
+    spawn.setSpawnRadius(2);
+
+    let freq = 50 + Dice.roll("3d20");
+    spawn.setSpawnFreq(freq);
+
+    let monster = mapref.getTile(80,35).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    mapref.placeThing(79,34,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["MarmaSpawnNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(1);
+    spawn.setSpawnRadius(2);
+
+    let freq = 50 + Dice.roll("3d20");
+    spawn.setSpawnFreq(freq);
+
+    let monster = mapref.getTile(82,51).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    mapref.placeThing(82,51,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["MarmaSpawnNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(1);
+    spawn.setSpawnRadius(2);
+
+    let freq = 50 + Dice.roll("3d20");
+    spawn.setSpawnFreq(freq);
+
+    let monster = mapref.getTile(67,51).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    mapref.placeThing(64,52,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["FireSnakeNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(2);
+    spawn.setSpawnRadius(2);
+
+    let freq = 50 + Dice.roll("3d20");
+    spawn.setSpawnFreq(freq);
+
+    let monster = mapref.getTile(53,41).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    mapref.placeThing(50,44,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["FireElementalNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(1);
+    spawn.setSpawnRadius(2);
+
+    let freq = 50 + Dice.roll("3d20");
+    spawn.setSpawnFreq(freq);
+
+    let monster = mapref.getTile(29,43).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    mapref.placeThing(28,42,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["DragonNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(1);
+    spawn.setSpawnRadius(2);
+
+    let freq = 50 + Dice.roll("3d20");
+    spawn.setSpawnFreq(freq);
+
+    let monster = mapref.getTile(18,60).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    mapref.placeThing(11,49,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["MarmaSpawnNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(1);
+    spawn.setSpawnRadius(2);
+
+    let freq = 50 + Dice.roll("3d20");
+    spawn.setSpawnFreq(freq);
+
+    let monster = mapref.getTile(35,63).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    mapref.placeThing(42,60,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["FireElementalNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(1);
+    spawn.setSpawnRadius(2);
+
+    let freq = 50 + Dice.roll("3d20");
+    spawn.setSpawnFreq(freq);
+
+    let monster = mapref.getTile(72,66).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    mapref.placeThing(78,67,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["DaemonNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(1);
+    spawn.setSpawnRadius(2);
+
+    let freq = 50 + Dice.roll("3d20");
+    spawn.setSpawnFreq(freq);
+
+    let monster = mapref.getTile(81,81).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    mapref.placeThing(76,80,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["ImpNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(3);
+    spawn.setSpawnRadius(2);
+
+    let freq = 50 + Dice.roll("3d20");
+    spawn.setSpawnFreq(freq);
+
+    let monster = mapref.getTile(11,16).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    mapref.placeThing(57,72,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["FireElementalNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(2);
+    spawn.setSpawnRadius(2);
+
+    let freq = 50 + Dice.roll("3d20");
+    spawn.setSpawnFreq(freq);
+
+    let monster = mapref.getTile(35,80).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    mapref.placeThing(37,78,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["DaemonNPC"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(1);
+    spawn.setSpawnRadius(2);
+
+    let freq = 50 + Dice.roll("3d20");
+    spawn.setSpawnFreq(freq);
+
+    let monster = mapref.getTile(14,80).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    mapref.placeThing(15,80,spawn);
+  }
+}

@@ -2143,6 +2143,11 @@ tileFactory.prototype.makeGreyDoorTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeExplosionTrapTile = function() {
+  let newTile = new ExplosionTrapTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSleepFieldTile = function() {
   let newTile = new SleepFieldTile();
   return newTile;
@@ -5620,11 +5625,6 @@ tileFactory.prototype.makeOrcShamanNPCTile = function() {
 
 tileFactory.prototype.makeGiantSnakeNPCTile = function() {
   let newTile = new GiantSnakeNPCTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeSeahorseNPCTile = function() {
-  let newTile = new SeahorseNPCTile();
   return newTile;
 }
 
