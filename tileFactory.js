@@ -3008,6 +3008,11 @@ tileFactory.prototype.makeWhirlpoolFlukeTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeEarthPlaneCaveInTile = function() {
+  let newTile = new EarthPlaneCaveInTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWalkOnTile = function() {
   let newTile = new WalkOnTile();
   return newTile;

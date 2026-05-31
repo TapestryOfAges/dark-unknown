@@ -7555,6 +7555,22 @@ WhirlpoolFlukeTile.prototype.walkofftest = function(walker) {
   return retval;
 }
 
+function EarthPlaneCaveInTile() {
+  //Graphics Upgraded
+  this.name = "EarthPlaneCaveIn";
+  this.graphic = "static.gif";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -117*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = MOUNTAIN_PEER;
+  this.walkSound = "hill";
+  TilingSpritesheet.call(this, 2, 1);
+}
+EarthPlaneCaveInTile.prototype = new FeatureObject();
+
 function WalkOnTile() {
 	this.name = "WalkOn";
   this.graphic = "static.gif";

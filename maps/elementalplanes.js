@@ -5703,7 +5703,8 @@ mappages["earthplane"].terrain[62] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ 
 mappages["earthplane"].terrain[63] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
 
 mappages["earthplane"].features = [];
-mappages["earthplane"].features[0] = {name : 'Cave', x : 31, y : 59, entermap : 'null', enterx : 0, entery : 0};
+mappages["earthplane"].features[0] = {name : 'Cave', x : 31, y : 59, entermap : 'earthplane2', enterx : 14, entery : 37};
+mappages["earthplane"].features[1] = {name : 'Cave', x : 36, y : 38, entermap : 'earthplane2', enterx : 22, entery : 18};
 
 
 mappages["earthplane"].npcs = [];
@@ -5784,6 +5785,8 @@ mappages["earthplane2"].terrain[40] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^
 mappages["earthplane2"].terrain[41] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
 
 mappages["earthplane2"].features = [];
+mappages["earthplane2"].features[0] = {name : 'Cave', x : 22, y : 18, entermap : 'earthplane', enterx : 36, entery : 38};
+mappages["earthplane2"].features[1] = {name : 'Cave', x : 14, y : 37, entermap : 'earthplane', enterx : 31, entery : 59};
 
 
 mappages["earthplane2"].npcs = [];
