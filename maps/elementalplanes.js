@@ -5813,6 +5813,6 @@ mappages["earthplane2"].returnx = 'NaN';
 mappages["earthplane2"].returny = 'NaN';
 mappages["earthplane2"].returninfused = '0';
 mappages["earthplane2"].automap = '0';
-mappages["earthplane2"].linkedMaps = [""];
+mappages["earthplane2"].linkedMaps = ["earthplane"];
 mappages["earthplane2"].editorLabels = '{}';
 // MAP ENDS HERE
