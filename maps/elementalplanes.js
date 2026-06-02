@@ -5637,70 +5637,70 @@ mappages["fireplane"].onload = function(mapref) {
 // MAP BEGINS HERE
 mappages["earthplane"] = {};
 mappages["earthplane"].terrain = [];
- mappages["earthplane"].terrain[0] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["earthplane"].terrain[1] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["earthplane"].terrain[2] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["earthplane"].terrain[3] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["earthplane"].terrain[4] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["earthplane"].terrain[5] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["earthplane"].terrain[6] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["earthplane"].terrain[7] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["earthplane"].terrain[8] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["earthplane"].terrain[9] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf ^^ ^^ cf cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[10] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf ^^ cf cf cf cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[11] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[12] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[13] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[14] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[15] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ cf cf cf cf ^^ ^^ cf cf ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[16] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[17] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[18] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[19] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[20] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[21] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[22] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[23] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[24] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[25] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[26] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[27] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[28] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[29] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[30] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[31] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[32] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[33] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[34] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[35] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[36] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[37] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[38] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[39] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[40] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[41] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[42] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[43] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[44] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[45] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[46] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[47] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[48] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[49] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[50] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[51] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf ^^ ^^ cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[52] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[53] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[54] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf ^^ cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[55] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf cf cf cf cf ^^ cf cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[56] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[57] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[58] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[59] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[60] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[61] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[62] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane"].terrain[63] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+ mappages["earthplane"].terrain[0] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+ mappages["earthplane"].terrain[1] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+ mappages["earthplane"].terrain[2] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+ mappages["earthplane"].terrain[3] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+ mappages["earthplane"].terrain[4] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+ mappages["earthplane"].terrain[5] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+ mappages["earthplane"].terrain[6] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+ mappages["earthplane"].terrain[7] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee ee cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+ mappages["earthplane"].terrain[8] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf ee ee ee ee ee cf cf ee ee cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+ mappages["earthplane"].terrain[9] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf ee ee cf cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[10] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf ee cf cf cf cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[11] = 'ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf cf cf ee ee ee ee cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[12] = 'ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[13] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf ee ee ee ee ee ee ee cf cf cf ee ee ee cf cf cf ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[14] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf ee ee ee ee ee ee ee cf cf cf ee ee ee ee cf cf cf ee ee ee ee ee ee cf cf cf cf cf cf cf cf ee cf cf cf ee ee ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[15] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee cf cf cf ee ee ee ee cf cf cf cf ee ee cf cf ee ee ee cf cf cf ee ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[16] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee cf cf cf ee ee cf cf cf cf ee ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[17] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[18] = 'ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[19] = 'ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee cf cf cf cf cf cf ee ee ee ee ee ee cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[20] = 'ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee cf cf cf cf cf cf cf ee ee ee ee ee ee ee cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[21] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[22] = 'ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf ee ee ee ee ee cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf ee ee ee ee ee ee';
+mappages["earthplane"].terrain[23] = 'ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee';
+mappages["earthplane"].terrain[24] = 'ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[25] = 'ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf ee ee ee ee ee ee cf cf cf cf cf cf cf ee ee ee ee ee ee cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[26] = 'ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf ee ee ee ee ee ee ee cf cf ee cf cf ee ee ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf ee ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[27] = 'ee ee ee ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[28] = 'ee ee ee ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[29] = 'ee ee ee ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[30] = 'ee ee ee ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[31] = 'ee ee ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee cf cf cf cf ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[32] = 'ee ee ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf ee cf cf cf ee ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[33] = 'ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf ee cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[34] = 'ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[35] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee cf cf ee ee cf cf ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[36] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf ee ee ee ee ee ee cf cf cf cf cf cf ee ee ee ee ee ee ee ee cf cf ee ee ee ee cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[37] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf ee ee ee ee ee ee cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee cf cf cf ee ee cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[38] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee';
+mappages["earthplane"].terrain[39] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee';
+mappages["earthplane"].terrain[40] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee';
+mappages["earthplane"].terrain[41] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[42] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf ee ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[43] = 'ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[44] = 'ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[45] = 'ee ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[46] = 'ee ee ee ee ee ee ee ee ee cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[47] = 'ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[48] = 'ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[49] = 'ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee cf cf cf ee ee cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[50] = 'ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[51] = 'ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf ee ee ee ee ee cf cf cf cf cf cf cf cf cf ee ee cf cf cf cf cf ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[52] = 'ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf ee ee ee ee ee cf cf cf cf cf cf ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[53] = 'ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf ee ee ee ee ee ee cf cf cf cf cf cf ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee';
+mappages["earthplane"].terrain[54] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee cf cf cf cf cf ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf ee cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee';
+mappages["earthplane"].terrain[55] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee cf cf cf cf cf ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf cf cf cf cf ee cf cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee';
+mappages["earthplane"].terrain[56] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee';
+mappages["earthplane"].terrain[57] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf ee ee ee ee ee ee';
+mappages["earthplane"].terrain[58] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[59] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[60] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[61] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[62] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+mappages["earthplane"].terrain[63] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
 
 mappages["earthplane"].features = [];
 mappages["earthplane"].features[0] = {name : 'Cave', x : 31, y : 59, entermap : 'earthplane2', enterx : 14, entery : 37};
@@ -5717,8 +5717,8 @@ mappages["earthplane"].exitmap = '';
 mappages["earthplane"].exitx = '65';
 mappages["earthplane"].exity = '70';
 mappages["earthplane"].wraps = '';
-mappages["earthplane"].enterx = '65';
-mappages["earthplane"].entery = '70';
+mappages["earthplane"].enterx = '30';
+mappages["earthplane"].entery = '10';
 mappages["earthplane"].seeBelow = '';
 mappages["earthplane"].lightLevel = 'bright';
 mappages["earthplane"].alwaysRemember = '0';
@@ -5735,54 +5735,197 @@ mappages["earthplane"].returny = 'NaN';
 mappages["earthplane"].returninfused = '0';
 mappages["earthplane"].automap = '0';
 mappages["earthplane"].linkedMaps = ["earthplane2"];
-mappages["earthplane"].editorLabels = '{}';
+mappages["earthplane"].editorLabels = '{"div_tile23x9":"tunnel1","div_tile12x18":"tunnel2","div_tile25x16":"tunnel3","div_tile33x14":"tunnel4","div_tile41x15":"tunnel5","div_tile36x22":"tunnel6","div_tile30x23":"tunnel7","div_tile37x26":"tunnel8","div_tile54x18":"tunnel9","div_tile11x30":"tunnel10","div_tile21x30":"tunnel11","div_tile41x35":"tunnel12","div_tile54x32":"tunnel13","div_tile13x43":"tunnel14","div_tile50x46":"tunnel15","div_tile42x54":"tunnel16","div_tile31x50":"tunnel17","div_tile16x56":"tunnel18"}';
 // MAP ENDS HERE
+
+mappages["earthplane"].onload = function(mapref) {
+  
+  let tunnels = {};
+  tunnels.tunnel1 = [];
+  for (let x=20;x<=27;x++) {
+    for (let y=8;y<=12;y++) {
+      if (mapref.getTile(x,y).getTerrain().getName() !== "EPMountain") { tunnels.tunnel1.push([x,y]); }
+    }
+  }
+
+  tunnels.tunnel2 = [];
+  for (let x=12;x<=15;x++) {
+    for (let y=16;y<=21;y++) {
+      if (mapref.getTile(x,y).getTerrain().getName() !== "EPMountain") { tunnels.tunnel2.push([x,y]); }
+    }
+  }
+
+  tunnels.tunnel3 = [];
+  for (let x=24;x<=29;x++) {
+    for (let y=13;y<=18;y++) {
+      if (mapref.getTile(x,y).getTerrain().getName() !== "EPMountain") { tunnels.tunnel3.push([x,y]); }
+    }
+  }
+  tunnels.tunnel3.push([28,12]);
+
+  tunnels.tunnel4 = [];
+  for (let x=33;x<=36;x++) {
+    for (let y=12;y<=15;y++) {
+      if (mapref.getTile(x,y).getTerrain().getName() !== "EPMountain") { tunnels.tunnel4.push([x,y]); }
+    }
+  }
+
+  tunnels.tunnel5 = [];
+  for (let x=40;x<=44;x++) {
+    for (let y=13;y<=18;y++) {
+      if (mapref.getTile(x,y).getTerrain().getName() !== "EPMountain") { tunnels.tunnel5.push([x,y]); }
+    }
+  }
+  tunnels.tunnel5.push([39,17]);
+  tunnels.tunnel5.push([45,14]);
+
+  tunnels.tunnel6 = [];
+  for (let x=36;x<=37;x++) {
+    for (let y=21;y<=22;y++) {
+      if (mapref.getTile(x,y).getTerrain().getName() !== "EPMountain") { tunnels.tunnel6.push([x,y]); }
+    }
+  }
+
+  tunnels.tunnel7 = [];
+  for (let x=29;x<=34;x++) {
+    for (let y=23;y<=24;y++) {
+      if (mapref.getTile(x,y).getTerrain().getName() !== "EPMountain") { tunnels.tunnel7.push([x,y]); }
+    }
+  }
+
+  tunnels.tunnel8 = [];
+  for (let x=37;x<=38;x++) {
+    for (let y=26;y<=27;y++) {
+      if (mapref.getTile(x,y).getTerrain().getName() !== "EPMountain") { tunnels.tunnel8.push([x,y]); }
+    }
+  }
+
+  tunnels.tunnel9 = [];
+  for (let x=51;x<=55;x++) {
+    for (let y=12;y<=19;y++) {
+      if (mapref.getTile(x,y).getTerrain().getName() !== "EPMountain") { tunnels.tunnel9.push([x,y]); }
+    }
+  }
+
+  tunnels.tunnel10 = [];
+  for (let x=11;x<=13;x++) {
+    for (let y=28;y<=35;y++) {
+      if (mapref.getTile(x,y).getTerrain().getName() !== "EPMountain") { tunnels.tunnel10.push([x,y]); }
+    }
+  }
+  tunnels.tunnel10.push([15.34]);
+
+  tunnels.tunnel11 = [];
+  for (let x=19;x<=23;x++) {
+    for (let y=25;y<=33;y++) {
+      if (mapref.getTile(x,y).getTerrain().getName() !== "EPMountain") { tunnels.tunnel11.push([x,y]); }
+    }
+  }
+
+  tunnels.tunnel12 = [];
+  for (let x=41;x<=44;x++) {
+    for (let y=30;y<=39;y++) {
+      if (mapref.getTile(x,y).getTerrain().getName() !== "EPMountain") { tunnels.tunnel12.push([x,y]); }
+    }
+  }
+  tunnels.tunnel12.push([45,38]);
+
+  tunnels.tunnel13 = [];
+  for (let x=52;x<=56;x++) {
+    for (let y=27;y<=35;y++) {
+      if (mapref.getTile(x,y).getTerrain().getName() !== "EPMountain") { tunnels.tunnel13.push([x,y]); }
+    }
+  }
+  tunnels.tunnel13.push([56,36]);
+
+  tunnels.tunnel14 = [];
+  for (let x=11;x<=18;x++) {
+    for (let y=40;y<=44;y++) {
+      if (mapref.getTile(x,y).getTerrain().getName() !== "EPMountain") { tunnels.tunnel14.push([x,y]); }
+    }
+  }
+  tunnels.tunnel14.push([12,45]);
+
+  tunnels.tunnel15 = [];
+  for (let x=50;x<=53;x++) {
+    for (let y=44;y<=48;y++) {
+      if (mapref.getTile(x,y).getTerrain().getName() !== "EPMountain") { tunnels.tunnel15.push([x,y]); }
+    }
+  }
+
+  tunnels.tunnel16 = [];
+  for (let x=42;x<=45;x++) {
+    for (let y=53;y<=56;y++) {
+      if (mapref.getTile(x,y).getTerrain().getName() !== "EPMountain") { tunnels.tunnel16.push([x,y]); }
+    }
+  }
+
+  tunnels.tunnel17 = [];
+  for (let x=28;x<=37;x++) {
+    for (let y=49;y<=52;y++) {
+      if (mapref.getTile(x,y).getTerrain().getName() !== "EPMountain") { tunnels.tunnel17.push([x,y]); }
+    }
+  }
+
+  tunnels.tunnel18 = [];
+  for (let x=13;x<=20;x++) {
+    for (let y=54;y<=57;y++) {
+      if (mapref.getTile(x,y).getTerrain().getName() !== "EPMountain") { tunnels.tunnel18.push([x,y]); }
+    }
+  }
+
+  mapref.tunnels = tunnels;
+
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) { 
+
+  }
+}
 
 // MAP BEGINS HERE
 mappages["earthplane2"] = {};
 mappages["earthplane2"].terrain = [];
- mappages["earthplane2"].terrain[0] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["earthplane2"].terrain[1] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["earthplane2"].terrain[2] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["earthplane2"].terrain[3] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["earthplane2"].terrain[4] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["earthplane2"].terrain[5] = '^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["earthplane2"].terrain[6] = '^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["earthplane2"].terrain[7] = '^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["earthplane2"].terrain[8] = '^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf ^^ cf cf cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
- mappages["earthplane2"].terrain[9] = '^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane2"].terrain[10] = '^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane2"].terrain[11] = '^^ ^^ ^^ ^^ ^^ cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane2"].terrain[12] = '^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane2"].terrain[13] = '^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ cf cf cf ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane2"].terrain[14] = '^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane2"].terrain[15] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane2"].terrain[16] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane2"].terrain[17] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane2"].terrain[18] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ cf cf cf cf ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane2"].terrain[19] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane2"].terrain[20] = '^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane2"].terrain[21] = '^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf ^^ ^^ cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane2"].terrain[22] = '^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf ^^ ^^ ^^ ^^';
-mappages["earthplane2"].terrain[23] = '^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ cf cf ^^ ^^ ^^ ^^';
-mappages["earthplane2"].terrain[24] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf ^^ ^^ ^^ cf cf cf ^^ ^^ ^^';
-mappages["earthplane2"].terrain[25] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^';
-mappages["earthplane2"].terrain[26] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^';
-mappages["earthplane2"].terrain[27] = '^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^';
-mappages["earthplane2"].terrain[28] = '^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^';
-mappages["earthplane2"].terrain[29] = '^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^';
-mappages["earthplane2"].terrain[30] = '^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^';
-mappages["earthplane2"].terrain[31] = '^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ cf cf cf cf cf ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ cf cf cf cf cf cf ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^';
-mappages["earthplane2"].terrain[32] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf ^^ ^^ cf cf cf cf ^^ ^^ ^^ ^^ cf cf cf cf ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^';
-mappages["earthplane2"].terrain[33] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ cf cf ^^ ^^ ^^ ^^ ^^ cf cf cf cf ^^ ^^ ^^ ^^';
-mappages["earthplane2"].terrain[34] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ cf cf cf cf ^^ ^^ ^^ ^^';
-mappages["earthplane2"].terrain[35] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane2"].terrain[36] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf cf cf cf cf cf ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane2"].terrain[37] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf cf cf ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ cf ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane2"].terrain[38] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane2"].terrain[39] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane2"].terrain[40] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
-mappages["earthplane2"].terrain[41] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+ mappages["earthplane2"].terrain[0] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+ mappages["earthplane2"].terrain[1] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+ mappages["earthplane2"].terrain[2] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+ mappages["earthplane2"].terrain[3] = 'ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+ mappages["earthplane2"].terrain[4] = 'ee ee ee ee ee ee ee cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+ mappages["earthplane2"].terrain[5] = 'ee ee ee ee ee ee cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+ mappages["earthplane2"].terrain[6] = 'ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+ mappages["earthplane2"].terrain[7] = 'ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+ mappages["earthplane2"].terrain[8] = 'ee ee ee ee ee cf cf cf cf cf cf cf cf cf ee cf cf cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+ mappages["earthplane2"].terrain[9] = 'ee ee ee ee cf cf cf cf cf cf cf cf cf ee ee ee ee cf cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+mappages["earthplane2"].terrain[10] = 'ee ee ee ee cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee';
+mappages["earthplane2"].terrain[11] = 'ee ee ee ee ee cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee';
+mappages["earthplane2"].terrain[12] = 'ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee';
+mappages["earthplane2"].terrain[13] = 'ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee ee ee cf cf cf ee cf cf cf ee cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee';
+mappages["earthplane2"].terrain[14] = 'ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee';
+mappages["earthplane2"].terrain[15] = 'ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee cf cf cf cf ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee';
+mappages["earthplane2"].terrain[16] = 'ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee ee ee ee';
+mappages["earthplane2"].terrain[17] = 'ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee ee cf cf cf ee ee ee cf cf ee ee ee ee ee ee';
+mappages["earthplane2"].terrain[18] = 'ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee cf cf cf cf cf cf cf cf ee ee ee ee ee cf cf cf ee ee cf cf cf cf ee ee ee ee ee';
+mappages["earthplane2"].terrain[19] = 'ee ee ee ee ee ee ee cf cf cf ee ee ee ee cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee cf cf cf cf cf cf cf cf ee ee ee ee ee';
+mappages["earthplane2"].terrain[20] = 'ee ee ee ee ee ee cf cf cf cf cf ee ee ee cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee cf cf cf cf cf cf cf ee ee ee ee ee';
+mappages["earthplane2"].terrain[21] = 'ee ee ee ee ee cf cf cf cf cf cf cf ee ee cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee cf cf cf cf cf ee ee ee ee ee';
+mappages["earthplane2"].terrain[22] = 'ee ee ee ee ee cf cf cf cf cf cf cf ee ee ee cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee ee cf cf cf cf cf cf ee ee ee ee';
+mappages["earthplane2"].terrain[23] = 'ee ee ee ee ee ee cf cf cf cf cf ee ee ee ee ee ee cf cf cf cf cf ee ee ee ee ee ee ee ee ee cf cf cf ee ee cf cf ee ee ee ee';
+mappages["earthplane2"].terrain[24] = 'ee ee ee ee ee ee ee cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf ee ee ee cf cf cf ee ee ee';
+mappages["earthplane2"].terrain[25] = 'ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf ee ee ee ee ee cf cf ee ee ee';
+mappages["earthplane2"].terrain[26] = 'ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee cf cf ee ee ee';
+mappages["earthplane2"].terrain[27] = 'ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee cf cf ee ee ee';
+mappages["earthplane2"].terrain[28] = 'ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf ee cf cf cf cf ee ee ee ee ee ee cf cf cf ee ee ee';
+mappages["earthplane2"].terrain[29] = 'ee ee ee ee ee ee cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee cf cf cf ee ee ee';
+mappages["earthplane2"].terrain[30] = 'ee ee ee ee ee ee cf cf ee ee ee ee cf cf ee ee ee ee ee ee ee cf cf ee cf cf cf cf cf cf cf ee ee ee ee ee cf cf ee ee ee ee';
+mappages["earthplane2"].terrain[31] = 'ee ee ee ee ee ee cf cf cf ee ee cf cf cf cf cf ee ee ee ee cf cf cf ee ee cf cf cf cf cf cf ee ee ee ee cf cf cf ee ee ee ee';
+mappages["earthplane2"].terrain[32] = 'ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf ee ee cf cf cf cf ee ee ee ee cf cf cf cf ee ee ee ee ee cf cf cf ee ee ee ee';
+mappages["earthplane2"].terrain[33] = 'ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee cf cf ee ee ee ee ee cf cf cf cf ee ee ee ee';
+mappages["earthplane2"].terrain[34] = 'ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf cf ee ee ee ee ee ee ee cf cf cf ee ee ee ee cf cf cf cf ee ee ee ee';
+mappages["earthplane2"].terrain[35] = 'ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf cf ee ee ee ee ee';
+mappages["earthplane2"].terrain[36] = 'ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf cf cf cf cf cf ee ee ee ee ee';
+mappages["earthplane2"].terrain[37] = 'ee ee ee ee ee ee ee ee ee ee ee ee cf cf cf ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee cf ee ee ee ee ee ee ee';
+mappages["earthplane2"].terrain[38] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+mappages["earthplane2"].terrain[39] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+mappages["earthplane2"].terrain[40] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
+mappages["earthplane2"].terrain[41] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee ee';
 
 mappages["earthplane2"].features = [];
 mappages["earthplane2"].features[0] = {name : 'Cave', x : 22, y : 18, entermap : 'earthplane', enterx : 36, entery : 38};
@@ -5817,5 +5960,81 @@ mappages["earthplane2"].returny = 'NaN';
 mappages["earthplane2"].returninfused = '0';
 mappages["earthplane2"].automap = '0';
 mappages["earthplane2"].linkedMaps = ["earthplane"];
-mappages["earthplane2"].editorLabels = '{}';
+mappages["earthplane2"].editorLabels = '{"div_tile15x7":"tunnel1","div_tile7x15":"tunnel2","div_tile17x15":"tunnel3","div_tile27x15":"tunnel4","div_tile28x25":"tunnel5","div_tile37x26":"tunnel6","div_tile29x35":"tunnel7","div_tile19x32":"tunnel8"}';
 // MAP ENDS HERE
+
+mappages["earthplane2"].onload = function(mapref) {
+  let tunnels = {};
+
+  tunnels.tunnel1 = [];
+  for (let x=14;x<=19;x++) {
+    for (let y=6;y<=9;y++) {
+      if (mapref.getTile(x,y).getTerrain().getName() !== "EPMountain") { tunnels.tunnel1.push([x,y]); }
+    }
+  }
+  tunnels.tunnel1.push([13,6]);
+  tunnels.tunnel1.push([20,8]);
+
+  tunnels.tunnel2 = [];
+  for (let x=6;x<=9;x++) {
+    for (let y=13;y<=19;y++) {
+      if (mapref.getTile(x,y).getTerrain().getName() !== "EPMountain") { tunnels.tunnel2.push([x,y]); }
+    }
+  }
+
+  tunnels.tunnel3 = [];
+  for (let x=17;x<=21;x++) {
+    for (let y=6;y<=9;y++) {
+      if (mapref.getTile(x,y).getTerrain().getName() !== "EPMountain") { tunnels.tunnel3.push([x,y]); }
+    }
+  }
+
+  tunnels.tunnel4 = [];
+  for (let x=27;x<=31;x++) {
+    for (let y=13;y<=20;y++) {
+      if (mapref.getTile(x,y).getTerrain().getName() !== "EPMountain") { tunnels.tunnel4.push([x,y]); }
+    }
+  }
+  tunnels.tunnel4.push([28,12]);
+
+  tunnels.tunnel5 = [];
+  for (let x=27;x<=33;x++) {
+    for (let y=23;y<=26;y++) {
+      if (mapref.getTile(x,y).getTerrain().getName() !== "EPMountain") { tunnels.tunnel5.push([x,y]); }
+    }
+  }
+  tunnels.tunnel5.push([32,22]);
+
+  tunnels.tunnel6 = [];
+  for (let x=36;x<=38;x++) {
+    for (let y=22;y<=30;y++) {
+      if (mapref.getTile(x,y).getTerrain().getName() !== "EPMountain") { tunnels.tunnel6.push([x,y]); }
+    }
+  }
+
+  tunnels.tunnel7 = [];
+  for (let x=27;x<=32;x++) {
+    for (let y=34;y<=36;y++) {
+      if (mapref.getTile(x,y).getTerrain().getName() !== "EPMountain") { tunnels.tunnel7.push([x,y]); }
+    }
+  }
+
+  tunnels.tunnel8 = [];
+  for (let x=17;x<=23;x++) {
+    for (let y=28;y<=34;y++) {
+      if (mapref.getTile(x,y).getTerrain().getName() !== "EPMountain") { tunnels.tunnel8.push([x,y]); }
+    }
+  }
+  tunnels.tunnel8.push([25,29]);
+
+  tunnels.tunnel9 = [];
+  for (let x=6;x<=9;x++) {
+    for (let y=26;y<=33;y++) {
+      if (mapref.getTile(x,y).getTerrain().getName() !== "EPMountain") { tunnels.tunnel9.push([x,y]); }
+    }
+  }
+
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) { 
+
+  }
+}
