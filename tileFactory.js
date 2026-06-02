@@ -168,6 +168,11 @@ tileFactory.prototype.makeMountainTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeEPMountainTile = function() {
+  let newTile = new EPMountainTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeMountainPassTile = function() {
   let newTile = new MountainPassTile();
   return newTile;

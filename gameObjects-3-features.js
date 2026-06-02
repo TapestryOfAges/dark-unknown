@@ -7561,9 +7561,9 @@ function EarthPlaneCaveInTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -117*32;
-  this.desc = "mountains";
+  this.desc = "rock and earth";
   this.blocklos = 1;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.passable = MOVE_ETHEREAL;
   this.combatmap = "Hill";
   this.peerview = MOUNTAIN_PEER;
   this.walkSound = "hill";

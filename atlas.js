@@ -258,6 +258,7 @@ function PopulateAtlas(atlasref) {
   atlasref.insertkey("TitanWallTR","T6");
   atlasref.insertkey("TitanWallBL","T7");
   atlasref.insertkey("TitanWallBR","T8");
+  atlasref.insertkey("EPMountain", "ee");
 
   atlasref.insertkey("OceanWaterTransition0","W0");
   atlasref.insertkey("OceanWaterTransition1","W1");
