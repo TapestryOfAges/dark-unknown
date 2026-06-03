@@ -5877,7 +5877,12 @@ mappages["earthplane"].onload = function(mapref) {
   mapref.tunnels = tunnels;
 
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) { 
-
+    for (let key in tunnels) {
+      for (let i=0;i<tunnels[key].length;i++) {
+        let cavein = localFactory.createTile("EarthPlaneCaveIn");
+        mapref.placeThing(tunnels[key][i][0], tunnels[key][i][1], cavein);
+      }
+    }
   }
 }
 
@@ -6035,6 +6040,12 @@ mappages["earthplane2"].onload = function(mapref) {
   }
 
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) { 
-
+    for (let key in tunnels) {
+      for (let i=0;i<tunnels[key].length;i++) {
+        let cavein = localFactory.createTile("EarthPlaneCaveIn");
+        mapref.placeThing(tunnels[key][i][0], tunnels[key][i][1], cavein);
+      }
+    }
   }
+
 }
