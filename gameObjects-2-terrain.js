@@ -3710,6 +3710,17 @@ function LavaTubeTile() {
 }
 LavaTubeTile.prototype = new TerrainObject();
 
+function AirPlaneTile() {
+  this.name = "AirPlane";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_WALK + MOVE_LEVITATE;  // bumpInto will prevent walking from air to air
+  this.blocklos = 0;
+  this.prefix = "the";
+  this.desc = "vastness of air";
+  this.peerview = SHALLOW_WATER_PEER;
+
+}
+AirPlaneTile.prototype = new TerrainObject();
+
 function SeeBelowTile() {
   this.name = "SeeBelow";
   this.graphic = "see-below.gif";

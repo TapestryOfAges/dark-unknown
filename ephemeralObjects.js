@@ -1958,6 +1958,21 @@ WandBreakTile.prototype.endEffect = function(silent) {
   return 1;
 }
 
+function WindChangeTile() {
+  this.addType("buff");
+  this.name = "WindChange";
+  this.display = "<span style='color:cyan'>W</span>";
+  this.zstatdesc = "You have controlled the direction of the winds.";
+  this.desc = "Active Wind Change Spell";
+  this.level = 2;
+  this.dispellable = 0;
+}
+WindChangeTile.prototype = new EphemeralObject();
+
+// WORKING HERE: this alters the "Wind Direction" notification so show the wind direction in blue,
+// and as the spell wears off the blue changes color until it expires
+// Air plane needs to put the wind dir in the UI, too
+
 function YewWandBreakTile() {
   this.addType("debuff");
   this.name = "YewWandBreak";
