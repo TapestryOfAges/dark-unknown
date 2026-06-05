@@ -5705,9 +5705,25 @@ mappages["earthplane"].terrain[63] = 'ee ee ee ee ee ee ee ee ee ee ee ee ee ee 
 mappages["earthplane"].features = [];
 mappages["earthplane"].features[0] = {name : 'Cave', x : 31, y : 59, entermap : 'earthplane2', enterx : 14, entery : 37};
 mappages["earthplane"].features[1] = {name : 'Cave', x : 36, y : 38, entermap : 'earthplane2', enterx : 22, entery : 18};
+mappages["earthplane"].features[2] = {name : 'Chest', x : 29, y : 42, locked : 0, lootedid : 'earthplanean', searchyield : 'AudachtaNemesosReincarnate'};
 
 
 mappages["earthplane"].npcs = [];
+mappages["earthplane"].npcs[0] = {name : 'LurkerNPC', x : 16, y : 10, skintone: 1};
+mappages["earthplane"].npcs[1] = {name : 'LurkerNPC', x : 52, y : 39, skintone: 1};
+mappages["earthplane"].npcs[2] = {name : 'CyclopsNPC', x : 37, y : 18, skintone: 1};
+mappages["earthplane"].npcs[3] = {name : 'CyclopsNPC', x : 12, y : 49, skintone: 1};
+mappages["earthplane"].npcs[4] = {name : 'CorpserNPC', x : 24, y : 52, skintone: 1};
+mappages["earthplane"].npcs[5] = {name : 'CorpserNPC', x : 24, y : 23, skintone: 1};
+mappages["earthplane"].npcs[6] = {name : 'CorpserNPC', x : 38, y : 58, skintone: 1};
+mappages["earthplane"].npcs[7] = {name : 'GiantNPC', x : 52, y : 54, skintone: 1};
+mappages["earthplane"].npcs[8] = {name : 'GiantNPC', x : 37, y : 30, skintone: 1};
+mappages["earthplane"].npcs[9] = {name : 'GiantNPC', x : 47, y : 12, skintone: 1};
+mappages["earthplane"].npcs[10] = {name : 'GiantNPC', x : 33, y : 41, skintone: 1};
+mappages["earthplane"].npcs[11] = {name : 'GiantNPC', x : 12, y : 24, skintone: 1};
+mappages["earthplane"].npcs[12] = {name : 'EttinSorcererNPC', x : 30, y : 39, skintone: 1};
+mappages["earthplane"].npcs[13] = {name : 'EttinNPC', x : 17, y : 36, skintone: 1};
+mappages["earthplane"].npcs[14] = {name : 'EttinNPC', x : 53, y : 23, skintone: 1};
 
 mappages["earthplane"].desc = "Plane of Earth";
 mappages["earthplane"].longdesc = ``;
@@ -5883,6 +5899,120 @@ mappages["earthplane"].onload = function(mapref) {
         mapref.placeThing(tunnels[key][i][0], tunnels[key][i][1], cavein);
       }
     }
+    mapref.placeThing(1,1,localFactory.createTile("EPQuakes"));
+
+    // let's place some spawners. Note, in this case unlike many others, the spawners do not start linked 
+    // with anyone already existing. The map starts with lurkers, corpsers, and various giantkin in the caves, 
+    // but spawners will start churning out elementals and delvers.
+
+    let spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["MinorEarthElemental", "EarthElemental", "Delver", "EarthenTyrant"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(1);
+    spawn.setSpawnRadius(3);
+
+    let freq = 20 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+
+    mapref.placeThing(9,7,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+    
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(1);
+    spawn.setSpawnRadius(3);
+
+    freq = 20 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+
+    mapref.placeThing(29,3,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+    
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(1);
+    spawn.setSpawnRadius(3);
+
+    freq = 20 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+
+    mapref.placeThing(39,12,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+    
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(1);
+    spawn.setSpawnRadius(3);
+
+    freq = 20 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+
+    mapref.placeThing(52,8,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+    
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(2);
+    spawn.setSpawnRadius(3);
+
+    freq = 20 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+
+    mapref.placeThing(29,30,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+    
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(2);
+    spawn.setSpawnRadius(3);
+
+    freq = 20 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+
+    mapref.placeThing(17,28,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+    
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(2);
+    spawn.setSpawnRadius(3);
+
+    freq = 20 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+
+    mapref.placeThing(21,41,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+    
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(2);
+    spawn.setSpawnRadius(3);
+
+    freq = 20 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+
+    mapref.placeThing(43,49,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+    
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(1);
+    spawn.setSpawnRadius(3);
+
+    freq = 20 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+
+    mapref.placeThing(59,47,spawn);
+    
   }
 }
 
@@ -5938,6 +6068,15 @@ mappages["earthplane2"].features[1] = {name : 'Cave', x : 14, y : 37, entermap :
 
 
 mappages["earthplane2"].npcs = [];
+mappages["earthplane2"].npcs[0] = {name : 'GiantNPC', x : 8, y : 6, skintone: 1};
+mappages["earthplane2"].npcs[1] = {name : 'GiantNPC', x : 34, y : 19, skintone: 1};
+mappages["earthplane2"].npcs[2] = {name : 'GiantNPC', x : 13, y : 33, skintone: 1};
+mappages["earthplane2"].npcs[3] = {name : 'CyclopsNPC', x : 18, y : 20, skintone: 1};
+mappages["earthplane2"].npcs[4] = {name : 'CorpserNPC', x : 24, y : 10, skintone: 1};
+mappages["earthplane2"].npcs[5] = {name : 'CorpserNPC', x : 20, y : 20, skintone: 1};
+mappages["earthplane2"].npcs[6] = {name : 'CorpserNPC', x : 8, y : 22, skintone: 1};
+mappages["earthplane2"].npcs[7] = {name : 'CorpserNPC', x : 28, y : 30, skintone: 1};
+mappages["earthplane2"].npcs[8] = {name : 'LurkerNPC', x : 36, y : 33, skintone: 1};
 
 mappages["earthplane2"].desc = "Plane of Earth";
 mappages["earthplane2"].longdesc = ``;
@@ -6046,6 +6185,78 @@ mappages["earthplane2"].onload = function(mapref) {
         mapref.placeThing(tunnels[key][i][0], tunnels[key][i][1], cavein);
       }
     }
+
+    let spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["MinorEarthElemental", "EarthElemental", "Delver", "EarthenTyrant"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(1);
+    spawn.setSpawnRadius(3);
+
+    let freq = 20 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+
+    mapref.placeThing(3,3,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(1);
+    spawn.setSpawnRadius(3);
+
+    freq = 20 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+
+    mapref.placeThing(29,4,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(1);
+    spawn.setSpawnRadius(3);
+
+    freq = 20 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+
+    mapref.placeThing(33,13,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(2);
+    spawn.setSpawnRadius(3);
+
+    freq = 20 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+
+    mapref.placeThing(34,28,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(2);
+    spawn.setSpawnRadius(3);
+
+    freq = 20 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+
+    mapref.placeThing(14,26,spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(1);
+    spawn.setSpawnRadius(3);
+
+    freq = 20 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+
+    mapref.placeThing(13,13,spawn);
   }
 
 }

@@ -3423,6 +3423,11 @@ tileFactory.prototype.makeSpawnerTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeEPQuakesTile = function() {
+  let newTile = new EPQuakesTile();
+  return newTile;
+}
+
 tileFactory.prototype.makePentagramNWTile = function() {
   let newTile = new PentagramNWTile();
   return newTile;

@@ -9848,7 +9848,7 @@ TwistOfFateLOEFixerTile.prototype.activate = function() {
 function SpawnerTile() {
   this.name = "Spawner";
   this.graphic = "target-cursor.gif";
-  this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+  this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
   this.blockslos = 0;
   this.prefix = "an";
   this.desc = "invisible spawner";
@@ -10034,6 +10034,93 @@ SpawnerTile.prototype.myTurn = function() {
       }      
   }
  
+  let NPCevent = new GameEvent(this);
+  DUTime.addAtTimeInterval(NPCevent,timetonext);
+  
+  return 1;
+}
+
+function EPQuakesTile() {
+  this.name = "EPQuakes";
+  this.graphic = "target-cursor.gif";
+  this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_LEVITATE_MONSTER + MOVE_WALK + MOVE_WALK_MONSTER;
+  this.blockslos = 0;
+  this.prefix = "an";
+  this.desc = "invisible actor";
+
+  this.chance = 30;
+  this.invisible = 1;
+  }
+EPQuakesTile.prototype = new FeatureObject();
+
+EPQuakesTile.prototype.activate = function() {
+  if (gamestate.getMode() !== "loadgame") {
+    DebugWrite("gameobj", "<span style='font-weight:bold'>Quake Generator " + this.getName() + " activating at " + DUTime.getGameClock().toFixed(5) + ".</span><br />");
+
+    let NPCevent = new GameEvent(this);
+    DUTime.addAtTimeInterval(NPCevent,1);
+  }
+}
+
+EPQuakesTile.prototype.myTurn = function() {
+  let mymaps = []
+  let mymap = this.getHomeMap();
+  let mymap2 = maps.getMap("earthplane2");
+  mymaps = [mymap, mymap2];
+
+  for (let m in mymaps) {
+    for (let key in m.tunnels) {
+      let anychange = 0;
+      if (Dice.roll("1d100") <= this.chance) { // this tunnel changes state
+        anychange = 1;
+        let testacre = m.getTile(m.tunnels[key][0][0], m.tunnels[key][0][1]);
+        let empty = 1;
+        let feas = testacre.getAllFeatures();
+        for (let i=0;i<feas.length;i++) {
+          if (feas[i].getName() === "EarthPlaneCaveIn") { empty = 0; } // there are cavein tiles in the tunnel, it is not empty
+        }
+        if (empty) {
+          // check for non-native entities inside, then fill
+          for (let i=0;i<m.tunnel[key].length; i++) {
+            if ((PC.getx() === m.tunnel[key][i][0]) && (PC.gety() === m.tunnel[key][i][1])) {
+              maintext.addText("Rocks crash around you!");
+              DealandDisplayDamage(PC,null,5+Dice.roll("2d10"),"physical");
+              ShowEffect(PC, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
+            }
+            let citile = m.getTile(m.tunnel[key][i][0],m.tunnel[key][i][1]);
+            let npc = citile.getTopNPC();
+            if (npc && (npc.getAttitude() === "friendly") && (!npc.getName().includes("Earth"))) {
+              // don't deal damage if the friendly is a minor earth elemental
+              DealandDisplayDamage(npc,null,5+Dice.roll("2d10"),"physical");
+              ShowEffect(npc, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
+            }
+            let cif = m.getTile(0,0).getTopFeature();
+            m.moveThing(m.tunnel[key][i][0],m.tunnel[key][i][1],cif);
+          }
+        } else {
+          // grab each cavein and move it to 0,0 I guess
+          for (let i=0;i<m.tunnel[key].length; i++) {
+            let citile = m.getTile(m.tunnel[key][i][0],m.tunnel[key][i][1]);
+            let feas = citile.getAllFeatures();
+            for (let j=0;j<feas.length;j++) {
+              if (feas[j].getName() === "EarthPlaneCaveIn") { 
+                m.moveThing(0,0,feas[j]);
+              }
+            }
+          }
+        }
+      }
+      if (anychange) {
+        if (PC.getHomeMap() === m) {
+          Earthquake();
+        }
+      }
+
+    }
+  }
+
+  let timetonext = 20 + Dice.roll("1d15");
+
   let NPCevent = new GameEvent(this);
   DUTime.addAtTimeInterval(NPCevent,timetonext);
   
