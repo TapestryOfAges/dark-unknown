@@ -1308,6 +1308,56 @@ tileFactory.prototype.makeLavaTubeTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeAirPlaneTile = function() {
+  let newTile = new AirPlaneTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAirPlaneWindNWTile = function() {
+  let newTile = new AirPlaneWindNWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAirPlaneWindNTile = function() {
+  let newTile = new AirPlaneWindNTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAirPlaneWindNETile = function() {
+  let newTile = new AirPlaneWindNETile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAirPlaneWindWTile = function() {
+  let newTile = new AirPlaneWindWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAirPlaneWindXTile = function() {
+  let newTile = new AirPlaneWindXTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAirPlaneWindETile = function() {
+  let newTile = new AirPlaneWindETile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAirPlaneWindSWTile = function() {
+  let newTile = new AirPlaneWindSWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAirPlaneWindSTile = function() {
+  let newTile = new AirPlaneWindSTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAirPlaneWindSETile = function() {
+  let newTile = new AirPlaneWindSETile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSeeBelowTile = function() {
   let newTile = new SeeBelowTile();
   return newTile;
@@ -6500,6 +6550,11 @@ tileFactory.prototype.makeScouringBeldskaeTile = function() {
 
 tileFactory.prototype.makeWandBreakTile = function() {
   let newTile = new WandBreakTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWindChangeTile = function() {
+  let newTile = new WindChangeTile();
   return newTile;
 }
 

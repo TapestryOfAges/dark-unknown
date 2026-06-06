@@ -3717,9 +3717,104 @@ function AirPlaneTile() {
   this.prefix = "the";
   this.desc = "vastness of air";
   this.peerview = SHALLOW_WATER_PEER;
+  this.graphic = "static.gif";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -180*32;
 
 }
 AirPlaneTile.prototype = new TerrainObject();
+
+
+function AirPlaneWindNWTile() {
+  this.name = "AirPlaneWindNW";
+  this.graphic = "skies.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
+  this.windx = -1;
+  this.windy = -1;
+}
+AirPlaneWindNWTile.prototype = new AirPlaneTile();
+
+function AirPlaneWindNTile() {
+  this.name = "AirPlaneWindN";
+  this.graphic = "skies.gif";
+  this.spritexoffset = -32;
+  this.spriteyoffset = 0;
+  this.windx = 0;
+  this.windy = -1;
+}
+AirPlaneWindNTile.prototype = new AirPlaneTile();
+
+function AirPlaneWindNETile() {
+  this.name = "AirPlaneWindNE";
+  this.graphic = "skies.gif";
+  this.spritexoffset = -64;
+  this.spriteyoffset = 0;
+  this.windx = 1;
+  this.windy = -1;
+}
+AirPlaneWindNETile.prototype = new AirPlaneTile();
+
+function AirPlaneWindWTile() {
+  this.name = "AirPlaneWindW";
+  this.graphic = "skies.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -32;
+  this.windx = -1;
+  this.windy = 0;
+}
+AirPlaneWindWTile.prototype = new AirPlaneTile();
+
+function AirPlaneWindXTile() {
+  this.name = "AirPlaneWindX";
+  this.graphic = "skies.gif";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -32;
+  this.windx = 0;
+  this.windy = 0;
+}
+AirPlaneWindXTile.prototype = new AirPlaneTile();
+
+function AirPlaneWindETile() {
+  this.name = "AirPlaneWindE";
+  this.graphic = "skies.gif";
+  this.spritexoffset = -64;
+  this.spriteyoffset = -32;
+  this.windx = 1;
+  this.windy = 0;
+}
+AirPlaneWindETile.prototype = new AirPlaneTile();
+
+function AirPlaneWindSWTile() {
+  this.name = "AirPlaneWindSW";
+  this.graphic = "skies.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -64;
+  this.windx = -1;
+  this.windy = 1;
+}
+AirPlaneWindSWTile.prototype = new AirPlaneTile();
+
+function AirPlaneWindSTile() {
+  this.name = "AirPlaneWindS";
+  this.graphic = "skies.gif";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -64;
+  this.windx = 0;
+  this.windy = 1;
+}
+AirPlaneWindSTile.prototype = new AirPlaneTile();
+
+function AirPlaneWindSETile() {
+  this.name = "AirPlaneWindSE";
+  this.graphic = "skies.gif";
+  this.spritexoffset = -64;
+  this.spriteyoffset = -64;
+  this.windx = 1;
+  this.windy = 1;
+}
+AirPlaneWindSETile.prototype = new AirPlaneTile();
+
 
 function SeeBelowTile() {
   this.name = "SeeBelow";
