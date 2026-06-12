@@ -260,6 +260,17 @@ function PopulateAtlas(atlasref) {
   atlasref.insertkey("TitanWallBR","T8");
   atlasref.insertkey("EPMountain", "ee");
 
+  atlasref.insertkey("AirPlaneWindNW", "A7");
+  atlasref.insertkey("AirPlaneWindN", "A8");
+  atlasref.insertkey("AirPlaneWindNE", "A9");
+  atlasref.insertkey("AirPlaneWindE", "A6");
+  atlasref.insertkey("AirPlaneWindSE", "A3");
+  atlasref.insertkey("AirPlaneWindS", "A2");
+  atlasref.insertkey("AirPlaneWindSW", "A1");
+  atlasref.insertkey("AirPlaneWindW", "A4");
+  atlasref.insertkey("AirPlaneWindX", "A0");
+  atlasref.insertkey("AirPlaneWindC", "A5");
+
   atlasref.insertkey("OceanWaterTransition0","W0");
   atlasref.insertkey("OceanWaterTransition1","W1");
   atlasref.insertkey("OceanWaterTransition2","W2");

@@ -3724,6 +3724,44 @@ function AirPlaneTile() {
 }
 AirPlaneTile.prototype = new TerrainObject();
 
+AirPlaneTile.prototype.bumpInto = function(who) {
+  let retval = {};
+  retval["msg"] = "";
+  if ((who.getMovetype() & MOVE_FLY) || (who.getMovetype() & MOVE_ETHEREAL)) {
+    retval["canmove"] = 1;
+  } else if (who.windblown) {
+    retval["canmove"] = 1;
+  } else if (who.getHomeMap().getTile(who.getx(),who.gety()).getTerrain().getName().includes("AirPlane")) {
+    retval["canmove"] = 0;
+    retval["msg"] = "Unable to fly under your own power, you must go where the winds take you.";
+  } else {
+    retval["canmove"] = 1;
+    retval["msg"] = "You step off the solid ground and let the winds take you.";
+  }
+  return retval;
+}
+
+AirPlaneTile.prototype.idle = function(who) {
+  // check for Wind Change active, if not, go where the wind takes you!
+  // track last known position so the "C" tile can keep going in that direction, to allow the loop to cross
+  let windchange = PC.getSpellEffectsByName("WindChange");
+  let dirx = this.windx;
+  let diry = this.windy;
+  if (windchange) {
+    dirx = windchange.winddirx;
+    diry = windchange.winddiry;
+  } else if (this.getName() === "AirplaneWindC") {
+    if (who.lastwindx) { dirx = who.lastwindx; }
+    if (who.lastwindy) { diry = who.lastwindy; }
+  }
+  let desttile = who.getHomeMap().getTile(who.getx() + dirx, who.gety() + diry);
+  if (desttile.canMoveHere(who.getMovetype()).canmove) {
+    who.windblown = 1;
+    who.moveMe(dirx,diry);
+    delete who.windblown;
+  }
+
+}
 
 function AirPlaneWindNWTile() {
   this.name = "AirPlaneWindNW";
@@ -3772,6 +3810,7 @@ function AirPlaneWindXTile() {
   this.spriteyoffset = -32;
   this.windx = 0;
   this.windy = 0;
+  this.blockwind = 1;
 }
 AirPlaneWindXTile.prototype = new AirPlaneTile();
 
@@ -3815,6 +3854,15 @@ function AirPlaneWindSETile() {
 }
 AirPlaneWindSETile.prototype = new AirPlaneTile();
 
+function AirPlaneWindCTile() {
+  this.name = "AirPlaneWindC";
+  this.graphic = "skies.gif";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -32;
+  this.windx = 0;
+  this.windy = 0;
+}
+AirPlaneWindCTile.prototype = new AirPlaneTile();
 
 function SeeBelowTile() {
   this.name = "SeeBelow";

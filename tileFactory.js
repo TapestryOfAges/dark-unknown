@@ -1358,6 +1358,11 @@ tileFactory.prototype.makeAirPlaneWindSETile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeAirPlaneWindCTile = function() {
+  let newTile = new AirPlaneWindCTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSeeBelowTile = function() {
   let newTile = new SeeBelowTile();
   return newTile;
@@ -3105,6 +3110,11 @@ tileFactory.prototype.makeWalkOnVault3Tile = function() {
 
 tileFactory.prototype.makeWalkOnWingTile = function() {
   let newTile = new WalkOnWingTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAirTowerTile = function() {
+  let newTile = new WalkOnAirTowerTile();
   return newTile;
 }
 

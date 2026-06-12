@@ -7885,6 +7885,24 @@ WalkOnWingTile.prototype.walkon = function(walker) {
   return {msg:""};
 }
 
+function WalkOnAirTowerTile() {
+	this.name = "WalkOnAirTower";
+  this.graphic = "static.gif";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -50*32;
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnAirTowerTile.prototype = new FeatureObject();
+
+WalkOnAirTowerTile.prototype.walkon = function(walker) {
+  MoveBetweenMaps(walker,this.getHomeMap(),maps.getMap("airplane"),17,14);
+  return {msg:"You step off the roof of the tower and are swept out into the wider Plane of Air."};
+}
+
 function WalkOnWE31Tile() {
   this.name = "WalkOnWE31";
   this.graphic = "static.gif";

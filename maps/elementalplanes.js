@@ -281,8 +281,8 @@ mappages["waterplane"].seeBelow = '';
 mappages["waterplane"].lightLevel = 'bright';
 mappages["waterplane"].alwaysRemember = '0';
 mappages["waterplane"].scale = '1';
-mappages["waterplane"].underground = '0';
-mappages["waterplane"].undergroundDesc = 'Otherworldly';
+mappages["waterplane"].underground = '1';
+mappages["waterplane"].undergroundDesc = '';
 mappages["waterplane"].enterscript = '';
 mappages["waterplane"].entertestscript = '';
 mappages["waterplane"].exitscript = '';
@@ -5310,8 +5310,8 @@ mappages["fireplane"].seeBelow = '';
 mappages["fireplane"].lightLevel = 'bright';
 mappages["fireplane"].alwaysRemember = '0';
 mappages["fireplane"].scale = '1';
-mappages["fireplane"].underground = '0';
-mappages["fireplane"].undergroundDesc = 'Otherworldly';
+mappages["fireplane"].underground = '1';
+mappages["fireplane"].undergroundDesc = '';
 mappages["fireplane"].enterscript = '';
 mappages["fireplane"].entertestscript = '';
 mappages["fireplane"].exitscript = '';
@@ -5739,7 +5739,7 @@ mappages["earthplane"].seeBelow = '';
 mappages["earthplane"].lightLevel = 'bright';
 mappages["earthplane"].alwaysRemember = '0';
 mappages["earthplane"].scale = '1';
-mappages["earthplane"].underground = '0';
+mappages["earthplane"].underground = '1';
 mappages["earthplane"].undergroundDesc = '';
 mappages["earthplane"].enterscript = '';
 mappages["earthplane"].entertestscript = '';
@@ -6089,10 +6089,10 @@ mappages["earthplane2"].wraps = '';
 mappages["earthplane2"].enterx = '65';
 mappages["earthplane2"].entery = '70';
 mappages["earthplane2"].seeBelow = '';
-mappages["earthplane2"].lightLevel = '';
+mappages["earthplane2"].lightLevel = 'bright';
 mappages["earthplane2"].alwaysRemember = '0';
 mappages["earthplane2"].scale = '1';
-mappages["earthplane2"].underground = '0';
+mappages["earthplane2"].underground = '1';
 mappages["earthplane2"].undergroundDesc = '';
 mappages["earthplane2"].enterscript = '';
 mappages["earthplane2"].entertestscript = '';
@@ -6260,3 +6260,458 @@ mappages["earthplane2"].onload = function(mapref) {
   }
 
 }
+
+// MAP BEGINS HERE
+mappages["airplane"] = {};
+mappages["airplane"].terrain = [];
+ mappages["airplane"].terrain[0] = 'A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0';
+ mappages["airplane"].terrain[1] = 'A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0';
+ mappages["airplane"].terrain[2] = 'A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0';
+ mappages["airplane"].terrain[3] = 'A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A6 A6 A6 A6 A6 A6 A6 A6 A6 A6 A6 A6 A6 A6 A6 A2 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0';
+ mappages["airplane"].terrain[4] = 'A0 A0 A0 A0 A0 A0 A0 A0 A0 A6 A6 A6 A9 A6 A6 A6 A3 A6 A6 A6 A3 A6 A6 A6 A6 A6 A6 A6 A2 A4 A8 A4 A4 A4 A4 A4 A4 A4 A1 A4 A4 A4 A1 A4 A4 A4 A7 A4 A4 A4 A0 A0 A0 A0 A0 A0 A0 A0 A0';
+ mappages["airplane"].terrain[5] = 'A0 A0 A0 A0 A0 A0 A6 A6 A9 A6 A6 A6 A9 A6 A6 A6 A3 A6 A6 A3 A3 A3 A3 A3 A3 A6 A6 A6 A6 A6 A8 A4 A4 A4 A1 A1 A1 A1 A1 A1 A4 A4 A1 A4 A4 A4 A7 A4 A4 A4 A7 A4 A4 A0 A0 A0 A0 A0 A0';
+ mappages["airplane"].terrain[6] = 'A0 A0 A0 A0 A0 A9 A6 A6 A9 A9 A9 A6 A6 A6 A9 A6 A6 A6 A6 A3 A6 A3 A3 A3 A3 A3 A3 A6 A3 A2 A1 A4 A1 A1 A1 A1 A1 A1 A4 A1 A4 A4 A4 A4 A7 A4 A4 A4 A7 A7 A7 A4 A4 A7 A0 A0 A0 A0 A0';
+ mappages["airplane"].terrain[7] = 'A0 A0 A0 A0 A9 A9 A6 A9 A9 A9 A9 A6 A9 A6 A9 A6 A6 A6 A6 A3 A6 A3 A6 A3 A3 A3 A3 A6 A2 A2 A2 A4 A1 A1 A1 A1 A4 A1 A4 A1 A4 A4 A4 A4 A7 A4 A7 A4 A7 A7 A7 A7 A4 A7 A7 A0 A0 A0 A0';
+ mappages["airplane"].terrain[8] = 'A0 A0 A0 A9 A9 A9 A9 A9 A9 A9 A9 A6 A9 A6 A9 A6 A6 A6 A6 A3 A6 A3 A6 A3 A3 A3 A3 A3 A2 A2 A2 A1 A1 A1 A1 A1 A4 A1 A4 A1 A4 A4 A4 A4 A7 A4 A7 A4 A7 A7 A7 A7 A7 A7 A7 A7 A0 A0 A0';
+ mappages["airplane"].terrain[9] = 'A0 A0 A0 A8 A9 A9 A9 A9 A9 A9 A9 A6 A9 A9 A9 A6 A6 A6 A6 A3 A3 A3 A6 A3 A3 A3 A3 A3 A2 A2 A2 A1 A1 A1 A1 A1 A4 A1 A1 A1 A4 A4 A4 A4 A7 A7 A7 A4 A7 A7 A7 A7 A7 A7 A7 A8 A0 A0 A0';
+mappages["airplane"].terrain[10] = 'A0 A0 A0 A8 A8 A9 A9 A9 A9 A9 A9 A9 A9 A9 A9 A6 A6 A6 A6 A3 A3 A3 A6 A3 A3 A3 A3 A3 A2 A2 A2 A1 A1 A1 A1 A1 A4 A1 A1 A1 A4 A4 A4 A4 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A8 A8 A0 A0 A0';
+mappages["airplane"].terrain[11] = 'A0 A0 A0 A8 A8 A8 A9 A9 A9 A9 A9 A9 A9 A9 A9 A9 A6 A6 A3 A3 A3 A3 A3 A6 A3 A3 A3 A3 A2 A2 A2 A1 A1 A1 A1 A4 A1 A1 A1 A1 A1 A4 A4 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A8 A8 A8 A0 A0 A0';
+mappages["airplane"].terrain[12] = 'A0 A0 A0 A8 A8 A8 A9 A9 A9 A9 A8 A9 A9 A9 A8 A9 A6 A6 A3 A3 A3 A3 A3 A3 A6 A3 A3 A3 A2 A1 A2 A1 A1 A1 A4 A1 A1 A1 A1 A1 A1 A4 A4 A7 A8 A7 A7 A7 A8 A7 A7 A7 A7 A8 A8 A8 A0 A0 A0';
+mappages["airplane"].terrain[13] = 'A0 A0 A0 A8 A8 A8 A8 A8 A8 A8 A8 A8 A8 A8 A9 A9 A6 A6 A2 A2 A2 A3 A2 A2 A2 A2 A2 A6 A3 A4 A1 A4 A2 A2 A2 A2 A2 A1 A2 A2 A2 A4 A4 A7 A7 A8 A8 A8 A8 A8 A8 A8 A8 A8 A8 A8 A0 A0 A0';
+mappages["airplane"].terrain[14] = 'A0 A0 A0 A8 A8 A8 A8 A8 A8 A8 A8 A8 A8 A8 A8 A8 A8 A4 A2 A2 A2 A2 A2 A2 A2 A2 A2 A2 A2 A5 A8 A2 A2 A2 A2 A2 A2 A2 A2 A2 A2 A6 A8 A8 A8 A8 A8 A8 A8 A8 A8 A8 A8 A8 A8 A8 A0 A0 A0';
+mappages["airplane"].terrain[15] = 'A0 A0 A0 A8 A8 A8 A8 A8 A8 A8 A8 A8 A8 A8 A7 A7 A7 A4 A4 A1 A2 A2 A2 A2 A2 A2 A1 A2 A1 A6 A3 A2 A3 A2 A2 A2 A2 A2 A2 A3 A6 A6 A9 A9 A9 A8 A8 A8 A8 A8 A8 A8 A8 A8 A8 A8 A0 A0 A0';
+mappages["airplane"].terrain[16] = 'A0 A0 A0 A8 A8 A8 A8 A8 A8 A7 A7 A7 A7 A7 A7 A7 A7 A4 A4 A1 A1 A1 A1 A2 A2 A1 A1 A1 A1 A9 A3 A3 A3 A3 A2 A2 A3 A3 A3 A3 A6 A6 A9 A9 A9 A9 A9 A9 A9 A9 A8 A8 A8 A8 A8 A8 A0 A0 A0';
+mappages["airplane"].terrain[17] = 'A0 A0 A0 A8 A8 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A4 A4 A4 A4 A1 A1 A1 A1 A1 A1 A1 A1 A1 A8 A3 A3 A3 A3 A3 A3 A3 A3 A3 A6 A6 A6 A6 A9 A9 A9 A9 A9 A9 A9 A9 A9 A9 A9 A8 A8 A0 A0 A0';
+mappages["airplane"].terrain[18] = 'A0 A0 A0 A8 A8 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A7 A4 A4 A4 A4 A1 A1 A1 A1 A1 A1 A1 A1 A1 A8 A3 A3 A3 A3 A3 A3 A3 A3 A3 A6 A6 A6 A6 A9 A9 A9 A9 A9 A9 A9 A9 A9 A9 A9 A8 A8 A0 A0 A0';
+mappages["airplane"].terrain[19] = 'A0 A0 A0 A8 A8 A7 A7 A7 A7 A7 A7 A7 A4 A7 A4 A7 A4 A4 A4 A4 A1 A1 A1 A4 A1 A1 A1 A4 A7 A8 A9 A6 A3 A3 A3 A6 A3 A3 A3 A6 A6 A6 A6 A9 A6 A9 A6 A9 A9 A9 A9 A9 A9 A9 A8 A8 A0 A0 A0';
+mappages["airplane"].terrain[20] = 'A0 A0 A0 A8 A8 A7 A7 A7 A7 A7 A7 A7 A4 A7 A4 A7 A4 A4 A4 A4 A4 A1 A1 A4 A1 A1 A1 A4 A7 A8 A9 A6 A3 A3 A3 A6 A3 A3 A6 A6 A6 A6 A6 A9 A6 A9 A6 A9 A9 A9 A9 A9 A9 A9 A8 A8 A0 A0 A0';
+mappages["airplane"].terrain[21] = 'A0 A0 A0 A0 A8 A7 A7 A7 A7 A7 A7 A4 A4 A7 A4 A7 A4 A4 A4 A4 A1 A4 A1 A4 A1 A1 A1 A4 A8 A8 A8 A6 A3 A3 A3 A6 A3 A6 A3 A6 A6 A6 A6 A9 A6 A9 A6 A6 A9 A9 A9 A9 A9 A9 A8 A0 A0 A0 A0';
+mappages["airplane"].terrain[22] = 'A0 A0 A0 A0 A0 A7 A7 A7 A7 A7 A7 A4 A7 A4 A4 A7 A4 A4 A4 A4 A1 A4 A1 A4 A1 A4 A4 A4 A9 A8 A7 A6 A6 A6 A3 A6 A3 A6 A3 A6 A6 A6 A6 A9 A6 A6 A9 A6 A9 A9 A9 A9 A9 A9 A0 A0 A0 A0 A0';
+mappages["airplane"].terrain[23] = 'A0 A0 A0 A0 A0 A0 A7 A4 A4 A7 A7 A4 A4 A7 A4 A4 A4 A7 A4 A4 A1 A4 A1 A4 A4 A4 A4 A4 A2 A4 A4 A6 A6 A6 A6 A6 A3 A6 A3 A6 A6 A9 A6 A6 A6 A9 A6 A6 A9 A9 A6 A6 A9 A0 A0 A0 A0 A0 A0';
+mappages["airplane"].terrain[24] = 'A0 A0 A0 A0 A0 A0 A0 A0 A0 A7 A4 A4 A4 A7 A4 A4 A4 A7 A4 A4 A1 A4 A4 A4 A4 A4 A4 A8 A2 A6 A8 A8 A6 A6 A6 A6 A6 A6 A3 A6 A6 A9 A6 A6 A6 A9 A6 A6 A6 A9 A0 A0 A0 A0 A0 A0 A0 A0 A0';
+mappages["airplane"].terrain[25] = 'A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A7 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A9 A8 A6 A6 A8 A8 A7 A6 A6 A6 A6 A6 A6 A6 A6 A6 A6 A6 A6 A9 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0';
+mappages["airplane"].terrain[26] = 'A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0';
+mappages["airplane"].terrain[27] = 'A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0';
+mappages["airplane"].terrain[28] = 'A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0 A0';
+
+mappages["airplane"].features = [];
+mappages["airplane"].features[0] = {name : 'PileOfRocks', x : 41, y : 4};
+mappages["airplane"].features[1] = {name : 'PileOfRocks', x : 40, y : 4};
+mappages["airplane"].features[2] = {name : 'PileOfRocks', x : 17, y : 4};
+mappages["airplane"].features[3] = {name : 'PileOfRocks', x : 18, y : 4};
+mappages["airplane"].features[4] = {name : 'PileOfRocks', x : 42, y : 24};
+mappages["airplane"].features[5] = {name : 'PileOfRocks', x : 43, y : 24};
+mappages["airplane"].features[6] = {name : 'PileOfRocks', x : 16, y : 24};
+mappages["airplane"].features[7] = {name : 'PileOfRocks', x : 15, y : 24};
+mappages["airplane"].features[8] = {name : 'PileOfRocks', x : 41, y : 14};
+mappages["airplane"].features[9] = {name : 'Tower', x : 17, y : 14, entermap : 'null', enterx : 0, entery : 0};
+mappages["airplane"].features[10] = {name : 'PileOfRocks', x : 34, y : 7};
+mappages["airplane"].features[11] = {name : 'PileOfRocks', x : 33, y : 8};
+mappages["airplane"].features[12] = {name : 'PileOfRocks', x : 25, y : 8};
+mappages["airplane"].features[13] = {name : 'PileOfRocks', x : 24, y : 7};
+mappages["airplane"].features[14] = {name : 'PileOfRocks', x : 30, y : 17};
+mappages["airplane"].features[15] = {name : 'PileOfRocks', x : 28, y : 17};
+mappages["airplane"].features[16] = {name : 'PileOfRocks', x : 36, y : 17};
+mappages["airplane"].features[17] = {name : 'PileOfRocks', x : 37, y : 18};
+mappages["airplane"].features[18] = {name : 'PileOfRocks', x : 22, y : 17};
+mappages["airplane"].features[19] = {name : 'PileOfRocks', x : 21, y : 18};
+mappages["airplane"].features[20] = {name : 'PileOfRocks', x : 52, y : 11};
+mappages["airplane"].features[21] = {name : 'PileOfRocks', x : 51, y : 10};
+mappages["airplane"].features[22] = {name : 'PileOfRocks', x : 49, y : 23};
+mappages["airplane"].features[23] = {name : 'PileOfRocks', x : 50, y : 22};
+mappages["airplane"].features[24] = {name : 'PileOfRocks', x : 9, y : 23};
+mappages["airplane"].features[25] = {name : 'PileOfRocks', x : 8, y : 22};
+mappages["airplane"].features[26] = {name : 'PileOfRocks', x : 6, y : 11};
+mappages["airplane"].features[27] = {name : 'PileOfRocks', x : 7, y : 10};
+mappages["airplane"].features[28] = {name : 'PileOfRocks', x : 11, y : 18};
+mappages["airplane"].features[29] = {name : 'PileOfRocks', x : 10, y : 17};
+mappages["airplane"].features[30] = {name : 'PileOfRocks', x : 14, y : 12};
+mappages["airplane"].features[31] = {name : 'PileOfRocks', x : 47, y : 12};
+mappages["airplane"].features[32] = {name : 'PileOfRocks', x : 45, y : 5};
+mappages["airplane"].features[33] = {name : 'PileOfRocks', x : 29, y : 4};
+mappages["airplane"].features[34] = {name : 'PileOfRocks', x : 29, y : 24};
+mappages["airplane"].features[35] = {name : 'PileOfRocks', x : 47, y : 18};
+
+
+mappages["airplane"].npcs = [];
+mappages["airplane"].npcs[0] = {name : 'MinorAirElementalNPC', x : 33, y : 11, skintone: 1};
+mappages["airplane"].npcs[1] = {name : 'MinorAirElementalNPC', x : 33, y : 17, skintone: 1};
+mappages["airplane"].npcs[2] = {name : 'MinorAirElementalNPC', x : 24, y : 16, skintone: 1};
+mappages["airplane"].npcs[3] = {name : 'MinorAirElementalNPC', x : 24, y : 11, skintone: 1};
+mappages["airplane"].npcs[4] = {name : 'MinorAirElementalNPC', x : 16, y : 8, skintone: 1};
+mappages["airplane"].npcs[5] = {name : 'MinorAirElementalNPC', x : 12, y : 15, skintone: 1};
+mappages["airplane"].npcs[6] = {name : 'MinorAirElementalNPC', x : 7, y : 18, skintone: 1};
+mappages["airplane"].npcs[7] = {name : 'MinorAirElementalNPC', x : 21, y : 22, skintone: 1};
+mappages["airplane"].npcs[8] = {name : 'MinorAirElementalNPC', x : 35, y : 23, skintone: 1};
+mappages["airplane"].npcs[9] = {name : 'MinorAirElementalNPC', x : 42, y : 20, skintone: 1};
+mappages["airplane"].npcs[10] = {name : 'MinorAirElementalNPC', x : 52, y : 17, skintone: 1};
+mappages["airplane"].npcs[11] = {name : 'MinorAirElementalNPC', x : 50, y : 14, skintone: 1};
+mappages["airplane"].npcs[12] = {name : 'MinorAirElementalNPC', x : 48, y : 9, skintone: 1};
+mappages["airplane"].npcs[13] = {name : 'MinorAirElementalNPC', x : 41, y : 9, skintone: 1};
+mappages["airplane"].npcs[14] = {name : 'AirElementalNPC', x : 9, y : 7, skintone: 1};
+mappages["airplane"].npcs[15] = {name : 'AirElementalNPC', x : 53, y : 8, skintone: 1};
+mappages["airplane"].npcs[16] = {name : 'TwisterNPC', x : 27, y : 4, skintone: 1};
+mappages["airplane"].npcs[17] = {name : 'TwisterNPC', x : 31, y : 25, skintone: 1};
+mappages["airplane"].npcs[18] = {name : 'DrakeNPC', x : 8, y : 14, skintone: 1};
+mappages["airplane"].npcs[19] = {name : 'DrakeNPC', x : 47, y : 6, skintone: 1};
+mappages["airplane"].npcs[20] = {name : 'DragonNPC', x : 53, y : 21, skintone: 1};
+mappages["airplane"].npcs[21] = {name : 'DragonNPC', x : 4, y : 7, skintone: 1};
+mappages["airplane"].npcs[22] = {name : 'EyesofSpiteNPC', x : 55, y : 14, skintone: 1};
+mappages["airplane"].npcs[23] = {name : 'EyesofSpiteNPC', x : 3, y : 15, skintone: 1};
+
+mappages["airplane"].desc = "Plane of Air";
+mappages["airplane"].longdesc = ``;
+mappages["airplane"].music = 'Ether';
+mappages["airplane"].savename = `Plane of Air`;
+mappages["airplane"].exitmap = '';
+mappages["airplane"].exitx = '65';
+mappages["airplane"].exity = '70';
+mappages["airplane"].wraps = '';
+mappages["airplane"].enterx = '65';
+mappages["airplane"].entery = '70';
+mappages["airplane"].seeBelow = '';
+mappages["airplane"].lightLevel = 'bright';
+mappages["airplane"].alwaysRemember = '0';
+mappages["airplane"].scale = '1';
+mappages["airplane"].underground = '1';
+mappages["airplane"].undergroundDesc = '';
+mappages["airplane"].enterscript = '';
+mappages["airplane"].entertestscript = '';
+mappages["airplane"].exitscript = '';
+mappages["airplane"].exittestscript = '';
+mappages["airplane"].returnmap = '';
+mappages["airplane"].returnx = 'NaN';
+mappages["airplane"].returny = 'NaN';
+mappages["airplane"].returninfused = '0';
+mappages["airplane"].automap = '0';
+mappages["airplane"].linkedMaps = ["airtower2","airtowerroof","airtower1"];
+mappages["airplane"].editorLabels = '{}';
+// MAP ENDS HERE
+
+mappages["airplane"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) { 
+    let spawn = localFactory.createTile("Spawner");
+    let spawngroup = ["MinorAirElemental", "AirElemental", "Drake", "Dragon", "EvilEye", "EyesofSpite", "Twister"];
+
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(2);
+    spawn.setSpawnRadius(3);
+
+    let freq = 20 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+
+    mapref.placeThing(6,13,spawn);
+
+    let monster = mapref.getTile(8,14).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    monster = mapref.getTile(7,18).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    monster = mapref.getTile(3,15).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    monster = mapref.getTile(4,7).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+    
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(2);
+    spawn.setSpawnRadius(3);
+
+    freq = 20 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+
+    mapref.placeThing(52,14,spawn);
+
+    monster = mapref.getTile(50,14).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    monster = mapref.getTile(48,9).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    monster = mapref.getTile(52,17).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    monster = mapref.getTile(55,14).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+
+    spawn = localFactory.createTile("Spawner");
+    
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(2);
+    spawn.setSpawnRadius(3);
+
+    freq = 20 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+
+    mapref.placeThing(29,6,spawn);
+
+    monster = mapref.getTile(27,4).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    monster = mapref.getTile(33,11).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    monster = mapref.getTile(24,11).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    
+
+    spawn = localFactory.createTile("Spawner");
+    
+    spawn.setSpawngroup(spawngroup);
+    spawn.setMaxSpawns(2);
+    spawn.setSpawnRadius(3);
+
+    freq = 20 + Dice.roll("1d20");
+    spawn.setSpawnFreq(freq);
+
+    mapref.placeThing(29,22,spawn);
+
+    monster = mapref.getTile(31,25).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    monster = mapref.getTile(35,23).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    monster = mapref.getTile(33,17).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+    monster = mapref.getTile(21,22).getTopNPC();
+    spawn.addSpawned(monster);
+    monster.setSpawnedBy(spawn);
+
+  }
+}
+
+// MAP BEGINS HERE
+mappages["airtowerroof"] = {};
+mappages["airtowerroof"].terrain = [];
+ mappages["airtowerroof"].terrain[0] = 'A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4';
+ mappages["airtowerroof"].terrain[1] = 'A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4';
+ mappages["airtowerroof"].terrain[2] = 'A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4';
+ mappages["airtowerroof"].terrain[3] = 'A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4';
+ mappages["airtowerroof"].terrain[4] = 'A4 A4 A4 A4 A4 A4 A4 +c +c +c A4 A4 A4 A4 A4 A4 A4';
+ mappages["airtowerroof"].terrain[5] = 'A4 A4 A4 A4 A4 A4 +c +c +c +c +c A4 A4 A4 A4 A4 A4';
+ mappages["airtowerroof"].terrain[6] = 'A4 A4 A4 A4 A4 +c +c +c +c +c +c +c A4 A4 A4 A4 A4';
+ mappages["airtowerroof"].terrain[7] = 'A4 A4 A4 A4 +c +c +c +c +c +c +c +c +c A4 A4 A4 A4';
+ mappages["airtowerroof"].terrain[8] = 'A4 A4 A4 +c +c +c +c +c +c +c +c +c +c A4 A4 A4 A4';
+ mappages["airtowerroof"].terrain[9] = 'A4 A4 A4 A4 +c +c +c +c +c +c +c +c +c A4 A4 A4 A4';
+mappages["airtowerroof"].terrain[10] = 'A4 A4 A4 A4 A4 +c +c +c +c +c +c +c A4 A4 A4 A4 A4';
+mappages["airtowerroof"].terrain[11] = 'A4 A4 A4 A4 A4 A4 +c +c +c +c +c A4 A4 A4 A4 A4 A4';
+mappages["airtowerroof"].terrain[12] = 'A4 A4 A4 A4 A4 A4 A4 +c +c +c A4 A4 A4 A4 A4 A4 A4';
+mappages["airtowerroof"].terrain[13] = 'A4 A4 A4 A4 A4 A4 A4 +c +c +c A4 A4 A4 A4 A4 A4 A4';
+mappages["airtowerroof"].terrain[14] = 'A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4';
+mappages["airtowerroof"].terrain[15] = 'A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4';
+mappages["airtowerroof"].terrain[16] = 'A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4';
+
+mappages["airtowerroof"].features = [];
+mappages["airtowerroof"].features[0] = {name : 'CrenellationN', x : 8, y : 3};
+mappages["airtowerroof"].features[1] = {name : 'CrenellationN', x : 8, y : 13};
+mappages["airtowerroof"].features[2] = {name : 'CrenellationN', x : 7, y : 13};
+mappages["airtowerroof"].features[3] = {name : 'CrenellationN', x : 7, y : 3};
+mappages["airtowerroof"].features[4] = {name : 'CrenellationN', x : 9, y : 3};
+mappages["airtowerroof"].features[5] = {name : 'CrenellationN', x : 9, y : 13};
+mappages["airtowerroof"].features[6] = {name : 'CrenellationNE', x : 10, y : 3};
+mappages["airtowerroof"].features[7] = {name : 'CrenellationNE', x : 11, y : 4};
+mappages["airtowerroof"].features[8] = {name : 'CrenellationNE', x : 12, y : 5};
+mappages["airtowerroof"].features[9] = {name : 'CrenellationNE', x : 13, y : 6};
+mappages["airtowerroof"].features[10] = {name : 'CrenellationSWInner', x : 10, y : 4};
+mappages["airtowerroof"].features[11] = {name : 'CrenellationSWInner', x : 11, y : 5};
+mappages["airtowerroof"].features[12] = {name : 'CrenellationSWInner', x : 12, y : 6};
+mappages["airtowerroof"].features[13] = {name : 'CrenellationE', x : 13, y : 7};
+mappages["airtowerroof"].features[14] = {name : 'CrenellationE', x : 13, y : 8};
+mappages["airtowerroof"].features[15] = {name : 'CrenellationSE', x : 10, y : 13};
+mappages["airtowerroof"].features[16] = {name : 'CrenellationSE', x : 11, y : 12};
+mappages["airtowerroof"].features[17] = {name : 'CrenellationSE', x : 12, y : 11};
+mappages["airtowerroof"].features[18] = {name : 'CrenellationNWInner', x : 10, y : 12};
+mappages["airtowerroof"].features[19] = {name : 'CrenellationNWInner', x : 11, y : 11};
+mappages["airtowerroof"].features[20] = {name : 'CrenellationE', x : 13, y : 9};
+mappages["airtowerroof"].features[21] = {name : 'CrenellationSE', x : 13, y : 10};
+mappages["airtowerroof"].features[22] = {name : 'CrenellationNWInner', x : 12, y : 10};
+mappages["airtowerroof"].features[23] = {name : 'CrenellationNW', x : 6, y : 3};
+mappages["airtowerroof"].features[24] = {name : 'CrenellationNW', x : 5, y : 4};
+mappages["airtowerroof"].features[25] = {name : 'CrenellationNW', x : 4, y : 5};
+mappages["airtowerroof"].features[26] = {name : 'CrenellationNW', x : 3, y : 6};
+mappages["airtowerroof"].features[27] = {name : 'CrenellationW', x : 3, y : 7};
+mappages["airtowerroof"].features[28] = {name : 'CrenellationW', x : 3, y : 9};
+mappages["airtowerroof"].features[29] = {name : 'CrenellationSEInner', x : 5, y : 5};
+mappages["airtowerroof"].features[30] = {name : 'CrenellationSEInner', x : 6, y : 4};
+mappages["airtowerroof"].features[31] = {name : 'CrenellationSEInner', x : 4, y : 6};
+mappages["airtowerroof"].features[32] = {name : 'CrenellationSW', x : 3, y : 10};
+mappages["airtowerroof"].features[33] = {name : 'CrenellationSW', x : 4, y : 11};
+mappages["airtowerroof"].features[34] = {name : 'CrenellationSW', x : 5, y : 12};
+mappages["airtowerroof"].features[35] = {name : 'CrenellationSW', x : 6, y : 13};
+mappages["airtowerroof"].features[36] = {name : 'CrenellationNEInner', x : 4, y : 10};
+mappages["airtowerroof"].features[37] = {name : 'CrenellationNEInner', x : 5, y : 11};
+mappages["airtowerroof"].features[38] = {name : 'CrenellationNEInner', x : 6, y : 12};
+mappages["airtowerroof"].features[39] = {name : 'LadderDown', x : 8, y : 8, entermap : 'null', enterx : 0, entery : 0};
+mappages["airtowerroof"].features[40] = {name : 'WalkOnAirTower', x : 2, y : 8};
+
+
+mappages["airtowerroof"].npcs = [];
+
+mappages["airtowerroof"].desc = "Tower Roof";
+mappages["airtowerroof"].longdesc = ``;
+mappages["airtowerroof"].music = 'Ether';
+mappages["airtowerroof"].savename = `Floating Tower`;
+mappages["airtowerroof"].exitmap = 'airplane';
+mappages["airtowerroof"].exitx = '65';
+mappages["airtowerroof"].exity = '70';
+mappages["airtowerroof"].wraps = '';
+mappages["airtowerroof"].enterx = '5';
+mappages["airtowerroof"].entery = '8';
+mappages["airtowerroof"].seeBelow = '';
+mappages["airtowerroof"].lightLevel = 'bright';
+mappages["airtowerroof"].alwaysRemember = '0';
+mappages["airtowerroof"].scale = '1';
+mappages["airtowerroof"].underground = '1';
+mappages["airtowerroof"].undergroundDesc = '';
+mappages["airtowerroof"].enterscript = '';
+mappages["airtowerroof"].entertestscript = '';
+mappages["airtowerroof"].exitscript = '';
+mappages["airtowerroof"].exittestscript = '';
+mappages["airtowerroof"].returnmap = '';
+mappages["airtowerroof"].returnx = 'NaN';
+mappages["airtowerroof"].returny = 'NaN';
+mappages["airtowerroof"].returninfused = '0';
+mappages["airtowerroof"].automap = '0';
+mappages["airtowerroof"].linkedMaps = ["airtower2", "airtower1", "airplane"];
+mappages["airtowerroof"].editorLabels = '{}';
+// MAP ENDS HERE
+
+// MAP BEGINS HERE
+mappages["airtower2"] = {};
+mappages["airtower2"].terrain = [];
+ mappages["airtower2"].terrain[0] = 'A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4';
+ mappages["airtower2"].terrain[1] = 'A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4';
+ mappages["airtower2"].terrain[2] = 'A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4';
+ mappages["airtower2"].terrain[3] = 'A4 A4 A4 A4 A4 A4 g# g# g# g# g# A4 A4 A4 A4 A4 A4';
+ mappages["airtower2"].terrain[4] = 'A4 A4 A4 A4 A4 g# g# +c +c +c g# g# A4 A4 A4 A4 A4';
+ mappages["airtower2"].terrain[5] = 'A4 A4 A4 A4 g# g# +c +c +c +c +c g# g# A4 A4 A4 A4';
+ mappages["airtower2"].terrain[6] = 'A4 A4 A4 g# g# +c +c +c +c +c +c +c g# g# A4 A4 A4';
+ mappages["airtower2"].terrain[7] = 'A4 A4 A4 g# +c +c +c +c +c +c +c +c +c g# A4 A4 A4';
+ mappages["airtower2"].terrain[8] = 'A4 A4 A4 g# +c +c +c +c +c +c +c +c +c g# A4 A4 A4';
+ mappages["airtower2"].terrain[9] = 'A4 A4 A4 g# +c +c +c +c +c +c +c +c +c g# A4 A4 A4';
+mappages["airtower2"].terrain[10] = 'A4 A4 A4 g# g# +c +c +c +c +c +c +c g# g# A4 A4 A4';
+mappages["airtower2"].terrain[11] = 'A4 A4 A4 A4 g# g# +c +c +c +c +c g# g# A4 A4 A4 A4';
+mappages["airtower2"].terrain[12] = 'A4 A4 A4 A4 A4 g# g# +c +c +c g# g# A4 A4 A4 A4 A4';
+mappages["airtower2"].terrain[13] = 'A4 A4 A4 A4 A4 A4 g# g# g# g# g# A4 A4 A4 A4 A4 A4';
+mappages["airtower2"].terrain[14] = 'A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4';
+mappages["airtower2"].terrain[15] = 'A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4';
+mappages["airtower2"].terrain[16] = 'A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4';
+
+mappages["airtower2"].features = [];
+mappages["airtower2"].features[0] = {name : 'LadderUp', x : 8, y : 8, entermap : 'airtowerroof', enterx : 8, entery : 8};
+mappages["airtower2"].features[1] = {name : 'LadderDown', x : 5, y : 6, entermap : 'airtower1', enterx : 5, entery : 6};
+
+
+mappages["airtower2"].npcs = [];
+
+mappages["airtower2"].desc = "Tower Roof";
+mappages["airtower2"].longdesc = ``;
+mappages["airtower2"].music = 'Ether';
+mappages["airtower2"].savename = `Floating Tower`;
+mappages["airtower2"].exitmap = 'airplane';
+mappages["airtower2"].exitx = '65';
+mappages["airtower2"].exity = '70';
+mappages["airtower2"].wraps = '';
+mappages["airtower2"].enterx = '5';
+mappages["airtower2"].entery = '8';
+mappages["airtower2"].seeBelow = '';
+mappages["airtower2"].lightLevel = 'bright';
+mappages["airtower2"].alwaysRemember = '0';
+mappages["airtower2"].scale = '1';
+mappages["airtower2"].underground = '1';
+mappages["airtower2"].undergroundDesc = '';
+mappages["airtower2"].enterscript = '';
+mappages["airtower2"].entertestscript = '';
+mappages["airtower2"].exitscript = '';
+mappages["airtower2"].exittestscript = '';
+mappages["airtower2"].returnmap = '';
+mappages["airtower2"].returnx = 'NaN';
+mappages["airtower2"].returny = 'NaN';
+mappages["airtower2"].returninfused = '0';
+mappages["airtower2"].automap = '0';
+mappages["airtower2"].linkedMaps = ["airtower1", "airtowerroof", "airplane"];
+mappages["airtower2"].editorLabels = '{}';
+// MAP ENDS HERE
+
+// MAP BEGINS HERE
+mappages["airtower1"] = {};
+mappages["airtower1"].terrain = [];
+ mappages["airtower1"].terrain[0] = 'A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4';
+ mappages["airtower1"].terrain[1] = 'A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4';
+ mappages["airtower1"].terrain[2] = 'A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4';
+ mappages["airtower1"].terrain[3] = 'A4 A4 A4 A4 A4 A4 g# g# g# g# g# A4 A4 A4 A4 A4 A4';
+ mappages["airtower1"].terrain[4] = 'A4 A4 A4 A4 A4 g# g# +c +c +c g# g# A4 A4 A4 A4 A4';
+ mappages["airtower1"].terrain[5] = 'A4 A4 A4 A4 g# g# +c +c +c +c +c g# g# A4 A4 A4 A4';
+ mappages["airtower1"].terrain[6] = 'A4 A4 A4 g# g# +c +c +c +c +c +c +c g# g# A4 A4 A4';
+ mappages["airtower1"].terrain[7] = 'A4 A4 A4 g# +c +c +c +c +c +c +c +c +c g# A4 A4 A4';
+ mappages["airtower1"].terrain[8] = 'A4 A4 A4 g# +c +c +c +c +c +c +c +c +c g# A4 A4 A4';
+ mappages["airtower1"].terrain[9] = 'A4 A4 A4 g# +c +c +c +c +c +c +c +c +c g# A4 A4 A4';
+mappages["airtower1"].terrain[10] = 'A4 A4 A4 g# g# +c +c +c +c +c +c +c g# g# A4 A4 A4';
+mappages["airtower1"].terrain[11] = 'A4 A4 A4 A4 g# g# +c +c +c +c +c g# g# A4 A4 A4 A4';
+mappages["airtower1"].terrain[12] = 'A4 A4 A4 A4 A4 g# g# +c +c +c g# g# A4 A4 A4 A4 A4';
+mappages["airtower1"].terrain[13] = 'A4 A4 A4 A4 A4 A4 g# g# g# g# g# A4 A4 A4 A4 A4 A4';
+mappages["airtower1"].terrain[14] = 'A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4';
+mappages["airtower1"].terrain[15] = 'A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4';
+mappages["airtower1"].terrain[16] = 'A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4 A4';
+
+mappages["airtower1"].features = [];
+mappages["airtower1"].features[0] = {name : 'LadderUp', x : 5, y : 6, entermap : 'airtower2', enterx : 5, entery : 6};
+mappages["airtower1"].features[1] = {name : 'Chest', x : 8, y : 8, locked : 0, lootedid : 'airan', searchyield : 'AudachtaNemesosAlacrity'};
+
+
+mappages["airtower1"].npcs = [];
+mappages["airtower1"].npcs[0] = {name : 'EvilEyeNPC', x : 4, y : 8, skintone: 1};
+mappages["airtower1"].npcs[1] = {name : 'EvilEyeNPC', x : 8, y : 4, skintone: 1};
+mappages["airtower1"].npcs[2] = {name : 'EvilEyeNPC', x : 12, y : 8, skintone: 1};
+mappages["airtower1"].npcs[3] = {name : 'EvilEyeNPC', x : 8, y : 12, skintone: 1};
+
+mappages["airtower1"].desc = "Tower Roof";
+mappages["airtower1"].longdesc = ``;
+mappages["airtower1"].music = 'Ether';
+mappages["airtower1"].savename = `Floating Tower`;
+mappages["airtower1"].exitmap = 'airplane';
+mappages["airtower1"].exitx = '65';
+mappages["airtower1"].exity = '70';
+mappages["airtower1"].wraps = '';
+mappages["airtower1"].enterx = '5';
+mappages["airtower1"].entery = '8';
+mappages["airtower1"].seeBelow = '';
+mappages["airtower1"].lightLevel = 'bright';
+mappages["airtower1"].alwaysRemember = '0';
+mappages["airtower1"].scale = '1';
+mappages["airtower1"].underground = '1';
+mappages["airtower1"].undergroundDesc = '';
+mappages["airtower1"].enterscript = '';
+mappages["airtower1"].entertestscript = '';
+mappages["airtower1"].exitscript = '';
+mappages["airtower1"].exittestscript = '';
+mappages["airtower1"].returnmap = '';
+mappages["airtower1"].returnx = 'NaN';
+mappages["airtower1"].returny = 'NaN';
+mappages["airtower1"].returninfused = '0';
+mappages["airtower1"].automap = '0';
+mappages["airtower1"].linkedMaps = ["airtower2","airtowerroof","airplane"];
+mappages["airtower1"].editorLabels = '{}';
+// MAP ENDS HERE

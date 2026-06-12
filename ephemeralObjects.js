@@ -1966,6 +1966,9 @@ function WindChangeTile() {
   this.desc = "Active Wind Change Spell";
   this.level = 2;
   this.dispellable = 0;
+
+  this.winddirx = 0;
+  this.winddiry = 0;
 }
 WindChangeTile.prototype = new EphemeralObject();
 
