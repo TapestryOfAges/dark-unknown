@@ -274,18 +274,20 @@ tv.SecondPage = function() {
   document.getElementById('DU').classList.add('presentfadein');
   setTimeout(function() {
     spage = "<div id='textoptions' class='textoptions'>";
-    spage += "<div id='intro'><p class='menuselect' style='margin-top:5px' id='opt0' onClick='makeChoice(\'intro\')' />View Introduction</p></div>";
-    spage += "<div id='create'><p class='menuplain' style='margin-top:5px' id='opt1' onClick='makeChoice(\'create\')' />Create Character</p></div>";
-    let journey = " style='margin-top:5px'";
+    spage += "<div id='intro'><p class='menuselect' style='margin-top:6px' id='opt0' onClick='makeChoice(\'intro\')' />View Introduction</p></div>";
+    spage += "<div id='create'><p class='menuplain' style='margin-top:4px' id='opt1' onClick='makeChoice(\'create\')' />Create Character</p></div>";
+    let journey = " style='margin-top:4px'";
     if (gamestate.getLatestSaveIndex() === -1) {
       journey = " style='margin-top:5px; color:gray'";
     } 
     spage += "<div id='journey'><p class='menuplain' id='opt2'" + journey + " onClick='makeChoice(\'journey\')' />Continue Adventure</p></div>";
-    spage += "<div id='credits'><p class='menuplain' style='margin-top:5px' id='opt3' onClick='makeChoice(\'credits\')' />Credits</p></div></div>";
+    spage += "<div id='documentation'><p class='menuplain' style='margin-top:4px' id='opt3' onClick='makeChoice(\'documentation\')' />Documentation/Options</p></div>";
+    spage += "<div id='credits'><p class='menuplain' style='margin-top:4px' id='opt4' onClick='makeChoice(\'credits\')' />Credits</p></div></div>";
     document.getElementById('options').innerHTML = spage;
     document.getElementById('intro').classList.add('presentfadein');
     document.getElementById('create').classList.add('presentfadein');
     document.getElementById('journey').classList.add('presentfadein');
+    document.getElementById('documentation').classList.add('presentfadein');
     document.getElementById('credits').classList.add('presentfadein');
     setTimeout(function() { tv.pagelive(); }, 10);
   },1000);
@@ -298,14 +300,15 @@ tv.finishedFinalPage = function() {
   let spage = "<div id='attract1' style='position:absolute; left:20px; top:5px; z-index:5'></div><div id='attract2' style='position:absolute; left:20px; top:5px; z-index:6'></div><div id='DU' style='position:absolute;left:" + sleft + "px;top:" + sptop + "px;z-index:10'><img src='graphics/title/ducoe_logo.png' /></div><div id='options'></div>";
   document.getElementById('maindiv').innerHTML = spage;
   spage = "<div id='textoptions' class='textoptions'>";
-  spage += "<div id='intro'><p class='menuselect' style='margin-top:5px' id='opt0' onClick='makeChoice(\'intro\')' />View Introduction</p></div>";
-  spage += "<div id='create'><p class='menuplain' style='margin-top:5px' id='opt1' onClick='makeChoice(\'create\')' />Create Character</p></div>";
-  let journey = " style='margin-top:5px'";
+  spage += "<div id='intro'><p class='menuselect' style='margin-top:6px' id='opt0' onClick='makeChoice(\'intro\')' />View Introduction</p></div>";
+  spage += "<div id='create'><p class='menuplain' style='margin-top:4px' id='opt1' onClick='makeChoice(\'create\')' />Create Character</p></div>";
+  let journey = " style='margin-top:4px'";
   if (gamestate.getLatestSaveIndex() === -1) {
     journey = " style='margin-top:5px; color:gray'";
   } 
   spage += "<div id='journey'><p class='menuplain' id='opt2'" + journey + " onClick='makeChoice(\'journey\')' />Continue Adventure</p></div>";
-  spage += "<div id='credits'><p class='menuplain' style='margin-top:5px' id='opt3' onClick='makeChoice(\'credits\')' />Credits</p></div></div>";
+  spage += "<div id='documentation'><p class='menuplain' style='margin-top:4px' id='opt3' onClick='makeChoice(\'documentation\')' />Documentation/Options</p></div>";
+  spage += "<div id='credits'><p class='menuplain' style='margin-top:4px' id='opt4' onClick='makeChoice(\'credits\')' />Credits</p></div></div>";
 
   document.getElementById('options').innerHTML = spage;
   tv.pagelive();
@@ -321,6 +324,16 @@ tv.StartAttract = function() {
   let grass = `background-image:url("graphics/static.gif"); background-position: -192px 0px;width:32px;height:32px`;
   let brush = `background-image:url("graphics/static.gif"); background-position: -224px 0px;width:32px;height:32px`;
   let forest = `background-image:url("graphics/static.gif"); background-position: -224px -32px;width:32px;height:32px`;
+  let forest_nsew = `background-image:url("graphics/TerrainBlend.gif"); background-position: -448px -352px;width:32px;height:32px`;
+  let forest_ens = `background-image:url("graphics/TerrainBlend.gif"); background-position: -288px -352px;width:32px;height:32px`;
+  let forest_wns = `background-image:url("graphics/TerrainBlend.gif"); background-position: -256px -352px;width:32px;height:32px`;
+  let forest_new = `background-image:url("graphics/TerrainBlend.gif"); background-position: -320px -352px;width:32px;height:32px`;
+  let forest_sew = `background-image:url("graphics/TerrainBlend.gif"); background-position: -352px -352px;width:32px;height:32px`;
+  let forest_sw = `background-image:url("graphics/TerrainBlend.gif"); background-position: -192px -352px;width:32px;height:32px`;
+  let forest_nw = `background-image:url("graphics/TerrainBlend.gif"); background-position: -160px -352px;width:32px;height:32px`;
+  let forest_s = `background-image:url("graphics/TerrainBlend.gif"); background-position: -32px -352px;width:32px;height:32px`;
+  let forest_w = `background-image:url("graphics/TerrainBlend.gif"); background-position: -64px -352px;width:32px;height:32px`;
+
   let tree = `background-image:url("graphics/static.gif"); background-position: -64px -608px;width:32px;height:32px`;
   let campfire = `background-image:url("graphics/static.gif"); background-position: -128px -3136px;width:32px;height:32px`;
 // animation notes: random, 4 frames, 150-300ms.
@@ -329,16 +342,30 @@ tv.StartAttract = function() {
   let keep = `background-image:url("graphics/static.gif"); background-position: 0px -3296px;width:32px;height:32px`;
   // animation notes: random, 4 frames, 150-250
   let shrine = `background-image:url("graphics/static.gif"); background-position: -128px -96px;width:32px;height:32px`;
-  let hill = `background-image:url("graphics/static.gif"); background-position: -8*32px 0px;width:32px;height:32px`;
+  let hill = `background-image:url("graphics/static.gif"); background-position: -256px 0px;width:32px;height:32px`;
+  let hill_ne = `background-image:url("graphics/TerrainBlend.gif"); background-position: -160px -448px;width:32px;height:32px`;
+  let hill_nw = `background-image:url("graphics/TerrainBlend.gif"); background-position: -128px -448px;width:32px;height:32px`;
+  let hill_sw = `background-image:url("graphics/TerrainBlend.gif"); background-position: -192px -448px;width:32px;height:32px`;
+  let hill_se = `background-image:url("graphics/TerrainBlend.gif"); background-position: -224px -448px;width:32px;height:32px`;
+  let hill_n = `background-image:url("graphics/TerrainBlend.gif"); background-position: -0px -448px;width:32px;height:32px`;
+
   let mountain1 = `background-image:url("graphics/static.gif"); background-position: -256px -3744px;width:32px;height:32px`;
   let mountain2 = `background-image:url("graphics/static.gif"); background-position: -288px -3744px;width:32px;height:32px`;
+  let mountain_n1 = `background-image:url("graphics/TerrainBlend.gif"); background-position: -0px -480px;width:32px;height:32px`;
+  let mountain_n2 = `background-image:url("graphics/TerrainBlend.gif"); background-position: -32px -480px;width:32px;height:32px`;
+  let mountain_nw = `background-image:url("graphics/TerrainBlend.gif"); background-position: -192px -480px;width:32px;height:32px`;
+  let mountain_ne = `background-image:url("graphics/TerrainBlend.gif"); background-position: -224px -480px;width:32px;height:32px`;
+  let mountain_se = `background-image:url("graphics/TerrainBlend.gif"); background-position: -352px -480px;width:32px;height:32px`;
+  let mountain_e = `background-image:url("graphics/TerrainBlend.gif"); background-position: -160px -480px;width:32px;height:32px`;
+  let mountain_w = `background-image:url("graphics/TerrainBlend.gif"); background-position: -128px -480px;width:32px;height:32px`;
+
   let roadns = `background-image:url("graphics/static.gif"); background-position: -256px -224px;width:32px;height:32px`;
   let roadne = `background-image:url("graphics/static.gif"); background-position: -288px -256px;width:32px;height:32px`;
   let roadew = `background-image:url("graphics/static.gif"); background-position: -224px -288px;width:32px;height:32px`;
-  let cobble = `background-image:url("graphics/static.gif"); background-position: -64px -192px;width:32px;height:32px`;
+  let cobble = `background-image:url("graphics/static.gif"); background-position: -0px -192px;width:32px;height:32px`;
+  let cobbleroad = `background-image:url("graphics/static.gif"); background-position: -0px -160px;width:32px;height:32px`;
   let wall = `background-image:url("graphics/static.gif"); background-position: -256px -480px;width:32px;height:32px`;
-  let door = `background-image:url("graphics/static.gif"); background-position: -288px -480px;width:32px;height:32px`;
-  // specifically, door with window
+
   let chair = `background-image:url("graphics/static.gif"); background-position: -32px -2720px;width:32px;height:32px`;
   let tableedge = `background-image:url("graphics/static.gif"); background-position: -192px -2720px;width:32px;height:32px`;
   let table = `background-image:url("graphics/static.gif"); background-position: -224px -2720px;width:32px;height:32px`;
@@ -355,6 +382,11 @@ tv.StartAttract = function() {
   let water6 = `background-image:url("graphics/water.gif"); background-position: -224px -32px;width:32px;height:32px`;
   let water7 = `background-image:url("graphics/water.gif"); background-position: -256px -32px;width:32px;height:32px`;
   // same
+
+  let ocean_s = `background-image:url("graphics/watertrans.gif"); background-position: 0px -32px;width:32px;height:32px`;
+  let ocean_se = `background-image:url("graphics/watertrans.gif"); background-position: 0px -224px;width:32px;height:32px`;
+  let ocean_sw = `background-image:url("graphics/watertrans.gif"); background-position: 0px -160px;width:32px;height:32px`;
+
   let dirt = `background-image:url("graphics/static.gif"); background-position: 0px -64px;width:32px;height:32px`;
   let dirtcoast = `background-image:url("graphics/static.gif"); background-position: -160px -1760px;width:32px;height:32px`;
   // note- used to be NorthCoastSAND ?
@@ -364,43 +396,42 @@ tv.StartAttract = function() {
   let wpnsign = `background-image:url("graphics/static.gif"); background-position: -256px -2272px;width:32px;height:32px`;
   let brazier = `background-image:url("graphics/static.gif"); background-position: -128px -3104px;width:32px;height:32px`;
   // animation notes: random, 4 frames, 150-300
+  let door = `background-image:url("graphics/static.gif"); background-position: -96px -512px;width:32px;height:32px`;
 
   let attractmap = "<table cellpadding='0' cellspacing='0' border='0'>";
   attractmap += `<tr><td id='am1x1' style='opacity:0;${hill}'></td>`;
-  attractmap += `<td id='am2x1' style='opacity:0;${hill}'></td>`;
+  attractmap += `<td id='am2x1' style='opacity:0;${grass}'><div style='${hill_se}'></div></td>`;
   attractmap += `<td id='am3x1' style='opacity:0;${grass}'></td>`;
-  attractmap += `<td id='am4x1' style='opacity:0;${hill}'></td>`;
+  attractmap += `<td id='am4x1' style='opacity:0;${grass}'><div style='${hill_sw}'></div></td>`;
   attractmap += `<td id='am5x1' style='opacity:0;${hill}'></td>`;
   attractmap += `<td id='am6x1' style='opacity:0;width:32px;height:32px'></td><td id='am7x1' style='opacity:0;width:32px;height:32px'></td><td id='am8x1' style='opacity:0;width:32px;height:32px'></td><td id='am9x1' style='opacity:0;width:32px;height:32px'></td><td id='am10x1' style='opacity:0;width:32px;height:32px'></td><td id='am11x1' style='opacity:0;width:32px;height:32px'></td><td id='am12x1' style='opacity:0;width:32px;height:32px'></td><td id='am13x1' style='opacity:0;width:32px;height:32px'></td><td id='am14x1' style='opacity:0;width:32px;height:32px'></td><td id='am15x1' style='opacity:0;width:32px;height:32px'></td><td id='am16x1' style='opacity:0;width:32px;height:32px'></td><td id='am17x1' style='opacity:0;width:32px;height:32px'></td><td id='am18x1' style='opacity:0;width:32px;height:32px'></td>`;
   attractmap += `<td id='am19x1' style='opacity:0;${grass}'></td>`;
-  attractmap += `<td id='am20x1' style='opacity:0;${forest}'></td>`;
-  attractmap += `<td id='am21x1' style='opacity:0;${forest}'></td>`;
+  attractmap += `<td id='am20x1' style='opacity:0;${grass}'><div style='${forest_w}'></div></td>`;
+  attractmap += `<td id='am21x1' style='opacity:0;${grass}'><div style='${forest_s}'></div></td>`;
   attractmap += `<td id='am22x1' style='opacity:0;${forest}'></td>`;
   attractmap += `<td id='am23x1' style='opacity:0;${forest}'></td></tr>`;
-  attractmap += `<tr><td id='am1x2' style='opacity:0;${hill}'></td>`;
+  attractmap += `<tr><td id='am1x2' style='opacity:0;${grass}'><div style='${hill_se}'></div></td>`;
   attractmap += `<td id='am2x2' style='opacity:0;${grass}'></td>`;
-  attractmap += `<td id='am3x2' style='opacity:0;${shrine}'></td>`;
+  attractmap += `<td id='am3x2' style='opacity:0;${grass}'><div style='${shrine}'></div></td>`;
   attractmap += `<td id='am4x2' style='opacity:0;${grass}'></td>`;
-  attractmap += `<td id='am5x2' style='opacity:0;${hill}'></td>`;
+  attractmap += `<td id='am5x2' style='opacity:0;${grass}'><div style='${hill_sw}'></div></td>`;
   attractmap += `<td id='am6x2' style='opacity:0;width:32px;height:32px'></td><td id='am7x2' style='opacity:0;width:32px;height:32px'></td><td id='am8x2' style='opacity:0;width:32px;height:32px'></td><td id='am9x2' style='opacity:0;width:32px;height:32px'></td><td id='am10x2' style='opacity:0;width:32px;height:32px'></td><td id='am11x2' style='opacity:0;width:32px;height:32px'></td><td id='am12x2' style='opacity:0;width:32px;height:32px'></td><td id='am13x2' style='opacity:0;width:32px;height:32px'></td><td id='am14x2' style='opacity:0;width:32px;height:32px'></td><td id='am15x2' style='opacity:0;width:32px;height:32px'></td><td id='am16x2' style='opacity:0;width:32px;height:32px'></td><td id='am17x2' style='opacity:0;width:32px;height:32px'></td><td id='am18x2' style='opacity:0;width:32px;height:32px'></td>`;
   attractmap += `<td id='am19x2' style='opacity:0;${grass}'></td>`;
-  attractmap += `<td id='am20x2' style='opacity:0;${forest}'></td>`;
+  attractmap += `<td id='am20x2' style='opacity:0;${grass}'><div style='${forest_sew}'></div></td>`;
   attractmap += `<td id='am21x2' style='opacity:0;${grass}'><div style='${keep}'></div></td>`;
-  tv.AnimateTile("am21x2", 0, 4, 150, 250, "random", 1);
-  //animate keep
-  attractmap += `<td id='am22x2' style='opacity:0;${forest}'></td>`;
-  attractmap += `<td id='am23x2' style='opacity:0;${grass}'></td></tr>`;
+  attractmap += `<td id='am22x2' style='opacity:0;${grass}'><div style='${forest_sw}'></div></td>`;
+  attractmap += `<td id='am23x2' style='opacity:0;${forest}'></td></tr>`;
   attractmap += `<tr><td id='am1x3' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am2x3' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am3x3' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am4x3' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am5x3' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am6x3' style='opacity:0;width:32px;height:32px'></td><td id='am7x3' style='opacity:0;width:32px;height:32px'></td><td id='am8x3' style='opacity:0;width:32px;height:32px'></td><td id='am9x3' style='opacity:0;width:32px;height:32px'></td><td id='am10x3' style='opacity:0;width:32px;height:32px'></td><td id='am11x3' style='opacity:0;width:32px;height:32px'></td><td id='am12x3' style='opacity:0;width:32px;height:32px'></td><td id='am13x3' style='opacity:0;width:32px;height:32px'></td><td id='am14x3' style='opacity:0;width:32px;height:32px'></td><td id='am15x3' style='opacity:0;width:32px;height:32px'></td><td id='am16x3' style='opacity:0;width:32px;height:32px'></td><td id='am17x3' style='opacity:0;width:32px;height:32px'></td><td id='am18x3' style='opacity:0;width:32px;height:32px'></td>`;
-  attractmap += `<td id='am19x3' style='opacity:0;${forest}'></td>`;
+  attractmap += `<td id='am19x3' style='opacity:0;${grass}'><div style='${forest_ens}'></div></td>`;
   attractmap += `<td id='am20x3' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am21x3' style='opacity:0;${roadns}'></td>`;
   attractmap += `<td id='am22x3' style='opacity:0;${grass}'></td>`;
-  attractmap += `<td id='am23x3' style='opacity:0;${forest}'></td></tr>`;
+  attractmap += `<td id='am23x3' style='opacity:0;${grass}'><div style='${forest_sw}'></div></td></tr>`;
   attractmap += `<tr><td id='am1x4' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am2x4' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am3x4' style='opacity:0;${grass}'></td>`;
@@ -422,7 +453,7 @@ tv.StartAttract = function() {
   attractmap += `<td id='am20x5' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am21x5' style='opacity:0;${roadns}'></td>`;
   attractmap += `<td id='am22x5' style='opacity:0;${grass}'></td>`;
-  attractmap += `<td id='am23x5' style='opacity:0;${forest}'></td></tr>`;
+  attractmap += `<td id='am23x5' style='opacity:0;${grass}'><div style='${forest_nw}'></div></td></tr>`;
   attractmap += `<tr><td id='am1x6' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am2x6' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am3x6' style='opacity:0;${grass}'></td>`;
@@ -433,13 +464,13 @@ tv.StartAttract = function() {
   attractmap += `<td id='am20x6' style='opacity:0;${brush}'></td>`;
   attractmap += `<td id='am21x6' style='opacity:0;${roadns}'></td>`;
   attractmap += `<td id='am22x6' style='opacity:0;${grass}'></td>`;
-  attractmap += `<td id='am23x6' style='opacity:0;${forest}'></td></tr>`;
+  attractmap += `<td id='am23x6' style='opacity:0;${grass}'><div style='${forest_sw}'></div></td></tr>`;
   attractmap += `<tr><td id='am1x7' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am2x7' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am3x7' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am4x7' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am5x7' style='opacity:0;${grass}'></td>`;
-  attractmap += `<td id='am6x7' style='opacity:0;${forest}'></td>`;
+  attractmap += `<td id='am6x7' style='opacity:0;${grass}'><div style='${forest_sew}'></div></td>`;
   attractmap += `<td id='am7x7' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am8x7' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am9x7' style='opacity:0;${brush}'></td>`;
@@ -450,12 +481,12 @@ tv.StartAttract = function() {
   attractmap += `<td id='am14x7' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am15x7' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am16x7' style='opacity:0;${grass}'></td>`;
-  attractmap += `<td id='am17x7' style='opacity:0;${forest}'></td>`;
+  attractmap += `<td id='am17x7' style='opacity:0;${grass}'><div style='${forest_sew}'></div></td>`;
   attractmap += `<td id='am18x7' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am19x7' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am20x7' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am21x7' style='opacity:0;${roadns}'></td>`;
-  attractmap += `<td id='am22x7' style='opacity:0;${forest}'></td>`;
+  attractmap += `<td id='am22x7' style='opacity:0;${grass}'><div style='${forest_nsew}'></div></td>`;
   attractmap += `<td id='am23x7' style='opacity:0;${grass}'></td></tr>`;
   attractmap += `<tr><td id='am1x8' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am2x8' style='opacity:0;${grass}'></td>`;
@@ -468,8 +499,8 @@ tv.StartAttract = function() {
   attractmap += `<td id='am9x8' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am10x8' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am11x8' style='opacity:0;${grass}'></td>`;
-  attractmap += `<td id='am12x8' style='opacity:0;${grass}'><div style='width:32px;height:32px;background-image:url("graphics/master_spritesheet.png");background-position:-64px -800px'></div></td>`; // !!
-  attractmap += `<td id='am13x8' style='opacity:0;${grass}'></td>`;
+  attractmap += `<td id='am12x8' style='opacity:0;${grass}'><div id='protagonist' style='width:32px;height:32px;background-image:url("graphics/static.gif");background-position:-256px -5440px'></div></td>`; // bedroll head
+  attractmap += `<td id='am13x8' style='opacity:0;${grass}'><div id='bedrollfoot' style='width:32px;height:32px;background-image:url("graphics/static.gif");background-position:-288px -5440px'></div></td>`;
   attractmap += `<td id='am14x8' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am15x8' style='opacity:0;${brush}'></td>`;
   attractmap += `<td id='am16x8' style='opacity:0;${forest}'></td>`;
@@ -481,11 +512,11 @@ tv.StartAttract = function() {
   attractmap += `<td id='am22x8' style='opacity:0;${roadew}'></td>`;
   attractmap += `<td id='am23x8' style='opacity:0;${roadew}'></td></tr>`;
   attractmap += `<tr><td id='am1x9' style='opacity:0;${grass}'></td>`;
-  attractmap += `<td id='am2x9' style='opacity:0;${hill}'></td>`;
-  attractmap += `<td id='am3x9' style='opacity:0;${hill}'></td>`;
+  attractmap += `<td id='am2x9' style='opacity:0;${grass}'><div style='${hill_nw}'></div></td>`;
+  attractmap += `<td id='am3x9' style='opacity:0;${grass}'><div style='${hill_ne}'></div></td>`;
   attractmap += `<td id='am4x9' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am5x9' style='opacity:0;${grass}'></td>`;
-  attractmap += `<td id='am6x9' style='opacity:0;${forest}'></td>`;
+  attractmap += `<td id='am6x9' style='opacity:0;${grass}'><div style='${forest_nsew}'></div></td>`;
   attractmap += `<td id='am7x9' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am8x9' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am9x9' style='opacity:0;${grass}'></td>`;
@@ -499,15 +530,15 @@ tv.StartAttract = function() {
   attractmap += `<td id='am16x9' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am17x9' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am18x9' style='opacity:0;${grass}'></td>`;
-  attractmap += `<td id='am19x9' style='opacity:0;${forest}'></td>`;
+  attractmap += `<td id='am19x9' style='opacity:0;${grass}'><div style='${forest_nsew}'></div></td>`;
   attractmap += `<td id='am20x9' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am21x9' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am22x9' style='opacity:0;${grass}'></td>`;
-  attractmap += `<td id='am23x9' style='opacity:0;${forest}'></td></tr>`;
-  attractmap += `<tr><td id='am1x10' style='opacity:0;${hill}'></td>`;
-  attractmap += `<td id='am2x10' style='opacity:0;${mountain1}'></td>`;
-  attractmap += `<td id='am3x10' style='opacity:0;${mountain2}'></td>`;
-  attractmap += `<td id='am4x10' style='opacity:0;${hill}'></td>`;
+  attractmap += `<td id='am23x9' style='opacity:0;${grass}'><div style='${forest_wns}'></div></td></tr>`;
+  attractmap += `<tr><td id='am1x10' style='opacity:0;${grass}'><div style='${hill_nw}'></div></td>`;
+  attractmap += `<td id='am2x10' style='opacity:0;${hill}'><div style='${mountain_nw}'></div></td>`;
+  attractmap += `<td id='am3x10' style='opacity:0;${hill}'><div style='${mountain_ne}'></div></td>`;
+  attractmap += `<td id='am4x10' style='opacity:0;${grass}'><div style='${hill_ne}'></div></td>`;
   attractmap += `<td id='am5x10' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am6x10' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am7x10' style='opacity:0;${brush}'></td>`;
@@ -519,7 +550,7 @@ tv.StartAttract = function() {
   attractmap += `<td id='am13x10' style='opacity:0;${grass}'><div style='${tree}'></div></td>`;
   attractmap += `<td id='am14x10' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am15x10' style='opacity:0;${grass}'></td>`;
-  attractmap += `<td id='am16x10' style='opacity:0;${forest}'></td>`;
+  attractmap += `<td id='am16x10' style='opacity:0;${grass}'><div style='${forest_new}'></div></td>`;
   attractmap += `<td id='am17x10' style='opacity:0;${brush}'></td>`;
   attractmap += `<td id='am18x10' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am19x10' style='opacity:0;${grass}'></td>`;
@@ -527,64 +558,64 @@ tv.StartAttract = function() {
   attractmap += `<td id='am21x10' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am22x10' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am23x10' style='opacity:0;${grass}'></td></tr>`;
-  attractmap += `<tr><td id='am1x11' style='opacity:0;${mountain1}'></td>`;
+  attractmap += `<tr><td id='am1x11' style='opacity:0;${hill}'><div style='${mountain1_n}'></div></td>`;
   attractmap += `<td id='am2x11' style='opacity:0;${mountain2}'></td>`;
-  attractmap += `<td id='am3x11' style='opacity:0;${mountain1}'></td>`;
+  attractmap += `<td id='am3x11' style='opacity:0;${hill}'><div style='${mountain_se}'></div></td>`;
   attractmap += `<td id='am4x11' style='opacity:0;${hill}'></td>`;
-  attractmap += `<td id='am5x11' style='opacity:0;${mountain1}'></td>`;
+  attractmap += `<td id='am5x11' style='opacity:0;${grass}'><div style='${mountain_nw}'></div></td>`;
   attractmap += `<td id='am6x11' style='opacity:0;width:32px;height:32px'></td><td id='am7x11' style='opacity:0;width:32px;height:32px'></td><td id='am8x11' style='width:32px;height:32px'></td><td id='am9x11' style='opacity:0;width:32px;height:32px'></td><td id='am10x11' style='opacity:0;width:32px;height:32px'></td><td id='am11x11' style='opacity:0;width:32px;height:32px'></td><td id='am12x11' style='opacity:0;width:32px;height:32px'></td><td id='am13x11' style='opacity:0;width:32px;height:32px'></td><td id='am14x11' style='opacity:0;width:32px;height:32px'></td><td id='am15x11' style='opacity:0;width:32px;height:32px'></td><td id='am16x11' style='opacity:0;width:32px;height:32px'></td><td id='am17x11' style='opacity:0;width:32px;height:32px'></td><td id='am18x11' style='opacity:0;width:32px;height:32px'></td>`;  
   attractmap += `<td id='am19x11' style='opacity:0;${brush}'></td>`;
-  attractmap += `<td id='am20x11' style='opacity:0;${hill}'></td>`;
-  attractmap += `<td id='am21x11' style='opacity:0;${hill}'></td>`;
-  attractmap += `<td id='am22x11' style='opacity:0;${mountain1}'></td>`;
-  attractmap += `<td id='am23x11' style='opacity:0;${mountain2}'></td></tr>`;
-  attractmap += `<tr><td id='am1x12' style='opacity:0;${mountain1}'></td>`;
-  attractmap += `<td id='am2x12' style='opacity:0;${mountain2}'><div style='${dungeon}'></div></td>`;
+  attractmap += `<td id='am20x11' style='opacity:0;${grass}'><div style='${hill_nw}'></div></td>`;
+  attractmap += `<td id='am21x11' style='opacity:0;${grass}'><div style='${hill_n}'></div></td>`;
+  attractmap += `<td id='am22x11' style='opacity:0;${grass}'><div style='${mountain_nw}'></div></td>`;
+  attractmap += `<td id='am23x11' style='opacity:0;${grass}'><div style='${mountain2_n}'></div></td></tr>`;
+  attractmap += `<tr><td id='am1x12' style='opacity:0;${mountain2}'></td>`;
+  attractmap += `<td id='am2x12' style='opacity:0;${mountain1}'><div style='${dungeon}'></div></td>`; // mountain should be mountain_e, but see how this looks? Don't want to have to pile divs on top of each other until we have to.
   attractmap += `<td id='am3x12' style='opacity:0;${hill}'></td>`;
   attractmap += `<td id='am4x12' style='opacity:0;${hill}'></td>`;
-  attractmap += `<td id='am5x12' style='opacity:0;${mountain1}'></td>`;
+  attractmap += `<td id='am5x12' style='opacity:0;${hill}'><div style='${mountain_w}'></div></td>`;
   attractmap += `<td id='am6x12' style='opacity:0;width:32px;height:32px'></td><td id='am7x12' style='opacity:0;width:32px;height:32px'></td><td id='am8x12' style='width:32px;height:32px'></td><td id='am9x12' style='opacity:0;width:32px;height:32px'></td><td id='am10x12' style='opacity:0;width:32px;height:32px'></td><td id='am11x12' style='opacity:0;width:32px;height:32px'></td><td id='am12x12' style='opacity:0;width:32px;height:32px'></td><td id='am13x12' style='opacity:0;width:32px;height:32px'></td><td id='am14x12' style='opacity:0;width:32px;height:32px'></td><td id='am15x12' style='opacity:0;width:32px;height:32px'></td><td id='am16x12' style='opacity:0;width:32px;height:32px'></td><td id='am17x12' style='opacity:0;width:32px;height:32px'></td><td id='am18x12' style='opacity:0;width:32px;height:32px'></td>`;  
-  attractmap += `<td id='am19x12' style='opacity:0;${hill}'></td>`;
+  attractmap += `<td id='am19x12' style='opacity:0;${grass}'><div style='${hill_n}'></div></td>`;
   attractmap += `<td id='am20x12' style='opacity:0;${hill}'></td>`;
   attractmap += `<td id='am21x12' style='opacity:0;${hill}'></td>`;
-  attractmap += `<td id='am22x12' style='opacity:0;${mountain1}'><div style='${cave}'></div></td>`;
-  attractmap += `<td id='am23x12' style='opacity:0;${mountain2}'></td></tr>`;
-  attractmap += `<tr><td id='am1x13' style='opacity:0;${mountain2}'></td>`;
-  attractmap += `<td id='am2x13' style='opacity:0;${mountain1}'></td>`;
-  attractmap += `<td id='am3x13' style='opacity:0;${mountain2}'></td>`;
-  attractmap += `<td id='am4x13' style='opacity:0;${mountain1}'></td>`;
-  attractmap += `<td id='am5x13' style='opacity:0;${mountain2}'></td>`;
+  attractmap += `<td id='am22x12' style='opacity:0;${mountain2}'><div style='${cave}'></div></td>`; // again, should be a mountain_w, see above
+  attractmap += `<td id='am23x12' style='opacity:0;${mountain1}'></td></tr>`;
+  attractmap += `<tr><td id='am1x13' style='opacity:0;${mountain1}'></td>`;
+  attractmap += `<td id='am2x13' style='opacity:0;${mountain2}'></td>`;
+  attractmap += `<td id='am3x13' style='opacity:0;${mountain1}'></td>`;
+  attractmap += `<td id='am4x13' style='opacity:0;${mountain2}'></td>`;
+  attractmap += `<td id='am5x13' style='opacity:0;${mountain1}'></td>`;
   attractmap += `<td id='am6x13' style='opacity:0;width:32px;height:32px'></td><td id='am7x13' style='opacity:0;width:32px;height:32px'></td><td id='am8x13' style='width:32px;height:32px'></td><td id='am9x13' style='opacity:0;width:32px;height:32px'></td><td id='am10x13' style='opacity:0;width:32px;height:32px'></td><td id='am11x13' style='opacity:0;width:32px;height:32px'></td><td id='am12x13' style='opacity:0;width:32px;height:32px'></td><td id='am13x13' style='opacity:0;width:32px;height:32px'></td><td id='am14x13' style='opacity:0;width:32px;height:32px'></td><td id='am15x13' style='opacity:0;width:32px;height:32px'></td><td id='am16x13' style='opacity:0;width:32px;height:32px'></td><td id='am17x13' style='opacity:0;width:32px;height:32px'></td><td id='am18x13' style='opacity:0;width:32px;height:32px'></td>`;  
   attractmap += `<td id='am19x13' style='opacity:0;${hill}'></td>`;
   attractmap += `<td id='am20x13' style='opacity:0;${hill}'></td>`;
-  attractmap += `<td id='am21x13' style='opacity:0;${mountain1}'></td>`;
-  attractmap += `<td id='am22x13' style='opacity:0;${mountain2}'></td>`;
-  attractmap += `<td id='am23x13' style='opacity:0;${mountain1}'></td></tr>`;
+  attractmap += `<td id='am21x13' style='opacity:0;${hill}'><div style='${mountain_nw}'></div></td>`;
+  attractmap += `<td id='am22x13' style='opacity:0;${mountain1}'></td>`;
+  attractmap += `<td id='am23x13' style='opacity:0;${mountain2}'></td></tr>`;
   attractmap += `<tr><td id='am1x14' style='opacity:0;${mountain2}'></td>`;
   attractmap += `<td id='am2x14' style='opacity:0;${mountain1}'></td>`;
   attractmap += `<td id='am3x14' style='opacity:0;${mountain2}'></td>`;
   attractmap += `<td id='am4x14' style='opacity:0;${mountain1}'></td>`;
   attractmap += `<td id='am5x14' style='opacity:0;${mountain2}'></td>`;
   attractmap += `<td id='am6x14' style='opacity:0;width:32px;height:32px'></td><td id='am7x13' style='opacity:0;width:32px;height:32px'></td><td id='am8x13' style='opacity:0;width:32px;height:32px'></td><td id='am9x13' style='opacity:0;width:32px;height:32px'></td><td id='am10x13' style='opacity:0;width:32px;height:32px'></td><td id='am11x13' style='opacity:0;width:32px;height:32px'></td><td id='am12x13' style='opacity:0;width:32px;height:32px'></td><td id='am13x13' style='opacity:0;width:32px;height:32px'></td><td id='am14x13' style='opacity:0;width:32px;height:32px'></td><td id='am15x13' style='opacity:0;width:32px;height:32px'></td><td id='am16x13' style='opacity:0;width:32px;height:32px'></td><td id='am17x13' style='opacity:0;width:32px;height:32px'></td><td id='am18x13' style='opacity:0;width:32px;height:32px'></td>`;  
-  attractmap += `<td id='am19x14' style='opacity:0;${mountain1}'></td>`;
-  attractmap += `<td id='am20x14' style='opacity:0;${mountain2}'></td>`;
+  attractmap += `<td id='am19x14' style='opacity:0;${hill}'><div style='${mountain1_n}'></div></td>`;
+  attractmap += `<td id='am20x14' style='opacity:0;${hill}'><div style='${mountain2_n}'></div></td>`;
   attractmap += `<td id='am21x14' style='opacity:0;${mountain1}'></td>`;
   attractmap += `<td id='am22x14' style='opacity:0;${mountain2}'></td>`;
   attractmap += `<td id='am23x14' style='opacity:0;${mountain1}'></td></tr>`;
   attractmap += `</table>`;
 
   let attractmapx = "<table cellpadding='0' cellspacing='0' border='0'>";
-  attractmapx += `<tr><td id='amx1x1' style='opacity:0;${cobble}'><div style='width:32px;height:32px;background-image:url("graphics/${brazier[0]}");background-position:${brazier[2]}px ${brazier[3]}px'></div></td>`;
+  attractmapx += `<tr><td id='amx1x1' style='opacity:0;${cobble}'><div style='${brazier}'></div></td>`;
   attractmapx += `<td id='amx2x1' style='opacity:0;${cobble}'></td>`;
   attractmapx += `<td id='amx3x1' style='opacity:0;${cobble}'></td>`;
   attractmapx += `<td id='amx4x1' style='opacity:0;${cobble}'></td>`;
   attractmapx += `<td id='amx5x1' style='opacity:0;${cobble}'></td>`;
   attractmapx += `<td id='amx6x1' style='opacity:0;width:32px;height:32px'></td><td id='amx7x1' style='opacity:0;width:32px;height:32px'></td><td id='amx8x1' style='opacity:0;width:32px;height:32px'></td><td id='amx9x1' style='opacity:0;width:32px;height:32px'></td><td id='amx10x1' style='opacity:0;width:32px;height:32px'></td><td id='amx11x1' style='opacity:0;width:32px;height:32px'></td><td id='amx12x1' style='opacity:0;width:32px;height:32px'></td><td id='amx13x1' style='opacity:0;width:32px;height:32px'></td><td id='amx14x1' style='opacity:0;width:32px;height:32px'></td><td id='amx15x1' style='opacity:0;width:32px;height:32px'></td><td id='amx16x1' style='opacity:0;width:32px;height:32px'></td><td id='amx17x1' style='opacity:0;width:32px;height:32px'></td><td id='amx18x1' style='opacity:0;width:32px;height:32px'></td>`;
-  attractmapx += `<td id='amx19x1' style='opacity:0;${ocean0}'></td>`;
-  attractmapx += `<td id='amx20x1' style='opacity:0;${ocean1}'></td>`;
+  attractmapx += `<td id='amx19x1' style='opacity:0;${ocean_s}'></td>`;
+  attractmapx += `<td id='amx20x1' style='opacity:0;${ocean_se}'></td>`;
   attractmapx += `<td id='amx21x1' style='opacity:0;${water4}'></td>`;
   attractmapx += `<td id='amx22x1' style='opacity:0;${water5}'></td>`;
-  attractmapx += `<td id='amx23x1' style='opacity:0;${ocean4}'></td></tr>`;
+  attractmapx += `<td id='amx23x1' style='opacity:0;${ocean_sw}'></td></tr>`;
   attractmapx += `<tr><td id='amx1x2' style='opacity:0;${cobble}'></td>`;
   attractmapx += `<td id='amx2x2' style='opacity:0;${cobble}'></td>`;
   attractmapx += `<td id='amx3x2' style='opacity:0;${cobble}'><div style='width:32px;height:32px;background-image:url("graphics/${chair[0]}");background-position:${chair[2]}px ${chair[3]}px'></div></td>`;
@@ -792,9 +823,11 @@ tv.StartAttract = function() {
 tv.DoActionTitle = function(code, e) {
   if (gamestate.getMode() === "intro") {
     if (code === 27) {
+      // ESC exits intro
       tv.introidx = 8;
       tv.RunIntro(tv.introidx);
     } else if (IsWantedCode(code)) {
+      // anything else progresses it
       tv.RunIntro(tv.introidx);
       tv.introidx++;
     }
@@ -819,7 +852,7 @@ tv.DoActionTitle = function(code, e) {
       }
     }
     else if ((code === 40) || (code === 191)) {
-      if (tv.optselect < 3) {
+      if (tv.optselect < 4) {
         let img = "opt" + tv.optselect;
         document.getElementById(img).classList.remove("menuselect");
         document.getElementById(img).classList.add("menuplain");
@@ -855,6 +888,11 @@ tv.DoActionTitle = function(code, e) {
         StartGame();
       }
       else if (tv.optselect === 3) {
+        // Change Menu to say "Back", "Options", "Player Reference Guide", "Sage's Almanac", and "Map of Ellusus"
+        // hitting Back returns to the main menu, anything else launches that in a separate window to view the PDF
+        // options is there primarily to allow adjusting volume and game size from the main menu
+      }
+      else if (tv.optselect === 4) {
         tv.MakeCredits(0);
       }
     }
@@ -1471,11 +1509,13 @@ tv.CreateGameSpace = function() {
 tv.ExecuteAttract = function(frame) {
   let board1 = document.getElementById("attract1");
   let door = localFactory.createTile("DoorWindow").getGraphicArray();
-  let opendoor = ["master_spritesheet.png",0,-192,-704];
+  let opendoor = ["static.gif",0,-256,-512];
   let chair = localFactory.createTile("LeftChair").getGraphicArray();
   let food = localFactory.createTile("FoodSouth").getGraphicArray();
   let tableedge = localFactory.createTile("LeftTable").getGraphicArray();
   let fireball;
+
+  tv.AnimateTile("am21x2", 0, 4, 150, 250, "random", 1);
 
   if (!board1) { return; }
   let dur = 500;

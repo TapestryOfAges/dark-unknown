@@ -288,13 +288,13 @@ li.changelog { color:white;
 p.menuselect { color:yellow;
 	font-family:"Commodore64";
 	 font-size:12pt;
-	 line-height:10px;
+	 line-height:8px;
 }
 
 p.menuplain { color:white;
 	font-family:"Commodore64";
 	 font-size:12pt;
-	 line-height:10px;
+	 line-height:8px;
 }
 
 span.leveled { color: red; }
