@@ -403,7 +403,7 @@ mappages["skypalace2"].features[8] = {name : 'Fountain', x : 10, y : 13};
 mappages["skypalace2"].features[9] = {name : 'Moongate', x : 11, y : 12};
 mappages["skypalace2"].features[10] = {name : 'Mirror', x : 14, y : 13};
 mappages["skypalace2"].features[11] = {name : 'Mirror', x : 8, y : 13};
-mappages["skypalace2"].features[12] = {name : 'BookshelfLeft', x : 10, y : 15};
+mappages["skypalace2"].features[12] = {name : 'BookshelfLeft', x : 10, y : 15, lootedid : 'palace_books3', searchyield : 'AudachtaNemesosBuildGate'};
 mappages["skypalace2"].features[13] = {name : 'BookshelfRight', x : 11, y : 15, lootedid : 'palace_books1', searchyield : 'AudachtaNemesosWeatherControl'};
 mappages["skypalace2"].features[14] = {name : 'BookshelfOne', x : 12, y : 15, lootedid : 'palace_books2', searchyield : 'XoriccoRecipe'};
 

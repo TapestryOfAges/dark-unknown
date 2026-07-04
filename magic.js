@@ -3874,6 +3874,30 @@ function EmpowerReagentCommands(cmd) {
           retval["outcome"] = successtext;
           return retval;
         }
+      } else if (tgt.getName() === "Voidstone") {
+        if (targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["CoralVoid"] && targetCursor.mortar["BottledEther"]) {
+          successtext.push(`You place the piece of voidstone onto the pentagram, and begin the incantation.`);
+          successtext.push(`You crush the silk and coral void together, and carefully pour the bottled ether atop the mixture.`);
+          successtext.push(`Finally, you use the mixture to inscribe a rune onto the voidstone.`);
+          successtext.push(`<span class='sysconv'>You have obtained: Runestone.</span>`);
+          CastSpellMana(PC,targetCursor.manacost);
+          ShowEffect(PC, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+          PlayCastSound(PC,"sfx_enchant");
+          PC.removeFromInventory(PC.checkInventory("CoralVoid"));
+          PC.removeFromInventory(PC.checkInventory("SpiderSilk"));
+          PC.removeFromInventory(PC.checkInventory("BottledEther"));
+          PC.removeFromInventory(PC.checkInventory("Voidstone"));
+          let runestone;
+          if (PC.checkInventory("Runestone1") || PC.placedRunestonemap) {
+            runestone = localFactory.createTile("Runestone2");
+          } else {
+            runestone = localFactory.createTile("Runestone1");
+          }
+          PC.addToInventory(runestone,1);
+          retval["fin"] = 2;
+          retval["outcome"] = successtext;
+          return retval;
+        }
       } else if (tgt.getName() === "UnenchantedSword") {
         successtext.push(`You carefully place the repaired sword into the center of the pentagram, and begin the incancation.`);
         if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["LightningWood"]) {
@@ -5404,6 +5428,79 @@ function PerformArrowOfGlass(caster, infused, free, tgt) {
 }
 
 // Build Gate
+magic[SPELL_BUILD_GATE_LEVEL][SPELL_BUILD_GATE_ID].getLongDesc = function() {
+  return "Bury two runestones and cast this spell above each, and they will be permanently linked, and casting Open Gate will take you between them.";
+}
+
+magic[SPELL_BUILD_GATE_LEVEL][SPELL_BUILD_GATE_ID].executeSpell = function(caster, infused, free) {
+  DebugWrite("magic", "Casting Build Gate.<br />");
+  let resp = {fin:1};
+  let castermap = caster.getHomeMap();
+  let mapname = castermap.getName();
+  if ((mapname === "ellusus") || (mapname === "island") || (mapname === "underworld") || (mapname === "volcano")) {
+    let tile = castermap.getTile(PC.getx(),PC.gety());
+    if (tile.getTopFeature()) {
+      resp["fin"] = 2;
+      resp["txt"] = "The runestone cannot be planted here.";
+      resp["input"] = "&gt";
+      return resp;
+    }
+    let runestone = PC.checkInventory("Runestone1");
+    if (runestone) {
+      ShowEffect(PC, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+      PlayCastSound(PC,"sfx_enchant");
+      if (!free) {
+        let mana = this.getManaCost(infused);
+        CastSpellMana(caster,mana);
+        DebugWrite("magic", "Spent " + mana + " mana.<br />");
+      }
+      resp["txt"] = "You plant the runestone and cast the spell. The energy hums in the runestone, waiting for the second to be placed that they may be linked.";
+      PC.removeFromInventory(runestone);
+      PC.placedRunestonemap = mapname;
+      PC.placedRunestonex = PC.getx();
+      PC.placedRunestoney = PC.gety();
+      let shrine = localFactory.createTile("Shrine");
+      castermap.placeThing(PC.getx(),PC.gety(),shrine);
+    } else {
+      runestone = PC.checkInventory("Runestone2");
+      if (runestone) {
+        ShowEffect(PC, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+        PlayCastSound(PC,"sfx_enchant");
+        if (!free) {
+          let mana = this.getManaCost(infused);
+          CastSpellMana(caster,mana);
+          DebugWrite("magic", "Spent " + mana + " mana.<br />");
+        }
+        PC.removeFromInventory(runestone);
+        let shrine = localFactory.createTile("Shrine");
+        castermap.placeThing(PC.getx(),PC.gety(),shrine);
+        shrine.gotomap = PC.placedRunestonemap;
+        delete PC.placedRunestonemap;
+        shrine.gotox = PC.placedRunestonex;
+        delete PC.placedRunestonex;
+        shrine.gotoy = PC.placedRunestoney;
+        delete PC.placedRunestoney;
+
+        let othermap = maps.getMap(shrine.gotomap);
+        let tile = othermap.getTile(shrine.gotox,shrine.gotoy);
+        let othershrine = tile.getTopFeature();
+        othershrine.gotomap = mapname;
+        othershrine.gotox = PC.getx();
+        othershrine.gotoy = PC.gety();
+        resp["txt"] = "You plant the runestone and cast the spell. The energy dances from stone to stone, and you feel the connection become solid and enduring.";
+      } else {
+        resp["fin"] = 2;
+        resp["txt"] = "You have no runestones.";
+        resp["input"] = "&gt";
+      }
+    }
+  } else {
+    resp["fin"] = 2;
+    resp["txt"] = "The runestone cannot be planted here.";
+    resp["input"] = "&gt";
+  }
+  return resp;
+}
 
 // Conflagration
 magic[SPELL_CONFLAGRATION_LEVEL][SPELL_CONFLAGRATION_ID].getLongDesc = function() {

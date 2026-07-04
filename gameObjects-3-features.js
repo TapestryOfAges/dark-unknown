@@ -13778,9 +13778,40 @@ function VoidstoneTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "chunk of voidstone";
   this.longdesc = "Voidstone. A rare material with unusual properties.";
-  this.addType("Reagent");
+  this.enchantable = 1;
+  this.addType("Quest");
 }
 VoidstoneTile.prototype = new ItemObject();
+
+function Runestone1Tile() {
+  //Graphics Upgraded
+  this.name = "Runestone1";
+  this.graphic = "static.gif";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -25*32;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "enchanted runestone";
+  this.longdesc = "An enchanted runestone, for use in creating new Gates.";
+  this.addType("Quest");
+}
+Runestone1Tile.prototype = new ItemObject();
+
+function Runestone2Tile() {
+  //Graphics Upgraded
+  this.name = "Runestone2";
+  this.graphic = "static.gif";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -25*32;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "enchanted runestone";
+  this.longdesc = "An enchanted runestone, for use in creating new Gates.";
+  this.addType("Quest");
+}
+Runestone2Tile.prototype = new ItemObject();
 
 function SpiderSilkTile() {
   //Graphics Upgraded
@@ -15139,8 +15170,8 @@ function FallOfTargrionTile() {
   this.spriteyoffset = -37*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = 'A book named "Fall of Targrion"';
-  this.prefix = "The";
+  this.desc = 'book named "Fall of Targrion"';
+  this.prefix = "a";
   this.contents = `You open to a random page:%%<span class='conv'>Targrion blazed, and fields became deserts and mountains cracked. "You challenge the supremacy of the sun? Do you not see that my fire is unchallenged, my light gives life?"</span>%%<span class='conv'>But Luhgon shook his fire-crested head. "The sun will gaze down in its majesty for all eternity, and I do not dispute the truth of your words. I only dispute your right to say them. Your mantle I will take, and the greatest light of the sky shall be mine to raise and draw down."</span>%%<span class='conv'>And Targrion was uncertain, for the coming of this upstart was foretold; but so, too, was their battle. "It may be destined that I fall," roared Targrion, "but I shall strive to stand athwart of this destiny. Come, and burn!"</span>`;
   this.longdesc = "The Fall of Targrion. A story of old myth. Sought by Olivia.";
 }
@@ -15162,12 +15193,26 @@ function BookOfLoreTile() {
   this.spriteyoffset = -37*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = 'A book named "Book of Lore"';
-  this.prefix = "the";
+  this.desc = 'book named "Book of Lore"';
+  this.prefix = "a";
   this.contents = "You open to a random page:%%<span class='conv'>Look up. Above you are the stars, embedded in the ether, which is the power of magic.</span>%%<span class='conv'>The ether is shaped by the will of the mage, who shapes it with mana. This is primarily done with the application of spells. But, it is possible to shape the ether directly- the monstrous Evil Eye, for example, does not cast a spell each morning to float above the earth.</span>%%<span class='conv'>When did we learn magic? Who crafted the first spells? This knowledge is lost, but it is said it began with the fall of a star...</span>";
   this.longdesc = "The Book of Lore. Its simple cover belies its rich contents. Sought by Arlan.";
 }
 BookOfLoreTile.prototype = new BookItemObject();
+
+function TharockNotesTile() {
+  //Graphics Upgraded
+  this.name = "TharockNotes";
+  this.graphic = "static.gif";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -37*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = 'Tharock\'s notes';
+  this.contents = "You open the thin book:%%<span class='conv'>Experiments with gates:</span>%%<span class='conv'>The closing of the gates cuts us off from the homeland. I can easily open the gate a crack and travel through myself, but going to a land where all would be enemies is foolhearty.</span>%%<span class='conv'>I work on a spell to open the gate wide, but do not yet have it.</span>%%<span class='conv'>I have learned a lot from experimenting with creating new gates- they cannot get me back to Ellusus, obviously, but they reveal many details of the inner workings of the system.</span>%%<span class='conv'>New gates require creating Runestones (enchant a chunk of voidstone with spider silk, coral void, and bottled ether).</span>%%<span class='conv'>Bury one stone and cast Build Gate above it, then bury the second and cast the spell again, linking them. ";
+  this.longdesc = "A thin book of notes found in Tharock's Castle.";
+}
+TharockNotesTile.prototype = new BookItemObject();
 
 function EshkazBookTile() {
   //Graphics Upgraded
@@ -15178,7 +15223,6 @@ function EshkazBookTile() {
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Eshkaz's Planar Primer";
-  this.prefix = "the";
   this.contents = "You open to the book:%%The words within dance under your sight, and you cannot make sense of their meaning.";
   this.longdesc = "Eshkaz's Planar Primer. Contains his research into planar travel, to be brought to Asharden.";
 }
@@ -15192,8 +15236,8 @@ function TomeOfSightTile() {
   this.spriteyoffset = -37*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = 'A book named "Tome of Sight"';
-  this.prefix = "the";
+  this.desc = 'book named "Tome of Sight"';
+  this.prefix = "a";
   this.contents = "You open to a random page:%%<span class='conv'>...for the Eye of Man can be deceived, but the Eye of Magic is Immutable.</span>%%<span class='conv'>Mortals all live in the fog of illusion and unseeing, but the talent of seeing the truth below need not be the sole providence of the gods.</span>%%<span class='conv'>We toil in darkness, but with their fire may we be forged anew...</span>";
   this.longdesc = "The Tome of Sight. The leather cover is decorated with eye motifs.";
 }
