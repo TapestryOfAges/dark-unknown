@@ -1291,7 +1291,7 @@ function BumpIntoDoor(door,who) {
     }
   } else if (DU.gameflags.getFlag("move_opens_doors") && door.locked && (who === PC)) {
     retval["msg"] = "Locked.";
-    if (door.lockedsound && (GetDistance(PC.getx(),PC.gety(),door.getx(),door.gety()) < 6) && (PC.getHomeMap() === mymap)) {
+    if (door.lockedsound && (GetDistance(PC.getx(),PC.gety(),door.getx(),door.gety()) < 6) && (PC.getHomeMap() === door.getHomeMap())) {
 		  DUPlaySound(door.lockedsound); 
 		}
   }
