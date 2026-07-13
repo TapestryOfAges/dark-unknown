@@ -23,7 +23,8 @@ ais.scheduled = function(who) {
       if (fea.open) {  // door hasn't been closed already
         MakeUseHappen(who,fea,"map");
         if ((mymap === PC.getHomeMap()) && (GetDistance(fea.getx(),fea.gety(),PC.getx(),PC.gety(),"square") <= 5)) {
-          DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+          DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+          //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
         } 
         delete who.flags.closedoor;
         DebugWrite("schedules", "Turn spent closing a door.");
@@ -285,7 +286,8 @@ ais.WaitHere = function(who,params) {
             DebugWrite("ai", "Closing the door.");             
             MakeUseHappen(who,fea,"map");
             if ((GetDistance(fea.getx(),fea.gety(),PC.getx(),PC.gety(),"square") <= 5) && (whomap === PC.getHomeMap())) {
-              DrawMainFrame("draw",whomap,PC.getx(),PC.gety());
+              DUCamera.Draw(whomap,PC.getx(),PC.gety(),PC);
+              //DrawMainFrame("draw",whomap,PC.getx(),PC.gety());
             }             
             delete who.flags.closingResponsibleDoor;
             return retval;
@@ -383,7 +385,8 @@ ais.LeaveMap = function(who,params) {
   let whoy = who.gety();
   let themap = who.getHomeMap();
   who.getHomeMap().deleteThing(who);
-  DrawMainFrame("one",themap,whox,whoy); 
+  DUCamera.DrawOne(themap,whox,whoy); 
+  //DrawMainFrame("one",themap,whox,whoy); 
   DebugWrite('schedules', "I have left the map.");
   DUTime.removeEntityFrom(who);  
 
@@ -417,7 +420,8 @@ ais.PlaceItem = function(who,params) {
   if (item) {
     who.getHomeMap().placeThing(params.x, params.y, item);
     if ((who.getHomeMap() === PC.getHomeMap()) && (IsVisibleOnScreen(params.x,params.y))) {
-      DrawMainFrame("one",who.getHomeMap(),params.x,params.y);
+      DUCamera.DrawOne(who.getHomeMap(),params.x,params.y);
+      //DrawMainFrame("one",who.getHomeMap(),params.x,params.y);
     }      
   }
   who.linkedItem = item;
@@ -441,7 +445,10 @@ ais.DeleteItem = function(who,params) {
 
       itemmap.deleteThing(item);
 
-      if ((itemmap === PC.getHomeMap()) && (IsVisibleOnScreen(itemx,itemy))) { DrawMainFrame("one",itemmap,itemx,itemy); }
+      if ((itemmap === PC.getHomeMap()) && (IsVisibleOnScreen(itemx,itemy))) { 
+        DUCamera.DrawOne(itemmap,itemx,itemy);
+        //DrawMainFrame("one",itemmap,itemx,itemy);
+      }
     }
   } else {
     let feas = who.getHomeMap().getTile(params.x,params.y).getFeatures();
@@ -583,7 +590,8 @@ ais.PlaceFood = function(who,params) {
  
   if (isVisible) {
     if (who.getHomeMap() === PC.getHomeMap()) {
-      DrawMainFrame("draw",who.getHomeMap(),PC.getx(),PC.gety());
+      DUCamera.Draw(who.getHomeMap(),PC.getx(),PC.gety(),PC);
+      //DrawMainFrame("draw",who.getHomeMap(),PC.getx(),PC.gety());
     }
   }
   return {fin:1};
@@ -692,7 +700,8 @@ ais.CleanTable = function(who,params) {
  
   if (isVisible) {
     if (who.getHomeMap() === PC.getHomeMap()) {
-      DrawMainFrame("draw",who.getHomeMap(),PC.getx(),PC.gety());
+      DUCamera.Draw(who.getHomeMap(),PC.getx(),PC.gety(),PC);
+      //DrawMainFrame("draw",who.getHomeMap(),PC.getx(),PC.gety());
     }
   }
   return {fin:1};
@@ -778,7 +787,8 @@ ais.ChangeGraphic = function(who,params) {
   if (params.xoff) { xoff = params.xoff; }
   if (params.yoff) { yoff = params.yoff; }
   who.setGraphicArray([params.graphic,"",xoff,yoff]);
-  DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
+  DUCamera.DrawOne(who.getHomeMap(), who.getx(), who.gety());
+  //DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
   return {fin:1};
 }
 
@@ -798,11 +808,13 @@ ais.SleepOnFloor = function(who,params) {
   who.animating = 0;  
   who.inBed = "bedroll";
   who.makeLayers();
-  DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
+  DUCamera.DrawOne(who.getHomeMap(),who.getx(),who.gety());
+  //DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
 
   let bedroll = localFactory.createTile("BedrollFootFull");
   who.getHomeMap().placeThing(who.getx()+1,who.gety(),bedroll);
-  DrawMainFrame("one",who.getHomeMap(),who.getx()+1,who.gety());
+  DUCamera.DrawOne(who.getHomeMap(),who.getx()+1,who.gety());
+  //DrawMainFrame("one",who.getHomeMap(),who.getx()+1,who.gety());
 
   return {fin:1};
 }
@@ -811,7 +823,8 @@ ais.WakeFromFloor = function(who,params) {
   delete who.noAnim;
   delete who.inBed;
   who.makeLayers();
-  DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
+  DUCamera.DrawOne(who.getHomeMap(),who.getx(),who.gety());
+  //DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
 
   let bedrolls = who.getHomeMap().getTile(who.getx()+1,who.gety()).features.getAll();
   let bedroll;
@@ -821,7 +834,8 @@ ais.WakeFromFloor = function(who,params) {
   if (bedroll) {
     who.getHomeMap().deleteThing(bedroll);
   }
-  DrawMainFrame("one",who.getHomeMap(),who.getx()+1,who.gety());
+  DUCamera.DrawOne(who.getHomeMap(),who.getx()+1,who.gety());
+  //DrawMainFrame("one",who.getHomeMap(),who.getx()+1,who.gety());
   
   return {fin:1};
 }
@@ -1054,8 +1068,10 @@ ais.CartMoves = function(who, params) {
 //        console.log("Swapping positions with rear");
         who.swapPlace();
         if (who.getHomeMap() === PC.getHomeMap()) {
-          DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
-          DrawMainFrame("one",who.getHomeMap(),origx,origy);
+          DUCamera.DrawOne(who.getHomeMap(),who.getx(),who.gety());
+          DUCamera.DrawOne(who.getHomeMap(),origx,origy);
+          //DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
+          //DrawMainFrame("one",who.getHomeMap(),origx,origy);
         }
         return {fin:0};
       }
@@ -1066,10 +1082,14 @@ ais.CartMoves = function(who, params) {
       }
 //      who.getHomeMap().moveThing(who.getx()+who.attachedLocations[0][0],who.gety()+who.attachedLocations[0][1],otherhalf);
       if (who.getHomeMap() === PC.getHomeMap()) {
-        DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
-        DrawMainFrame("one",who.getHomeMap(),origx,origy);
-        DrawMainFrame("one",who.getHomeMap(),otherhalf.getx(),otherhalf.gety());
-        DrawMainFrame("one",who.getHomeMap(),origcartx,origcarty);
+        DUCamera.DrawOne(who.getHomeMap(),who.getx(),who.gety());
+        DUCamera.DrawOne(who.getHomeMap(),origx,origy);
+        DUCamera.DrawOne(who.getHomeMap(),otherhalf.getx(),otherhalf.gety());
+        DUCamera.DrawOne(who.getHomeMap(),origcartx,origcarty);
+        //DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
+        //DrawMainFrame("one",who.getHomeMap(),origx,origy);
+        //DrawMainFrame("one",who.getHomeMap(),otherhalf.getx(),otherhalf.gety());
+        //DrawMainFrame("one",who.getHomeMap(),origcartx,origcarty);
       }
     } else if ((who.getx() === params.destinationx) && (who.gety() === params.destinationy)) {
       return {fin:1}

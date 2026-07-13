@@ -439,7 +439,8 @@ NPCObject.prototype.processDeath = function(droploot){
             let taran = FindNPCByName("Taran",returnmap);
             returnmap.moveThing(36,15,taran);
             MoveBetweenMaps(PC,PC.getHomeMap(),returnmap,37,15);
-            DrawMainFrame("draw",returnmap,37,15);
+            DUCamera.Draw(returnmap,37,15,PC);
+            //DrawMainFrame("draw",returnmap,37,15);
             setTimeout(function() {
               maintext.addText(`<br style='textbreak' />Taran kneels beside you. "${PC.getPCName()}, I'm glad you're ok. The dragon was struck down, and its body just... disappeared. But your brother hasn't woken up. Gather your strength, and get up when you feel ready."`);
               setTimeout(function() {
@@ -470,7 +471,8 @@ NPCObject.prototype.processDeath = function(droploot){
     maintext.drawTextFrame(); 
     setTimeout(function() {
       maintext.addText("You find yourself floating bodiless in the void.");
-      DrawMainFrame("draw", newmap, 7,7);
+      DUCamera.Draw(newmap, 7,7,PC);
+      //DrawMainFrame("draw", newmap, 7,7);
 //      if (gamestate.getTurn() === PC) {
 //        PC.endTurn();
 //      }
@@ -568,7 +570,8 @@ NPCObject.prototype.processDeath = function(droploot){
         let dx = this.attachedParts[i].getx();
         let dy = this.attachedParts[i].gety()        
         map.deleteThing(this.attachedParts[i]);
-        DrawMainFrame("one",map,dx,dy);
+        DUCamera.DrawOne(map,dx,dy);
+        //DrawMainFrame("one",map,dx,dy);
       }
     }
     map.deleteThing(this);
@@ -582,9 +585,11 @@ NPCObject.prototype.processDeath = function(droploot){
       delete this.summoned;
     }
     if ((typeof this.getLight === "function") && (Math.abs(this.getLight()) > 0)) {
-      DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+      DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+      //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
     }
-    DrawMainFrame("one",map,thisx,thisy);
+    DUCamera.DrawOne(map,thisx,thisy);
+    //DrawMainFrame("one",map,thisx,thisy);
     DUTime.removeEntityFrom(this);
     CheckPostDeathMusic(map);
     let spawner=this.getSpawnedBy();
@@ -1445,7 +1450,8 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
   			DebugWrite("map", "Exited from MoveBetweenMaps. New map is " + this.getHomeMap().getName() + ".<br />");
         retval["canmove"] = 0;
 		  	if (this === PC) {
-			  	DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
+			  	DUCamera.Draw(newmap, PC.getx(), PC.gety(),PC);
+          //DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
 				  DrawTopbarFrame("<p>" + newmap.getDesc() + "</p>");
   				retval["msg"] = ".<br />Exiting " + oldmapname + ".";
   			}
@@ -1599,18 +1605,23 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
         if ((typeof this.getLight === "function") && (this.getLight() !== 0)) {
           if (map === PC.getHomeMap()) {
             DebugWrite("ai", "A light source, need to redraw the whole screen...<br />");
-            DrawMainFrame("draw", map, PC.getx(), PC.gety());
+            DUCamera.Draw(map, PC.getx(), PC.gety(),PC);
+            //DrawMainFrame("draw", map, PC.getx(), PC.gety());
           }
   			} else {
           if (this.attachedLocations) {
             if (map === PC.getHomeMap()) {
-              DrawMainFrame("draw", map, PC.getx(), PC.gety());
+              DUCamera.Draw(map, PC.getx(), PC.gety(),PC);
+              //DrawMainFrame("draw", map, PC.getx(), PC.gety());
             }
           } else {
             // only redraw these two spaces
             DebugWrite("ai", "Redraw both tiles.<br />");
-		  	    DrawMainFrame("one", map, startx, starty);
-			      DrawMainFrame("one", map, passx, passy);
+		  	    DUCamera.DrawOne(map, startx, starty);
+			      DUCamera.DrawOne(map, passx, passy);
+            //		  	    DrawMainFrame("one", map, startx, starty);
+//			      DrawMainFrame("one", map, passx, passy);
+
           }
         }
       }
@@ -2823,7 +2834,10 @@ PCObject.prototype.myTurn = function() {
   if (debugmaps.open) { ShowDebugMaps(); }
 
   let clockface = GetClockTime(this.getLastTurnTime());
-  if ((clockface[3] !== GetClockTime()[3]) && !this.getWaiting() && !this.dead) { DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety()); }
+  if ((clockface[3] !== GetClockTime()[3]) && !this.getWaiting() && !this.dead) { 
+    DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC); 
+    //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety()); 
+  }
   if (!this.dead) {
     SetSky();
   }
@@ -2865,7 +2879,8 @@ PCObject.prototype.myTurn = function() {
         }
         AdjustStartingLocations(returnmap);
         MoveBetweenMaps(PC,PC.getHomeMap(),returnmap,49,22);
-        DrawMainFrame("draw",returnmap,49,22);
+        DUCamera.Draw(returnmap,49,22,PC);
+        //DrawMainFrame("draw",returnmap,49,22);
         PC.setHP(PC.getMaxHP());
         PC.setMana(PC.getMaxMana());
       }

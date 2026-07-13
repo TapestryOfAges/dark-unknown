@@ -719,7 +719,8 @@ function PerformMend(caster,infused,free,tgt) {
       let desc = "The " + tgt.getDesc() + " glows briefly, and is mended!";
       desc = desc.charAt(0).toUpperCase() + desc.slice(1);
       PlayCastSound(caster,"sfx_ding");
-      DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+      DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+      //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
       resp["txt"] = desc;    
     }
   }
@@ -889,7 +890,8 @@ function PerformIllusion(caster, infused, free, tgt) {
   illusion.spawnedBy = caster;
   illusion.summoned = 1;
   caster.getHomeMap().placeThing(tgt.x,tgt.y,illusion);
-  DrawMainFrame("one",caster.getHomeMap(),illusion.getx(),illusion.gety());
+  DUCamera.DrawOne(caster.getHomeMap(),illusion.getx(),illusion.gety());
+  //DrawMainFrame("one",caster.getHomeMap(),illusion.getx(),illusion.gety());
   
   PlayCastSound(caster, "sfx_summon");  
   ShowEffect(illusion, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
@@ -1354,7 +1356,8 @@ magic[SPELL_UNLOCK_LEVEL][SPELL_UNLOCK_ID].executeSpell = function(caster, infus
         if ((lock === 1) || ((lock === 2) && (infused))) {
           val.unlockMe();
           unlocked = 1;
-          DrawMainFrame("one", castermap, val.getx(), val.gety());
+          DUCamera.DrawOne(castermap, val.getx(), val.gety());
+          //DrawMainFrame("one", castermap, val.getx(), val.gety());
           let desc = "The " + val.getDesc() + " is unlocked.";
           ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_ORANGE);
           desc = desc.charAt(0).toUpperCase() + desc.slice(1);      
@@ -1971,10 +1974,12 @@ function PerformTelekinesis(caster, infused, free, tgt) {
       }
       
       if (usemap === PC.getHomeMap()) { 
-        DrawMainFrame("draw",usemap,PC.getx(),PC.gety());
+        DUCamera.Draw(usemap,PC.getx(),PC.gety(),PC);
+        //DrawMainFrame("draw",usemap,PC.getx(),PC.gety());
       }
     } else {		
-      DrawMainFrame("one",usemap,tgt.getx(),tgt.gety());
+      DUCamera.DrawOne(usemap,tgt.getx(),tgt.gety());
+      //DrawMainFrame("one",usemap,tgt.getx(),tgt.gety());
     }
   }
   PlayCastSound(caster);
@@ -2005,12 +2010,16 @@ function PerformTelekinesisMove(caster, infused, free, tgt) {  // NOTE- tgt need
 
   if ((typeof tgt.getLight === "function") && (tgt.getLight() !== 0)) {
     if (PC.getHomeMap() === usemap) {
-      DrawMainFrame("draw",usemap,PC.getx(),PC.gety());
+      DUCamera.Draw(usemap,PC.getx(),PC.gety(),PC);
+      //DrawMainFrame("draw",usemap,PC.getx(),PC.gety());
     }
   } else {
     if ((PC.getHomeMap() === usemap) && (GetDistance(PC.getx(),PC.gety(),tgt.getx(),tgt.gety(),"square") <= 6)) {
-      DrawMainFrame("one",usemap,tgt.getx(),tgt.gety());
-      DrawMainFrame("one",usemap,oldx,oldy);
+      DUCamera.DrawOne(usemap,tgt.getx(),tgt.gety());
+      DUCamera.DrawOne(usemap,oldx,oldy);
+      //      DrawMainFrame("one",usemap,tgt.getx(),tgt.gety());
+//      DrawMainFrame("one",usemap,oldx,oldy);
+
     }
   }
   
@@ -2248,7 +2257,8 @@ function PerformWallOfFlame(caster, infused, free, tgt) {
     alert("Finding facing isn't working.");
   }
   if (castermap === PC.getHomeMap()) {
-    DrawMainFrame("draw",castermap,PC.getx(),PC.gety());
+    DUCamera.Draw(castermap,PC.getx(),PC.gety(),PC);
+    //DrawMainFrame("draw",castermap,PC.getx(),PC.gety());
   }
   
   return resp;
@@ -2403,7 +2413,8 @@ function PerformBlink(caster,destx, desty) {
     if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
     retval["msg"] += walkonval.msg;
   }
-  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+  DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+  //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
   maintext.addText(retval["msg"]);
   if ((caster.getx() === destx) && (caster.gety() === desty)) {
     return 1;
@@ -2844,7 +2855,8 @@ magic[SPELL_TELEPATHY_LEVEL][SPELL_TELEPATHY_ID].executeSpell = function(caster,
   caster.addSpellEffect(prot, Math.max(0, free-1) );
   PlayCastSound(caster,"sfx_buff");
   if (caster === PC) {
-    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+    DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+    //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
   }
 
   return resp;
@@ -3361,10 +3373,12 @@ function PerformSummonAlly(caster, infused, free, tgt) {
   ally.expiresTime = DUTime.getGameClock() + duration;  // AI needs to check expiresTime and go poof if it is reached
   caster.getHomeMap().placeThing(tgt.x,tgt.y,ally);
   if ((eletype !== "FireElemental") && (eletype !== "MinorFireElemental")) {
-    DrawMainFrame("one",caster.getHomeMap(),ally.getx(),ally.gety());
+    DUCamera.DrawOne(caster.getHomeMap(),ally.getx(),ally.gety());
+    //DrawMainFrame("one",caster.getHomeMap(),ally.getx(),ally.gety());
   } else {
     if (caster.getHomeMap() === PC.getHomeMap()) {
-      DrawMainFrame("draw",caster.getHomeMap(),PC.getx(),PC.gety());
+      DUCamera.Draw(caster.getHomeMap(),PC.getx(),PC.gety(),PC);
+      //DrawMainFrame("draw",caster.getHomeMap(),PC.getx(),PC.gety());
     }
   }
   ShowEffect(ally, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
@@ -3503,7 +3517,8 @@ function PerformSwordstrike(caster, infused, free, tgt) {
       }
     }
   }
-  DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+  DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+  //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
   
   return resp;
 }
@@ -4847,7 +4862,8 @@ magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].executeSpell = function(c
         maintext.addText(desc);
       }
     }
-    DrawMainFrame("draw", castermap, centerx, centery);
+    DUCamera.Draw(castermap, centerx, centery,PC);
+    //DrawMainFrame("draw", castermap, centerx, centery);
     DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");  
     caster.endTurn();
   }, waittime*20);
@@ -5642,7 +5658,8 @@ function PerformConjureDaemon(caster, infused, free, tgt) {
   ally.summoned = 1;
   ally.expiresTime = DUTime.getGameClock() + duration;  // AI needs to check expiresTime and go poof if it is reached
   caster.getHomeMap().placeThing(tgt.x,tgt.y,ally);
-  DrawMainFrame("one",caster.getHomeMap(),ally.getx(),ally.gety());
+  DUCamera.DrawOne(caster.getHomeMap(),ally.getx(),ally.gety());
+  //DrawMainFrame("one",caster.getHomeMap(),ally.getx(),ally.gety());
   ShowEffect(ally, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
   
   resp["txt"] = "You conjure a daemon to aid you in battle!";
@@ -5785,7 +5802,8 @@ function TravelByMoongate(who,color,destmap,destx,desty) {
     } else {
       who.setGraphicArray(["spacer.gif","",0,0]);
     }
-    DrawMainFrame("one", castermap, gx, gy);
+    DUCamera.DrawOne(castermap, gx, gy);
+    //DrawMainFrame("one", castermap, gx, gy);
     setTimeout(function() {
       if (destmap === castermap) {
         castermap.moveThing(destx,desty,who);
@@ -5794,7 +5812,8 @@ function TravelByMoongate(who,color,destmap,destx,desty) {
         MoveBetweenMaps(who, castermap, destmap, destx, desty);
         MoveFeatureBetweenMaps(gate, destmap, destx, desty);
       }
-      DrawMainFrame("draw", destmap, destx, desty);
+      DUCamera.Draw(destmap, destx, desty,PC);
+      //DrawMainFrame("draw", destmap, destx, desty);
       setTimeout(function() {
         if (who.checkType("human")) {
           delete who.noDraw;
@@ -5803,10 +5822,12 @@ function TravelByMoongate(who,color,destmap,destx,desty) {
           who.setGraphicArray(oldgraphic);
         }
             
-        DrawMainFrame("one", destmap, destx, desty);
+        DUCamera.DrawOne(destmap, destx, desty);
+        //DrawMainFrame("one", destmap, destx, desty);
         AnimateMoongate(gate,0,"down",tol,1);
         // Moongate descends, but player can immediately walk around
-        DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
+        DUCamera.DrawOne(who.getHomeMap(), who.getx(), who.gety());
+        //DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
         DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");  
         who.endTurn();
 
@@ -5827,51 +5848,64 @@ function TravelByMoongateOld(who, color, destmap, destx, desty) {
   let oldgraphic = who.getGraphicArray();
   // play sound effect
   who.setGraphicArray(graphicarray);
-  DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
+  DUCamera.DrawOne(who.getHomeMap(), who.getx(), who.gety());
+  //DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
   setTimeout(function() {
     graphicarray[3] += 8;
     who.setGraphicArray(graphicarray);
-    DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
+    DUCamera.DrawOne(who.getHomeMap(), who.getx(), who.gety());
+    //DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
     setTimeout(function() {
       graphicarray[3] += 8;
       who.setGraphicArray(graphicarray);
-      DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
+      DUCamera.DrawOne(who.getHomeMap(), who.getx(), who.gety());
+      //DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
       setTimeout(function() {
         graphicarray[3] += 8;
         who.setGraphicArray(graphicarray);
-        DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
+        DUCamera.DrawOne(who.getHomeMap(), who.getx(), who.gety());
+        //DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
         setTimeout(function() {
           graphicarray[3] += 8; // at this point it should be 0
           who.setGraphicArray(graphicarray);
-          DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
+          DUCamera.DrawOne(who.getHomeMap(), who.getx(), who.gety());
+          //DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
           setTimeout(function() {
             who.setGraphicArray(["spacer.gif","spacer.gif",0,0]);
-            DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
+            DUCamera.DrawOne(who.getHomeMap(), who.getx(), who.gety());
+            //DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
             setTimeout(function() {
               MoveBetweenMaps(who,who.getHomeMap(), destmap, destx, desty);
-              DrawMainFrame("draw", who.getHomeMap(), who.getx(), who.gety());
+              DUCamera.Draw(who.getHomeMap(), who.getx(), who.gety(),PC);
+              //DrawMainFrame("draw", who.getHomeMap(), who.getx(), who.gety());
               setTimeout(function() {
                 who.setGraphicArray(graphicarray);
-                DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
+                DUCamera.DrawOne(who.getHomeMap(), who.getx(), who.gety());
+                //DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
                 setTimeout(function() {
                   graphicarray[3] -= 8;
                   who.setGraphicArray(graphicarray);
-                  DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
+                  DUCamera.DrawOne(who.getHomeMap(), who.getx(), who.gety());
+                  //DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
                   setTimeout(function() {
                     graphicarray[3] -= 8;
                     who.setGraphicArray(graphicarray);
-                    DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
+                    DUCamera.DrawOne(who.getHomeMap(), who.getx(), who.gety());
+                    //DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
                     setTimeout(function() {
                       graphicarray[3] -= 8;
                       who.setGraphicArray(graphicarray);
-                      DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
+                      DUCamera.DrawOne(who.getHomeMap(), who.getx(), who.gety());
+                      //DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
                       setTimeout(function() {
                         graphicarray[3] -= 8;
                         who.setGraphicArray(graphicarray);
-                        DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
+                        DUCamera.DrawOne(who.getHomeMap(), who.getx(), who.gety());
+                        //DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
                         setTimeout(function() {
                           who.setGraphicArray(oldgraphic);
-                          DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
+                          DUCamera.DrawOne(who.getHomeMap(), who.getx(), who.gety());
+                          //DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
                           DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");  
                           who.endTurn();  
                         }, tol);
@@ -6206,7 +6240,8 @@ function PerformSpellcast() {
           resp["input"] = "&gt;";
         }	 
         document.getElementById(targetCursor.tileid).innerHTML = targetCursor.basetile;    
-        DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety()); 
+        DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC); 
+        //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety()); 
         delete targetCursor.spellName;
       }
     } else if (targetCursor.spellName === "Empower") {

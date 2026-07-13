@@ -465,7 +465,8 @@ function CheckLasers(themap) {
       themap.deleteThing(thelaser);
     }
   }
-  DrawMainFrame("draw",themap,PC.getx(),PC.gety());
+  DUCamera.Draw(themap,PC.getx(),PC.gety(),PC);
+  //DrawMainFrame("draw",themap,PC.getx(),PC.gety());
 }
 
 // MAP BEGINS HERE

@@ -434,7 +434,8 @@ function Open_BDC_Gate(mapref) {
     gate.unlockMe();
     gate.use();
     LowerDrawbridge(mapref);
-    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+    DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+    //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
   }
 }
 

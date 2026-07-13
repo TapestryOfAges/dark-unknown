@@ -1105,7 +1105,8 @@ WorldsEndingCenterRaftTile.prototype.myTurn = function() {
         }
       }
 
-      DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+      DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+      //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
     }
 
   }
@@ -1148,11 +1149,13 @@ WorldsEndingRaftSwitchTile.prototype.use = function(who) {
   if (this.spritexoffset === -8*32) { 
     this.spritexoffset = -9*32;
     retval["txt"] = "The lever moves with a satisfying click.";
-    DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
+    DUCamera.DrawOne(this.getHomeMap(),this.getx(),this.gety());
+    //DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
   } else {
     this.spritexoffset = -8*32;
     retval["txt"] = "The lever moves with a satisfying click.";
-    DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
+    DUCamera.DrawOne(this.getHomeMap(),this.getx(),this.gety());
+    //DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
   }
   return retval;
 }
@@ -1309,7 +1312,8 @@ SecretCaveTile.prototype.onSearched = function(who) {
     retval.txt = "After careful inspection, you find the entrance to a cave!";
     retval.fin = 1;
     retval.exitOut = 1;
-    DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
+    DUCamera.DrawOne(this.getHomeMap(),this.getx(),this.gety());
+    //DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
   }
   return retval;
 }
@@ -2690,7 +2694,8 @@ function UseTorch(who,torch) {
   torchmap.placeThing(torchx,torchy,newtorch);
   retval["fin"] = 1;
   if (torchmap === PC.getHomeMap()) {
-    DrawMainFrame("draw",torchmap,PC.getx(),PC.gety());
+    DUCamera.Draw(torchmap,PC.getx(),PC.gety(),PC);
+    //DrawMainFrame("draw",torchmap,PC.getx(),PC.gety());
   }
 
   return retval;
@@ -2897,7 +2902,8 @@ BrazierTile.prototype.use = function(who) {
     map.deleteThing(this);
     map.placeThing(x,y,unlit);
     if (map === PC.getHomeMap()) {
-      DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+      DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+      //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     }
     
     retval["txt"] = "You extinguish the brazier.";
@@ -2934,7 +2940,8 @@ UnlitBrazierTile.prototype.use = function(who) {
     map.deleteThing(this);
     map.placeThing(x,y,lit);
     if (map === PC.getHomeMap()) {
-      DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+      DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+      //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     }
     
     retval["txt"] = "You light the brazier.";
@@ -2977,7 +2984,8 @@ WEBrazierTile.prototype.use = function(who) {
     let y = this.gety();
     map.deleteThing(this);
     map.placeThing(x,y,unlit);
-    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+    DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+    //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     
     retval["txt"] = "You extinguish the brazier.";
   } else {
@@ -3011,7 +3019,8 @@ UnlitWEBrazierTile.prototype.use = function(who) {
     let y = this.gety();
     map.deleteThing(this);
     map.placeThing(x,y,lit);
-    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+    DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+    //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     
     retval["txt"] = "You light the brazier.";
   } else {
@@ -3105,7 +3114,8 @@ WEBrazier2Tile.prototype.use = function(who) {
     map.deleteThing(this);
     map.placeThing(x,y,unlit);
     if (map === PC.getHomeMap()) {
-      DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+      DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+      //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     }
     
     retval["txt"] = "You extinguish the brazier.";
@@ -3142,7 +3152,8 @@ WEUnlitBrazier2Tile.prototype.use = function(who) {
     map.deleteThing(this);
     map.placeThing(x,y,lit);
     if (map === PC.getHomeMap()) {
-      DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+      DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+      //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     }
     
     retval["txt"] = "You light the brazier.";
@@ -3815,7 +3826,8 @@ FireFieldTile.prototype.myTurn = function() {
     let y = this.gety();
     let mymap = this.getHomeMap();
     mymap.deleteThing(this);
-    DrawMainFrame("one",mymap,x,y);
+    DUCamera.DrawOne(mymap,x,y);
+    //DrawMainFrame("one",mymap,x,y);
     
     return 1;
   }
@@ -3900,7 +3912,8 @@ AbyssFireFieldTile.prototype.walkon = function(person) {
     FadeOut();
     setTimeout(function() { 
       person.getHomeMap().moveThing(9,8,person);
-      DrawMainFrame("draw",person.getHomeMap(),person.getx(),person.gety());
+      DUCamera.Draw(person.getHomeMap(),person.getx(),person.gety(),PC);
+      //DrawMainFrame("draw",person.getHomeMap(),person.getx(),person.gety());
       FadeIn();
       gamestate.setMode("player");
      }, 1500); 
@@ -5578,7 +5591,8 @@ function BedWalkOn(bedwho,bedarr) {
   bedwho.animating = 0;  
   bedwho.inBed = "single";
   bedwho.makeLayers();
-  DrawMainFrame("one",bedwho.getHomeMap(),bedwho.getx(),bedwho.gety());
+  DUCamera.DrawOne(bedwho.getHomeMap(),bedwho.getx(),bedwho.gety());
+  //DrawMainFrame("one",bedwho.getHomeMap(),bedwho.getx(),bedwho.gety());
 
 //  console.log(fea);
   let fea = bedwho.getHomeMap().getTile(bedwho.getx()+1,bedwho.gety()).features.getAll();
@@ -5586,7 +5600,8 @@ function BedWalkOn(bedwho,bedarr) {
     if (fea[i].getName() === "BedFoot") { 
       fea[i].setGraphicArray(["static.gif","",-6*32,-90*32]); 
 //      fea[i].passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
-      DrawMainFrame("one",fea[i].getHomeMap(),fea[i].getx(),fea[i].gety());
+      DUCamera.DrawOne(fea[i].getHomeMap(),fea[i].getx(),fea[i].gety());
+      //DrawMainFrame("one",fea[i].getHomeMap(),fea[i].getx(),fea[i].gety());
     }
   }
 //  console.log(bedwho);
@@ -5601,14 +5616,16 @@ function BedWalkOff(who, bed) {
   delete who.noAnim;
   delete who.inBed;
   who.makeLayers();
-  DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
+  DUCamera.DrawOne(who.getHomeMap(),who.getx(),who.gety());
+  //DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
 
   let fea = who.getHomeMap().getTile(who.getx()+1,who.gety()).features.getAll();
   for (let i=0;i<fea.length;i++) {
     if (fea[i].getName() === "BedFoot") { 
       fea[i].setGraphicArray(["static.gif","",-9*32,-89*32]);
 //      fea[i].passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-      DrawMainFrame("one",fea[i].getHomeMap(),fea[i].getx(),fea[i].gety());
+      DUCamera.DrawOne(fea[i].getHomeMap(),fea[i].getx(),fea[i].gety());
+      //DrawMainFrame("one",fea[i].getHomeMap(),fea[i].getx(),fea[i].gety());
     }
   }
 
@@ -5672,7 +5689,8 @@ DoubleBedHeadTile.prototype.walkoff = function(who) {
   delete who.noAnim;
   delete who.inBed;
   who.makeLayers();
-  DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
+  DUCamera.DrawOne(who.getHomeMap(),who.getx(),who.gety());
+  //DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
 
   this.removeOccupant(who);
   this.setLook();
@@ -5719,8 +5737,10 @@ DoubleBedHeadTile.prototype.setLook = function() {
   if (!this.occupants[0] && !this.occupants[1]) {
     foot.setGraphicArray(["static.gif","",-5*32,-91*32]);
 //    foot.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-    DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
-    DrawMainFrame("one",this.getHomeMap(),this.getx()+1,this.gety());
+    DUCamera.DrawOne(this.getHomeMap(),this.getx(),this.gety());
+    //DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
+    DUCamera.DrawOne(this.getHomeMap(),this.getx()+1,this.gety());
+    //DrawMainFrame("one",this.getHomeMap(),this.getx()+1,this.gety());
   } else if (this.occupants[0] && !this.occupants[1]) {
     this.occupants[0].inBed = "dblsinglelower";
     this.occupants[0].noAnim = 1;
@@ -5728,8 +5748,11 @@ DoubleBedHeadTile.prototype.setLook = function() {
     this.occupants[0].makeLayers();
     foot.setGraphicArray(["static.gif","",-7*32,-91*32]);
 //    foot.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
-    DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
-    DrawMainFrame("one",this.getHomeMap(),this.getx()+1,this.gety());
+    DUCamera.DrawOne(this.getHomeMap(),this.getx(),this.gety());
+    DUCamera.DrawOne(this.getHomeMap(),this.getx()+1,this.gety());
+//    DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
+//    DrawMainFrame("one",this.getHomeMap(),this.getx()+1,this.gety());
+
   } else if (!this.occupants[0] && this.occupants[1]) {
     this.occupants[1].inBed = "dblsingleupper";
     this.occupants[1].noAnim = 1;
@@ -5737,8 +5760,10 @@ DoubleBedHeadTile.prototype.setLook = function() {
     this.occupants[1].makeLayers(); 
     foot.setGraphicArray(["static.gif","",-7*32,-91*32]);
 //    foot.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
-    DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
-    DrawMainFrame("one",this.getHomeMap(),this.getx()+1,this.gety());
+    DUCamera.DrawOne(this.getHomeMap(),this.getx(),this.gety());
+    DUCamera.DrawOne(this.getHomeMap(),this.getx()+1,this.gety());
+    //DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
+    //DrawMainFrame("one",this.getHomeMap(),this.getx()+1,this.gety());
   } else if (this.occupants[0] && this.occupants[1]) {
     this.occupants[0].inBed = "dbldbllower";
     this.occupants[1].inBed = "dbldblupper";
@@ -5750,8 +5775,10 @@ DoubleBedHeadTile.prototype.setLook = function() {
     this.occupants[1].makeLayers();
     foot.setGraphicArray(["static.gif","",-7*32,-91*32]);
 //    foot.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
-    DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
-    DrawMainFrame("one",this.getHomeMap(),this.getx()+1,this.gety());
+    DUCamera.DrawOne(this.getHomeMap(),this.getx(),this.gety());
+    DUCamera.DrawOne(this.getHomeMap(),this.getx()+1,this.gety());
+    //DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
+    //DrawMainFrame("one",this.getHomeMap(),this.getx()+1,this.gety());
   } else {
     alert("How did I get here? (Doublebed setlook occupant fail.)"); 
   }
@@ -6514,7 +6541,8 @@ function ContainerOnFire(what) {
   
   let itsmap = what.getHomeMap();
   itsmap.deleteThing(what);
-  DrawMainFrame("one",itsmap,thisx,thisy);
+  DUCamera.DrawOne(itsmap,thisx,thisy);
+  //DrawMainFrame("one",itsmap,thisx,thisy);
   
   return 1; 
 }
@@ -6734,10 +6762,12 @@ CursedMirrorTile.prototype.onBreak = function(who) {
   let imp = localFactory.createTile("ImpNPC");
   imp.lootTable = "cursed";
   this.getHomeMap().placeThing(this.getx(),this.gety(),imp);
-  DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
+  DUCamera.DrawOne(this.getHomeMap(),this.getx(),this.gety());
+  //DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
   let energy = localFactory.createTile("EnergyField");
   this.getHomeMap().placeThing(10,10,energy);
-  DrawMainFrame("one",this.getHomeMap(),10,10);
+  DUCamera.DrawOne(this.getHomeMap(),10,10);
+  //DrawMainFrame("one",this.getHomeMap(),10,10);
   let negated = DU.gameflags.getFlag("negate");
   delete negated[this.getHomeMap().getName()];
   DU.gameflags.setFlag("negate", negated);
@@ -6896,10 +6926,12 @@ CursedMirrorWithImpTile.prototype.onBreak = function(who) {
   brokenmirror.break(imp,1,1);
   impmap.placeThing(ix,iy,brokenmirror);
   impmap.placeThing(ix,iy,imp);
-  DrawMainFrame("one",impmap,ix,iy);
+  DUCamera.DrawOne(impmap,ix,iy);
+  //DrawMainFrame("one",impmap,ix,iy);
   let energy = localFactory.createTile("EnergyField");
   impmap.placeThing(10,10,energy);
-  DrawMainFrame("one",impmap,10,10);
+  DUCamera.DrawOne(impmap,10,10);
+  //DrawMainFrame("one",impmap,10,10);
   let negated = DU.gameflags.getFlag("negate");
   delete negated[impmap.getName()];
   DU.gameflags.setFlag("negate", negated);
@@ -7127,7 +7159,8 @@ WaterfallFlowTile.prototype.walkon = function(who) {
 function DescendWaterfall(who, waterfall) {
   let thismap = who.getHomeMap();
   thismap.moveThing(who.getx(),who.gety()+1,who);
-  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());  
+  DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);  
+  //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());  
   if (who.gety() === waterfall.gety()) {
     setTimeout(function() {
       DescendWaterfall(who,waterfall);
@@ -7415,7 +7448,8 @@ WellTile.prototype.use = function(who) {
 
   if (this.spritexoffset === -3*32) { this.spritexoffset = -4*32; retval["txt"] = "You raise a bucket of water."; }
   else { this.spritexoffset = -3*32; retval["txt"] = "You lower the bucket."; }
-  DrawMainFrame("one",this.getHomeMap(), this.getx(), this.gety());
+  DUCamera.DrawOne(this.getHomeMap(), this.getx(), this.gety());
+  //DrawMainFrame("one",this.getHomeMap(), this.getx(), this.gety());
 
   return retval;
 
@@ -7501,7 +7535,8 @@ WhirlpoolTile.prototype.walkon = function(walker) {
       let newmap = maps.getMap("ellusus");
       MoveBetweenMaps(walker,themap,newmap,69,80);
     }
-    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+    DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+    //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
   }
 
   return {msg:"You are gripped by the whirlpool's current, and quickly swept under. You briefly black out, and come to elsewhere..."};
@@ -7675,7 +7710,8 @@ WalkOnFulcrumTile.prototype.walkon = function(who) {
     }
   }
 
-  DrawMainFrame("draw",mymap,PC.getx(),PC.gety());
+  DUCamera.Draw(mymap,PC.getx(),PC.gety(),PC);
+  //DrawMainFrame("draw",mymap,PC.getx(),PC.gety());
   return retval;
 }
 
@@ -7693,7 +7729,8 @@ WalkOnFulcrumTile.prototype.walkoff = function(who, p) {
     } 
   }
 
-  DrawMainFrame("draw",mymap,PC.getx(),PC.gety());
+  DUCamera.Draw(mymap,PC.getx(),PC.gety(),PC);
+  //DrawMainFrame("draw",mymap,PC.getx(),PC.gety());
   return retval;
 }
 
@@ -8253,8 +8290,10 @@ WalkOnConsolationTile.prototype.walkon = function(walker) {
       themap.deleteThing(field);
       field = themap.getTile(17,25).getTopFeature();
       themap.deleteThing(field);
-      DrawMainFrame("one",themap,16,25);
-      DrawMainFrame("one",themap,17,25);
+      DUCamera.DrawOne(themap,16,25);
+      DUCamera.DrawOne(themap,17,25);
+      //DrawMainFrame("one",themap,16,25);
+      //DrawMainFrame("one",themap,17,25);
       return {msg:"The forcefield disappears as you approach."};  
     }
     return {msg:""};
@@ -8301,7 +8340,8 @@ WalkOnTharockTile.prototype.walkon = function(walker) {
       }
     }
   }
-  DrawMainFrame("draw",map,PC.getx(),PC.gety());
+  DUCamera.Draw(map,PC.getx(),PC.gety(),PC);
+  //DrawMainFrame("draw",map,PC.getx(),PC.gety());
   return {msg:msg};
 }
 
@@ -8361,7 +8401,10 @@ WorldsEndingWalkOnTile.prototype.walkon = function(walker) {
   let trackteleports = this.getHomeMap().getTile(35,34).getFeatureByName("WorldsEndingWalkOn");
   trackteleports.secondlastteleport = trackteleports.lastteleport;
   trackteleports.lastteleport = this.getx() + "," + this.gety();
-  if (walker === PC) { DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety()); }
+  if (walker === PC) { 
+    DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC); 
+    //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety()); 
+  }
 
   return {msg:""};
 }
@@ -8483,7 +8526,8 @@ WalkOnHC1Tile.prototype.walkon = function(walker) {
     this.desty = walker.gety();
   }
   MoveBetweenMaps(walker,themap,newmap,this.destx,this.desty);
-  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+  DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+  //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
   DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
   let retval = {overridedraw: 1};
   DU.gameflags.setFlag("started_pheran",1);
@@ -8515,7 +8559,8 @@ WalkOnHC2Tile.prototype.walkon = function(walker) {
     this.desty = walker.gety();
   }
   MoveBetweenMaps(walker,themap,newmap,this.destx,this.desty);
-  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+  DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+  //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
   DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
   let retval = {overridedraw: 1};
   if (this.say) {
@@ -8600,7 +8645,8 @@ WalkOnHC5Tile.prototype.walkon = function(walker) {
   if (door.open) { door.use(walker,1); }
   door = themap.getTile(10,6).getTopFeature();
   if (door.open) { door.use(walker,1); }
-  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+  DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+  //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
   DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
   let retval = {overridedraw: 1};
   if (this.say) {
@@ -8633,7 +8679,8 @@ WalkOnHC6Tile.prototype.walkon = function(walker) {
     this.desty = walker.gety();
   }
   MoveBetweenMaps(walker,themap,newmap,this.destx,this.desty);
-  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+  DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+  //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
   DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
   let door = themap.getTile(10,14).getTopFeature();
   if (door.open) { door.use(walker,1); }
@@ -8671,7 +8718,8 @@ WalkOnHC7Tile.prototype.walkon = function(walker) {
     this.desty = walker.gety();
   }
   MoveBetweenMaps(walker,themap,newmap,this.destx,this.desty);
-  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+  DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+  //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
   DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
   let retval = {overridedraw: 1};
   if (this.say) {
@@ -8702,7 +8750,8 @@ WalkOnNoGalaxyTile.prototype.walkon = function(walker) {
     if (DU.settings.getSetting("music") && nowplaying.name && (nowplaying.name !== normalsong)) {
       DUPlayMusic(normalsong, {fade:1});
     }
-    DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
+    DUCamera.Draw(mymap,walker.getx(),walker.gety(),PC);
+    //DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
   }
   return {msg:""};
 }
@@ -8730,7 +8779,8 @@ WalkOnGalaxy1Tile.prototype.walkon = function(walker) {
      if (DU.settings.getSetting("music") && nowplaying.name && (nowplaying.name !== song)) {
       DUPlayMusic(song, {fade:1});
     }
-    DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
+    DUCamera.Draw(mymap,walker.getx(),walker.gety(),PC);
+    //DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
   }
   return {msg:""};
 }
@@ -8758,7 +8808,8 @@ WalkOnGalaxy2Tile.prototype.walkon = function(walker) {
     if (DU.settings.getSetting("music") && nowplaying.name && (nowplaying.name !== song)) {
       DUPlayMusic(song, {fade:1});
     }
-    DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
+    DUCamera.Draw(mymap,walker.getx(),walker.gety(),PC);
+    //DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
   }
   return {msg:""};
 }
@@ -8786,7 +8837,8 @@ WalkOnGalaxy3Tile.prototype.walkon = function(walker) {
     if (DU.settings.getSetting("music") && nowplaying.name && (nowplaying.name !== song)) {
       DUPlayMusic(song, {fade:1});
     }
-    DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
+    DUCamera.Draw(mymap,walker.getx(),walker.gety(),PC);
+    //DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
   }
   return {msg:""};
 }
@@ -9200,7 +9252,8 @@ WalkOnRotateTile.prototype.walkon = function(walker) {
     }
     MoveBetweenMaps(feas[i],currmap,destmap,dest.destx,dest.desty);
   }
-  DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+  DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+  //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
   return {overridedraw: 1,msg:"A rumbling sound fills the dungeon. At the edge of awareness something shifts and rearranges..."};
 }
 
@@ -9309,7 +9362,8 @@ WalkOnAbyssTile.prototype.walkon = function(walker) {
     this.desty = walker.gety();
   }
   MoveBetweenMaps(walker,themap,newmap,this.destx,this.desty);
-  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+  DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+  //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
   DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
   let retval = {overridedraw: 1,msg:""};
   if (this.say) {
@@ -9447,7 +9501,8 @@ WalkOnAbyssCastleTile.prototype.walkon = function(walker) {
   }
   let newmap = maps.getMap(dest);
   MoveBetweenMaps(walker,themap,newmap,this.getx(),this.gety());
-  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+  DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+  //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
   DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
   let retval = {overridedraw: 1,msg:""};
   return retval;
@@ -10781,7 +10836,8 @@ GrottoLeverOffTile.prototype.use = function(who) {
   };
   MoveBetweenMaps(PC,frommap,tomap,PC.getx(),PC.gety());
   
-  DrawMainFrame("draw", tomap, PC.getx(), PC.gety());
+  DUCamera.Draw(tomap, PC.getx(), PC.gety(),PC);
+  //DrawMainFrame("draw", tomap, PC.getx(), PC.gety());
   return retval;
 }
 
@@ -10876,14 +10932,17 @@ function GrottoBridgePuzzle(mymap,locx,locy) {
       maintext.delayedAddText("The bridge disappears from beneath your feet! You fall.");
       let undermap = maps.getMap("undergrotto");
       MoveBetweenMaps(PC,mymap,undermap,25,7);
-      DrawMainFrame("draw",undermap,PC.getx(),PC.gety());
+      DUCamera.Draw(undermap,PC.getx(),PC.gety(),PC);
+      //DrawMainFrame("draw",undermap,PC.getx(),PC.gety());
     } else {
-      DrawMainFrame("one",mymap,locx,locy);
+      DUCamera.DrawOne(mymap,locx,locy);
+      //DrawMainFrame("one",mymap,locx,locy);
     }
   } else {
     bridge = localFactory.createTile("BridgeNS");
     mymap.placeThing(locx,locy,bridge);
-    DrawMainFrame("one",mymap,locx,locy);
+    DUCamera.DrawOne(mymap,locx,locy);
+    //DrawMainFrame("one",mymap,locx,locy);
   }
 }
 
@@ -10931,7 +10990,8 @@ MetalTwisterLeverTile.prototype.use = function(user) {
         ports[i].unlockMe();
         ports[i].use(user);
         if (ports[i].getHomeMap() === PC.getHomeMap()) {
-          DrawMainFrame("one",PC.getHomeMap(),ports[i].getx(),ports[i].gety());
+          DUCamera.DrawOne(PC.getHomeMap(),ports[i].getx(),ports[i].gety());
+          //DrawMainFrame("one",PC.getHomeMap(),ports[i].getx(),ports[i].gety());
         }
       }
       let floor2features = level2.features.getAll();
@@ -11074,7 +11134,8 @@ function InALaser(who) {
   themap.moveThing(46,28,who);
   ResetRoyalPuzzle(themap);
   DUPlaySound("sfx_small_zap");
-  DrawMainFrame("draw",themap,PC.getx(),PC.gety());
+  DUCamera.Draw(themap,PC.getx(),PC.gety(),PC);
+  //DrawMainFrame("draw",themap,PC.getx(),PC.gety());
   let response = {overridedraw:1,msg:"ZAP! The room resets."};
   return response;
 }
@@ -11416,7 +11477,8 @@ PlatformOfWavesTile.prototype.walkon = function(who) {
       let destmap = DU.maps.getMap(dest.map);
       MoveBetweenMaps(who,themap,destmap,dest.x,dest.y);
     }
-    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+    DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+    //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     ShowEffect(who, 500, "spellsparkles-anim.gif", 0, -64);
     if (who === PC) { DUPlaySound("sfx_teleport"); response.overridedraw = 1; }
   }
@@ -11459,7 +11521,8 @@ function whoosh(whozat, windlist, spawnwhere, spawnthing) {
   
   let windmap = whozat.getHomeMap();
   windmap.moveThing(tox,toy,whozat);
-  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());  
+  DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);  
+  //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());  
   
   if (windlist[2]) {
     setTimeout( function() { whoosh(whozat, windlist.slice(2), spawnwhere, spawnthing); }, 100);
@@ -12143,7 +12206,8 @@ TeleporterPlatformTile.prototype.walkon = function(who) {
       let destmap = DU.maps.getMap(dest.map);
       MoveBetweenMaps(who,themap,destmap,dest.x,dest.y);
     }
-    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+    DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+    //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     ShowEffect(who, 500, "spellsparkles-anim.gif", 0, -64);
     if (who === PC) { DUPlaySound("sfx_teleport"); response.overridedraw = 1; }
   }
@@ -12168,7 +12232,8 @@ UDTeleporterPlatformTile.prototype.walkon = function(who) {
   let response = {msg:""};
   let themap = who.getHomeMap();
   themap.moveThing(7, 32, who);
-  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+  DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+  //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
   ShowEffect(who, 500, "spellsparkles-anim.gif", 0, -64);
   if (who === PC) { 
     DUPlaySound("sfx_teleport"); 
@@ -12219,7 +12284,8 @@ PitTeleporterPlatformTile.prototype.walkon = function(who) {
       let destmap = DU.maps.getMap(dest.map);
       MoveBetweenMaps(who,themap,destmap,dest.x,dest.y);
     }
-    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+    DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+    //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     ShowEffect(who, 500, "spellsparkles-anim.gif", 0, -64);
     if (who === PC) { DUPlaySound("sfx_teleport_pad"); response.overridedraw = 1; }
   }
@@ -12408,7 +12474,8 @@ function PerformToshinAltar(code) {
     retval["fin"] = 2;
     return retval;
   } 
-  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+  DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+  //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
   return retval;
 }
 
@@ -12653,7 +12720,8 @@ EtherGateTile.prototype.walkon = function(who) {
   }
   homemap.moveThing(this.destx,this.desty,who);
   if (who === PC) {
-    DrawMainFrame("draw", homemap, PC.getx(), PC.gety());
+    DUCamera.Draw(homemap, PC.getx(), PC.gety(),PC);
+    //DrawMainFrame("draw", homemap, PC.getx(), PC.gety());
     return response.overridedraw = 1; 
   }
   return response;
@@ -12705,7 +12773,8 @@ EtherOutboundGateTile.prototype.walkon = function(who) {
       MoveBetweenMaps(who,themap,destmap,dest.x,dest.y);
     }
     if (who === PC) {
-      DrawMainFrame("draw", homemap, PC.getx(), PC.gety());
+      DUCamera.Draw(homemap, PC.getx(), PC.gety(),PC);
+      //DrawMainFrame("draw", homemap, PC.getx(), PC.gety());
       return response.overridedraw = 1; 
     }  
     
@@ -12767,7 +12836,8 @@ MoongateTile.prototype.walkon = function(who) {
       newmap = maps.addMap(this.destmap);
     }
     MoveBetweenMaps(who,who.getHomeMap(),newmap, this.destx, this.desty);
-    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+    DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+    //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
     if (who === PC) { 
       DUPlaySound("sfx_teleport"); 
@@ -12776,7 +12846,8 @@ MoongateTile.prototype.walkon = function(who) {
     }
   } else if (this.destmap && this.destx && this.desty) {
     who.getHomeMap().moveThing(this.destx,this.desty,who);
-    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+    DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+    //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
   }
   DUPlaySound("sfx_teleport");
@@ -12829,7 +12900,8 @@ DaemonMoongateTile.prototype.walkon = function(who) {
   let response = {msg:""};
   if (this.destx && this.desty) {
     who.getHomeMap().moveThing(this.destx,this.desty,who);
-    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+    DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+    //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
 
     if (this.first) {
@@ -12852,26 +12924,31 @@ function DissolveDoor(door, which) {
   if (door.spriteyoffset === -16*32) {
     door.spriteyoffset = -163*32;
     door.spritexoffset = 0;
-    DrawMainFrame("one",door.getHomeMap(),door.getx(),door.gety());
+    DUCamera.DrawOne(door.getHomeMap(),door.getx(),door.gety());
+    //DrawMainFrame("one",door.getHomeMap(),door.getx(),door.gety());
     setTimeout(function() { DissolveDoor(door,which);}, 250);
   } else if (door.spritexoffset === 0) {
     door.spritexoffset = -1*32;
-    DrawMainFrame("one",door.getHomeMap(),door.getx(),door.gety());
+    DUCamera.DrawOne(door.getHomeMap(),door.getx(),door.gety());
+    //DrawMainFrame("one",door.getHomeMap(),door.getx(),door.gety());
     setTimeout(function() { DissolveDoor(door,which);}, 250);
   } else if (door.spritexoffset === -32) {
     door.spritexoffset = -2*32;
-    DrawMainFrame("one",door.getHomeMap(),door.getx(),door.gety());
+    DUCamera.DrawOne(door.getHomeMap(),door.getx(),door.gety());
+    //DrawMainFrame("one",door.getHomeMap(),door.getx(),door.gety());
     setTimeout(function() { DissolveDoor(door,which);}, 250);
   } else if (door.spritexoffset === -2*32) {
     door.spritexoffset = -3*32;
-    DrawMainFrame("one",door.getHomeMap(),door.getx(),door.gety());
+    DUCamera.DrawOne(door.getHomeMap(),door.getx(),door.gety());
+    //DrawMainFrame("one",door.getHomeMap(),door.getx(),door.gety());
     setTimeout(function() { DissolveDoor(door,which);}, 250);
   } else {
     let dmap = door.getHomeMap();
     let dx = door.getx();
     let dy = door.gety();
     dmap.deleteThing(door);
-    DrawMainFrame("one",dmap,dx,dy);
+    DUCamera.DrawOne(dmap,dx,dy);
+    //DrawMainFrame("one",dmap,dx,dy);
     let darkness = dmap.getTile(18,32).getTopNPC();
     if (which === 1) {
       darkness.firstgate = 1;
@@ -13046,7 +13123,8 @@ SwordInStoneTile.prototype.use = function(who) {
   mymap.placeThing(wherex,wherey,emptyaltar);
   let magicsword = localFactory.createTile("MagicSword");
   mymap.placeThing(wherex,wherey,magicsword);
-  DrawMainFrame("one", mymap, wherex, whereY);
+  DUCamera.DrawOne(mymap, wherex, wherey);
+  //DrawMainFrame("one", mymap, wherex, wherey);
   
   return;
 }
@@ -13429,7 +13507,8 @@ SpectralShovelTile.prototype.use = function(who) {
   retval["fin"] = 4;
   retval["input"] = "&gt; Choose direction-";
   if (who === PC) {
-    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+    DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+    //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
   }
   targetCursor.command = "us";
   targetCursor.useditem = this;
@@ -14154,7 +14233,8 @@ RubyGemoftheSunTile.prototype.use = function(who) {
     } else {
       let sunmote = localFactory.createTile("SunBeacon");
       themap.placeThing(96,101,sunmote);
-      DrawMainFrame("draw",themap,96,101);
+      DUCamera.Draw(themap,96,101,PC);
+      //DrawMainFrame("draw",themap,96,101);
       retval["txt"] = "You raise the ruby before you and focus your will upon it. You command it to let the sun into the underworld, and in this place you feel it pierce the veil above you, and now a beacon of sunlight dances above the hill.";
       let daemon = localFactory.createTile("ArchdaemonOfBoneNPC");
       themap.placeThing(91,105,daemon);
@@ -14166,7 +14246,8 @@ RubyGemoftheSunTile.prototype.use = function(who) {
     } else {
       let sunmote = localFactory.createTile("SunBeacon");
       themap.placeThing(106,76,sunmote);
-      DrawMainFrame("draw",themap,106,76);
+      DUCamera.Draw(themap,106,76,PC);
+      //DrawMainFrame("draw",themap,106,76);
       retval["txt"] = "You raise the ruby before you and focus your will upon it. You command it to let the sun into the underworld, and in this place you feel it pierce the veil above you, and now a beacon of sunlight dances above the hill.";
       let daemon = localFactory.createTile("ArchdaemonOfIceNPC");
       themap.placeThing(104,70,daemon);
@@ -14178,7 +14259,8 @@ RubyGemoftheSunTile.prototype.use = function(who) {
     } else {
       let sunmote = localFactory.createTile("SunBeacon");
       themap.placeThing(57,55,sunmote);
-      DrawMainFrame("draw",themap,57,55);
+      DUCamera.Draw(themap,57,55,PC);
+      //DrawMainFrame("draw",themap,57,55);
       retval["txt"] = "You raise the ruby before you and focus your will upon it. You command it to let the sun into the underworld, and in this place you feel it pierce the veil above you, and now a beacon of sunlight dances above the hill.";
       let daemon = localFactory.createTile("ArchdaemonOfDustNPC");
       themap.placeThing(63,55,daemon);
@@ -14190,7 +14272,8 @@ RubyGemoftheSunTile.prototype.use = function(who) {
     } else {
       let sunmote = localFactory.createTile("SunBeacon");
       themap.placeThing(55,85,sunmote);
-      DrawMainFrame("draw",themap,55,85);
+      DUCamera.Draw(themap,55,85,PC);
+      //DrawMainFrame("draw",themap,55,85);
       retval["txt"] = "You raise the ruby before you and focus your will upon it. You command it to let the sun into the underworld, and in this place you feel it pierce the veil above you, and now a beacon of sunlight dances above the hill.";
       let daemon = localFactory.createTile("ArchdaemonOfAshesNPC");
       themap.placeThing(53,80,daemon);
@@ -14593,7 +14676,8 @@ GoldTile.prototype.onGet = function(who) {
   let goldx = this.getx();
   let goldy = this.gety();
   this.getHomeMap().deleteThing(this);
-  DrawMainFrame("one",who.getHomeMap(),goldx,goldy);
+  DUCamera.DrawOne(who.getHomeMap(),goldx,goldy);
+  //DrawMainFrame("one",who.getHomeMap(),goldx,goldy);
   DrawCharFrame();
 
   let retval = {};
@@ -14615,7 +14699,8 @@ KeyItemObject.prototype.use = function(who) {
   retval["fin"] = 4;
   retval["input"] = "&gt; Choose direction-";
   if (who === PC) {
-    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+    DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+    //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
   }
   targetCursor.command = "uk";
   targetCursor.useditem = this;
@@ -14637,11 +14722,13 @@ function KeyUse(who,what,tgt) {
       if (tgt.keyname === what.getName()) {
         if (tgt.getLocked()) { 
           tgt.unlockMe(); 
-          DrawMainFrame("one",tgt.getHomeMap(),tgt.getx(),tgt.gety());
+          DUCamera.DrawOne(tgt.getHomeMap(),tgt.getx(),tgt.gety());
+          //DrawMainFrame("one",tgt.getHomeMap(),tgt.getx(),tgt.gety());
         }
         else { 
           tgt.lockMe(1);
-          DrawMainFrame("one",tgt.getHomeMap(),tgt.getx(),tgt.gety());
+          DUCamera.DrawOne(tgt.getHomeMap(),tgt.getx(),tgt.gety());
+          //DrawMainFrame("one",tgt.getHomeMap(),tgt.getx(),tgt.gety());
         }
         retval["fin"] = 1;
         retval["txt"] = "Use " + what.getDesc() + "- Click!";
@@ -14878,7 +14965,8 @@ StoneOfShadowTile.prototype.swap = function(who) {
   gamestate.setMode("null");
   setTimeout(function() {
     MoveBetweenMaps(who,who.getHomeMap(),dmap,who.getx(),who.gety());
-    DrawMainFrame("draw",dmap,who.getx(),who.gety());
+    DUCamera.Draw(dmap,who.getx(),who.gety(),PC);
+    //DrawMainFrame("draw",dmap,who.getx(),who.gety());
     DUPlayMusic(destsong,{startat: currtime});
     maintext.addText("The world shifts around you!");
     who.endTurn();
@@ -15054,7 +15142,8 @@ BookItemObject.prototype.use = function(who) {
       targetCursor.booktext = bookcontents;
     } else {
       retval["fin"] = 1;
-      DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+      DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+      //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
     }
   }
   if (this.startquest) {
@@ -15560,7 +15649,8 @@ KeyOfAshesTile.prototype.use = function(who) {
       if (stuff[i].getName() === "EnergyField") { field = stuff[i]; }
     }
     who.getHomeMap().deleteThing(field);
-    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+    DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+    //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
     retval["txt"] = "You insert the key into the opening on the ash covered surface, and carefully turn. There is a click, and then the key crumbles into ash that mixes with what is already present.";
   } else {
     retval["txt"] = "You cannot find a place to use that here.";
@@ -15593,7 +15683,8 @@ KeyOfIceTile.prototype.use = function(who) {
       if (stuff[i].getName() === "EnergyField") { field = stuff[i]; }
     }
     who.getHomeMap().deleteThing(field);
-    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+    DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+    //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
     retval["txt"] = "You insert the key into the opening on the slick, icy surface, and gracefully turn. There is a click, and then the key melts in your hand, the water running down the altar until it freezes.";
   } else {
     retval["txt"] = "You cannot find a place to use that here.";
@@ -15626,7 +15717,8 @@ KeyOfBoneTile.prototype.use = function(who) {
       if (stuff[i].getName() === "EnergyField") { field = stuff[i]; }
     }
     who.getHomeMap().deleteThing(field);
-    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+    DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+    //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
     retval["txt"] = "You insert the key into the opening on the strange, bone surface, and carefully turn. There is a click, and then the key glows brightly for a moment... and then is gone.";
   } else {
     retval["txt"] = "You cannot find a place to use that here.";
@@ -15659,7 +15751,8 @@ KeyOfDustTile.prototype.use = function(who) {
       if (stuff[i].getName() === "EnergyField") { field = stuff[i]; }
     }
     who.getHomeMap().deleteThing(field);
-    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+    DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+    //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
     retval["txt"] = "You insert the key into the opening on the dust coated surface, and turn. There is a click, and then the key disintegrates into dust.";
   } else {
     retval["txt"] = "You cannot find a place to use that here.";
@@ -15747,7 +15840,8 @@ TorchTile.prototype.flamed = function() {
   
   let itsmap = this.getHomeMap();
   itsmap.deleteThing(this);
-  DrawMainFrame("one",itsmap,thisx,thisy);
+  DUCamera.DrawOne(itsmap,thisx,thisy);
+  //DrawMainFrame("one",itsmap,thisx,thisy);
   
   return 1; 
 }
@@ -16026,7 +16120,8 @@ PotionItemObject.prototype.flamed = function() {
   
   let itsmap = this.getHomeMap();
   itsmap.deleteThing(this);
-  DrawMainFrame("one",itsmap,thisx,thisy);
+  DUCamera.DrawOne(itsmap,thisx,thisy);
+  //DrawMainFrame("one",itsmap,thisx,thisy);
   
   return 1; 
 }
@@ -16133,7 +16228,8 @@ GreenPotionTile.prototype.flamed = function() {
   }
   
   itsmap.deleteThing(this);
-  DrawMainFrame("one",itsmap,thisx,thisy);
+  DUCamera.DrawOne(itsmap,thisx,thisy);
+  //DrawMainFrame("one",itsmap,thisx,thisy);
   
   return 1; 
 }
@@ -16170,7 +16266,8 @@ GreenPotionTile.prototype.drink = function(who, del) {
     if (this.getHomeMap()) {
       // cast from floor 
       this.getHomeMap().deleteThing(this);
-      DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
+      DUCamera.DrawOne(this.getHomeMap(),this.getx(),this.gety());
+      //DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
     } else {
       PC.removeFromInventory(this);
     }
@@ -16782,7 +16879,8 @@ ScrollItemObject.prototype.spellcast = function(who) {
   if (this.getHomeMap()) {
     // cast from floor 
     this.getHomeMap().deleteThing(this);
-    DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
+    DUCamera.DrawOne(this.getHomeMap(),this.getx(),this.gety());
+    //DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
   } else {
     who.removeFromInventory(this);
   }
@@ -16797,7 +16895,8 @@ ScrollItemObject.prototype.flamed = function() {
   
   let itsmap = this.getHomeMap();
   itsmap.deleteThing(this);
-  DrawMainFrame("one",itsmap,thisx,thisy);
+  DUCamera.DrawOne(itsmap,thisx,thisy);
+  //DrawMainFrame("one",itsmap,thisx,thisy);
   
   return 1; 
 }
@@ -17258,7 +17357,8 @@ AudachtaNemesosObject.prototype.flamed = function() {
   
   let itsmap = this.getHomeMap();
   itsmap.deleteThing(this);
-  DrawMainFrame("one",itsmap,thisx,thisy);
+  DUCamera.DrawOne(itsmap,thisx,thisy);
+  //DrawMainFrame("one",itsmap,thisx,thisy);
   
   return 1; 
 }
@@ -18066,7 +18166,8 @@ EquipableItemObject.prototype.equipMe = function(who) {
     }
     PC.wornlayers[this.wornlayer] = wln;
     PC.makeLayers();
-    DrawMainFrame("one",PC.getHomeMap(),PC.getx(),PC.gety());
+    DUCamera.DrawOne(PC.getHomeMap(),PC.getx(),PC.gety());
+    //DrawMainFrame("one",PC.getHomeMap(),PC.getx(),PC.gety());
   }
   return 1;
 }
@@ -18341,7 +18442,8 @@ AmuletOfReflectionsTile.prototype.use = function(who) {
         who.setHP(who.getMaxHP());
         DrawCharFrame();
         MoveBetweenMaps(who,themap,newmap,8,8);
-        DrawMainFrame("draw",newmap,8,8);
+        DUCamera.Draw(newmap,8,8,PC);
+        //DrawMainFrame("draw",newmap,8,8);
         FadeIn(2000);
         setTimeout(function() {
           gamestate.setMode("player");

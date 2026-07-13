@@ -371,5 +371,6 @@ function TestSpellAI() {
   newmap.placeThing(4,0,mon3);
   
 
-  DrawMainFrame("draw",newmap,PC.getx(),PC.gety());
+  DUCamera.Draw(newmap,PC.getx(),PC.gety(),PC);
+  //DrawMainFrame("draw",newmap,PC.getx(),PC.gety());
 }

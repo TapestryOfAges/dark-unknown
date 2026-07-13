@@ -13,7 +13,7 @@ let eidos = new Platonic();
 //var universe = new Object;
 
 let DU = {};
-DU.version = "0.11.2";
+DU.version = "0.11.5";
 
 let PC = new PCObject();
 DU.gamelength = 0;
@@ -37,6 +37,8 @@ let maintext = new TextFrame("innertextframe");
 let DULoot = SetLoots();            //
 let DULootGroups = SetLootGroups(); //  see loot.js and lootset.js for population
 let DUTraps = SetTraps();           //
+
+let DUCamera = new Camera();
 let displayspecs = {};
 let Dice = new DiceObject();
 let finder = new PF.AStarFinder({
@@ -260,7 +262,8 @@ function SoundLoaded() {
 function StartPostLoad() {
   DrawCharFrame();
   DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
-  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+  DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+  //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
 
   maintext.addText("Game loaded.");
   maintext.setInputLine("&gt;");
@@ -336,7 +339,8 @@ function DoAction(code, ctrl) {
         let gate = localFactory.createTile("PlanarGate");
         mymap.placeThing(27,18,gate);
         if (PC.getHomeMap() === mymap) {
-          DrawMainFrame("one",mymap,27,18);
+          DUCamera.DrawOne(mymap,27,18);
+          //DrawMainFrame("one",mymap,27,18);
         }
       } else if (targetCursor.frame === 2) {
         maintext.addText(`A look of alarm crosses Asharden's face. "Something went wrong. Let me close the..."`);
@@ -418,10 +422,12 @@ function DoAction(code, ctrl) {
         if ((PC.getx()-1 !== targetCursor.x) && (PC.gety() !== targetCursor.y) && 
           ((PC.getHomeMap().getTile(PC.getx()-1,PC.gety()).getTerrain().getName() === "CaveFloor") || (PC.getHomeMap().getTile(PC.getx()-1,PC.gety()).getTerrain().getName() === "Dirt"))) {
           PC.getHomeMap().moveThing(PC.getx()-1,PC.gety(),ghost);
-          DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+          DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+          //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
         } else { 
           PC.getHomeMap().moveThing(PC.getx(),PC.gety()+1,ghost);
-          DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+          DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+          //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
         }
         targetCursor.frame++;
       } else if (targetCursor.frame === 2) {
@@ -444,7 +450,8 @@ function DoAction(code, ctrl) {
             PC.getHomeMap().deleteThing(fea[i]);
           }
         }
-        DrawMainFrame("one",PC.getHomeMap(),targetCursor.x,targetCursor.y);
+        DUCamera.DrawOne(PC.getHomeMap(),targetCursor.x,targetCursor.y);
+        //DrawMainFrame("one",PC.getHomeMap(),targetCursor.x,targetCursor.y);
         targetCursor.frame++;
       } else if (targetCursor.frame === 6) {
         maintext.addText(`"And finally." One last gesture, and a large stone is reshaped and placed at the head of the grave."`);
@@ -456,7 +463,8 @@ function DoAction(code, ctrl) {
         }
         let gstone = localFactory.createTile("Tombstone");
         PC.getHomeMap().placeThing(targetCursor.x,targetCursor.y-1,gstone);
-        DrawMainFrame("one",PC.getHomeMap(),targetCursor.x,targetCursor.y-1);
+        DUCamera.DrawOne(PC.getHomeMap(),targetCursor.x,targetCursor.y-1);
+        //DrawMainFrame("one",PC.getHomeMap(),targetCursor.x,targetCursor.y-1);
         ShowEffect(gstone, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
         targetCursor.frame++;
       } else if (targetCursor.frame === 7) {
@@ -488,7 +496,8 @@ function DoAction(code, ctrl) {
         document.getElementById('uiinterface').style.backgroundImage = "";    
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame();   
-        DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+        DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+        //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
         delete targetCursor.viewing;
         delete targetCursor.toggleMap;
         PC.endTurn();
@@ -507,7 +516,8 @@ function DoAction(code, ctrl) {
         moongate.destx = moongate.getx();
         moongate.desty = moongate.gety();
 
-        DrawMainFrame("one",PC.getHomeMap(),justice.getx(),justice.gety());
+        DUCamera.DrawOne(PC.getHomeMap(),justice.getx(),justice.gety());
+        //DrawMainFrame("one",PC.getHomeMap(),justice.getx(),justice.gety());
         AnimateMoongate(moongate,0,"up",300,0);
         setTimeout(function() { 
           whoseturn.endTurn();  // could be Justice, could be PC
@@ -540,7 +550,8 @@ function DoAction(code, ctrl) {
         pmap.placeThing(px,py,body);
         pmap.deleteThing(prince);
         DUTime.removeEntityFrom(prince);
-        DrawMainFrame("one",pmap,px,py);
+        DUCamera.DrawOne(pmap,px,py);
+        //DrawMainFrame("one",pmap,px,py);
 //        prince.realgraphic = prince.getGraphicArray();
 //        prince.setGraphicArray(["static.gif","",-256,-2464]);
 //        prince.setAttitude("neutral"); // so dragon doesn't attack him
@@ -580,7 +591,8 @@ function DoAction(code, ctrl) {
         document.getElementById('uiinterface').style.backgroundImage = "";    
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame();   
-        DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+        DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+        //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
         PC.endTurn();
       }
     } else if (targetCursor.command === "intermission") {
@@ -707,7 +719,8 @@ function DoAction(code, ctrl) {
     
           maintext.setInputLine("&gt;");
           maintext.drawTextFrame();
-          DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+          DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+          //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
           PC.endTurn();
         } else {
           let retval = PerformTalk(targetCursor.talkingto, targetCursor.talkingto.getConversation(), targetCursor.keyword); 
@@ -727,7 +740,8 @@ function DoAction(code, ctrl) {
     
           maintext.setInputLine("&gt;");
           maintext.drawTextFrame();
-          DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+          DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+          //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
           PC.endTurn();
         }
       }
@@ -1124,7 +1138,8 @@ function DoAction(code, ctrl) {
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
       DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
-      DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+      DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+      //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
       gamestate.setMode("player");
       gamestate.setTurn(PC);
     }
@@ -1139,7 +1154,8 @@ function DoAction(code, ctrl) {
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
       DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>"); 
-      DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+      DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+      //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
       PC.endTurn(response["initdelay"]);
     }
     else if (response["fin"] === 3) {
@@ -1196,7 +1212,8 @@ function DoAction(code, ctrl) {
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
       DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
-      DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+      DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+      //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
       PC.endTurn(response["initdelay"]);
     }
   }
@@ -1212,7 +1229,8 @@ function DoAction(code, ctrl) {
     maintext.setInputLine("&gt;");
     maintext.drawTextFrame();
     DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
-    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+    DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+    //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     gamestate.setMode("player");
     gamestate.setTurn(PC);
   }
@@ -1259,7 +1277,8 @@ function DoAction(code, ctrl) {
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
       DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
-      DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+      DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+      //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
       gamestate.setMode("player");
       gamestate.setTurn(PC);
     } else if (response["fin"] === 1) {
@@ -1280,7 +1299,8 @@ function DoAction(code, ctrl) {
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame();
         DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
-        DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+        DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+        //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
         gamestate.setMode("player");
         gamestate.setTurn(PC);
       }
@@ -1295,7 +1315,8 @@ function DoAction(code, ctrl) {
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame();
         DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>"); 
-        DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+        DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+        //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
         PC.endTurn(response["initdelay"]);
       }
       else if (response["usefin"] === 3) {
@@ -1325,7 +1346,8 @@ function DoAction(code, ctrl) {
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
       DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
-      DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+      DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+      //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
       gamestate.setMode("player");
       gamestate.setTurn(PC);
     } else if (response["fin"] === 1) {
@@ -1494,7 +1516,8 @@ function DoAction(code, ctrl) {
           gamestate.loadGame(idx); 
           DrawCharFrame();
           DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
-          DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+          DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+          //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
 
           maintext.addText("Game loaded.");
           maintext.setInputLine("&gt;");
@@ -1798,7 +1821,8 @@ function DoAction(code, ctrl) {
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
       DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
-      DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+      DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+      //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
       gamestate.setMode("player");
       gamestate.setTurn(PC);
     } else if (retval["fin"] === 0) {
@@ -1815,7 +1839,8 @@ function DoAction(code, ctrl) {
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
       DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
-      DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+      DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+      //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
       PC.endTurn();
     } else if (retval["fin"] === 2) {
       delete targetCursor.invx;
@@ -1827,7 +1852,8 @@ function DoAction(code, ctrl) {
       document.getElementById('uiinterface').innerHTML = "";
       document.getElementById('uiinterface').style.backgroundColor = "";
       DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
-      DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+      DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+      //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
       if (retval["outcome"].length === 1) {
         maintext.addText(retval["outcome"][0]);
         maintext.setInputLine("&gt;");
@@ -1901,28 +1927,32 @@ function DoAction(code, ctrl) {
       let uii = document.getElementById('uiinterface');
       uii.style.backgroundColor = "";
       uii.style.backgroundImage = ``;  
-      DrawMainFrame("draw",PC.getHomeMap(),6,6);
+      DUCamera.Draw(PC.getHomeMap(),6,6,PC);
+      //DrawMainFrame("draw",PC.getHomeMap(),6,6);
     } else if (targetCursor.dark === 17) {
       let endmap = maps.getMap("endgame");
       let lance = endmap.getTile(13,0).getTopNPC();
       endmap.moveThing(6,5,lance);
       maintext.addText(`<span class='mainspeaker'>Lance:</span> "Thank goodness! It worked, we've reached you!"`);
       targetCursor.dark++;
-      DrawMainFrame("one", PC.getHomeMap(),6,5);
+      DUCamera.DrawOne(PC.getHomeMap(),6,5);
+      //DrawMainFrame("one", PC.getHomeMap(),6,5);
     } else if (targetCursor.dark === 18) {
       maintext.addText(`<span class='mainspeaker'>King Daragen:</span> "You have gone forth into the darkness at the end of the world... but you are not alone."`);
       let endmap = maps.getMap("endgame");
       let king = endmap.getTile(14,1).getTopNPC();
       endmap.moveThing(5,5,king);
       targetCursor.dark++;
-      DrawMainFrame("one", PC.getHomeMap(),5,5);
+      DUCamera.DrawOne(PC.getHomeMap(),5,5);
+      //DrawMainFrame("one", PC.getHomeMap(),5,5);
     } else if (targetCursor.dark === 19) {
       maintext.addText(`<span class='mainspeaker'>Queen Shelaria:</span> "We love you so much, ${PC.getPCName()}. But there are so many others whose lives you have touched, and made better, and who care about you. You will always be connected to them."`);
       let endmap = maps.getMap("endgame");
       let queen = endmap.getTile(14,2).getTopNPC();
       endmap.moveThing(7,5,queen);
       targetCursor.dark++;
-      DrawMainFrame("one", PC.getHomeMap(),7,5);
+      DUCamera.DrawOne(PC.getHomeMap(),7,5);
+      //DrawMainFrame("one", PC.getHomeMap(),7,5);
       targetCursor.darkchar = 0;
     } else if (targetCursor.dark === 20) {
       if (targetCursor.darkchar === 0) {
@@ -1933,8 +1963,10 @@ function DoAction(code, ctrl) {
           let sam = endmap.getTile(14,3).getTopNPC();
           endmap.moveThing(3,8,kylee);
           endmap.moveThing(4,8,sam);
-          DrawMainFrame("one",PC.getHomeMap(),3,8);
-          DrawMainFrame("one",PC.getHomeMap(),4,8);
+          DUCamera.DrawOne(PC.getHomeMap(),3,8);
+          DUCamera.DrawOne(PC.getHomeMap(),4,8);
+          //DrawMainFrame("one",PC.getHomeMap(),3,8);
+          //DrawMainFrame("one",PC.getHomeMap(),4,8);
         } else { targetCursor.darkchar = 2; }
       }
       if (targetCursor.darkchar === 1) {
@@ -1946,7 +1978,8 @@ function DoAction(code, ctrl) {
           let endmap = maps.getMap("endgame");
           let anna = endmap.getTile(14,5).getTopNPC();
           endmap.moveThing(9,1,anna);
-          DrawMainFrame("one",PC.getHomeMap(),9,1);
+          DUCamera.DrawOne(PC.getHomeMap(),9,1);
+          //DrawMainFrame("one",PC.getHomeMap(),9,1);
         } else {targetCursor.darkchar = 5; }
       }
       if (targetCursor.darkchar === 3) {
@@ -1956,8 +1989,10 @@ function DoAction(code, ctrl) {
         let damien = endmap.getTile(14,6).getTopNPC();
         endmap.moveThing(8,1,brooke);
         endmap.moveThing(10,1,damien);
-        DrawMainFrame("one",PC.getHomeMap(),8,1);
-        DrawMainFrame("one",PC.getHomeMap(),10,1);
+        DUCamera.DrawOne(PC.getHomeMap(),8,1);
+        DUCamera.DrawOne(PC.getHomeMap(),10,1);
+        //DrawMainFrame("one",PC.getHomeMap(),8,1);
+        //DrawMainFrame("one",PC.getHomeMap(),10,1);
       }
       if (targetCursor.darkchar === 4) {
         maintext.addText(`<span class='mainspeaker'>Anna:</span> "I don't know what the future will bring. But we've learned a lot about finding the love that is out there. We're going to find that future... together."`);
@@ -1970,8 +2005,10 @@ function DoAction(code, ctrl) {
           let garen = endmap.getTile(14,8).getTopNPC();
           endmap.moveThing(3,2,warren);
           endmap.moveThing(3,3,garen);
-          DrawMainFrame("one",PC.getHomeMap(),3,2);
-          DrawMainFrame("one",PC.getHomeMap(),3,3);
+          DUCamera.DrawOne(PC.getHomeMap(),3,2);
+          DUCamera.DrawOne(PC.getHomeMap(),3,3);
+          //DrawMainFrame("one",PC.getHomeMap(),3,2);
+          //DrawMainFrame("one",PC.getHomeMap(),3,3);
         } else {targetCursor.darkchar = 6; }
       }
       if (targetCursor.darkchar === 6) {
@@ -1980,7 +2017,8 @@ function DoAction(code, ctrl) {
           let endmap = maps.getMap("endgame");
           let franklin = endmap.getTile(14,10).getTopNPC();
           endmap.moveThing(11,4,franklin);
-          DrawMainFrame("one",PC.getHomeMap(),11,4);
+          DUCamera.DrawOne(PC.getHomeMap(),11,4);
+          //DrawMainFrame("one",PC.getHomeMap(),11,4);
         } else { targetCursor.darkchar = 7; }
       } 
       if (targetCursor.darkchar === 7) {
@@ -1989,7 +2027,8 @@ function DoAction(code, ctrl) {
           let endmap = maps.getMap("endgame");
           let rhi = endmap.getTile(14,11).getTopNPC();
           endmap.moveThing(1,5,rhi);
-          DrawMainFrame("one",PC.getHomeMap(),1,5);
+          DUCamera.DrawOne(PC.getHomeMap(),1,5);
+          //DrawMainFrame("one",PC.getHomeMap(),1,5);
         } else { targetCursor.darkchar = 8; }
       }
       if (targetCursor.darkchar === 8) {
@@ -2002,9 +2041,12 @@ function DoAction(code, ctrl) {
           endmap.placeThing(9,9,ghost1);
           endmap.placeThing(9,8,ghost2);
           endmap.placeThing(8,9,ghost3);
-          DrawMainFrame("one",PC.getHomeMap(),9,9);
-          DrawMainFrame("one",PC.getHomeMap(),9,8);
-          DrawMainFrame("one",PC.getHomeMap(),8,9);
+          DUCamera.DrawOne(PC.getHomeMap(),9,9);
+          DUCamera.DrawOne(PC.getHomeMap(),9,8);
+          DUCamera.DrawOne(PC.getHomeMap(),8,9);
+          //DrawMainFrame("one",PC.getHomeMap(),9,9);
+          //DrawMainFrame("one",PC.getHomeMap(),9,8);
+          //DrawMainFrame("one",PC.getHomeMap(),8,9);
         } else { targetCursor.darkchar = 9; }
       }
       if (targetCursor.darkchar === 9) {
@@ -2013,7 +2055,8 @@ function DoAction(code, ctrl) {
           let endmap = maps.getMap("endgame");
           let blanche = endmap.getTile(14,12).getTopNPC();
           endmap.moveThing(6,10,blanche);
-          DrawMainFrame("one",PC.getHomeMap(),6,10);
+          DUCamera.DrawOne(PC.getHomeMap(),6,10);
+          //DrawMainFrame("one",PC.getHomeMap(),6,10);
         } else { targetCursor.darkchar = 10; }
       }
       if (targetCursor.darkchar === 10) {
@@ -2022,7 +2065,8 @@ function DoAction(code, ctrl) {
           let endmap = maps.getMap("endgame");
           let rhys = endmap.getTile(14,0).getTopNPC();
           endmap.moveThing(6,4,rhys);
-          DrawMainFrame("one",PC.getHomeMap(),6,4);
+          DUCamera.DrawOne(PC.getHomeMap(),6,4);
+          //DrawMainFrame("one",PC.getHomeMap(),6,4);
         } else { targetCursor.darkchar = 11; }
       }
       if (targetCursor.darkchar === 11) {
@@ -2080,7 +2124,8 @@ function DoAction(code, ctrl) {
       let uii = document.getElementById('uiinterface');
       uii.style.backgroundColor = "";
       uii.style.backgroundImage = ``; 
-      DrawMainFrame("draw",PC.getHomeMap(),6,6);
+      DUCamera.Draw(PC.getHomeMap(),6,6,PC);
+      //DrawMainFrame("draw",PC.getHomeMap(),6,6);
       targetCursor.dark++;
     } else if (targetCursor.dark === 31) {
       let clock = GetClockTimePassed();
@@ -2099,3 +2144,4 @@ function DoAction(code, ctrl) {
   }
   maintext.flushDelayedText();
 }
+

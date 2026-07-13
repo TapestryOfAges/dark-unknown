@@ -774,7 +774,8 @@ function PerformEscape() {
  			if (tile) {
  			  DebugWrite("map", "Exited from MoveBetweenMaps. New map is " + newmap.getName() + ".<br />");
         retval["canmove"] = 0;
-	    	DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
+	    	DUCamera.Draw(newmap, PC.getx(), PC.gety(),PC);
+        //DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
   		  DrawTopbarFrame("<p>" + newmap.getDesc() + "</p>");
  				maintext.addText("<br />Exiting combat.");
  			} else {
@@ -981,7 +982,8 @@ function PerformAttackMap(who) {
     
     PC.lastAttackedx = targetCursor.x;
     PC.lastAttackedy = targetCursor.y;
-    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+    DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+    //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     retval["fin"] = 0;
     retval["input"] = "&gt;";
     // as if retval = 1, but set to PC turn
@@ -1406,7 +1408,8 @@ function PerformEnter(cmd) {
       maintext.delayedAddText(longdesc);
       DU.gameflags.setFlag(newmap.getName() + "_visited", 1);
     }
-		DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+		DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+    //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
 		DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
 			
 	}
@@ -1486,7 +1489,8 @@ function PerformRuneChoice() {
         let cave = localFactory.createTile("Cave");
         cave.setEnterMap("grotto", 22, 53);
         themap.placeThing(27,30,cave);
-        DrawMainFrame("one",PC.getHomeMap(),27,30);
+        DUCamera.DrawOne(PC.getHomeMap(),27,30);
+        //DrawMainFrame("one",PC.getHomeMap(),27,30);
         retval["txt"] = "A cave entrance is revealed!";
         return retval;
       } else if ((PC.getx() === 100) && (PC.gety() === 57)) {
@@ -1497,7 +1501,9 @@ function PerformRuneChoice() {
         }
         
         PC.getHomeMap().moveThing(111,67,PC);
-        DrawMainFrame("draw", themap, PC.getx(), PC.gety());
+        DUCamera.Draw(themap, PC.getx(), PC.gety(),PC);
+        //DrawMainFrame("draw", themap, PC.getx(), PC.gety());
+
         // teleport to entrance to air
         setTimeout(function() {
           let moongate = localFactory.createTile("Moongate");
@@ -1521,7 +1527,8 @@ function PerformRuneChoice() {
       }
       
       themap.placeThing(27,21,cave);
-      DrawMainFrame("one",PC.getHomeMap(),27,21);
+      DUCamera.DrawOne(PC.getHomeMap(),27,21);
+      //DrawMainFrame("one",PC.getHomeMap(),27,21);
       retval["txt"] = "A tunnel into the caldera is exposed!";
       return retval;
         
@@ -1559,7 +1566,8 @@ function PerformRuneChoice() {
             themap.placeThing(13,25,gems);
           }
         }
-        DrawMainFrame("draw",themap,PC.getx(),PC.gety());
+        DUCamera.Draw(themap,PC.getx(),PC.gety(),PC);
+        //DrawMainFrame("draw",themap,PC.getx(),PC.gety());
         Earthquake();
         DUPlaySound("sfx_earthquake");
       }
@@ -1594,7 +1602,8 @@ function PerformRuneChoice() {
           let wpx = feas[i].getx();
           let wpy = feas[i].gety();
           themap.deleteThing(feas[i]);
-          DrawMainFrame("one",themap,wpx,wpy);
+          DUCamera.DrawOne(themap,wpx,wpy);
+          //DrawMainFrame("one",themap,wpx,wpy);
           wp = 1;
         }
       }
@@ -1657,7 +1666,8 @@ function PerformRuneChoice() {
 
           let coords = farwaterlist[opt].split(",");
           themap.placeThing(coords[0],coords[1],whirlpool);
-          DrawMainFrame("one",PC.getHomeMap(),coords[0],coords[1]);
+          DUCamera.DrawOne(PC.getHomeMap(),coords[0],coords[1]);
+          //DrawMainFrame("one",PC.getHomeMap(),coords[0],coords[1]);
 
           PC.whirlx = parseInt(coords[0]);
           PC.whirly = parseInt(coords[1]);
@@ -1824,7 +1834,8 @@ function PerformGet(who, getitem) {
       retval["txt"] = retval["txt"] + onget["txt"];
     }
     if (!onget.noTake && (itemmap === PC.getHomeMap())) {
-      DrawMainFrame("one",itemmap,targetCursor.x,targetCursor.y);
+      DUCamera.DrawOne(itemmap,targetCursor.x,targetCursor.y);
+      //DrawMainFrame("one",itemmap,targetCursor.x,targetCursor.y);
       DrawCharFrame();
     }
     return retval;    
@@ -1884,7 +1895,8 @@ function PerformGetAll(who) {
         retval["txt"] = retval["txt"] + onget["txt"];
       }
     }
-    DrawMainFrame("one",itemmap,targetCursor.x,targetCursor.y);
+    DUCamera.DrawOne(itemmap,targetCursor.x,targetCursor.y);
+    //DrawMainFrame("one",itemmap,targetCursor.x,targetCursor.y);
     DrawCharFrame();
 
     return retval;    
@@ -2099,7 +2111,8 @@ function PerformSearch(who) {
     if (searched.getSearchedGraphic()) {
       searched.setGraphicArray(searched.getSearchedGraphic());
     }
-    DrawMainFrame("one",who.getHomeMap(),targetCursor.x,targetCursor.y);
+    DUCamera.DrawOne(who.getHomeMap(),targetCursor.x,targetCursor.y);
+    //DrawMainFrame("one",who.getHomeMap(),targetCursor.x,targetCursor.y);
   } else if (searched.getSearchDesc()) {
     retval["txt"] = "You see: " + searched.getSearchPrefix() + " " + searched.getSearchDesc() + ".";
     retval["fin"] = 1;
@@ -2112,7 +2125,8 @@ function PerformSearch(who) {
     retval["fin"] = 1;
     if (searched.getSearchedGraphic()) {
       searched.setGraphicArray(searched.getSearchedGraphic());
-      DrawMainFrame("one",who.getHomeMap(),targetCursor.x,targetCursor.y);
+      DUCamera.DrawOne(who.getHomeMap(),targetCursor.x,targetCursor.y);
+      //DrawMainFrame("one",who.getHomeMap(),targetCursor.x,targetCursor.y);
     }
   }
   if (searched.searchid) {
@@ -2120,7 +2134,8 @@ function PerformSearch(who) {
   }
   if (searched.getSearchDelete()) {
     searched.getHomeMap().deleteThing(searched);
-    DrawMainFrame("one",who.getHomeMap(),targetCursor.x,targetCursor.y);
+    DUCamera.DrawOne(who.getHomeMap(),targetCursor.x,targetCursor.y);
+    //DrawMainFrame("one",who.getHomeMap(),targetCursor.x,targetCursor.y);
   }
   return retval;
 }
@@ -2650,7 +2665,8 @@ function MakeUseHappen(who,used,where) {
       if (where === "map") {
       // being used from the ground
         used.getHomeMap().deleteThing(used);
-        DrawMainFrame("one",used.getHomeMap(),used.getx(),used.gety());
+        DUCamera.DrawOne(used.getHomeMap(),used.getx(),used.gety());
+        //DrawMainFrame("one",used.getHomeMap(),used.getx(),used.gety());
 	  	} else {
 		    // being used from inventory
 		    who.removeFromInventory(used);
@@ -2687,15 +2703,17 @@ function MakeUseHappen(who,used,where) {
 		  
         for (let index in localacre.localLight) {
 		      // each object that is casting light on the door might be casting light through the door.
-  		    var lightsource = usemap.lightsList[index];
+  		    let lightsource = usemap.lightsList[index];
   	      usemap.removeMapLight(index, usemap.lightsList[index].getLight(), usemap.lightsList[index].getx(), usemap.lightsList[index].gety());
     		  usemap.setMapLight(lightsource, lightsource.getLight(), lightsource.getx(), lightsource.gety());
 	      }
         if (used.getHomeMap() === PC.getHomeMap()) {
-          DrawMainFrame("draw",used.getHomeMap(),PC.getx(),PC.gety());
+          DUCamera.Draw(used.getHomeMap(),PC.getx(),PC.gety(),PC);
+          //DrawMainFrame("draw",used.getHomeMap(),PC.getx(),PC.gety());
         }
   	  } else {		
-	  	  DrawMainFrame("one",used.getHomeMap(),used.getx(),used.gety());
+	  	  DUCamera.DrawOne(used.getHomeMap(),used.getx(),used.gety());
+        //DrawMainFrame("one",used.getHomeMap(),used.getx(),used.gety());
   	  }
     }
   }
@@ -2806,7 +2824,8 @@ function PerformYell() {
 				newmap = maps.addMap("toshin3");
 			}
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,16,13);		  
-      DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
+      DUCamera.Draw(newmap, PC.getx(), PC.gety(),PC);
+      //DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
     } else if (inputText.txt === "TESTBARD") {
       let newmap = new GameMap();
       if (maps.getMap("swainhil")) {
@@ -2815,7 +2834,8 @@ function PerformYell() {
 				newmap = maps.addMap("swainhil");
 			}
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,48,19);		  
-      DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
+      DUCamera.Draw(newmap, PC.getx(), PC.gety(),PC);
+      //DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
     } else if (inputText.txt === "GOASH") {
       let newmap = new GameMap();
       if (maps.getMap("asharden1")) {
@@ -2824,11 +2844,13 @@ function PerformYell() {
 				newmap = maps.addMap("asharden1");
 			}
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,25,24);		  
-      DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
+      DUCamera.Draw(newmap, PC.getx(), PC.gety(),PC);
+      //DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
     } else if (inputText.txt === "GOGROTTO") {
 		    let homemap = PC.getHomeMap();
 		    homemap.moveThing(30,45,PC);
-		    DrawMainFrame("draw", homemap, PC.getx(), PC.gety());
+		    DUCamera.Draw(homemap, PC.getx(), PC.gety(),PC);
+        //DrawMainFrame("draw", homemap, PC.getx(), PC.gety());
     } else if (inputText.txt === "TESTGROTTO") {
       let newmap = new GameMap();
       if (maps.getMap("grotto")) {
@@ -2837,7 +2859,8 @@ function PerformYell() {
 				newmap = maps.addMap("grotto");
 			}
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,22,53);		  
-      DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
+      DUCamera.Draw(newmap, PC.getx(), PC.gety(),PC);
+      //DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
     } else if (inputText.txt === "TESTETHER") {
       let newmap = new GameMap();
       if (maps.getMap("ether")) {
@@ -2846,7 +2869,8 @@ function PerformYell() {
 				newmap = maps.addMap("ether");
 			}
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,46,64);		  
-      DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
+      DUCamera.Draw(newmap, PC.getx(), PC.gety(),PC);
+      //DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
     } else if (inputText.txt === "TESTPALACE") {
       let newmap = new GameMap();
       if (maps.getMap("skypalace")) {
@@ -2855,7 +2879,8 @@ function PerformYell() {
 				newmap = maps.addMap("skypalace");
 			}
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,47,49);		  
-      DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
+      DUCamera.Draw(newmap, PC.getx(), PC.gety(),PC);
+      //DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
     } else if (inputText.txt === "TESTROYAL") {
       let newmap = new GameMap();
       if (maps.getMap("pitdespair2")) {
@@ -2864,7 +2889,8 @@ function PerformYell() {
 				newmap = maps.addMap("pitdespair2");
 			}
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,46,28);		  
-      DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
+      DUCamera.Draw(newmap, PC.getx(), PC.gety(),PC);
+      //DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
     } else if (inputText.txt === "TESTANIM") {
       let newmap = new GameMap();
       if (maps.getMap("greenacres")) {
@@ -2879,7 +2905,8 @@ function PerformYell() {
       newmap.placeThing(18,18,tmpdude2);
       let tmpdude3 = localFactory.createTile("PaladinVillagerNPC");
 //      newmap.placeThing(16,20,tmpdude3);
-      DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
+      DUCamera.Draw(newmap, PC.getx(), PC.gety(),PC);
+      //DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
     } else if (inputText.txt === "TESTANIMA") {
       let tmpmap = maps.getMap("greenacres");
       let castermob = tmpmap.getTile(18,18).getTopNPC();
@@ -2893,7 +2920,8 @@ function PerformYell() {
 		    maintext.delayedAddText("In a blink, you are elsewhere.");
 		    let homemap = PC.getHomeMap();
 		    homemap.moveThing(25,23,PC);
-		    DrawMainFrame("draw", homemap, PC.getx(), PC.gety());
+		    DUCamera.Draw(homemap, PC.getx(), PC.gety(),PC);
+        //DrawMainFrame("draw", homemap, PC.getx(), PC.gety());
 		  }
 		} else if (inputText.txt === "SIRAK") {
 		  if (PC.getHomeMap().getName() === "asharden1") {
@@ -2901,7 +2929,8 @@ function PerformYell() {
 		    maintext.delayedAddText("In a blink, you are elsewhere.");
 		    let homemap = PC.getHomeMap();
 		    homemap.moveThing(32,32,PC);
-		    DrawMainFrame("draw", homemap, PC.getx(), PC.gety());
+		    DUCamera.Draw(homemap, PC.getx(), PC.gety(),PC);
+        //DrawMainFrame("draw", homemap, PC.getx(), PC.gety());
 		  }
     } else if (inputText.txt === "XYZZY") {
 	    maintext.delayedAddText("Nothing happens here.");

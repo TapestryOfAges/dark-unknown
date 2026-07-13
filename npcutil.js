@@ -35,7 +35,8 @@ NPCSpecialFuncs["mirror"] = function(who, how) {
     who.wornlayers.mainhand = PC.wornlayers.mainhand;
     who.wornlayers.offhand = PC.wornlayers.offhand;
     who.makeLayers();
-    DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
+    DUCamera.DrawOne(who.getHomeMap(),who.getx(),who.gety());
+    //DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
   }
 }
 
@@ -87,7 +88,8 @@ function RevealMimic(mimic) {
   delete mimic.specials.mimic;
   if (mimic.getHomeMap() === PC.getHomeMap()) {
     mimic.startAnimation();
-    DrawMainFrame("one",mimic.getHomeMap(),mimic.getx(),mimic.gety());
+    DUCamera.DrawOne(mimic.getHomeMap(),mimic.getx(),mimic.gety());
+    //DrawMainFrame("one",mimic.getHomeMap(),mimic.getx(),mimic.gety());
   }
 
 }
@@ -253,7 +255,8 @@ function Attack(atk, def) {
     delete atk.invisible;
     delete atk.specials.underground;
     if (atk.getHomeMap() === PC.getHomeMap()) {
-      DrawMainFrame("one",atk.getHomeMap(),atk.getx(),atk.gety());
+      DUCamera.DrawOne(atk.getHomeMap(),atk.getx(),atk.gety());
+      //DrawMainFrame("one",atk.getHomeMap(),atk.getx(),atk.gety());
     }
   }
 
@@ -273,7 +276,8 @@ function Attack(atk, def) {
       }
       atk.wornlayers[weapon.wornlayer] = wln;
       atk.makeLayers();
-      DrawMainFrame("one",atk.getHomeMap(),atk.getx(),atk.gety());
+      DUCamera.DrawOne(atk.getHomeMap(),atk.getx(),atk.gety());
+      //DrawMainFrame("one",atk.getHomeMap(),atk.getx(),atk.gety());
     }
   
   } else {
@@ -647,7 +651,8 @@ function StepOrDoor(who, where, nopush, nodanger) {
             DebugWrite("ai", "opening a door in StepOrDoor.<br />");
             MakeUseHappen(who,fea,"map");
             if (GetDistance(fea.getx(),fea.gety(),PC.getx(),PC.gety(),"square") <= 5) {
-              DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+              DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+              //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
             } 
             let moved = {canmove:0, opendoor:2, fin:1, diffx: where[0]-who.getx(), diffy: where[1]-who.gety() };
             return moved;  // opened a door, didn't take a step
@@ -725,7 +730,8 @@ function StepOrSidestep(who, path, finaldest, nopush, nodanger) {
                 who.getHomeMap().moveThing(path[0],path[1],who);
                 tile.executeWalkons(who);
                 moved["canmove"] = 1;
-                DrawMainFrame(who.getHomeMap(),"draw",PC.getx(),PC.gety());
+                DUCamera.Draw(who.getHomeMap(),PC.getx(),PC.gety(),PC);
+                //DrawMainFrame(who.getHomeMap(),"draw",PC.getx(),PC.gety());
               } else {
                 // bed is, somehow, full
                 moved["canmove"] = 0;
@@ -761,9 +767,10 @@ function StepOrSidestep(who, path, finaldest, nopush, nodanger) {
             }
 
             if (who.getLight()) {
-              DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+              DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+              //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
             } else {
-              DrawMainFrame("one",PC.getHomeMap(),fromx,fromy);
+              DUCamera.DrawOne(PC.getHomeMap(),fromx,fromy);
             }
             return moved;
           }

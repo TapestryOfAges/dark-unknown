@@ -53,7 +53,8 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
   if ((who !== PC) && (!tomap.getScale()) && (who.getCurrentAI() !== "scheduled") && (who.getCurrentAI() !== "segment")) {
     // a non-PC is fleeing to a world map. Delete instead.
     frommap.deleteThing(who);
-    DrawMainFrame("one",frommap,oldx,oldy);
+    DUCamera.DrawOne(frommap,oldx,oldy);
+    //DrawMainFrame("one",frommap,oldx,oldy);
     DUTime.removeEntityFrom(who);
     CheckPostDeathMusic(frommap);
     let spawner=who.getSpawnedBy();
@@ -73,9 +74,11 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
     
   if (who !== PC) {
     if (PC.getHomeMap() === frommap) {
-      DrawMainFrame("one",frommap,oldx,oldy);
+      DUCamera.DrawOne(frommap,oldx,oldy);
+      //DrawMainFrame("one",frommap,oldx,oldy);
     } else if ((who !== PC) && (PC.getHomeMap() === tomap)) {
-      DrawMainFrame("one",tomap,destx,desty);
+      DUCamera.DrawOne(tomap,destx,desty);
+      //DrawMainFrame("one",tomap,destx,desty);
     }
   }
   
@@ -140,12 +143,14 @@ function MoveFeatureBetweenMaps(what,tomap,destx,desty) {
 	what.setHomeMap(tomap);
     
   if (PC.getHomeMap() === oldmap) {
-    DrawMainFrame("one",oldmap,oldx,oldy);
+    DUCamera.DrawOne(oldmap,oldx,oldy);
+    //DrawMainFrame("one",oldmap,oldx,oldy);
     if (what.ambientNoise) {
       ProcessAmbientNoise(oldmap.getTile(oldx,oldy));
     }
   } else if (PC.getHomeMap() === tomap) {
-    DrawMainFrame("one",tomap,destx,desty);
+    DUCamera.DrawOne(tomap,destx,desty);
+    //DrawMainFrame("one",tomap,destx,desty);
     if (what.ambientNoise) {
       ProcessAmbientNoise(tomap.getTile(destx,desty));
     }
@@ -1232,7 +1237,10 @@ function GetStickyTargetCursorCoords() {
 }
 
 function CreateTargetCursor(params, noredraw) {
-  if (!noredraw) { DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety()); }
+  if (!noredraw) { 
+    DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC); 
+    //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety()); 
+  }
   let coords = {};
   if (params.sticky) {
     coords = GetStickyTargetCursorCoords();
@@ -1302,7 +1310,17 @@ function BumpIntoDoor(door,who) {
     } else {
       retval["msg"] = "Open door!";
     }
-    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+    let usemap = who.getHomeMap();
+    let localacre = usemap.getTile(door.getx(),door.gety());
+    for (let index in localacre.localLight) {
+      // each object that is casting light on the door might be casting light through the door.
+      let lightsource = usemap.lightsList[index];
+      usemap.removeMapLight(index, usemap.lightsList[index].getLight(), usemap.lightsList[index].getx(), usemap.lightsList[index].gety());
+      usemap.setMapLight(lightsource, lightsource.getLight(), lightsource.getx(), lightsource.gety());
+    }
+
+    DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+    //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
   }
   return retval;
 }
@@ -1593,7 +1611,8 @@ function EndWaiting(who, inn) {
   if (who === PC) {   // I mean, it only can be, but why not check?
     setTimeout(function() { gamestate.setMode("player"); }, 1500); 
     DrawCharFrame();
-    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+    DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+    //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
   }
 
   return 1;

@@ -681,7 +681,8 @@ function AnimateMoongate(obj, repeat, dir, waitdur, destroywhendone) {
   if (dir === "down") { obj.spriteyoffset = -32; }
   else { obj.spriteyoffset = 0; }
   if (PC.getHomeMap() === obj.getHomeMap()) {
-    DrawMainFrame("one", obj.getHomeMap(), obj.getx(), obj.gety());
+    DUCamera.DrawOne(obj.getHomeMap(), obj.getx(), obj.gety());
+    //DrawMainFrame("one", obj.getHomeMap(), obj.getx(), obj.gety());
     timeouts[obj.getSerial()] = setTimeout(function() { ContinueMoongateAnimation(obj, repeat, dir, waitdur, destroywhendone) }, waitdur);
   }
 }
@@ -699,7 +700,8 @@ function ContinueMoongateAnimation(obj,repeat, dir, waitdur, destroywhendone) {
     if (obj.spriteyoffset === endy) {
       if (repeat) {
         obj.spriteyoffset = starty;
-        DrawMainFrame("one", obj.getHomeMap(), obj.getx(), obj.gety());
+        DUCamera.DrawOne(obj.getHomeMap(), obj.getx(), obj.gety());
+        //DrawMainFrame("one", obj.getHomeMap(), obj.getx(), obj.gety());
         timeouts[obj.getSerial()] = setTimeout(function() { ContinueMoongateAnimation(obj, repeat, dir, waitdur, destroywhendone) }, waitdur);
       }  else if (destroywhendone) {
         setTimeout(function() { DestroyMoongateAnimation(obj) }, waitdur);
@@ -708,7 +710,8 @@ function ContinueMoongateAnimation(obj,repeat, dir, waitdur, destroywhendone) {
       }
     } else {
       obj.spriteyoffset = parseInt(obj.spriteyoffset) + diff;
-      DrawMainFrame("one", obj.getHomeMap(), obj.getx(), obj.gety());
+      DUCamera.DrawOne(obj.getHomeMap(), obj.getx(), obj.gety());
+      //DrawMainFrame("one", obj.getHomeMap(), obj.getx(), obj.gety());
       timeouts[obj.getSerial()] = setTimeout(function() { ContinueMoongateAnimation(obj, repeat, dir, waitdur, destroywhendone) }, waitdur);
     }
   } else if (destroywhendone) {
@@ -723,7 +726,8 @@ function DestroyMoongateAnimation(thing) {
   let thingy = thing.gety();
   thingmap.deleteThing(thing);
   if (thingmap === PC.getHomeMap()) {
-    DrawMainFrame("one", thingmap, thingx, thingy);
+    DUCamera.DrawOne(thingmap, thingx, thingy);
+    //DrawMainFrame("one", thingmap, thingx, thingy);
   }
 }
 
@@ -851,7 +855,8 @@ function AnimateAndFreeze(param) {
       frspell.spriteyoffset = ammographic.yoffset;
       frspell.setDesc(param.frdesc);
       param.def.getHomeMap().placeThing(param.newx,param.newy,frspell);  
-      DrawMainFrame("one",param.def.getHomeMap(),param.newx,param.newy);
+      DUCamera.DrawOne(param.def.getHomeMap(),param.newx,param.newy);
+      //DrawMainFrame("one",param.def.getHomeMap(),param.newx,param.newy);
       if (animdiv && (animdiv.parentNode)) {
         animdiv.parentNode.removeChild(animdiv);
       }

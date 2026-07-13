@@ -576,12 +576,15 @@ function Pushable() {
         }
         if ((typeof this.getLight === "function") && (this.getLight() !== 0)) {
           if (PC.getHomeMap() === objmap) {
-            DrawMainFrame("draw",objmap,PC.getx(),PC.gety());
+            DUCamera.Draw(objmap,PC.getx(),PC.gety(),PC);
+            //DrawMainFrame("draw",objmap,PC.getx(),PC.gety());
           }
         } else {
           if ((PC.getHomeMap() === objmap) && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety(),"square") <= 6)) {
-            DrawMainFrame("one",objmap,this.getx(),this.gety());
-            DrawMainFrame("one",objmap,this.getx()-diffx,this.gety()-diffy);
+            DUCamera.DrawOne(objmap,this.getx(),this.gety());
+            DUCamera.DrawOne(objmap,this.getx()-diffx,this.gety()-diffy);
+            //DrawMainFrame("one",objmap,this.getx(),this.gety());
+            //DrawMainFrame("one",objmap,this.getx()-diffx,this.gety()-diffy);
           }
         }
       } else {
@@ -621,12 +624,16 @@ function Pushable() {
 
     if ((typeof this.getLight === "function") && (this.getLight() !== 0)) {
       if (PC.getHomeMap() === objmap) {
-        DrawMainFrame("draw",objmap,PC.getx(),PC.gety());
+        DUCamera.Draw(objmap,PC.getx(),PC.gety(),PC);
+        //DrawMainFrame("draw",objmap,PC.getx(),PC.gety());
       }
     } else {
       if ((PC.getHomeMap() === objmap) && (GetDistance(PC,this,"square") <= 6)) {
-        DrawMainFrame("one",objmap,this.getx(),this.gety());
-        DrawMainFrame("one",objmap,this.getx()-diffx,this.gety()-diffy);
+        DUCamera.DrawOne(objmap,this.getx(),this.gety());
+        DUCamera.DrawOne(objmap,this.getx()-diffx,this.gety()-diffy);
+        //        DrawMainFrame("one",objmap,this.getx(),this.gety());
+        //DrawMainFrame("one",objmap,this.getx()-diffx,this.gety()-diffy);
+
       }
     }
      
@@ -657,7 +664,8 @@ function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockedpref
 		  homemap.setWalkableAt(this.getx(),this.gety(),false,MOVE_WALK_DOOR);
     }
     if (!DU.gameflags.getFlag("editor")) {
-      DrawMainFrame("one", this.getHomeMap(), this.getx(), this.gety());
+      DUCamera.DrawOne(this.getHomeMap(), this.getx(), this.gety());
+      //DrawMainFrame("one", this.getHomeMap(), this.getx(), this.gety());
     }
 	}
 	this.unlockMe = function() { 
@@ -667,7 +675,8 @@ function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockedpref
 	    this.getHomeMap().setWalkableAt(this.getx(),this.gety(),true,MOVE_WALK_DOOR);
     }
     if (!DU.gameflags.getFlag("editor")) {
-      DrawMainFrame("one", this.getHomeMap(), this.getx(), this.gety());
+      DUCamera.DrawOne(this.getHomeMap(), this.getx(), this.gety());
+      //DrawMainFrame("one", this.getHomeMap(), this.getx(), this.gety());
     }
 	}
 	
@@ -734,7 +743,8 @@ function LightEmitting(lightlevel) {
 	  }
    
     if (this.getHomeMap() === PC.getHomeMap()) {
-      DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+      DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+      //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     }
 	  this.light = light;
 	}
@@ -776,7 +786,8 @@ function Breakable(brokengraphicarray, startsbroken, breaksound) {
       }
     }
     if (who) {
-      DrawMainFrame("one", this.getHomeMap(), this.getx(), this.gety());
+      DUCamera.DrawOne(this.getHomeMap(), this.getx(), this.gety());
+      //DrawMainFrame("one", this.getHomeMap(), this.getx(), this.gety());
     }
     if (this.karmamod && (who === PC)) { 
       PC.diffKarma(this.karmamod);
@@ -816,7 +827,8 @@ function Breakable(brokengraphicarray, startsbroken, breaksound) {
     if (typeof this.onMend === "function") {
       this.onMend();
     }
-    DrawMainFrame("one", this.getHomeMap(), this.getx(), this.gety());   // will try to draw 0,0 if in inventory, which is ok
+    DUCamera.DrawOne(this.getHomeMap(), this.getx(), this.gety());   // will try to draw 0,0 if in inventory, which is ok
+    //DrawMainFrame("one", this.getHomeMap(), this.getx(), this.gety());  
   }
 }
 

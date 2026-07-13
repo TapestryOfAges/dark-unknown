@@ -390,7 +390,8 @@ function InnRoom(xc,yc,doors,innmap) {
     for (let i=0;i<feapile.length;i++) {
       if (feapile[i].getName() === "BedHead") { feapile[i].walkon(PC); break; }
     }
-    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(),PC.gety());
+    DUCamera.Draw(PC.getHomeMap(), PC.getx(),PC.gety(),PC);
+    //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(),PC.gety());
     PC.endTurn();
   }, 1500);
 
@@ -415,7 +416,8 @@ OnConvTriggers["ash_password"] = function(speaker,keyword) {
   DUPlaySound("sfx_open_door"); 
   door.open = 1;
 			
-  DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+  DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+  //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
   DU.gameflags.deleteFlag("ash_password");
   
   return;
@@ -1143,7 +1145,8 @@ OnConvTriggers["sirius_book1"] = function(speaker,keyword) {
   let lightsource = localFactory.createTile("TorchWest");
   thismap.placeThing(31,41,lightsource);
   
-  DrawMainFrame("draw", thismap, PC.getx(), PC.gety());
+  DUCamera.Draw(thismap, PC.getx(), PC.gety(),PC);
+  //DrawMainFrame("draw", thismap, PC.getx(), PC.gety());
 }
 
 OnConvTriggers["talked_shelaria"] = function(speaker,keyword) {
@@ -1216,7 +1219,8 @@ OnConvTriggers["chera_disappear"] = function(speaker,keyword) {
   let cheray = chera.gety();
   speaker.getHomeMap().deleteThing(chera);
   DU.gameflags.deleteFlag("chera_disappear");
-  DrawMainFrame("one",speaker.getHomeMap(),cherax,cheray);
+  DUCamera.DrawOne(speaker.getHomeMap(),cherax,cheray);
+  //DrawMainFrame("one",speaker.getHomeMap(),cherax,cheray);
 }
 
 OnConvTriggers["don_disappear"] = function(speaker,keyword) {
@@ -1225,7 +1229,8 @@ OnConvTriggers["don_disappear"] = function(speaker,keyword) {
   let dony = don.gety();
   speaker.getHomeMap().deleteThing(don);
   DU.gameflags.deleteFlag("don_disappear");
-  DrawMainFrame("one",speaker.getHomeMap(),donx,dony);
+  DUCamera.DrawOne(speaker.getHomeMap(),donx,dony);
+  //DrawMainFrame("one",speaker.getHomeMap(),donx,dony);
 }
 
 OnConvTriggers["solved_pheran"] = function(speaker,keyword) {
@@ -1236,7 +1241,8 @@ OnConvTriggers["solved_pheran"] = function(speaker,keyword) {
   themap.deleteThing(olin);
   let hylga = FindNPCByName("Hylga", themap);
   themap.deleteThing(hylga);
-  DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+  DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+  //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
 }
 
 OnConvTriggers["oracle_tome"] = function(speaker,keyword) {
@@ -1247,7 +1253,8 @@ OnConvTriggers["given_regalia"] = function(speaker,keyword) {
   CheckOracleQuest();
   speaker.wornlayers.body = "QueenNoCrown";
   speaker.makeLayers();
-  DrawMainFrame("one",speaker.getHomeMap(),speaker.getx(),speaker.gety());
+  DUCamera.DrawOne(speaker.getHomeMap(),speaker.getx(),speaker.gety());
+  //DrawMainFrame("one",speaker.getHomeMap(),speaker.getx(),speaker.gety());
 }
 
 OnConvTriggers["returned_crown"] = function(speaker,keyword) {
@@ -1256,7 +1263,8 @@ OnConvTriggers["returned_crown"] = function(speaker,keyword) {
   else { DU.gameflags.setFlag("gave_one",1); }
   speaker.wornlayers.body = "Queen";
   speaker.makeLayers();
-  DrawMainFrame("one",speaker.getHomeMap(),speaker.getx(),speaker.gety());
+  DUCamera.DrawOne(speaker.getHomeMap(),speaker.getx(),speaker.gety());
+  //DrawMainFrame("one",speaker.getHomeMap(),speaker.getx(),speaker.gety());
 }
 
 OnConvTriggers["returned_amulet"] = function(speaker,keyword) {
@@ -1343,7 +1351,8 @@ OnConvTriggers["BDC_open_gate"] = function(speaker,keyword) {
   gate.unlockMe();
   gate.use(speaker);
   DU.gameflags.deleteFlag("BDC_open_gate");
-  DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+  DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+  //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
 }
 
 OnConvTriggers["infusion_learned"] = function(speaker,keyword) {
@@ -1376,8 +1385,11 @@ OnConvTriggers["enter_consolation"] = function(speaker,keyword) {
   themap.deleteThing(field);
   field = themap.getTile(17,25).getTopFeature();
   themap.deleteThing(field);
-  DrawMainFrame("one",themap,16,25);
-  DrawMainFrame("one",themap,17,25);
+  DUCamera.DrawOne(themap,16,25);
+  DUCamera.DrawOne(themap,17,25);
+  //  DrawMainFrame("one",themap,16,25);
+  //DrawMainFrame("one",themap,17,25);
+
 }
 
 OnConvTriggers["prince_awake"] = function(speaker,keyword) {
@@ -1408,7 +1420,8 @@ OnConvTriggers["cult_attack"] = function(speaker,keyword) {
   let wall2 = themap.getTile(14,16).getTopFeature();
   themap.deleteThing(wall1);
   themap.deleteThing(wall2);
-  DrawMainFrame("draw",themap,PC.getx(),PC.gety());
+  DUCamera.Draw(themap,PC.getx(),PC.gety(),PC);
+  //DrawMainFrame("draw",themap,PC.getx(),PC.gety());
   DUPlaySound("sfx_earthquake");
   maintext.addText("With a strangely muted roar, the eastern wall collapses!");
 }
@@ -1429,7 +1442,8 @@ OnConvTriggers["justice_teleport"] = function(speaker,keyword) {
     newmap = maps.addMap("justice_battle");
   }
   MoveBetweenMaps(PC,PC.getHomeMap(),newmap,7,9);		  
-  DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
+  DUCamera.Draw(newmap, PC.getx(), PC.gety(),PC);
+  //DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
 
 }
 
@@ -1465,7 +1479,8 @@ OnConvTriggers["rhys_return"] = function(speaker,keyword) {
       bdcmap.getTile(PC.getx(),PC.gety()).executeWalkoffs(PC);
       bdcmap.moveThing(30,35,PC);
       bdcmap.getTile(30,35).executeWalkons(PC);
-      DrawMainFrame("draw",bdcmap,PC.getx(),PC.gety());
+      DUCamera.Draw(bdcmap,PC.getx(),PC.gety(),PC);
+      //DrawMainFrame("draw",bdcmap,PC.getx(),PC.gety());
       FadeIn();
 
       setTimeout(function() {
@@ -1496,7 +1511,8 @@ OnConvTriggers["rhys_summoned"] = function(speaker,keyword) {
       bdcmap.moveThing(28,10,rhys);
       let door=bdcmap.getTile(29,13).getTopFeature();
       door.lockMe(2);
-      DrawMainFrame("draw",bdcmap,PC.getx(),PC.gety());
+      DUCamera.Draw(bdcmap,PC.getx(),PC.gety(),PC);
+      //DrawMainFrame("draw",bdcmap,PC.getx(),PC.gety());
       FadeIn();
 
       setTimeout(function() {
@@ -1586,7 +1602,8 @@ OnConvTriggers["pc_abyss"] = function(speaker,keyword) {
     delete PC.preabyssy;
     delete PC.preabysshp;
     
-    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(),PC.gety());
+    DUCamera.Draw(PC.getHomeMap(), PC.getx(),PC.gety(),PC);
+    //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(),PC.gety());
 		DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
     FadeIn();
     PC.endTurn();
@@ -1599,7 +1616,8 @@ OnConvTriggers["given_crystal"] = function(speaker,keyword) {
   let fromx = speaker.getx();
   let fromy = speaker.gety();
   speaker.getHomeMap().moveThing(65,0,speaker);
-  DrawMainFrame("one",speaker.getHomeMap(),fromx,fromy);
+  DUCamera.DrawOne(speaker.getHomeMap(),fromx,fromy);
+  //DrawMainFrame("one",speaker.getHomeMap(),fromx,fromy);
 }
 
 function ConvTestFlags() {};
@@ -1612,7 +1630,8 @@ OnConvTriggers["self_armor"] = function(speaker,keyword) {
   }
   let armor = localFactory.createTile("DecorativeArmor");
   speaker.getHomeMap().placeThing(9,y,armor);
-  DrawMainFrame("one",speaker.getHomeMap(),9,y);
+  DUCamera.DrawOne(speaker.getHomeMap(),9,y);
+  //DrawMainFrame("one",speaker.getHomeMap(),9,y);
 }
 
 OnConvTriggers["automaton"] = function(speaker,keyword) {
@@ -1624,7 +1643,8 @@ OnConvTriggers["automaton"] = function(speaker,keyword) {
   }
   let disauto = localFactory.createTile("DisabledAutomaton");
   mymap.placeThing(10,10,disauto);
-  DrawMainFrame("one",mymap,10,10);
+  DUCamera.DrawOne(mymap,10,10);
+  //DrawMainFrame("one",mymap,10,10);
 }
 
 ConvTestFlags["on_quest"] = function(speaker,keyword,questnum) {

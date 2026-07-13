@@ -761,7 +761,8 @@ EtherealVisionTile.prototype.applyEffect = function(silent) {
       maintext.addText("Your mind expands.");
     }
     if (who === PC) {
-      DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+      DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+      //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
     }
   }
   return 1;
@@ -775,7 +776,8 @@ EtherealVisionTile.prototype.endEffect = function(silent) {
   }
   DrawCharFrame();
   if (who === PC) {
-    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+    DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+    //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
   }
   return -1;
 }
@@ -1789,7 +1791,8 @@ JusticeCollapseTile.prototype.doEffect = function() {
     jc2.setExpiresTime(-1);
     PC.addSpellEffect(jc2,1);
     setTimeout(function() { 
-      DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
+      DUCamera.Draw(newmap, PC.getx(), PC.gety(),PC);
+      //DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
       FadeIn(); 
       setTimeout(function() {
         gamestate.setMode("player");
@@ -1901,7 +1904,8 @@ ScouringBeldskaeTile.prototype.endEffect = function(silent) {
         mainmap.placeThing(bx,by,newbeld);
 
         if (PC.getHomeMap() === mainmap) {
-          DrawMainFrame("one",mainmap,fea[i].getx(),fea[i].gety());
+          DUCamera.DrawOne(mainmap,fea[i].getx(),fea[i].gety());
+          //DrawMainFrame("one",mainmap,fea[i].getx(),fea[i].gety());
         }
 
         DU.gameflags.setFlag("beldskae_razed",1);

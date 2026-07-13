@@ -2839,7 +2839,8 @@ ToshinMoatLeverOffTile.prototype.use = function(who) {
     lever1.spritexoffset = -8*32;
     lever2.spritexoffset = -8*32;
   }
-  DrawMainFrame("draw",themap,PC.getx(), PC.gety());
+  DUCamera.Draw(themap,PC.getx(), PC.gety(),PC);
+  //DrawMainFrame("draw",themap,PC.getx(), PC.gety());
   
   return retval;
 }
@@ -3485,7 +3486,8 @@ MarkOfKingsTile.prototype.use = function(user) {
         }
         
         user.getHomeMap().moveThing(111,67,user);
-        DrawMainFrame("draw", themap, user.getx(), user.gety());
+        DUCamera.Draw(themap, user.getx(), user.gety(),PC);
+        //DrawMainFrame("draw", themap, user.getx(), user.gety());
         // teleport to entrance to air
         setTimeout(function() {
           let moongate = localFactory.createTile("Moongate");

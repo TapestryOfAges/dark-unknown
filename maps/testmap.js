@@ -74,7 +74,8 @@ function RunTest() {
   
   var torch = localFactory.createTile("TorchEast");
 //  testmap.placeThing(11,22,torch);
-  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+  DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+  //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
   
 }
 

@@ -248,7 +248,8 @@ OnDamagedFuncs["split"] = function(atk,who,dmg,weapon) {
         slime.setHP(hp);
         slime.setNPCBand(who.getNPCBand());
         whomap.placeThing(tileopts[tr].x,tileopts[tr].y,slime);
-        DrawMainFrame("one", who.getHomeMap(), tileopts[tr].x, tileopts[tr].y);
+        DUCamera.DrawOne(who.getHomeMap(), tileopts[tr].x, tileopts[tr].y);
+        //DrawMainFrame("one", who.getHomeMap(), tileopts[tr].x, tileopts[tr].y);
       }
     }
   } 
@@ -446,7 +447,8 @@ OnDeathFuncs["scouring"] = function(who) {
         world.placeThing(bx,by,newbeld);
 
         if (PC.getHomeMap() === world) {  // this, again, shouldn't be able to be true
-          DrawMainFrame("one",world,fea.getx(),fea.gety());
+          DUCamera.DrawOne(world,fea.getx(),fea.gety());
+          //DrawMainFrame("one",world,fea.getx(),fea.gety());
         }
 
         DU.gameflags.setFlag("beldskae_saved",1);
@@ -561,7 +563,8 @@ OnDeathFuncs["doppelganger"] = function(who) {
     thismap.getTile(24,21).getFeatureByName("UtterDark").dissolve();
     thismap.getTile(25,21).getFeatureByName("UtterDark").dissolve();
     thismap.getTile(24,22).getFeatureByName("UtterDark").dissolve();
-    DrawMainFrame("draw",thismap,PC.getx(),PC.gety());
+    DUCamera.Draw(thismap,PC.getx(),PC.gety(),PC);
+    //DrawMainFrame("draw",thismap,PC.getx(),PC.gety());
     let moongate = localFactory.createTile("DaemonMoongate");
     thismap.placeThing(gatex,gatey,moongate);
     moongate.second = 1;
@@ -613,7 +616,8 @@ function PerformActEnd() {
     let taran = FindNPCByName("Taran",returnmap);
     returnmap.moveThing(36,15,taran);
     MoveBetweenMaps(PC,PC.getHomeMap(),returnmap,37,15);
-    DrawMainFrame("draw",returnmap,37,15);
+    DUCamera.Draw(returnmap,37,15,PC);
+    //DrawMainFrame("draw",returnmap,37,15);
 
     endact.setPower(4);
   } else if (endact.getPower() === 4) {
@@ -650,14 +654,16 @@ function PlaySummonScene(frame) {
     maintext.addText("Rhys's words pause, and you feel something wrench around you. A new flame appears in the center of the circle.");
     let flame = localFactory.createTile("FireField");
     PC.getHomeMap().placeThing(26,11,flame);
-    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+    DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+    //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
   } else if (frame === 5) {
     maintext.addText("The incanting resumes, and there is a void visible in the heart of the flames... and then something large and terrifying steps forth.");
     let daemon = localFactory.createTile("DaemonNPC");
     DUPlaySound("sfx_summon");
     daemon.setAttitude("friendly");
     PC.getHomeMap().placeThing(26,11,daemon);
-    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+    DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+    //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
   } else if (frame === 6) {
     maintext.addText("Rhys's spell is complete. He stares at the daemon, a sheen of sweat on his brow, as the daemon raises a fist and tests the boundaries of the circle. It jerks its hand back, and looks back at Rhys.");
   } else if (frame === 7) {
@@ -690,7 +696,8 @@ function PlaySummonScene(frame) {
     bdcmap.deleteThing(daemon);
     DUTime.removeEntityFrom(flame);
     DUTime.removeEntityFrom(daemon);
-    DrawMainFrame("one",bdcmap,26,11);
+    DUCamera.DrawOne(bdcmap,26,11);
+    //DrawMainFrame("one",bdcmap,26,11);
     DUPlaySound("sfx_dark_transition");
   } else if (frame === 18) {
     maintext.addText(`Rhys sags to his knees. "I'm sorry. It was beginning to overwhelm my binding. I wasn't strong enough. I had to send it back. I'm glad I was able to send it back. I'm sorry. I hope we learned enough."`);
@@ -714,7 +721,8 @@ function PlaySummonScene(frame) {
     DUPlayMusic("Towne", {fade:1});
     let door=PC.getHomeMap().getTile(29,13).getTopFeature();
     door.unlockMe();
-    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+    DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+    //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
 
     return 1;
   }
