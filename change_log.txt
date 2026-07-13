@@ -1,8 +1,10 @@
 v 0.11.5
  * Fixed editor bug with toggling whether automap is allowed on any given map
  * Scripted construction of the Planar Gate
- * Finished map of Elemental Plane of Water
-
+ * Finished maps for the 4 elemental planes
+ * Rewrote the camera code
+ * Fixed bug with Move Opens Door not properly changing the light on the far side of the door
+ * Some fixes to Lance's Act 2 dialog
 
 v 0.11.4
  * Fixed bug with the conversation help (hitting ? to get reminded of keywords you haven't responded to yet)
