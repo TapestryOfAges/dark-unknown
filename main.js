@@ -629,6 +629,7 @@ function DoAction(code, ctrl) {
       if ((code === 27) || ((code === 83) && !PC.getHomeMap().getUnderground()) || ((code <= 57) && (code >= 48))) {
         let retval = PerformWait(code);
         if (retval["fin"] === 2) {
+          maintext.addText("Canceled.");
           maintext.setInputLine("&gt;");
           maintext.drawTextFrame();
           gamestate.setMode("player");
