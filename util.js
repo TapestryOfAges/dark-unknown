@@ -40,11 +40,12 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
       desty = exitret.newdest.y;
     }
   }
-  
-  if (typeof tomap.Enter === "function") {
-    tomap.Enter(who,frommap,oldx,oldy,destx,desty);
+
+  // PlaceThing also has an "Enter" check, so this was running twice
+  // if (typeof tomap.Enter === "function") {
+  //   tomap.Enter(who,frommap,oldx,oldy,destx,desty);
     
-  }
+  // }
 
   
   // determine time scale for this move
