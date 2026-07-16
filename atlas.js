@@ -1312,6 +1312,7 @@ GameMap.prototype.resizeMap = function(newx,newy,anchor){
   DebugWrite("map", "Done: " + this.data.length + " " + this.data[0].length + "<br><br>");
   this.setFeaturesCoord();
   this.setNPCsCoord();
+  this.createPathGrid(); // resets all moveability data, but that isn't particularly important while mapmaking
   drawMap();
 }
 
