@@ -5,6 +5,8 @@ v 0.11.5
  * Rewrote the camera code
  * Fixed bug with Move Opens Door not properly changing the light on the far side of the door
  * Some fixes to Lance's Act 2 dialog
+ * Orb no longer pulses twice when it goes off
+ * Added a bridge to the Wilding Mountains island
 
 v 0.11.4
  * Fixed bug with the conversation help (hitting ? to get reminded of keywords you haven't responded to yet)

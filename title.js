@@ -1360,6 +1360,7 @@ tv.SaveChar = function() {
 
     DU.gameflags.setFlag("knows_avery", 1);
     DU.gameflags.setFlag("coward", 0); 
+    DU.gameflags.setFlag("tutorial", 1);
     questlog.activate(0);
     
     let PCEvent = new GameEvent(PC);

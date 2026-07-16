@@ -13,6 +13,7 @@ skip_theft_warning
 potionsrevealed - "all": player can see all potion types; "blind": you learn then as you go; "roguelike": potions colors are shuffled
 allowjournal
 allowautomap
+tutorial - prompt for tutorial
 
 DU.randomseed - random number generated on game creation
 karma - tracks PC's karma
