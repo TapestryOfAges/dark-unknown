@@ -558,7 +558,7 @@ tv.StartAttract = function() {
   attractmap += `<td id='am21x10' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am22x10' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am23x10' style='opacity:0;${grass}'></td></tr>`;
-  attractmap += `<tr><td id='am1x11' style='opacity:0;${hill}'><div style='${mountain1_n}'></div></td>`;
+  attractmap += `<tr><td id='am1x11' style='opacity:0;${hill}'><div style='${mountain_n1}'></div></td>`;
   attractmap += `<td id='am2x11' style='opacity:0;${mountain2}'></td>`;
   attractmap += `<td id='am3x11' style='opacity:0;${hill}'><div style='${mountain_se}'></div></td>`;
   attractmap += `<td id='am4x11' style='opacity:0;${hill}'></td>`;
@@ -568,7 +568,7 @@ tv.StartAttract = function() {
   attractmap += `<td id='am20x11' style='opacity:0;${grass}'><div style='${hill_nw}'></div></td>`;
   attractmap += `<td id='am21x11' style='opacity:0;${grass}'><div style='${hill_n}'></div></td>`;
   attractmap += `<td id='am22x11' style='opacity:0;${grass}'><div style='${mountain_nw}'></div></td>`;
-  attractmap += `<td id='am23x11' style='opacity:0;${grass}'><div style='${mountain2_n}'></div></td></tr>`;
+  attractmap += `<td id='am23x11' style='opacity:0;${grass}'><div style='${mountain_n2}'></div></td></tr>`;
   attractmap += `<tr><td id='am1x12' style='opacity:0;${mountain2}'></td>`;
   attractmap += `<td id='am2x12' style='opacity:0;${mountain1}'><div style='${dungeon}'></div></td>`; // mountain should be mountain_e, but see how this looks? Don't want to have to pile divs on top of each other until we have to.
   attractmap += `<td id='am3x12' style='opacity:0;${hill}'></td>`;
@@ -597,8 +597,8 @@ tv.StartAttract = function() {
   attractmap += `<td id='am4x14' style='opacity:0;${mountain1}'></td>`;
   attractmap += `<td id='am5x14' style='opacity:0;${mountain2}'></td>`;
   attractmap += `<td id='am6x14' style='opacity:0;width:32px;height:32px'></td><td id='am7x13' style='opacity:0;width:32px;height:32px'></td><td id='am8x13' style='opacity:0;width:32px;height:32px'></td><td id='am9x13' style='opacity:0;width:32px;height:32px'></td><td id='am10x13' style='opacity:0;width:32px;height:32px'></td><td id='am11x13' style='opacity:0;width:32px;height:32px'></td><td id='am12x13' style='opacity:0;width:32px;height:32px'></td><td id='am13x13' style='opacity:0;width:32px;height:32px'></td><td id='am14x13' style='opacity:0;width:32px;height:32px'></td><td id='am15x13' style='opacity:0;width:32px;height:32px'></td><td id='am16x13' style='opacity:0;width:32px;height:32px'></td><td id='am17x13' style='opacity:0;width:32px;height:32px'></td><td id='am18x13' style='opacity:0;width:32px;height:32px'></td>`;  
-  attractmap += `<td id='am19x14' style='opacity:0;${hill}'><div style='${mountain1_n}'></div></td>`;
-  attractmap += `<td id='am20x14' style='opacity:0;${hill}'><div style='${mountain2_n}'></div></td>`;
+  attractmap += `<td id='am19x14' style='opacity:0;${hill}'><div style='${mountain_n1}'></div></td>`;
+  attractmap += `<td id='am20x14' style='opacity:0;${hill}'><div style='${mountain_n2}'></div></td>`;
   attractmap += `<td id='am21x14' style='opacity:0;${mountain1}'></td>`;
   attractmap += `<td id='am22x14' style='opacity:0;${mountain2}'></td>`;
   attractmap += `<td id='am23x14' style='opacity:0;${mountain1}'></td></tr>`;
@@ -880,12 +880,16 @@ tv.DoActionTitle = function(code, e) {
       }
       else if (tv.optselect === 2) {
 //        window.open("game.html", "_self");
-        tv.CreateGameSpace();
-        if (DU.settings.getSetting("music")) {
-          tv.dusong.song.pause();
+        if (gamestate.getLatestSaveIndex() === 9) {
+          gamestate.setMode("tutorialPrompt");
+          let maybetutorial = "<p class='menuplain'>Would you like to play</p><p class='menuplain'>through a tutorial?</p>";
+          maybetutorial += "<div id='yestutorial'><p id='tutopt0' class='menuselect'>Undertake the tutorial</p></div>";
+          maybetutorial += "<div id='notutorial'><p id='tutopt1' class='menuplain'>Go directly into Ellusus</p></div>";
+          tv.optselect = 0;
+          document.getElementById("textoptions").innerHTML = maybetutorial;
+        } else {
+          tv.EnterGame();
         }
-        tv.dusong = {};
-        StartGame();
       }
       else if (tv.optselect === 3) {
         // Change Menu to say "Back", "Options", "Player Reference Guide", "Sage's Almanac", and "Map of Ellusus"
@@ -895,6 +899,50 @@ tv.DoActionTitle = function(code, e) {
       else if (tv.optselect === 4) {
         tv.MakeCredits(0);
       }
+    }
+  }
+  else if (gamestate.getMode() === "tutorialPrompt") {
+    if ((code === 38) || (code === 219)) {
+      if (tv.optselect > 0) {
+        tv.optselect = 0;
+        document.getElementById('tutopt1').classList.remove('menuselect');
+        document.getElementById('tutopt1').classList.add('menuplain');
+        document.getElementById('tutopt0').classList.remove('menuplain');
+        document.getElementById('tutopt0').classList.add('menuselect');
+      }
+    } else if ((code === 40) || (code === 191)) {
+      if (tv.optselect === 0) {
+        tv.optselect = 1;
+        document.getElementById('tutopt1').classList.remove('menuplain');
+        document.getElementById('tutopt1').classList.add('menuselect');
+        document.getElementById('tutopt0').classList.remove('menuselect');
+        document.getElementById('tutopt0').classList.add('menuplain');
+      }
+    } else if ((code === 32) || (code === 13)) {
+      if (tv.optselect === 1) {
+        tv.EnterGame();
+      } else {
+        console.log("Enter Tutorial.");
+        // WORKING HERE
+      }
+    } else if (code === 27) {
+      let spage = "<div id='intro'><p class='menuselect' style='margin-top:6px' id='opt0' onClick='makeChoice(\'intro\')' />View Introduction</p></div>";
+      spage += "<div id='create'><p class='menuplain' style='margin-top:4px' id='opt1' onClick='makeChoice(\'create\')' />Create Character</p></div>";
+      let journey = " style='margin-top:4px'";
+      if (gamestate.getLatestSaveIndex() === -1) {
+        journey = " style='margin-top:5px; color:gray'";
+      } 
+      spage += "<div id='journey'><p class='menuplain' id='opt2'" + journey + " onClick='makeChoice(\'journey\')' />Continue Adventure</p></div>";
+      spage += "<div id='documentation'><p class='menuplain' style='margin-top:4px' id='opt3' onClick='makeChoice(\'documentation\')' />Documentation/Options</p></div>";
+      spage += "<div id='credits'><p class='menuplain' style='margin-top:4px' id='opt4' onClick='makeChoice(\'credits\')' />Credits</p></div></div>";
+      document.getElementById('textoptions').innerHTML = spage;
+      document.getElementById('intro').classList.add('presentfadein');
+      document.getElementById('create').classList.add('presentfadein');
+      document.getElementById('journey').classList.add('presentfadein');
+      document.getElementById('documentation').classList.add('presentfadein');
+      document.getElementById('credits').classList.add('presentfadein');
+      tv.optselect = 0;
+      gamestate.setMode("on");
     }
   }
   else if (gamestate.getMode() === "name") {
@@ -2623,7 +2671,16 @@ tv.AnimateTile = function(divid, spritex, animlength, mintime, maxtime, animtype
     }
     tile.style.backgroundPositionX = sx;
 
-    setTimeout(function() { tv.animateTile(divid, spritex, animlength, mintime, maxtime, animtype, currframe); }, waittime);
+    setTimeout(function() { if (tv.AnimateTile) { tv.AnimateTile(divid, spritex, animlength, mintime, maxtime, animtype, currframe); } }, waittime);
 
   }
+}
+
+tv.EnterGame = function() {
+  tv.CreateGameSpace();
+  if (DU.settings.getSetting("music")) {
+    tv.dusong.song.pause();
+  }
+  tv.dusong = {};
+  StartGame();
 }
