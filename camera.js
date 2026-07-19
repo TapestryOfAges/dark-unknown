@@ -63,6 +63,7 @@ class Camera {
 
   DrawOne(themap, centerx, centery) {
     if (PC.getWaiting()) { return; }  // Don't draw the screen if PC is using (W)ait- should avoid a draw during the fade in/out.
+    if (!this.viewer) { return; } // Screen hasn't been drawn, so nothing to adjust. I think only comes up during character creation.
     let tp = 0; // telepathy
     let ev = 0; // ethereal vision
 
