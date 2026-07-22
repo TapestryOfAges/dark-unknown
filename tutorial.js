@@ -171,8 +171,18 @@ function EnterTutorial() {
 
 function ContinueTutorial() {
   if (targetCursor.tutorial === 1) {
-
+    maintext.addText("Excellent! Hello, my name is Avery, and I will be your tutor. I'm the... wait... this will be easier.");
+  } else if (targetCursor.tutorial === 2) {
+    targetCursor.avery = PC.getHomeMap().getTile(11,9).getTopNPC();
+    ShowTurnFrame(targetCursor.avery);
+    maintext.addText("There we go. How's that? Sometimes you will see these frames around someone. It means either they are taking their turn, or are part of a conversation.<br />The frames are blue around someone who is friendly, and red around a hostile.");
+  } else if (targetCursor.tutorial === 3) {
+    maintext.addText("Now, let us begin with the basics. To move, press the arrow keys.");
+    HideTurnFrame();
+    gamestate.setMode("player-tutorial");
   }
+  maintext.drawTextFrame();
+  targetCursor.tutorial++; 
 }
 
 ais.tutorial = function(who) {

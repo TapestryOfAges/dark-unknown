@@ -337,7 +337,10 @@ function DoAction(code, ctrl) {
     }  
   }
   else if (gamestate.getMode() === "anykey") {
-    if (targetCursor.event === "PlanarGate") {
+    if (targetCursor.tutorial) {
+      ContinueTutorial();
+    }
+    else if (targetCursor.event === "PlanarGate") {
       let mymap = maps.getMap("asharden3");
       if (!targetCursor.frame) {
         maintext.addText("Asharden speaks a long set of words of power.");
