@@ -52,8 +52,8 @@ mappages["tutorial1"].features[25] = {name : 'PileOfRocks', x : 16, y : 2};
 mappages["tutorial1"].features[26] = {name : 'Tree', x : 10, y : 14};
 mappages["tutorial1"].features[27] = {name : 'Tree', x : 2, y : 15};
 
-
 mappages["tutorial1"].npcs = [];
+mappages["tutorial1"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 11, y : 9, NPCName: 'Avery', Desc: 'your tutor', Prefix: '', PeaceAI: 'tutorial', Conversation: 'tutorial', ConversationFlag: 'avery', Gender: 'male', Leash: 2, Bark: '0', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueFancy","head":"ShortBlackPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBlackPale"}'};
 
 mappages["tutorial1"].desc = "Tutorial";
 mappages["tutorial1"].longdesc = `Tutorial Map`;
@@ -80,7 +80,7 @@ mappages["tutorial1"].returnx = 'NaN';
 mappages["tutorial1"].returny = 'NaN';
 mappages["tutorial1"].returninfused = '0';
 mappages["tutorial1"].automap = '1';
-mappages["tutorial1"].linkedMaps = [""];
+mappages["tutorial1"].linkedMaps = ["tutorial2"];
 mappages["tutorial1"].editorLabels = '{}';
 // MAP ENDS HERE
 
@@ -152,6 +152,31 @@ mappages["tutorial2"].returnx = 'NaN';
 mappages["tutorial2"].returny = 'NaN';
 mappages["tutorial2"].returninfused = '0';
 mappages["tutorial2"].automap = '1';
-mappages["tutorial2"].linkedMaps = [""];
+mappages["tutorial2"].linkedMaps = ["tutorial1"];
 mappages["tutorial2"].editorLabels = '{}';
 // MAP ENDS HERE
+
+function EnterTutorial() {
+  maps.addMap("tutorial1");
+  MoveBetweenMaps(PC, PC.getHomeMap(), maps.getMap("tutorial1"),8,9);
+  DUCamera.Draw(PC.getHomeMap(),8,9,PC);
+
+  gamestate.setMode("anykey");
+  targetCursor.tutorial = 1;
+
+  maintext.addText("Greetings, " + PC.getPCName() + ", and welcome to Ellusus! First things first= when you see a [MORE] prompt, continue by pressing any key.");
+  maintext.setInputLine("&gt; [MORE]");
+  maintext.drawTextFrame();
+}
+
+function ContinueTutorial() {
+  if (targetCursor.tutorial === 1) {
+
+  }
+}
+
+ais.tutorial = function(who) {
+  
+
+  return {fin:1} 
+}

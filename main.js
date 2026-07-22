@@ -237,7 +237,7 @@ function DrawTopbarFrame(txt) {
   document.getElementById('topbarframe').innerHTML = txt;
 }
 
-function StartGame() {
+function StartGame(specsave) {
   tv = "";
   CreateDisplayTables();
 
@@ -247,6 +247,9 @@ function StartGame() {
 
   if (debug) {  ActivateDebug(1); }
   SoundLoaded();  
+  if (specsave === "tutorial") {
+    DU.tutorial = 1;
+  }
 //  CreateUI();
 }
 
@@ -262,10 +265,12 @@ function SoundLoaded() {
 function StartPostLoad() {
   DrawCharFrame();
   DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
-  DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
-  //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+  if (!DU.tutorial) {
+    DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+    //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
 
-  maintext.addText("Game loaded.");
+    maintext.addText("Game loaded.");
+  }
   maintext.setInputLine("&gt;");
   maintext.drawTextFrame(); 
   
@@ -279,6 +284,11 @@ function StartPostLoad() {
       }
     }, false);
     firstload = 0;
+
+    if (DU.tutorial) {
+      EnterTutorial();
+      delete DU.tutorial;
+    }
   }
 
 //  document.addEventListener("keyup", function(e) { 

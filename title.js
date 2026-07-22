@@ -923,7 +923,7 @@ tv.DoActionTitle = function(code, e) {
         tv.EnterGame();
       } else {
         console.log("Enter Tutorial.");
-        // WORKING HERE
+        tv.EnterGame("tutorial");
       }
     } else if (code === 27) {
       let spage = "<div id='intro'><p class='menuselect' style='margin-top:6px' id='opt0' onClick='makeChoice(\'intro\')' />View Introduction</p></div>";
@@ -2676,11 +2676,11 @@ tv.AnimateTile = function(divid, spritex, animlength, mintime, maxtime, animtype
   }
 }
 
-tv.EnterGame = function() {
+tv.EnterGame = function(tut) {
   tv.CreateGameSpace();
   if (DU.settings.getSetting("music")) {
     tv.dusong.song.pause();
   }
   tv.dusong = {};
-  StartGame();
+  StartGame(tut);
 }
