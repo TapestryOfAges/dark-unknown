@@ -1059,6 +1059,7 @@ function DoAction(code, ctrl) {
       let newresponse = {};
       if (targetCursor.command === "l") {
         newresponse = PerformLook();
+        if (targetCursor.tutorial === 5) { targetCursor.tutorial = 6; ContinueTutorial(); }
         maintext.addText(newresponse["txt"]);
         maintext.setInputLine(newresponse["input"]);
         maintext.drawTextFrame();
@@ -2155,6 +2156,41 @@ function DoAction(code, ctrl) {
       alert("How did we get here? Bottom of main.");
     }
     maintext.drawTextFrame();
+  } else if (gamestate.getMode() === "player-tutorial") {  // PC's turn, in the tutorial
+    let response = {fin:2};
+    if ((code >= 37) && (code <= 40)) {
+      response = PerformCommand(code, ctrl);
+      if (!targetCursor.stepstaken) { targetCursor.stepstaken = 0; }
+      targetCursor.stepstaken++;
+    } else if ((code === 76) && (targetCursor.tutorial >= 4)) {  // Look
+      response = PerformCommand(code, ctrl);
+    } else {
+      maintext.addText("(Not yet.)");
+      MakeInventoryList.drawTextFrame();
+    }
+    if (response["fin"]) { 
+      maintext.addText(response["txt"]);
+      maintext.setInputLine(response["input"]);
+      maintext.drawTextFrame();
+      if (response["fin"] === 1) {
+        PC.endTurn(response["initdelay"]);
+      } else if (response["fin"] === -3) {
+        // command interrupted and turned into conversation
+        gamestate.setMode("talk");
+        maintext.setInputLine("&gt; You say: ");
+        maintext.drawTextFrame();
+      } else if (response["fin"] === 3) {
+        gamestate.setMode("waiting");
+      } else if (response["fin"] === 4) {
+        maintext.setInputLine("&gt; [MORE]");
+        maintext.drawTextFrame();
+      } else if ((response["fin"] === -1) && (response["extra"] === "moveintoattack")) {
+        // duplicating the result if you return -1 from a targeted melee attack
+        gamestate.setMode("null");
+        // wait and let the combat code set things to next turn. NOTE: possible race conition
+        raceWarning = 1;
+      }
+    }  
   }
   maintext.flushDelayedText();
 }

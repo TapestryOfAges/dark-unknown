@@ -180,13 +180,32 @@ function ContinueTutorial() {
     maintext.addText("Now, let us begin with the basics. To move, press the arrow keys.");
     HideTurnFrame();
     gamestate.setMode("player-tutorial");
+    maintext.setInputLine("&gt;");
+  } else if (targetCursor.tutorial === 4) {
+    maintext.addText("When that happens, you can (L)ook at something on the screen- press L, then use the arrow keys to move the targetting cursor. Once it is over the tile you want to look at, press enter.");
+    gamestate.setMode("player-tutorial");
+    maintext.setInputLine("&gt;");
+  } else if (targetCursor.tutorial === 6) {
+    maintext.addText("Looking at things does not take time- it will still be your turn when you do so.");
+    maintext.setInputLine("&gt; [MORE]");
+    gamestate.setMode("anykey");
+  } else if (targetCursor.tutorial === 7) {
+    maintext.addText("Sometimes you need to take a closer look at something. To do that, you need to walk right up next to it.");
+  } else if (targetCursor.tutorial === 8) {
+    // WORKING HERE
   }
   maintext.drawTextFrame();
   targetCursor.tutorial++; 
 }
 
 ais.tutorial = function(who) {
-  
-
+  if (targetCursor.stepstaken && (targetCursor.stepstaken === 3)) {
+    targetCursor.stepstaken++;
+    targetCursor.tutorial = 4;
+    maintext.addText("As you move about a space, sometimes you will not be sure what something is.");
+    maintext.setInputLine("&gt; [MORE]");
+    gamestate.setMode("anykey");
+  }
+  maintext.drawTextFrame();
   return {fin:1} 
 }
