@@ -391,7 +391,7 @@ function DoAction(code, ctrl) {
         delete targetCursor.event;
       }
     }
-    if (targetCursor.command === "garrick") {
+    else if (targetCursor.command === "garrick") {
       let retval = GarrickScene(targetCursor.stage);
       if (retval["fin"] === 1) {
         maintext.setInputLine("&gt;");
@@ -1059,10 +1059,10 @@ function DoAction(code, ctrl) {
       let newresponse = {};
       if (targetCursor.command === "l") {
         newresponse = PerformLook();
-        if (targetCursor.tutorial === 5) { targetCursor.tutorial = 6; ContinueTutorial(); }
         maintext.addText(newresponse["txt"]);
         maintext.setInputLine(newresponse["input"]);
         maintext.drawTextFrame();
+        if (targetCursor.tutorial === 5) { targetCursor.tutorial = 6; ContinueTutorial(); }
       } else if (targetCursor.command === "a") {
         newresponse = PerformAttack(PC);
         if (newresponse["txt"]) {
@@ -2160,13 +2160,27 @@ function DoAction(code, ctrl) {
     let response = {fin:2};
     if ((code >= 37) && (code <= 40)) {
       response = PerformCommand(code, ctrl);
-      if (!targetCursor.stepstaken) { targetCursor.stepstaken = 0; }
+      if (!targetCursor.hasOwnProperty("stepstaken")) { targetCursor.stepstaken = 0; }
       targetCursor.stepstaken++;
     } else if ((code === 76) && (targetCursor.tutorial >= 4)) {  // Look
       response = PerformCommand(code, ctrl);
+    } else if ((code === 83) && (targetCursor.tutorial >= 8)) { // Search
+      response = PerformCommand(code, ctrl);
+    } else if (((code === 69) || (code === 13)) && (targetCursor.tutorial >= 14)) { // Enter
+      response = PerformCommand(code, ctrl);
+    } else if ((code === 85) && (targetCursor.tutorial >= 16)) { // Use
+      response = PerformCommand(code, ctrl);
+    } else if ((code === 191) && (targetCursor.tutorial >= 21)) {  // ? Help
+      response = PerformCommand(code, ctrl);
+      if (targetCursor.tutorial === 21) { targetCursor.tutorial = 22; ContinueTutorial();
+      } 
+    } else if ((code === 67) && (targetCursor.tutorial >= 26)) {
+      response = PerformCommand(code, ctrl);
+    } else if ((code === 79) && ctrl) {  // Options are always available
+      response = PerformCommand(code, ctrl);
     } else {
       maintext.addText("(Not yet.)");
-      MakeInventoryList.drawTextFrame();
+      maintext.drawTextFrame();
     }
     if (response["fin"]) { 
       maintext.addText(response["txt"]);

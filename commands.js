@@ -289,8 +289,8 @@ function PerformCommand(code, ctrl) {
     retval = PerformCast(0);
 	}
 	else if (code === 68) { // d
-		// descend - alternate "Enter" option when on a down ladder
-		retval = PerformEnter("d");
+		// documentation
+		// not yet implemented
 	}
 	else if (code === 69) { // e
 		// enter
@@ -336,8 +336,7 @@ function PerformCommand(code, ctrl) {
     delete targetCursor.getAll;
 	}
 	else if (code === 72) { // h
-		// hole up and camp, not used
-		
+		// not used
 	}
   else if (code === 73) { // i
 		// was ignite torch, now infuse?
@@ -367,8 +366,7 @@ function PerformCommand(code, ctrl) {
     }
 	}
 	else if (code === 75) { // k
-		// klimb - alternate "Enter" option when on an up ladder
-		retval = PerformEnter("k");
+		// not used
 	}
 	else if (code === 76) { // l
     // U4's Locate, here, Look
@@ -700,7 +698,7 @@ function PerformCommand(code, ctrl) {
     }
 	}
 	else if (code === 88) { // x
-		// eXit - not used
+		// not used
 	}
 	else if (code === 89) { // y
 		// yell 
@@ -4553,7 +4551,7 @@ function ShowHelp() {
     hasspellbook = "style='color:gray'";
   }
   statsdiv += `<tr><td ${hasspellbook}>C - Cast</td><td></td><td>Q - Save</td></tr>`;
-  statsdiv += "<tr><td>D - Descend</td><td></td><td>R - Ready Equipment</td></tr>";
+  statsdiv += "<tr><td>D - Documentaion</td><td></td><td>R - Ready Equipment</td></tr>";
   statsdiv += "<tr><td>E - Enter</td><td></td><td>S - Search</td></tr>";
   let canfocus = "";
   if (!DU.gameflags.getFlag("rune_kings")) {
@@ -4567,10 +4565,10 @@ function ShowHelp() {
   }
   statsdiv += `<tr><td ${caninfuse}>I - Infuse</td><td></td><td>V - Toggle Music</td></tr>`;
   statsdiv += "<tr><td>J - Quest Journal</td><td></td><td>CTRL-V - Toggle Volume</td></tr>";
-  statsdiv += "<tr><td>K - Climb</td><td></td><td>W - Wait</td></tr>";
-  statsdiv += "<tr><td>L - Look</td><td></td><td>Y - Yell</td></tr>";
-  statsdiv += "<tr><td>CTRL-L - Load Game</td><td></td><td>Z - Stats</td></tr>";
-  statsdiv += "<tr><td>M - Show Map</td><td></td><td>SPACE - Pass Turn</td></tr>";
+  statsdiv += "<tr><td>L - Look</td><td></td><td>W - Wait</td></tr>";
+  statsdiv += "<tr><td>CTRL L - Load Game</td><td></td><td>Y - Yell</td></tr>";
+  statsdiv += "<tr><td>M - Show Map</td><td></td><td>Z - Stats</td></tr>";
+  statsdiv += "<tr><td></td><td></td><td>SPACE - Pass Turn</td></tr>";
   statsdiv += "<tr><td></td><td></td><td>ENTER - Enter</td></tr>";
 
   statsdiv += "</table></div></div>";

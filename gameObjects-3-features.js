@@ -7619,6 +7619,24 @@ function WalkOnTile() {
 }
 WalkOnTile.prototype = new FeatureObject();
 
+function WalkOnTutorial1Tile() {
+	this.name = "WalkOnTutorial1";
+  this.graphic = "static.gif";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -50*32;
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnTutorial1Tile.prototype = new FeatureObject();
+
+WalkOnTutorial1Tile.prototype.walkon = function(who) {
+  if (targetCursor.tutorial === 15) { targetCursor.tutorial = 16; }
+  return {msg:""};
+}
+
 function WalkOnFulcrumTile() {
 	this.name = "WalkOnFulcrum";
   this.graphic = "static.gif";

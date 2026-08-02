@@ -3078,6 +3078,11 @@ tileFactory.prototype.makeWalkOnTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWalkOnTutorial1Tile = function() {
+  let newTile = new WalkOnTutorial1Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWalkOnFulcrumTile = function() {
   let newTile = new WalkOnFulcrumTile();
   return newTile;
@@ -4203,6 +4208,16 @@ tileFactory.prototype.makeVoidstoneTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeRunestone1Tile = function() {
+  let newTile = new Runestone1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRunestone2Tile = function() {
+  let newTile = new Runestone2Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSpiderSilkTile = function() {
   let newTile = new SpiderSilkTile();
   return newTile;
@@ -4510,6 +4525,11 @@ tileFactory.prototype.makeFallOfTargrionTile = function() {
 
 tileFactory.prototype.makeBookOfLoreTile = function() {
   let newTile = new BookOfLoreTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTharockNotesTile = function() {
+  let newTile = new TharockNotesTile();
   return newTile;
 }
 

@@ -2922,7 +2922,11 @@ PCObject.prototype.myTurn = function() {
         let delayturn = this.getSpellEffectsByName("DelayTurnStart");
         delayturn.endEffect(1);
       } else {
-        gamestate.setMode("player");
+        if (targetCursor.tutorial) {
+          gamestate.setMode("player-tutorial");
+        } else {
+          gamestate.setMode("player");
+        }
       }
 
       if (this.forcedTalk) {
