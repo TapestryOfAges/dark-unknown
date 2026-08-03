@@ -3,12 +3,14 @@ const {app, BrowserWindow} = require('electron');
 // Module to create native browser window.
 const isDev = require('electron-is-dev');
 const {ipcMain} = require('electron')
+const { shell } = require('electron')
 const path = require('path')
 const fs = require("fs");
 if (require('electron-squirrel-startup')) app.quit();    // electron forge docs suggest this, but don't explain why
                                                         // I guess so when it launches more than once to handle updates it doesn't linger?
                                                         
 const savePath = path.join(`${__dirname}`,'..','..','saves');
+const docsPath = path.join(`${__dirname}`,'..','..','docs');
 
 let mainWindow = null;
 let debugWindow = null;
@@ -177,6 +179,14 @@ app.whenReady().then(() => {
     fs.writeFileSync(`${savePath}/err.log`, params);
   });
 
+  ipcMain.on('open_docs', function(event,params) {
+    let docname = "";
+    if (params === 1) { docname = "cloth-map.png"; }
+    else if (params === 2) { docname = "Player Reference Guide.pdf"; }
+    else { docname = "Sage's Almanac.pdf"; }
+
+    shell.openPath(`${savepath}/${docname}`);
+  });
 
 
   createWindow()
