@@ -1758,6 +1758,55 @@ function SlimeNPCTile() {
 SlimeNPCTile.prototype = new NPCObject();
 
 
+// Monster
+
+function TutorialOrcNPCTile() {
+  this.name = 'TutorialOrcNPC';
+  this.level = 1;
+  this.addhp = 0;
+  this.str = 5;
+  this.dex = 10;
+  this.int = 6;
+  this.alignment = 'Evil';
+  this.attitude = 'hostile';
+  this.peaceAI = 'seekPC-10';
+  this.forgetAt = 10;
+  this.withdraw = 0;
+  this.meleeAttackAs = 'none';
+  this.meleeDamage = '11d4+1'
+  this.meleeStrDamage = .33
+  this.missileAttackAs = 'none';
+  this.armorAs = 'none';
+  this.armorDefense = 5;
+  this.armorAbsorb = 5;
+  this.armorResist = 0;
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'Tutorial';
+  this.prefix = 'an';
+  this.desc = "orc";
+  this.meleeChance = 100;
+  this.resists = {};
+  this.special = 'open_door';
+  this.meleeHitSound = 'sfx_melee_hit';
+  this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.gif';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -134 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+}
+TutorialOrcNPCTile.prototype = new NPCObject();
+
+
 // CorruptTownsfolk
 
 function ApprenticeNPCTile() {

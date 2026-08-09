@@ -73,7 +73,13 @@ function PerformCommand(code, ctrl) {
     } else if (success["fin"] === 4) {
       retval["fin"] = 4; 
     }
-    if (!DU.gameflags.getFlag("show_move")) {
+    if (success["tutorial"]) {
+      retval["input"] = "&gt; (Y/N)";
+      retval["fin"] = 2;
+      gamestate.setMode("anykey");
+      targetCursor.command = "tutorial-exit";
+    }
+    if (!DU.gameflags.getFlag("show_move") && !success["tutorial"]) {
       retval["txt"] = SuppressMove(retval["txt"], "North");
     }
 		retval["initdelay"] = success["initdelay"];

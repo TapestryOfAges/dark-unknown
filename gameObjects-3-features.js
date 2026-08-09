@@ -7637,6 +7637,25 @@ WalkOnTutorial1Tile.prototype.walkon = function(who) {
   return {msg:""};
 }
 
+function WalkOnTutorial2Tile() {
+	this.name = "WalkOnTutorial2";
+  this.graphic = "static.gif";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -50*32;
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnTutorial2Tile.prototype = new FeatureObject();
+
+WalkOnTutorial2Tile.prototype.bumpinto = function(who) {
+  // WORKING HERE
+  let retval = {msg: "Exit the tutorial?", canmove: 0, tutorial: 1};
+  return retval;
+}
+
 function WalkOnFulcrumTile() {
 	this.name = "WalkOnFulcrum";
   this.graphic = "static.gif";

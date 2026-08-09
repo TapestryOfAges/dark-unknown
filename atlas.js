@@ -535,6 +535,7 @@ Acre.prototype.getBumpIntoResult = function(mover) {
 			}
 			if (retval2["canmove"] === 0) { 
 			  retval["canmove"] = 0;
+        if (retval2["tutorial"]) { retval["tutorial"] = 1; }
         if (retval2["endturn"]) { retval["endturn"] = 1; }
 			  return retval; 
 			}

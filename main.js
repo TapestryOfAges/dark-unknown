@@ -337,7 +337,28 @@ function DoAction(code, ctrl) {
     }  
   }
   else if (gamestate.getMode() === "anykey") {
-    if (targetCursor.tutorial) {
+    if ((code >= 37) && (code <= 40)) { 
+      // arrow keys don't progress 'anykey' triggers, just so you can't miss them by moving fast
+    } else if (targetCursor.command === "tutorial-exit") {
+      if ((code === 27) || (code === 78)) {  // n or ESC
+        delete targetCursor.command;
+        maintext.setInputLine("&gt;");
+        maintext.drawTextFrame();
+        gamestate.setMode("player");
+      } else if (code === 89) {  // y
+        if (nowplaying.song) { StopMusic(); }
+        gamestate.loadGame(9); 
+        DrawCharFrame();
+        DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
+        DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+        //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+
+//        maintext.addText("Game loaded.");
+        maintext.setInputLine("&gt;");
+        maintext.drawTextFrame(); 
+        document.getElementById('uiinterface').innerHTML = "";
+      }
+    } else if (targetCursor.tutorial) {
       ContinueTutorial();
     }
     else if (targetCursor.event === "PlanarGate") {
@@ -1062,7 +1083,7 @@ function DoAction(code, ctrl) {
         maintext.addText(newresponse["txt"]);
         maintext.setInputLine(newresponse["input"]);
         maintext.drawTextFrame();
-        if (targetCursor.tutorial === 5) { targetCursor.tutorial = 6; ContinueTutorial(); }
+        if (targetCursor.tutorial === 5) { targetCursor.tutorial = 6; ContinueTutorial(); newresponse["fin"] = 3;}
       } else if (targetCursor.command === "a") {
         newresponse = PerformAttack(PC);
         if (newresponse["txt"]) {
@@ -1246,8 +1267,16 @@ function DoAction(code, ctrl) {
     DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
     DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
     //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
-    gamestate.setMode("player");
-    gamestate.setTurn(PC);
+    if (targetCursor.tutorial && (targetCursor.tutorial === 23)) {
+      gamestate.setMode("anykey");
+      maintext.setInputLine("&gt; [MORE]");
+      maintext.drawTextFrame();
+
+      ContinueTutorial();
+    } else {
+      gamestate.setMode("player");
+      gamestate.setTurn(PC);
+    }
   }
   else if (gamestate.getMode() === "journal") {
     if (code === 27) { // ESC
@@ -2166,17 +2195,29 @@ function DoAction(code, ctrl) {
       response = PerformCommand(code, ctrl);
     } else if ((code === 83) && (targetCursor.tutorial >= 8)) { // Search
       response = PerformCommand(code, ctrl);
+    } else if ((code === 71) && (targetCursor.tutorial >= 10)) { // Get
+      response = PerformCommand(code, ctrl);
+
     } else if (((code === 69) || (code === 13)) && (targetCursor.tutorial >= 14)) { // Enter
       response = PerformCommand(code, ctrl);
     } else if ((code === 85) && (targetCursor.tutorial >= 16)) { // Use
       response = PerformCommand(code, ctrl);
+    } else if ((code === 79) && (targetCursor.tutorial >= 16)) { // Open
+      response = PerformCommand(code, ctrl);
     } else if ((code === 191) && (targetCursor.tutorial >= 21)) {  // ? Help
       response = PerformCommand(code, ctrl);
-      if (targetCursor.tutorial === 21) { targetCursor.tutorial = 22; ContinueTutorial();
-      } 
-    } else if ((code === 67) && (targetCursor.tutorial >= 26)) {
+      if (targetCursor.tutorial === 21) { targetCursor.tutorial = 22; ContinueTutorial(); console.log("foo"); } 
+    } else if ((code === 67) && (targetCursor.tutorial >= 26)) {  // Cast
       response = PerformCommand(code, ctrl);
     } else if ((code === 79) && ctrl) {  // Options are always available
+      response = PerformCommand(code, ctrl);
+    } else if (code === 32) { // passing your turn is always available
+      response = PerformCommand(code, ctrl);
+    } else if ((code === 84) && (targetCursor.tutorial >= 38)) {
+      response = PerformCommand(code, ctrl);
+    } else if ((code >= 65) && (code <= 66) && (targetCursor.tutorial >= 62)) {   // Attack/Approach and Battle Report
+      response = PerformCommand(code, ctrl);
+    } else if ((code === 82) && (targetCursor.tutorial >= 72)) {   // Ready
       response = PerformCommand(code, ctrl);
     } else {
       maintext.addText("(Not yet.)");

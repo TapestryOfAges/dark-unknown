@@ -3083,6 +3083,11 @@ tileFactory.prototype.makeWalkOnTutorial1Tile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWalkOnTutorial2Tile = function() {
+  let newTile = new WalkOnTutorial2Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWalkOnFulcrumTile = function() {
   let newTile = new WalkOnFulcrumTile();
   return newTile;
@@ -5590,6 +5595,11 @@ tileFactory.prototype.makeMinstrelNPCTile = function() {
 
 tileFactory.prototype.makeSlimeNPCTile = function() {
   let newTile = new SlimeNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTutorialOrcNPCTile = function() {
+  let newTile = new TutorialOrcNPCTile();
   return newTile;
 }
 

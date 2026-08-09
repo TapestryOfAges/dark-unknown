@@ -416,6 +416,41 @@ NPCObject.prototype.processDeath = function(droploot){
     FadeOut(1);
     HideTurnFrame();
     
+    if (targetCursor.tutorial) {
+      if (targetCursor.tutorial < 63) {
+        // You have chosen to burn to death in a fireplace
+        maintext.addText("...You have made some poor decisions. Let's return you to the tutorial...");
+        setTimeout(function() {
+          let tutorialmap = maps.addMap("tutorial1");
+          MoveBetweenMaps(PC,PC.getHomeMap(),tutorialmap,8,9);
+          DUCamera.Draw(PC.getHomeMap(),8,9,PC);
+          FadeIn();
+          maintext.addText("Try not to do that again, maybe?");
+        }, 1000);
+      } else if (targetCursor === 63) {
+        // You died fighting an orc
+        maintext.addText("You have fallen to the orc. We'll assume you got the point and we can move on...");
+        setTimeout(function() {
+          let tutorialmap = maps.addMap("combatTutorial");
+          let chest = localFactory.createTile("chest");
+          let loot = DULoot["tutorial"].getLoot();
+          for (let i=0;i<loot.lootlist.length;i++) {
+            chest.addToContainer(loot.lootlist[i],1);
+          }
+          chest.addToContainer("Gold", loot.gold);
+          tutorialmap.placeThing(8,7,chest);
+          maintext.addText("We'll return you to the combat map now, as if the orc had just died.");
+          MoveBetweenMaps(this,this.getHomeMap(),tutorialmap,8,9);
+          FadeIn();
+          PC.died = 1;
+        }, 1000);
+      } else {
+        // How did you die??
+        alert("...how did you die?");
+      }
+      return;
+    }
+
     if (wascityfighting && DU.gameflags.getFlag("endAct1") && !DU.gameflags.getFlag("act2")) {
       PC.dead = 1;
       PC.deaduntil = GetGameClockByClockTime(ModTime(GetUsableClockTime(),"1:00"));
@@ -2871,15 +2906,17 @@ PCObject.prototype.myTurn = function() {
         PC.setHP(1);
         PC.setMana(PC.getMaxMana());
       } else {
-        if (maps.getMap("yggdras1")) {
-          returnmap = maps.getMap("yggdras1");
-          // though again, this shouldn't be in memory
-        } else {
-          returnmap = maps.addMap("yggdras1");
+        if (!targetCursor.tutorial) {
+          if (maps.getMap("yggdras1")) {
+            returnmap = maps.getMap("yggdras1");
+            // though again, this shouldn't be in memory
+          } else {
+            returnmap = maps.addMap("yggdras1");
+          }
+          AdjustStartingLocations(returnmap);
+          MoveBetweenMaps(PC,PC.getHomeMap(),returnmap,49,22);
+          DUCamera.Draw(returnmap,49,22,PC);
         }
-        AdjustStartingLocations(returnmap);
-        MoveBetweenMaps(PC,PC.getHomeMap(),returnmap,49,22);
-        DUCamera.Draw(returnmap,49,22,PC);
         //DrawMainFrame("draw",returnmap,49,22);
         PC.setHP(PC.getMaxHP());
         PC.setMana(PC.getMaxMana());
