@@ -545,6 +545,7 @@ ais.tutorial = function(who) {
     targetCursor.tutorial = 39;
     maintext.setInputLine("&gt; [MORE]");
     gamestate.setMode("anykey");
+    DU.gameflags.deleteFlag("tutor_talk");
     retval.wait = 1;
   } else if (targetCursor.tutorial === 63) {
     let combatmap = maps.getMap("combatTutorial");
