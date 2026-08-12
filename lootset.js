@@ -840,7 +840,7 @@ function SetLoots() {
   loots['Tutorial'].loot[0].quantity = '2';
   loots['Tutorial'].loot[0].chance = 100;
   loots['Tutorial'].loot[1] = {};
-  loots['Tutorial'].loot[1].objname = 'ShortSword';
+  loots['Tutorial'].loot[1].objname = 'Shortsword';
   loots['Tutorial'].loot[1].quantity = '1';
   loots['Tutorial'].loot[1].chance = 100;
   loots['Tutorial'].loot[2] = {};

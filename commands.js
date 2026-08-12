@@ -296,7 +296,11 @@ function PerformCommand(code, ctrl) {
 	}
 	else if (code === 68) { // d
 		// documentation
-		// not yet implemented
+		gamestate.setMode("singlenumber");
+    targetCursor.command = "d";
+    retval["fin"] = 2;
+    retval["txt"] = "View which documentation?<br />1) Cloth Map<br />2) Player Reference Guide<br />3) Sage's Almanac";
+    retval["input"] = "&gt; Selection:";
 	}
 	else if (code === 69) { // e
 		// enter

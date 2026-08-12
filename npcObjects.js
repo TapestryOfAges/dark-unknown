@@ -1763,7 +1763,7 @@ SlimeNPCTile.prototype = new NPCObject();
 function TutorialOrcNPCTile() {
   this.name = 'TutorialOrcNPC';
   this.level = 1;
-  this.addhp = 0;
+  this.addhp = 5;
   this.str = 5;
   this.dex = 10;
   this.int = 6;
