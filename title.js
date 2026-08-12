@@ -281,7 +281,7 @@ tv.SecondPage = function() {
       journey = " style='margin-top:5px; color:gray'";
     } 
     spage += "<div id='journey'><p class='menuplain' id='opt2'" + journey + " onClick='makeChoice(\'journey\')' />Continue Adventure</p></div>";
-    spage += "<div id='documentation'><p class='menuplain' style='margin-top:4px' id='opt3' onClick='makeChoice(\'documentation\')' />Documentation/Options</p></div>";
+    spage += "<div id='documentation'><p class='menuplain' style='margin-top:4px' id='opt3' onClick='makeChoice(\'documentation\')' />Documentation</p></div>";
     spage += "<div id='credits'><p class='menuplain' style='margin-top:4px' id='opt4' onClick='makeChoice(\'credits\')' />Credits</p></div></div>";
     document.getElementById('options').innerHTML = spage;
     document.getElementById('intro').classList.add('presentfadein');
@@ -307,7 +307,7 @@ tv.finishedFinalPage = function() {
     journey = " style='margin-top:5px; color:gray'";
   } 
   spage += "<div id='journey'><p class='menuplain' id='opt2'" + journey + " onClick='makeChoice(\'journey\')' />Continue Adventure</p></div>";
-  spage += "<div id='documentation'><p class='menuplain' style='margin-top:4px' id='opt3' onClick='makeChoice(\'documentation\')' />Documentation/Options</p></div>";
+  spage += "<div id='documentation'><p class='menuplain' style='margin-top:4px' id='opt3' onClick='makeChoice(\'documentation\')' />Documentation</p></div>";
   spage += "<div id='credits'><p class='menuplain' style='margin-top:4px' id='opt4' onClick='makeChoice(\'credits\')' />Credits</p></div></div>";
 
   document.getElementById('options').innerHTML = spage;
@@ -318,6 +318,41 @@ tv.finishedFinalPage = function() {
 tv.pagelive = function() {
   gamestate.setMode("on");
   setTimeout(function() { if (tv) {tv.StartAttract();} }, 4000);
+}
+
+tv.docOptions = function() {
+  let spage = "<div id='clothmap'><p class='menuselect' style='margin-top:6px' id='opt0' />View Cloth Map</p></div>";
+  spage += "<div id='refguide'><p class='menuplain' style='margin-top:4px' id='opt1' />View Player Reference Guide</p></div>";
+  spage += "<div id='almanac'><p class='menuplain' style='margin-top:4px' id='opt2'  />View Almanac</p></div>";
+  spage += "<div id='back'><p class='menuplain' style='margin-top:4px' id='opt3' />Back</p></div></div>";
+
+  document.getElementById('textoptions').innerHTML = spage;
+  document.getElementById('clothmap').classList.add('presentfadein');
+  document.getElementById('refguide').classList.add('presentfadein');
+  document.getElementById('almanac').classList.add('presentfadein');
+  document.getElementById('back').classList.add('presentfadein');
+  tv.optselect = 0;
+  gamestate.setMode("docselect");
+}
+
+tv.ReturnToMainMenu = function() {
+  let spage = "<div id='intro'><p class='menuselect' style='margin-top:10px' id='opt0' onClick='makeChoice(\'intro\')' />View Introduction</p></div>";
+  spage += "<div id='create'><p class='menuplain' style='margin-top:4px' id='opt1' onClick='makeChoice(\'create\')' />Create Character</p></div>";
+  let journey = " style='margin-top:4px'";
+  if (gamestate.getLatestSaveIndex() === -1) {
+    journey = " style='margin-top:5px; color:gray'";
+  } 
+  spage += "<div id='journey'><p class='menuplain' id='opt2'" + journey + " onClick='makeChoice(\'journey\')' />Continue Adventure</p></div>";
+  spage += "<div id='documentation'><p class='menuplain' style='margin-top:4px' id='opt3' onClick='makeChoice(\'documentation\')' />Documentation</p></div>";
+  spage += "<div id='credits'><p class='menuplain' style='margin-top:4px' id='opt4' onClick='makeChoice(\'credits\')' />Credits</p></div></div>";
+  document.getElementById('textoptions').innerHTML = spage;
+  document.getElementById('intro').classList.add('presentfadein');
+  document.getElementById('create').classList.add('presentfadein');
+  document.getElementById('journey').classList.add('presentfadein');
+  document.getElementById('documentation').classList.add('presentfadein');
+  document.getElementById('credits').classList.add('presentfadein');
+  tv.optselect = 0;
+  gamestate.setMode("on");
 }
 
 tv.StartAttract = function() {
@@ -895,10 +930,53 @@ tv.DoActionTitle = function(code, e) {
         // Change Menu to say "Back", "Options", "Player Reference Guide", "Sage's Almanac", and "Map of Ellusus"
         // hitting Back returns to the main menu, anything else launches that in a separate window to view the PDF
         // options is there primarily to allow adjusting volume and game size from the main menu
+        tv.docOptions();
       }
       else if (tv.optselect === 4) {
         tv.MakeCredits(0);
       }
+    }
+  } else if (gamestate.getMode() === "docselect") {
+    if ((code === 38) || (code === 219)) {    // up arrow or [
+      if (tv.optselect > 0) {
+        let img = "opt" + tv.optselect;
+        document.getElementById(img).classList.remove("menuselect");
+        document.getElementById(img).classList.add("menuplain");
+        tv.optselect--;
+        img = "opt" + tv.optselect;
+        document.getElementById(img).classList.remove("menuplain");
+        document.getElementById(img).classList.add("menuselect");            
+      }
+    }
+    else if ((code === 40) || (code === 191)) {
+      if (tv.optselect < 3) {
+        let img = "opt" + tv.optselect;
+        document.getElementById(img).classList.remove("menuselect");
+        document.getElementById(img).classList.add("menuplain");
+        tv.optselect++;
+        img = "opt" + tv.optselect;
+        document.getElementById(img).classList.remove("menuplain");
+        document.getElementById(img).classList.add("menuselect");            
+      }
+    }
+    else if ((code === 32) || (code === 13)) {
+      if (tv.optselect === 0) {
+        OutOfContext.open_docs(1);
+        tv.ReturnToMainMenu();
+      }
+      else if (tv.optselect === 1) {
+        OutOfContext.open_docs(2);
+        tv.ReturnToMainMenu();
+      }
+      else if (tv.optselect === 2) {
+        OutOfContext.open_docs(3);
+        tv.ReturnToMainMenu();
+      }
+      else if (tv.optselect === 3) {
+        tv.ReturnToMainMenu();
+      }
+    } else if (code === 27) {
+      tv.ReturnToMainMenu();
     }
   }
   else if (gamestate.getMode() === "tutorialPrompt") {
@@ -926,23 +1004,7 @@ tv.DoActionTitle = function(code, e) {
         tv.EnterGame("tutorial");
       }
     } else if (code === 27) {
-      let spage = "<div id='intro'><p class='menuselect' style='margin-top:6px' id='opt0' onClick='makeChoice(\'intro\')' />View Introduction</p></div>";
-      spage += "<div id='create'><p class='menuplain' style='margin-top:4px' id='opt1' onClick='makeChoice(\'create\')' />Create Character</p></div>";
-      let journey = " style='margin-top:4px'";
-      if (gamestate.getLatestSaveIndex() === -1) {
-        journey = " style='margin-top:5px; color:gray'";
-      } 
-      spage += "<div id='journey'><p class='menuplain' id='opt2'" + journey + " onClick='makeChoice(\'journey\')' />Continue Adventure</p></div>";
-      spage += "<div id='documentation'><p class='menuplain' style='margin-top:4px' id='opt3' onClick='makeChoice(\'documentation\')' />Documentation/Options</p></div>";
-      spage += "<div id='credits'><p class='menuplain' style='margin-top:4px' id='opt4' onClick='makeChoice(\'credits\')' />Credits</p></div></div>";
-      document.getElementById('textoptions').innerHTML = spage;
-      document.getElementById('intro').classList.add('presentfadein');
-      document.getElementById('create').classList.add('presentfadein');
-      document.getElementById('journey').classList.add('presentfadein');
-      document.getElementById('documentation').classList.add('presentfadein');
-      document.getElementById('credits').classList.add('presentfadein');
-      tv.optselect = 0;
-      gamestate.setMode("on");
+      tv.ReturnToMainMenu();
     }
   }
   else if (gamestate.getMode() === "name") {

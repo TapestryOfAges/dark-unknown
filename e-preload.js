@@ -21,5 +21,6 @@ contextBridge.exposeInMainWorld('OutOfContext', {
   onLoadData: (callback) => { ipcRenderer.on('sendLoad', callback) }, 
   onLoadSettings: (callback) => { ipcRenderer.on('sendSettings', callback) },
   write_error: (params) => { ipcRenderer.send('write_error', params) },
+  open_docs: (param) => { ipcRenderer.send('open_docs', param) },
 })
 
