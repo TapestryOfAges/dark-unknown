@@ -9,6 +9,7 @@ v 0.11.5
  * Added a bridge to the Wilding Mountains island
  * Added a tutorial
  * [MORE] prompts now progress when you hit anything _besides_ arrow keys
+ * Added new (D)ocumentation commend, which brings up the map, player ref guide, or almanac
 
 v 0.11.4
  * Fixed bug with the conversation help (hitting ? to get reminded of keywords you haven't responded to yet)

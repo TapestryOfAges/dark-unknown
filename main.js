@@ -1510,6 +1510,24 @@ function DoAction(code, ctrl) {
         maintext.drawTextFrame();  
         DrawCharFrame();
         gamestate.setMode("talk");
+      } else if (targetCursor.command === "d") {
+        // WORKING HERE
+        if (code === 27) {
+          gamestate.setMode("player");
+          maintext.inputText("&gt;");
+        } else if ((code >= 49) && (code <= 51)) {
+          OutOfContext.open_docs(code-48);
+          if (code === 49) {
+            maintext.addText("Viewing cloth map...");
+          } else if (code === 50) {
+            maintext.addText("Viewing Player Reference Guide...");
+          } else if (code === 51) {
+            maintext.addText("Viewing Sage's Almanac...");
+          }
+          gamestate.setMode("player");
+          maintext.setInputLine("&gt;");
+          maintext.drawInputLine();
+        }
       }
     } else if (code === 27) {
       if (targetCursor.itemname === "InfiniteScroll") {
@@ -2218,6 +2236,8 @@ function DoAction(code, ctrl) {
     } else if ((code >= 65) && (code <= 66) && (targetCursor.tutorial >= 62)) {   // Attack/Approach and Battle Report
       response = PerformCommand(code, ctrl);
     } else if ((code === 82) && (targetCursor.tutorial >= 72)) {   // Ready
+      response = PerformCommand(code, ctrl);
+    } else if (targetCursor.tutorial >= 84) {
       response = PerformCommand(code, ctrl);
     } else {
       maintext.addText("(Not yet.)");

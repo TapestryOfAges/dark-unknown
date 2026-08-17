@@ -185,7 +185,7 @@ app.whenReady().then(() => {
     else if (params === 2) { docname = "Player Reference Guide.pdf"; }
     else { docname = "Sage's Almanac.pdf"; }
 
-    shell.openPath(`${savepath}/${docname}`);
+    shell.openPath(`${docsPath}/${docname}`);
   });
 
 

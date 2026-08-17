@@ -226,9 +226,9 @@ mappages["combatTutorial"].desc = "Combat";
 mappages["combatTutorial"].longdesc = ``;
 mappages["combatTutorial"].music = 'Combat';
 mappages["combatTutorial"].savename = `Combat`;
-mappages["combatTutorial"].exitmap = '';
-mappages["combatTutorial"].exitx = '65';
-mappages["combatTutorial"].exity = '70';
+mappages["combatTutorial"].exitmap = 'tutorial1';
+mappages["combatTutorial"].exitx = '8';
+mappages["combatTutorial"].exity = '9';
 mappages["combatTutorial"].wraps = 'None';
 mappages["combatTutorial"].enterx = '6';
 mappages["combatTutorial"].entery = '9';
@@ -316,6 +316,7 @@ function ContinueTutorial() {
   } else if (targetCursor.tutorial === 22) {
     maintext.addText("You can see that some of the commands are greyed out. As you play, you will learn how to use those.");
   } else if (targetCursor.tutorial === 23) {
+    DUPlaySound("sfx_crystal_use");
     maintext.addText("One of those is the ability to cast spells, which requires you to have a spellbook. To give you the practice, let me give you one.");
     DU.gameflags.setFlag("spellbook",1);
     PC.addSpell(SPELL_FLAME_BLADE_LEVEL, SPELL_FLAME_BLADE_ID);
@@ -327,6 +328,7 @@ function ContinueTutorial() {
     maintext.setInputLine("&gt;");
     gamestate.setMode("player-tutorial");
   } else if (targetCursor.tutorial === 27) {
+    DUPlaySound("sfx_crystal_use");
     maintext.addText("Another big one is (T)alk. This is how you'll progress through much of the game- getting information, a to-do list, buying, and selling.");
   } else if (targetCursor.tutorial === 28) {
     maintext.addText("If you are not on an overland map, hitting (T) will bring up a target cursor. It will let you choose anyone within 3 spaces of you to initiate a conversation with.");
@@ -431,9 +433,12 @@ function ContinueTutorial() {
     maintext.addText("Notice that as you move the selection box from one piece of gear to another, the details window at the bottom will show you what it does. This will let you compare the average damage of various weapons, for example, to decide which is the best to use.");
   } else if (targetCursor.tutorial === 71) {
     maintext.addText("Go ahead and equip the short sword.");
+    maintext.setInputLine("&gt;");
+    whoseturn.endTurn();
   } else if (targetCursor.tutorial === 73) {
     DUPlaySound("sfx_teleport");
     MoveBetweenMaps(PC,PC.getHomeMap(),maps.getMap("tutorial1"),8,9);
+    DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
   } else if (targetCursor.tutorial === 74) {
     maintext.addText("Congratulations, you've learned most of what you need to know to play through the game, now. I'll just briefly go over the last few commands we haven't touched on, and then you can go!");
   } else if (targetCursor.tutorial === 75) {
@@ -550,7 +555,8 @@ ais.tutorial = function(who) {
   } else if (targetCursor.tutorial === 63) {
     let combatmap = maps.getMap("combatTutorial");
     if (!combatmap.npcs.getAll().length) {
-      maintext.addText("Enemies you defeat will often drop chests. (Human enemies will often leave corpses- (S)earching the corpses will turn up loot.) To open a chest, (U)se it, and it will disappear and be replaced with all of its contents.");
+      DUPlaySound("sfx_crystal_use");
+      maintext.addText("<br />Enemies you defeat will often drop chests. (Human enemies will often leave corpses- (S)earching the corpses will turn up loot.) To open a chest, (U)se it, and it will disappear and be replaced with all of its contents.");
       targetCursor.tutorial = 64;
       maintext.setInputLine("&gt; [MORE]");
       gamestate.setMode("anykey");
@@ -562,18 +568,20 @@ ais.tutorial = function(who) {
     for (let i=0;i<stuff.length;i++) {
       if (stuff[i].getName() !== "PileOfRocks") { return retval; }
     }
+    DUPlaySound("sfx_crystal_use");
     if (PC.died) {
-      maintext.addText("Now let's talk character progression for a moment. If you had killed the orc, you would have noticed that you got XP (experience points) for killing it. You can also get XP for completing quests- it isn't all from violence. You start at level 1. You need 100 XP to reach level 2, and the required XP doubles each time you attain a level. The level cap is 8.");
+      maintext.addText("<br />Now let's talk character progression for a moment. If you had killed the orc, you would have noticed that you got XP (experience points) for killing it. You can also get XP for completing quests- it isn't all from violence. You start at level 1. You need 100 XP to reach level 2, and the required XP doubles each time you attain a level. The level cap is 8.");
     } else {
-      maintext.addText("Now let's talk character progression for a moment. For one thing, you'll have noticed that you got XP (experience points) for killing the orc. You can also get XP for completing quests- it isn't all from violence. You start at level 1. You need 100 XP to reach level 2, and the required XP doubles each time you attain a level. The level cap is 8.");
+      maintext.addText("<br />Now let's talk character progression for a moment. For one thing, you'll have noticed that you got XP (experience points) for killing the orc. You can also get XP for completing quests- it isn't all from violence. You start at level 1. You need 100 XP to reach level 2, and the required XP doubles each time you attain a level. The level cap is 8.");
     }
     targetCursor.tutorial = 67;
     maintext.setInputLine("&gt; [MORE]");
     gamestate.setMode("anykey");
     retval.wait = 1;
   } else if (targetCursor.tutorial === 72) {
-    if (PC.getEquipment("weapon") === "ShortSword") {
-      maintext.addText("Now that you have a better weapon equipped, let's bring you back to your house.");
+    if (PC.getEquipment("weapon").getName() === "Shortsword") {
+      DUPlaySound("sfx_crystal_use");
+      maintext.addText("<br />Now that you have a better weapon equipped, let's bring you back to your house. Note- normally, you will leave a combat map by either walking off the edge or, if there are no hostiles left, hitting ESC.");
       targetCursor.tutorial = 73;
       maintext.setInputLine("&gt; [MORE]");
       gamestate.setMode("anykey");
