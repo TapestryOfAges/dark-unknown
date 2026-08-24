@@ -1023,3 +1023,10 @@ function DoArchdaemon(who) {
     }
   }
 }
+
+function SharesSpace(who) {
+  let tile = who.getHomeMap().getTile(who.getx(),who.gety());
+  let npcs = tile.getNPCs();
+  if (npcs.length > 1) { return 1; }
+  return 0;
+}

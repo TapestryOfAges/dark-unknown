@@ -2366,7 +2366,7 @@ magic[SPELL_BLINK_LEVEL][SPELL_BLINK_ID].executeSpell = function(caster, infused
         let fea = tile.features.getAll();
         let vaultwalk = 0;
         for (let i=0;i<fea.length;i++) {
-          if (fea.getName().includes("VaultWalk")) { vaultwalk = 1; }
+          if (fea[i].getName().includes("VaultWalk")) { vaultwalk = 1; }
         }
         if (!vaultwalk) {
           let movetype = MOVE_WALK;

@@ -70,6 +70,7 @@ function AnimateEffect(param) {
   param.duration = parseInt(param.duration);
 
   if (param.type === "melee") { FinishFirstAnimation(param); }
+  else if (param.atk.getHomeMap() !== PC.getHomeMap()) { FinishFirstAnimation(param); }
   else {
 //    let tablehtml = '<div id="'+animid+'" style="position: absolute; left: ' + ammocoords.fromx + 'px; top: ' + ammocoords.fromy + 'px; background-image:url(\'graphics/' + param.ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + param.ammographic.xoffset + 'px ' + param.ammographic.yoffset + 'px; transition: left '+param.duration+'ms linear 0s, top '+param.duration+'ms linear 0s;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
 //    let tablehtml = '<div id="'+animid+'" style="position: absolute; left: ' + ammocoords.fromx + 'px; top: ' + ammocoords.fromy + 'px; background-image:url(\'graphics/' + param.ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + param.ammographic.xoffset + 'px ' + param.ammographic.yoffset + 'px; transition: transform '+param.duration+'ms linear 0s;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
@@ -124,22 +125,26 @@ function FinishFirstAnimation(p) {
   hitanimnode.style.backgroundRepeat = "no-repeat";
   hitanimnode.style.backgroundPosition = `${p.destgraphic.xoffset}px ${p.destgraphic.yoffset}px`;
 
-//  document.getElementById('combateffects').innerHTML += hitanimhtml;
-  document.getElementById('combateffects').appendChild(hitanimnode);
-  if (p.sounds["end"]) {
-    DUPlaySound(p.sounds["end"]);
-  }
-  setTimeout(function() {
-    animdiv = document.getElementById(p.animid);
-    if (animdiv && (animdiv.parentNode)) {
-      animdiv.parentNode.removeChild(animdiv);
+  if (p.atk.getHomeMap() !== PC.getHomeMap()) {
+    FinishAnimation(p); 
+  } else {
+    //  document.getElementById('combateffects').innerHTML += hitanimhtml;
+    document.getElementById('combateffects').appendChild(hitanimnode);
+    if (p.sounds["end"]) {
+      DUPlaySound(p.sounds["end"]);
     }
-    if ((p.type !== "missile") || (!p.ammoreturn)) {
-      FinishAnimation(p);
-    } else {
+    setTimeout(function() {
+      animdiv = document.getElementById(p.animid);
+      if (animdiv && (animdiv.parentNode)) {
+        animdiv.parentNode.removeChild(animdiv);
+      }
+      if ((p.type !== "missile") || (!p.ammoreturn)) {
+        FinishAnimation(p);
+      } else {
 
-    }
-  }, 400);
+      }
+    }, 400);
+  }
 }
 
 function FinishAnimation(param) {

@@ -779,6 +779,10 @@ OnConvTriggers["met_prince"] = function(speaker,keyword) {
   DU.gameflags.setFlag("knows_lance",1);
 }
 
+OnConvTriggers["knows_olivia"] = function(speaker,keyword) {
+  DU.gameflags.setFlag("knows_olivia_naurglen",1);
+}
+
 OnConvTriggers["clear_gem_flags"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("clear_gem_flags");
   if (DU.gameflags.getFlag("cut_ruby")) {

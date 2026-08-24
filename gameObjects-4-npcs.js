@@ -1622,7 +1622,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
         let walkonval = entertiles[i].executeWalkons(this);
         if (walkonval.overridedraw) { overridedraw = 1; }
 		    if (walkonval.msg) {
-  		    if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
+  		    if (retval["msg"]) { retval["msg"] += "<br />"; }
           retval["msg"] += walkonval.msg;
         }
         if (walkonval.override) { override = walkonval.override; }

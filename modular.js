@@ -500,11 +500,12 @@ OnDeathFuncs["cleanFields"] = function(who) {
   let npcs = mymap.npcs.getAll();
   let asharden;
   for (let i=0;i<npcs.length;i++) {
-    if (((npcs[i].getName() === "LesserEphemeralSpiritNPC") || (npcs[i].getName() === "GreaterEphemeralSpiritNPC")) && (npcs[i] !== who)) { count++; }
+    if (npcs[i].getName().includes("EphemeralSpirit") && (npcs[i] !== who)) { console.log("Count+1"); count++; }
     if (npcs[i].getNPCName() === "Asharden") { asharden = npcs[i]; }
   }
   if (!count) {
     maintext.addText("The strange magic fades away... and with it, the detritus of the fight.");
+    maintext.drawTextFrame();
     let feas = mymap.features.getAll();
     for (let i=0;i<feas.length;i++) {
       if ((feas[i].getName() === "SleepField") || (feas[i].getName() === "PoisonField") || (feas[i].getName() === "EnergyField")) {
@@ -514,9 +515,14 @@ OnDeathFuncs["cleanFields"] = function(who) {
         DUTime.removeEntityFrom(feas[i]);
       }
     }
-    PC.forcedTalk = asharden;
+    if (PC.getHomeMap() === mymap) {
+      PC.forcedTalk = asharden;
+      ProcessAmbientNoise(mymap.getTile(PC.getx(),PC.gety()));
+    }
     asharden.setConversation("asharden_gate");
-    DU.gameflags.setFlag("ephemeradefeated");
+    asharden.setAggro(0);
+    DU.gameflags.setFlag("ephemeradefeated",1);
+    DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
   }
 }
 

@@ -688,6 +688,65 @@ ais.AshardenGate = function(who) {
   let retval = {};
   retval["fin"] = 1;
   let mymap = who.getHomeMap();
+  if (DU.gameflags.getFlag("ephemeradefeated") && !DU.gameflags.getFlag("planarkey")) {
+    if (PC.getHomeMap() === mymap) { PC.forcedTalk = who; }
+    return retval;
+  }
+  if (DU.gameflags.getFlag("planarkey")) {
+    if (who.flags.sleep) { return retval; }  // he's napping after the exertion
+    if (mymap.getName() === "asharden2") {
+      if (who.openeddoor) {
+        if (who.gety() === 18) {
+          let door = mymap.getTile(25,17).getTopFeature();
+          if (door.open) {
+            door.use(who);
+            if (PC.getHomeMap() === mymap) {
+              DUCamera.DrawOne(mymap,25,17);
+            }
+          }
+          delete who.openeddoor;
+        } else { StepOrSidestep(who,[25,who.gety()+1],[25,18]); }
+      } else if ((who.getx() === 25) && (who.gety() === 16)) {
+        let door = mymap.getTile(25,17).getTopFeature();
+        if (door.open) { who.openeddoor = 1; }
+        else { 
+          door.use(who); 
+          who.openeddoor = 1; 
+          if (PC.getHomeMap() === mymap) {
+            DUCamera.DrawOne(mymap,25,17);
+          }
+        }
+      } else if ((who.gety() > 17) && (who.getx() < 27)) { // in the bedroom
+        if ((who.getx() === 21) && (who.gety() === 20)) {
+          who.flags.sleep = 1;
+        } else {
+          let path = mymap.getPath(who.getx(), who.gety(), 21, 20, MOVE_WALK_DOOR);
+          path.shift();
+          if (path[0]) {
+            StepOrSidestep(who,path[0],[21,20]);
+          }          
+        }
+      } else { 
+        let path = mymap.getPath(who.getx(), who.gety(), 25, 16, MOVE_WALK_DOOR);
+        path.shift();
+        if (path[0]) {
+          StepOrSidestep(who,path[0],[25,16]);
+        }  
+      }
+    } else { // on floor 3
+      if ((who.getx() === 21) && (who.gety() === 15)) {
+        let ash2 = maps.getMap("asharden2");
+        MoveBetweenMaps(who,mymap,ash2,21,15);
+      } else {
+        let path = mymap.getPath(who.getx(), who.gety(), 21, 15, MOVE_WALK_DOOR);
+        path.shift();
+        if (path[0]) {
+          StepOrSidestep(who,path[0],[21,15]);
+        }  
+      }
+    }
+    return retval;
+  }
   if (mymap.getName() === "asharden1") {
     if ((who.getx() === 29) && (who.gety() === 20)) {
       let ash2 = maps.getMap("asharden2");
@@ -720,7 +779,7 @@ ais.AshardenGate = function(who) {
         if (who.getHomeMap() === PC.getHomeMap()) {
           // PC has talked to him, he will go open the gate
           if (((who.getx() === 26) && (who.gety() === 18)) || ((who.getx() === 27) && (who.gety() === 17))) {
-            if (targetCursor.event = "PlanarGate") {
+            if (targetCursor.event === "PlanarGate") {
               // letting things narrate
             } else {
               gamestate.setMode("anykey");
@@ -729,6 +788,8 @@ ais.AshardenGate = function(who) {
               maintext.addText("Asharden steps close to the gate and raises the small box. His face takes on an expression of intense concentration.");
               maintext.setInputLine("&gt; [MORE]");
               maintext.drawTextFrame();
+              retval["wait"] = 1;
+              return retval;
             }
           } else {
             let thing = mymap.getTile(26,18).getTopPC();
@@ -772,25 +833,38 @@ ais.AshardenGate = function(who) {
           mymap.deleteThing(gate);
           gate = localFactory.createTile("PlanarGateInactive");
           mymap.placeThing(27,18,gate);
+          DU.gameflags.setFlag("planargate",1);
+          if (PC.getHomeMap() === mymap) {
+            DUCamera.DrawOne(mymap,27,18);
+          }
+
+          if ((PC.getx() >= 13) && (PC.getx() <= 34) && (PC.gety() >= 14) && (PC.gety() <= 20)) {
+            // Yes, this should be audible from downstairs, but not outside the tower
+            maintext.addText('Asharden cries out, "It is finished!"');
+          }
           return retval;
         }
       } else if (hours >= 12) {
         if (gate.spritexoffset === 0) {
-          gate.spritexoffset += 32;
+          gate.spritexoffset -= 32;
+          if (PC.getHomeMap() === mymap) {
+            DUCamera.DrawOne(mymap,27,18);
+          }
           return retval;
         }
       } else if (hours >= 6) {
         if (!gate || (gate.getName() !== "PlanarGateIncomplete")) {
           if (gate) {
-            mymap.moveThing(27,17,gate);
+            // This... shouldn't happen?
+            console.log("Had to move the gate.");
+            mymap.moveThing(27,18,gate);
           }
-          gate = localFactory.createTile("PlanarGateIncomplate");
-          mymap.placeThing(26,18,gate);
-          DU.gameflags.setFlag("planargate",1);
-          if ((PC.getx() >= 13) && (PC.getx() <= 34) && (PC.gety() >= 14) && (PC.gety() <= 20)) {
-            // Yes, this should be audible from downstairs, but not outside the tower
-            maintext.addText('Asharden cries out, "It is finished!"');
+          gate = localFactory.createTile("PlanarGateIncomplete");
+          mymap.placeThing(27,18,gate);
+          if (PC.getHomeMap() === mymap) {
+            DUCamera.DrawOne(mymap,27,18);
           }
+          
           return retval;
         }
       }
@@ -1360,7 +1434,6 @@ ais.Borogard = function(who) {
   let retval = {};
   retval["fin"] = 1;
   if (IsObjectVisibleOnScreen(who)) {
-    console.log("Visible!");
     PC.forcedTalk = who;
     who.currentAI = "seekPC-10";
     who.peaceAI = "seekPC-10";
@@ -2995,7 +3068,8 @@ ais.ai_blink = function(who) {
 
   
   if ((who.getx() !== startx) || (who.gety() !== starty)) {
-    if (who.specials.spawnFields) {
+    if (who.specials.spawnfields) {
+      console.log("Blinked and should spawn a field where I was.");
       let tfea = who.getHomeMap().getTile(startx,starty).getTopFeature();
       if (!tfea) {
         let roll = Dice.roll("1d10");
@@ -3007,13 +3081,16 @@ ais.ai_blink = function(who) {
         let newfield = localFactory.createTile(fieldtype);
         newfield.spawnedBy = who;
         who.getHomeMap().placeThing(startx,starty,newfield);
+        if (who.getHomeMap() === PC.getHomeMap()) {
+          DUCamera.DrawOne(who.getHomeMap(),startx,starty);
+        }
       }
     }
     return "special";
   } 
 }
 
-ais.ai_tranpose = function(who) {
+ais.ai_transpose = function(who) {
   console.log("AI transpose");
   let npclist = [];
   let mymap = who.getHomeMap();
@@ -3022,7 +3099,9 @@ ais.ai_tranpose = function(who) {
   for (let i=0;i<npcs.length;i++) {
     if (npcs[i] !== who) { 
       if ((GetDistance(npcs[i].getx(),npcs[i].gety(),who.getx(),who.gety()) <= 5) && (mymap.getLOS(who.getx(),who.gety(),npcs[i].getx(),npcs[i].gety()) < LOS_THRESHOLD)) {  
-        npclist.push(npcs[i]); 
+        if (!SharesSpace(who)) {
+          npclist.push(npcs[i]); 
+        }   
       }
     }
   }
@@ -3038,15 +3117,18 @@ ais.ai_tranpose = function(who) {
     ShowEffect(npclist[0], 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
     ShowEffect(npclist[1], 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
 
+    let whodesc = who.getFullDesc();
+    whodesc = whodesc.charAt(0).toUpperCase() + whodesc.slice(1);
     if ((npclist[0] === PC) || (npclist[1] === PC)) {
       let other = npclist[0];
       if (other === PC) { other = npclist[1]; }
-      maintext.addText(who.getLongDesc() + " pulses strangely and you and " + other.getLongDesc() + " exchange positions!");
+      maintext.addText(whodesc + " pulses strangely and you and " + other.getFullDesc() + " exchange positions!");
     } else {
       if ((PC.getHomeMap() === mymap) && IsObjectVisibleOnScreen(who)) {
-        maintext.addText(who.getLongDesc() + " pulses strangely and " + npclist[0].getLongDesc() + " and " + npclist[1].getLongDesc() + " exchange positions!");
+        maintext.addText(whodesc + " pulses strangely and " + npclist[0].getFullDesc() + " and " + npclist[1].getFullDesc() + " exchange positions!");
       }
     }
+    DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
     return "special";
   }
 }
@@ -3488,8 +3570,8 @@ ais.ai_lbolt = function(who) {
   bolt = GetEffectGraphic(who,tgt,bolt);
   let dmg;
   if (who.getLevel() <= 3) { dmg = Dice.roll("2d8+8"); }
-  else if (who.getLevel() <= 5) { dmg = Dice.roll("4d8+14"); }
-  else { dmg = Dice.roll("4d8+26"); }
+  else if (who.getLevel() <= 5) { dmg = Dice.roll("4d8+8"); }
+  else { dmg = Dice.roll("4d8+16"); }
   let atkhit = 1;
   if (Dice.roll("1d45") < PC.getDex()) { atkhit = 0; }
   let destgraphic = {};
@@ -3548,7 +3630,7 @@ ais.ai_energybolt = function(who) {
   if (atkhit) {
     if (tgt === PC) {
       maintext.addText("The " + who.getDesc() + " launches a bolt of energy. You are struck!");
-    } else {
+    } else if (tgt.getHomeMap() === PC.getHomeMap()) {
       let tgtdesc = tgt.getFullDesc();
       tgtdesc = tgtdesc.charAt(0).toUpperCase() + tgtdesc.slice(1);
       maintext.addText("The " + who.getDesc() + " launches a bolt of energy. " + tgtdesc + " is struck!");
@@ -3557,7 +3639,7 @@ ais.ai_energybolt = function(who) {
   } else {
     if (tgt === PC) {
       maintext.addText("The " + who.getDesc() + " launches a bolt of energy. You resist!");
-    } else {
+    } else if (tgt.getHomeMap() === PC.getHomeMap()) {
       let tgtdesc = tgt.getFullDesc();
       tgtdesc = tgtdesc.charAt(0).toUpperCase() + tgtdesc.slice(1);
       maintext.addText("The " + who.getDesc() + " launches a bolt of energy. " + tgtdesc + " resists!");
@@ -3799,6 +3881,7 @@ function FindMissileTarget(who,radius) {
 }
 
 ais.ghostie = function(who) {
+  let themap = who.getHomeMap();
   if ((GetSquareDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) <= 3) && !DU.gameflags.getFlag("knows_lysander")) {
     PC.forcedTalk = who;
   } else if (!DU.gameflags.getFlag("knows_lysander")) {
@@ -3814,27 +3897,28 @@ ais.ghostie = function(who) {
       let path = themap.getPath(who.getx(),who.gety(),PC.getx(),PC.gety(),MOVE_WALK);
       if (path.length) {
         path.shift();
-        StepOrSidestep(who,path[0],[nearby.getx(),nearby.gety()]);
+        StepOrSidestep(who,path[0],[PC.getx(),PC.gety()]);
       }
     }
     let skeleton,hole;
-    let fea = who.getHomeMap().features.getAll();
+    let fea = themap.features.getAll();
     for (let i=0;i<fea.length;i++) {
       if (fea[i].getName() === "OpenGrave") { hole = fea[i]; }
       else if (fea[i].getName() === "SkeletonUnburied") { skeleton = fea[i]; }
-      if (hole && skeleton && (skeleton.getx() === hole.getx()) && (skeleton.gety() === hole.gety()) && ((PC.getx() !== hole.getx()) || (PC.gety() !== hole.gety()))) {
-        maintext.addText(`The ghost's faltering voice cries out, "Ah! It is almost done."`);
-        maintext.setInputLine("&gt; [MORE]");
-        let retval = {};
-        retval['fin'] = 1;
-        retval["wait"] = 1;
-        gamestate.setMode("anykey");
-        targetCursor.command = "ghost";
-        targetCursor.frame = 1;
-        targetCursor.x = hole.x;
-        targetCursor.y = hole.y;
-        return retval;
-      }
+    }
+    if (hole && skeleton && (skeleton.getx() === hole.getx()) && (skeleton.gety() === hole.gety()) && ((PC.getx() !== hole.getx()) || (PC.gety() !== hole.gety()))) {
+      maintext.addText(`The ghost's faltering voice cries out, "Ah! It is almost done."`);
+      maintext.setInputLine("&gt; [MORE]");
+      maintext.drawTextFrame();
+      let retval = {};
+      retval['fin'] = 1;
+      retval["wait"] = 1;
+      gamestate.setMode("anykey");
+      targetCursor.command = "ghost";
+      targetCursor.frame = 1;
+      targetCursor.x = hole.x;
+      targetCursor.y = hole.y;
+      return retval;
     }
   }
   return {fin:1}

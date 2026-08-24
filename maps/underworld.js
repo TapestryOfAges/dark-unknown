@@ -1209,7 +1209,7 @@ mappages["endgame2"].npcs[3] = {name : 'QueenNPC', x : 7, y : 4, skintone: 1, wo
 mappages["endgame2"].npcs[4] = {name : 'PrinceNPC', x : 8, y : 6, NPCBand: '0', skintone: 1, wornlayers: '{"body":"PlateKnight","head":"PrinceHead","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBlackPale"}'};
 mappages["endgame2"].npcs[5] = {name : 'RangerVillagerNPC', x : 9, y : 5, NPCName: 'Rhys', Gender: 'monster', NPCBand: '0', skintone: 2, wornlayers: '{"body":"LeatherArmor","head":"ShortBlackDark","back":"Quiver","offhand":"OffhandDark","cloak":"","mainhand":"BowDark","realhead":"ShortBlackDark"}'};
 mappages["endgame2"].npcs[6] = {name : 'FighterVillagerNPC', x : 3, y : 5, NPCName: 'Nyrani', Desc: 'guard captain', Gender: 'monster', NPCBand: '0', skintone: 1, wornlayers: '{"body":"Plate2","head":"ShortBrownPale","back":"","offhand":"RoundShield","cloak":"","mainhand":"LongswordPale","realhead":"ShortBrownPale"}'};
-mappages["endgame2"].npcs[7] = {name : 'MageVillagerNPC', x : 4, y : 7, NPCName: 'Jharden', Desc: 'royal advisor', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueRobePlain","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"QuarterstaffPale","realhead":"ShortBrownPale"}'};
+mappages["endgame2"].npcs[7] = {name : 'WizardVillagerNPC', x : 4, y : 7, NPCName: 'Jharden', Desc: 'royal advisor', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"BlueRobePlain","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"QuarterstaffPale","realhead":"ShortBrownPale"}'};
 
 mappages["endgame2"].desc = "Castle dea Yggdras";
 mappages["endgame2"].longdesc = ``;

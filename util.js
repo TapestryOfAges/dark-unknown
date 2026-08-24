@@ -41,11 +41,10 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
     }
   }
 
-  // PlaceThing also has an "Enter" check, so this was running twice
-  // if (typeof tomap.Enter === "function") {
-  //   tomap.Enter(who,frommap,oldx,oldy,destx,desty);
+  if (typeof tomap.Enter === "function") {
+    tomap.Enter(who,frommap,oldx,oldy,destx,desty);
     
-  // }
+  }
 
   
   // determine time scale for this move
@@ -68,7 +67,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
 	// remove entity from current map
 	frommap.deleteThing(who);
 	// also delete any NPCs following PC (summoned demons) FIXTHIS
-  tomap.placeThing(destx,desty,who,0,"noactivate");
+  tomap.placeThing(destx,desty,who,0,"noactivate","noEnter");
 //	who.setHomeMap(tomap);
 	let tile = tomap.getTile(destx,desty);
   let oldtile = frommap.getTile(oldx,oldy);

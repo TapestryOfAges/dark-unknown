@@ -1,3 +1,12 @@
+
+v 0.11.6
+ * Created a quest for the "bury the dead" sidequest
+ * Improved the quest flow for Blanche's stolen goods
+ * If you run into Olivia in Naurglen, she had no dialog- Fixed
+ * Asharden now reminds you to come visit again later so he can teach you more spells
+ * Combat animations no longer play if you aren't on the same map as them
+ * Sometimes your spell initials would not update if a friendly NPC cast a spell on you
+
 v 0.11.5
  * Fixed editor bug with toggling whether automap is allowed on any given map
  * Scripted construction of the Planar Gate
@@ -14,9 +23,9 @@ v 0.11.5
 v 0.11.4
  * Fixed bug with the conversation help (hitting ? to get reminded of keywords you haven't responded to yet)
  * Fixed bug introduced when I changed the method of preventing monsters from getting too close to towns
- * Robert didn't have all of the required merchant dialog
+ * Robert didn't have all of the required merchant dialog, fixed
  * Ghost Inn no longer forgets where you entered from if you save/reload
- * Guard patrols and the Courier are except from being kept away from towns
+ * Guard patrols and the Courier are exempt from being kept away from towns
  * Robber enemy groups can no longer spawn very close to Onyx
  * Magic map no longer sees things you don't
  * Fixed some bugs with the magic map when you transition into Act 2

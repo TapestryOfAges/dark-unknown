@@ -3874,6 +3874,9 @@ function InAFireField(who, field) {
   let tmpdmg = prepareSpellDamage(field,who,"2d6+3","fire");
   let dmg = (1/SCALE_TIME)*(DUTime.getGameClock() - who.getLastTurnTime()) * tmpdmg.dmg;
   let response = {msg:"The fire field burns you!"};
+  if (who !== PC) {
+    response["msg"] = ""; 
+  }
   let resist = who.getResist("magic");
   resist = 1-(resist/100);
   dmg = dmg*resist*mult;
@@ -11621,8 +11624,8 @@ function OpenGraveTile() {
   //Graphics Upgraded
   this.name = "OpenGrave";
   this.graphic = "static.gif";
-  this.spritexoffset = -5*32;
-  this.spriteyoffset = -110*32;
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -180*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "an";
   this.desc = "open grave";
@@ -13537,7 +13540,7 @@ function SpectralShovelTile() {
 SpectralShovelTile.prototype = new ItemObject();
 
 SpectralShovelTile.prototype.use = function(who) {
-  if (who.getHomeMap() !== "northlostcave") { alert("How do you have this?"); }
+  if (who.getHomeMap().getName() !== "northlostcave") { alert("How do you have this?"); }
   gamestate.setMode("choosedir");
   let retval={};
   retval["override"] = 1;
@@ -13567,6 +13570,7 @@ SpectralShovelTile.prototype.dig = function(who) {
         npcs[i].grave = 1;
       }
     }
+    DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
   } else {
     retval["txt"] = "The ground is too hard to dig there."
   }
@@ -15238,7 +15242,7 @@ function XoriccoRecipeTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "recipe";
   this.prefix = "a";
-  this.contents = "You read the recipe:%%Insert recipe here.";  // WORKING HERE- Need a recipe
+  this.contents = "You read a recipe for chili.%%It looks very tasty.";  
   this.longdesc = "Evidently, this is Sorceress Xoricco's recipe for chili.";
 }
 XoriccoRecipeTile.prototype = new BookItemObject();
@@ -15526,7 +15530,7 @@ function ArcheoJournalTile() {
   this.desc = "journal";
   this.prefix = "a";
   this.contents = "You open the journal.%%<span class='conv'>Crossed to the small island at a time when the sea serpent was asleep. We investigated the strange crevasse leading deep into the earth, and returned with a ladder to allow us to explore below.</span>%%<span class='conv'>Below, what we found was astonishing. Buildings- a small outpost, it seemed- that look to be thousands of years old. They may predate the existence of humans! What could have built such a thing?</span>%%<span class='conv'>We need to bring more people and more gear back to look into this further. We are getting ready to cross the water. I think the serpent is asleep again.</span>";
-  this.longdesc = "A small journal found in a cave.";
+  this.longdesc = "A small journal found in a cave on an island.";
 }
 ArcheoJournalTile.prototype = new BookItemObject();
 

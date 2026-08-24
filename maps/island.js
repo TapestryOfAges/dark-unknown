@@ -402,7 +402,7 @@ mappages["island_cave"].lightLevel = 'dark';
 mappages["island_cave"].alwaysRemember = '0';
 mappages["island_cave"].scale = '1';
 mappages["island_cave"].underground = '1';
-mappages["island_cave"].undergroundDesc = '';
+mappages["island_cave"].undergroundDesc = 'Narrow Cave';
 mappages["island_cave"].enterscript = '';
 mappages["island_cave"].entertestscript = '';
 mappages["island_cave"].exitscript = '';
@@ -1857,7 +1857,7 @@ mappages["northlostcave"].terrain[40] = 'BK BK BK BK BK BK BK BK cw cf cf cf cw 
 mappages["northlostcave"].terrain[41] = 'BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 
 mappages["northlostcave"].features = [];
-mappages["northlostcave"].features[0] = {name : 'SkeletonDecoration', x : 31, y : 18};
+mappages["northlostcave"].features[0] = {name : 'SkeletonUnburied', x : 31, y : 18};
 mappages["northlostcave"].features[1] = {name : 'Tombstone', x : 33, y : 24};
 mappages["northlostcave"].features[2] = {name : 'PileOfRocks', x : 33, y : 23};
 
@@ -1866,11 +1866,8 @@ mappages["northlostcave"].npcs = [];
 mappages["northlostcave"].npcs[0] = {name : 'SkeletonNPC', x : 13, y : 26, skintone: 1};
 mappages["northlostcave"].npcs[1] = {name : 'SkeletonNPC', x : 15, y : 27, skintone: 1};
 mappages["northlostcave"].npcs[2] = {name : 'SkeletonNPC', x : 17, y : 25, skintone: 1};
-mappages["northlostcave"].npcs[3] = {name : 'SkeletonNPC', x : 25, y : 30, skintone: 1};
-mappages["northlostcave"].npcs[4] = {name : 'SkeletonNPC', x : 33, y : 26, skintone: 1};
-mappages["northlostcave"].npcs[5] = {name : 'SkeletonNPC', x : 29, y : 23, skintone: 1};
-mappages["northlostcave"].npcs[6] = {name : 'GhostNPC', x : 29, y : 17, NPCName: 'Lysander', dex: 30, Attitude: 'friendly', Conversation: 'lysander', Gender: 'male', Leash: 2, NPCBand: '0', skintone: 1};
-mappages["northlostcave"].npcs[7] = {name : 'PhantomNPC', x : 21, y : 28, skintone: 1};
+mappages["northlostcave"].npcs[3] = {name : 'GhostNPC', x : 29, y : 17, NPCName: 'Lysander', dex: 30, Attitude: 'friendly', PeaceAI: 'ghostie', PCThreatAI: '', Conversation: 'lysander', Gender: 'male', Leash: 2, NPCBand: '0', skintone: 1};
+mappages["northlostcave"].npcs[4] = {name : 'PhantomNPC', x : 18, y : 28, skintone: 1};
 
 mappages["northlostcave"].transover = '{"32,21":[["","",null,null],["static.gif","spacer.gif",0,-128],["TerrainBlend.gif","spacer.gif",0,-576]],"31,21":[["","",null,null],["static.gif","spacer.gif",-32,-128],["TerrainBlend.gif","spacer.gif",-128,-576]],"31,22":[["","",null,null],["static.gif","spacer.gif",-32,-96],["TerrainBlend.gif","spacer.gif",-64,-576]],"31,23":[["","",null,null],["static.gif","spacer.gif",0,-96],["TerrainBlend.gif","spacer.gif",-64,-576]],"32,23":[["","",null,null],["static.gif","spacer.gif",-32,-128],["TerrainBlend.gif","spacer.gif",-96,-576]],"31,24":[["","",null,null],["static.gif","spacer.gif",-32,-96],["TerrainBlend.gif","spacer.gif",-192,-576]],"33,24":[["","",null,null],["static.gif","spacer.gif",0,-96],["TerrainBlend.gif","spacer.gif",-160,-576]],"34,25":[["","",null,null],["static.gif","spacer.gif",0,-128],["TerrainBlend.gif","spacer.gif",0,-576]],"32,25":[["","",null,null],["static.gif","spacer.gif",-32,-96],["TerrainBlend.gif","spacer.gif",-64,-576]],"32,26":[["","",null,null],["static.gif","spacer.gif",-32,-128],["TerrainBlend.gif","spacer.gif",-192,-576]],"33,27":[["","",null,null],["static.gif","spacer.gif",0,-96],["TerrainBlend.gif","spacer.gif",-64,-576]],"33,28":[["","",null,null],["static.gif","spacer.gif",0,-128],["TerrainBlend.gif","spacer.gif",-64,-576]]}';
 
@@ -1892,7 +1889,7 @@ mappages["northlostcave"].underground = '1';
 mappages["northlostcave"].undergroundDesc = 'Small Cave';
 mappages["northlostcave"].enterscript = '';
 mappages["northlostcave"].entertestscript = '';
-mappages["northlostcave"].exitscript = '';
+mappages["northlostcave"].exitscript = 'nlc_exit';
 mappages["northlostcave"].exittestscript = '';
 mappages["northlostcave"].returnmap = 'island';
 mappages["northlostcave"].returnx = '13';
@@ -1936,7 +1933,7 @@ mappages["northlostcave"].onload = function(mapref) {
 
 mappages["northlostcave"].nlc_exit = function(mapref) {
   mapref.Exit = function(who,tomap,oldx,oldy,destx,desty) {
-    shovel = PC.checkInventory("SpectralShovel");
+    let shovel = PC.checkInventory("SpectralShovel");
     if (shovel) {
       PC.removeFromInventory(shovel);
       if (tomap.getName() !== "landsbeyond") {

@@ -5443,6 +5443,16 @@ tileFactory.prototype.makeMageVillagerNPCTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWizardVillagerNPCTile = function() {
+  let newTile = new WizardVillagerNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeArchmageVillagerNPCTile = function() {
+  let newTile = new ArchmageVillagerNPCTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeTinkerVillagerNPCTile = function() {
   let newTile = new TinkerVillagerNPCTile();
   return newTile;
@@ -5698,6 +5708,11 @@ tileFactory.prototype.makeHandlerNPCTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeLesserEphemeralSpiritNPCTile = function() {
+  let newTile = new LesserEphemeralSpiritNPCTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeMimicNPCTile = function() {
   let newTile = new MimicNPCTile();
   return newTile;
@@ -5783,11 +5798,6 @@ tileFactory.prototype.makeFireSnakeNPCTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeLesserEphemeralSpiritNPCTile = function() {
-  let newTile = new LesserEphemeralSpiritNPCTile();
-  return newTile;
-}
-
 tileFactory.prototype.makeLurkerNPCTile = function() {
   let newTile = new LurkerNPCTile();
   return newTile;
@@ -5850,6 +5860,11 @@ tileFactory.prototype.makeCultistNPCTile = function() {
 
 tileFactory.prototype.makeEvilEyeNPCTile = function() {
   let newTile = new EvilEyeNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGreaterEphemeralSpiritNPCTile = function() {
+  let newTile = new GreaterEphemeralSpiritNPCTile();
   return newTile;
 }
 
@@ -5920,11 +5935,6 @@ tileFactory.prototype.makeEttinSorcererNPCTile = function() {
 
 tileFactory.prototype.makeGiantNPCTile = function() {
   let newTile = new GiantNPCTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeGreaterEphemeralSpiritNPCTile = function() {
-  let newTile = new GreaterEphemeralSpiritNPCTile();
   return newTile;
 }
 

@@ -370,7 +370,7 @@ function DoAction(code, ctrl) {
         DUPlaySound("sfx_portal_opens");
         maintext.addText("The space inside the frame fills with light as the portal opens!");
         targetCursor.frame = 2;
-        let gate = localFactory.createTile("PlanarGate");
+        let gate = localFactory.createTile("PlanarGateActive");
         mymap.placeThing(27,18,gate);
         if (PC.getHomeMap() === mymap) {
           DUCamera.DrawOne(mymap,27,18);
@@ -382,23 +382,20 @@ function DoAction(code, ctrl) {
       } else if (targetCursor.frame === 3) {
         maintext.addText("Before he can close the portal, something alien and strange comes through!");
         targetCursor.frame = 4;
-        let beast = localFactory.createTile("LesserEphemeralSpirit");
+        let beast = localFactory.createTile("LesserEphemeralSpiritNPC");
         mymap.placeThing(27,18,beast);
-        beast.activate();
-        beast = localFactory.createTile("LesserEphemeralSpirit");
-        mymap.placeThing(27,18,beast);
-        beast.activate();
-        beast = localFactory.createTile("LesserEphemeralSpirit");
-        mymap.placeThing(27,18,beast);
-        beast.activate();
-        beast = localFactory.createTile("GreaterEphemeralSpirit");
-        mymap.placeThing(27,18,beast);
-        beast.activate();
-        beast = localFactory.createTile("GreaterEphemeralSpirit");
-        mymap.placeThing(27,18,beast);
-        beast.activate();
+        let beast2 = localFactory.createTile("LesserEphemeralSpiritNPC");
+        mymap.placeThing(27,18,beast2);
+        let beast3 = localFactory.createTile("LesserEphemeralSpiritNPC");
+        mymap.placeThing(27,18,beast3);
+        let beast4 = localFactory.createTile("GreaterEphemeralSpiritNPC");
+        mymap.placeThing(27,18,beast4);
+        let beast5 = localFactory.createTile("GreaterEphemeralSpiritNPC");
+        mymap.placeThing(27,18,beast5);
       } else if (targetCursor.frame === 4) {
         maintext.addText("The portal slams closed, and Asharden immediately blinks to the other side of the room.");
+        maintext.setInputLine("&gt;");
+        maintext.drawTextFrame();
         let gate = mymap.getTile(27,18).getTopFeature();
         mymap.deleteThing(gate)
         let asharden;
@@ -406,7 +403,23 @@ function DoAction(code, ctrl) {
         for (let i=0;i<npcs.length;i++) {
           if (npcs[i].getNPCName() === "Asharden") { asharden = npcs[i]; }
         }
-        magic[SPELL_BLINK_LEVEL][SPELL_BLINK_ID].executeSpell(asharden,0,1);
+        let desttile = mymap.getTile(23,16);
+        if (!desttile.getTopNPC()) {
+          mymap.moveThing(23,16,asharden);
+        } else {
+          let desttile2 = mymap.getTile(24,16);
+          if (!desttile2.getTopNPC()) {
+            mymap.moveThing(23,16,asharden);
+          } else {
+            magic[SPELL_BLINK_LEVEL][SPELL_BLINK_ID].executeSpell(asharden,0,1);
+          }
+        }
+        asharden.setAggro(1);
+        DUPlaySound("sfx_teleport");
+        DUCamera.Draw(mymap,PC.getx(),PC.gety(),PC);
+        asharden.setHP(10000);
+        asharden.setMaxHP(10000);
+        asharden.setMana(100);
         asharden.endTurn();
         delete targetCursor.frame;
         delete targetCursor.event;
@@ -481,6 +494,10 @@ function DoAction(code, ctrl) {
         let fea = PC.getHomeMap().features.getAll();
         for (let i=0;i<fea.length;i++) {
           if (fea[i].getName() === "OpenGrave") {
+            let gravesite = `${fea[i].getx()},${fea[i].gety()}`;
+            DU.gameflags.setFlag("ghost_rest", gravesite);
+            PC.getHomeMap().deleteThing(fea[i]);
+          } else if (fea[i].getName() === "SkeletonUnburied") {
             PC.getHomeMap().deleteThing(fea[i]);
           }
         }
@@ -497,7 +514,7 @@ function DoAction(code, ctrl) {
         }
         let gstone = localFactory.createTile("Tombstone");
         PC.getHomeMap().placeThing(targetCursor.x,targetCursor.y-1,gstone);
-        DUCamera.DrawOne(PC.getHomeMap(),targetCursor.x,targetCursor.y-1);
+        DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
         //DrawMainFrame("one",PC.getHomeMap(),targetCursor.x,targetCursor.y-1);
         ShowEffect(gstone, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
         targetCursor.frame++;
@@ -510,10 +527,13 @@ function DoAction(code, ctrl) {
             DUTime.removeEntityFrom(npcs[i]);
           }
         }
+        DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
         delete targetCursor.frame;
         delete targetCursor.x;
         delete targetCursor.y;
         delete targetCursor.command;
+        questlog.complete(115);
+        PC.diffKarma(1);
         gamestate.setMode("null");
         setTimeout(function() { startScheduler(); }, 5 );
       }
@@ -1492,6 +1512,26 @@ function DoAction(code, ctrl) {
           delete targetCursor.itemname;
           gamestate.setTurn(PC);
         }
+      } else if (targetCursor.command === "d") {
+        // WORKING HERE
+        if (code === 27) {
+          gamestate.setMode("player");
+          maintext.addText("Cancelled.");
+          maintext.setInputLine("&gt;");
+          maintext.drawInputLine();
+        } else if ((code >= 49) && (code <= 51)) {
+          OutOfContext.open_docs(code-48);
+          if (code === 49) {
+            maintext.addText("Viewing cloth map...");
+          } else if (code === 50) {
+            maintext.addText("Viewing Player Reference Guide...");
+          } else if (code === 51) {
+            maintext.addText("Viewing Sage's Almanac...");
+          }
+          gamestate.setMode("player");
+          maintext.setInputLine("&gt;");
+          maintext.drawInputLine();
+        }
       } else if (inputText.cmd === "t") {
         let amt = code-48;
         if (code === 27) { amt = 0; }
@@ -1510,24 +1550,6 @@ function DoAction(code, ctrl) {
         maintext.drawTextFrame();  
         DrawCharFrame();
         gamestate.setMode("talk");
-      } else if (targetCursor.command === "d") {
-        // WORKING HERE
-        if (code === 27) {
-          gamestate.setMode("player");
-          maintext.inputText("&gt;");
-        } else if ((code >= 49) && (code <= 51)) {
-          OutOfContext.open_docs(code-48);
-          if (code === 49) {
-            maintext.addText("Viewing cloth map...");
-          } else if (code === 50) {
-            maintext.addText("Viewing Player Reference Guide...");
-          } else if (code === 51) {
-            maintext.addText("Viewing Sage's Almanac...");
-          }
-          gamestate.setMode("player");
-          maintext.setInputLine("&gt;");
-          maintext.drawInputLine();
-        }
       }
     } else if (code === 27) {
       if (targetCursor.itemname === "InfiniteScroll") {

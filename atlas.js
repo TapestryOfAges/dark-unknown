@@ -1342,11 +1342,11 @@ GameMap.prototype.setNPCsCoord = function() {
 }
 
 
-GameMap.prototype.placeThing = function(x,y,newthing,timeoverride,noactivate) {
+GameMap.prototype.placeThing = function(x,y,newthing,timeoverride,noactivate,noEnter) {
   if (newthing) {
     newthing.setHomeMap(this);
     
-    if (newthing.checkType("NPC") && (typeof this.Enter === "function")) {
+    if (newthing.checkType("NPC") && (typeof this.Enter === "function") && !noEnter) {
       this.Enter(newthing,"",0,0,x,y);
     }
 //    if (newthing.checkType("NPC")) {
