@@ -198,6 +198,7 @@ BlessingTile.prototype.applyEffect = function(silent) {
     if ((who === PC) && !silent) {
       maintext.addText("You are blessed.");
     }
+    if (who === PC) { DrawCharFrame(); }
   }
   return 1;
 }
@@ -236,6 +237,7 @@ BlessingStrTile.prototype.applyEffect = function(silent) {
     if ((who === PC) && !silent) {
       maintext.addText("You feel stronger.");
     }
+    if (who === PC) { DrawCharFrame(); }
   }
   return 1;
 }
@@ -272,6 +274,7 @@ BlessingDexTile.prototype.applyEffect = function(silent) {
     if ((who === PC) && !silent) {
       maintext.addText("You feel more agile.");
     }
+    if (who === PC) { DrawCharFrame(); }
   }
   return 1;
 }
@@ -308,6 +311,7 @@ BlessingIntTile.prototype.applyEffect = function(silent) {
     if ((who === PC) && !silent) {
       maintext.addText("You feel smarter.");
     }
+    if (who === PC) { DrawCharFrame(); }
   }
   return 1;
 }
@@ -344,6 +348,7 @@ CharmTile.prototype.applyEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.delayedAddText("You have been charmed!");
   }
+  if (who === PC) { DrawCharFrame(); }
   return 1;
 }
 
@@ -373,6 +378,7 @@ ConfusedTile.prototype.applyEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.delayedAddText("You have become confused!");
   }
+  if (who === PC) { DrawCharFrame(); }
   return 1;
 }
 
@@ -400,6 +406,7 @@ CrystalTrapTile.prototype.applyEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.delayedAddText("Magic erupts around you and you are encased in crystal!");
   }
+  if (who === PC) { DrawCharFrame(); }
   who.oldoverlay = who.getOverlay();
   who.setOverlay("crystal-trap.gif");
   return 1;
@@ -415,6 +422,7 @@ CrystalTrapTile.prototype.onDamaged = function(hitby, dmg) {
       maintext.addText("The crystal prison shatters!");
     }
     this.endEffect(1);
+    DrawCharFrame();
   }
 }
 
@@ -445,6 +453,7 @@ CrystalTrapTile.prototype.onTurn = function() {
     DealandDisplayDamage(who,this,localdmg.dmg,"physical");
     this.endEffect(1);
   }
+  DrawCharFrame();
   // else, didn't break free, nothing happens.
 }
 
@@ -455,7 +464,7 @@ CrystalTrapTile.prototype.endEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.addText("The crystal falls to pieces around you.");
   }
-  DrawCharFrame();
+  if (who === PC) { DrawCharFrame(); }
 }
 
 function CurseTile() {
@@ -480,6 +489,7 @@ CurseTile.prototype.applyEffect = function(silent) {
     if ((who === PC) && !silent) {
       maintext.addText("You have been cursed!");
     }
+    if (who === PC) { DrawCharFrame(); }
   }
   return 1;
 }
@@ -522,7 +532,7 @@ DiseaseTile.prototype.endEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.addText("You are no longer diseased.");
   }
-  DrawCharFrame();
+  if (who === PC) { DrawCharFrame(); }
 }
 
 function DisorientedTile() {
@@ -539,8 +549,8 @@ DisorientedTile.prototype.applyEffect = function(silent) {
   let who = this.getAttachedTo();
   if ((who === PC) && !silent) {
     maintext.delayedAddText("You are disoriented as the floor spins beneath you!");
-    DrawCharFrame();
   }
+  if (who === PC) { DrawCharFrame(); }
   return 1;
 }
 
@@ -557,7 +567,7 @@ DisorientedTile.prototype.doEffect = function() {
 DisorientedTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
-  DrawCharFrame();
+  if (who === PC) { DrawCharFrame(); }
   return -1;
 }
 
@@ -577,6 +587,7 @@ DistractTile.prototype.applyEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.delayedAddText("You have become distracted.");
   }
+  if (who === PC) { DrawCharFrame(); }
   return 1;
 }
 
@@ -586,7 +597,7 @@ DistractTile.prototype.endEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.addText("You are no longer distracted!");
   }
-  DrawCharFrame();
+  if (who === PC) { DrawCharFrame(); }
   return -1;
 }
 
@@ -605,6 +616,7 @@ DizzyTile.prototype.applyEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.delayedAddText("The whirlpool makes you dizzy!");
   }
+  if (who === PC) { DrawCharFrame(); }
   return 1;
 }
 
@@ -641,7 +653,8 @@ DrunkTile.prototype.applyEffect = function(silent) {
   let power = this.getPower();
   who.setModDex(who.getModDex() - power);
   who.setModInt(who.getModInt() - power);
-  
+  if (who === PC) { DrawCharFrame(); }
+
   return 1;
 }
 
@@ -668,7 +681,7 @@ DrunkTile.prototype.endEffect = function(silent) {
   who.setModDex(who.getModDex() + power);
   who.setModInt(who.getModInt() + power);
   who.deleteSpellEffect(this);
-  DrawCharFrame();
+  if (who === PC) { DrawCharFrame(); }
   if ((who === PC) && !silent) {
     maintext.addText("You sober up.");
   }
@@ -690,6 +703,7 @@ EntangleTile.prototype.applyEffect = function(silent) {
 //    maintext.delayedAddText("Tentacles from the ground grip your legs!");
     targetCursor.sayAfterAttack = "Tentacles from the ground grip your legs!";
   }
+  if (who === PC) { DrawCharFrame(); }
   return 1;
 }
 
@@ -731,6 +745,7 @@ EntangleTile.prototype.onTurn = function() {
     }
   }
 
+  DrawCharFrame();
   return resp;
 }
 
@@ -740,7 +755,7 @@ EntangleTile.prototype.endEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.addText("You are no longer entangled in tentacles.");
   }
-  DrawCharFrame();
+  if (who === PC) { DrawCharFrame(); }
   return -1;
 }
 
@@ -762,6 +777,7 @@ EtherealVisionTile.prototype.applyEffect = function(silent) {
     }
     if (who === PC) {
       DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+      DrawCharFrame();
       //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
     }
   }
@@ -774,9 +790,9 @@ EtherealVisionTile.prototype.endEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.addText("Your mind contracts.");
   }
-  DrawCharFrame();
   if (who === PC) {
     DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+    DrawCharFrame();
     //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
   }
   return -1;
@@ -801,6 +817,7 @@ FearTile.prototype.applyEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.delayedAddText("You are terrified!");
   }
+  if (who === PC) { DrawCharFrame(); }
   return 1;
 }
 
@@ -811,7 +828,7 @@ FearTile.prototype.endEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.addText("You are once more in control of yourself!");
   }
-  DrawCharFrame();
+  if (who === PC) { DrawCharFrame(); }
 }
 
 function FireArmorTile() {
@@ -830,6 +847,7 @@ FireArmorTile.prototype.applyEffect = function(silent) {
     if ((who === PC) && !silent) {
       maintext.addText("You are surrounded with flames.");
     }
+    if (who === PC) { DrawCharFrame(); }
   }
   return 1;
 }
@@ -840,7 +858,7 @@ FireArmorTile.prototype.endEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.addText("The flames that surround you fade away.");
   }
-  DrawCharFrame();
+  if (who === PC) { DrawCharFrame(); }
   return -1;
 }
 
@@ -874,6 +892,7 @@ FlameBladeTile.prototype.applyEffect = function(silent) {
     if ((who === PC) && !silent) {
       maintext.addText("Your weapon is sheathed in flame.");
     }
+    if (who === PC) { DrawCharFrame(); }
   }
   return 1;
 }
@@ -899,7 +918,7 @@ FlameBladeTile.prototype.endEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.addText("The flames on your weapon flicker and die.");
   }
-  DrawCharFrame();
+  if (who === PC) { DrawCharFrame(); }
   return -1;
 }
 
@@ -919,6 +938,7 @@ FrozenTile.prototype.applyEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.delayedAddText("You are frozen!");
   }
+  if (who === PC) { DrawCharFrame(); }
   return 1;
 }
 
@@ -928,7 +948,7 @@ FrozenTile.prototype.endEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.addText("You are no longer frozen.");
   }
-  DrawCharFrame();
+  if (who === PC) { DrawCharFrame(); }
 }
 
 function InvulnerableTile() {
@@ -946,6 +966,7 @@ InvulnerableTile.prototype.applyEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.delayedAddText("You are invulnerable to damage!");
   }
+  if (who === PC) { DrawCharFrame(); }
   return 1;
 }
 
@@ -955,7 +976,7 @@ InvulnerableTile.prototype.endEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.addText("You are once more vulnerable to damage.");
   }
-  DrawCharFrame();
+  if (who === PC) { DrawCharFrame(); }
 }
 
 function IronFleshTile() {
@@ -974,6 +995,7 @@ IronFleshTile.prototype.applyEffect = function(silent) {
     if ((who === PC) && !silent) {
       maintext.addText("Your skin becomes hard as iron.");
     }
+    if (who === PC) { DrawCharFrame(); }
   }
   return 1;
 }
@@ -984,7 +1006,7 @@ IronFleshTile.prototype.endEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.addText("Your skin returns to normal.");
   }
-  DrawCharFrame();
+  if (who === PC) { DrawCharFrame(); }
   return -1;
 }
 
@@ -1005,6 +1027,7 @@ LevitateTile.prototype.applyEffect = function(silent) {
     if ((who === PC) && !silent) {
       maintext.addText("You begin to float a few inches off the ground.");
     }
+    if (who === PC) { DrawCharFrame(); }
   }
   return 1;
 }
@@ -1016,7 +1039,7 @@ LevitateTile.prototype.endEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.addText("You sink back to the ground.");
   }
-  DrawCharFrame();
+  if (who === PC) { DrawCharFrame(); }
 }
 
 function LightTile() {
@@ -1044,6 +1067,7 @@ LightTile.prototype.applyEffect = function(silent) {
   
       maintext.addText("You conjure " + lightdesc + ".");
     }
+    if (who === PC) { DrawCharFrame(); }
   }
   return 1;
 }
@@ -1055,7 +1079,7 @@ LightTile.prototype.endEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.addText("Your light blinks out.");
   }
-  DrawCharFrame();
+  if (who === PC) { DrawCharFrame(); }
 }
 
 function MirrorWardTile() {
@@ -1074,6 +1098,7 @@ MirrorWardTile.prototype.applyEffect = function(silent) {
     if ((who === PC) && !silent) {
       maintext.addText("Ethereal mirrors surround and protect you.");
     }
+    if (who === PC) { DrawCharFrame(); }
   }
   return 1;
 }
@@ -1084,7 +1109,7 @@ MirrorWardTile.prototype.endEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.addText("The mirror ward fades.");
   }
-  DrawCharFrame();
+  if (who === PC) { DrawCharFrame(); }
 }
 
 MirrorWardTile.prototype.findNewTarget = function(caster) {
@@ -1192,6 +1217,7 @@ ParalyzeTile.prototype.applyEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.delayedAddText("You are paralyzed!");
   }
+  if (who === PC) { DrawCharFrame(); }
   return 1;
 }
 
@@ -1201,7 +1227,7 @@ ParalyzeTile.prototype.endEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.addText("You can move again!");
   }
-  DrawCharFrame();
+  if (who === PC) { DrawCharFrame(); }
 }
 
 function PhasedTile() {
@@ -1222,6 +1248,7 @@ PhasedTile.prototype.applyEffect = function(silent) {
     if ((who === PC) && !silent) {
       maintext.addText("You phase out.");
     }
+    if (who === PC) { DrawCharFrame(); }
   }
   return 1;
 }
@@ -1234,7 +1261,7 @@ PhasedTile.prototype.endEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.addText("You phase in.");
   }
-  DrawCharFrame();
+  if (who === PC) { DrawCharFrame(); }
   return -1;
 }
 
@@ -1256,13 +1283,14 @@ PoisonTile.prototype.applyEffect = function(silent) {
   if (IsNonLiving(who)) {
     this.endEffect();
   }
+  if (who === PC) { DrawCharFrame(); }
   return 1;
 }
 
 PoisonTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
-  DrawCharFrame();
+  if (who === PC) { DrawCharFrame(); }
   if ((who === PC) && !silent) {
     maintext.addText("The poison wears off.");
   }
@@ -1284,6 +1312,7 @@ ProtectionTile.prototype.applyEffect = function(silent) {
     if ((who === PC) && !silent) {
       maintext.addText("You are protected by magic.");
     }
+    if (who === PC) { DrawCharFrame(); }
   }
   return 1;
 }
@@ -1294,7 +1323,7 @@ ProtectionTile.prototype.endEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.addText("Your protective shield wears off.");
   }
-  DrawCharFrame();
+  if (who === PC) { DrawCharFrame(); }
   return -1;
 }
 
@@ -1318,6 +1347,7 @@ AlacrityTile.prototype.applyEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.delayedAddText("You begin to move more quickly.");
   }
+  if (who === PC) { DrawCharFrame(); }
   return 1;
 }
 
@@ -1328,7 +1358,7 @@ AlacrityTile.prototype.endEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.addText("You slow down again.");
   }
-  DrawCharFrame();  
+  if (who === PC) { DrawCharFrame(); }
 }
 
 function ReincarnateTile() {
@@ -1349,6 +1379,7 @@ ReincarnateTile.prototype.applyEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.delayedAddText("You will revive upon your next death.");
   }
+  if (who === PC) { DrawCharFrame(); }
   return 1;
 }
 
@@ -1358,7 +1389,7 @@ ReincarnateTile.prototype.endEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.addText("You die... but before you fall, you revive. The Reincarnation spell protects you, and then fades.");
   }
-  DrawCharFrame();  
+  if (who === PC) { DrawCharFrame(); }
 }
 
 function ResistMagicTile() {
@@ -1373,6 +1404,7 @@ function ResistMagicTile() {
 ResistMagicTile.prototype = new EphemeralObject();
 
 ResistMagicTile.prototype.applyEffect = function(silent) {
+  DrawCharFrame();
   return 1;
 }
 
@@ -1382,7 +1414,7 @@ ResistMagicTile.prototype.endEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.addText("You feel less resistant to magic.");
   }
-  DrawCharFrame();
+  if (who === PC) { DrawCharFrame(); }
 }
 
 function RubyLightTile() {
@@ -1402,18 +1434,20 @@ RubyLightTile.prototype.applyEffect = function(silent) {
   if (who) {
     who.setLight(who.getLight() + power);
   }
+  if (who === PC) { DrawCharFrame(); }
   return 1;
 }
 
 RubyLightTile.prototype.eachTurn = function() {
   this.endEffect();
+  DrawCharFrame();
 }
 
 RubyLightTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
   who.setLight(who.getLight() - this.getPower());
   who.deleteSpellEffect(this);
-  DrawCharFrame();
+  if (who === PC) { DrawCharFrame(); }
 }
 
 function SleepTile() {
@@ -1432,6 +1466,7 @@ SleepTile.prototype.applyEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.delayedAddText("You fall asleep.");
   }
+  if (who === PC) { DrawCharFrame(); }
   return 1;
 }
 
@@ -1441,7 +1476,7 @@ SleepTile.prototype.endEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.addText("You wake up!");
   }
-  DrawCharFrame();
+  if (who === PC) { DrawCharFrame(); }
 }
 
 function SlowTile() {
@@ -1465,6 +1500,7 @@ SlowTile.prototype.applyEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.addText("You are moving more slowly.");
   }
+  if (who === PC) { DrawCharFrame(); }
   return 1;
 }
 
@@ -1475,7 +1511,7 @@ SlowTile.prototype.endEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.addText("You speed up again.");
   }
-  DrawCharFrame();  
+  if (who === PC) { DrawCharFrame(); }
 }
 
 function StunnedTile() {
@@ -1494,6 +1530,7 @@ StunnedTile.prototype.applyEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.delayedAddText("You are stunned!");
   }
+  if (who === PC) { DrawCharFrame(); }
   return 1;
 }
 
@@ -1503,7 +1540,7 @@ StunnedTile.prototype.endEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.addText("You are no longer stunned.");
   }
-  DrawCharFrame();
+  if (who === PC) { DrawCharFrame(); }
 }
 
 function TelepathyTile() {
@@ -1522,6 +1559,7 @@ TelepathyTile.prototype.applyEffect = function(silent) {
     if ((who === PC) && !silent) {
       maintext.addText("Your mind expands.");
     }
+    if (who === PC) { DrawCharFrame(); }
   }
   return 1;
 }
@@ -1532,7 +1570,7 @@ TelepathyTile.prototype.endEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.addText("Your mind contracts.");
   }
-  DrawCharFrame();
+  if (who === PC) { DrawCharFrame(); }
   return -1;
 }
 
@@ -1551,6 +1589,7 @@ TimeStopTile.prototype.applyEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.delayedAddText("You have caused time itself to stop!");
   }
+  if (who === PC) { DrawCharFrame(); }
   return 1;
 }
 
@@ -1573,7 +1612,7 @@ TimeStopTile.prototype.endEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.addText("Time flows once more.");
   }
-  DrawCharFrame();
+  if (who === PC) { DrawCharFrame(); }
 }
 
 function TorchLightTile() {
@@ -1591,6 +1630,7 @@ TorchLightTile.prototype.applyEffect = function(silent) {
   let power = this.getPower();
   if (who) {
     who.setLight(who.getLight() + power);
+    DrawCharFrame();
   }
   return 1;
 }
@@ -1602,7 +1642,7 @@ TorchLightTile.prototype.endEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.addText("Your torch goes out.");
   }
-  DrawCharFrame();
+  if (who === PC) { DrawCharFrame(); }
 }
 
 function UnconsciousEndActTile() {
@@ -1639,6 +1679,7 @@ VulnerabilityTile.prototype.applyEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.delayedAddText("You feel vulnerable.");
   }
+  if (who === PC) { DrawCharFrame(); }
   return 1;
 }
 
@@ -1648,7 +1689,7 @@ VulnerabilityTile.prototype.endEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.addText("You no longer feel vulnerable.");
   }
-  DrawCharFrame();
+  if (who === PC) { DrawCharFrame(); }
 }
 
 
