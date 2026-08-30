@@ -3572,12 +3572,18 @@ ais.ai_lbolt = function(who) {
   if (who.getLevel() <= 3) { dmg = Dice.roll("2d8+8"); }
   else if (who.getLevel() <= 5) { dmg = Dice.roll("4d8+8"); }
   else { dmg = Dice.roll("4d8+16"); }
+
+  let resisted = CheckResist(who, tgt, 0, 0);
+  if (resisted) { dmg = dmg/2; }
+
   let atkhit = 1;
   if (Dice.roll("1d45") < PC.getDex()) { atkhit = 0; }
   let destgraphic = {};
   if (atkhit) {
     if (tgt === PC) {
-      maintext.addText("The " + who.getDesc() + " calls forth a lightning bolt. You are struck!");
+      let dmgtxt = "The " + who.getDesc() + " calls forth a lightning bolt. You are struck!";
+      if (resisted) { dmgtxt += " You resist the damage!"; }
+      maintext.addText(dmgtxt);
     } else {
       let tgtdesc = tgt.getFullDesc();
       tgtdesc = tgtdesc.charAt(0).toUpperCase() + tgtdesc.slice(1);
@@ -3586,7 +3592,13 @@ ais.ai_lbolt = function(who) {
     destgraphic = {graphic:"static.gif", xoffset:RED_SPLAT_X, yoffset:RED_SPLAT_Y, overlay:"spacer.gif"};
   } else {
     if (tgt === PC) {
-      maintext.addText("The " + who.getDesc() + " calls forth a lightning bolt. You are grazed by the power!");
+      let dmgtxt = "The " + who.getDesc() + " calls forth a lightning bolt. You are grazed by the power";
+      if (resisted) {
+        dmgtxt += ", and resist the damage!";
+      } else {
+        dmgtxt += "!";
+      }
+      maintext.addText(dmgtxt);
     } else {
       let tgtdesc = tgt.getFullDesc();
       tgtdesc = tgtdesc.charAt(0).toUpperCase() + tgtdesc.slice(1);
