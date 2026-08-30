@@ -1603,7 +1603,7 @@ function DoAction(code, ctrl) {
           DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
           //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
 
-          maintext.addText("Game loaded.");
+          //maintext.addText("Game loaded.");
           maintext.setInputLine("&gt;");
           maintext.drawTextFrame(); 
           document.getElementById('uiinterface').innerHTML = "";
