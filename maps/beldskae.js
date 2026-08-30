@@ -1185,7 +1185,9 @@ mappages["beldskae_scour"].onload = function(mapref) {
       }
     }
     mapmagic["beldskae_scour"] = JSON.parse(JSON.stringify(mapmagic["beldskae"]));
-    mapmagic["beldskae2_scour"] = JSON.parse(JSON.stringify(mapmagic["beldskae2"]));
+    if (mapmagic["beldskae2"]) { 
+      mapmagic["beldskae2_scour"] = JSON.parse(JSON.stringify(mapmagic["beldskae2"]));
+    }
   }
 }
 
@@ -1942,7 +1944,9 @@ mappages["beldskae_saved"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     if (!DU.gameflags.getFlag("visited_beldskae_saved")) {
       mapmagic["beldskae_saved"] = JSON.parse(JSON.stringify(mapmagic["beldskae"]));
-      mapmagic["beldskae2_saved"] = JSON.parse(JSON.stringify(mapmagic["beldskae2"]));
+      if (mapmagic["beldskae2"]) {
+        mapmagic["beldskae2_saved"] = JSON.parse(JSON.stringify(mapmagic["beldskae2"]));
+      }
       DU.gameflags.setFlag("visited_beldskae_saved",1);
     }
   }
