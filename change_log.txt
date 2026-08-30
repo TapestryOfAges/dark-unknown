@@ -6,6 +6,12 @@ v 0.11.6
  * Asharden now reminds you to come visit again later so he can teach you more spells
  * Combat animations no longer play if you aren't on the same map as them
  * Sometimes your spell initials would not update if a friendly NPC cast a spell on you
+ * The lightning attack I gave olcrann to make up for their helplessness at range once they run out of mana was too strong, nerfed
+ * Swainhil now has a light that shows the Inn sign, useful for finding it at night, when you would usually want an inn
+ * Fixed typo in Amaeryl's dialog tree, she now responds to THIEF if it is Act 2
+ * When bipping the PC and two NPCs over to the daemon summoning, didn't execute Walkoff scripts, leaving some in seated animation
+ * Reduced drop rate on torches and gold drop amounts
+ * More wizards and bards have a response to "daemon"
 
 v 0.11.5
  * Fixed editor bug with toggling whether automap is allowed on any given map
