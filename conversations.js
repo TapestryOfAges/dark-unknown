@@ -1510,8 +1510,14 @@ OnConvTriggers["rhys_summoned"] = function(speaker,keyword) {
         if (npcs[i].getName() === "PrinceNPC") { lance = npcs[i]; }
         if (npcs[i].getNPCName() === "Rhys") { rhys = npcs[i]; }
       }
+      let lanceacre = lance.getHomeMap().getTile(lance.getx(),lance.gety());
+      lanceacre.executeWalkoffs(lance);
       bdcmap.moveThing(28,11,lance);
+      let pcacre = PC.getHomeMap().getTile(PC.getx(),PC.gety());
+      pcacre.executeWalkoffs(PC);
       bdcmap.moveThing(27,9,PC);
+      let rhysacre = rhys.getHomeMap().getTile(rhys.getx(),rhys.gety());
+      rhysacre.executeWalkoffs(rhys);
       bdcmap.moveThing(28,10,rhys);
       let door=bdcmap.getTile(29,13).getTopFeature();
       door.lockMe(2);
