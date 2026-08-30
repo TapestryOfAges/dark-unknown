@@ -344,8 +344,8 @@ mappages["swainhil"].features[275] = {name : 'SmallTable', x : 37, y : 9};
 mappages["swainhil"].features[276] = {name : 'TopChair', x : 37, y : 8};
 mappages["swainhil"].features[277] = {name : 'BookshelfLeft', x : 41, y : 13};
 mappages["swainhil"].features[278] = {name : 'BookshelfRight', x : 42, y : 13};
-mappages["swainhil"].features[279] = {name : 'Door', x : 60, y : 53, locked : 0, inside : "E"};
-mappages["swainhil"].features[280] = {name : 'Door', x : 54, y : 53, locked : 0, inside : "W"};
+mappages["swainhil"].features[279] = {name : 'Door', x : 60, y : 53, inside : "E"};
+mappages["swainhil"].features[280] = {name : 'Door', x : 54, y : 53, inside : "W"};
 mappages["swainhil"].features[281] = {name : 'Doorway', x : 57, y : 52};
 mappages["swainhil"].features[282] = {name : 'Chest', x : 61, y : 52, lootgroup : 'castlechest', karmaPenalty : '1', lootedid : 'swainhil_paladin_chest2'};
 mappages["swainhil"].features[283] = {name : 'Chest', x : 53, y : 52, lootgroup : 'castlechest', karmaPenalty : '1', lootedid : 'swainhil_paladin_chest1'};
@@ -513,6 +513,7 @@ mappages["swainhil"].features[444] = {name : 'Brazier', x : 36, y : 37};
 mappages["swainhil"].features[445] = {name : 'Brazier', x : 43, y : 37};
 mappages["swainhil"].features[446] = {name : 'Brazier', x : 43, y : 49};
 mappages["swainhil"].features[447] = {name : 'Brazier', x : 36, y : 49};
+mappages["swainhil"].features[448] = {name : 'StreetLamp', x : 22, y : 18};
 
 
 mappages["swainhil"].npcs = [];
