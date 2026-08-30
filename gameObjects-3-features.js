@@ -2787,7 +2787,7 @@ function FireTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
 	this.blocklos = 0;
   this.prefix = "a";
-	this.desc = "fire";
+	this.desc = "blazing fire";
 	this.pathweight = 5;
 	this.firedamage = "2d6+3";
 	
@@ -11010,6 +11010,7 @@ MetalTwisterLeverTile.prototype.use = function(user) {
   }
   if (this.spritexoffset === -8*32) {  // This switch hasn't been thrown
     this.spritexoffset = -9*32;
+    DUCamera.DrawOne(this.getHomeMap(),this.getx(),this.gety());
     retval["txt"] = "Click!";
     
     let checkboth = 1;
