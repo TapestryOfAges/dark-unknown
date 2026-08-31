@@ -262,6 +262,7 @@ questlist[112] = new Quest([111], "Repair the Palimpsest Map", "Robert", "Clear 
 questlist[113] = new Quest([69], "War Wizard's Tower", "Dave", "Hildendain", `You have found the ring in the war wizard's tower- now, return it to Dave in Hildendain.`, `Dave has freely given you the ring!`, "side");
 questlist[114] = new Quest([], "The Planar Gate", "Asharden", "Asharden's Tower", `Return in a day, and see what Asharden has made from the instructions in Eshkaz's book.`, `The Planar Gate is built and available for your use.`, "side");
 questlist[115] = new Quest([], "Bury the Dead", "Lysander", "A cave", `The ghost Lysander asks that you dig a grave for him, in this cave where he died, and then place his remains in the grave.`, ``, "side");
+questlist[116] = new Quest([], "Bring Asharden Voidstone", "Asharden", "Asharden's Tower", `You have brought Asharden Eshkaz's book, but to build the device described therein Asharden needs a piece of Voidstone from the Land of Lost Hope.`, `You have brought Asharden a piece of Voidstone, and he can build the portal.`, "side");
 
 // verbage for reference guide:
 // Not everything that you might think of as a "quest" will go in the log. And those that do, you will still need to take notes-
