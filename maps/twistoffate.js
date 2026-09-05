@@ -488,7 +488,7 @@ mappages["twistoffate3"].editorLabels = '{}';
 
 mappages["twistoffate3"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) { 
-    if (DU.gameflags.getFlag("lid_tofsoc") && !PC.checkInventory("StoneOfConflagrations")) {
+    if (DU.gameflags.getFlag("lid_tofsoc") && !PC.checkInventory("StoneOfConflagrations") && !DU.gameflags.getFlag("rhys_summoned")) {
       DU.gameflags.deleteFlag('lid_tofsoc');
     }
   }
