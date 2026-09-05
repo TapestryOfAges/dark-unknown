@@ -6067,6 +6067,8 @@ NatBookshelfOneTile.prototype.onSearched = function(who) {
     retval["fin"] = 1;
     retval["exitOut"] = 1;
     retval["txt"] = "You search the shelf and find notes on many projects, but none seem relevant to your current quest.";
+
+    return retval;
   }
 }
 
@@ -13412,7 +13414,7 @@ function RoyalRegaliaTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "royal regalia";
   this.longdesc = "The crown, amulet, and scepter that your mother wore, handed to you to offer to the Oracle.";
-  this.prefix = "a";
+  this.prefix = "the";
 
   this.addType("Quest");  
 }
@@ -15501,6 +15503,7 @@ NatassaProjectsTile.prototype = new BookItemObject();
 
 NatassaProjectsTile.prototype.onGet = function(who) {
   questlog.complete(88);
+  questlog.activate(89);
   return {};
 }
 
