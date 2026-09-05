@@ -642,12 +642,21 @@ mappages["hildendain"].onload = function(mapref) {
     if (DU.gameflags.getFlag("rhiannon_recipe")) { DU.gameflags.setFlag("gauntlet_recipe",1); }
 
     let npcs = mapref.npcs.getAll();
-    let anna, aaron, alexis, kiba;
+    let anna, aaron, alexis, kiba, franklin;
     for (let i=0;i<npcs.length;i++) {
       if (npcs[i].getNPCName() === "Anna") { anna = npcs[i]; }
       if (npcs[i].getNPCName() === "Aaron") { aaron = npcs[i]; }
       if (npcs[i].getNPCName() === "Alexis") { alexis = npcs[i]; }
       if (npcs[i].getNPCName() === "Kiba") { kiba = npcs[i]; }
+      if (npcs[i].getNPCName() === "Franklin") { franklin = npcs[i]; }
+    }
+
+
+    if (DU.gameflags.getFlag("act2") && DU.gameflags.getFlag("franklin_debt_paid")) {  // you've paid his debt, and it's act 2
+      if (franklin) {
+        mapref.deleteThing(franklin);
+        DUTime.removeEntityFrom(franklin);
+      }
     }
 
     if (aaron) {
@@ -750,19 +759,12 @@ mappages["hildendain"].onload = function(mapref) {
 mappages["hildendain2"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     let npcs = mapref.npcs.getAll();
-    let franklin, leon, janet;
+    let leon, janet;
     for (let i=0;i<npcs.length;i++) {
-      if (npcs[i].getNPCName() === "Franklin") { franklin = npcs[i]; }
       if (npcs[i].getNPCName() === "Leon") { leon = npcs[i]; }
       if (npcs[i].getNPCName() === "Janet") { janet = npcs[i]; }
     }
 
-    if (DU.gameflags.getFlag("act2") && DU.gameflags.getFlag("franklin_debt_paid")) {  // you've paid his debt, and it's act 2
-      if (franklin) {
-        mapref.deleteThing(franklin);
-        DUTime.removeEntityFrom(franklin);
-      }
-    }
     if (DU.gameflags.getFlag("beldskae_razed")) {
       if (franklin) {
         mapref.deleteThing(franklin);
