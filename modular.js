@@ -675,7 +675,7 @@ function PlaySummonScene(frame) {
   } else if (frame === 7) {
     maintext.addText(`The daemon speaks: "You have called me. I have come. What is it that you seek? Power? The destruction of your enemies?"`);
   } else if (frame === 8) {
-    maintext.addText(`Rhys does not even shake his head. "Neither of those things. Tell us what you know about Justice, and the Cult of Darkness."`);
+    maintext.addText(`Rhys does not even shake his head. "Neither of those things. Tell us what you know about Justice, and the Cult of Darkness. I bind you to speak the truth here, in this place."`);
   } else if (frame === 9) {
     maintext.addText(`The daemon responds, "You would call the Harbinger of Blood for information? You are fools... but, you may be wise. I can tell you what you seek."`);
   } else if (frame === 10) {
