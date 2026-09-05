@@ -1145,6 +1145,16 @@ function PerformSpellbook(code) {
       spelltxt += " (Infused)";
     }
     let manacost = magic[lvl][GetSpellID(spellnum)].getManaCost(PC.getInfusion());
+    if ((lvl > 5) && !DU.gameflags.getFlag("pc_abyss")) {
+      spelltxt += "...";
+      maintext.addText(spelltxt);
+      maintext.addText("A mystical barrier, the Great Abyss, prevents you from performing spells of the Amber Audachta.");
+      let retval = {};
+      retval["fin"] = 2;
+      retval["input"] = "&gt;";
+      return retval;
+    }      
+
     if (lvl > PC.getLevel()) {
       spelltxt += "...";
       maintext.addText(spelltxt);
@@ -1490,6 +1500,7 @@ function PerformRuneChoice() {
     Earthquake();
     DUPlaySound("sfx_earthquake");
     let used = 0;
+    let foundgems = 0;
 
     if (themap.getName() === "ellusus") {
       if (((PC.getx() === 27) && (PC.gety() === 28)) || ((PC.getx() === 26) && (PC.gety() === 29)) || ((PC.getx() === 28) && (PC.gety() === 29)) || ((PC.getx() >= 25) && (PC.getx() <= 28) && (PC.gety() === 30)) || ((PC.getx() >=25) && (PC.getx() <= 27) && (PC.gety() === 31))) {
@@ -1553,7 +1564,7 @@ function PerformRuneChoice() {
         used = 1;
       }
     } else if (themap.getName() === "kaltonmine3") {
-      if ((PC.getx() <=16) && (PC.gety() >= 22)) {
+//      if ((PC.getx() <=16) && (PC.gety() >= 22)) {
         if (!DU.gameflags.getFlag("rune_gems")) {
           let alreadydone = 0;
           let fea = themap.features.getAll();
@@ -1572,13 +1583,14 @@ function PerformRuneChoice() {
             themap.placeThing(8,25,gems);
             gems = localFactory.createTile("UncutGems");
             themap.placeThing(13,25,gems);
+            foundgems = 1;
           }
         }
         DUCamera.Draw(themap,PC.getx(),PC.gety(),PC);
         //DrawMainFrame("draw",themap,PC.getx(),PC.gety());
-        Earthquake();
-        DUPlaySound("sfx_earthquake");
-      }
+        // Earthquake();
+        // DUPlaySound("sfx_earthquake");
+//      }
     }
     if (PC.getHP() < PC.getMaxHP()) {
       if (PC.runes.void) {
@@ -1590,11 +1602,15 @@ function PerformRuneChoice() {
         if (retval["txt"]) { retval["txt"] += "<br />"; }
         retval["txt"] += "You reach for the earth below... and it reaches back. You feel better!<br />It will be some time before you can do that again.";
       }
+      if (foundgems) {
+        retval["txt"] = "You reach for the earth below... and it reaches back. You feel better! You hear the sound of stones coming free from the walls and falling to the ground.<br />It will be some time before you can do that again.";
+      }
       PC.setRuneCooldown("kings",144);  // 12 hours
       DrawCharFrame();
     } else {
       if (retval["txt"]) { retval["txt"] += "<br />"; }
       retval["txt"] += "You feel the warm touch of the earth below your feet, but do not currently need its help with healing.";
+      if (foundgems) { retval["txt"] = "You reach for the earth around you. You hear the sounds of stones coming free from the walls and falling to the ground!"; }
     }
 
   } else if (targetCursor.runeChoice === 2) { 
@@ -2047,7 +2063,7 @@ function PerformSearch(who) {
 	}
   if ("onSearched" in searched) {
     let searchresult = searched.onSearched(who);
-    if (searchresult.exitOut) {
+    if (searchresult && searchresult.hasOwnProperty("exitOut")) {
       return searchresult;
     }
   }
