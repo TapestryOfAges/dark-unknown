@@ -3618,10 +3618,10 @@ function ShowEmpowerReagentChoice(caster) {
   document.getElementById('uiinterface').innerHTML = "";
   document.getElementById('uiinterface').style.backgroundColor = "black";
   document.getElementById('uiinterface').innerHTML += "<div style='position: absolute; left: 100px; top:15px; color: white; font-size: 16pt; font-family: Commodore64'>Available reagents:</div>";
-  for (let i=0;i<5;i++) {
+  for (let i=0;i<6;i++) {
     for (let j=0;j<2;j++) {
-      let leftedge = 100+45*i;
-      let topedge = 40+45*j;
+      let leftedge = 85+45*i;
+      let topedge = 40+55*j;
       let qleftedge = leftedge + 18;
       let qtopedge = topedge + 36;
       document.getElementById('uiinterface').innerHTML += "<div id='invquant_"+i+"x"+j+"' style='position:absolute; left: " + qleftedge + "; top: " + qtopedge + "; width:12px; height: 10px; border:2px; border-style: solid; border-color:#999; visibility:hidden'></div>";
@@ -3639,8 +3639,8 @@ function ShowEmpowerReagentChoice(caster) {
   document.getElementById('uiinterface').innerHTML += "<div style='position:absolute; left: 40px; top: 200px; width: 32px; height: 32px; background-image: url(\"graphics/" + showgraphic[0] + "\"); background-position: " +showgraphic[2] + "px " + showgraphic[3] + "px;' ></div>";
   document.getElementById('uiinterface').innerHTML += "<div style='position: absolute; left: 100px; top:170px; color: white; font-size: 16pt; font-family: Commodore64'>Reagents in mortar:</div>";
 
-  for (let i=0;i<5;i++) {
-    let leftedge = 100+45*i;
+  for (let i=0;i<6;i++) {
+    let leftedge = 85+45*i;
     let topedge = 200;
     document.getElementById('uiinterface').innerHTML += "<div id='inv_"+i+"x2' style='position:absolute; left: " + leftedge + "; top: " + topedge + "; width:32px; height: 32; border:3px; border-style: solid; border-color:#999;'></div>";
   }
@@ -3681,9 +3681,9 @@ function ShowEmpowerReagentChoice(caster) {
       }
       midx++;
     } else {
-      let writetox = ridx % 5;
+      let writetox = ridx % 6;
       let writetoy = 0;
-      if (ridx >= 5) { writetoy = 1; }
+      if (ridx >= 6) { writetoy = 1; }
       let invdiv = document.getElementById('inv_'+writetox+"x"+writetoy);
       let innerdiv = document.createElement("div");
       innerdiv.id = "divid_" + reagents[i].getSerial();
@@ -3748,7 +3748,7 @@ function EmpowerReagentCommands(cmd) {
     if (targetCursor.invy === 3) {
       return retval;
     }
-    if (targetCursor.invx < 4) { targetCursor.invx++; }
+    if (targetCursor.invx < 5) { targetCursor.invx++; }
     return retval;
   } else if (cmd === 40) { // Down
     retval["fin"] = 0;
@@ -3772,7 +3772,7 @@ function EmpowerReagentCommands(cmd) {
       } else { reglist.push(reagents[i].getName()); }
     }
     if ((targetCursor.invy === 0) || (targetCursor.invy === 1)) {
-      let idx = targetCursor.invx + 5*targetCursor.invy;
+      let idx = targetCursor.invx + 6*targetCursor.invy;
       targetCursor.mortar[reglist[idx]] = 1;
       return retval;
     } else if (targetCursor.invy===2) {
@@ -4208,7 +4208,7 @@ function PerformConfusion(caster, infused, free, tgt) {
     let resist = CheckResist(caster,val,infused,0);
     let power = 66-resist;
     
-    if (resist < 33) {
+    if (resist) {
       desc = val.getDesc() + " resists!";
       if (val === PC) {
         desc = "You resist.";
