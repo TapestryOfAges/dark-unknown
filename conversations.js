@@ -1004,7 +1004,7 @@ OnConvTriggers["knows_severyn"] = function(speaker,keyword) {
 
 OnConvTriggers["rebuild_decide"] = function(speaker,keyword) {
   let q = questlog.findQuest(28);
-  if ((q > -1) && q.active && !q.replaced && !q.completed) { questlog.complete(28); }
+  if ((q > -1) && questlog.log[q].active && !questlog.log[q].replaced && !questlog.log[q].completed) { questlog.complete(28); }
   else { questlog.complete(27); }
 }
 
