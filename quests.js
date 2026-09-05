@@ -277,7 +277,7 @@ questlist[116] = new Quest([], "Bring Asharden Voidstone", "Asharden", "Asharden
 function CheckOracleQuest() {
   let q79 = questlog.findQuest(79);
   let q80 = questlog.findQuest(80);
-  if (q79 && q80 && q79.completed && q80.completed) {
+  if ((q79 > -1) && (q80 > -1) && questlog.log[q79].completed && questlog.log[q80].completed) {
     questlog.activate(81);
   }
 }
