@@ -1,6 +1,19 @@
 
+v 0.11.8
+ * Fixed quest log entries for Frozen Sunlight chain
+
 v 0.11.7
- * Building the Planar Gate now requires a piece of Voidstone from LoLH, as was intended from Eshkaz's dialog
+ * Building the Planar Gate now requires a piece of Voidstone from LoLH, as was intended from Eshkaz's dialog 
+ * Set Lydia and Jonah to actually use their schedules
+ * Bugfixes to Grotto map
+ * You now actually can't cast spells level 6+ until you cross the Great Abyss
+ * Fixed the resist chance on Confusion
+ * Franklin now actually leaves Hildendain if you've paid his debt
+ * You can use the Rune anywhere in the right floor of the mine rather than having to be in the right corner
+ * Improve the lighting in Consolation during dinner
+ * Lynn, while explaining how Empower works, will also tell you who will sell it to you
+ * Empower now has room for more possible reagents, as it was possible to acquire so many the UI overflowed
+ * Rhys takes the Stone of Conflagrations from you when he uses it
 
 v 0.11.6
  * Created a quest for the "bury the dead" sidequest
