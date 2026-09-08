@@ -1114,6 +1114,14 @@ OnConvTriggers["planarkey"] = function(speaker,keyword) {
   speaker.setConversation("asharden");
 }
 
+OnConvTriggers["speak_crystal"] = function(speaker, keyword) {
+  DU.gameflags.deleteFlag("speak_crystal");
+  if (DU.gameflags.getFlag("need_crystal")) {
+    questlog.activate(118);
+  }
+}
+
+
 function HasLibraryBooks() {
   let hasbook = 0;
   if (PC.checkInventory("MapsAndLegends")) {

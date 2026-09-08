@@ -3796,9 +3796,13 @@ function EmpowerReagentCommands(cmd) {
           if (mortar.getName() !== "CrystalMortar") {
             retval["fin"] = 2;
             if (PC.checkInventory("CrystalMortar")) {
-              retval["outcome"] = ["You place the reagents in the crystal mortar and begin the incancation, but quickly realize something is wrong.","You do not have a suitable pestle to go with your crystal mortar.","You remove the reagents from the mortar and put them away.","Perhaps you need to speak to an artificer."];
+              retval["outcome"] = ["You place the reagents in the crystal mortar and begin the incancation, but quickly realize something is wrong.","You do not have a suitable pestle to go with your crystal mortar.","You remove the reagents from the mortar and put them away.","Perhaps you need to speak to an artificer. Again."];
+            } else {
+              retval["outcome"] = ["You place the reagents in the mortar and begin the incancation, but quickly realize something is wrong.","This mortar will shatter under the strain of this enchantment. You will need to find something more enduring before you can perform this ritual.","You remove the reagents from the mortar and put them away.","Perhaps you need to speak to an artificer."];
+              questlog.activate(117);
+              DU.gameflags.setFlag("need_crystal",1);
             }
-            retval["outcome"] = ["You place the reagents in the mortar and begin the incancation, but quickly realize something is wrong.","This mortar will shatter under the strain of this enchantment. You will need to find something more enduring before you can perform this ritual.","You remove the reagents from the mortar and put them away.","Perhaps you need to speak to an artificer."];
+
             return retval;
           }   
           successtext.push(`You place the ruby in front of you, in the center of the pentagram, and begin the incantation.`);
