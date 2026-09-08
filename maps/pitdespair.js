@@ -325,6 +325,7 @@ mappages["pitdespair2"].features[37] = {name : 'BrokenMarblePillar', x : 46, y :
 mappages["pitdespair2"].features[38] = {name : 'BrokenMarblePillar', x : 49, y : 32};
 mappages["pitdespair2"].features[39] = {name : 'BrokenMarblePillar', x : 50, y : 30};
 mappages["pitdespair2"].features[40] = {name : 'BrokenMarblePillar', x : 51, y : 29};
+mappages["pitdespair2"].features[41] = {name : 'OrbDexterity', x : 21, y : 37};
 
 
 mappages["pitdespair2"].npcs = [];
