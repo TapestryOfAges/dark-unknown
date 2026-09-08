@@ -226,6 +226,7 @@ gave_ruby - colin gave you the PerfectRuby
 magicaxe - you've picked up the magic axe
 unenchanted_sword - broken Ezwilden has been picked up
 given_regalia - Shelaria gave you her crown and scepter
+need_crystal - you've tried to enchant the ruby with the wooden mortar
 returned_crown - you brought the Hilden crown to Shelaria
 returned_amulet
 returned_scepter
