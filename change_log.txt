@@ -1,6 +1,8 @@
 
 v 0.11.8
  * Fixed quest log entries for Frozen Sunlight chain
+ * Added last two Orbs
+ * Added a cave full of spiders for an earlier source of Silk
 
 v 0.11.7
  * Building the Planar Gate now requires a piece of Voidstone from LoLH, as was intended from Eshkaz's dialog 
