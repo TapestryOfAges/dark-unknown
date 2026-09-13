@@ -339,17 +339,17 @@ mappages["shadow3"].terrain = [];
  mappages["shadow3"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["shadow3"].terrain[1] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["shadow3"].terrain[2] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["shadow3"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["shadow3"].terrain[4] = 'BK BK BK BK BK !# !# !# !# BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["shadow3"].terrain[5] = 'BK BK BK BK BK !# kd kd !# BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK BK BK BK cw cw cw cw BK BK BK BK';
- mappages["shadow3"].terrain[6] = 'BK BK BK BK BK !# Kd kd !# BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cw cw BK BK BK BK BK cw cw cw cf cf cw BK BK BK BK';
- mappages["shadow3"].terrain[7] = 'BK BK BK BK BK !# kd !# !# BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cw BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK';
- mappages["shadow3"].terrain[8] = 'BK BK BK BK BK !# kd kd !# BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cw cw BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK';
- mappages["shadow3"].terrain[9] = 'BK BK BK BK BK !# !# kd !# BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw cw BK BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK';
-mappages["shadow3"].terrain[10] = 'BK BK BK BK BK BK !# kd !# BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK BK BK BK BK cw cw cf cf cw cw BK BK BK BK';
-mappages["shadow3"].terrain[11] = 'BK BK BK BK BK BK !# kd !# !# BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cw BK BK BK BK BK BK BK BK BK cw cf cf cw cw BK BK BK BK';
-mappages["shadow3"].terrain[12] = 'BK BK BK BK !# !# !# kd kd !# !# !# !# !# BK BK BK BK BK BK BK cw cw cf cf cw cw BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK';
-mappages["shadow3"].terrain[13] = 'BK BK BK !# !# kd kd Kd kd !# kd kd kd !# !# BK BK BK BK BK BK BK cw cf cf cf cw cw BK BK BK BK BK BK cw cw cf cf cf cw BK BK BK BK';
+ mappages["shadow3"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["shadow3"].terrain[4] = 'BK BK BK BK BK !# !# !# !# BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["shadow3"].terrain[5] = 'BK BK BK BK BK !# kd kd !# BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cw cw BK BK BK cw cw cw cw BK BK BK BK';
+ mappages["shadow3"].terrain[6] = 'BK BK BK BK BK !# Kd kd !# BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cw cf cf cf cf cw BK cw cw cw cf cf cw BK BK BK BK';
+ mappages["shadow3"].terrain[7] = 'BK BK BK BK BK !# kd !# !# BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cw cw cf cf cf cw cw cw cf cf cf cf cw BK BK BK BK';
+ mappages["shadow3"].terrain[8] = 'BK BK BK BK BK !# kd kd !# BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cw cw cw cf cf cf cf cw cw cf cf cf cf cw BK BK BK BK';
+ mappages["shadow3"].terrain[9] = 'BK BK BK BK BK !# !# kd !# BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw cw BK cw cw cf cf cf cw cw cf cf cf cf cw BK BK BK BK';
+mappages["shadow3"].terrain[10] = 'BK BK BK BK BK BK !# kd !# BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK cw cf cf cf cw cw cw cf cf cw cw BK BK BK BK';
+mappages["shadow3"].terrain[11] = 'BK BK BK BK BK BK !# kd !# !# BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cw BK BK BK cw cf cf cf cw BK cw cf cf cw cw BK BK BK BK';
+mappages["shadow3"].terrain[12] = 'BK BK BK BK !# !# !# kd kd !# !# !# !# !# BK BK BK BK BK BK BK cw cw cf cf cw cw BK BK cw cf cf cw cw BK cw cf cf cf cw BK BK BK BK';
+mappages["shadow3"].terrain[13] = 'BK BK BK !# !# kd kd Kd kd !# kd kd kd !# !# BK BK BK BK BK BK BK cw cf cf cf cw cw BK cw cw cw cw BK cw cw cf cf cf cw BK BK BK BK';
 mappages["shadow3"].terrain[14] = 'BK BK BK !# kd kd kd kd kd !# kd kd kd kd !# cw cw cw cw cw cw cw cw cf cf cf cf cw cw BK BK BK BK BK cw cf cf cf cw cw BK BK BK BK';
 mappages["shadow3"].terrain[15] = 'BK BK BK !# !# !# kd !# !# !# kd kd Kd kd Kd cf cf cw cw cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK';
 mappages["shadow3"].terrain[16] = 'BK BK !# !# kd kd kd kd kd !# Kd kd kd kd Kd cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK cw cw cf cf cw BK BK BK BK BK';
@@ -399,6 +399,7 @@ mappages["shadow3"].npcs[1] = {name : 'CorpserNPC', x : 38, y : 21, skintone: 1}
 mappages["shadow3"].npcs[2] = {name : 'CorpserNPC', x : 32, y : 26, skintone: 1};
 mappages["shadow3"].npcs[3] = {name : 'OlcrannNPC', x : 25, y : 6, skintone: 1};
 mappages["shadow3"].npcs[4] = {name : 'RangerVillagerNPC', x : 11, y : 15, NPCName: 'Rhys', Level: 6, Conversation: 'rhys', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"LeatherArmor","head":"ShortBlackDark","back":"Quiver","offhand":"OffhandDark","cloak":"","mainhand":"BowDark","realhead":"ShortBlackDark"}'};
+mappages["shadow3"].npcs[5] = {name : 'LordOlcrannNPC', x : 31, y : 10, skintone: 1};
 
 mappages["shadow3"].desc = "Dungeon Shadow";
 mappages["shadow3"].longdesc = ``;
@@ -443,6 +444,11 @@ mappages["shadow3"].onload = function(mapref) {
       let wall2 = mapref.getTile(14,16).getTopFeature();
       mapref.deleteThing(wall1);
       mapref.deleteThing(wall2);
+    }
+
+    if (!PC.checkInventory("AudachtaNemesosPage3") && !PC.checkInventory("AudachtaNemesosPermanence") && !PC.knowsSpell(SPELL_PERMANENCE_LEVEL,SPELL_PERMANENCE_ID)) {
+      let lolc = mapref.getTile(31,10).getTopNPC();
+      lolc.lootTable = "OlcrannPage";
     }
   }
 }
