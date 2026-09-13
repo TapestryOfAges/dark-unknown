@@ -892,7 +892,7 @@ function StepOrSidestep(who, path, finaldest, nopush, nodanger) {
 }
 
 function IsNonLiving(who) {
-  if (who.specials.undead || who.specials.construct || who.specials.noact) { return 1;}
+  if (who.specials.undead || who.specials.construct || (who.specials.noact && (who.getCurrentAI() !== "segment"))) { return 1;}
   return 0;
 }
 
@@ -1033,4 +1033,24 @@ function SharesSpace(who) {
   let npcs = tile.getNPCs();
   if (npcs.length > 1) { return 1; }
   return 0;
+}
+
+function TerrifyMap(who) {
+  let themap = who.getHomeMap();
+  let terrorcount = 0;
+  let npcs = themap.npcs.getAll();
+  for (let i=0;i<npcs.length;i++) {
+    if ((npcs[i].getLevel() <= who.getLevel()) && (npcs[i].getLevel() <= 3)) { 
+      if (!who.specials.noflee && !who.specials.undead && !who.specials.construct && !who.specials.mindless) {
+        npcs[i].terrified = 1;
+        terrorcount++;
+      }
+    }
+  }
+  console.log(`Terrified ${terrorcount} mobs.`);
+  if (terrorcount === npcs.length) {
+    maintext.addText("Seeing your prowess, the enemy breaks in terror!");
+  } else if (terrorcount) {
+    maintext.addText(`Seeing your prowess, some of ${who.getFullDesc()}'s allies flee in terror!`);
+  }
 }
