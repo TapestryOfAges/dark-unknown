@@ -1282,8 +1282,16 @@ function maps_check_escape(mapref) {
           maintext.delayedAddText("Escaped!");
         }
       } else {
-        maintext.addText("The " + who.getDesc() + " fled!");
+        let distext = "The " + who.getDesc() + " fled!";
+        if (who.getXPVal()) {
+          distext += " (Worth: " + who.getXPVal() + " XP)";
+          let XP = who.getXPVal();
+          XP = XP * (1 + PC.getKarma()/100 - DU.gameflags.getFlag("coward")/200);
+          PC.addxp(XP);
+        }
+        maintext.addText(distext);
       }
+
     }
     
     if ((who === PC) && numenemies) {
