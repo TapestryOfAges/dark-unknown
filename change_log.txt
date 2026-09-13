@@ -1,4 +1,6 @@
 
+c 0.11.9
+
 v 0.11.8
  * Fixed quest log entries for Frozen Sunlight chain
  * Added last two Orbs
