@@ -131,7 +131,7 @@ ais.combat = function(who) {
     }
   }
   
-  if (!who.specials.noflee && !who.specials.undead && !who.specials.construct && !who.specials.mindless && !who.specials.tempbrave && (who.getHP() < .15*who.getMaxHP()) && (Dice.roll("1d2") === 1)) {
+  if (!who.specials.noflee && !who.specials.undead && !who.specials.construct && !who.specials.mindless && !who.specials.tempbrave && (who.getHP() < .10*who.getMaxHP()) && (Dice.roll("1d2") === 1)) {
     // 50/50 chance each turn at 15% of life of dropping it all and fleeing
     DebugWrite("ai", "Too wounded, becoming a coward.<br />");
     // consider making this a check of some kind
@@ -139,7 +139,7 @@ ais.combat = function(who) {
     who.specials.canbebrave = 1; // things that start out as cowards can't decide to stop being cowards
   }
   
-  if (!who.specials.stationary && (who.specials.coward || (nomeleeenemy && (who.getHP() < who.getMaxHP()) && (who.meleeChance === 100)) ||  ((Dice.roll("1d100") < who.withdraw) && IsAdjacent(who,nearest)))) {
+  if (!who.specials.stationary && (who.specials.coward || who.terrified || (nomeleeenemy && (who.getHP() < who.getMaxHP()) && (who.meleeChance === 100)) ||  ((Dice.roll("1d100") < who.withdraw) && IsAdjacent(who,nearest)))) {
     if (who.specials.coward) {
       // run away! run away!
       DebugWrite("ai", "Running away!<br />");
@@ -185,8 +185,8 @@ ais.combat = function(who) {
       let trymove = StepOrSidestep(who,pathdest,rundest,0,"nodanger");
     }
     
-    if (who.specials.canbebrave && (Dice.roll("1d8") === 1)) {
-      // 12.5% chance each turn that a coward who didn't start cowardly will return to the fight
+    if (who.specials.canbebrave && (Dice.roll("1d12") === 1)) {
+      // 8% chance each turn that a coward who didn't start cowardly will return to the fight
       DebugWrite("ai", "Has become brave again!");
       delete who.specials.coward;
       delete who.specials.canbebrave;
@@ -1173,6 +1173,7 @@ ais.Sentinel = function(who) {
     diffx = -1*who.direction;
   } else {
     alert("Sentinels have an invalid step, " + who.patrol + " / " + who.step);
+    // 2 / -1 when the upper left fire field becomes elec and traps the NW wall traveling sentinel with like 1 step
   }
 
   let retval = {};
@@ -1517,6 +1518,8 @@ ais.PaladinCourier = function(who) {
     maintext.addText("She turns away, off to make her next delivery.");
     who.step = 2;
     DU.gameflags.setFlag("paladin_stage2",1);
+    questlog.complete(50);
+    questlog.activate(51);
     return retval;
   } else if (who.step === 1) {
     let path = who.getHomeMap().getPath(who.getx(),who.gety(),PC.getx(),PC.gety(),who.getMovetype());
@@ -3779,6 +3782,8 @@ ais.ai_magmaspit = function(who) {
   let descval = { txt: desc };
   let lava = localFactory.createTile("Lava");
   who.getHomeMap().placeThing(tgt.getx(),tgt.gety(),lava);
+  lava.expiresTime = DUTime.getGameClock() + Dice.roll("2d20") * SCALE_TILE;
+
   AnimateEffect({atk:who, def:tgt, fromcoords:fromcoords, tocoords:tocoords, ammographic:bolt, destgraphic:destgraphic, sounds:{}, type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"fire",doagain:[]});
   setTimeout(function() { 
     DUCamera.DrawOne(who.getHomeMap(),tgt.getx(),tgt.gety()); 
@@ -3939,6 +3944,11 @@ ais.ghostie = function(who) {
 ais.Tharock = function(who) {
   if (who.timer) {
     if (who.timer === 3) {
+      let npcs = who.getHomeMap().npcs.getAll();
+      for (let i=0;i<npcs.length;i++) {
+        if (npcs[i].getAttitude() === "hostile") { who.timer = 2; return {fin:1} }
+        // wait to start the conversation until the player has killed everything
+      }
       let tox, toy;
       if (PC.gety() >= 27) { tox=30; toy=25; }
       else if ((PC.getx() >= 27) && (PC.getx() <= 30) && (PC.gety() >= 24) && (PC.gety() <= 26)) { tox=29; toy=28; }
