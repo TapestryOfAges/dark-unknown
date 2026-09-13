@@ -602,8 +602,8 @@ mappages["hildendain2"].features[27] = {name : 'DoubleBedFoot', x : 22, y : 57};
 
 
 mappages["hildendain2"].npcs = [];
-mappages["hildendain2"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 23, y : 38, NPCName: 'Leon', Desc: 'actor', Prefix: 'an', Conversation: 'leon', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"WhiteTunic2","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"ShortBlackDark"}'};
-mappages["hildendain2"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 23, y : 41, NPCName: 'Janet', Desc: 'tourist', Conversation: 'janet', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"ChainMail","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBrownPale"}'};
+mappages["hildendain2"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 23, y : 38, NPCName: 'Leon', Desc: 'actor', Prefix: 'an', PeaceAI: 'scheduled', Schedule: 'leon', Conversation: 'leon', Gender: 'male', NPCBand: '0', skintone: 2, wornlayers: '{"body":"WhiteTunic2","head":"ShortBlackDark","back":"","offhand":"OffhandDark","cloak":"","mainhand":"MainHandDark","realhead":"ShortBlackDark"}'};
+mappages["hildendain2"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 23, y : 41, NPCName: 'Janet', Desc: 'tourist', PeaceAI: 'scheduled', Schedule: 'janet', Conversation: 'janet', Gender: 'female', NPCBand: '0', skintone: 1, wornlayers: '{"body":"ChainMail","head":"ShortBrownPale","back":"","offhand":"OffhandPale","cloak":"","mainhand":"MainHandPale","realhead":"ShortBrownPale"}'};
 
 mappages["hildendain2"].desc = "The Towne of Hildendain";
 mappages["hildendain2"].longdesc = ``;
