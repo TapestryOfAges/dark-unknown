@@ -671,6 +671,41 @@ OutOfContext.onLoadData((event,serialized) => {
     if (DU.gameflags.getFlag("mvol")) { DU.gameflags.setFlag("mvol", DU.gameflags.getFlag("mvol")*10); }
     if (DU.gameflags.getFlag("svol")) { DU.gameflags.setFlag("svol", DU.gameflags.getFlag("svol")*10); }
   }
+  if ((parseInt(savever[1]) < 11) || ((parseInt(savever[1]) === 11) && (parseInt(savever[2]) < 8))) {  // fix to versions prior to 0.11.8
+    let paper = localFactory.createTile("AudachtaNemesosPage2");
+    let uw = maps.getMap("underworld");
+    
+    console.log("Replacing lava.");
+    let fea = uw.features.getAll();
+    for (let i=0;i<fea.length;i++) {
+      if (fea[i].getName() === "Lava") {
+        if ( ((fea[i].gety() === 85) && ((fea[i].getx() >= 38) && (fea[i].getx) <= 41)) ||
+             ((fea[i].gety() === 86) && ((fea[i].getx() >= 37) && (fea[i].getx) <= 43)) ||
+             ((fea[i].gety() === 87) && ((fea[i].getx() >= 36) && (fea[i].getx) <= 44)) ||
+             ((fea[i].gety() === 88) && ((fea[i].getx() >= 35) && (fea[i].getx) <= 44)) ||
+             ((fea[i].gety() === 89) && ((fea[i].getx() >= 35) && (fea[i].getx) <= 44)) ||
+             ((fea[i].gety() === 90) && ((fea[i].getx() >= 36) && (fea[i].getx) <= 44)) ||
+             ((fea[i].gety() === 91) && ((fea[i].getx() >= 39) && (fea[i].getx) <= 44)) ) {
+          let lx = fea[i].getx();
+          let ly = fea[i].gety();
+          uw.deleteThing(fea[i]);
+          let newlava = localFactory.createTile("Lava");
+          uw.placeThing(lx,ly,newlava);
+          newlava.activate("noreally");
+        } else {
+          let lx = fea[i].getx();
+          let ly = fea[i].gety();
+          uw.deleteThing(fea[i]);
+          let newlava = localFactory.createTile("Lava");
+          uw.placeThing(lx,ly,newlava);
+          newlava.expiresTime = DUTime.getGameClock() + Dice.roll("1d20+20")*SCALE_TIME;
+          newlava.activate("noreally");
+        }
+      }
+    }
+    
+    uw.placeThing(45,114,paper);
+  }
 
   ProcessAmbientNoise(PC.getHomeMap().getTile(PC.getx(),PC.gety()));
   startScheduler();
