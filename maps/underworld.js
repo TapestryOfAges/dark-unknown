@@ -213,6 +213,7 @@ mappages["underworld"].features[84] = {name : 'EnergyField', x : 85, y : 54};
 mappages["underworld"].features[85] = {name : 'EnergyField', x : 86, y : 54};
 mappages["underworld"].features[86] = {name : 'EnergyField', x : 87, y : 54};
 mappages["underworld"].features[87] = {name : 'EnergyField', x : 88, y : 54};
+mappages["underworld"].features[88] = {name : 'Chest', x : 45, y : 114, locked : 0, lootedid : 'uw_page2', searchyield : 'AudachtaNemesosPage2'};
 
 
 mappages["underworld"].npcs = [];
