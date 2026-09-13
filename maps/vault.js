@@ -178,6 +178,10 @@ mappages["vault"].editorLabels = '{}';
 
 mappages["vault"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    if (!PC.checkInventory("AudachtaNemesosPage1") && !PC.checkInventory("AudachtaNemesosPermanence") && !PC.knowsSpell(SPELL_PERMANENCE_LEVEL,SPELL_PERMANENCE_ID)) {
+      DU.gameflags.deleteFlag("lid_vault_page");
+    }
+
     if (!DU.gameflags.getFlag("time_started")) {
       Listener.createListener("Vault", "Negate Magic", [], "vault");
 
