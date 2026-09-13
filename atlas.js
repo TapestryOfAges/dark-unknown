@@ -815,7 +815,9 @@ GameMap.prototype.getNPCsAndPCs = function() {
 GameMap.prototype.setAutomap = function(newval) {
 //  console.log(newval);
   newval = parseInt(newval);
-  if ((newval === 1) || (newval === 0)) { console.log(newval); this.automap = newval; }
+  if ((newval === 1) || (newval === 0)) { //console.log(newval); 
+    this.automap = newval; 
+  }
   else { alert("Invalid automap val: " + newval); }
 }
 
@@ -1806,6 +1808,8 @@ GameMap.prototype.loadMap = function (name) {
   let litfeatures = [];
 
   if (gamestate.getMode() !== "loadgame") {
+//    console.log(this.getName());
+//    if (this.getName() === "ellusus") { console.log("*****"); }
     let loadfeatures = mappages.readPage(name, "features");
     if (loadfeatures) {
       for (let fi=0;fi<=loadfeatures.length-1;fi++) {
