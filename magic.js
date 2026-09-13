@@ -1777,8 +1777,9 @@ magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID].executeSpell = function(caster,
   if ((shrine) && (shrine.gotomap)) {
     if (shrine.getName() === "Shrine") {
       if (shrine.hasOwnProperty("gotomap")) {
-        DU.maps.addMap(shrine.gotomap);
+//        DU.maps.addMap(shrine.gotomap);
         let destmap = DU.maps.getMap(shrine.gotomap);
+        if (!destmap) { destmap = maps.addMap(shrine.gotomap); }
         if (!free) {
           free = 0;
           let mana = this.getManaCost(infused);
@@ -1793,8 +1794,9 @@ magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID].executeSpell = function(caster,
       }
     } else if (shrine.getName() === "BrokenShrine") {
       if (infused) {
-        DU.maps.addMap(shrine.gotomap);
+//        DU.maps.addMap(shrine.gotomap);
         let destmap = DU.maps.getMap(shrine.gotomap);
+        if (!destmap) { console.log(`Adding ${shrine.gotomap}`); destmap = maps.addMap(shrine.gotomap); }
         PlayCastSound(caster,"sfx_teleport");
         TravelByMoongate(caster,"blue", destmap, shrine.gotox, shrine.gotoy);
         if (!free) {
