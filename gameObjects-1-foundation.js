@@ -1457,42 +1457,51 @@ function SetBySurroundCoast() {
     let tile; 
     if (localacre !== "OoB") {
     	tile = localacre.terrain;
-      fea = localacre.getTopFeature();
+      fea = localacre.getFeatures();
     	if (tile.getName() === "Ocean") { ocean = tile; }
     	if ((tile.getName() === "Water") || tile.getName().includes("OceanWaterTransition")) { water = tile; }
       if ((tile.getName() === "Shallows") || tile.getName().includes("WaterShallowsTransition")) { shallow = tile; }
       if (tile.getName() === "StillWater") { still = tile; }
-      if (fea && fea.getName().includes("Lava")) { lava = tile; }
+      for (let i=0;i<fea.length;i++) {
+        if (fea[i] && fea[i].getName().includes("Lava") && !fea[i].expiresTime) { lava = tile; continue; }
+      }
     }
     localacre = themap.getTile(x,y+1);
     if (localacre !== "OoB") {
     	tile = localacre.terrain;
-      fea = localacre.getTopFeature();
+      fea = localacre.getFeatures();
     	if (tile.getName() === "Ocean") { ocean = tile; }
     	if ((tile.getName() === "Water") || tile.getName().includes("OceanWaterTransition")) { water = tile; }
       if ((tile.getName() === "Shallows") || tile.getName().includes("WaterShallowsTransition")) { shallow = tile; }
       if (tile.getName() === "StillWater") { still = tile; }
-      if (fea && fea.getName().includes("Lava")) { lava = tile; }
+      for (let i=0;i<fea.length;i++) {
+        if (fea[i] && fea[i].getName().includes("Lava") && !fea[i].expiresTime) { lava = tile; continue; }
+      }
+
     }
     localacre = themap.getTile(x+1,y);
     if (localacre !== "OoB") {
     	tile = localacre.terrain;
-      fea = localacre.getTopFeature();
+      fea = localacre.getFeatures();
     	if (tile.getName() === "Ocean") { ocean = tile; }
     	if ((tile.getName() === "Water") || tile.getName().includes("OceanWaterTransition")) { water = tile; }
       if ((tile.getName() === "Shallows") || tile.getName().includes("WaterShallowsTransition")) { shallow = tile; }
       if (tile.getName() === "StillWater") { still = tile; }
-      if (fea && fea.getName().includes("Lava")) { lava = tile; }
+      for (let i=0;i<fea.length;i++) {
+        if (fea[i] && fea[i].getName().includes("Lava") && !fea[i].expiresTime) { lava = tile; continue; }
+      }
     }
     localacre = themap.getTile(x-1,y);
     if (localacre !== "OoB") {
     	tile = localacre.terrain;
-      fea = localacre.getTopFeature();
+      fea = localacre.getFeatures();
     	if (tile.getName() === "Ocean") { ocean = tile; }
     	if ((tile.getName() === "Water") || tile.getName().includes("OceanWaterTransition")) { water = tile; }
       if ((tile.getName() === "Shallows") || tile.getName().includes("WaterShallowsTransition")) { shallow = tile; }
       if (tile.getName() === "StillWater") { still = tile; }
-      if (fea && fea.getName().includes("Lava")) { lava = tile; }
+      for (let i=0;i<fea.length;i++) {
+        if (fea[i] && fea[i].getName().includes("Lava") && !fea[i].expiresTime) { lava = tile; continue; }
+      }
     }
     let chosentile;
     if (shallow) { chosentile = eidos.getForm("Shallows"); }
