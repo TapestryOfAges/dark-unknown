@@ -1716,7 +1716,7 @@ HeadlessNPCTile.prototype = new NPCObject();
 function HoodNPCTile() {
   this.name = 'HoodNPC';
   this.level = 1;
-  this.addhp = 4;
+  this.addhp = 0;
   this.str = 11;
   this.dex = 9;
   this.int = 9;
@@ -2274,7 +2274,7 @@ OrcNPCTile.prototype = new NPCObject();
 function RogueNPCTile() {
   this.name = 'RogueNPC';
   this.level = 2;
-  this.addhp = 0;
+  this.addhp = -3;
   this.str = 10;
   this.dex = 13;
   this.int = 10;
