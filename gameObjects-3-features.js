@@ -203,6 +203,55 @@ function InLava(who, lava) {
   return {msg:""};
 }
 
+LavaTile.prototype.activate = function(noreally) {
+  if ((gamestate.getMode() !== "loadgame") || noreally) {
+    let NPCevent = new GameEvent(this);
+    DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
+  }
+
+  return;
+}
+
+LavaTile.prototype.myTurn = function() {
+  if (!maps.getMap(this.getHomeMap().getName())) {
+
+    if (!DebugWrite("gameobj", "<span style='font-weight:bold'>Firefield " + this.getSerial() + " removed from game- map gone.</span><br />")) {
+      DebugWrite("magic", "<span style='font-weight:bold'>Firefield " + this.getSerial() + " removed from game- map gone.</span><br />");
+    }
+  
+    return 1;
+  }
+ 
+  if (this.expiresTime && (this.expiresTime < DUTime.getGameClock())) {
+    if (!DebugWrite("magic", "<span style='font-weight:bold'>Firefield " + this.getSerial() + " expired, removing itself.</span><br />")) {
+      DebugWrite("gameobj", "<span style='font-weight:bold'>Firefield " + this.getSerial() + " expired, removing itself.</span><br />");
+    }
+    let x = this.getx();
+    let y = this.gety();
+    let mymap = this.getHomeMap();
+    mymap.deleteThing(this);
+    DUCamera.DrawOne(mymap,x,y);
+    //DrawMainFrame("one",mymap,x,y);
+    
+    return 1;
+  }
+  
+  let mytile = this.getHomeMap().getTile(this.getx(),this.gety());
+  let feas = mytile.getFeatures();
+  for (let i=0;i<feas.length;i++) {
+    if (feas[i].flammable) {
+      if (Dice.roll("1d100") <= feas[i].flammable) {
+        feas[i].flamed();
+      }
+    }
+  };
+
+  let NPCevent = new GameEvent(this);
+  DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
+  
+  return 1;
+}
+
 function PurpleCarpetNWTile() {
   this.name = "PurpleCarpetNW";
   this.graphic = "static.gif";
@@ -7531,7 +7580,7 @@ WhirlpoolTile.prototype.walkon = function(walker) {
       MoveBetweenMaps(walker,themap,newmap,70,106);
     } else if (PC.hasOwnProperty("whirlx")) {
       let newmap = maps.getMap(PC.whirlmap);
-      if (!newmap) { newmap = maps.addMap(PC.whirlmap); }
+      if (!newmap) { alert("This shouldn't be reachable."); newmap = maps.addMap(PC.whirlmap); }
       MoveBetweenMaps(walker,themap,newmap,PC.whirlx,PC.whirly);
       delete PC.whirlx;
       delete PC.whirly;
@@ -11516,8 +11565,9 @@ PlatformOfWavesTile.prototype.walkon = function(who) {
     if (themap.getName() === dest.map) {
       themap.moveThing(dest.x, dest.y, who);
     } else {
-      DU.maps.addMap(dest.map);
-      let destmap = DU.maps.getMap(dest.map);
+//      maps.addMap(dest.map);
+      let destmap = maps.getMap(dest.map);
+      if (!destmap) { destmap = maps.addMap(dest.map); }
       MoveBetweenMaps(who,themap,destmap,dest.x,dest.y);
     }
     DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
@@ -12245,8 +12295,9 @@ TeleporterPlatformTile.prototype.walkon = function(who) {
     if (themap.getName() === dest.map) {
       themap.moveThing(dest.x, dest.y, who);
     } else {
-      DU.maps.addMap(dest.map);
+      //DU.maps.addMap(dest.map);
       let destmap = DU.maps.getMap(dest.map);
+      if (!destmap) { destmap = maps.addMap(dest.map); }
       MoveBetweenMaps(who,themap,destmap,dest.x,dest.y);
     }
     DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
@@ -12323,8 +12374,9 @@ PitTeleporterPlatformTile.prototype.walkon = function(who) {
     if (themap.getName() === dest.map) {
       themap.moveThing(dest.x, dest.y, who);
     } else {
-      DU.maps.addMap(dest.map);
+      //DU.maps.addMap(dest.map);
       let destmap = DU.maps.getMap(dest.map);
+      if (!destmap) { destmap = maps.addMap(dest.map); }
       MoveBetweenMaps(who,themap,destmap,dest.x,dest.y);
     }
     DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
@@ -12811,8 +12863,9 @@ EtherOutboundGateTile.prototype.walkon = function(who) {
     if (themap.getName() === dest.map) {
       themap.moveThing(dest.x, dest.y, who);
     } else {
-      DU.maps.addMap(dest.map);
+      //DU.maps.addMap(dest.map);
       let destmap = DU.maps.getMap(dest.map);
+      if (!destmap) { destmap = maps.addMap(dest.map); }
       MoveBetweenMaps(who,themap,destmap,dest.x,dest.y);
     }
     if (who === PC) {
