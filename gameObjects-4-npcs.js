@@ -360,6 +360,7 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
   if (this.specials.unkillable && (dmg > this.getHP())) {
     dmg = this.getHP()-1;
   }
+  let oldhp = this.getHP();
   this.modHP(dmg*-1);
   if (this.getHP() <= 0) { // killed!
     let reincarnate = this.getSpellEffectsByName("Reincarnate");
@@ -367,6 +368,13 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
       reincarnate.endEffect();
       this.setHP(this.getMaxHP()/2);
       return 0;
+    }
+    let terror = 0;
+    if (oldhp === this.getMaxHP()) {
+      if (this.getHomeMap().getName().includes("combat")) {
+        // this dude was one-shot and is on a combat map
+        terror = 1;
+      }
     }
     this.processDeath(1);
     if (src === PC) {
@@ -379,6 +387,7 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
         rof.killed(this);
       }
     }
+    if (terror) { TerrifyMap(this); }
     return -1;
   }
   else { return dmg; }
