@@ -193,7 +193,7 @@ LavaTile.prototype.isHostileTo = function(who) {
 }
 
 function InLava(who, lava) {
-  if (who.invisible || (who.getMovetype() & MOVE_FLY) || (who.getMovetype() & MOVE_ETHEREAL)) {
+  if (who.specials.underground || (who.getMovetype() & MOVE_FLY) || (who.getMovetype() & MOVE_ETHEREAL)) {
     return {msg:""};
   } else if ((who.getMovetype() & MOVE_LEVITATE) || (who.getMovetype() & MOVE_FLY)) {
     who.dealDamage(Dice.roll("2d4+4"), lava, "fire");
@@ -3898,7 +3898,7 @@ FireFieldTile.prototype.myTurn = function() {
 }
 
 function InAFireField(who, field) {
-  if (who.invisible) { return {"msg":""}; }
+  if (who.specials.underground) { return {"msg":""}; }
   let mult = 1;
   if (who.attachedTo || who.attachedParts) {
     // multitile monster
