@@ -3170,8 +3170,8 @@ PCObject.prototype.dealDamage = function(dmg, src, type) {
   let newhp = this.getDisplayHP();
   
   if (oldhp !== newhp) {
-    DrawCharFrame();
     DamageFlash();
+    DrawCharFrame();
   }
   
   if (this.getHP() <= 0) { // killed!
