@@ -1,6 +1,7 @@
 
 v 0.11.9
  * Creatures that are underground don't take lava/fire damage
+ * HPs consistently turn red if low
 
 v 0.11.8
  * Fixed quest log entries for Frozen Sunlight chain
