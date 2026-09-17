@@ -196,9 +196,11 @@ function InLava(who, lava) {
   if (who.specials.underground || (who.getMovetype() & MOVE_FLY) || (who.getMovetype() & MOVE_ETHEREAL)) {
     return {msg:""};
   } else if ((who.getMovetype() & MOVE_LEVITATE) || (who.getMovetype() & MOVE_FLY)) {
-    who.dealDamage(Dice.roll("2d4+4"), lava, "fire");
+    DealandDisplayDamage(who,lava, Dice.roll("2d4+4"), "fire");
+//    who.dealDamage(Dice.roll("2d4+4"), lava, "fire");
   } else {
-    who.dealDamage(Dice.roll("2d10+15"), lava, "fire");
+    DealandDisplayDamage(who,lava, Dice.roll("2d10+15"), "fire");
+//    who.dealDamage(Dice.roll("2d10+15"), lava, "fire");
   }
   return {msg:""};
 }
@@ -3976,7 +3978,7 @@ AbyssFireFieldTile.prototype.walkon = function(person) {
     dmg = person.getHP()-1; 
   }
   person.setHP(person.getHP()-dmg);
-  DrawCharFrame();
+//  DrawCharFrame();
   DamageFlash();
   DUPlaySound("sfx_fire_hit");
   return resp;

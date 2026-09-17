@@ -3171,7 +3171,7 @@ PCObject.prototype.dealDamage = function(dmg, src, type) {
   
   if (oldhp !== newhp) {
     DamageFlash();
-    DrawCharFrame();
+//    DrawCharFrame();
   }
   
   if (this.getHP() <= 0) { // killed!
