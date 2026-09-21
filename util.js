@@ -983,7 +983,7 @@ function AddLoot(towhat) {
 function RollDamage(dam_val,extra) {
   let dmg = Dice.roll(dam_val);
   if (extra) { dmg += Dice.roll(extra); }
-  return parseInt(dmg);
+  return parseFloat(dmg);
 }
 
 function IsAdjacent(one,two,nodiag) {
