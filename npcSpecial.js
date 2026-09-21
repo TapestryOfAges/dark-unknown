@@ -91,6 +91,10 @@ MultiSegment.prototype.getLevel = function() {
   return this.attachedTo.getLevel();
 }
 
+MultiSegment.prototype.getXPVal = function() {
+  return this.attachedTo.getXPVal();
+}
+
 function HorseAndCartNPCTile() {
   this.name = 'HorseAndCartNPC';
   this.level = 1;
@@ -169,7 +173,7 @@ CartSegmentTile.prototype = new MultiSegment();
 
 function ElderDragonNPCTile() {
   this.name = 'ElderDragonNPC';
-  this.level = 8;
+  this.level = 7;
   this.addhp = 45;
   this.str = 30;
   this.dex = 30;
@@ -182,7 +186,6 @@ function ElderDragonNPCTile() {
   this.graphic = 'static.gif';
   this.spritexoffset = 0;
   this.spriteyoffset = -167*32;
-  this.level = 7;
   this.meleeAttackAs = 'none';
   this.meleeDamage = '5d8+15';
   this.meleeStrDamage = 1;
@@ -195,7 +198,7 @@ function ElderDragonNPCTile() {
   this.desc = "elder dragon";
   this.meleeChance = 70;
   this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, };
-  this.resists = { fire:50 };
+  this.resists = { fire:50, magic:25 };
   this.meleeHitSound = 'sfx_roar_hit';
   this.meleeAttackSound = 'sfx_roar_miss';
   this.special = 'miniboss,ondeathElder,reach,light:2';
