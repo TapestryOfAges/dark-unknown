@@ -4026,7 +4026,8 @@ ais.elderdragon = function(who) {
       let dmg = Dice.roll(DMG_TREMENDOUS);
       let fromcoords = GetCoords(who.getHomeMap(),who.getx(),who.gety());
       let tocoords = GetCoords(who.getHomeMap(),who.breathx,who.breathy);
-      AnimateEffect({atk:who,def:tgt,fromcoords:fromcoords,tocoords:tocoords,ammographic:boltgraphic,destgraphic:destgraphic,sounds:{},type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"fire", weapon:weapon, finishcallback:cb, callbackparam: {x:who.breathx, y:who.breathy}, doagain:[]});
+      let cbarray = [{callback: cb, callbackparam: {x:who.breathx, y:who.breathy}}];
+      AnimateEffect({atk:who,def:tgt,fromcoords:fromcoords,tocoords:tocoords,ammographic:boltgraphic,destgraphic:destgraphic,sounds:{},type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"fire", weapon:weapon, finishcallback:cbarray, doagain:[]});
 
       delete who.breathing;
       delete who.breathx;
@@ -4217,7 +4218,7 @@ ais.elderdragon = function(who) {
           DUPlaySound("sfx_summon");          
         }
       } else if (action === "breathe") {
-        maintext.addText("The dragon inhales a deep breath, pulling air from throughout the cavern. It looks around as it prepares to exhale...");
+        maintext.addText("The dragon inhales a deep breath, pulling air from throughout the cavern. It looks around as it <span style='color:red'>prepares to exhale</span>...");
         let chk = Dice.roll("1d"+foes.length+"-1");
         who.breathx = foes[chk].getx();
         who.breathy = foes[chk].gety();
