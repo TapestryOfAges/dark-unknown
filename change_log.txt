@@ -1,7 +1,25 @@
 
+v 0.11.10
+ * Slightly reduced drop rates across the board
+
 v 0.11.9
+ * Added "INN" to the innkeepers in Swainhil's dialog
  * Creatures that are underground don't take lava/fire damage
  * HPs consistently turn red if low
+ * Slightly improved tiling of cave floors
+ * Some onHit functions reimplemented as callbacks so they can occur after the damage
+ * Do less rounding down of damage
+ * Removed excess lava from the underworld
+ * Magma Spawn are now immune to fire
+ * Alacrity is now a 1.5x speedup rather than a 2x speedup
+ * Alacrity from potions has reduced duration (make the most of it!)
+ * Some damage reports were being logged even if the PC was not nearby. Fixed
+ * Slightly reduced Mind Blast damage
+ * Multi-tile monsters correctly derive their XP value from the main segment
+ * Elder Dragon now slightly magic resistant 
+ * Added a [MORE] prompt to the Elder Dragon's death so you can't miss its dying words due to too many minions taking turns
+ * Fixed a couple of endgame bugs
+ * Shepherd has a unique text styling
 
 v 0.11.8
  * Fixed quest log entries for Frozen Sunlight chain
