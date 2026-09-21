@@ -62,6 +62,8 @@ function AnimateEffect(param) {
   // param.callbackparam - object with parameters to feed to callback
   // param.weapon - the attacker's weapon, if appropriate
 
+  if (!param.hasOwnProperty("finishcallback")) { param.finishcallback = []; }
+
   let ammocoords = GetCoordsWithOffsets(param.ammographic.fired, param.fromcoords, param.tocoords);
   param.ammocoords = ammocoords;
   let animid = "anim_" + Dice.roll("1d100000");  // so more than one can be going at a time
@@ -207,7 +209,11 @@ function FinishAnimation(param) {
   maintext.setInputLine("&gt;");
   maintext.drawInputLine();
 
-  if (param.finishcallback) { param.finishcallback(param.atk,param.def,param.callbackparam); }
+  if (param.finishcallback.length) { 
+    for (let i=0;i<param.finishcallback.length;i++) {
+      param.finishcallback[i].callback(param.atk,param.def,param.finishcallback[i].callbackparam); 
+    }
+  }
     
   if (!targetCursor.animatedTargets) { targetCursor.animatedTargets = 0; }
   targetCursor.animatedTargets++;
@@ -241,23 +247,25 @@ function DealandDisplayDamage(def,atk,dmg, dmgtype) {
     }
     let stillalive = def.dealDamage(dmg, atk, dmgtype);   
 
-    let desc = def.getDesc()
-    desc = desc.charAt(0).toUpperCase() + desc.slice(1);
-    if (stillalive > -1) {
-      if (Math.floor(prehp) === Math.floor(def.getHP())) {
-        maintext.delayedAddText(desc + ": Scratched!"); 
-      } else {
-        let damagedesc = GetDamageDescriptor(def); 
-        maintext.delayedAddText(desc + ": " + damagedesc + "!"); 
+    if ((def.getHomeMap() === PC.getHomeMap()) && IsObjectVisibleOnScreen(def)) {
+      let desc = def.getDesc()
+      desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+      if (stillalive > -1) {
+        if (Math.floor(prehp) === Math.floor(def.getHP())) {
+          maintext.delayedAddText(desc + ": Scratched!"); 
+        } else {
+          let damagedesc = GetDamageDescriptor(def); 
+          maintext.delayedAddText(desc + ": " + damagedesc + "!"); 
+        }
       }
-    }
-    else {  
-      if (def.specials.crumbles) { maintext.delayedAddText(desc +  ": It crumbles to dust!"); }
-      else if (atk && (atk.getName() === "BlackDragonNPC")) { maintext.delayedAddText(desc + ": Unconscious!"); }
-      else { maintext.delayedAddText(desc + ": Killed!"); }
-      
-      if (def.getXPVal() && (atk === PC) && (def !== PC)) {
-        maintext.delayedAddText(" (Worth: " + def.getXPVal() + " XP)");
+      else {  
+        if (def.specials.crumbles) { maintext.delayedAddText(desc +  ": It crumbles to dust!"); }
+        else if (atk && (atk.getName() === "BlackDragonNPC")) { maintext.delayedAddText(desc + ": Unconscious!"); }
+        else { maintext.delayedAddText(desc + ": Killed!"); }
+        
+        if (def.getXPVal() && (atk === PC) && (def !== PC)) {
+          maintext.delayedAddText(" (Worth: " + def.getXPVal() + " XP)");
+        }
       }
     }
     return stillalive;
@@ -678,7 +686,7 @@ function GetDisplayTerrain(mapref, xcoord, ycoord,centerx,centery,losresult) {
 function DamageFlash() {
   document.getElementById('hpcell').style.backgroundColor = "white";
   document.getElementById('hpcell').style.color = "black";
-  setTimeout(function() { document.getElementById('hpcell').style.backgroundColor = "black"; document.getElementById('hpcell').style.color = "white"; }, 250);
+  setTimeout(function() { document.getElementById('hpcell').style.backgroundColor = "black"; document.getElementById('hpcell').style.color = "white"; DrawCharFrame(); }, 250);
 }
 
 function AnimateMoongate(obj, repeat, dir, waitdur, destroywhendone) {

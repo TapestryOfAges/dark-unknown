@@ -63,63 +63,67 @@ OnHitFuncs["stealfood"] = function(atk,def,dmg) {
 }
 
 OnHitFuncs["knockback"] = function(atk,def,dmg) {
-  let chance = def.getStr() * 2.5;
-  if (Dice.roll("1d100") > chance) {
-    let options = [];
-    let flip = Dice.roll("1d2-1");
-    let oct = GetOctant(def.getx()-atk.getx(),def.gety()-atk.gety());
-    if (oct === 0) {
-      if (flip) { options = [[def.getx(),def.gety()-1],[def.getx()-1,def.gety()-1],[def.getx()+1,def.gety()-1]] }
-      else { options = [[def.getx(),def.gety()-1],[def.getx()+1,def.gety()-1],[def.getx()-1,def.gety()-1]] }
-    } else if (oct === 1) {
-      if (flip) { options = [[def.getx()+1,def.gety()-1],[def.getx(),def.gety()-1],[def.getx()+1,def.gety()]] }
-      else { options = [[def.getx()+1,def.gety()-1],[def.getx()+1,def.gety()],[def.getx(),def.gety()-1]] }
-    } else if (oct === 2) { 
-      if (flip) { options = [[def.getx()+1,def.gety()],[def.getx()+1,def.gety()+1],[def.getx()+1,def.gety()-1]] }
-      else { options = [[def.getx()+1,def.gety()],[def.getx()+1,def.gety()-1],[def.getx()+1,def.gety()+1]] }
-    } else if (oct === 3) {
-      if (flip) { options = [[def.getx()+1,def.gety()+1],[def.getx(),def.gety()+1],[def.getx()+1,def.gety()]] }
-      else { options = [[def.getx()+1,def.gety()+1],[def.getx()+1,def.gety()],[def.getx(),def.gety()+1]] }
-    } else if (oct === 4) {
-      if (flip) { options = [[def.getx(),def.gety()+1],[def.getx()+1,def.gety()+1],[def.getx()-1,def.gety()+1]] }
-      else { options = [[def.getx(),def.gety()+1],[def.getx()-1,def.gety()+1],[def.getx()+1,def.gety()+1]] }
-    } else if (oct === 5) {
-      if (flip) { options = [[def.getx()-1,def.gety()+1],[def.getx(),def.gety()+1],[def.getx()-1,def.gety()]] }
-      else { options = [[def.getx()-1,def.gety()+1],[def.getx()-1,def.gety()],[def.getx(),def.gety()+1]] }
-    } else if (oct === 6) { 
-      if (flip) { options = [[def.getx()-1,def.gety()],[def.getx()-1,def.gety()-1],[def.getx()-1,def.gety()+1]] }
-      else { options = [[def.getx()-1,def.gety()],[def.getx()-1,def.gety()+1],[def.getx()-1,def.gety()-1]] }
-    } else if (oct === 7) {
-      if (flip) { options = [[def.getx()-1,def.gety()-1],[def.getx(),def.gety()-1],[def.getx()-1,def.gety()]] }
-      else { options = [[def.getx()-1,def.gety()-1],[def.getx()-1,def.gety()],[def.getx(),def.gety()-1]] }
-    }
+  let callback = function() {
+    if (def.getHP() <= 0) { return; }
+    let chance = def.getStr() * 2.5;
+    if (Dice.roll("1d100") > chance) {
+      let options = [];
+      let flip = Dice.roll("1d2-1");
+      let oct = GetOctant(def.getx()-atk.getx(),def.gety()-atk.gety());
+      if (oct === 0) {
+        if (flip) { options = [[def.getx(),def.gety()-1],[def.getx()-1,def.gety()-1],[def.getx()+1,def.gety()-1]] }
+        else { options = [[def.getx(),def.gety()-1],[def.getx()+1,def.gety()-1],[def.getx()-1,def.gety()-1]] }
+      } else if (oct === 1) {
+        if (flip) { options = [[def.getx()+1,def.gety()-1],[def.getx(),def.gety()-1],[def.getx()+1,def.gety()]] }
+        else { options = [[def.getx()+1,def.gety()-1],[def.getx()+1,def.gety()],[def.getx(),def.gety()-1]] }
+      } else if (oct === 2) { 
+        if (flip) { options = [[def.getx()+1,def.gety()],[def.getx()+1,def.gety()+1],[def.getx()+1,def.gety()-1]] }
+        else { options = [[def.getx()+1,def.gety()],[def.getx()+1,def.gety()-1],[def.getx()+1,def.gety()+1]] }
+      } else if (oct === 3) {
+        if (flip) { options = [[def.getx()+1,def.gety()+1],[def.getx(),def.gety()+1],[def.getx()+1,def.gety()]] }
+        else { options = [[def.getx()+1,def.gety()+1],[def.getx()+1,def.gety()],[def.getx(),def.gety()+1]] }
+      } else if (oct === 4) {
+        if (flip) { options = [[def.getx(),def.gety()+1],[def.getx()+1,def.gety()+1],[def.getx()-1,def.gety()+1]] }
+        else { options = [[def.getx(),def.gety()+1],[def.getx()-1,def.gety()+1],[def.getx()+1,def.gety()+1]] }
+      } else if (oct === 5) {
+        if (flip) { options = [[def.getx()-1,def.gety()+1],[def.getx(),def.gety()+1],[def.getx()-1,def.gety()]] }
+        else { options = [[def.getx()-1,def.gety()+1],[def.getx()-1,def.gety()],[def.getx(),def.gety()+1]] }
+      } else if (oct === 6) { 
+        if (flip) { options = [[def.getx()-1,def.gety()],[def.getx()-1,def.gety()-1],[def.getx()-1,def.gety()+1]] }
+        else { options = [[def.getx()-1,def.gety()],[def.getx()-1,def.gety()+1],[def.getx()-1,def.gety()-1]] }
+      } else if (oct === 7) {
+        if (flip) { options = [[def.getx()-1,def.gety()-1],[def.getx(),def.gety()-1],[def.getx()-1,def.gety()]] }
+        else { options = [[def.getx()-1,def.gety()-1],[def.getx()-1,def.gety()],[def.getx(),def.gety()-1]] }
+      }
 
-    while (options[0]) {
-      let tile = def.getHomeMap().getTile(options[0][0],options[0][1]);
-      if (tile !== "OoB") {
-        if (!tile.getTopFeature() && !tile.getTopNPC() && !tile.getTopPC()) {
-          let origdefx = def.getx();
-          let origdefy = def.gety();
-          if (def.attachedTo) {
-            def = def.attachedTo;
-          }
+      while (options[0]) {
+        let tile = def.getHomeMap().getTile(options[0][0],options[0][1]);
+        if (tile !== "OoB") {
+          if (!tile.getTopFeature() && !tile.getTopNPC() && !tile.getTopPC()) {
+            let origdefx = def.getx();
+            let origdefy = def.gety();
+            if (def.attachedTo) {
+              def = def.attachedTo;
+            }
 
-          let movetry = def.moveMe(options[0][0] - origdefx,options[0][1] - origdefy);
-          if (movetry["canmove"]) {
-            if (def === PC) { maintext.addText("The powerful blow knocks you backwards!"); }
-            else {
-              if ((def.getHomeMap() === PC.getHomeMap()) && (GetDistance(def.getx(),def.gety(),PC.getx(),PC.gety()) <= 5)) {
-                maintext.addText("The powerful blow knocks " + def.getFullDesc() + " back!");
+            let movetry = def.moveMe(options[0][0] - origdefx,options[0][1] - origdefy);
+            if (movetry["canmove"]) {
+              if (def === PC) { maintext.addText("The powerful blow knocks you backwards!"); }
+              else {
+                if ((def.getHomeMap() === PC.getHomeMap()) && (GetDistance(def.getx(),def.gety(),PC.getx(),PC.gety()) <= 5)) {
+                  maintext.addText("The powerful blow knocks " + def.getFullDesc() + " back!");
+                }
               }
             }
+            return;
           }
-          return;
         }
+        options.shift();
       }
-      options.shift();
+    
     }
-  
   }
+  return {callback: callback, callbackparams: {}}; 
 }
 
 OnHitFuncs["entangle"] = function(atk,def,dmg) {
@@ -375,7 +379,7 @@ OnDeathFuncs["destroycrystals"] = function(who) {
 OnDeathFuncs["Elder"] = function(who) {
   DU.gameflags.setFlag("elder_killed",1);
   let dgmap = who.getHomeMap();
-  maintext.addText('The dragon slumps to the ground, and opens one huge eye to gaze at you. Its voice rattles forth, "It is done. I see the path before you, mortal: You venture into a darkness the likes the world has ne\'er seen. May you never return to the lands of light..." The dragon\'s labored breathing ceases.');
+  maintext.addText('The dragon slumps to the ground, and opens one huge eye to gaze at you. Its voice rattles forth, "It is done. I see the path before you, mortal: You venture into a darkness the likes the world has ne\'er seen. May you never return to the lands of light..."');
   for (let i=0;i<3;i++) {
     let chest = localFactory.createTile("Chest");
     chest.setLootgroup("castlechest");
@@ -386,6 +390,13 @@ OnDeathFuncs["Elder"] = function(who) {
     }
     dgmap.placeThing(who.attachedParts[i].getx(), who.attachedParts[i].gety(), chest);
   }
+  PC.replaceEndTurn = function() {
+    gamestate.setMode("anykey");
+    maintext.setInputLine("[MORE]");
+    maintext.drawTextFrame();
+    targetCursor.command = "*";
+    targetCursor.event = "ElderDeath";
+  };
 }
 
 OnDeathFuncs["Axe"] = function(who) {
