@@ -205,6 +205,7 @@ function Attack(atk, def) {
   let type = "melee";
   let rad = 1;
   let endturn = 1;
+  let finishcallbacks = [];
   if (atk.specials.reach) { 
     rad = 2; 
   }
@@ -357,7 +358,10 @@ function Attack(atk, def) {
       for (let i=0;i<onhits.length;i++) {
         if (typeof OnHitFuncs[onhits[i]] === "function") {
           DebugWrite("combat", "Undertaking onhit: " + onhits[i] + "<br />");
-          OnHitFuncs[onhits[i]](atk,def,dmg);
+          let onhitresult = OnHitFuncs[onhits[i]](atk,def,dmg);
+          if (onhitresult && onhitresult.hasOwnProperty("callback")) {
+            finishcallbacks.push({callback: onhitresult.callback, callbackparams: onhitresult.callbackparams});
+          }
           DebugWrite("combat", "Finished.<br />");
         } else {
           DebugWrite("combat", "**Attacker has an On Hit (" + onhits[i] + ") that does not have a function!**<br />");
@@ -366,9 +370,12 @@ function Attack(atk, def) {
     }
     if (weapon && (typeof weapon.onHit === "function")) { 
       let bonus = weapon.onHit(atk,def,dmg); 
-      if (bonus.dmg) {
+      if (bonus && bonus.dmg) {
         adddmg = bonus.dmg;
         adddmgtype = bonus.dmgtype;
+      }
+      if (bonus && bonus.callback) {
+        finishcallbacks.push({callback: bonus.callback, callbackparams: bonus.callbackparams});
       }
     }
   }
@@ -418,9 +425,9 @@ function Attack(atk, def) {
     dg.yoffset = 0;
     dg.overlay = "spacer.gif";
     doagain[0] = {atk:def,def:atk,fromcoords:tocoords,tocoords:fromcoords,ammographic:ammographic,destgraphic:dg,sounds:{start:"", end: ""}, type:type, duration:duration, ammoreturn:0, dmg:0, endturn:endturn,retval:{txt:""},weapon:weapon,adddmg:0,adddmgtype:adddmgtype, doagain: [], myturn:atk};
-    AnimateEffect({atk:atk,def:def,fromcoords:fromcoords,tocoords:tocoords,ammographic:ammographic,destgraphic:hitgraphic,sounds:sounds, type:type, duration:duration,ammoreturn:0,dmg:dmg,endturn:endturn,retval:retval,weapon:weapon,adddmg:adddmg,adddmgtype:adddmgtype, doagain:doagain});
+    AnimateEffect({atk:atk,def:def,fromcoords:fromcoords,tocoords:tocoords,ammographic:ammographic,destgraphic:hitgraphic,sounds:sounds, type:type, duration:duration,ammoreturn:0,dmg:dmg,endturn:endturn,retval:retval,weapon:weapon,adddmg:adddmg,adddmgtype:adddmgtype, doagain:doagain, finishcallback: finishcallbacks});
   } else {
-    AnimateEffect({atk:atk,def:def,fromcoords:fromcoords,tocoords:tocoords,ammographic:ammographic,destgraphic:hitgraphic,sounds:sounds, type:type, duration:duration,ammoreturn:ammoreturn,dmg:dmg,endturn:endturn,retval:retval,weapon:weapon,adddmg:adddmg,adddmgtype:adddmgtype, doagain:doagain});
+    AnimateEffect({atk:atk,def:def,fromcoords:fromcoords,tocoords:tocoords,ammographic:ammographic,destgraphic:hitgraphic,sounds:sounds, type:type, duration:duration,ammoreturn:ammoreturn,dmg:dmg,endturn:endturn,retval:retval,weapon:weapon,adddmg:adddmg,adddmgtype:adddmgtype, doagain:doagain, finishcallback: finishcallbacks});
   }
   
   let tmpval = {};
