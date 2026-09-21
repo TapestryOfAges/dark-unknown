@@ -1331,7 +1331,7 @@ function AlacrityTile() {
   this.addType("buff");
   this.name = "Alacrity";
   this.display = "<span style='color:c0c0c0'>A</span>";
-  this.power = .5;
+  this.power = .75;
   this.zstatdesc = "You move extremely quickly.";
   this.desc = "Alacrity";
   this.level = 8;
