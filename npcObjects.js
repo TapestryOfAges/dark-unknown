@@ -4603,7 +4603,7 @@ function MagmaSpawnNPCTile() {
   this.prefix = 'a';
   this.desc = "magma spawn";
   this.meleeChance = 80;
-  this.resists = {};
+  this.resists = { fire:100 };
   this.special = 'magmaspit, magmaheal';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
