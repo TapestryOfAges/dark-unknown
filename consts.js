@@ -33,7 +33,7 @@ const DMG_NEGLIGABLE = "2d4";
 const DMG_LIGHT = "3d4+3";
 const DMG_MEDIUM = "4d4+16";
 const DMG_HEAVY = "5d4+30";
-const DMG_TREMENDOUS = "5d8+55";
+const DMG_TREMENDOUS = "5d8+40";
 const DMG_AUTOKILL = "255";
 
 const MANA_REGEN = 10;
