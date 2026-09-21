@@ -1853,6 +1853,13 @@ NPCObject.prototype.myTurn = function() {
 }
 
 NPCObject.prototype.endTurn = function(init) {
+  if (this.replaceEndTurn && (typeof this.replaceEndTurn === "function")) {
+    let playme = this.replaceEndTurn;
+    delete this.replaceEndTurn;
+    playme();
+    return;
+  }
+
   if (!init) { init = 0; }
   if (this.hasFrame && IsObjectVisibleOnScreen(this)) {
     // remove turn frame
