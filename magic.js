@@ -5675,7 +5675,7 @@ function PerformConjureDaemon(caster, infused, free, tgt) {
 
 //Alacrity
 magic[SPELL_ALACRITY_LEVEL][SPELL_ALACRITY_ID].getLongDesc = function() {
-  return "Doubles the rate at which you take actions.";
+  return "Increases the rate at which you take actions.";
 }
 
 magic[SPELL_ALACRITY_LEVEL][SPELL_ALACRITY_ID].executeSpell = function(caster, infused, free) {
@@ -5692,7 +5692,7 @@ magic[SPELL_ALACRITY_LEVEL][SPELL_ALACRITY_ID].executeSpell = function(caster, i
   
   let dur = caster.getIntForPower()/2 * SCALE_TIME;
   if (free) { 
-    dur = Dice.roll("1d10+5") * SCALE_TIME;
+    dur = (Dice.roll("1d6+3") + Dice.roll("1d4")) * SCALE_TIME;
   }
   if (infused) {dur = dur * 1.5; }
   let endtime = dur + DU.DUTime.getGameClock();
