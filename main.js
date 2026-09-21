@@ -13,7 +13,7 @@ let eidos = new Platonic();
 //var universe = new Object;
 
 let DU = {};
-DU.version = "0.11.8";
+DU.version = "0.11.9";
 
 let PC = new PCObject();
 DU.gamelength = 0;
@@ -360,8 +360,14 @@ function DoAction(code, ctrl) {
       }
     } else if (targetCursor.tutorial) {
       ContinueTutorial();
-    }
-    else if (targetCursor.event === "PlanarGate") {
+    } else if (targetCursor.event === "ElderDeath") {
+      maintext.addText("The dragon's labored breathing ceases.");
+      maintext.setInputLine("&gt;");
+      maintext.drawTextFrame();
+      delete targetCursor.event;
+      delete targetCursor.command;
+      PC.endTurn();
+    } else if (targetCursor.event === "PlanarGate") {
       let mymap = maps.getMap("asharden3");
       if (!targetCursor.frame) {
         maintext.addText("Asharden speaks a long set of words of power.");
@@ -2144,7 +2150,7 @@ function DoAction(code, ctrl) {
         } else { targetCursor.darkchar = 10; }
       }
       if (targetCursor.darkchar === 10) {
-        if (DU.gameflags.getFlag("rhys_summoning")) {
+        if (DU.gameflags.getFlag("rhys_summoned")) {
           maintext.addText(`<span class='mainspeaker'>Rhys:</span> "I know he's your brother, but to me, you're the one who saved my closest friend. You drove off Justice, and sat with me as we conjured information about the enemy. I'm proud to know you, and call you friend. Thank you, for all you've done."`);
           let endmap = maps.getMap("endgame");
           let rhys = endmap.getTile(14,0).getTopNPC();
@@ -2168,6 +2174,7 @@ function DoAction(code, ctrl) {
     } else if (targetCursor.dark === 22) {
       let uii = document.getElementById('uiinterface');
       uii.style.backgroundColor = "black";
+      uii.innerHTML = '';
       uii.style.opacity = 1;
       uii.style.backgroundImage = `url('graphics/splash/DemonGem-Part1.gif')`; 
       document.getElementById('spelleffects').innerHTML = "";
