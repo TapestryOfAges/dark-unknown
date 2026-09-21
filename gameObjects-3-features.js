@@ -193,15 +193,19 @@ LavaTile.prototype.isHostileTo = function(who) {
 }
 
 function InLava(who, lava) {
+  let dam;
   if (who.specials.underground || (who.getMovetype() & MOVE_FLY) || (who.getMovetype() & MOVE_ETHEREAL)) {
     return {msg:""};
   } else if ((who.getMovetype() & MOVE_LEVITATE) || (who.getMovetype() & MOVE_FLY)) {
-    DealandDisplayDamage(who,lava, Dice.roll("2d4+4"), "fire");
+    dam = prepareSpellDamage(lava,who,"2d4+4","fire",0,0);
+//    DealandDisplayDamage(who,lava, Dice.roll("2d4+4"), "fire");
 //    who.dealDamage(Dice.roll("2d4+4"), lava, "fire");
   } else {
-    DealandDisplayDamage(who,lava, Dice.roll("2d10+15"), "fire");
+    dam = prepareSpellDamage(lava,who,"2d10+15","fire",0,0);
+//    DealandDisplayDamage(who,lava, Dice.roll("2d10+15"), "fire");
 //    who.dealDamage(Dice.roll("2d10+15"), lava, "fire");
   }
+  who.dealDamage(dam.dmg, lava, "fire");
   return {msg:""};
 }
 
@@ -9035,7 +9039,7 @@ WalkOnShadowTile.prototype.walkon = function(walker) {
     if (fea[i].getName() === "WalkOnShadow") { themap.deleteThing(fea[i]); }
   }
 
-  return {msg: "<span class='daemontext'>Did you ever wonder where shadows go to hide? It is here, little one. In the absence of light, how can you tell... if you are surrounded by shadows?</span>"};
+  return {msg: `<span class='daemontext'>"Did you ever wonder where shadows go to hide? It is here, little one. In the absence of light, how can you tell... if you are surrounded by shadows?"</span>`};
 }
 
 function UtterDarkTile() {
@@ -18804,7 +18808,8 @@ WeaponObject.prototype.rollDamage = function(wielder) {
     let str = wielder.getStr();
     let strmod = parseFloat(this.getStrDamage());
     let strdam = (str-10)*strmod;
-    damage += parseInt(strdam);
+//    damage += parseInt(strdam);
+    damage += strdam;
   }
   
   return damage;
