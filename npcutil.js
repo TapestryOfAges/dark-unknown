@@ -1040,7 +1040,7 @@ function DoUmbralDaemon(who) {
     if (!who.hasOwnProperty("summonmore")) {
       who.summonmore = Dice.roll("1d4+3");
       who.lastsummoned = 1;
-      UmbralSummon(1);
+      UmbralSummon(0);
       return;
     }
     let dmap = who.getHomeMap();
@@ -1068,7 +1068,25 @@ function DoUmbralDaemon(who) {
 }
 
 function UmbralSummon(where) {
+  let vx = 18
+  let vy = 51;
+  if (where < 2) { vy=45; }
 
+  if (!where) {
+    maintext.addText("The umbral daemon extends its right claw and slowly raises it, seeming to strain from the effort. It clenches its hand into a fist just as a daemon claws its way out of the vortex to the north!");
+    maintext.drawTextFrame();
+  } else if (where === 1) {
+    maintext.addText("The umbral daemon gestures with its right claw, and a daemon claws its way out of the vortex to the north.");
+    maintext.drawTextFrame();
+  } else {
+    maintext.addText("The umbral daemon gestures with its left claw, and a daemon claws its way out of the vortex to the south.");
+    maintext.drawTextFrame();
+  }
+
+  let daemon = localFactory.createTile("DaemonNPC");
+  PC.getHomeMap().placeThing(vx,vy,daemon);
+  DUCamera.DrawOne(PC.getHomeMap(),vx,vy);
+  daemon.lootTable = 'none';
 }
 
 function SharesSpace(who) {
