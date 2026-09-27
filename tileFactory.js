@@ -223,6 +223,11 @@ tileFactory.prototype.makeDarknessTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeUtterDarknessTile = function() {
+  let newTile = new UtterDarknessTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeTitanWallTLTile = function() {
   let newTile = new TitanWallTLTile();
   return newTile;
@@ -2083,6 +2088,11 @@ tileFactory.prototype.makeCampfireExtinguishedTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeDarklightBrazierTile = function() {
+  let newTile = new DarklightBrazierTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeBrazierTile = function() {
   let newTile = new BrazierTile();
   return newTile;
@@ -3065,6 +3075,11 @@ tileFactory.prototype.makeWhirlpoolTile = function() {
 
 tileFactory.prototype.makeWhirlpoolFlukeTile = function() {
   let newTile = new WhirlpoolFlukeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeNetherVortexTile = function() {
+  let newTile = new NetherVortexTile();
   return newTile;
 }
 
@@ -4415,6 +4430,11 @@ tileFactory.prototype.makeAltarOfBoneTile = function() {
 
 tileFactory.prototype.makeAltarOfDustTile = function() {
   let newTile = new AltarOfDustTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAltarOfSunTile = function() {
+  let newTile = new AltarOfSunTile();
   return newTile;
 }
 

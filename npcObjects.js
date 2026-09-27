@@ -5955,6 +5955,53 @@ ArchdaemonOfBoneNPCTile.prototype = new NPCObject();
 
 // Monster
 
+function UmbralDaemonNPCTile() {
+  this.name = 'UmbralDaemonNPC';
+  this.level = 8;
+  this.addhp = 25;
+  this.str = 26;
+  this.dex = 26;
+  this.int = 26;
+  this.alignment = 'Evil';
+  this.attitude = 'hostile';
+  this.peaceAI = 'seekPC-10';
+  this.forgetAt = 15;
+  this.withdraw = 0;
+  this.meleeAttackAs = 'none';
+  this.meleeDamage = '5d10+22'
+  this.meleeStrDamage = 1
+  this.missileAttackAs = 'none';
+  this.armorAs = 'PlateArmor';
+  this.movetype = MOVE_FLY;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.prefix = 'an';
+  this.desc = "umbral daemon";
+  this.meleeChance = 60;
+  this.spellsknown = { highcontrol: 1, summon: 1, attack: 1, highattack: 1, };
+  this.resists = { fire:40, ice:40,poison: 60 };
+  this.special = 'archdaemon_umbral, noflee, nocharm';
+  this.meleeHitSound = 'sfx_melee_hit';
+  this.meleeAttackSound = 'sfx_melee_miss';
+  this.graphic = 'static.gif';
+  this.spritexoffset = 0 * 32;
+  this.spriteyoffset = -126 * 32;
+
+  ManualAnimation.call(this, { 
+    animstart: 0*32,
+    animlength: 5,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 240,
+    framedurationmax: 340,
+    startframe: "random"
+  });
+}
+UmbralDaemonNPCTile.prototype = new NPCObject();
+
+
+// Monster
+
 function TitanUNUSEDNPCTile() {
   this.name = 'TitanUNUSEDNPC';
   this.level = 8;
