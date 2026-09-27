@@ -214,6 +214,7 @@ function PopulateAtlas(atlasref) {
   atlasref.insertkey("YellowCheckeredFloor",'yd');
   atlasref.insertkey("GreenCheckeredFloor",'gd');
   atlasref.insertkey("Chasm",'ch');
+  atlasref.insertkey("UtterDarkness",'UD');
   atlasref.insertkey("WSFloor",'WF');
   atlasref.insertkey("WSWall","Ww");
   atlasref.insertkey("WSWallVine",'WV');

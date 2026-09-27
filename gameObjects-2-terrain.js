@@ -664,6 +664,19 @@ function DarknessTile() {
 }
 DarknessTile.prototype = new TerrainObject();
 
+function UtterDarknessTile() {
+  // Graphics upgraded
+  this.name = "UtterDarkness";
+  this.graphic = "static.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -97*32;
+  this.passable = MOVE_ETHEREAL + MOVE_FLY;
+  this.blocklos = 0;
+  this.desc = "darkness";
+  this.peerview = DARKNESS_PEER;
+}
+UtterDarknessTile.prototype = new TerrainObject();
+
 function TitanWallTLTile() {
   //Graphics Upgraded. 
   this.name = "TitanWallTL";
