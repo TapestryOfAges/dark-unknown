@@ -2924,6 +2924,30 @@ function CampfireExtinguishedTile() {
 }
 CampfireExtinguishedTile.prototype = new FeatureObject();
 
+function DarklightBrazierTile() {
+	this.name = "DarklightBrazier";
+	this.graphic = "static.gif";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -182*32;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL;
+	this.blocklos = 0;
+  this.prefix = "a";
+	this.desc = "dark light brazier";
+  this.peerview = CRACKED_STONE_PEER;
+	
+//	LightEmitting.call(this, -4);  
+// For now, they don't emit light. I don't want to futz around with the light system which currently can't handle negative values.
+  ManualAnimation.call(this, { animstart: -128,
+    animlength: 4,
+    animstyle: "random",
+    allowrepeat: 0,
+    framedurationmin: 150,
+    framedurationmax: 300,
+    startframe: "random"
+  });
+}
+DarklightBrazierTile.prototype = new FeatureObject();
+
 function BrazierTile() {
 	this.name = "Brazier";
 	this.graphic = "static.gif";
@@ -7651,6 +7675,30 @@ WhirlpoolFlukeTile.prototype.walkofftest = function(walker) {
   return retval;
 }
 
+function NetherVortexTile() {
+	this.name = "NetherVortex";
+	this.graphic = "static.gif";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -182*32;
+  this.passable = MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "whirlpool";
+
+  HasAmbientNoise.call(this,"sfx_whirlpool",1.5);
+  
+  ManualAnimation.call(this, { animstart: 0,
+    animlength: 4,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 225,
+    framedurationmax: 225,
+    startframe: "random"
+  });
+
+}
+NetherVortexTile.prototype = new FeatureObject();
+
 function EarthPlaneCaveInTile() {
   //Graphics Upgraded
   this.name = "EarthPlaneCaveIn";
@@ -12232,6 +12280,7 @@ function PAUse(who) {
     let retval = {txt: "Asharden apparently has an idiosycratic way of arranging his table. You wouldn't know where to begin."};
     return retval;
   }
+  let retval = {};
   retval["override"] = -1;
   retval["fin"] = 4;
   retval["txt"] = "You find Asharden's collection of metals. Which one would you like to place in your Planar Key?";
@@ -12240,6 +12289,7 @@ function PAUse(who) {
   targetCursor.itemname = "PlanarKey";
   targetCursor.itemSource = pkey;
   inputText.cmd = "u";
+  inputText.txt = "";
 
   return retval;
 }
@@ -12253,14 +12303,14 @@ function PAUse2(who, metal) {
     retval["fin"] = 0;
     retval["txt"] = "You put everything back where it was.";
     return retval;
-  } else if (LIST_OF_METALS.includes(metal.lower())) {
+  } else if (LIST_OF_METALS.includes(metal.toLowerCase())) {
     let pkey = who.checkInventory("PlanarKey");
     if (pkey.contents) {
-      retval["txt"] = `You place the ${pkey.contents} back on the alchemy table, and replace it with a piece of ${metal}.`;
+      retval["txt"] = `You place the ${pkey.contents} back on the alchemy table, and replace it with a piece of ${metal.toLowerCase()}.`;
     } else {
-      retval["txt"] = `You place a piece of ${metal} in the planar key.`;
+      retval["txt"] = `You place a piece of ${metal.toLowerCase()} in the planar key.`;
     }
-    pkey.contents = metal;
+    pkey.contents = metal.toLowerCase();
   } else {
     retval["fin"] = 1;
     retval["txt"] = "You cannot find that.";
@@ -14733,6 +14783,28 @@ AltarOfDustTile.prototype.use = function(who) {
   return retval;
 }
 
+function AltarOfSunTile() {
+	this.name = "AltarOfSun";
+  this.graphic = "static.gif";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -77*32;
+	this.passable = MOVE_ETHEREAL + MOVE_FLY;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "dark altar";
+	this.peerview = GREY_PEER;
+}
+AltarOfSunTile.prototype = new FeatureObject();
+
+AltarOfSunTile.prototype.use = function(who) {
+  let retval = {};
+  retval["fin"] = 1;
+  retval["txt"] = "The altar is difficult to see, it seems to absorb light but remains visible by some kind of internal darkness. There is a slot in its surface, into which something could be inserted.";
+  retval["input"] = "&gt;";
+  return retval;
+}
+
+
 function GoldTile() {
   //Graphics Upgraded
   this.name = "Gold";
@@ -14972,6 +15044,21 @@ function SilvergladeKeyTile() {
 }
 SilvergladeKeyTile.prototype = new KeyItemObject();  
 
+function UmbralMoteTile() {
+  //Graphics Upgraded
+  this.name = "UmbralMote";
+  this.graphic = "static.gif";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -70*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "umbral mote";
+  this.prefix = "an";
+  this.longdesc = "An umbral mote.";
+  this.usedesc = "Unknown.";
+}
+UmbralMoteTile.prototype = new KeyItemObject();  
+
 function KeyOfSunTile() {
   //Graphics Upgraded
   this.name = "KeyOfSun";
@@ -14986,6 +15073,26 @@ function KeyOfSunTile() {
   this.usedesc = "Unknown.";
 }
 KeyOfSunTile.prototype = new KeyItemObject();  
+
+KeyOfSunTile.prototype.use = function(who) {
+  let retval = {fin:1};
+  if ((who.getx() === 96) && (who.gety() === 58)) {
+    let stuff = who.getHomeMap().getTile(86,54).getFeatures();
+    let field;
+    for (let i=0;i<stuff.length;i++) {
+      if (stuff[i].getName() === "EnergyField") { field = stuff[i]; }
+    }
+    who.getHomeMap().deleteThing(field);
+    DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
+    //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+    retval["txt"] = "You insert the key into the opening on the slick, icy surface, and gracefully turn. There is a click, and then the key melts in your hand, the water running down the altar until it freezes.";
+  } else {
+    retval["txt"] = "You cannot find a place to use that here.";
+    retval["preserve"] = 1;
+  }
+  return retval;
+}
+
 
 function StoneOfShadowTile() {
   //Graphics Upgraded
@@ -15736,7 +15843,8 @@ function KeyOfAshesTile() {
   this.name = "KeyOfAshes";
   this.graphic = "static.gif";
   this.spritexoffset = -5*32;
-  this.spriteyoffset = -25*32;  this.blocklos = 0;
+  this.spriteyoffset = -25*32;  
+  this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of Ashes";
   this.prefix = "the";
@@ -16340,7 +16448,7 @@ GreenPotionTile.prototype.flamed = function() {
 }
 
 GreenPotionTile.prototype.use = function(who) {
-  if (DU.gameflags.getFlag("knowsgreenpotion")) {
+  if (DU.gameflags.getFlag("knowsgreenpotion") || DU.gameflags.getFlag("potionsrevealed")) {
     let retval = {fin:-1}
     retval["override"] = -1;
     retval["txt"] = "Would you like to:<br />(A) Drink the potion<br />(B) Throw the potion";
