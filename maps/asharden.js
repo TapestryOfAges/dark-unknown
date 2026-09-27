@@ -145,7 +145,10 @@ mappages["asharden1"].onload = function(mapref) {
       asharden.setConversation("asharden_gate");
       let gate = localFactory.createTile("PlanarGateInactive");
       a3.placeThing(27,18,gate);
-    } 
+    } else if (DU.gameflags.getFlag("planarkey")) {
+      let gate = localFactory.createTile("PlanarGateInactive");
+      a3.placeThing(27,18,gate);
+    }
 
 
     let doorloc = mapref.getTile(25,21);
