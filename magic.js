@@ -4653,7 +4653,7 @@ magic[SPELL_ETHEREAL_TRAVEL_LEVEL][SPELL_ETHEREAL_TRAVEL_ID].executeSpell = func
        ((caster.getx() === 26) && (caster.gety() === 18)) ||
        ((caster.getx() === 28) && (caster.gety() === 18))) {
 
-      let pkey = who.checkInventory("PlanarKey");
+      let pkey = caster.checkInventory("PlanarKey");
       let pmap = caster.getHomeMap();
       if (pkey.content) {
         let gatetile = pmap.getTile(27, 18);
