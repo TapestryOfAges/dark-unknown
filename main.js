@@ -811,6 +811,9 @@ function DoAction(code, ctrl) {
   else if (gamestate.getMode() === "talk") {
     if ((code >= 65) && (code <= 90)) {  // letter, NOT SPACE 
       let letter = String.fromCharCode(code);    	
+      if (!inputText.hasOwnProperty("txt")) {
+        inputText.txt = "";
+      }
       if (inputText.txt.length < 14) {
         inputText.txt += letter;
         maintext.setInputLine(maintext.getInputLine() + letter);
@@ -912,10 +915,27 @@ function DoAction(code, ctrl) {
 //          delete targetCursor.inndest;
           PC.atinn = 1;      
         }
-      } 
+      } else if (inputText.cmd === "u") {
+        if (targetCursor.itemname === "PlanarKey") {
+          let retval = PAUse2(PC, inputText.txt);
+          maintext.addText(retval["txt"]);
+          maintext.setInputLine("&gt;");
+          maintext.drawTextFrame();
+          gamestate.setMode("player"); 
+          if (retval["fin"] === 1) {
+            PC.endTurn(retval["initdelay"]);
+          } else {
+            
+          }
+        } else {
+          alert("Another talky Use needs definition.");
+        }
+      }
       else { alert("need to add hook here! (main 412)"); }
     } else if (code === 27) { // ESC
-      if (inputText.cmd === "y") {
+      if ((inputText.cmd === "y") || (inputText.cmd === "u")) {
+        delete inputText.cmd;
+        delete inputText.txt;
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame();
         gamestate.setMode("player");
@@ -941,16 +961,7 @@ function DoAction(code, ctrl) {
         if (retval["fin"] === 1) {
           PC.endTurn(retval["initdelay"]);
         }
-      } else if (inputText.cmd === "u") {
-        if (targetCursor.itemname === "PlanarKey") {
-          retval = PAUse2(PC);
-          maintext.addText(retval["txt"]);
-          maintext.drawTextFrame();
-          if (retval["fin"] === 1) {
-            PC.endTurn(retval["initdelay"]);
-          }
-        }
-      }
+      } 
     }
     else { // ignore
     	
@@ -1052,6 +1063,12 @@ function DoAction(code, ctrl) {
             maintext.addText(resp["txt"]);
             gamestate.setMode("anykey");
             maintext.drawTextFrame();
+          } else if ((targetCursor.command === "u") && (resp["fin"] = 4) && (inputText.cmd === "u")) {
+            // planar key- go into talk mode
+            maintext.addText(resp["txt"]);
+            maintext.setInputLine(resp["input"]);
+            maintext.drawTextFrame();
+            // mode was set in 
           } else {
             if ((resp["fin"] > 2) && (targetCursor.command !== "t")) {
               gamestate.setMode("player");
