@@ -200,6 +200,10 @@ ais.combat = function(who) {
   if (who.specials.archdaemon_ice || who.specials.archdaemon_dust || who.specials.archdaemon_ashes || who.specials.archdaemon_bone) {
     DoArchdaemon(who);
   }
+  if (who.specials.archdaemon_umbral) {
+    DoUmbralDaemon(who);
+  }
+
 
   // decide if meleeing/approaching
   let chance = who.meleeChance;
