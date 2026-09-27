@@ -550,7 +550,7 @@ NPCObject.prototype.processDeath = function(droploot){
     let chest;
     let map = this.getHomeMap();
     if (!this.summoned && (this.getLeavesCorpse()) && (this.getLeavesCorpse() !== "none")) {
-      if (map.getTile(thisx,thisy).getTerrain().getName() !== "WorldBelow") {
+      if ((map.getTile(thisx,thisy).getTerrain().getName() !== "WorldBelow") && (map.getName().includes("combat") || (this.getLeavesCorpse() !== "Blood"))) {
         corpse = localFactory.createTile(this.getLeavesCorpse());
         corpse.setSearchDelete(1);
         if (this.skintone === 2) { corpse.spritexoffset += -32; }
