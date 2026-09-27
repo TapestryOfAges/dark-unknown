@@ -1035,6 +1035,42 @@ function DoArchdaemon(who) {
   }
 }
 
+function DoUmbralDaemon(who) {
+  if ((PC.getx() >= 10) && (PC.getx() <= 25) && (PC.gety() >= 44) && (PC.gety() <= 52)) {
+    if (!who.hasOwnProperty("summonmore")) {
+      who.summonmore = Dice.roll("1d4+3");
+      who.lastsummoned = 1;
+      UmbralSummon(1);
+      return;
+    }
+    let dmap = who.getHomeMap();
+    let npcs = dmap.npcs.getAll();
+    let dcount = 0;
+    for (let i=0;i<npcs.length;i++) {
+      if (npcs[i].getName() === "DaemonNPC") {
+        if ((npcs[i].getx() >= 10) && (npcs[i].getx() <= 25) && (npcs[i].gety() >= 44) && (npcs[i].gety() <= 52)) {
+          dcount++;
+        }
+      }
+    }
+    if (dcount < 2) {
+      if (who.summonmore) {
+        who.summonmore--;
+        return;
+      }
+
+      who.summonmore = Dice.roll("1d4+3");
+      who.lastsummoned++;
+      if (who.lastsummoned > 2) { who.lastsummoned = 1; }
+      UmbralSummon(who.lastsummoned);
+    }
+  }
+}
+
+function UmbralSummon(where) {
+
+}
+
 function SharesSpace(who) {
   let tile = who.getHomeMap().getTile(who.getx(),who.gety());
   let npcs = tile.getNPCs();
