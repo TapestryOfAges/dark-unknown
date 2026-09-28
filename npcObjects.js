@@ -5972,9 +5972,9 @@ function UmbralDaemonNPCTile() {
   this.meleeStrDamage = 1
   this.missileAttackAs = 'none';
   this.armorAs = 'PlateArmor';
-  this.movetype = MOVE_FLY;
+  this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
-  this.lootTable = 'none';
+  this.lootTable = 'archdaemon_umbral';
   this.prefix = 'an';
   this.desc = "umbral daemon";
   this.meleeChance = 60;
