@@ -4483,6 +4483,11 @@ tileFactory.prototype.makeSilvergladeKeyTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeUmbralMoteTile = function() {
+  let newTile = new UmbralMoteTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeKeyOfSunTile = function() {
   let newTile = new KeyOfSunTile();
   return newTile;
@@ -6040,6 +6045,11 @@ tileFactory.prototype.makeArchdaemonOfIceNPCTile = function() {
 
 tileFactory.prototype.makeArchdaemonOfBoneNPCTile = function() {
   let newTile = new ArchdaemonOfBoneNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeUmbralDaemonNPCTile = function() {
+  let newTile = new UmbralDaemonNPCTile();
   return newTile;
 }
 
