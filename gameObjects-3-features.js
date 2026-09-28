@@ -12382,16 +12382,10 @@ UDTeleporterPlatformTile.prototype = new FeatureObject();
 UDTeleporterPlatformTile.prototype.walkon = function(who) {
   let response = {msg:""};
   let themap = who.getHomeMap();
-  themap.moveThing(7, 32, who);
+  themap.moveThing(13, 48, who);
   DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
   //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
   ShowEffect(who, 500, "spellsparkles-anim.gif", 0, -64);
-  if (who === PC) { 
-    DUPlaySound("sfx_teleport"); 
-    response.overridedraw = 1; 
-    if (DU.settings.getSetting("music")) { DUPlayMusic("Final", {fade:1}); }
-    DU.gameflags.setFlag("final_music",1);
-  }
   return response;
 }
 
@@ -13065,7 +13059,16 @@ DaemonMoongateTile.prototype.walkon = function(who) {
       let door = this.getHomeMap().getTile(21,12).getTopFeature();
       delete this.second;
       setTimeout(function() { DissolveDoor(door,1);}, 250);
-      maintext.addText(`<span class='daemontext'>"Good, good! Come now, take your final steps." The daemon's laughter echoes through the chamber.</span>`);
+      maintext.addText(`<span class='daemontext'>"Good, good! Come now, take your final steps."</span> The daemon's laughter echoes through the chamber.`);
+    } else if (this.last) {
+      ShowEffect(who, 500, "spellsparkles-anim.gif", 0, -64);
+      if (who === PC) { 
+        maintext.addText(`<span class='daemontext'>"You are closer to the nether than a mortal has come in generations. You have come, step by step, to your ending."</span>`);
+        DUPlaySound("sfx_teleport"); 
+        response.overridedraw = 1; 
+        if (DU.settings.getSetting("music")) { DUPlayMusic("Final", {fade:1}); }
+        DU.gameflags.setFlag("final_music",1);
+      }
     }
   }
   DUPlaySound("sfx_teleport");
@@ -15059,6 +15062,17 @@ function UmbralMoteTile() {
 }
 UmbralMoteTile.prototype = new KeyItemObject();  
 
+UmbralMoteTile.prototype.onGet = function(who) {
+  let retval = { noTake: 1 }; 
+  let mmap = this.getHomeMap();
+  let mx = this.getx();
+  let my = this.gety();
+  retval["txt"] = "As you reach out for the mote, the ruby flares in your hand. The mote seems to collapse in on itself... and instead becomes its antithesis: a brightly shining key rests now where the mote had.";
+  mmap.deleteThing(this);
+  let sunkey = localFactory.createTile("KeyOfSun");
+  mmap.placeThing(mx,my,sunkey);
+}
+
 function KeyOfSunTile() {
   //Graphics Upgraded
   this.name = "KeyOfSun";
@@ -15076,16 +15090,15 @@ KeyOfSunTile.prototype = new KeyItemObject();
 
 KeyOfSunTile.prototype.use = function(who) {
   let retval = {fin:1};
-  if ((who.getx() === 96) && (who.gety() === 58)) {
-    let stuff = who.getHomeMap().getTile(86,54).getFeatures();
-    let field;
-    for (let i=0;i<stuff.length;i++) {
-      if (stuff[i].getName() === "EnergyField") { field = stuff[i]; }
-    }
-    who.getHomeMap().deleteThing(field);
-    DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
-    //DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
-    retval["txt"] = "You insert the key into the opening on the slick, icy surface, and gracefully turn. There is a click, and then the key melts in your hand, the water running down the altar until it freezes.";
+  let altar = who.getHomeMap().getTile(24,48).getTopFeature();
+  if (IsAdjacent(who,altar)) {
+    who.getHomeMap().deleteThing(altar);
+    let moongate = localFactory.createTile("DaemonMoongate");
+    thismap.placeThing(24,48,moongate);
+    moongate.last = 1;
+    moongate.destx = 8;
+    moongate.desty = 32;
+    retval["txt"] = "You extend the key towards the shadowy altar. A blazing light flares from the key, washing away the dark shroud, and as the key touches the surface of the altar, the light overwhelms the dark, and opens it.";
   } else {
     retval["txt"] = "You cannot find a place to use that here.";
     retval["preserve"] = 1;
