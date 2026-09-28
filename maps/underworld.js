@@ -1035,6 +1035,7 @@ mappages["uttermostdark"].npcs = [];
 mappages["uttermostdark"].npcs[0] = {name : 'ShepherdOfDarkNPC', x : 18, y : 32, skintone: 1};
 mappages["uttermostdark"].npcs[1] = {name : 'DaemonNPC', x : 22, y : 11, skintone: 1};
 mappages["uttermostdark"].npcs[2] = {name : 'DaemonNPC', x : 22, y : 13, skintone: 1};
+mappages["uttermostdark"].npcs[3] = {name : 'UmbralDaemonNPC', x : 22, y : 48, skintone: 1};
 
 mappages["uttermostdark"].desc = "The Uttermost Dark";
 mappages["uttermostdark"].longdesc = `You step into the darkness. It gives way only reluctantly to your light, and on all sides you can feel its fierce desire to overwhelm it. Behind you is a crack in the mountainside, a gap you can't see, and when the wind blows through it, it makes no sound.`;
