@@ -88,6 +88,9 @@ ais.combat = function(who) {
   if ((!nearest && (who.getMovetype() === MOVE_SWIM)) || (!nearest && (who.getMovetype() === MOVE_WALK))) {
     nearest = FindNearestNPC(who, "enemy", null, 0, MOVE_LEVITATE);
   }
+  if (!nearest && (who.getMovetype() & MOVE_FLY) && (who.getHomeMap().getName() === "uttermostdark")) {
+    nearest = FindNearestNPC(who, "enemy", null, 0, MOVE_FLY);
+  }
   if (whomap !== PC.getHomeMap()) {
     if (!nearest) {
     // what happens if the PC is on another map?
