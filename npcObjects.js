@@ -5309,7 +5309,7 @@ function DaemonNPCTile() {
   this.meleeChance = 75;
   this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, };
   this.resists = {};
-  this.special = 'open_door, nocharm';
+  this.special = 'open_door, nocharm, noflee';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
   this.graphic = 'static.gif';
