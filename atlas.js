@@ -1223,6 +1223,10 @@ GameMap.prototype.getHeight = function() {
 GameMap.prototype.resizeMap = function(newx,newy,anchor){
   let oldx = this.getWidth();
   let oldy = this.getHeight();
+  let changedleft = 0;
+  let changedright = 0;
+  let changedtop = 0;
+  let changedbottom = 0;
   DebugWrite("map", oldx + " " + oldy + " to " + newx + " " + newy + ", anchor is " + anchor + "<br><br>");
 //  let tile = new Acre();
 //  tile.terrain = localFactory.createTile(selectionval.name);
@@ -1232,40 +1236,56 @@ GameMap.prototype.resizeMap = function(newx,newy,anchor){
       for (let j=0;j<this.data.length;j++) {
         if ((anchor === 0) || (anchor === 3) || (anchor === 6)) {
           if (newx > oldx) {  
+            // left anchor, larger x: add to the right
             let tile = new Acre();
             tile.terrain = localFactory.createTile(selectionval.name);
             this.data[j].push(tile);  
+            changedright++;
           }
           else if (oldx > newx ) { 
+            // left anchor, smaller x: delete columns from the right
+            changedright--;
             this.data[j].pop();
           }
         }
         else if ((anchor === 2) || (anchor === 5) || (anchor === 8)) {
           if (newx > oldx) { 
+            // right anchor, larger x: add to the left
             let tile = new Acre();
             tile.terrain = localFactory.createTile(selectionval.name);
             this.data[j].unshift(tile); 
+            changedleft++;
           }
           else if (oldx > newx) { 
+            //right anchor, smaller x: remove from the left
             this.data[j].shift(); 
+            changedleft--;
           }
         }
         else if ((anchor === 1) || (anchor === 4) || (anchor === 7)) {
           if ((newx > oldx) && (i%2 === 1)) { 
+            //center column anchor, larger x: add to alternating sides, right this time
             let tile = new Acre();
             tile.terrain = localFactory.createTile(selectionval.name);
             this.data[j].push(tile); 
+            changedright++;
           }
           else if ((newx > oldx) && (i%2 === 0)) { 
+            //center column anchor, larger x: add to alternating sides, left this time
             let tile = new Acre();
             tile.terrain = localFactory.createTile(selectionval.name);
             this.data[j].unshift(tile); 
+            changedleft++;
           }
           else if ((oldx > newx) && (i%2 === 1)) { 
+            //center column anchor, smaller x: delete from alternating sides, right this time
             this.data[j].pop(); 
+            changedright--;
           }
           else if ((oldx > newx) && (i%2 === 0)) { 
+            //center column anchor, smaller x: delete from alternating sides, right this time
             this.data[j].shift(); 
+            changedleft--;
           }
         }
       }
@@ -1281,33 +1301,49 @@ GameMap.prototype.resizeMap = function(newx,newy,anchor){
           placeholder.push(tile); 
         }
         if ((anchor === 0) || (anchor === 1) || (anchor === 2)) {
+          // anchor top, larger y, add to bottom
           this.data.push(placeholder);
+          changedbottom++;
         }
         else if ((anchor === 6) || (anchor === 7) || (anchor === 8)) {
+          // anchor bottom, larger y, add to top
           this.data.unshift(placeholder);
+          changedtop++;
         }
         else if ((anchor === 3) || (anchor === 4) || (anchor === 5)) {
           if (i%2 === 0) { 
+            // anchor center row, larger y, add to alternating sides, bottom this time
             this.data.push(placeholder); 
+            changedbottom++;
           }
           else if (i%2 === 1) { 
+            // anchor center row, larger y, add to alternating sides, top this time
             this.data.unshift(placeholder); 
+            changedtop++;
           }
         }
       }
       else if (oldy > newy) {
         if ((anchor === 0) || (anchor === 1) || (anchor === 2)) {
+          // anchor top, smaller y, removed from bottom
           this.data.pop();
+          changedbottom--;
         }
         else if ((anchor === 6) || (anchor === 7) || (anchor === 8)) {
+          // anchor bottom, smaller y, removed from top
           this.data.shift(); 
+          changedtop--;
         }
         else if ((anchor === 3) || (anchor === 4) || (anchor === 5)) {
           if (i%2 === 0) { 
+            // anchor center row, smaller y, delete from alternating sides, bottom this time
             this.data.pop(); 
+            changedbottom--;
           }
           else if (i%2 === 1) { 
+            // anchor center row, smaller y, delete from alternating sides, top this time
             this.data.shift(); 
+            changedtop--;
           }
         }
       }
@@ -1317,6 +1353,66 @@ GameMap.prototype.resizeMap = function(newx,newy,anchor){
   this.setFeaturesCoord();
   this.setNPCsCoord();
   this.createPathGrid(); // resets all moveability data, but that isn't particularly important while mapmaking
+  // modify labels
+  for (let key in this.allLabels) {
+    let labelcoords = key.replace('div_tile','');
+    let labelarray = labelcoords.split('x');
+    // changedbottom being positive or changedright being positive means area added to the ends of the arrays, so no changes needed to labels
+    if (changedbottom < 0) {
+      // see if this label has fallen off the bottom of the new map
+      if (labelarray[1] > oldy+changedbottom) {  // remember that changedbottom is negative
+        console.log(`Label ${key} has fallen off the map.`);
+        continue;  // This label is now off the bottom of the adjusted map
+      }
+      // otherwise, nothing needs to change 
+    }
+    if (changedright < 0) {
+      // see if the label has fallen off the right edge of the new map
+      if (labelarray[0] > oldx+changedright) {
+        console.log(`Label ${key} has fallen off the map.`);
+        continue;  // This label is now off the right edge of the adjusted map
+      }
+      // otherwise, nothing needs to change
+    }
+
+    // looking at the left and top 
+    if (changedleft < 0) {
+      // left edge trimmed away
+      if (labelarray[0] < abs(changedleft)) { 
+        console.log(`Label ${key} has fallen off the map.`);
+        continue; 
+      } // label has fallen off the left edge
+      else {
+        // label still on the map, moves left
+        labelarray[0] += changedleft;
+        console.log(`Label ${key} is now ${labelarray[0]}x${labelarray[1]}.`);
+      }
+    }
+    if (changedtop < 0) {
+      // top edge trimmed away
+      if (labelarray[1] < abs(changedtop)) { 
+        console.log(`Label ${key} has fallen off the map.`);
+        continue; 
+      } // label has fallen off the top edge
+      else {
+        labelarray[1] += changedtop;
+        console.log(`Label ${key} is now ${labelarray[0]}x${labelarray[1]}.`);
+      }
+    }
+    if (changedleft > 0) {
+      // left edge was added to
+      labelarray[0] += changedleft;
+      console.log(`Label ${key} is now ${labelarray[0]}x${labelarray[1]}.`);
+    }
+    if (changedtop > 0) {
+      // top edge was added to
+      labelarray[1] += changedtop;
+      console.log(`Label ${key} is now ${labelarray[0]}x${labelarray[1]}.`);
+    }
+  }
+
+  // modify transition array
+
   drawMap();
 }
 
@@ -1355,6 +1451,15 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride,noactivate,noE
 //    if (newthing.checkType("NPC")) {
 //      this.createSinglePathGrid(newthing.getMovetype());
 //    }
+
+    if ((this.wrap === "Both") || (this.wrap === "Vertical")) {
+      if (y < 0) { y = this.getHeight() + y; }
+      if (y >= this.getHeight()) { y = y-this.getHeight(); }
+    }
+    if ((this.wrap === "Both") || (this.wrap === "Horizontal")) {
+      if (x < 0) { x = this.getWidth() + x; }
+      if (x >= this.getWidth()) { x = x-this.getWidth(); }
+    }
 
     let type = newthing.getTypeForMap() + "s";
     if (!this.data[type]) { this.data[type] = new Collection(); }
