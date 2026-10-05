@@ -154,6 +154,12 @@ NPCSpecialFuncs["archdaemon_bone"] = function(who,how) {
   who.onDeath = "archdaemon_bone";
 }
 
+NPCSpecialFuncs["archdaemon_umbral"] = function(who,how) {
+  if (PC.checkInventory("KeyOfSun")) {
+    who.lootTable = "none";
+  }
+}
+
 NPCSpecialFuncs["ondeathShadow"] = function(who,how) {
   who.onDeath = "shadow";
 }
@@ -1087,7 +1093,7 @@ function UmbralSummon(where) {
   PC.getHomeMap().placeThing(vx,vy,daemon);
   DUCamera.DrawOne(PC.getHomeMap(),vx,vy);
   daemon.lootTable = 'none';
-  daemon.addMovetype(MOVE_FLY);
+  daemon.setMovetype(MOVE_FLY);
 }
 
 function SharesSpace(who) {
