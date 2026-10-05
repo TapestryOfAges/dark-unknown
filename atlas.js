@@ -1291,6 +1291,8 @@ GameMap.prototype.resizeMap = function(newx,newy,anchor){
       }
     }
   }
+  changedright = changedright/oldy;
+  changedleft = changedleft/oldy;
   if ((newy) && (newy != oldy)) { 
     for (let i = 1; i <= Math.abs(newy-oldy); i++) {
       if (newy > oldy) {
@@ -1354,9 +1356,12 @@ GameMap.prototype.resizeMap = function(newx,newy,anchor){
   this.setNPCsCoord();
   this.createPathGrid(); // resets all moveability data, but that isn't particularly important while mapmaking
   // modify labels
+  let newlabels = {};
   for (let key in this.allLabels) {
     let labelcoords = key.replace('div_tile','');
     let labelarray = labelcoords.split('x');
+    labelarray[0] = parseInt(labelarray[0]);
+    labelarray[1] = parseInt(labelarray[1]);
     // changedbottom being positive or changedright being positive means area added to the ends of the arrays, so no changes needed to labels
     if (changedbottom < 0) {
       // see if this label has fallen off the bottom of the new map
@@ -1370,6 +1375,7 @@ GameMap.prototype.resizeMap = function(newx,newy,anchor){
       // see if the label has fallen off the right edge of the new map
       if (labelarray[0] > oldx+changedright) {
         console.log(`Label ${key} has fallen off the map.`);
+        console.log(`label x: ${labelarray[0]}, oldx+changedright: ${oldx} + ${changedright} = ${oldx+changedright}`);
         continue;  // This label is now off the right edge of the adjusted map
       }
       // otherwise, nothing needs to change
@@ -1409,7 +1415,10 @@ GameMap.prototype.resizeMap = function(newx,newy,anchor){
       labelarray[1] += changedtop;
       console.log(`Label ${key} is now ${labelarray[0]}x${labelarray[1]}.`);
     }
+    let newkey = `div_tile${labelarray[0]}x${labelarray[1]}`;
+    newlabels[newkey] = this.allLabels[key];
   }
+  this.allLabels = newlabels;
 
   // modify transition array
 
