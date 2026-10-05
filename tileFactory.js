@@ -3818,8 +3818,23 @@ tileFactory.prototype.makePlatformOfWavesTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeEPlatformOfWavesTile = function() {
+  let newTile = new EPlatformOfWavesTile();
+  return newTile;
+}
+
 tileFactory.prototype.makePlatformOfWindsTile = function() {
   let newTile = new PlatformOfWindsTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeEPlatformOfWindsTile = function() {
+  let newTile = new EPlatformOfWindsTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeEPlatformOfWindsTile = function() {
+  let newTile = new EPlatformOfWindsTile();
   return newTile;
 }
 
@@ -3828,8 +3843,18 @@ tileFactory.prototype.makePlatformOfKingsTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeEPlatformOfKingsTile = function() {
+  let newTile = new EPlatformOfKingsTile();
+  return newTile;
+}
+
 tileFactory.prototype.makePlatformOfFlamesTile = function() {
   let newTile = new PlatformOfFlamesTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeEPlatformOfFlamesTile = function() {
+  let newTile = new EPlatformOfFlamesTile();
   return newTile;
 }
 
