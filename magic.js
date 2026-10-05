@@ -4655,7 +4655,7 @@ magic[SPELL_ETHEREAL_TRAVEL_LEVEL][SPELL_ETHEREAL_TRAVEL_ID].executeSpell = func
 
       let pkey = caster.checkInventory("PlanarKey");
       let pmap = caster.getHomeMap();
-      if (pkey.content) {
+      if (pkey.contents && ((pkey.contents === "gold") || (pkey.contents === "silver") || (pkey.contents === "tin") || (pkey.contents === "iron") || (pkey.contents === "antimony"))) {
         let gatetile = pmap.getTile(27, 18);
         let fea = gatetile.features.getAll();
         let gate;
@@ -4663,24 +4663,43 @@ magic[SPELL_ETHEREAL_TRAVEL_LEVEL][SPELL_ETHEREAL_TRAVEL_ID].executeSpell = func
           if (fea[i].getName() === "PlanarGateInactive") { gate = fea[i]; }
         }
         if (gate) {
-          pmap.deleteThing(gate);
           let newgate = localFactory.createTile("PlanarGateActive");
-          pmap.placeThing(this.getx() + this.gatex, this.gety() + this.gatey, newgate);
+          pmap.placeThing(gate.getx(), gate.gety(), newgate);
+          pmap.deleteThing(gate);
+          DUCamera.DrawOne(pmap,newgate.getx(),newgate.gety());
           DUPlaySound("sfx_portal_opens");
           retval["txt"] = "The portal opens!";
+          if (!free) {
+            let mana = magic[SPELL_CHARM_LEVEL][SPELL_CHARM_ID].getManaCost(infused);
+            CastSpellMana(caster,mana);
+            DebugWrite("magic", "Spent " + mana + " mana.<br />");
+          }
           return retval;
         } else {
           retval["fin"] = 2;
           retval["txt"] = "The gate is already open.";
           return retval;
         }
-      } 
-      return retval;  
+      } else {
+        retval["fin"] = 2;
+        if (!pkey.contents) {
+          retval["txt"] = "You need to place an appropriate metal in the Planar Key.";
+        } else {
+          retval["txt"] = "The portal shudders, but this combination of spell and metal does not reach a known plane. Nothing happens.";
+        }
+        return retval;
+      }
     } else {
       retval["fin"] = 2;
       retval["txt"] = "You need to be standing near a Planar Gate.";
       return retval;
     }
+  } else if (caster.getHomeMap().getName().includes("ether") || caster.getHomeMap().getName().includes("plane")) {
+    let destmap = DU.maps.addMap("asharden3");
+    PlayCastSound(caster,"sfx_teleport");  
+    TravelByMoongate(caster,"red", destmap, 27, 19);
+    retval["fin"] = 3;
+    return retval;
   } else {
     retval["fin"] = 2;
     retval["txt"] = "You need to be standing near a Planar Gate.";
