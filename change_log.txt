@@ -3,7 +3,7 @@ v 0.11.10
  * Slightly reduced drop rates across the board
  * Planar Gate appears in the Tower once it's built and you have the key
  * Bugfixes to the Planar Key
- * Creatures that leave blood splotches upon death only do so on combat maps now
+ * Fixes to center of ethereal plane
 
 v 0.11.9
  * Added "INN" to the innkeepers in Swainhil's dialog
