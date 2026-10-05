@@ -107,10 +107,10 @@ mappages["ether"].terrain[100] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb w
 
 mappages["ether"].features = [];
 mappages["ether"].features[0] = {name : 'WallOfVoid', x : 50, y : 50};
-mappages["ether"].features[1] = {name : 'PlatformOfKings', x : 48, y : 51};
-mappages["ether"].features[2] = {name : 'PlatformOfWaves', x : 49, y : 48};
-mappages["ether"].features[3] = {name : 'PlatformOfWinds', x : 52, y : 49};
-mappages["ether"].features[4] = {name : 'PlatformOfFlames', x : 51, y : 52};
+mappages["ether"].features[1] = {name : 'EPlatformOfKings', x : 48, y : 51};
+mappages["ether"].features[2] = {name : 'EPlatformOfWaves', x : 49, y : 48};
+mappages["ether"].features[3] = {name : 'EPlatformOfWinds', x : 52, y : 49};
+mappages["ether"].features[4] = {name : 'EPlatformOfFlames', x : 51, y : 52};
 mappages["ether"].features[5] = {name : 'EtherGate', x : 55, y : 49};
 mappages["ether"].features[6] = {name : 'EtherGate', x : 47, y : 53};
 mappages["ether"].features[7] = {name : 'WhiteCrystal', x : 53, y : 45};
@@ -479,8 +479,6 @@ mappages["ether"].onload = function(mapref) {
     gate = tile.getTopFeature();
     gate.destx = 41;
     gate.desty = 38;
-
-    // add destinations to elemental gates when the elemental planes exist
     
   }
 }
