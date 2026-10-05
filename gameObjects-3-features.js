@@ -11633,6 +11633,34 @@ PlatformOfWavesTile.prototype.walkon = function(who) {
   return response;
 }
 
+function EPlatformOfWavesTile() {
+  //Graphics Upgraded
+  this.name = "EPlatformOfWaves";
+  this.graphic = "static.gif";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -110*32;
+  this.layers = [["static.gif","",-6*32,-161*32]];
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "platform";
+  this.peerview = CAVE_PEER;
+}
+EPlatformOfWavesTile.prototype = new FeatureObject();
+
+EPlatformOfWavesTile.prototype.walkon = function(who) {
+  let response = {msg:""};
+  if (who.runes.kings) {
+    response["msg"] = "You step on the platform bearing the symbol of the Rune of Waves. Your own marking burns in sympathy, and the barrier ahead dissolves.";
+    let barrier = who.getHomeMap().getTile(51,48).getTopFeature();
+    who.getHomeMap().deleteThing(barrier);
+    DUCamera.DrawOne(who.getHomeMap(),51,48);
+  } else {
+    response["msg"] = "You step on the platform bearing a runic symbol. You have the sense of being analyzed... and found wanting.";
+  }
+  return response;
+}
+
+
 function PlatformOfWindsTile() {
   //Graphics Upgraded
   this.name = "PlatformOfWinds";
@@ -11686,6 +11714,47 @@ function whoosh(whozat, windlist, spawnwhere, spawnthing) {
   }
 }
 
+function EPlatformOfWindsTile() {
+  //Graphics Upgraded
+  this.name = "EPlatformOfWinds";
+  this.graphic = "static.gif";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -110*32;
+  this.layers = [["static.gif","",-7*32,-161*32]];
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "platform";
+  this.peerview = CAVE_PEER;
+}
+EPlatformOfWindsTile.prototype = new FeatureObject();
+
+function EPlatformOfWindsTile() {
+  //Graphics Upgraded
+  this.name = "EPlatformOfWinds";
+  this.graphic = "static.gif";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -110*32;
+  this.layers = [["static.gif","",-5*32,-161*32]];
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "platform";
+  this.peerview = CAVE_PEER;
+}
+EPlatformOfWindsTile.prototype = new FeatureObject();
+
+EPlatformOfWindsTile.prototype.walkon = function(who) {
+  let response = {msg:""};
+  if (who.runes.kings) {
+    response["msg"] = "You step on the platform bearing the symbol of the Rune of Winds. Your own marking burns in sympathy, and the barrier ahead dissolves.";
+    let barrier = who.getHomeMap().getTile(52,51).getTopFeature();
+    who.getHomeMap().deleteThing(barrier);
+    DUCamera.DrawOne(who.getHomeMap(),52,51);
+  } else {
+    response["msg"] = "You step on the platform bearing a runic symbol. You have the sense of being analyzed... and found wanting.";
+  }
+  return response;
+}
+
 function PlatformOfKingsTile() {
   //Graphics Upgraded
   this.name = "PlatformOfKings";
@@ -11700,6 +11769,33 @@ function PlatformOfKingsTile() {
 }
 PlatformOfKingsTile.prototype = new FeatureObject();
 
+function EPlatformOfKingsTile() {
+  //Graphics Upgraded
+  this.name = "EPlatformOfKings";
+  this.graphic = "static.gif";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -110*32;
+  this.layers = [["static.gif","",-5*32,-161*32]];
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "platform";
+  this.peerview = CAVE_PEER;
+}
+EPlatformOfKingsTile.prototype = new FeatureObject();
+
+EPlatformOfKingsTile.prototype.walkon = function(who) {
+  let response = {msg:""};
+  if (who.runes.kings) {
+    response["msg"] = "You step on the platform bearing the symbol of the Rune of Kings. Your own marking burns in sympathy, and the barrier ahead dissolves.";
+    let barrier = who.getHomeMap().getTile(48,49).getTopFeature();
+    who.getHomeMap().deleteThing(barrier);
+    DUCamera.DrawOne(who.getHomeMap(),48,49);
+  } else {
+    response["msg"] = "You step on the platform bearing a runic symbol. You have the sense of being analyzed... and found wanting.";
+  }
+  return response;
+}
+
 function PlatformOfFlamesTile() {
   //Graphics Upgraded
   this.name = "PlatformOfFlames";
@@ -11713,6 +11809,33 @@ function PlatformOfFlamesTile() {
   this.peerview = CAVE_PEER;
 }
 PlatformOfFlamesTile.prototype = new FeatureObject();
+
+function EPlatformOfFlamesTile() {
+  //Graphics Upgraded
+  this.name = "EPlatformOfFlames";
+  this.graphic = "static.gif";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -110*32;
+  this.layers = [["static.gif","",-8*32,-161*32]];
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "platform";
+  this.peerview = CAVE_PEER;
+}
+EPlatformOfFlamesTile.prototype = new FeatureObject();
+
+EPlatformOfFlamesTile.prototype.walkon = function(who) {
+  let response = {msg:""};
+  if (who.runes.flames) {
+    response["msg"] = "You step on the platform bearing the symbol of the Rune of Flames. Your own marking burns in sympathy, and the barrier ahead dissolves.";
+    let barrier = who.getHomeMap().getTile(50,51).getTopFeature();
+    who.getHomeMap().deleteThing(barrier);
+    DUCamera.DrawOne(who.getHomeMap(),50,51);
+  } else {
+    response["msg"] = "You step on the platform bearing a runic symbol. You have the sense of being analyzed... and found wanting.";
+  }
+  return response;
+}
 
 function PlatformOfVoidTile() {
   //Graphics Upgraded
@@ -12115,7 +12238,7 @@ function PlanarGateActiveTile() {
   this.graphic = "static.gif";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -106*32;
-  this.passable = MOVE_ETHEREAL;
+  this.passable = MOVE_ETHEREAL + MOVE_WALK + MOVE_LEVITATE + MOVE_FLY;
   this.prefix = "a";
   this.desc = "planar gate";
 
@@ -12133,26 +12256,45 @@ function PlanarGateActiveTile() {
 }
 PlanarGateActiveTile.prototype = new FeatureObject();
 
-PlanarGateActiveTile.prototype.bumpinto = function(who) {
+PlanarGateActiveTile.prototype.walkon = function(who) {
   let pkey = who.checkInventory("PlanarKey");
   let dest = "";
+  let destx, desty;
+  let retval = {};
+	retval["msg"] = "The bright light of the portal surrounds you, and you find yourself elsewhere.";
   if (pkey.contents === "gold") {
     if (DU.gameflags.getFlag("met_wisp")) {
       dest = "ether";
+      destx = 46;
+      desty = 64;
     } else {
       dest = "etherwisp";
+      destx = 8;
+      desty = 6;
     }
   } else if (pkey.contents === "silver") {
-
+    dest = "waterplane";
+    destx = 44;
+    desty = 6;
   } else if (pkey.contents === "tin") {
-
+    dest = "airplane";
+    destx = 29;
+    desty = 14;
   } else if (pkey.contents === "iron") {
-
+    dest = "earthplane";
+    destx = 30;
+    desty = 10;
   } else if (pkey.contents === "antimony") {
-
+    dest = "fireplane";
+    destx = 58;
+    desty = 10;
   } else {
-    
+    alert("How did we get here?");
   }
+  let destmap = maps.addMap(dest);
+  MoveBetweenMaps(who,who.getHomeMap(),destmap,destx,desty);
+  DUCamera.Draw(destmap,PC.getx(),PC.gety(),PC);
+  return retval;
 }
 
 function PlanarGateInactiveTile() {
@@ -12202,7 +12344,7 @@ PlanarGateWalkOnTile.prototype.walkon = function(who) {
   let pkey = who.checkInventory("PlanarKey");
   let pmap = this.getHomeMap();
   let retval = {txt: "" };
-  if (pkey.content) {
+  if (pkey.contents) {
     let gatetile = pmap.getTile(this.getx() + this.gatex, this.gety() + this.gatey);
     let fea = gatetile.features.getAll();
     let gate;
@@ -12386,6 +12528,8 @@ UDTeleporterPlatformTile.prototype.walkon = function(who) {
   DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
   //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
   ShowEffect(who, 500, "spellsparkles-anim.gif", 0, -64);
+  let shepherd = this.getHomeMap().getTile(18,32).getTopNPC();
+  shepherd.fifth = Dice.roll("1d5+2");
   return response;
 }
 
@@ -13058,7 +13202,7 @@ DaemonMoongateTile.prototype.walkon = function(who) {
     } else if (this.second) {
       let door = this.getHomeMap().getTile(21,12).getTopFeature();
       delete this.second;
-      setTimeout(function() { DissolveDoor(door,1);}, 250);
+      setTimeout(function() { DissolveDoor(door,2);}, 250);
       maintext.addText(`<span class='daemontext'>"Good, good! Come now, take your final steps."</span> The daemon's laughter echoes through the chamber.`);
     } else if (this.last) {
       ShowEffect(who, 500, "spellsparkles-anim.gif", 0, -64);
@@ -13346,14 +13490,14 @@ function PlanarKeyTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "small box";
-  this.content = null;
+  this.contents = null;
 }
 PlanarKeyTile.prototype = new ItemObject();
 
 PlanarKeyTile.prototype.getLongDesc = function() {
   let longdesc = "A small box you received from Asharden. Place a piece of metal from his alchemy table within that matches the plane you seek to visit, and the Planar Gate will open.<br />";
-  if (!this.content) { longdesc += "The box is empty."; }
-  else { longdesc += "The box currently contains a chunk of " + this.content + "."; }
+  if (!this.contents) { longdesc += "The box is empty."; }
+  else { longdesc += "The box currently contains a chunk of " + this.contents + "."; }
   return longdesc;
 }
 
@@ -15071,6 +15215,8 @@ UmbralMoteTile.prototype.onGet = function(who) {
   mmap.deleteThing(this);
   let sunkey = localFactory.createTile("KeyOfSun");
   mmap.placeThing(mx,my,sunkey);
+  DUCamera.DrawOne(who.getHomeMap(),mx,my);
+  return retval;
 }
 
 function KeyOfSunTile() {
@@ -15090,8 +15236,9 @@ KeyOfSunTile.prototype = new KeyItemObject();
 
 KeyOfSunTile.prototype.use = function(who) {
   let retval = {fin:1};
-  let altar = who.getHomeMap().getTile(24,48).getTopFeature();
-  if (IsAdjacent(who,altar)) {
+  let thismap = who.getHomeMap();
+  let altar = thismap.getTile(24,48).getTopFeature();
+  if (IsAdjacent(who,altar) && (thismap.getName() === "uttermostdark")) {
     who.getHomeMap().deleteThing(altar);
     let moongate = localFactory.createTile("DaemonMoongate");
     thismap.placeThing(24,48,moongate);
