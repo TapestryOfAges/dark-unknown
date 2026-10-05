@@ -4426,7 +4426,7 @@ ais.Darkness = function(who) {
       who.second--;
     }
   } else if (!who.third && who.firstgate) {
-    who.third = Dice.roll("1d5+2");
+    who.third = Dice.roll("1d5+6");
   } else if (who.third && !who.thirdspoke) {
     if (who.third === 1) {
       maintext.addText('<span class="daemontext">"There is not enough light in all the worlds to fill a void without end and without limit."</span>');
@@ -4443,8 +4443,15 @@ ais.Darkness = function(who) {
     } else {
       who.fourth--;
     }
+  } else if (who.fifth && !who.fifthspoke) {
+    if (who.fifth === 1) {
+      maintext.addText('<span class="daemontext">"I have pierced the great warding. By my design, my servant draws daemons from the nether and soon they will overrun the surface. It is too late."</span>');
+      who.fifthspoke = 1;
+    } else {
+      who.fifth--;
+    }
   } else if (!who.alone) {
-    if ((PC.gety() > 27) && (PC.getx() > 11)) {
+    if ((PC.gety() > 27) && (PC.gety() < 37) && (PC.getx() > 11)) {
       who.alone = 1;
       if (DU.settings.getSetting("music")) { DUPlayMusic("Heartbeat", {fade:1}); }
     }
