@@ -1366,7 +1366,7 @@ GameMap.prototype.resizeMap = function(newx,newy,anchor){
     if (changedbottom < 0) {
       // see if this label has fallen off the bottom of the new map
       if (labelarray[1] > oldy+changedbottom) {  // remember that changedbottom is negative
-        console.log(`Label ${key} has fallen off the map.`);
+//        console.log(`Label ${key} has fallen off the map.`);
         continue;  // This label is now off the bottom of the adjusted map
       }
       // otherwise, nothing needs to change 
@@ -1374,8 +1374,8 @@ GameMap.prototype.resizeMap = function(newx,newy,anchor){
     if (changedright < 0) {
       // see if the label has fallen off the right edge of the new map
       if (labelarray[0] > oldx+changedright) {
-        console.log(`Label ${key} has fallen off the map.`);
-        console.log(`label x: ${labelarray[0]}, oldx+changedright: ${oldx} + ${changedright} = ${oldx+changedright}`);
+//        console.log(`Label ${key} has fallen off the map.`);
+//        console.log(`label x: ${labelarray[0]}, oldx+changedright: ${oldx} + ${changedright} = ${oldx+changedright}`);
         continue;  // This label is now off the right edge of the adjusted map
       }
       // otherwise, nothing needs to change
@@ -1384,36 +1384,36 @@ GameMap.prototype.resizeMap = function(newx,newy,anchor){
     // looking at the left and top 
     if (changedleft < 0) {
       // left edge trimmed away
-      if (labelarray[0] < abs(changedleft)) { 
-        console.log(`Label ${key} has fallen off the map.`);
+      if (labelarray[0] < Math.abs(changedleft)) { 
+//        console.log(`Label ${key} has fallen off the map.`);
         continue; 
       } // label has fallen off the left edge
       else {
         // label still on the map, moves left
         labelarray[0] += changedleft;
-        console.log(`Label ${key} is now ${labelarray[0]}x${labelarray[1]}.`);
+//        console.log(`Label ${key} is now ${labelarray[0]}x${labelarray[1]}.`);
       }
     }
     if (changedtop < 0) {
       // top edge trimmed away
-      if (labelarray[1] < abs(changedtop)) { 
-        console.log(`Label ${key} has fallen off the map.`);
+      if (labelarray[1] < Math.abs(changedtop)) { 
+//        console.log(`Label ${key} has fallen off the map.`);
         continue; 
       } // label has fallen off the top edge
       else {
         labelarray[1] += changedtop;
-        console.log(`Label ${key} is now ${labelarray[0]}x${labelarray[1]}.`);
+//        console.log(`Label ${key} is now ${labelarray[0]}x${labelarray[1]}.`);
       }
     }
     if (changedleft > 0) {
       // left edge was added to
       labelarray[0] += changedleft;
-      console.log(`Label ${key} is now ${labelarray[0]}x${labelarray[1]}.`);
+//      console.log(`Label ${key} is now ${labelarray[0]}x${labelarray[1]}.`);
     }
     if (changedtop > 0) {
       // top edge was added to
       labelarray[1] += changedtop;
-      console.log(`Label ${key} is now ${labelarray[0]}x${labelarray[1]}.`);
+//      console.log(`Label ${key} is now ${labelarray[0]}x${labelarray[1]}.`);
     }
     let newkey = `div_tile${labelarray[0]}x${labelarray[1]}`;
     newlabels[newkey] = this.allLabels[key];
@@ -1421,6 +1421,130 @@ GameMap.prototype.resizeMap = function(newx,newy,anchor){
   this.allLabels = newlabels;
 
   // modify transition array
+  let newtrans = {};
+  for (let key in this.transover) {
+    let labelarray = key.split(',');
+    labelarray[0] = parseInt(labelarray[0]);
+    labelarray[1] = parseInt(labelarray[1]);
+    // changedbottom being positive or changedright being positive means area added to the ends of the arrays, so no changes needed to transitions
+    if (changedbottom < 0) {
+      // see if this transition has fallen off the bottom of the new map
+      if (labelarray[1] > oldy+changedbottom) {  // remember that changedbottom is negative
+        console.log(`Transition ${key} has fallen off the map.`);
+        continue;  // This transition is now off the bottom of the adjusted map
+      }
+      // otherwise, nothing needs to change 
+    }
+    if (changedright < 0) {
+      // see if the transition has fallen off the right edge of the new map
+      if (labelarray[0] > oldx+changedright) {
+        console.log(`Transition ${key} has fallen off the map.`);
+        continue;  // This transition is now off the right edge of the adjusted map
+      }
+      // otherwise, nothing needs to change
+    }
+
+    // looking at the left and top 
+    if (changedleft < 0) {
+      // left edge trimmed away
+      if (labelarray[0] < Math.abs(changedleft)) { 
+        console.log(`Transition ${key} has fallen off the map.`);
+        continue; 
+      } // transition has fallen off the left edge
+      else {
+        // transition still on the map, moves left
+        labelarray[0] += changedleft;
+        console.log(`Transition ${key} is now ${labelarray[0]}x${labelarray[1]}.`);
+      }
+    }
+    if (changedtop < 0) {
+      // top edge trimmed away
+      if (labelarray[1] < Math.abs(changedtop)) { 
+        console.log(`Transition ${key} has fallen off the map.`);
+        continue; 
+      } // Transition has fallen off the top edge
+      else {
+        labelarray[1] += changedtop;
+        console.log(`Transition ${key} is now ${labelarray[0]}x${labelarray[1]}.`);
+      }
+    }
+    if (changedleft > 0) {
+      // left edge was added to
+      labelarray[0] += changedleft;
+      console.log(`Transition ${key} is now ${labelarray[0]}x${labelarray[1]}.`);
+    }
+    if (changedtop > 0) {
+      // top edge was added to
+      labelarray[1] += changedtop;
+      console.log(`Transition ${key} is now ${labelarray[0]}x${labelarray[1]}.`);
+    }
+    let newkey = `${labelarray[0]},${labelarray[1]}`;
+    newtrans[newkey] = this.transover[key];
+  }
+  this.transover = newtrans;
+
+  // modify flow
+  let newflow = {};
+  for (let key in this.flow) {
+    let labelarray = key.split('x');
+    labelarray[0] = parseInt(labelarray[0]);
+    labelarray[1] = parseInt(labelarray[1]);
+    // changedbottom being positive or changedright being positive means area added to the ends of the arrays, so no changes needed to flow
+    if (changedbottom < 0) {
+      // see if this flow has fallen off the bottom of the new map
+      if (labelarray[1] > oldy+changedbottom) {  // remember that changedbottom is negative
+        console.log(`Flow ${key} has fallen off the map.`);
+        continue;  // This flow is now off the bottom of the adjusted map
+      }
+      // otherwise, nothing needs to change 
+    }
+    if (changedright < 0) {
+      // see if the flow has fallen off the right edge of the new map
+      if (labelarray[0] > oldx+changedright) {
+        console.log(`Flow ${key} has fallen off the map.`);
+        continue;  // This flow is now off the right edge of the adjusted map
+      }
+      // otherwise, nothing needs to change
+    }
+
+    // looking at the left and top 
+    if (changedleft < 0) {
+      // left edge trimmed away
+      if (labelarray[0] < Math.abs(changedleft)) { 
+        console.log(`Flow ${key} has fallen off the map.`);
+        continue; 
+      } // flow has fallen off the left edge
+      else {
+        // flow still on the map, moves left
+        labelarray[0] += changedleft;
+        console.log(`Flow ${key} is now ${labelarray[0]}x${labelarray[1]}.`);
+      }
+    }
+    if (changedtop < 0) {
+      // top edge trimmed away
+      if (labelarray[1] < Math.abs(changedtop)) { 
+        console.log(`Flow ${key} has fallen off the map.`);
+        continue; 
+      } // Flow has fallen off the top edge
+      else {
+        labelarray[1] += changedtop;
+        console.log(`Flow ${key} is now ${labelarray[0]}x${labelarray[1]}.`);
+      }
+    }
+    if (changedleft > 0) {
+      // left edge was added to
+      labelarray[0] += changedleft;
+      console.log(`Flow ${key} is now ${labelarray[0]}x${labelarray[1]}.`);
+    }
+    if (changedtop > 0) {
+      // top edge was added to
+      labelarray[1] += changedtop;
+      console.log(`Flow ${key} is now ${labelarray[0]}x${labelarray[1]}.`);
+    }
+    let newkey = `${labelarray[0]},${labelarray[1]}`;
+    newflow[newkey] = this.flow[key];
+  }
+  this.flow = newflow;
 
   drawMap();
 }
