@@ -3737,7 +3737,8 @@ function AirPlaneTile() {
 }
 AirPlaneTile.prototype = new TerrainObject();
 
-AirPlaneTile.prototype.bumpInto = function(who) {
+AirPlaneTile.prototype.bumpinto = function(who) {
+  if (who === PC) { console.log("bumping into the air"); }
   let retval = {};
   retval["msg"] = "";
   if ((who.getMovetype() & MOVE_FLY) || (who.getMovetype() & MOVE_ETHEREAL)) {
@@ -3763,24 +3764,36 @@ AirPlaneTile.prototype.idle = function(who) {
   if (windchange) {
     dirx = windchange.winddirx;
     diry = windchange.winddiry;
-  } else if (this.getName() === "AirplaneWindC") {
+  } else if (this.getName() === "AirPlaneWindC") {
     if (who.lastwindx) { dirx = who.lastwindx; }
     if (who.lastwindy) { diry = who.lastwindy; }
   }
   let desttile = who.getHomeMap().getTile(who.getx() + dirx, who.gety() + diry);
+  if (desttile.getTerrain().blockwind) { 
+//    console.log(`Wind blowing someone into X.`);
+    return; 
+  }
+
   if (desttile.canMoveHere(who.getMovetype()).canmove) {
     who.windblown = 1;
     who.moveMe(dirx,diry);
     delete who.windblown;
+    who.lastwindx = dirx;
+    who.lastwindy = diry;
+    let newloc = {};
+    newloc.map = who.getHomeMap().getName();
+    newloc.x = who.getx();
+    newloc.y = who.gety();
+    who.setLastLocation(newloc);
   }
 
 }
 
 function AirPlaneWindNWTile() {
   this.name = "AirPlaneWindNW";
-  this.graphic = "skies.gif";
-  this.spritexoffset = 0;
-  this.spriteyoffset = 0;
+  // this.graphic = "skies.gif";
+  // this.spritexoffset = 0;
+  // this.spriteyoffset = 0;
   this.windx = -1;
   this.windy = -1;
 }
@@ -3788,9 +3801,9 @@ AirPlaneWindNWTile.prototype = new AirPlaneTile();
 
 function AirPlaneWindNTile() {
   this.name = "AirPlaneWindN";
-  this.graphic = "skies.gif";
-  this.spritexoffset = -32;
-  this.spriteyoffset = 0;
+  // this.graphic = "skies.gif";
+  // this.spritexoffset = -32;
+  // this.spriteyoffset = 0;
   this.windx = 0;
   this.windy = -1;
 }
@@ -3798,9 +3811,9 @@ AirPlaneWindNTile.prototype = new AirPlaneTile();
 
 function AirPlaneWindNETile() {
   this.name = "AirPlaneWindNE";
-  this.graphic = "skies.gif";
-  this.spritexoffset = -64;
-  this.spriteyoffset = 0;
+  // this.graphic = "skies.gif";
+  // this.spritexoffset = -64;
+  // this.spriteyoffset = 0;
   this.windx = 1;
   this.windy = -1;
 }
@@ -3808,9 +3821,9 @@ AirPlaneWindNETile.prototype = new AirPlaneTile();
 
 function AirPlaneWindWTile() {
   this.name = "AirPlaneWindW";
-  this.graphic = "skies.gif";
-  this.spritexoffset = 0;
-  this.spriteyoffset = -32;
+  // this.graphic = "skies.gif";
+  // this.spritexoffset = 0;
+  // this.spriteyoffset = -32;
   this.windx = -1;
   this.windy = 0;
 }
@@ -3818,9 +3831,9 @@ AirPlaneWindWTile.prototype = new AirPlaneTile();
 
 function AirPlaneWindXTile() {
   this.name = "AirPlaneWindX";
-  this.graphic = "skies.gif";
-  this.spritexoffset = -32;
-  this.spriteyoffset = -32;
+  // this.graphic = "skies.gif";
+  // this.spritexoffset = -32;
+  // this.spriteyoffset = -32;
   this.windx = 0;
   this.windy = 0;
   this.blockwind = 1;
@@ -3829,9 +3842,9 @@ AirPlaneWindXTile.prototype = new AirPlaneTile();
 
 function AirPlaneWindETile() {
   this.name = "AirPlaneWindE";
-  this.graphic = "skies.gif";
-  this.spritexoffset = -64;
-  this.spriteyoffset = -32;
+  // this.graphic = "skies.gif";
+  // this.spritexoffset = -64;
+  // this.spriteyoffset = -32;
   this.windx = 1;
   this.windy = 0;
 }
@@ -3839,9 +3852,9 @@ AirPlaneWindETile.prototype = new AirPlaneTile();
 
 function AirPlaneWindSWTile() {
   this.name = "AirPlaneWindSW";
-  this.graphic = "skies.gif";
-  this.spritexoffset = 0;
-  this.spriteyoffset = -64;
+  // this.graphic = "skies.gif";
+  // this.spritexoffset = 0;
+  // this.spriteyoffset = -64;
   this.windx = -1;
   this.windy = 1;
 }
@@ -3849,9 +3862,9 @@ AirPlaneWindSWTile.prototype = new AirPlaneTile();
 
 function AirPlaneWindSTile() {
   this.name = "AirPlaneWindS";
-  this.graphic = "skies.gif";
-  this.spritexoffset = -32;
-  this.spriteyoffset = -64;
+  // this.graphic = "skies.gif";
+  // this.spritexoffset = -32;
+  // this.spriteyoffset = -64;
   this.windx = 0;
   this.windy = 1;
 }
@@ -3859,9 +3872,9 @@ AirPlaneWindSTile.prototype = new AirPlaneTile();
 
 function AirPlaneWindSETile() {
   this.name = "AirPlaneWindSE";
-  this.graphic = "skies.gif";
-  this.spritexoffset = -64;
-  this.spriteyoffset = -64;
+  // this.graphic = "skies.gif";
+  // this.spritexoffset = -64;
+  // this.spriteyoffset = -64;
   this.windx = 1;
   this.windy = 1;
 }
@@ -3869,9 +3882,9 @@ AirPlaneWindSETile.prototype = new AirPlaneTile();
 
 function AirPlaneWindCTile() {
   this.name = "AirPlaneWindC";
-  this.graphic = "skies.gif";
-  this.spritexoffset = -32;
-  this.spriteyoffset = -32;
+  // this.graphic = "skies.gif";
+  // this.spritexoffset = -32;
+  // this.spriteyoffset = -32;
   this.windx = 0;
   this.windy = 0;
 }
