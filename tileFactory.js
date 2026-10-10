@@ -1398,6 +1398,21 @@ tileFactory.prototype.makeLavaTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeTempLavaTile = function() {
+  let newTile = new TempLavaTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDeepLavaTile = function() {
+  let newTile = new DeepLavaTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeLavaMonitorTile = function() {
+  let newTile = new LavaMonitorTile();
+  return newTile;
+}
+
 tileFactory.prototype.makePurpleCarpetNWTile = function() {
   let newTile = new PurpleCarpetNWTile();
   return newTile;
@@ -3108,6 +3123,11 @@ tileFactory.prototype.makeWalkOnFulcrumTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWalkOnFulcrumTile = function() {
+  let newTile = new WalkOnFulcrumTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWalkOnFulcrum2Tile = function() {
   let newTile = new WalkOnFulcrum2Tile();
   return newTile;
@@ -3190,6 +3210,11 @@ tileFactory.prototype.makeWalkOnWE38Tile = function() {
 
 tileFactory.prototype.makeWalkOnWE39Tile = function() {
   let newTile = new WalkOnWE39Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnWaterPlaneTile = function() {
+  let newTile = new WalkOnWaterPlaneTile();
   return newTile;
 }
 
@@ -3325,6 +3350,11 @@ tileFactory.prototype.makeWalkOnUtter4Tile = function() {
 
 tileFactory.prototype.makeWalkOnUtter5Tile = function() {
   let newTile = new WalkOnUtter5Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnUtterDarkTile = function() {
+  let newTile = new WalkOnUtterDarkTile();
   return newTile;
 }
 
@@ -6455,6 +6485,11 @@ tileFactory.prototype.makeCrystalTrapTile = function() {
 
 tileFactory.prototype.makeCurseTile = function() {
   let newTile = new CurseTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeUtterlyDarkTile = function() {
+  let newTile = new UtterlyDarkTile();
   return newTile;
 }
 
