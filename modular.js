@@ -427,7 +427,7 @@ OnDeathFuncs["cult"] = function(who) {
     if (npcs[i].getNPCName() === "Rhys") { rhys = npcs[i]; }
   }
   if (!impcount && !cultistcount) {
-    PC.forcedTalk = rhys;
+    PC.setForcedTalk(rhys);
     DU.gameflags.setFlag("cultist_defeat",1);
   }
 }
@@ -527,7 +527,7 @@ OnDeathFuncs["cleanFields"] = function(who) {
       }
     }
     if (PC.getHomeMap() === mymap) {
-      PC.forcedTalk = asharden;
+      PC.setForcedTalk(asharden);
       ProcessAmbientNoise(mymap.getTile(PC.getx(),PC.gety()));
     }
     asharden.setConversation("asharden_gate");
