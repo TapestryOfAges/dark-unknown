@@ -1425,6 +1425,7 @@ function RubyLightTile() {
   this.zstatdesc = "The space around you is lit by the power of the ruby.";
   this.desc = "Ruby's Light";
   this.level = 1;
+  this.turns = 1;
 }
 RubyLightTile.prototype = new EphemeralObject();
 
@@ -1439,8 +1440,11 @@ RubyLightTile.prototype.applyEffect = function(silent) {
 }
 
 RubyLightTile.prototype.eachTurn = function() {
-  this.endEffect();
-  DrawCharFrame();
+  if (this.turns) { this.turns = 0; }
+  else {
+    this.endEffect();
+    DrawCharFrame();
+  }
 }
 
 RubyLightTile.prototype.endEffect = function(silent) {
@@ -1960,6 +1964,43 @@ ScouringBeldskaeTile.prototype.endEffect = function(silent) {
 
 }
 
+function UtterlyDarkTile() {
+  this.addType("buff");
+  this.name = "UtterlyDark";
+  this.display = "";
+  this.power = 0;
+  this.zstatdesc = "";
+  this.desc = "Darkness";
+  this.level = 1;
+}
+UtterlyDarkTile.prototype = new EphemeralObject();
+
+UtterlyDarkTile.prototype.applyEffect = function(silent) {
+
+  return 1;
+}
+
+UtterlyDarkTile.prototype.eachTurn = function() {
+  let who = this.getAttachedTo();
+  if (who.getHomeMap().getName() !== "uttermostdark") {
+    this.endEffect(1);
+    return 1;
+  }
+  let shepherd = who.getHomeMap().getTile(18,32).getTopNPC();
+  let dist = GetDistance(PC.getx(),PC.gety(),shepherd.getx(),shepherd.gety(),"manhatten");
+  let newpower = Math.max(5-dist,0);
+  who.setLight(who.getLight() - (newpower-this.getPower()));
+  this.setPower(newpower);
+  return 1;
+}
+
+UtterlyDarkTile.prototype.endEffect = function(silent) {
+  let who = this.getAttachedTo();
+  who.setLight(who.getLight() - this.getPower());
+  who.deleteSpellEffect(this);
+  if (who === PC) { DrawCharFrame(); }
+}
+
 function WandBreakTile() {
   this.addType("buff");
   this.name = "WandBreak";
@@ -2016,6 +2057,35 @@ function WindChangeTile() {
   this.winddiry = 0;
 }
 WindChangeTile.prototype = new EphemeralObject();
+
+WindChangeTile.prototype.applyEffect = function(silent) {
+  if (this.getAttachedTo().getHomeMap().getName() === "airplane") {
+    let windstr = WindChangeGetDesc(this.winddirx,this.winddiry)
+    this.getAttachedTo().getHomeMap().setUndergroundDesc(windstr);
+  }
+  return 1;
+}
+
+WindChangeTile.prototype.endEffect = function(silent) {
+  if (this.getAttachedTo().getHomeMap().getName() === "airplane") {
+    this.getAttachedTo().getHomeMap().setUndergroundDesc("  ");
+  }
+  this.getAttachedTo().deleteSpellEffect(this);
+  return 1;
+}
+
+function WindChangeGetDesc(wx,wy) {
+  if ((wx === 0) && (wy === 0)) { return "  "; }
+  if ((wx === 1) && (wy === 0)) { return "Wind from the west."; }
+  if ((wx === 2) && (wy === 0)) { return "Strong wind from the west."; }
+  if ((wx === -1) && (wy === 0)) { return "Wind from the east."; }
+  if ((wx === -2) && (wy === 0)) { return "Strong wind from the east."; }
+  if ((wx === 0) && (wy === 1)) { return "Wind from the north."; }
+  if ((wx === 0) && (wy === 2)) { return "Strong wind from the north."; }
+  if ((wx === 0) && (wy === -1)) { return "Wind from the south."; }
+  if ((wx === 0) && (wy === -2)) { return "Strong wind from the south."; }
+  return "  "; 
+}
 
 // WORKING HERE: this alters the "Wind Direction" notification so show the wind direction in blue,
 // and as the spell wears off the blue changes color until it expires
