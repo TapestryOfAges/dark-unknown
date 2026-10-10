@@ -1317,7 +1317,10 @@ function DrawRectangle(xval,yval) {
       }
       else if (selectionval.checkType("Feature")) {
         if (selectionval.getName() === "Eraser") { erasefeature(x,y); }
-        else { addfeaturetomap(x,y,selectionval); }
+        else { 
+          if (document.replaceft.elements[0].checked) { erasefeature(x,y); }
+          addfeaturetomap(x,y,selectionval); 
+        }
       }
       else if (selectionval.checkType("npc")) {
   	    addnpctomap(x,y,selectionval);
