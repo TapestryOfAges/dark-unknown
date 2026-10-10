@@ -193,7 +193,7 @@ EventFunctions["OpenCons"] = function(ev) {
   Listener.clearListener("OpenCons");
   let ashlin = PC.getHomeMap().getTile(14,24).getTopNPC();
   if (ashlin) {
-    PC.forcedTalk = ashlin;
+    PC.setForcedTalk(ashlin);
   } else { alert("No Ashlin?"); }
 }
 
