@@ -696,7 +696,7 @@ ais.AshardenGate = function(who) {
   retval["fin"] = 1;
   let mymap = who.getHomeMap();
   if (DU.gameflags.getFlag("ephemeradefeated") && !DU.gameflags.getFlag("planarkey")) {
-    if (PC.getHomeMap() === mymap) { PC.forcedTalk = who; }
+    if (PC.getHomeMap() === mymap) { PC.setForcedTalk(who); }
     return retval;
   }
   if (DU.gameflags.getFlag("planarkey")) {
@@ -1442,7 +1442,7 @@ ais.Borogard = function(who) {
   let retval = {};
   retval["fin"] = 1;
   if (IsObjectVisibleOnScreen(who)) {
-    PC.forcedTalk = who;
+    PC.setForcedTalk(who);
     who.currentAI = "seekPC-10";
     who.peaceAI = "seekPC-10";
   }
@@ -1510,7 +1510,7 @@ ais.CollGuard = function(who) {
   if (!DU.gameflags.getFlag("guard_thief_talk")) {
     if (PC.getHomeMap() === who.getHomeMap()) {
       if (GetDistance(PC.getx(),PC.gety(),who.getx(),who.gety()) <= 2) {
-        PC.forcedTalk = who;
+        PC.setForcedTalk(who);
       }
     }
   }
@@ -3787,7 +3787,7 @@ ais.ai_magmaspit = function(who) {
   let desc = tgt.getDesc();
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
   let descval = { txt: desc };
-  let lava = localFactory.createTile("Lava");
+  let lava = localFactory.createTile("TempLava");
   who.getHomeMap().placeThing(tgt.getx(),tgt.gety(),lava);
   lava.expiresTime = DUTime.getGameClock() + Dice.roll("2d20") * SCALE_TILE;
 
@@ -3907,7 +3907,7 @@ function FindMissileTarget(who,radius) {
 ais.ghostie = function(who) {
   let themap = who.getHomeMap();
   if ((GetSquareDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) <= 3) && !DU.gameflags.getFlag("knows_lysander")) {
-    PC.forcedTalk = who;
+    PC.setForcedTalk(who);
   } else if (!DU.gameflags.getFlag("knows_lysander")) {
     if (Dice.roll("1d16") === 1) {
       let which = Dice.roll("1d4");
@@ -3961,7 +3961,7 @@ ais.Tharock = function(who) {
       else if ((PC.getx() >= 27) && (PC.getx() <= 30) && (PC.gety() >= 24) && (PC.gety() <= 26)) { tox=29; toy=28; }
       else { tox=29; toy=26; }
       who.getHomeMap().moveThing(tox,toy,who);
-      PC.forcedTalk = who;
+      PC.setForcedTalk(who);
       DUCamera.DrawOne(who.getHomeMap(),tox,toy);
       //DrawMainFrame("one",who.getHomeMap(),tox,toy);
       delete who.timer;
@@ -4687,7 +4687,7 @@ ais.fulcrumSmith = function(who) {
   if (!who.talked && (who.getHomeMap() === PC.getHomeMap())) {
     if (GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety(),"manhatten") <= 4) {
       who.talked = 1;
-      PC.forcedTalk = who;
+      PC.setForcedTalk(who);
     }
   }
   return {fin:1};
