@@ -192,6 +192,10 @@ LavaTile.prototype.isHostileTo = function(who) {
   return 1;
 }
 
+LavaTile.prototype.myTurn = function() {
+  return 1;  // Just for lava already on the trackers from when I added the Lava Monitor
+}
+
 function InLava(who, lava) {
   let dam;
   if (who.specials.underground || (who.getMovetype() & MOVE_FLY) || (who.getMovetype() & MOVE_ETHEREAL)) {
@@ -209,7 +213,13 @@ function InLava(who, lava) {
   return {msg:""};
 }
 
-LavaTile.prototype.activate = function(noreally) {
+
+function TempLavaTile() {
+  this.name = "TempLava";
+}
+TempLavaTile.prototype = new LavaTile();
+
+TempLavaTile.prototype.activate = function(noreally) {
   if ((gamestate.getMode() !== "loadgame") || noreally) {
     let NPCevent = new GameEvent(this);
     DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
@@ -218,7 +228,7 @@ LavaTile.prototype.activate = function(noreally) {
   return;
 }
 
-LavaTile.prototype.myTurn = function() {
+TempLavaTile.prototype.myTurn = function() {
   if (!maps.getMap(this.getHomeMap().getName())) {
 
     if (!DebugWrite("gameobj", "<span style='font-weight:bold'>Firefield " + this.getSerial() + " removed from game- map gone.</span><br />")) {
@@ -251,6 +261,106 @@ LavaTile.prototype.myTurn = function() {
       }
     }
   };
+
+  let NPCevent = new GameEvent(this);
+  DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
+  
+  return 1;
+}
+
+function DeepLavaTile() {
+  //Graphic Upgraded
+  this.name = "DeepLava";
+  this.graphic = "static.gif";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.desc = "lava";
+  this.initdelay = 1.2;
+  this.pathweight = 50;
+  this.spritexoffset = 0;
+  this.spriteyoffset = -165*32;
+  
+  HasAmbientNoise.call(this,"sfx_bubbling_lava",1.5);
+  LightEmitting.call(this, 1);
+  this.peerview = LAVA_PEER;
+
+  ManualAnimation.call(this, { 
+    animstart: 0,
+    animlength: 10,
+    animstyle: "cycle",
+    allowrepeat: 0,
+    framedurationmin: 200,
+    framedurationmax: 200,
+    startframe: "start"
+  });
+}
+DeepLavaTile.prototype = new FeatureObject();
+
+DeepLavaTile.prototype.bumpinto = function(who) {
+  let retval = {};
+	retval["canmove"] = 0;
+	retval["msg"] = "";
+  if (who === PC) {
+    retval["msg"] = "The lava there is too deep to traverse.";
+  }
+  return retval;
+}
+
+function LavaMonitorTile() {
+  //Graphic Upgraded
+  this.name = "LavaMonitor";
+  this.graphic = "static.gif";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.desc = "lava";
+  this.initdelay = 1.2;
+  this.pathweight = 50;
+  this.spritexoffset = 0;
+  this.spriteyoffset = -165*32;
+  this.invisible = 1;
+}
+LavaMonitorTile.prototype = new FeatureObject();
+
+LavaMonitorTile.prototype.activate = function(noreally) {
+  if ((gamestate.getMode() !== "loadgame") || noreally) {
+    let NPCevent = new GameEvent(this);
+    DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
+  }
+
+  return;
+}
+
+LavaMonitorTile.prototype.myTurn = function() {
+  if (!maps.getMap(this.getHomeMap().getName())) {
+
+    DebugWrite("gameobj", "<span style='font-weight:bold'>Lava monitor " + this.getSerial() + " removed from game- map gone.</span><br />")  
+    return 1;
+  }
+
+  let mymap = this.getHomeMap();
+  let allfeas = mymap.features.getAll();
+  
+  for (let i=allfeas.length-1;i>=0;i--){ 
+    // Going to count back from the end. Once we hit lava, we've hit tiles that are from the base map and so we stop looking
+    if ((allfeas[i].getName() === "Lava") || (allfeas[i].getName() === "DeepLava")) { 
+      break; // we've reached lava
+    }
+
+    if (!allfeas[i].flammable) { continue; }  // don't care if it's on lava if it can't burn
+
+    let tile = mymap.getTile(allfeas[i].getx(),allfeas[i].gety());
+    let feas = tile.getFeatures();
+    if (feas.length > 1) {
+      // if it's only 1, this is the only feature, and so it obviously isn't on lava
+      for (let j=0;j<feas.length-1;j++) {
+        if ((feas[j].getName() === "Lava") || (feas[j].getName() === "DeepLava")) { 
+          if (Dice.roll("1d100") <= allfeas[i].flammable) {
+            allfeas[i].flamed();
+          }
+        }
+      }
+    }
+  }
 
   let NPCevent = new GameEvent(this);
   DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
@@ -3692,7 +3802,9 @@ TalkingDoorTile.prototype.use = function(who) {
 };
 
 TalkingDoorTile.prototype.bumpinto = function(who) {
-  PC.forcedTalk = this;
+  if (who === PC) {
+    PC.setForcedTalk(this);
+  }
   let retval = {};
   retval["msg"] = "Blocked!";
   retval["canmove"] = 0;
@@ -3749,41 +3861,42 @@ ExplosionTrapTile.prototype.activate = function() {
 }
 
 ExplosionTrapTile.prototype.myTurn = function() {
-
+console.log("ExplosionTrap");
   if (this.getHomeMap() !== PC.getHomeMap()) { return 1; } 
-  let dr = Dice.roll("1d5");
+  if (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety(),"square") <= 10) { 
+    let dr = Dice.roll("1d5");
 
-  let pattern = [];
-  if ((dr === 1) || (dr === 2)) {
-    // rad 1
-    pattern = [[0,0]];
-  } else if ((dr === 3) || (dr === 4)) {
-    // rad 2
-    pattern = [[-1,-1],[0,-1],[1,-1], [-1,0],[0,0],[1,0], [-1,1],[0,1],[1,1]];
-  } else {
-    // rad 3 but in a starburst
-    pattern = [[-1,-1],[0,-1],[1,-1], [-1,0],[0,0],[1,0], [-1,1],[0,1],[1,1],
-               [-2,-2],[0,-2],[2,-2], [-2,0],[2,0], [-2,2],[0,2],[2,2]];
-  }
-
-  for (let i=0; i<pattern.length; i++){
-    let tgt;
-    if ((PC.getx() === (this.getx() + pattern[i][0])) && (PC.gety() === (this.gety() + pattern[i][1]))) { tgt = PC; }
-    else {
-      let loc = this.getHomeMap().getAcre(this.getx() + pattern[i][0], this.gety() + pattern[i][1]);
-      tgt = loc.getTopNPC();
-    }
-    if (tgt) {
-      let dmg = 10 + Dice.roll("1d20");
-      DealandDisplayDamage(tgt,this,dmg,"fire");
-      ShowEffect(tgt, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
+    let pattern = [];
+    if ((dr === 1) || (dr === 2)) {
+      // rad 1
+      pattern = [[0,0]];
+    } else if ((dr === 3) || (dr === 4)) {
+      // rad 2
+      pattern = [[-1,-1],[0,-1],[1,-1], [-1,0],[0,0],[1,0], [-1,1],[0,1],[1,1]];
     } else {
-      ShowEffect(0, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y, {x:this.getx()+pattern[i][0], y:this.gety() + pattern[i][1], map:this.getHomeMap()});
+      // rad 3 but in a starburst
+      pattern = [[-1,-1],[0,-1],[1,-1], [-1,0],[0,0],[1,0], [-1,1],[0,1],[1,1],
+                [-2,-2],[0,-2],[2,-2], [-2,0],[2,0], [-2,2],[0,2],[2,2]];
+    }
+
+    for (let i=0; i<pattern.length; i++){
+      let tgt;
+      if ((PC.getx() === (this.getx() + pattern[i][0])) && (PC.gety() === (this.gety() + pattern[i][1]))) { tgt = PC; }
+      else {
+        let loc = this.getHomeMap().getTile(this.getx() + pattern[i][0], this.gety() + pattern[i][1]);
+        tgt = loc.getTopNPC();
+      }
+      if (tgt) {
+        let dmg = 10 + Dice.roll("1d20");
+        DealandDisplayDamage(tgt,this,dmg,"fire");
+        ShowEffect(tgt, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
+      } else {
+        ShowEffect(0, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y, {x:this.getx()+pattern[i][0], y:this.gety() + pattern[i][1], map:this.getHomeMap()});
+      }
     }
   }
 
-
-  let nexttick = 10 + Dice.roll("1d20");
+  let nexttick = (5 + Dice.roll("1d20")) * SCALE_TIME;
   let NPCevent = new GameEvent(this);
   DUTime.addAtTimeInterval(NPCevent,nexttick);
 
@@ -7222,7 +7335,7 @@ function WaterfallFlowTile() {
   this.name = "WaterfallFlow";
   this.graphic = "walkon.gif";
   this.invisible = 1;
-  this.passable = MOVE_ETHEREAL + MOVE_FLY;
+  this.passable = MOVE_ETHEREAL + MOVE_FLY + MOVE_SWIM + MOVE_LEVITATE;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "waterfall flow walkon";
@@ -7231,6 +7344,7 @@ function WaterfallFlowTile() {
 WaterfallFlowTile.prototype = new FeatureObject();
 
 WaterfallFlowTile.prototype.walkon = function(who) {
+  if (who !== PC) { return {msg:''}; } // made the decision that nothing but the PC will go down waterfalls
   // Go falling down
   gamestate.setMode("null");
   if (who.getMovetype() & MOVE_FLY) { return {msg:""}; }
@@ -7256,7 +7370,12 @@ function DescendWaterfall(who, waterfall) {
       maintext.addText("You are swept down the waterfall!");
     }
     who.dealDamage(Dice.roll("1d10"));
-    who.endTurn(0);
+    let topfeature = who.getHomeMap().getTile(who.getx(),who.gety()).getTopFeature();
+    if (topfeature && topfeature.getName() === "WaterfallFlow") {
+      topfeature.walkon(who);
+    } else {
+      who.endTurn(0);
+    }
   }
 }
 
@@ -7778,6 +7897,19 @@ function WalkOnFulcrumTile() {
 }
 WalkOnFulcrumTile.prototype = new FeatureObject();
 
+function WalkOnFulcrumTile() {
+	this.name = "WalkOnFulcrum";
+  this.graphic = "static.gif";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -50*32;
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnFulcrumTile.prototype = new FeatureObject();
+
 WalkOnFulcrumTile.prototype.walkon = function(who) {
   let retval = { msg: "" };
   if (who !== PC) { return retval; }
@@ -8083,6 +8215,7 @@ WalkOnAirTowerTile.prototype = new FeatureObject();
 
 WalkOnAirTowerTile.prototype.walkon = function(walker) {
   MoveBetweenMaps(walker,this.getHomeMap(),maps.getMap("airplane"),17,14);
+  DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety());
   return {msg:"You step off the roof of the tower and are swept out into the wider Plane of Air."};
 }
 
@@ -8415,6 +8548,28 @@ WalkOnWE39Tile.prototype.walkon = function(walker) {
   return {msg:""};
 }
 
+function WalkOnWaterPlaneTile() {
+  this.name = "WalkOnWaterPlane";
+  this.graphic = "static.gif";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -50*32;
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnWaterPlaneTile.prototype = new FeatureObject();
+
+WalkOnWaterPlaneTile.prototype.walkon = function(walker) {
+  if (walker === PC) {
+    let wallmap = this.getHomeMap();
+    wallmap.moveThing(44,8,walker);
+  }
+
+  return {msg:""};
+}
+
 function WalkOnConsolationTile() {
 	this.name = "WalkOnConsolation";
   this.graphic = "static.gif";
@@ -8446,7 +8601,7 @@ WalkOnConsolationTile.prototype.walkon = function(walker) {
   } else if (walker === PC) {
     let npc = this.getHomeMap().getTile(0,0).getTopNPC();
     if (npc) {
-      PC.forcedTalk = npc;
+      PC.setForcedTalk(npc);
     }
     return {msg:""};
   } else { 
@@ -8508,7 +8663,7 @@ ToshinWalkOnTile.prototype.walkon = function(walker) {
   if ((walker === PC) && (!DU.gameflags.getFlag("knows_arlan"))) {
     let themap = this.getHomeMap();
     let arlan = FindNPCByName("Arlan",themap);
-    PC.forcedTalk = arlan;
+    PC.setForcedTalk(arlan);
   }
   return {msg:""}
 }
@@ -9006,7 +9161,7 @@ WardukeWalkOnTile.prototype.walkon = function(walker) {
   if (walker === PC) {
     let themap = this.getHomeMap();
     let warduke = FindNPCByName("Warduke", themap);
-    PC.forcedTalk = warduke;
+    PC.setForcedTalk(warduke);
     let field = themap.getTile(30,6).getTopFeature();
     themap.deleteThing(field);
     field = themap.getTile(31,6).getTopFeature();
@@ -9229,6 +9384,27 @@ WalkOnUtter5Tile.prototype.walkon = function(walker) {
     msg = "Suddenly, it comes to you: the scale from the black dragon. The black dragon had been an agent of the Darkness, and now a piece of it is the key that makes the final curtain fall away.";
   } 
   return {msg: msg }
+}
+
+function WalkOnUtterDarkTile() {
+	this.name = "WalkOnUtterDark";
+  this.graphic = "static.gif";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -50*32;
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnUtterDarkTile.prototype = new FeatureObject();
+
+WalkOnUtterDarkTile.prototype.walkon = function(walker) {
+  if ((walker === PC) && (!walker.getSpellEffectsByName("UtterlyDark"))) {
+    let dark = localFactory.createTile("UtterlyDark");
+    walker.addSpellEffect(dark,1);
+  }
+  return { msg: '' };
 }
 
 function WalkOnPaladinInitTile() {
@@ -10279,34 +10455,39 @@ EPQuakesTile.prototype.activate = function() {
     let NPCevent = new GameEvent(this);
     DUTime.addAtTimeInterval(NPCevent,1);
   }
+  console.log("Activating EPQuakes");
 }
 
 EPQuakesTile.prototype.myTurn = function() {
+  console.log("EPQuakes running");
   let mymaps = []
   let mymap = this.getHomeMap();
   let mymap2 = maps.getMap("earthplane2");
   mymaps = [mymap, mymap2];
 
-  for (let m in mymaps) {
+  for (let m0 in mymaps) {
+    let m = mymaps[m0];
     for (let key in m.tunnels) {
       let anychange = 0;
-      if (Dice.roll("1d100") <= this.chance) { // this tunnel changes state
+      let dieroll = Dice.roll("1d100");
+      console.log(dieroll);
+      if (dieroll <= this.chance) { // this tunnel changes state
         anychange = 1;
         let testacre = m.getTile(m.tunnels[key][0][0], m.tunnels[key][0][1]);
         let empty = 1;
-        let feas = testacre.getAllFeatures();
+        let feas = testacre.getFeatures();
         for (let i=0;i<feas.length;i++) {
           if (feas[i].getName() === "EarthPlaneCaveIn") { empty = 0; } // there are cavein tiles in the tunnel, it is not empty
         }
         if (empty) {
           // check for non-native entities inside, then fill
-          for (let i=0;i<m.tunnel[key].length; i++) {
-            if ((PC.getx() === m.tunnel[key][i][0]) && (PC.gety() === m.tunnel[key][i][1])) {
+          for (let i=0;i<m.tunnels[key].length; i++) {
+            if ((PC.getHomeMap() === m) && (PC.getx() === m.tunnels[key][i][0]) && (PC.gety() === m.tunnels[key][i][1])) {
               maintext.addText("Rocks crash around you!");
               DealandDisplayDamage(PC,null,5+Dice.roll("2d10"),"physical");
               ShowEffect(PC, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
             }
-            let citile = m.getTile(m.tunnel[key][i][0],m.tunnel[key][i][1]);
+            let citile = m.getTile(m.tunnels[key][i][0],m.tunnels[key][i][1]);
             let npc = citile.getTopNPC();
             if (npc && (npc.getAttitude() === "friendly") && (!npc.getName().includes("Earth"))) {
               // don't deal damage if the friendly is a minor earth elemental
@@ -10314,13 +10495,13 @@ EPQuakesTile.prototype.myTurn = function() {
               ShowEffect(npc, 700, "static.gif", RED_SPLAT_X, RED_SPLAT_Y);
             }
             let cif = m.getTile(0,0).getTopFeature();
-            m.moveThing(m.tunnel[key][i][0],m.tunnel[key][i][1],cif);
+            m.moveThing(m.tunnels[key][i][0],m.tunnels[key][i][1],cif);
           }
         } else {
           // grab each cavein and move it to 0,0 I guess
-          for (let i=0;i<m.tunnel[key].length; i++) {
-            let citile = m.getTile(m.tunnel[key][i][0],m.tunnel[key][i][1]);
-            let feas = citile.getAllFeatures();
+          for (let i=0;i<m.tunnels[key].length; i++) {
+            let citile = m.getTile(m.tunnels[key][i][0],m.tunnels[key][i][1]);
+            let feas = citile.getFeatures();
             for (let j=0;j<feas.length;j++) {
               if (feas[j].getName() === "EarthPlaneCaveIn") { 
                 m.moveThing(0,0,feas[j]);
@@ -10332,13 +10513,14 @@ EPQuakesTile.prototype.myTurn = function() {
       if (anychange) {
         if (PC.getHomeMap() === m) {
           Earthquake();
+          DUCamera.Draw(PC.getHomeMap(),PC.getx(),PC.gety(),PC);
         }
       }
 
     }
   }
 
-  let timetonext = 20 + Dice.roll("1d15");
+  let timetonext = (5 + Dice.roll("2d8")) * SCALE_TIME;
 
   let NPCevent = new GameEvent(this);
   DUTime.addAtTimeInterval(NPCevent,timetonext);
@@ -12260,7 +12442,8 @@ PlanarGateActiveTile.prototype.walkon = function(who) {
   let pkey = who.checkInventory("PlanarKey");
   let dest = "";
   let destx, desty;
-  let retval = {};
+  let retval = {msg:""};
+  if (!pkey) { return retval; }
 	retval["msg"] = "The bright light of the portal surrounds you, and you find yourself elsewhere.";
   if (pkey.contents === "gold") {
     if (DU.gameflags.getFlag("met_wisp")) {
@@ -12275,11 +12458,13 @@ PlanarGateActiveTile.prototype.walkon = function(who) {
   } else if (pkey.contents === "silver") {
     dest = "waterplane";
     destx = 44;
-    desty = 6;
+    desty = 19;
   } else if (pkey.contents === "tin") {
     dest = "airplane";
     destx = 29;
     desty = 14;
+    who.lastwindx = 1;
+    who.lastwindy = 1;
   } else if (pkey.contents === "iron") {
     dest = "earthplane";
     destx = 30;
@@ -12293,6 +12478,21 @@ PlanarGateActiveTile.prototype.walkon = function(who) {
   }
   let destmap = maps.addMap(dest);
   MoveBetweenMaps(who,who.getHomeMap(),destmap,destx,desty);
+  DrawCharFrame();
+  DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
+  if ((destmap.getLongDesc()) && (!DU.gameflags.getFlag(destmap.getName() + "_visited"))) {
+    let longdesc = destmap.getLongDesc();
+    longdesc = longdesc.replace("%%","<br />");
+    longdesc = "<span class='sysconv'>" + longdesc + "</span>";
+    maintext.delayedAddText(longdesc);
+    DU.gameflags.setFlag(destmap.getName() + "_visited", 1);
+  }
+  let wc = who.getSpellEffectsByName("WindChange");
+  if (wc) {
+    who.deleteSpellEffect(wc);
+    DrawCharFrame();
+  }
+  SetSky();
   DUCamera.Draw(destmap,PC.getx(),PC.gety(),PC);
   return retval;
 }
@@ -13495,9 +13695,9 @@ function PlanarKeyTile() {
 PlanarKeyTile.prototype = new ItemObject();
 
 PlanarKeyTile.prototype.getLongDesc = function() {
-  let longdesc = "A small box you received from Asharden. Place a piece of metal from his alchemy table within that matches the plane you seek to visit, and the Planar Gate will open.<br />";
+  let longdesc = "The Key to the Planar Gate. Requires metal from Asharden's alchemy table.";
   if (!this.contents) { longdesc += "The box is empty."; }
-  else { longdesc += "The box currently contains a chunk of " + this.contents + "."; }
+  else { longdesc = "The Key to the Planar Gate. Currently contains a chunk of " + this.contents + "."; }
   return longdesc;
 }
 
@@ -14632,7 +14832,7 @@ function DecorativeArmorTile() {
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
-  this.longdesc = "a suit of purely decorative armor. It would not actually provide protection.";
+  this.longdesc = "A suit of purely decorative armor. It would not actually provide protection.";
   this.enchantable = 1;
 }
 DecorativeArmorTile.prototype = new ItemObject();
