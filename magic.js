@@ -1412,20 +1412,31 @@ function PerformWindChange(caster,infused,free,tgt) {
   }
 
   let dir = "";
-  if (tgt[0] > 0) { dir = "west"; }
-  else if (tgt[0] < 0) { dir = "east"; }
-  else if (tgt[1] > 0) { dir = "north"; }
-  else if (tgt[1] < 0) { dir = "south"; }
+  if (tgt[0] < 0) { dir = "west"; }
+  else if (tgt[0] > 0) { dir = "east"; }
+  else if (tgt[1] < 0) { dir = "north"; }
+  else if (tgt[1] > 0) { dir = "south"; }
   else {
     maintext.addText("The wind swirls in confused directions.");
     return resp; 
   }
   let desc = "wind";
   if (infused) {desc = "gale";}
-  maintext.addText("The breeze shifts as you summon a " + desc + " from the " + dir + "!");
+  maintext.addText("The air shifts as you summon a " + desc + " from the " + dir + "!");
   PlayCastSound(caster,"sfx_whoosh");
 
   // add here for elemental plane of air 
+  let wce = localFactory.createTile("WindChange");
+  let dur = 15+Dice.roll("1d10");
+  wce.setExpiresTime(dur*SCALE_TIME + DUTime.getGameClock());
+  let windstrength = 1;
+  if (infused) { windstrength = 2; }
+  if (dir === "west") { wce.winddirx = windstrength; wce.winddiry = 0; }
+  if (dir === "east") { wce.winddirx = -1*windstrength; wce.winddiry = 0; }
+  if (dir === "north") { wce.winddirx = 0; wce.winddiry = windstrength; }
+  if (dir === "south") { wce.winddirx = 0; wce.winddiry = -1*windstrength; }
+  caster.addSpellEffect(wce);
+  DrawCharFrame();
   return resp;
 }
 
@@ -3838,6 +3849,7 @@ function EmpowerReagentCommands(cmd) {
           let liobj = localFactory.createTile("Light");
           liobj.setExpiresTime(-1);
           liobj.setPower(4); 
+          liobj.zstatdesc = "You are surrounded by the ruby's light.";
           
           PC.addSpellEffect(liobj, 1);
           
@@ -4758,6 +4770,7 @@ magic[SPELL_FEAR_LEVEL][SPELL_FEAR_ID].executeSpell = function(caster, infused, 
       }
     }
   }
+  let desc = "";
   for (let i=0;i<tgtcount;i++) {
     let val = tgtlist[i];
     val.setHitBySpell(caster,Math.max(Math.floor(SPELL_FEAR_LEVEL/tgtcount),1));
@@ -4770,21 +4783,24 @@ magic[SPELL_FEAR_LEVEL][SPELL_FEAR_ID].executeSpell = function(caster, infused, 
       }       
     } else {
       if (val.specials.coward) {
-        desc = val.getDesc() + " was already afraid!";
+        if (desc) { desc += "<br />"; }
+        let tmpdesc = val.getDesc() + " was already afraid!";
+        desc += tmpdesc.charAt(0).toUpperCase() + tmpdesc.slice(1);  
       } else {
         var fear = localFactory.createTile("Fear");
         var duration = 10 + Dice.roll("1d8") - val.getIntForPower()/4;
         fear.setPower(1);
         fear.setExpiresTime(duration*SCALE_TIME + DUTime.getGameClock());
         val.addSpellEffect(fear);          
-        desc = val.getDesc() + " is afraid!";
+        if (desc) { desc += "<br />"; }
+        let tmpdesc = val.getDesc() + " is afraid!";
+        desc = tmpdesc.charAt(0).toUpperCase() + tmpdesc.slice(1);  
         ShowEffect(val, 1700, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
       }
       afeared = 1;
     }
 
     if (desc) {       
-      desc = desc.charAt(0).toUpperCase() + desc.slice(1);
       maintext.addText(desc);
     }
 
