@@ -449,6 +449,11 @@ function PerformCommand(code, ctrl) {
         gamestate.setMode("anykey");
       }
     } else if (PC.checkInventory("MagicMap")) {
+      if (!PC.getHomeMap().getAutomap()) {
+        retval["txt"] = "You examine your magic map, but it is strangely blank here.";
+        retval["fin"] = 2;
+        return retval;
+      }
       retval["txt"] = "You examine your magic map...";
       retval["fin"] = 2;
       retval["input"] = "[MORE]";
@@ -1560,7 +1565,7 @@ function PerformRuneChoice() {
         lance.setConversation("lance_awaken");
         delete lance.flags.sleep;  // He'll go back to sleep at the end of the conversation
         retval["txt"] = "You reach for the earth... and it reaches back. But you then, carefully, redirect the earth's energies to your brother, lying wan and sickly beside you. As the warm power reaches him, you see color return to his face. He takes a sudden breath and his eyes open.";
-        PC.forcedTalk = lance;
+        PC.setForcedTalk(lance);
         used = 1;
       }
     } else if (themap.getName() === "kaltonmine3") {
