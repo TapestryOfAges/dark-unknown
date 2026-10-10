@@ -1496,7 +1496,7 @@ OnConvTriggers["rhys_return"] = function(speaker,keyword) {
       FadeIn();
 
       setTimeout(function() {
-        PC.forcedTalk = rhys;
+        PC.setForcedTalk(rhys);
         delete PC.replaceTurnWith;
         PC.myTurn();
       }, 1500);
