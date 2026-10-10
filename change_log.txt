@@ -4,6 +4,11 @@ v 0.11.10
  * Planar Gate appears in the Tower once it's built and you have the key
  * Bugfixes to the Planar Key
  * Fixes to center of ethereal plane
+ * Light dwindles as you approach the Shepherd of the Dark
+ * Asharden's randomwalk making him bump into his front door no longer makes the door try to talk to the PC
+ * Map Editor: Placing by rectangle no longer ignores the "replace" checkbox
+ * Optimized lava
+ * Tested and debugged all 4 elemental planes
 
 v 0.11.9
  * Added "INN" to the innkeepers in Swainhil's dialog
