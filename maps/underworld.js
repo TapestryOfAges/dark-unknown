@@ -210,6 +210,7 @@ mappages["underworld"].features[81] = {name : 'EnergyField', x : 86, y : 54};
 mappages["underworld"].features[82] = {name : 'EnergyField', x : 87, y : 54};
 mappages["underworld"].features[83] = {name : 'EnergyField', x : 88, y : 54};
 mappages["underworld"].features[84] = {name : 'Chest', x : 45, y : 114, locked : 0, lootedid : 'uw_page2', searchyield : 'AudachtaNemesosPage2'};
+mappages["underworld"].features[85] = {name : 'LavaMonitor', x : 0, y : 0};
 
 
 mappages["underworld"].npcs = [];
@@ -1029,6 +1030,39 @@ mappages["uttermostdark"].features[38] = {name : 'DarklightBrazier', x : 17, y :
 mappages["uttermostdark"].features[39] = {name : 'AltarOfSun', x : 24, y : 48};
 mappages["uttermostdark"].features[40] = {name : 'NetherVortex', x : 18, y : 45};
 mappages["uttermostdark"].features[41] = {name : 'NetherVortex', x : 18, y : 51};
+mappages["uttermostdark"].features[42] = {name : 'WalkOnUtterDark', x : 14, y : 30};
+mappages["uttermostdark"].features[43] = {name : 'WalkOnUtterDark', x : 14, y : 31};
+mappages["uttermostdark"].features[44] = {name : 'WalkOnUtterDark', x : 14, y : 32};
+mappages["uttermostdark"].features[45] = {name : 'WalkOnUtterDark', x : 14, y : 33};
+mappages["uttermostdark"].features[46] = {name : 'WalkOnUtterDark', x : 14, y : 34};
+mappages["uttermostdark"].features[47] = {name : 'WalkOnUtterDark', x : 15, y : 30};
+mappages["uttermostdark"].features[48] = {name : 'WalkOnUtterDark', x : 15, y : 31};
+mappages["uttermostdark"].features[49] = {name : 'WalkOnUtterDark', x : 15, y : 32};
+mappages["uttermostdark"].features[50] = {name : 'WalkOnUtterDark', x : 15, y : 33};
+mappages["uttermostdark"].features[51] = {name : 'WalkOnUtterDark', x : 15, y : 34};
+mappages["uttermostdark"].features[52] = {name : 'WalkOnUtterDark', x : 16, y : 30};
+mappages["uttermostdark"].features[53] = {name : 'WalkOnUtterDark', x : 16, y : 31};
+mappages["uttermostdark"].features[54] = {name : 'WalkOnUtterDark', x : 16, y : 32};
+mappages["uttermostdark"].features[55] = {name : 'WalkOnUtterDark', x : 16, y : 33};
+mappages["uttermostdark"].features[56] = {name : 'WalkOnUtterDark', x : 16, y : 34};
+mappages["uttermostdark"].features[57] = {name : 'WalkOnUtterDark', x : 17, y : 31};
+mappages["uttermostdark"].features[58] = {name : 'WalkOnUtterDark', x : 17, y : 32};
+mappages["uttermostdark"].features[59] = {name : 'WalkOnUtterDark', x : 17, y : 33};
+mappages["uttermostdark"].features[60] = {name : 'WalkOnUtterDark', x : 18, y : 30};
+mappages["uttermostdark"].features[61] = {name : 'WalkOnUtterDark', x : 18, y : 31};
+mappages["uttermostdark"].features[62] = {name : 'WalkOnUtterDark', x : 19, y : 30};
+mappages["uttermostdark"].features[63] = {name : 'WalkOnUtterDark', x : 19, y : 31};
+mappages["uttermostdark"].features[64] = {name : 'WalkOnUtterDark', x : 20, y : 31};
+mappages["uttermostdark"].features[65] = {name : 'WalkOnUtterDark', x : 20, y : 32};
+mappages["uttermostdark"].features[66] = {name : 'WalkOnUtterDark', x : 20, y : 33};
+mappages["uttermostdark"].features[67] = {name : 'WalkOnUtterDark', x : 19, y : 32};
+mappages["uttermostdark"].features[68] = {name : 'WalkOnUtterDark', x : 19, y : 33};
+mappages["uttermostdark"].features[69] = {name : 'WalkOnUtterDark', x : 19, y : 34};
+mappages["uttermostdark"].features[70] = {name : 'WalkOnUtterDark', x : 18, y : 33};
+mappages["uttermostdark"].features[71] = {name : 'WalkOnUtterDark', x : 18, y : 34};
+mappages["uttermostdark"].features[72] = {name : 'WalkOnUtterDark', x : 13, y : 31};
+mappages["uttermostdark"].features[73] = {name : 'WalkOnUtterDark', x : 13, y : 32};
+mappages["uttermostdark"].features[74] = {name : 'WalkOnUtterDark', x : 13, y : 33};
 
 
 mappages["uttermostdark"].npcs = [];

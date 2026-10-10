@@ -130,6 +130,8 @@ mappages["volcano"].features[71] = {name : 'Lava', x : 33, y : 25};
 mappages["volcano"].features[72] = {name : 'Lava', x : 33, y : 26};
 mappages["volcano"].features[73] = {name : 'Lava', x : 34, y : 22};
 mappages["volcano"].features[74] = {name : 'Lava', x : 34, y : 25};
+mappages["volcano"].features[75] = {name : 'LavaMonitor', x : 0, y : 0};
+
 
 
 mappages["volcano"].npcs = [];
@@ -506,6 +508,7 @@ mappages["deeplavatubes"].features[156] = {name : 'Lava', x : 21, y : 22};
 mappages["deeplavatubes"].features[157] = {name : 'Lava', x : 22, y : 23};
 mappages["deeplavatubes"].features[158] = {name : 'Lava', x : 23, y : 23};
 mappages["deeplavatubes"].features[159] = {name : 'Lava', x : 7, y : 31};
+mappages["deeplavatubes"].features[160] = {name : 'LavaMonitor', x : 0, y : 0};
 
 
 mappages["deeplavatubes"].npcs = [];

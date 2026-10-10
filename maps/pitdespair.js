@@ -569,6 +569,7 @@ mappages["pitdespair3"].features[26] = {name : 'Lava', x : 19, y : 52};
 mappages["pitdespair3"].features[27] = {name : 'Lava', x : 18, y : 52};
 mappages["pitdespair3"].features[28] = {name : 'Lava', x : 18, y : 51};
 mappages["pitdespair3"].features[29] = {name : 'Lava', x : 17, y : 53};
+mappages["pitdespair3"].features[30] = {name : 'LavaMonitor', x : 0, y : 0};
 
 
 mappages["pitdespair3"].npcs = [];
