@@ -2877,6 +2877,10 @@ PCObject.prototype.gety = function(evenwait) {
   return parseInt(this.y,10);
 }
 
+PCObject.prototype.setForcedTalk = function(talkto) {
+  this.forcedTalk = talkto;
+}
+
 PCObject.prototype.myTurn = function() {
   maintext.flushDelayedText();
   if (ShouldShowFrames()) { PC.showFrames = 1; }
