@@ -6488,11 +6488,6 @@ tileFactory.prototype.makeCurseTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeUtterlyDarkTile = function() {
-  let newTile = new UtterlyDarkTile();
-  return newTile;
-}
-
 tileFactory.prototype.makeDiseaseTile = function() {
   let newTile = new DiseaseTile();
   return newTile;
@@ -6685,6 +6680,11 @@ tileFactory.prototype.makeRemovePeterTile = function() {
 
 tileFactory.prototype.makeScouringBeldskaeTile = function() {
   let newTile = new ScouringBeldskaeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeUtterlyDarkTile = function() {
+  let newTile = new UtterlyDarkTile();
   return newTile;
 }
 
