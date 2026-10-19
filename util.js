@@ -1065,7 +1065,9 @@ function FindNearby(what,map,radius,shape,tox,toy) {
             return;
           }
           for (let k=0;k<list.length;k++) {
-            adj.push(list[k]);
+            if (!list[k].frozenintime) {
+              adj.push(list[k]);
+            }
           }
         }
       }
@@ -1079,7 +1081,7 @@ function FindNearby(what,map,radius,shape,tox,toy) {
     else if (what === "features") { list = map.features.getAll(); }
     for (let i=0;i<list.length;i++) {
       let val=list[i];
-      if (((val.getx() !== tox) || (val.gety !== toy)) && (GetDistance(val.getx(), val.gety(),tox,toy) <= radius)) {
+      if (((val.getx() !== tox) || (val.gety !== toy)) && (GetDistance(val.getx(), val.gety(),tox,toy) <= radius) && !val.frozenintime) {
         adj.push(val);
       }
     }
@@ -1102,7 +1104,7 @@ function FindNearestNPC(from, align, except, findinvis, overridemove, nopath) {
   let distance = 10000;
   for (let i=0;i<found.length;i++) {
     let val = found[i];
-    if ((val !== from) && (!except.includes(val))) {
+    if ((val !== from) && (!except.includes(val)) && !val.frozenintime) {
       if (!align || ((align === "enemy") && (CheckAreEnemies(from,val))) || ((align === "ally") && (from.getAttitude() === val.getAttitude()))) {
         if (findinvis || !found.invisible) {
           let mandist = GetDistance(from.getx(),from.gety(),val.getx(),val.gety(),"manhatten");
