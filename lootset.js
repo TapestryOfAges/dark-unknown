@@ -1546,7 +1546,7 @@ function SetLoots() {
   loots['OlcrannPage'].loot[1].quantity = '1';
   loots['OlcrannPage'].loot[1].chance = 20;
   loots['OlcrannPage'].loot[2] = {};
-  loots['OlcrannPage'].loot[2].objname = 'AudachtaNemesosPage1';
+  loots['OlcrannPage'].loot[2].objname = 'AudachtaNemesosPage3';
   loots['OlcrannPage'].loot[2].quantity = '1';
   loots['OlcrannPage'].loot[2].chance = 100;
   loots['OlcrannPage'].loot[3] = {};
