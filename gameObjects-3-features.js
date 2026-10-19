@@ -10021,7 +10021,7 @@ WalkOnAbyssGauntletTile.prototype.walkon = function(walker) {
     let caster = thismap.getTile(9,4).getTopNPC();
     thismap.moveThing(walker.getx(),walker.gety()-7,caster);
     let boltgraphic = {};
-    boltgraphic.graphic = "fireicelightning.gif";
+    boltgraphic.graphic = "blasts.gif";
     boltgraphic.yoffset = 0;
     boltgraphic.xoffset = 0;
     boltgraphic.directionalammo = 1;
@@ -10037,7 +10037,7 @@ WalkOnAbyssGauntletTile.prototype.walkon = function(walker) {
       boltgraphic.yoffset = -64;
       dmgtype = "lightning";
     } else if (this.effect === "bolt") {
-      boltgraphic.graphic = "magic-bolt.gif";
+      boltgraphic.yoffset = -32;
       sndsfx = "sfx_magic_bolt";
       dmgtype = "force";
     }
@@ -15869,7 +15869,7 @@ function TharockNotesTile() {
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = 'Tharock\'s notes';
-  this.contents = "You open the thin book:%%<span class='conv'>Experiments with gates:</span>%%<span class='conv'>The closing of the gates cuts us off from the homeland. I can easily open the gate a crack and travel through myself, but going to a land where all would be enemies is foolhearty.</span>%%<span class='conv'>I work on a spell to open the gate wide, but do not yet have it.</span>%%<span class='conv'>I have learned a lot from experimenting with creating new gates- they cannot get me back to Ellusus, obviously, but they reveal many details of the inner workings of the system.</span>%%<span class='conv'>New gates require creating Runestones (enchant a chunk of voidstone with spider silk, coral void, and bottled ether).</span>%%<span class='conv'>Bury one stone and cast Build Gate above it, then bury the second and cast the spell again, linking them. ";
+  this.contents = "You open the thin book:%%<span class='conv'>Experiments with gates:</span>%%<span class='conv'>The closing of the gates cuts us off from the homeland. I can easily open the gate a crack and travel through myself, but going to a land where all would be enemies is foolhearty.</span>%%<span class='conv'>I work on a spell to open the gate wide, but do not yet have it.</span>%%<span class='conv'>I have learned a lot from experimenting with creating new gates- they cannot get me back to Ellusus, obviously, but they reveal many details of the inner workings of the system.</span>%%<span class='conv'>New gates require creating Runestones (enchant a chunk of voidstone with mandrake root, spider silk, coral void, and bottled ether).</span>%%<span class='conv'>Bury one stone and cast Build Gate above it, then bury the second and cast the spell again, linking them. ";
   this.longdesc = "A thin book of notes found in Tharock's Castle.";
 }
 TharockNotesTile.prototype = new BookItemObject();
@@ -18999,6 +18999,8 @@ AmuletOfReflectionsTile.prototype.use = function(who) {
           effects[i].endEffect();
         }
       };
+      document.getElementById('uiinterface').innerHTML = "";
+      document.getElementById('uiinterface').style.backgroundColor = "";
       gamestate.setMode("null");
       FadeOut();
       setTimeout(function() {
@@ -19017,7 +19019,7 @@ AmuletOfReflectionsTile.prototype.use = function(who) {
         MoveBetweenMaps(who,themap,newmap,8,8);
         DUCamera.Draw(newmap,8,8,PC);
         //DrawMainFrame("draw",newmap,8,8);
-        FadeIn(2000);
+        FadeIn();
         setTimeout(function() {
           gamestate.setMode("player");
           maintext.addText('You hear a voice in your mind: "In the beginning of the journey of knowledge, the mind is a blank. The landscape, featureless and empty."');
