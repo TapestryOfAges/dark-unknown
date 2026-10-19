@@ -1377,7 +1377,7 @@ function DoAction(code, ctrl) {
       delete targetCursor.invskiprow;
       delete targetCursor.invlength;
       delete targetCursor.restrictTo;
-      if ((targetCursor.command !== "endact") && (!targetCursor.hasOwnProperty("spellName") || ( targetCursor.spellName !== "Peer"))) {
+      if ((targetCursor.command !== "endact") && (!targetCursor.hasOwnProperty("spellName") || ( targetCursor.spellName !== "Peer")) && (!response["txt"].includes("Great Abyss"))) {
         document.getElementById('uiinterface').innerHTML = "";
         document.getElementById('uiinterface').style.backgroundColor = "";
       }
