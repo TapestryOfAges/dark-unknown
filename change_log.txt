@@ -1,4 +1,11 @@
 
+v 0.12.0
+ * Fixed spellcasting bug that caused Arrow of Glass to be cast as Mind Bolt
+ * Fixed implementation of Reincarnation
+ * Notes for creating Gate Runestones are made more accurate
+ * FindNearestNPC and FindNearby now ignore NPCs that are frozen in time
+ * Bugfixes to Permenance
+
 v 0.11.10
  * Slightly reduced drop rates across the board
  * Planar Gate appears in the Tower once it's built and you have the key
