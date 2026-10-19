@@ -948,7 +948,48 @@ function PerformAttack(who) {
   } else {
     targetCursor.lastTarget = atkwho;
   }
-  if (atkwho.getAttitude() === "hostile") {
+  if (atkwho.frozenintime) {
+    let params = {};
+    params.atk = PC;
+    params.def = atkwho;
+    params.endturn = 1;
+    params.fromcoords = GetCoords(PC.getHomeMap(),PC.getx(), PC.gety());
+    params.tocoords = GetCoords(atkwho.getHomeMap(),atkwho.getx(),atkwho.gety());
+    let amgraph = PC.getEquipment("missile").getAmmoGraphic(PC, atkwho);
+    params.ammographic = amgraph;
+    let duration = (Math.pow( Math.pow(atkwho.getx() - PC.getx(), 2) + Math.pow (atkwho.gety() - PC.gety(), 2)  , .5)) * 100;
+    params.duration = duration;
+    if (PC.getEquipment("missile").getName() === "Sling") {
+      params.retval = {txt: "You launch the sling bullet, but before it reaches its target, it slows, and stops, and hangs in the air."};
+      params.frdesc = "sling bullet";
+    } else if (PC.getEquipment("missile").getName() === "Bow") {
+      params.retval = {txt: "You fire an arrow, but before it reaches its target, it slows, and stops, and hangs in the air."};
+      params.frdesc = "arrow";
+    } else if (PC.getEquipment("missile").getName() === "Crossbow") {
+      params.retval = {txt: "You fire your crossbow, but before the bolt reaches its target, it slows, and stops, and hangs in the air."};
+      params.frdesc = "bolt";
+    } else if (PC.getEquipment("missile").getName() === "MagicAxe") {
+      params.retval = {txt: "You throw your magic axe, but before it reaches its target, it slows, and stops, and hangs in the air.<br /><span class='sysconv'>(You are no longer wielding a missile weapon.)</span>"};
+      params.frdesc = "magic axe";
+      params.ammographic.graphic = "magicaxeammo-stopped.gif";
+      PC.removeFromInventory(PC.getEquipment("missile"));
+      if (PC.skintone === 1) { 
+        PC.wornlayers["mainhand"] = "MainHandPale";
+      } else {
+        PC.wornlayers["mainhand"] = "MainHandDark";
+      }
+      PC.makeLayers();
+      DUCamera.DrawOne(PC.getHomeMap(),PC.getx(),PC.gety());
+      DU.gameflags.deleteFlag("magicaxe");
+    } else if (PC.getEquipment("missile").getName().includes("Wand")) {
+      params.retval = {txt: "You fire your wand, but before it reaches its target, it slows, and stops, and hangs in the air."};
+      params.frdesc = "bolt from a wand";
+      params.ammographic.graphic = "wandzaps-stopped.gif";
+    }
+
+    AnimateToFrozen(params);
+
+  } else if (atkwho.getAttitude() === "hostile") {
     retval = Attack(who, atkwho);
   } else if ((atkwho.getNPCName() === "Garrick") && DU.gameflags.getFlag("garrick_flipout") && !DU.gameflags.getFlag("garrick_surrender")) {
     retval = Attack(who, atkwho);
