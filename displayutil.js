@@ -863,10 +863,15 @@ function AnimateAndFreeze(param) {
 //    setTimeout(function() {
       animdiv = document.getElementById(animid);
       let frspell = localFactory.createTile("FrozenSpell");
-      frspell.setGraphic("blasts.gif");
+      if (ammographic.graphic === "blasts.gif") {
+        frspell.setGraphic("blasts-stopped.gif");
+      } else {
+        frspell.setGraphic(ammographic.graphic);
+      }
       frspell.spritexoffset = ammographic.xoffset;
       frspell.spriteyoffset = ammographic.yoffset;
       frspell.setDesc(param.frdesc);
+      if (param.frdesc === "arrow") { frspell.prefix = "an"; }
       param.def.getHomeMap().placeThing(param.newx,param.newy,frspell);  
       DUCamera.DrawOne(param.def.getHomeMap(),param.newx,param.newy);
       //DrawMainFrame("one",param.def.getHomeMap(),param.newx,param.newy);
