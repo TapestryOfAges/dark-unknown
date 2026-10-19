@@ -220,12 +220,26 @@ EventFunctions["Vault"] = function(ev) {
   let pcmap = PC.getHomeMap();
   let fea = pcmap.features.getAll();
   let deletedspells = 0;
+  let deletedarrows = 0;
+  let deletedbolts = 0;
+  let deletedaxe = 0;
+  let deletedwand = 0;
+  let deletedstones = 0;
   for (let i=0;i<fea.length;i++) {
     if (fea[i].getName().includes("WalkOnVault")) {
       pcmap.deleteThing(fea[i]);
     } else if (fea[i].getName().includes("FrozenSpell")) {
+      if (fea[i].getDesc().includes("bullet")) { deletedstones = 1; }
+      else if (fea[i].getDesc().includes("arrow")) { deletedarrows = 1; }
+      else if (fea[i].getDesc().includes("bolt")) { deletedbolts = 1; }
+      else if (fea[i].getDesc().includes("wand")) { deletedwand = 1; }
+      else if (fea[i].getDesc().includes("axe")) { 
+        deletedaxe = 1; 
+        pcmap.placeThing(fea[i].getx(),fea[i].gety(),localFactory.createTile("MagicAxe"));
+      } else {
+        deletedspells = 1;
+      }
       pcmap.deleteThing(fea[i]);
-      deletedspells = 1;
     }
   }
   // Wake up the troll and ettin
@@ -241,9 +255,31 @@ EventFunctions["Vault"] = function(ev) {
     }
   }
 
+  let finaltext = "As you negate the magic in the area, you feel an old, fraying enchantment break and shatter. Time restarts in one corner of the Vault where it has not been known for decades.";
   if (deletedspells) {
-    maintext.delayedAddText("As you negate the magic in the area, you feel an old, fraying enchantment break and shatter. Time restarts in one corner of the Vault where it has not been known for decades.<br />In addition, the spells that you cast into the timeless area are now negated as well.");
-  } else {
-    maintext.delayedAddText("As you negate the magic in the area, you feel an old, fraying enchantment break and shatter. Time restarts in one corner of the Vault where it has not been known for decades.");
+    finaltext += "<br />In addition, the spells that you cast into the timeless area are now negated as well. ";
+  } 
+  if (deletedstones || deletedarrows || deletedbolts || deletedaxe) {
+    let ammofall = "For whatever reason, the ";
+    let ammolist = [];
+    if (deletedstones) { ammolist.push("bullets"); }
+    if (deletedarrows) { ammolist.push("arrows"); }
+    if (deletedbolts) { ammolist.push("bolts"); }
+    if (deletedaxe) { ammolist.push("axe"); }
+    if (ammolist.length > 1) {
+      ammolist[ammolist.length-1] = "and " + ammolist[ammolist.length-1];
+    }
+    if (ammolist.length === 1) {
+      ammofall += ammotxt;
+    } else if (ammolist.length === 2) { 
+      let ammotxt = `${ammolist[0]} ${ammolist[1]}`;
+      ammofall += ammotxt;
+    } else {
+      ammofall += ammolist.join(", ");
+    }
+    ammofall += " fall to the ground.";   
+    finaltext += "<br />" + ammofall;
   }
+  DUCamera.Draw(pcmap,PC.getx(),PC.gety());
+  maintext.delayedAddText(finaltext);
 }

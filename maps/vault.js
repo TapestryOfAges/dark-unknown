@@ -217,14 +217,14 @@ mappages["vault"].onload = function(mapref) {
 }
 
 function AnimateToFrozen(params) {
-  if (params.tgt.gety() === 9) { // the troll
+  if (params.def.gety() === 9) { // the troll
     params.newx = 11;
     params.newy = 10;
-    params.tocoords = GetCoords(params.tgt.getHomeMap(),params.newx, params.newy);
-  } else if (params.tgt.gety() === 11) { // the ettin
+    params.tocoords = GetCoords(params.def.getHomeMap(),params.newx, params.newy);
+  } else if (params.def.gety() === 11) { // the ettin
     params.newx = 11;
     params.newy = 11;
-    params.tocoords = GetCoords(params.tgt.getHomeMap(),params.newx, params.newy);
+    params.tocoords = GetCoords(params.def.getHomeMap(),params.newx, params.newy);
   } else {
     alert("WTF? No one else is frozen.");
   }
