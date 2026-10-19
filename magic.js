@@ -3908,7 +3908,7 @@ function EmpowerReagentCommands(cmd) {
           return retval;
         }
       } else if (tgt.getName() === "Voidstone") {
-        if (targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["CoralVoid"] && targetCursor.mortar["BottledEther"]) {
+        if (targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["CoralVoid"] && targetCursor.mortar["BottledEther"] && targetCursor.mortar["MandrakeRoot"]) {
           successtext.push(`You place the piece of voidstone onto the pentagram, and begin the incantation.`);
           successtext.push(`You crush the silk and coral void together, and carefully pour the bottled ether atop the mixture.`);
           successtext.push(`Finally, you use the mixture to inscribe a rune onto the voidstone.`);
@@ -5195,7 +5195,35 @@ magic[SPELL_PERMANENCE_LEVEL][SPELL_PERMANENCE_ID].executeSpell = function(caste
     return resp;
   }
 
-  if (!PC.getSpellEffectsByName("FlameBlade") && !PC.getSpellEffectsByName("Light") && !PC.getSpellEffectsByName("Protection") && !PC.getSpellEffectsByName("FireArmor") && !PC.getSpellEffectsByName("Blessing") && !PC.getSpellEffectsByName("Levitate") && !PC.getSpellEffectsByName("Telepathy")) {
+  let hasflameblade = PC.getSpellEffectsByName("FlameBlade");
+  if (hasflameblade) {
+    if (hasflameblade.getExpiresTime() === -1) { hasflameblade = 0; }
+  }
+  let haslight = PC.getSpellEffectsByName("Light");
+  if (haslight) {
+    if (haslight.getExpiresTime() === -1) { haslight = 0; }
+  }
+  let hasprotection = PC.getSpellEffectsByName("Protection");
+  if (hasprotection) {
+    if (hasprotection.getExpiresTime() === -1) { hasprotection = 0; }
+  }
+  let hasfirearmor = PC.getSpellEffectsByName("FireArmor");
+  if (hasfirearmor) {
+    if (hasfirearmor.getExpiresTime() === -1) { hasfirearmor = 0; }
+  }
+  let hasblessing = PC.getSpellEffectsByName("Blessing");
+  if (hasblessing) {
+    if (hasblessing.getExpiresTime() === -1) { hasblessing = 0; }
+  }
+  let haslevitate = PC.getSpellEffectsByName("Levitate");
+  if (haslevitate) {
+    if (haslevitate.getExpiresTime() === -1) { haslevitate = 0; }
+  }
+  let hastelepathy = PC.getSpellEffectsByName("Telepathy");
+  if (hastelepathy) {
+    if (hastelepathy.getExpiresTime() === -1) { hastelepathy = 0; }
+  }
+  if (!hasflameblade && !haslight && !hasprotection && !hasfirearmor && !hasblessing && !haslevitate && !hastelepathy) {
     resp["fin"] = 2;
     resp["txt"] = "You have no spells on you that can be made permanent.";
     return resp;
@@ -5205,31 +5233,31 @@ magic[SPELL_PERMANENCE_LEVEL][SPELL_PERMANENCE_ID].executeSpell = function(caste
   resp["txt"] = "";
   resp["input"] = "&gt; Choose a spell to make permanent- ";
   let idx = 1;
-  if (PC.getSpellEffectsByName("FlameBlade")) {
+  if (hasflameblade) {
     resp["txt"] += `<br /> ${idx}- Flame Blade`;
     idx++;
   } 
-  if (PC.getSpellEffectsByName("Light")) {
+  if (haslight) {
     resp["txt"] += `<br /> ${idx}- Light`;
     idx++;
   } 
-  if (PC.getSpellEffectsByName("Protection")) {
+  if (hasprotection) {
     resp["txt"] += `<br /> ${idx}- Protection`;
     idx++;
   }
-  if (PC.getSpellEffectsByName("FireArmor")) {
+  if (hasfirearmor) {
     resp["txt"] += `<br /> ${idx}- Fire Armor`;
     idx++;
   }
-  if (PC.getSpellEffectsByName("Blessing")) {
+  if (hasblessing) {
     resp["txt"] += `<br /> ${idx}- Blessing`;
     idx++;
   }
-  if (PC.getSpellEffectsByName("Levitate")) {
+  if (haslevitate) {
     resp["txt"] += `<br /> ${idx}- Water Walk`;
     idx++;
   }
-  if (PC.getSpellEffectsByName("Telepathy")) {
+  if (hastelepathy) {
     resp["txt"] += `<br /> ${idx}- Telepathy`;
     idx++;
   }
@@ -5245,24 +5273,54 @@ magic[SPELL_PERMANENCE_LEVEL][SPELL_PERMANENCE_ID].executeSpell = function(caste
 }
 
 function PerformPermanence(caster, infused, free, tgt) {
-  console.log(tgt);
+//  console.log(tgt);
+
+  let hasflameblade = PC.getSpellEffectsByName("FlameBlade");
+  if (hasflameblade) {
+    if (hasflameblade.getExpiresTime() === -1) { hasflameblade = 0; }
+  }
+  let haslight = PC.getSpellEffectsByName("Light");
+  if (haslight) {
+    if (haslight.getExpiresTime() === -1) { haslight = 0; }
+  }
+  let hasprotection = PC.getSpellEffectsByName("Protection");
+  if (hasprotection) {
+    if (hasprotection.getExpiresTime() === -1) { hasprotection = 0; }
+  }
+  let hasfirearmor = PC.getSpellEffectsByName("FireArmor");
+  if (hasfirearmor) {
+    if (hasfirearmor.getExpiresTime() === -1) { hasfirearmor = 0; }
+  }
+  let hasblessing = PC.getSpellEffectsByName("Blessing");
+  if (hasblessing) {
+    if (hasblessing.getExpiresTime() === -1) { hasblessing = 0; }
+  }
+  let haslevitate = PC.getSpellEffectsByName("Levitate");
+  if (haslevitate) {
+    if (haslevitate.getExpiresTime() === -1) { haslevitate = 0; }
+  }
+  let hastelepathy = PC.getSpellEffectsByName("Telepathy");
+  if (hastelepathy) {
+    if (hastelepathy.getExpiresTime() === -1) { hastelepathy = 0; }
+  }
+
   let optionarr = [];
   let retval = { fin: 1 }
-  if (PC.getSpellEffectsByName("FlameBlade")) {
+  if (hasflameblade) {
     optionarr.push("FlameBlade");
   } 
-  if (PC.getSpellEffectsByName("Light")) {
+  if (haslight) {
     optionarr.push("Light");
   } 
-  if (PC.getSpellEffectsByName("Protection")) {
+  if (hasprotection) {
     optionarr.push("Protection");  }
-  if (PC.getSpellEffectsByName("FireArmor")) {
+  if (hasfirearmor) {
     optionarr.push("FireArmor");  }
-  if (PC.getSpellEffectsByName("Blessing")) {
+  if (hasblessing) {
     optionarr.push("Blessing");  }
-  if (PC.getSpellEffectsByName("Levitate")) {
+  if (haslevitate) {
     optionarr.push("Levitate");  }
-  if (PC.getSpellEffectsByName("Telepathy")) {
+  if (hastelepathy) {
     optionarr.push("Telepathy");  }
 
   let idx = tgt - 49;
@@ -5767,7 +5825,7 @@ magic[SPELL_REINCARNATE_LEVEL][SPELL_REINCARNATE_ID].executeSpell = function(cas
   let rein = localFactory.createTile("Reincarnate");
   rein.setExpiresTime(-1);
 
-  caster.addSpellEffect(liobj, Math.max(0, free-1) );
+  caster.addSpellEffect(rein, Math.max(0, free-1) );
   PlayCastSound(caster,"sfx_buff");
 
   ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
@@ -6174,7 +6232,7 @@ function PerformSpellcast() {
         resp = PerformSwordstrike(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
       } else if (targetCursor.spellName === "Charm") {
         resp = PerformCharm(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
-      } else if (targetCursor.spellName = "Mind Blast") {
+      } else if (targetCursor.spellName === "Mind Blast") {
         resp = PerformMindBlast(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
       } else if (targetCursor.spellName === "Arrow of Glass") {
         resp = PerformArrowOfGlass(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
