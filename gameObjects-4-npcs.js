@@ -3187,6 +3187,13 @@ PCObject.prototype.dealDamage = function(dmg, src, type) {
   
   if (this.getHP() <= 0) { // killed!
     if (DU.gameflags.getFlag("difficulty") === "story") { this.setHP(1); }
+    if (this.getSpellEffectsByName("Reincarnate")) {
+      this.setHP(Math.ceil(this.getMaxHP()/2));
+      ShowEffect(this, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+      let rein = this.getSpellEffectsByName("Reincarnate");
+      rein.endEffect();
+      DrawCharFrame();
+    }
     else {
       this.processDeath(1);
       return -1;
