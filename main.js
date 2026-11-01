@@ -311,7 +311,14 @@ function DoAction(code, ctrl) {
     gamestate.setMode("player");
   }
   if (gamestate.getMode() === "player") {  // PC's turn, awaiting commands
-    let response = PerformCommand(code, ctrl);
+    let response;
+    if (PC.getSpellEffectsByName("GripOfDarkness")) {
+      response = CheckGrip(code, ctrl);
+    } 
+    if (!response) {
+      response = PerformCommand(code, ctrl);
+    }
+    
     if (response["fin"]) { 
       maintext.addText(response["txt"]);
       maintext.setInputLine(response["input"]);
@@ -1377,6 +1384,7 @@ function DoAction(code, ctrl) {
       delete targetCursor.invskiprow;
       delete targetCursor.invlength;
       delete targetCursor.restrictTo;
+      if (!response["txt"]) { response["txt"] = ""; }
       if ((targetCursor.command !== "endact") && (!targetCursor.hasOwnProperty("spellName") || ( targetCursor.spellName !== "Peer")) && (!response["txt"].includes("Great Abyss"))) {
         document.getElementById('uiinterface').innerHTML = "";
         document.getElementById('uiinterface').style.backgroundColor = "";
