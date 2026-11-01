@@ -1109,7 +1109,7 @@ function TerrifyMap(who) {
   let npcs = themap.npcs.getAll();
   for (let i=0;i<npcs.length;i++) {
     if ((npcs[i].getLevel() <= who.getLevel()) && (npcs[i].getLevel() <= 3)) { 
-      if (!who.specials.noflee && !who.specials.undead && !who.specials.construct && !who.specials.mindless) {
+      if (!who.specials.noflee && !who.specials.undead && !who.specials.construct && !who.specials.mindless && !npcs[i].terrified) {
         npcs[i].terrified = 1;
         terrorcount++;
       }
