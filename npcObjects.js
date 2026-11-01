@@ -6112,6 +6112,7 @@ function ShepherdOfDarkNPCTile() {
   this.lootTable = 'none';
   this.prefix = 'the';
   this.desc = "Shepherd of the Dark";
+  this.onDamaged = 'darkhurt';
   this.meleeChance = 0;
   this.resists = {};
   this.special = 'miniboss, light: .5';
