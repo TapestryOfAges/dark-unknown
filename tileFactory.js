@@ -6543,6 +6543,11 @@ tileFactory.prototype.makeFrozenTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeGripOfDarknessTile = function() {
+  let newTile = new GripOfDarknessTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeInvulnerableTile = function() {
   let newTile = new InvulnerableTile();
   return newTile;
