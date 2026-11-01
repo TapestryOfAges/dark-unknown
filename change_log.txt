@@ -1,4 +1,10 @@
 
+v 0.12.1
+ * Updated the high-elevation view of Ellusus
+ * You'll no longer get the message that you are terrifying a group that is already terrified
+ * Final boss now will talk to you if you try to (T)alk to it. It mostly just blusters at you
+ * Final boss will not put up with you attacking it indefinitely 
+
 v 0.12.0
  * Fixed spellcasting bug that caused Arrow of Glass to be cast as Mind Bolt
  * Fixed implementation of Reincarnation
