@@ -1,6 +1,6 @@
 {
   "name": "dark-unknown",
-  "version": "0.9.4",
+  "version": "0.12.0",
   "description": "Retro CRPG",
   "main": "e-main.js",
   "scripts": {
