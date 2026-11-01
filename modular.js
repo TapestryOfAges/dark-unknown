@@ -260,6 +260,33 @@ OnDamagedFuncs["split"] = function(atk,who,dmg,weapon) {
   return dmg; 
 }
 
+OnDamagedFuncs["darkhurt"] = function(atk,who,dmg,weapon) {
+  if (atk !== PC) {
+    maintext.addText(`The form in the darkness gestures casually.`);
+    DealandDisplayDamage(atk, who, 9999, "force");
+    PlayCastSound(who, "sfx_mind");
+    return 0;
+  }
+  if (!who.timeshurt) {
+    maintext.addText(`<span class='daemontext'>"I think you will find that to be... ineffective."</span>`);
+    maintext.drawTextFrame();
+    who.timeshurt = 1;
+  } else if (who.timeshurt === 1) {
+    maintext.addText(`<span class='daemontext'>"You are wasting your time."</span>`);
+    maintext.drawTextFrame();
+    who.timeshurt = 2;
+  } else if (who.timeshurt === 2) {
+    maintext.delayedAddText(`<span class='daemontext'>"I think that will be enough of that."</span>`);
+    maintext.delayedAddText(`The dark daemon waves a hand.`);
+    let stopit = localFactory.createTile("GripOfDarkness");
+    PC.addSpellEffect(stopit);
+    who.timeshurt = 3;
+  } else {
+    console.log("Shepherd harmed more than three times: how?");
+  }
+  return 0;
+}
+
 let OnDeathFuncs = {};
 
 OnDeathFuncs["insects"] = function(who) {
