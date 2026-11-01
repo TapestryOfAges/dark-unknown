@@ -951,6 +951,57 @@ FrozenTile.prototype.endEffect = function(silent) {
   if (who === PC) { DrawCharFrame(); }
 }
 
+function GripOfDarknessTile() {
+  this.addType("debuff");
+  this.name = "GripOfDarkness";
+  this.display = "<span style='color:DarkGrey'>D</span>";
+  this.zstatdesc = "You are gripped by darkness.";
+  this.desc = "grip of darkness";
+  this.level = 8;
+  this.dispellable = 0;
+}
+GripOfDarknessTile.prototype = new EphemeralObject();
+
+GripOfDarknessTile.prototype.applyEffect = function(silent) {
+  let who = this.getAttachedTo();
+  if ((who === PC) && !silent) {
+    maintext.delayedAddText("You are gripped by darkness.");
+  }
+  if (who === PC) { DrawCharFrame(); }
+  return 1;
+}
+
+GripOfDarknessTile.prototype.endEffect = function(silent) {
+  let who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+  if ((who === PC) && !silent) {
+    maintext.addText("The darkness has released its grip.");
+  }
+  if (who === PC) { DrawCharFrame(); }
+}
+
+function CheckGrip(code, ctrl) {
+// list of passthrough codes: 191, 66, 68, 69, 72, 74, 75, 76, 77, 78, 81, 82, 83+, 84, 85, 86, 87, 88, 89, 90, 32, 13
+  if (((code >= 37) && (code <= 40)) || (code === 65) || (code === 67) || (code === 71) || (code === 73) || (code === 79) || (code === 80)) {  
+    // move, attack, cast, get, infuse, open, push
+    let retval = {};
+    retval["txt"] = "You struggle against the darkness but find you cannot move!";
+    retval["fin"] = -2;
+    return retval;
+  } else if (code === 70) { // focus
+    let retval = {};
+    retval["txt"] = "You strive to focus, but your mind slips and stutters away from it.";
+    retval["fin"] = -2;
+    return retval;
+  } else if ((code === 83) && !ctrl) {
+    let retval = {};
+    retval["txt"] = "The darkness defeats your eyes.";
+    retval["fin"] = -2;
+    return retval;
+  }
+  return 0;
+}
+
 function InvulnerableTile() {
   this.addType("buff");
   this.name = "Invulnerable";
