@@ -137,17 +137,17 @@ function page_pre_zero() {
       let changelog = document.getElementById("changelog");
       if (changelog) {
         changelog.innerHTML = `<p class='charcreate'>CHANGELOG:</p><ul style='margin-top:0px>`;
-        changelog.innerHTML += `<li class='changelog'>Terrain now has transition art to make boundaries smoother and the world less blocky</li>`;
-        changelog.innerHTML += `<li class='changelog'>With Move Opens Doors, game reports that a door is locked if you bump into it</li>`;
-        changelog.innerHTML += `<li class='changelog'>You now start the game with 3 torches</li>`;
-        changelog.innerHTML += `<li class='changelog'>Forests are more consistent about how they block LOS</li>`;
-        changelog.innerHTML += `<li class='changelog'>Various other graphics improvements</li>`;
-        changelog.innerHTML += `<li class='changelog'>[M] now shows the map if you have one, and triggers the automap if you have it</li>`;
-        changelog.innerHTML += `<li class='changelog'>If you leave out of the west side of Naurglen, you emerge from its western tile</li>`;
-        changelog.innerHTML += `<li class='changelog'>Audachta no longer appears as Usable in your inventory</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed issues with the quest log and the Frozen Sunlight quest chain</li>`;
-        changelog.innerHTML += `<li class='changelog'>You can now leave a bed to the east</li>`;
-        changelog.innerHTML += `<li class='changelog'>Results of a Peer are better centered</li>`;
+        changelog.innerHTML += `<li class='changelog'>Bugfixes to the Planar Key</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixes to center of ethereal plane</li>`;
+        changelog.innerHTML += `<li class='changelog'>Light dwindles when you approach the source of darkness</li>`;
+        changelog.innerHTML += `<li class='changelog'>Optimized lava</li>`;
+        changelog.innerHTML += `<li class='changelog'>Tested and debugged all 4 elemental planes</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed spellcasting bug that caused Arrow of Glass to be cast as Mind Bolt</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed implementation of Reincarnation</li>`;
+        changelog.innerHTML += `<li class='changelog'>Notes for creating Gate Runestones are made more accurate</li>`;
+        changelog.innerHTML += `<li class='changelog'>FindNearestNPC and FindNearby now ignore NPCs that are frozen in time</li>`;
+        changelog.innerHTML += `<li class='changelog'>Bugfixes to Permenance</li>`;
+//        changelog.innerHTML += `<li class='changelog'></li>`;
         changelog.innerHTML += `</ul>`;
       }
     }
