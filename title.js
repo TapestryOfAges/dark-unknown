@@ -75,6 +75,8 @@ tv.sweepid;
 
 tv.lastanim = "";
 
+tv.pauseAttract = 0;
+
 //let browserheight = window.innerHeight;
 tv.browserwidth = window.innerWidth;
 
@@ -137,16 +139,16 @@ function page_pre_zero() {
       let changelog = document.getElementById("changelog");
       if (changelog) {
         changelog.innerHTML = `<p class='charcreate'>CHANGELOG:</p><ul style='margin-top:0px>`;
-        changelog.innerHTML += `<li class='changelog'>Bugfixes to the Planar Key</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixes to center of ethereal plane</li>`;
-        changelog.innerHTML += `<li class='changelog'>Light dwindles when you approach the source of darkness</li>`;
-        changelog.innerHTML += `<li class='changelog'>Optimized lava</li>`;
-        changelog.innerHTML += `<li class='changelog'>Tested and debugged all 4 elemental planes</li>`;
         changelog.innerHTML += `<li class='changelog'>Fixed spellcasting bug that caused Arrow of Glass to be cast as Mind Bolt</li>`;
         changelog.innerHTML += `<li class='changelog'>Fixed implementation of Reincarnation</li>`;
         changelog.innerHTML += `<li class='changelog'>Notes for creating Gate Runestones are made more accurate</li>`;
         changelog.innerHTML += `<li class='changelog'>FindNearestNPC and FindNearby now ignore NPCs that are frozen in time</li>`;
         changelog.innerHTML += `<li class='changelog'>Bugfixes to Permenance</li>`;
+        changelog.innerHTML += `<li class='changelog'>Updated the high-elevation view of Ellusus</li>`;
+        changelog.innerHTML += `<li class='changelog'>You'll no longer get the message that you are terrifying a group that is already terrified</li>`;
+        changelog.innerHTML += `<li class='changelog'>Final boss now will talk to you if you try to (T)alk to it. It mostly just blusters at you</li>`;
+        changelog.innerHTML += `<li class='changelog'>Final boss will not put up with you attacking it for long</li>`;
+//        changelog.innerHTML += `<li class='changelog'></li>`;
 //        changelog.innerHTML += `<li class='changelog'></li>`;
         changelog.innerHTML += `</ul>`;
       }
@@ -268,7 +270,7 @@ tv.SecondPage = function() {
   let sleft = tv.browserwidth/2 - 200;
   let sptop = -5;
   tv.optselect = 0;
-  let spage = "<div id='attract1' style='position:absolute; left:20px; top:5px; z-index:5'></div><div id='attract2' style='position:absolute; left:20px; top:5px; z-index:6'></div><div id='DU' style='position:absolute;left:" + sleft + "px;top:" + sptop + "px;opacity:0'><img src='graphics/title/ducoe_logo.png' /></div><div id='options'></div>";
+  let spage = "<div id='attract1' style='position:absolute; left:20px; top:5px; z-index:5'></div><div id='attract2' style='position:absolute; left:20px; top:5px; z-index:6'></div><div id='DU' style='position:absolute;left:" + sleft + "px;top:" + sptop + "px;opacity:0'><img src='graphics/title/ducoe_logo 2.png' /></div><div id='options'></div>";
   document.getElementById('maindiv').innerHTML = spage;
   tv.lastanim = "DU";
   document.getElementById('DU').classList.add('presentfadein');
@@ -297,7 +299,7 @@ tv.finishedFinalPage = function() {
   let sleft = tv.browserwidth/2 - 200;
   let sptop = -5;
   tv.optselect = 0;
-  let spage = "<div id='attract1' style='position:absolute; left:20px; top:5px; z-index:5'></div><div id='attract2' style='position:absolute; left:20px; top:5px; z-index:6'></div><div id='DU' style='position:absolute;left:" + sleft + "px;top:" + sptop + "px;z-index:10'><img src='graphics/title/ducoe_logo.png' /></div><div id='options'></div>";
+  let spage = "<div id='attract1' style='position:absolute; left:20px; top:5px; z-index:5'></div><div id='attract2' style='position:absolute; left:20px; top:5px; z-index:6'></div><div id='DU' style='position:absolute;left:" + sleft + "px;top:" + sptop + "px;z-index:10'><img src='graphics/title/ducoe_logo 2.png' /></div><div id='options'></div>";
   document.getElementById('maindiv').innerHTML = spage;
   spage = "<div id='textoptions' class='textoptions'>";
   spage += "<div id='intro'><p class='menuselect' style='margin-top:6px' id='opt0' onClick='makeChoice(\'intro\')' />View Introduction</p></div>";
@@ -453,7 +455,7 @@ tv.StartAttract = function() {
   attractmap += `<td id='am6x2' style='opacity:0;width:32px;height:32px'></td><td id='am7x2' style='opacity:0;width:32px;height:32px'></td><td id='am8x2' style='opacity:0;width:32px;height:32px'></td><td id='am9x2' style='opacity:0;width:32px;height:32px'></td><td id='am10x2' style='opacity:0;width:32px;height:32px'></td><td id='am11x2' style='opacity:0;width:32px;height:32px'></td><td id='am12x2' style='opacity:0;width:32px;height:32px'></td><td id='am13x2' style='opacity:0;width:32px;height:32px'></td><td id='am14x2' style='opacity:0;width:32px;height:32px'></td><td id='am15x2' style='opacity:0;width:32px;height:32px'></td><td id='am16x2' style='opacity:0;width:32px;height:32px'></td><td id='am17x2' style='opacity:0;width:32px;height:32px'></td><td id='am18x2' style='opacity:0;width:32px;height:32px'></td>`;
   attractmap += `<td id='am19x2' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am20x2' style='opacity:0;${grass}'><div style='${forest_sew}'></div></td>`;
-  attractmap += `<td id='am21x2' style='opacity:0;${grass}'><div style='${keep}'></div></td>`;
+  attractmap += `<td id='am21x2' style='opacity:0;${grass}'><div id='am21x2a' style='${keep}'></div></td>`;
   attractmap += `<td id='am22x2' style='opacity:0;${grass}'><div style='${forest_sw}'></div></td>`;
   attractmap += `<td id='am23x2' style='opacity:0;${forest}'></td></tr>`;
   attractmap += `<tr><td id='am1x3' style='opacity:0;${grass}'></td>`;
@@ -534,8 +536,8 @@ tv.StartAttract = function() {
   attractmap += `<td id='am9x8' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am10x8' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am11x8' style='opacity:0;${grass}'></td>`;
-  attractmap += `<td id='am12x8' style='opacity:0;${grass}'><div id='protagonist' style='width:32px;height:32px;background-image:url("graphics/static.gif");background-position:-256px -5440px'></div></td>`; // bedroll head
-  attractmap += `<td id='am13x8' style='opacity:0;${grass}'><div id='bedrollfoot' style='width:32px;height:32px;background-image:url("graphics/static.gif");background-position:-288px -5440px'></div></td>`;
+  attractmap += `<td id='am12x8' style='opacity:0;${grass}'></td>`; // starts here
+  attractmap += `<td id='am13x8' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am14x8' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am15x8' style='opacity:0;${brush}'></td>`;
   attractmap += `<td id='am16x8' style='opacity:0;${forest}'></td>`;
@@ -556,7 +558,7 @@ tv.StartAttract = function() {
   attractmap += `<td id='am8x9' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am9x9' style='opacity:0;${grass}'></td>`;
   attractmap += `<td id='am10x9' style='opacity:0;${grass}'></td>`;
-  attractmap += `<td id='am11x9' style='opacity:0;${grass}'><div style='${campfire}'></div></td>`;
+  attractmap += `<td id='am11x9' style='opacity:0;${grass}'><div id='am11x9a' style='${campfire}'></div></td>`;
   // animate campfire
   attractmap += `<td id='am12x9' style='opacity:0;${brush}'></td>`;
   attractmap += `<td id='am13x9' style='opacity:0;${grass}'></td>`;
@@ -1618,20 +1620,26 @@ tv.CreateGameSpace = function() {
 }
 
 tv.ExecuteAttract = function(frame) {
+  if (tv.pauseAttract) { tv.pauseAttract = frame; return; }
   let board1 = document.getElementById("attract1");
-  let door = localFactory.createTile("DoorWindow").getGraphicArray();
+  let door = ["static.gif","",-3*32,-16*32];
   let opendoor = ["static.gif",0,-256,-512];
-  let chair = localFactory.createTile("LeftChair").getGraphicArray();
-  let food = localFactory.createTile("FoodSouth").getGraphicArray();
-  let tableedge = localFactory.createTile("LeftTable").getGraphicArray();
+  let chair = ["static.gif","",-32,-85*32];
+  let food = ["static.gif","",-9*32,-113*32];
+  let tableedge = ["static.gif","",-6*32,-85*32];
   let fireball;
 
-  tv.AnimateTile("am21x2", 0, 4, 150, 250, "random", 1);
+  tv.AnimateTile("am21x2a", 0, 4, 450, 550, "random", 1);
+  tv.AnimateTile("am11x9a", -128, 4, 350, 450, "random", 1);
 
   if (!board1) { return; }
   let dur = 500;
   switch (frame) {
     case 0:
+      let tile = document.getElementById("am12x8");
+      tile.innerHTML = `<div id='protagonist' style='width:32px;height:32px;background-image:url("graphics/static.gif");background-position:-256px -5440px'></div>`;
+      tile = document.getElementById("am13x8");
+      tile.innerHTML = `<div id='bedrollfoot' style='width:32px;height:32px;background-image:url("graphics/static.gif");background-position:-288px -5440px'></div>`;
       tv.ShowTiles("",10,7,14,10,1);
       dur = 3000;
       break;
@@ -2731,10 +2739,23 @@ tv.AnimateTile = function(divid, spritex, animlength, mintime, maxtime, animtype
       if (currframe > animlength) { currframe = 1; }
       sx = -1*(sf-1)*32 + spritex;
     }
-    tile.style.backgroundPositionX = sx;
+    tile.style.backgroundPositionX = `${sx}px`;
 
     setTimeout(function() { if (tv.AnimateTile) { tv.AnimateTile(divid, spritex, animlength, mintime, maxtime, animtype, currframe); } }, waittime);
 
+  }
+}
+
+tv.BuildAttractHuman = function(which) {
+  // options are civ, civ2, fighter
+  if (which === "civ") {
+
+  } else if (which === "civ2") {
+
+  } else if (which === "fighter") {
+
+  } else {
+    alert("Unknown human type.");
   }
 }
 
