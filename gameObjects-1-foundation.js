@@ -894,7 +894,7 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 			this.open = 0;
 		} else {
 			if (typeof this.getLocked === "function") {
-				if (this.getLocked() && (this.isInside(who))) {
+				if (this.getLocked() && (!this.isInside(who))) {
 					retval["fin"] = 1;
 					retval["txt"] = "Locked.";
 					if (!silentdoors && lockedsound && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety()) < 6) && (PC.getHomeMap() === mymap)) {
