@@ -379,6 +379,8 @@ function ContinueTutorial() {
     maintext.addText("It's time now to talk about combat, so let me take you to a combat map.");
   } else if (targetCursor.tutorial === 51) {
     let combatmap = maps.getMap("combatTutorial");
+    let exittile = PC.getHomeMap().getTile(PC.getx(),PC.gety());
+    let walkoffval = exittile.executeWalkoffs(PC);
     MoveBetweenMaps(PC,PC.getHomeMap(),combatmap,6,8);
     DUPlaySound("sfx_teleport");
     DUCamera.Draw(combatmap,6,8);
@@ -408,7 +410,7 @@ function ContinueTutorial() {
   } else if (targetCursor.tutorial === 58) {
     maintext.addText("When you (A)ttack, you will get a target cursor and will choose someone or something to attack. If you choose something next to you, you will attack with your equipped melee weapon. The higher your Strength, the better your chance to hit and the more bonus damage you'll deal if you do.");
   } else if (targetCursor.tutorial === 59) {
-    maintext.addText("If you target something that it sarther away, you will attack with your equipped missile weapon, if you have one. The higher your Dexterity, the better your chance to hit. However, you can't make a missile attack if there is any enemy standing next to you.");
+    maintext.addText("If you target something that is farther away, you will attack with your equipped missile weapon, if you have one. The higher your Dexterity, the better your chance to hit. However, you can't make a missile attack if there is any enemy standing next to you.");
   } else if (targetCursor.tutorial === 60) {
     maintext.addText("Importantly, you can have both a melee and a missile weapon equipped at the same time. You don't need to juggle between them during the fight, you will just use whichever one is appropriate.");
   } else if (targetCursor.tutorial === 61) {
@@ -551,6 +553,8 @@ ais.tutorial = function(who) {
     maintext.setInputLine("&gt; [MORE]");
     gamestate.setMode("anykey");
     DU.gameflags.deleteFlag("tutor_talk");
+    let [avery] = PC.getHomeMap().npcs.getAll();
+    avery.setConversation("tutorial2");
     retval.wait = 1;
   } else if (targetCursor.tutorial === 63) {
     let combatmap = maps.getMap("combatTutorial");
