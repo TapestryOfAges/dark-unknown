@@ -3,7 +3,10 @@ v 0.12.1
  * Updated the high-elevation view of Ellusus
  * You'll no longer get the message that you are terrifying a group that is already terrified
  * Final boss now will talk to you if you try to (T)alk to it. It mostly just blusters at you
- * Final boss will not put up with you attacking it indefinitely 
+ * Final boss will not put up with you attacking it indefinitely  
+ * You can no longer die in the tutorial
+ * Fixed teleport bug with both Return and in the tutorial that can lock you into seated position
+ * Check for "IsInside" on doors was reversed, allowing the PC to open doors they shouldn't
 
 v 0.12.0
  * Fixed spellcasting bug that caused Arrow of Glass to be cast as Mind Bolt
