@@ -5904,6 +5904,8 @@ function TravelByMoongate(who,color,destmap,destx,desty) {
     DUCamera.DrawOne(castermap, gx, gy);
     //DrawMainFrame("one", castermap, gx, gy);
     setTimeout(function() {
+      let exittile = castermap.getTile(gx,gy);
+      let walkoffval = exittile.executeWalkoffs(who); 
       if (destmap === castermap) {
         castermap.moveThing(destx,desty,who);
         castermap.moveThing(destx,desty,gate);
