@@ -1,4 +1,7 @@
 
+v 0.12.2
+ * Trevor won't accept the token if he's not at work
+
 v 0.12.1
  * Updated the high-elevation view of Ellusus
  * You'll no longer get the message that you are terrifying a group that is already terrified
