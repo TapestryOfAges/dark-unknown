@@ -1628,16 +1628,28 @@ function DoAction(code, ctrl) {
         let idx = code-48;
         if (saveIndex[idx].charname) { 
           if (nowplaying.song) { StopMusic(); }
-          gamestate.loadGame(idx); 
-          DrawCharFrame();
-          DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
-          DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
-          //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+          let npcs = PC.getHomeMap().npcs.getAll();
+          let features = PC.getHomeMap().features.getAll();
+          // stop all the animations
+          for (let i=0;i<npcs.length;i++) {
+            npcs[i].noAnim = 1;
+          }
+          for (let i=0;i<features.length;i++) {
+            features[i].noAnim = 1;
+          }
+        
+          setTimeout(function() {
+            gamestate.loadGame(idx); 
+            DrawCharFrame();
+            DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
+            DUCamera.Draw(PC.getHomeMap(), PC.getx(), PC.gety(),PC);
+            //DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
 
-          //maintext.addText("Game loaded.");
-          maintext.setInputLine("&gt;");
-          maintext.drawTextFrame(); 
-          document.getElementById('uiinterface').innerHTML = "";
+            //maintext.addText("Game loaded.");
+            maintext.setInputLine("&gt;");
+            maintext.drawTextFrame(); 
+            document.getElementById('uiinterface').innerHTML = "";
+          }, 500);
         }
       }
     } else if (targetCursor.command === "q") {
