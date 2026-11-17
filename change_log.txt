@@ -3,6 +3,7 @@ v 0.12.2
  * Trevor won't accept the token if he's not at work
  * Fixed a bug that could cause graphics glitches on reloads
  * Disabled (W)ait on combat maps
+ * Asharden no longer spawns on the wrong floor at certain hours
 
 v 0.12.1
  * Updated the high-elevation view of Ellusus
