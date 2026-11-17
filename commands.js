@@ -692,6 +692,11 @@ function PerformCommand(code, ctrl) {
       retval["input"] = "&gt;";
       retval["fin"] = 2;
       waithere = 0;
+    } else if (PC.getHomeMap().getName().includes("combat")) {
+      retval["txt"] = "You cannot wait here.";
+      retval["input"] = "&gt;";
+      retval["fin"] = 2;
+      waithere = 0;
     }
     let waitmap = PC.getHomeMap();
     let tile = waitmap.getTile(PC.getx(),PC.gety());
