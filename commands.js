@@ -4196,7 +4196,7 @@ function DisplayInventory(restrictTo) {
     innerdiv.style.backgroundPosition = showgraphic[2] + "px " + showgraphic[3] + "px";
     innerdiv.style.position = "fixed";
 
-    if (inventorylist[i].animstart) {
+    if (inventorylist[i].hasOwnProperty("animstart")  && !inventorylist[i].animating) {
       inventorylist[i].startAnimation();
       inventorylist[i].IWasJustDrawn();
     }
