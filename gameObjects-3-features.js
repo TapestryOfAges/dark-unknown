@@ -19533,7 +19533,7 @@ function LightningSwordTile() {
   this.longdesc = "A magic sword, sheathed in lightning. In your hands, it does %ave% damage plus 11 lightning damage on average.";
 
   ManualAnimation.call(this, { 
-    animstart: -0*32,
+    animstart: 0*32,
     animlength: 8,
     animstyle: "random",
     allowrepeat: 0,
