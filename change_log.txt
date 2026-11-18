@@ -4,6 +4,9 @@ v 0.12.2
  * Fixed a bug that could cause graphics glitches on reloads
  * Disabled (W)ait on combat maps
  * Asharden no longer spawns on the wrong floor at certain hours
+ * Fixed the cave you couldn't step on the entrance to
+ * Reordered L6 spells to alphabetize
+ * Fixed Lightning Sword's animation
 
 v 0.12.1
  * Updated the high-elevation view of Ellusus
