@@ -7,6 +7,11 @@ v 0.12.2
  * Fixed the cave you couldn't step on the entrance to
  * Reordered L6 spells to alphabetize
  * Fixed Lightning Sword's animation
+ * Windows in the upper Palace in the Skies now show the world
+ * Fixed bug preventing Toshin puzzle from working
+ * Victory music plays if the last enemy on a combat map flees
+ * Fixed bug causing Coll to not switch AIs when he is supposed to open a door
+ * The Rune of Void now appears on your "Runes" stats pane
 
 v 0.12.1
  * Updated the high-elevation view of Ellusus
