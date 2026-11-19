@@ -1584,7 +1584,7 @@ OnConvTriggers["guard_sent"] = function(speaker,keyword) {
   yggdras.placeThing(76,38,coll2);
 }
 
-OnConvTriggers["coll_open"] = function(speaker,keyword) {
+OnConvTriggers["self_coll_open"] = function(speaker,keyword) {
   speaker.setPeaceAI("coll_open");
   speaker.setCurrentAI("coll_open");
   speaker.step = 1;
