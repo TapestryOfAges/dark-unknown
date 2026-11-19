@@ -179,6 +179,7 @@ ais.combat = function(who) {
         DUTime.removeEntityFrom(who);
         who.fled = 1;
         if (PC.getHomeMap() === whomap) {
+          CheckPostDeathMusic(whomap);
           DUCamera.Draw(whomap, PC.getx(), PC.gety(),PC);
           //DrawMainFrame("draw", whomap, PC.getx(), PC.gety());
         }
@@ -1492,9 +1493,11 @@ ais.FranklinCourier = function(who) {
     return retval;
   } else if (who.step === 2) {
     if ((who.getx() === who.leavex) && (who.gety() === who.leavey)) {
-      who.getHomeMap().deleteThing(who);
+      let whomap = who.getHomeMap();
+      whomap.deleteThing(who);
       DUTime.removeEntityFrom(who);
       DUCamera.DrawOne(PC.getHomeMap(),who.leavex,who.leavey);
+      CheckPostDeathMusic(whomap);
       //DrawMainFrame("one",PC.getHomeMap(),who.leavex,who.leavey);
     } else {
       let path = who.getHomeMap().getPath(who.getx(),who.gety(),who.leavex,who.leavey,who.getMovetype());
@@ -2239,6 +2242,7 @@ ais.Courier = function(who) {
     if (runaway) {
       couriermap.deleteThing(who);
       DUTime.removeEntityFrom(who);
+      CheckPostDeathMusic(couriermap);
       who.fled = 1;
       DUCamera.DrawOne(who.getHomeMap(),currx,curry);
       //DrawMainFrame("one",who.getHomeMap(),currx,curry);
