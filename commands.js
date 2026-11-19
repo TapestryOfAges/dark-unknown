@@ -3385,6 +3385,9 @@ function CreateRunesPage(selected) {
    statsdiv += `<div style="${outersel}"><div style='width:106;height:106;background-image:url("graphics/runes.png");background-position:-110px ${hasvoid}px${opac}'></div><p style='text-align:center${sel}'>The Rune<br />of Waves</p></div>`;
   }
   statsdiv += "</td><td rowspan='2' style='vertical-align:center'>";
+  if (PC.runes.void && !selected) {
+    statsdiv += `<div><div style='width:106;height:106;background-image:url("graphics/runes.png");background-position:-440px 0px'></div><p style='text-align:center; margin-top:3px'>The Rune<br />of Void</p></div>`;
+  }
   statsdiv += "</td></tr><tr><td>";
   if (PC.runes.winds) { 
     let sel = "";
