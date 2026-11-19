@@ -406,6 +406,7 @@ mappages["skypalace2"].features[11] = {name : 'Mirror', x : 8, y : 13};
 mappages["skypalace2"].features[12] = {name : 'BookshelfLeft', x : 10, y : 15, lootedid : 'palace_books3', searchyield : 'AudachtaNemesosBuildGate'};
 mappages["skypalace2"].features[13] = {name : 'BookshelfRight', x : 11, y : 15, lootedid : 'palace_books1', searchyield : 'AudachtaNemesosWeatherControl'};
 mappages["skypalace2"].features[14] = {name : 'BookshelfOne', x : 12, y : 15, lootedid : 'palace_books2', searchyield : 'XoriccoRecipe'};
+mappages["skypalace2"].features[15] = {name : 'UnlitBrazier', x : 10, y : 12};
 
 
 mappages["skypalace2"].npcs = [];
@@ -445,6 +446,8 @@ mappages["skypalace2"].entersky = function(mapref) {
       if (enterer === PC) {
         //$("#worldlayer").html("<img src='graphics/high_world.gif' width='416' height='416' />");
   //      $("#worldlayer").css("background-image", "url('graphics/high_world.gif')");
+        mapref.setBackground("clouds-mass.gif");
+        mapref.worldlayer = "high_world.gif";
 
         setTimeout(function() {wind_blow();}, 100);
         
