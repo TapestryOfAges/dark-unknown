@@ -1070,7 +1070,7 @@ function DoAction(code, ctrl) {
             maintext.addText(resp["txt"]);
             gamestate.setMode("anykey");
             maintext.drawTextFrame();
-          } else if ((targetCursor.command === "u") && (resp["fin"] = 4) && (inputText.cmd === "u")) {
+          } else if ((targetCursor.command === "u") && (resp["fin"] === 4) && (inputText.cmd === "u")) {
             // planar key- go into talk mode
             maintext.addText(resp["txt"]);
             maintext.setInputLine(resp["input"]);
