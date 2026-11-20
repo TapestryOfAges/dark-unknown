@@ -12,6 +12,10 @@ v 0.12.2
  * Victory music plays if the last enemy on a combat map flees
  * Fixed bug causing Coll to not switch AIs when he is supposed to open a door
  * The Rune of Void now appears on your "Runes" stats pane
+ * Improved zstats pages, added a detailed stats page and numbers to effects page
+ * King Daragen tells you he can heal you in your initial conversation, rather than leaving that to the Queen to mention only
+ * Lord Olcranns now correctly can shoot lightning bolts like their lesser cousins do
+ * Re-fixed a display bug with Ethereal Vision in caves
 
 v 0.12.1
  * Updated the high-elevation view of Ellusus

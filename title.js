@@ -139,17 +139,17 @@ function page_pre_zero() {
       let changelog = document.getElementById("changelog");
       if (changelog) {
         changelog.innerHTML = `<p class='charcreate'>CHANGELOG:</p><ul style='margin-top:0px>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed spellcasting bug that caused Arrow of Glass to be cast as Mind Bolt</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed implementation of Reincarnation</li>`;
-        changelog.innerHTML += `<li class='changelog'>Notes for creating Gate Runestones are made more accurate</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed bug that allowed opening many locked doors</li>`;
-        changelog.innerHTML += `<li class='changelog'>Bugfixes to Permenance</li>`;
-        changelog.innerHTML += `<li class='changelog'>Updated the high-elevation view of Ellusus</li>`;
-        changelog.innerHTML += `<li class='changelog'>You'll no longer get the message that you are terrifying a group that is already terrified</li>`;
-        changelog.innerHTML += `<li class='changelog'>Final boss now will talk to you if you try to (T)alk to it. It mostly just blusters at you</li>`;
-        changelog.innerHTML += `<li class='changelog'>Final boss will not put up with you attacking it for long</li>`;
-        changelog.innerHTML += `<li class='changelog'>Your graphic no longer stays seated if you cast Return while sitting down</li>`;
-        changelog.innerHTML += `<li class='changelog'>Tutorial: you can no longer die, nor be forced to do the fight a second time</li>`;
+        changelog.innerHTML += `<li class='changelog'>Disabled (W)ait on combat maps</li>`;
+        changelog.innerHTML += `<li class='changelog'>Asharden no longer spawns on the wrong floor at certain hours</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed the cave you couldn't step on the entrance to</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed bug preventing Toshin puzzle from working</li>`;
+        changelog.innerHTML += `<li class='changelog'>Victory music plays if the last enemy on a combat map flees</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed bug causing Coll to not switch AIs when he is supposed to open a door</li>`;
+        changelog.innerHTML += `<li class='changelog'>Improved zstats pages, added a detailed stats page and numbers to effects page</li>`;
+        changelog.innerHTML += `<li class='changelog'>Lord Olcranns now correctly can shoot lightning bolts like their lesser cousins do</li>`;
+        changelog.innerHTML += `<li class='changelog'>King Daragen tells you he can heal you in your initial conversation, rather than leaving that to the Queen to mention only</li>`;
+        changelog.innerHTML += `<li class='changelog'>Trevor won't accept the token if he's not at work</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed a couple graphics glitches</li>`;
         changelog.innerHTML += `</ul>`;
       }
     }
