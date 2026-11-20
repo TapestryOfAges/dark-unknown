@@ -143,7 +143,7 @@ function page_pre_zero() {
         changelog.innerHTML += `<li class='changelog'>Asharden no longer spawns on the wrong floor at certain hours</li>`;
         changelog.innerHTML += `<li class='changelog'>Fixed the cave you couldn't step on the entrance to</li>`;
         changelog.innerHTML += `<li class='changelog'>Fixed bug preventing Toshin puzzle from working</li>`;
-        changelog.innerHTML += `<li class='changelog'>Victory music plays if the last enemy on a combat map flees</li>`;
+        changelog.innerHTML += `<li class='changelog'>Victory music now plays if the last enemy on a combat map flees</li>`;
         changelog.innerHTML += `<li class='changelog'>Fixed bug causing Coll to not switch AIs when he is supposed to open a door</li>`;
         changelog.innerHTML += `<li class='changelog'>Improved zstats pages, added a detailed stats page and numbers to effects page</li>`;
         changelog.innerHTML += `<li class='changelog'>Lord Olcranns now correctly can shoot lightning bolts like their lesser cousins do</li>`;
