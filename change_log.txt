@@ -16,6 +16,7 @@ v 0.12.2
  * King Daragen tells you he can heal you in your initial conversation, rather than leaving that to the Queen to mention only
  * Lord Olcranns now correctly can shoot lightning bolts like their lesser cousins do
  * Re-fixed a display bug with Ethereal Vision in caves
+ * Added "Clumsy" as a placeholder effect that exists just to announce when it is being applied and removed, so a player knows when their armor has become too heavy (due to Blessing wearing off, or maybe getting Cursed)
 
 v 0.12.1
  * Updated the high-elevation view of Ellusus

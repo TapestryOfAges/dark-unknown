@@ -147,7 +147,7 @@ function page_pre_zero() {
         changelog.innerHTML += `<li class='changelog'>Fixed bug causing Coll to not switch AIs when he is supposed to open a door</li>`;
         changelog.innerHTML += `<li class='changelog'>Improved zstats pages, added a detailed stats page and numbers to effects page</li>`;
         changelog.innerHTML += `<li class='changelog'>Lord Olcranns now correctly can shoot lightning bolts like their lesser cousins do</li>`;
-        changelog.innerHTML += `<li class='changelog'>King Daragen tells you he can heal you in your initial conversation, rather than leaving that to the Queen to mention only</li>`;
+        changelog.innerHTML += `<li class='changelog'>Added "Clumsy" as an effect if your armor is too heavy for you</li>`;
         changelog.innerHTML += `<li class='changelog'>Trevor won't accept the token if he's not at work</li>`;
         changelog.innerHTML += `<li class='changelog'>Fixed a couple graphics glitches</li>`;
         changelog.innerHTML += `</ul>`;
