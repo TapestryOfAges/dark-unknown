@@ -802,7 +802,17 @@ NPCObject.prototype.getOrbStr = function() {
 
 NPCObject.prototype.setModStr = function(newstr) {
   newstr = parseInt(newstr);
-  if (!isNaN(newstr)) { this.modstr = newstr; }
+  if (!isNaN(newstr)) { 
+    this.modstr = newstr; 
+
+    if (this.checkType("PC") && this.getEquipment("armor")) {
+      if (this.getStr() < this.getEquipment("armor").getStrReq()) {
+        let clumsy = localFactory.createTile("Clumsy");
+        this.addSpellEffect(clumsy);
+        maintext.drawTextFrame();
+      }
+    }
+  }
   return this.getStr();
 }
 

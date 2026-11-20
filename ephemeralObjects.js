@@ -403,6 +403,42 @@ ConfusedTile.prototype.endEffect = function(silent) {
   DrawCharFrame();
 }
 
+function ClumsyTile() {
+  this.addType("debuff");
+  this.name = "Clumsy";
+  this.display = "<span style='color:darkred'>C</span>";
+  this.zstatdesc = "You are clumsy due to being overburdened by your armor.";
+  this.desc = "clumsy";
+  this.level = 1;
+  this.expiresTime = -1;
+}
+ClumsyTile.prototype = new EphemeralObject();
+
+ClumsyTile.prototype.applyEffect = function(silent) {
+  let who = this.getAttachedTo();
+  if ((who === PC) && !silent) {
+    maintext.addText("Your armor is too heavy for you! You feel clumsy under the burden.");
+  }
+  if (who === PC) { DrawCharFrame(); }
+  return 1;
+}
+
+ClumsyTile.prototype.eachTurn = function() {
+  let wearer = this.getAttachedTo();
+  if (wearer.getStr() >= wearer.getEquipment("armor").getStrReq()) {
+    this.endEffect();
+  }
+}
+
+ClumsyTile.prototype.endEffect = function(silent) {
+  let who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+  if ((who === PC) && !silent) {
+    maintext.addText("You no longer feel clumsy!");
+  }
+  DrawCharFrame();
+}
+
 function CrystalTrapTile() {
   this.addType("debuff");
   this.name = "CrystalTrap";

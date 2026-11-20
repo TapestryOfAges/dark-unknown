@@ -6478,6 +6478,11 @@ tileFactory.prototype.makeConfusedTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeClumsyTile = function() {
+  let newTile = new ClumsyTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeCrystalTrapTile = function() {
   let newTile = new CrystalTrapTile();
   return newTile;
