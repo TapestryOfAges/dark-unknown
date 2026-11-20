@@ -2510,7 +2510,7 @@ function PerformUseFromInventory() {
   retval["fin"] = 0;
 
   targetCursor.restrictTo = "usable";
-  targetCursor.page = 2;
+  targetCursor.page = 5;
   
   DisplayInventory("usable");
   return retval;
@@ -3034,7 +3034,7 @@ function performZstats(code) {
     }
   }
   else if ((code === 37) || (code === 186)) {  // previous page
-    if (targetCursor.page === 2) { 
+    if (targetCursor.page === 5) { 
       // special inventory screen, move around it instead
       exitInv = PerformInventoryScreen(code, restrict);
     } 
@@ -3043,17 +3043,20 @@ function performZstats(code) {
     } else if (exitInv) {
       targetCursor.page--;
       if (targetCursor.page === 0) { 
-        targetCursor.page = 4; 
-        if (PC.runes.kings || PC.runes.waves || PC.runes.winds || PC.runes.flames || PC.runes.void) {
-          targetCursor.page = 5;
-        }
+        targetCursor.page = 5; 
+        // if (PC.runes.kings || PC.runes.waves || PC.runes.winds || PC.runes.flames || PC.runes.void) {
+        //   targetCursor.page = 5;
+        // }
       }  // set to the last page when I know what that will be
+      if ((targetCursor.page === 4) && !(PC.runes.kings || PC.runes.waves || PC.runes.winds || PC.runes.flames || PC.runes.void)) {
+        targetCursor.page = 3;
+      }
       DrawStats(targetCursor.page);
     }
     retval["fin"] = 1;
   }
   else if ((code === 39) || (code === 222)) { // next page
-    if (targetCursor.page === 2) {
+    if (targetCursor.page === 5) {
       // special inventory screen, move around it instead
       exitInv = PerformInventoryScreen(code, restrict);
     } 
@@ -3062,15 +3065,15 @@ function performZstats(code) {
     } else if (exitInv) {
       targetCursor.page++;
       if (targetCursor.page === 6) { targetCursor.page = 1; }
-      if ((targetCursor.page === 5) && !(PC.runes.kings || PC.runes.waves || PC.runes.winds || PC.runes.flames || PC.runes.void)) {
-        targetCursor.page = 1;
+      if ((targetCursor.page === 4) && !(PC.runes.kings || PC.runes.waves || PC.runes.winds || PC.runes.flames || PC.runes.void)) {
+        targetCursor.page = 5;
       }
       DrawStats(targetCursor.page);
     }
     retval["fin"] = 1;
   }
   else if ((code === 38) || (code === 219)) { // scroll up
-    if (targetCursor.page === 2) {
+    if (targetCursor.page === 5) {
       // inventory
       exitInv = PerformInventoryScreen(code, restrict);
     } 
@@ -3082,7 +3085,7 @@ function performZstats(code) {
     retval["fin"] = 1;
   }
   else if ((code === 13) || (code === 40) || (code === 191)) { // scroll down
-    if (targetCursor.page === 2) {
+    if (targetCursor.page === 5) {
       exitInv = PerformInventoryScreen(code, restrict);
     }
     if (typeof exitInv === "object") {
@@ -3094,7 +3097,7 @@ function performZstats(code) {
     retval["fin"] = 1;
   }
   else if ((code === 32) || (code === 34)) {  // space or page down
-    if (targetCursor.page === 2) {
+    if (targetCursor.page === 5) {
       exitInv = PerformInventoryScreen(code, restrict);
     }
     if (typeof exitInv === "object") {
@@ -3106,7 +3109,7 @@ function performZstats(code) {
     retval["fin"] = 1;
   }       
   else if ((code === 33)) {  // page up
-    if (targetCursor.page === 2) {
+    if (targetCursor.page === 5) {
       exitInv = PerformInventoryScreen(code, restrict);
     }
     if (typeof exitInv === "object") {
@@ -3118,7 +3121,7 @@ function performZstats(code) {
   }       
   else { retval["fin"] = 1; }
 
-  if (targetCursor.page === 2) { DisplayInventory(restrict); }
+  if (targetCursor.page === 5) { DisplayInventory(restrict); }
   return retval;
 }
 
@@ -3177,62 +3180,77 @@ function DrawStats(page) {
     statsdiv += "<tr><td style='width:50%'>HP: " + PC.getDisplayHP() + "/" + PC.getMaxHP() + "</td><td></td>";
     statsdiv += "<td style='width:50%'>MP: " + PC.getMana() + "/" + PC.getMaxMana() + "</td></tr>";
     statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";
-    statsdiv += `<tr><td>STR: ${spanstr}${PC.getStr()}</span>${spanstrbase}${spanstrorb}${spanstrmod}</td><td></td><td>Gold: ${PC.getGold()}</td></tr>`;
+    statsdiv += `<tr><td>STR: ${spanstr}${PC.getStr()}</span>${spanstrbase}${spanstrorb}${spanstrmod}</td><td></td><td>Gold: `;
+    let goldstr = PC.getGold().toString();
+    let goldspace = 5-goldstr.length;
+    for (let i=1;i<=goldspace;i++) {
+      statsdiv += "&nbsp;";
+    }
+    statsdiv += `${PC.getGold()}</td></tr>`;
     statsdiv += `<tr><td>DEX: ${spandex}${PC.getDex()}</span>${spandexbase}${spandexorb}${spandexmod}</td><td></td><td>XP: `;
     if (EarnedLevel(PC)) {
       statsdiv += "<span class='leveled'>";
     }
-    statsdiv += Math.floor(PC.getxp());
+    let strxp = Math.floor(PC.getxp()).toString();
+    let xpspaces = 7-strxp.length;
+    for (let i=1;i<=xpspaces;i++) {
+      statsdiv += "&nbsp;";
+    }
+    statsdiv += strxp;
     if (EarnedLevel(PC)) {
       statsdiv += "</span>";
     }
     statsdiv += "</td></tr>";
-    statsdiv += `<tr><td>INT: ${spanint}${PC.getInt()}</span>${spanintbase}${spanintorb}${spanintmod}</td><td></td><td>Training: ${PC.gettp()}</td></tr>`;
+    let trainingspan = `${PC.gettp()}`;
+    if (PC.gettp() > 0) {
+      trainingspan = `<span class='sysconv'>${PC.gettp()}</span>`;
+    }
+    statsdiv += `<tr><td>INT: ${spanint}${PC.getInt()}</span>${spanintbase}${spanintorb}${spanintmod}</td><td></td><td>Training: ${trainingspan}</td></tr>`;
     statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";
     if (PC.getEquipment("weapon")) { 
       let wpndesc = PC.getEquipment("weapon").getDesc();
       wpndesc = wpndesc.charAt(0).toUpperCase() + wpndesc.slice(1);
-      statsdiv += "<tr><td>Weapon: " + wpndesc + "</td><td></td>";
+      statsdiv += "<tr><td>Weapon: &nbsp;<span class='sysconv'>" + wpndesc + "</span></td><td></td>";
     } else {
-      statsdiv += "<tr><td>Weapon: None</td><td></td>";
+      statsdiv += "<tr><td>Weapon: <span class='leveled'>None</span></td><td></td>";
     }
     if (PC.getEquipment("armor")) {
       let armordesc = PC.getEquipment("armor").getDesc();
       armordesc = armordesc.charAt(0).toUpperCase() + armordesc.slice(1);
-      statsdiv += "<td>Armor: " + armordesc + "</td></tr>";
+      statsdiv += "<td>Armor: <span class='sysconv'>" + armordesc + "</span></td></tr>";
     } else {
-      statsdiv += "<td>Armor: None</td></tr>";
+      statsdiv += "<td>Armor: <span class='leveled'>None</span></td></tr>";
     }
     if (PC.getEquipment("weapon")) {
-      statsdiv += "<tr><td>Ave Dmg: " + PC.getEquipment("weapon").getAveDamage(PC) + "</td><td></td>";
+      statsdiv += "<tr><td>Ave Dmg: <span class='sysconv'>" + PC.getEquipment("weapon").getAveDamage(PC) + "</span></td><td></td>";
     } else {
       statsdiv += "<tr><td></td><td></td>";
     }
     if (PC.getEquipment("armor")) {
-      statsdiv += "<td>Defense: " + PC.getEquipment("armor").getDefense() + "</td></tr>";
+      statsdiv += "<td>Defense: <span class='sysconv'>" + PC.getEquipment("armor").getDefense() + "</span></td></tr>";
     } else {
       statsdiv += "<td></td></tr>";
     }
     statsdiv += "<tr><td></td><td></td>";
     if (PC.getEquipment("armor")) {
-      statsdiv += "<td>Absorb: " + PC.getEquipment("armor").getAbsorb() + "</td></tr>";
+      statsdiv += "<td>Absorb: &nbsp;<span class='sysconv'>" + PC.getEquipment("armor").getAbsorb() + "</span></td></tr>";
     } else {
       statsdiv += "<td></td></tr>";
     }
     if (PC.getEquipment("missile")) {    
       let missdesc = PC.getEquipment("missile").getDesc();
       missdesc = missdesc.charAt(0).toUpperCase() + missdesc.slice(1);
-      statsdiv += "<tr><td>Missile: " + missdesc + "</td><td></td>";
+      statsdiv += "<tr><td>Missile: <span class='sysconv'>" + missdesc + "</span></td><td></td>";
     } else {
       statsdiv += "<tr><td></td><td></td>";
     }
     if (PC.getEquipment("armor")) {
-      statsdiv += "<td>Resist: " + PC.getEquipment("armor").getResist() + "</td></tr>";
+      statsdiv += "<td>Resist: &nbsp;<span class='sysconv'>" + PC.getEquipment("armor").getResist() + "</span></td></tr>";
     } else {
       statsdiv += "<td></td></tr>";
     }
     if (PC.getEquipment("missile")){
-      statsdiv += "<tr><td>Ave Dmg: " + PC.getEquipment("missile").getAveDamage(PC) + "</td><td></td>";
+      statsdiv += "<tr><td>Ave Dmg: <span class='sysconv'>" + PC.getEquipment("missile").getAveDamage(PC) + "</span></td><td></td>";
     } else {
       statsdiv += "<tr><td></td><td></td>";
     }
@@ -3242,22 +3260,22 @@ function DrawStats(page) {
       if (PC.getEquipment("circlet")) {
         let circletdesc = PC.getEquipment("circlet").getDesc();
         circletdesc = circletdesc.charAt(0).toUpperCase() + circletdesc.slice(1);
-        statsdiv += "<tr><td colspan='3'>" + circletdesc + "</td></tr>";
+        statsdiv += "<tr><td colspan='3'><span class='sysconv'>" + circletdesc + "</span></td></tr>";
       }
       if (PC.getEquipment("amulet")) {
         let circletdesc = PC.getEquipment("amulet").getDesc();
         circletdesc = circletdesc.charAt(0).toUpperCase() + circletdesc.slice(1);
-        statsdiv += "<tr><td colspan='3'>" + circletdesc + "</td></tr>";
+        statsdiv += "<tr><td colspan='3'><span class='sysconv'>" + circletdesc + "</span></td></tr>";
       }
       if (PC.getEquipment("ring1")) {
         let circletdesc = PC.getEquipment("ring1").getDesc();
         circletdesc = circletdesc.charAt(0).toUpperCase() + circletdesc.slice(1);
-        statsdiv += "<tr><td colspan='3'>" + circletdesc + "</td></tr>";
+        statsdiv += "<tr><td colspan='3'><span class='sysconv'>" + circletdesc + "</conv></td></tr>";
       }
       if (PC.getEquipment("ring2")) {
         let circletdesc = PC.getEquipment("ring2").getDesc();
         circletdesc = circletdesc.charAt(0).toUpperCase() + circletdesc.slice(1);
-        statsdiv += "<tr><td colspan='3'>" + circletdesc + "</td></tr>";
+        statsdiv += "<tr><td colspan='3'><span class='sysconv'>" + circletdesc + "</span></td></tr>";
       }
     }
     
@@ -3265,56 +3283,221 @@ function DrawStats(page) {
     statsdiv += "</table></div></div>";
     DrawTopbarFrame("<p>Character</p>");
     
-  } else if (page === 2) {
+  } else if (page === 5) {
     DisplayInventory();
     DrawTopbarFrame("<p>Inventory</p>");
-  } else if (page === 3) {
+  } else if (page === 2) {
     statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
     statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
     statsdiv += "<tr><td>&nbsp;</td></tr>";
    
-    let hasSpellbook = 0;
-   
-    for (let lvl = 1; lvl <= 8; lvl++ ){
-      let hasLevel = 0;
-      for (let i=1; i<=8; i++) {
-        let spellnum = GetSpellID(i);
-        if (PC.knowsSpell(lvl, spellnum)) {
-          if (!hasLevel) {
-            if (lvl !== 1) { statsdiv += "<tr><td>&nbsp;</td></tr>"; }
-            if (lvl === 1) {
-              statsdiv += "<tr><td class='circleheader'>First Circle</td></tr>";
-            } else if (lvl === 2) {
-              statsdiv += "<tr><td class='circleheader'>Second Circle</td></tr>";
-            } else if (lvl === 3) {
-              statsdiv += "<tr><td class='circleheader'>Third Circle</td></tr>";
-            } else if (lvl === 4) {
-              statsdiv += "<tr><td class='circleheader'>Fourth Circle</td></tr>";
-            } else if (lvl === 5) {
-              statsdiv += "<tr><td class='circleheader'>Fifth Circle</td></tr>";
-            } else if (lvl === 6) {
-              statsdiv += "<tr><td class='circleheader'>Sixth Circle</td></tr>";
-            } else if (lvl === 7) {
-              statsdiv += "<tr><td class='circleheader'>Seventh Circle</td></tr>";
-            } else if (lvl === 8) {
-              statsdiv += "<tr><td class='circleheader'>Eighth Circle</td></tr>";
-            }
-          }
-          statsdiv += "<tr><td class='spellstat'>" + magic[lvl][spellnum].getName() + "</td></tr>";
-          hasLevel = 1;
-          hasSpellbook = 1;
-         
-        }
+    let spanstr = "<span>";
+    if (PC.getStr() > PC.getBaseStr()) { spanstr = '<span style="color:cyan">'; }
+    if (PC.getStr() < PC.getBaseStr()) { spanstr = '<span style="color:orange">'; }
+    let spandex = "<span>";
+    if (PC.getDex() > PC.getBaseDex()) { spandex = '<span style="color:cyan">'; }
+    if (PC.getDex() < PC.getBaseDex()) { spandex = '<span style="color:orange">'; }
+    let spanint = "<span>";
+    if (PC.getInt() > PC.getBaseInt()) { spanint = '<span style="color:cyan">'; }
+    if (PC.getInt() < PC.getBaseInt()) { spanint = '<span style="color:orange">'; }
+    
+    statsdiv = "<div class='outerstats'><div id='zstat' class='zstats'>";
+    statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black; margin-top: 14px'>";
+    statsdiv += `<tr><td>STR: ${spanstr}${PC.getStr()}</span> = ${PC.getBaseStr()} (BASE) `;
+    if (PC.getOrbStr()) { 
+      statsdiv += `+ <span style="color:cyan">${PC.getOrbStr()}</span> (ORBS) `
+    }
+    if (PC.getModStr()) {
+      let blessing = PC.getSpellEffectsByName("Blessing");
+      if (blessing) {
+        statsdiv += `+ <span style="color:lightgreen">${blessing.getPower()}</span> (BLESSING) `;
+      }
+      let strpot = PC.getSpellEffectsByName("BlessingStr");
+      if (strpot) {
+        statsdiv += `+ <span style="color:lightgreen">${strpot.getPower()}</span> (POTION) `;
+      }
+      let curse = PC.getSpellEffectsByName("Curse"); 
+      if (curse) {
+        statsdiv += `- <span style="color:orange">${curse.getPower()}</span> (CURSE) `;
       }
     }
-    if (!hasSpellbook) {
-      statsdiv += "<tr><td>You do not have a spellbook.</td></tr>";
+    statsdiv += `</td></tr>`;
+    statsdiv += `<tr><td>DEX: ${spandex}${PC.getDex()}</span> = ${PC.getBaseDex()} (BASE) `;
+    if (PC.getOrbDex()) { 
+      statsdiv += `+ <span style="color:cyan">${PC.getOrbDex()}</span> (ORBS) `
     }
-  
+    if (PC.getModDex()) {
+      let blessing = PC.getSpellEffectsByName("Blessing");
+      if (blessing) {
+        statsdiv += `+ <span style="color:lightgreen">${blessing.getPower()}</span> (BLESSING) `;
+      }
+      let strpot = PC.getSpellEffectsByName("BlessingDex");
+      if (strpot) {
+        statsdiv += `+ <span style="color:lightgreen">${strpot.getPower()}</span> (POTION) `;
+      }
+      let curse = PC.getSpellEffectsByName("Curse"); 
+      if (curse) {
+        statsdiv += `- <span style="color:orange">${curse.getPower()}</span> (CURSE) `;
+      }
+    }
+    statsdiv += `</td></tr>`;
+    statsdiv += `<tr><td>INT: ${spanstr}${PC.getInt()}</span> = ${PC.getBaseInt()} (BASE) `;
+    let circlet = 0;
+    if (PC.getOrbInt()) { 
+      let orbint = PC.getOrbInt();
+      if (PC.checkInventory("CircletOfIntellect")) {
+        circlet = 2;
+        orbint = orbint - 2;
+      }
+
+      statsdiv += `+ <span style="color:cyan">${orbint}</span> (ORBS) `
+    }
+    if (PC.getModInt()) {
+      let blessing = PC.getSpellEffectsByName("Blessing");
+      if (blessing) {
+        statsdiv += `+ <span style="color:lightgreen">${blessing.getPower()}</span> (BLESSING) `;
+      }
+      let strpot = PC.getSpellEffectsByName("BlessingInt");
+      if (strpot) {
+        statsdiv += `+ <span style="color:lightgreen">${strpot.getPower()}</span> (POTION) `;
+      }
+      let curse = PC.getSpellEffectsByName("Curse"); 
+      if (curse) {
+        statsdiv += `- <span style="color:orange">${curse.getPower()}</span> (CURSE) `;
+      }
+    }
+    if (circlet) {
+      statsdiv += `+ <span style="color:lightgreen">${circlet}</span> (CIRCLET)`;
+    }
+    statsdiv += `</td></tr>`;
+    
+    statsdiv += `<tr><td style='height: 12px'></td></tr>`;
+
+    let distracted = 0;
+    let distractedby = "";
+    let distract = PC.getSpellEffectsByName("Distract");
+    if (distract) {
+      distracted = distract.getPower();
+      distractedby = "Distracted";
+    } else {
+      let dizzy = PC.getSpellEffectsByName("Dizzy");
+      if (dizzy) {
+        distracted = dizzy.getPower();
+        distractedby = "Dizzy";
+      }
+    }
+
+    let wpndesc = PC.getEquipment("weapon").getDesc();
+    wpndesc = wpndesc.charAt(0).toUpperCase() + wpndesc.slice(1);
+    statsdiv += `<tr><td>MELEE WEAPON: ${wpndesc}</td></tr>`;
+    let meleechance = PC.getHitChance("melee");
+    statsdiv += `<tr><td>ATK SKILL: ${meleechance} = ${BASE_HIT_CHANCE} (BASE) + ${HIT_PER_LEVEL * PC.getLevel()} (LVL) + ${PC.getStr()-10} (STR) `;
+    if (distracted) {
+      statsdiv += `- <span style='color:orange'>${distracted}</span> (${distractedby})`;
+    }
+    statsdiv += "</td></tr>";
+
+    statsdiv += `<tr><td>DMG: `;
+    let dmg = PC.getEquipment("weapon").getDamage();
+    let strbonus = 0;
+    if (PC.getEquipment("weapon").getStrDamage()) {
+      let str = PC.getStr();
+      let strmod = parseFloat(PC.getEquipment("weapon").getStrDamage());
+      strbonus = (str-10)*strmod;
+    }
+    let fb = PC.getSpellEffectsByName("FlameBlade");
+    statsdiv += `${dmg} `;
+    if (strbonus) {
+      statsdiv += `+ ${strbonus} (STR) `;
+    }
+    if (fb) {
+      statsdiv += `+ <span class='leveled'>${fb.damage}</span> (FL BLADE)`;
+    }
+    statsdiv += `</td></tr>`;
+
+    statsdiv += `<tr><td style='height:12px'></td></tr>`;
+
+    wpndesc = "";
+    if (PC.getEquipment("missile")) {
+      wpndesc = PC.getEquipment("missile").getDesc();
+      wpndesc = wpndesc.charAt(0).toUpperCase() + wpndesc.slice(1);
+    }
+    statsdiv += `<tr><td>MISSILE WEAPON: ${wpndesc}</td></tr>`;
+    let missilechance = PC.getHitChance("missile");
+    statsdiv += `<tr><td>ATK SKILL: ${missilechance} = ${BASE_HIT_CHANCE} (BASE) + ${HIT_PER_LEVEL * PC.getLevel()} (LVL) + ${PC.getDex()-10} (DEX) `;
+    if (distracted) {
+      statsdiv += `- <span style='color:orange'>${distracted}</span> (${distractedby})`;
+    }
+    statsdiv += "</td></tr>";
+
+    if (PC.getEquipment("missile")) {
+      statsdiv += `<tr><td>DMG: `;
+      let missdmg = PC.getEquipment("missile").getDamage();
+      statsdiv += `${missdmg} `;
+      statsdiv += `</td></tr>`;
+    }
+
+    statsdiv += `<tr><td style='height:12px'></td></tr>`;
+
+    let armordesc = PC.getEquipment("armor").getDesc();
+    armordesc = armordesc.charAt(0).toUpperCase() + armordesc.slice(1);
+    statsdiv += `<tr><td>ARMOR: ${armordesc}</td></tr>`;
+
+    statsdiv += `<tr><td>DEF: ${PC.getDefense()} = `;
+    let armordef = PC.getEquipment("armor").getDefense();
+    let armorpen = 0;
+    if (PC.getStr() < PC.getEquipment("armor").getStrReq()) {
+      armorpen = armordef - Math.ceil(armordef/3);
+    }
+
+    statsdiv += `${armordef} (ARMOR) `;
+    if (armorpen) {
+      statsdiv += `- <span style='color:orange'>${armorpen}</span> (CLUMSY) `;
+    }
+
+    let dexbonus = (PC.getDex()-10)*DEF_PER_DEX;
+    if (dexbonus) {
+      statsdiv += `+ ${dexbonus} (DEX) `;
+    }
+
+    let vuln = PC.getSpellEffectsByName("Vulnerability");
+    if (vuln) {
+      statsdiv += `- <span style='color:orange'>${vuln.getPower()}</span> (VULN) `;
+    }
+    let prot = PC.getSpellEffectsByName("Protection");
+    if (prot) {
+      statsdiv += `+ <span style='color:cyan'>${prot.getPower()}</span> (PROT) `;
+    }
+    if (PC.getEquipment("weapon").getName() === "SwordOfDefense") {
+      statsdiv += `+ <span style='color:cyan'>10</span> (SWORD)`;
+    }
+    statsdiv += `</td></tr>`;
+
+    statsdiv += `<tr><td>ABSORB: ${PC.getEquipment("armor").getAbsorb()}% (ARMOR) `;
+    let iron = PC.getSpellEffectsByName("IronFlesh");
+    if (iron) {
+      statsdiv += `+ <span style='color:cyan'>5</span> (Iron Flesh)`;
+    }
+    statsdiv += `</td></tr>`;
+
+    statsdiv += `<tr><td style='height:12px'></td></tr>`;
+
+    statsdiv += `<tr><td>MAGIC RESIST: ${PC.getEquipment("armor").getResist()}% (ARMOR) `;
+
+    let resmag = PC.getSpellEffectsByName("ResistMagic");
+    if (resmag) {
+      statsdiv += `+ <span style='color:cyan'>${resmag.getPower()}%</span> (POTION)`;
+    }
+    statsdiv += `</td></tr>`;
+
+    if (PC.checkInventory("RingOfFireResist")) {
+      statsdiv += `<tr><td>FIRE RESIST: 33% (RING)</td></tr>`;
+    }
+
     statsdiv += "</table></div></div>";  
 
-    DrawTopbarFrame("<p>Spellbook</p>");
-  } else if (page === 4) {
+    DrawTopbarFrame("<p>Detailed Statistics</p>");
+  } else if (page === 3) {
     statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
     statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
     statsdiv += "<tr><td>&nbsp;</td></tr>";
@@ -3325,13 +3508,13 @@ function DrawStats(page) {
     } else {
       for (let i=0; i < alleffects.length; i++) {
         if (alleffects[i].display) {
-          statsdiv += "<tr><td colspan='3'>" + alleffects[i].display + ": " + alleffects[i].getZstatdesc() + "</td></tr>";
+          statsdiv += "<tr><td colspan='3'>" + alleffects[i].display + ": " + alleffects[i].getZstatFulldesc() + "</td></tr>";
         }
       }
     } 
     statsdiv += "</table></div></div>";  
     DrawTopbarFrame("<p>Spells and effects</p>");
-  } else if (page === 5) {
+  } else if (page === 4) {
     let hasrunes = 0;
     if (PC.runes.kings || PC.runes.waves || PC.runes.winds || PC.runes.flames || PC.runes.void) { hasrunes = 1; }
 
