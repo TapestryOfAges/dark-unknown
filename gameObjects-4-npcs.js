@@ -2113,7 +2113,7 @@ NPCObject.prototype.getDefense = function() {
   let armor = this.getEquipment("armor");
   if (armor) {
     if (this.getStr() < armor.getStrReq()) {
-      def += (armor.getDefense())/3;
+      def += Math.ceil((armor.getDefense())/3);
     } else {
       def += armor.getDefense();
     }
