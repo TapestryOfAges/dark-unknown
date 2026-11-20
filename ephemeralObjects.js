@@ -38,6 +38,14 @@ EphemeralObject.prototype.setZstatdesc = function(what) {
   this.zstatdesc = what;
 }
 
+EphemeralObject.prototype.getZstatFulldesc = function() {
+  let desc = this.zstatdesc;
+  if (this.moredesc) {
+    desc += ` ${this.moredesc}`;
+  }
+  return desc;
+}
+
 EphemeralObject.prototype.setLevel = function(what) {
   this.level = what;
 }
@@ -193,6 +201,7 @@ BlessingTile.prototype.applyEffect = function(silent) {
   who.setModStr(who.getModStr() + power);
   who.setModDex(who.getModDex() + power);
   who.setModInt(who.getModInt() + power);
+  this.moredesc = `(+<span style="color:cyan">${power}</span>)`;
 
   if (who) {
     if ((who === PC) && !silent) {
@@ -232,6 +241,7 @@ BlessingStrTile.prototype.applyEffect = function(silent) {
   let who = this.getAttachedTo();
   let power = this.getPower();
   who.setModStr(who.getModStr() + power);
+  this.moredesc = `(+<span style="color:cyan">${power}</span>)`;
 
   if (who) {
     if ((who === PC) && !silent) {
@@ -269,6 +279,7 @@ BlessingDexTile.prototype.applyEffect = function(silent) {
   let who = this.getAttachedTo();
   let power = this.getPower();
   who.setModDex(who.getModDex() + power);
+  this.moredesc = `(+<span style="color:cyan">${power}</span>)`;
 
   if (who) {
     if ((who === PC) && !silent) {
@@ -306,6 +317,7 @@ BlessingIntTile.prototype.applyEffect = function(silent) {
   let who = this.getAttachedTo();
   let power = this.getPower();
   who.setModInt(who.getModInt() + power);
+  this.moredesc = `(+<span style="color:cyan">${power}</span>)`;
 
   if (who) {
     if ((who === PC) && !silent) {
@@ -484,6 +496,7 @@ CurseTile.prototype.applyEffect = function(silent) {
   who.setModInt(who.getModInt() - power);
   who.setModStr(who.getModInt() - power);
   who.setModDex(who.getModInt() - power);
+  this.moredesc = `(-<span style="color:orange">${power}</span>)`;
 
   if (who) {
     if ((who === PC) && !silent) {
@@ -513,7 +526,7 @@ function DiseaseTile() {
   this.addType("debuff");
   this.name = "Disease";
   this.display = "<span style='color:#58FA58'>D</span>";
-  this.zstatdesc = "You have been infected by a disease.";
+  this.zstatdesc = "You have been infected by a disease. (<span class='sysconv'>Mana does not regenerate.</span>)";
   this.desc = "disease";
 }
 DiseaseTile.prototype = new DamageOverTimeObject();
@@ -588,6 +601,7 @@ DistractTile.prototype.applyEffect = function(silent) {
     maintext.delayedAddText("You have become distracted.");
   }
   if (who === PC) { DrawCharFrame(); }
+  this.moredesc = `(-<span style="color:orange">${this.power}</span>)`;
   return 1;
 }
 
@@ -887,6 +901,7 @@ FlameBladeTile.prototype = new EphemeralObject();
 
 FlameBladeTile.prototype.applyEffect = function(silent) {
   let who = this.getAttachedTo();
+  this.moredesc = `(+<span style="color:cyan">${this.power}</span>)`;
   if (who) {
     who.setLight(who.getLight() + .5);
     if ((who === PC) && !silent) {
@@ -1042,6 +1057,7 @@ IronFleshTile.prototype = new EphemeralObject();
 
 IronFleshTile.prototype.applyEffect = function(silent) {
   let who = this.getAttachedTo();
+  this.moredesc = `(<span style="color:green">${this.power}</span>)`;
   if (who) {
     if ((who === PC) && !silent) {
       maintext.addText("Your skin becomes hard as iron.");
@@ -1359,6 +1375,7 @@ ProtectionTile.prototype = new EphemeralObject();
 
 ProtectionTile.prototype.applyEffect = function(silent) {
   let who = this.getAttachedTo();
+  this.moredesc = `(+<span style="color:cyan">${this.power}</span>)`;
   if (who) {
     if ((who === PC) && !silent) {
       maintext.addText("You are protected by magic.");
@@ -1456,6 +1473,7 @@ ResistMagicTile.prototype = new EphemeralObject();
 
 ResistMagicTile.prototype.applyEffect = function(silent) {
   DrawCharFrame();
+  this.moredesc = `(+<span style="color:cyan">${this.power}</span>)`;
   return 1;
 }
 
@@ -1731,6 +1749,7 @@ VulnerabilityTile.prototype = new EphemeralObject();
 
 VulnerabilityTile.prototype.applyEffect = function(silent) {
   let who = this.getAttachedTo();
+  this.moredesc = `(-<span style="color:orange">${this.power}</span>)`;
   if ((who === PC) && !silent) {
     maintext.delayedAddText("You feel vulnerable.");
   }
