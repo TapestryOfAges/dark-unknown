@@ -256,6 +256,8 @@ function EnterTutorial() {
   MoveBetweenMaps(PC, PC.getHomeMap(), maps.getMap("tutorial1"),8,9);
   DUCamera.Draw(PC.getHomeMap(),8,9,PC);
 
+  DU.gameflags.setFlag("potionsrevealed","all");
+
   gamestate.setMode("anykey");
   targetCursor.tutorial = 1;
 
