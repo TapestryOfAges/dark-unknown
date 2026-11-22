@@ -664,6 +664,7 @@ NPCObject.prototype.getGenderedTerms = function() {
   if (this.gender === "male") {
     gt.pronoun = "he";
     gt.possessive = "his";
+    gt.possessivesingular = "his";
     gt.titled = "Lord";
     gt.objective = "him";
     gt.formal = "Prince";
@@ -673,6 +674,7 @@ NPCObject.prototype.getGenderedTerms = function() {
   } else if (this.gender === "female") {
     gt.pronoun = "she";
     gt.possessive = "hers";
+    gt.possessivesingular = "her";
     gt.titled = "Lady";
     gt.objective = "her";
     gt.formal = "Princess";
@@ -682,6 +684,7 @@ NPCObject.prototype.getGenderedTerms = function() {
   } else if (this.gender === "other") {
     gt.pronoun = "they";
     gt.possessive = "theirs";
+    gt.possessivesingular = "their";
     gt.objective = "them";
     gt.titled = "Lord";
     gt.formal = "Heir";
@@ -691,6 +694,7 @@ NPCObject.prototype.getGenderedTerms = function() {
   } else {
     gt.pronoun = "it";
     gt.possessive = "its";
+    gt.possessivesingular = "its";
     gt.objective = "it";
     gt.titled = "Lord";
     gt.formal = "Heir";

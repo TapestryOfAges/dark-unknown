@@ -291,11 +291,14 @@ Conversation.prototype.say = function(speaker, saywhat, skipahead, nospeaker, al
   saywhat = saywhat.replace(/%MYREALNAME%/g, npcname);
   saywhat = saywhat.replace(/%PRONOUN%/g, gterms.pronoun);
   saywhat = saywhat.replace(/%POSSESSIVE%/g, gterms.possessive);
+  saywhat = saywhat.replace(/%POSSSING%/g, gterms.possessivesingular);
   saywhat = saywhat.replace(/%OBJ%/g, gterms.objective);
   saywhat = saywhat.replace(/%SIBLING%/g, gterms.sibling);
   saywhat = saywhat.replace(/%KIDDIE%/g, gterms.kiddie);
   saywhat = saywhat.replace(/%REFLEX%/g, gterms.reflexive);
   saywhat = saywhat.replace(/%SELF_PRONOUN%/g, npcterms.pronoun);
+  saywhat = saywhat.replace(/%SELF_POSSESSIVE%/g, npcterms.possessive);
+  saywhat = saywhat.replace(/%SELF_POSSSING%/g, npcterms.possessivesingular);
   saywhat = saywhat.replace(/%SYS%(.+?)%SYS%/g, "<span class='sysconv'>$1</span>");
   saywhat = saywhat.replace(/%MS%/g, speakertext);
   saywhat = saywhat.replace(/%AS:(.+?)%/g, "<span class='offspeaker'>$1</span>:");
