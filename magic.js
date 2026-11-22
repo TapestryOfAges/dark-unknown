@@ -342,7 +342,7 @@ magic[SPELL_AUDACHTA_SCRIBE_LEVEL][SPELL_AUDACHTA_SCRIBE_ID].executeSpell = func
 
   gamestate.setMode("zstats");
   targetCursor.restrictTo = "audachta";
-  targetCursor.page = 2;
+  targetCursor.page = 5;
   targetCursor.command = "c";
   targetCursor.spellName = "AudachtaScribe";
   targetCursor.spelldetails = {caster:caster, infused:infused, free:free};
@@ -2809,6 +2809,9 @@ magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID].executeSpell = function(caster, infused
   for (let i=foes.length-1;i>=0;i--) {
     // remove multi-tile segments
     if (foes.hasOwnProperty("attachedTo")) { foes.splice(i,1); } 
+
+    // remove non-enemies
+    if (foes.getAttitude() !== "hostile") { foes.splice(i,1); }
   }
   
   if (!foes[0]) {
@@ -3571,7 +3574,7 @@ magic[SPELL_EMPOWER_LEVEL][SPELL_EMPOWER_ID].executeSpell = function(caster, inf
   resp["fin"] = 4;  // was 0
 //  gamestate.setMode("target");
   gamestate.setMode("zstats");
-  targetCursor.page = 2;
+  targetCursor.page = 5;
   targetCursor.spellName = "Empower";
   targetCursor.command = 'c';
 
@@ -6322,7 +6325,7 @@ function PerformSpellcast() {
         }
         gamestate.setMode("zstats");
         targetCursor.restrictTo = "broken";
-        targetCursor.page = 2;
+        targetCursor.page = 5;
         
         DisplayInventory("broken");
   
@@ -6349,7 +6352,7 @@ function PerformSpellcast() {
       if ((targetCursor.x === targetCursor.spelldetails.caster.getx()) && (targetCursor.y === targetCursor.spelldetails.caster.gety())) {
         gamestate.setMode("zstats");
         targetCursor.restrictTo = "";
-        targetCursor.page = 2;
+        targetCursor.page = 5;
         
         DisplayInventory();
   
