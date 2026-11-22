@@ -370,7 +370,7 @@ mappages["shadow3"].terrain[30] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK 
 mappages["shadow3"].terrain[31] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 
 mappages["shadow3"].features = [];
-mappages["shadow3"].features[0] = {name : 'LadderUp', x : 7, y : 5, entermap : 'tunnel', enterx : 57, entery : 19};
+mappages["shadow3"].features[0] = {name : 'LadderUp', x : 7, y : 5, entermap : 'tunnels', enterx : 57, entery : 19};
 mappages["shadow3"].features[1] = {name : 'Altar', x : 6, y : 13};
 mappages["shadow3"].features[2] = {name : 'BookshelfLeft', x : 4, y : 16, lootedid : 'shadowbook1', searchyield : 'ScrollWallOfFlame'};
 mappages["shadow3"].features[3] = {name : 'BookshelfLeft', x : 7, y : 16};
