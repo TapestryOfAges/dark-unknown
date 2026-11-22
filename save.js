@@ -706,6 +706,10 @@ OutOfContext.onLoadData((event,serialized) => {
     
     uw.placeThing(45,114,paper);
   }
+  if (DU.merchants["ashbourne"].stock[6].sid === SPELL_CONFUSION_ID) {
+    DU.merchants["ashbourne"].stock[6].sid = SPELL_EMPOWER_ID;
+    console.log("Updated Ashbourne's stock.");
+  }
 
   ProcessAmbientNoise(PC.getHomeMap().getTile(PC.getx(),PC.gety()));
   startScheduler();
