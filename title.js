@@ -139,17 +139,17 @@ function page_pre_zero() {
       let changelog = document.getElementById("changelog");
       if (changelog) {
         changelog.innerHTML = `<p class='charcreate'>CHANGELOG:</p><ul style='margin-top:0px>`;
-        changelog.innerHTML += `<li class='changelog'>Disabled (W)ait on combat maps</li>`;
-        changelog.innerHTML += `<li class='changelog'>Asharden no longer spawns on the wrong floor at certain hours</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed the cave you couldn't step on the entrance to</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed bug preventing Toshin puzzle from working</li>`;
-        changelog.innerHTML += `<li class='changelog'>Victory music now plays if the last enemy on a combat map flees</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed bug causing Coll to not switch AIs when he is supposed to open a door</li>`;
-        changelog.innerHTML += `<li class='changelog'>Improved zstats pages, added a detailed stats page and numbers to effects page</li>`;
-        changelog.innerHTML += `<li class='changelog'>Lord Olcranns now correctly can shoot lightning bolts like their lesser cousins do</li>`;
-        changelog.innerHTML += `<li class='changelog'>Added "Clumsy" as an effect if your armor is too heavy for you</li>`;
-        changelog.innerHTML += `<li class='changelog'>Trevor won't accept the token if he's not at work</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed a couple graphics glitches</li>`;
+        changelog.innerHTML += `<li class='changelog'>Bugfix to my stats screen revamp</li>`;
+        changelog.innerHTML += `<li class='changelog'>Text for getting swept over a waterfall acknowledges that you aren't in the water</li>`;
+        changelog.innerHTML += `<li class='changelog'>Smite can no longer hit allies</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed destination of ladder in Shadow</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed merchant in Consolation offering one spell but giving you a different one</li>`;
+        changelog.innerHTML += `<li class='changelog'>Thrones are "a throne" rather than "the throne"</li>`;
+        changelog.innerHTML += `<li class='changelog'>"Learn Infusion" quest less wordy in the log</li>`;
+        changelog.innerHTML += `<li class='changelog'>In the tutorial, you will know which potion is which, regardless of your choice for the main game</li>`;
+        changelog.innerHTML += `<li class='changelog'>Made roguelike potion colors actually, you know, work. I hope</li>`;
+//        changelog.innerHTML += `<li class='changelog'></li>`;
+//        changelog.innerHTML += `<li class='changelog'></li>`;
         changelog.innerHTML += `</ul>`;
       }
     }

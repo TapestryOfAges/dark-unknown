@@ -1,4 +1,15 @@
 
+v 0.12.3
+ * Bugfix to my stats screen revamp
+ * Text for getting swept over a waterfall acknowledges that you aren't in the water
+ * Smite can no longer hit allies
+ * Fixed destination of ladder in Shadow
+ * Fixed merchant in Consolation offering one spell but giving you a different one
+ * Thrones are "a throne" rather than "the throne"
+ * "Learn Infusion" quest less wordy in the log
+ * In the tutorial, you will know which potion is which, regardless of your choice for the main game
+ * Made roguelike potion colors actually, you know, work. I hope
+
 v 0.12.2
  * Trevor won't accept the token if he's not at work
  * Fixed a bug that could cause graphics glitches on reloads
