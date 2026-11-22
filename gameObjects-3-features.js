@@ -3614,7 +3614,7 @@ function ThroneTile() {
 	this.spriteyoffset = -85*32;
 	this.passable = MOVE_ETHEREAL + MOVE_FLY + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
-	this.prefix = "the";
+	this.prefix = "a";
 	this.desc = "throne";
   this.peerview = DARK_FADED_WOOD_PEER;
 
@@ -7367,7 +7367,11 @@ function DescendWaterfall(who, waterfall) {
   } else {
     DUPlaySound("sfx_waterfall_fall");
     if (who === PC) {
-      maintext.addText("You are swept down the waterfall!");
+      if (PC.getSpellEffectsByName("Levitate")) {
+        maintext.addText("The violently churning water sweeps you along with it, and you are drawn over the falls!");
+      } else {
+        maintext.addText("You are swept down the waterfall!");
+      }
     }
     who.dealDamage(Dice.roll("1d10"));
     let topfeature = who.getHomeMap().getTile(who.getx(),who.gety()).getTopFeature();
@@ -8049,12 +8053,6 @@ WalkOnFulcrum2Tile.prototype.walkon = function(who) {
       f2.moveThing(newx,f2npc[i].gety(),f2npc[i]);
     }
     // flip NPCs and features across the energy line
-
-    if (PC.checkInventory("DecorativeArmor") || PC.checkInventory("ExoticArmor")) { 
-      let smith = f3.getTile(10,10).getTopNPC();
-      f3.deleteThing(smith);
-      DUTime.removeEntityFrom(smith);
-    }
     
   } else {
     let feas = mymap.getTile(15,21).getFeatures();
@@ -8062,6 +8060,12 @@ WalkOnFulcrum2Tile.prototype.walkon = function(who) {
       mymap.deleteThing(feas[i]);
     }
   }
+  if (PC.checkInventory("DecorativeArmor") || PC.checkInventory("ExoticArmor")) { 
+    let smith = f3.getTile(10,10).getTopNPC();
+    f3.deleteThing(smith);
+    DUTime.removeEntityFrom(smith);
+  }
+
   return {msg:""};
 }
 
@@ -16707,6 +16711,15 @@ PotionItemObject.prototype.getDesc = function() {
   }
 }
 
+PotionItemObject.prototype.getPrefix = function() {
+  if (DU.gameflags.getFlag("potionsrevealed") == "roguelike") {
+    if (DU.gameflags.potionmatrix[this.getName()].desc.toLower().includes("orange")) { return "an"; }
+    else { return "a"; }
+  } else {
+    return this.prefix;
+  }
+}
+
 PotionItemObject.prototype.getGraphicArray = function(getbase) {
 	let returnGraphic = this.graphic;
   let returnOverlay = this.overlay;
@@ -16770,7 +16783,7 @@ GreenPotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowsgreenpotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "A Poison potion.";
   }
-  return "A green potion.";
+  return `${this.getPrefix().toUpper()} ${this.getDesc()}.`;
 }
 
 GreenPotionTile.prototype.flamed = function() {
@@ -16882,7 +16895,7 @@ DarkGreenPotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowsdarkgreenpotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "An Alacrity potion.";
   }
-  return "A dark green potion.";
+  return `${this.getPrefix().toUpper()} ${this.getDesc()}.`;
 }  
 
 DarkGreenPotionTile.prototype.use = function(who) {
@@ -16913,7 +16926,7 @@ SilverPotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowssilverpotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "A Strength potion.";
   }
-  return "A silver potion.";
+  return `${this.getPrefix().toUpper()} ${this.getDesc()}.`;
 }
 
 SilverPotionTile.prototype.use = function(who) {
@@ -16958,7 +16971,7 @@ PinkPotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowspinkpotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "A Dexterity potion.";
   }
-  return "A pink potion.";
+  return `${this.getPrefix().toUpper()} ${this.getDesc()}.`;
 }
 
 PinkPotionTile.prototype.use = function(who) {
@@ -17003,7 +17016,7 @@ GreyPotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowsgreypotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "An Intelligence potion.";
   }
-  return "A grey potion.";
+  return `${this.getPrefix().toUpper()} ${this.getDesc()}.`;
 }
 
 GreyPotionTile.prototype.use = function(who) {
@@ -17049,7 +17062,7 @@ BrownPotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowsbrownpotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "A Greater Mana potion.";
   }
-  return "A milky purple potion.";
+  return `${this.getPrefix().toUpper()} ${this.getDesc()}.`;
 }
 
 BrownPotionTile.prototype.use = function(who) {
@@ -17082,7 +17095,7 @@ RedPotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowsredpotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "A Cure potion.";
   }
-  return "A red potion.";
+  return `${this.getPrefix().toUpper()} ${this.getDesc()}.`;
 }
 
 RedPotionTile.prototype.use = function(who) {
@@ -17116,7 +17129,7 @@ WhitePotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowswhitepotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "A Light potion.";
   }
-  return "A white potion.";
+  return `${this.getPrefix().toUpper()} ${this.getDesc()}.`;
 }
 
 WhitePotionTile.prototype.use = function(who) {
@@ -17147,7 +17160,7 @@ YellowPotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowsyellowpotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "A Lesser Heal potion.";
   }
-  return "A yellow potion.";
+  return `${this.getPrefix().toUpper()} ${this.getDesc()}.`;
 }
 
 YellowPotionTile.prototype.use = function(who) {
@@ -17178,7 +17191,7 @@ BurntUmberPotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowsburntumberpotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "A Resist Magic potion.";
   }
-  return "A burnt umber potion.";
+  return `${this.getPrefix().toUpper()} ${this.getDesc()}.`;
 }
 
 BurntUmberPotionTile.prototype.use = function(who) {
@@ -17215,7 +17228,7 @@ PurplePotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowspurplepotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "A Protection potion.";
   }
-  return "A purple potion.";
+  return `${this.getPrefix().toUpper()} ${this.getDesc()}.`;
 }
 
 PurplePotionTile.prototype.use = function(who) {
@@ -17246,7 +17259,7 @@ BlackPotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowsblackpotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "A Bless potion.";
   }
-  return "A black potion.";
+  return `${this.getPrefix().toUpper()} ${this.getDesc()}.`;
 }
 
 BlackPotionTile.prototype.use = function(who) {
@@ -17277,7 +17290,7 @@ BluePotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowsbluepotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "A Heal potion.";
   }
-  return "A blue potion.";
+  return `${this.getPrefix().toUpper()} ${this.getDesc()}.`;
 }
 
 BluePotionTile.prototype.use = function(who) {
@@ -17308,7 +17321,7 @@ DeepBluePotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowsdeepbluepotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "An Ethereal Vision potion.";
   }
-  return "A deep blue potion.";
+  return `${this.getPrefix().toUpper()} ${this.getDesc()}.`;
 }
 
 DeepBluePotionTile.prototype.use = function(who) {
@@ -17338,7 +17351,7 @@ OrangePotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowsorangepotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "A Mana potion.";
   }
-  return "An orange potion.";
+  return `${this.getPrefix().toUpper()} ${this.getDesc()}.`;
 }
 
 OrangePotionTile.prototype.use = function(who) {
@@ -17374,7 +17387,7 @@ TanPotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowstanpotion") || (DU.gameflags.getFlag("potionsrevealed") == "all")) {
     return "An Iron Flesh potion.";
   }
-  return "A tan potion.";
+  return `${this.getPrefix().toUpper()} ${this.getDesc()}.`;
 }
 
 TanPotionTile.prototype.use = function(who) {
