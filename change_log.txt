@@ -1,4 +1,10 @@
 
+v 0.12.4
+ * Fixed bug where The Smith would sometimes remember he had given you something across reloads
+ * Fixed stupid typo in previous version's roguelike potions fix
+ * Animals no longer leave blood splotches
+ * The King now asks if you need healing when he greets you, if he doesn't have something more important to say
+
 v 0.12.3
  * Bugfix to my stats screen revamp
  * Text for getting swept over a waterfall acknowledges that you aren't in the water
