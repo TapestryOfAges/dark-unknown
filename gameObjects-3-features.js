@@ -7901,19 +7901,6 @@ function WalkOnFulcrumTile() {
 }
 WalkOnFulcrumTile.prototype = new FeatureObject();
 
-function WalkOnFulcrumTile() {
-	this.name = "WalkOnFulcrum";
-  this.graphic = "static.gif";
-  this.spritexoffset = -4*32;
-  this.spriteyoffset = -50*32;
-	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
-	this.blocklos = 0;
-	this.prefix = "an";
-	this.desc = "invisible walkon tile";
-	this.invisible = 1;
-}
-WalkOnFulcrumTile.prototype = new FeatureObject();
-
 WalkOnFulcrumTile.prototype.walkon = function(who) {
   let retval = { msg: "" };
   if (who !== PC) { return retval; }
@@ -7988,6 +7975,8 @@ WalkOnFulcrumTile.prototype.walkon = function(who) {
       if (beam) {
         mymap.moveThing(xi,y,beam);
         retval["msg"] = "A mystical beam suddenly appears between the eyes of the two guardians!";
+      } else {
+        console.log("...Ran out of beams??");
       }
     }
   }
@@ -16713,7 +16702,7 @@ PotionItemObject.prototype.getDesc = function() {
 
 PotionItemObject.prototype.getPrefix = function() {
   if (DU.gameflags.getFlag("potionsrevealed") == "roguelike") {
-    if (DU.gameflags.potionmatrix[this.getName()].desc.toLower().includes("orange")) { return "an"; }
+    if (DU.gameflags.potionmatrix[this.getName()].desc.toLowerCase().includes("orange")) { return "an"; }
     else { return "a"; }
   } else {
     return this.prefix;
