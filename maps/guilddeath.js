@@ -85,6 +85,7 @@ mappages["fulcrum1"].features[44] = {name : 'LadderDown', x : 15, y : 21, enterm
 mappages["fulcrum1"].features[45] = {name : 'LadderDown', x : 17, y : 21, entermap : 'fulcrum2', enterx : 17, entery : 21};
 mappages["fulcrum1"].features[46] = {name : 'WalkOnFulcrum2', x : 15, y : 21};
 mappages["fulcrum1"].features[47] = {name : 'WalkOnFulcrum2', x : 17, y : 21};
+mappages["fulcrum1"].features[48] = {name : 'MysticBeam', x : 0, y : 0};
 
 
 mappages["fulcrum1"].npcs = [];
@@ -171,7 +172,7 @@ mappages["fulcrum2"].terrain[31] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK
 
 mappages["fulcrum2"].features = [];
 mappages["fulcrum2"].features[0] = {name : 'LadderUp', x : 17, y : 21, entermap : 'fulcrum1', enterx : 17, entery : 21};
-mappages["fulcrum2"].features[1] = {name : 'LadderUp', x : 15, y : 21, entermap : 'fulcrum', enterx : 15, entery : 21};
+mappages["fulcrum2"].features[1] = {name : 'LadderUp', x : 15, y : 21, entermap : 'fulcrum1', enterx : 15, entery : 21};
 mappages["fulcrum2"].features[2] = {name : 'LadderDown', x : 23, y : 4, entermap : 'fulcrum3', enterx : 9, entery : 5};
 mappages["fulcrum2"].features[3] = {name : 'LadderDown', x : 9, y : 4, entermap : 'fulcrum3', enterx : 9, entery : 5};
 mappages["fulcrum2"].features[4] = {name : 'Chest', x : 14, y : 8};
@@ -263,7 +264,7 @@ mappages["fulcrum3"].features[9] = {name : 'Well', x : 7, y : 10};
 
 
 mappages["fulcrum3"].npcs = [];
-mappages["fulcrum3"].npcs[0] = {name : 'TinkerVillagerNPC', x : 10, y : 10, PeaceAI: 'fulcrumSmith', NPCName: 'Smith', Conversation: 'smith', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"Plate2","head":"DarkOpenHelm","back":"","offhand":"OffhandGauntlet","cloak":"","mainhand":"HammerPale","realhead":"DarkOpenHelm"}'};
+mappages["fulcrum3"].npcs[0] = {name : 'TinkerVillagerNPC', x : 10, y : 10, Desc: 'automata', PeaceAI: 'fulcrumSmith', NPCName: 'Smith', Conversation: 'smith', Gender: 'male', NPCBand: '0', skintone: 1, wornlayers: '{"body":"Plate2","head":"DarkOpenHelm","back":"","offhand":"OffhandGauntlet","cloak":"","mainhand":"HammerPale","realhead":"DarkOpenHelm"}'};
 
 
 mappages["fulcrum3"].desc = "";
