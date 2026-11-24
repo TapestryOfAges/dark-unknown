@@ -154,6 +154,7 @@ foreach my $line (<$npcdoc>) {
   } else {
     print $out "  this.resists = {};\n";
   }
+  print $out "  this.flags = {};\n";
   if ($fields[34]) {
     print $out "  this.special = '$fields[34]';\n";
   }

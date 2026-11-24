@@ -73,7 +73,7 @@ function NPCObject() {
 	this.aggro = 0;
 	this.npcband = 0;
 	this.wait;
-  this.flags = {};
+//  this.flags = {};
   this.initOverride = 0;
   this.skintone = 1;  
   this.hitbyspell = 0;  // did the PC hit me with spells? Used for Ring of Ethereal Focus.
