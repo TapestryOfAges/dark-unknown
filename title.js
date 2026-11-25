@@ -139,15 +139,15 @@ function page_pre_zero() {
       let changelog = document.getElementById("changelog");
       if (changelog) {
         changelog.innerHTML = `<p class='charcreate'>CHANGELOG:</p><ul style='margin-top:0px>`;
-        changelog.innerHTML += `<li class='changelog'>Bugfix to my stats screen revamp</li>`;
-        changelog.innerHTML += `<li class='changelog'>Text for getting swept over a waterfall acknowledges that you aren't in the water</li>`;
-        changelog.innerHTML += `<li class='changelog'>Smite can no longer hit allies</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed destination of ladder in Shadow</li>`;
-        changelog.innerHTML += `<li class='changelog'>Fixed merchant in Consolation offering one spell but giving you a different one</li>`;
-        changelog.innerHTML += `<li class='changelog'>Thrones are "a throne" rather than "the throne"</li>`;
-        changelog.innerHTML += `<li class='changelog'>"Learn Infusion" quest less wordy in the log</li>`;
-        changelog.innerHTML += `<li class='changelog'>In the tutorial, you will know which potion is which, regardless of your choice for the main game</li>`;
-        changelog.innerHTML += `<li class='changelog'>Made roguelike potion colors actually, you know, work. I hope</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed bug where The Smith would sometimes remember he had given you something across reloads</li>`;
+        changelog.innerHTML += `<li class='changelog'>Fixed stupid typo in previous version's roguelike potions fix</li>`;
+        changelog.innerHTML += `<li class='changelog'>Animals no longer leave blood splotches</li>`;
+        changelog.innerHTML += `<li class='changelog'>The King now asks if you need healing when he greets you, if he doesn't have something more important to say</li>`;
+        changelog.innerHTML += `<li class='changelog'>Finished drafts of new versions of both Almanac and Player Reference Guide</li>`;
+//        changelog.innerHTML += `<li class='changelog'></li>`;
+//        changelog.innerHTML += `<li class='changelog'></li>`;
+//        changelog.innerHTML += `<li class='changelog'></li>`;
+//        changelog.innerHTML += `<li class='changelog'></li>`;
 //        changelog.innerHTML += `<li class='changelog'></li>`;
 //        changelog.innerHTML += `<li class='changelog'></li>`;
         changelog.innerHTML += `</ul>`;
