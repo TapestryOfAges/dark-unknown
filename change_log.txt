@@ -4,6 +4,7 @@ v 0.12.4
  * Fixed stupid typo in previous version's roguelike potions fix
  * Animals no longer leave blood splotches
  * The King now asks if you need healing when he greets you, if he doesn't have something more important to say
+ * Finished drafts of new versions of both Almanac and Player Reference Guide
 
 v 0.12.3
  * Bugfix to my stats screen revamp
