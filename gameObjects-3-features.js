@@ -13062,7 +13062,7 @@ OrbStrengthTile.prototype.use = function(who) {
   let retval = {fin:1};
   retval["input"] = "&gt;";
   if (DU.gameflags.getFlag(this.getHomeMap().getName() + "_StrOrb")) {
-    retval["txt"] = "The orb shutters, and then crumbles to dust.";
+    retval["txt"] = "The orb shatters, and then crumbles to dust.";
     DUPlaySound("sfx_break_glass");
     this.getHomeMap().deleteThing(this);
     return retval;
@@ -13092,7 +13092,7 @@ OrbDexterityTile.prototype.use = function(who) {
   let retval = {fin:1};
   retval["input"] = "&gt;";
   if (DU.gameflags.getFlag(this.getHomeMap().getName() + "_DexOrb")) {
-    retval["txt"] = "The orb shutters, and then crumbles to dust.";
+    retval["txt"] = "The orb shatters, and then crumbles to dust.";
     this.getHomeMap().deleteThing(this);
     DUPlaySound("sfx_break_glass");
     return retval;
@@ -13123,7 +13123,7 @@ OrbIntelligenceTile.prototype.use = function(who) {
   let retval = {fin:1};
   retval["input"] = "&gt;";
   if (DU.gameflags.getFlag(this.getHomeMap().getName() + "_IntOrb")) {
-    retval["txt"] = "The orb shutters, and then crumbles to dust.";
+    retval["txt"] = "The orb shatters, and then crumbles to dust.";
     this.getHomeMap().deleteThing(this);
     DUPlaySound("sfx_break_glass");
     return retval;
@@ -13153,7 +13153,7 @@ OrbExperienceTile.prototype.use = function(who) {
   let retval = {fin:1};
   retval["input"] = "&gt;";
   if (DU.gameflags.getFlag(this.getHomeMap().getName() + "_ExpOrb")) {
-    retval["txt"] = "The orb shutters, and then crumbles to dust.";
+    retval["txt"] = "The orb shatters, and then crumbles to dust.";
     this.getHomeMap().deleteThing(this);
     DUPlaySound("sfx_break_glass");
     return retval;
