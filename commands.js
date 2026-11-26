@@ -2108,7 +2108,7 @@ function PerformSearch(who) {
   let searched = localacre.features.getTop();
   let retval = {fin:1};
   if (!searched) {
-		retval["txt"] = "Search: There is nothing there.";
+		retval["txt"] = "Search: You find nothing there.";
 		retval["fin"] = 0;
 		return retval;
 	}
