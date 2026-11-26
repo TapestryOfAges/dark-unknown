@@ -604,7 +604,7 @@ function PushOff(what) {
     if ((dir >= 1) && (dir <= 3)) { destx += 1; }
     if ((dir >= 5) && (dir <= 7)) { destx -= 1; }
 
-    if (tile.canMove(MOVE_WALK, 1)) {   // can walk but ignore NPCs there- this is a rare 
+    if (tile.canMoveHere(MOVE_WALK, 1).canmove) {   // can walk but ignore NPCs there- this is a rare 
                                         // circumstance where I will stack NPCs
       themap.moveThing(destx, desty, what);
       DebugWrite("combat", "Moving NPC off of exit, in direction " + dir + "<br />");
