@@ -19105,7 +19105,7 @@ function NaturalArmorTile() {
   this.name="NaturalArmor";
   this.defense = 0;
   this.absorb = 0;
-	this.graphic = "armorweapons.gif";
+	this.graphic = "static.gif";
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "0";
   this.desc = "natural armor";
@@ -19677,7 +19677,7 @@ NaturalWeaponTile.prototype = new WeaponObject();
 function MissileWeaponObject() {
 	this.dexReq = 10;
 	this.range = 14;
-	this.ammographic = "ammo.gif";
+	this.ammographic = "static.gif";
 	this.ammoxoffset = "0";
 	this.ammoyoffset = "0";
 	this.directionalammo = 0;
@@ -19732,7 +19732,7 @@ function SpellWeaponTile() {
 	this.name = "SpellWeapon";
 	this.damage = "1d2+0";
 	this.strdamage = 1/3;
-	this.graphic = "armorweapons.gif";
+	this.graphic = "static.gif";
 	this.spritexoffset = "-224";
 	this.spriteyoffset = "-32";
 	this.prefix = "your";
@@ -19939,7 +19939,7 @@ MagicAxeTile.prototype.onGet = function(who) {
 function NaturalMissileWeaponTile() {
 	this.name = "NaturalMissileWeapon";
 	this.damage = "1d12+1";
-	this.graphic = "armorweapons.gif";
+	this.graphic = "static.gif";
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "-64";
 	this.desc = "natural missile weapon";
