@@ -2465,7 +2465,7 @@ let HumanParts = {
   BlueTunic: { src: "humanparts.gif", type: "body", spritex: 0, spritey: -18*32, frames: 5 },
   OrangeTunic2: { src: "humanparts.gif", type: "body", spritex: 0, spritey: -19*32, frames: 5 },
   GreenTunic: { src: "humanparts.gif", type: "body", spritex: 0, spritey: -20*32, frames: 5 },
-  Gambison: { src: "humans.png", type: "body", spritex: 0, spritey: -23*32, frames: 2 },
+//  Gambison: { src: "humans.png", type: "body", spritex: 0, spritey: -23*32, frames: 2 },
   PlateWhiteTabard: { src: "humanparts.gif", type: "body", spritex: 0, spritey: -29*32, frames: 5 },
   PlateCheckeredTabard: { src: "humanparts.gif", type: "body", spritex: 0, spritey: -30*32, frames: 5 },
   LeatherArmor: { src: "humanparts.gif", type: "body", spritex: 0, spritey: -31*32, frames: 5 },
