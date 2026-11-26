@@ -1,4 +1,12 @@
 
+v 0.12.5
+ * Trying to use a ladder/stair/etc when something is standing on the destination now successfully pushes them off
+ * Some textual fixes
+ * Grotto beginning lever cannot be used more than once
+ * Smite's check for friendlies works even if the caster is an enemy
+ * Empower no longer works with extra reagents in the mortar
+ * You can no longer put more reagents in the mortar than the UI can fix
+
 v 0.12.4
  * Fixed bug where The Smith would sometimes remember he had given you something across reloads
  * Fixed stupid typo in previous version's roguelike potions fix
