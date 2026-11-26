@@ -144,7 +144,7 @@ function page_pre_zero() {
         changelog.innerHTML += `<li class='changelog'>Animals no longer leave blood splotches</li>`;
         changelog.innerHTML += `<li class='changelog'>The King now asks if you need healing when he greets you, if he doesn't have something more important to say</li>`;
         changelog.innerHTML += `<li class='changelog'>Finished drafts of new versions of both Almanac and Player Reference Guide</li>`;
-//        changelog.innerHTML += `<li class='changelog'></li>`;
+        changelog.innerHTML += `<li class='changelog'>Standardized the two possible responses when Searching and not finding anything, to prevent spoilers</li>`;
 //        changelog.innerHTML += `<li class='changelog'></li>`;
 //        changelog.innerHTML += `<li class='changelog'></li>`;
 //        changelog.innerHTML += `<li class='changelog'></li>`;
@@ -1644,9 +1644,12 @@ tv.ExecuteAttract = function(frame) {
       dur = 3000;
       break;
     case 1:
-      document.getElementById("am12x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      let protag = tv.BuildAttractHuman("protag");
+      console.log(protag);
+      document.getElementById("am12x8").innerHTML = protag;
       break;
     case 2:
+      PleaseExplode();
       document.getElementById("am12x8").innerHTML = ``;
       document.getElementById("am13x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
       tv.HideTiles("",10,7,10,10);
@@ -2748,15 +2751,69 @@ tv.AnimateTile = function(divid, spritex, animlength, mintime, maxtime, animtype
 
 tv.BuildAttractHuman = function(which) {
   // options are civ, civ2, fighter
+  let humandiv = `<div id="${which}id" style="position:absolute; left:0; top:0; width:32; height:32">`;
   if (which === "civ") {
-
+    humandiv += `<div id="${which}id1" style="position:absolute; left:0; top:0; width:32; height:32; background-graphic('graphics/humanparts.gif'); background-position: 0px ${-12*32}px"></div>`;
+    humandiv += `<div id="${which}id2" style="position:absolute; left:0; top:0; width:32; height:32; background-graphic('graphics/humanparts.gif'); background-position: 0px ${-43*32}px"></div>`;
+    humandiv += `<div id="${which}id3" style="position:absolute; left:0; top:0; width:32; height:32; background-graphic('graphics/humanparts.gif'); background-position: 0px ${-59*32}px"></div>`;
+    humandiv += `<div id="${which}id4" style="position:absolute; left:0; top:0; width:32; height:32; background-graphic('graphics/humanparts.gif'); background-position: 0px ${-60*32}px"></div>`;
   } else if (which === "civ2") {
-
+    humandiv += `<div id="${which}id1" style="position:absolute; left:0; top:0; width:32; height:32; background-graphic('graphics/humanparts.gif'); background-position: 0px ${-18*32}px"></div>`;
+    humandiv += `<div id="${which}id2" style="position:absolute; left:0; top:0; width:32; height:32; background-graphic('graphics/humanparts.gif'); background-position: 0px ${-44*32}px"></div>`;
+    humandiv += `<div id="${which}id3" style="position:absolute; left:0; top:0; width:32; height:32; background-graphic('graphics/humanparts.gif'); background-position: 0px ${-61*32}px"></div>`;
+    humandiv += `<div id="${which}id4" style="position:absolute; left:0; top:0; width:32; height:32; background-graphic('graphics/humanparts.gif'); background-position: 0px ${-62*32}px"></div>`;
   } else if (which === "fighter") {
-
+    humandiv += `<div id="${which}id1" style="position:absolute; left:0; top:0; width:32; height:32; background-graphic('graphics/humanparts.gif'); background-position: 0px ${-32*32}px"></div>`;
+    humandiv += `<div id="${which}id2" style="position:absolute; left:0; top:0; width:32; height:32; background-graphic('graphics/humanparts.gif'); background-position: 0px ${-51*32}px"></div>`;
+    humandiv += `<div id="${which}id3" style="position:absolute; left:0; top:0; width:32; height:32; background-graphic('graphics/humanparts.gif'); background-position: 0px ${-59*32}px"></div>`;
+    humandiv += `<div id="${which}id4" style="position:absolute; left:0; top:0; width:32; height:32; background-graphic('graphics/humanparts.gif'); background-position: 0px ${-60*32}px"></div>`;
+  } else if (which === "protag") {
+    humandiv += `<div id="${which}id1" style="position:absolute; left:0; top:0; width:32; height:32; background-graphic('graphics/humanparts.gif'); background-position: 0px ${-31*32}px"></div>`;
+    humandiv += `<div id="${which}id2" style="position:absolute; left:0; top:0; width:32; height:32; background-graphic('graphics/humanparts.gif'); background-position: 0px ${-46*32}px"></div>`;
+    humandiv += `<div id="${which}id3" style="position:absolute; left:0; top:0; width:32; height:32; background-graphic('graphics/humanparts.gif'); background-position: 0px ${-71*32}px"></div>`;
+    humandiv += `<div id="${which}id4" style="position:absolute; left:0; top:0; width:32; height:32; background-graphic('graphics/humanparts.gif'); background-position: 0px ${-60*32}px"></div>`;
+  } else if (which === "sit") {
+    // facing east
+    humandiv += `<div id="${which}id1" style="position:absolute; left:0; top:0; width:32; height:32; background-graphic('graphics/humanseated.gif'); background-position: ${-4*32}px ${-32*32}px"></div>`;
+    humandiv += `<div id="${which}id2" style="position:absolute; left:0; top:0; width:32; height:32; background-graphic('graphics/humanseated.gif'); background-position: ${-4*32}px ${-7*32}px"></div>`;
+    humandiv += `<div id="${which}id3" style="position:absolute; left:0; top:0; width:32; height:32; background-graphic('graphics/humanseated.gif'); background-position: ${-4*32}px ${-2*32}px"></div>`;
   } else {
     alert("Unknown human type.");
   }
+  humandiv += `</div>`;
+  return humandiv;
+}
+
+tv.animateAttractHuman = function(which) {
+  let segments = [ document.getElementById(which+"id1") ];
+  if (!segments[0]) { return; }
+  segments[1] = document.getElementById(which+"id2");
+  segments[2] = document.getElementById(which+"id3");
+  if (which !== "sit") {
+    segments[3] = document.getElementById(which+"id4");
+  }
+
+  let numframes = 5;
+  let startframes = [0,0,0,0];
+  if (which === "sit") { 
+    numframes = 2; 
+    // set startframes for each segment
+  }
+  
+  let newframe = Math.floor(Math.random() * numframes);
+  segments[0].style.backgroundPositionX = startframe + -1*newframe*32;
+  segments[1].style.backgroundPositionX = startframe + -1*newframe*32;
+  segments[2].style.backgroundPositionX = startframe + -1*newframe*32;
+  if (which !== "sit") {
+    segments[3].style.backgroundPositionX = startframe + -1*newframe*32;
+  }
+
+  let nexttime = Math.floor(Math.random() * 125) + 200;
+  setTimeout(function() { 
+    if (tv.animateAttractHuman) {
+      tv.animateAttractHuman(which)
+    }
+  }, nexttime);
 }
 
 tv.EnterGame = function(tut) {
