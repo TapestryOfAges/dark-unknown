@@ -2811,7 +2811,11 @@ magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID].executeSpell = function(caster, infused
     if (foes.hasOwnProperty("attachedTo")) { foes.splice(i,1); } 
 
     // remove non-enemies
-    if (foes.getAttitude() !== "hostile") { foes.splice(i,1); }
+    if (caster.getAttitude() === "hostile") { 
+      if (foes.getAttitude() !== "friendly") { foes.splice(i,1); }
+    } else {
+      if (foes.getAttitude() !== "hostile") { foes.splice(i,1); }
+    }
   }
   
   if (!foes[0]) {
@@ -3788,6 +3792,10 @@ function EmpowerReagentCommands(cmd) {
       } else { reglist.push(reagents[i].getName()); }
     }
     if ((targetCursor.invy === 0) || (targetCursor.invy === 1)) {
+      if (mortlist.length >=6) {
+        retval["txt"] = "Your mortar is too full to add any further reagents.";
+        return retval;
+      }
       let idx = targetCursor.invx + 6*targetCursor.invy;
       targetCursor.mortar[reglist[idx]] = 1;
       return retval;
@@ -3808,7 +3816,7 @@ function EmpowerReagentCommands(cmd) {
       failuretext.push(`You cease casting the spell before you begin mixing the reagents together. You will need to consider a different combination of materials.`);
       let successtext = [];
       if (tgt.getName() === "PerfectRuby") {
-        if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["Mistletoe"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["VolcanicAsh"] && targetCursor.mortar["FrozenSunlight"]) {
+        if (CheckEmpowerReagents("PerfectRuby")) {
           if (mortar.getName() !== "CrystalMortar") {
             retval["fin"] = 2;
             if (PC.checkInventory("CrystalMortar")) {
@@ -3864,7 +3872,7 @@ function EmpowerReagentCommands(cmd) {
           return retval;
         }
       } else if (tgt.getName() === "YewWand") {
-        if (targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["LightningWood"]) {
+        if (CheckEmpowerReagents("YewWand")) {
           successtext.push(`You place the wand in the center of the pentagram, and then begin the incantation.`);
           successtext.push(`You crush the lightning wood and spider silk together, and feel the magic build.`);
           successtext.push(`The energy flows into the wand, which shudders and then glows with a new fierceness.`);
@@ -3891,7 +3899,7 @@ function EmpowerReagentCommands(cmd) {
           return retval;
         } 
       } else if (tgt.getName() === "DecorativeArmor") {
-        if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["BindersMoss"]) {
+        if (CheckEmpowerReagents("DecorativeArmor")) {
           successtext.push(`You pile the suit of armor in front of you, on the pentagram, and then begin the incantation.`);
           successtext.push(`You crush the mandrake together with the moss and the spider silk, and feel the magic build.`);
           successtext.push(`The power flows from the mortar in your hands into the armor. You can see it bind to the metal, glowing faintly, strengthening and protecting.`);
@@ -3911,7 +3919,7 @@ function EmpowerReagentCommands(cmd) {
           return retval;
         }
       } else if (tgt.getName() === "Voidstone") {
-        if (targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["CoralVoid"] && targetCursor.mortar["BottledEther"] && targetCursor.mortar["MandrakeRoot"]) {
+        if (CheckEmpowerReagents("Voidstone")) {
           successtext.push(`You place the piece of voidstone onto the pentagram, and begin the incantation.`);
           successtext.push(`You crush the silk and coral void together, and carefully pour the bottled ether atop the mixture.`);
           successtext.push(`Finally, you use the mixture to inscribe a rune onto the voidstone.`);
@@ -3936,7 +3944,7 @@ function EmpowerReagentCommands(cmd) {
         }
       } else if (tgt.getName() === "UnenchantedSword") {
         successtext.push(`You carefully place the repaired sword into the center of the pentagram, and begin the incancation.`);
-        if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["LightningWood"]) {
+        if (CheckEmpowerReagents("UnenchantedSword1")) {
           successtext.push(`You crush the mandrake together with the spider silk and the lightning blasted wood, and feel the magic build.`);
           successtext.push(`In a bolt, the power strikes the sword, which begins to crackle and shake. Wisps of lightning appear and disappear, chasing each other around the blade.`);
           successtext.push(`<span class='sysconv'>You have obtained: Lightning Sword.</span>`);
@@ -3956,7 +3964,7 @@ function EmpowerReagentCommands(cmd) {
           retval["fin"] = 2;
           retval["outcome"] = successtext;
           return retval;
-        } else if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["Nightshade"]) {
+        } else if (CheckEmpowerReagents("UnenchantedSword2")) {
           successtext.push(`You crush the mandrake together with the spider silk and the nightshade, and feel the magic build.`);
           successtext.push(`Wisps of green smoke appear before you and seem to be drawn into the sword blade. The metal takes on a green, oily sheen, though it is dry to the touch.`);
           successtext.push(`<span class='sysconv'>You have obtained: Sword of Venom.</span>`);
@@ -3976,7 +3984,7 @@ function EmpowerReagentCommands(cmd) {
           retval["fin"] = 2;
           retval["outcome"] = successtext;
           return retval;
-        } else if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["BindersMoss"]) {
+        } else if (CheckEmpowerReagents("UnenchantedSword3")) {
           successtext.push(`You crush the mandrake together with the spider silk and the moss, and feel the magic build.`);
           successtext.push(`Motes of light float out of the mortar and begin orbiting closely around the blade of the sword.`);
           successtext.push(`<span class='sysconv'>You have obtained: Sword of Defense.</span>`);
@@ -3996,7 +4004,7 @@ function EmpowerReagentCommands(cmd) {
           retval["fin"] = 2;
           retval["outcome"] = successtext;
           return retval;
-        } else if (targetCursor.mortar["MandrakeRoot"] && targetCursor.mortar["SpiderSilk"] && targetCursor.mortar["VolcanicAsh"]) {
+        } else if (CheckEmpowerReagents("UnenchantedSword4")) {
           successtext.push(`You crush the mandrake together with the spider silk and the volcanic ash, and feel the magic build.`);
           successtext.push(`There is a bright flash, and the blade of the sword alights with flame, which never ceases.`);
           successtext.push(`<span class='sysconv'>You have obtained: Flaming Sword.</span>`);
@@ -4024,6 +4032,30 @@ function EmpowerReagentCommands(cmd) {
     }
   }
   alert("How did you get here? EmpowerReagentCommands end.");
+}
+
+function CheckEmpowerReagents(which) {
+  
+  let recipes = {};
+
+  recipes.PerfectRuby = { MandrakeRoot: 1, Mistletoe: 1, SpiderSilk: 1, VolcanicAsh: 1, FrozenSunlight: 1};
+  recipes.YewWand = { SpiderSilk: 1, LightningWood: 1 };
+  recipes.DecorativeArmor = {MandrakeRoot:1, SpiderSilk: 1, BindersMoss: 1};
+  recipes.Voidstone = {SpiderSilk: 1, CoralVoid: 1, BottledEther: 1, MandrakeRoot: 1};
+  recipes.UnenchantedSword1 = { MandrakeRoot: 1, SpiderSilk: 1, LightningWood: 1};
+  recipes.UnenchantedSword2 = { MandrakeRoot: 1, SpiderSilk: 1, Nightshade: 1};
+  recipes.UnenchantedSword3 = { MandrakeRoot: 1, SpiderSilk: 1, BindersMoss: 1};
+  recipes.UnenchantedSword4 = { MandrakeRoot: 1, SpiderSilk: 1, VolcanicAsh: 1};
+
+  for (let reg in recipes[which]) {
+    if (!targetCursor.mortar[reg]) { return 0; }
+  }
+
+  for (let reg in targetCursor.mortar) {
+    if (!recipes[which][reg]) { return 0; }
+  }
+
+  return 1; 
 }
 
 // Explosion
