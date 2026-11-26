@@ -446,7 +446,7 @@ function clickmap(xval,yval) {
         let humanpartshtml = "<table><tr><td id='humandisplay' colspan='2' width='32' height='32' style='position:relative'>";
         let xpos = 0;
         let ypos = -104*32;
-        let hsrc = "humanparts.png";
+        let hsrc = "humanparts.gif";
         if (editnpcs.wornlayers.back) {
           xpos = HumanParts[editnpcs.wornlayers.back].spritex + editnpcs.wornlayernudges.back.x;
           ypos = HumanParts[editnpcs.wornlayers.back].spritey + editnpcs.wornlayernudges.back.y;
@@ -456,7 +456,7 @@ function clickmap(xval,yval) {
 
         xpos = 0;
         ypos = -104*32;
-        hsrc = "humanparts.png";
+        hsrc = "humanparts.gif";
         if (editnpcs.wornlayers.cloak) {
           xpos = HumanParts[editnpcs.wornlayers.cloak].spritex + editnpcs.wornlayernudges.cloak.x;
           ypos = HumanParts[editnpcs.wornlayers.cloak].spritey + editnpcs.wornlayernudges.cloak.y;
@@ -466,7 +466,7 @@ function clickmap(xval,yval) {
 
         xpos = 0;
         ypos = -104*32;
-        hsrc = "humanparts.png";
+        hsrc = "humanparts.gif";
         if (editnpcs.wornlayers.body) {
           xpos = HumanParts[editnpcs.wornlayers.body].spritex + editnpcs.wornlayernudges.body.x;
           ypos = HumanParts[editnpcs.wornlayers.body].spritey + editnpcs.wornlayernudges.body.y;
@@ -476,7 +476,7 @@ function clickmap(xval,yval) {
 
         xpos = 0;
         ypos = -104*32;
-        hsrc = "humanparts.png";
+        hsrc = "humanparts.gif";
         if (editnpcs.wornlayers.head) {
           xpos = HumanParts[editnpcs.wornlayers.head].spritex + editnpcs.wornlayernudges.head.x;
           ypos = HumanParts[editnpcs.wornlayers.head].spritey + editnpcs.wornlayernudges.head.y;
@@ -486,7 +486,7 @@ function clickmap(xval,yval) {
 
         xpos = 0;
         ypos = -104*32;
-        hsrc = "humanparts.png";
+        hsrc = "humanparts.gif";
         if (editnpcs.wornlayers.mainhand) {
           xpos = HumanParts[editnpcs.wornlayers.mainhand].spritex + editnpcs.wornlayernudges.mainhand.x;
           ypos = HumanParts[editnpcs.wornlayers.mainhand].spritey + editnpcs.wornlayernudges.mainhand.y;
@@ -496,7 +496,7 @@ function clickmap(xval,yval) {
 
         xpos = 0;
         ypos = -104*32;
-        hsrc = "humanparts.png";
+        hsrc = "humanparts.gif";
         if (editnpcs.wornlayers.offhand) {
           xpos = HumanParts[editnpcs.wornlayers.offhand].spritex + editnpcs.wornlayernudges.offhand.x;
           ypos = HumanParts[editnpcs.wornlayers.offhand].spritey + editnpcs.wornlayernudges.offhand.y;
