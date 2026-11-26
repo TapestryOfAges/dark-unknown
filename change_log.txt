@@ -5,6 +5,7 @@ v 0.12.4
  * Animals no longer leave blood splotches
  * The King now asks if you need healing when he greets you, if he doesn't have something more important to say
  * Finished drafts of new versions of both Almanac and Player Reference Guide
+ * Standardized the two possible responses when Searching and not finding anything, to prevent spoilers
 
 v 0.12.3
  * Bugfix to my stats screen revamp
