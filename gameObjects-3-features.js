@@ -11138,6 +11138,11 @@ function GrottoLeverOffTile() {
 GrottoLeverOffTile.prototype = new FeatureObject();
 
 GrottoLeverOffTile.prototype.use = function(who) {
+  if (who.getHomeMap().getName() === "grotto2") {
+    let retval = {};
+    retval["txt"] = "The lever does not budge.";
+    return retval;
+  }
   let retval = {};
   retval["txt"] = "There is a deafening sound of rushing water! The water levels recede.";
   this.spritexoffset = -9*32;
@@ -13908,7 +13913,7 @@ KineticCrystalTile.prototype.use = function(who) {
   let wemap = who.getHomeMap();
   if (wemap.getName() === "worldsending2") {
     if (((who.getx() === 38) && (who.gety() === 28)) || ((who.getx() === 39) && (who.gety() === 29))) {
-      retval["txt"] = "You place the crystal into the socket, and hear a profound CLICK, and then a low, resonant hum.";
+      retval["txt"] = "You place the crystal into the socket, and hear a deep, echoing CLICK, and then a low, resonant hum.";
       let receptacle = wemap.getTile(39,28).getTopFeature();
       receptacle.spritexoffset = -1*32;
       DU.gameflags.setFlag("worldsendingraft",1);
