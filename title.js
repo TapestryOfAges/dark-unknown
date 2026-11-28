@@ -399,7 +399,7 @@ tv.StartAttract = function() {
   let roadns = `background-image:url("graphics/static.gif"); background-position: -256px -224px;width:32px;height:32px`;
   let roadne = `background-image:url("graphics/static.gif"); background-position: -288px -256px;width:32px;height:32px`;
   let roadew = `background-image:url("graphics/static.gif"); background-position: -224px -288px;width:32px;height:32px`;
-  let cobble = `background-image:url("graphics/static.gif"); background-position: -0px -192px;width:32px;height:32px`;
+  let cobble = `background-image:url("graphics/static.gif"); background-position: -32px -2752px;width:32px;height:32px`;
   let cobbleroad = `background-image:url("graphics/static.gif"); background-position: -0px -160px;width:32px;height:32px`;
   let wall = `background-image:url("graphics/static.gif"); background-position: -256px -480px;width:32px;height:32px`;
 
@@ -677,7 +677,7 @@ tv.StartAttract = function() {
   attractmapx += `<td id='amx23x3' style='position:relative;opacity:0;${water4}'><div style='width:32px;height:32px;background-image:url("graphics/necoast-sand.gif");'></div></td></tr>`;
   attractmapx += `<tr><td id='amx1x4' style='position:relative;opacity:0;${wall}'></td>`;
   attractmapx += `<td id='amx2x4' style='position:relative;opacity:0;${wall}'></td>`;
-  attractmapx += `<td id='amx3x4' style='position:relative;opacity:0;${cobble}'><div style='width:32px;height:32px;background-image:url("graphics/${door[0]}");background-position:${door[2]}px ${door[3]}px'></div></td>`;
+  attractmapx += `<td id='amx3x4' style='position:relative;opacity:0;${cobble}'><div style='${door}'></div></td>`;
   attractmapx += `<td id='amx4x4' style='position:relative;opacity:0;${wall}'></td>`;
   attractmapx += `<td id='amx5x4' style='position:relative;opacity:0;${wall}'></td>`;
   attractmapx += `<td id='amx6x4' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx7x4' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx8x4' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx9x4' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx10x4' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx11x4' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx12x4' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx13x4' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx14x4' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx15x4' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx16x4' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx17x4' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx18x4' style='position:relative;opacity:0;width:32px;height:32px'></td>`;
@@ -687,9 +687,9 @@ tv.StartAttract = function() {
   attractmapx += `<td id='amx22x4' style='position:relative;opacity:0;${dirt}'></td>`;
   attractmapx += `<td id='amx23x4' style='position:relative;opacity:0;${dirt}'></td></tr>`;
   attractmapx += `<tr><td id='amx1x5' style='position:relative;opacity:0;${sign}'></td>`;
-  attractmapx += `<td id='amx2x5' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx3x5' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx4x5' style='position:relative;opacity:0;${cobble}'></td>`;
+  attractmapx += `<td id='amx2x5' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx3x5' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx4x5' style='position:relative;opacity:0;${cobbleroad}'></td>`;
   attractmapx += `<td id='amx5x5' style='position:relative;opacity:0;${grass}'></td>`;
   attractmapx += `<td id='amx6x5' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx7x5' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx8x5' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx9x5' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx10x5' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx11x5' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx12x5' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx13x5' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx14x5' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx15x5' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx16x5' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx17x5' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx18x5' style='position:relative;opacity:0;width:32px;height:32px'></td>`;
   attractmapx += `<td id='amx19x5' style='position:relative;opacity:0;${dirt}'></td>`;
@@ -698,9 +698,9 @@ tv.StartAttract = function() {
   attractmapx += `<td id='amx22x5' style='position:relative;opacity:0;${grass}'></td>`;
   attractmapx += `<td id='amx23x5' style='position:relative;opacity:0;${dirt}'></td></tr>`;
   attractmapx += `<tr><td id='amx1x6' style='position:relative;opacity:0;${grass}'><div style='${post}'></div></td>`;
-  attractmapx += `<td id='amx2x6' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx3x6' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx4x6' style='position:relative;opacity:0;${cobble}'></td>`;
+  attractmapx += `<td id='amx2x6' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx3x6' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx4x6' style='position:relative;opacity:0;${cobbleroad}'></td>`;
   attractmapx += `<td id='amx5x6' style='position:relative;opacity:0;${grass}'></td>`;
   attractmapx += `<td id='amx6x6' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx7x4' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx8x4' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx9x4' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx10x4' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx11x4' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx12x4' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx13x4' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx14x4' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx15x4' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx16x4' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx17x4' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx18x4' style='position:relative;opacity:0;width:32px;height:32px'></td>`;
   attractmapx += `<td id='amx19x6' style='position:relative;opacity:0;${grass}'></td>`;
@@ -709,9 +709,9 @@ tv.StartAttract = function() {
   attractmapx += `<td id='amx22x6' style='position:relative;opacity:0;${grass}'></td>`;
   attractmapx += `<td id='amx23x6' style='position:relative;opacity:0;${brush}'></td></tr>`;
   attractmapx += `<tr><td id='amx1x7' style='position:relative;opacity:0;${grass}'></td>`;
-  attractmapx += `<td id='amx2x7' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx3x7' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx4x7' style='position:relative;opacity:0;${cobble}'></td>`;
+  attractmapx += `<td id='amx2x7' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx3x7' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx4x7' style='position:relative;opacity:0;${cobbleroad}'></td>`;
   attractmapx += `<td id='amx5x7' style='position:relative;opacity:0;${grass}'></td>`;
   attractmapx += `<td id='amx6x7' style='position:relative;opacity:0;${grass}'></td>`;
   attractmapx += `<td id='amx7x7' style='position:relative;opacity:0;${grass}'></td>`;
@@ -732,55 +732,55 @@ tv.StartAttract = function() {
   attractmapx += `<td id='amx22x7' style='position:relative;opacity:0;${grass}'></td>`;
   attractmapx += `<td id='amx23x7' style='position:relative;opacity:0;${grass}'></td></tr>`;
   attractmapx += `<tr><td id='amx1x8' style='position:relative;opacity:0;${grass}'></td>`;
-  attractmapx += `<td id='amx2x8' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx3x8' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx4x8' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx5x8' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx6x8' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx7x8' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx8x8' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx9x8' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx10x8' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx11x8' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx12x8' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx13x8' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx14x8' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx15x8' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx16x8' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx17x8' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx18x8' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx19x8' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx20x8' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx21x8' style='position:relative;opacity:0;${cobble}'></td>`;
+  attractmapx += `<td id='amx2x8' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx3x8' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx4x8' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx5x8' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx6x8' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx7x8' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx8x8' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx9x8' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx10x8' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx11x8' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx12x8' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx13x8' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx14x8' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx15x8' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx16x8' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx17x8' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx18x8' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx19x8' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx20x8' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx21x8' style='position:relative;opacity:0;${cobbleroad}'></td>`;
   attractmapx += `<td id='amx22x8' style='position:relative;opacity:0;${grass}'></td>`;
   attractmapx += `<td id='amx23x8' style='position:relative;opacity:0;${grass}'></td></tr>`;
   attractmapx += `<tr><td id='amx1x9' style='position:relative;opacity:0;${grass}'></td>`;
-  attractmapx += `<td id='amx2x9' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx3x9' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx4x9' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx5x9' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx6x9' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx7x9' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx8x9' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx9x9' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx10x9' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx11x9' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx12x9' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx13x9' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx14x9' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx15x9' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx16x9' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx17x9' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx18x9' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx19x9' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx20x9' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx21x9' style='position:relative;opacity:0;${cobble}'></td>`;
+  attractmapx += `<td id='amx2x9' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx3x9' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx4x9' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx5x9' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx6x9' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx7x9' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx8x9' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx9x9' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx10x9' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx11x9' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx12x9' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx13x9' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx14x9' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx15x9' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx16x9' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx17x9' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx18x9' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx19x9' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx20x9' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx21x9' style='position:relative;opacity:0;${cobbleroad}'></td>`;
   attractmapx += `<td id='amx22x9' style='position:relative;opacity:0;${grass}'><div style='${wpnsign}'></div></td>`;
   attractmapx += `<td id='amx23x9' style='position:relative;opacity:0;${grass}'><div style='${rightpost}'></div></td></tr>`;
   attractmapx += `<tr><td id='amx1x10' style='position:relative;opacity:0;${grass}'></td>`;
-  attractmapx += `<td id='amx2x10' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx3x10' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx4x10' style='position:relative;opacity:0;${cobble}'></td>`;
+  attractmapx += `<td id='amx2x10' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx3x10' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx4x10' style='position:relative;opacity:0;${cobbleroad}'></td>`;
   attractmapx += `<td id='amx5x10' style='position:relative;opacity:0;${grass}'></td>`;
   attractmapx += `<td id='amx6x10' style='position:relative;opacity:0;${grass}'></td>`;
   attractmapx += `<td id='amx7x10' style='position:relative;opacity:0;${brush}'></td>`;
@@ -801,9 +801,9 @@ tv.StartAttract = function() {
   attractmapx += `<td id='amx22x10' style='position:relative;opacity:0;${wall}'></td>`;
   attractmapx += `<td id='amx23x10' style='position:relative;opacity:0;${wall}'></td></tr>`;
   attractmapx += `<tr><td id='amx1x11' style='position:relative;opacity:0;${grass}'></td>`;
-  attractmapx += `<td id='amx2x11' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx3x11' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx4x11' style='position:relative;opacity:0;${cobble}'></td>`;
+  attractmapx += `<td id='amx2x11' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx3x11' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx4x11' style='position:relative;opacity:0;${cobbleroad}'></td>`;
   attractmapx += `<td id='amx5x11' style='position:relative;opacity:0;${grass}'></td>`;
   attractmapx += `<td id='amx6x11' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx7x11' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx8x11' style='width:32px;height:32px'></td><td id='amx9x11' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx10x11' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx11x11' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx12x11' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx13x11' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx14x11' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx15x11' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx16x11' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx17x11' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx18x11' style='position:relative;opacity:0;width:32px;height:32px'></td>`;  
   attractmapx += `<td id='amx19x11' style='position:relative;opacity:0;${wall}'></td>`;
@@ -812,9 +812,9 @@ tv.StartAttract = function() {
   attractmapx += `<td id='amx22x11' style='position:relative;opacity:0;${cobble}'></td>`;
   attractmapx += `<td id='amx23x11' style='position:relative;opacity:0;${cobble}'></td></tr>`;
   attractmapx += `<tr><td id='amx1x12' style='position:relative;opacity:0;${grass}'></td>`;
-  attractmapx += `<td id='amx2x12' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx3x12' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx4x12' style='position:relative;opacity:0;${cobble}'></td>`;
+  attractmapx += `<td id='amx2x12' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx3x12' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx4x12' style='position:relative;opacity:0;${cobbleroad}'></td>`;
   attractmapx += `<td id='amx5x12' style='position:relative;opacity:0;${brush}'></td>`;
   attractmapx += `<td id='amx6x12' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx7x12' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx8x12' style='width:32px;height:32px'></td><td id='amx9x12' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx10x12' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx11x12' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx12x12' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx13x12' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx14x12' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx15x12' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx16x12' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx17x12' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx18x12' style='position:relative;opacity:0;width:32px;height:32px'></td>`;  
   attractmapx += `<td id='amx19x12' style='position:relative;opacity:0;${wall}'></td>`;
@@ -823,9 +823,9 @@ tv.StartAttract = function() {
   attractmapx += `<td id='amx22x12' style='position:relative;opacity:0;${cobble}'><div style='width:32px;height:32px;background-image:url("graphics/civ_green.gif");'></div></td>`;
   attractmapx += `<td id='amx23x12' style='position:relative;opacity:0;${cobble}'></td></tr>`;
   attractmapx += `<tr><td id='amx1x13' style='position:relative;opacity:0;${grass}'></td>`;
-  attractmapx += `<td id='amx2x13' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx3x13' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx4x13' style='position:relative;opacity:0;${cobble}'></td>`;
+  attractmapx += `<td id='amx2x13' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx3x13' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx4x13' style='position:relative;opacity:0;${cobbleroad}'></td>`;
   attractmapx += `<td id='amx5x13' style='position:relative;opacity:0;${grass}'></td>`;
   attractmapx += `<td id='amx6x13' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx7x13' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx8x13' style='width:32px;height:32px'></td><td id='amx9x13' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx10x13' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx11x13' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx12x13' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx13x13' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx14x13' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx15x13' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx16x13' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx17x13' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx18x13' style='position:relative;opacity:0;width:32px;height:32px'></td>`;  
   attractmapx += `<td id='amx19x13' style='position:relative;opacity:0;${wall}'></td>`;
@@ -834,9 +834,9 @@ tv.StartAttract = function() {
   attractmapx += `<td id='amx22x13' style='position:relative;opacity:0;${cobble}'></td>`;
   attractmapx += `<td id='amx23x13' style='position:relative;opacity:0;${cobble}'></td></tr>`;
   attractmapx += `<tr><td id='amx1x14' style='position:relative;opacity:0;${grass}'></td>`;
-  attractmapx += `<td id='amx2x14' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx3x14' style='position:relative;opacity:0;${cobble}'></td>`;
-  attractmapx += `<td id='amx4x14' style='position:relative;opacity:0;${cobble}'></td>`;
+  attractmapx += `<td id='amx2x14' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx3x14' style='position:relative;opacity:0;${cobbleroad}'></td>`;
+  attractmapx += `<td id='amx4x14' style='position:relative;opacity:0;${cobbleroad}'></td>`;
   attractmapx += `<td id='amx5x14' style='position:relative;opacity:0;${grass}'></td>`;
   attractmapx += `<td id='amx6x14' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx7x13' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx8x13' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx9x13' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx10x13' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx11x13' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx12x13' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx13x13' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx14x13' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx15x13' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx16x13' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx17x13' style='position:relative;opacity:0;width:32px;height:32px'></td><td id='amx18x13' style='position:relative;opacity:0;width:32px;height:32px'></td>`;  
   attractmapx += `<td id='amx19x14' style='position:relative;opacity:0;${cobble}'></td>`;
@@ -852,6 +852,8 @@ tv.StartAttract = function() {
     attractdiv = document.getElementById("attract2");
     if (attractdiv) {
       attractdiv.innerHTML = attractmapx;
+      tv.AnimateTile("am21x2a", 0, 4, 350, 450, "random", 1);
+      tv.AnimateTile("am11x9a", -128, 4, 350, 450, "random", 1);
       tv.ExecuteAttract(0);
     }
   }
@@ -1629,9 +1631,6 @@ tv.ExecuteAttract = function(frame) {
   let tableedge = ["static.gif","",-6*32,-85*32];
   let fireball;
 
-  tv.AnimateTile("am21x2a", 0, 4, 450, 550, "random", 1);
-  tv.AnimateTile("am11x9a", -128, 4, 350, 450, "random", 1);
-
   if (!board1) { return; }
   let dur = 500;
   switch (frame) {
@@ -1644,104 +1643,120 @@ tv.ExecuteAttract = function(frame) {
       dur = 3000;
       break;
     case 1:
-      let protag = tv.BuildAttractHuman("protag");
-      console.log(protag);
-      document.getElementById("am12x8").innerHTML = protag;
+      tv.protag = tv.BuildAttractHuman("protag");
+      document.getElementById("am12x8").innerHTML = tv.protag;
+      document.getElementById("am13x8").innerHTML = "";
       break;
     case 2:
-      PleaseExplode();
+      tv.protag = document.getElementById("am12x8").innerHTML
       document.getElementById("am12x8").innerHTML = ``;
-      document.getElementById("am13x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      document.getElementById("am13x8").innerHTML = tv.protag;
       tv.HideTiles("",10,7,10,10);
       tv.ShowTiles("",15,7,15,10);
       break;
     case 3:
+      tv.protag = document.getElementById("am13x8").innerHTML;
       document.getElementById("am13x8").innerHTML = ``;
-      document.getElementById("am14x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      document.getElementById("am14x8").innerHTML = tv.protag;
       tv.HideTiles("",11,7,11,10);
       tv.ShowTiles("",16,7,16,10);
       break;
     case 4:
+      tv.protag = document.getElementById("am14x8").innerHTML;
       document.getElementById("am14x8").innerHTML = ``;
-      document.getElementById("am15x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      document.getElementById("am15x8").innerHTML = tv.protag;
       tv.HideTiles("",12,7,12,10);
       tv.ShowTiles("",17,7,17,10);
       break;
     case 5:
+      tv.protag = document.getElementById("am15x8").innerHTML;
       document.getElementById("am15x8").innerHTML = ``;
-      document.getElementById("am16x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      document.getElementById("am16x8").innerHTML = tv.protag;
       tv.HideTiles("",13,7,13,10);
       tv.ShowTiles("",18,7,18,10);
       break;
     case 6:
+      tv.protag = document.getElementById("am16x8").innerHTML;
       document.getElementById("am16x8").innerHTML = ``;
-      document.getElementById("am17x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      document.getElementById("am17x8").innerHTML = tv.protag;
       tv.HideTiles("",14,7,14,10);
       tv.ShowTiles("",19,7,19,10);
       break;
     case 7:
+      tv.protag = document.getElementById("am17x8").innerHTML;
       document.getElementById("am17x8").innerHTML = ``;
-      document.getElementById("am18x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      document.getElementById("am18x8").innerHTML = tv.protag;
       tv.HideTiles("",15,7,15,10);
       tv.ShowTiles("",20,7,20,10);
       break;
     case 8:
+      tv.protag = document.getElementById("am18x8").innerHTML;
       document.getElementById("am18x8").innerHTML = ``;
-      document.getElementById("am19x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      document.getElementById("am19x8").innerHTML = tv.protag;
       tv.HideTiles("",16,7,16,10);
       tv.ShowTiles("",21,7,21,10);
       tv.ShowTiles("",19,6,21,6);
 //      tv.ShowTiles("",19,11,21,11);
       break;
     case 9:
+      tv.protag = document.getElementById("am19x8").innerHTML;
       document.getElementById("am19x8").innerHTML = ``;
-      document.getElementById("am20x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      document.getElementById("am20x8").innerHTML = tv.protag;
       tv.HideTiles("",17,7,17,10);
       tv.ShowTiles("",22,6,22,10);
       break;
     case 10:
+      tv.protag = document.getElementById("am20x8").innerHTML;
       document.getElementById("am20x8").innerHTML = ``;
-      document.getElementById("am21x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      document.getElementById("am21x8").innerHTML = tv.protag;
       tv.HideTiles("",18,7,18,10);
       tv.ShowTiles("",23,6,23,10);
       break;
     case 11:
+      tv.protag = document.getElementById("am21x8").innerHTML;
       document.getElementById("am21x8").innerHTML = ``;
-      document.getElementById("am21x7").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      document.getElementById("am21x7").innerHTML = tv.protag;
       tv.HideTiles("",19,10,23,10);
       tv.ShowTiles("",19,5,23,5);
       break;
     case 12:
+      tv.protag = document.getElementById("am21x7").innerHTML;
       document.getElementById("am21x7").innerHTML = ``;
-      document.getElementById("am21x6").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      document.getElementById("am21x6").innerHTML = tv.protag;
       tv.HideTiles("",19,9,23,9);
       tv.ShowTiles("",19,4,23,4);
       break;
     case 13:
+      tv.protag = document.getElementById("am21x6").innerHTML;
       document.getElementById("am21x6").innerHTML = ``;
-      document.getElementById("am21x5").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      document.getElementById("am21x5").innerHTML = tv.protag;
       tv.HideTiles("",19,8,23,8);
       tv.ShowTiles("",19,3,23,3);
       break;
     case 14:
+      tv.protag = document.getElementById("am21x5").innerHTML;
       document.getElementById("am21x5").innerHTML = ``;
-      document.getElementById("am21x4").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      document.getElementById("am21x4").innerHTML = tv.protag;
       tv.HideTiles("",19,7,23,7);
       tv.ShowTiles("",19,2,23,2);
       break;
     case 15:
+      tv.protag = document.getElementById("am21x4").innerHTML;
       document.getElementById("am21x4").innerHTML = ``;
-      document.getElementById("am21x3").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      document.getElementById("am21x3").innerHTML = tv.protag;
       tv.HideTiles("",19,6,23,6);
       tv.ShowTiles("",19,1,23,1);
       break;
     case 16: 
+      tv.protag = document.getElementById("am21x3").innerHTML;
+      tv.savekeep = document.getElementById("am21x2").innerHTML;
       document.getElementById("am21x3").innerHTML = ``;
-      document.getElementById("am21x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/153.gif");'><div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div></div>`;
+      document.getElementById("am21x2").innerHTML += tv.protag;
       tv.HideTiles("",19,5,23,5);
       break;
     case 17:
-      document.getElementById("am21x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/153.gif");'></div>`;
+      document.getElementById("am21x2").innerHTML = tv.savekeep;
+      delete tv.savekeep;
       dur = 1200;
       break;
     case 18:
@@ -1769,41 +1784,48 @@ tv.ExecuteAttract = function(frame) {
       tv.ShowTiles("x",1,9,5,13);
       break;
     case 24:
-      document.getElementById("amx3x11").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      document.getElementById("amx3x11").innerHTML = tv.protag;
+      delete tv.protag;
       break;
     case 25:
+      tv.protag = document.getElementById("amx3x11").innerHTML;
       document.getElementById("amx3x11").innerHTML = ``;
-      document.getElementById("amx3x10").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      document.getElementById("amx3x10").innerHTML = tv.protag;
       tv.HideTiles("x",1,13,5,13);
       tv.ShowTiles("x",1,8,5,8);
       break;
     case 26:
+      tv.protag = document.getElementById("amx3x10").innerHTML;
       document.getElementById("amx3x10").innerHTML = ``;
-      document.getElementById("amx3x9").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      document.getElementById("amx3x9").innerHTML = tv.protag;
       tv.HideTiles("x",1,12,5,12);
       tv.ShowTiles("x",1,7,5,7);
       break;
     case 27:
+      tv.protag = document.getElementById("amx3x9").innerHTML;
       document.getElementById("amx3x9").innerHTML = ``;
-      document.getElementById("amx3x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      document.getElementById("amx3x8").innerHTML = tv.protag;
       tv.HideTiles("x",1,11,5,11);
       tv.ShowTiles("x",1,6,5,6);
       break;
     case 28:
+      tv.protag = document.getElementById("amx3x8").innerHTML;
       document.getElementById("amx3x8").innerHTML = ``;
-      document.getElementById("amx3x7").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      document.getElementById("amx3x7").innerHTML = tv.protag;
       tv.HideTiles("x",1,10,5,10);
       tv.ShowTiles("x",1,5,5,5);
       break;
     case 29:
+      tv.protag = document.getElementById("amx3x7").innerHTML;
       document.getElementById("amx3x7").innerHTML = ``;
-      document.getElementById("amx3x6").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      document.getElementById("amx3x6").innerHTML = tv.protag;
       tv.HideTiles("x",1,9,5,9);
       tv.ShowTiles("x",1,4,5,4);
       break;
     case 30:
+      tv.protag = document.getElementById("amx3x6").innerHTML;
       document.getElementById("amx3x6").innerHTML = ``;
-      document.getElementById("amx3x5").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      document.getElementById("amx3x5").innerHTML = tv.protag;
       tv.HideTiles("x",1,8,5,8);
       tv.ShowTiles("x",1,3,5,3);
       break;
@@ -1811,20 +1833,23 @@ tv.ExecuteAttract = function(frame) {
       document.getElementById("amx3x4").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/${opendoor[0]}");background-position:${opendoor[2]}px ${opendoor[3]}px'></div>`;
       break;
     case 32:
+      tv.protag = document.getElementById("amx3x5").innerHTML;
       document.getElementById("amx3x5").innerHTML = ``;
-      document.getElementById("amx3x4").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/${opendoor[0]}");background-position:${opendoor[2]}px ${opendoor[3]}px'><div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div></div>`;
+      document.getElementById("amx3x4").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/${opendoor[0]}");background-position:${opendoor[2]}px ${opendoor[3]}px'>${tv.protag}</div>`;
       tv.HideTiles("x",1,7,5,7);
       tv.ShowTiles("x",1,2,5,2);
       break;
     case 33:
       document.getElementById("amx3x4").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/${opendoor[0]}");background-position:${opendoor[2]}px ${opendoor[3]}px'></div>`;
-      document.getElementById("amx3x3").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      document.getElementById("amx3x3").innerHTML = tv.protag;
       tv.HideTiles("x",1,6,5,6);
       tv.ShowTiles("x",1,1,5,1);
       break;
     case 34:
+      tv.protag = document.getElementById("amx3x3").innerHTML;
+      let seatedprotag = tv.BuildAttractHuman("sit");
       document.getElementById("amx3x3").innerHTML = ``;
-      document.getElementById("amx3x2").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/seated_east_2.gif");'></div>`;
+      document.getElementById("amx3x2").innerHTML = seatedprotag;
       dur = 200;
       break;
     case 35:
@@ -2753,30 +2778,30 @@ tv.BuildAttractHuman = function(which) {
   // options are civ, civ2, fighter
   let humandiv = `<div id="${which}id" style="position:absolute; left:0; top:0; width:32; height:32">`;
   if (which === "civ") {
-    humandiv += `<div id="${which}id1" style="position:absolute; left:0; top:0; width:32; height:32; background-image('graphics/humanparts.gif'); background-position: 0px ${-12*32}px"></div>`;
-    humandiv += `<div id="${which}id2" style="position:absolute; left:0; top:0; width:32; height:32; background-image('graphics/humanparts.gif'); background-position: 0px ${-43*32}px"></div>`;
-    humandiv += `<div id="${which}id3" style="position:absolute; left:0; top:0; width:32; height:32; background-image('graphics/humanparts.gif'); background-position: 0px ${-59*32}px"></div>`;
-    humandiv += `<div id="${which}id4" style="position:absolute; left:0; top:0; width:32; height:32; background-image('graphics/humanparts.gif'); background-position: 0px ${-60*32}px"></div>`;
+    humandiv += `<div id="${which}id1" style="position:absolute; left:0; top:0; width:32; height:32; background-image:url('graphics/humanparts.gif'); background-position: 0px ${-12*32}px"></div>`;
+    humandiv += `<div id="${which}id2" style="position:absolute; left:0; top:0; width:32; height:32; background-image:url('graphics/humanparts.gif'); background-position: 0px ${-43*32}px"></div>`;
+    humandiv += `<div id="${which}id3" style="position:absolute; left:0; top:0; width:32; height:32; background-image:url('graphics/humanparts.gif'); background-position: 0px ${-59*32}px"></div>`;
+    humandiv += `<div id="${which}id4" style="position:absolute; left:0; top:0; width:32; height:32; background-image:url('graphics/humanparts.gif'); background-position: 0px ${-60*32}px"></div>`;
   } else if (which === "civ2") {
-    humandiv += `<div id="${which}id1" style="position:absolute; left:0; top:0; width:32; height:32; background-image('graphics/humanparts.gif'); background-position: 0px ${-18*32}px"></div>`;
-    humandiv += `<div id="${which}id2" style="position:absolute; left:0; top:0; width:32; height:32; background-image('graphics/humanparts.gif'); background-position: 0px ${-44*32}px"></div>`;
-    humandiv += `<div id="${which}id3" style="position:absolute; left:0; top:0; width:32; height:32; background-image('graphics/humanparts.gif'); background-position: 0px ${-61*32}px"></div>`;
-    humandiv += `<div id="${which}id4" style="position:absolute; left:0; top:0; width:32; height:32; background-image('graphics/humanparts.gif'); background-position: 0px ${-62*32}px"></div>`;
+    humandiv += `<div id="${which}id1" style="position:absolute; left:0; top:0; width:32; height:32; background-image:url('graphics/humanparts.gif'); background-position: 0px ${-18*32}px"></div>`;
+    humandiv += `<div id="${which}id2" style="position:absolute; left:0; top:0; width:32; height:32; background-image:url('graphics/humanparts.gif'); background-position: 0px ${-44*32}px"></div>`;
+    humandiv += `<div id="${which}id3" style="position:absolute; left:0; top:0; width:32; height:32; background-image:url('graphics/humanparts.gif'); background-position: 0px ${-61*32}px"></div>`;
+    humandiv += `<div id="${which}id4" style="position:absolute; left:0; top:0; width:32; height:32; background-image:url('graphics/humanparts.gif'); background-position: 0px ${-62*32}px"></div>`;
   } else if (which === "fighter") {
-    humandiv += `<div id="${which}id1" style="position:absolute; left:0; top:0; width:32; height:32; background-image('graphics/humanparts.gif'); background-position: 0px ${-32*32}px"></div>`;
-    humandiv += `<div id="${which}id2" style="position:absolute; left:0; top:0; width:32; height:32; background-image('graphics/humanparts.gif'); background-position: 0px ${-51*32}px"></div>`;
-    humandiv += `<div id="${which}id3" style="position:absolute; left:0; top:0; width:32; height:32; background-image('graphics/humanparts.gif'); background-position: 0px ${-59*32}px"></div>`;
-    humandiv += `<div id="${which}id4" style="position:absolute; left:0; top:0; width:32; height:32; background-image('graphics/humanparts.gif'); background-position: 0px ${-60*32}px"></div>`;
+    humandiv += `<div id="${which}id1" style="position:absolute; left:0; top:0; width:32; height:32; background-image:url('graphics/humanparts.gif'); background-position: 0px ${-32*32}px"></div>`;
+    humandiv += `<div id="${which}id2" style="position:absolute; left:0; top:0; width:32; height:32; background-image:url('graphics/humanparts.gif'); background-position: 0px ${-51*32}px"></div>`;
+    humandiv += `<div id="${which}id3" style="position:absolute; left:0; top:0; width:32; height:32; background-image:url('graphics/humanparts.gif'); background-position: 0px ${-59*32}px"></div>`;
+    humandiv += `<div id="${which}id4" style="position:absolute; left:0; top:0; width:32; height:32; background-image:url('graphics/humanparts.gif'); background-position: 0px ${-60*32}px"></div>`;
   } else if (which === "protag") {
-    humandiv += `<div id="${which}id1" style="position:absolute; left:0; top:0; width:32; height:32; background-image('graphics/humanparts.gif'); background-position: 0px ${-31*32}px"></div>`;
-    humandiv += `<div id="${which}id2" style="position:absolute; left:0; top:0; width:32; height:32; background-image('graphics/humanparts.gif'); background-position: 0px ${-46*32}px"></div>`;
-    humandiv += `<div id="${which}id3" style="position:absolute; left:0; top:0; width:32; height:32; background-image('graphics/humanparts.gif'); background-position: 0px ${-71*32}px"></div>`;
-    humandiv += `<div id="${which}id4" style="position:absolute; left:0; top:0; width:32; height:32; background-image('graphics/humanparts.gif'); background-position: 0px ${-60*32}px"></div>`;
+    humandiv += `<div id="${which}id1" style="position:absolute; left:0; top:0; width:32; height:32; background-image:url('graphics/humanparts.gif'); background-position: 0px ${-31*32}px"></div>`;
+    humandiv += `<div id="${which}id2" style="position:absolute; left:0; top:0; width:32; height:32; background-image:url('graphics/humanparts.gif'); background-position: 0px ${-46*32}px"></div>`;
+    humandiv += `<div id="${which}id3" style="position:absolute; left:0; top:0; width:32; height:32; background-image:url('graphics/humanparts.gif'); background-position: 0px ${-71*32}px"></div>`;
+    humandiv += `<div id="${which}id4" style="position:absolute; left:0; top:0; width:32; height:32; background-image:url('graphics/humanparts.gif'); background-position: 0px ${-60*32}px"></div>`;
   } else if (which === "sit") {
     // facing east
-    humandiv += `<div id="${which}id1" style="position:absolute; left:0; top:0; width:32; height:32; background-image('graphics/humanseated.gif'); background-position: ${-4*32}px ${-32*32}px"></div>`;
-    humandiv += `<div id="${which}id2" style="position:absolute; left:0; top:0; width:32; height:32; background-image('graphics/humanseated.gif'); background-position: ${-4*32}px ${-7*32}px"></div>`;
-    humandiv += `<div id="${which}id3" style="position:absolute; left:0; top:0; width:32; height:32; background-image('graphics/humanseated.gif'); background-position: ${-4*32}px ${-2*32}px"></div>`;
+    humandiv += `<div id="${which}id1" style="position:absolute; left:0; top:0; width:32; height:32; background-image:url('graphics/humanseated.gif'); background-position: ${-4*32}px ${-32*32}px"></div>`;
+    humandiv += `<div id="${which}id2" style="position:absolute; left:0; top:0; width:32; height:32; background-image:url('graphics/humanseated.gif'); background-position: ${-4*32}px ${-7*32}px"></div>`;
+    humandiv += `<div id="${which}id3" style="position:absolute; left:0; top:0; width:32; height:32; background-image:url('graphics/humanseated.gif'); background-position: ${-4*32}px ${-2*32}px"></div>`;
   } else {
     alert("Unknown human type.");
   }
